@@ -1,0 +1,82 @@
+
+# Files #
+#########
+TODO.md
+
+
+# Directories #
+###############
+.github/
+**/benchmark/
+**/build/
+**/docs/
+**/examples/
+reports/
+support/
+**/tmp/
+workshops/
+
+# Ignore test directories, except for testing dependency installation:
+**/test/
+!/deps/test/
+
+# Only top-level directories:
+/etc/
+/tools/
+
+
+# Node.js #
+###########
+.npmignore
+
+# Only top-level node_modules:
+/node_modules/
+
+
+# Logs #
+########
+*.log
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+
+# Temporary files #
+###################
+*~
+
+
+# Git #
+#######
+.git*
+.mailmap
+
+
+# Utilities #
+#############
+.jshintrc
+.jshintignore
+.eslintrc*
+.eslintignore
+
+.pylintrc
+.pycodestyle
+.pydocstyle
+
+.travis.yml
+circle.yml
+appveyor.yml
+
+.editorconfig
+.codeclimate.yml
+.codecov.yml
