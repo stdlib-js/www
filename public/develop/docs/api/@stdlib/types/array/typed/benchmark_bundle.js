@@ -246,6 +246,81 @@ module.exports = instanceOf;
 'use strict';
 
 /**
+* Test if a value is an array-like object.
+*
+* @module @stdlib/assert/is-array-like-object
+*
+* @example
+* var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
+*
+* var bool = isArrayLikeObject( [] );
+* // returns true
+*
+* bool = isArrayLikeObject( { 'length':10 } );
+* // returns true
+*
+* bool = isArrayLikeObject( 'beep' );
+* // returns false
+*/
+
+// MODULES //
+
+var isArrayLikeObject = require( './is_array_like_object.js' );
+
+
+// EXPORTS //
+
+module.exports = isArrayLikeObject;
+
+},{"./is_array_like_object.js":6}],6:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var MAX_LENGTH = require( '@stdlib/math/constants/uint32-max' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an array-like object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is an array-like object
+*
+* @example
+* var bool = isArrayLikeObject( [] );
+* // returns true
+*
+* @example
+* var bool = isArrayLikeObject( { 'length':10 } );
+* // returns true
+*
+* @example
+* var bool = isArrayLikeObject( 'beep' );
+* // returns false
+*/
+function isArrayLikeObject( value ) {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		typeof value.length === 'number' &&
+		isInteger( value.length ) &&
+		value.length >= 0 &&
+		value.length <= MAX_LENGTH
+	);
+} // end FUNCTION isArrayLikeObject()
+
+
+// EXPORTS //
+
+module.exports = isArrayLikeObject;
+
+},{"@stdlib/math/base/assert/is-integer":153,"@stdlib/math/constants/uint32-max":224}],7:[function(require,module,exports){
+'use strict';
+
+/**
 * Test if a value is array-like.
 *
 * @module @stdlib/assert/is-array-like
@@ -272,7 +347,7 @@ var isArrayLike = require( './is_array_like.js' );
 
 module.exports = isArrayLike;
 
-},{"./is_array_like.js":6}],6:[function(require,module,exports){
+},{"./is_array_like.js":8}],8:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -314,7 +389,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/math/base/assert/is-integer":151,"@stdlib/math/constants/uint32-max":222}],7:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":153,"@stdlib/math/constants/uint32-max":224}],9:[function(require,module,exports){
 'use strict';
 
 /**
@@ -341,7 +416,7 @@ var isArray = require( './is_array.js' );
 
 module.exports = isArray;
 
-},{"./is_array.js":8}],8:[function(require,module,exports){
+},{"./is_array.js":10}],10:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -374,7 +449,7 @@ function isArray( value ) {
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":346}],9:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],11:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -394,12 +469,15 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isBoolean( false );
 * // returns true
+*
 * @example
 * var bool = isBoolean( true );
 * // returns true
+*
 * @example
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
+*
 * @example
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
@@ -413,7 +491,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./object.js":11,"./primitive.js":12}],10:[function(require,module,exports){
+},{"./object.js":13,"./primitive.js":14}],12:[function(require,module,exports){
 'use strict';
 
 /**
@@ -469,7 +547,7 @@ setReadOnly( isBoolean, 'isObject', isObject );
 
 module.exports = isBoolean;
 
-},{"./generic.js":9,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-read-only-property":298}],11:[function(require,module,exports){
+},{"./generic.js":11,"./object.js":13,"./primitive.js":14,"@stdlib/utils/define-read-only-property":304}],13:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -490,6 +568,7 @@ var test = require( './try2serialize.js' );
 * @example
 * var bool = isBoolean( true );
 * // returns false
+*
 * @example
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
@@ -509,7 +588,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":14,"@stdlib/utils/detect-tostringtag-support":317,"@stdlib/utils/native-class":346}],12:[function(require,module,exports){
+},{"./try2serialize.js":16,"@stdlib/utils/detect-tostringtag-support":323,"@stdlib/utils/native-class":352}],14:[function(require,module,exports){
 'use strict';
 
 /**
@@ -521,9 +600,11 @@ module.exports = isBoolean;
 * @example
 * var bool = isBoolean( true );
 * // returns true
+*
 * @example
 * var bool = isBoolean( false );
 * // returns true
+*
 * @example
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
@@ -537,7 +618,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -548,7 +629,7 @@ var toString = Boolean.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -578,14 +659,14 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":13}],15:[function(require,module,exports){
+},{"./tostring.js":15}],17:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = true;
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 /**
@@ -612,7 +693,7 @@ var isBuffer = require( './is_buffer.js' );
 
 module.exports = isBuffer;
 
-},{"./is_buffer.js":17}],17:[function(require,module,exports){
+},{"./is_buffer.js":19}],19:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -631,12 +712,15 @@ var isObjectLike = require( '@stdlib/assert/is-object-like' );
 * @example
 * var v = isBuffer( new Buffer( 'beep' ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( new Buffer( [1,2,3,4] ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( {} );
 * // returns false
+*
 * @example
 * var v = isBuffer( [] );
 * // returns false
@@ -662,7 +746,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":65}],18:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":67}],20:[function(require,module,exports){
 'use strict';
 
 /**
@@ -689,7 +773,7 @@ var isError = require( './is_error.js' );
 
 module.exports = isError;
 
-},{"./is_error.js":19}],19:[function(require,module,exports){
+},{"./is_error.js":21}],21:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -737,7 +821,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":334,"@stdlib/utils/native-class":346}],20:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":340,"@stdlib/utils/native-class":352}],22:[function(require,module,exports){
 'use strict';
 
 /**
@@ -764,7 +848,7 @@ var isFloat32Array = require( './is_float32array.js' );
 
 module.exports = isFloat32Array;
 
-},{"./is_float32array.js":21}],21:[function(require,module,exports){
+},{"./is_float32array.js":23}],23:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -797,7 +881,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":346}],22:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],24:[function(require,module,exports){
 'use strict';
 
 /**
@@ -824,7 +908,7 @@ var isFloat64Array = require( './is_float64array.js' );
 
 module.exports = isFloat64Array;
 
-},{"./is_float64array.js":23}],23:[function(require,module,exports){
+},{"./is_float64array.js":25}],25:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -857,7 +941,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":346}],24:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],26:[function(require,module,exports){
 'use strict';
 
 /**
@@ -885,7 +969,7 @@ var isFunction = require( './is_function.js' );
 
 module.exports = isFunction;
 
-},{"./is_function.js":25}],25:[function(require,module,exports){
+},{"./is_function.js":27}],27:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -919,7 +1003,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":363}],26:[function(require,module,exports){
+},{"@stdlib/utils/type-of":369}],28:[function(require,module,exports){
 'use strict';
 
 /**
@@ -946,7 +1030,7 @@ var isInt16Array = require( './is_int16array.js' );
 
 module.exports = isInt16Array;
 
-},{"./is_int16array.js":27}],27:[function(require,module,exports){
+},{"./is_int16array.js":29}],29:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -979,7 +1063,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":346}],28:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1006,7 +1090,7 @@ var isInt32Array = require( './is_int32array.js' );
 
 module.exports = isInt32Array;
 
-},{"./is_int32array.js":29}],29:[function(require,module,exports){
+},{"./is_int32array.js":31}],31:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1039,7 +1123,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":346}],30:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],32:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1066,7 +1150,7 @@ var isInt8Array = require( './is_int8array.js' );
 
 module.exports = isInt8Array;
 
-},{"./is_int8array.js":31}],31:[function(require,module,exports){
+},{"./is_int8array.js":33}],33:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1099,7 +1183,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":346}],32:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],34:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1119,12 +1203,15 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isInteger( -3.14 );
 * // returns false
+*
 * @example
 * var bool = isInteger( null );
 * // returns false
@@ -1138,7 +1225,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":35,"./primitive.js":36}],33:[function(require,module,exports){
+},{"./object.js":37,"./primitive.js":38}],35:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1200,7 +1287,7 @@ setReadOnly( isInteger, 'isObject', isObject );
 
 module.exports = isInteger;
 
-},{"./generic.js":32,"./object.js":35,"./primitive.js":36,"@stdlib/utils/define-read-only-property":298}],34:[function(require,module,exports){
+},{"./generic.js":34,"./object.js":37,"./primitive.js":38,"@stdlib/utils/define-read-only-property":304}],36:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1215,6 +1302,7 @@ var isInt = require( '@stdlib/math/base/assert/is-integer' );
 /**
 * Tests if a number primitive is an integer value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a number primitive is an integer value
 */
@@ -1231,7 +1319,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/assert/is-integer":151,"@stdlib/math/constants/float64-ninf":212,"@stdlib/math/constants/float64-pinf":213}],35:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":153,"@stdlib/math/constants/float64-ninf":214,"@stdlib/math/constants/float64-pinf":215}],37:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1251,6 +1339,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isInteger( new Number( 3.0 ) );
 * // returns true
@@ -1267,7 +1356,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":34,"@stdlib/assert/is-number":60}],36:[function(require,module,exports){
+},{"./integer.js":36,"@stdlib/assert/is-number":62}],38:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1287,6 +1376,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( -3.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( -3.0 ) );
 * // returns false
@@ -1303,7 +1393,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":34,"@stdlib/assert/is-number":60}],37:[function(require,module,exports){
+},{"./integer.js":36,"@stdlib/assert/is-number":62}],39:[function(require,module,exports){
 'use strict';
 
 var ctors = {
@@ -1316,7 +1406,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{}],38:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1340,7 +1430,7 @@ var IS_LITTLE_ENDIAN = require( './is_little_endian.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./is_little_endian.js":39}],39:[function(require,module,exports){
+},{"./is_little_endian.js":41}],41:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1381,7 +1471,7 @@ function isLittleEndian() {
 
 module.exports = isLittleEndian();
 
-},{"./ctors.js":37}],40:[function(require,module,exports){
+},{"./ctors.js":39}],42:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1402,13 +1492,16 @@ var isObject = require( './object.js' );
 * var bool = isnan( NaN );
 * // returns true
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns true
 *
-* bool = isnan( 3.14 );
+* @example
+* var bool = isnan( 3.14 );
 * // returns false
 *
-* bool = isnan( null );
+* @example
+* var bool = isnan( null );
 * // returns false
 */
 function isnan( value ) {
@@ -1420,7 +1513,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":42,"./primitive.js":43}],41:[function(require,module,exports){
+},{"./object.js":44,"./primitive.js":45}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1485,7 +1578,7 @@ setReadOnly( isnan, 'isObject', isObject );
 
 module.exports = isnan;
 
-},{"./generic.js":40,"./object.js":42,"./primitive.js":43,"@stdlib/utils/define-read-only-property":298}],42:[function(require,module,exports){
+},{"./generic.js":42,"./object.js":44,"./primitive.js":45,"@stdlib/utils/define-read-only-property":304}],44:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1506,7 +1599,8 @@ var isNan = require( '@stdlib/math/base/assert/is-nan' );
 * var bool = isnan( NaN );
 * // returns false
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns true
 */
 function isnan( value ) {
@@ -1521,7 +1615,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":60,"@stdlib/math/base/assert/is-nan":153}],43:[function(require,module,exports){
+},{"@stdlib/assert/is-number":62,"@stdlib/math/base/assert/is-nan":155}],45:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1542,10 +1636,12 @@ var isNan = require( '@stdlib/math/base/assert/is-nan' );
 * var bool = isnan( NaN );
 * // returns true
 *
-* bool = isnan( 3.14 );
+* @example
+* var bool = isnan( 3.14 );
 * // returns false
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns false
 */
 function isnan( value ) {
@@ -1560,7 +1656,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":60,"@stdlib/math/base/assert/is-nan":153}],44:[function(require,module,exports){
+},{"@stdlib/assert/is-number":62,"@stdlib/math/base/assert/is-nan":155}],46:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1590,7 +1686,7 @@ var isNodeStreamLike = require( './is_stream_like.js' );
 
 module.exports = isNodeStreamLike;
 
-},{"./is_stream_like.js":45}],45:[function(require,module,exports){
+},{"./is_stream_like.js":47}],47:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -1636,7 +1732,7 @@ function isNodeStreamLike( value ) {
 
 module.exports = isNodeStreamLike;
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1666,7 +1762,7 @@ var isNodeWritableStreamLike = require( './is_writable_stream_like.js' );
 
 module.exports = isNodeWritableStreamLike;
 
-},{"./is_writable_stream_like.js":47}],47:[function(require,module,exports){
+},{"./is_writable_stream_like.js":49}],49:[function(require,module,exports){
 /* eslint-disable no-underscore-dangle */
 'use strict';
 
@@ -1712,7 +1808,7 @@ function isNodeWritableStreamLike( value ) {
 
 module.exports = isNodeWritableStreamLike;
 
-},{"@stdlib/assert/is-node-stream-like":44}],48:[function(require,module,exports){
+},{"@stdlib/assert/is-node-stream-like":46}],50:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1768,7 +1864,7 @@ setReadOnly( isNonNegativeIntegerArray, 'objects', arrayfun( isNonNegativeIntege
 
 module.exports = isNonNegativeIntegerArray;
 
-},{"@stdlib/assert/is-nonnegative-integer":50,"@stdlib/assert/tools/array-like-function":101,"@stdlib/utils/define-read-only-property":298}],49:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":52,"@stdlib/assert/tools/array-like-function":103,"@stdlib/utils/define-read-only-property":304}],51:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1788,15 +1884,19 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isNonNegativeInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( -5.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( 3.14 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( null );
 * // returns false
@@ -1810,7 +1910,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":51,"./primitive.js":52}],50:[function(require,module,exports){
+},{"./object.js":53,"./primitive.js":54}],52:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1875,7 +1975,7 @@ setReadOnly( isNonNegativeInteger, 'isObject', isObject );
 
 module.exports = isNonNegativeInteger;
 
-},{"./generic.js":49,"./object.js":51,"./primitive.js":52,"@stdlib/utils/define-read-only-property":298}],51:[function(require,module,exports){
+},{"./generic.js":51,"./object.js":53,"./primitive.js":54,"@stdlib/utils/define-read-only-property":304}],53:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1894,6 +1994,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
 * @example
 * var bool = isNonNegativeInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 3.0 ) );
 * // returns true
@@ -1910,7 +2011,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":33}],52:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":35}],54:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1929,6 +2030,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 * @example
 * var bool = isNonNegativeInteger( 3.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 3.0 ) );
 * // returns false
@@ -1945,7 +2047,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":33}],53:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":35}],55:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1965,15 +2067,19 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isNonNegativeNumber( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeNumber( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeNumber( 3.14 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeNumber( -5.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeNumber( null );
 * // returns false
@@ -1987,7 +2093,7 @@ function isNonNegativeNumber( value ) {
 
 module.exports = isNonNegativeNumber;
 
-},{"./object.js":55,"./primitive.js":56}],54:[function(require,module,exports){
+},{"./object.js":57,"./primitive.js":58}],56:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2052,7 +2158,7 @@ setReadOnly( isNonNegativeNumber, 'isObject', isObject );
 
 module.exports = isNonNegativeNumber;
 
-},{"./generic.js":53,"./object.js":55,"./primitive.js":56,"@stdlib/utils/define-read-only-property":298}],55:[function(require,module,exports){
+},{"./generic.js":55,"./object.js":57,"./primitive.js":58,"@stdlib/utils/define-read-only-property":304}],57:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2071,6 +2177,7 @@ var isNumber = require( '@stdlib/assert/is-number' ).isObject;
 * @example
 * var bool = isNonNegativeNumber( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeNumber( new Number( 3.0 ) );
 * // returns true
@@ -2087,7 +2194,7 @@ function isNonNegativeNumber( value ) {
 
 module.exports = isNonNegativeNumber;
 
-},{"@stdlib/assert/is-number":60}],56:[function(require,module,exports){
+},{"@stdlib/assert/is-number":62}],58:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2106,6 +2213,7 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * @example
 * var bool = isNonNegativeNumber( 3.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeNumber( new Number( 3.0 ) );
 * // returns false
@@ -2122,7 +2230,7 @@ function isNonNegativeNumber( value ) {
 
 module.exports = isNonNegativeNumber;
 
-},{"@stdlib/assert/is-number":60}],57:[function(require,module,exports){
+},{"@stdlib/assert/is-number":62}],59:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2148,7 +2256,7 @@ var isNull = require( './is_null.js' );
 
 module.exports = isNull;
 
-},{"./is_null.js":58}],58:[function(require,module,exports){
+},{"./is_null.js":60}],60:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2173,7 +2281,7 @@ function isNull( value ) {
 
 module.exports = isNull;
 
-},{}],59:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2215,7 +2323,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":61,"./primitive.js":62}],60:[function(require,module,exports){
+},{"./object.js":63,"./primitive.js":64}],62:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2280,7 +2388,7 @@ setReadOnly( isNumber, 'isObject', isObject );
 
 module.exports = isNumber;
 
-},{"./generic.js":59,"./object.js":61,"./primitive.js":62,"@stdlib/utils/define-read-only-property":298}],61:[function(require,module,exports){
+},{"./generic.js":61,"./object.js":63,"./primitive.js":64,"@stdlib/utils/define-read-only-property":304}],63:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2321,7 +2429,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":64,"@stdlib/utils/detect-tostringtag-support":317,"@stdlib/utils/native-class":346}],62:[function(require,module,exports){
+},{"./try2serialize.js":66,"@stdlib/utils/detect-tostringtag-support":323,"@stdlib/utils/native-class":352}],64:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2351,7 +2459,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],63:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -2362,9 +2470,38 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],64:[function(require,module,exports){
-arguments[4][14][0].apply(exports,arguments)
-},{"./tostring.js":63,"dup":14}],65:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
+
+
+// MAIN //
+
+/**
+* Attempts to serialize a value to a string.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value can be serialized
+*/
+function test( value ) {
+	try {
+		toString.call( value );
+		return true;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return false;
+	}
+} // end FUNCTION test()
+
+
+// EXPORTS //
+
+module.exports = test;
+
+},{"./tostring.js":65}],67:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2410,7 +2547,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":66,"@stdlib/assert/tools/array-function":99,"@stdlib/utils/define-read-only-property":298}],66:[function(require,module,exports){
+},{"./is_object_like.js":68,"@stdlib/assert/tools/array-function":101,"@stdlib/utils/define-read-only-property":304}],68:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2443,7 +2580,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],67:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2470,7 +2607,7 @@ var isObject = require( './is_object.js' );
 
 module.exports = isObject;
 
-},{"./is_object.js":68}],68:[function(require,module,exports){
+},{"./is_object.js":70}],70:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2507,7 +2644,7 @@ function isObject( value ) {
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":7}],69:[function(require,module,exports){
+},{"@stdlib/assert/is-array":9}],71:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2527,21 +2664,14 @@ module.exports = isObject;
 
 // MODULES //
 
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var arrayfun = require( '@stdlib/assert/tools/array-function' );
 var isPlainObject = require( './is_plain_object.js' );
-
-
-// MAIN //
-
-setReadOnly( isPlainObject, 'isPlainObjectArray', arrayfun( isPlainObject ) );
 
 
 // EXPORTS //
 
 module.exports = isPlainObject;
 
-},{"./is_plain_object.js":70,"@stdlib/assert/tools/array-function":99,"@stdlib/utils/define-read-only-property":298}],70:[function(require,module,exports){
+},{"./is_plain_object.js":72}],72:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2637,7 +2767,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":24,"@stdlib/assert/is-object":67,"@stdlib/utils/get-prototype-of":334,"@stdlib/utils/native-class":346}],71:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":26,"@stdlib/assert/is-object":69,"@stdlib/utils/get-prototype-of":340,"@stdlib/utils/native-class":352}],73:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2657,18 +2787,23 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isPositiveInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isPositiveInteger( 0.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( -5.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( 3.14 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( null );
 * // returns false
@@ -2682,7 +2817,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"./object.js":73,"./primitive.js":74}],72:[function(require,module,exports){
+},{"./object.js":75,"./primitive.js":76}],74:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2747,7 +2882,7 @@ setReadOnly( isPositiveInteger, 'isObject', isObject );
 
 module.exports = isPositiveInteger;
 
-},{"./generic.js":71,"./object.js":73,"./primitive.js":74,"@stdlib/utils/define-read-only-property":298}],73:[function(require,module,exports){
+},{"./generic.js":73,"./object.js":75,"./primitive.js":76,"@stdlib/utils/define-read-only-property":304}],75:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2766,6 +2901,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
 * @example
 * var bool = isPositiveInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( new Number( 3.0 ) );
 * // returns true
@@ -2782,7 +2918,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":33}],74:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":35}],76:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2801,6 +2937,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 * @example
 * var bool = isPositiveInteger( 3.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveInteger( new Number( 3.0 ) );
 * // returns false
@@ -2817,7 +2954,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":33}],75:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":35}],77:[function(require,module,exports){
 'use strict';
 
 var exec = RegExp.prototype.exec; // non-generic
@@ -2827,7 +2964,7 @@ var exec = RegExp.prototype.exec; // non-generic
 
 module.exports = exec;
 
-},{}],76:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2854,7 +2991,7 @@ var isRegExp = require( './is_regexp.js' );
 
 module.exports = isRegExp;
 
-},{"./is_regexp.js":77}],77:[function(require,module,exports){
+},{"./is_regexp.js":79}],79:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2895,7 +3032,7 @@ function isRegExp( value ) {
 
 module.exports = isRegExp;
 
-},{"./try2exec.js":78,"@stdlib/utils/detect-tostringtag-support":317,"@stdlib/utils/native-class":346}],78:[function(require,module,exports){
+},{"./try2exec.js":80,"@stdlib/utils/detect-tostringtag-support":323,"@stdlib/utils/native-class":352}],80:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2926,7 +3063,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./exec.js":75}],79:[function(require,module,exports){
+},{"./exec.js":77}],81:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2982,7 +3119,7 @@ setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":81,"@stdlib/assert/tools/array-function":99,"@stdlib/utils/define-read-only-property":298}],80:[function(require,module,exports){
+},{"@stdlib/assert/is-string":83,"@stdlib/assert/tools/array-function":101,"@stdlib/utils/define-read-only-property":304}],82:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2998,6 +3135,14 @@ var isObject = require( './object.js' );
 *
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating whether value is a string
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
@@ -3008,7 +3153,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":82,"./primitive.js":83}],81:[function(require,module,exports){
+},{"./object.js":84,"./primitive.js":85}],83:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3065,7 +3210,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":80,"./object.js":82,"./primitive.js":83,"@stdlib/utils/define-read-only-property":298}],82:[function(require,module,exports){
+},{"./generic.js":82,"./object.js":84,"./primitive.js":85,"@stdlib/utils/define-read-only-property":304}],84:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3086,6 +3231,7 @@ var test = require( './try2valueof.js' );
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns true
+*
 * @example
 * var bool = isString( 'beep' );
 * // returns false
@@ -3105,7 +3251,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":84,"@stdlib/utils/detect-tostringtag-support":317,"@stdlib/utils/native-class":346}],83:[function(require,module,exports){
+},{"./try2valueof.js":86,"@stdlib/utils/detect-tostringtag-support":323,"@stdlib/utils/native-class":352}],85:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3117,6 +3263,7 @@ module.exports = isString;
 * @example
 * var bool = isString( 'beep' );
 * // returns true
+*
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns false
@@ -3130,7 +3277,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],84:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3143,6 +3290,7 @@ var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
 /**
 * Attempts to extract a string value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a string can be extracted
 */
@@ -3160,7 +3308,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":85}],85:[function(require,module,exports){
+},{"./valueof.js":87}],87:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -3171,7 +3319,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],86:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -3193,7 +3341,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{}],87:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3217,7 +3365,7 @@ var isTypedArray = require( './is_typed_array.js' );
 
 module.exports = isTypedArray;
 
-},{"./is_typed_array.js":88}],88:[function(require,module,exports){
+},{"./is_typed_array.js":90}],90:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3273,7 +3421,7 @@ function isTypedArray( value ) {
 
 module.exports = isTypedArray;
 
-},{"./ctors.js":86,"./names.json":89,"@stdlib/assert/instance-of":3,"@stdlib/utils/constructor-name":292,"@stdlib/utils/get-prototype-of":334}],89:[function(require,module,exports){
+},{"./ctors.js":88,"./names.json":91,"@stdlib/assert/instance-of":3,"@stdlib/utils/constructor-name":298,"@stdlib/utils/get-prototype-of":340}],91:[function(require,module,exports){
 module.exports=[
 	"Int8Array",
 	"Uint8Array",
@@ -3286,7 +3434,7 @@ module.exports=[
 	"Float64Array"
 ]
 
-},{}],90:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3313,7 +3461,7 @@ var isUint16Array = require( './is_uint16array.js' );
 
 module.exports = isUint16Array;
 
-},{"./is_uint16array.js":91}],91:[function(require,module,exports){
+},{"./is_uint16array.js":93}],93:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3346,7 +3494,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":346}],92:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],94:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3373,7 +3521,7 @@ var isUint32Array = require( './is_uint32array.js' );
 
 module.exports = isUint32Array;
 
-},{"./is_uint32array.js":93}],93:[function(require,module,exports){
+},{"./is_uint32array.js":95}],95:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3406,7 +3554,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":346}],94:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],96:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3433,7 +3581,7 @@ var isUint8Array = require( './is_uint8array.js' );
 
 module.exports = isUint8Array;
 
-},{"./is_uint8array.js":95}],95:[function(require,module,exports){
+},{"./is_uint8array.js":97}],97:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3466,7 +3614,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":346}],96:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],98:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3493,7 +3641,7 @@ var isUint8ClampedArray = require( './is_uint8array_clamped.js' );
 
 module.exports = isUint8ClampedArray;
 
-},{"./is_uint8array_clamped.js":97}],97:[function(require,module,exports){
+},{"./is_uint8array_clamped.js":99}],99:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3526,7 +3674,7 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":346}],98:[function(require,module,exports){
+},{"@stdlib/utils/native-class":352}],100:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3593,7 +3741,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":7}],99:[function(require,module,exports){
+},{"@stdlib/assert/is-array":9}],101:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3626,7 +3774,7 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":98}],100:[function(require,module,exports){
+},{"./arrayfcn.js":100}],102:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3693,7 +3841,7 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":5}],101:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":7}],103:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3726,7 +3874,7 @@ var arraylikefcn = require( './arraylikefcn.js' );
 
 module.exports = arraylikefcn;
 
-},{"./arraylikefcn.js":100}],102:[function(require,module,exports){
+},{"./arraylikefcn.js":102}],104:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3876,7 +4024,7 @@ setReadOnly( bench, 'createHarness', createHarness );
 setReadOnly( bench, 'createStream', createStream );
 setReadOnly( bench, 'onFinish', onFinish );
 
-},{"./get_harness.js":124,"./harness":125,"@stdlib/assert/is-function":24,"@stdlib/streams/utils/transform":232,"@stdlib/utils/define-read-only-property":298}],103:[function(require,module,exports){
+},{"./get_harness.js":126,"./harness":127,"@stdlib/assert/is-function":26,"@stdlib/streams/utils/transform":234,"@stdlib/utils/define-read-only-property":304}],105:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3927,14 +4075,14 @@ function assert( ok, opts ) {
 
 module.exports = assert;
 
-},{"@stdlib/assert/has-own-property":2}],104:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2}],106:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = clearTimeout;
 
-},{}],105:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3975,7 +4123,7 @@ function comment( msg ) {
 
 module.exports = comment;
 
-},{"@stdlib/regexp/eol":224,"@stdlib/string/replace":238,"@stdlib/string/trim":242}],106:[function(require,module,exports){
+},{"@stdlib/regexp/eol":226,"@stdlib/string/replace":244,"@stdlib/string/trim":248}],108:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -3999,7 +4147,7 @@ function deepEqual( actual, expected, msg ) {
 
 module.exports = deepEqual;
 
-},{}],107:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4041,7 +4189,7 @@ function end() {
 
 module.exports = end;
 
-},{"./../utils/next_tick.js":144}],108:[function(require,module,exports){
+},{"./../utils/next_tick.js":146}],110:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4062,7 +4210,7 @@ function ended() {
 
 module.exports = ended;
 
-},{}],109:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4090,7 +4238,7 @@ function equal( actual, expected, msg ) {
 
 module.exports = equal;
 
-},{}],110:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4124,7 +4272,7 @@ function exit() {
 
 module.exports = exit;
 
-},{}],111:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4148,7 +4296,7 @@ function fail( msg ) {
 
 module.exports = fail;
 
-},{}],112:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4505,7 +4653,7 @@ setReadOnly( Benchmark.prototype, 'end', require( './end.js' ) );
 
 module.exports = Benchmark;
 
-},{"./assert.js":103,"./comment.js":105,"./deep_equal.js":106,"./end.js":107,"./ended.js":108,"./equal.js":109,"./exit.js":110,"./fail.js":111,"./not_deep_equal.js":113,"./not_equal.js":114,"./not_ok.js":115,"./ok.js":116,"./pass.js":117,"./run.js":118,"./skip.js":120,"./todo.js":121,"@stdlib/time/tic":244,"@stdlib/time/toc":248,"@stdlib/utils/define-read-only-property":298,"@stdlib/utils/inherit":341,"events":374}],113:[function(require,module,exports){
+},{"./assert.js":105,"./comment.js":107,"./deep_equal.js":108,"./end.js":109,"./ended.js":110,"./equal.js":111,"./exit.js":112,"./fail.js":113,"./not_deep_equal.js":115,"./not_equal.js":116,"./not_ok.js":117,"./ok.js":118,"./pass.js":119,"./run.js":120,"./skip.js":122,"./todo.js":123,"@stdlib/time/tic":250,"@stdlib/time/toc":254,"@stdlib/utils/define-read-only-property":304,"@stdlib/utils/inherit":347,"events":380}],115:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4529,7 +4677,7 @@ function notDeepEqual( actual, expected, msg ) {
 
 module.exports = notDeepEqual;
 
-},{}],114:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4557,7 +4705,7 @@ function notEqual( actual, expected, msg ) {
 
 module.exports = notEqual;
 
-},{}],115:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4584,7 +4732,7 @@ function notOk( value, msg ) {
 
 module.exports = notOk;
 
-},{}],116:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4611,7 +4759,7 @@ function ok( value, msg ) {
 
 module.exports = ok;
 
-},{}],117:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4635,7 +4783,7 @@ function pass( msg ) {
 
 module.exports = pass;
 
-},{}],118:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 /* eslint-disable no-underscore-dangle */
 'use strict';
 
@@ -4699,14 +4847,14 @@ function run() {
 
 module.exports = run;
 
-},{"./clear_timeout.js":104,"./set_timeout.js":119}],119:[function(require,module,exports){
+},{"./clear_timeout.js":106,"./set_timeout.js":121}],121:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = setTimeout;
 
-},{}],120:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4732,7 +4880,7 @@ function skip( value, msg ) {
 
 module.exports = skip;
 
-},{}],121:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4758,7 +4906,7 @@ function todo( value, msg ) {
 
 module.exports = todo;
 
-},{}],122:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports={
 	"skip": false,
 	"iterations": null,
@@ -4766,7 +4914,7 @@ module.exports={
 	"timeout": 300000
 }
 
-},{}],123:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4935,7 +5083,7 @@ function createExitHarness() {
 
 module.exports = createExitHarness;
 
-},{"./harness":125,"./log":131,"./utils/can_emit_exit.js":142,"./utils/process.js":145,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":24,"@stdlib/assert/is-node-writable-stream-like":46,"@stdlib/assert/is-plain-object":69,"@stdlib/utils/noop":351,"@stdlib/utils/omit":353,"@stdlib/utils/pick":355}],124:[function(require,module,exports){
+},{"./harness":127,"./log":133,"./utils/can_emit_exit.js":144,"./utils/process.js":147,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":12,"@stdlib/assert/is-function":26,"@stdlib/assert/is-node-writable-stream-like":48,"@stdlib/assert/is-plain-object":71,"@stdlib/utils/noop":357,"@stdlib/utils/omit":359,"@stdlib/utils/pick":361}],126:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4986,7 +5134,7 @@ function getHarness( options, clbk ) {
 
 module.exports = getHarness;
 
-},{"./exit_harness.js":123,"./utils/can_emit_exit.js":142}],125:[function(require,module,exports){
+},{"./exit_harness.js":125,"./utils/can_emit_exit.js":144}],127:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5274,7 +5422,7 @@ function createHarness( options, clbk ) {
 
 module.exports = createHarness;
 
-},{"./../benchmark-class":112,"./../defaults.json":122,"./../runner":139,"./../utils/next_tick.js":144,"./init.js":126,"./validate.js":129,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":24,"@stdlib/assert/is-plain-object":69,"@stdlib/assert/is-string":81,"@stdlib/utils/copy":295,"@stdlib/utils/define-read-only-property":298}],126:[function(require,module,exports){
+},{"./../benchmark-class":114,"./../defaults.json":124,"./../runner":141,"./../utils/next_tick.js":146,"./init.js":128,"./validate.js":131,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":12,"@stdlib/assert/is-function":26,"@stdlib/assert/is-plain-object":71,"@stdlib/assert/is-string":83,"@stdlib/utils/copy":301,"@stdlib/utils/define-read-only-property":304}],128:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5356,7 +5504,7 @@ function init( name, opts, benchmark, clbk ) {
 
 module.exports = init;
 
-},{"./iterations.js":127,"./pretest.js":128}],127:[function(require,module,exports){
+},{"./iterations.js":129,"./pretest.js":130}],129:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5446,7 +5594,7 @@ function iterations( name, options, benchmark, clbk ) {
 
 module.exports = iterations;
 
-},{"./../benchmark-class":112,"@stdlib/assert/is-string":81,"@stdlib/utils/copy":295}],128:[function(require,module,exports){
+},{"./../benchmark-class":114,"@stdlib/assert/is-string":83,"@stdlib/utils/copy":301}],130:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5551,7 +5699,7 @@ function pretest( name, options, benchmark, clbk ) {
 
 module.exports = pretest;
 
-},{"./../benchmark-class":112,"@stdlib/assert/is-string":81,"@stdlib/utils/copy":295}],129:[function(require,module,exports){
+},{"./../benchmark-class":114,"@stdlib/assert/is-string":83,"@stdlib/utils/copy":301}],131:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5630,7 +5778,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-null":57,"@stdlib/assert/is-plain-object":69,"@stdlib/assert/is-positive-integer":72}],130:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":12,"@stdlib/assert/is-null":59,"@stdlib/assert/is-plain-object":71,"@stdlib/assert/is-positive-integer":74}],132:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5668,12 +5816,13 @@ var bench = require( './bench.js' );
 
 module.exports = bench;
 
-},{"./bench.js":102}],131:[function(require,module,exports){
+},{"./bench.js":104}],133:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var TransformStream = require( '@stdlib/streams/utils/transform' );
+var fromCodePoint = require( '@stdlib/string/from-code-point' );
 var log = require( './log.js' );
 
 
@@ -5710,7 +5859,7 @@ function createStream() {
 		var i;
 
 		for ( i = 0; i < chunk.length; i++ ) {
-			c = String.fromCharCode( chunk[ i ] );
+			c = fromCodePoint( chunk[ i ] );
 			if ( c === '\n' ) {
 				flush();
 			} else {
@@ -5745,7 +5894,7 @@ function createStream() {
 
 module.exports = createStream;
 
-},{"./log.js":132,"@stdlib/streams/utils/transform":232}],132:[function(require,module,exports){
+},{"./log.js":134,"@stdlib/streams/utils/transform":234,"@stdlib/string/from-code-point":240}],134:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -5765,7 +5914,7 @@ function log( str ) {
 
 module.exports = log;
 
-},{}],133:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -5785,7 +5934,7 @@ function clear() {
 
 module.exports = clear;
 
-},{}],134:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -5842,7 +5991,7 @@ function closeRunner() {
 
 module.exports = closeRunner;
 
-},{}],135:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 /* eslint-disable no-underscore-dangle */
 'use strict';
 
@@ -6014,7 +6163,7 @@ function createStream( options ) {
 
 module.exports = createStream;
 
-},{"./../utils/next_tick.js":144,"@stdlib/assert/is-string":81,"@stdlib/streams/utils/transform":232}],136:[function(require,module,exports){
+},{"./../utils/next_tick.js":146,"@stdlib/assert/is-string":83,"@stdlib/streams/utils/transform":234}],138:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6117,7 +6266,7 @@ function encodeAssertion( result, count ) {
 
 module.exports = encodeAssertion;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/regexp/eol":224,"@stdlib/string/replace":238}],137:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/regexp/eol":226,"@stdlib/string/replace":244}],139:[function(require,module,exports){
 'use strict';
 
 // VARIABLES //
@@ -6150,7 +6299,7 @@ function encodeResult( result ) {
 
 module.exports = encodeResult;
 
-},{}],138:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -6187,7 +6336,7 @@ function exit() {
 
 module.exports = exit;
 
-},{}],139:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6380,7 +6529,7 @@ Object.defineProperty( Runner.prototype, 'exit', {
 
 module.exports = Runner;
 
-},{"./clear.js":133,"./close.js":134,"./create_stream.js":135,"./exit.js":138,"./push.js":140,"./run.js":141,"@stdlib/streams/utils/transform":232,"@stdlib/utils/inherit":341,"events":374}],140:[function(require,module,exports){
+},{"./clear.js":135,"./close.js":136,"./create_stream.js":137,"./exit.js":140,"./push.js":142,"./run.js":143,"@stdlib/streams/utils/transform":234,"@stdlib/utils/inherit":347,"events":380}],142:[function(require,module,exports){
 /* eslint-disable no-underscore-dangle */
 'use strict';
 
@@ -6463,7 +6612,7 @@ function push( b ) {
 
 module.exports = push;
 
-},{"./encode_assertion.js":136,"./encode_result.js":137,"@stdlib/assert/is-string":81}],141:[function(require,module,exports){
+},{"./encode_assertion.js":138,"./encode_result.js":139,"@stdlib/assert/is-string":83}],143:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -6483,7 +6632,7 @@ function run() {
 
 module.exports = run;
 
-},{}],142:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6496,7 +6645,7 @@ var canExit = require( './can_exit.js' );
 
 module.exports = ( !IS_BROWSER && canExit );
 
-},{"./can_exit.js":143,"@stdlib/assert/is-browser":15}],143:[function(require,module,exports){
+},{"./can_exit.js":145,"@stdlib/assert/is-browser":17}],145:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6508,7 +6657,7 @@ var proc = require( './process.js' );
 
 module.exports = ( proc && typeof proc.exit === 'function' );
 
-},{"./process.js":145}],144:[function(require,module,exports){
+},{"./process.js":147}],146:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -6537,7 +6686,7 @@ function nextTick( fcn ) {
 
 module.exports = nextTick;
 
-},{}],145:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6546,7 +6695,7 @@ module.exports = nextTick;
 module.exports = process;
 
 }).call(this,require('_process'))
-},{"_process":368}],146:[function(require,module,exports){
+},{"_process":374}],148:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6584,7 +6733,7 @@ var bench = require( '@stdlib/bench/harness' );
 
 module.exports = bench;
 
-},{"@stdlib/bench/harness":130}],147:[function(require,module,exports){
+},{"@stdlib/bench/harness":132}],149:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6617,7 +6766,7 @@ var isEven = require( './is_even.js' );
 
 module.exports = isEven;
 
-},{"./is_even.js":148}],148:[function(require,module,exports){
+},{"./is_even.js":150}],150:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6658,7 +6807,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":151}],149:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":153}],151:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6691,7 +6840,7 @@ var isInfinite = require( './is_infinite.js' );
 
 module.exports = isInfinite;
 
-},{"./is_infinite.js":150}],150:[function(require,module,exports){
+},{"./is_infinite.js":152}],152:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6711,12 +6860,15 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var bool = isInfinite( Number.POSITIVE_INFINITY );
 * // returns true
+*
 * @example
 * var bool = isInfinite( Number.NEGATIVE_INFINITY );
 * // returns true
+*
 * @example
 * var bool = isInfinite( 5.0 );
 * // returns false
+*
 * @example
 * var bool = isInfinite( NaN );
 * // returns false
@@ -6730,7 +6882,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/math/constants/float64-ninf":212,"@stdlib/math/constants/float64-pinf":213}],151:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-ninf":214,"@stdlib/math/constants/float64-pinf":215}],153:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6757,7 +6909,7 @@ var isInteger = require( './is_integer.js' );
 
 module.exports = isInteger;
 
-},{"./is_integer.js":152}],152:[function(require,module,exports){
+},{"./is_integer.js":154}],154:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6790,7 +6942,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":162}],153:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":164}],155:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6817,7 +6969,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":154}],154:[function(require,module,exports){
+},{"./is_nan.js":156}],156:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -6831,6 +6983,7 @@ module.exports = isnan;
 * @example
 * var bool = isnan( NaN );
 * // returns true
+*
 * @example
 * var bool = isnan( 7.0 );
 * // returns false
@@ -6844,7 +6997,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],155:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6877,7 +7030,7 @@ var isOdd = require( './is_odd.js' );
 
 module.exports = isOdd;
 
-},{"./is_odd.js":156}],156:[function(require,module,exports){
+},{"./is_odd.js":158}],158:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6922,7 +7075,7 @@ function isOdd( x ) {
 
 module.exports = isOdd;
 
-},{"@stdlib/math/base/assert/is-even":147}],157:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-even":149}],159:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6934,15 +7087,19 @@ module.exports = isOdd;
 * @example
 * var v = abs( -1.0 );
 * // returns 1.0
+*
 * @example
 * var v = abs( 2.0 );
 * // returns 2.0
+*
 * @example
 * var v = abs( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = abs( -0.0 );
 * // returns 0.0
+*
 * @example
 * var v = abs( NaN );
 * // returns NaN
@@ -6962,7 +7119,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],158:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6998,7 +7155,7 @@ var abs = require( './abs.js' );
 
 module.exports = abs;
 
-},{"./abs.js":157}],159:[function(require,module,exports){
+},{"./abs.js":159}],161:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7029,15 +7186,19 @@ var MAGNITUDE_MASK = 0x7fffffff;
 * @example
 * var z = copysign( -3.14, 10.0 );
 * // returns 3.14
+*
 * @example
 * var z = copysign( 3.14, -1.0 );
 * // returns -3.14
+*
 * @example
 * var z = copysign( 1.0, -0.0 );
 * // returns -1.0
+*
 * @example
 * var z = copysign( -3.14, -0.0 );
 * // returns -3.14
+*
 * @example
 * var z = copysign( -0.0, 1.0 );
 * // returns 0.0
@@ -7071,7 +7232,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/math/base/utils/float64-from-words":184,"@stdlib/math/base/utils/float64-get-high-word":188,"@stdlib/math/base/utils/float64-to-words":200}],160:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-from-words":186,"@stdlib/math/base/utils/float64-get-high-word":190,"@stdlib/math/base/utils/float64-to-words":202}],162:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7107,7 +7268,7 @@ var copysign = require( './copysign.js' );
 
 module.exports = copysign;
 
-},{"./copysign.js":159}],161:[function(require,module,exports){
+},{"./copysign.js":161}],163:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -7141,7 +7302,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],162:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7174,7 +7335,7 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":161}],163:[function(require,module,exports){
+},{"./floor.js":163}],165:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7216,7 +7377,7 @@ var ldexp = require( './ldexp.js' );
 
 module.exports = ldexp;
 
-},{"./ldexp.js":164}],164:[function(require,module,exports){
+},{"./ldexp.js":166}],166:[function(require,module,exports){
 'use strict';
 
 // NOTES //
@@ -7264,21 +7425,27 @@ var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
 * @example
 * var x = ldexp( 0.5, 3 ); // => 0.5 * 2^3 = 0.5 * 8
 * // returns 4.0
+*
 * @example
 * var x = ldexp( 4.0, -2 ); // => 4 * 2^(-2) = 4 * (1/4)
 * // returns 1.0
+*
 * @example
 * var x = ldexp( 0.0, 20 );
 * // returns 0.0
+*
 * @example
 * var x = ldexp( -0.0, 39 );
 * // returns -0.0
+*
 * @example
 * var x = ldexp( NaN, -101 );
 * // returns NaN
+*
 * @example
 * var x = ldexp( Number.POSITIVE_INFINITY, 11 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var x = ldexp( Number.NEGATIVE_INFINITY, -118 );
 * // returns Number.NEGATIVE_INFINITY
@@ -7339,7 +7506,7 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/math/base/assert/is-infinite":149,"@stdlib/math/base/assert/is-nan":153,"@stdlib/math/base/special/copysign":160,"@stdlib/math/base/utils/float64-exponent":182,"@stdlib/math/base/utils/float64-from-words":184,"@stdlib/math/base/utils/float64-normalize":192,"@stdlib/math/base/utils/float64-to-words":200,"@stdlib/math/constants/float64-exponent-bias":205,"@stdlib/math/constants/float64-max-base2-exponent":210,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":209,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":211,"@stdlib/math/constants/float64-ninf":212,"@stdlib/math/constants/float64-pinf":213}],165:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":151,"@stdlib/math/base/assert/is-nan":155,"@stdlib/math/base/special/copysign":162,"@stdlib/math/base/utils/float64-exponent":184,"@stdlib/math/base/utils/float64-from-words":186,"@stdlib/math/base/utils/float64-normalize":194,"@stdlib/math/base/utils/float64-to-words":202,"@stdlib/math/constants/float64-exponent-bias":207,"@stdlib/math/constants/float64-max-base2-exponent":212,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":211,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":213,"@stdlib/math/constants/float64-ninf":214,"@stdlib/math/constants/float64-pinf":215}],167:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7363,7 +7530,7 @@ var modf = require( './modf.js' );
 
 module.exports = modf;
 
-},{"./modf.js":166}],166:[function(require,module,exports){
+},{"./modf.js":168}],168:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7476,7 +7643,7 @@ function modf( x ) {
 
 module.exports = modf;
 
-},{"@stdlib/math/base/assert/is-nan":153,"@stdlib/math/base/utils/float64-from-words":184,"@stdlib/math/base/utils/float64-to-words":200,"@stdlib/math/constants/float64-exponent-bias":205,"@stdlib/math/constants/float64-high-word-exponent-mask":206,"@stdlib/math/constants/float64-high-word-significand-mask":207,"@stdlib/math/constants/float64-pinf":213}],167:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":155,"@stdlib/math/base/utils/float64-from-words":186,"@stdlib/math/base/utils/float64-to-words":202,"@stdlib/math/constants/float64-exponent-bias":207,"@stdlib/math/constants/float64-high-word-exponent-mask":208,"@stdlib/math/constants/float64-high-word-significand-mask":209,"@stdlib/math/constants/float64-pinf":215}],169:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7521,7 +7688,7 @@ var pow = require( './pow.js' );
 
 module.exports = pow;
 
-},{"./pow.js":170}],168:[function(require,module,exports){
+},{"./pow.js":172}],170:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7717,7 +7884,7 @@ function log2ax( ax, ahx ) {
 
 module.exports = log2ax;
 
-},{"@stdlib/math/base/tools/evalpoly":180,"@stdlib/math/base/utils/float64-get-high-word":188,"@stdlib/math/base/utils/float64-set-high-word":195,"@stdlib/math/base/utils/float64-set-low-word":197,"@stdlib/math/constants/float64-exponent-bias":205}],169:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":182,"@stdlib/math/base/utils/float64-get-high-word":190,"@stdlib/math/base/utils/float64-set-high-word":197,"@stdlib/math/base/utils/float64-set-low-word":199,"@stdlib/math/constants/float64-exponent-bias":207}],171:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7787,7 +7954,7 @@ function logx( ax ) {
 
 module.exports = logx;
 
-},{"@stdlib/math/base/tools/evalpoly":180,"@stdlib/math/base/utils/float64-set-low-word":197}],170:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":182,"@stdlib/math/base/utils/float64-set-low-word":199}],172:[function(require,module,exports){
 'use strict';
 
 /*
@@ -7939,24 +8106,31 @@ var OVT = 8.0085662595372944372e-17;
 * @example
 * var v = pow( 2.0, 3.0 );
 * // returns 8.0
+*
 * @example
 * var v = pow( 4.0, 0.5 );
 * // returns 2.0
+*
 * @example
 * var v = pow( 100.0, 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = pow( Math.PI, 5.0 );
 * // returns ~306.0197
+*
 * @example
 * var v = pow( Math.PI, -0.2 );
 * // returns ~0.7954
+*
 * @example
 * var v = pow( NaN, 3.0 );
 * // returns NaN
+*
 * @example
 * var v = pow( 5.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = pow( NaN, NaN );
 * // returns NaN
@@ -8150,7 +8324,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"./log2ax.js":168,"./logx.js":169,"./pow2.js":171,"./x_is_zero.js":172,"./y_is_huge.js":173,"./y_is_infinite.js":174,"@stdlib/math/base/assert/is-infinite":149,"@stdlib/math/base/assert/is-integer":151,"@stdlib/math/base/assert/is-nan":153,"@stdlib/math/base/assert/is-odd":155,"@stdlib/math/base/special/abs":158,"@stdlib/math/base/special/sqrt":177,"@stdlib/math/base/utils/float64-get-high-word":188,"@stdlib/math/base/utils/float64-get-low-word":190,"@stdlib/math/base/utils/float64-set-low-word":197,"@stdlib/math/base/utils/float64-to-words":200,"@stdlib/math/base/utils/uint32-to-int32":203,"@stdlib/math/constants/float64-ninf":212,"@stdlib/math/constants/float64-pinf":213}],171:[function(require,module,exports){
+},{"./log2ax.js":170,"./logx.js":171,"./pow2.js":173,"./x_is_zero.js":174,"./y_is_huge.js":175,"./y_is_infinite.js":176,"@stdlib/math/base/assert/is-infinite":151,"@stdlib/math/base/assert/is-integer":153,"@stdlib/math/base/assert/is-nan":155,"@stdlib/math/base/assert/is-odd":157,"@stdlib/math/base/special/abs":160,"@stdlib/math/base/special/sqrt":179,"@stdlib/math/base/utils/float64-get-high-word":190,"@stdlib/math/base/utils/float64-get-low-word":192,"@stdlib/math/base/utils/float64-set-low-word":199,"@stdlib/math/base/utils/float64-to-words":202,"@stdlib/math/base/utils/uint32-to-int32":205,"@stdlib/math/constants/float64-ninf":214,"@stdlib/math/constants/float64-pinf":215}],173:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8277,7 +8451,7 @@ function pow2( j, hp, lp ) {
 
 module.exports = pow2;
 
-},{"@stdlib/math/base/special/ldexp":163,"@stdlib/math/base/tools/evalpoly":180,"@stdlib/math/base/utils/float64-get-high-word":188,"@stdlib/math/base/utils/float64-set-high-word":195,"@stdlib/math/base/utils/float64-set-low-word":197,"@stdlib/math/base/utils/uint32-to-int32":203,"@stdlib/math/constants/float64-exponent-bias":205,"@stdlib/math/constants/float64-ln-two":208}],172:[function(require,module,exports){
+},{"@stdlib/math/base/special/ldexp":165,"@stdlib/math/base/tools/evalpoly":182,"@stdlib/math/base/utils/float64-get-high-word":190,"@stdlib/math/base/utils/float64-set-high-word":197,"@stdlib/math/base/utils/float64-set-low-word":199,"@stdlib/math/base/utils/uint32-to-int32":205,"@stdlib/math/constants/float64-exponent-bias":207,"@stdlib/math/constants/float64-ln-two":210}],174:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8301,18 +8475,23 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var v = pow( 0.0, 2 );
 * // returns 0.0
+*
 * @example
 * var v = pow( -0.0, -9 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, -9 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( -0.0, 9 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, Number.NEGATIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, Number.POSITIVE_INFINITY );
 * // returns 0.0
@@ -8342,7 +8521,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/assert/is-odd":155,"@stdlib/math/base/special/copysign":160,"@stdlib/math/constants/float64-ninf":212,"@stdlib/math/constants/float64-pinf":213}],173:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-odd":157,"@stdlib/math/base/special/copysign":162,"@stdlib/math/constants/float64-ninf":214,"@stdlib/math/constants/float64-pinf":215}],175:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8375,6 +8554,7 @@ var TINY = 1.0e-300;
 * @example
 * var v = pow( 9.0, 3.6893488147419103e19 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( -3.14, -3.6893488147419103e19 );
 * // returns 0.0
@@ -8409,7 +8589,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":188}],174:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":190}],176:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8431,24 +8611,31 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var v = pow( -1.0, Number.POSITIVE_INFINITY );
 * // returns NaN
+*
 * @example
 * var v = pow( -1.0, Number.NEGATIVE_INFINITY );
 * // returns NaN
+*
 * @example
 * var v = pow( 1.0, Number.POSITIVE_INFINITY );
 * // returns 1.0
+*
 * @example
 * var v = pow( 1.0, Number.NEGATIVE_INFINITY );
 * // returns 1.0
+*
 * @example
 * var v = pow( 0.5, Number.POSITIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var v = pow( 0.5, Number.NEGATIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 1.5, Number.NEGATIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var v = pow( 1.5, Number.POSITIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
@@ -8474,7 +8661,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/special/abs":158,"@stdlib/math/constants/float64-pinf":213}],175:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":160,"@stdlib/math/constants/float64-pinf":215}],177:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -8530,7 +8717,7 @@ var round = require( './round.js' );
 
 module.exports = round;
 
-},{"./round.js":176}],176:[function(require,module,exports){
+},{"./round.js":178}],178:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -8592,7 +8779,7 @@ var round = Math.round;
 
 module.exports = round;
 
-},{}],177:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8628,7 +8815,7 @@ var sqrt = Math.sqrt;
 
 module.exports = sqrt;
 
-},{}],178:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -8675,8 +8862,13 @@ function evalpoly( c, x ) {
 
 module.exports = evalpoly;
 
-},{}],179:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 'use strict';
+
+// MODULES //
+
+var evalpoly = require( './evalpoly.js' );
+
 
 // MAIN //
 
@@ -8706,6 +8898,10 @@ function factory( c ) {
 	var m;
 	var i;
 
+	// Avoid exceeding the maximum stack size on V8 :(. Note that the choice of `500` was empirically determined...
+	if ( c.length > 500 ) {
+		return polyval;
+	}
 	// Code generation. Start with the function definition...
 	f = 'return function evalpoly(x){';
 
@@ -8759,6 +8955,17 @@ function factory( c ) {
 	*        return c[0]+x*(c[1]+x*(c[2]+x*(c[3]+...+x*(c[n-2]+x*c[n-1]))));
 	*    }
 	*/
+
+	/**
+	* Evaluates a polynomial.
+	*
+	* @private
+	* @param {number} x - value at which to evaluate a polynomial
+	* @returns {number} evaluated polynomial
+	*/
+	function polyval( x ) {
+		return evalpoly( c, x );
+	} // end FUNCTON polyval()
 } // end FUNCTION factory()
 
 
@@ -8766,7 +8973,7 @@ function factory( c ) {
 
 module.exports = factory;
 
-},{}],180:[function(require,module,exports){
+},{"./evalpoly.js":180}],182:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8808,7 +9015,7 @@ setReadOnly( evalpoly, 'factory', factory );
 
 module.exports = evalpoly;
 
-},{"./evalpoly.js":178,"./factory.js":179,"@stdlib/utils/define-read-only-property":298}],181:[function(require,module,exports){
+},{"./evalpoly.js":180,"./factory.js":181,"@stdlib/utils/define-read-only-property":304}],183:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8855,7 +9062,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":188,"@stdlib/math/constants/float64-exponent-bias":205,"@stdlib/math/constants/float64-high-word-exponent-mask":206}],182:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":190,"@stdlib/math/constants/float64-exponent-bias":207,"@stdlib/math/constants/float64-high-word-exponent-mask":208}],184:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8888,7 +9095,7 @@ var exponent = require( './exponent.js' );
 
 module.exports = exponent;
 
-},{"./exponent.js":181}],183:[function(require,module,exports){
+},{"./exponent.js":183}],185:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8985,7 +9192,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":185}],184:[function(require,module,exports){
+},{"./indices.js":187}],186:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9027,7 +9234,7 @@ var fromWords = require( './from_words.js' );
 
 module.exports = fromWords;
 
-},{"./from_words.js":183}],185:[function(require,module,exports){
+},{"./from_words.js":185}],187:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9056,7 +9263,7 @@ module.exports = {
 	'LOW': LOW
 };
 
-},{"@stdlib/assert/is-little-endian":38}],186:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":40}],188:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9129,7 +9336,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":187}],187:[function(require,module,exports){
+},{"./high.js":189}],189:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9151,7 +9358,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":38}],188:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":40}],190:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9175,7 +9382,7 @@ var getHighWord = require( './get_high_word.js' );
 
 module.exports = getHighWord;
 
-},{"./get_high_word.js":186}],189:[function(require,module,exports){
+},{"./get_high_word.js":188}],191:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9248,7 +9455,7 @@ function getLowWord( x ) {
 
 module.exports = getLowWord;
 
-},{"./low.js":191}],190:[function(require,module,exports){
+},{"./low.js":193}],192:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9272,7 +9479,7 @@ var getLowWord = require( './get_low_word.js' );
 
 module.exports = getLowWord;
 
-},{"./get_low_word.js":189}],191:[function(require,module,exports){
+},{"./get_low_word.js":191}],193:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9294,7 +9501,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":38}],192:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":40}],194:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9325,7 +9532,7 @@ var normalize = require( './normalize.js' );
 
 module.exports = normalize;
 
-},{"./normalize.js":193}],193:[function(require,module,exports){
+},{"./normalize.js":195}],195:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9393,9 +9600,9 @@ function normalize( x ) {
 
 module.exports = normalize;
 
-},{"@stdlib/math/base/assert/is-infinite":149,"@stdlib/math/base/assert/is-nan":153,"@stdlib/math/base/special/abs":158,"@stdlib/math/constants/float64-smallest-normal":214}],194:[function(require,module,exports){
-arguments[4][187][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":38,"dup":187}],195:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":151,"@stdlib/math/base/assert/is-nan":155,"@stdlib/math/base/special/abs":160,"@stdlib/math/constants/float64-smallest-normal":216}],196:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":40,"dup":189}],197:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9431,7 +9638,7 @@ var setHighWord = require( './set_high_word.js' );
 
 module.exports = setHighWord;
 
-},{"./set_high_word.js":196}],196:[function(require,module,exports){
+},{"./set_high_word.js":198}],198:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9517,7 +9724,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":194}],197:[function(require,module,exports){
+},{"./high.js":196}],199:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9561,9 +9768,9 @@ var setLowWord = require( './set_low_word.js' );
 
 module.exports = setLowWord;
 
-},{"./set_low_word.js":199}],198:[function(require,module,exports){
-arguments[4][191][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":38,"dup":191}],199:[function(require,module,exports){
+},{"./set_low_word.js":201}],200:[function(require,module,exports){
+arguments[4][193][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":40,"dup":193}],201:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9657,7 +9864,7 @@ function setLowWord( x, low ) {
 
 module.exports = setLowWord;
 
-},{"./low.js":198}],200:[function(require,module,exports){
+},{"./low.js":200}],202:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9681,9 +9888,9 @@ var toWords = require( './to_words.js' );
 
 module.exports = toWords;
 
-},{"./to_words.js":202}],201:[function(require,module,exports){
-arguments[4][185][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":38,"dup":185}],202:[function(require,module,exports){
+},{"./to_words.js":204}],203:[function(require,module,exports){
+arguments[4][187][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":40,"dup":187}],204:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9759,7 +9966,7 @@ function toWords( x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":201}],203:[function(require,module,exports){
+},{"./indices.js":203}],205:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9787,7 +9994,7 @@ var uint32ToInt32 = require( './uint32_to_int32.js' );
 
 module.exports = uint32ToInt32;
 
-},{"./uint32_to_int32.js":204}],204:[function(require,module,exports){
+},{"./uint32_to_int32.js":206}],206:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -9818,7 +10025,7 @@ function uint32ToInt32( x ) {
 
 module.exports = uint32ToInt32;
 
-},{}],205:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9856,7 +10063,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],206:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9892,7 +10099,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],207:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9928,7 +10135,7 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
 
 module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
 
-},{}],208:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9963,7 +10170,7 @@ var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393
 
 module.exports = LN2;
 
-},{}],209:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10001,7 +10208,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],210:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10039,7 +10246,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],211:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10077,7 +10284,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],212:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10113,7 +10320,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{}],213:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10149,7 +10356,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY;
 
 module.exports = FLOAT64_PINF;
 
-},{}],214:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10191,7 +10398,7 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],215:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10232,7 +10439,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],216:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10273,7 +10480,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],217:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10314,7 +10521,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],218:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10355,7 +10562,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],219:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10396,7 +10603,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],220:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10437,7 +10644,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],221:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10478,7 +10685,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],222:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10519,7 +10726,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],223:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10560,7 +10767,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],224:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10606,7 +10813,7 @@ var RE_EOL = /\r?\n/;
 
 module.exports = RE_EOL;
 
-},{}],225:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10667,7 +10874,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],226:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10731,7 +10938,7 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 module.exports = RE_REGEXP;
 
-},{}],227:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -10759,7 +10966,7 @@ function _transform( chunk, encoding, clbk ) {
 
 module.exports = _transform;
 
-},{"debug":371}],228:[function(require,module,exports){
+},{"debug":377}],230:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -10932,7 +11139,7 @@ function ctor( options ) {
 
 module.exports = ctor;
 
-},{"./_transform.js":227,"./defaults.json":229,"./destroy.js":230,"./validate.js":235,"@stdlib/utils/copy":295,"debug":371,"readable-stream":393}],229:[function(require,module,exports){
+},{"./_transform.js":229,"./defaults.json":231,"./destroy.js":232,"./validate.js":237,"@stdlib/utils/copy":301,"debug":377,"readable-stream":399}],231:[function(require,module,exports){
 module.exports={
 	"objectMode": false,
 	"encoding": null,
@@ -10940,7 +11147,7 @@ module.exports={
 	"decodeStrings": true
 }
 
-},{}],230:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -10994,7 +11201,7 @@ function destroy( error ) {
 module.exports = destroy;
 
 }).call(this,require('_process'))
-},{"_process":368,"debug":371}],231:[function(require,module,exports){
+},{"_process":374,"debug":377}],233:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11071,7 +11278,7 @@ function streamFactory( options ) {
 
 module.exports = streamFactory;
 
-},{"./stream.js":234,"@stdlib/utils/copy":295}],232:[function(require,module,exports){
+},{"./stream.js":236,"@stdlib/utils/copy":301}],234:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11202,7 +11409,7 @@ setReadOnly( transform, 'ctor', ctor );
 
 module.exports = transform;
 
-},{"./ctor.js":228,"./factory.js":231,"./object_mode.js":233,"./stream.js":234,"@stdlib/utils/define-read-only-property":298}],233:[function(require,module,exports){
+},{"./ctor.js":230,"./factory.js":233,"./object_mode.js":235,"./stream.js":236,"@stdlib/utils/define-read-only-property":304}],235:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11269,7 +11476,7 @@ function objectMode( options ) {
 
 module.exports = objectMode;
 
-},{"./stream.js":234}],234:[function(require,module,exports){
+},{"./stream.js":236}],236:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11376,7 +11583,7 @@ TransformStream.prototype.destroy = destroy;
 
 module.exports = TransformStream;
 
-},{"./_transform.js":227,"./defaults.json":229,"./destroy.js":230,"./validate.js":235,"@stdlib/utils/copy":295,"debug":371,"readable-stream":393}],235:[function(require,module,exports){
+},{"./_transform.js":229,"./defaults.json":231,"./destroy.js":232,"./validate.js":237,"@stdlib/utils/copy":301,"debug":377,"readable-stream":399}],237:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11460,7 +11667,194 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":24,"@stdlib/assert/is-nonnegative-number":54,"@stdlib/assert/is-plain-object":69,"@stdlib/assert/is-string":81}],236:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":12,"@stdlib/assert/is-function":26,"@stdlib/assert/is-nonnegative-number":56,"@stdlib/assert/is-plain-object":71,"@stdlib/assert/is-string":83}],238:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum Unicode code point in the Basic Multilingual Plane (BMP).
+*
+* @module @stdlib/string/constants/unicode-max-bmp
+* @type {integer32}
+*
+* @example
+* var UNICODE_MAX_BMP = require( '@stdlib/string/constants/unicode-max-bmp' );
+* // returns 65535
+*/
+
+
+// MAIN //
+
+/**
+* Maximum Unicode code point in the Basic Multilingual Plane (BMP).
+*
+* @constant
+* @type {integer32}
+* @see [Unicode]{@link https://en.wikipedia.org/wiki/Unicode}
+* @default 65535
+*/
+var UNICODE_MAX_BMP = 0xFFFF|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UNICODE_MAX_BMP;
+
+},{}],239:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum Unicode code point.
+*
+* @module @stdlib/string/constants/unicode-max
+* @type {integer32}
+*
+* @example
+* var UNICODE_MAX = require( '@stdlib/string/constants/unicode-max' );
+* // returns 1114111
+*/
+
+
+// MAIN //
+
+/**
+* Maximum Unicode code point.
+*
+* @constant
+* @type {integer32}
+* @see [Unicode]{@link https://en.wikipedia.org/wiki/Unicode}
+* @default 1114111
+*/
+var UNICODE_MAX = 0x10FFFF|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UNICODE_MAX;
+
+},{}],240:[function(require,module,exports){
+'use strict';
+
+/**
+* Create a string from a sequence of Unicode code points.
+*
+* @module @stdlib/string/from-code-point
+*
+* @example
+* var fromCodePoint = require( '@stdlib/string/from-code-point' );
+*
+* var str = fromCodePoint( 9731 );
+* // returns '☃'
+*/
+
+// MODULES //
+
+var fromCodePoint = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = fromCodePoint;
+
+},{"./main.js":241}],241:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var isArrayLikeObject = require( '@stdlib/assert/is-array-like-object' );
+var MAX_CODE_POINT = require( '@stdlib/string/constants/unicode-max' );
+var MAX_BMP_CODE_POINT = require( '@stdlib/string/constants/unicode-max-bmp' );
+
+
+// VARIABLES //
+
+var fromCharCode = String.fromCharCode;
+
+// Factor to rescale a code point from a supplementary plane:
+var Ox10000 = 0x10000|0; // 65536
+
+// Factor added to obtain a high surrogate:
+var OxD800 = 0xD800|0; // 55296
+
+// Factor added to obtain a low surrogate:
+var OxDC00 = 0xDC00|0; // 56320
+
+// 10-bit mask: 2^10-1 = 1023 => 0x3ff => 00000000 00000000 00000011 11111111
+var Ox3FF = 1023|0;
+
+
+// MAIN //
+
+/**
+* Creates a string from a sequence of Unicode code points.
+*
+* ## Notes
+*
+* * UTF-16 encoding uses one 16-bit unit for non-surrogates (U+0000 to U+D7FF and U+E000 to U+FFFF).
+*
+* * UTF-16 encoding uses two 16-bit units (surrogate pairs) for U+10000 to U+10FFFF and encodes U+10000-U+10FFFF by subtracting 0x10000 from the code point, expressing the result as a 20-bit binary, and splitting the 20 bits of 0x0-0xFFFFF as upper and lower 10-bits. The respective 10-bits are stored in two 16-bit words: a high and a low surrogate.
+*
+*
+* @param {...NonNegativeInteger} args - sequence of code points
+* @throws {Error} must provide either an array-like object of code points or one or more code points as separate arguments
+* @throws {TypeError} a code point must be a nonnegative integer
+* @throws {RangeError} must provide a valid Unicode code point
+* @returns {string} created string
+*
+* @example
+* var str = fromCodePoint( 9731 );
+* // returns '☃'
+*/
+function fromCodePoint( args ) {
+	var len;
+	var str;
+	var arr;
+	var low;
+	var hi;
+	var pt;
+	var i;
+
+	len = arguments.length;
+	if ( len === 1 && isArrayLikeObject( args ) ) {
+		arr = arguments[ 0 ];
+		len = arr.length;
+	} else {
+		arr = new Array( len );
+		for ( i = 0; i < len; i++ ) {
+			arr[ i ] = arguments[ i ];
+		}
+	}
+	if ( len === 0 ) {
+		throw new Error( 'insufficient input arguments. Must provide either an array of code points or one or more code points as separate arguments.' );
+	}
+	str = '';
+	for ( i = 0; i < len; i++ ) {
+		pt = arr[ i ];
+		if ( !isNonNegativeInteger( pt ) ) {
+			throw new TypeError( 'invalid input argument. Must provide valid code points (nonnegative integers). Value: `'+pt+'`.' );
+		}
+		if ( pt > MAX_CODE_POINT ) {
+			throw new RangeError( 'invalid input argument. Must provide a valid code point (cannot exceed max). Value: `'+pt+'`.' );
+		}
+		if ( pt <= MAX_BMP_CODE_POINT ) {
+			str += fromCharCode( pt );
+		} else {
+			// Code point from a supplementary plane. Split into two 16-bit code units (surrogate pair).
+			pt -= Ox10000;
+			hi = (pt >> 10) + OxD800;
+			low = (pt & Ox3FF) + OxDC00;
+			str += fromCharCode( hi, low );
+		}
+	}
+	return str;
+} // end FUNCTION fromCodePoint()
+
+
+// EXPORTS //
+
+module.exports = fromCodePoint;
+
+},{"@stdlib/assert/is-array-like-object":5,"@stdlib/assert/is-nonnegative-integer":52,"@stdlib/string/constants/unicode-max":239,"@stdlib/string/constants/unicode-max-bmp":238}],242:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11487,7 +11881,7 @@ var ltrim = require( './left_trim.js' );
 
 module.exports = ltrim;
 
-},{"./left_trim.js":237}],237:[function(require,module,exports){
+},{"./left_trim.js":243}],243:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11498,8 +11892,8 @@ var replace = require( '@stdlib/string/replace' );
 
 // VARIABLES //
 
-// Note that `\s` is equivalent to `[ \f\n\r\t\v\u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]`. The following regular expression should suffice to polyfill (most?) all environments.
-var RE = /^[\s\uFEFF\u00A0]+/;
+// The following regular expression should suffice to polyfill (most?) all environments.
+var RE = /^[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/;
 
 
 // MAIN //
@@ -11514,9 +11908,11 @@ var RE = /^[\s\uFEFF\u00A0]+/;
 * @example
 * var out = ltrim( '   Whitespace   ' );
 * // returns 'Whitespace   '
+*
 * @example
 * var out = ltrim( '\t\t\tTabs\t\t\t' );
 * // returns 'Tabs\t\t\t'
+*
 * @example
 * var out = ltrim( '\n\n\nNew Lines\n\n\n' );
 * // returns 'New Lines\n\n\n'
@@ -11533,7 +11929,7 @@ function ltrim( str ) {
 
 module.exports = ltrim;
 
-},{"@stdlib/assert/is-string":81,"@stdlib/string/replace":238}],238:[function(require,module,exports){
+},{"@stdlib/assert/is-string":83,"@stdlib/string/replace":244}],244:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11562,7 +11958,7 @@ var replace = require( './replace.js' );
 
 module.exports = replace;
 
-},{"./replace.js":239}],239:[function(require,module,exports){
+},{"./replace.js":245}],245:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11630,7 +12026,7 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{"@stdlib/assert/is-function":24,"@stdlib/assert/is-regexp":76,"@stdlib/assert/is-string":81,"@stdlib/utils/escape-regexp-string":331}],240:[function(require,module,exports){
+},{"@stdlib/assert/is-function":26,"@stdlib/assert/is-regexp":78,"@stdlib/assert/is-string":83,"@stdlib/utils/escape-regexp-string":337}],246:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11660,7 +12056,7 @@ var rtrim = require( './right_trim.js' );
 
 module.exports = rtrim;
 
-},{"./right_trim.js":241}],241:[function(require,module,exports){
+},{"./right_trim.js":247}],247:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11671,8 +12067,8 @@ var replace = require( '@stdlib/string/replace' );
 
 // VARIABLES //
 
-// Note that `\s` is equivalent to `[ \f\n\r\t\v\u00a0\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]`. The following regular expression should suffice to polyfill (most?) all environments.
-var RE = /[\s\uFEFF\u00A0]+$/;
+// The following regular expression should suffice to polyfill (most?) all environments.
+var RE = /[\u0020\f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+$/;
 
 
 // MAIN //
@@ -11687,9 +12083,11 @@ var RE = /[\s\uFEFF\u00A0]+$/;
 * @example
 * var out = rtrim( '   Whitespace   ' );
 * // returns '   Whitespace'
+*
 * @example
 * var out = rtrim( '\t\t\tTabs\t\t\t' );
 * // returns '\t\t\tTabs'
+*
 * @example
 * var out = rtrim( '\n\n\nNew Lines\n\n\n' );
 * // returns '\n\n\nNew Lines'
@@ -11706,7 +12104,7 @@ function rtrim( str ) {
 
 module.exports = rtrim;
 
-},{"@stdlib/assert/is-string":81,"@stdlib/string/replace":238}],242:[function(require,module,exports){
+},{"@stdlib/assert/is-string":83,"@stdlib/string/replace":244}],248:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11736,7 +12134,7 @@ var trim = require( './trim.js' );
 
 module.exports = trim;
 
-},{"./trim.js":243}],243:[function(require,module,exports){
+},{"./trim.js":249}],249:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11757,9 +12155,11 @@ var rtrim = require( '@stdlib/string/right-trim' );
 * @example
 * var out = trim( '   Whitespace   ' );
 * // returns 'Whitespace'
+*
 * @example
 * var out = trim( '\t\t\tTabs\t\t\t' );
 * // returns 'Tabs'
+*
 * @example
 * var out = trim( '\n\n\nNew Lines\n\n\n' ) );
 * // returns 'New Lines'
@@ -11773,7 +12173,7 @@ function trim( str ) {
 
 module.exports = trim;
 
-},{"@stdlib/string/left-trim":236,"@stdlib/string/right-trim":240}],244:[function(require,module,exports){
+},{"@stdlib/string/left-trim":242,"@stdlib/string/right-trim":246}],250:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11849,7 +12249,7 @@ function tic() {
 
 module.exports = tic;
 
-},{"./now.js":246,"@stdlib/assert/is-object":67,"@stdlib/math/base/special/modf":165,"@stdlib/math/base/special/round":175,"system.global":396}],245:[function(require,module,exports){
+},{"./now.js":252,"@stdlib/assert/is-object":69,"@stdlib/math/base/special/modf":167,"@stdlib/math/base/special/round":177,"system.global":402}],251:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11861,7 +12261,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 
 module.exports = isFunction( Date.now );
 
-},{"@stdlib/assert/is-function":24}],246:[function(require,module,exports){
+},{"@stdlib/assert/is-function":26}],252:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11884,7 +12284,7 @@ if ( bool ) {
 
 module.exports = now;
 
-},{"./detect.js":245,"./polyfill.js":247}],247:[function(require,module,exports){
+},{"./detect.js":251,"./polyfill.js":253}],253:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -11909,7 +12309,7 @@ function now() {
 
 module.exports = now;
 
-},{}],248:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11935,7 +12335,7 @@ var toc = require( './toc.js' );
 
 module.exports = toc;
 
-},{"./toc.js":249}],249:[function(require,module,exports){
+},{"./toc.js":255}],255:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11994,14 +12394,14 @@ function toc( time ) {
 
 module.exports = toc;
 
-},{"@stdlib/assert/is-nonnegative-integer-array":48,"@stdlib/time/tic":244}],250:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer-array":50,"@stdlib/time/tic":250}],256:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Float32Array;
 
-},{}],251:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12035,7 +12435,7 @@ if ( hasFloat32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float32array.js":250,"./polyfill.js":252,"@stdlib/utils/detect-float32array-support":301}],252:[function(require,module,exports){
+},{"./float32array.js":256,"./polyfill.js":258,"@stdlib/utils/detect-float32array-support":307}],258:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -12056,14 +12456,14 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],253:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Float64Array;
 
-},{}],254:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12097,7 +12497,7 @@ if ( hasFloat64ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./float64array.js":253,"./polyfill.js":255,"@stdlib/utils/detect-float64array-support":304}],255:[function(require,module,exports){
+},{"./float64array.js":259,"./polyfill.js":261,"@stdlib/utils/detect-float64array-support":310}],261:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -12118,7 +12518,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],256:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12152,14 +12552,14 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int16array.js":257,"./polyfill.js":258,"@stdlib/utils/detect-int16array-support":306}],257:[function(require,module,exports){
+},{"./int16array.js":263,"./polyfill.js":264,"@stdlib/utils/detect-int16array-support":312}],263:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Int16Array;
 
-},{}],258:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -12180,7 +12580,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],259:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12214,14 +12614,14 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int32array.js":260,"./polyfill.js":261,"@stdlib/utils/detect-int32array-support":309}],260:[function(require,module,exports){
+},{"./int32array.js":266,"./polyfill.js":267,"@stdlib/utils/detect-int32array-support":315}],266:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Int32Array;
 
-},{}],261:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -12242,7 +12642,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],262:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12276,14 +12676,14 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./int8array.js":263,"./polyfill.js":264,"@stdlib/utils/detect-int8array-support":312}],263:[function(require,module,exports){
+},{"./int8array.js":269,"./polyfill.js":270,"@stdlib/utils/detect-int8array-support":318}],269:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Int8Array;
 
-},{}],264:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -12304,7 +12704,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],265:[function(require,module,exports){
+},{}],271:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12497,7 +12897,7 @@ bench( pkg+':dtype=uint8c', function benchmark( b ) {
 	b.end();
 });
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146}],266:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148}],272:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12574,7 +12974,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],267:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],273:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12651,7 +13051,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],268:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],274:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12728,7 +13128,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],269:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],275:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12805,7 +13205,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],270:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],276:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12882,7 +13282,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],271:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],277:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12959,7 +13359,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],272:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],278:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13036,7 +13436,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],273:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],279:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13113,7 +13513,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],274:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],280:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13190,7 +13590,7 @@ function main() {
 
 main();
 
-},{"./../lib":276,"./../package.json":278,"@stdlib/assert/is-typed-array":87,"@stdlib/bench":146,"@stdlib/math/base/special/pow":167}],275:[function(require,module,exports){
+},{"./../lib":282,"./../package.json":284,"@stdlib/assert/is-typed-array":89,"@stdlib/bench":148,"@stdlib/math/base/special/pow":169}],281:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -13212,7 +13612,7 @@ var CTORS = {
 
 module.exports = CTORS;
 
-},{"@stdlib/types/array/float32":251,"@stdlib/types/array/float64":254,"@stdlib/types/array/int16":256,"@stdlib/types/array/int32":259,"@stdlib/types/array/int8":262,"@stdlib/types/array/uint16":279,"@stdlib/types/array/uint32":282,"@stdlib/types/array/uint8":285,"@stdlib/types/array/uint8c":288}],276:[function(require,module,exports){
+},{"@stdlib/types/array/float32":257,"@stdlib/types/array/float64":260,"@stdlib/types/array/int16":262,"@stdlib/types/array/int32":265,"@stdlib/types/array/int8":268,"@stdlib/types/array/uint16":285,"@stdlib/types/array/uint32":288,"@stdlib/types/array/uint8":291,"@stdlib/types/array/uint8c":294}],282:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13316,7 +13716,7 @@ var typedarray = require( './typedarray.js' );
 
 module.exports = typedarray;
 
-},{"./typedarray.js":277}],277:[function(require,module,exports){
+},{"./typedarray.js":283}],283:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13430,7 +13830,7 @@ function typedarray() {
 
 module.exports = typedarray;
 
-},{"./ctors.js":275,"@stdlib/assert/is-string":81}],278:[function(require,module,exports){
+},{"./ctors.js":281,"@stdlib/assert/is-string":83}],284:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/types/array/typed",
   "version": "0.0.0",
@@ -13509,7 +13909,7 @@ module.exports={
   "license": "Apache-2.0"
 }
 
-},{}],279:[function(require,module,exports){
+},{}],285:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13543,7 +13943,7 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":280,"./uint16array.js":281,"@stdlib/utils/detect-uint16array-support":319}],280:[function(require,module,exports){
+},{"./polyfill.js":286,"./uint16array.js":287,"@stdlib/utils/detect-uint16array-support":325}],286:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -13564,14 +13964,14 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],281:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Uint16Array;
 
-},{}],282:[function(require,module,exports){
+},{}],288:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13605,7 +14005,7 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":283,"./uint32array.js":284,"@stdlib/utils/detect-uint32array-support":322}],283:[function(require,module,exports){
+},{"./polyfill.js":289,"./uint32array.js":290,"@stdlib/utils/detect-uint32array-support":328}],289:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -13626,14 +14026,14 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],284:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Uint32Array;
 
-},{}],285:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13667,7 +14067,7 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":286,"./uint8array.js":287,"@stdlib/utils/detect-uint8array-support":325}],286:[function(require,module,exports){
+},{"./polyfill.js":292,"./uint8array.js":293,"@stdlib/utils/detect-uint8array-support":331}],292:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -13688,14 +14088,14 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],287:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Uint8Array;
 
-},{}],288:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13729,7 +14129,7 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./polyfill.js":289,"./uint8clampedarray.js":290,"@stdlib/utils/detect-uint8clampedarray-support":328}],289:[function(require,module,exports){
+},{"./polyfill.js":295,"./uint8clampedarray.js":296,"@stdlib/utils/detect-uint8clampedarray-support":334}],295:[function(require,module,exports){
 'use strict';
 
 // TODO: write polyfill
@@ -13750,14 +14150,14 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],290:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Uint8ClampedArray;
 
-},{}],291:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13813,7 +14213,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":16,"@stdlib/regexp/function-name":225,"@stdlib/utils/native-class":346}],292:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":18,"@stdlib/regexp/function-name":227,"@stdlib/utils/native-class":352}],298:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13843,7 +14243,7 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":291}],293:[function(require,module,exports){
+},{"./constructor_name.js":297}],299:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13868,9 +14268,15 @@ var deepCopy = require( './deep_copy.js' );
 * // returns 'beep'
 *
 * @example
-* var value = [{'a':1,'b':true,'c':[1,2,3]}];
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
 * var out = copy( value );
-* // returns [{'a':1,'b':true,'c':[1,2,3]}]
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
 *
 * var bool = ( value[0].c === out[0].c );
 * // returns false
@@ -13896,7 +14302,7 @@ function copy( value, level ) {
 
 module.exports = copy;
 
-},{"./deep_copy.js":294,"@stdlib/assert/is-array":7,"@stdlib/assert/is-nonnegative-integer":50,"@stdlib/math/constants/float64-pinf":213}],294:[function(require,module,exports){
+},{"./deep_copy.js":300,"@stdlib/assert/is-array":9,"@stdlib/assert/is-nonnegative-integer":52,"@stdlib/math/constants/float64-pinf":215}],300:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -14181,7 +14587,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 module.exports = deepCopy;
 
 }).call(this,require("buffer").Buffer)
-},{"./typed_arrays.js":296,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":7,"@stdlib/assert/is-buffer":16,"@stdlib/assert/is-error":18,"@stdlib/utils/index-of":338,"@stdlib/utils/regexp-from-string":358,"@stdlib/utils/type-of":363,"buffer":369,"object-keys":380}],295:[function(require,module,exports){
+},{"./typed_arrays.js":302,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":9,"@stdlib/assert/is-buffer":18,"@stdlib/assert/is-error":20,"@stdlib/utils/index-of":344,"@stdlib/utils/regexp-from-string":364,"@stdlib/utils/type-of":369,"buffer":375,"object-keys":386}],301:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14198,9 +14604,15 @@ module.exports = deepCopy;
 * @example
 * var copy = require( '@stdlib/utils/copy' );
 *
-* var value = [{'a':1,'b':true,'c':[1,2,3]}];
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
 * var out = copy( value );
-* // returns [{'a':1,'b':true,'c':[1,2,3]}]
+* // returns [ {'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
 *
 * var bool = ( value[0].c === out[0].c );
 * // returns false
@@ -14215,7 +14627,7 @@ var copy = require( './copy.js' );
 
 module.exports = copy;
 
-},{"./copy.js":293}],296:[function(require,module,exports){
+},{"./copy.js":299}],302:[function(require,module,exports){
 /* eslint-disable no-new-func */
 'use strict';
 
@@ -14255,7 +14667,7 @@ function createTypedArrayFcns() {
 
 module.exports = createTypedArrayFcns();
 
-},{}],297:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14284,7 +14696,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{}],298:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14309,7 +14721,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":297}],299:[function(require,module,exports){
+},{"./define_read_only_property.js":303}],305:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14357,14 +14769,14 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":300,"@stdlib/assert/is-float32array":20}],300:[function(require,module,exports){
+},{"./float32array.js":306,"@stdlib/assert/is-float32array":22}],306:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Float32Array === 'function' ) ? Float32Array : null;
 
-},{}],301:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14388,7 +14800,7 @@ var hasFloat32ArraySupport = require( './detect_float32array_support.js' );
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./detect_float32array_support.js":299}],302:[function(require,module,exports){
+},{"./detect_float32array_support.js":305}],308:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14436,14 +14848,14 @@ function hasFloat64ArraySupport() {
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./float64array.js":303,"@stdlib/assert/is-float64array":22}],303:[function(require,module,exports){
+},{"./float64array.js":309,"@stdlib/assert/is-float64array":24}],309:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Float64Array === 'function' ) ? Float64Array : null;
 
-},{}],304:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14467,7 +14879,7 @@ var hasFloat64ArraySupport = require( './detect_float64array_support.js' );
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./detect_float64array_support.js":302}],305:[function(require,module,exports){
+},{"./detect_float64array_support.js":308}],311:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14517,7 +14929,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":307,"@stdlib/assert/is-int16array":26,"@stdlib/math/constants/int16-max":215,"@stdlib/math/constants/int16-min":216}],306:[function(require,module,exports){
+},{"./int16array.js":313,"@stdlib/assert/is-int16array":28,"@stdlib/math/constants/int16-max":217,"@stdlib/math/constants/int16-min":218}],312:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14541,14 +14953,14 @@ var hasInt16ArraySupport = require( './detect_int16array_support.js' );
 
 module.exports = hasInt16ArraySupport;
 
-},{"./detect_int16array_support.js":305}],307:[function(require,module,exports){
+},{"./detect_int16array_support.js":311}],313:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Int16Array === 'function' ) ? Int16Array : null;
 
-},{}],308:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14598,7 +15010,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":310,"@stdlib/assert/is-int32array":28,"@stdlib/math/constants/int32-max":217,"@stdlib/math/constants/int32-min":218}],309:[function(require,module,exports){
+},{"./int32array.js":316,"@stdlib/assert/is-int32array":30,"@stdlib/math/constants/int32-max":219,"@stdlib/math/constants/int32-min":220}],315:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14622,14 +15034,14 @@ var hasInt32ArraySupport = require( './detect_int32array_support.js' );
 
 module.exports = hasInt32ArraySupport;
 
-},{"./detect_int32array_support.js":308}],310:[function(require,module,exports){
+},{"./detect_int32array_support.js":314}],316:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Int32Array === 'function' ) ? Int32Array : null;
 
-},{}],311:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14679,7 +15091,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":313,"@stdlib/assert/is-int8array":30,"@stdlib/math/constants/int8-max":219,"@stdlib/math/constants/int8-min":220}],312:[function(require,module,exports){
+},{"./int8array.js":319,"@stdlib/assert/is-int8array":32,"@stdlib/math/constants/int8-max":221,"@stdlib/math/constants/int8-min":222}],318:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14703,14 +15115,14 @@ var hasInt8ArraySupport = require( './detect_int8array_support.js' );
 
 module.exports = hasInt8ArraySupport;
 
-},{"./detect_int8array_support.js":311}],313:[function(require,module,exports){
+},{"./detect_int8array_support.js":317}],319:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Int8Array === 'function' ) ? Int8Array : null;
 
-},{}],314:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -14736,7 +15148,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],315:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14760,7 +15172,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":314}],316:[function(require,module,exports){
+},{"./detect_symbol_support.js":320}],322:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14788,7 +15200,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":315}],317:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":321}],323:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14812,7 +15224,7 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":316}],318:[function(require,module,exports){
+},{"./has_tostringtag_support.js":322}],324:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14863,7 +15275,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":320,"@stdlib/assert/is-uint16array":90,"@stdlib/math/constants/uint16-max":221}],319:[function(require,module,exports){
+},{"./uint16array.js":326,"@stdlib/assert/is-uint16array":92,"@stdlib/math/constants/uint16-max":223}],325:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14887,14 +15299,14 @@ var hasUint16ArraySupport = require( './detect_uint16array_support.js' );
 
 module.exports = hasUint16ArraySupport;
 
-},{"./detect_uint16array_support.js":318}],320:[function(require,module,exports){
+},{"./detect_uint16array_support.js":324}],326:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Uint16Array === 'function' ) ? Uint16Array : null;
 
-},{}],321:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14945,7 +15357,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":323,"@stdlib/assert/is-uint32array":92,"@stdlib/math/constants/uint32-max":222}],322:[function(require,module,exports){
+},{"./uint32array.js":329,"@stdlib/assert/is-uint32array":94,"@stdlib/math/constants/uint32-max":224}],328:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14969,14 +15381,14 @@ var hasUint32ArraySupport = require( './detect_uint32array_support.js' );
 
 module.exports = hasUint32ArraySupport;
 
-},{"./detect_uint32array_support.js":321}],323:[function(require,module,exports){
+},{"./detect_uint32array_support.js":327}],329:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Uint32Array === 'function' ) ? Uint32Array : null;
 
-},{}],324:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15027,7 +15439,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":326,"@stdlib/assert/is-uint8array":94,"@stdlib/math/constants/uint8-max":223}],325:[function(require,module,exports){
+},{"./uint8array.js":332,"@stdlib/assert/is-uint8array":96,"@stdlib/math/constants/uint8-max":225}],331:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15051,14 +15463,14 @@ var hasUint8ArraySupport = require( './detect_uint8array_support.js' );
 
 module.exports = hasUint8ArraySupport;
 
-},{"./detect_uint8array_support.js":324}],326:[function(require,module,exports){
+},{"./detect_uint8array_support.js":330}],332:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Uint8Array === 'function' ) ? Uint8Array : null;
 
-},{}],327:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15109,7 +15521,7 @@ function hasUint8ClampedArraySupport() {
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./uint8clampedarray.js":329,"@stdlib/assert/is-uint8clampedarray":96}],328:[function(require,module,exports){
+},{"./uint8clampedarray.js":335,"@stdlib/assert/is-uint8clampedarray":98}],334:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15133,14 +15545,14 @@ var hasUint8ClampedArraySupport = require( './detect_uint8clampedarray_support.j
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./detect_uint8clampedarray_support.js":327}],329:[function(require,module,exports){
+},{"./detect_uint8clampedarray_support.js":333}],335:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : null;
 
-},{}],330:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15205,7 +15617,7 @@ function rescape( str ) {
 
 module.exports = rescape;
 
-},{"@stdlib/assert/is-string":81}],331:[function(require,module,exports){
+},{"@stdlib/assert/is-string":83}],337:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15229,7 +15641,7 @@ var rescape = require( './escape_regexp_string.js' );
 
 module.exports = rescape;
 
-},{"./escape_regexp_string.js":330}],332:[function(require,module,exports){
+},{"./escape_regexp_string.js":336}],338:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15251,7 +15663,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":335,"./polyfill.js":336,"@stdlib/assert/is-function":24}],333:[function(require,module,exports){
+},{"./native.js":341,"./polyfill.js":342,"@stdlib/assert/is-function":26}],339:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15289,7 +15701,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":332}],334:[function(require,module,exports){
+},{"./detect.js":338}],340:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15313,14 +15725,14 @@ var getPrototype = require( './get_prototype_of.js' );
 
 module.exports = getPrototype;
 
-},{"./get_prototype_of.js":333}],335:[function(require,module,exports){
+},{"./get_prototype_of.js":339}],341:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.getPrototypeOf;
 
-},{}],336:[function(require,module,exports){
+},{}],342:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15359,7 +15771,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":337,"@stdlib/utils/native-class":346}],337:[function(require,module,exports){
+},{"./proto.js":343,"@stdlib/utils/native-class":352}],343:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15379,7 +15791,7 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],338:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15436,7 +15848,7 @@ var indexOf = require( './index_of.js' );
 
 module.exports = indexOf;
 
-},{"./index_of.js":339}],339:[function(require,module,exports){
+},{"./index_of.js":345}],345:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15551,7 +15963,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":33,"@stdlib/assert/is-nan":41}],340:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":7,"@stdlib/assert/is-integer":35,"@stdlib/assert/is-nan":43}],346:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15568,7 +15980,7 @@ if ( typeof objectCreate === 'function' ) {
 	module.exports = createObject;
 }
 
-},{"./native.js":343,"./polyfill.js":344}],341:[function(require,module,exports){
+},{"./native.js":349,"./polyfill.js":350}],347:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15606,7 +16018,7 @@ var inherit = require( './inherit.js' );
 
 module.exports = inherit;
 
-},{"./inherit.js":342}],342:[function(require,module,exports){
+},{"./inherit.js":348}],348:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15677,14 +16089,14 @@ function inherit( ctor, superCtor ) {
 
 module.exports = inherit;
 
-},{"./detect.js":340,"./validate.js":345}],343:[function(require,module,exports){
+},{"./detect.js":346,"./validate.js":351}],349:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.create;
 
-},{}],344:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
 'use strict';
 
 // FUNCTIONS //
@@ -15722,7 +16134,7 @@ function createObject( proto ) {
 
 module.exports = createObject;
 
-},{}],345:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15757,7 +16169,7 @@ function validate( value ) {
 
 module.exports = validate;
 
-},{}],346:[function(require,module,exports){
+},{}],352:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15800,7 +16212,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":347,"./polyfill.js":348,"@stdlib/utils/detect-tostringtag-support":317}],347:[function(require,module,exports){
+},{"./native_class.js":353,"./polyfill.js":354,"@stdlib/utils/detect-tostringtag-support":323}],353:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15840,7 +16252,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":349}],348:[function(require,module,exports){
+},{"./tostring.js":355}],354:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15905,21 +16317,21 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":349,"./tostringtag.js":350,"@stdlib/assert/has-own-property":2}],349:[function(require,module,exports){
+},{"./tostring.js":355,"./tostringtag.js":356,"@stdlib/assert/has-own-property":2}],355:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
 
-},{}],350:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
-},{}],351:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15943,7 +16355,7 @@ var noop = require( './noop.js' );
 
 module.exports = noop;
 
-},{"./noop.js":352}],352:[function(require,module,exports){
+},{"./noop.js":358}],358:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15962,7 +16374,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],353:[function(require,module,exports){
+},{}],359:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15991,7 +16403,7 @@ var omit = require( './omit.js' );
 
 module.exports = omit;
 
-},{"./omit.js":354}],354:[function(require,module,exports){
+},{"./omit.js":360}],360:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16058,7 +16470,7 @@ function omit( obj, keys ) {
 
 module.exports = omit;
 
-},{"@stdlib/assert/is-string":81,"@stdlib/assert/is-string-array":79,"@stdlib/utils/index-of":338,"object-keys":380}],355:[function(require,module,exports){
+},{"@stdlib/assert/is-string":83,"@stdlib/assert/is-string-array":81,"@stdlib/utils/index-of":344,"object-keys":386}],361:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16087,7 +16499,7 @@ var pick = require( './pick.js' );
 
 module.exports = pick;
 
-},{"./pick.js":356}],356:[function(require,module,exports){
+},{"./pick.js":362}],362:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16148,7 +16560,7 @@ function pick( obj, keys ) {
 
 module.exports = pick;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-string":81,"@stdlib/assert/is-string-array":79}],357:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-string":83,"@stdlib/assert/is-string-array":81}],363:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16185,7 +16597,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":81,"@stdlib/regexp/regexp":226}],358:[function(require,module,exports){
+},{"@stdlib/assert/is-string":83,"@stdlib/regexp/regexp":228}],364:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16209,7 +16621,7 @@ var reFromString = require( './from_string.js' );
 
 module.exports = reFromString;
 
-},{"./from_string.js":357}],359:[function(require,module,exports){
+},{"./from_string.js":363}],365:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16246,7 +16658,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":360,"./fixtures/re.js":361,"./fixtures/typedarray.js":362}],360:[function(require,module,exports){
+},{"./fixtures/nodelist.js":366,"./fixtures/re.js":367,"./fixtures/typedarray.js":368}],366:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16263,7 +16675,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":396}],361:[function(require,module,exports){
+},{"system.global":402}],367:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -16273,7 +16685,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],362:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -16283,7 +16695,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],363:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16312,7 +16724,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":359,"./polyfill.js":364,"./typeof.js":365}],364:[function(require,module,exports){
+},{"./check.js":365,"./polyfill.js":370,"./typeof.js":371}],370:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16337,7 +16749,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":292}],365:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":298}],371:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16397,7 +16809,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":292}],366:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":298}],372:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -16513,9 +16925,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],367:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 
-},{}],368:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -16701,7 +17113,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],369:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -16808,7 +17220,7 @@ function from (value, encodingOrOffset, length) {
     throw new TypeError('"value" argument must not be a number')
   }
 
-  if (value instanceof ArrayBuffer) {
+  if (isArrayBuffer(value)) {
     return fromArrayBuffer(value, encodingOrOffset, length)
   }
 
@@ -17068,7 +17480,7 @@ function byteLength (string, encoding) {
   if (Buffer.isBuffer(string)) {
     return string.length
   }
-  if (isArrayBufferView(string) || string instanceof ArrayBuffer) {
+  if (isArrayBufferView(string) || isArrayBuffer(string)) {
     return string.byteLength
   }
   if (typeof string !== 'string') {
@@ -18400,6 +18812,14 @@ function blitBuffer (src, dst, offset, length) {
   return i
 }
 
+// ArrayBuffers from another context (i.e. an iframe) do not pass the `instanceof` check
+// but they should be treated as valid. See: https://github.com/feross/buffer/issues/166
+function isArrayBuffer (obj) {
+  return obj instanceof ArrayBuffer ||
+    (obj != null && obj.constructor != null && obj.constructor.name === 'ArrayBuffer' &&
+      typeof obj.byteLength === 'number')
+}
+
 // Node 0.10 supports `ArrayBuffer` but lacks `ArrayBuffer.isView`
 function isArrayBufferView (obj) {
   return (typeof ArrayBuffer.isView === 'function') && ArrayBuffer.isView(obj)
@@ -18409,7 +18829,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":366,"ieee754":376}],370:[function(require,module,exports){
+},{"base64-js":372,"ieee754":382}],376:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -18520,7 +18940,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":378}],371:[function(require,module,exports){
+},{"../../is-buffer/index.js":384}],377:[function(require,module,exports){
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -18709,7 +19129,7 @@ function localstorage() {
 }
 
 }).call(this,require('_process'))
-},{"./debug":372,"_process":368}],372:[function(require,module,exports){
+},{"./debug":378,"_process":374}],378:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -18913,7 +19333,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":379}],373:[function(require,module,exports){
+},{"ms":385}],379:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -18971,7 +19391,7 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":375,"object-keys":380}],374:[function(require,module,exports){
+},{"foreach":381,"object-keys":386}],380:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19275,7 +19695,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],375:[function(require,module,exports){
+},{}],381:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -19299,7 +19719,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],376:[function(require,module,exports){
+},{}],382:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -19385,7 +19805,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],377:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -19410,7 +19830,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],378:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -19433,7 +19853,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],379:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -19587,7 +20007,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],380:[function(require,module,exports){
+},{}],386:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -19729,7 +20149,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":381}],381:[function(require,module,exports){
+},{"./isArguments":387}],387:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -19748,7 +20168,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],382:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -19795,7 +20215,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":368}],383:[function(require,module,exports){
+},{"_process":374}],389:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19920,7 +20340,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":385,"./_stream_writable":387,"core-util-is":370,"inherits":377,"process-nextick-args":382}],384:[function(require,module,exports){
+},{"./_stream_readable":391,"./_stream_writable":393,"core-util-is":376,"inherits":383,"process-nextick-args":388}],390:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19968,8 +20388,8 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":386,"core-util-is":370,"inherits":377}],385:[function(require,module,exports){
-(function (process){
+},{"./_stream_transform":392,"core-util-is":376,"inherits":383}],391:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20026,11 +20446,12 @@ var Stream = require('./internal/streams/stream');
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -20225,7 +20646,7 @@ function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
     if (er) {
       stream.emit('error', er);
     } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && Object.getPrototypeOf(chunk) !== Buffer.prototype && !state.objectMode) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
         chunk = _uint8ArrayToBuffer(chunk);
       }
 
@@ -20976,8 +21397,8 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'))
-},{"./_stream_duplex":383,"./internal/streams/BufferList":388,"./internal/streams/destroy":389,"./internal/streams/stream":390,"_process":368,"core-util-is":370,"events":374,"inherits":377,"isarray":391,"process-nextick-args":382,"safe-buffer":394,"string_decoder/":392,"util":367}],386:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":389,"./internal/streams/BufferList":394,"./internal/streams/destroy":395,"./internal/streams/stream":396,"_process":374,"core-util-is":376,"events":380,"inherits":383,"isarray":397,"process-nextick-args":388,"safe-buffer":400,"string_decoder/":398,"util":373}],392:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -21192,8 +21613,8 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":383,"core-util-is":370,"inherits":377}],387:[function(require,module,exports){
-(function (process){
+},{"./_stream_duplex":389,"core-util-is":376,"inherits":383}],393:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -21276,11 +21697,12 @@ var Stream = require('./internal/streams/stream');
 
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -21857,9 +22279,8 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-
-}).call(this,require('_process'))
-},{"./_stream_duplex":383,"./internal/streams/destroy":389,"./internal/streams/stream":390,"_process":368,"core-util-is":370,"inherits":377,"process-nextick-args":382,"safe-buffer":394,"util-deprecate":399}],388:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":389,"./internal/streams/destroy":395,"./internal/streams/stream":396,"_process":374,"core-util-is":376,"inherits":383,"process-nextick-args":388,"safe-buffer":400,"util-deprecate":405}],394:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -21934,7 +22355,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":394}],389:[function(require,module,exports){
+},{"safe-buffer":400}],395:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -22007,17 +22428,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":382}],390:[function(require,module,exports){
+},{"process-nextick-args":388}],396:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":374}],391:[function(require,module,exports){
+},{"events":380}],397:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],392:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -22290,7 +22711,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":394}],393:[function(require,module,exports){
+},{"safe-buffer":400}],399:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -22299,7 +22720,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":383,"./lib/_stream_passthrough.js":384,"./lib/_stream_readable.js":385,"./lib/_stream_transform.js":386,"./lib/_stream_writable.js":387}],394:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":389,"./lib/_stream_passthrough.js":390,"./lib/_stream_readable.js":391,"./lib/_stream_transform.js":392,"./lib/_stream_writable.js":393}],400:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -22363,7 +22784,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":369}],395:[function(require,module,exports){
+},{"buffer":375}],401:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -22381,7 +22802,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],396:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -22402,7 +22823,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":395,"./polyfill":397,"./shim":398,"define-properties":373}],397:[function(require,module,exports){
+},{"./implementation":401,"./polyfill":403,"./shim":404,"define-properties":379}],403:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -22416,7 +22837,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":395}],398:[function(require,module,exports){
+},{"./implementation":401}],404:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -22442,7 +22863,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":397,"define-properties":373}],399:[function(require,module,exports){
+},{"./polyfill":403,"define-properties":379}],405:[function(require,module,exports){
 (function (global){
 
 /**
@@ -22513,4 +22934,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[265,266,267,268,269,270,271,272,273,274]);
+},{}]},{},[271,272,273,274,275,276,277,278,279,280]);
