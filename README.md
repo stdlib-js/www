@@ -1,3 +1,11 @@
+
+<div class="image" align="center">
+    <img src="https://cdn.rawgit.com/stdlib-js/www/3cce9c709008d4ef37a78e41a835dcb5d2e1089e/docs/assets/logo_header.png" alt="stdlib logo">
+    <br>
+</div>
+
+---
+
 # Website
 
 > Website for [stdlib][stdlib], a standard library for JavaScript and Node.js.
