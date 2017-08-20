@@ -122,6 +122,7 @@ module.exports = isnan;
 * @example
 * var bool = isnan( NaN );
 * // returns true
+*
 * @example
 * var bool = isnan( 7.0 );
 * // returns false
@@ -181,28 +182,28 @@ var floor = require( '@stdlib/math/base/special/floor' );
 * @returns {NonNegativeInteger} mode
 *
 * @example
-* var v = kurtosis( 100, 0.2 );
+* var v = mode( 100, 0.2 );
 * // returns 396
 * @example
-* var v = kurtosis( 20, 0.5 );
+* var v = mode( 20, 0.5 );
 * // returns 19
 * @example
-* var v = kurtosis( 10.3, 0.8 );
+* var v = mode( 10.3, 0.8 );
 * // returns 2
 * @example
-* var v = kurtosis( -2, 0.5 );
+* var v = mode( -2, 0.5 );
 * // returns NaN
 * @example
-* var v = kurtosis( 20, 1.1 );
+* var v = mode( 20, 1.1 );
 * // returns NaN
 * @example
-* var v = kurtosis( 20, NaN );
+* var v = mode( 20, NaN );
 * // returns NaN
 * @example
-* var v = kurtosis( NaN, 0.5 );
+* var v = mode( NaN, 0.5 );
 * // returns NaN
 */
-function kurtosis( r, p ) {
+function mode( r, p ) {
 	if (
 		isnan( r ) ||
 		isnan( p ) ||
@@ -213,12 +214,12 @@ function kurtosis( r, p ) {
 		return NaN;
 	}
 	return floor( ( 1.0-p ) * ( r-1.0 ) / p );
-} // end FUNCTION kurtosis()
+} // end FUNCTION mode()
 
 
 // EXPORTS //
 
-module.exports = kurtosis;
+module.exports = mode;
 
 },{"@stdlib/math/base/assert/is-nan":1,"@stdlib/math/base/special/floor":8}],5:[function(require,module,exports){
 module.exports={"expected":[20.0,102.0,81.0,24.0,2.0,94.0,22.0,155.0,94.0,392.0,174.0,43.0,192.0,86.0,3.0,7.0,3.0,69.0,86.0,148.0,7.0,16.0,12.0,173.0,54.0,2.0,115.0,2.0,3.0,892.0,2653.0,32.0,2.0,223.0,101.0,6.0,6.0,39.0,13.0,19.0,18.0,140.0,267.0,9.0,115.0,518.0,1.0,719.0,8.0,2.0,26.0,67.0,113.0,155.0,18.0,264.0,12.0,8.0,46.0,8.0,29.0,154.0,9.0,22.0,1.0,4.0,12.0,28.0,10.0,102.0,0.0,14.0,85.0,37.0,20.0,41.0,0.0,22.0,213.0,2.0,254.0,38.0,9.0,15.0,16.0,174.0,87.0,189.0,78.0,43.0,93.0,44.0,156.0,168.0,11.0,53.0,5.0,113.0,95.0,44.0,8.0,329.0,0.0,123.0,98.0,160.0,81.0,11.0,9.0,211.0,10.0,0.0,1.0,377.0,28.0,11.0,12.0,1956.0,2.0,8.0,27.0,7.0,1.0,7.0,175.0,18.0,26.0,31.0,1.0,2.0,107.0,110.0,24.0,61.0,14.0,43.0,6.0,9.0,72.0,20.0,80.0,106.0,3.0,39.0,0.0,87.0,146.0,11.0,7.0,328.0,76.0,15.0,62.0,1.0,2.0,2543.0,12.0,237.0,2.0,129.0,60.0,8.0,10.0,7.0,0.0,25.0,4144.0,4.0,458.0,21.0,317.0,403.0,90.0,27.0,30.0,45.0,0.0,18.0,0.0,146.0,49.0,20.0,99.0,46.0,89.0,24.0,96.0,371.0,6.0,58.0,152.0,46.0,128.0,429.0,224.0,4.0,274.0,4.0,2.0,1488.0],"r":[14,34,23,49,17,76,41,42,73,41,81,34,100,44,4,43,63,57,58,79,19,50,11,92,31,23,34,7,14,68,79,69,57,56,21,28,62,43,11,52,10,97,88,40,27,101,6,69,66,25,40,29,72,73,4,80,9,61,35,18,64,87,40,92,2,7,31,12,30,95,29,56,32,33,60,59,4,68,80,8,88,21,95,49,30,83,32,41,39,42,81,35,42,42,63,55,54,69,28,67,16,56,8,52,27,101,57,29,60,88,13,3,24,42,92,11,57,91,31,68,61,24,2,31,26,55,6,86,50,3,52,25,24,81,55,22,4,6,29,80,38,96,53,83,27,51,20,36,36,94,38,92,55,38,35,14,35,73,10,86,100,25,31,21,9,99,31,12,91,21,90,98,84,65,67,44,2,32,3,73,11,30,84,51,65,70,14,94,56,95,93,32,26,57,61,2,69,5,5,68],"p":[0.3920731909522297,0.24435219480746606,0.2134459578488923,0.6627277246414893,0.845100879551439,0.44144876702406766,0.6413757507714146,0.20889504343754495,0.4321882104009278,0.09248566893320165,0.3138614416893424,0.4319191959799986,0.339493038792124,0.33127336611257063,0.44810932995434705,0.8506749399654199,0.9416148375721913,0.4475577962232864,0.39657573191988793,0.3447746548533688,0.6966721569447731,0.7444471512347621,0.4383714685855973,0.3437133161732273,0.3566412858209067,0.8936546045670997,0.22295522501810727,0.6840265287855201,0.7886516451313321,0.06982713889664516,0.028554636579073644,0.6789117044040145,0.9495945429317036,0.1972977612257487,0.16507083059182137,0.8149691240525769,0.904511982431816,0.5174626983817385,0.4179995947246735,0.7249991138768597,0.32197482755099993,0.4055645504688088,0.24515875990434832,0.804899222860544,0.18396827062395915,0.1617231872418068,0.8277058550848537,0.08636713263672657,0.8829551723345725,0.9099936830411441,0.5919055656107737,0.2928738495258669,0.38486962335980923,0.3171673150891168,0.1394191029852756,0.23011376383711024,0.38437778187778004,0.8773579085537799,0.4249470154159969,0.6642887863174198,0.6796083194023372,0.3574474390908806,0.8006813709627021,0.800895168231003,0.4297122529538484,0.570629953677743,0.7121603327829016,0.2802505301529026,0.7325581405466903,0.477873717507997,0.9996738873088289,0.7872368713217297,0.2651864767866787,0.4630979127567185,0.7416049206685189,0.5815873841024968,0.8404482721177349,0.7517304098025968,0.2704710789260185,0.7337724974424891,0.2547312450507033,0.3420775601947297,0.9089186849212059,0.7512303980885591,0.6374352606010896,0.31975648081461716,0.2615906961867458,0.17397680385056513,0.3250711345632409,0.4877776058237202,0.46197548805968025,0.4328538423104291,0.20775736683634882,0.19565372553595783,0.8446561120565792,0.5041899587085352,0.9087875747531835,0.37510712692054105,0.22045168447474128,0.5985453760529063,0.6305566847672481,0.14321668556900202,0.8964060357617767,0.29300482106709147,0.20839743174524927,0.38322876412742546,0.4079277750777608,0.7146197608135314,0.8649314411857463,0.2917694459592337,0.5234951236804897,0.710374101798247,0.9205878165878068,0.09787861334802539,0.7609027858254755,0.46401222985460255,0.8140166228781416,0.04396858199968312,0.9270455848139456,0.892562086738047,0.6860952363277211,0.7553795843637372,0.3821268575751511,0.7949846066516126,0.12487653173439117,0.7446133205748249,0.1578694238316649,0.7311620485952639,0.9683613264488338,0.4036102377712174,0.3213857896613108,0.17821394326601459,0.4795081709370994,0.5669740768558487,0.785427608441374,0.32706538513913563,0.32907263047400415,0.348230942053259,0.2786670250373502,0.7970692314382062,0.31621898990683484,0.47231800525867307,0.9377739923065542,0.6766811969980797,0.9990325333159191,0.3630899334306903,0.11446571898097213,0.7554001400161863,0.8185358497943784,0.22037931525297938,0.3252238634017357,0.857113795676423,0.4616599350236912,0.9644474513692276,0.9203359838918703,0.00508603440727895,0.7354158789747101,0.2325419410580014,0.8147893318269015,0.3970648173660767,0.6199588366914146,0.7462285022397266,0.7461852909566429,0.7238403822181518,0.9558323607635082,0.7953792681715917,0.0071862779570228685,0.7036868648156436,0.1641135349747762,0.48380336548920955,0.21912323034767067,0.19384874710188282,0.4778420590647865,0.700026844264499,0.6864746966572977,0.48661086432504397,0.9090607184621804,0.6249827396349525,0.9003016222032085,0.3299385130936787,0.16721209829387007,0.5912154428253644,0.45602096173923945,0.5194183161386117,0.41599200124467095,0.7379327474503077,0.11917799361141923,0.20003525840487857,0.8904464665495337,0.6165473563993304,0.3767918855364545,0.40102002450202057,0.16324170533946014,0.11542646530409928,0.21071867889660068,0.1703333134015541,0.19829160897948284,0.48315176695573925,0.6364466998849123,0.04307386144696235]}
@@ -861,7 +862,7 @@ function from (value, encodingOrOffset, length) {
     throw new TypeError('"value" argument must not be a number')
   }
 
-  if (value instanceof ArrayBuffer) {
+  if (isArrayBuffer(value)) {
     return fromArrayBuffer(value, encodingOrOffset, length)
   }
 
@@ -1121,7 +1122,7 @@ function byteLength (string, encoding) {
   if (Buffer.isBuffer(string)) {
     return string.length
   }
-  if (isArrayBufferView(string) || string instanceof ArrayBuffer) {
+  if (isArrayBufferView(string) || isArrayBuffer(string)) {
     return string.byteLength
   }
   if (typeof string !== 'string') {
@@ -2453,6 +2454,14 @@ function blitBuffer (src, dst, offset, length) {
   return i
 }
 
+// ArrayBuffers from another context (i.e. an iframe) do not pass the `instanceof` check
+// but they should be treated as valid. See: https://github.com/feross/buffer/issues/166
+function isArrayBuffer (obj) {
+  return obj instanceof ArrayBuffer ||
+    (obj != null && obj.constructor != null && obj.constructor.name === 'ArrayBuffer' &&
+      typeof obj.byteLength === 'number')
+}
+
 // Node 0.10 supports `ArrayBuffer` but lacks `ArrayBuffer.isView`
 function isArrayBufferView (obj) {
   return (typeof ArrayBuffer.isView === 'function') && ArrayBuffer.isView(obj)
@@ -2779,12 +2788,14 @@ var mod = require('./helpers/mod');
 var IsCallable = require('is-callable');
 var toPrimitive = require('es-to-primitive/es5');
 
+var has = require('has');
+
 // https://es5.github.io/#x9
 var ES5 = {
 	ToPrimitive: toPrimitive,
 
 	ToBoolean: function ToBoolean(value) {
-		return Boolean(value);
+		return !!value;
 	},
 	ToNumber: function ToNumber(value) {
 		return Number(value);
@@ -2850,12 +2861,160 @@ var ES5 = {
 		if (typeof x === 'string') {
 			return 'String';
 		}
+	},
+
+	// http://ecma-international.org/ecma-262/6.0/#sec-property-descriptor-specification-type
+	IsPropertyDescriptor: function IsPropertyDescriptor(Desc) {
+		if (this.Type(Desc) !== 'Object') {
+			return false;
+		}
+		var allowed = {
+			'[[Configurable]]': true,
+			'[[Enumerable]]': true,
+			'[[Get]]': true,
+			'[[Set]]': true,
+			'[[Value]]': true,
+			'[[Writable]]': true
+		};
+		// jscs:disable
+		for (var key in Desc) { // eslint-disable-line
+			if (has(Desc, key) && !allowed[key]) {
+				return false;
+			}
+		}
+		// jscs:enable
+		var isData = has(Desc, '[[Value]]');
+		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
+		if (isData && IsAccessor) {
+			throw new TypeError('Property Descriptors may not be both accessor and data descriptors');
+		}
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.1
+	IsAccessorDescriptor: function IsAccessorDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.2
+	IsDataDescriptor: function IsDataDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.3
+	IsGenericDescriptor: function IsGenericDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!this.IsAccessorDescriptor(Desc) && !this.IsDataDescriptor(Desc)) {
+			return true;
+		}
+
+		return false;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.4
+	FromPropertyDescriptor: function FromPropertyDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return Desc;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (this.IsDataDescriptor(Desc)) {
+			return {
+				value: Desc['[[Value]]'],
+				writable: !!Desc['[[Writable]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else if (this.IsAccessorDescriptor(Desc)) {
+			return {
+				get: Desc['[[Get]]'],
+				set: Desc['[[Set]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else {
+			throw new TypeError('FromPropertyDescriptor must be called with a fully populated Property Descriptor');
+		}
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.5
+	ToPropertyDescriptor: function ToPropertyDescriptor(Obj) {
+		if (this.Type(Obj) !== 'Object') {
+			throw new TypeError('ToPropertyDescriptor requires an object');
+		}
+
+		var desc = {};
+		if (has(Obj, 'enumerable')) {
+			desc['[[Enumerable]]'] = this.ToBoolean(Obj.enumerable);
+		}
+		if (has(Obj, 'configurable')) {
+			desc['[[Configurable]]'] = this.ToBoolean(Obj.configurable);
+		}
+		if (has(Obj, 'value')) {
+			desc['[[Value]]'] = Obj.value;
+		}
+		if (has(Obj, 'writable')) {
+			desc['[[Writable]]'] = this.ToBoolean(Obj.writable);
+		}
+		if (has(Obj, 'get')) {
+			var getter = Obj.get;
+			if (typeof getter !== 'undefined' && !this.IsCallable(getter)) {
+				throw new TypeError('getter must be a function');
+			}
+			desc['[[Get]]'] = getter;
+		}
+		if (has(Obj, 'set')) {
+			var setter = Obj.set;
+			if (typeof setter !== 'undefined' && !this.IsCallable(setter)) {
+				throw new TypeError('setter must be a function');
+			}
+			desc['[[Set]]'] = setter;
+		}
+
+		if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+			throw new TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
+		}
+		return desc;
 	}
 };
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":23,"./helpers/isNaN":24,"./helpers/mod":25,"./helpers/sign":26,"es-to-primitive/es5":27,"is-callable":37}],23:[function(require,module,exports){
+},{"./helpers/isFinite":23,"./helpers/isNaN":24,"./helpers/mod":25,"./helpers/sign":26,"es-to-primitive/es5":27,"has":33,"is-callable":37}],23:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
@@ -4290,7 +4449,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
 },{"./_stream_transform":47,"core-util-is":16,"inherits":35}],46:[function(require,module,exports){
-(function (process){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4347,11 +4506,12 @@ var Stream = require('./internal/streams/stream');
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -4546,7 +4706,7 @@ function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
     if (er) {
       stream.emit('error', er);
     } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && Object.getPrototypeOf(chunk) !== Buffer.prototype && !state.objectMode) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
         chunk = _uint8ArrayToBuffer(chunk);
       }
 
@@ -5297,7 +5457,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'))
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./_stream_duplex":44,"./internal/streams/BufferList":49,"./internal/streams/destroy":50,"./internal/streams/stream":51,"_process":14,"core-util-is":16,"events":29,"inherits":35,"isarray":52,"process-nextick-args":42,"safe-buffer":59,"string_decoder/":53,"util":12}],47:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5514,7 +5674,7 @@ function done(stream, er, data) {
   return stream.push(null);
 }
 },{"./_stream_duplex":44,"core-util-is":16,"inherits":35}],48:[function(require,module,exports){
-(function (process){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5597,11 +5757,12 @@ var Stream = require('./internal/streams/stream');
 
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -6178,8 +6339,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-
-}).call(this,require('_process'))
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./_stream_duplex":44,"./internal/streams/destroy":50,"./internal/streams/stream":51,"_process":14,"core-util-is":16,"inherits":35,"process-nextick-args":42,"safe-buffer":59,"util-deprecate":71}],49:[function(require,module,exports){
 'use strict';
 

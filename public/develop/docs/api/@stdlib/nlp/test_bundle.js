@@ -109,21 +109,27 @@ var isnan = require( '@stdlib/assert/is-nan' ).isPrimitive;
 * @example
 * var bool = contains( 'last man standing', 'stand' );
 * // returns true
+*
 * @example
 * var bool = contains( [ 1, 2, 3, 4 ], 2 );
 * // returns true
+*
 * @example
 * var bool = contains( 'presidential election', 'president' );
 * // returns true
+*
 * @example
 * var bool = contains( [ NaN, 2, 3, 4 ], NaN );
 * // returns true
+*
 * @example
 * var bool = contains( 'javaScript', 'js' );
 * // returns false
+*
 * @example
 * var bool = contains( [ 1, 2, 3, {} ], {} );
 * // returns false
+*
 * @example
 * var bool = contains( 'Hidden Treasures', '' );
 * // returns true
@@ -133,7 +139,7 @@ function contains( val, searchValue, position ) {
 	var pos;
 	var i;
 	if ( !isArrayLike( val ) ) {
-		throw new TypeError( 'invalid input argument. First argument must be a array-like. Value: `' + val + '`.' );
+		throw new TypeError( 'invalid input argument. First argument must be array-like. Value: `' + val + '`.' );
 	}
 	if ( arguments.length < 2 ) {
 		throw new Error( 'insufficient input arguments. Must provide a search value.' );
@@ -174,7 +180,7 @@ function contains( val, searchValue, position ) {
 
 module.exports = contains;
 
-},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":14,"@stdlib/assert/is-nan":19,"@stdlib/assert/is-string":48}],2:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":22,"@stdlib/assert/is-nan":27,"@stdlib/assert/is-string":56}],2:[function(require,module,exports){
 'use strict';
 
 /**
@@ -358,7 +364,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/math/base/assert/is-integer":55,"@stdlib/math/constants/uint32-max":78}],7:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":63,"@stdlib/math/constants/uint32-max":86}],7:[function(require,module,exports){
 'use strict';
 
 /**
@@ -418,7 +424,217 @@ function isArray( value ) {
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":110}],9:[function(require,module,exports){
+},{"@stdlib/utils/native-class":129}],9:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a boolean.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a boolean
+*
+* @example
+* var bool = isBoolean( false );
+* // returns true
+*
+* @example
+* var bool = isBoolean( true );
+* // returns true
+*
+* @example
+* var bool = isBoolean( new Boolean( false ) );
+* // returns true
+*
+* @example
+* var bool = isBoolean( new Boolean( true ) );
+* // returns true
+*/
+function isBoolean( value ) {
+	return ( isPrimitive( value ) || isObject( value ) );
+} // end FUNCTION isBoolean()
+
+
+// EXPORTS //
+
+module.exports = isBoolean;
+
+},{"./object.js":11,"./primitive.js":12}],10:[function(require,module,exports){
+'use strict';
+
+/**
+* Tests if a value is a boolean.
+*
+* @module @stdlib/assert/is-boolean
+*
+* @example
+* var isBoolean = require( '@stdlib/assert/is-boolean' );
+*
+* var bool = isBoolean( false );
+* // returns true
+*
+* bool = isBoolean( new Boolean( false ) );
+* // returns true
+*
+* @example
+* // Use interface to check for boolean primitives...
+* var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+*
+* var bool = isBoolean( false );
+* // returns true
+*
+* bool = isBoolean( new Boolean( true ) );
+* // returns false
+*
+* @example
+* // Use interface to check for boolean objects...
+* var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
+*
+* var bool = isBoolean( true );
+* // returns false
+*
+* bool = isBoolean( new Boolean( false ) );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var isBoolean = require( './generic.js' );
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+setReadOnly( isBoolean, 'isPrimitive', isPrimitive );
+setReadOnly( isBoolean, 'isObject', isObject );
+
+
+// EXPORTS //
+
+module.exports = isBoolean;
+
+},{"./generic.js":9,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-read-only-property":118}],11:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
+var nativeClass = require( '@stdlib/utils/native-class' );
+var test = require( './try2serialize.js' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a boolean object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean object
+*
+* @example
+* var bool = isBoolean( true );
+* // returns false
+*
+* @example
+* var bool = isBoolean( new Boolean( false ) );
+* // returns true
+*/
+function isBoolean( value ) {
+	if ( typeof value === 'object' ) {
+		if ( hasToStringTag ) {
+			return test( value );
+		}
+		return ( nativeClass( value ) === '[object Boolean]' );
+	}
+	return false;
+} // end FUNCTION isBoolean()
+
+
+// EXPORTS //
+
+module.exports = isBoolean;
+
+},{"./try2serialize.js":14,"@stdlib/utils/detect-tostringtag-support":122,"@stdlib/utils/native-class":129}],12:[function(require,module,exports){
+'use strict';
+
+/**
+* Tests if a value is a boolean primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean primitive
+*
+* @example
+* var bool = isBoolean( true );
+* // returns true
+*
+* @example
+* var bool = isBoolean( false );
+* // returns true
+*
+* @example
+* var bool = isBoolean( new Boolean( true ) );
+* // returns false
+*/
+function isBoolean( value ) {
+	return ( typeof value === 'boolean' );
+} // end FUNCTION isBoolean()
+
+
+// EXPORTS //
+
+module.exports = isBoolean;
+
+},{}],13:[function(require,module,exports){
+'use strict';
+
+// eslint-disable-next-line no-redeclare
+var toString = Boolean.prototype.toString; // non-generic
+
+
+// EXPORTS //
+
+module.exports = toString;
+
+},{}],14:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
+
+
+// MAIN //
+
+/**
+* Attempts to serialize a value to a string.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value can be serialized
+*/
+function test( value ) {
+	try {
+		toString.call( value );
+		return true;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return false;
+	}
+} // end FUNCTION test()
+
+
+// EXPORTS //
+
+module.exports = test;
+
+},{"./tostring.js":13}],15:[function(require,module,exports){
 'use strict';
 
 /**
@@ -445,7 +661,7 @@ var isBuffer = require( './is_buffer.js' );
 
 module.exports = isBuffer;
 
-},{"./is_buffer.js":10}],10:[function(require,module,exports){
+},{"./is_buffer.js":16}],16:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -464,12 +680,15 @@ var isObjectLike = require( '@stdlib/assert/is-object-like' );
 * @example
 * var v = isBuffer( new Buffer( 'beep' ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( new Buffer( [1,2,3,4] ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( {} );
 * // returns false
+*
 * @example
 * var v = isBuffer( [] );
 * // returns false
@@ -495,7 +714,82 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":32}],11:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":40}],17:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a string having an uppercase first character.
+*
+* @module @stdlib/assert/is-capitalized
+*
+* @example
+* var isCapitalized = require( '@stdlib/assert/is-capitalized' );
+*
+* var bool = isCapitalized( 'Hello' );
+* // returns true
+*
+* bool = isCapitalized( 'world' );
+* // returns false
+*/
+
+// MODULES //
+
+var isCapitalized = require( './is_capitalized.js' );
+
+
+// EXPORTS //
+
+module.exports = isCapitalized;
+
+},{"./is_capitalized.js":18}],18:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var lowercase = require( '@stdlib/string/lowercase' );
+var uppercase = require( '@stdlib/string/uppercase' );
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Tests if a value is a string having an uppercase first character.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a string with an uppercase first character
+*
+* @example
+* var bool = isCapitalized( 'Hello' );
+* // returns true
+*
+* @example
+* var bool = isCapitalized( 'WORLD' );
+* // returns true
+*
+* @example
+* var bool = isCapitalized( '!' );
+* // returns false
+*
+* @example
+* var bool = isCapitalized( 'salt and light' );
+* // returns false
+*/
+function isCapitalized( value ) {
+	var ch;
+	if ( isString( value ) && value !== '' ) {
+		ch = value[ 0 ];
+		return ( ch === uppercase( ch ) && ch !== lowercase( ch ) );
+	}
+	return false;
+} // end FUNCTION isCapitalized()
+
+
+// EXPORTS //
+
+module.exports = isCapitalized;
+
+},{"@stdlib/assert/is-string":56,"@stdlib/string/lowercase":109,"@stdlib/string/uppercase":113}],19:[function(require,module,exports){
 'use strict';
 
 /**
@@ -523,7 +817,7 @@ var isFunction = require( './is_function.js' );
 
 module.exports = isFunction;
 
-},{"./is_function.js":12}],12:[function(require,module,exports){
+},{"./is_function.js":20}],20:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -557,7 +851,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":119}],13:[function(require,module,exports){
+},{"@stdlib/utils/type-of":138}],21:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -577,12 +871,15 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isInteger( -3.14 );
 * // returns false
+*
 * @example
 * var bool = isInteger( null );
 * // returns false
@@ -596,7 +893,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":16,"./primitive.js":17}],14:[function(require,module,exports){
+},{"./object.js":24,"./primitive.js":25}],22:[function(require,module,exports){
 'use strict';
 
 /**
@@ -658,7 +955,7 @@ setReadOnly( isInteger, 'isObject', isObject );
 
 module.exports = isInteger;
 
-},{"./generic.js":13,"./object.js":16,"./primitive.js":17,"@stdlib/utils/define-read-only-property":99}],15:[function(require,module,exports){
+},{"./generic.js":21,"./object.js":24,"./primitive.js":25,"@stdlib/utils/define-read-only-property":118}],23:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -673,6 +970,7 @@ var isInt = require( '@stdlib/math/base/assert/is-integer' );
 /**
 * Tests if a number primitive is an integer value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a number primitive is an integer value
 */
@@ -689,7 +987,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/assert/is-integer":55,"@stdlib/math/constants/float64-ninf":75,"@stdlib/math/constants/float64-pinf":76}],16:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":63,"@stdlib/math/constants/float64-ninf":83,"@stdlib/math/constants/float64-pinf":84}],24:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -709,6 +1007,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isInteger( new Number( 3.0 ) );
 * // returns true
@@ -725,7 +1024,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":15,"@stdlib/assert/is-number":27}],17:[function(require,module,exports){
+},{"./integer.js":23,"@stdlib/assert/is-number":35}],25:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -745,6 +1044,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( -3.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( -3.0 ) );
 * // returns false
@@ -761,7 +1061,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":15,"@stdlib/assert/is-number":27}],18:[function(require,module,exports){
+},{"./integer.js":23,"@stdlib/assert/is-number":35}],26:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -782,13 +1082,16 @@ var isObject = require( './object.js' );
 * var bool = isnan( NaN );
 * // returns true
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns true
 *
-* bool = isnan( 3.14 );
+* @example
+* var bool = isnan( 3.14 );
 * // returns false
 *
-* bool = isnan( null );
+* @example
+* var bool = isnan( null );
 * // returns false
 */
 function isnan( value ) {
@@ -800,7 +1103,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":20,"./primitive.js":21}],19:[function(require,module,exports){
+},{"./object.js":28,"./primitive.js":29}],27:[function(require,module,exports){
 'use strict';
 
 /**
@@ -865,7 +1168,7 @@ setReadOnly( isnan, 'isObject', isObject );
 
 module.exports = isnan;
 
-},{"./generic.js":18,"./object.js":20,"./primitive.js":21,"@stdlib/utils/define-read-only-property":99}],20:[function(require,module,exports){
+},{"./generic.js":26,"./object.js":28,"./primitive.js":29,"@stdlib/utils/define-read-only-property":118}],28:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -886,7 +1189,8 @@ var isNan = require( '@stdlib/math/base/assert/is-nan' );
 * var bool = isnan( NaN );
 * // returns false
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns true
 */
 function isnan( value ) {
@@ -901,7 +1205,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":27,"@stdlib/math/base/assert/is-nan":57}],21:[function(require,module,exports){
+},{"@stdlib/assert/is-number":35,"@stdlib/math/base/assert/is-nan":65}],29:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -922,10 +1226,12 @@ var isNan = require( '@stdlib/math/base/assert/is-nan' );
 * var bool = isnan( NaN );
 * // returns true
 *
-* bool = isnan( 3.14 );
+* @example
+* var bool = isnan( 3.14 );
 * // returns false
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns false
 */
 function isnan( value ) {
@@ -940,7 +1246,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":27,"@stdlib/math/base/assert/is-nan":57}],22:[function(require,module,exports){
+},{"@stdlib/assert/is-number":35,"@stdlib/math/base/assert/is-nan":65}],30:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -960,15 +1266,19 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isNonNegativeInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( -5.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( 3.14 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( null );
 * // returns false
@@ -982,7 +1292,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":24,"./primitive.js":25}],23:[function(require,module,exports){
+},{"./object.js":32,"./primitive.js":33}],31:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1047,7 +1357,7 @@ setReadOnly( isNonNegativeInteger, 'isObject', isObject );
 
 module.exports = isNonNegativeInteger;
 
-},{"./generic.js":22,"./object.js":24,"./primitive.js":25,"@stdlib/utils/define-read-only-property":99}],24:[function(require,module,exports){
+},{"./generic.js":30,"./object.js":32,"./primitive.js":33,"@stdlib/utils/define-read-only-property":118}],32:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1066,6 +1376,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
 * @example
 * var bool = isNonNegativeInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 3.0 ) );
 * // returns true
@@ -1082,7 +1393,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":14}],25:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":22}],33:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1101,6 +1412,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 * @example
 * var bool = isNonNegativeInteger( 3.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 3.0 ) );
 * // returns false
@@ -1117,7 +1429,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":14}],26:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":22}],34:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1159,7 +1471,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":28,"./primitive.js":29}],27:[function(require,module,exports){
+},{"./object.js":36,"./primitive.js":37}],35:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1224,7 +1536,7 @@ setReadOnly( isNumber, 'isObject', isObject );
 
 module.exports = isNumber;
 
-},{"./generic.js":26,"./object.js":28,"./primitive.js":29,"@stdlib/utils/define-read-only-property":99}],28:[function(require,module,exports){
+},{"./generic.js":34,"./object.js":36,"./primitive.js":37,"@stdlib/utils/define-read-only-property":118}],36:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1265,7 +1577,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":31,"@stdlib/utils/detect-tostringtag-support":103,"@stdlib/utils/native-class":110}],29:[function(require,module,exports){
+},{"./try2serialize.js":39,"@stdlib/utils/detect-tostringtag-support":122,"@stdlib/utils/native-class":129}],37:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1295,7 +1607,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],30:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -1306,7 +1618,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],31:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1319,6 +1631,7 @@ var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
 /**
 * Attempts to serialize a value to a string.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a value can be serialized
 */
@@ -1336,7 +1649,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":30}],32:[function(require,module,exports){
+},{"./tostring.js":38}],40:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1382,7 +1695,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":33,"@stdlib/assert/tools/array-function":54,"@stdlib/utils/define-read-only-property":99}],33:[function(require,module,exports){
+},{"./is_object_like.js":41,"@stdlib/assert/tools/array-function":62,"@stdlib/utils/define-read-only-property":118}],41:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1415,7 +1728,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],34:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1442,7 +1755,7 @@ var isObject = require( './is_object.js' );
 
 module.exports = isObject;
 
-},{"./is_object.js":35}],35:[function(require,module,exports){
+},{"./is_object.js":43}],43:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1479,7 +1792,7 @@ function isObject( value ) {
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":7}],36:[function(require,module,exports){
+},{"@stdlib/assert/is-array":7}],44:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1499,21 +1812,14 @@ module.exports = isObject;
 
 // MODULES //
 
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var arrayfun = require( '@stdlib/assert/tools/array-function' );
 var isPlainObject = require( './is_plain_object.js' );
-
-
-// MAIN //
-
-setReadOnly( isPlainObject, 'isPlainObjectArray', arrayfun( isPlainObject ) );
 
 
 // EXPORTS //
 
 module.exports = isPlainObject;
 
-},{"./is_plain_object.js":37,"@stdlib/assert/tools/array-function":54,"@stdlib/utils/define-read-only-property":99}],37:[function(require,module,exports){
+},{"./is_plain_object.js":45}],45:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1609,7 +1915,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-function":11,"@stdlib/assert/is-object":34,"@stdlib/utils/get-prototype-of":106,"@stdlib/utils/native-class":110}],38:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-function":19,"@stdlib/assert/is-object":42,"@stdlib/utils/get-prototype-of":125,"@stdlib/utils/native-class":129}],46:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1629,18 +1935,23 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isPositiveInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isPositiveInteger( 0.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( -5.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( 3.14 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( null );
 * // returns false
@@ -1654,7 +1965,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"./object.js":40,"./primitive.js":41}],39:[function(require,module,exports){
+},{"./object.js":48,"./primitive.js":49}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1719,7 +2030,7 @@ setReadOnly( isPositiveInteger, 'isObject', isObject );
 
 module.exports = isPositiveInteger;
 
-},{"./generic.js":38,"./object.js":40,"./primitive.js":41,"@stdlib/utils/define-read-only-property":99}],40:[function(require,module,exports){
+},{"./generic.js":46,"./object.js":48,"./primitive.js":49,"@stdlib/utils/define-read-only-property":118}],48:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1738,6 +2049,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
 * @example
 * var bool = isPositiveInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveInteger( new Number( 3.0 ) );
 * // returns true
@@ -1754,7 +2066,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":14}],41:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":22}],49:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1773,6 +2085,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 * @example
 * var bool = isPositiveInteger( 3.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveInteger( new Number( 3.0 ) );
 * // returns false
@@ -1789,7 +2102,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":14}],42:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":22}],50:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1809,15 +2122,19 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isPositiveNumber( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveNumber( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isPositiveNumber( 3.14 );
 * // returns true
+*
 * @example
 * var bool = isPositiveNumber( -5.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveNumber( null );
 * // returns false
@@ -1831,7 +2148,7 @@ function isPositiveNumber( value ) {
 
 module.exports = isPositiveNumber;
 
-},{"./object.js":44,"./primitive.js":45}],43:[function(require,module,exports){
+},{"./object.js":52,"./primitive.js":53}],51:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1896,7 +2213,7 @@ setReadOnly( isPositiveNumber, 'isObject', isObject );
 
 module.exports = isPositiveNumber;
 
-},{"./generic.js":42,"./object.js":44,"./primitive.js":45,"@stdlib/utils/define-read-only-property":99}],44:[function(require,module,exports){
+},{"./generic.js":50,"./object.js":52,"./primitive.js":53,"@stdlib/utils/define-read-only-property":118}],52:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1915,6 +2232,7 @@ var isNumber = require( '@stdlib/assert/is-number' ).isObject;
 * @example
 * var bool = isPositiveNumber( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isPositiveNumber( new Number( 3.0 ) );
 * // returns true
@@ -1931,7 +2249,7 @@ function isPositiveNumber( value ) {
 
 module.exports = isPositiveNumber;
 
-},{"@stdlib/assert/is-number":27}],45:[function(require,module,exports){
+},{"@stdlib/assert/is-number":35}],53:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1950,6 +2268,7 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * @example
 * var bool = isPositiveNumber( 3.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveNumber( new Number( 3.0 ) );
 * // returns false
@@ -1966,7 +2285,7 @@ function isPositiveNumber( value ) {
 
 module.exports = isPositiveNumber;
 
-},{"@stdlib/assert/is-number":27}],46:[function(require,module,exports){
+},{"@stdlib/assert/is-number":35}],54:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2022,7 +2341,7 @@ setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":48,"@stdlib/assert/tools/array-function":54,"@stdlib/utils/define-read-only-property":99}],47:[function(require,module,exports){
+},{"@stdlib/assert/is-string":56,"@stdlib/assert/tools/array-function":62,"@stdlib/utils/define-read-only-property":118}],55:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2038,6 +2357,14 @@ var isObject = require( './object.js' );
 *
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating whether value is a string
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
@@ -2048,7 +2375,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":49,"./primitive.js":50}],48:[function(require,module,exports){
+},{"./object.js":57,"./primitive.js":58}],56:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2105,7 +2432,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":47,"./object.js":49,"./primitive.js":50,"@stdlib/utils/define-read-only-property":99}],49:[function(require,module,exports){
+},{"./generic.js":55,"./object.js":57,"./primitive.js":58,"@stdlib/utils/define-read-only-property":118}],57:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2126,6 +2453,7 @@ var test = require( './try2valueof.js' );
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns true
+*
 * @example
 * var bool = isString( 'beep' );
 * // returns false
@@ -2145,7 +2473,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":51,"@stdlib/utils/detect-tostringtag-support":103,"@stdlib/utils/native-class":110}],50:[function(require,module,exports){
+},{"./try2valueof.js":59,"@stdlib/utils/detect-tostringtag-support":122,"@stdlib/utils/native-class":129}],58:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2157,6 +2485,7 @@ module.exports = isString;
 * @example
 * var bool = isString( 'beep' );
 * // returns true
+*
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns false
@@ -2170,7 +2499,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],51:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2183,6 +2512,7 @@ var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
 /**
 * Attempts to extract a string value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a string can be extracted
 */
@@ -2200,7 +2530,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":52}],52:[function(require,module,exports){
+},{"./valueof.js":60}],60:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -2211,7 +2541,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],53:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2278,7 +2608,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":7}],54:[function(require,module,exports){
+},{"@stdlib/assert/is-array":7}],62:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2311,7 +2641,7 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":53}],55:[function(require,module,exports){
+},{"./arrayfcn.js":61}],63:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2338,7 +2668,7 @@ var isInteger = require( './is_integer.js' );
 
 module.exports = isInteger;
 
-},{"./is_integer.js":56}],56:[function(require,module,exports){
+},{"./is_integer.js":64}],64:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2371,7 +2701,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":74}],57:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":82}],65:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2398,7 +2728,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":58}],58:[function(require,module,exports){
+},{"./is_nan.js":66}],66:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -2412,6 +2742,7 @@ module.exports = isnan;
 * @example
 * var bool = isnan( NaN );
 * // returns true
+*
 * @example
 * var bool = isnan( 7.0 );
 * // returns false
@@ -2425,7 +2756,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],59:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2474,7 +2805,7 @@ function createTable( rand ) {
 
 module.exports = createTable;
 
-},{"@stdlib/math/base/assert/is-nan":57}],60:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":65}],68:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2587,7 +2918,7 @@ function factory( seed ) {
 
 module.exports = factory;
 
-},{"./create_table.js":59,"@stdlib/assert/is-positive-integer":39,"@stdlib/math/base/random/minstd":65,"@stdlib/math/base/special/floor":74,"@stdlib/math/constants/int32-max":77,"@stdlib/utils/define-read-only-property":99}],61:[function(require,module,exports){
+},{"./create_table.js":67,"@stdlib/assert/is-positive-integer":47,"@stdlib/math/base/random/minstd":73,"@stdlib/math/base/special/floor":82,"@stdlib/math/constants/int32-max":85,"@stdlib/utils/define-read-only-property":118}],69:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2626,7 +2957,7 @@ setReadOnly( minstd, 'factory', factory );
 
 module.exports = minstd;
 
-},{"./factory.js":60,"./minstd_shuffled.js":62,"@stdlib/utils/define-read-only-property":99}],62:[function(require,module,exports){
+},{"./factory.js":68,"./minstd_shuffled.js":70,"@stdlib/utils/define-read-only-property":118}],70:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2667,7 +2998,7 @@ var minstd = factory( randint32() );
 
 module.exports = minstd;
 
-},{"./factory.js":60,"./rand_int32.js":63}],63:[function(require,module,exports){
+},{"./factory.js":68,"./rand_int32.js":71}],71:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2703,7 +3034,7 @@ function randint32() {
 
 module.exports = randint32;
 
-},{"@stdlib/math/base/special/floor":74,"@stdlib/math/constants/int32-max":77}],64:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":82,"@stdlib/math/constants/int32-max":85}],72:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2805,7 +3136,7 @@ function factory( seed ) {
 
 module.exports = factory;
 
-},{"./rand_int32.js":67,"@stdlib/assert/is-positive-integer":39,"@stdlib/math/constants/int32-max":77,"@stdlib/utils/define-read-only-property":99}],65:[function(require,module,exports){
+},{"./rand_int32.js":75,"@stdlib/assert/is-positive-integer":47,"@stdlib/math/constants/int32-max":85,"@stdlib/utils/define-read-only-property":118}],73:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2844,7 +3175,7 @@ setReadOnly( minstd, 'factory', factory );
 
 module.exports = minstd;
 
-},{"./factory.js":64,"./minstd.js":66,"@stdlib/utils/define-read-only-property":99}],66:[function(require,module,exports){
+},{"./factory.js":72,"./minstd.js":74,"@stdlib/utils/define-read-only-property":118}],74:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2931,14 +3262,14 @@ var minstd = factory( randint32() );
 
 module.exports = minstd;
 
-},{"./factory.js":64,"./rand_int32.js":67}],67:[function(require,module,exports){
-arguments[4][63][0].apply(exports,arguments)
-},{"@stdlib/math/base/special/floor":74,"@stdlib/math/constants/int32-max":77,"dup":63}],68:[function(require,module,exports){
+},{"./factory.js":72,"./rand_int32.js":75}],75:[function(require,module,exports){
+arguments[4][71][0].apply(exports,arguments)
+},{"@stdlib/math/base/special/floor":82,"@stdlib/math/constants/int32-max":85,"dup":71}],76:[function(require,module,exports){
 module.exports={
 	"name": "minstd-shuffle"
 }
 
-},{}],69:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3046,7 +3377,7 @@ function factory( opts ) {
 
 module.exports = factory;
 
-},{"./defaults.json":68,"./prngs.js":71,"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-plain-object":36,"@stdlib/utils/define-read-only-property":99}],70:[function(require,module,exports){
+},{"./defaults.json":76,"./prngs.js":79,"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-plain-object":44,"@stdlib/utils/define-read-only-property":118}],78:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3088,7 +3419,7 @@ setReadOnly( randu, 'factory', factory );
 
 module.exports = randu;
 
-},{"./factory.js":69,"./uniform.js":72,"@stdlib/utils/define-read-only-property":99}],71:[function(require,module,exports){
+},{"./factory.js":77,"./uniform.js":80,"@stdlib/utils/define-read-only-property":118}],79:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -3103,7 +3434,7 @@ prngs[ 'minstd-shuffle' ] = require( '@stdlib/math/base/random/minstd-shuffle' )
 
 module.exports = prngs;
 
-},{"@stdlib/math/base/random/minstd":65,"@stdlib/math/base/random/minstd-shuffle":61}],72:[function(require,module,exports){
+},{"@stdlib/math/base/random/minstd":73,"@stdlib/math/base/random/minstd-shuffle":69}],80:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3131,7 +3462,7 @@ var uniform = factory();
 
 module.exports = uniform;
 
-},{"./factory.js":69}],73:[function(require,module,exports){
+},{"./factory.js":77}],81:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -3165,7 +3496,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],74:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3198,7 +3529,7 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":73}],75:[function(require,module,exports){
+},{"./floor.js":81}],83:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3234,7 +3565,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{}],76:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3270,7 +3601,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY;
 
 module.exports = FLOAT64_PINF;
 
-},{}],77:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3311,7 +3642,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],78:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3352,7 +3683,258 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],79:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
+module.exports={
+    "'s": "is",
+    "'S": "Is",
+    "aren't": "are not",
+    "arent": "are not",
+    "can't": "can not",
+    "cant": "can not",
+    "can't've": "can not have",
+    "'cause": "because",
+    "cannot": "can not",
+    "could've": "could have",
+    "couldve": "could have",
+    "couldn't": "could not",
+    "couldnt": "could not",
+    "couldn't've": "could not have",
+    "couldntve": "could not have",
+    "didn't": "did not",
+    "didnt": "did not",
+    "doesn't": "does not",
+    "doesnt": "does not",
+    "don't": "do not",
+    "dont": "do not",
+    "hadn't": "had not",
+    "hadnt": "had not",
+    "hadn't've": "had not have",
+    "hasn't": "has not",
+    "hasnt": "has not",
+    "haven't": "have not",
+    "havent": "have not",
+    "he'd": "he would",
+    "hed": "he would",
+    "he'd've": "he would have",
+    "hedve": "he would have",
+    "he'll": "he will",
+    "he'll've": "he will have",
+    "he's": "he is",
+    "hes": "he is",
+    "how'd": "how did",
+    "howd": "how did",
+    "how'd'y": "how did you",
+    "how'll": "how will",
+    "howll": "how will",
+    "how's": "how is",
+    "hows": "how is",
+    "i'd": "i would",
+    "i'd've": "i would have",
+    "i'll": "i will",
+    "i'll've": "i will have",
+    "i'm": "i am",
+    "im": "i am",
+    "i'ma": "i am going to",
+    "i've": "i have",
+    "isn't": "is not",
+    "isnt": "is not",
+    "it'd": "it would",
+    "it'd've": "it would have",
+    "it'll've": "it will have",
+    "it'll": "it will",
+    "itll": "it will",
+    "it's": "it is",
+    "let's": "let us",
+    "lets": "let us",
+    "ma'am": "madam",
+    "mayn't": "may not",
+    "mightn't": "it might not",
+    "mightn't've": "might not have",
+    "might've": "might have",
+    "mustn't": "must not",
+    "mustn't've": "must not have",
+    "must've": "must have",
+    "needn't": "need not",
+    "needn't've": "need not have",
+    "not've": "not have",
+    "oughtn't": "ought not",
+    "oughtn't've": "ought not to have",
+    "so've": "so have",
+    "so's": "so is",
+    "shan't": "shall not",
+    "sha'n't": "shall not",
+    "shan't've": "shall not have",
+    "she'd": "she would",
+    "she'd've": "she would have",
+    "she'll": "she will",
+    "she'll've": "she will have",
+    "she's": "she is",
+    "should've": "should have",
+    "shouldn't": "should not",
+    "shouldn't've": "should not have",
+    "that'd": "that would",
+    "that'd've": "that would have",
+    "that's": "that is",
+    "thats": "that is",
+    "there'd": "there would",
+    "there'd've": "there would have",
+    "there's": "there is",
+    "they'd": "they would",
+    "they'd've": "they would have",
+    "they'll": "they will",
+    "they'll've": "they will have",
+    "they're": "they are",
+    "they've": "they have",
+    "to've": "to have",
+    "wasn't": "was not",
+    "we'd": "we would",
+    "we'd've": "we would have",
+    "we'll": "we will",
+    "we'll've": "we will have",
+    "we're": "we are",
+    "we've": "we have",
+    "weren't": "were not",
+    "what'll": "what will",
+    "what'll've": "what will have",
+    "what're": "what are",
+    "what's": "what has/is",
+    "what've": "what have",
+    "when's": "when is",
+    "when've": "when have",
+    "where'd": "where would",
+    "where's": "where is",
+    "where've": "where have",
+    "who'd": "who would",
+    "who'll": "who will",
+    "who'll've": "who will have",
+    "who're": "who are",
+    "who's": "who is",
+    "who've": "who have",
+    "why've": "why have",
+    "why'll": "why will",
+    "why're": "why are",
+    "why's": "why is",
+    "will've": "will have",
+    "won't": "will not",
+    "wont": "will not",
+    "won't've": "will not have",
+    "would've": "would have",
+    "wouldn't": "would not",
+    "wouldn't've": "would not have",
+    "y'all": "you all",
+    "y'all'd": "you all would",
+    "y'all'd've": "you all would have",
+    "y'all're": "you all are",
+    "y'all've": "you all have",
+    "you'd": "you would",
+    "you'd've": "you would have",
+    "you'll": "you will",
+    "you'll've": "you will have",
+    "you're": "you are",
+    "you've": "you have"
+}
+
+},{}],88:[function(require,module,exports){
+'use strict';
+/* eslint-disable guard-for-in */
+
+// MODULES //
+
+var isCapitalized = require( '@stdlib/assert/is-capitalized' );
+var uncapitalize = require( '@stdlib/string/uncapitalize' );
+var capitalize = require( '@stdlib/string/capitalize' );
+var tokenize = require( '@stdlib/nlp/tokenize' );
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var CONTRACTIONS = require( './contractions.json' );
+
+
+// MAIN //
+
+/**
+* Expands all contractions to their formal equivalents.
+*
+* @param {string} str - string to convert
+* @throws {TypeError} must provide a primitive string
+* @returns {string} string with expanded contractions
+*
+* @example
+* var str = 'I won\'t be able to get y\'all out of this one.';
+* var out = expandContractions( str );
+* // returns 'I will not be able to get you all out of this one.'
+*
+* @example
+* var str = 'It oughtn't to be my fault, because, you know, I didn't know';
+* var out = expandContractions( str );
+* // returns 'It ought not to be my fault, because, you know, I did not know'
+*/
+function expandContractions( str ) {
+	var tokens;
+	var token;
+	var out;
+	var key;
+	var i;
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a primitive string. Value: `'+str+'`.' );
+	}
+	out = '';
+	tokens = tokenize( str, true );
+	for ( i = 0; i < tokens.length; i++ ) {
+		token = tokens[ i ];
+		if ( isCapitalized( token ) ) {
+			for ( key in CONTRACTIONS ) {
+				if ( uncapitalize( token ) === key ) {
+					token = capitalize( CONTRACTIONS[ key ] );
+					break;
+				}
+			}
+		} else {
+			for ( key in CONTRACTIONS ) {
+				if ( token === key ) {
+					token = CONTRACTIONS[ key ];
+					break;
+				}
+			}
+		}
+		out += token;
+	}
+	return out;
+} // end FUNCTION expandContractions()
+
+
+// EXPORTS //
+
+module.exports = expandContractions;
+
+},{"./contractions.json":87,"@stdlib/assert/is-capitalized":17,"@stdlib/assert/is-string":56,"@stdlib/nlp/tokenize":104,"@stdlib/string/capitalize":108,"@stdlib/string/uncapitalize":111}],89:[function(require,module,exports){
+'use strict';
+
+/**
+* Expand contractions.
+*
+* @module @stdlib/nlp/expand-contractions
+*
+* @example
+* var expandContractions = require( '@stdlib/nlp/expand-contractions' );
+*
+* var str = 'I won\'t be able to get y\'all out of this one.';
+* var out = expandContractions( str );
+* // returns 'I will not be able to get you all out of this one.'
+*
+* str = 'It oughtn't to be my fault, because, you know, I didn't know';
+* out = expandContractions( str );
+* // returns 'It ought not to be my fault, because, you know, I did not know'
+*/
+
+// MODULES //
+
+var expandContractions = require( './expand_contractions.js' );
+
+
+// EXPORTS //
+
+module.exports = expandContractions;
+
+},{"./expand_contractions.js":88}],90:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3365,6 +3947,7 @@ var matrix = require( './matrix.js' );
 /**
 * Calculate weighted average of two matrices.
 *
+* @private
 * @param {Matrix} A - first matrix
 * @param {Matrix} B - second matrix
 * @param {PositiveInteger} weight - relative weight of matrix A
@@ -3400,7 +3983,7 @@ function avgMatrix( A, B, weight ) {
 
 module.exports = avgMatrix;
 
-},{"./matrix.js":86}],80:[function(require,module,exports){
+},{"./matrix.js":97}],91:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3516,7 +4099,7 @@ function fit( iter, burnin, thin ) {
 
 module.exports = fit;
 
-},{"./avg_matrix.js":79,"@stdlib/assert/is-positive-integer":39,"@stdlib/math/base/random/randu":70}],81:[function(require,module,exports){
+},{"./avg_matrix.js":90,"@stdlib/assert/is-positive-integer":47,"@stdlib/math/base/random/randu":78}],92:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3532,7 +4115,7 @@ var matrix = require( './matrix.js' );
 * @returns {Matrix} phi parameter matrix
 */
 function getPhis() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var Phi;
 	var val;
 	var k;
@@ -3542,7 +4125,7 @@ function getPhis() {
 	for ( k = 0; k < this.K; k++ ) {
 		for ( w = 0; w < this.W; w++ ) {
 			val = ( this.nw.get( w, k ) + this.beta ) /
-				( this.nwSum[ k ] + this.W * this.beta );
+				( this.nwSum[ k ] + ( this.W*this.beta ) );
 			Phi.set( k, w, val );
 		}
 	}
@@ -3554,7 +4137,7 @@ function getPhis() {
 
 module.exports = getPhis;
 
-},{"./matrix.js":86}],82:[function(require,module,exports){
+},{"./matrix.js":97}],93:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3570,7 +4153,7 @@ var matrix = require( './matrix.js' );
 * @returns {Matrix} theta parameter matrix
 */
 function getThetas() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var Theta;
 	var val;
 	var d;
@@ -3580,7 +4163,7 @@ function getThetas() {
 	for ( d = 0; d < this.D; d++ ) {
 		for ( k = 0; k < this.K; k++ ) {
 			val = ( this.nd.get( d, k ) + this.alpha ) /
-				( this.ndSum[ d ] + this.K * this.alpha );
+				( this.ndSum[ d ] + ( this.K*this.alpha ) );
 			Theta.set( d, k, val );
 		}
 	}
@@ -3592,7 +4175,7 @@ function getThetas() {
 
 module.exports = getThetas;
 
-},{"./matrix.js":86}],83:[function(require,module,exports){
+},{"./matrix.js":97}],94:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3621,7 +4204,7 @@ module.exports = getThetas;
 * model.fit( 1000, 100, 10 );
 *
 * words = getTerms( 0, 3 );
-* // returns e.g. [ { word: 'both', prob: ~0.0632 }, { word: 'pain', prob: ~0.0552 }, ... ]
+* // e.g., returns [ { word: 'both', prob: ~0.0632 }, { word: 'pain', prob: ~0.0552 }, ... ]
 */
 
 // MODULES //
@@ -3633,7 +4216,7 @@ var lda = require( './lda.js' );
 
 module.exports = lda;
 
-},{"./lda.js":85}],84:[function(require,module,exports){
+},{"./lda.js":96}],95:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3650,7 +4233,7 @@ var floor = require( '@stdlib/math/base/special/floor' );
 * @private
 */
 function init() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var topic;
 	var newz;
 	var len;
@@ -3686,7 +4269,7 @@ function init() {
 
 module.exports = init;
 
-},{"@stdlib/math/base/random/randu":70,"@stdlib/math/base/special/floor":74}],85:[function(require,module,exports){
+},{"@stdlib/math/base/random/randu":78,"@stdlib/math/base/special/floor":82}],96:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3715,7 +4298,7 @@ var fit = require( './fit.js' );
 * @param {string} searchVal - search value
 * @returns {Integer} index in vocab if search value is found, -1 otherwise
 */
-function find( vocab, searchVal ) {
+function findIndex( vocab, searchVal ) {
 	var i;
 	for ( i = 0; i < vocab.length; i++ ) {
 		if ( vocab[ i ] === searchVal ) {
@@ -3723,7 +4306,7 @@ function find( vocab, searchVal ) {
 		}
 	}
 	return -1;
-} // end FUNCTION find()
+} // end FUNCTION findIndex()
 
 
 // MAIN //
@@ -3733,9 +4316,9 @@ function find( vocab, searchVal ) {
 *
 * @param {StringArray} documents - document corpus
 * @param {PositiveInteger} K - number of topics
-* @param {Options} [opts] - options object
-* @param {PositiveNumber} [opts.alpha=50/K] - Dirichlet hyper-parameter of topic vector theta:
-* @param {PositiveNumber} [opts.beta=0.1] - Dirichlet hyper-parameter for word vector phi
+* @param {Options} [options] - options object
+* @param {PositiveNumber} [options.alpha=50/K] - Dirichlet hyper-parameter of topic vector theta:
+* @param {PositiveNumber} [options.beta=0.1] - Dirichlet hyper-parameter for word vector phi
 * @throws {TypeError} first argument must be an array of strings
 * @throws {TypeError} second argument must be a positive integer
 * @throws {TypeError} must provide valid options
@@ -3792,7 +4375,7 @@ function lda( documents, K, options ) {
 		nd = wd.length;
 		for ( i = 0; i < nd; i++ ) {
 			target = wd[ i ];
-			it = find( vocab, target );
+			it = findIndex( vocab, target );
 			if ( it === -1 ) {
 				vocab.push( target );
 				w[ d ].push( pos );
@@ -3840,7 +4423,7 @@ function lda( documents, K, options ) {
 	* @returns {Array} word probability array
 	*/
 	function getTerms( k, no ) {
-		/* jshint validthis: true */ // TODO: eslint
+		/* eslint-disable no-invalid-this */
 		var skip;
 		var phi;
 		var ret;
@@ -3878,7 +4461,6 @@ function lda( documents, K, options ) {
 		}
 		return ret;
 	} // end FUNCTION getTerms()
-
 } // end FUNCTION lda()
 
 
@@ -3886,14 +4468,20 @@ function lda( documents, K, options ) {
 
 module.exports = lda;
 
-},{"./fit.js":80,"./get_phis.js":81,"./get_thetas.js":82,"./init.js":84,"./matrix.js":86,"./validate.js":87,"@stdlib/assert/contains":2,"@stdlib/assert/is-nonnegative-integer":23,"@stdlib/assert/is-positive-integer":39,"@stdlib/assert/is-string-array":46,"@stdlib/nlp/tokenize":93,"@stdlib/utils/define-read-only-property":99}],86:[function(require,module,exports){
+},{"./fit.js":91,"./get_phis.js":92,"./get_thetas.js":93,"./init.js":95,"./matrix.js":97,"./validate.js":98,"@stdlib/assert/contains":2,"@stdlib/assert/is-nonnegative-integer":31,"@stdlib/assert/is-positive-integer":47,"@stdlib/assert/is-string-array":54,"@stdlib/nlp/tokenize":104,"@stdlib/utils/define-read-only-property":118}],97:[function(require,module,exports){
 'use strict';
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+
 
 // MAIN //
 
 /**
 * Returns a Matrix instance.
 *
+* @private
 * @constructor
 * @param {NumberArray} shape - matrix dimensions/shape
 * @param {string} [dtype="float64"] - matrix data type
@@ -3932,12 +4520,16 @@ function matrix() {
 	mat = {};
 	mat.dtype = dtype;
 	mat.shape = shape;
-	mat.strides = [shape[1],1];
+	mat.strides = [ shape[1], 1 ];
 	mat.offset = 0;
 	mat.ndims = shape.length;
 	mat.length = data.length;
 	mat.nbytes = data.byteLength;
 	mat.data = data;
+
+	setReadOnly( mat, 'get', get );
+	setReadOnly( mat, 'set', set );
+	return mat;
 
 	/**
 	* Returns a matrix element based on the provided row and column indices.
@@ -3946,29 +4538,28 @@ function matrix() {
 	* @param {integer} j - column index
 	* @returns {number|undefined} matrix element
 	*/
-	mat.get = function get( i, j ) {
-		/*jshint validthis:true */
-		return this.data[ this.offset + i*this.strides[0] + j*this.strides[1] ];
-	}; // end FUNCTION get()
+	function get( i, j ) {
+		/* eslint-disable no-invalid-this */
+		var idx = this.offset + ( i*this.strides[0] ) + ( j*this.strides[1] );
+		return this.data[ idx ];
+	} // end FUNCTION get()
 
 	/**
 	* Sets a matrix element based on the provided row and column indices.
 	*
 	* @param {integer} i - row index
 	* @param {integer} j - column index
-	* @param {number} value - value to set
+	* @param {number} v - value to set
 	* @returns {Matrix} Matrix instance
 	*/
-	mat.set = function set( i, j, v ) {
-		/* jshint validthis: true */
-		i = this.offset + i*this.strides[0] + j*this.strides[1];
+	function set( i, j, v ) {
+		/* eslint-disable no-invalid-this */
+		i = this.offset + ( i*this.strides[0] ) + ( j*this.strides[1] );
 		if ( i >= 0 ) {
 			this.data[ i ] = v;
 		}
 		return this;
-	}; // end FUNCTION set()
-
-	return mat;
+	} // end FUNCTION set()
 } // end FUNCTION matrix()
 
 
@@ -3976,7 +4567,7 @@ function matrix() {
 
 module.exports = matrix;
 
-},{}],87:[function(require,module,exports){
+},{"@stdlib/utils/define-read-only-property":118}],98:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4031,7 +4622,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-plain-object":36,"@stdlib/assert/is-positive-number":43}],88:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-plain-object":44,"@stdlib/assert/is-positive-number":51}],99:[function(require,module,exports){
 'use strict';
 
 /*
@@ -4051,6 +4642,15 @@ var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 * @namespace nlp
 */
 var nlp = {};
+
+/**
+* @name expandContractions
+* @memberof nlp
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/nlp/expand-contractions}
+*/
+setReadOnly( nlp, 'expandContractions', require( '@stdlib/nlp/expand-contractions' ) );
 
 /**
 * @name lda
@@ -4075,7 +4675,7 @@ setReadOnly( nlp, 'tokenize', require( '@stdlib/nlp/tokenize' ) );
 
 module.exports = nlp;
 
-},{"@stdlib/nlp/lda":83,"@stdlib/nlp/tokenize":93,"@stdlib/utils/define-read-only-property":99}],89:[function(require,module,exports){
+},{"@stdlib/nlp/expand-contractions":89,"@stdlib/nlp/lda":94,"@stdlib/nlp/tokenize":104,"@stdlib/utils/define-read-only-property":118}],100:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -4101,7 +4701,7 @@ tape( 'the exported object contains functions for natural language processing', 
 });
 
 }).call(this,"/lib/node_modules/@stdlib/nlp/test/test.js")
-},{"./../lib":88,"object-keys":150,"tape":180}],90:[function(require,module,exports){
+},{"./../lib":99,"object-keys":169,"tape":199}],101:[function(require,module,exports){
 module.exports={
     "i.e.": ["i.e."],
     "I.e.": ["I.e."],
@@ -4207,7 +4807,7 @@ module.exports={
     "Wis.": ["Wis."]
 }
 
-},{}],91:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 module.exports={
     "'s": ["'s"],
     "'S": ["'S"],
@@ -4397,7 +4997,7 @@ module.exports={
     "You've": ["You", "'ve"]
 }
 
-},{}],92:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 module.exports={
     "^_^": ["^_^"],
     "=D": ["=D"],
@@ -4444,7 +5044,7 @@ module.exports={
     "=)": ["=)"]
 }
 
-},{}],93:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4473,11 +5073,12 @@ var tokenize = require( './tokenize.js' );
 
 module.exports = tokenize;
 
-},{"./tokenize.js":94}],94:[function(require,module,exports){
+},{"./tokenize.js":105}],105:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 var ABBRS = require( './abbreviations.json' );
@@ -4487,8 +5088,8 @@ var CONTRACT = require( './contractions.json' );
 
 // VARIABLES //
 
-var REGEXP_PREFIXES = /^([,\(\[\{*<"“'`‘.])/gi;
-var REGEXP_SUFFIXES = /([,.!?%*>:;"'”`\)\]\}])$/gi;
+var REGEXP_PREFIXES = /^([,([{*<"“'`‘.])/gi;
+var REGEXP_SUFFIXES = /([,.!?%*>:;"'”`)\]}])$/gi;
 
 
 // FUNCTIONS //
@@ -4570,7 +5171,9 @@ function tokenizeSubstring( substr ) {
 * Tokenize a string.
 *
 * @param {string} str - input string
-* @throws {TypeError} must provide a string primitive
+* @param {boolean} [keepWhitespace=false] - boolean indicating whether whitespace characters should be returned as part of the token array
+* @throws {TypeError} first argument must be a string primitive
+* @throws {TypeError} second argument must be a boolean primitive
 * @returns {Array} array of tokens
 *
 * @example
@@ -4588,7 +5191,7 @@ function tokenizeSubstring( substr ) {
 * var out = tokenize( str );
 * // returns  [ 'Hello', 'Mrs.', 'Maple', ',', 'could', 'you', 'call', 'me', 'back', '?' ]
 */
-function tokenize( str ) {
+function tokenize( str, keepWhitespace ) {
 	var subtkns;
 	var substrs;
 	var tokens;
@@ -4598,12 +5201,21 @@ function tokenize( str ) {
 	if ( !isString( str ) ) {
 		throw new TypeError( 'invalid input argument. First argument must be a string primitive. Value: `' + str + '`.' );
 	}
+	if ( arguments.length > 1 ) {
+		if ( !isBoolean( keepWhitespace ) ) {
+			throw new TypeError( 'invalid input argument. Second argument must be a boolean primitive. Value: `' + keepWhitespace + '`.' );
+		}
+	}
 	if ( !str ) {
 		return [];
 	}
 
 	// Split on whitespace:
-	substrs = str.split( /\s+/ );
+	if ( keepWhitespace ) {
+		substrs = str.split( /(\s+)/ );
+	} else {
+		substrs = str.split( /\s+/ );
+	}
 
 	// Set up cache to hold tokens for substring matches:
 	cache = {};
@@ -4630,7 +5242,7 @@ function tokenize( str ) {
 
 module.exports = tokenize;
 
-},{"./abbreviations.json":90,"./contractions.json":91,"./emojis.json":92,"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-string":48}],95:[function(require,module,exports){
+},{"./abbreviations.json":101,"./contractions.json":102,"./emojis.json":103,"@stdlib/assert/has-own-property":4,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-string":56}],106:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4691,7 +5303,271 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],96:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Capitalizes the first character in a string.
+*
+* @param {string} str - input string
+* @throws {TypeError} must provide a string primitive
+* @returns {string} capitalized string
+*
+* @example
+* var out = capitalize( 'last man standing' );
+* // returns  'Last man standing'
+*
+* @example
+* var out = capitalize( 'presidential election' );
+* // returns 'Presidential election'
+*
+* @example
+* var out = capitalize( 'javaScript' );
+* // returns 'JavaScript'
+*
+* @example
+* var out = capitalize( 'Hidden Treasures' );
+* // returns 'Hidden Treasures';
+*/
+function capitalize( str ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. First argument must be a string primitive. Value: `' + str + '`.' );
+	}
+	if ( str === '' ) {
+		return '';
+	}
+	return str.charAt( 0 ).toUpperCase() + str.slice( 1 );
+} // end FUNCTION capitalize()
+
+
+// EXPORTS //
+
+module.exports = capitalize;
+
+},{"@stdlib/assert/is-string":56}],108:[function(require,module,exports){
+'use strict';
+
+/**
+* Capitalize the first character in a string.
+*
+* @module @stdlib/string/capitalize
+*
+* @example
+* var capitalize = require( '@stdlib/string/capitalize' );
+*
+* var out = capitalize( 'last man standing' );
+* // returns 'Last man standing'
+*
+* out = capitalize( 'Hidden Treasures' );
+* // returns 'Hidden Treasures';
+*/
+
+// MODULES //
+
+var capitalize = require( './capitalize.js' );
+
+
+// EXPORTS //
+
+module.exports = capitalize;
+
+},{"./capitalize.js":107}],109:[function(require,module,exports){
+'use strict';
+
+/**
+* Convert a string to lowercase.
+*
+* @module @stdlib/string/lowercase
+*
+* @example
+* var lowercase = require( '@stdlib/string/lowercase' );
+*
+* var str = lowercase( 'bEEp' );
+* // returns 'beep'
+*/
+
+// MODULES //
+
+var lowercase = require( './lowercase.js' );
+
+
+// EXPORTS //
+
+module.exports = lowercase;
+
+},{"./lowercase.js":110}],110:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Converts a string to lowercase.
+*
+* @param {string} str - string to convert
+* @throws {TypeError} must provide a primitive string
+* @returns {string} lowercase string
+*
+* @example
+* var str = lowercase( 'bEEp' );
+* // returns 'beep'
+*/
+function lowercase( str ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a primitive string. Value: `'+str+'`.' );
+	}
+	return str.toLowerCase();
+} // end FUNCTION lowercase()
+
+
+// EXPORTS //
+
+module.exports = lowercase;
+
+},{"@stdlib/assert/is-string":56}],111:[function(require,module,exports){
+'use strict';
+
+/**
+* Uncapitalize the first character of a string.
+*
+* @module @stdlib/string/uncapitalize
+*
+* @example
+* var uncapitalize = require( '@stdlib/string/uncapitalize' );
+*
+* var out = uncapitalize( 'Last man standing' );
+* // returns  'last man standing'
+*
+* out = uncapitalize( 'Hidden Treasures' );
+* // returns 'hidden Treasures';
+*/
+
+// MODULES //
+
+var uncapitalize = require( './uncapitalize.js' );
+
+
+// EXPORTS //
+
+module.exports = uncapitalize;
+
+},{"./uncapitalize.js":112}],112:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Uncapitalizes the first character of a string.
+*
+* @param {string} str - input string
+* @throws {TypeError} must provide a string primitive
+* @returns {string} input string with first character converted lowercase
+*
+* @example
+* var out = uncapitalize( 'Last man standing' );
+* // returns  'last man standing'
+*
+* @example
+* var out = uncapitalize( 'Presidential election' );
+* // returns 'presidential election'
+*
+* @example
+* var out = uncapitalize( 'JavaScript' );
+* // returns 'javaScript'
+*
+* @example
+* var out = uncapitalize( 'Hidden Treasures' );
+* // returns 'hidden Treasures';
+*/
+function uncapitalize( str ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. First argument must be a string primitive. Value: `' + str + '`.' );
+	}
+	if ( str === '' ) {
+		return '';
+	}
+	return str.charAt( 0 ).toLowerCase() + str.slice( 1 );
+} // end FUNCTION uncapitalize()
+
+
+// EXPORTS //
+
+module.exports = uncapitalize;
+
+},{"@stdlib/assert/is-string":56}],113:[function(require,module,exports){
+'use strict';
+
+/**
+* Convert a string to uppercase.
+*
+* @module @stdlib/string/uppercase
+*
+* @example
+* var uppercase = require( '@stdlib/string/uppercase' );
+*
+* var str = uppercase( 'bEEp' );
+* // returns 'BEEP'
+*/
+
+// MODULES //
+
+var uppercase = require( './uppercase.js' );
+
+
+// EXPORTS //
+
+module.exports = uppercase;
+
+},{"./uppercase.js":114}],114:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// MAIN //
+
+/**
+* Converts a string to uppercase.
+*
+* @param {string} str - string to convert
+* @throws {TypeError} must provide a primitive string
+* @returns {string} uppercase string
+*
+* @example
+* var str = uppercase( 'bEEp' );
+* // returns 'BEEP'
+*/
+function uppercase( str ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a primitive string. Value: `'+str+'`.' );
+	}
+	return str.toUpperCase();
+} // end FUNCTION uppercase()
+
+
+// EXPORTS //
+
+module.exports = uppercase;
+
+},{"@stdlib/assert/is-string":56}],115:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4747,7 +5623,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":9,"@stdlib/regexp/function-name":95,"@stdlib/utils/native-class":110}],97:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":15,"@stdlib/regexp/function-name":106,"@stdlib/utils/native-class":129}],116:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4777,7 +5653,7 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":96}],98:[function(require,module,exports){
+},{"./constructor_name.js":115}],117:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4806,7 +5682,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{}],99:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4831,7 +5707,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":98}],100:[function(require,module,exports){
+},{"./define_read_only_property.js":117}],119:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4857,7 +5733,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],101:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4881,7 +5757,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":100}],102:[function(require,module,exports){
+},{"./detect_symbol_support.js":119}],121:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4909,7 +5785,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":101}],103:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":120}],122:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4933,7 +5809,7 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":102}],104:[function(require,module,exports){
+},{"./has_tostringtag_support.js":121}],123:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4955,7 +5831,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":107,"./polyfill.js":108,"@stdlib/assert/is-function":11}],105:[function(require,module,exports){
+},{"./native.js":126,"./polyfill.js":127,"@stdlib/assert/is-function":19}],124:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4993,7 +5869,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":104}],106:[function(require,module,exports){
+},{"./detect.js":123}],125:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5017,14 +5893,14 @@ var getPrototype = require( './get_prototype_of.js' );
 
 module.exports = getPrototype;
 
-},{"./get_prototype_of.js":105}],107:[function(require,module,exports){
+},{"./get_prototype_of.js":124}],126:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.getPrototypeOf;
 
-},{}],108:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5063,7 +5939,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":109,"@stdlib/utils/native-class":110}],109:[function(require,module,exports){
+},{"./proto.js":128,"@stdlib/utils/native-class":129}],128:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5083,7 +5959,7 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],110:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5126,7 +6002,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":111,"./polyfill.js":112,"@stdlib/utils/detect-tostringtag-support":103}],111:[function(require,module,exports){
+},{"./native_class.js":130,"./polyfill.js":131,"@stdlib/utils/detect-tostringtag-support":122}],130:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5166,7 +6042,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":113}],112:[function(require,module,exports){
+},{"./tostring.js":132}],131:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5231,21 +6107,21 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":113,"./tostringtag.js":114,"@stdlib/assert/has-own-property":4}],113:[function(require,module,exports){
+},{"./tostring.js":132,"./tostringtag.js":133,"@stdlib/assert/has-own-property":4}],132:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
 
-},{}],114:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
-},{}],115:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5282,7 +6158,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":116,"./fixtures/re.js":117,"./fixtures/typedarray.js":118}],116:[function(require,module,exports){
+},{"./fixtures/nodelist.js":135,"./fixtures/re.js":136,"./fixtures/typedarray.js":137}],135:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5299,7 +6175,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":177}],117:[function(require,module,exports){
+},{"system.global":196}],136:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -5309,7 +6185,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],118:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -5319,7 +6195,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],119:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5348,7 +6224,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":115,"./polyfill.js":120,"./typeof.js":121}],120:[function(require,module,exports){
+},{"./check.js":134,"./polyfill.js":139,"./typeof.js":140}],139:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5373,7 +6249,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":97}],121:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":116}],140:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5433,7 +6309,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":97}],122:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":116}],141:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -5549,11 +6425,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],123:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 
-},{}],124:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],125:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
+arguments[4][142][0].apply(exports,arguments)
+},{"dup":142}],144:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -5739,7 +6615,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],126:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -5846,7 +6722,7 @@ function from (value, encodingOrOffset, length) {
     throw new TypeError('"value" argument must not be a number')
   }
 
-  if (value instanceof ArrayBuffer) {
+  if (isArrayBuffer(value)) {
     return fromArrayBuffer(value, encodingOrOffset, length)
   }
 
@@ -6106,7 +6982,7 @@ function byteLength (string, encoding) {
   if (Buffer.isBuffer(string)) {
     return string.length
   }
-  if (isArrayBufferView(string) || string instanceof ArrayBuffer) {
+  if (isArrayBufferView(string) || isArrayBuffer(string)) {
     return string.byteLength
   }
   if (typeof string !== 'string') {
@@ -7438,6 +8314,14 @@ function blitBuffer (src, dst, offset, length) {
   return i
 }
 
+// ArrayBuffers from another context (i.e. an iframe) do not pass the `instanceof` check
+// but they should be treated as valid. See: https://github.com/feross/buffer/issues/166
+function isArrayBuffer (obj) {
+  return obj instanceof ArrayBuffer ||
+    (obj != null && obj.constructor != null && obj.constructor.name === 'ArrayBuffer' &&
+      typeof obj.byteLength === 'number')
+}
+
 // Node 0.10 supports `ArrayBuffer` but lacks `ArrayBuffer.isView`
 function isArrayBufferView (obj) {
   return (typeof ArrayBuffer.isView === 'function') && ArrayBuffer.isView(obj)
@@ -7447,7 +8331,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":122,"ieee754":145}],127:[function(require,module,exports){
+},{"base64-js":141,"ieee754":164}],146:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7558,7 +8442,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":147}],128:[function(require,module,exports){
+},{"../../is-buffer/index.js":166}],147:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -7654,7 +8538,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":129,"./lib/keys.js":130}],129:[function(require,module,exports){
+},{"./lib/is_arguments.js":148,"./lib/keys.js":149}],148:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -7676,7 +8560,7 @@ function unsupported(object){
     false;
 };
 
-},{}],130:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -7687,7 +8571,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],131:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -7745,14 +8629,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":141,"object-keys":150}],132:[function(require,module,exports){
+},{"foreach":160,"object-keys":169}],151:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],133:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -7764,12 +8648,14 @@ var mod = require('./helpers/mod');
 var IsCallable = require('is-callable');
 var toPrimitive = require('es-to-primitive/es5');
 
+var has = require('has');
+
 // https://es5.github.io/#x9
 var ES5 = {
 	ToPrimitive: toPrimitive,
 
 	ToBoolean: function ToBoolean(value) {
-		return Boolean(value);
+		return !!value;
 	},
 	ToNumber: function ToNumber(value) {
 		return Number(value);
@@ -7835,33 +8721,181 @@ var ES5 = {
 		if (typeof x === 'string') {
 			return 'String';
 		}
+	},
+
+	// http://ecma-international.org/ecma-262/6.0/#sec-property-descriptor-specification-type
+	IsPropertyDescriptor: function IsPropertyDescriptor(Desc) {
+		if (this.Type(Desc) !== 'Object') {
+			return false;
+		}
+		var allowed = {
+			'[[Configurable]]': true,
+			'[[Enumerable]]': true,
+			'[[Get]]': true,
+			'[[Set]]': true,
+			'[[Value]]': true,
+			'[[Writable]]': true
+		};
+		// jscs:disable
+		for (var key in Desc) { // eslint-disable-line
+			if (has(Desc, key) && !allowed[key]) {
+				return false;
+			}
+		}
+		// jscs:enable
+		var isData = has(Desc, '[[Value]]');
+		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
+		if (isData && IsAccessor) {
+			throw new TypeError('Property Descriptors may not be both accessor and data descriptors');
+		}
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.1
+	IsAccessorDescriptor: function IsAccessorDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.2
+	IsDataDescriptor: function IsDataDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.3
+	IsGenericDescriptor: function IsGenericDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!this.IsAccessorDescriptor(Desc) && !this.IsDataDescriptor(Desc)) {
+			return true;
+		}
+
+		return false;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.4
+	FromPropertyDescriptor: function FromPropertyDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return Desc;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (this.IsDataDescriptor(Desc)) {
+			return {
+				value: Desc['[[Value]]'],
+				writable: !!Desc['[[Writable]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else if (this.IsAccessorDescriptor(Desc)) {
+			return {
+				get: Desc['[[Get]]'],
+				set: Desc['[[Set]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else {
+			throw new TypeError('FromPropertyDescriptor must be called with a fully populated Property Descriptor');
+		}
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.5
+	ToPropertyDescriptor: function ToPropertyDescriptor(Obj) {
+		if (this.Type(Obj) !== 'Object') {
+			throw new TypeError('ToPropertyDescriptor requires an object');
+		}
+
+		var desc = {};
+		if (has(Obj, 'enumerable')) {
+			desc['[[Enumerable]]'] = this.ToBoolean(Obj.enumerable);
+		}
+		if (has(Obj, 'configurable')) {
+			desc['[[Configurable]]'] = this.ToBoolean(Obj.configurable);
+		}
+		if (has(Obj, 'value')) {
+			desc['[[Value]]'] = Obj.value;
+		}
+		if (has(Obj, 'writable')) {
+			desc['[[Writable]]'] = this.ToBoolean(Obj.writable);
+		}
+		if (has(Obj, 'get')) {
+			var getter = Obj.get;
+			if (typeof getter !== 'undefined' && !this.IsCallable(getter)) {
+				throw new TypeError('getter must be a function');
+			}
+			desc['[[Get]]'] = getter;
+		}
+		if (has(Obj, 'set')) {
+			var setter = Obj.set;
+			if (typeof setter !== 'undefined' && !this.IsCallable(setter)) {
+				throw new TypeError('setter must be a function');
+			}
+			desc['[[Set]]'] = setter;
+		}
+
+		if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+			throw new TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
+		}
+		return desc;
 	}
 };
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":134,"./helpers/isNaN":135,"./helpers/mod":136,"./helpers/sign":137,"es-to-primitive/es5":138,"is-callable":148}],134:[function(require,module,exports){
+},{"./helpers/isFinite":153,"./helpers/isNaN":154,"./helpers/mod":155,"./helpers/sign":156,"es-to-primitive/es5":157,"has":163,"is-callable":167}],153:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],135:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],136:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],137:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],138:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -7900,12 +8934,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":139,"is-callable":148}],139:[function(require,module,exports){
+},{"./helpers/isPrimitive":158,"is-callable":167}],158:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],140:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8209,7 +9243,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],141:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -8233,7 +9267,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],142:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
 var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
@@ -8283,17 +9317,17 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],143:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":142}],144:[function(require,module,exports){
+},{"./implementation":161}],163:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":143}],145:[function(require,module,exports){
+},{"function-bind":162}],164:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -8379,7 +9413,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],146:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -8404,7 +9438,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],147:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -8427,7 +9461,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],148:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -8468,7 +9502,7 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],149:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -8662,7 +9696,7 @@ function inspectString (str) {
     }
 }
 
-},{}],150:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -8804,7 +9838,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":151}],151:[function(require,module,exports){
+},{"./isArguments":170}],170:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -8823,7 +9857,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],152:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9051,7 +10085,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":125}],153:[function(require,module,exports){
+},{"_process":144}],172:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -9098,10 +10132,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":125}],154:[function(require,module,exports){
+},{"_process":144}],173:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":155}],155:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":174}],174:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9226,7 +10260,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":157,"./_stream_writable":159,"core-util-is":127,"inherits":146,"process-nextick-args":153}],156:[function(require,module,exports){
+},{"./_stream_readable":176,"./_stream_writable":178,"core-util-is":146,"inherits":165,"process-nextick-args":172}],175:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9274,8 +10308,8 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":158,"core-util-is":127,"inherits":146}],157:[function(require,module,exports){
-(function (process){
+},{"./_stream_transform":177,"core-util-is":146,"inherits":165}],176:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9332,11 +10366,12 @@ var Stream = require('./internal/streams/stream');
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -9531,7 +10566,7 @@ function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
     if (er) {
       stream.emit('error', er);
     } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && Object.getPrototypeOf(chunk) !== Buffer.prototype && !state.objectMode) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
         chunk = _uint8ArrayToBuffer(chunk);
       }
 
@@ -10282,8 +11317,8 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'))
-},{"./_stream_duplex":155,"./internal/streams/BufferList":160,"./internal/streams/destroy":161,"./internal/streams/stream":162,"_process":125,"core-util-is":127,"events":140,"inherits":146,"isarray":163,"process-nextick-args":153,"safe-buffer":170,"string_decoder/":164,"util":123}],158:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":174,"./internal/streams/BufferList":179,"./internal/streams/destroy":180,"./internal/streams/stream":181,"_process":144,"core-util-is":146,"events":159,"inherits":165,"isarray":182,"process-nextick-args":172,"safe-buffer":189,"string_decoder/":183,"util":142}],177:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10498,8 +11533,8 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":155,"core-util-is":127,"inherits":146}],159:[function(require,module,exports){
-(function (process){
+},{"./_stream_duplex":174,"core-util-is":146,"inherits":165}],178:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10582,11 +11617,12 @@ var Stream = require('./internal/streams/stream');
 
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -11163,9 +12199,8 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-
-}).call(this,require('_process'))
-},{"./_stream_duplex":155,"./internal/streams/destroy":161,"./internal/streams/stream":162,"_process":125,"core-util-is":127,"inherits":146,"process-nextick-args":153,"safe-buffer":170,"util-deprecate":186}],160:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":174,"./internal/streams/destroy":180,"./internal/streams/stream":181,"_process":144,"core-util-is":146,"inherits":165,"process-nextick-args":172,"safe-buffer":189,"util-deprecate":205}],179:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -11240,7 +12275,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":170}],161:[function(require,module,exports){
+},{"safe-buffer":189}],180:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -11313,17 +12348,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":153}],162:[function(require,module,exports){
+},{"process-nextick-args":172}],181:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":140}],163:[function(require,module,exports){
+},{"events":159}],182:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],164:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -11596,10 +12631,10 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":170}],165:[function(require,module,exports){
+},{"safe-buffer":189}],184:[function(require,module,exports){
 module.exports = require('./readable').PassThrough
 
-},{"./readable":166}],166:[function(require,module,exports){
+},{"./readable":185}],185:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -11608,13 +12643,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":155,"./lib/_stream_passthrough.js":156,"./lib/_stream_readable.js":157,"./lib/_stream_transform.js":158,"./lib/_stream_writable.js":159}],167:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":174,"./lib/_stream_passthrough.js":175,"./lib/_stream_readable.js":176,"./lib/_stream_transform.js":177,"./lib/_stream_writable.js":178}],186:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":166}],168:[function(require,module,exports){
+},{"./readable":185}],187:[function(require,module,exports){
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":159}],169:[function(require,module,exports){
+},{"./lib/_stream_writable.js":178}],188:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -11647,7 +12682,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this,require('_process'))
-},{"_process":125,"through":185}],170:[function(require,module,exports){
+},{"_process":144,"through":204}],189:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -11711,7 +12746,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":126}],171:[function(require,module,exports){
+},{"buffer":145}],190:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -11840,7 +12875,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":140,"inherits":146,"readable-stream/duplex.js":154,"readable-stream/passthrough.js":165,"readable-stream/readable.js":166,"readable-stream/transform.js":167,"readable-stream/writable.js":168}],172:[function(require,module,exports){
+},{"events":159,"inherits":165,"readable-stream/duplex.js":173,"readable-stream/passthrough.js":184,"readable-stream/readable.js":185,"readable-stream/transform.js":186,"readable-stream/writable.js":187}],191:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -11855,7 +12890,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":133,"function-bind":143}],173:[function(require,module,exports){
+},{"es-abstract/es5":152,"function-bind":162}],192:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -11875,7 +12910,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":172,"./polyfill":174,"./shim":175,"define-properties":131,"function-bind":143}],174:[function(require,module,exports){
+},{"./implementation":191,"./polyfill":193,"./shim":194,"define-properties":150,"function-bind":162}],193:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -11889,7 +12924,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":172}],175:[function(require,module,exports){
+},{"./implementation":191}],194:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -11901,7 +12936,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":174,"define-properties":131}],176:[function(require,module,exports){
+},{"./polyfill":193,"define-properties":150}],195:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -11919,7 +12954,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],177:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -11940,7 +12975,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":176,"./polyfill":178,"./shim":179,"define-properties":131}],178:[function(require,module,exports){
+},{"./implementation":195,"./polyfill":197,"./shim":198,"define-properties":150}],197:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -11954,7 +12989,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":176}],179:[function(require,module,exports){
+},{"./implementation":195}],198:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -11980,7 +13015,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":178,"define-properties":131}],180:[function(require,module,exports){
+},{"./polyfill":197,"define-properties":150}],199:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -12134,7 +13169,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":181,"./lib/results":183,"./lib/test":184,"_process":125,"defined":132,"through":185}],181:[function(require,module,exports){
+},{"./lib/default_stream":200,"./lib/results":202,"./lib/test":203,"_process":144,"defined":151,"through":204}],200:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -12169,7 +13204,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":125,"fs":124,"through":185}],182:[function(require,module,exports){
+},{"_process":144,"fs":143,"through":204}],201:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -12177,7 +13212,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":125}],183:[function(require,module,exports){
+},{"_process":144}],202:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -12368,7 +13403,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":125,"events":140,"function-bind":143,"has":144,"inherits":146,"object-inspect":149,"resumer":169,"through":185}],184:[function(require,module,exports){
+},{"_process":144,"events":159,"function-bind":162,"has":163,"inherits":165,"object-inspect":168,"resumer":188,"through":204}],203:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -12869,7 +13904,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":182,"deep-equal":128,"defined":132,"events":140,"has":144,"inherits":146,"path":152,"string.prototype.trim":173}],185:[function(require,module,exports){
+},{"./next_tick":201,"deep-equal":147,"defined":151,"events":159,"has":163,"inherits":165,"path":171,"string.prototype.trim":192}],204:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -12981,7 +14016,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":125,"stream":171}],186:[function(require,module,exports){
+},{"_process":144,"stream":190}],205:[function(require,module,exports){
 (function (global){
 
 /**
@@ -13052,4 +14087,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[89]);
+},{}]},{},[100]);

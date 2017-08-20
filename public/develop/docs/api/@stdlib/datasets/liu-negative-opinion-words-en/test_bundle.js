@@ -164,6 +164,88 @@ module.exports = hasOwnProp;
 'use strict';
 
 /**
+* Test whether a value has in its prototype chain a specified constructor as a prototype property.
+*
+* @module @stdlib/assert/instance-of
+*
+* @example
+* var instanceOf = require( '@stdlib/assert/instance-of' );
+*
+* var bool = instanceOf( [], Array );
+* // returns true
+*
+* bool = instanceOf( {}, Object ); // exception
+* // returns true
+*
+* bool = instanceOf( 'beep', String );
+* // returns false
+*
+* bool = instanceOf( null, Object );
+* // returns false
+*
+* bool = instanceOf( 5, Object );
+* // returns false
+*/
+
+// MODULES //
+
+var instanceOf = require( './instance_of.js' );
+
+
+// EXPORTS //
+
+module.exports = instanceOf;
+
+},{"./instance_of.js":4}],4:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+/**
+* Tests whether a value has in its prototype chain a specified constructor as a prototype property.
+*
+* @param {*} value - value to test
+* @param {Function} constructor - constructor to test against
+* @throws {TypeError} constructor must be callable
+* @returns {boolean} boolean indicating whether a value is an instance of a provided constructor
+*
+* @example
+* var bool = instanceOf( [], Array );
+* // returns true
+*
+* @example
+* var bool = instanceOf( {}, Object ); // exception
+* // returns true
+*
+* @example
+* var bool = instanceOf( 'beep', String );
+* // returns false
+*
+* @example
+* var bool = instanceOf( null, Object );
+* // returns false
+*
+* @example
+* var bool = instanceOf( 5, Object );
+* // returns false
+*/
+function instanceOf( value, constructor ) {
+	// TODO: replace with `isCallable` check
+	if ( typeof constructor !== 'function' ) {
+		throw new TypeError( 'invalid input argument. `constructor` argument must be callable. Value: `'+constructor+'`.' );
+	}
+	return ( value instanceof constructor );
+} // end FUNCTION instanceOf()
+
+
+// EXPORTS //
+
+module.exports = instanceOf;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+/**
 * Test if a value is an array.
 *
 * @module @stdlib/assert/is-array
@@ -187,7 +269,7 @@ var isArray = require( './is_array.js' );
 
 module.exports = isArray;
 
-},{"./is_array.js":4}],4:[function(require,module,exports){
+},{"./is_array.js":6}],6:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -220,7 +302,415 @@ function isArray( value ) {
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":24}],5:[function(require,module,exports){
+},{"@stdlib/utils/native-class":54}],7:[function(require,module,exports){
+'use strict';
+
+/**
+* Tests if a value is a Buffer instance.
+*
+* @module @stdlib/assert/is-buffer
+*
+* @example
+* var isBuffer = require( '@stdlib/assert/is-buffer' );
+*
+* var v = isBuffer( new Buffer( 'beep' ) );
+* // returns true
+*
+* v = isBuffer( {} );
+* // returns false
+*/
+
+// MODULES //
+
+var isBuffer = require( './is_buffer.js' );
+
+
+// EXPORTS //
+
+module.exports = isBuffer;
+
+},{"./is_buffer.js":8}],8:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isObjectLike = require( '@stdlib/assert/is-object-like' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Buffer instance.
+*
+* @param {*} value - value to validate
+* @returns {boolean} boolean indicating if a value is a Buffer instance
+*
+* @example
+* var v = isBuffer( new Buffer( 'beep' ) );
+* // returns true
+*
+* @example
+* var v = isBuffer( new Buffer( [1,2,3,4] ) );
+* // returns true
+*
+* @example
+* var v = isBuffer( {} );
+* // returns false
+*
+* @example
+* var v = isBuffer( [] );
+* // returns false
+*/
+function isBuffer( value ) {
+	return (
+		isObjectLike( value ) &&
+		(
+			// eslint-disable-next-line no-underscore-dangle
+			value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
+			(
+				value.constructor &&
+				// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
+				typeof value.constructor.isBuffer === 'function' &&
+				value.constructor.isBuffer( value )
+			)
+		)
+	);
+} // end FUNCTION isBuffer()
+
+
+// EXPORTS //
+
+module.exports = isBuffer;
+
+},{"@stdlib/assert/is-object-like":11}],9:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a function.
+*
+* @module @stdlib/assert/is-function
+*
+* @example
+* var isFunction = require( '@stdlib/assert/is-function' );
+*
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+
+// MODULES //
+
+var isFunction = require( './is_function.js' );
+
+
+// EXPORTS //
+
+module.exports = isFunction;
+
+},{"./is_function.js":10}],10:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var typeOf = require( '@stdlib/utils/type-of' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a function.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a function
+*
+* @example
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+function isFunction( value ) {
+	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
+	return ( typeOf( value ) === 'function' );
+} // end FUNCTION isFunction()
+
+
+// EXPORTS //
+
+module.exports = isFunction;
+
+},{"@stdlib/utils/type-of":65}],11:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is object-like.
+*
+* @module @stdlib/assert/is-object-like
+*
+* @example
+* var isObjectLike = require( '@stdlib/assert/is-object-like' );
+*
+* var bool = isObjectLike( {} );
+* // returns true
+*
+* bool = isObjectLike( [] );
+* // returns true
+*
+* bool = isObjectLike( null );
+* // returns false
+*
+* @example
+* var isObjectLike = require( '@stdlib/assert/is-object-like' ).isObjectLikeArray;
+*
+* var bool = isObjectLike( [ {}, [] ] );
+* // returns true
+*
+* bool = isObjectLike( [ {}, '3.0' ] );
+* // returns false
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var arrayfun = require( '@stdlib/assert/tools/array-function' );
+var isObjectLike = require( './is_object_like.js' );
+
+
+// MAIN //
+
+setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
+
+
+// EXPORTS //
+
+module.exports = isObjectLike;
+
+},{"./is_object_like.js":12,"@stdlib/assert/tools/array-function":25,"@stdlib/utils/define-read-only-property":43}],12:[function(require,module,exports){
+'use strict';
+
+/**
+* Tests if a value is object-like.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is object-like
+*
+* @example
+* var bool = isObjectLike( {} );
+* // returns true
+*
+* @example
+* var bool = isObjectLike( [] );
+* // returns true
+*
+* @example
+* var bool = isObjectLike( null );
+* // returns false
+*/
+function isObjectLike( value ) {
+	return (
+		value !== null &&
+		typeof value === 'object'
+	);
+} // end FUNCTION isObjectLike()
+
+
+// EXPORTS //
+
+module.exports = isObjectLike;
+
+},{}],13:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an object.
+*
+* @module @stdlib/assert/is-object
+*
+* @example
+* var isObject = require( '@stdlib/assert/is-object' );
+*
+* var bool = isObject( {} );
+* // returns true
+*
+* bool = isObject( true );
+* // returns false
+*/
+
+// MODULES //
+
+var isObject = require( './is_object.js' );
+
+
+// EXPORTS //
+
+module.exports = isObject;
+
+},{"./is_object.js":14}],14:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an object; e.g., {}.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an object
+*
+* @example
+* var bool = isObject( {} );
+* // returns true
+*
+* @example
+* var bool = isObject( null );
+* // returns false
+*/
+function isObject( value ) {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		!isArray( value )
+	);
+} // end FUNCTION isObject()
+
+
+// EXPORTS //
+
+module.exports = isObject;
+
+},{"@stdlib/assert/is-array":5}],15:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a plain object.
+*
+* @module @stdlib/assert/is-plain-object
+*
+* @example
+* var isPlainObject = require( '@stdlib/assert/is-plain-object' );
+*
+* var bool = isPlainObject( {} );
+* // returns true
+*
+* bool = isPlainObject( null );
+* // returns false
+*/
+
+// MODULES //
+
+var isPlainObject = require( './is_plain_object.js' );
+
+
+// EXPORTS //
+
+module.exports = isPlainObject;
+
+},{"./is_plain_object.js":16}],16:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isObject = require( '@stdlib/assert/is-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var getPrototypeOf = require( '@stdlib/utils/get-prototype-of' );
+var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// VARIABLES //
+
+var objectPrototype = Object.prototype;
+
+
+// FUNCTIONS //
+
+/**
+* Tests that an object only has own properties.
+*
+* @private
+* @param {Object} obj - value to test
+* @returns {boolean} boolean indicating if an object only has own properties
+*/
+function ownProps( obj ) {
+	var key;
+
+	// NOTE: possibility of perf boost if key enumeration order is known (see http://stackoverflow.com/questions/18531624/isplainobject-thing).
+	for ( key in obj ) {
+		if ( !hasOwnProp( obj, key ) ) {
+			return false;
+		}
+	}
+	return true;
+} // end FUNCTION ownProps()
+
+
+// MAIN //
+
+/**
+* Tests if a value is a plain object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a plain object
+*
+* @example
+* var bool = isPlainObject( {} );
+* // returns true
+*
+* @example
+* var bool = isPlainObject( null );
+* // returns false
+*/
+function isPlainObject( value ) {
+	var proto;
+
+	// Screen for obvious non-objects...
+	if ( !isObject( value ) ) {
+		return false;
+	}
+	// Objects with no prototype (e.g., `Object.create( null )`) are plain...
+	proto = getPrototypeOf( value );
+	if ( !proto ) {
+		return true;
+	}
+	// Objects having a prototype are plain if and only if they are constructed with a global `Object` function and the prototype points to the prototype of a plain object...
+	return (
+		// Cannot have own `constructor` property:
+		!hasOwnProp( value, 'constructor' ) &&
+
+		// Prototype `constructor` property must be a function (see also https://bugs.jquery.com/ticket/9897 and http://stackoverflow.com/questions/18531624/isplainobject-thing):
+		hasOwnProp( proto, 'constructor' ) &&
+		isFunction( proto.constructor ) &&
+		nativeClass( proto.constructor ) === '[object Function]' &&
+
+		// Test for object-specific method:
+		hasOwnProp( proto, 'isPrototypeOf' ) &&
+		isFunction( proto.isPrototypeOf ) &&
+
+		(
+			// Test if the prototype matches the global `Object` prototype (same realm):
+			proto === objectPrototype ||
+
+			// Test that all properties are own properties (cross-realm; *most* likely a plain object):
+			ownProps( value )
+		)
+	);
+} // end FUNCTION isPlainObject()
+
+
+// EXPORTS //
+
+module.exports = isPlainObject;
+
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":9,"@stdlib/assert/is-object":13,"@stdlib/utils/get-prototype-of":50,"@stdlib/utils/native-class":54}],17:[function(require,module,exports){
 'use strict';
 
 /**
@@ -276,7 +766,7 @@ setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":7,"@stdlib/assert/tools/array-function":13,"@stdlib/utils/define-read-only-property":19}],6:[function(require,module,exports){
+},{"@stdlib/assert/is-string":19,"@stdlib/assert/tools/array-function":25,"@stdlib/utils/define-read-only-property":43}],18:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -292,6 +782,14 @@ var isObject = require( './object.js' );
 *
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating whether value is a string
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
@@ -302,7 +800,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":8,"./primitive.js":9}],7:[function(require,module,exports){
+},{"./object.js":20,"./primitive.js":21}],19:[function(require,module,exports){
 'use strict';
 
 /**
@@ -359,7 +857,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":6,"./object.js":8,"./primitive.js":9,"@stdlib/utils/define-read-only-property":19}],8:[function(require,module,exports){
+},{"./generic.js":18,"./object.js":20,"./primitive.js":21,"@stdlib/utils/define-read-only-property":43}],20:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -380,6 +878,7 @@ var test = require( './try2valueof.js' );
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns true
+*
 * @example
 * var bool = isString( 'beep' );
 * // returns false
@@ -399,7 +898,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":10,"@stdlib/utils/detect-tostringtag-support":23,"@stdlib/utils/native-class":24}],9:[function(require,module,exports){
+},{"./try2valueof.js":22,"@stdlib/utils/detect-tostringtag-support":47,"@stdlib/utils/native-class":54}],21:[function(require,module,exports){
 'use strict';
 
 /**
@@ -411,6 +910,7 @@ module.exports = isString;
 * @example
 * var bool = isString( 'beep' );
 * // returns true
+*
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns false
@@ -424,7 +924,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],10:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -437,6 +937,7 @@ var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
 /**
 * Attempts to extract a string value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a string can be extracted
 */
@@ -454,7 +955,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":11}],11:[function(require,module,exports){
+},{"./valueof.js":23}],23:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -465,7 +966,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],12:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -532,7 +1033,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":3}],13:[function(require,module,exports){
+},{"@stdlib/assert/is-array":5}],25:[function(require,module,exports){
 'use strict';
 
 /**
@@ -565,33 +1066,10 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":12}],14:[function(require,module,exports){
+},{"./arrayfcn.js":24}],26:[function(require,module,exports){
 module.exports=["2-faced","2-faces","abnormal","abolish","abominable","abominably","abominate","abomination","abort","aborted","aborts","abrade","abrasive","abrupt","abruptly","abscond","absence","absent-minded","absentee","absurd","absurdity","absurdly","absurdness","abuse","abused","abuses","abusive","abysmal","abysmally","abyss","accidental","accost","accursed","accusation","accusations","accuse","accuses","accusing","accusingly","acerbate","acerbic","acerbically","ache","ached","aches","achey","aching","acrid","acridly","acridness","acrimonious","acrimoniously","acrimony","adamant","adamantly","addict","addicted","addicting","addicts","admonish","admonisher","admonishingly","admonishment","admonition","adulterate","adulterated","adulteration","adulterier","adversarial","adversary","adverse","adversity","afflict","affliction","afflictive","affront","afraid","aggravate","aggravating","aggravation","aggression","aggressive","aggressiveness","aggressor","aggrieve","aggrieved","aggrivation","aghast","agonies","agonize","agonizing","agonizingly","agony","aground","ail","ailing","ailment","aimless","alarm","alarmed","alarming","alarmingly","alienate","alienated","alienation","allegation","allegations","allege","allergic","allergies","allergy","aloof","altercation","ambiguity","ambiguous","ambivalence","ambivalent","ambush","amiss","amputate","anarchism","anarchist","anarchistic","anarchy","anemic","anger","angrily","angriness","angry","anguish","animosity","annihilate","annihilation","annoy","annoyance","annoyances","annoyed","annoying","annoyingly","annoys","anomalous","anomaly","antagonism","antagonist","antagonistic","antagonize","anti-","anti-american","anti-israeli","anti-occupation","anti-proliferation","anti-semites","anti-social","anti-us","anti-white","antipathy","antiquated","antithetical","anxieties","anxiety","anxious","anxiously","anxiousness","apathetic","apathetically","apathy","apocalypse","apocalyptic","apologist","apologists","appal","appall","appalled","appalling","appallingly","apprehension","apprehensions","apprehensive","apprehensively","arbitrary","arcane","archaic","arduous","arduously","argumentative","arrogance","arrogant","arrogantly","ashamed","asinine","asininely","asinininity","askance","asperse","aspersion","aspersions","assail","assassin","assassinate","assault","assult","astray","asunder","atrocious","atrocities","atrocity","atrophy","attack","attacks","audacious","audaciously","audaciousness","audacity","audiciously","austere","authoritarian","autocrat","autocratic","avalanche","avarice","avaricious","avariciously","avenge","averse","aversion","aweful","awful","awfully","awfulness","awkward","awkwardness","ax","babble","back-logged","back-wood","back-woods","backache","backaches","backaching","backbite","backbiting","backward","backwardness","backwood","backwoods","bad","badly","baffle","baffled","bafflement","baffling","bait","balk","banal","banalize","bane","banish","banishment","bankrupt","barbarian","barbaric","barbarically","barbarity","barbarous","barbarously","barren","baseless","bash","bashed","bashful","bashing","bastard","bastards","battered","battering","batty","bearish","beastly","bedlam","bedlamite","befoul","beg","beggar","beggarly","begging","beguile","belabor","belated","beleaguer","belie","belittle","belittled","belittling","bellicose","belligerence","belligerent","belligerently","bemoan","bemoaning","bemused","bent","berate","bereave","bereavement","bereft","berserk","beseech","beset","besiege","besmirch","bestial","betray","betrayal","betrayals","betrayer","betraying","betrays","bewail","beware","bewilder","bewildered","bewildering","bewilderingly","bewilderment","bewitch","bias","biased","biases","bicker","bickering","bid-rigging","bigotries","bigotry","bitch","bitchy","biting","bitingly","bitter","bitterly","bitterness","bizarre","blab","blabber","blackmail","blah","blame","blameworthy","bland","blandish","blaspheme","blasphemous","blasphemy","blasted","blatant","blatantly","blather","bleak","bleakly","bleakness","bleed","bleeding","bleeds","blemish","blind","blinding","blindingly","blindside","blister","blistering","bloated","blockage","blockhead","bloodshed","bloodthirsty","bloody","blotchy","blow","blunder","blundering","blunders","blunt","blur","bluring","blurred","blurring","blurry","blurs","blurt","boastful","boggle","bogus","boil","boiling","boisterous","bomb","bombard","bombardment","bombastic","bondage","bonkers","bore","bored","boredom","bores","boring","botch","bother","bothered","bothering","bothers","bothersome","bowdlerize","boycott","braggart","bragger","brainless","brainwash","brash","brashly","brashness","brat","bravado","brazen","brazenly","brazenness","breach","break","break-up","break-ups","breakdown","breaking","breaks","breakup","breakups","bribery","brimstone","bristle","brittle","broke","broken","broken-hearted","brood","browbeat","bruise","bruised","bruises","bruising","brusque","brutal","brutalising","brutalities","brutality","brutalize","brutalizing","brutally","brute","brutish","bs","buckle","bug","bugging","buggy","bugs","bulkier","bulkiness","bulky","bulkyness","bull****","bull----","bullies","bullshit","bullshyt","bully","bullying","bullyingly","bum","bump","bumped","bumping","bumpping","bumps","bumpy","bungle","bungler","bungling","bunk","burden","burdensome","burdensomely","burn","burned","burning","burns","bust","busts","busybody","butcher","butchery","buzzing","byzantine","cackle","calamities","calamitous","calamitously","calamity","callous","calumniate","calumniation","calumnies","calumnious","calumniously","calumny","cancer","cancerous","cannibal","cannibalize","capitulate","capricious","capriciously","capriciousness","capsize","careless","carelessness","caricature","carnage","carp","cartoonish","cash-strapped","castigate","castrated","casualty","cataclysm","cataclysmal","cataclysmic","cataclysmically","catastrophe","catastrophes","catastrophic","catastrophically","catastrophies","caustic","caustically","cautionary","cave","censure","chafe","chaff","chagrin","challenging","chaos","chaotic","chasten","chastise","chastisement","chatter","chatterbox","cheap","cheapen","cheaply","cheat","cheated","cheater","cheating","cheats","checkered","cheerless","cheesy","chide","childish","chill","chilly","chintzy","choke","choleric","choppy","chore","chronic","chunky","clamor","clamorous","clash","cliche","cliched","clique","clog","clogged","clogs","cloud","clouding","cloudy","clueless","clumsy","clunky","coarse","cocky","coerce","coercion","coercive","cold","coldly","collapse","collude","collusion","combative","combust","comical","commiserate","commonplace","commotion","commotions","complacent","complain","complained","complaining","complains","complaint","complaints","complex","complicated","complication","complicit","compulsion","compulsive","concede","conceded","conceit","conceited","concen","concens","concern","concerned","concerns","concession","concessions","condemn","condemnable","condemnation","condemned","condemns","condescend","condescending","condescendingly","condescension","confess","confession","confessions","confined","conflict","conflicted","conflicting","conflicts","confound","confounded","confounding","confront","confrontation","confrontational","confuse","confused","confuses","confusing","confusion","confusions","congested","congestion","cons","conscons","conservative","conspicuous","conspicuously","conspiracies","conspiracy","conspirator","conspiratorial","conspire","consternation","contagious","contaminate","contaminated","contaminates","contaminating","contamination","contempt","contemptible","contemptuous","contemptuously","contend","contention","contentious","contort","contortions","contradict","contradiction","contradictory","contrariness","contravene","contrive","contrived","controversial","controversy","convoluted","corrode","corrosion","corrosions","corrosive","corrupt","corrupted","corrupting","corruption","corrupts","corruptted","costlier","costly","counter-productive","counterproductive","coupists","covetous","coward","cowardly","crabby","crack","cracked","cracks","craftily","craftly","crafty","cramp","cramped","cramping","cranky","crap","crappy","craps","crash","crashed","crashes","crashing","crass","craven","cravenly","craze","crazily","craziness","crazy","creak","creaking","creaks","credulous","creep","creeping","creeps","creepy","crept","crime","criminal","cringe","cringed","cringes","cripple","crippled","cripples","crippling","crisis","critic","critical","criticism","criticisms","criticize","criticized","criticizing","critics","cronyism","crook","crooked","crooks","crowded","crowdedness","crude","cruel","crueler","cruelest","cruelly","cruelness","cruelties","cruelty","crumble","crumbling","crummy","crumple","crumpled","crumples","crush","crushed","crushing","cry","culpable","culprit","cumbersome","cunt","cunts","cuplrit","curse","cursed","curses","curt","cuss","cussed","cutthroat","cynical","cynicism","d*mn","damage","damaged","damages","damaging","damn","damnable","damnably","damnation","damned","damning","damper","danger","dangerous","dangerousness","dark","darken","darkened","darker","darkness","dastard","dastardly","daunt","daunting","dauntingly","dawdle","daze","dazed","dead","deadbeat","deadlock","deadly","deadweight","deaf","dearth","death","debacle","debase","debasement","debaser","debatable","debauch","debaucher","debauchery","debilitate","debilitating","debility","debt","debts","decadence","decadent","decay","decayed","deceit","deceitful","deceitfully","deceitfulness","deceive","deceiver","deceivers","deceiving","deception","deceptive","deceptively","declaim","decline","declines","declining","decrement","decrepit","decrepitude","decry","defamation","defamations","defamatory","defame","defect","defective","defects","defensive","defiance","defiant","defiantly","deficiencies","deficiency","deficient","defile","defiler","deform","deformed","defrauding","defunct","defy","degenerate","degenerately","degeneration","degradation","degrade","degrading","degradingly","dehumanization","dehumanize","deign","deject","dejected","dejectedly","dejection","delay","delayed","delaying","delays","delinquency","delinquent","delirious","delirium","delude","deluded","deluge","delusion","delusional","delusions","demean","demeaning","demise","demolish","demolisher","demon","demonic","demonize","demonized","demonizes","demonizing","demoralize","demoralizing","demoralizingly","denial","denied","denies","denigrate","denounce","dense","dent","dented","dents","denunciate","denunciation","denunciations","deny","denying","deplete","deplorable","deplorably","deplore","deploring","deploringly","deprave","depraved","depravedly","deprecate","depress","depressed","depressing","depressingly","depression","depressions","deprive","deprived","deride","derision","derisive","derisively","derisiveness","derogatory","desecrate","desert","desertion","desiccate","desiccated","desititute","desolate","desolately","desolation","despair","despairing","despairingly","desperate","desperately","desperation","despicable","despicably","despise","despised","despoil","despoiler","despondence","despondency","despondent","despondently","despot","despotic","despotism","destabilisation","destains","destitute","destitution","destroy","destroyer","destruction","destructive","desultory","deter","deteriorate","deteriorating","deterioration","deterrent","detest","detestable","detestably","detested","detesting","detests","detract","detracted","detracting","detraction","detracts","detriment","detrimental","devastate","devastated","devastates","devastating","devastatingly","devastation","deviate","deviation","devil","devilish","devilishly","devilment","devilry","devious","deviously","deviousness","devoid","diabolic","diabolical","diabolically","diametrically","diappointed","diatribe","diatribes","dick","dictator","dictatorial","die","die-hard","died","dies","difficult","difficulties","difficulty","diffidence","dilapidated","dilemma","dilly-dally","dim","dimmer","din","ding","dings","dinky","dire","direly","direness","dirt","dirtbag","dirtbags","dirts","dirty","disable","disabled","disaccord","disadvantage","disadvantaged","disadvantageous","disadvantages","disaffect","disaffected","disaffirm","disagree","disagreeable","disagreeably","disagreed","disagreeing","disagreement","disagrees","disallow","disapointed","disapointing","disapointment","disappoint","disappointed","disappointing","disappointingly","disappointment","disappointments","disappoints","disapprobation","disapproval","disapprove","disapproving","disarm","disarray","disaster","disasterous","disastrous","disastrously","disavow","disavowal","disbelief","disbelieve","disbeliever","disclaim","discombobulate","discomfit","discomfititure","discomfort","discompose","disconcert","disconcerted","disconcerting","disconcertingly","disconsolate","disconsolately","disconsolation","discontent","discontented","discontentedly","discontinued","discontinuity","discontinuous","discord","discordance","discordant","discountenance","discourage","discouragement","discouraging","discouragingly","discourteous","discourteously","discoutinous","discredit","discrepant","discriminate","discrimination","discriminatory","disdain","disdained","disdainful","disdainfully","disfavor","disgrace","disgraced","disgraceful","disgracefully","disgruntle","disgruntled","disgust","disgusted","disgustedly","disgustful","disgustfully","disgusting","disgustingly","dishearten","disheartening","dishearteningly","dishonest","dishonestly","dishonesty","dishonor","dishonorable","dishonorablely","disillusion","disillusioned","disillusionment","disillusions","disinclination","disinclined","disingenuous","disingenuously","disintegrate","disintegrated","disintegrates","disintegration","disinterest","disinterested","dislike","disliked","dislikes","disliking","dislocated","disloyal","disloyalty","dismal","dismally","dismalness","dismay","dismayed","dismaying","dismayingly","dismissive","dismissively","disobedience","disobedient","disobey","disoobedient","disorder","disordered","disorderly","disorganized","disorient","disoriented","disown","disparage","disparaging","disparagingly","dispensable","dispirit","dispirited","dispiritedly","dispiriting","displace","displaced","displease","displeased","displeasing","displeasure","disproportionate","disprove","disputable","dispute","disputed","disquiet","disquieting","disquietingly","disquietude","disregard","disregardful","disreputable","disrepute","disrespect","disrespectable","disrespectablity","disrespectful","disrespectfully","disrespectfulness","disrespecting","disrupt","disruption","disruptive","diss","dissapointed","dissappointed","dissappointing","dissatisfaction","dissatisfactory","dissatisfied","dissatisfies","dissatisfy","dissatisfying","dissed","dissemble","dissembler","dissension","dissent","dissenter","dissention","disservice","disses","dissidence","dissident","dissidents","dissing","dissocial","dissolute","dissolution","dissonance","dissonant","dissonantly","dissuade","dissuasive","distains","distaste","distasteful","distastefully","distort","distorted","distortion","distorts","distract","distracting","distraction","distraught","distraughtly","distraughtness","distress","distressed","distressing","distressingly","distrust","distrustful","distrusting","disturb","disturbance","disturbed","disturbing","disturbingly","disunity","disvalue","divergent","divisive","divisively","divisiveness","dizzing","dizzingly","dizzy","doddering","dodgey","dogged","doggedly","dogmatic","doldrums","domineer","domineering","donside","doom","doomed","doomsday","dope","doubt","doubtful","doubtfully","doubts","douchbag","douchebag","douchebags","downbeat","downcast","downer","downfall","downfallen","downgrade","downhearted","downheartedly","downhill","downside","downsides","downturn","downturns","drab","draconian","draconic","drag","dragged","dragging","dragoon","drags","drain","drained","draining","drains","drastic","drastically","drawback","drawbacks","dread","dreadful","dreadfully","dreadfulness","dreary","dripped","dripping","drippy","drips","drones","droop","droops","drop-out","drop-outs","dropout","dropouts","drought","drowning","drunk","drunkard","drunken","dubious","dubiously","dubitable","dud","dull","dullard","dumb","dumbfound","dump","dumped","dumping","dumps","dunce","dungeon","dungeons","dupe","dust","dusty","dwindling","dying","earsplitting","eccentric","eccentricity","effigy","effrontery","egocentric","egomania","egotism","egotistical","egotistically","egregious","egregiously","election-rigger","elimination","emaciated","emasculate","embarrass","embarrassing","embarrassingly","embarrassment","embattled","embroil","embroiled","embroilment","emergency","emphatic","emphatically","emptiness","encroach","encroachment","endanger","enemies","enemy","enervate","enfeeble","enflame","engulf","enjoin","enmity","enrage","enraged","enraging","enslave","entangle","entanglement","entrap","entrapment","envious","enviously","enviousness","epidemic","equivocal","erase","erode","erodes","erosion","err","errant","erratic","erratically","erroneous","erroneously","error","errors","eruptions","escapade","eschew","estranged","evade","evasion","evasive","evil","evildoer","evils","eviscerate","exacerbate","exagerate","exagerated","exagerates","exaggerate","exaggeration","exasperate","exasperated","exasperating","exasperatingly","exasperation","excessive","excessively","exclusion","excoriate","excruciating","excruciatingly","excuse","excuses","execrate","exhaust","exhausted","exhaustion","exhausts","exhorbitant","exhort","exile","exorbitant","exorbitantance","exorbitantly","expel","expensive","expire","expired","explode","exploit","exploitation","explosive","expropriate","expropriation","expulse","expunge","exterminate","extermination","extinguish","extort","extortion","extraneous","extravagance","extravagant","extravagantly","extremism","extremist","extremists","eyesore","f**k","fabricate","fabrication","facetious","facetiously","fail","failed","failing","fails","failure","failures","faint","fainthearted","faithless","fake","fall","fallacies","fallacious","fallaciously","fallaciousness","fallacy","fallen","falling","fallout","falls","false","falsehood","falsely","falsify","falter","faltered","famine","famished","fanatic","fanatical","fanatically","fanaticism","fanatics","fanciful","far-fetched","farce","farcical","farcical-yet-provocative","farcically","farfetched","fascism","fascist","fastidious","fastidiously","fastuous","fat","fat-cat","fat-cats","fatal","fatalistic","fatalistically","fatally","fatcat","fatcats","fateful","fatefully","fathomless","fatigue","fatigued","fatique","fatty","fatuity","fatuous","fatuously","fault","faults","faulty","fawningly","faze","fear","fearful","fearfully","fears","fearsome","feckless","feeble","feeblely","feebleminded","feign","feint","fell","felon","felonious","ferociously","ferocity","fetid","fever","feverish","fevers","fiasco","fib","fibber","fickle","fiction","fictional","fictitious","fidget","fidgety","fiend","fiendish","fierce","figurehead","filth","filthy","finagle","finicky","fissures","fist","flabbergast","flabbergasted","flagging","flagrant","flagrantly","flair","flairs","flak","flake","flakey","flakieness","flaking","flaky","flare","flares","flareup","flareups","flat-out","flaunt","flaw","flawed","flaws","flee","fleed","fleeing","fleer","flees","fleeting","flicering","flicker","flickering","flickers","flighty","flimflam","flimsy","flirt","flirty","floored","flounder","floundering","flout","fluster","foe","fool","fooled","foolhardy","foolish","foolishly","foolishness","forbid","forbidden","forbidding","forceful","foreboding","forebodingly","forfeit","forged","forgetful","forgetfully","forgetfulness","forlorn","forlornly","forsake","forsaken","forswear","foul","foully","foulness","fractious","fractiously","fracture","fragile","fragmented","frail","frantic","frantically","franticly","fraud","fraudulent","fraught","frazzle","frazzled","freak","freaking","freakish","freakishly","freaks","freeze","freezes","freezing","frenetic","frenetically","frenzied","frenzy","fret","fretful","frets","friction","frictions","fried","friggin","frigging","fright","frighten","frightening","frighteningly","frightful","frightfully","frigid","frost","frown","froze","frozen","fruitless","fruitlessly","frustrate","frustrated","frustrates","frustrating","frustratingly","frustration","frustrations","fuck","fucking","fudge","fugitive","full-blown","fulminate","fumble","fume","fumes","fundamentalism","funky","funnily","funny","furious","furiously","furor","fury","fuss","fussy","fustigate","fusty","futile","futilely","futility","fuzzy","gabble","gaff","gaffe","gainsay","gainsayer","gall","galling","gallingly","galls","gangster","gape","garbage","garish","gasp","gauche","gaudy","gawk","gawky","geezer","genocide","get-rich","ghastly","ghetto","ghosting","gibber","gibberish","gibe","giddy","gimmick","gimmicked","gimmicking","gimmicks","gimmicky","glare","glaringly","glib","glibly","glitch","glitches","gloatingly","gloom","gloomy","glower","glum","glut","gnawing","goad","goading","god-awful","goof","goofy","goon","gossip","graceless","gracelessly","graft","grainy","grapple","grate","grating","gravely","greasy","greed","greedy","grief","grievance","grievances","grieve","grieving","grievous","grievously","grim","grimace","grind","gripe","gripes","grisly","gritty","gross","grossly","grotesque","grouch","grouchy","groundless","grouse","growl","grudge","grudges","grudging","grudgingly","gruesome","gruesomely","gruff","grumble","grumpier","grumpiest","grumpily","grumpish","grumpy","guile","guilt","guiltily","guilty","gullible","gutless","gutter","hack","hacks","haggard","haggle","hairloss","halfhearted","halfheartedly","hallucinate","hallucination","hamper","hampered","handicapped","hang","hangs","haphazard","hapless","harangue","harass","harassed","harasses","harassment","harboring","harbors","hard","hard-hit","hard-line","hard-liner","hardball","harden","hardened","hardheaded","hardhearted","hardliner","hardliners","hardship","hardships","harm","harmed","harmful","harms","harpy","harridan","harried","harrow","harsh","harshly","hasseling","hassle","hassled","hassles","haste","hastily","hasty","hate","hated","hateful","hatefully","hatefulness","hater","haters","hates","hating","hatred","haughtily","haughty","haunt","haunting","havoc","hawkish","haywire","hazard","hazardous","haze","hazy","head-aches","headache","headaches","heartbreaker","heartbreaking","heartbreakingly","heartless","heathen","heavy-handed","heavyhearted","heck","heckle","heckled","heckles","hectic","hedge","hedonistic","heedless","hefty","hegemonism","hegemonistic","hegemony","heinous","hell","hell-bent","hellion","hells","helpless","helplessly","helplessness","heresy","heretic","heretical","hesitant","hestitant","hideous","hideously","hideousness","high-priced","hiliarious","hinder","hindrance","hiss","hissed","hissing","ho-hum","hoard","hoax","hobble","hogs","hollow","hoodium","hoodwink","hooligan","hopeless","hopelessly","hopelessness","horde","horrendous","horrendously","horrible","horrid","horrific","horrified","horrifies","horrify","horrifying","horrifys","hostage","hostile","hostilities","hostility","hotbeds","hothead","hotheaded","hothouse","hubris","huckster","hum","humid","humiliate","humiliating","humiliation","humming","hung","hurt","hurted","hurtful","hurting","hurts","hustler","hype","hypocricy","hypocrisy","hypocrite","hypocrites","hypocritical","hypocritically","hysteria","hysteric","hysterical","hysterically","hysterics","idiocies","idiocy","idiot","idiotic","idiotically","idiots","idle","ignoble","ignominious","ignominiously","ignominy","ignorance","ignorant","ignore","ill-advised","ill-conceived","ill-defined","ill-designed","ill-fated","ill-favored","ill-formed","ill-mannered","ill-natured","ill-sorted","ill-tempered","ill-treated","ill-treatment","ill-usage","ill-used","illegal","illegally","illegitimate","illicit","illiterate","illness","illogic","illogical","illogically","illusion","illusions","illusory","imaginary","imbalance","imbecile","imbroglio","immaterial","immature","imminence","imminently","immobilized","immoderate","immoderately","immodest","immoral","immorality","immorally","immovable","impair","impaired","impasse","impatience","impatient","impatiently","impeach","impedance","impede","impediment","impending","impenitent","imperfect","imperfection","imperfections","imperfectly","imperialist","imperil","imperious","imperiously","impermissible","impersonal","impertinent","impetuous","impetuously","impiety","impinge","impious","implacable","implausible","implausibly","implicate","implication","implode","impolite","impolitely","impolitic","importunate","importune","impose","imposers","imposing","imposition","impossible","impossiblity","impossibly","impotent","impoverish","impoverished","impractical","imprecate","imprecise","imprecisely","imprecision","imprison","imprisonment","improbability","improbable","improbably","improper","improperly","impropriety","imprudence","imprudent","impudence","impudent","impudently","impugn","impulsive","impulsively","impunity","impure","impurity","inability","inaccuracies","inaccuracy","inaccurate","inaccurately","inaction","inactive","inadequacy","inadequate","inadequately","inadverent","inadverently","inadvisable","inadvisably","inane","inanely","inappropriate","inappropriately","inapt","inaptitude","inarticulate","inattentive","inaudible","incapable","incapably","incautious","incendiary","incense","incessant","incessantly","incite","incitement","incivility","inclement","incognizant","incoherence","incoherent","incoherently","incommensurate","incomparable","incomparably","incompatability","incompatibility","incompatible","incompetence","incompetent","incompetently","incomplete","incompliant","incomprehensible","incomprehension","inconceivable","inconceivably","incongruous","incongruously","inconsequent","inconsequential","inconsequentially","inconsequently","inconsiderate","inconsiderately","inconsistence","inconsistencies","inconsistency","inconsistent","inconsolable","inconsolably","inconstant","inconvenience","inconveniently","incorrect","incorrectly","incorrigible","incorrigibly","incredulous","incredulously","inculcate","indecency","indecent","indecently","indecision","indecisive","indecisively","indecorum","indefensible","indelicate","indeterminable","indeterminably","indeterminate","indifference","indifferent","indigent","indignant","indignantly","indignation","indignity","indiscernible","indiscreet","indiscreetly","indiscretion","indiscriminate","indiscriminately","indiscriminating","indistinguishable","indoctrinate","indoctrination","indolent","indulge","ineffective","ineffectively","ineffectiveness","ineffectual","ineffectually","ineffectualness","inefficacious","inefficacy","inefficiency","inefficient","inefficiently","inelegance","inelegant","ineligible","ineloquent","ineloquently","inept","ineptitude","ineptly","inequalities","inequality","inequitable","inequitably","inequities","inescapable","inescapably","inessential","inevitable","inevitably","inexcusable","inexcusably","inexorable","inexorably","inexperience","inexperienced","inexpert","inexpertly","inexpiable","inexplainable","inextricable","inextricably","infamous","infamously","infamy","infected","infection","infections","inferior","inferiority","infernal","infest","infested","infidel","infidels","infiltrator","infiltrators","infirm","inflame","inflammation","inflammatory","inflammed","inflated","inflationary","inflexible","inflict","infraction","infringe","infringement","infringements","infuriate","infuriated","infuriating","infuriatingly","inglorious","ingrate","ingratitude","inhibit","inhibition","inhospitable","inhospitality","inhuman","inhumane","inhumanity","inimical","inimically","iniquitous","iniquity","injudicious","injure","injurious","injury","injustice","injustices","innuendo","inoperable","inopportune","inordinate","inordinately","insane","insanely","insanity","insatiable","insecure","insecurity","insensible","insensitive","insensitively","insensitivity","insidious","insidiously","insignificance","insignificant","insignificantly","insincere","insincerely","insincerity","insinuate","insinuating","insinuation","insociable","insolence","insolent","insolently","insolvent","insouciance","instability","instable","instigate","instigator","instigators","insubordinate","insubstantial","insubstantially","insufferable","insufferably","insufficiency","insufficient","insufficiently","insular","insult","insulted","insulting","insultingly","insults","insupportable","insupportably","insurmountable","insurmountably","insurrection","intefere","inteferes","intense","interfere","interference","interferes","intermittent","interrupt","interruption","interruptions","intimidate","intimidating","intimidatingly","intimidation","intolerable","intolerablely","intolerance","intoxicate","intractable","intransigence","intransigent","intrude","intrusion","intrusive","inundate","inundated","invader","invalid","invalidate","invalidity","invasive","invective","inveigle","invidious","invidiously","invidiousness","invisible","involuntarily","involuntary","irascible","irate","irately","ire","irk","irked","irking","irks","irksome","irksomely","irksomeness","irksomenesses","ironic","ironical","ironically","ironies","irony","irragularity","irrational","irrationalities","irrationality","irrationally","irrationals","irreconcilable","irrecoverable","irrecoverableness","irrecoverablenesses","irrecoverably","irredeemable","irredeemably","irreformable","irregular","irregularity","irrelevance","irrelevant","irreparable","irreplacible","irrepressible","irresolute","irresolvable","irresponsible","irresponsibly","irretating","irretrievable","irreversible","irritable","irritably","irritant","irritate","irritated","irritating","irritation","irritations","isolate","isolated","isolation","issue","issues","itch","itching","itchy","jabber","jaded","jagged","jam","jarring","jaundiced","jealous","jealously","jealousness","jealousy","jeer","jeering","jeeringly","jeers","jeopardize","jeopardy","jerk","jerky","jitter","jitters","jittery","job-killing","jobless","joke","joker","jolt","judder","juddering","judders","jumpy","junk","junky","junkyard","jutter","jutters","kaput","kill","killed","killer","killing","killjoy","kills","knave","knife","knock","knotted","kook","kooky","lack","lackadaisical","lacked","lackey","lackeys","lacking","lackluster","lacks","laconic","lag","lagged","lagging","laggy","lags","laid-off","lambast","lambaste","lame","lame-duck","lament","lamentable","lamentably","languid","languish","languor","languorous","languorously","lanky","lapse","lapsed","lapses","lascivious","last-ditch","latency","laughable","laughably","laughingstock","lawbreaker","lawbreaking","lawless","lawlessness","layoff","layoff-happy","lazy","leak","leakage","leakages","leaking","leaks","leaky","lech","lecher","lecherous","lechery","leech","leer","leery","left-leaning","lemon","lengthy","less-developed","lesser-known","letch","lethal","lethargic","lethargy","lewd","lewdly","lewdness","liability","liable","liar","liars","licentious","licentiously","licentiousness","lie","lied","lier","lies","life-threatening","lifeless","limit","limitation","limitations","limited","limits","limp","listless","litigious","little-known","livid","lividly","loath","loathe","loathing","loathly","loathsome","loathsomely","lone","loneliness","lonely","loner","lonesome","long-time","long-winded","longing","longingly","loophole","loopholes","loose","loot","lorn","lose","loser","losers","loses","losing","loss","losses","lost","loud","louder","lousy","loveless","lovelorn","low-rated","lowly","ludicrous","ludicrously","lugubrious","lukewarm","lull","lumpy","lunatic","lunaticism","lurch","lure","lurid","lurk","lurking","lying","macabre","mad","madden","maddening","maddeningly","madder","madly","madman","madness","maladjusted","maladjustment","malady","malaise","malcontent","malcontented","maledict","malevolence","malevolent","malevolently","malice","malicious","maliciously","maliciousness","malign","malignant","malodorous","maltreatment","mangle","mangled","mangles","mangling","mania","maniac","maniacal","manic","manipulate","manipulation","manipulative","manipulators","mar","marginal","marginally","martyrdom","martyrdom-seeking","mashed","massacre","massacres","matte","mawkish","mawkishly","mawkishness","meager","meaningless","meanness","measly","meddle","meddlesome","mediocre","mediocrity","melancholy","melodramatic","melodramatically","meltdown","menace","menacing","menacingly","mendacious","mendacity","menial","merciless","mercilessly","mess","messed","messes","messing","messy","midget","miff","militancy","mindless","mindlessly","mirage","mire","misalign","misaligned","misaligns","misapprehend","misbecome","misbecoming","misbegotten","misbehave","misbehavior","miscalculate","miscalculation","miscellaneous","mischief","mischievous","mischievously","misconception","misconceptions","miscreant","miscreants","misdirection","miser","miserable","miserableness","miserably","miseries","miserly","misery","misfit","misfortune","misgiving","misgivings","misguidance","misguide","misguided","mishandle","mishap","misinform","misinformed","misinterpret","misjudge","misjudgment","mislead","misleading","misleadingly","mislike","mismanage","mispronounce","mispronounced","mispronounces","misread","misreading","misrepresent","misrepresentation","miss","missed","misses","misstatement","mist","mistake","mistaken","mistakenly","mistakes","mistified","mistress","mistrust","mistrustful","mistrustfully","mists","misunderstand","misunderstanding","misunderstandings","misunderstood","misuse","moan","mobster","mock","mocked","mockeries","mockery","mocking","mockingly","mocks","molest","molestation","monotonous","monotony","monster","monstrosities","monstrosity","monstrous","monstrously","moody","moot","mope","morbid","morbidly","mordant","mordantly","moribund","moron","moronic","morons","mortification","mortified","mortify","mortifying","motionless","motley","mourn","mourner","mournful","mournfully","muddle","muddy","mudslinger","mudslinging","mulish","multi-polarization","mundane","murder","murderer","murderous","murderously","murky","muscle-flexing","mushy","musty","mysterious","mysteriously","mystery","mystify","myth","nag","nagging","naive","naively","narrower","nastily","nastiness","nasty","naughty","nauseate","nauseates","nauseating","nauseatingly","naÔve","nebulous","nebulously","needless","needlessly","needy","nefarious","nefariously","negate","negation","negative","negatives","negativity","neglect","neglected","negligence","negligent","nemesis","nepotism","nervous","nervously","nervousness","nettle","nettlesome","neurotic","neurotically","niggle","niggles","nightmare","nightmarish","nightmarishly","nitpick","nitpicking","noise","noises","noisier","noisy","non-confidence","nonexistent","nonresponsive","nonsense","nosey","notoriety","notorious","notoriously","noxious","nuisance","numb","obese","object","objection","objectionable","objections","oblique","obliterate","obliterated","oblivious","obnoxious","obnoxiously","obscene","obscenely","obscenity","obscure","obscured","obscures","obscurity","obsess","obsessive","obsessively","obsessiveness","obsolete","obstacle","obstinate","obstinately","obstruct","obstructed","obstructing","obstruction","obstructs","obtrusive","obtuse","occlude","occluded","occludes","occluding","odd","odder","oddest","oddities","oddity","oddly","odor","offence","offend","offender","offending","offenses","offensive","offensively","offensiveness","officious","ominous","ominously","omission","omit","one-sided","onerous","onerously","onslaught","opinionated","opponent","opportunistic","oppose","opposition","oppositions","oppress","oppression","oppressive","oppressively","oppressiveness","oppressors","ordeal","orphan","ostracize","outbreak","outburst","outbursts","outcast","outcry","outlaw","outmoded","outrage","outraged","outrageous","outrageously","outrageousness","outrages","outsider","over-acted","over-awe","over-balanced","over-hyped","over-priced","over-valuation","overact","overacted","overawe","overbalance","overbalanced","overbearing","overbearingly","overblown","overdo","overdone","overdue","overemphasize","overheat","overkill","overloaded","overlook","overpaid","overpayed","overplay","overpower","overpriced","overrated","overreach","overrun","overshadow","oversight","oversights","oversimplification","oversimplified","oversimplify","oversize","overstate","overstated","overstatement","overstatements","overstates","overtaxed","overthrow","overthrows","overturn","overweight","overwhelm","overwhelmed","overwhelming","overwhelmingly","overwhelms","overzealous","overzealously","overzelous","pain","painful","painfull","painfully","pains","pale","pales","paltry","pan","pandemonium","pander","pandering","panders","panic","panick","panicked","panicking","panicky","paradoxical","paradoxically","paralize","paralyzed","paranoia","paranoid","parasite","pariah","parody","partiality","partisan","partisans","passe","passive","passiveness","pathetic","pathetically","patronize","paucity","pauper","paupers","payback","peculiar","peculiarly","pedantic","peeled","peeve","peeved","peevish","peevishly","penalize","penalty","perfidious","perfidity","perfunctory","peril","perilous","perilously","perish","pernicious","perplex","perplexed","perplexing","perplexity","persecute","persecution","pertinacious","pertinaciously","pertinacity","perturb","perturbed","pervasive","perverse","perversely","perversion","perversity","pervert","perverted","perverts","pessimism","pessimistic","pessimistically","pest","pestilent","petrified","petrify","pettifog","petty","phobia","phobic","phony","picket","picketed","picketing","pickets","picky","pig","pigs","pillage","pillory","pimple","pinch","pique","pitiable","pitiful","pitifully","pitiless","pitilessly","pittance","pity","plagiarize","plague","plasticky","plaything","plea","pleas","plebeian","plight","plot","plotters","ploy","plunder","plunderer","pointless","pointlessly","poison","poisonous","poisonously","pokey","poky","polarisation","polemize","pollute","polluter","polluters","polution","pompous","poor","poorer","poorest","poorly","posturing","pout","poverty","powerless","prate","pratfall","prattle","precarious","precariously","precipitate","precipitous","predatory","predicament","prejudge","prejudice","prejudices","prejudicial","premeditated","preoccupy","preposterous","preposterously","presumptuous","presumptuously","pretence","pretend","pretense","pretentious","pretentiously","prevaricate","pricey","pricier","prick","prickle","prickles","prideful","prik","primitive","prison","prisoner","problem","problematic","problems","procrastinate","procrastinates","procrastination","profane","profanity","prohibit","prohibitive","prohibitively","propaganda","propagandize","proprietary","prosecute","protest","protested","protesting","protests","protracted","provocation","provocative","provoke","pry","pugnacious","pugnaciously","pugnacity","punch","punish","punishable","punitive","punk","puny","puppet","puppets","puzzled","puzzlement","puzzling","quack","qualm","qualms","quandary","quarrel","quarrellous","quarrellously","quarrels","quarrelsome","quash","queer","questionable","quibble","quibbles","quitter","rabid","racism","racist","racists","racy","radical","radicalization","radically","radicals","rage","ragged","raging","rail","raked","rampage","rampant","ramshackle","rancor","randomly","rankle","rant","ranted","ranting","rantingly","rants","rape","raped","raping","rascal","rascals","rash","rattle","rattled","rattles","ravage","raving","reactionary","rebellious","rebuff","rebuke","recalcitrant","recant","recession","recessionary","reckless","recklessly","recklessness","recoil","recourses","redundancy","redundant","refusal","refuse","refused","refuses","refusing","refutation","refute","refuted","refutes","refuting","regress","regression","regressive","regret","regreted","regretful","regretfully","regrets","regrettable","regrettably","regretted","reject","rejected","rejecting","rejection","rejects","relapse","relentless","relentlessly","relentlessness","reluctance","reluctant","reluctantly","remorse","remorseful","remorsefully","remorseless","remorselessly","remorselessness","renounce","renunciation","repel","repetitive","reprehensible","reprehensibly","reprehension","reprehensive","repress","repression","repressive","reprimand","reproach","reproachful","reprove","reprovingly","repudiate","repudiation","repugn","repugnance","repugnant","repugnantly","repulse","repulsed","repulsing","repulsive","repulsively","repulsiveness","resent","resentful","resentment","resignation","resigned","resistance","restless","restlessness","restrict","restricted","restriction","restrictive","resurgent","retaliate","retaliatory","retard","retarded","retardedness","retards","reticent","retract","retreat","retreated","revenge","revengeful","revengefully","revert","revile","reviled","revoke","revolt","revolting","revoltingly","revulsion","revulsive","rhapsodize","rhetoric","rhetorical","ricer","ridicule","ridicules","ridiculous","ridiculously","rife","rift","rifts","rigid","rigidity","rigidness","rile","riled","rip","rip-off","ripoff","ripped","risk","risks","risky","rival","rivalry","roadblocks","rocky","rogue","rollercoaster","rot","rotten","rough","rremediable","rubbish","rude","rue","ruffian","ruffle","ruin","ruined","ruining","ruinous","ruins","rumbling","rumor","rumors","rumours","rumple","run-down","runaway","rupture","rust","rusts","rusty","rut","ruthless","ruthlessly","ruthlessness","ruts","sabotage","sack","sacrificed","sad","sadden","sadly","sadness","sag","sagged","sagging","saggy","sags","salacious","sanctimonious","sap","sarcasm","sarcastic","sarcastically","sardonic","sardonically","sass","satirical","satirize","savage","savaged","savagery","savages","scaly","scam","scams","scandal","scandalize","scandalized","scandalous","scandalously","scandals","scandel","scandels","scant","scapegoat","scar","scarce","scarcely","scarcity","scare","scared","scarier","scariest","scarily","scarred","scars","scary","scathing","scathingly","sceptical","scoff","scoffingly","scold","scolded","scolding","scoldingly","scorching","scorchingly","scorn","scornful","scornfully","scoundrel","scourge","scowl","scramble","scrambled","scrambles","scrambling","scrap","scratch","scratched","scratches","scratchy","scream","screech","screw-up","screwed","screwed-up","screwy","scuff","scuffs","scum","scummy","second-class","second-tier","secretive","sedentary","seedy","seethe","seething","self-coup","self-criticism","self-defeating","self-destructive","self-humiliation","self-interest","self-interested","self-serving","selfinterested","selfish","selfishly","selfishness","semi-retarded","senile","sensationalize","senseless","senselessly","seriousness","sermonize","servitude","set-up","setback","setbacks","sever","severe","severity","sh*t","shabby","shadowy","shady","shake","shaky","shallow","sham","shambles","shame","shameful","shamefully","shamefulness","shameless","shamelessly","shamelessness","shark","sharply","shatter","shemale","shimmer","shimmy","shipwreck","shirk","shirker","shit","shiver","shock","shocked","shocking","shockingly","shoddy","short-lived","shortage","shortchange","shortcoming","shortcomings","shortness","shortsighted","shortsightedness","showdown","shrew","shriek","shrill","shrilly","shrivel","shroud","shrouded","shrug","shun","shunned","sick","sicken","sickening","sickeningly","sickly","sickness","sidetrack","sidetracked","siege","sillily","silly","simplistic","simplistically","sin","sinful","sinfully","sinister","sinisterly","sink","sinking","skeletons","skeptic","skeptical","skeptically","skepticism","sketchy","skimpy","skinny","skittish","skittishly","skulk","slack","slander","slanderer","slanderous","slanderously","slanders","slap","slashing","slaughter","slaughtered","slave","slaves","sleazy","slime","slog","slogged","slogging","slogs","sloooooooooooooow","sloooow","slooow","sloow","sloppily","sloppy","sloth","slothful","slow","slow-moving","slowed","slower","slowest","slowly","sloww","slowww","slowwww","slug","sluggish","slump","slumping","slumpping","slur","slut","sluts","sly","smack","smallish","smash","smear","smell","smelled","smelling","smells","smelly","smelt","smoke","smokescreen","smolder","smoldering","smother","smoulder","smouldering","smudge","smudged","smudges","smudging","smug","smugly","smut","smuttier","smuttiest","smutty","snag","snagged","snagging","snags","snappish","snappishly","snare","snarky","snarl","sneak","sneakily","sneaky","sneer","sneering","sneeringly","snob","snobbish","snobby","snobish","snobs","snub","so-cal","soapy","sob","sober","sobering","solemn","solicitude","somber","sore","sorely","soreness","sorrow","sorrowful","sorrowfully","sorry","sour","sourly","spade","spank","spendy","spew","spewed","spewing","spews","spilling","spinster","spiritless","spite","spiteful","spitefully","spitefulness","splatter","split","splitting","spoil","spoilage","spoilages","spoiled","spoilled","spoils","spook","spookier","spookiest","spookily","spooky","spoon-fed","spoon-feed","spoonfed","sporadic","spotty","spurious","spurn","sputter","squabble","squabbling","squander","squash","squeak","squeaks","squeaky","squeal","squealing","squeals","squirm","stab","stagnant","stagnate","stagnation","staid","stain","stains","stale","stalemate","stall","stalls","stammer","stampede","standstill","stark","starkly","startle","startling","startlingly","starvation","starve","static","steal","stealing","steals","steep","steeply","stench","stereotype","stereotypical","stereotypically","stern","stew","sticky","stiff","stiffness","stifle","stifling","stiflingly","stigma","stigmatize","sting","stinging","stingingly","stingy","stink","stinks","stodgy","stole","stolen","stooge","stooges","stormy","straggle","straggler","strain","strained","straining","strange","strangely","stranger","strangest","strangle","streaky","strenuous","stress","stresses","stressful","stressfully","stricken","strict","strictly","strident","stridently","strife","strike","stringent","stringently","struck","struggle","struggled","struggles","struggling","strut","stubborn","stubbornly","stubbornness","stuck","stuffy","stumble","stumbled","stumbles","stump","stumped","stumps","stun","stunt","stunted","stupid","stupidest","stupidity","stupidly","stupified","stupify","stupor","stutter","stuttered","stuttering","stutters","sty","stymied","sub-par","subdued","subjected","subjection","subjugate","subjugation","submissive","subordinate","subpoena","subpoenas","subservience","subservient","substandard","subtract","subversion","subversive","subversively","subvert","succumb","suck","sucked","sucker","sucks","sucky","sue","sued","sueing","sues","suffer","suffered","sufferer","sufferers","suffering","suffers","suffocate","sugar-coat","sugar-coated","sugarcoated","suicidal","suicide","sulk","sullen","sully","sunder","sunk","sunken","superficial","superficiality","superficially","superfluous","superstition","superstitious","suppress","suppression","surrender","susceptible","suspect","suspicion","suspicions","suspicious","suspiciously","swagger","swamped","sweaty","swelled","swelling","swindle","swipe","swollen","symptom","symptoms","syndrome","taboo","tacky","taint","tainted","tamper","tangle","tangled","tangles","tank","tanked","tanks","tantrum","tardy","tarnish","tarnished","tarnishes","tarnishing","tattered","taunt","taunting","tauntingly","taunts","taut","tawdry","taxing","tease","teasingly","tedious","tediously","temerity","temper","tempest","temptation","tenderness","tense","tension","tentative","tentatively","tenuous","tenuously","tepid","terrible","terribleness","terribly","terror","terror-genic","terrorism","terrorize","testily","testy","tetchily","tetchy","thankless","thicker","thirst","thorny","thoughtless","thoughtlessly","thoughtlessness","thrash","threat","threaten","threatening","threats","threesome","throb","throbbed","throbbing","throbs","throttle","thug","thumb-down","thumbs-down","thwart","time-consuming","timid","timidity","timidly","timidness","tin-y","tingled","tingling","tired","tiresome","tiring","tiringly","toil","toll","top-heavy","topple","torment","tormented","torrent","tortuous","torture","tortured","tortures","torturing","torturous","torturously","totalitarian","touchy","toughness","tout","touted","touts","toxic","traduce","tragedy","tragic","tragically","traitor","traitorous","traitorously","tramp","trample","transgress","transgression","trap","traped","trapped","trash","trashed","trashy","trauma","traumatic","traumatically","traumatize","traumatized","travesties","travesty","treacherous","treacherously","treachery","treason","treasonous","trick","tricked","trickery","tricky","trivial","trivialize","trouble","troubled","troublemaker","troubles","troublesome","troublesomely","troubling","troublingly","truant","tumble","tumbled","tumbles","tumultuous","turbulent","turmoil","twist","twisted","twists","two-faced","two-faces","tyrannical","tyrannically","tyranny","tyrant","ugh","uglier","ugliest","ugliness","ugly","ulterior","ultimatum","ultimatums","ultra-hardline","un-viewable","unable","unacceptable","unacceptablely","unacceptably","unaccessible","unaccustomed","unachievable","unaffordable","unappealing","unattractive","unauthentic","unavailable","unavoidably","unbearable","unbearablely","unbelievable","unbelievably","uncaring","uncertain","uncivil","uncivilized","unclean","unclear","uncollectible","uncomfortable","uncomfortably","uncomfy","uncompetitive","uncompromising","uncompromisingly","unconfirmed","unconstitutional","uncontrolled","unconvincing","unconvincingly","uncooperative","uncouth","uncreative","undecided","undefined","undependability","undependable","undercut","undercuts","undercutting","underdog","underestimate","underlings","undermine","undermined","undermines","undermining","underpaid","underpowered","undersized","undesirable","undetermined","undid","undignified","undissolved","undocumented","undone","undue","unease","uneasily","uneasiness","uneasy","uneconomical","unemployed","unequal","unethical","uneven","uneventful","unexpected","unexpectedly","unexplained","unfairly","unfaithful","unfaithfully","unfamiliar","unfavorable","unfeeling","unfinished","unfit","unforeseen","unforgiving","unfortunate","unfortunately","unfounded","unfriendly","unfulfilled","unfunded","ungovernable","ungrateful","unhappily","unhappiness","unhappy","unhealthy","unhelpful","unilateralism","unimaginable","unimaginably","unimportant","uninformed","uninsured","unintelligible","unintelligile","unipolar","unjust","unjustifiable","unjustifiably","unjustified","unjustly","unkind","unkindly","unknown","unlamentable","unlamentably","unlawful","unlawfully","unlawfulness","unleash","unlicensed","unlikely","unlucky","unmoved","unnatural","unnaturally","unnecessary","unneeded","unnerve","unnerved","unnerving","unnervingly","unnoticed","unobserved","unorthodox","unorthodoxy","unpleasant","unpleasantries","unpopular","unpredictable","unprepared","unproductive","unprofitable","unprove","unproved","unproven","unproves","unproving","unqualified","unravel","unraveled","unreachable","unreadable","unrealistic","unreasonable","unreasonably","unrelenting","unrelentingly","unreliability","unreliable","unresolved","unresponsive","unrest","unruly","unsafe","unsatisfactory","unsavory","unscrupulous","unscrupulously","unsecure","unseemly","unsettle","unsettled","unsettling","unsettlingly","unskilled","unsophisticated","unsound","unspeakable","unspeakablely","unspecified","unstable","unsteadily","unsteadiness","unsteady","unsuccessful","unsuccessfully","unsupported","unsupportive","unsure","unsuspecting","unsustainable","untenable","untested","unthinkable","unthinkably","untimely","untouched","untrue","untrustworthy","untruthful","unusable","unusably","unuseable","unuseably","unusual","unusually","unviewable","unwanted","unwarranted","unwatchable","unwelcome","unwell","unwieldy","unwilling","unwillingly","unwillingness","unwise","unwisely","unworkable","unworthy","unyielding","upbraid","upheaval","uprising","uproar","uproarious","uproariously","uproarous","uproarously","uproot","upset","upseting","upsets","upsetting","upsettingly","urgent","useless","usurp","usurper","utterly","vagrant","vague","vagueness","vain","vainly","vanity","vehement","vehemently","vengeance","vengeful","vengefully","vengefulness","venom","venomous","venomously","vent","vestiges","vex","vexation","vexing","vexingly","vibrate","vibrated","vibrates","vibrating","vibration","vice","vicious","viciously","viciousness","victimize","vile","vileness","vilify","villainous","villainously","villains","villian","villianous","villianously","villify","vindictive","vindictively","vindictiveness","violate","violation","violator","violators","violent","violently","viper","virulence","virulent","virulently","virus","vociferous","vociferously","volatile","volatility","vomit","vomited","vomiting","vomits","vulgar","vulnerable","wack","wail","wallow","wane","waning","wanton","war-like","warily","wariness","warlike","warned","warning","warp","warped","wary","washed-out","waste","wasted","wasteful","wastefulness","wasting","water-down","watered-down","wayward","weak","weaken","weakening","weaker","weakness","weaknesses","weariness","wearisome","weary","wedge","weed","weep","weird","weirdly","wheedle","whimper","whine","whining","whiny","whips","whore","whores","wicked","wickedly","wickedness","wild","wildly","wiles","wilt","wily","wimpy","wince","wobble","wobbled","wobbles","woe","woebegone","woeful","woefully","womanizer","womanizing","worn","worried","worriedly","worrier","worries","worrisome","worry","worrying","worryingly","worse","worsen","worsening","worst","worthless","worthlessly","worthlessness","wound","wounds","wrangle","wrath","wreak","wreaked","wreaks","wreck","wrest","wrestle","wretch","wretched","wretchedly","wretchedness","wrinkle","wrinkled","wrinkles","wrip","wripped","wripping","writhe","wrong","wrongful","wrongly","wrought","yawn","zap","zapped","zaps","zealot","zealous","zealously","zombie"]
 
-},{}],15:[function(require,module,exports){
-'use strict';
-
-/**
-* A list of negative opinion words.
-*
-* @module @stdlib/datasets/liu-negative-opinion-words-en
-*
-* @example
-* var words = require( '@stdlib/datasets/liu-negative-opinion-words-en' );
-* var list = words();
-* // returns [ '2-faced', '2-faces', 'abnormal', 'abolish', ... ]
-*/
-
-// MODULES //
-
-var words = require( './liu_negative_opinion_words_en.js' );
-
-
-// EXPORTS //
-
-module.exports = words;
-
-},{"./liu_negative_opinion_words_en.js":16}],16:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -619,13 +1097,63 @@ function words() {
 
 module.exports = words;
 
-},{"./../data/words.json":14}],17:[function(require,module,exports){
-(function (__filename){
+},{"./../data/words.json":26}],28:[function(require,module,exports){
+(function (__dirname){
 'use strict';
 
 // MODULES //
 
+var resolve = require( 'path' ).resolve;
+var readJSON = require( '@stdlib/fs/read-json' ).sync;
+
+
+// VARIABLES //
+
+var fpath = resolve( __dirname, '..', 'data', 'words.json' );
+var opts = {
+	'encoding': 'utf8'
+};
+
+
+// MAIN //
+
+/**
+* Returns a list of negative opinion words.
+*
+* ## Notes
+*
+* * This function synchronously reads data from disk for each invocation. Such behavior is intentional and so is the avoidance of `require`. We assume that invocations are infrequent, and we want to avoid the `require` cache. This means that we allow data to be garbage collected and a user is responsible for explicitly caching data.
+*
+*
+* @throws {Error} unable to read data
+* @returns {StringArray} words
+*
+* @example
+* var list = words();
+* // returns [ '2-faced', '2-faces', 'abnormal', 'abolish', ... ]
+*/
+function words() {
+	var data = readJSON( fpath, opts );
+	if ( data instanceof Error ) {
+		throw data;
+	}
+	return data;
+} // end FUNCTION words()
+
+
+// EXPORTS //
+
+module.exports = words;
+
+}).call(this,"/lib/node_modules/@stdlib/datasets/liu-negative-opinion-words-en/lib")
+},{"@stdlib/fs/read-json":35,"path":102}],29:[function(require,module,exports){
+(function (__filename){
+/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib');});'use strict';
+
+// MODULES //
+
 var tape = require( 'tape' );
+var proxyquire = require('proxyquireify')(require);
 var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
 var words = require( './../lib' );
 
@@ -638,14 +1166,732 @@ tape( 'main export is a function', function test( t ) {
 	t.end();
 });
 
+tape( 'main export is a function (browser)', function test( t ) {
+	var words = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': true
+	});
+	t.strictEqual( typeof words, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'main export is a function (non-browser)', function test( t ) {
+	var words = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': false
+	});
+	t.strictEqual( typeof words, 'function', 'main export is a function' );
+	t.end();
+});
+
 tape( 'the function returns an array of string primitives', function test( t ) {
 	var list = words();
 	t.equal( isStringArray( list ), true, 'returns an array of string primitives' );
 	t.end();
 });
 
+tape( 'the function returns an array of string primitives (browser)', function test( t ) {
+	var words;
+	var list;
+
+	words = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': true
+	});
+
+	list = words();
+	t.equal( isStringArray( list ), true, 'returns an array of string primitives' );
+	t.end();
+});
+
+tape( 'the function returns an array of string primitives (non-browser)', function test( t ) {
+	var words;
+	var list;
+
+	words = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': false
+	});
+
+	list = words();
+	t.equal( isStringArray( list ), true, 'returns an array of string primitives' );
+	t.end();
+});
+
+tape( 'the function returns a copy', function test( t ) {
+	var d1;
+	var d2;
+	var v;
+
+	d1 = words();
+	d2 = words();
+
+	t.notEqual( d1, d2, 'different references' );
+
+	v = d2[ 5 ];
+	d1[ 5 ] = 'beep';
+
+	t.equal( d1[ 5 ], 'beep', 'expected element' );
+	t.notEqual( d1[ 5 ], d2[ 5 ], 'no shared state' );
+	t.equal( d2[ 5 ], v, 'expected element' );
+
+	t.end();
+});
+
+tape( 'the function returns a copy (browser)', function test( t ) {
+	var words;
+	var d1;
+	var d2;
+	var v;
+
+	words = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': true
+	});
+
+	d1 = words();
+	d2 = words();
+
+	t.notEqual( d1, d2, 'different references' );
+
+	v = d2[ 5 ];
+	d1[ 5 ] = 'beep';
+
+	t.equal( d1[ 5 ], 'beep', 'expected element' );
+	t.notEqual( d1[ 5 ], d2[ 5 ], 'no shared state' );
+	t.equal( d2[ 5 ], v, 'expected element' );
+
+	t.end();
+});
+
+tape( 'the function returns a copy (non-browser)', function test( t ) {
+	var words;
+	var d1;
+	var d2;
+	var v;
+
+	words = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': false
+	});
+
+	d1 = words();
+	d2 = words();
+
+	t.notEqual( d1, d2, 'different references' );
+
+	v = d2[ 5 ];
+	d1[ 5 ] = 'beep';
+
+	t.equal( d1[ 5 ], 'beep', 'expected element' );
+	t.notEqual( d1[ 5 ], d2[ 5 ], 'no shared state' );
+	t.equal( d2[ 5 ], v, 'expected element' );
+
+	t.end();
+});
+
+
 }).call(this,"/lib/node_modules/@stdlib/datasets/liu-negative-opinion-words-en/test/test.js")
-},{"./../lib":15,"@stdlib/assert/is-string-array":5,"tape":83}],18:[function(require,module,exports){
+},{"./../lib":27,"@stdlib/assert/is-string-array":17,"proxyquireify":104,"tape":131}],30:[function(require,module,exports){
+(function (__filename){
+/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/liu_negative_opinion_words_en.js');});'use strict';
+
+// MODULES //
+
+var tape = require( 'tape' );
+var proxyquire = require('proxyquireify')(require);
+var words = require( './../lib/liu_negative_opinion_words_en.js' );
+
+
+// TESTS //
+
+tape( 'main export is a function', function test( t ) {
+	t.ok( true, __filename );
+	t.strictEqual( typeof words, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'the function throws an error if unable to load data', function test( t ) {
+	var words = proxyquire( './../lib/liu_negative_opinion_words_en.js', {
+		'@stdlib/fs/read-json': {
+			'sync': readJSON
+		}
+	});
+	t.throws( words, Error, 'throws an error' );
+	t.end();
+
+	function readJSON() {
+		return new Error( 'unable to read data' );
+	}
+});
+
+}).call(this,"/lib/node_modules/@stdlib/datasets/liu-negative-opinion-words-en/test/test.liu_negative_opinion_words_en.js")
+},{"./../lib/liu_negative_opinion_words_en.js":28,"proxyquireify":104,"tape":131}],31:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var fs = require( 'fs' );
+
+
+// MAIN //
+
+/**
+* Asynchronously reads the entire contents of a file.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Object|string)} [options] - options
+* @param {Function} clbk - callback to invoke after reading file contents
+*
+* @example
+* function onFile( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.log( data );
+* }
+* readFile( __filename, onFile );
+*/
+function readFile() {
+	var args;
+	var i;
+	args = new Array( arguments.length );
+	for ( i = 0; i < args.length; i++ ) {
+		args[ i ] = arguments[ i ];
+	}
+	fs.readFile.apply( null, args );
+} // end FUNCTION readFile()
+
+
+// EXPORTS //
+
+module.exports = readFile;
+
+},{"fs":70}],32:[function(require,module,exports){
+'use strict';
+
+/**
+* Read the entire contents of a file.
+*
+* @module @stdlib/fs/read-file
+*
+* @example
+* var readFile = require( '@stdlib/fs/read-file' );
+*
+* function onFile( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.log( data );
+* }
+* readFile( __filename, onFile );
+*
+* @example
+* var readFileSync = require( '@stdlib/fs/read-file' ).sync;
+*
+* var out = readFileSync( __filename );
+* if ( out instanceof Error ) {
+*     throw out;
+* }
+* console.log( out );
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var readFile = require( './async.js' );
+var sync = require( './sync.js' );
+
+
+// MAIN //
+
+setReadOnly( readFile, 'sync', sync );
+
+
+// EXPORTS //
+
+module.exports = readFile;
+
+},{"./async.js":31,"./sync.js":33,"@stdlib/utils/define-read-only-property":43}],33:[function(require,module,exports){
+/* eslint-disable no-sync */
+'use strict';
+
+// MODULES //
+
+var fs = require( 'fs' );
+
+
+// MAIN //
+
+/**
+* Synchronously reads the entire contents of a file.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Object|string)} [options] - options
+* @returns {(Buffer|string|Error)} file contents or an error
+*
+* @example
+* var out = readFileSync( __filename );
+* if ( out instanceof Error ) {
+*     throw out;
+* }
+* console.log( out );
+*/
+function readFileSync( file, options ) {
+	var f;
+	try {
+		if ( arguments.length > 1 ) {
+			f = fs.readFileSync( file, options );
+		} else {
+			f = fs.readFileSync( file );
+		}
+	} catch ( err ) {
+		return err;
+	}
+	return f;
+} // end FUNCTION readFileSync()
+
+
+// EXPORTS //
+
+module.exports = readFileSync;
+
+},{"fs":70}],34:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isObject = require( '@stdlib/assert/is-plain-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var readFile = require( '@stdlib/fs/read-file' );
+var removeBOM = require( '@stdlib/string/remove-utf8-bom' );
+var parseJSON = require( '@stdlib/utils/parse-json' );
+var instanceOf = require( '@stdlib/assert/instance-of' );
+
+
+// MAIN //
+
+/**
+* Asynchronously reads a file as JSON.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Options|string)} [options] - options
+* @param {(string|null)} [options.encoding] - file encoding
+* @param {string} [options.flag] - file status flag
+* @param {Function} [options.reviver] - JSON reviver
+* @param {Callback} clbk - callback
+* @throws {TypeError} options argument must be either a string or an object
+* @throws {TypeError} callback argument must be a function
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+*
+* readJSON( resolve( __dirname, '..', 'package.json' ), onJSON );
+*
+* function onJSON( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.dir( data );
+* }
+*/
+function readJSON( file, options, clbk ) {
+	var opts;
+	var done;
+	if ( arguments.length < 3 ) {
+		opts = {};
+		done = options;
+	} else {
+		if ( isString( options ) ) {
+			opts = {
+				'encoding': options
+			};
+		} else {
+			if ( !isObject( options ) ) {
+				throw new TypeError( 'invalid input argument. Options argument must be either a string or an object. Value: `' + options + '`.' );
+			}
+			opts = options;
+		}
+		done = clbk;
+	}
+	if ( !isFunction( done ) ) {
+		throw new TypeError( 'invalid input argument. Callback argument must be a function. Value: `' + done + '`.' );
+	}
+	readFile( file, opts, onRead );
+
+	/**
+	* Callback invoked upon reading a file.
+	*
+	* @private
+	* @param {(Error|null)} error - error object
+	* @param {(Buffer|string)} file - file contents
+	* @returns {void}
+	*/
+	function onRead( error, file ) {
+		if ( error ) {
+			return done( error );
+		}
+		file = file.toString();
+		if ( opts.encoding === 'utf8' ) {
+			file = removeBOM( file );
+		}
+		if ( opts.reviver ) {
+			file = parseJSON( file, opts.reviver );
+		} else {
+			file = parseJSON( file );
+		}
+		if ( instanceOf( file, Error ) ) {
+			return done( file );
+		}
+		done( null, file );
+	} // end FUNCTION onRead()
+} // end FUNCTION readJSON()
+
+
+// EXPORTS //
+
+module.exports = readJSON;
+
+},{"@stdlib/assert/instance-of":3,"@stdlib/assert/is-function":9,"@stdlib/assert/is-plain-object":15,"@stdlib/assert/is-string":19,"@stdlib/fs/read-file":32,"@stdlib/string/remove-utf8-bom":38,"@stdlib/utils/parse-json":59}],35:[function(require,module,exports){
+'use strict';
+
+/**
+* Read a file as JSON.
+*
+* @module @stdlib/fs/read-json
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+* var readJSON = require( '@stdlib/fs/read-json' );
+*
+* function onJSON( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.dir( data );
+* }
+*
+* readJSON( resolve( __dirname, '..', 'package.json' ), onJSON );
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+* var instanceOf = require( '@stdlib/assert/instance-of' );
+* var readJSON = require( '@stdlib/fs/read-json' );
+*
+* var out = readJSON.sync( resolve( __dirname, '..', 'package.json' ) );
+* if ( instanceOf( out, Error ) ) {
+*     throw out;
+* }
+* console.dir( out );
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var readJSON = require( './async.js' );
+var sync = require( './sync.js' );
+
+
+// MAIN //
+
+setReadOnly( readJSON, 'sync', sync );
+
+
+// EXPORTS //
+
+module.exports = readJSON;
+
+},{"./async.js":34,"./sync.js":36,"@stdlib/utils/define-read-only-property":43}],36:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isObject = require( '@stdlib/assert/is-plain-object' );
+var readFile = require( '@stdlib/fs/read-file' ).sync;
+var removeBOM = require( '@stdlib/string/remove-utf8-bom' );
+var parseJSON = require( '@stdlib/utils/parse-json' );
+var instanceOf = require( '@stdlib/assert/instance-of' );
+
+
+// MAIN //
+
+/**
+* Synchronously reads a file as JSON.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Options|string)} [options] - options
+* @param {(string|null)} [options.encoding] - file encoding
+* @param {string} [options.flag] - file status flag
+* @param {Function} [options.reviver] - JSON reviver
+* @throws {TypeError} options argument must be either a string or an object
+* @returns {(JSON|Error)} JSON or an error
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+* var instanceOf = require( '@stdlib/assert/instance-of' );
+*
+* var out = readJSONSync( resolve( __dirname, '..', 'package.json' ) );
+* if ( instanceOf( out, Error ) ) {
+*     throw out;
+* }
+* console.dir( out );
+*/
+function readJSONSync( file, options ) {
+	var opts;
+	var f;
+	if ( arguments.length > 1 ) {
+		if ( isString( options ) ) {
+			opts = {
+				'encoding': options
+			};
+		} else {
+			if ( !isObject( options ) ) {
+				throw new TypeError( 'invalid input argument. Options argument must be either a string or an object. Value: `' + options + '`.' );
+			}
+			opts = options;
+		}
+	} else {
+		opts = {};
+	}
+	f = readFile( file, opts );
+	if ( instanceOf( f, Error ) ) {
+		return f;
+	}
+	f = f.toString();
+	if ( opts.encoding === 'utf8' ) {
+		f = removeBOM( f );
+	}
+	if ( opts.reviver ) {
+		return parseJSON( f, opts.reviver );
+	}
+	return parseJSON( f );
+} // end FUNCTION readJSONSync()
+
+
+// EXPORTS //
+
+module.exports = readJSONSync;
+
+},{"@stdlib/assert/instance-of":3,"@stdlib/assert/is-plain-object":15,"@stdlib/assert/is-string":19,"@stdlib/fs/read-file":32,"@stdlib/string/remove-utf8-bom":38,"@stdlib/utils/parse-json":59}],37:[function(require,module,exports){
+'use strict';
+
+/**
+* Regular expression to capture everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+*
+* @module @stdlib/regexp/function-name
+* @type {RegExp}
+*
+* @example
+* var RE_FUNCTION_NAME = require( '@stdlib/utils/regexp/function-name' );
+*
+* function fname( fcn ) {
+*     return RE_FUNCTION_NAME.exec( fcn.toString() )[ 1 ];
+* }
+*
+* var fn = fname( Math.sqrt );
+* // returns 'sqrt'
+*
+* fn = fname( Int8Array );
+* // returns 'Int8Array'
+*
+* fn = fname( Object.prototype.toString );
+* // returns 'toString'
+*
+* fn = fname( function(){} );
+* // returns ''
+*/
+
+
+// MAIN //
+
+/**
+* Captures everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+*
+* Regular expression: `/^\s*function\s*([^(]*)/i`
+*
+* * `/^\s*`
+*   - Match zero or more spaces at beginning
+* * `function`
+*   - Match the word `function`
+* * `\s*`
+*   - Match zero or more spaces after the word `function`
+* * `()`
+*   - Capture
+* * `[^(]*`
+*   - Match anything except a left parenthesis `(` zero or more times
+* * `/i`
+*   - ignore case
+*
+* @constant
+* @type {RegExp}
+* @default /^\s*function\s*([^(]*)/i
+*/
+var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
+
+
+// EXPORTS //
+
+module.exports = RE_FUNCTION_NAME;
+
+},{}],38:[function(require,module,exports){
+'use strict';
+
+/**
+* Remove a UTF-8 byte order mark (BOM) from the beginning of a string.
+*
+* @module @stdlib/string/remove-utf8-bom
+*
+* @example
+* var removeUTF8BOM = require( '@stdlib/string/remove-utf8-bom' );
+*
+* var str = removeUTF8BOM( '\ufeffbeep' );
+* // returns 'beep'
+*/
+
+// MODULES //
+
+var removeUTF8BOM = require( './remove_utf_8_bom.js' );
+
+
+// EXPORTS //
+
+module.exports = removeUTF8BOM;
+
+},{"./remove_utf_8_bom.js":39}],39:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+// '\ufeff' => 1111111011111111 => 0xFEFF => 65279
+var BOM = 65279;
+
+
+// MAIN //
+
+/**
+* Removes a UTF-8 byte order mark (BOM) from the beginning of a string.
+*
+* ## Notes
+*
+* * A UTF-8 byte order mark ([BOM][1]) is the byte sequence `0xEF,0xBB,0xBF`.
+*
+* * To convert a UTF-8 encoded `Buffer` to a `string`, the `Buffer` must be converted to [UTF-16][2]. The BOM thus gets converted to the single 16-bit code point `'\ufeff'` (UTF-16 BOM).
+*
+* [1]: https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8
+* [2]: http://es5.github.io/#x4.3.16
+*
+*
+* @param {string} str - input string
+* @throws {TypeError} must provide a string primitive
+* @returns {string} string with BOM removed
+*
+* @example
+* var str = removeUTF8BOM( '\ufeffbeep' );
+* // returns 'beep'
+*/
+function removeUTF8BOM( str ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a string primitive. Value: `' + str + '`.' );
+	}
+	if ( str.charCodeAt( 0 ) === BOM ) {
+		return str.slice( 1 );
+	}
+	return str;
+} // end FUNCTION removeUTF8BOM()
+
+
+// EXPORTS //
+
+module.exports = removeUTF8BOM;
+
+},{"@stdlib/assert/is-string":19}],40:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+var RE = require( '@stdlib/regexp/function-name' );
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+
+
+// MAIN //
+
+/**
+* Determines the name of a value's constructor.
+*
+* @param {*} v - input value
+* @returns {string} name of a value's constructor
+*
+* @example
+* var v = constructorName( 'a' );
+* // returns 'String'
+* @example
+* var v = constructorName( 5 );
+* // returns 'Number'
+* @example
+* var v = constructorName( null );
+* // returns 'Null'
+* @example
+* var v = constructorName( undefined );
+* // returns 'Undefined'
+* @example
+* var v = constructorName( function noop(){} );
+* // returns 'Function'
+*/
+function constructorName( v ) {
+	var name;
+	var ctor;
+	name = nativeClass( v ).slice( 8, -1 );
+	if ( (name === 'Object' || name === 'Error') && v.constructor ) {
+		ctor = v.constructor;
+		if ( typeof ctor.name === 'string' ) {
+			return ctor.name;
+		}
+		return RE.exec( ctor.toString() )[ 1 ];
+	}
+	if ( isBuffer( v ) ) {
+		return 'Buffer';
+	}
+	return name;
+} // end FUNCTION constructorName()
+
+
+// EXPORTS //
+
+module.exports = constructorName;
+
+},{"@stdlib/assert/is-buffer":7,"@stdlib/regexp/function-name":37,"@stdlib/utils/native-class":54}],41:[function(require,module,exports){
+'use strict';
+
+/**
+* Determines the name of a value's constructor.
+*
+* @module @stdlib/utils/constructor-name
+*
+* @example
+* var constructorName = require( '@stdlib/utils/constructor-name' );
+*
+* var v = constructorName( 'a' );
+* // returns 'String'
+*
+* v = constructorName( {} );
+* // returns 'Object'
+*
+* v = constructorName( true );
+* // returns 'Boolean'
+*/
+
+// MODULES //
+
+var constructorName = require( './constructor_name.js' );
+
+
+// EXPORTS //
+
+module.exports = constructorName;
+
+},{"./constructor_name.js":40}],42:[function(require,module,exports){
 'use strict';
 
 /**
@@ -674,7 +1920,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{}],19:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -699,7 +1945,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":18}],20:[function(require,module,exports){
+},{"./define_read_only_property.js":42}],44:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -725,7 +1971,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],21:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 /**
@@ -749,7 +1995,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":20}],22:[function(require,module,exports){
+},{"./detect_symbol_support.js":44}],46:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -777,7 +2023,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":21}],23:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":45}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -801,7 +2047,157 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":22}],24:[function(require,module,exports){
+},{"./has_tostringtag_support.js":46}],48:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// MAIN //
+
+var getProto;
+if ( isFunction( Object.getPrototypeOf ) ) {
+	getProto = require( './native.js' );
+} else {
+	getProto = require( './polyfill.js' );
+}
+
+
+// EXPORTS //
+
+module.exports = getProto;
+
+},{"./native.js":51,"./polyfill.js":52,"@stdlib/assert/is-function":9}],49:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+} // end FUNCTION getPrototypeOf()
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":48}],50:[function(require,module,exports){
+'use strict';
+
+/**
+* Return the prototype of a provided object.
+*
+* @module @stdlib/utils/get-prototype-of
+*
+* @example
+* var getPrototype = require( '@stdlib/utils/get-prototype-of' );
+*
+* var proto = getPrototype( {} );
+* // returns {}
+*/
+
+// MODULES //
+
+var getPrototype = require( './get_prototype_of.js' );
+
+
+// EXPORTS //
+
+module.exports = getPrototype;
+
+},{"./get_prototype_of.js":49}],51:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = Object.getPrototypeOf;
+
+},{}],52:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+var getProto = require( './proto.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @private
+* @param {Object} obj - input object
+* @returns {(Object|null)} prototype
+*/
+function getPrototypeOf( obj ) {
+	var proto = getProto( obj );
+	if ( proto || proto === null ) {
+		return proto;
+	}
+	if ( nativeClass( obj.constructor ) === '[object Function]' ) {
+		// May break if the constructor has been tampered with...
+		return obj.constructor.prototype;
+	}
+	if ( obj instanceof Object ) {
+		return Object.prototype;
+	}
+	// Return `null` for objects created via `Object.create( null )`. Also return `null` for cross-realm objects on browsers that lack `__proto__` support, such as IE < 11.
+	return null;
+} // end FUNCTION getPrototypeOf()
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./proto.js":53,"@stdlib/utils/native-class":54}],53:[function(require,module,exports){
+'use strict';
+
+/**
+* Returns the value of the `__proto__` property.
+*
+* @private
+* @param {Object} obj - input object
+* @returns {*} value of `__proto__` property
+*/
+function getProto( obj ) {
+	// eslint-disable-next-line no-proto
+	return obj.__proto__;
+} // end FUNCTION getProto()
+
+
+// EXPORTS //
+
+module.exports = getProto;
+
+},{}],54:[function(require,module,exports){
 'use strict';
 
 /**
@@ -844,7 +2240,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":25,"./polyfill.js":26,"@stdlib/utils/detect-tostringtag-support":23}],25:[function(require,module,exports){
+},{"./native_class.js":55,"./polyfill.js":56,"@stdlib/utils/detect-tostringtag-support":47}],55:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -884,7 +2280,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":27}],26:[function(require,module,exports){
+},{"./tostring.js":57}],56:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -949,21 +2345,278 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":27,"./tostringtag.js":28,"@stdlib/assert/has-own-property":2}],27:[function(require,module,exports){
+},{"./tostring.js":57,"./tostringtag.js":58,"@stdlib/assert/has-own-property":2}],57:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
 
-},{}],28:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
-},{}],29:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
+'use strict';
+
+/**
+* Parse a string as JSON.
+*
+* @module @stdlib/utils/parse-json
+*
+* @example
+* var parseJSON = require( '@stdlib/utils/parse-json' );
+*
+* var obj = parseJSON( '{"beep":"boop"}' );
+* // returns {'beep':'boop'}
+*/
+
+// MODULES //
+
+var parseJSON = require( './parse_json.js' );
+
+
+// EXPORTS //
+
+module.exports = parseJSON;
+
+},{"./parse_json.js":60}],60:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// MAIN //
+
+/**
+* Attempts to parse a string as JSON.
+*
+* @param {string} str - string to parse
+* @param {Function} reviver - transformation function
+* @throws {TypeError} first argument must be a string
+* @throws {TypeError} reviver must be a function
+* @returns {(*|Error)} parsed value or parse error
+*
+* @example
+* var obj = parseJSON( '{"beep":"boop"}' );
+* // returns {'beep':'boop'}
+*/
+function parseJSON( str, reviver ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. First argument must be a string. Value: `' + str + '`.' );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isFunction( reviver ) ) {
+			throw new TypeError( 'invalid input argument. Reviver argument must be a function. Value: `' + reviver + '`.' );
+		}
+	}
+	try {
+		return JSON.parse( str, reviver );
+	} catch ( error ) {
+		return error;
+	}
+} // end FUNCTION parseJSON()
+
+
+// EXPORTS //
+
+module.exports = parseJSON;
+
+},{"@stdlib/assert/is-function":9,"@stdlib/assert/is-string":19}],61:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var RE = require( './fixtures/re.js' );
+var nodeList = require( './fixtures/nodelist.js' );
+var typedarray = require( './fixtures/typedarray.js' );
+
+
+// MAIN //
+
+/**
+* Checks whether a polyfill is needed when using the `typeof` operator.
+*
+* @private
+* @returns {boolean} boolean indicating whether a polyfill is needed
+*/
+function check() {
+	if (
+		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
+		typeof RE === 'function' ||
+		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
+		typeof typedarray === 'object' ||
+		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
+		typeof nodeList === 'function'
+	) {
+		return true;
+	}
+	return false;
+} // end FUNCTION check()
+
+
+// EXPORTS //
+
+module.exports = check;
+
+},{"./fixtures/nodelist.js":62,"./fixtures/re.js":63,"./fixtures/typedarray.js":64}],62:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var root = require( 'system.global' )(); // eslint-disable-line no-redeclare
+
+
+// MAIN //
+
+var nodeList = root.document && root.document.childNodes;
+
+
+// EXPORTS //
+
+module.exports = nodeList;
+
+},{"system.global":128}],63:[function(require,module,exports){
+'use strict';
+
+var RE = /./;
+
+
+// EXPORTS //
+
+module.exports = RE;
+
+},{}],64:[function(require,module,exports){
+'use strict';
+
+var typedarray = Int8Array;
+
+
+// EXPORTS //
+
+module.exports = typedarray;
+
+},{}],65:[function(require,module,exports){
+'use strict';
+
+/**
+* Determine a value's type.
+*
+* @module @stdlib/utils/type-of
+*
+* @example
+* var typeOf = require( '@stdlib/utils/type-of' );
+*
+* var str = typeOf( 'a' );
+* // returns 'string'
+*
+* str = typeOf( 5 );
+* // returns 'number'
+*/
+
+// MODULES //
+
+var usePolyfill = require( './check.js' );
+var typeOf = require( './typeof.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// EXPORTS //
+
+module.exports = ( usePolyfill() ) ? polyfill : typeOf;
+
+},{"./check.js":61,"./polyfill.js":66,"./typeof.js":67}],66:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+} // end FUNCTION typeOf()
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":41}],67:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// NOTES //
+
+/*
+* Built-in `typeof` operator behavior:
+*
+* ``` text
+* typeof null => 'object'
+* typeof undefined => 'undefined'
+* typeof 'a' => 'string'
+* typeof 5 => 'number'
+* typeof NaN => 'number'
+* typeof true => 'boolean'
+* typeof false => 'boolean'
+* typeof {} => 'object'
+* typeof [] => 'object'
+* typeof function foo(){} => 'function'
+* typeof function* foo(){} => 'object'
+* typeof Symbol() => 'symbol'
+* ```
+*
+*/
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	var type;
+
+	// Address `typeof null` => `object` (see http://wiki.ecmascript.org/doku.php?id=harmony:typeof_null):
+	if ( v === null ) {
+		return 'null';
+	}
+	type = typeof v;
+
+	// If the `typeof` operator returned something other than `object`, we are done. Otherwise, we need to check for an internal class name or search for a constructor.
+	if ( type === 'object' ) {
+		return ctorName( v ).toLowerCase();
+	}
+	return type;
+} // end FUNCTION typeOf()
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":41}],68:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -1079,11 +2732,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],30:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 
-},{}],31:[function(require,module,exports){
-arguments[4][30][0].apply(exports,arguments)
-},{"dup":30}],32:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"dup":69}],71:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1269,7 +2922,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],33:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1376,7 +3029,7 @@ function from (value, encodingOrOffset, length) {
     throw new TypeError('"value" argument must not be a number')
   }
 
-  if (value instanceof ArrayBuffer) {
+  if (isArrayBuffer(value)) {
     return fromArrayBuffer(value, encodingOrOffset, length)
   }
 
@@ -1636,7 +3289,7 @@ function byteLength (string, encoding) {
   if (Buffer.isBuffer(string)) {
     return string.length
   }
-  if (isArrayBufferView(string) || string instanceof ArrayBuffer) {
+  if (isArrayBufferView(string) || isArrayBuffer(string)) {
     return string.byteLength
   }
   if (typeof string !== 'string') {
@@ -2968,6 +4621,14 @@ function blitBuffer (src, dst, offset, length) {
   return i
 }
 
+// ArrayBuffers from another context (i.e. an iframe) do not pass the `instanceof` check
+// but they should be treated as valid. See: https://github.com/feross/buffer/issues/166
+function isArrayBuffer (obj) {
+  return obj instanceof ArrayBuffer ||
+    (obj != null && obj.constructor != null && obj.constructor.name === 'ArrayBuffer' &&
+      typeof obj.byteLength === 'number')
+}
+
 // Node 0.10 supports `ArrayBuffer` but lacks `ArrayBuffer.isView`
 function isArrayBufferView (obj) {
   return (typeof ArrayBuffer.isView === 'function') && ArrayBuffer.isView(obj)
@@ -2977,7 +4638,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":29,"ieee754":52}],34:[function(require,module,exports){
+},{"base64-js":68,"ieee754":92}],73:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -3088,7 +4749,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":54}],35:[function(require,module,exports){
+},{"../../is-buffer/index.js":94}],74:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -3184,7 +4845,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":36,"./lib/keys.js":37}],36:[function(require,module,exports){
+},{"./lib/is_arguments.js":75,"./lib/keys.js":76}],75:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -3206,7 +4867,7 @@ function unsupported(object){
     false;
 };
 
-},{}],37:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -3217,7 +4878,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],38:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -3275,14 +4936,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":48,"object-keys":57}],39:[function(require,module,exports){
+},{"foreach":88,"object-keys":100}],78:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],40:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -3294,12 +4955,14 @@ var mod = require('./helpers/mod');
 var IsCallable = require('is-callable');
 var toPrimitive = require('es-to-primitive/es5');
 
+var has = require('has');
+
 // https://es5.github.io/#x9
 var ES5 = {
 	ToPrimitive: toPrimitive,
 
 	ToBoolean: function ToBoolean(value) {
-		return Boolean(value);
+		return !!value;
 	},
 	ToNumber: function ToNumber(value) {
 		return Number(value);
@@ -3365,33 +5028,181 @@ var ES5 = {
 		if (typeof x === 'string') {
 			return 'String';
 		}
+	},
+
+	// http://ecma-international.org/ecma-262/6.0/#sec-property-descriptor-specification-type
+	IsPropertyDescriptor: function IsPropertyDescriptor(Desc) {
+		if (this.Type(Desc) !== 'Object') {
+			return false;
+		}
+		var allowed = {
+			'[[Configurable]]': true,
+			'[[Enumerable]]': true,
+			'[[Get]]': true,
+			'[[Set]]': true,
+			'[[Value]]': true,
+			'[[Writable]]': true
+		};
+		// jscs:disable
+		for (var key in Desc) { // eslint-disable-line
+			if (has(Desc, key) && !allowed[key]) {
+				return false;
+			}
+		}
+		// jscs:enable
+		var isData = has(Desc, '[[Value]]');
+		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
+		if (isData && IsAccessor) {
+			throw new TypeError('Property Descriptors may not be both accessor and data descriptors');
+		}
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.1
+	IsAccessorDescriptor: function IsAccessorDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.2
+	IsDataDescriptor: function IsDataDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.3
+	IsGenericDescriptor: function IsGenericDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!this.IsAccessorDescriptor(Desc) && !this.IsDataDescriptor(Desc)) {
+			return true;
+		}
+
+		return false;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.4
+	FromPropertyDescriptor: function FromPropertyDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return Desc;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (this.IsDataDescriptor(Desc)) {
+			return {
+				value: Desc['[[Value]]'],
+				writable: !!Desc['[[Writable]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else if (this.IsAccessorDescriptor(Desc)) {
+			return {
+				get: Desc['[[Get]]'],
+				set: Desc['[[Set]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else {
+			throw new TypeError('FromPropertyDescriptor must be called with a fully populated Property Descriptor');
+		}
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.5
+	ToPropertyDescriptor: function ToPropertyDescriptor(Obj) {
+		if (this.Type(Obj) !== 'Object') {
+			throw new TypeError('ToPropertyDescriptor requires an object');
+		}
+
+		var desc = {};
+		if (has(Obj, 'enumerable')) {
+			desc['[[Enumerable]]'] = this.ToBoolean(Obj.enumerable);
+		}
+		if (has(Obj, 'configurable')) {
+			desc['[[Configurable]]'] = this.ToBoolean(Obj.configurable);
+		}
+		if (has(Obj, 'value')) {
+			desc['[[Value]]'] = Obj.value;
+		}
+		if (has(Obj, 'writable')) {
+			desc['[[Writable]]'] = this.ToBoolean(Obj.writable);
+		}
+		if (has(Obj, 'get')) {
+			var getter = Obj.get;
+			if (typeof getter !== 'undefined' && !this.IsCallable(getter)) {
+				throw new TypeError('getter must be a function');
+			}
+			desc['[[Get]]'] = getter;
+		}
+		if (has(Obj, 'set')) {
+			var setter = Obj.set;
+			if (typeof setter !== 'undefined' && !this.IsCallable(setter)) {
+				throw new TypeError('setter must be a function');
+			}
+			desc['[[Set]]'] = setter;
+		}
+
+		if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+			throw new TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
+		}
+		return desc;
 	}
 };
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":41,"./helpers/isNaN":42,"./helpers/mod":43,"./helpers/sign":44,"es-to-primitive/es5":45,"is-callable":55}],41:[function(require,module,exports){
+},{"./helpers/isFinite":80,"./helpers/isNaN":81,"./helpers/mod":82,"./helpers/sign":83,"es-to-primitive/es5":84,"has":91,"is-callable":95}],80:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],42:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],43:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],44:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],45:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -3430,12 +5241,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":46,"is-callable":55}],46:[function(require,module,exports){
+},{"./helpers/isPrimitive":85,"is-callable":95}],85:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],47:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3739,7 +5550,45 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],48:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
+'use strict'
+
+var mergeDescriptors = require('merge-descriptors')
+var isObject = require('is-object')
+var hasOwnProperty = Object.prototype.hasOwnProperty
+
+function fill (destination, source, merge) {
+  if (destination && (isObject(source) || isFunction(source))) {
+    merge(destination, source, false)
+    if (isFunction(destination) && isFunction(source) && source.prototype) {
+      merge(destination.prototype, source.prototype, false)
+    }
+  }
+  return destination
+}
+
+exports = module.exports = function fillKeys (destination, source) {
+  return fill(destination, source, mergeDescriptors)
+}
+
+exports.es3 = function fillKeysEs3 (destination, source) {
+  return fill(destination, source, es3Merge)
+}
+
+function es3Merge (destination, source) {
+  for (var key in source) {
+    if (!hasOwnProperty.call(destination, key)) {
+      destination[key] = source[key]
+    }
+  }
+  return destination
+}
+
+function isFunction (value) {
+  return typeof value === 'function'
+}
+
+},{"is-object":96,"merge-descriptors":97}],88:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -3763,7 +5612,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],49:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
 var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
@@ -3813,17 +5662,17 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],50:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":49}],51:[function(require,module,exports){
+},{"./implementation":89}],91:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":50}],52:[function(require,module,exports){
+},{"function-bind":90}],92:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -3909,7 +5758,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],53:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -3934,7 +5783,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],54:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -3957,7 +5806,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],55:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -3998,7 +5847,85 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],56:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
+"use strict";
+
+module.exports = function isObject(x) {
+	return typeof x === "object" && x !== null;
+};
+
+},{}],97:[function(require,module,exports){
+/*!
+ * merge-descriptors
+ * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+'use strict'
+
+/**
+ * Module exports.
+ * @public
+ */
+
+module.exports = merge
+
+/**
+ * Module variables.
+ * @private
+ */
+
+var hasOwnProperty = Object.prototype.hasOwnProperty
+
+/**
+ * Merge the property descriptors of `src` into `dest`
+ *
+ * @param {object} dest Object to add descriptors to
+ * @param {object} src Object to clone descriptors from
+ * @param {boolean} [redefine=true] Redefine `dest` properties with `src` properties
+ * @returns {object} Reference to dest
+ * @public
+ */
+
+function merge(dest, src, redefine) {
+  if (!dest) {
+    throw new TypeError('argument dest is required')
+  }
+
+  if (!src) {
+    throw new TypeError('argument src is required')
+  }
+
+  if (redefine === undefined) {
+    // Default to true
+    redefine = true
+  }
+
+  Object.getOwnPropertyNames(src).forEach(function forEachOwnPropertyName(name) {
+    if (!redefine && hasOwnProperty.call(dest, name)) {
+      // Skip desriptor
+      return
+    }
+
+    // Copy descriptor
+    var descriptor = Object.getOwnPropertyDescriptor(src, name)
+    Object.defineProperty(dest, name, descriptor)
+  })
+
+  return dest
+}
+
+},{}],98:[function(require,module,exports){
+'use strict'
+
+module.exports = function createNotFoundError (path) {
+  var err = new Error('Cannot find module \'' + path + '\'')
+  err.code = 'MODULE_NOT_FOUND'
+  return err
+}
+
+},{}],99:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -4192,7 +6119,7 @@ function inspectString (str) {
     }
 }
 
-},{}],57:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -4334,7 +6261,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":58}],58:[function(require,module,exports){
+},{"./isArguments":101}],101:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -4353,7 +6280,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],59:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4581,7 +6508,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":32}],60:[function(require,module,exports){
+},{"_process":71}],103:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -4628,10 +6555,105 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":32}],61:[function(require,module,exports){
+},{"_process":71}],104:[function(require,module,exports){
+'use strict';
+
+var fillMissingKeys = require('fill-keys');
+var moduleNotFoundError = require('module-not-found-error');
+
+function ProxyquireifyError(msg) {
+  this.name = 'ProxyquireifyError';
+  Error.captureStackTrace(this, ProxyquireifyError);
+  this.message = msg || 'An error occurred inside proxyquireify.';
+}
+
+function validateArguments(request, stubs) {
+  var msg = (function getMessage() {
+    if (!request)
+      return 'Missing argument: "request". Need it to resolve desired module.';
+
+    if (!stubs)
+      return 'Missing argument: "stubs". If no stubbing is needed, use regular require instead.';
+
+    if (typeof request != 'string')
+      return 'Invalid argument: "request". Needs to be a requirable string that is the module to load.';
+
+    if (typeof stubs != 'object')
+      return 'Invalid argument: "stubs". Needs to be an object containing overrides e.g., {"path": { extname: function () { ... } } }.';
+  })();
+
+  if (msg) throw new ProxyquireifyError(msg);
+}
+
+var stubs;
+
+function stub(stubs_) {
+  stubs = stubs_;
+  // This cache is used by the prelude as an alternative to the regular cache.
+  // It is not read or written here, except to set it to an empty object when
+  // adding stubs and to reset it to null when clearing stubs.
+  module.exports._cache = {};
+}
+
+function reset() {
+  stubs = undefined;
+  module.exports._cache = null;
+}
+
+var proxyquire = module.exports = function (require_) {
+  if (typeof require_ != 'function')
+    throw new ProxyquireifyError(
+        'It seems like you didn\'t initialize proxyquireify with the require in your test.\n'
+      + 'Make sure to correct this, i.e.: "var proxyquire = require(\'proxyquireify\')(require);"'
+    );
+
+  reset();
+
+  return function(request, stubs) {
+
+    validateArguments(request, stubs);
+
+    // set the stubs and require dependency
+    // when stub require is invoked by the module under test it will find the stubs here
+    stub(stubs);
+    var dep = require_(request);
+    reset();
+
+    return dep;
+  };
+};
+
+// Start with the default cache
+proxyquire._cache = null;
+
+proxyquire._proxy = function (require_, request) {
+  function original() {
+    return require_(request);
+  }
+
+  if (!stubs || !stubs.hasOwnProperty(request)) return original();
+
+  var stub = stubs[request];
+
+  if (stub === null) throw moduleNotFoundError(request)
+
+  var stubWideNoCallThru = Boolean(stubs['@noCallThru']) && (stub == null || stub['@noCallThru'] !== false);
+  var noCallThru = stubWideNoCallThru || (stub != null && Boolean(stub['@noCallThru']));
+  return noCallThru ? stub : fillMissingKeys(stub, original());
+};
+
+if (require.cache) {
+  // only used during build, so prevent browserify from including it
+  var replacePreludePath = './lib/replace-prelude';
+  var replacePrelude = require(replacePreludePath);
+  proxyquire.browserify = replacePrelude.browserify;
+  proxyquire.plugin = replacePrelude.plugin;
+}
+
+},{"fill-keys":87,"module-not-found-error":98}],105:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":62}],62:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":106}],106:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4756,7 +6778,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":64,"./_stream_writable":66,"core-util-is":34,"inherits":53,"process-nextick-args":60}],63:[function(require,module,exports){
+},{"./_stream_readable":108,"./_stream_writable":110,"core-util-is":73,"inherits":93,"process-nextick-args":103}],107:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4804,8 +6826,8 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":65,"core-util-is":34,"inherits":53}],64:[function(require,module,exports){
-(function (process){
+},{"./_stream_transform":109,"core-util-is":73,"inherits":93}],108:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4862,11 +6884,12 @@ var Stream = require('./internal/streams/stream');
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -5061,7 +7084,7 @@ function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
     if (er) {
       stream.emit('error', er);
     } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && Object.getPrototypeOf(chunk) !== Buffer.prototype && !state.objectMode) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
         chunk = _uint8ArrayToBuffer(chunk);
       }
 
@@ -5812,8 +7835,8 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'))
-},{"./_stream_duplex":62,"./internal/streams/BufferList":67,"./internal/streams/destroy":68,"./internal/streams/stream":69,"_process":32,"core-util-is":34,"events":47,"inherits":53,"isarray":70,"process-nextick-args":60,"safe-buffer":77,"string_decoder/":71,"util":30}],65:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":106,"./internal/streams/BufferList":111,"./internal/streams/destroy":112,"./internal/streams/stream":113,"_process":71,"core-util-is":73,"events":86,"inherits":93,"isarray":114,"process-nextick-args":103,"safe-buffer":121,"string_decoder/":115,"util":69}],109:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6028,8 +8051,8 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":62,"core-util-is":34,"inherits":53}],66:[function(require,module,exports){
-(function (process){
+},{"./_stream_duplex":106,"core-util-is":73,"inherits":93}],110:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6112,11 +8135,12 @@ var Stream = require('./internal/streams/stream');
 
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -6693,9 +8717,8 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-
-}).call(this,require('_process'))
-},{"./_stream_duplex":62,"./internal/streams/destroy":68,"./internal/streams/stream":69,"_process":32,"core-util-is":34,"inherits":53,"process-nextick-args":60,"safe-buffer":77,"util-deprecate":89}],67:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":106,"./internal/streams/destroy":112,"./internal/streams/stream":113,"_process":71,"core-util-is":73,"inherits":93,"process-nextick-args":103,"safe-buffer":121,"util-deprecate":137}],111:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -6770,7 +8793,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":77}],68:[function(require,module,exports){
+},{"safe-buffer":121}],112:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -6843,17 +8866,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":60}],69:[function(require,module,exports){
+},{"process-nextick-args":103}],113:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":47}],70:[function(require,module,exports){
+},{"events":86}],114:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],71:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -7126,10 +9149,10 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":77}],72:[function(require,module,exports){
+},{"safe-buffer":121}],116:[function(require,module,exports){
 module.exports = require('./readable').PassThrough
 
-},{"./readable":73}],73:[function(require,module,exports){
+},{"./readable":117}],117:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -7138,13 +9161,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":62,"./lib/_stream_passthrough.js":63,"./lib/_stream_readable.js":64,"./lib/_stream_transform.js":65,"./lib/_stream_writable.js":66}],74:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":106,"./lib/_stream_passthrough.js":107,"./lib/_stream_readable.js":108,"./lib/_stream_transform.js":109,"./lib/_stream_writable.js":110}],118:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":73}],75:[function(require,module,exports){
+},{"./readable":117}],119:[function(require,module,exports){
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":66}],76:[function(require,module,exports){
+},{"./lib/_stream_writable.js":110}],120:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -7177,7 +9200,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this,require('_process'))
-},{"_process":32,"through":88}],77:[function(require,module,exports){
+},{"_process":71,"through":136}],121:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -7241,7 +9264,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":33}],78:[function(require,module,exports){
+},{"buffer":72}],122:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7370,7 +9393,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":47,"inherits":53,"readable-stream/duplex.js":61,"readable-stream/passthrough.js":72,"readable-stream/readable.js":73,"readable-stream/transform.js":74,"readable-stream/writable.js":75}],79:[function(require,module,exports){
+},{"events":86,"inherits":93,"readable-stream/duplex.js":105,"readable-stream/passthrough.js":116,"readable-stream/readable.js":117,"readable-stream/transform.js":118,"readable-stream/writable.js":119}],123:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -7385,7 +9408,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":40,"function-bind":50}],80:[function(require,module,exports){
+},{"es-abstract/es5":79,"function-bind":90}],124:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -7405,7 +9428,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":79,"./polyfill":81,"./shim":82,"define-properties":38,"function-bind":50}],81:[function(require,module,exports){
+},{"./implementation":123,"./polyfill":125,"./shim":126,"define-properties":77,"function-bind":90}],125:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -7419,7 +9442,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":79}],82:[function(require,module,exports){
+},{"./implementation":123}],126:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -7431,7 +9454,86 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":81,"define-properties":38}],83:[function(require,module,exports){
+},{"./polyfill":125,"define-properties":77}],127:[function(require,module,exports){
+(function (global){
+/* globals self, window, global */
+/* eslint no-negated-condition: 0, no-new-func: 0 */
+
+'use strict';
+
+if (typeof self !== 'undefined') {
+	module.exports = self;
+} else if (typeof window !== 'undefined') {
+	module.exports = window;
+} else if (typeof global !== 'undefined') {
+	module.exports = global;
+} else {
+	module.exports = Function('return this')();
+}
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],128:[function(require,module,exports){
+'use strict';
+
+var defineProperties = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var polyfill = getPolyfill();
+
+var getGlobal = function () { return polyfill; };
+
+defineProperties(getGlobal, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = getGlobal;
+
+},{"./implementation":127,"./polyfill":129,"./shim":130,"define-properties":77}],129:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var implementation = require('./implementation');
+
+module.exports = function getPolyfill() {
+	if (typeof global !== 'object' || !global || global.Math !== Math || global.Array !== Array) {
+		return implementation;
+	}
+	return global;
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./implementation":127}],130:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimGlobal() {
+	var polyfill = getPolyfill();
+	if (define.supportsDescriptors) {
+		var descriptor = Object.getOwnPropertyDescriptor(polyfill, 'global');
+		if (!descriptor || (descriptor.configurable && (descriptor.enumerable || descriptor.writable || global !== polyfill))) {
+			Object.defineProperty(polyfill, 'global', {
+				configurable: true,
+				enumerable: false,
+				value: polyfill,
+				writable: false
+			});
+		}
+	} else if (typeof global !== 'object' || global !== polyfill) {
+		polyfill.global = polyfill;
+	}
+	return polyfill;
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./polyfill":129,"define-properties":77}],131:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -7585,7 +9687,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":84,"./lib/results":86,"./lib/test":87,"_process":32,"defined":39,"through":88}],84:[function(require,module,exports){
+},{"./lib/default_stream":132,"./lib/results":134,"./lib/test":135,"_process":71,"defined":78,"through":136}],132:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -7620,7 +9722,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":32,"fs":31,"through":88}],85:[function(require,module,exports){
+},{"_process":71,"fs":70,"through":136}],133:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -7628,7 +9730,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":32}],86:[function(require,module,exports){
+},{"_process":71}],134:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -7819,7 +9921,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":32,"events":47,"function-bind":50,"has":51,"inherits":53,"object-inspect":56,"resumer":76,"through":88}],87:[function(require,module,exports){
+},{"_process":71,"events":86,"function-bind":90,"has":91,"inherits":93,"object-inspect":99,"resumer":120,"through":136}],135:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -8320,7 +10422,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":85,"deep-equal":35,"defined":39,"events":47,"has":51,"inherits":53,"path":59,"string.prototype.trim":80}],88:[function(require,module,exports){
+},{"./next_tick":133,"deep-equal":74,"defined":78,"events":86,"has":91,"inherits":93,"path":102,"string.prototype.trim":124}],136:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -8432,7 +10534,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":32,"stream":78}],89:[function(require,module,exports){
+},{"_process":71,"stream":122}],137:[function(require,module,exports){
 (function (global){
 
 /**
@@ -8503,4 +10605,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[17]);
+},{}]},{},[29,30]);

@@ -240,12 +240,15 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isBoolean( false );
 * // returns true
+*
 * @example
 * var bool = isBoolean( true );
 * // returns true
+*
 * @example
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
+*
 * @example
 * var bool = isBoolean( new Boolean( true ) );
 * // returns true
@@ -336,6 +339,7 @@ var test = require( './try2serialize.js' );
 * @example
 * var bool = isBoolean( true );
 * // returns false
+*
 * @example
 * var bool = isBoolean( new Boolean( false ) );
 * // returns true
@@ -367,9 +371,11 @@ module.exports = isBoolean;
 * @example
 * var bool = isBoolean( true );
 * // returns true
+*
 * @example
 * var bool = isBoolean( false );
 * // returns true
+*
 * @example
 * var bool = isBoolean( new Boolean( true ) );
 * // returns false
@@ -470,12 +476,15 @@ var isObjectLike = require( '@stdlib/assert/is-object-like' );
 * @example
 * var v = isBuffer( new Buffer( 'beep' ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( new Buffer( [1,2,3,4] ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( {} );
 * // returns false
+*
 * @example
 * var v = isBuffer( [] );
 * // returns false
@@ -726,21 +735,14 @@ module.exports = isObject;
 
 // MODULES //
 
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var arrayfun = require( '@stdlib/assert/tools/array-function' );
 var isPlainObject = require( './is_plain_object.js' );
-
-
-// MAIN //
-
-setReadOnly( isPlainObject, 'isPlainObjectArray', arrayfun( isPlainObject ) );
 
 
 // EXPORTS //
 
 module.exports = isPlainObject;
 
-},{"./is_plain_object.js":20,"@stdlib/assert/tools/array-function":22,"@stdlib/utils/define-read-only-property":27}],20:[function(require,module,exports){
+},{"./is_plain_object.js":20}],20:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1784,15 +1786,15 @@ console.log( 'Time per op: %d ms', elapsed/1e6*1000 );
 * @example
 * var zip = require( '@stdlib/utils/zip' );
 *
-* var zipped = zip( [1,2], ['a','b'] );
-* // returns [ [1,'a'], [2,'b'] ]
+* var zipped = zip( [ 1, 2 ], [ 'a', 'b' ] );
+* // returns [ [ 1, 'a' ], [ 2, 'b' ] ]
 *
 * var opts = {
 *    'trunc': false
 * };
 *
-* zipped = zip( [1,2,3], ['a','b'], opts );
-* // returns [ [1,'a'], [2,'b'], [3,null] ]
+* zipped = zip( [ 1, 2, 3 ], [ 'a', 'b' ], opts );
+* // returns [ [ 1, 'a' ], [ 2, 'b' ], [ 3, null ] ]
 */
 
 // MODULES //
@@ -1832,20 +1834,20 @@ var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 * @returns {Array} output array of arrays
 *
 * @example
-* var zipped = zip( [1,2], ['a','b'] );
-* // returns [ [1,'a'], [2,'b'] ]
+* var zipped = zip( [ 1, 2 ], [ 'a', 'b' ] );
+* // returns [ [ 1, 'a' ], [ 2, 'b' ] ]
 *
 * @example
-* var zipped = zip( [1,2,3], ['a','b'] );
-* // returns [ [1,'a'], [2,'b'] ]
+* var zipped = zip( [ 1, 2, 3 ], [ 'a', 'b' ] );
+* // returns [ [ 1, 'a' ], [ 2, 'b' ] ]
 *
 * @example
 * var opts = {
 *     'trunc': false
 * };
 *
-* var zipped = zip( [1,2,3], ['a','b'], opts );
-* // returns [ [1,'a'], [2,'b'], [3,null] ]
+* var zipped = zip( [ 1, 2, 3 ], [ 'a', 'b' ], opts );
+* // returns [ [ 1, 'a' ], [ 2, 'b' ], [ 3, null ] ]
 *
 * @example
 * var opts = {
@@ -1853,20 +1855,19 @@ var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 *     'fill': ''
 * };
 *
-* var zipped = zip( [1,2,3], ['a','b'], opts );
-* // returns [ [1,'a'], [2,'b'], [3,''] ]
+* var zipped = zip( [ 1, 2, 3 ], [ 'a', 'b' ], opts );
+* // returns [ [ 1, 'a' ], [ 2, 'b' ], [ 3, '' ] ]
 *
 * @example
-* var zipped;
-* var arr = [[1,2], ['a','b']];
+* var arr = [ [ 1, 2 ], [ 'a', 'b' ] ];
 *
 * // Default behavior:
-* zipped = zip( arr );
-* // returns [ [[1,2]], [['a','b']] ]
+* var zipped = zip( arr );
+* // returns [ [ [ 1, 2 ] ], [ [ 'a', 'b' ] ] ]
 *
 * // Array of arrays:
 * zipped = zip( arr, { 'arrays': true } );
-* // returns [ [1,'a'], [2,'b'] ]
+* // returns [ [ 1, 'a' ], [ 2, 'b' ] ]
 */
 function zip() {
 	var nargs;

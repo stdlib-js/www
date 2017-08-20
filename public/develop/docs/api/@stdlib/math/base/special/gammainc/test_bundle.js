@@ -286,12 +286,15 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var bool = isfinite( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isfinite( -2.0e64 );
 * // returns true
+*
 * @example
 * var bool = isfinite( Number.POSITIVE_INFINITY );
 * // returns false
+*
 * @example
 * var bool = isfinite( Number.NEGATIVE_INFINITY );
 * // returns false
@@ -365,12 +368,15 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var bool = isInfinite( Number.POSITIVE_INFINITY );
 * // returns true
+*
 * @example
 * var bool = isInfinite( Number.NEGATIVE_INFINITY );
 * // returns true
+*
 * @example
 * var bool = isInfinite( 5.0 );
 * // returns false
+*
 * @example
 * var bool = isInfinite( NaN );
 * // returns false
@@ -485,6 +491,7 @@ module.exports = isnan;
 * @example
 * var bool = isnan( NaN );
 * // returns true
+*
 * @example
 * var bool = isnan( 7.0 );
 * // returns false
@@ -682,6 +689,7 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var bool = isPositiveZero( 0.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveZero( -0.0 );
 * // returns false
@@ -707,15 +715,19 @@ module.exports = isPositiveZero;
 * @example
 * var v = abs( -1.0 );
 * // returns 1.0
+*
 * @example
 * var v = abs( 2.0 );
 * // returns 2.0
+*
 * @example
 * var v = abs( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = abs( -0.0 );
 * // returns 0.0
+*
 * @example
 * var v = abs( NaN );
 * // returns NaN
@@ -869,15 +881,19 @@ var MAGNITUDE_MASK = 0x7fffffff;
 * @example
 * var z = copysign( -3.14, 10.0 );
 * // returns 3.14
+*
 * @example
 * var z = copysign( 3.14, -1.0 );
 * // returns -3.14
+*
 * @example
 * var z = copysign( 1.0, -0.0 );
 * // returns -1.0
+*
 * @example
 * var z = copysign( -3.14, -0.0 );
 * // returns -3.14
+*
 * @example
 * var z = copysign( -0.0, 1.0 );
 * // returns 0.0
@@ -986,12 +1002,15 @@ var remPio2 = require( './rem_pio2.js' );
 * @example
 * var v = cos( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = cos( Math.PI/4.0 );
 * // returns ~0.707
+*
 * @example
 * var v = cos( -Math.PI/6.0 );
 * // returns ~0.866
+*
 * @example
 * var v = cos( NaN );
 * // returns NaN
@@ -1016,25 +1035,23 @@ function cos( x ) {
 				return 1.0;
 			}
 		}
-		return cosKernel(x,z);
+		return cosKernel( x, z );
 	}
 	// Case: cos(Inf or NaN) is NaN */
 	else if ( ix >= 0x7ff00000 ) {
 		return NaN;
 	}
 	// Case: Argument reduction needed...
-	else {
-		n = remPio2( x, y );
-		switch ( n & 3 ) {
-		case 0:
-			return cosKernel( y[0], y[1] );
-		case 1:
-			return -sinKernel( y[0], y[1], 1 );
-		case 2:
-			return -cosKernel( y[0], y[1] );
-		default:
-			return sinKernel( y[0], y[1], 1 );
-		}
+	n = remPio2( x, y );
+	switch ( n & 3 ) {
+	case 0:
+		return cosKernel( y[0], y[1] );
+	case 1:
+		return -sinKernel( y[0], y[1], 1 );
+	case 2:
+		return -cosKernel( y[0], y[1] );
+	default:
+		return sinKernel( y[0], y[1], 1 );
 	}
 } // end FUNCTION cos()
 
@@ -2209,18 +2226,23 @@ var polyvalSB = evalpoly( SB );
 * @example
 * var y = erfc( 2.0 );
 * // returns ~0.0047
+*
 * @example
 * var y = erfc( -1.0 );
 * // returns ~-1.8427
+*
 * @example
 * var y = erfc( 0.0 );
 * // returns 1.0
+*
 * @example
 * var y = erfc( Number.POSITIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var y = erfc( Number.NEGATIVE_INFINITY );
 * // returns 2.0
+*
 * @example
 * var y = erfc( NaN );
 * // returns NaN
@@ -2492,12 +2514,15 @@ var NEG_NEARZERO = -NEARZERO;
 * @example
 * var v = exp( 4.0 );
 * // returns ~54.5982
+*
 * @example
 * var v = exp( -9.0 );
 * // returns ~1.234e-4
+*
 * @example
 * var v = exp( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = exp( NaN );
 * // returns NaN
@@ -2836,12 +2861,15 @@ var polyval = evalpoly.factory( Q );
 * @example
 * var v = expm1( 0.2 );
 * // returns ~0.221
+*
 * @example
 * var v = expm1( -9.0 );
 * // returns ~-0.999
+*
 * @example
 * var v = expm1( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = expm1( NaN );
 * // returns NaN
@@ -3163,12 +3191,12 @@ var rateval = evalrational( P, Q );
 *
 * * Relative error:
 *
-* arithmetic | domain | # trials | peak | rms
-* ---------- | ------ | -------- | ---- | ---
-* DEC | -34,34 | 10000 | 1.3e-16 | 2.5e-17
-* IEEE | -170,-33 | 20000 | 2.3e-15 | 3.3e-16
-* IEEE | -33, 33 | 20000 | 9.4e-16 | 2.2e-16
-* IEEE | 33, 171.6 | 20000 | 2.3e-15 | 3.2e-16
+*   | arithmetic | domain    | # trials | peak    | rms     |
+*   |:----------:|:---------:|:--------:|:-------:|:-------:|
+*   | DEC        | -34,34    | 10000    | 1.3e-16 | 2.5e-17 |
+*   | IEEE       | -170,-33  | 20000    | 2.3e-15 | 3.3e-16 |
+*   | IEEE       | -33, 33   | 20000    | 9.4e-16 | 2.2e-16 |
+*   | IEEE       | 33, 171.6 | 20000    | 2.3e-15 | 3.2e-16 |
 *
 * * Error for arguments outside the test range will be larger owing to error amplification by the exponential function.
 *
@@ -3179,21 +3207,27 @@ var rateval = evalrational( P, Q );
 * @example
 * var v = gamma( 4.0 );
 * // returns 6.0
+*
 * @example
 * var v = gamma( -1.5 );
 * // returns ~2.363
+*
 * @example
 * var v = gamma( -0.5 );
 * // returns ~-3.545
+*
 * @example
 * var v = gamma( 0.5 );
 * // returns ~1.772
+*
 * @example
 * var v = gamma( 0.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = gamma( -0.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = gamma( NaN );
 * // returns NaN
@@ -3436,7 +3470,7 @@ var exp = require( '@stdlib/math/base/special/exp' );
 * @param {number} x - function parameter
 * @returns {number} upper gamma fraction
 */
-function finite_gamma_q( a, x ) {
+function finiteGammaQ( a, x ) {
 	var term;
 	var sum;
 	var e;
@@ -3446,19 +3480,19 @@ function finite_gamma_q( a, x ) {
 	sum = e;
 	if ( sum !== 0.0 ) {
 		term = sum;
-		for ( n = 1; n < a; ++n ){
+		for ( n = 1; n < a; ++n ) {
 			term /= n;
 			term *= x;
 			sum += term;
 		}
 	}
 	return sum;
-} // end FUNCTION finite_gamma_q()
+} // end FUNCTION finiteGammaQ()
 
 
 // EXPORTS //
 
-module.exports = finite_gamma_q;
+module.exports = finiteGammaQ;
 
 },{"@stdlib/math/base/special/exp":36}],46:[function(require,module,exports){
 'use strict';
@@ -3495,7 +3529,7 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 * @param {number} x - function parameter
 * @returns {number} upper gamma fraction
 */
-function finite_half_gamma_q( a, x ) {
+function finiteHalfGammaQ( a, x ) {
 	var half;
 	var term;
 	var sum;
@@ -3509,7 +3543,7 @@ function finite_half_gamma_q( a, x ) {
 		half = 0.5;
 		term /= half;
 		sum = term;
-		for( n = 2; n < a; ++n ) {
+		for ( n = 2; n < a; ++n ) {
 			term /= n - half;
 			term *= x;
 			sum += term;
@@ -3517,12 +3551,12 @@ function finite_half_gamma_q( a, x ) {
 		e += sum;
 	}
 	return e;
-} // end FUNCTION finite_half_gamma_q()
+} // end FUNCTION finiteHalfGammaQ()
 
 
 // EXPORTS //
 
-module.exports = finite_half_gamma_q;
+module.exports = finiteHalfGammaQ;
 
 },{"@stdlib/math/base/special/erfc":33,"@stdlib/math/base/special/exp":36,"@stdlib/math/base/special/sqrt":94,"@stdlib/math/constants/float64-pi":148}],47:[function(require,module,exports){
 'use strict';
@@ -3560,7 +3594,7 @@ var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
 * @param {number} z - function parameter
 * @returns {number} power term prefix
 */
-function full_igamma_prefix( a, z ) {
+function fullIGammaPrefix( a, z ) {
 	var prefix;
 	var alz;
 
@@ -3577,6 +3611,7 @@ function full_igamma_prefix( a, z ) {
 		}
 	}
 	else {
+		/* eslint-disable no-lonely-if */
 		if ( alz > MIN_LN ) {
 			prefix = pow( z, a ) * exp( -z );
 		}
@@ -3587,25 +3622,27 @@ function full_igamma_prefix( a, z ) {
 		}
 	}
 	return prefix;
-} // end FUNCTION full_igamma_prefix()
+} // end FUNCTION fullIGammaPrefix()
 
 
 // EXPORTS //
 
-module.exports = full_igamma_prefix;
+module.exports = fullIGammaPrefix;
 
 },{"@stdlib/math/base/special/exp":36,"@stdlib/math/base/special/ln":65,"@stdlib/math/base/special/pow":73,"@stdlib/math/constants/float64-max-ln":143,"@stdlib/math/constants/float64-min-ln":146}],48:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_37_0/boost/math/special_functions/gamma.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/gamma.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
 
 /*
-* (C) Copyright John Maddock 2006.
-* (C) Copyright Paul A. Bristow 2007.
+* (C) Copyright John Maddock 2006-7, 2013-14.
+* (C) Copyright Paul A. Bristow 2007, 2013-14.
+* (C) Copyright Nikhar Agrawal 2013-14
+* (C) Christopher Kormanyos 2013-14
 * Use, modification and distribution are subject to the
 * Boost Software License, Version 1.0. (See accompanying file
 * LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -3625,14 +3662,14 @@ var FLOAT64_MAX = require( '@stdlib/math/constants/float64-max' );
 var SQRT_TWO_PI = require( '@stdlib/math/constants/float64-sqrt-two-pi' );
 var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var finite_gamma_q = require( './finite_gamma_q.js' );
-var finite_half_gamma_q = require( './finite_half_gamma_q.js' );
-var full_igamma_prefix = require( './full_igamma_prefix.js' );
-var igamma_temme_large = require( './igamma_temme_large.js' );
-var lower_gamma_series = require( './lower_gamma_series.js' );
-var regularised_gamma_prefix = require( './regularised_gamma_prefix.js' );
-var tgamma_small_upper_part = require( './tgamma_small_upper_part.js' );
-var upper_gamma_fraction = require( './upper_gamma_fraction.js' );
+var finiteGammaQ = require( './finite_gamma_q.js' );
+var finiteHalfGammaQ = require( './finite_half_gamma_q.js' );
+var fullIGammaPrefix = require( './full_igamma_prefix.js' );
+var igammaTemmeLarge = require( './igamma_temme_large.js' );
+var lowerGammaSeries = require( './lower_gamma_series.js' );
+var regularisedGammaPrefix = require( './regularised_gamma_prefix.js' );
+var tgammaSmallUpperPart = require( './tgamma_small_upper_part.js' );
+var upperGammaFraction = require( './upper_gamma_fraction.js' );
 
 
 // VARIABLES //
@@ -3645,72 +3682,65 @@ var MAX_FACTORIAL = 170; // TODO: consider extracting as a constant
 /**
 * Computes the regularized incomplete gamma function. The upper tail is calculated via the modified Lentz's method for computing continued fractions, the lower tail using a power expansion.
 *
+*
+* #### Notes
+*
+* - When a >= MAX_FACTORIAL and computing the non-normalized incomplete gamma, result is rather hard to compute unless we use logs. There are really two options a) if x is a long way from a in value then we can reliably use methods 2 and 4 below in logarithmic form and go straight to the result. Otherwise we let the regularized gamma take the strain (the result is unlikely to underflow in the central region anyway) and combine with lgamma in the hopes that we get a finite result.
+*
 * @param {NonNegativeNumber} x - function parameter
-* @param {PositiveNumber} s - function parameter
+* @param {PositiveNumber} a - function parameter
 * @param {boolean} [regularized=true] - boolean indicating if the function should evaluate the regularized or non-regularized incomplete gamma functions
 * @param {boolean} [upper=false] - boolean indicating if the function should return the upper tail of the incomplete gamma function
 * @returns {number} function value
 */
 function gammainc( x, a, regularized, upper ) {
+	var optimisedInvert;
 	var normalised;
-	var invert;
+	var evalMethod;
 	var initValue;
-	var optimised_invert;
+	var isHalfInt;
+	var useTemme;
+	var isSmallA;
+	var invert;
 	var result;
+	var isInt;
 	var sigma;
-	var eval_method;
 	var gam;
-	var use_temme;
-	var fa;
-	var is_int;
-	var is_half_int;
-	var is_small_a;
 	var res;
+	var fa;
 	var g;
 
 	if ( x < 0.0 || a <= 0.0 ) {
 		return NaN;
 	}
-	normalised = ( regularized !== undefined ) ? regularized : true;
-	invert = upper ? true : false;
+	normalised = ( regularized === void 0 ) ? true : regularized;
+	invert = upper;
 	result = 0.0;
-
 	if ( a >= MAX_FACTORIAL && !normalised ) {
-		//
-		// When we're computing the non-normalized incomplete gamma
-		// and a is large the result is rather hard to compute unless
-		// we use logs.  There are really two options - if x is a long
-		// way from a in value then we can reliably use methods 2 and 4
-		// below in logarithmic form and go straight to the result.
-		// Otherwise we let the regularized gamma take the strain
-		// (the result is unlikely to unerflow in the central region anyway)
-		// and combine with lgamma in the hopes that we get a finite result.
-		//
 		if ( invert && ( a * 4.0 < x ) ) {
 			// This is method 4 below, done in logs:
-			result = a * ln(x) - x;
-			result += ln( upper_gamma_fraction( a, x ) );
+			result = ( a * ln(x) ) - x;
+			result += ln( upperGammaFraction( a, x ) );
 		}
 		else if ( !invert && ( a > 4.0 * x ) ) {
 			// This is method 2 below, done in logs:
-			result = a * ln(x) - x;
+			result = ( a * ln(x) ) - x;
 			initValue = 0;
-			result += ln( lower_gamma_series( a, x, initValue ) / a );
+			result += ln( lowerGammaSeries( a, x, initValue ) / a );
 		}
 		else {
 			result = gammainc( a, x, true, invert );
 			if ( result === 0.0 ) {
 				if ( invert ) {
 					// Try http://functions.wolfram.com/06.06.06.0039.01
-					result = 1 + 1 / (12 * a) + 1 / (288 * a * a);
-					result = ln( result ) - a + (a - 0.5) * ln(a) + ln( SQRT_TWO_PI );
+					result = 1.0 + ( 1.0 / (12.0*a) ) + ( 1.0 / (288.0*a*a) );
+					result = ln( result ) - a + ( ( a-0.5 ) * ln(a) );
+					result += ln( SQRT_TWO_PI );
 				} else {
-					// This is method 2 below, done in logs, we're really outside the
-					// range of this method, but since the result is almost certainly
-					// infinite, we should probably be OK:
-					result = a * ln( x ) - x;
+					// This is method 2 below, done in logs, we're really outside the range of this method, but since the result is almost certainly infinite, we should probably be OK:
+					result = ( a * ln( x ) ) - x;
 					initValue = 0.0;
-					result += ln( lower_gamma_series( a, x, initValue ) / a);
+					result += ln( lowerGammaSeries( a, x, initValue ) / a);
 				}
 			}
 			else {
@@ -3722,118 +3752,106 @@ function gammainc( x, a, regularized, upper ) {
 		}
 		return exp( result );
 	}
-
-	is_small_a = (a < 30) && (a <= x + 1.0 ) && (x < MAX_LN );
-	if ( is_small_a ) {
+	isSmallA = ( a < 30 ) && ( a <= x + 1.0 ) && ( x < MAX_LN );
+	if ( isSmallA ) {
 		fa = floor( a );
-		is_int = ( fa === a );
-		is_half_int = is_int ? false : ( abs( fa - a ) === 0.5 );
+		isInt = ( fa === a );
+		isHalfInt = isInt ? false : ( abs( fa - a ) === 0.5 );
 	} else {
-		is_int = is_half_int = false;
+		isInt = isHalfInt = false;
 	}
-	if ( is_int && x > 0.6 )
-	// Calculate Q via finite sum:
-	{
+	if ( isInt && x > 0.6 ) {
+		// Calculate Q via finite sum:
 		invert = !invert;
-		eval_method = 0;
+		evalMethod = 0;
 	}
-	else if ( is_half_int && x > 0.2 )
-	// Calculate Q via finite sum for half integer a:
-	{
+	else if ( isHalfInt && x > 0.2 ) {
+		// Calculate Q via finite sum for half integer a:
 		invert = !invert;
-		eval_method = 1;
+		evalMethod = 1;
 	}
-	else if ( x < SQRT_EPSILON && a > 1.0 )
-	{
-		eval_method = 6;
+	else if ( x < SQRT_EPSILON && a > 1.0 ) {
+		evalMethod = 6;
 	}
-	else if ( x < 0.5 )
-	{
+	else if ( x < 0.5 ) {
 		// Changeover criterion chosen to give a changeover at Q ~ 0.33:
 		if ( -0.4 / ln( x ) < a ) {
-			eval_method = 2;
+			evalMethod = 2;
 		} else {
-			eval_method = 3;
+			evalMethod = 3;
 		}
 	}
-	else if ( x < 1.1 )
-	{
-		// Changover here occurs when P ~ 0.75 or Q ~ 0.25:
+	else if ( x < 1.1 ) {
+		// Changeover here occurs when P ~ 0.75 or Q ~ 0.25:
 		if ( x * 0.75 < a ) {
-			eval_method = 2;
+			evalMethod = 2;
 		} else {
-			eval_method = 3;
+			evalMethod = 3;
 		}
 	}
-	else
-	{
-		/* Begin by testing whether we're in the "bad" zone
-		where the result will be near 0.5 and the usual
-		series and continued fractions are slow to converge: */
-		use_temme = false;
+	else {
+		// Begin by testing whether we're in the "bad" zone where the result will be near 0.5 and the usual series and continued fractions are slow to converge:
+		useTemme = false;
 		if ( normalised && a > 20 ) {
 			sigma = abs( (x-a)/a );
 			if ( a > 200 ) {
-				// This limit is chosen so that we use Temme's expansion
-				// only if the result would be larger than about 10^-6.
-				// Below that the regular series and continued fractions
-				// converge OK, and if we use Temme's method we get increasing
-				// errors from the dominant erfc term as it's (inexact) argument
-				// increases in magnitude.
+				// Limit chosen so that we use Temme's expansion only if the result would be larger than about 10^-6. Below that the regular series and continued fractions converge OK, and if we use Temme's method we get increasing errors from the dominant erfc term as it's (inexact) argument increases in magnitude.
 				if ( 20 / a > sigma * sigma ) {
-					use_temme = true;
+					useTemme = true;
 				}
-			} else {
-				if ( sigma < 0.4 ) {
-					use_temme = true;
-				}
+			} else if ( sigma < 0.4 ) {
+				useTemme = true;
 			}
 		}
-		if ( use_temme ) {
-			eval_method = 5;
+		if ( useTemme ) {
+			evalMethod = 5;
 		}
-		// Regular case where the result will not be too close to 0.5.
-		else
-		{
-			// Changeover here occurs at P ~ Q ~ 0.5
-			// Note that series computation of P is about x2 faster than continued fraction
-			// calculation of Q, so try and use the CF only when really necessary, especially
-			// for small x.
-			if ( x - ( 1.0 / (3.0 * x) ) < a ) {
-				eval_method = 2;
-			} else {
-				eval_method = 4;
-				invert = !invert;
-			}
+		// Regular case where the result will not be too close to 0.5: Changeover occurs at P ~ Q ~ 0.5. Note that series computation of P is about x2 faster than continued fraction calculation of Q, so try and use the CF only when really necessary, especially for small x.
+		else if ( x - ( 1.0 / (3.0 * x) ) < a ) {
+			evalMethod = 2;
+		} else {
+			evalMethod = 4;
+			invert = !invert;
 		}
 	}
 
-	switch( eval_method ) {
+	/* eslint-disable default-case */
+	switch ( evalMethod ) {
 	case 0:
-		result = finite_gamma_q( a, x );
+		result = finiteGammaQ( a, x );
 		if (normalised === false ) {
 			result *= gamma( a );
 		}
-	break;
+		break;
 	case 1:
-		result = finite_half_gamma_q( a, x );
+		result = finiteHalfGammaQ( a, x );
 		if ( normalised === false ) {
 			result *= gamma( a );
 		}
-	break;
+		break;
 	case 2:
 		// Compute P:
-		result = normalised ? regularised_gamma_prefix( a, x ) : full_igamma_prefix( a, x );
+		result = normalised ?
+			regularisedGammaPrefix( a, x ) :
+			fullIGammaPrefix( a, x );
 		if ( result !== 0.0 ) {
 			initValue = 0.0;
-			optimised_invert = false;
+			optimisedInvert = false;
 			if ( invert ) {
 				initValue = normalised ? 1.0 : gamma(a);
-				if ( normalised || result >= 1.0 || FLOAT64_MAX * result > initValue ) {
+				if (
+					normalised ||
+					result >= 1.0 ||
+					FLOAT64_MAX * result > initValue
+				) {
 					initValue /= result;
-					if ( normalised || a < 1.0 || ( FLOAT64_MAX / a > initValue ) ) {
+					if (
+						normalised ||
+						a < 1.0 ||
+						( FLOAT64_MAX / a > initValue )
+					) {
 						initValue *= -a;
-						optimised_invert = true;
+						optimisedInvert = true;
 					}
 					else {
 						initValue = 0.0;
@@ -3844,42 +3862,45 @@ function gammainc( x, a, regularized, upper ) {
 				}
 			}
 		}
-		result *= lower_gamma_series( a, x, initValue ) / a;
-		if ( optimised_invert ) {
+		result *= lowerGammaSeries( a, x, initValue ) / a;
+		if ( optimisedInvert ) {
 			invert = false;
 			result = -result;
 		}
-	break;
+		break;
 	case 3:
 		// Compute Q:
 		invert = !invert;
-		res = tgamma_small_upper_part( a, x, invert );
+		res = tgammaSmallUpperPart( a, x, invert );
 		result = res[ 0 ];
 		g = res[ 1 ];
 		invert = false;
 		if ( normalised ) {
 			result /= g;
 		}
-	break;
+		break;
 	case 4:
 		// Compute Q:
-		result = normalised ? regularised_gamma_prefix( a, x ) : full_igamma_prefix( a, x );
+		result = normalised ?
+			regularisedGammaPrefix( a, x ) :
+			fullIGammaPrefix( a, x );
 		if ( result !== 0 ) {
-			result *= upper_gamma_fraction( a, x );
+			result *= upperGammaFraction( a, x );
 		}
-	break;
+		break;
 	case 5:
-		result = igamma_temme_large( a, x );
+		result = igammaTemmeLarge( a, x );
 		if ( x >= a ) {
 			invert = !invert;
 		}
-	break;
+		break;
 	case 6:
-		// x is so small that P is necessarily very small too,
-		// use http://functions.wolfram.com/GammaBetaErf/GammaRegularized/06/01/05/01/01/
-		result = !normalised ? pow( x, a ) / a : pow(x, a) / gamma( a + 1.0 );
-		result *= 1.0 - a * x / ( a + 1.0 );
-	break;
+		// Since x is so small that P is necessarily very small too, use http://functions.wolfram.com/GammaBetaErf/GammaRegularized/06/01/05/01/01/
+		result = normalised ?
+			pow(x, a) / gamma( a + 1.0 ) :
+			pow( x, a ) / a;
+		result *= 1.0 - ( a * x / ( a + 1.0 ) );
+		break;
 	}
 	if ( normalised && result > 1.0 ) {
 		result = 1.0;
@@ -3932,39 +3953,38 @@ var log1p = require( '@stdlib/math/base/special/log1p' );
 * @example
 * var v = gammap1m1( 1e-3 );
 * // returns ~-0.001
+*
 * @example
 * var v = gammap1m1( -3/2 );
 * // returns ~-4.545
+*
 * @example
 * var v = gammap1m1( 4.0 );
 * // returns 23
+*
 * @example
 * var v = gammap1m1( 1/2 );
 * // returns ~-0.114
+*
 * @example
 * var v = gammap1m1( NaN );
 * // returns NaN
 */
 function gammap1m1( x ) {
-	var result;
-	if ( x < 0.0 ) {
-		if ( x < -0.5 ) {
-			// Best method is simply to subtract 1 from gamma:
-			result = gamma( 1.0 + x ) - 1.0;
-		} else {
-			// Use expm1 on gammaln:
-			result = expm1( -log1p(x) + gammaln( x + 2.0 ) );
-		}
-	} else {
-		if ( x < 2.0 ) {
-			// Use expm1 on gammaln:
-			result = expm1( gammaln( x + 1.0 ) );
-		} else {
-			// Best method is simply to subtract 1 from gamma:
-			result = gamma( 1.0 + x ) - 1.0;
-		}
+	if ( x < -0.5 ) {
+		// Best method is simply to subtract 1 from gamma:
+		return gamma( 1.0 + x ) - 1.0;
 	}
-	return result;
+	if ( x < 0.0 ) {
+		// Use expm1 on gammaln:
+		return expm1( -log1p(x) + gammaln( x + 2.0 ) );
+	}
+	if ( x < 2.0 ) {
+		// Use expm1 on gammaln:
+		return expm1( gammaln( x + 1.0 ) );
+	}
+	// Best method is simply to subtract 1 from gamma:
+	return gamma( 1.0 + x ) - 1.0;
 } // end FUNCTION gammap1m1()
 
 
@@ -4000,6 +4020,9 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 
 
 // VARIABLES //
+
+// Pre-allocate workspace array:
+var workspace = new Array( 10 );
 
 // Polynomical coefficients...
 var C0 = [
@@ -4122,20 +4145,20 @@ var polyvalC8 = evalpoly.factory( C8 );
 * @param {number} x - function parameter
 * @returns {number} value of asymptotic expansion
 */
-function igamma_temme_large( a, x ) {
-	var workspace;
+function igammaTemmeLarge( a, x ) {
 	var result;
-	var sigma = (x - a) / a;
-	var phi = -ln( 1 + sigma ) + sigma;
+	var sigma;
+	var phi;
 	var y;
 	var z;
 
+	sigma = ( x - a ) / a;
+	phi = -ln( 1 + sigma ) + sigma;
 	y = a * phi;
 	z = sqrt( 2 * phi );
 	if ( x < a ) {
 		z = -z;
 	}
-	workspace = new Array( 10 );
 	workspace[ 0 ] = polyvalC0( z );
 	workspace[ 1 ] = polyvalC1( z );
 	workspace[ 2 ] = polyvalC2( z );
@@ -4146,20 +4169,19 @@ function igamma_temme_large( a, x ) {
 	workspace[ 7 ] = polyvalC7( z );
 	workspace[ 8 ] = polyvalC8( z );
 	workspace[ 9 ] = -0.00059676129019274625;
-
-	result = evalpoly( workspace, 1/a );
+	result = evalpoly( workspace, 1.0/a );
 	result *= exp( -y ) / sqrt( 2.0 * PI * a );
 	if ( x < a ) {
 		result = -result;
 	}
 	result += erfc( sqrt(y) ) / 2.0;
 	return result;
-} // end FUNCTION igamma_temme_large()
+} // end FUNCTION igammaTemmeLarge()
 
 
 // EXPORTS //
 
-module.exports = igamma_temme_large;
+module.exports = igammaTemmeLarge;
 
 },{"@stdlib/math/base/special/erfc":33,"@stdlib/math/base/special/exp":36,"@stdlib/math/base/special/ln":65,"@stdlib/math/base/special/sqrt":94,"@stdlib/math/base/tools/evalpoly":102,"@stdlib/math/constants/float64-pi":148}],51:[function(require,module,exports){
 'use strict';
@@ -4220,7 +4242,7 @@ module.exports = gammainc;
 // MODULES //
 
 var sumSeries = require( '@stdlib/math/base/tools/sum-series' );
-var lower_incomplete_gamma_series = require( './lower_incomplete_gamma_series' );
+var lowerIncompleteGammaSeries = require( './lower_incomplete_gamma_series' );
 
 
 // MAIN //
@@ -4238,23 +4260,22 @@ var lower_incomplete_gamma_series = require( './lower_incomplete_gamma_series' )
 * @param {number} initialValue - initial value of the resulting sum
 * @returns {number} sum of terms of lower gamma series
 */
-function lower_gamma_series( a, z, initialValue ) {
+function lowerGammaSeries( a, z, initialValue ) {
 	var result;
 	var s;
 
 	initialValue = initialValue || 0.0;
-	s = lower_incomplete_gamma_series( a, z );
+	s = lowerIncompleteGammaSeries( a, z );
 	result = sumSeries( s, {
 		'initialValue': initialValue
 	});
 	return result;
-
-} // end FUNCTION lower_gamma_series()
+} // end FUNCTION lowerGammaSeries()
 
 
 // EXPORTS //
 
-module.exports = lower_gamma_series;
+module.exports = lowerGammaSeries;
 
 },{"./lower_incomplete_gamma_series":53,"@stdlib/math/base/tools/sum-series":108}],53:[function(require,module,exports){
 'use strict';
@@ -4283,22 +4304,30 @@ module.exports = lower_gamma_series;
 * @param {number} z1 - function parameter
 * @returns {Function} series function
 */
-function lower_incomplete_gamma_series( a1, z1 ) {
+function lowerIncompleteGammaSeries( a1, z1 ) {
 	var result = 1.0;
 	var a = a1;
 	var z = z1;
-	return function next() {
+	return next;
+
+	/**
+	* Calculate the next term of the series.
+	*
+	* @private
+	* @returns {number} series expansion term
+	*/
+	function next() {
 		var r = result;
 		a += 1.0;
 		result *= z/a;
 		return r;
-	};
-} // end FUNCTION lower_incomplete_gamma_series()
+	} // end FUNCTION next()
+} // end FUNCTION lowerIncompleteGammaSeries()
 
 
 // EXPORTS //
 
-module.exports = lower_incomplete_gamma_series;
+module.exports = lowerIncompleteGammaSeries;
 
 },{}],54:[function(require,module,exports){
 'use strict';
@@ -4375,7 +4404,7 @@ var DENOM = [
 * @param {number} z - input value
 * @returns {number} Lanczos approximation
 */
-var lanczos_sum_expG_scaled = evalrational( NUM, DENOM );
+var lanczosSumExpGScaled = evalrational( NUM, DENOM );
 
 
 // MAIN //
@@ -4388,46 +4417,33 @@ var lanczos_sum_expG_scaled = evalrational( NUM, DENOM );
 * @param {number} z - input value
 * @returns {number} (z^a)(e^-z)/tgamma(a)
 */
-function regularised_gamma_prefix( a, z ) {
+function regularisedGammaPrefix( a, z ) {
+	var prefix;
+	var amza;
+	var agh;
 	var alz;
 	var amz;
-	var amza;
 	var sq;
-	var agh = a + G - 0.5;
-	var prefix;
-	var d = ( (z - a) - G + 0.5 ) / agh;
+	var d;
 
+	agh = a + G - 0.5;
+	d = ( (z - a) - G + 0.5 ) / agh;
 	if ( a < 1 ) {
-		//
-		// We have to treat a < 1 as a special case because our Lanczos
-		// approximations are optimised against the factorials with a > 1,
-		// and for high precision types especially (128-bit reals for example)
-		// very small values of a can give rather eroneous results for gamma
-		// unless we do this:
-		//
-		// TODO: is this still required?  Lanczos approx should be better now?
-		//
+		// Treat a < 1 as a special case because our Lanczos approximations are optimised against the factorials with a > 1, and for high precision types very small values of `a` can give rather erroneous results for gamma:
 		if ( z <= LOG_MIN_VALUE ) {
-			// Oh dear, have to use logs, should be free of cancellation errors though:
-			return exp( a * ln(z) - z - gammaln( a ) );
+			// Use logs, so should be free of cancellation errors:
+			return exp( ( a * ln(z) ) - ( z - gammaln( a ) ) );
 		}
-		else {
-			// direct calculation, no danger of overflow as gamma(a) < 1/a
-			// for small a.
-			return pow( z, a ) * exp( -z ) / gamma( a );
-		}
+		// No danger of overflow as gamma(a) < 1/a for small a, so direct calculation:
+		return pow( z, a ) * exp( -z ) / gamma( a );
 	}
 	else if ( abs(d*d*a) <= 100 && a > 150 ) {
-		// special case for large a and a ~ z.
-		prefix = a * ( log1p( d ) - d ) + z * (0.5 - G) / agh;
+		// Special case for large a and a ~ z:
+		prefix = ( a * ( log1p( d ) - d ) ) + ( z * (0.5 - G) / agh );
 		prefix = exp( prefix );
 	}
 	else {
-		//
-		// general case.
-		// direct computation is most accurate, but use various fallbacks
-		// for different parts of the problem domain:
-		//
+		// General case. direct computation is most accurate, but use various fallbacks for different parts of the problem domain:
 		alz = a * ln(z / agh);
 		amz = a - z;
 		if (
@@ -4439,16 +4455,16 @@ function regularised_gamma_prefix( a, z ) {
 				min(alz, amz)/2 > LOG_MIN_VALUE &&
 				max(alz, amz)/2 < LOG_MAX_VALUE
 			) {
-				// compute square root of the result and then square it:
+				// Compute square root of the result and then square it:
 				sq = pow( z / agh, a / 2 ) * exp( amz / 2 );
 				prefix = sq * sq;
 			}
 			else if (
-				min(alz, amz)/4 > LOG_MIN_VALUE  &&
+				min(alz, amz)/4 > LOG_MIN_VALUE &&
 				max(alz, amz)/4 < LOG_MAX_VALUE &&
 				z > a
 			) {
-				// compute the 4th root of the result then square it twice:
+				// Compute the 4th root of the result then square it twice:
 				sq = pow( z / agh, a / 4 ) * exp( amz / 4 );
 				prefix = sq * sq;
 				prefix *= prefix;
@@ -4463,19 +4479,18 @@ function regularised_gamma_prefix( a, z ) {
 				prefix = exp( alz + amz );
 			}
 		}
-		else
-		{
+		else {
 			prefix = pow( z / agh, a ) * exp( amz );
 		}
 	}
-	prefix *= sqrt( agh / E ) / lanczos_sum_expG_scaled( a );
+	prefix *= sqrt( agh / E ) / lanczosSumExpGScaled( a );
 	return prefix;
-} // end FUNCTION regularised_gamma_prefix()
+} // end FUNCTION regularisedGammaPrefix()
 
 
 // EXPORTS //
 
-module.exports = regularised_gamma_prefix;
+module.exports = regularisedGammaPrefix;
 
 },{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":36,"@stdlib/math/base/special/gamma":42,"@stdlib/math/base/special/gammaln":62,"@stdlib/math/base/special/ln":65,"@stdlib/math/base/special/log1p":67,"@stdlib/math/base/special/max":69,"@stdlib/math/base/special/min":71,"@stdlib/math/base/special/pow":73,"@stdlib/math/base/special/sqrt":94,"@stdlib/math/base/tools/evalrational":105,"@stdlib/math/constants/float64-e":134}],55:[function(require,module,exports){
 'use strict';
@@ -4502,7 +4517,7 @@ module.exports = regularised_gamma_prefix;
 * @param {number} x - function parameter
 * @returns {Function}  series function
 */
-function small_gamma2_series( a, x ) {
+function smallGamma2Series( a, x ) {
 	var result;
 	var apn;
 	var n;
@@ -4512,19 +4527,28 @@ function small_gamma2_series( a, x ) {
 	x = -x;
 	apn = a + 1.0;
 	n = 1;
-	return function next() {
+	return next;
+
+	/**
+	* Calculate the next term of the series.
+	*
+	* @private
+	* @returns {number} series expansion term
+	*/
+	function next() {
 		r = result / apn;
 		result *= x;
-		result /= ++n;
+		n += 1;
+		result /= n;
 		apn += 1.0;
 		return r;
-	};
-} // end FUNCTION small_gamma2_series()
+	} // end FUNCTION next();
+} // end FUNCTION smallGamma2Series()
 
 
 // EXPORTS //
 
-module.exports = small_gamma2_series;
+module.exports = smallGamma2Series;
 
 },{}],56:[function(require,module,exports){
 'use strict';
@@ -4547,7 +4571,7 @@ module.exports = small_gamma2_series;
 
 var powm1 = require( '@stdlib/math/base/special/powm1' );
 var sumSeries = require( '@stdlib/math/base/tools/sum-series' );
-var small_gamma2_series = require( './small_gamma2_series.js' );
+var smallGamma2Series = require( './small_gamma2_series.js' );
 var tgamma1pm1 = require( './gammap1m1.js' );
 
 
@@ -4559,9 +4583,9 @@ var tgamma1pm1 = require( './gammap1m1.js' );
 * @param {number} a - function parameter
 * @param {number} x - function parameter
 * @param {boolean} invert - boolean indicating if the upper tail of the incomplete gamma function should be evaluated
-* @returns {number} full upper fraction (Q)
+* @returns {Array} full upper fraction (Q) and pgam
 */
-function tgamma_small_upper_part( a, x, invert ) {
+function tgammaSmallUpperPart( a, x, invert ) {
 	var initialValue;
 	var result;
 	var pgam;
@@ -4573,7 +4597,7 @@ function tgamma_small_upper_part( a, x, invert ) {
 	p = powm1( x, a );
 	result -= p;
 	result /= a;
-	s = small_gamma2_series( a, x );
+	s = smallGamma2Series( a, x );
 	p += 1.0;
 	initialValue = invert ? pgam : 0.0;
 	result = -p * sumSeries( s, {
@@ -4583,12 +4607,12 @@ function tgamma_small_upper_part( a, x, invert ) {
 		result = -result;
 	}
 	return [ result, pgam ];
-} // end FUNCTION tgamma_small_upper_part()
+} // end FUNCTION tgammaSmallUpperPart()
 
 
 // EXPORTS //
 
-module.exports = tgamma_small_upper_part;
+module.exports = tgammaSmallUpperPart;
 
 },{"./gammap1m1.js":49,"./small_gamma2_series.js":55,"@stdlib/math/base/special/powm1":81,"@stdlib/math/base/tools/sum-series":108}],57:[function(require,module,exports){
 'use strict';
@@ -4610,7 +4634,7 @@ module.exports = tgamma_small_upper_part;
 // MODULES //
 
 var continuedFraction = require( '@stdlib/math/base/tools/continued-fraction' );
-var upper_incomplete_gamma_fract = require( './upper_incomplete_gamma_fract' );
+var upperIncompleteGammaFract = require( './upper_incomplete_gamma_fract' );
 
 
 // MAIN //
@@ -4618,19 +4642,20 @@ var upper_incomplete_gamma_fract = require( './upper_incomplete_gamma_fract' );
 /**
 * Evaluate the lower incomplete gamma integral via a series expansion and divide by gamma(z) to normalise.
 *
+* @private
 * @param {number} a - function parameter
 * @param {number} z - function parameter
 * @returns {number} function value
 */
-function upper_gamma_fraction( a, z ) {
-	var f = upper_incomplete_gamma_fract( a, z );
+function upperGammaFraction( a, z ) {
+	var f = upperIncompleteGammaFract( a, z );
 	return 1.0 / ( z - a + 1.0 + continuedFraction( f ) );
-} // end FUNCTION upper_gamma_fraction()
+} // end FUNCTION upperGammaFraction()
 
 
 // EXPORTS //
 
-module.exports = upper_gamma_fraction;
+module.exports = upperGammaFraction;
 
 },{"./upper_incomplete_gamma_fract":58,"@stdlib/math/base/tools/continued-fraction":99}],58:[function(require,module,exports){
 'use strict';
@@ -4659,24 +4684,32 @@ module.exports = upper_gamma_fraction;
 * @param {number} z1 - function parameter
 * @returns {Function} series function
 */
-function upper_incomplete_gamma_fract( a1, z1 ) {
+function upperIncompleteGammaFract( a1, z1 ) {
 	var z = z1 - a1 + 1.0;
 	var a = a1;
 	var k = 0;
-	return function next() {
-		++k;
+	return next;
+
+	/**
+	* Calculate the next term of the series.
+	*
+	* @private
+	* @returns {Array} series expansion terms
+	*/
+	function next() {
+		k += 1;
 		z += 2.0;
 		return [
 			k * (a - k),
 			z
 		];
-	};
-} // end FUNCTION upper_incomplete_gamma_fract()
+	} // end FUNCTION next()
+} // end FUNCTION upperIncompleteGammaFract()
 
 
 // EXPORTS //
 
-module.exports = upper_incomplete_gamma_fract;
+module.exports = upperIncompleteGammaFract;
 
 },{}],59:[function(require,module,exports){
 module.exports={"program_message":"{\n  \"x\": [6.909090909090909,25.03030303030303,38.42424242424242,25.81818181818182,6.121212121212121,14,34.09090909090909,20.6969696969697,28.57575757575757,15.18181818181818,2.575757575757576,7.303030303030303,8.484848484848484,32.51515151515152,23.06060606060606,37.63636363636363,17.15151515151515,14.78787878787879,12.42424242424242,31.33333333333333,21.09090909090909,39.21212121212121,3.757575757575757,13.21212121212121,9.666666666666666,10.84848484848485,1.393939393939394,17.54545454545454,1,30.93939393939394,32.90909090909091,8.09090909090909,21.48484848484848,2.181818181818182,10.45454545454545,35.27272727272727,19.12121212121212,37.24242424242424,4.939393939393939,27.39393939393939,21.87878787878788,33.6969696969697,36.45454545454545,7.696969696969696,30.54545454545454,34.48484848484848,11.24242424242424,36.06060606060606,27.78787878787879,3.363636363636363,31.72727272727273,29.75757575757576,25.42424242424242,33.3030303030303,24.24242424242424,24.63636363636364,30.15151515151515,1.787878787878788,13.60606060606061,17.93939393939394,29.36363636363636,8.878787878787879,35.66666666666666,20.3030303030303,26.60606060606061,2.96969696969697,40,23.45454545454545,26.21212121212121,12.03030303030303,23.84848484848485,38.03030303030303,16.75757575757576,36.84848484848484,4.545454545454545,15.96969696969697,14.39393939393939,22.66666666666666,11.63636363636364,32.12121212121212,6.515151515151515,22.27272727272727,18.33333333333333,38.81818181818181,16.36363636363636,12.81818181818182,10.06060606060606,39.6060606060606,5.333333333333333,34.87878787878788,28.18181818181818,15.57575757575757,27,9.272727272727272,4.151515151515151,5.727272727272727,28.96969696969697,18.72727272727273,19.90909090909091,19.51515151515152],  \"s\": [33.3030303030303,18.33333333333333,23.45454545454545,8.09090909090909,24.63636363636364,26.21212121212121,15.57575757575757,31.72727272727273,1.787878787878788,39.6060606060606,25.03030303030303,7.303030303030303,36.06060606060606,17.54545454545454,38.42424242424242,6.909090909090909,1,15.96969696969697,16.75757575757576,24.24242424242424,9.272727272727272,6.121212121212121,2.96969696969697,30.93939393939394,17.15151515151515,3.363636363636363,10.06060606060606,37.24242424242424,2.575757575757576,20.3030303030303,7.696969696969696,13.21212121212121,8.878787878787879,33.6969696969697,19.51515151515152,2.181818181818182,21.48484848484848,5.333333333333333,10.45454545454545,12.03030303030303,38.81818181818181,29.36363636363636,16.36363636363636,38.03030303030303,32.90909090909091,12.42424242424242,28.96969696969697,19.90909090909091,5.727272727272727,22.66666666666666,30.15151515151515,12.81818181818182,20.6969696969697,15.18181818181818,27.78787878787879,14,17.93939393939394,1.393939393939394,31.33333333333333,10.84848484848485,4.545454545454545,32.12121212121212,34.48484848484848,34.09090909090909,35.66666666666666,23.06060606060606,29.75757575757576,9.666666666666666,34.87878787878788,21.87878787878788,14.78787878787879,3.757575757575757,35.27272727272727,25.42424242424242,40,28.18181818181818,37.63636363636363,4.151515151515151,11.63636363636364,22.27272727272727,6.515151515151515,36.45454545454545,25.81818181818182,4.939393939393939,14.39393939393939,27,19.12121212121212,13.60606060606061,32.51515151515152,18.72727272727273,21.09090909090909,28.57575757575757,11.24242424242424,8.484848484848484,30.54545454545454,27.39393939393939,23.84848484848485,39.21212121212121,36.84848484848484,26.60606060606061],  \"lower_regularized\": [4.468692238042444e-13,0.9308222984692197,0.9962121208713994,0.9999859176706617,1.455683834703218e-08,0.002259240291848331,0.9998593947360158,0.01443373836864389,0.9999999999939615,1.30268958510776e-07,9.510948555139059e-17,0.5492339677418903,1.775197241261917e-12,0.9984347775009895,0.002110857714749211,0.9999999998208252,0.999999964421174,0.4132062798579162,0.1393558298321728,0.9171225208049929,0.9986448943862202,0.9999999999895274,0.7300570786232417,2.218035856709911e-05,0.01858470996752804,0.9976353626620308,1.913589207609186e-06,2.848933794253345e-05,0.1377000813822361,0.9826825227836659,0.9999999665592031,0.06024059844532091,0.9992840014167313,3.111892533451103e-28,0.007782411038213597,0.9999999999999694,0.3237410095226616,0.9999999999879138,0.02033007450175353,0.9996562276915179,0.0006742966274106075,0.795104125864932,0.999931494051384,4.925449646949607e-15,0.3579957720681363,0.999994969671174,7.213866412016971e-06,0.9987014929700943,0.9999999098884508,3.888749637122826e-12,0.6340541666525131,0.9998353602537844,0.8510983257794118,0.9998404541662903,0.2612365185481043,0.9922127738505877,0.9934731504703452,0.7212175737405898,2.693732105888512e-05,0.9715971593567203,0.9999999974167069,1.369727672958957e-09,0.6008849181441065,0.003201771383607473,0.05351442500218194,1.487837349145678e-13,0.9605223074909724,0.9995646554897039,0.06025248175123968,0.006757015112570472,0.9812245082050423,0.9999999999998328,5.341334021924329e-05,0.9802285490321732,2.939376697876173e-24,0.003578966424718729,2.480621768669437e-07,0.9999995762496501,0.5389984399347638,0.971846575189636,0.5521275755805121,0.003550654277607147,0.05724519723696431,0.9999999999987244,0.7204782853206132,0.0003664921740799574,0.007000465421569328,0.9999994390314156,1.571358011678042e-15,0.9989452907822186,0.9291396683100448,0.00197994594169812,0.999791101648173,0.6467000444361494,8.053964377466262e-17,5.855476410604037e-11,0.8529089913538268,2.39790231957314e-05,0.0004302849443767439,0.07297207939759251],  \"upper_regularized\": [0.9999999999995531,0.06917770153078028,0.003787879128600608,1.408232933830008e-05,0.9999999854431616,0.9977407597081517,0.0001406052639842087,0.9855662616313561,6.03855324871084e-12,0.9999998697310415,0.9999999999999999,0.4507660322581098,0.9999999999982248,0.001565222499010439,0.9978891422852508,1.791747786893045e-10,3.557882599299656e-08,0.5867937201420839,0.8606441701678272,0.08287747919500711,0.00135510561377978,1.047262566664969e-11,0.2699429213767583,0.999977819641433,0.981415290032472,0.00236463733796924,0.9999980864107924,0.9999715106620575,0.8622999186177639,0.01731747721633411,3.344079696035357e-08,0.9397594015546791,0.0007159985832687021,1,0.9922175889617864,3.066036044416562e-14,0.6762589904773384,1.208618511927218e-11,0.9796699254982465,0.000343772308482131,0.9993257033725894,0.204895874135068,6.850594861591697e-05,0.9999999999999951,0.6420042279318637,5.030328826030831e-06,0.999992786133588,0.001298507029905711,9.011154921311324e-08,0.9999999999961112,0.3659458333474869,0.0001646397462155675,0.1489016742205882,0.0001595458337096667,0.7387634814518956,0.007787226149412308,0.00652684952965472,0.2787824262594102,0.9999730626789411,0.02840284064327971,2.583293103697979e-09,0.9999999986302723,0.3991150818558936,0.9967982286163926,0.946485574997818,0.9999999999998512,0.03947769250902753,0.0004353445102961682,0.9397475182487603,0.9932429848874296,0.01877549179495774,1.671666002876491e-13,0.9999465866597808,0.01977145096782683,1,0.9964210335752812,0.9999997519378231,4.237503499167013e-07,0.4610015600652362,0.02815342481036396,0.447872424419488,0.9964493457223929,0.9427548027630357,1.275611345994054e-12,0.2795217146793868,0.9996335078259201,0.9929995345784307,5.609685843705101e-07,0.9999999999999984,0.001054709217781339,0.07086033168995516,0.9980200540583019,0.0002088983518270069,0.3532999555638507,0.9999999999999999,0.9999999999414453,0.1470910086461732,0.9999760209768043,0.9995697150556233,0.9270279206024075],  \"lower_unregularized\": [3.381547175216295e+23,862324386695890.1,4.631732441414219e+21,6056.790770131719,2830011045112316,6.971930805831642e+22,411113071971.2103,4.637454492629005e+31,0.9282223079750649,6.25626150181583e+38,65018132.66100235,702.3796123368215,2.277486543871461e+28,97258949311909.02,1.355221752464351e+41,607.6721695854803,0.999999964421174,497286253949.2114,1480328220339.796,5.103297951293127e+22,72502.9528793551,147.7639827391408,1.420108828705857,4.782952399505801e+27,595050494263.547,2.861351286231093,0.7960925390550727,2.536923101163369e+37,0.1933342637338628,2.947534772492758e+17,2753.305498775688,49397562.44801258,31109.93007811197,933614495.5585499,225607509157035.5,1.091056229478833,3.426220155266022e+18,40.12895582805901,20751.89286622431,42970480.17150975,1.81672999600097e+41,8.21505662436549e+29,3557809311375.142,7.566349176428413e+28,6.865298287310621e+34,113386124.5636585,1.987142598455145e+24,9.275605650253963e+16,75.87171234497967,1552081946.635129,9.365636875242272e+30,302958405.97286,8.30935777876917e+17,141907491968.2359,1.40946657571443e+27,6178529580.793305,297119426938030.6,0.6401604446646756,2.236535015188298e+28,2471584.64940856,12.39289164966122,1.711483647858574e+25,2.87353730002491e+37,3.826233116482858e+34,1.685146570287568e+38,201980797.0386719,3.742436956811494e+30,172253.0415496159,1.158318424494147e+37,2.380866314028955e+17,48583028676.69975,4.462829359903424,4.146585184489381e+34,2.371236377493494e+24,5.99570592754977e+22,7.12364140745234e+25,9.155580343769268e+35,7.281175391239579,8902401.834189363,1.148398297008522e+20,163.3296105595456,1.864039785595481e+38,4.93091186562018e+23,21.9152395365367,12580399997.2631,1.478031643761723e+23,63862064070870.37,2246351240.37228,7.673308094778619e+19,2891699633498384,2.975413150374832e+18,1.462028452612769e+26,6433959.469715299,8794.592882265189,4533748349064509,8.612500767026227e+16,1.367310524414724e+22,2.722185411373582e+40,9.283568757463974e+37,8.116538027882599e+24],  \"upper_unregularized\": [7.56719638561662e+35,64087011176746.16,1.761115155751057e+19,0.08529492350937476,1.944111033212978e+23,3.07899056330663e+25,57812790.79458234,3.166552261827733e+33,5.605119833382548e-12,4.802572123351732e+45,6.836135458420816e+23,576.4553716401734,1.282948447040422e+40,152470546022.1861,6.406689862247007e+43,1.088795265206364e-07,3.557882599299656e-08,706195585969.1138,9142321884234.701,4.61168993443734e+21,98.38247710945353,1.547476878256514e-09,0.5250936359890004,2.156343098529134e+32,31423232024174.64,0.006782095284207054,416019.8084810521,8.904562229634647e+41,1.210690060675896,5194339482338898,9.207273323336837e-05,770606948.1786486,22.29062591809409,3.000150183602796e+36,2.876380310527156e+16,3.345217726067431e-14,7.156993137105544e+18,4.850059887868792e-10,999996.5979685928,14777.141137067,2.692442624344039e+44,2.116994684548255e+29,243747800.0445615,1.536174302606933e+43,1.231173904933136e+35,570.3723600250179,2.754595316824427e+29,120600992671676.8,6.836918156943094e-06,3.991210778427572e+20,5.405399051685109e+30,49887.20849058984,1.453741885608262e+17,22644361.92932287,3.985899215974796e+27,48491219.20669436,1951994164153.962,0.2474502680700239,8.302513691088988e+32,72252.19244157325,3.201447161614885e-08,1.249506510894295e+34,1.908638476495025e+37,1.191210094609014e+37,2.980442974897326e+39,1.357546220725135e+21,1.538150381966152e+29,75.0220764695851,1.806609177119568e+38,3.499738752936507e+19,929624411.809902,7.460360117590854e-13,7.762786757961187e+38,4.782842105244697e+22,2.039788208119744e+46,1.983294977289756e+28,3.690840009650876e+42,3.085401927282792e-06,7614161.433167849,3.326795188928935e+18,132.4889969204727,5.231208333831019e+40,8.120577913413058e+24,2.795532820301934e-11,4880778574.780628,4.031436579622294e+26,9058683398992654,1260.133182205705,4.883233507419698e+34,3053122414859.632,2.269182663718327e+17,7.369563403634804e+28,1344.324356087596,4804.591094802723,5.629213312327568e+31,1.470845438114143e+27,2.358036862168053e+21,1.135208933994874e+45,2.156611403412862e+41,1.031114562253602e+26]}\n","program_output":"{\n  \"x\": [6.909090909090909,25.03030303030303,38.42424242424242,25.81818181818182,6.121212121212121,14,34.09090909090909,20.6969696969697,28.57575757575757,15.18181818181818,2.575757575757576,7.303030303030303,8.484848484848484,32.51515151515152,23.06060606060606,37.63636363636363,17.15151515151515,14.78787878787879,12.42424242424242,31.33333333333333,21.09090909090909,39.21212121212121,3.757575757575757,13.21212121212121,9.666666666666666,10.84848484848485,1.393939393939394,17.54545454545454,1,30.93939393939394,32.90909090909091,8.09090909090909,21.48484848484848,2.181818181818182,10.45454545454545,35.27272727272727,19.12121212121212,37.24242424242424,4.939393939393939,27.39393939393939,21.87878787878788,33.6969696969697,36.45454545454545,7.696969696969696,30.54545454545454,34.48484848484848,11.24242424242424,36.06060606060606,27.78787878787879,3.363636363636363,31.72727272727273,29.75757575757576,25.42424242424242,33.3030303030303,24.24242424242424,24.63636363636364,30.15151515151515,1.787878787878788,13.60606060606061,17.93939393939394,29.36363636363636,8.878787878787879,35.66666666666666,20.3030303030303,26.60606060606061,2.96969696969697,40,23.45454545454545,26.21212121212121,12.03030303030303,23.84848484848485,38.03030303030303,16.75757575757576,36.84848484848484,4.545454545454545,15.96969696969697,14.39393939393939,22.66666666666666,11.63636363636364,32.12121212121212,6.515151515151515,22.27272727272727,18.33333333333333,38.81818181818181,16.36363636363636,12.81818181818182,10.06060606060606,39.6060606060606,5.333333333333333,34.87878787878788,28.18181818181818,15.57575757575757,27,9.272727272727272,4.151515151515151,5.727272727272727,28.96969696969697,18.72727272727273,19.90909090909091,19.51515151515152],  \"s\": [33.3030303030303,18.33333333333333,23.45454545454545,8.09090909090909,24.63636363636364,26.21212121212121,15.57575757575757,31.72727272727273,1.787878787878788,39.6060606060606,25.03030303030303,7.303030303030303,36.06060606060606,17.54545454545454,38.42424242424242,6.909090909090909,1,15.96969696969697,16.75757575757576,24.24242424242424,9.272727272727272,6.121212121212121,2.96969696969697,30.93939393939394,17.15151515151515,3.363636363636363,10.06060606060606,37.24242424242424,2.575757575757576,20.3030303030303,7.696969696969696,13.21212121212121,8.878787878787879,33.6969696969697,19.51515151515152,2.181818181818182,21.48484848484848,5.333333333333333,10.45454545454545,12.03030303030303,38.81818181818181,29.36363636363636,16.36363636363636,38.03030303030303,32.90909090909091,12.42424242424242,28.96969696969697,19.90909090909091,5.727272727272727,22.66666666666666,30.15151515151515,12.81818181818182,20.6969696969697,15.18181818181818,27.78787878787879,14,17.93939393939394,1.393939393939394,31.33333333333333,10.84848484848485,4.545454545454545,32.12121212121212,34.48484848484848,34.09090909090909,35.66666666666666,23.06060606060606,29.75757575757576,9.666666666666666,34.87878787878788,21.87878787878788,14.78787878787879,3.757575757575757,35.27272727272727,25.42424242424242,40,28.18181818181818,37.63636363636363,4.151515151515151,11.63636363636364,22.27272727272727,6.515151515151515,36.45454545454545,25.81818181818182,4.939393939393939,14.39393939393939,27,19.12121212121212,13.60606060606061,32.51515151515152,18.72727272727273,21.09090909090909,28.57575757575757,11.24242424242424,8.484848484848484,30.54545454545454,27.39393939393939,23.84848484848485,39.21212121212121,36.84848484848484,26.60606060606061],  \"lower_regularized\": [4.468692238042444e-13,0.9308222984692197,0.9962121208713994,0.9999859176706617,1.455683834703218e-08,0.002259240291848331,0.9998593947360158,0.01443373836864389,0.9999999999939615,1.30268958510776e-07,9.510948555139059e-17,0.5492339677418903,1.775197241261917e-12,0.9984347775009895,0.002110857714749211,0.9999999998208252,0.999999964421174,0.4132062798579162,0.1393558298321728,0.9171225208049929,0.9986448943862202,0.9999999999895274,0.7300570786232417,2.218035856709911e-05,0.01858470996752804,0.9976353626620308,1.913589207609186e-06,2.848933794253345e-05,0.1377000813822361,0.9826825227836659,0.9999999665592031,0.06024059844532091,0.9992840014167313,3.111892533451103e-28,0.007782411038213597,0.9999999999999694,0.3237410095226616,0.9999999999879138,0.02033007450175353,0.9996562276915179,0.0006742966274106075,0.795104125864932,0.999931494051384,4.925449646949607e-15,0.3579957720681363,0.999994969671174,7.213866412016971e-06,0.9987014929700943,0.9999999098884508,3.888749637122826e-12,0.6340541666525131,0.9998353602537844,0.8510983257794118,0.9998404541662903,0.2612365185481043,0.9922127738505877,0.9934731504703452,0.7212175737405898,2.693732105888512e-05,0.9715971593567203,0.9999999974167069,1.369727672958957e-09,0.6008849181441065,0.003201771383607473,0.05351442500218194,1.487837349145678e-13,0.9605223074909724,0.9995646554897039,0.06025248175123968,0.006757015112570472,0.9812245082050423,0.9999999999998328,5.341334021924329e-05,0.9802285490321732,2.939376697876173e-24,0.003578966424718729,2.480621768669437e-07,0.9999995762496501,0.5389984399347638,0.971846575189636,0.5521275755805121,0.003550654277607147,0.05724519723696431,0.9999999999987244,0.7204782853206132,0.0003664921740799574,0.007000465421569328,0.9999994390314156,1.571358011678042e-15,0.9989452907822186,0.9291396683100448,0.00197994594169812,0.999791101648173,0.6467000444361494,8.053964377466262e-17,5.855476410604037e-11,0.8529089913538268,2.39790231957314e-05,0.0004302849443767439,0.07297207939759251],  \"upper_regularized\": [0.9999999999995531,0.06917770153078028,0.003787879128600608,1.408232933830008e-05,0.9999999854431616,0.9977407597081517,0.0001406052639842087,0.9855662616313561,6.03855324871084e-12,0.9999998697310415,0.9999999999999999,0.4507660322581098,0.9999999999982248,0.001565222499010439,0.9978891422852508,1.791747786893045e-10,3.557882599299656e-08,0.5867937201420839,0.8606441701678272,0.08287747919500711,0.00135510561377978,1.047262566664969e-11,0.2699429213767583,0.999977819641433,0.981415290032472,0.00236463733796924,0.9999980864107924,0.9999715106620575,0.8622999186177639,0.01731747721633411,3.344079696035357e-08,0.9397594015546791,0.0007159985832687021,1,0.9922175889617864,3.066036044416562e-14,0.6762589904773384,1.208618511927218e-11,0.9796699254982465,0.000343772308482131,0.9993257033725894,0.204895874135068,6.850594861591697e-05,0.9999999999999951,0.6420042279318637,5.030328826030831e-06,0.999992786133588,0.001298507029905711,9.011154921311324e-08,0.9999999999961112,0.3659458333474869,0.0001646397462155675,0.1489016742205882,0.0001595458337096667,0.7387634814518956,0.007787226149412308,0.00652684952965472,0.2787824262594102,0.9999730626789411,0.02840284064327971,2.583293103697979e-09,0.9999999986302723,0.3991150818558936,0.9967982286163926,0.946485574997818,0.9999999999998512,0.03947769250902753,0.0004353445102961682,0.9397475182487603,0.9932429848874296,0.01877549179495774,1.671666002876491e-13,0.9999465866597808,0.01977145096782683,1,0.9964210335752812,0.9999997519378231,4.237503499167013e-07,0.4610015600652362,0.02815342481036396,0.447872424419488,0.9964493457223929,0.9427548027630357,1.275611345994054e-12,0.2795217146793868,0.9996335078259201,0.9929995345784307,5.609685843705101e-07,0.9999999999999984,0.001054709217781339,0.07086033168995516,0.9980200540583019,0.0002088983518270069,0.3532999555638507,0.9999999999999999,0.9999999999414453,0.1470910086461732,0.9999760209768043,0.9995697150556233,0.9270279206024075],  \"lower_unregularized\": [3.381547175216295e+23,862324386695890.1,4.631732441414219e+21,6056.790770131719,2830011045112316,6.971930805831642e+22,411113071971.2103,4.637454492629005e+31,0.9282223079750649,6.25626150181583e+38,65018132.66100235,702.3796123368215,2.277486543871461e+28,97258949311909.02,1.355221752464351e+41,607.6721695854803,0.999999964421174,497286253949.2114,1480328220339.796,5.103297951293127e+22,72502.9528793551,147.7639827391408,1.420108828705857,4.782952399505801e+27,595050494263.547,2.861351286231093,0.7960925390550727,2.536923101163369e+37,0.1933342637338628,2.947534772492758e+17,2753.305498775688,49397562.44801258,31109.93007811197,933614495.5585499,225607509157035.5,1.091056229478833,3.426220155266022e+18,40.12895582805901,20751.89286622431,42970480.17150975,1.81672999600097e+41,8.21505662436549e+29,3557809311375.142,7.566349176428413e+28,6.865298287310621e+34,113386124.5636585,1.987142598455145e+24,9.275605650253963e+16,75.87171234497967,1552081946.635129,9.365636875242272e+30,302958405.97286,8.30935777876917e+17,141907491968.2359,1.40946657571443e+27,6178529580.793305,297119426938030.6,0.6401604446646756,2.236535015188298e+28,2471584.64940856,12.39289164966122,1.711483647858574e+25,2.87353730002491e+37,3.826233116482858e+34,1.685146570287568e+38,201980797.0386719,3.742436956811494e+30,172253.0415496159,1.158318424494147e+37,2.380866314028955e+17,48583028676.69975,4.462829359903424,4.146585184489381e+34,2.371236377493494e+24,5.99570592754977e+22,7.12364140745234e+25,9.155580343769268e+35,7.281175391239579,8902401.834189363,1.148398297008522e+20,163.3296105595456,1.864039785595481e+38,4.93091186562018e+23,21.9152395365367,12580399997.2631,1.478031643761723e+23,63862064070870.37,2246351240.37228,7.673308094778619e+19,2891699633498384,2.975413150374832e+18,1.462028452612769e+26,6433959.469715299,8794.592882265189,4533748349064509,8.612500767026227e+16,1.367310524414724e+22,2.722185411373582e+40,9.283568757463974e+37,8.116538027882599e+24],  \"upper_unregularized\": [7.56719638561662e+35,64087011176746.16,1.761115155751057e+19,0.08529492350937476,1.944111033212978e+23,3.07899056330663e+25,57812790.79458234,3.166552261827733e+33,5.605119833382548e-12,4.802572123351732e+45,6.836135458420816e+23,576.4553716401734,1.282948447040422e+40,152470546022.1861,6.406689862247007e+43,1.088795265206364e-07,3.557882599299656e-08,706195585969.1138,9142321884234.701,4.61168993443734e+21,98.38247710945353,1.547476878256514e-09,0.5250936359890004,2.156343098529134e+32,31423232024174.64,0.006782095284207054,416019.8084810521,8.904562229634647e+41,1.210690060675896,5194339482338898,9.207273323336837e-05,770606948.1786486,22.29062591809409,3.000150183602796e+36,2.876380310527156e+16,3.345217726067431e-14,7.156993137105544e+18,4.850059887868792e-10,999996.5979685928,14777.141137067,2.692442624344039e+44,2.116994684548255e+29,243747800.0445615,1.536174302606933e+43,1.231173904933136e+35,570.3723600250179,2.754595316824427e+29,120600992671676.8,6.836918156943094e-06,3.991210778427572e+20,5.405399051685109e+30,49887.20849058984,1.453741885608262e+17,22644361.92932287,3.985899215974796e+27,48491219.20669436,1951994164153.962,0.2474502680700239,8.302513691088988e+32,72252.19244157325,3.201447161614885e-08,1.249506510894295e+34,1.908638476495025e+37,1.191210094609014e+37,2.980442974897326e+39,1.357546220725135e+21,1.538150381966152e+29,75.0220764695851,1.806609177119568e+38,3.499738752936507e+19,929624411.809902,7.460360117590854e-13,7.762786757961187e+38,4.782842105244697e+22,2.039788208119744e+46,1.983294977289756e+28,3.690840009650876e+42,3.085401927282792e-06,7614161.433167849,3.326795188928935e+18,132.4889969204727,5.231208333831019e+40,8.120577913413058e+24,2.795532820301934e-11,4880778574.780628,4.031436579622294e+26,9058683398992654,1260.133182205705,4.883233507419698e+34,3053122414859.632,2.269182663718327e+17,7.369563403634804e+28,1344.324356087596,4804.591094802723,5.629213312327568e+31,1.470845438114143e+27,2.358036862168053e+21,1.135208933994874e+45,2.156611403412862e+41,1.031114562253602e+26]}\n","status":"0"}
@@ -5187,21 +5220,27 @@ minimum (\\(\mathrm{ymin} = 1.461632144968362245\\)) to maintain monotonicity. O
 * @example
 * var v = gammaln( 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = gammaln( 2.0 );
 * // returns 0.0
+*
 * @example
 * var v = gammaln( 4.0 );
 * // returns ~1.792
+*
 * @example
 * var v = gammaln( -0.5 );
 * // returns ~1.266
+*
 * @example
 * var v = gammaln( 0.5 );
 * // returns ~0.572
+*
 * @example
 * var v = gammaln( 0.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = gammaln( NaN );
 * // returns NaN
@@ -5498,21 +5537,27 @@ var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
 * @example
 * var x = ldexp( 0.5, 3 ); // => 0.5 * 2^3 = 0.5 * 8
 * // returns 4.0
+*
 * @example
 * var x = ldexp( 4.0, -2 ); // => 4 * 2^(-2) = 4 * (1/4)
 * // returns 1.0
+*
 * @example
 * var x = ldexp( 0.0, 20 );
 * // returns 0.0
+*
 * @example
 * var x = ldexp( -0.0, 39 );
 * // returns -0.0
+*
 * @example
 * var x = ldexp( NaN, -101 );
 * // returns NaN
+*
 * @example
 * var x = ldexp( Number.POSITIVE_INFINITY, 11 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var x = ldexp( Number.NEGATIVE_INFINITY, -118 );
 * // returns Number.NEGATIVE_INFINITY
@@ -5682,21 +5727,25 @@ var polyvalQ = evalpoly( Q );
 /**
 * Evaluates the natural logarithm.
 *
-* @param {number} x - input value
+* @param {NonNegativeNumber} x - input value
 * @returns {number} function value
 *
 * @example
 * var v = ln( 4.0 );
 * // returns ~1.386
+*
 * @example
 * var v = ln( 0.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = ln( Number.POSITIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = ln( NaN );
 * // returns NaN
+*
 * @example
 * var v = ln( -4.0 );
 * // returns NaN
@@ -5887,7 +5936,7 @@ var Lp = [
 	2.222219843214978396e-01, // 0x3FCC71C5 0x1D8E78AF
 	1.818357216161805012e-01, // 0x3FC74664 0x96CB03DE
 	1.531383769920937332e-01, // 0x3FC39A09 0xD078C69F
-	1.479819860511658591e-01, // 0x3FC2F112 0xDF3E5244
+	1.479819860511658591e-01 // 0x3FC2F112 0xDF3E5244
 ];
 
 
@@ -6037,18 +6086,23 @@ var polyval = evalpoly.factory( Lp );
 * @example
 * var v = log1p( 4.0 );
 * // returns ~1.609
+*
 * @example
 * var v = log1p( -1.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = log1p( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = log1p( -0.0 );
 * // returns -0.0
+*
 * @example
 * var v = log1p( -2.0 );
 * // returns NaN
+*
 * @example
 * var v = log1p( NaN );
 * // returns NaN
@@ -6089,11 +6143,11 @@ function log1p( x ) {
 	// Check if argument reduction is needed and if we can just return a small value approximation requiring less computation but with equivalent accuracy...
 	if ( y < SQRT2M1 ) { // if |x| < sqrt(2)-1 => ~0.41422
 		if ( y < SMALL ) { // if |x| < 2**-29
-			if( y < TINY ) { // if |x| < 2**-54
+			if ( y < TINY ) { // if |x| < 2**-54
 				return x;
 			}
 			// Use a simple two-term Taylor series...
-			return x - x*x*0.5;
+			return x - ( x*x*0.5 );
 		}
 		// Check if `f=x` can be represented exactly (no need for correction terms), allowing us to bypass argument reduction...
 		if ( x > SQRT2HALFM1 ) { // if x > sqrt(2)/2-1 => ~-0.2929
@@ -6149,13 +6203,13 @@ function log1p( x ) {
 	}
 	// Approximation of log1p(f)...
 	hfsq = 0.5 * f * f;
-	if( hu === 0 ) { // if |f| < 2**-20
+	if ( hu === 0 ) { // if |f| < 2**-20
 		if ( f === 0.0 ) {
 			c += k * LN2_LO;
-			return k * LN2_HI + c;
+			return ( k * LN2_HI ) + c;
 		}
-		R = hfsq * (1.0 - TWO_THIRDS*f); // avoid division
-		return k*LN2_HI - ( (R - (k*LN2_LO + c)) - f );
+		R = hfsq * (1.0 - ( TWO_THIRDS*f ) ); // avoid division
+		return ( k*LN2_HI ) - ( (R - ( (k*LN2_LO) + c)) - f );
 	}
 	s = f / (2.0 + f);
 	z = s * s;
@@ -6163,9 +6217,9 @@ function log1p( x ) {
 	R = z * polyval( z );
 
 	if ( k === 0 ) {
-		return f - ( hfsq - s*(hfsq+R) );
+		return f - ( hfsq - ( s*(hfsq+R) ) );
 	}
-	return k*LN2_HI - ( (hfsq - (s*(hfsq+R) + (k*LN2_LO + c))) - f );
+	return ( k*LN2_HI ) - ( (hfsq - ( (s*(hfsq+R)) + ((k*LN2_LO) + c))) - f );
 } // end FUNCTION log1p()
 
 
@@ -6874,24 +6928,31 @@ var OVT = 8.0085662595372944372e-17;
 * @example
 * var v = pow( 2.0, 3.0 );
 * // returns 8.0
+*
 * @example
 * var v = pow( 4.0, 0.5 );
 * // returns 2.0
+*
 * @example
 * var v = pow( 100.0, 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = pow( Math.PI, 5.0 );
 * // returns ~306.0197
+*
 * @example
 * var v = pow( Math.PI, -0.2 );
 * // returns ~0.7954
+*
 * @example
 * var v = pow( NaN, 3.0 );
 * // returns NaN
+*
 * @example
 * var v = pow( 5.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = pow( NaN, NaN );
 * // returns NaN
@@ -7236,18 +7297,23 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var v = pow( 0.0, 2 );
 * // returns 0.0
+*
 * @example
 * var v = pow( -0.0, -9 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, -9 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( -0.0, 9 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, Number.NEGATIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, Number.POSITIVE_INFINITY );
 * // returns 0.0
@@ -7310,6 +7376,7 @@ var TINY = 1.0e-300;
 * @example
 * var v = pow( 9.0, 3.6893488147419103e19 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( -3.14, -3.6893488147419103e19 );
 * // returns 0.0
@@ -7366,24 +7433,31 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var v = pow( -1.0, Number.POSITIVE_INFINITY );
 * // returns NaN
+*
 * @example
 * var v = pow( -1.0, Number.NEGATIVE_INFINITY );
 * // returns NaN
+*
 * @example
 * var v = pow( 1.0, Number.POSITIVE_INFINITY );
 * // returns 1.0
+*
 * @example
 * var v = pow( 1.0, Number.NEGATIVE_INFINITY );
 * // returns 1.0
+*
 * @example
 * var v = pow( 0.5, Number.POSITIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var v = pow( 0.5, Number.NEGATIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 1.5, Number.NEGATIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var v = pow( 1.5, Number.POSITIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
@@ -7492,24 +7566,31 @@ var trunc = require( '@stdlib/math/base/special/trunc' );
 * @example
 * var y = powm1( 2.0, 3.0 );
 * // returns 7.0
+*
 * @example
 * var y = powm1( 4.0, 0.5 );
 * // returns 1.0
+*
 * @example
 * var y = powm1( 0.0, 100.0 );
 * // returns -1.0
+*
 * @example
 * var y = powm1( 100.0, 0.0 );
 * // returns 0.0
+*
 * @example
 * var y = powm1( 0.0, 0.0 );
 * // returns 0.0
+*
 * @example
 * var y = powm1( Math.PI, 5.0 );
 * // returns ~305.0197
+*
 * @example
 * var y = powm1( NaN, 3.0 );
 * // returns NaN
+*
 * @example
 * var y = powm1( 5.0, NaN );
 * // returns NaN
@@ -8679,12 +8760,12 @@ var Y = [ 0.0, 0.0 ];
 * * Let `S`, `C`, and `T` denote the `sin`, `cos` and `tan`, respectively, on `[-PI/4, +PI/4]`.
 * * Reduce the argument `x` to `y1+y2 = x-k*pi/2` in `[-pi/4 , +pi/4]`, and let `n = k mod 4`. We have
 *
-* | n   |  sin(x)  |  cos(x)  |  tan(x)  |
-* | --- |----------|----------|----------|
-* |  0  |     S    |     C    |    T     |
-* |  1  |     C    |    -S    |   -1/T   |
-* |  2  |    -S    |    -C    |    T     |
-* |  3  |    -C    |     S    |   -1/T   |
+*   | n   |  sin(x)  |  cos(x)  |  tan(x)  |
+*   |:---:|:--------:|:--------:|:--------:|
+*   |  0  |     S    |     C    |    T     |
+*   |  1  |     C    |    -S    |   -1/T   |
+*   |  2  |    -S    |    -C    |    T     |
+*   |  3  |    -C    |     S    |   -1/T   |
 *
 *
 * @param {number} x - input value
@@ -8813,12 +8894,15 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 * @example
 * var y = sinpi( 0.0 );
 * // returns 0.0
+*
 * @example
 * var y = sinpi( 0.5 );
 * // returns 1.0
+*
 * @example
 * var y = sinpi( 0.9 );
 * // returns ~0.309
+*
 * @example
 * var y = sinpi( NaN );
 * // returns NaN
@@ -9462,6 +9546,11 @@ module.exports = evalpoly;
 },{}],101:[function(require,module,exports){
 'use strict';
 
+// MODULES //
+
+var evalpoly = require( './evalpoly.js' );
+
+
 // MAIN //
 
 /**
@@ -9490,6 +9579,10 @@ function factory( c ) {
 	var m;
 	var i;
 
+	// Avoid exceeding the maximum stack size on V8 :(. Note that the choice of `500` was empirically determined...
+	if ( c.length > 500 ) {
+		return polyval;
+	}
 	// Code generation. Start with the function definition...
 	f = 'return function evalpoly(x){';
 
@@ -9543,6 +9636,17 @@ function factory( c ) {
 	*        return c[0]+x*(c[1]+x*(c[2]+x*(c[3]+...+x*(c[n-2]+x*c[n-1]))));
 	*    }
 	*/
+
+	/**
+	* Evaluates a polynomial.
+	*
+	* @private
+	* @param {number} x - value at which to evaluate a polynomial
+	* @returns {number} evaluated polynomial
+	*/
+	function polyval( x ) {
+		return evalpoly( c, x );
+	} // end FUNCTON polyval()
 } // end FUNCTION factory()
 
 
@@ -9550,7 +9654,7 @@ function factory( c ) {
 
 module.exports = factory;
 
-},{}],102:[function(require,module,exports){
+},{"./evalpoly.js":100}],102:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9691,8 +9795,12 @@ function evalrational( P, Q, x ) {
 module.exports = evalrational;
 
 },{"@stdlib/math/base/special/abs":21}],104:[function(require,module,exports){
-/* jshint evil:true */
 'use strict';
+
+// MODULES //
+
+var evalrational = require( './evalrational.js' );
+
 
 // MAIN //
 
@@ -9727,6 +9835,10 @@ function factory( P, Q ) {
 	var m;
 	var i;
 
+	// Avoid exceeding maximum stack size on V8 :(. Note that the value of `500` was empirically determined...
+	if ( P.length > 500 ) {
+		return rational;
+	}
 	// Code generation. Start with the function definition...
 	f = 'return function evalrational(x){';
 
@@ -9837,7 +9949,7 @@ function factory( P, Q ) {
 	f += '//# sourceURL=evalrational.factory.js';
 
 	// Create the function in the global scope:
-	return ( new Function( f ) )();
+	return ( new Function( f ) )(); // eslint-disable-line no-new-func
 
 	/*
 	* returns
@@ -9862,6 +9974,17 @@ function factory( P, Q ) {
 	*		return s1 / s2;
 	*	}
 	*/
+
+	/**
+	* Evaluates a rational function.
+	*
+	* @private
+	* @param {number} x - value at which to evaluate a rational function
+	* @returns {number} evaluated rational function
+	*/
+	function rational( x ) {
+		return evalrational( P, Q, x );
+	} // end FUNCTION rational()
 } // end FUNCTION factory()
 
 
@@ -9869,7 +9992,7 @@ function factory( P, Q ) {
 
 module.exports = factory;
 
-},{}],105:[function(require,module,exports){
+},{"./evalrational.js":103}],105:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11497,6 +11620,7 @@ module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 * // returns 709.782712893384
 */
 
+
 // MAIN //
 
 /**
@@ -11605,6 +11729,7 @@ module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 * var FLOAT64_MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
 * // returns -708.3964185322641
 */
+
 
 // MAIN //
 
@@ -12393,7 +12518,7 @@ function from (value, encodingOrOffset, length) {
     throw new TypeError('"value" argument must not be a number')
   }
 
-  if (value instanceof ArrayBuffer) {
+  if (isArrayBuffer(value)) {
     return fromArrayBuffer(value, encodingOrOffset, length)
   }
 
@@ -12653,7 +12778,7 @@ function byteLength (string, encoding) {
   if (Buffer.isBuffer(string)) {
     return string.length
   }
-  if (isArrayBufferView(string) || string instanceof ArrayBuffer) {
+  if (isArrayBufferView(string) || isArrayBuffer(string)) {
     return string.byteLength
   }
   if (typeof string !== 'string') {
@@ -13985,6 +14110,14 @@ function blitBuffer (src, dst, offset, length) {
   return i
 }
 
+// ArrayBuffers from another context (i.e. an iframe) do not pass the `instanceof` check
+// but they should be treated as valid. See: https://github.com/feross/buffer/issues/166
+function isArrayBuffer (obj) {
+  return obj instanceof ArrayBuffer ||
+    (obj != null && obj.constructor != null && obj.constructor.name === 'ArrayBuffer' &&
+      typeof obj.byteLength === 'number')
+}
+
 // Node 0.10 supports `ArrayBuffer` but lacks `ArrayBuffer.isView`
 function isArrayBufferView (obj) {
   return (typeof ArrayBuffer.isView === 'function') && ArrayBuffer.isView(obj)
@@ -14311,12 +14444,14 @@ var mod = require('./helpers/mod');
 var IsCallable = require('is-callable');
 var toPrimitive = require('es-to-primitive/es5');
 
+var has = require('has');
+
 // https://es5.github.io/#x9
 var ES5 = {
 	ToPrimitive: toPrimitive,
 
 	ToBoolean: function ToBoolean(value) {
-		return Boolean(value);
+		return !!value;
 	},
 	ToNumber: function ToNumber(value) {
 		return Number(value);
@@ -14382,12 +14517,160 @@ var ES5 = {
 		if (typeof x === 'string') {
 			return 'String';
 		}
+	},
+
+	// http://ecma-international.org/ecma-262/6.0/#sec-property-descriptor-specification-type
+	IsPropertyDescriptor: function IsPropertyDescriptor(Desc) {
+		if (this.Type(Desc) !== 'Object') {
+			return false;
+		}
+		var allowed = {
+			'[[Configurable]]': true,
+			'[[Enumerable]]': true,
+			'[[Get]]': true,
+			'[[Set]]': true,
+			'[[Value]]': true,
+			'[[Writable]]': true
+		};
+		// jscs:disable
+		for (var key in Desc) { // eslint-disable-line
+			if (has(Desc, key) && !allowed[key]) {
+				return false;
+			}
+		}
+		// jscs:enable
+		var isData = has(Desc, '[[Value]]');
+		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
+		if (isData && IsAccessor) {
+			throw new TypeError('Property Descriptors may not be both accessor and data descriptors');
+		}
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.1
+	IsAccessorDescriptor: function IsAccessorDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.2
+	IsDataDescriptor: function IsDataDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.3
+	IsGenericDescriptor: function IsGenericDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!this.IsAccessorDescriptor(Desc) && !this.IsDataDescriptor(Desc)) {
+			return true;
+		}
+
+		return false;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.4
+	FromPropertyDescriptor: function FromPropertyDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return Desc;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (this.IsDataDescriptor(Desc)) {
+			return {
+				value: Desc['[[Value]]'],
+				writable: !!Desc['[[Writable]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else if (this.IsAccessorDescriptor(Desc)) {
+			return {
+				get: Desc['[[Get]]'],
+				set: Desc['[[Set]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else {
+			throw new TypeError('FromPropertyDescriptor must be called with a fully populated Property Descriptor');
+		}
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.5
+	ToPropertyDescriptor: function ToPropertyDescriptor(Obj) {
+		if (this.Type(Obj) !== 'Object') {
+			throw new TypeError('ToPropertyDescriptor requires an object');
+		}
+
+		var desc = {};
+		if (has(Obj, 'enumerable')) {
+			desc['[[Enumerable]]'] = this.ToBoolean(Obj.enumerable);
+		}
+		if (has(Obj, 'configurable')) {
+			desc['[[Configurable]]'] = this.ToBoolean(Obj.configurable);
+		}
+		if (has(Obj, 'value')) {
+			desc['[[Value]]'] = Obj.value;
+		}
+		if (has(Obj, 'writable')) {
+			desc['[[Writable]]'] = this.ToBoolean(Obj.writable);
+		}
+		if (has(Obj, 'get')) {
+			var getter = Obj.get;
+			if (typeof getter !== 'undefined' && !this.IsCallable(getter)) {
+				throw new TypeError('getter must be a function');
+			}
+			desc['[[Get]]'] = getter;
+		}
+		if (has(Obj, 'set')) {
+			var setter = Obj.set;
+			if (typeof setter !== 'undefined' && !this.IsCallable(setter)) {
+				throw new TypeError('setter must be a function');
+			}
+			desc['[[Set]]'] = setter;
+		}
+
+		if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+			throw new TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
+		}
+		return desc;
 	}
 };
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":170,"./helpers/isNaN":171,"./helpers/mod":172,"./helpers/sign":173,"es-to-primitive/es5":174,"is-callable":184}],170:[function(require,module,exports){
+},{"./helpers/isFinite":170,"./helpers/isNaN":171,"./helpers/mod":172,"./helpers/sign":173,"es-to-primitive/es5":174,"has":180,"is-callable":184}],170:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
@@ -15822,7 +16105,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
 },{"./_stream_transform":194,"core-util-is":163,"inherits":182}],193:[function(require,module,exports){
-(function (process){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15879,11 +16162,12 @@ var Stream = require('./internal/streams/stream');
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -16078,7 +16362,7 @@ function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
     if (er) {
       stream.emit('error', er);
     } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && Object.getPrototypeOf(chunk) !== Buffer.prototype && !state.objectMode) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
         chunk = _uint8ArrayToBuffer(chunk);
       }
 
@@ -16829,7 +17113,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'))
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./_stream_duplex":191,"./internal/streams/BufferList":196,"./internal/streams/destroy":197,"./internal/streams/stream":198,"_process":161,"core-util-is":163,"events":176,"inherits":182,"isarray":199,"process-nextick-args":189,"safe-buffer":206,"string_decoder/":200,"util":159}],194:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -17046,7 +17330,7 @@ function done(stream, er, data) {
   return stream.push(null);
 }
 },{"./_stream_duplex":191,"core-util-is":163,"inherits":182}],195:[function(require,module,exports){
-(function (process){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17129,11 +17413,12 @@ var Stream = require('./internal/streams/stream');
 
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -17710,8 +17995,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-
-}).call(this,require('_process'))
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./_stream_duplex":191,"./internal/streams/destroy":197,"./internal/streams/stream":198,"_process":161,"core-util-is":163,"inherits":182,"process-nextick-args":189,"safe-buffer":206,"util-deprecate":218}],196:[function(require,module,exports){
 'use strict';
 

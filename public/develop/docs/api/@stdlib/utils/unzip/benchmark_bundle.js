@@ -240,12 +240,15 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isInteger( -3.14 );
 * // returns false
+*
 * @example
 * var bool = isInteger( null );
 * // returns false
@@ -336,6 +339,7 @@ var isInt = require( '@stdlib/math/base/assert/is-integer' );
 /**
 * Tests if a number primitive is an integer value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a number primitive is an integer value
 */
@@ -372,6 +376,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isInteger( new Number( 3.0 ) );
 * // returns true
@@ -408,6 +413,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( -3.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( -3.0 ) );
 * // returns false
@@ -626,6 +632,7 @@ var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
 /**
 * Attempts to serialize a value to a string.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a value can be serialized
 */
@@ -1208,13 +1215,13 @@ console.log( 'Time per op: %d ms', elapsed/1e6*1000 );
 * @example
 * var unzip = require( '@stdlib/utils/unzip' );
 *
-* var arr = [ [1,'a',3], [2,'b',4] ];
+* var arr = [ [ 1, 'a', 3 ], [ 2, 'b', 4 ] ];
 * var out = unzip( arr );
-* // returns [ [1,2], ['a','b'], [3,4] ]
+* // returns [ [ 1, 2 ], [ 'a', 'b' ], [ 3, 4 ] ]
 *
-* arr = [ [1,'a',3], [2,'b',4] ];
-* out = unzip( arr, [0,2] );
-* // returns [ [1,2], [3,4] ]
+* arr = [ [ 1, 'a', 3 ], [ 2, 'b', 4 ] ];
+* out = unzip( arr, [ 0, 2 ] );
+* // returns [ [ 1, 2 ], [ 3, 4 ] ]
 */
 
 // MODULES //
@@ -1245,16 +1252,16 @@ var isArray = require( '@stdlib/assert/is-array' );
 * @returns {Array} array of unzipped arrays
 *
 * @example
-* var arr = [ [1,'a',3], [2,'b',4] ];
+* var arr = [ [ 1, 'a', 3 ], [ 2, 'b', 4 ] ];
 *
 * var out = unzip( arr );
-* // returns [ [1,2], ['a','b'], [3,4] ]
+* // returns [ [ 1, 2 ], [ 'a', 'b' ], [ 3, 4 ] ]
 *
 * @example
-* var arr = [ [1,'a',3], [2,'b',4] ];
+* var arr = [ [ 1, 'a', 3 ], [ 2, 'b', 4 ] ];
 *
-* var out = unzip( arr, [0,2] );
-* // returns [ [1,2], [3,4] ]
+* var out = unzip( arr, [ 0, 2 ] );
+* // returns [ [ 1, 2 ], [ 3, 4 ] ]
 */
 function unzip( arr, idx ) {
 	var numVals;

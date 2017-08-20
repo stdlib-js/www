@@ -164,6 +164,88 @@ module.exports = hasOwnProp;
 'use strict';
 
 /**
+* Test whether a value has in its prototype chain a specified constructor as a prototype property.
+*
+* @module @stdlib/assert/instance-of
+*
+* @example
+* var instanceOf = require( '@stdlib/assert/instance-of' );
+*
+* var bool = instanceOf( [], Array );
+* // returns true
+*
+* bool = instanceOf( {}, Object ); // exception
+* // returns true
+*
+* bool = instanceOf( 'beep', String );
+* // returns false
+*
+* bool = instanceOf( null, Object );
+* // returns false
+*
+* bool = instanceOf( 5, Object );
+* // returns false
+*/
+
+// MODULES //
+
+var instanceOf = require( './instance_of.js' );
+
+
+// EXPORTS //
+
+module.exports = instanceOf;
+
+},{"./instance_of.js":4}],4:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+/**
+* Tests whether a value has in its prototype chain a specified constructor as a prototype property.
+*
+* @param {*} value - value to test
+* @param {Function} constructor - constructor to test against
+* @throws {TypeError} constructor must be callable
+* @returns {boolean} boolean indicating whether a value is an instance of a provided constructor
+*
+* @example
+* var bool = instanceOf( [], Array );
+* // returns true
+*
+* @example
+* var bool = instanceOf( {}, Object ); // exception
+* // returns true
+*
+* @example
+* var bool = instanceOf( 'beep', String );
+* // returns false
+*
+* @example
+* var bool = instanceOf( null, Object );
+* // returns false
+*
+* @example
+* var bool = instanceOf( 5, Object );
+* // returns false
+*/
+function instanceOf( value, constructor ) {
+	// TODO: replace with `isCallable` check
+	if ( typeof constructor !== 'function' ) {
+		throw new TypeError( 'invalid input argument. `constructor` argument must be callable. Value: `'+constructor+'`.' );
+	}
+	return ( value instanceof constructor );
+} // end FUNCTION instanceOf()
+
+
+// EXPORTS //
+
+module.exports = instanceOf;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+/**
 * Test if a value is array-like.
 *
 * @module @stdlib/assert/is-array-like
@@ -190,7 +272,7 @@ var isArrayLike = require( './is_array_like.js' );
 
 module.exports = isArrayLike;
 
-},{"./is_array_like.js":4}],4:[function(require,module,exports){
+},{"./is_array_like.js":6}],6:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -232,7 +314,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/math/base/assert/is-integer":46,"@stdlib/math/constants/uint32-max":54}],5:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":59,"@stdlib/math/constants/uint32-max":67}],7:[function(require,module,exports){
 'use strict';
 
 /**
@@ -259,7 +341,7 @@ var isArray = require( './is_array.js' );
 
 module.exports = isArray;
 
-},{"./is_array.js":6}],6:[function(require,module,exports){
+},{"./is_array.js":8}],8:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -292,7 +374,7 @@ function isArray( value ) {
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":77}],7:[function(require,module,exports){
+},{"@stdlib/utils/native-class":92}],9:[function(require,module,exports){
 'use strict';
 
 /**
@@ -319,7 +401,7 @@ var isBuffer = require( './is_buffer.js' );
 
 module.exports = isBuffer;
 
-},{"./is_buffer.js":8}],8:[function(require,module,exports){
+},{"./is_buffer.js":10}],10:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -338,12 +420,15 @@ var isObjectLike = require( '@stdlib/assert/is-object-like' );
 * @example
 * var v = isBuffer( new Buffer( 'beep' ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( new Buffer( [1,2,3,4] ) );
 * // returns true
+*
 * @example
 * var v = isBuffer( {} );
 * // returns false
+*
 * @example
 * var v = isBuffer( [] );
 * // returns false
@@ -369,7 +454,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":32}],9:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":34}],11:[function(require,module,exports){
 'use strict';
 
 /**
@@ -396,7 +481,7 @@ var isError = require( './is_error.js' );
 
 module.exports = isError;
 
-},{"./is_error.js":10}],10:[function(require,module,exports){
+},{"./is_error.js":12}],12:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -444,7 +529,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":71,"@stdlib/utils/native-class":77}],11:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":86,"@stdlib/utils/native-class":92}],13:[function(require,module,exports){
 'use strict';
 
 /**
@@ -472,7 +557,7 @@ var isFunction = require( './is_function.js' );
 
 module.exports = isFunction;
 
-},{"./is_function.js":12}],12:[function(require,module,exports){
+},{"./is_function.js":14}],14:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -506,7 +591,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":88}],13:[function(require,module,exports){
+},{"@stdlib/utils/type-of":105}],15:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -526,12 +611,15 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isInteger( -3.14 );
 * // returns false
+*
 * @example
 * var bool = isInteger( null );
 * // returns false
@@ -545,7 +633,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":16,"./primitive.js":17}],14:[function(require,module,exports){
+},{"./object.js":18,"./primitive.js":19}],16:[function(require,module,exports){
 'use strict';
 
 /**
@@ -607,7 +695,7 @@ setReadOnly( isInteger, 'isObject', isObject );
 
 module.exports = isInteger;
 
-},{"./generic.js":13,"./object.js":16,"./primitive.js":17,"@stdlib/utils/define-read-only-property":64}],15:[function(require,module,exports){
+},{"./generic.js":15,"./object.js":18,"./primitive.js":19,"@stdlib/utils/define-read-only-property":79}],17:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -622,6 +710,7 @@ var isInt = require( '@stdlib/math/base/assert/is-integer' );
 /**
 * Tests if a number primitive is an integer value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a number primitive is an integer value
 */
@@ -638,7 +727,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/assert/is-integer":46,"@stdlib/math/constants/float64-ninf":52,"@stdlib/math/constants/float64-pinf":53}],16:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":59,"@stdlib/math/constants/float64-ninf":65,"@stdlib/math/constants/float64-pinf":66}],18:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -658,6 +747,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isInteger( new Number( 3.0 ) );
 * // returns true
@@ -674,7 +764,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":15,"@stdlib/assert/is-number":27}],17:[function(require,module,exports){
+},{"./integer.js":17,"@stdlib/assert/is-number":29}],19:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -694,6 +784,7 @@ var isInt = require( './integer.js' );
 * @example
 * var bool = isInteger( -3.0 );
 * // returns true
+*
 * @example
 * var bool = isInteger( new Number( -3.0 ) );
 * // returns false
@@ -710,7 +801,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":15,"@stdlib/assert/is-number":27}],18:[function(require,module,exports){
+},{"./integer.js":17,"@stdlib/assert/is-number":29}],20:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -731,13 +822,16 @@ var isObject = require( './object.js' );
 * var bool = isnan( NaN );
 * // returns true
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns true
 *
-* bool = isnan( 3.14 );
+* @example
+* var bool = isnan( 3.14 );
 * // returns false
 *
-* bool = isnan( null );
+* @example
+* var bool = isnan( null );
 * // returns false
 */
 function isnan( value ) {
@@ -749,7 +843,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":20,"./primitive.js":21}],19:[function(require,module,exports){
+},{"./object.js":22,"./primitive.js":23}],21:[function(require,module,exports){
 'use strict';
 
 /**
@@ -814,7 +908,7 @@ setReadOnly( isnan, 'isObject', isObject );
 
 module.exports = isnan;
 
-},{"./generic.js":18,"./object.js":20,"./primitive.js":21,"@stdlib/utils/define-read-only-property":64}],20:[function(require,module,exports){
+},{"./generic.js":20,"./object.js":22,"./primitive.js":23,"@stdlib/utils/define-read-only-property":79}],22:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -835,7 +929,8 @@ var isNan = require( '@stdlib/math/base/assert/is-nan' );
 * var bool = isnan( NaN );
 * // returns false
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns true
 */
 function isnan( value ) {
@@ -850,7 +945,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":27,"@stdlib/math/base/assert/is-nan":48}],21:[function(require,module,exports){
+},{"@stdlib/assert/is-number":29,"@stdlib/math/base/assert/is-nan":61}],23:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -871,10 +966,12 @@ var isNan = require( '@stdlib/math/base/assert/is-nan' );
 * var bool = isnan( NaN );
 * // returns true
 *
-* bool = isnan( 3.14 );
+* @example
+* var bool = isnan( 3.14 );
 * // returns false
 *
-* bool = isnan( new Number( NaN ) );
+* @example
+* var bool = isnan( new Number( NaN ) );
 * // returns false
 */
 function isnan( value ) {
@@ -889,7 +986,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":27,"@stdlib/math/base/assert/is-nan":48}],22:[function(require,module,exports){
+},{"@stdlib/assert/is-number":29,"@stdlib/math/base/assert/is-nan":61}],24:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -909,15 +1006,19 @@ var isObject = require( './object.js' );
 * @example
 * var bool = isNonNegativeInteger( 5.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 5.0 ) );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( -5.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( 3.14 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( null );
 * // returns false
@@ -931,7 +1032,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":24,"./primitive.js":25}],23:[function(require,module,exports){
+},{"./object.js":26,"./primitive.js":27}],25:[function(require,module,exports){
 'use strict';
 
 /**
@@ -996,7 +1097,7 @@ setReadOnly( isNonNegativeInteger, 'isObject', isObject );
 
 module.exports = isNonNegativeInteger;
 
-},{"./generic.js":22,"./object.js":24,"./primitive.js":25,"@stdlib/utils/define-read-only-property":64}],24:[function(require,module,exports){
+},{"./generic.js":24,"./object.js":26,"./primitive.js":27,"@stdlib/utils/define-read-only-property":79}],26:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1015,6 +1116,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
 * @example
 * var bool = isNonNegativeInteger( 3.0 );
 * // returns false
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 3.0 ) );
 * // returns true
@@ -1031,7 +1133,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":14}],25:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":16}],27:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1050,6 +1152,7 @@ var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
 * @example
 * var bool = isNonNegativeInteger( 3.0 );
 * // returns true
+*
 * @example
 * var bool = isNonNegativeInteger( new Number( 3.0 ) );
 * // returns false
@@ -1066,7 +1169,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":14}],26:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":16}],28:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1108,7 +1211,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":28,"./primitive.js":29}],27:[function(require,module,exports){
+},{"./object.js":30,"./primitive.js":31}],29:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1173,7 +1276,7 @@ setReadOnly( isNumber, 'isObject', isObject );
 
 module.exports = isNumber;
 
-},{"./generic.js":26,"./object.js":28,"./primitive.js":29,"@stdlib/utils/define-read-only-property":64}],28:[function(require,module,exports){
+},{"./generic.js":28,"./object.js":30,"./primitive.js":31,"@stdlib/utils/define-read-only-property":79}],30:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1214,7 +1317,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":31,"@stdlib/utils/detect-tostringtag-support":68,"@stdlib/utils/native-class":77}],29:[function(require,module,exports){
+},{"./try2serialize.js":33,"@stdlib/utils/detect-tostringtag-support":83,"@stdlib/utils/native-class":92}],31:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1244,7 +1347,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],30:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -1255,7 +1358,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],31:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1268,6 +1371,7 @@ var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
 /**
 * Attempts to serialize a value to a string.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a value can be serialized
 */
@@ -1285,7 +1389,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":30}],32:[function(require,module,exports){
+},{"./tostring.js":32}],34:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1331,7 +1435,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":33,"@stdlib/assert/tools/array-function":41,"@stdlib/utils/define-read-only-property":64}],33:[function(require,module,exports){
+},{"./is_object_like.js":35,"@stdlib/assert/tools/array-function":47,"@stdlib/utils/define-read-only-property":79}],35:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1364,7 +1468,194 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],34:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an object.
+*
+* @module @stdlib/assert/is-object
+*
+* @example
+* var isObject = require( '@stdlib/assert/is-object' );
+*
+* var bool = isObject( {} );
+* // returns true
+*
+* bool = isObject( true );
+* // returns false
+*/
+
+// MODULES //
+
+var isObject = require( './is_object.js' );
+
+
+// EXPORTS //
+
+module.exports = isObject;
+
+},{"./is_object.js":37}],37:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an object; e.g., {}.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an object
+*
+* @example
+* var bool = isObject( {} );
+* // returns true
+*
+* @example
+* var bool = isObject( null );
+* // returns false
+*/
+function isObject( value ) {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		!isArray( value )
+	);
+} // end FUNCTION isObject()
+
+
+// EXPORTS //
+
+module.exports = isObject;
+
+},{"@stdlib/assert/is-array":7}],38:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a plain object.
+*
+* @module @stdlib/assert/is-plain-object
+*
+* @example
+* var isPlainObject = require( '@stdlib/assert/is-plain-object' );
+*
+* var bool = isPlainObject( {} );
+* // returns true
+*
+* bool = isPlainObject( null );
+* // returns false
+*/
+
+// MODULES //
+
+var isPlainObject = require( './is_plain_object.js' );
+
+
+// EXPORTS //
+
+module.exports = isPlainObject;
+
+},{"./is_plain_object.js":39}],39:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isObject = require( '@stdlib/assert/is-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var getPrototypeOf = require( '@stdlib/utils/get-prototype-of' );
+var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// VARIABLES //
+
+var objectPrototype = Object.prototype;
+
+
+// FUNCTIONS //
+
+/**
+* Tests that an object only has own properties.
+*
+* @private
+* @param {Object} obj - value to test
+* @returns {boolean} boolean indicating if an object only has own properties
+*/
+function ownProps( obj ) {
+	var key;
+
+	// NOTE: possibility of perf boost if key enumeration order is known (see http://stackoverflow.com/questions/18531624/isplainobject-thing).
+	for ( key in obj ) {
+		if ( !hasOwnProp( obj, key ) ) {
+			return false;
+		}
+	}
+	return true;
+} // end FUNCTION ownProps()
+
+
+// MAIN //
+
+/**
+* Tests if a value is a plain object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a plain object
+*
+* @example
+* var bool = isPlainObject( {} );
+* // returns true
+*
+* @example
+* var bool = isPlainObject( null );
+* // returns false
+*/
+function isPlainObject( value ) {
+	var proto;
+
+	// Screen for obvious non-objects...
+	if ( !isObject( value ) ) {
+		return false;
+	}
+	// Objects with no prototype (e.g., `Object.create( null )`) are plain...
+	proto = getPrototypeOf( value );
+	if ( !proto ) {
+		return true;
+	}
+	// Objects having a prototype are plain if and only if they are constructed with a global `Object` function and the prototype points to the prototype of a plain object...
+	return (
+		// Cannot have own `constructor` property:
+		!hasOwnProp( value, 'constructor' ) &&
+
+		// Prototype `constructor` property must be a function (see also https://bugs.jquery.com/ticket/9897 and http://stackoverflow.com/questions/18531624/isplainobject-thing):
+		hasOwnProp( proto, 'constructor' ) &&
+		isFunction( proto.constructor ) &&
+		nativeClass( proto.constructor ) === '[object Function]' &&
+
+		// Test for object-specific method:
+		hasOwnProp( proto, 'isPrototypeOf' ) &&
+		isFunction( proto.isPrototypeOf ) &&
+
+		(
+			// Test if the prototype matches the global `Object` prototype (same realm):
+			proto === objectPrototype ||
+
+			// Test that all properties are own properties (cross-realm; *most* likely a plain object):
+			ownProps( value )
+		)
+	);
+} // end FUNCTION isPlainObject()
+
+
+// EXPORTS //
+
+module.exports = isPlainObject;
+
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":13,"@stdlib/assert/is-object":36,"@stdlib/utils/get-prototype-of":86,"@stdlib/utils/native-class":92}],40:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1380,6 +1671,14 @@ var isObject = require( './object.js' );
 *
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating whether value is a string
+*
+* @example
+* var bool = isString( new String( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isString( 'beep' );
+* // returns true
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
@@ -1390,7 +1689,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":36,"./primitive.js":37}],35:[function(require,module,exports){
+},{"./object.js":42,"./primitive.js":43}],41:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1447,7 +1746,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":34,"./object.js":36,"./primitive.js":37,"@stdlib/utils/define-read-only-property":64}],36:[function(require,module,exports){
+},{"./generic.js":40,"./object.js":42,"./primitive.js":43,"@stdlib/utils/define-read-only-property":79}],42:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1468,6 +1767,7 @@ var test = require( './try2valueof.js' );
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns true
+*
 * @example
 * var bool = isString( 'beep' );
 * // returns false
@@ -1487,7 +1787,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":38,"@stdlib/utils/detect-tostringtag-support":68,"@stdlib/utils/native-class":77}],37:[function(require,module,exports){
+},{"./try2valueof.js":44,"@stdlib/utils/detect-tostringtag-support":83,"@stdlib/utils/native-class":92}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1499,6 +1799,7 @@ module.exports = isString;
 * @example
 * var bool = isString( 'beep' );
 * // returns true
+*
 * @example
 * var bool = isString( new String( 'beep' ) );
 * // returns false
@@ -1512,7 +1813,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],38:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1525,6 +1826,7 @@ var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
 /**
 * Attempts to extract a string value.
 *
+* @private
 * @param {*} value - value to test
 * @returns {boolean} boolean indicating if a string can be extracted
 */
@@ -1542,7 +1844,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":39}],39:[function(require,module,exports){
+},{"./valueof.js":45}],45:[function(require,module,exports){
 'use strict';
 
 // eslint-disable-next-line no-redeclare
@@ -1553,7 +1855,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],40:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1620,7 +1922,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":5}],41:[function(require,module,exports){
+},{"@stdlib/assert/is-array":7}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1653,10 +1955,59 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":40}],42:[function(require,module,exports){
+},{"./arrayfcn.js":46}],48:[function(require,module,exports){
 module.exports=[["abandon",-2],["abandoned",-2],["abandons",-2],["abducted",-2],["abduction",-2],["abductions",-2],["abhor",-3],["abhorred",-3],["abhorrent",-3],["abhors",-3],["abilities",2],["ability",2],["aboard",1],["absentee",-1],["absentees",-1],["absolve",2],["absolved",2],["absolves",2],["absolving",2],["absorbed",1],["abuse",-3],["abused",-3],["abuses",-3],["abusive",-3],["accept",1],["accepted",1],["accepting",1],["accepts",1],["accident",-2],["accidental",-2],["accidentally",-2],["accidents",-2],["accomplish",2],["accomplished",2],["accomplishes",2],["accusation",-2],["accusations",-2],["accuse",-2],["accused",-2],["accuses",-2],["accusing",-2],["ache",-2],["achievable",1],["aching",-2],["acquit",2],["acquits",2],["acquitted",2],["acquitting",2],["acrimonious",-3],["active",1],["adequate",1],["admire",3],["admired",3],["admires",3],["admiring",3],["admit",-1],["admits",-1],["admitted",-1],["admonish",-2],["admonished",-2],["adopt",1],["adopts",1],["adorable",3],["adore",3],["adored",3],["adores",3],["advanced",1],["advantage",2],["advantages",2],["adventure",2],["adventures",2],["adventurous",2],["affected",-1],["affection",3],["affectionate",3],["afflicted",-1],["affronted",-1],["afraid",-2],["aggravate",-2],["aggravated",-2],["aggravates",-2],["aggravating",-2],["aggression",-2],["aggressions",-2],["aggressive",-2],["aghast",-2],["agog",2],["agonise",-3],["agonised",-3],["agonises",-3],["agonising",-3],["agonize",-3],["agonized",-3],["agonizes",-3],["agonizing",-3],["agree",1],["agreeable",2],["agreed",1],["agreement",1],["agrees",1],["alarm",-2],["alarmed",-2],["alarmist",-2],["alarmists",-2],["alas",-1],["alert",-1],["alienation",-2],["alive",1],["allergic",-2],["allow",1],["alone",-2],["amaze",2],["amazed",2],["amazes",2],["amazing",4],["ambitious",2],["ambivalent",-1],["amuse",3],["amused",3],["amusement",3],["amusements",3],["anger",-3],["angers",-3],["angry",-3],["anguish",-3],["anguished",-3],["animosity",-2],["annoy",-2],["annoyance",-2],["annoyed",-2],["annoying",-2],["annoys",-2],["antagonistic",-2],["anti",-1],["anticipation",1],["anxiety",-2],["anxious",-2],["apathetic",-3],["apathy",-3],["apeshit",-3],["apocalyptic",-2],["apologise",-1],["apologised",-1],["apologises",-1],["apologising",-1],["apologize",-1],["apologized",-1],["apologizes",-1],["apologizing",-1],["apology",-1],["appalled",-2],["appalling",-2],["appease",2],["appeased",2],["appeases",2],["appeasing",2],["applaud",2],["applauded",2],["applauding",2],["applauds",2],["applause",2],["appreciate",2],["appreciated",2],["appreciates",2],["appreciating",2],["appreciation",2],["apprehensive",-2],["approval",2],["approved",2],["approves",2],["ardent",1],["arrest",-2],["arrested",-3],["arrests",-2],["arrogant",-2],["ashame",-2],["ashamed",-2],["ass",-4],["assassination",-3],["assassinations",-3],["asset",2],["assets",2],["assfucking",-4],["asshole",-4],["astonished",2],["astound",3],["astounded",3],["astounding",3],["astoundingly",3],["astounds",3],["attack",-1],["attacked",-1],["attacking",-1],["attacks",-1],["attract",1],["attracted",1],["attracting",2],["attraction",2],["attractions",2],["attracts",1],["audacious",3],["authority",1],["avert",-1],["averted",-1],["averts",-1],["avid",2],["avoid",-1],["avoided",-1],["avoids",-1],["await",-1],["awaited",-1],["awaits",-1],["award",3],["awarded",3],["awards",3],["awesome",4],["awful",-3],["awkward",-2],["axe",-1],["axed",-1],["backed",1],["backing",2],["backs",1],["bad",-3],["badass",-3],["badly",-3],["bailout",-2],["bamboozle",-2],["bamboozled",-2],["bamboozles",-2],["ban",-2],["banish",-1],["bankrupt",-3],["bankster",-3],["banned",-2],["bargain",2],["barrier",-2],["bastard",-5],["bastards",-5],["battle",-1],["battles",-1],["beaten",-2],["beatific",3],["beating",-1],["beauties",3],["beautiful",3],["beautifully",3],["beautify",3],["belittle",-2],["belittled",-2],["beloved",3],["benefit",2],["benefits",2],["benefitted",2],["benefitting",2],["bereave",-2],["bereaved",-2],["bereaves",-2],["bereaving",-2],["best",3],["betray",-3],["betrayal",-3],["betrayed",-3],["betraying",-3],["betrays",-3],["better",2],["bias",-1],["biased",-2],["big",1],["bitch",-5],["bitches",-5],["bitter",-2],["bitterly",-2],["bizarre",-2],["blah",-2],["blame",-2],["blamed",-2],["blames",-2],["blaming",-2],["bless",2],["blesses",2],["blessing",3],["blind",-1],["bliss",3],["blissful",3],["blithe",2],["block",-1],["blockbuster",3],["blocked",-1],["blocking",-1],["blocks",-1],["bloody",-3],["blurry",-2],["boastful",-2],["bold",2],["boldly",2],["bomb",-1],["boost",1],["boosted",1],["boosting",1],["boosts",1],["bore",-2],["bored",-2],["boring",-3],["bother",-2],["bothered",-2],["bothers",-2],["bothersome",-2],["boycott",-2],["boycotted",-2],["boycotting",-2],["boycotts",-2],["brainwashing",-3],["brave",2],["breakthrough",3],["breathtaking",5],["bribe",-3],["bright",1],["brightest",2],["brightness",1],["brilliant",4],["brisk",2],["broke",-1],["broken",-1],["brooding",-2],["bullied",-2],["bullshit",-4],["bully",-2],["bullying",-2],["bummer",-2],["buoyant",2],["burden",-2],["burdened",-2],["burdening",-2],["burdens",-2],["calm",2],["calmed",2],["calming",2],["calms",2],["can't stand",-3],["cancel",-1],["cancelled",-1],["cancelling",-1],["cancels",-1],["cancer",-1],["capable",1],["captivated",3],["care",2],["carefree",1],["careful",2],["carefully",2],["careless",-2],["cares",2],["cashing in",-2],["casualty",-2],["catastrophe",-3],["catastrophic",-4],["cautious",-1],["celebrate",3],["celebrated",3],["celebrates",3],["celebrating",3],["censor",-2],["censored",-2],["censors",-2],["certain",1],["chagrin",-2],["chagrined",-2],["challenge",-1],["chance",2],["chances",2],["chaos",-2],["chaotic",-2],["charged",-3],["charges",-2],["charm",3],["charming",3],["charmless",-3],["chastise",-3],["chastised",-3],["chastises",-3],["chastising",-3],["cheat",-3],["cheated",-3],["cheater",-3],["cheaters",-3],["cheats",-3],["cheer",2],["cheered",2],["cheerful",2],["cheering",2],["cheerless",-2],["cheers",2],["cheery",3],["cherish",2],["cherished",2],["cherishes",2],["cherishing",2],["chic",2],["childish",-2],["chilling",-1],["choke",-2],["choked",-2],["chokes",-2],["choking",-2],["clarifies",2],["clarity",2],["clash",-2],["classy",3],["clean",2],["cleaner",2],["clear",1],["cleared",1],["clearly",1],["clears",1],["clever",2],["clouded",-1],["clueless",-2],["cock",-5],["cocksucker",-5],["cocksuckers",-5],["cocky",-2],["coerced",-2],["collapse",-2],["collapsed",-2],["collapses",-2],["collapsing",-2],["collide",-1],["collides",-1],["colliding",-1],["collision",-2],["collisions",-2],["colluding",-3],["combat",-1],["combats",-1],["comedy",1],["comfort",2],["comfortable",2],["comforting",2],["comforts",2],["commend",2],["commended",2],["commit",1],["commitment",2],["commits",1],["committed",1],["committing",1],["compassionate",2],["compelled",1],["competent",2],["competitive",2],["complacent",-2],["complain",-2],["complained",-2],["complains",-2],["comprehensive",2],["conciliate",2],["conciliated",2],["conciliates",2],["conciliating",2],["condemn",-2],["condemnation",-2],["condemned",-2],["condemns",-2],["confidence",2],["confident",2],["conflict",-2],["conflicting",-2],["conflictive",-2],["conflicts",-2],["confuse",-2],["confused",-2],["confusing",-2],["congrats",2],["congratulate",2],["congratulation",2],["congratulations",2],["consent",2],["consents",2],["consolable",2],["conspiracy",-3],["constrained",-2],["contagion",-2],["contagions",-2],["contagious",-1],["contempt",-2],["contemptuous",-2],["contemptuously",-2],["contend",-1],["contender",-1],["contending",-1],["contentious",-2],["contestable",-2],["controversial",-2],["controversially",-2],["convince",1],["convinced",1],["convinces",1],["convivial",2],["cool",1],["cool stuff",3],["cornered",-2],["corpse",-1],["costly",-2],["courage",2],["courageous",2],["courteous",2],["courtesy",2],["cover-up",-3],["coward",-2],["cowardly",-2],["coziness",2],["cramp",-1],["crap",-3],["crash",-2],["crazier",-2],["craziest",-2],["crazy",-2],["creative",2],["crestfallen",-2],["cried",-2],["cries",-2],["crime",-3],["criminal",-3],["criminals",-3],["crisis",-3],["critic",-2],["criticism",-2],["criticize",-2],["criticized",-2],["criticizes",-2],["criticizing",-2],["critics",-2],["cruel",-3],["cruelty",-3],["crush",-1],["crushed",-2],["crushes",-1],["crushing",-1],["cry",-1],["crying",-2],["cunt",-5],["curious",1],["curse",-1],["cut",-1],["cute",2],["cuts",-1],["cutting",-1],["cynic",-2],["cynical",-2],["cynicism",-2],["damage",-3],["damages",-3],["damn",-4],["damned",-4],["damnit",-4],["danger",-2],["daredevil",2],["daring",2],["darkest",-2],["darkness",-1],["dauntless",2],["dead",-3],["deadlock",-2],["deafening",-1],["dear",2],["dearly",3],["death",-2],["debonair",2],["debt",-2],["deceit",-3],["deceitful",-3],["deceive",-3],["deceived",-3],["deceives",-3],["deceiving",-3],["deception",-3],["decisive",1],["dedicated",2],["defeated",-2],["defect",-3],["defects",-3],["defender",2],["defenders",2],["defenseless",-2],["defer",-1],["deferring",-1],["defiant",-1],["deficit",-2],["degrade",-2],["degraded",-2],["degrades",-2],["dehumanize",-2],["dehumanized",-2],["dehumanizes",-2],["dehumanizing",-2],["deject",-2],["dejected",-2],["dejecting",-2],["dejects",-2],["delay",-1],["delayed",-1],["delight",3],["delighted",3],["delighting",3],["delights",3],["demand",-1],["demanded",-1],["demanding",-1],["demands",-1],["demonstration",-1],["demoralized",-2],["denied",-2],["denier",-2],["deniers",-2],["denies",-2],["denounce",-2],["denounces",-2],["deny",-2],["denying",-2],["depressed",-2],["depressing",-2],["derail",-2],["derailed",-2],["derails",-2],["deride",-2],["derided",-2],["derides",-2],["deriding",-2],["derision",-2],["desirable",2],["desire",1],["desired",2],["desirous",2],["despair",-3],["despairing",-3],["despairs",-3],["desperate",-3],["desperately",-3],["despondent",-3],["destroy",-3],["destroyed",-3],["destroying",-3],["destroys",-3],["destruction",-3],["destructive",-3],["detached",-1],["detain",-2],["detained",-2],["detention",-2],["determined",2],["devastate",-2],["devastated",-2],["devastating",-2],["devoted",3],["diamond",1],["dick",-4],["dickhead",-4],["die",-3],["died",-3],["difficult",-1],["diffident",-2],["dilemma",-1],["dipshit",-3],["dire",-3],["direful",-3],["dirt",-2],["dirtier",-2],["dirtiest",-2],["dirty",-2],["disabling",-1],["disadvantage",-2],["disadvantaged",-2],["disappear",-1],["disappeared",-1],["disappears",-1],["disappoint",-2],["disappointed",-2],["disappointing",-2],["disappointment",-2],["disappointments",-2],["disappoints",-2],["disaster",-2],["disasters",-2],["disastrous",-3],["disbelieve",-2],["discard",-1],["discarded",-1],["discarding",-1],["discards",-1],["disconsolate",-2],["disconsolation",-2],["discontented",-2],["discord",-2],["discounted",-1],["discouraged",-2],["discredited",-2],["disdain",-2],["disgrace",-2],["disgraced",-2],["disguise",-1],["disguised",-1],["disguises",-1],["disguising",-1],["disgust",-3],["disgusted",-3],["disgusting",-3],["disheartened",-2],["dishonest",-2],["disillusioned",-2],["disinclined",-2],["disjointed",-2],["dislike",-2],["dismal",-2],["dismayed",-2],["disorder",-2],["disorganized",-2],["disoriented",-2],["disparage",-2],["disparaged",-2],["disparages",-2],["disparaging",-2],["displeased",-2],["dispute",-2],["disputed",-2],["disputes",-2],["disputing",-2],["disqualified",-2],["disquiet",-2],["disregard",-2],["disregarded",-2],["disregarding",-2],["disregards",-2],["disrespect",-2],["disrespected",-2],["disruption",-2],["disruptions",-2],["disruptive",-2],["dissatisfied",-2],["distort",-2],["distorted",-2],["distorting",-2],["distorts",-2],["distract",-2],["distracted",-2],["distraction",-2],["distracts",-2],["distress",-2],["distressed",-2],["distresses",-2],["distressing",-2],["distrust",-3],["distrustful",-3],["disturb",-2],["disturbed",-2],["disturbing",-2],["disturbs",-2],["dithering",-2],["dizzy",-1],["dodging",-2],["dodgy",-2],["does not work",-3],["dolorous",-2],["dont like",-2],["doom",-2],["doomed",-2],["doubt",-1],["doubted",-1],["doubtful",-1],["doubting",-1],["doubts",-1],["douche",-3],["douchebag",-3],["downcast",-2],["downhearted",-2],["downside",-2],["drag",-1],["dragged",-1],["drags",-1],["drained",-2],["dread",-2],["dreaded",-2],["dreadful",-3],["dreading",-2],["dream",1],["dreams",1],["dreary",-2],["droopy",-2],["drop",-1],["drown",-2],["drowned",-2],["drowns",-2],["drunk",-2],["dubious",-2],["dud",-2],["dull",-2],["dumb",-3],["dumbass",-3],["dump",-1],["dumped",-2],["dumps",-1],["dupe",-2],["duped",-2],["dysfunction",-2],["eager",2],["earnest",2],["ease",2],["easy",1],["ecstatic",4],["eerie",-2],["eery",-2],["effective",2],["effectively",2],["elated",3],["elation",3],["elegant",2],["elegantly",2],["embarrass",-2],["embarrassed",-2],["embarrasses",-2],["embarrassing",-2],["embarrassment",-2],["embittered",-2],["embrace",1],["emergency",-2],["empathetic",2],["emptiness",-1],["empty",-1],["enchanted",2],["encourage",2],["encouraged",2],["encouragement",2],["encourages",2],["endorse",2],["endorsed",2],["endorsement",2],["endorses",2],["enemies",-2],["enemy",-2],["energetic",2],["engage",1],["engages",1],["engrossed",1],["enjoy",2],["enjoying",2],["enjoys",2],["enlighten",2],["enlightened",2],["enlightening",2],["enlightens",2],["ennui",-2],["enrage",-2],["enraged",-2],["enrages",-2],["enraging",-2],["enrapture",3],["enslave",-2],["enslaved",-2],["enslaves",-2],["ensure",1],["ensuring",1],["enterprising",1],["entertaining",2],["enthral",3],["enthusiastic",3],["entitled",1],["entrusted",2],["envies",-1],["envious",-2],["envy",-1],["envying",-1],["erroneous",-2],["error",-2],["errors",-2],["escape",-1],["escapes",-1],["escaping",-1],["esteemed",2],["ethical",2],["euphoria",3],["euphoric",4],["eviction",-1],["evil",-3],["exaggerate",-2],["exaggerated",-2],["exaggerates",-2],["exaggerating",-2],["exasperated",2],["excellence",3],["excellent",3],["excite",3],["excited",3],["excitement",3],["exciting",3],["exclude",-1],["excluded",-2],["exclusion",-1],["exclusive",2],["excuse",-1],["exempt",-1],["exhausted",-2],["exhilarated",3],["exhilarates",3],["exhilarating",3],["exonerate",2],["exonerated",2],["exonerates",2],["exonerating",2],["expand",1],["expands",1],["expel",-2],["expelled",-2],["expelling",-2],["expels",-2],["exploit",-2],["exploited",-2],["exploiting",-2],["exploits",-2],["exploration",1],["explorations",1],["expose",-1],["exposed",-1],["exposes",-1],["exposing",-1],["extend",1],["extends",1],["exuberant",4],["exultant",3],["exultantly",3],["fabulous",4],["fad",-2],["fag",-3],["faggot",-3],["faggots",-3],["fail",-2],["failed",-2],["failing",-2],["fails",-2],["failure",-2],["failures",-2],["fainthearted",-2],["fair",2],["faith",1],["faithful",3],["fake",-3],["fakes",-3],["faking",-3],["fallen",-2],["falling",-1],["falsified",-3],["falsify",-3],["fame",1],["fan",3],["fantastic",4],["farce",-1],["fascinate",3],["fascinated",3],["fascinates",3],["fascinating",3],["fascist",-2],["fascists",-2],["fatalities",-3],["fatality",-3],["fatigue",-2],["fatigued",-2],["fatigues",-2],["fatiguing",-2],["favor",2],["favored",2],["favorite",2],["favorited",2],["favorites",2],["favors",2],["fear",-2],["fearful",-2],["fearing",-2],["fearless",2],["fearsome",-2],["fed up",-3],["feeble",-2],["feeling",1],["felonies",-3],["felony",-3],["fervent",2],["fervid",2],["festive",2],["fiasco",-3],["fidgety",-2],["fight",-1],["fine",2],["fire",-2],["fired",-2],["firing",-2],["fit",1],["fitness",1],["flagship",2],["flees",-1],["flop",-2],["flops",-2],["flu",-2],["flustered",-2],["focused",2],["fond",2],["fondness",2],["fool",-2],["foolish",-2],["fools",-2],["forced",-1],["foreclosure",-2],["foreclosures",-2],["forget",-1],["forgetful",-2],["forgive",1],["forgiving",1],["forgotten",-1],["fortunate",2],["frantic",-1],["fraud",-4],["frauds",-4],["fraudster",-4],["fraudsters",-4],["fraudulence",-4],["fraudulent",-4],["free",1],["freedom",2],["frenzy",-3],["fresh",1],["friendly",2],["fright",-2],["frightened",-2],["frightening",-3],["frikin",-2],["frisky",2],["frowning",-1],["frustrate",-2],["frustrated",-2],["frustrates",-2],["frustrating",-2],["frustration",-2],["ftw",3],["fuck",-4],["fucked",-4],["fucker",-4],["fuckers",-4],["fuckface",-4],["fuckhead",-4],["fucking",-4],["fucktard",-4],["fud",-3],["fuked",-4],["fuking",-4],["fulfill",2],["fulfilled",2],["fulfills",2],["fuming",-2],["fun",4],["funeral",-1],["funerals",-1],["funky",2],["funnier",4],["funny",4],["furious",-3],["futile",2],["gag",-2],["gagged",-2],["gain",2],["gained",2],["gaining",2],["gains",2],["gallant",3],["gallantly",3],["gallantry",3],["generous",2],["genial",3],["ghost",-1],["giddy",-2],["gift",2],["glad",3],["glamorous",3],["glamourous",3],["glee",3],["gleeful",3],["gloom",-1],["gloomy",-2],["glorious",2],["glory",2],["glum",-2],["god",1],["goddamn",-3],["godsend",4],["good",3],["goodness",3],["grace",1],["gracious",3],["grand",3],["grant",1],["granted",1],["granting",1],["grants",1],["grateful",3],["gratification",2],["grave",-2],["gray",-1],["great",3],["greater",3],["greatest",3],["greed",-3],["greedy",-2],["green wash",-3],["green washing",-3],["greenwash",-3],["greenwasher",-3],["greenwashers",-3],["greenwashing",-3],["greet",1],["greeted",1],["greeting",1],["greetings",2],["greets",1],["grey",-1],["grief",-2],["grieved",-2],["gross",-2],["growing",1],["growth",2],["guarantee",1],["guilt",-3],["guilty",-3],["gullibility",-2],["gullible",-2],["gun",-1],["ha",2],["hacked",-1],["haha",3],["hahaha",3],["hahahah",3],["hail",2],["hailed",2],["hapless",-2],["haplessness",-2],["happiness",3],["happy",3],["hard",-1],["hardier",2],["hardship",-2],["hardy",2],["harm",-2],["harmed",-2],["harmful",-2],["harming",-2],["harms",-2],["harried",-2],["harsh",-2],["harsher",-2],["harshest",-2],["hate",-3],["hated",-3],["haters",-3],["hates",-3],["hating",-3],["haunt",-1],["haunted",-2],["haunting",1],["haunts",-1],["havoc",-2],["healthy",2],["heartbreaking",-3],["heartbroken",-3],["heartfelt",3],["heaven",2],["heavenly",4],["heavyhearted",-2],["hell",-4],["help",2],["helpful",2],["helping",2],["helpless",-2],["helps",2],["hero",2],["heroes",2],["heroic",3],["hesitant",-2],["hesitate",-2],["hid",-1],["hide",-1],["hides",-1],["hiding",-1],["highlight",2],["hilarious",2],["hindrance",-2],["hoax",-2],["homesick",-2],["honest",2],["honor",2],["honored",2],["honoring",2],["honour",2],["honoured",2],["honouring",2],["hooligan",-2],["hooliganism",-2],["hooligans",-2],["hope",2],["hopeful",2],["hopefully",2],["hopeless",-2],["hopelessness",-2],["hopes",2],["hoping",2],["horrendous",-3],["horrible",-3],["horrific",-3],["horrified",-3],["hostile",-2],["huckster",-2],["hug",2],["huge",1],["hugs",2],["humerous",3],["humiliated",-3],["humiliation",-3],["humor",2],["humorous",2],["humour",2],["humourous",2],["hunger",-2],["hurrah",5],["hurt",-2],["hurting",-2],["hurts",-2],["hypocritical",-2],["hysteria",-3],["hysterical",-3],["hysterics",-3],["idiot",-3],["idiotic",-3],["ignorance",-2],["ignorant",-2],["ignore",-1],["ignored",-2],["ignores",-1],["ill",-2],["illegal",-3],["illiteracy",-2],["illness",-2],["illnesses",-2],["imbecile",-3],["immobilized",-1],["immortal",2],["immune",1],["impatient",-2],["imperfect",-2],["importance",2],["important",2],["impose",-1],["imposed",-1],["imposes",-1],["imposing",-1],["impotent",-2],["impress",3],["impressed",3],["impresses",3],["impressive",3],["imprisoned",-2],["improve",2],["improved",2],["improvement",2],["improves",2],["improving",2],["inability",-2],["inaction",-2],["inadequate",-2],["incapable",-2],["incapacitated",-2],["incensed",-2],["incompetence",-2],["incompetent",-2],["inconsiderate",-2],["inconvenience",-2],["inconvenient",-2],["increase",1],["increased",1],["indecisive",-2],["indestructible",2],["indifference",-2],["indifferent",-2],["indignant",-2],["indignation",-2],["indoctrinate",-2],["indoctrinated",-2],["indoctrinates",-2],["indoctrinating",-2],["ineffective",-2],["ineffectively",-2],["infatuated",2],["infatuation",2],["infected",-2],["inferior",-2],["inflamed",-2],["influential",2],["infringement",-2],["infuriate",-2],["infuriated",-2],["infuriates",-2],["infuriating",-2],["inhibit",-1],["injured",-2],["injury",-2],["injustice",-2],["innovate",1],["innovates",1],["innovation",1],["innovative",2],["inquisition",-2],["inquisitive",2],["insane",-2],["insanity",-2],["insecure",-2],["insensitive",-2],["insensitivity",-2],["insignificant",-2],["insipid",-2],["inspiration",2],["inspirational",2],["inspire",2],["inspired",2],["inspires",2],["inspiring",3],["insult",-2],["insulted",-2],["insulting",-2],["insults",-2],["intact",2],["integrity",2],["intelligent",2],["intense",1],["interest",1],["interested",2],["interesting",2],["interests",1],["interrogated",-2],["interrupt",-2],["interrupted",-2],["interrupting",-2],["interruption",-2],["interrupts",-2],["intimidate",-2],["intimidated",-2],["intimidates",-2],["intimidating",-2],["intimidation",-2],["intricate",2],["intrigues",1],["invincible",2],["invite",1],["inviting",1],["invulnerable",2],["irate",-3],["ironic",-1],["irony",-1],["irrational",-1],["irresistible",2],["irresolute",-2],["irresponsible",2],["irreversible",-1],["irritate",-3],["irritated",-3],["irritating",-3],["isolated",-1],["itchy",-2],["jackass",-4],["jackasses",-4],["jailed",-2],["jaunty",2],["jealous",-2],["jeopardy",-2],["jerk",-3],["jesus",1],["jewel",1],["jewels",1],["jocular",2],["join",1],["joke",2],["jokes",2],["jolly",2],["jovial",2],["joy",3],["joyful",3],["joyfully",3],["joyless",-2],["joyous",3],["jubilant",3],["jumpy",-1],["justice",2],["justifiably",2],["justified",2],["keen",1],["kill",-3],["killed",-3],["killing",-3],["kills",-3],["kind",2],["kinder",2],["kiss",2],["kudos",3],["lack",-2],["lackadaisical",-2],["lag",-1],["lagged",-2],["lagging",-2],["lags",-2],["lame",-2],["landmark",2],["laugh",1],["laughed",1],["laughing",1],["laughs",1],["laughting",1],["launched",1],["lawl",3],["lawsuit",-2],["lawsuits",-2],["lazy",-1],["leak",-1],["leaked",-1],["leave",-1],["legal",1],["legally",1],["lenient",1],["lethargic",-2],["lethargy",-2],["liar",-3],["liars",-3],["libelous",-2],["lied",-2],["lifesaver",4],["lighthearted",1],["like",2],["liked",2],["likes",2],["limitation",-1],["limited",-1],["limits",-1],["litigation",-1],["litigious",-2],["lively",2],["livid",-2],["lmao",4],["lmfao",4],["loathe",-3],["loathed",-3],["loathes",-3],["loathing",-3],["lobby",-2],["lobbying",-2],["lol",3],["lonely",-2],["lonesome",-2],["longing",-1],["loom",-1],["loomed",-1],["looming",-1],["looms",-1],["loose",-3],["looses",-3],["loser",-3],["losing",-3],["loss",-3],["lost",-3],["lovable",3],["love",3],["loved",3],["lovelies",3],["lovely",3],["loving",2],["lowest",-1],["loyal",3],["loyalty",3],["luck",3],["luckily",3],["lucky",3],["lugubrious",-2],["lunatic",-3],["lunatics",-3],["lurk",-1],["lurking",-1],["lurks",-1],["mad",-3],["maddening",-3],["made-up",-1],["madly",-3],["madness",-3],["mandatory",-1],["manipulated",-1],["manipulating",-1],["manipulation",-1],["marvel",3],["marvelous",3],["marvels",3],["masterpiece",4],["masterpieces",4],["matter",1],["matters",1],["mature",2],["meaningful",2],["meaningless",-2],["medal",3],["mediocrity",-3],["meditative",1],["melancholy",-2],["menace",-2],["menaced",-2],["mercy",2],["merry",3],["mess",-2],["messed",-2],["messing up",-2],["methodical",2],["mindless",-2],["miracle",4],["mirth",3],["mirthful",3],["mirthfully",3],["misbehave",-2],["misbehaved",-2],["misbehaves",-2],["misbehaving",-2],["mischief",-1],["mischiefs",-1],["miserable",-3],["misery",-2],["misgiving",-2],["misinformation",-2],["misinformed",-2],["misinterpreted",-2],["misleading",-3],["misread",-1],["misreporting",-2],["misrepresentation",-2],["miss",-2],["missed",-2],["missing",-2],["mistake",-2],["mistaken",-2],["mistakes",-2],["mistaking",-2],["misunderstand",-2],["misunderstanding",-2],["misunderstands",-2],["misunderstood",-2],["moan",-2],["moaned",-2],["moaning",-2],["moans",-2],["mock",-2],["mocked",-2],["mocking",-2],["mocks",-2],["mongering",-2],["monopolize",-2],["monopolized",-2],["monopolizes",-2],["monopolizing",-2],["moody",-1],["mope",-1],["moping",-1],["moron",-3],["motherfucker",-5],["motherfucking",-5],["motivate",1],["motivated",2],["motivating",2],["motivation",1],["mourn",-2],["mourned",-2],["mournful",-2],["mourning",-2],["mourns",-2],["mumpish",-2],["murder",-2],["murderer",-2],["murdering",-3],["murderous",-3],["murders",-2],["myth",-1],["n00b",-2],["naive",-2],["nasty",-3],["natural",1],["naïve",-2],["needy",-2],["negative",-2],["negativity",-2],["neglect",-2],["neglected",-2],["neglecting",-2],["neglects",-2],["nerves",-1],["nervous",-2],["nervously",-2],["nice",3],["nifty",2],["niggas",-5],["nigger",-5],["no",-1],["no fun",-3],["noble",2],["noisy",-1],["nonsense",-2],["noob",-2],["nosey",-2],["not good",-2],["not working",-3],["notorious",-2],["novel",2],["numb",-1],["nuts",-3],["obliterate",-2],["obliterated",-2],["obnoxious",-3],["obscene",-2],["obsessed",2],["obsolete",-2],["obstacle",-2],["obstacles",-2],["obstinate",-2],["odd",-2],["offend",-2],["offended",-2],["offender",-2],["offending",-2],["offends",-2],["offline",-1],["oks",2],["ominous",3],["once-in-a-lifetime",3],["opportunities",2],["opportunity",2],["oppressed",-2],["oppressive",-2],["optimism",2],["optimistic",2],["optionless",-2],["outcry",-2],["outmaneuvered",-2],["outrage",-3],["outraged",-3],["outreach",2],["outstanding",5],["overjoyed",4],["overload",-1],["overlooked",-1],["overreact",-2],["overreacted",-2],["overreaction",-2],["overreacts",-2],["oversell",-2],["overselling",-2],["oversells",-2],["oversimplification",-2],["oversimplified",-2],["oversimplifies",-2],["oversimplify",-2],["overstatement",-2],["overstatements",-2],["overweight",-1],["oxymoron",-1],["pain",-2],["pained",-2],["panic",-3],["panicked",-3],["panics",-3],["paradise",3],["paradox",-1],["pardon",2],["pardoned",2],["pardoning",2],["pardons",2],["parley",-1],["passionate",2],["passive",-1],["passively",-1],["pathetic",-2],["pay",-1],["peace",2],["peaceful",2],["peacefully",2],["penalty",-2],["pensive",-1],["perfect",3],["perfected",2],["perfectly",3],["perfects",2],["peril",-2],["perjury",-3],["perpetrator",-2],["perpetrators",-2],["perplexed",-2],["persecute",-2],["persecuted",-2],["persecutes",-2],["persecuting",-2],["perturbed",-2],["pesky",-2],["pessimism",-2],["pessimistic",-2],["petrified",-2],["phobic",-2],["picturesque",2],["pileup",-1],["pique",-2],["piqued",-2],["piss",-4],["pissed",-4],["pissing",-3],["piteous",-2],["pitied",-1],["pity",-2],["playful",2],["pleasant",3],["please",1],["pleased",3],["pleasure",3],["poised",-2],["poison",-2],["poisoned",-2],["poisons",-2],["pollute",-2],["polluted",-2],["polluter",-2],["polluters",-2],["pollutes",-2],["poor",-2],["poorer",-2],["poorest",-2],["popular",3],["positive",2],["positively",2],["possessive",-2],["postpone",-1],["postponed",-1],["postpones",-1],["postponing",-1],["poverty",-1],["powerful",2],["powerless",-2],["praise",3],["praised",3],["praises",3],["praising",3],["pray",1],["praying",1],["prays",1],["prblm",-2],["prblms",-2],["prepared",1],["pressure",-1],["pressured",-2],["pretend",-1],["pretending",-1],["pretends",-1],["pretty",1],["prevent",-1],["prevented",-1],["preventing",-1],["prevents",-1],["prick",-5],["prison",-2],["prisoner",-2],["prisoners",-2],["privileged",2],["proactive",2],["problem",-2],["problems",-2],["profiteer",-2],["progress",2],["prominent",2],["promise",1],["promised",1],["promises",1],["promote",1],["promoted",1],["promotes",1],["promoting",1],["propaganda",-2],["prosecute",-1],["prosecuted",-2],["prosecutes",-1],["prosecution",-1],["prospect",1],["prospects",1],["prosperous",3],["protect",1],["protected",1],["protects",1],["protest",-2],["protesters",-2],["protesting",-2],["protests",-2],["proud",2],["proudly",2],["provoke",-1],["provoked",-1],["provokes",-1],["provoking",-1],["pseudoscience",-3],["punish",-2],["punished",-2],["punishes",-2],["punitive",-2],["pushy",-1],["puzzled",-2],["quaking",-2],["questionable",-2],["questioned",-1],["questioning",-1],["racism",-3],["racist",-3],["racists",-3],["rage",-2],["rageful",-2],["rainy",-1],["rant",-3],["ranter",-3],["ranters",-3],["rants",-3],["rape",-4],["rapist",-4],["rapture",2],["raptured",2],["raptures",2],["rapturous",4],["rash",-2],["ratified",2],["reach",1],["reached",1],["reaches",1],["reaching",1],["reassure",1],["reassured",1],["reassures",1],["reassuring",2],["rebellion",-2],["recession",-2],["reckless",-2],["recommend",2],["recommended",2],["recommends",2],["redeemed",2],["refuse",-2],["refused",-2],["refusing",-2],["regret",-2],["regretful",-2],["regrets",-2],["regretted",-2],["regretting",-2],["reject",-1],["rejected",-1],["rejecting",-1],["rejects",-1],["rejoice",4],["rejoiced",4],["rejoices",4],["rejoicing",4],["relaxed",2],["relentless",-1],["reliant",2],["relieve",1],["relieved",2],["relieves",1],["relieving",2],["relishing",2],["remarkable",2],["remorse",-2],["repulse",-1],["repulsed",-2],["rescue",2],["rescued",2],["rescues",2],["resentful",-2],["resign",-1],["resigned",-1],["resigning",-1],["resigns",-1],["resolute",2],["resolve",2],["resolved",2],["resolves",2],["resolving",2],["respected",2],["responsible",2],["responsive",2],["restful",2],["restless",-2],["restore",1],["restored",1],["restores",1],["restoring",1],["restrict",-2],["restricted",-2],["restricting",-2],["restriction",-2],["restricts",-2],["retained",-1],["retard",-2],["retarded",-2],["retreat",-1],["revenge",-2],["revengeful",-2],["revered",2],["revive",2],["revives",2],["reward",2],["rewarded",2],["rewarding",2],["rewards",2],["rich",2],["ridiculous",-3],["rig",-1],["rigged",-1],["right direction",3],["rigorous",3],["rigorously",3],["riot",-2],["riots",-2],["risk",-2],["risks",-2],["rob",-2],["robber",-2],["robed",-2],["robing",-2],["robs",-2],["robust",2],["rofl",4],["roflcopter",4],["roflmao",4],["romance",2],["rotfl",4],["rotflmfao",4],["rotflol",4],["ruin",-2],["ruined",-2],["ruining",-2],["ruins",-2],["sabotage",-2],["sad",-2],["sadden",-2],["saddened",-2],["sadly",-2],["safe",1],["safely",1],["safety",1],["salient",1],["sappy",-1],["sarcastic",-2],["satisfied",2],["save",2],["saved",2],["scam",-2],["scams",-2],["scandal",-3],["scandalous",-3],["scandals",-3],["scapegoat",-2],["scapegoats",-2],["scare",-2],["scared",-2],["scary",-2],["sceptical",-2],["scold",-2],["scoop",3],["scorn",-2],["scornful",-2],["scream",-2],["screamed",-2],["screaming",-2],["screams",-2],["screwed",-2],["screwed up",-3],["scumbag",-4],["secure",2],["secured",2],["secures",2],["sedition",-2],["seditious",-2],["seduced",-1],["self-confident",2],["self-deluded",-2],["selfish",-3],["selfishness",-3],["sentence",-2],["sentenced",-2],["sentences",-2],["sentencing",-2],["serene",2],["severe",-2],["sexy",3],["shaky",-2],["shame",-2],["shamed",-2],["shameful",-2],["share",1],["shared",1],["shares",1],["shattered",-2],["shit",-4],["shithead",-4],["shitty",-3],["shock",-2],["shocked",-2],["shocking",-2],["shocks",-2],["shoot",-1],["short-sighted",-2],["short-sightedness",-2],["shortage",-2],["shortages",-2],["shrew",-4],["shy",-1],["sick",-2],["sigh",-2],["significance",1],["significant",1],["silencing",-1],["silly",-1],["sincere",2],["sincerely",2],["sincerest",2],["sincerity",2],["sinful",-3],["singleminded",-2],["skeptic",-2],["skeptical",-2],["skepticism",-2],["skeptics",-2],["slam",-2],["slash",-2],["slashed",-2],["slashes",-2],["slashing",-2],["slavery",-3],["sleeplessness",-2],["slick",2],["slicker",2],["slickest",2],["sluggish",-2],["slut",-5],["smart",1],["smarter",2],["smartest",2],["smear",-2],["smile",2],["smiled",2],["smiles",2],["smiling",2],["smog",-2],["sneaky",-1],["snub",-2],["snubbed",-2],["snubbing",-2],["snubs",-2],["sobering",1],["solemn",-1],["solid",2],["solidarity",2],["solution",1],["solutions",1],["solve",1],["solved",1],["solves",1],["solving",1],["somber",-2],["some kind",0],["son-of-a-bitch",-5],["soothe",3],["soothed",3],["soothing",3],["sophisticated",2],["sore",-1],["sorrow",-2],["sorrowful",-2],["sorry",-1],["spam",-2],["spammer",-3],["spammers",-3],["spamming",-2],["spark",1],["sparkle",3],["sparkles",3],["sparkling",3],["speculative",-2],["spirit",1],["spirited",2],["spiritless",-2],["spiteful",-2],["splendid",3],["sprightly",2],["squelched",-1],["stab",-2],["stabbed",-2],["stable",2],["stabs",-2],["stall",-2],["stalled",-2],["stalling",-2],["stamina",2],["stampede",-2],["startled",-2],["starve",-2],["starved",-2],["starves",-2],["starving",-2],["steadfast",2],["steal",-2],["steals",-2],["stereotype",-2],["stereotyped",-2],["stifled",-1],["stimulate",1],["stimulated",1],["stimulates",1],["stimulating",2],["stingy",-2],["stolen",-2],["stop",-1],["stopped",-1],["stopping",-1],["stops",-1],["stout",2],["straight",1],["strange",-1],["strangely",-1],["strangled",-2],["strength",2],["strengthen",2],["strengthened",2],["strengthening",2],["strengthens",2],["stressed",-2],["stressor",-2],["stressors",-2],["stricken",-2],["strike",-1],["strikers",-2],["strikes",-1],["strong",2],["stronger",2],["strongest",2],["struck",-1],["struggle",-2],["struggled",-2],["struggles",-2],["struggling",-2],["stubborn",-2],["stuck",-2],["stunned",-2],["stunning",4],["stupid",-2],["stupidly",-2],["suave",2],["substantial",1],["substantially",1],["subversive",-2],["success",2],["successful",3],["suck",-3],["sucks",-3],["suffer",-2],["suffering",-2],["suffers",-2],["suicidal",-2],["suicide",-2],["suing",-2],["sulking",-2],["sulky",-2],["sullen",-2],["sunshine",2],["super",3],["superb",5],["superior",2],["support",2],["supported",2],["supporter",1],["supporters",1],["supporting",1],["supportive",2],["supports",2],["survived",2],["surviving",2],["survivor",2],["suspect",-1],["suspected",-1],["suspecting",-1],["suspects",-1],["suspend",-1],["suspended",-1],["suspicious",-2],["swear",-2],["swearing",-2],["swears",-2],["sweet",2],["swift",2],["swiftly",2],["swindle",-3],["swindles",-3],["swindling",-3],["sympathetic",2],["sympathy",2],["tard",-2],["tears",-2],["tender",2],["tense",-2],["tension",-1],["terrible",-3],["terribly",-3],["terrific",4],["terrified",-3],["terror",-3],["terrorize",-3],["terrorized",-3],["terrorizes",-3],["thank",2],["thankful",2],["thanks",2],["thorny",-2],["thoughtful",2],["thoughtless",-2],["threat",-2],["threaten",-2],["threatened",-2],["threatening",-2],["threatens",-2],["threats",-2],["thrilled",5],["thwart",-2],["thwarted",-2],["thwarting",-2],["thwarts",-2],["timid",-2],["timorous",-2],["tired",-2],["tits",-2],["tolerant",2],["toothless",-2],["top",2],["tops",2],["torn",-2],["torture",-4],["tortured",-4],["tortures",-4],["torturing",-4],["totalitarian",-2],["totalitarianism",-2],["tout",-2],["touted",-2],["touting",-2],["touts",-2],["tragedy",-2],["tragic",-2],["tranquil",2],["trap",-1],["trapped",-2],["trauma",-3],["traumatic",-3],["travesty",-2],["treason",-3],["treasonous",-3],["treasure",2],["treasures",2],["trembling",-2],["tremulous",-2],["tricked",-2],["trickery",-2],["triumph",4],["triumphant",4],["trouble",-2],["troubled",-2],["troubles",-2],["true",2],["trust",1],["trusted",2],["tumor",-2],["twat",-5],["ugly",-3],["unacceptable",-2],["unappreciated",-2],["unapproved",-2],["unaware",-2],["unbelievable",-1],["unbelieving",-1],["unbiased",2],["uncertain",-1],["unclear",-1],["uncomfortable",-2],["unconcerned",-2],["unconfirmed",-1],["unconvinced",-1],["uncredited",-1],["undecided",-1],["underestimate",-1],["underestimated",-1],["underestimates",-1],["underestimating",-1],["undermine",-2],["undermined",-2],["undermines",-2],["undermining",-2],["undeserving",-2],["undesirable",-2],["uneasy",-2],["unemployment",-2],["unequal",-1],["unequaled",2],["unethical",-2],["unfair",-2],["unfocused",-2],["unfulfilled",-2],["unhappy",-2],["unhealthy",-2],["unified",1],["unimpressed",-2],["unintelligent",-2],["united",1],["unjust",-2],["unlovable",-2],["unloved",-2],["unmatched",1],["unmotivated",-2],["unprofessional",-2],["unresearched",-2],["unsatisfied",-2],["unsecured",-2],["unsettled",-1],["unsophisticated",-2],["unstable",-2],["unstoppable",2],["unsupported",-2],["unsure",-1],["untarnished",2],["unwanted",-2],["unworthy",-2],["upset",-2],["upsets",-2],["upsetting",-2],["uptight",-2],["urgent",-1],["useful",2],["usefulness",2],["useless",-2],["uselessness",-2],["vague",-2],["validate",1],["validated",1],["validates",1],["validating",1],["verdict",-1],["verdicts",-1],["vested",1],["vexation",-2],["vexing",-2],["vibrant",3],["vicious",-2],["victim",-3],["victimize",-3],["victimized",-3],["victimizes",-3],["victimizing",-3],["victims",-3],["vigilant",3],["vile",-3],["vindicate",2],["vindicated",2],["vindicates",2],["vindicating",2],["violate",-2],["violated",-2],["violates",-2],["violating",-2],["violence",-3],["violent",-3],["virtuous",2],["virulent",-2],["vision",1],["visionary",3],["visioning",1],["visions",1],["vitality",3],["vitamin",1],["vitriolic",-3],["vivacious",3],["vociferous",-1],["vulnerability",-2],["vulnerable",-2],["walkout",-2],["walkouts",-2],["wanker",-3],["want",1],["war",-2],["warfare",-2],["warm",1],["warmth",2],["warn",-2],["warned",-2],["warning",-3],["warnings",-3],["warns",-2],["waste",-1],["wasted",-2],["wasting",-2],["wavering",-1],["weak",-2],["weakness",-2],["wealth",3],["wealthy",2],["weary",-2],["weep",-2],["weeping",-2],["weird",-2],["welcome",2],["welcomed",2],["welcomes",2],["whimsical",1],["whitewash",-3],["whore",-4],["wicked",-2],["widowed",-1],["willingness",2],["win",4],["winner",4],["winning",4],["wins",4],["winwin",3],["wish",1],["wishes",1],["wishing",1],["withdrawal",-3],["woebegone",-2],["woeful",-3],["won",3],["wonderful",4],["woo",3],["woohoo",3],["wooo",4],["woow",4],["worn",-1],["worried",-3],["worry",-3],["worrying",-3],["worse",-3],["worsen",-3],["worsened",-3],["worsening",-3],["worsens",-3],["worshiped",3],["worst",-3],["worth",2],["worthless",-2],["worthy",2],["wow",4],["wowow",4],["wowww",4],["wrathful",-3],["wreck",-2],["wrong",-2],["wronged",-2],["wtf",-4],["yeah",1],["yearning",1],["yeees",2],["yes",1],["youthful",2],["yucky",-2],["yummy",3],["zealot",-2],["zealots",-2],["zealous",2]]
 
-},{}],43:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
+(function (__dirname){
+'use strict';
+
+// MODULES //
+
+var resolve = require( 'path' ).resolve;
+var readJSON = require( '@stdlib/fs/read-json' ).sync;
+
+
+// VARIABLES //
+
+var fpath = resolve( __dirname, '..', 'data', 'words.json' );
+var opts = {
+	'encoding': 'utf8'
+};
+
+
+// MAIN //
+
+/**
+* Returns a list of English words rated for valence.
+*
+* ## Notes
+*
+* * This function synchronously reads data from disk for each invocation. Such behavior is intentional and so is the avoidance of `require`. We assume that invocations are infrequent, and we want to avoid the `require` cache. This means that we allow data to be garbage collected and a user is responsible for explicitly caching data.
+*
+*
+* @throws {Error} unable to read data
+* @returns {ArrayArray} word ratings
+*
+* @example
+* var list = afinn111();
+* // returns [ ['abandon',-2], ['abandoned',-2], ['abandons',-2], ['abducted',-2], ... ]
+*/
+function afinn111() {
+	var data = readJSON( fpath, opts );
+	if ( data instanceof Error ) {
+		throw data;
+	}
+	return data;
+} // end FUNCTION afinn111()
+
+
+// EXPORTS //
+
+module.exports = afinn111;
+
+}).call(this,"/lib/node_modules/@stdlib/datasets/afinn-111/lib")
+},{"@stdlib/fs/read-json":57,"path":142}],50:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1685,36 +2036,48 @@ function afinn111() {
 
 module.exports = afinn111;
 
-},{"./../data/words.json":42,"@stdlib/utils/copy":61}],44:[function(require,module,exports){
-'use strict';
-
-/**
-* A list of English words rated for valence.
-*
-* @module @stdlib/datasets/afinn-111
-*
-* @example
-* var afinn111 = require( '@stdlib/datasets/afinn-111' );
-* var words = afinn111();
-* // returns [ ['abandon',-2], ['abandoned',-2], ['abandons',-2], ['abducted',-2], ... ]
-*/
-
-// MODULES //
-
-var afinn111 = require( './afinn_111.js' );
-
-
-// EXPORTS //
-
-module.exports = afinn111;
-
-},{"./afinn_111.js":43}],45:[function(require,module,exports){
+},{"./../data/words.json":48,"@stdlib/utils/copy":76}],51:[function(require,module,exports){
 (function (__filename){
-'use strict';
+/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/afinn_111.js');});'use strict';
 
 // MODULES //
 
 var tape = require( 'tape' );
+var proxyquire = require('proxyquireify')(require);
+var afinn111 = require( './../lib/afinn_111.js' );
+
+
+// TESTS //
+
+tape( 'main export is a function', function test( t ) {
+	t.ok( true, __filename );
+	t.strictEqual( typeof afinn111, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'the function throws an error if unable to load data', function test( t ) {
+	var afinn111 = proxyquire( './../lib/afinn_111.js', {
+		'@stdlib/fs/read-json': {
+			'sync': readJSON
+		}
+	});
+	t.throws( afinn111, Error, 'throws an error' );
+	t.end();
+
+	function readJSON() {
+		return new Error( 'unable to read data' );
+	}
+});
+
+}).call(this,"/lib/node_modules/@stdlib/datasets/afinn-111/test/test.afinn_111.js")
+},{"./../lib/afinn_111.js":49,"proxyquireify":144,"tape":171}],52:[function(require,module,exports){
+(function (__filename){
+/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib');});'use strict';
+
+// MODULES //
+
+var tape = require( 'tape' );
+var proxyquire = require('proxyquireify')(require);
 var isArray = require( '@stdlib/assert/is-array' );
 var afinn111 = require( './../lib' );
 
@@ -1723,18 +2086,71 @@ var afinn111 = require( './../lib' );
 
 tape( 'main export is a function', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof afinn111, 'function', 'main export is a function' );
+	t.strictEqual( typeof afinn111, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'main export is a function (browser)', function test( t ) {
+	var afinn111 = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': true
+	});
+	t.strictEqual( typeof afinn111, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'main export is a function (non-browser)', function test( t ) {
+	var afinn111 = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': false
+	});
+	t.strictEqual( typeof afinn111, 'function', 'main export is a function' );
 	t.end();
 });
 
 tape( 'the function returns an array of 2-element arrays', function test( t ) {
 	var list;
 	var i;
+
 	list = afinn111();
-	t.equal( isArray( list ), true, 'returns an array' );
+	t.strictEqual( isArray( list ), true, 'returns an array' );
 	for ( i = 0; i < list.length; i++ ) {
-		t.equal( isArray( list[i] ), true, 'element '+i+' is an array' );
-		t.equal( list[i].length, 2, 'element '+i+' is a 2-element array' );
+		t.strictEqual( isArray( list[i] ), true, 'element '+i+' is an array' );
+		t.strictEqual( list[i].length, 2, 'element '+i+' is a 2-element array' );
+	}
+	t.end();
+});
+
+tape( 'the function returns an array of 2-element arrays (browser)', function test( t ) {
+	var afinn111;
+	var list;
+	var i;
+
+	afinn111 = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': true
+	});
+
+	list = afinn111();
+	t.strictEqual( isArray( list ), true, 'returns an array' );
+	for ( i = 0; i < list.length; i++ ) {
+		t.strictEqual( isArray( list[i] ), true, 'element '+i+' is an array' );
+		t.strictEqual( list[i].length, 2, 'element '+i+' is a 2-element array' );
+	}
+	t.end();
+});
+
+tape( 'the function returns an array of 2-element arrays (non-browser)', function test( t ) {
+	var afinn111;
+	var list;
+	var i;
+
+	afinn111 = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': false
+	});
+
+	list = afinn111();
+	t.strictEqual( isArray( list ), true, 'returns an array' );
+	for ( i = 0; i < list.length; i++ ) {
+		t.strictEqual( isArray( list[i] ), true, 'element '+i+' is an array' );
+		t.strictEqual( list[i].length, 2, 'element '+i+' is a 2-element array' );
 	}
 	t.end();
 });
@@ -1752,15 +2168,413 @@ tape( 'the function returns a deep copy', function test( t ) {
 	v = d2[ 5 ][ 0 ];
 	d1[ 5 ][ 0 ] = 'beep';
 
-	t.equal( d1[ 5 ][ 0 ], 'beep', 'expected element' );
+	t.strictEqual( d1[ 5 ][ 0 ], 'beep', 'expected element' );
 	t.notEqual( d1[ 5 ], d2[ 5 ], 'no shared state' );
-	t.equal( d2[ 5 ][ 0 ], v, 'expected element' );
+	t.strictEqual( d2[ 5 ][ 0 ], v, 'expected element' );
+
+	t.end();
+});
+
+tape( 'the function returns a deep copy (browser)', function test( t ) {
+	var afinn111;
+	var d1;
+	var d2;
+	var v;
+
+	afinn111 = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': true
+	});
+
+	d1 = afinn111();
+	d2 = afinn111();
+
+	t.notEqual( d1, d2, 'different references' );
+
+	v = d2[ 5 ][ 0 ];
+	d1[ 5 ][ 0 ] = 'beep';
+
+	t.strictEqual( d1[ 5 ][ 0 ], 'beep', 'expected element' );
+	t.notEqual( d1[ 5 ], d2[ 5 ], 'no shared state' );
+	t.strictEqual( d2[ 5 ][ 0 ], v, 'expected element' );
+
+	t.end();
+});
+
+tape( 'the function returns a deep copy (non-browser)', function test( t ) {
+	var afinn111;
+	var d1;
+	var d2;
+	var v;
+
+	afinn111 = proxyquire( './../lib', {
+		'@stdlib/assert/is-browser': false
+	});
+
+	d1 = afinn111();
+	d2 = afinn111();
+
+	t.notEqual( d1, d2, 'different references' );
+
+	v = d2[ 5 ][ 0 ];
+	d1[ 5 ][ 0 ] = 'beep';
+
+	t.strictEqual( d1[ 5 ][ 0 ], 'beep', 'expected element' );
+	t.notEqual( d1[ 5 ], d2[ 5 ], 'no shared state' );
+	t.strictEqual( d2[ 5 ][ 0 ], v, 'expected element' );
 
 	t.end();
 });
 
 }).call(this,"/lib/node_modules/@stdlib/datasets/afinn-111/test/test.js")
-},{"./../lib":44,"@stdlib/assert/is-array":5,"tape":149}],46:[function(require,module,exports){
+},{"./../lib":50,"@stdlib/assert/is-array":7,"proxyquireify":144,"tape":171}],53:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var fs = require( 'fs' );
+
+
+// MAIN //
+
+/**
+* Asynchronously reads the entire contents of a file.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Object|string)} [options] - options
+* @param {Function} clbk - callback to invoke after reading file contents
+*
+* @example
+* function onFile( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.log( data );
+* }
+* readFile( __filename, onFile );
+*/
+function readFile() {
+	var args;
+	var i;
+	args = new Array( arguments.length );
+	for ( i = 0; i < args.length; i++ ) {
+		args[ i ] = arguments[ i ];
+	}
+	fs.readFile.apply( null, args );
+} // end FUNCTION readFile()
+
+
+// EXPORTS //
+
+module.exports = readFile;
+
+},{"fs":110}],54:[function(require,module,exports){
+'use strict';
+
+/**
+* Read the entire contents of a file.
+*
+* @module @stdlib/fs/read-file
+*
+* @example
+* var readFile = require( '@stdlib/fs/read-file' );
+*
+* function onFile( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.log( data );
+* }
+* readFile( __filename, onFile );
+*
+* @example
+* var readFileSync = require( '@stdlib/fs/read-file' ).sync;
+*
+* var out = readFileSync( __filename );
+* if ( out instanceof Error ) {
+*     throw out;
+* }
+* console.log( out );
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var readFile = require( './async.js' );
+var sync = require( './sync.js' );
+
+
+// MAIN //
+
+setReadOnly( readFile, 'sync', sync );
+
+
+// EXPORTS //
+
+module.exports = readFile;
+
+},{"./async.js":53,"./sync.js":55,"@stdlib/utils/define-read-only-property":79}],55:[function(require,module,exports){
+/* eslint-disable no-sync */
+'use strict';
+
+// MODULES //
+
+var fs = require( 'fs' );
+
+
+// MAIN //
+
+/**
+* Synchronously reads the entire contents of a file.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Object|string)} [options] - options
+* @returns {(Buffer|string|Error)} file contents or an error
+*
+* @example
+* var out = readFileSync( __filename );
+* if ( out instanceof Error ) {
+*     throw out;
+* }
+* console.log( out );
+*/
+function readFileSync( file, options ) {
+	var f;
+	try {
+		if ( arguments.length > 1 ) {
+			f = fs.readFileSync( file, options );
+		} else {
+			f = fs.readFileSync( file );
+		}
+	} catch ( err ) {
+		return err;
+	}
+	return f;
+} // end FUNCTION readFileSync()
+
+
+// EXPORTS //
+
+module.exports = readFileSync;
+
+},{"fs":110}],56:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isObject = require( '@stdlib/assert/is-plain-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var readFile = require( '@stdlib/fs/read-file' );
+var removeBOM = require( '@stdlib/string/remove-utf8-bom' );
+var parseJSON = require( '@stdlib/utils/parse-json' );
+var instanceOf = require( '@stdlib/assert/instance-of' );
+
+
+// MAIN //
+
+/**
+* Asynchronously reads a file as JSON.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Options|string)} [options] - options
+* @param {(string|null)} [options.encoding] - file encoding
+* @param {string} [options.flag] - file status flag
+* @param {Function} [options.reviver] - JSON reviver
+* @param {Callback} clbk - callback
+* @throws {TypeError} options argument must be either a string or an object
+* @throws {TypeError} callback argument must be a function
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+*
+* readJSON( resolve( __dirname, '..', 'package.json' ), onJSON );
+*
+* function onJSON( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.dir( data );
+* }
+*/
+function readJSON( file, options, clbk ) {
+	var opts;
+	var done;
+	if ( arguments.length < 3 ) {
+		opts = {};
+		done = options;
+	} else {
+		if ( isString( options ) ) {
+			opts = {
+				'encoding': options
+			};
+		} else {
+			if ( !isObject( options ) ) {
+				throw new TypeError( 'invalid input argument. Options argument must be either a string or an object. Value: `' + options + '`.' );
+			}
+			opts = options;
+		}
+		done = clbk;
+	}
+	if ( !isFunction( done ) ) {
+		throw new TypeError( 'invalid input argument. Callback argument must be a function. Value: `' + done + '`.' );
+	}
+	readFile( file, opts, onRead );
+
+	/**
+	* Callback invoked upon reading a file.
+	*
+	* @private
+	* @param {(Error|null)} error - error object
+	* @param {(Buffer|string)} file - file contents
+	* @returns {void}
+	*/
+	function onRead( error, file ) {
+		if ( error ) {
+			return done( error );
+		}
+		file = file.toString();
+		if ( opts.encoding === 'utf8' ) {
+			file = removeBOM( file );
+		}
+		if ( opts.reviver ) {
+			file = parseJSON( file, opts.reviver );
+		} else {
+			file = parseJSON( file );
+		}
+		if ( instanceOf( file, Error ) ) {
+			return done( file );
+		}
+		done( null, file );
+	} // end FUNCTION onRead()
+} // end FUNCTION readJSON()
+
+
+// EXPORTS //
+
+module.exports = readJSON;
+
+},{"@stdlib/assert/instance-of":3,"@stdlib/assert/is-function":13,"@stdlib/assert/is-plain-object":38,"@stdlib/assert/is-string":41,"@stdlib/fs/read-file":54,"@stdlib/string/remove-utf8-bom":70,"@stdlib/utils/parse-json":97}],57:[function(require,module,exports){
+'use strict';
+
+/**
+* Read a file as JSON.
+*
+* @module @stdlib/fs/read-json
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+* var readJSON = require( '@stdlib/fs/read-json' );
+*
+* function onJSON( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.dir( data );
+* }
+*
+* readJSON( resolve( __dirname, '..', 'package.json' ), onJSON );
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+* var instanceOf = require( '@stdlib/assert/instance-of' );
+* var readJSON = require( '@stdlib/fs/read-json' );
+*
+* var out = readJSON.sync( resolve( __dirname, '..', 'package.json' ) );
+* if ( instanceOf( out, Error ) ) {
+*     throw out;
+* }
+* console.dir( out );
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var readJSON = require( './async.js' );
+var sync = require( './sync.js' );
+
+
+// MAIN //
+
+setReadOnly( readJSON, 'sync', sync );
+
+
+// EXPORTS //
+
+module.exports = readJSON;
+
+},{"./async.js":56,"./sync.js":58,"@stdlib/utils/define-read-only-property":79}],58:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isObject = require( '@stdlib/assert/is-plain-object' );
+var readFile = require( '@stdlib/fs/read-file' ).sync;
+var removeBOM = require( '@stdlib/string/remove-utf8-bom' );
+var parseJSON = require( '@stdlib/utils/parse-json' );
+var instanceOf = require( '@stdlib/assert/instance-of' );
+
+
+// MAIN //
+
+/**
+* Synchronously reads a file as JSON.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Options|string)} [options] - options
+* @param {(string|null)} [options.encoding] - file encoding
+* @param {string} [options.flag] - file status flag
+* @param {Function} [options.reviver] - JSON reviver
+* @throws {TypeError} options argument must be either a string or an object
+* @returns {(JSON|Error)} JSON or an error
+*
+* @example
+* var resolve = require( 'path' ).resolve;
+* var instanceOf = require( '@stdlib/assert/instance-of' );
+*
+* var out = readJSONSync( resolve( __dirname, '..', 'package.json' ) );
+* if ( instanceOf( out, Error ) ) {
+*     throw out;
+* }
+* console.dir( out );
+*/
+function readJSONSync( file, options ) {
+	var opts;
+	var f;
+	if ( arguments.length > 1 ) {
+		if ( isString( options ) ) {
+			opts = {
+				'encoding': options
+			};
+		} else {
+			if ( !isObject( options ) ) {
+				throw new TypeError( 'invalid input argument. Options argument must be either a string or an object. Value: `' + options + '`.' );
+			}
+			opts = options;
+		}
+	} else {
+		opts = {};
+	}
+	f = readFile( file, opts );
+	if ( instanceOf( f, Error ) ) {
+		return f;
+	}
+	f = f.toString();
+	if ( opts.encoding === 'utf8' ) {
+		f = removeBOM( f );
+	}
+	if ( opts.reviver ) {
+		return parseJSON( f, opts.reviver );
+	}
+	return parseJSON( f );
+} // end FUNCTION readJSONSync()
+
+
+// EXPORTS //
+
+module.exports = readJSONSync;
+
+},{"@stdlib/assert/instance-of":3,"@stdlib/assert/is-plain-object":38,"@stdlib/assert/is-string":41,"@stdlib/fs/read-file":54,"@stdlib/string/remove-utf8-bom":70,"@stdlib/utils/parse-json":97}],59:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1787,7 +2601,7 @@ var isInteger = require( './is_integer.js' );
 
 module.exports = isInteger;
 
-},{"./is_integer.js":47}],47:[function(require,module,exports){
+},{"./is_integer.js":60}],60:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1820,7 +2634,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":51}],48:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":64}],61:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1847,7 +2661,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":49}],49:[function(require,module,exports){
+},{"./is_nan.js":62}],62:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -1861,6 +2675,7 @@ module.exports = isnan;
 * @example
 * var bool = isnan( NaN );
 * // returns true
+*
 * @example
 * var bool = isnan( 7.0 );
 * // returns false
@@ -1874,7 +2689,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],50:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -1908,7 +2723,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],51:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1941,7 +2756,7 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":50}],52:[function(require,module,exports){
+},{"./floor.js":63}],65:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1977,7 +2792,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{}],53:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2013,7 +2828,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY;
 
 module.exports = FLOAT64_PINF;
 
-},{}],54:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2054,7 +2869,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],55:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2115,7 +2930,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],56:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2179,7 +2994,83 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 module.exports = RE_REGEXP;
 
-},{}],57:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
+'use strict';
+
+/**
+* Remove a UTF-8 byte order mark (BOM) from the beginning of a string.
+*
+* @module @stdlib/string/remove-utf8-bom
+*
+* @example
+* var removeUTF8BOM = require( '@stdlib/string/remove-utf8-bom' );
+*
+* var str = removeUTF8BOM( '\ufeffbeep' );
+* // returns 'beep'
+*/
+
+// MODULES //
+
+var removeUTF8BOM = require( './remove_utf_8_bom.js' );
+
+
+// EXPORTS //
+
+module.exports = removeUTF8BOM;
+
+},{"./remove_utf_8_bom.js":71}],71:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+// '\ufeff' => 1111111011111111 => 0xFEFF => 65279
+var BOM = 65279;
+
+
+// MAIN //
+
+/**
+* Removes a UTF-8 byte order mark (BOM) from the beginning of a string.
+*
+* ## Notes
+*
+* * A UTF-8 byte order mark ([BOM][1]) is the byte sequence `0xEF,0xBB,0xBF`.
+*
+* * To convert a UTF-8 encoded `Buffer` to a `string`, the `Buffer` must be converted to [UTF-16][2]. The BOM thus gets converted to the single 16-bit code point `'\ufeff'` (UTF-16 BOM).
+*
+* [1]: https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8
+* [2]: http://es5.github.io/#x4.3.16
+*
+*
+* @param {string} str - input string
+* @throws {TypeError} must provide a string primitive
+* @returns {string} string with BOM removed
+*
+* @example
+* var str = removeUTF8BOM( '\ufeffbeep' );
+* // returns 'beep'
+*/
+function removeUTF8BOM( str ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a string primitive. Value: `' + str + '`.' );
+	}
+	if ( str.charCodeAt( 0 ) === BOM ) {
+		return str.slice( 1 );
+	}
+	return str;
+} // end FUNCTION removeUTF8BOM()
+
+
+// EXPORTS //
+
+module.exports = removeUTF8BOM;
+
+},{"@stdlib/assert/is-string":41}],72:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2235,7 +3126,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":7,"@stdlib/regexp/function-name":55,"@stdlib/utils/native-class":77}],58:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":9,"@stdlib/regexp/function-name":68,"@stdlib/utils/native-class":92}],73:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2265,7 +3156,7 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":57}],59:[function(require,module,exports){
+},{"./constructor_name.js":72}],74:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2290,9 +3181,15 @@ var deepCopy = require( './deep_copy.js' );
 * // returns 'beep'
 *
 * @example
-* var value = [{'a':1,'b':true,'c':[1,2,3]}];
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
 * var out = copy( value );
-* // returns [{'a':1,'b':true,'c':[1,2,3]}]
+* // returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
 *
 * var bool = ( value[0].c === out[0].c );
 * // returns false
@@ -2318,7 +3215,7 @@ function copy( value, level ) {
 
 module.exports = copy;
 
-},{"./deep_copy.js":60,"@stdlib/assert/is-array":5,"@stdlib/assert/is-nonnegative-integer":23,"@stdlib/math/constants/float64-pinf":53}],60:[function(require,module,exports){
+},{"./deep_copy.js":75,"@stdlib/assert/is-array":7,"@stdlib/assert/is-nonnegative-integer":25,"@stdlib/math/constants/float64-pinf":66}],75:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -2603,7 +3500,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 module.exports = deepCopy;
 
 }).call(this,require("buffer").Buffer)
-},{"./typed_arrays.js":62,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":5,"@stdlib/assert/is-buffer":7,"@stdlib/assert/is-error":9,"@stdlib/utils/index-of":75,"@stdlib/utils/regexp-from-string":83,"@stdlib/utils/type-of":88,"buffer":95,"object-keys":119}],61:[function(require,module,exports){
+},{"./typed_arrays.js":77,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":7,"@stdlib/assert/is-buffer":9,"@stdlib/assert/is-error":11,"@stdlib/utils/index-of":90,"@stdlib/utils/regexp-from-string":100,"@stdlib/utils/type-of":105,"buffer":112,"object-keys":140}],76:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2620,9 +3517,15 @@ module.exports = deepCopy;
 * @example
 * var copy = require( '@stdlib/utils/copy' );
 *
-* var value = [{'a':1,'b':true,'c':[1,2,3]}];
+* var value = [
+*     {
+*         'a': 1,
+*         'b': true,
+*         'c': [ 1, 2, 3 ]
+*     }
+* ];
 * var out = copy( value );
-* // returns [{'a':1,'b':true,'c':[1,2,3]}]
+* // returns [ {'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]
 *
 * var bool = ( value[0].c === out[0].c );
 * // returns false
@@ -2637,7 +3540,7 @@ var copy = require( './copy.js' );
 
 module.exports = copy;
 
-},{"./copy.js":59}],62:[function(require,module,exports){
+},{"./copy.js":74}],77:[function(require,module,exports){
 /* eslint-disable no-new-func */
 'use strict';
 
@@ -2677,7 +3580,7 @@ function createTypedArrayFcns() {
 
 module.exports = createTypedArrayFcns();
 
-},{}],63:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2706,7 +3609,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{}],64:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2731,7 +3634,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":63}],65:[function(require,module,exports){
+},{"./define_read_only_property.js":78}],80:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -2757,7 +3660,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],66:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2781,7 +3684,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":65}],67:[function(require,module,exports){
+},{"./detect_symbol_support.js":80}],82:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2809,7 +3712,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":66}],68:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":81}],83:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2833,7 +3736,7 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":67}],69:[function(require,module,exports){
+},{"./has_tostringtag_support.js":82}],84:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2855,7 +3758,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":72,"./polyfill.js":73,"@stdlib/assert/is-function":11}],70:[function(require,module,exports){
+},{"./native.js":87,"./polyfill.js":88,"@stdlib/assert/is-function":13}],85:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2893,7 +3796,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":69}],71:[function(require,module,exports){
+},{"./detect.js":84}],86:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2917,14 +3820,14 @@ var getPrototype = require( './get_prototype_of.js' );
 
 module.exports = getPrototype;
 
-},{"./get_prototype_of.js":70}],72:[function(require,module,exports){
+},{"./get_prototype_of.js":85}],87:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.getPrototypeOf;
 
-},{}],73:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2963,7 +3866,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":74,"@stdlib/utils/native-class":77}],74:[function(require,module,exports){
+},{"./proto.js":89,"@stdlib/utils/native-class":92}],89:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2983,7 +3886,7 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],75:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3040,7 +3943,7 @@ var indexOf = require( './index_of.js' );
 
 module.exports = indexOf;
 
-},{"./index_of.js":76}],76:[function(require,module,exports){
+},{"./index_of.js":91}],91:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3155,7 +4058,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-array-like":3,"@stdlib/assert/is-integer":14,"@stdlib/assert/is-nan":19}],77:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":16,"@stdlib/assert/is-nan":21}],92:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3198,7 +4101,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":78,"./polyfill.js":79,"@stdlib/utils/detect-tostringtag-support":68}],78:[function(require,module,exports){
+},{"./native_class.js":93,"./polyfill.js":94,"@stdlib/utils/detect-tostringtag-support":83}],93:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3238,7 +4141,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":80}],79:[function(require,module,exports){
+},{"./tostring.js":95}],94:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3303,21 +4206,90 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":80,"./tostringtag.js":81,"@stdlib/assert/has-own-property":2}],80:[function(require,module,exports){
+},{"./tostring.js":95,"./tostringtag.js":96,"@stdlib/assert/has-own-property":2}],95:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
 
-},{}],81:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
-},{}],82:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
+'use strict';
+
+/**
+* Parse a string as JSON.
+*
+* @module @stdlib/utils/parse-json
+*
+* @example
+* var parseJSON = require( '@stdlib/utils/parse-json' );
+*
+* var obj = parseJSON( '{"beep":"boop"}' );
+* // returns {'beep':'boop'}
+*/
+
+// MODULES //
+
+var parseJSON = require( './parse_json.js' );
+
+
+// EXPORTS //
+
+module.exports = parseJSON;
+
+},{"./parse_json.js":98}],98:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// MAIN //
+
+/**
+* Attempts to parse a string as JSON.
+*
+* @param {string} str - string to parse
+* @param {Function} reviver - transformation function
+* @throws {TypeError} first argument must be a string
+* @throws {TypeError} reviver must be a function
+* @returns {(*|Error)} parsed value or parse error
+*
+* @example
+* var obj = parseJSON( '{"beep":"boop"}' );
+* // returns {'beep':'boop'}
+*/
+function parseJSON( str, reviver ) {
+	if ( !isString( str ) ) {
+		throw new TypeError( 'invalid input argument. First argument must be a string. Value: `' + str + '`.' );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isFunction( reviver ) ) {
+			throw new TypeError( 'invalid input argument. Reviver argument must be a function. Value: `' + reviver + '`.' );
+		}
+	}
+	try {
+		return JSON.parse( str, reviver );
+	} catch ( error ) {
+		return error;
+	}
+} // end FUNCTION parseJSON()
+
+
+// EXPORTS //
+
+module.exports = parseJSON;
+
+},{"@stdlib/assert/is-function":13,"@stdlib/assert/is-string":41}],99:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3354,7 +4326,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":35,"@stdlib/regexp/regexp":56}],83:[function(require,module,exports){
+},{"@stdlib/assert/is-string":41,"@stdlib/regexp/regexp":69}],100:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3378,7 +4350,7 @@ var reFromString = require( './from_string.js' );
 
 module.exports = reFromString;
 
-},{"./from_string.js":82}],84:[function(require,module,exports){
+},{"./from_string.js":99}],101:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3415,7 +4387,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":85,"./fixtures/re.js":86,"./fixtures/typedarray.js":87}],85:[function(require,module,exports){
+},{"./fixtures/nodelist.js":102,"./fixtures/re.js":103,"./fixtures/typedarray.js":104}],102:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3432,7 +4404,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":146}],86:[function(require,module,exports){
+},{"system.global":168}],103:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -3442,7 +4414,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],87:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -3452,7 +4424,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],88:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3481,7 +4453,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":84,"./polyfill.js":89,"./typeof.js":90}],89:[function(require,module,exports){
+},{"./check.js":101,"./polyfill.js":106,"./typeof.js":107}],106:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3506,7 +4478,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":58}],90:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":73}],107:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3566,7 +4538,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":58}],91:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":73}],108:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -3682,11 +4654,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],92:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 
-},{}],93:[function(require,module,exports){
-arguments[4][92][0].apply(exports,arguments)
-},{"dup":92}],94:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
+arguments[4][109][0].apply(exports,arguments)
+},{"dup":109}],111:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -3872,7 +4844,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],95:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -3979,7 +4951,7 @@ function from (value, encodingOrOffset, length) {
     throw new TypeError('"value" argument must not be a number')
   }
 
-  if (value instanceof ArrayBuffer) {
+  if (isArrayBuffer(value)) {
     return fromArrayBuffer(value, encodingOrOffset, length)
   }
 
@@ -4239,7 +5211,7 @@ function byteLength (string, encoding) {
   if (Buffer.isBuffer(string)) {
     return string.length
   }
-  if (isArrayBufferView(string) || string instanceof ArrayBuffer) {
+  if (isArrayBufferView(string) || isArrayBuffer(string)) {
     return string.byteLength
   }
   if (typeof string !== 'string') {
@@ -5571,6 +6543,14 @@ function blitBuffer (src, dst, offset, length) {
   return i
 }
 
+// ArrayBuffers from another context (i.e. an iframe) do not pass the `instanceof` check
+// but they should be treated as valid. See: https://github.com/feross/buffer/issues/166
+function isArrayBuffer (obj) {
+  return obj instanceof ArrayBuffer ||
+    (obj != null && obj.constructor != null && obj.constructor.name === 'ArrayBuffer' &&
+      typeof obj.byteLength === 'number')
+}
+
 // Node 0.10 supports `ArrayBuffer` but lacks `ArrayBuffer.isView`
 function isArrayBufferView (obj) {
   return (typeof ArrayBuffer.isView === 'function') && ArrayBuffer.isView(obj)
@@ -5580,7 +6560,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":91,"ieee754":114}],96:[function(require,module,exports){
+},{"base64-js":108,"ieee754":132}],113:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5691,7 +6671,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":116}],97:[function(require,module,exports){
+},{"../../is-buffer/index.js":134}],114:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -5787,7 +6767,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":98,"./lib/keys.js":99}],98:[function(require,module,exports){
+},{"./lib/is_arguments.js":115,"./lib/keys.js":116}],115:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -5809,7 +6789,7 @@ function unsupported(object){
     false;
 };
 
-},{}],99:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -5820,7 +6800,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],100:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -5878,14 +6858,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":110,"object-keys":119}],101:[function(require,module,exports){
+},{"foreach":128,"object-keys":140}],118:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],102:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -5897,12 +6877,14 @@ var mod = require('./helpers/mod');
 var IsCallable = require('is-callable');
 var toPrimitive = require('es-to-primitive/es5');
 
+var has = require('has');
+
 // https://es5.github.io/#x9
 var ES5 = {
 	ToPrimitive: toPrimitive,
 
 	ToBoolean: function ToBoolean(value) {
-		return Boolean(value);
+		return !!value;
 	},
 	ToNumber: function ToNumber(value) {
 		return Number(value);
@@ -5968,33 +6950,181 @@ var ES5 = {
 		if (typeof x === 'string') {
 			return 'String';
 		}
+	},
+
+	// http://ecma-international.org/ecma-262/6.0/#sec-property-descriptor-specification-type
+	IsPropertyDescriptor: function IsPropertyDescriptor(Desc) {
+		if (this.Type(Desc) !== 'Object') {
+			return false;
+		}
+		var allowed = {
+			'[[Configurable]]': true,
+			'[[Enumerable]]': true,
+			'[[Get]]': true,
+			'[[Set]]': true,
+			'[[Value]]': true,
+			'[[Writable]]': true
+		};
+		// jscs:disable
+		for (var key in Desc) { // eslint-disable-line
+			if (has(Desc, key) && !allowed[key]) {
+				return false;
+			}
+		}
+		// jscs:enable
+		var isData = has(Desc, '[[Value]]');
+		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
+		if (isData && IsAccessor) {
+			throw new TypeError('Property Descriptors may not be both accessor and data descriptors');
+		}
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.1
+	IsAccessorDescriptor: function IsAccessorDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.2
+	IsDataDescriptor: function IsDataDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.3
+	IsGenericDescriptor: function IsGenericDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!this.IsAccessorDescriptor(Desc) && !this.IsDataDescriptor(Desc)) {
+			return true;
+		}
+
+		return false;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.4
+	FromPropertyDescriptor: function FromPropertyDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return Desc;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (this.IsDataDescriptor(Desc)) {
+			return {
+				value: Desc['[[Value]]'],
+				writable: !!Desc['[[Writable]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else if (this.IsAccessorDescriptor(Desc)) {
+			return {
+				get: Desc['[[Get]]'],
+				set: Desc['[[Set]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else {
+			throw new TypeError('FromPropertyDescriptor must be called with a fully populated Property Descriptor');
+		}
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.5
+	ToPropertyDescriptor: function ToPropertyDescriptor(Obj) {
+		if (this.Type(Obj) !== 'Object') {
+			throw new TypeError('ToPropertyDescriptor requires an object');
+		}
+
+		var desc = {};
+		if (has(Obj, 'enumerable')) {
+			desc['[[Enumerable]]'] = this.ToBoolean(Obj.enumerable);
+		}
+		if (has(Obj, 'configurable')) {
+			desc['[[Configurable]]'] = this.ToBoolean(Obj.configurable);
+		}
+		if (has(Obj, 'value')) {
+			desc['[[Value]]'] = Obj.value;
+		}
+		if (has(Obj, 'writable')) {
+			desc['[[Writable]]'] = this.ToBoolean(Obj.writable);
+		}
+		if (has(Obj, 'get')) {
+			var getter = Obj.get;
+			if (typeof getter !== 'undefined' && !this.IsCallable(getter)) {
+				throw new TypeError('getter must be a function');
+			}
+			desc['[[Get]]'] = getter;
+		}
+		if (has(Obj, 'set')) {
+			var setter = Obj.set;
+			if (typeof setter !== 'undefined' && !this.IsCallable(setter)) {
+				throw new TypeError('setter must be a function');
+			}
+			desc['[[Set]]'] = setter;
+		}
+
+		if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+			throw new TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
+		}
+		return desc;
 	}
 };
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":103,"./helpers/isNaN":104,"./helpers/mod":105,"./helpers/sign":106,"es-to-primitive/es5":107,"is-callable":117}],103:[function(require,module,exports){
+},{"./helpers/isFinite":120,"./helpers/isNaN":121,"./helpers/mod":122,"./helpers/sign":123,"es-to-primitive/es5":124,"has":131,"is-callable":135}],120:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],104:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],105:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],106:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],107:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -6033,12 +7163,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":108,"is-callable":117}],108:[function(require,module,exports){
+},{"./helpers/isPrimitive":125,"is-callable":135}],125:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],109:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6342,7 +7472,45 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],110:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
+'use strict'
+
+var mergeDescriptors = require('merge-descriptors')
+var isObject = require('is-object')
+var hasOwnProperty = Object.prototype.hasOwnProperty
+
+function fill (destination, source, merge) {
+  if (destination && (isObject(source) || isFunction(source))) {
+    merge(destination, source, false)
+    if (isFunction(destination) && isFunction(source) && source.prototype) {
+      merge(destination.prototype, source.prototype, false)
+    }
+  }
+  return destination
+}
+
+exports = module.exports = function fillKeys (destination, source) {
+  return fill(destination, source, mergeDescriptors)
+}
+
+exports.es3 = function fillKeysEs3 (destination, source) {
+  return fill(destination, source, es3Merge)
+}
+
+function es3Merge (destination, source) {
+  for (var key in source) {
+    if (!hasOwnProperty.call(destination, key)) {
+      destination[key] = source[key]
+    }
+  }
+  return destination
+}
+
+function isFunction (value) {
+  return typeof value === 'function'
+}
+
+},{"is-object":136,"merge-descriptors":137}],128:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -6366,7 +7534,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],111:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
 var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
@@ -6416,17 +7584,17 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],112:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":111}],113:[function(require,module,exports){
+},{"./implementation":129}],131:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":112}],114:[function(require,module,exports){
+},{"function-bind":130}],132:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -6512,7 +7680,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],115:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -6537,7 +7705,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],116:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -6560,7 +7728,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],117:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -6601,7 +7769,85 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],118:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
+"use strict";
+
+module.exports = function isObject(x) {
+	return typeof x === "object" && x !== null;
+};
+
+},{}],137:[function(require,module,exports){
+/*!
+ * merge-descriptors
+ * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+'use strict'
+
+/**
+ * Module exports.
+ * @public
+ */
+
+module.exports = merge
+
+/**
+ * Module variables.
+ * @private
+ */
+
+var hasOwnProperty = Object.prototype.hasOwnProperty
+
+/**
+ * Merge the property descriptors of `src` into `dest`
+ *
+ * @param {object} dest Object to add descriptors to
+ * @param {object} src Object to clone descriptors from
+ * @param {boolean} [redefine=true] Redefine `dest` properties with `src` properties
+ * @returns {object} Reference to dest
+ * @public
+ */
+
+function merge(dest, src, redefine) {
+  if (!dest) {
+    throw new TypeError('argument dest is required')
+  }
+
+  if (!src) {
+    throw new TypeError('argument src is required')
+  }
+
+  if (redefine === undefined) {
+    // Default to true
+    redefine = true
+  }
+
+  Object.getOwnPropertyNames(src).forEach(function forEachOwnPropertyName(name) {
+    if (!redefine && hasOwnProperty.call(dest, name)) {
+      // Skip desriptor
+      return
+    }
+
+    // Copy descriptor
+    var descriptor = Object.getOwnPropertyDescriptor(src, name)
+    Object.defineProperty(dest, name, descriptor)
+  })
+
+  return dest
+}
+
+},{}],138:[function(require,module,exports){
+'use strict'
+
+module.exports = function createNotFoundError (path) {
+  var err = new Error('Cannot find module \'' + path + '\'')
+  err.code = 'MODULE_NOT_FOUND'
+  return err
+}
+
+},{}],139:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -6795,7 +8041,7 @@ function inspectString (str) {
     }
 }
 
-},{}],119:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -6937,7 +8183,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":120}],120:[function(require,module,exports){
+},{"./isArguments":141}],141:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -6956,7 +8202,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],121:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7184,7 +8430,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":94}],122:[function(require,module,exports){
+},{"_process":111}],143:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -7231,10 +8477,105 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":94}],123:[function(require,module,exports){
+},{"_process":111}],144:[function(require,module,exports){
+'use strict';
+
+var fillMissingKeys = require('fill-keys');
+var moduleNotFoundError = require('module-not-found-error');
+
+function ProxyquireifyError(msg) {
+  this.name = 'ProxyquireifyError';
+  Error.captureStackTrace(this, ProxyquireifyError);
+  this.message = msg || 'An error occurred inside proxyquireify.';
+}
+
+function validateArguments(request, stubs) {
+  var msg = (function getMessage() {
+    if (!request)
+      return 'Missing argument: "request". Need it to resolve desired module.';
+
+    if (!stubs)
+      return 'Missing argument: "stubs". If no stubbing is needed, use regular require instead.';
+
+    if (typeof request != 'string')
+      return 'Invalid argument: "request". Needs to be a requirable string that is the module to load.';
+
+    if (typeof stubs != 'object')
+      return 'Invalid argument: "stubs". Needs to be an object containing overrides e.g., {"path": { extname: function () { ... } } }.';
+  })();
+
+  if (msg) throw new ProxyquireifyError(msg);
+}
+
+var stubs;
+
+function stub(stubs_) {
+  stubs = stubs_;
+  // This cache is used by the prelude as an alternative to the regular cache.
+  // It is not read or written here, except to set it to an empty object when
+  // adding stubs and to reset it to null when clearing stubs.
+  module.exports._cache = {};
+}
+
+function reset() {
+  stubs = undefined;
+  module.exports._cache = null;
+}
+
+var proxyquire = module.exports = function (require_) {
+  if (typeof require_ != 'function')
+    throw new ProxyquireifyError(
+        'It seems like you didn\'t initialize proxyquireify with the require in your test.\n'
+      + 'Make sure to correct this, i.e.: "var proxyquire = require(\'proxyquireify\')(require);"'
+    );
+
+  reset();
+
+  return function(request, stubs) {
+
+    validateArguments(request, stubs);
+
+    // set the stubs and require dependency
+    // when stub require is invoked by the module under test it will find the stubs here
+    stub(stubs);
+    var dep = require_(request);
+    reset();
+
+    return dep;
+  };
+};
+
+// Start with the default cache
+proxyquire._cache = null;
+
+proxyquire._proxy = function (require_, request) {
+  function original() {
+    return require_(request);
+  }
+
+  if (!stubs || !stubs.hasOwnProperty(request)) return original();
+
+  var stub = stubs[request];
+
+  if (stub === null) throw moduleNotFoundError(request)
+
+  var stubWideNoCallThru = Boolean(stubs['@noCallThru']) && (stub == null || stub['@noCallThru'] !== false);
+  var noCallThru = stubWideNoCallThru || (stub != null && Boolean(stub['@noCallThru']));
+  return noCallThru ? stub : fillMissingKeys(stub, original());
+};
+
+if (require.cache) {
+  // only used during build, so prevent browserify from including it
+  var replacePreludePath = './lib/replace-prelude';
+  var replacePrelude = require(replacePreludePath);
+  proxyquire.browserify = replacePrelude.browserify;
+  proxyquire.plugin = replacePrelude.plugin;
+}
+
+},{"fill-keys":127,"module-not-found-error":138}],145:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":124}],124:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":146}],146:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7359,7 +8700,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":126,"./_stream_writable":128,"core-util-is":96,"inherits":115,"process-nextick-args":122}],125:[function(require,module,exports){
+},{"./_stream_readable":148,"./_stream_writable":150,"core-util-is":113,"inherits":133,"process-nextick-args":143}],147:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7407,8 +8748,8 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":127,"core-util-is":96,"inherits":115}],126:[function(require,module,exports){
-(function (process){
+},{"./_stream_transform":149,"core-util-is":113,"inherits":133}],148:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7465,11 +8806,12 @@ var Stream = require('./internal/streams/stream');
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -7664,7 +9006,7 @@ function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
     if (er) {
       stream.emit('error', er);
     } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && Object.getPrototypeOf(chunk) !== Buffer.prototype && !state.objectMode) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
         chunk = _uint8ArrayToBuffer(chunk);
       }
 
@@ -8415,8 +9757,8 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'))
-},{"./_stream_duplex":124,"./internal/streams/BufferList":129,"./internal/streams/destroy":130,"./internal/streams/stream":131,"_process":94,"core-util-is":96,"events":109,"inherits":115,"isarray":132,"process-nextick-args":122,"safe-buffer":139,"string_decoder/":133,"util":92}],127:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":146,"./internal/streams/BufferList":151,"./internal/streams/destroy":152,"./internal/streams/stream":153,"_process":111,"core-util-is":113,"events":126,"inherits":133,"isarray":154,"process-nextick-args":143,"safe-buffer":161,"string_decoder/":155,"util":109}],149:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8631,8 +9973,8 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":124,"core-util-is":96,"inherits":115}],128:[function(require,module,exports){
-(function (process){
+},{"./_stream_duplex":146,"core-util-is":113,"inherits":133}],150:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8715,11 +10057,12 @@ var Stream = require('./internal/streams/stream');
 
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -9296,9 +10639,8 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-
-}).call(this,require('_process'))
-},{"./_stream_duplex":124,"./internal/streams/destroy":130,"./internal/streams/stream":131,"_process":94,"core-util-is":96,"inherits":115,"process-nextick-args":122,"safe-buffer":139,"util-deprecate":155}],129:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":146,"./internal/streams/destroy":152,"./internal/streams/stream":153,"_process":111,"core-util-is":113,"inherits":133,"process-nextick-args":143,"safe-buffer":161,"util-deprecate":177}],151:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -9373,7 +10715,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":139}],130:[function(require,module,exports){
+},{"safe-buffer":161}],152:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -9446,17 +10788,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":122}],131:[function(require,module,exports){
+},{"process-nextick-args":143}],153:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":109}],132:[function(require,module,exports){
+},{"events":126}],154:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],133:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -9729,10 +11071,10 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":139}],134:[function(require,module,exports){
+},{"safe-buffer":161}],156:[function(require,module,exports){
 module.exports = require('./readable').PassThrough
 
-},{"./readable":135}],135:[function(require,module,exports){
+},{"./readable":157}],157:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -9741,13 +11083,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":124,"./lib/_stream_passthrough.js":125,"./lib/_stream_readable.js":126,"./lib/_stream_transform.js":127,"./lib/_stream_writable.js":128}],136:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":146,"./lib/_stream_passthrough.js":147,"./lib/_stream_readable.js":148,"./lib/_stream_transform.js":149,"./lib/_stream_writable.js":150}],158:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":135}],137:[function(require,module,exports){
+},{"./readable":157}],159:[function(require,module,exports){
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":128}],138:[function(require,module,exports){
+},{"./lib/_stream_writable.js":150}],160:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -9780,7 +11122,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this,require('_process'))
-},{"_process":94,"through":154}],139:[function(require,module,exports){
+},{"_process":111,"through":176}],161:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -9844,7 +11186,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":95}],140:[function(require,module,exports){
+},{"buffer":112}],162:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9973,7 +11315,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":109,"inherits":115,"readable-stream/duplex.js":123,"readable-stream/passthrough.js":134,"readable-stream/readable.js":135,"readable-stream/transform.js":136,"readable-stream/writable.js":137}],141:[function(require,module,exports){
+},{"events":126,"inherits":133,"readable-stream/duplex.js":145,"readable-stream/passthrough.js":156,"readable-stream/readable.js":157,"readable-stream/transform.js":158,"readable-stream/writable.js":159}],163:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -9988,7 +11330,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":102,"function-bind":112}],142:[function(require,module,exports){
+},{"es-abstract/es5":119,"function-bind":130}],164:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -10008,7 +11350,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":141,"./polyfill":143,"./shim":144,"define-properties":100,"function-bind":112}],143:[function(require,module,exports){
+},{"./implementation":163,"./polyfill":165,"./shim":166,"define-properties":117,"function-bind":130}],165:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -10022,7 +11364,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":141}],144:[function(require,module,exports){
+},{"./implementation":163}],166:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -10034,7 +11376,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":143,"define-properties":100}],145:[function(require,module,exports){
+},{"./polyfill":165,"define-properties":117}],167:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -10052,7 +11394,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],146:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -10073,7 +11415,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":145,"./polyfill":147,"./shim":148,"define-properties":100}],147:[function(require,module,exports){
+},{"./implementation":167,"./polyfill":169,"./shim":170,"define-properties":117}],169:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -10087,7 +11429,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":145}],148:[function(require,module,exports){
+},{"./implementation":167}],170:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -10113,7 +11455,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":147,"define-properties":100}],149:[function(require,module,exports){
+},{"./polyfill":169,"define-properties":117}],171:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -10267,7 +11609,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":150,"./lib/results":152,"./lib/test":153,"_process":94,"defined":101,"through":154}],150:[function(require,module,exports){
+},{"./lib/default_stream":172,"./lib/results":174,"./lib/test":175,"_process":111,"defined":118,"through":176}],172:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -10302,7 +11644,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":94,"fs":93,"through":154}],151:[function(require,module,exports){
+},{"_process":111,"fs":110,"through":176}],173:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -10310,7 +11652,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":94}],152:[function(require,module,exports){
+},{"_process":111}],174:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -10501,7 +11843,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":94,"events":109,"function-bind":112,"has":113,"inherits":115,"object-inspect":118,"resumer":138,"through":154}],153:[function(require,module,exports){
+},{"_process":111,"events":126,"function-bind":130,"has":131,"inherits":133,"object-inspect":139,"resumer":160,"through":176}],175:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -11002,7 +12344,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":151,"deep-equal":97,"defined":101,"events":109,"has":113,"inherits":115,"path":121,"string.prototype.trim":142}],154:[function(require,module,exports){
+},{"./next_tick":173,"deep-equal":114,"defined":118,"events":126,"has":131,"inherits":133,"path":142,"string.prototype.trim":164}],176:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -11114,7 +12456,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":94,"stream":140}],155:[function(require,module,exports){
+},{"_process":111,"stream":162}],177:[function(require,module,exports){
 (function (global){
 
 /**
@@ -11185,4 +12527,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[45]);
+},{}]},{},[51,52]);

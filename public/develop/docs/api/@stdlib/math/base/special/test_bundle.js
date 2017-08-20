@@ -286,12 +286,15 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var bool = isInfinite( Number.POSITIVE_INFINITY );
 * // returns true
+*
 * @example
 * var bool = isInfinite( Number.NEGATIVE_INFINITY );
 * // returns true
+*
 * @example
 * var bool = isInfinite( 5.0 );
 * // returns false
+*
 * @example
 * var bool = isInfinite( NaN );
 * // returns false
@@ -305,7 +308,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],8:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],8:[function(require,module,exports){
 'use strict';
 
 /**
@@ -365,7 +368,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":159}],10:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":170}],10:[function(require,module,exports){
 'use strict';
 
 /**
@@ -406,6 +409,7 @@ module.exports = isnan;
 * @example
 * var bool = isnan( NaN );
 * // returns true
+*
 * @example
 * var bool = isnan( 7.0 );
 * // returns false
@@ -420,6 +424,73 @@ function isnan( x ) {
 module.exports = isnan;
 
 },{}],12:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a finite double-precision floating-point number is a negative integer.
+*
+* @module @stdlib/math/base/assert/is-negative-integer
+*
+* @example
+* var isNegativeInteger = require( '@stdlib/math/base/assert/is-negative-integer' );
+*
+* var bool = isNegativeInteger( -1.0 );
+* // returns true
+*
+* bool = isNegativeInteger( 0.0 );
+* // returns false
+*
+* bool = isNegativeInteger( 10.0 );
+* // returns false
+*/
+
+// MODULES //
+
+var isNegativeInteger = require( './is_negative_integer.js' );
+
+
+// EXPORTS //
+
+module.exports = isNegativeInteger;
+
+},{"./is_negative_integer.js":13}],13:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var floor = require( '@stdlib/math/base/special/floor' );
+
+
+// MAIN //
+
+/**
+* Tests if a finite double-precision floating-point number is a negative integer.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is a negative integer
+*
+* @example
+* var bool = isNegativeInteger( -1.0 );
+* // returns true
+*
+* @example
+* var bool = isNegativeInteger( 0.0 );
+* // returns false
+*
+* @example
+* var bool = isNegativeInteger( 10.0 );
+* // returns false
+*/
+function isNegativeInteger( x ) {
+	return (floor(x) === x && x < 0.0);
+} // end FUNCTION isNegativeInteger()
+
+
+// EXPORTS //
+
+module.exports = isNegativeInteger;
+
+},{"@stdlib/math/base/special/floor":170}],14:[function(require,module,exports){
 'use strict';
 
 /**
@@ -446,7 +517,7 @@ var isNegativeZero = require( './is_negative_zero.js' );
 
 module.exports = isNegativeZero;
 
-},{"./is_negative_zero.js":13}],13:[function(require,module,exports){
+},{"./is_negative_zero.js":15}],15:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -479,7 +550,74 @@ function isNegativeZero( x ) {
 
 module.exports = isNegativeZero;
 
-},{"@stdlib/math/constants/float64-ninf":397}],14:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-ninf":433}],16:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a finite double-precision floating-point number is a nonnegative integer.
+*
+* @module @stdlib/math/base/assert/is-nonnegative-integer
+*
+* @example
+* var isNonNegativeInteger = require( '@stdlib/math/base/assert/is-nonnegative-integer' );
+*
+* var bool = isNonNegativeInteger( 1.0 );
+* // returns true
+*
+* bool = isNonNegativeInteger( 0.0 );
+* // returns true
+*
+* bool = isNonNegativeInteger( -10.0 );
+* // returns false
+*/
+
+// MODULES //
+
+var isNonNegativeInteger = require( './is_nonnegative_integer.js' );
+
+
+// EXPORTS //
+
+module.exports = isNonNegativeInteger;
+
+},{"./is_nonnegative_integer.js":17}],17:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var floor = require( '@stdlib/math/base/special/floor' );
+
+
+// MAIN //
+
+/**
+* Tests if a finite double-precision floating-point number is a nonnegative integer.
+*
+* @param {number} x - value to test
+* @returns {boolean} boolean indicating whether the value is a nonnegative integer
+*
+* @example
+* var bool = isNonNegativeInteger( 1.0 );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( 0.0 );
+* // returns true
+*
+* @example
+* var bool = isNonNegativeInteger( -10.0 );
+* // returns false
+*/
+function isNonNegativeInteger( x ) {
+	return (floor(x) === x && x >= 0);
+} // end FUNCTION isNonNegativeInteger()
+
+
+// EXPORTS //
+
+module.exports = isNonNegativeInteger;
+
+},{"@stdlib/math/base/special/floor":170}],18:[function(require,module,exports){
 'use strict';
 
 /**
@@ -512,7 +650,7 @@ var isOdd = require( './is_odd.js' );
 
 module.exports = isOdd;
 
-},{"./is_odd.js":15}],15:[function(require,module,exports){
+},{"./is_odd.js":19}],19:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -557,7 +695,7 @@ function isOdd( x ) {
 
 module.exports = isOdd;
 
-},{"@stdlib/math/base/assert/is-even":4}],16:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-even":4}],20:[function(require,module,exports){
 'use strict';
 
 /**
@@ -584,7 +722,7 @@ var isPositiveZero = require( './is_positive_zero.js' );
 
 module.exports = isPositiveZero;
 
-},{"./is_positive_zero.js":17}],17:[function(require,module,exports){
+},{"./is_positive_zero.js":21}],21:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -603,6 +741,7 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var bool = isPositiveZero( 0.0 );
 * // returns true
+*
 * @example
 * var bool = isPositiveZero( -0.0 );
 * // returns false
@@ -616,7 +755,7 @@ function isPositiveZero( x ) {
 
 module.exports = isPositiveZero;
 
-},{"@stdlib/math/constants/float64-pinf":400}],18:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-pinf":437}],22:[function(require,module,exports){
 'use strict';
 
 /**
@@ -646,7 +785,7 @@ var isProbability = require( './is_probability.js' );
 
 module.exports = isProbability;
 
-},{"./is_probability.js":19}],19:[function(require,module,exports){
+},{"./is_probability.js":23}],23:[function(require,module,exports){
 'use strict';
 
 /**
@@ -658,9 +797,11 @@ module.exports = isProbability;
 * @example
 * var bool = isProbability( 0.5 );
 * // returns true
+*
 * @example
 * var bool = isProbability( 3.14 );
 * // returns false
+*
 * @example
 * var bool = isProbability( NaN );
 * // returns false
@@ -674,7 +815,7 @@ function isProbability( x ) {
 
 module.exports = isProbability;
 
-},{}],20:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 /**
@@ -686,15 +827,19 @@ module.exports = isProbability;
 * @example
 * var v = abs( -1.0 );
 * // returns 1.0
+*
 * @example
 * var v = abs( 2.0 );
 * // returns 2.0
+*
 * @example
 * var v = abs( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = abs( -0.0 );
 * // returns 0.0
+*
 * @example
 * var v = abs( NaN );
 * // returns NaN
@@ -714,7 +859,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],21:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 /**
@@ -750,7 +895,7 @@ var abs = require( './abs.js' );
 
 module.exports = abs;
 
-},{"./abs.js":20}],22:[function(require,module,exports){
+},{"./abs.js":24}],26:[function(require,module,exports){
 'use strict';
 
 /**
@@ -788,7 +933,7 @@ function abs2( x ) {
 
 module.exports = abs2;
 
-},{}],23:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 /**
@@ -824,7 +969,7 @@ var abs2 = require( './abs2.js' );
 
 module.exports = abs2;
 
-},{"./abs2.js":22}],24:[function(require,module,exports){
+},{"./abs2.js":26}],28:[function(require,module,exports){
 'use strict';
 
 /*
@@ -873,9 +1018,11 @@ var MOREBITS = 6.123233995736765886130e-17; // pi/2 = PIO2 + MOREBITS.
 * @example
 * var v = acos( 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = acos( 0.707 ); // ~pi/4
 * // returns ~0.7855
+*
 * @example
 * var v = acos( NaN );
 * // returns NaN
@@ -902,7 +1049,7 @@ function acos( x ) {
 
 module.exports = acos;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/asin":37,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-fourth-pi":379}],25:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/asin":41,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-fourth-pi":413}],29:[function(require,module,exports){
 'use strict';
 
 /**
@@ -932,7 +1079,7 @@ var acos = require( './acos.js' );
 
 module.exports = acos;
 
-},{"./acos.js":24}],26:[function(require,module,exports){
+},{"./acos.js":28}],30:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1003,9 +1150,11 @@ var HUGE = 1 << 28; // 2**28
 * @example
 * var v = acosh( 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = acosh( 2.0 );
 * // returns ~1.317
+*
 * @example
 * var v = acosh( NaN );
 * // returns NaN
@@ -1037,7 +1186,7 @@ function acosh( x ) {
 
 module.exports = acosh;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-ln-two":385}],27:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-ln-two":419}],31:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1067,7 +1216,7 @@ var acosh = require( './acosh.js' );
 
 module.exports = acosh;
 
-},{"./acosh.js":26}],28:[function(require,module,exports){
+},{"./acosh.js":30}],32:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1108,7 +1257,7 @@ function acovercos( x ) {
 
 module.exports = acovercos;
 
-},{"@stdlib/math/base/special/asin":37}],29:[function(require,module,exports){
+},{"@stdlib/math/base/special/asin":41}],33:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1141,7 +1290,7 @@ var acovercos = require( './acovercos.js' );
 
 module.exports = acovercos;
 
-},{"./acovercos.js":28}],30:[function(require,module,exports){
+},{"./acovercos.js":32}],34:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1182,7 +1331,7 @@ function acoversin( x ) {
 
 module.exports = acoversin;
 
-},{"@stdlib/math/base/special/asin":37}],31:[function(require,module,exports){
+},{"@stdlib/math/base/special/asin":41}],35:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1215,7 +1364,7 @@ var acoversin = require( './acoversin.js' );
 
 module.exports = acoversin;
 
-},{"./acoversin.js":30}],32:[function(require,module,exports){
+},{"./acoversin.js":34}],36:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1257,7 +1406,7 @@ function ahavercos( x ) {
 
 module.exports = ahavercos;
 
-},{"@stdlib/math/base/special/acos":25,"@stdlib/math/base/special/sqrt":304}],33:[function(require,module,exports){
+},{"@stdlib/math/base/special/acos":29,"@stdlib/math/base/special/sqrt":338}],37:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1290,7 +1439,7 @@ var ahavercos = require( './ahavercos.js' );
 
 module.exports = ahavercos;
 
-},{"./ahavercos.js":32}],34:[function(require,module,exports){
+},{"./ahavercos.js":36}],38:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1332,7 +1481,7 @@ function ahaversin( x ) {
 
 module.exports = ahaversin;
 
-},{"@stdlib/math/base/special/asin":37,"@stdlib/math/base/special/sqrt":304}],35:[function(require,module,exports){
+},{"@stdlib/math/base/special/asin":41,"@stdlib/math/base/special/sqrt":338}],39:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1365,7 +1514,7 @@ var ahaversin = require( './ahaversin.js' );
 
 module.exports = ahaversin;
 
-},{"./ahaversin.js":34}],36:[function(require,module,exports){
+},{"./ahaversin.js":38}],40:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1463,12 +1612,15 @@ var ratevalRS = evalrational( R, S );
 * @example
 * var v = asin( 0.0 );
 * // returns ~0.0
+*
 * @example
 * var v = asin( Math.PI/2.0 );
 * // returns ~1.0
+*
 * @example
 * var v = asin( -Math.PI/6.0 );
 * // returns ~-0.5
+*
 * @example
 * var v = asin( NaN );
 * // returns NaN
@@ -1517,7 +1669,7 @@ function asin( x ) {
 
 module.exports = asin;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-fourth-pi":379}],37:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-fourth-pi":413}],41:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1551,7 +1703,7 @@ var asin = require( './asin.js' );
 
 module.exports = asin;
 
-},{"./asin.js":36}],38:[function(require,module,exports){
+},{"./asin.js":40}],42:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1617,12 +1769,15 @@ var HUGE = 1 << 28; // 2**28
 * @example
 * var v = asinh( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = asinh( 2.0 );
 * // returns ~1.444
+*
 * @example
 * var v = asinh( -2.0 );
 * // returns ~-1.444
+*
 * @example
 * var v = asinh( NaN );
 * // returns NaN
@@ -1663,7 +1818,7 @@ function asinh( x ) {
 
 module.exports = asinh;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-ln-two":385}],39:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-ln-two":419}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1696,7 +1851,7 @@ var asinh = require( './asinh.js' );
 
 module.exports = asinh;
 
-},{"./asinh.js":38}],40:[function(require,module,exports){
+},{"./asinh.js":42}],44:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1770,12 +1925,15 @@ var polyvalQ = evalpoly( Q );
 * @example
 * var v = atan( 0.0 );
 * // returns ~0.0
+*
 * @example
 * var v = atan( -Math.PI/4.0 );
 * // returns ~-1.0
+*
 * @example
 * var v = atan( Math.PI/4.0 );
 * // returns ~1.0
+*
 * @example
 * var v = atan( NaN );
 * // returns NaN
@@ -1831,7 +1989,7 @@ function atan( x ) {
 
 module.exports = atan;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-fourth-pi":379,"@stdlib/math/constants/float64-half-pi":381,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],41:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-fourth-pi":413,"@stdlib/math/constants/float64-half-pi":415,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],45:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1864,7 +2022,7 @@ var atan = require( './atan.js' );
 
 module.exports = atan;
 
-},{"./atan.js":40}],42:[function(require,module,exports){
+},{"./atan.js":44}],46:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1947,24 +2105,31 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 * @example
 * var v = atan2( 2.0, 2.0 ); // => atan( 1.0 )
 * // returns ~0.785
+*
 * @example
 * var v = atan2( 6.0, 2.0 ); // => atan( 3.0 )
 * // returns ~1.249
+*
 * @example
 * var v = atan2( -1.0, -1.0 ); // => atan( 1.0 ) - PI
 * // returns ~-2.356
+*
 * @example
 * var v = atan2( 3.0, 0.0 ); // => PI / 2
 * // returns ~1.571
+*
 * @example
 * var v = atan2( -2.0, 0.0 ); // => - PI / 2
 * // returns ~-1.571
+*
 * @example
 * var v = atan2( 0.0, 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = atan2( 3.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = atan2( NaN, 2.0 );
 * // returns NaN
@@ -2014,7 +2179,7 @@ function atan2( y, x ) {
 
 module.exports = atan2;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/atan":41,"@stdlib/math/base/special/copysign":107,"@stdlib/math/base/utils/float64-signbit":366,"@stdlib/math/constants/float64-pi":399,"@stdlib/math/constants/float64-pinf":400}],43:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/atan":45,"@stdlib/math/base/special/copysign":110,"@stdlib/math/base/utils/float64-signbit":400,"@stdlib/math/constants/float64-pi":436,"@stdlib/math/constants/float64-pinf":437}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2057,7 +2222,7 @@ var atan2 = require( './atan2.js' );
 
 module.exports = atan2;
 
-},{"./atan2.js":42}],44:[function(require,module,exports){
+},{"./atan2.js":46}],48:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2181,7 +2346,7 @@ function atanh( x ) {
 
 module.exports = atanh;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/log1p":235,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],45:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/log1p":255,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],49:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2217,7 +2382,7 @@ var atanh = require( './atanh.js' );
 
 module.exports = atanh;
 
-},{"./atanh.js":44}],46:[function(require,module,exports){
+},{"./atanh.js":48}],50:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2258,7 +2423,7 @@ function avercos( x ) {
 
 module.exports = avercos;
 
-},{"@stdlib/math/base/special/acos":25}],47:[function(require,module,exports){
+},{"@stdlib/math/base/special/acos":29}],51:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2291,7 +2456,7 @@ var avercos = require( './avercos.js' );
 
 module.exports = avercos;
 
-},{"./avercos.js":46}],48:[function(require,module,exports){
+},{"./avercos.js":50}],52:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2332,7 +2497,7 @@ function aversin( x ) {
 
 module.exports = aversin;
 
-},{"@stdlib/math/base/special/acos":25}],49:[function(require,module,exports){
+},{"@stdlib/math/base/special/acos":29}],53:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2365,11 +2530,11 @@ var aversin = require( './aversin.js' );
 
 module.exports = aversin;
 
-},{"./aversin.js":48}],50:[function(require,module,exports){
+},{"./aversin.js":52}],54:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{http://www.boost.org/doc/libs/1_52_0/boost/math/special_functions/beta.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/beta.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -2384,7 +2549,6 @@ module.exports = aversin;
 // MODULES //
 
 var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
-var gamma = require( '@stdlib/math/base/special/gamma' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var log1p = require( '@stdlib/math/base/special/log1p' );
 var sqrt = require( '@stdlib/math/base/special/sqrt' );
@@ -2450,18 +2614,23 @@ var lanczosSumExpGScaled = evalrational( NUM, DENOM );
 * @example
 * var v = beta( 0, 0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = beta( 1, 1 );
 * // returns 1
+*
 * @example
 * var v = beta( -1, 2 );
 * // returns NaN
+*
 * @example
 * var v = beta( 5, 0.2 );
 * // returns ~3.382
+*
 * @example
 * var v = beta( 4, 1 );
 * // returns 0.25
+*
 * @example
 * var v = beta( NaN, 2 );
 * // returns NaN
@@ -2488,26 +2657,19 @@ function beta( a, b ) {
 		return 1.0 / a;
 	} else if ( a === 1.0 ) {
 		return 1.0 / b;
+	} else if ( c < EPSILON ) {
+		res = c / a;
+		res /= b;
+		return res;
 	}
 
 	// Special cases:
 	if ( c === a && b < EPSILON ) {
-		return gamma( b );
+		return 1.0 / b;
 	} else if ( c === b && a < EPSILON ) {
-		return gamma( a );
+		return 1.0 / a;
 	}
 
-	// Shift to a and b > 1 if required:
-	if ( a < 1.0 ) {
-		prefix *= c / a;
-		c += 1.0;
-		a += 1.0;
-	}
-	if ( b < 1.0 ) {
-		prefix *= c / b;
-		c += 1.0;
-		b += 1.0;
-	}
 	if ( a < b ) {
 		// Swap a and b:
 		tmp = b;
@@ -2519,23 +2681,23 @@ function beta( a, b ) {
 	agh = a + G - 0.5;
 	bgh = b + G - 0.5;
 	cgh = c + G - 0.5;
-	res = lanczosSumExpGScaled( a ) * lanczosSumExpGScaled( b );
-	res /= lanczosSumExpGScaled( c );
+	res = lanczosSumExpGScaled( a ) * ( lanczosSumExpGScaled( b ) /
+		lanczosSumExpGScaled( c ) );
 	ambh = a - 0.5 - b;
-	if ( abs( b * ambh ) < ( cgh * 100 ) && a > 100 ) {
-		// Special case where the base of the power term is close to 1
-		// compute (1+x)^y instead:
+	if ( ( abs( b * ambh ) < ( cgh * 100.0 ) ) && a > 100.0 ) {
+		// Special case where the base of the power term is close to 1; compute (1+x)^y instead:
 		res *= exp( ambh * log1p( -b / cgh ) );
 	} else {
 		res *= pow( agh / cgh, a - 0.5 - b );
 	}
 	if ( cgh > 1e10 ) {
 		// This avoids possible overflow, but appears to be marginally less accurate:
-		res *= pow( (agh / cgh) * (bgh / cgh), b);
+		res *= pow( (agh / cgh) * (bgh / cgh), b );
 	} else {
-		res *= pow((agh * bgh) / (cgh * cgh), b);
+		res *= pow( (agh * bgh) / (cgh * cgh), b );
 	}
 	res *= sqrt( E / bgh);
+
 	// If a and b were originally less than 1 we need to scale the result:
 	res *= prefix;
 	return res;
@@ -2546,7 +2708,7 @@ function beta( a, b ) {
 
 module.exports = beta;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-e":375,"@stdlib/math/constants/float64-eps":376}],51:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-eps":410}],55:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2585,7 +2747,7 @@ var beta = require( './beta.js' );
 
 module.exports = beta;
 
-},{"./beta.js":50}],52:[function(require,module,exports){
+},{"./beta.js":54}],56:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2611,9 +2773,9 @@ var pow = require( '@stdlib/math/base/special/pow' );
 var ln = require( '@stdlib/math/base/special/ln' );
 var MIN_VALUE = require( '@stdlib/math/constants/float64-smallest-normal' );
 var EPSILON = require( '@stdlib/math/constants/float64-eps' );
-var full_igamma_prefix = require( './full_igamma_prefix.js' );
-var regularised_gamma_prefix = require( './regularised_gamma_prefix.js' );
-var tgamma_delta_ratio = require( './tgamma_delta_ratio.js');
+var fullIGammaPrefix = require( './full_igamma_prefix.js' );
+var regularisedGammaPrefix = require( './regularised_gamma_prefix.js' );
+var tgammaDeltaRatio = require( './tgamma_delta_ratio.js');
 
 
 // MAIN //
@@ -2622,8 +2784,16 @@ var tgamma_delta_ratio = require( './tgamma_delta_ratio.js');
 * This is DiDonato and Morris's BGRAT routine, see Eq's 9 through 9.6.
 *
 * @private
+* @param {NonNegativeNumber} a - function parameter
+* @param {NonNegativeNumber} b - function parameter
+* @param {Probability} x - function parameter
+* @param {Probability} y - probability equal to `1-x`
+* @param {NonNegativeInteger} s0 - initial value
+* @param {number} mult - initial value
+* @param {boolean} normalised - boolean indicating whether to evaluate the regularized or non-regularized incomplete beta function
+* @returns {number} function value
 */
-function beta_small_b_large_a_series( a, b, x, y, s0, mult, normalised ) {
+function betaSmallBLargeASeries( a, b, x, y, s0, mult, normalised ) {
 	var prefix;
 	var tmp1;
 	var tnp1;
@@ -2646,38 +2816,38 @@ function beta_small_b_large_a_series( a, b, x, y, s0, mult, normalised ) {
 
 	// Some values we'll need later, these are Eq 9.1:
 	bm1 = b - 1.0;
-	t = a + bm1 / 2.0;
+	t = a + ( bm1 / 2.0 );
 	if ( y < 0.35 ) {
 		lx = log1p( -y );
 	} else {
 		lx = ln( x );
 	}
 	u = -t * lx;
+
 	// And from from 9.2:
-	h = regularised_gamma_prefix( b, u );
+	h = regularisedGammaPrefix( b, u );
 	if ( h <= MIN_VALUE ) {
 		return s0;
 	}
 	if ( normalised ) {
-		prefix = h / tgamma_delta_ratio( a, b );
+		prefix = h / tgammaDeltaRatio( a, b );
 		prefix /= pow( t, b );
 	} else {
-		prefix = full_igamma_prefix( b, u ) / pow( t, b );
+		prefix = fullIGammaPrefix( b, u ) / pow( t, b );
 	}
 	prefix *= mult;
-	// now we need the quantity Pn, unfortunatately this is computed
-	// recursively, and requires a full history of all the previous values
-	// so no choice but to declare a big table and hope it's big enough...
-	//
+
+	// We need the quantity Pn, unfortunately this is computed recursively, and requires a full history of all the previous values so no choice but to declare a big table and hope it's big enough...
 	p = new Array( 30 );
 	p[ 0 ] = 1;  // see 9.3.
-	// Now an initial value for J, see 9.6:
 
-	// gammainc( u, b, regularized, upper )
+	// Now an initial value for J, see 9.6: gammainc( u, b, regularized, upper )
 	j = gammainc( u, b, true, true );
 	j /= h;
+
 	// Now we can start to pull things together and evaluate the sum in Eq 9:
-	sum = s0 + prefix * j; // Value at N = 0
+	sum = s0 + ( prefix * j ); // Value at N = 0
+
 	// Some variables we'll need...
 	tnp1 = 1.0; // 2*N+1
 	lx2 = lx / 2.0;
@@ -2692,16 +2862,18 @@ function beta_small_b_large_a_series( a, b, x, y, s0, mult, normalised ) {
 		mbn = b - n;
 		tmp1 = 3;
 		for ( m = 1; m < n; ++m ) {
-			mbn = m * b - n;
+			mbn = ( m * b ) - n;
 			p[ n ] += mbn * p[ n-m ] / factorial( tmp1 );
 			tmp1 += 2;
 		}
 		p[ n ] /= n;
 		p[ n ] += bm1 / factorial( tnp1 );
+
 		// Now we want Jn from Jn-1 using Eq 9.6:
-		j = ( b2n * (b2n + 1.0) * j + (u + b2n + 1.0) * lxp ) / t4;
+		j = ( ( b2n * ( b2n+1.0 ) * j ) + ( ( u+b2n+1.0 ) * lxp ) ) / t4;
 		lxp *= lx2;
 		b2n += 2.0;
+
 		// Pull it together with Eq 9:
 		r = prefix * p[ n ] * j;
 		sum += r;
@@ -2709,26 +2881,24 @@ function beta_small_b_large_a_series( a, b, x, y, s0, mult, normalised ) {
 			if ( abs( r ) < abs( EPSILON * sum ) ) {
 				break;
 			}
-		} else {
-			if ( abs( r / EPSILON ) < abs( sum ) ) {
-				break;
-			}
+		} else if ( abs( r / EPSILON ) < abs( sum ) ) {
+			break;
 		}
 	}
 	return sum;
-} // end FUNCTION beta_small_b_large_a_series()
+} // end FUNCTION betaSmallBLargeASeries()
 
 
 // EXPORTS //
 
-module.exports = beta_small_b_large_a_series;
+module.exports = betaSmallBLargeASeries;
 
-},{"./full_igamma_prefix.js":55,"./regularised_gamma_prefix.js":64,"./tgamma_delta_ratio.js":66,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/factorial":153,"@stdlib/math/base/special/gammainc":182,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-eps":376,"@stdlib/math/constants/float64-smallest-normal":401}],53:[function(require,module,exports){
+},{"./full_igamma_prefix.js":59,"./regularised_gamma_prefix.js":66,"./tgamma_delta_ratio.js":68,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/factorial":156,"@stdlib/math/base/special/gammainc":200,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-eps":410,"@stdlib/math/constants/float64-smallest-normal":438}],57:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var ibeta_imp = require( './ibeta_imp.js' );
+var ibetaImp = require( './ibeta_imp.js' );
 
 
 // MAIN //
@@ -2742,12 +2912,28 @@ var ibeta_imp = require( './ibeta_imp.js' );
 * @param {boolean} [regularized=true] - boolean indicating if the function should evaluate the regularized or non-regularized incomplete beta function
 * @param {boolean} [upper=false] - boolean indicating if the function should return the upper tail of the incomplete beta function
 * @returns {number} function value
+*
+* @example
+* var y = betainc( 0.5, 2.0, 2.0 );
+* // returns 0.5
+*
+* @example
+* var y = betainc( 0.5, 2.0, 2.0, false );
+* // returns ~0.083
+*
+* @example
+* var y = betainc( 0.2, 1.0, 2.0 );
+* // returns 0.36
 */
 function betainc( x, a, b, regularized, upper ) {
 	if ( regularized !== false ) {
-		return upper ? ibeta_imp( a, b, x, true, true ) : ibeta_imp( a, b, x, false, true );
+		return upper ?
+			ibetaImp( a, b, x, true, true ) :
+			ibetaImp( a, b, x, false, true );
 	}
-	return upper ? ibeta_imp( a, b, x, true, false ) : ibeta_imp( a, b, x, false, false );
+	return upper ?
+		ibetaImp( a, b, x, true, false ) :
+		ibetaImp( a, b, x, false, false );
 } // end FUNCTION betainc()
 
 
@@ -2755,7 +2941,7 @@ function betainc( x, a, b, regularized, upper ) {
 
 module.exports = betainc;
 
-},{"./ibeta_imp.js":58}],54:[function(require,module,exports){
+},{"./ibeta_imp.js":62}],58:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2785,9 +2971,14 @@ var MIN_VALUE = require( '@stdlib/math/constants/float64-smallest-normal' );
 * For integer arguments we can relate the incomplete beta to the  complement of the binomial distribution cdf and use this finite sum.
 *
 * @private
+* @param {NonNegativeInteger} n - number of trials
+* @param {NonNegativeInteger} k - function input
+* @param {Probability} x - function input
+* @param {Probability} y - probability equal to `1-x`
+* @returns {number} sum
 */
 function binomialCCDF( n, k, x, y ) {
-	var start_term;
+	var startTerm;
 	var result;
 	var start;
 	var term;
@@ -2801,28 +2992,28 @@ function binomialCCDF( n, k, x, y ) {
 			result += term;
 		}
 	} else {
-		// First term underflows so we need to start at the mode of the
-		// distribution and work outwards:
+		// First term underflows so we need to start at the mode of the distribution and work outwards:
 		start = floor( n * x );
 		if ( start <= k + 1 ) {
 			start = floor( k + 2 );
 		}
-		result = pow(x, start) * pow(y, n - start) * binomcoef( floor(n), floor(start) );
+		result = pow( x, start ) * pow( y, n - start );
+		result *= binomcoef( floor(n), floor(start) );
 		if ( result === 0 ) {
-			// OK, starting slightly above the mode didn't work,
-			// we'll have to sum the terms the old fashioned way:
+			// OK, starting slightly above the mode didn't work, we'll have to sum the terms the old fashioned way:
 			for ( i = start - 1; i > k; --i ) {
-				result += pow( x, i ) * pow( y, n - i ) * binomcoef( floor(n), floor(i) );
+				result += pow( x, i ) * pow( y, n - i );
+				result *= binomcoef( floor(n), floor(i) );
 			}
 		} else {
 			term = result;
-			start_term = result;
-			for( i = start - 1; i > k; --i ) {
+			startTerm = result;
+			for ( i = start - 1; i > k; --i ) {
 				term *= ((i + 1) * y) / ((n - i) * x);
 				result += term;
 			}
-			term = start_term;
-			for(  i = start + 1; i <= n; ++i ) {
+			term = startTerm;
+			for ( i = start + 1; i <= n; ++i ) {
 				term *= (n - i + 1) * x / (i * y);
 				result += term;
 			}
@@ -2836,7 +3027,7 @@ function binomialCCDF( n, k, x, y ) {
 
 module.exports = binomialCCDF;
 
-},{"@stdlib/math/base/special/binomcoef":89,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-smallest-normal":401}],55:[function(require,module,exports){
+},{"@stdlib/math/base/special/binomcoef":92,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-smallest-normal":438}],59:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2872,7 +3063,7 @@ var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
 * @param {number} z - function parameter
 * @returns {number} power term prefix
 */
-function full_igamma_prefix( a, z ) {
+function fullIGammaPrefix( a, z ) {
 	var prefix;
 	var alz;
 
@@ -2888,25 +3079,23 @@ function full_igamma_prefix( a, z ) {
 			prefix = exp( alz - z );
 		}
 	}
-	else {
-		if ( alz > MIN_LN ) {
-			prefix = pow( z, a ) * exp( -z );
-		}
-		else if ( z/a < MAX_LN ) {
-			prefix = pow( z / exp(z/a), a );
-		} else {
-			prefix = exp( alz - z );
-		}
+	else if ( alz > MIN_LN ) {
+		prefix = pow( z, a ) * exp( -z );
+	}
+	else if ( z/a < MAX_LN ) {
+		prefix = pow( z / exp(z/a), a );
+	} else {
+		prefix = exp( alz - z );
 	}
 	return prefix;
-} // end FUNCTION full_igamma_prefix()
+} // end FUNCTION fullIGammaPrefix()
 
 
 // EXPORTS //
 
-module.exports = full_igamma_prefix;
+module.exports = fullIGammaPrefix;
 
-},{"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-ln":389,"@stdlib/math/constants/float64-min-ln":396}],56:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-ln":423,"@stdlib/math/constants/float64-min-ln":432}],60:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2924,23 +3113,31 @@ module.exports = full_igamma_prefix;
 
 // MODULES //
 
-var ibeta_power_terms = require( './ibeta_power_terms.js' );
+var ibetaPowerTerms = require( './ibeta_power_terms.js' );
 
 
 // MAIN //
 
 /**
-* Computes the difference between ibeta(a,b,x) and ibeta(a+k,b,x):
+* Computes the difference between `ibeta(a,b,x)` and `ibeta(a+k,b,x)`.
 *
 * @private
+* @param {NonNegativeNumber} a - function parameter
+* @param {NonNegativeNumber} b - function parameter
+* @param {Probability} x - function parameter
+* @param {Probability} y - probability equal to `1-x`
+* @param {NonNegativeInteger} k - function input
+* @param {boolean} normalised - boolean indicating whether to evaluate the power terms of the regularized or non-regularized incomplete beta function
+* @param {Object} pderiv - object holding the derivative in the `value` property
+* @returns {number} difference between ibeta(a,b,x) and ibeta(a+k,b,x)
 */
-function ibeta_a_step( a, b, x, y, k, normalised, pderiv ) {
+function ibetaAStep( a, b, x, y, k, normalised, pderiv ) {
 	var prefix;
 	var term;
 	var sum;
 	var i;
 
-	prefix = ibeta_power_terms( a, b, x, y, normalised );
+	prefix = ibetaPowerTerms( a, b, x, y, normalised );
 	if ( pderiv ) {
 		pderiv.value = prefix;
 	}
@@ -2951,20 +3148,20 @@ function ibeta_a_step( a, b, x, y, k, normalised, pderiv ) {
 	sum = 1.0;
 	term = 1.0;
 	// Series summation from 0 to k-1:
-	for( i = 0; i < k-1; ++i ) {
+	for ( i = 0; i < k-1; ++i ) {
 		term *= (a+b+i) * x / (a+i+1.0);
 		sum += term;
 	}
 	prefix *= sum;
 	return prefix;
-} // end FUNCTION ibeta_a_step()
+} // end FUNCTION ibetaAStep()
 
 
 // EXPORTS
 
-module.exports = ibeta_a_step;
+module.exports = ibetaAStep;
 
-},{"./ibeta_power_terms.js":59}],57:[function(require,module,exports){
+},{"./ibeta_power_terms.js":63}],61:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2983,67 +3180,90 @@ module.exports = ibeta_a_step;
 // MODULES //
 
 var continuedFraction = require( '@stdlib/math/base/tools/continued-fraction' );
-var ibeta_power_terms = require( './ibeta_power_terms.js' );
+var ibetaPowerTerms = require( './ibeta_power_terms.js' );
 
 
-// MAIN //
+// FUNCTIONS //
 
 /**
-* Continued fraction for the incomplete beta:
+* Continued fraction for the incomplete beta.
 *
 * @private
+* @param {NonNegativeNumber} a - function parameter
+* @param {NonNegativeNumber} b - function parameter
+* @param {Probability} x - function parameter
+* @param {Probability} y - probability equal to `1-x`
+* @returns {Function} series function
 */
-function ibeta_fraction2_t( a, b, x, y ) {
+function ibetaFraction2t( a, b, x, y ) {
 	var m = 0;
-	return function next() {
+	return next;
+
+	/**
+	* Calculate the numerator and denominator of the next term of the series.
+	*
+	* @private
+	* @returns {Array} series expansion terms
+	*/
+	function next() {
 		var denom;
 		var aN;
 		var bN;
 
 		aN = (a + m - 1) * (a + b + m - 1) * m * (b - m) * x * x;
-		denom = (a + 2 * m - 1);
+		denom = a + ( 2.0*m ) - 1.0;
 		aN /= denom * denom;
-
 		bN = m;
-		bN += (m * (b - m) * x) / (a + 2*m - 1);
-		bN += ( (a + m) * ( a * y - b * x + 1 + m *(2 - x) ) ) / (a + 2*m + 1);
-
-		++m;
+		bN += (m * (b - m) * x) / ( a + ( 2.0*m ) - 1.0 );
+		bN += ( (a+m) * ( (a*y) - (b*x) + 1.0 + ( m*(2.0-x) ) ) ) /
+			( a + (2.0*m) + 1.0 );
+		m += 1;
 		return [ aN, bN ];
-	};
-} // end FUNCTION ibeta_fraction2_t()
+	}
+} // end FUNCTION ibetaFraction2t()
 
+
+// MAIN //
 
 /**
-* Evaluate the incomplete beta via the continued fraction representation.
+* Evaluates the incomplete beta via the continued fraction representation.
 *
 * @private
+* @param {NonNegativeNumber} a - function parameter
+* @param {NonNegativeNumber} b - function parameter
+* @param {Probability} x - function parameter
+* @param {Probability} y - probability equal to `1-x`
+* @param {boolean} normalised - boolean indicating whether to evaluate the power terms of the regularized or non-regularized incomplete beta function
+* @param {Object} pderiv - object holding the derivative in the `value` property
+* @returns {number} incomplete beta value
 */
-function ibeta_fraction2( a, b, x, y, normalised, pderiv ) {
+function ibetaFraction2( a, b, x, y, normalised, pderiv ) {
 	var result;
 	var fract;
 	var f;
 
-	result = ibeta_power_terms( a, b, x, y, normalised );
+	result = ibetaPowerTerms( a, b, x, y, normalised );
 	if ( pderiv ) {
 		pderiv.value = result;
 	}
 	if ( result === 0.0 ) {
 		return result;
 	}
-	f = ibeta_fraction2_t( a, b, x, y );
+	f = ibetaFraction2t( a, b, x, y );
 	fract = continuedFraction( f, {
-		'keep': true
+		'keep': true,
+		'maxIter': 1000
 	});
 	return result / fract;
-} // end FUNCTION ibeta_fraction2()
+} // end FUNCTION ibetaFraction2()
 
 
 // EXPORTS
 
-module.exports = ibeta_fraction2;
+module.exports = ibetaFraction2;
 
-},{"./ibeta_power_terms.js":59,"@stdlib/math/base/tools/continued-fraction":337}],58:[function(require,module,exports){
+},{"./ibeta_power_terms.js":63,"@stdlib/math/base/tools/continued-fraction":371}],62:[function(require,module,exports){
+/* eslint-disable max-statements */
 'use strict';
 
 /*
@@ -3077,13 +3297,13 @@ var MIN_FLOAT64 = require( '@stdlib/math/constants/float64-smallest-normal' );
 var MAX_INT32 = require( '@stdlib/math/constants/int32-max' );
 var HALF_PI = require( '@stdlib/math/constants/float64-half-pi' );
 var PI = require( '@stdlib/math/constants/float64-pi' );
-var beta_small_b_large_a_series = require( './beta_small_b_large_a_series.js' );
-var rising_factorial_ratio = require( './rising_factorial_ratio.js' );
-var ibeta_power_terms = require( './ibeta_power_terms.js' );
-var ibeta_fraction2 = require( './ibeta_fraction2.js');
-var binomial_ccdf = require( './binomial_ccdf.js' );
-var ibeta_a_step = require( './ibeta_a_step.js' );
-var ibeta_series = require( './ibeta_series.js' );
+var betaSmallBLargeASeries = require( './beta_small_b_large_a_series.js' );
+var risingFactorialRatio = require( './rising_factorial_ratio.js' );
+var ibetaPowerTerms = require( './ibeta_power_terms.js' );
+var ibetaFraction2 = require( './ibeta_fraction2.js');
+var binomialCCDF = require( './binomial_ccdf.js' );
+var ibetaAStep = require( './ibeta_a_step.js' );
+var ibetaSeries = require( './ibeta_series.js' );
 
 
 // MAIN //
@@ -3100,8 +3320,7 @@ var ibeta_series = require( './ibeta_series.js' );
 * @param {Object} [pderiv] - derivative container
 * @returns {number} function value
 */
-function ibeta_imp( a, b, x, invert, normalised, pderiv ) {
-	// jshint maxstatements: 400
+function ibetaImp( a, b, x, invert, normalised, pderiv ) {
 	var lambda;
 	var prefix;
 	var fract;
@@ -3137,22 +3356,34 @@ function ibeta_imp( a, b, x, invert, normalised, pderiv ) {
 				return invert ? 1.0 : 0.0;
 			}
 		}
-	} else {
-		if ( a <= 0 || b <= 0 ) {
-			return NaN;
-		}
-	 }
-	if ( x === 0 ) {
-		if ( pderiv ) {
-			pderiv.value = (a === 1) ? 1 : (a < 1) ? MAX_FLOAT64 / 2 : MIN_FLOAT64 * 2;
-		}
-		return invert ? (normalised ? 1.0 : beta(a, b) ) : 0.0;
+	} else if ( a <= 0.0 || b <= 0.0 ) {
+		return NaN;
 	}
-	if ( x === 1 ) {
+	if ( x === 0.0 ) {
 		if ( pderiv ) {
-			pderiv.value = (b === 1) ? 1 : (b < 1) ? MAX_FLOAT64 / 2 : MIN_FLOAT64 * 2;
+			if ( a === 1.0 ) {
+				pderiv.value = 1.0;
+			} else {
+				pderiv.value = a < 1.0 ? MAX_FLOAT64 / 2.0 : MIN_FLOAT64 * 2.0;
+			}
 		}
-		return invert === 0 ? (normalised ? 1.0 : beta(a, b)) : 0.0;
+		if ( invert ) {
+			return normalised ? 1.0 : beta( a, b );
+		}
+		return 0.0;
+	}
+	if ( x === 1.0 ) {
+		if ( pderiv ) {
+			if ( b === 1 ) {
+				pderiv.value = 1;
+			} else {
+				pderiv.value = b < 1 ? MAX_FLOAT64 / 2 : MIN_FLOAT64 * 2;
+			}
+		}
+		if ( invert ) {
+			return 0.0;
+		}
+		return normalised ? 1.0 : beta( a, b );
 	}
 	if ( a === 0.5 && b === 0.5 ) {
 		if ( pderiv ) {
@@ -3189,11 +3420,11 @@ function ibeta_imp( a, b, x, invert, normalised, pderiv ) {
 			pderiv.value = a * pow( x, a - 1.0 );
 		}
 		if ( y < 0.5 ) {
-			p = invert ? -expm1(a * log1p(-y)) : exp(a * log1p(-y));
+			p = invert ? -expm1( a * log1p(-y) ) : exp( a * log1p(-y) );
 		} else {
 			p = invert ? -( pow( x, a ) - 1 ) : pow( x, a );
-	 	}
-		if( !normalised ) {
+		}
+		if ( !normalised ) {
 			p /= a;
 		}
 		return p;
@@ -3212,13 +3443,17 @@ function ibeta_imp( a, b, x, invert, normalised, pderiv ) {
 		}
 		if ( max( a, b ) <= 1.0 ) {
 			// Both a,b < 1:
-			if( (a >= min( 0.2, b ) ) || ( pow(x, a) <= 0.9 ) ) {
-				if ( !invert ) {
-					fract = ibeta_series(a, b, x, 0, normalised, pderiv, y );
-				} else {
-					fract = -(normalised ? 1 : beta( a, b ) );
+			if ( (a >= min( 0.2, b ) ) || ( pow(x, a) <= 0.9 ) ) {
+				if ( invert ) {
+					fract = -(normalised ? 1.0 : beta( a, b ) );
 					invert = false;
-					fract = -ibeta_series(a, b, x, fract, normalised, pderiv, y );
+					fract = -ibetaSeries(
+						a, b, x, fract, normalised, pderiv, y
+					);
+				} else {
+					fract = ibetaSeries(
+						a, b, x, 0, normalised, pderiv, y
+					);
 				}
 			} else {
 				tmp = b;
@@ -3231,92 +3466,109 @@ function ibeta_imp( a, b, x, invert, normalised, pderiv ) {
 
 				invert = !invert;
 				if ( y >= 0.3 ) {
-					if ( !invert ) {
-						fract = ibeta_series( a, b, x, 0, normalised, pderiv, y );
-					} else {
+					if ( invert ) {
 						fract = -( normalised ? 1.0 : beta( a, b ) );
 						invert = false;
-						fract = -ibeta_series( a, b, x, fract, normalised, pderiv, y );
+						fract = -ibetaSeries(
+							a, b, x, fract, normalised, pderiv, y
+						);
+					} else {
+						fract = ibetaSeries(
+							a, b, x, 0, normalised, pderiv, y
+						);
 					}
 				} else {
 					// Sidestep on a, and then use the series representation:
-					if ( !normalised ) {
-						prefix = rising_factorial_ratio( a + b, a, 20 );
-					} else {
+					if ( normalised ) {
 						prefix = 1;
-					}
-					fract = ibeta_a_step( a, b, x, y, 20, normalised, pderiv );
-					if ( !invert ) {
-						fract = beta_small_b_large_a_series( a + 20, b, x, y, fract, prefix, normalised );
 					} else {
+						prefix = risingFactorialRatio( a + b, a, 20 );
+					}
+					fract = ibetaAStep( a, b, x, y, 20, normalised, pderiv );
+					if ( invert ) {
 						fract -= ( normalised ? 1 : beta( a, b ) );
 						invert = false;
-						fract = -beta_small_b_large_a_series( a + 20, b, x, y, fract, prefix, normalised );
+						fract = -betaSmallBLargeASeries(
+							a + 20, b, x, y, fract, prefix, normalised
+						);
+					} else {
+						fract = betaSmallBLargeASeries(
+							a + 20, b, x, y, fract, prefix, normalised
+						);
 					}
 				}
 			}
-		} else {
-			// One of a, b < 1 only:
-			if ( b <= 1 || (x < 0.1) && ( pow(b * x, a) <= 0.7 ) ) {
-				if ( !invert ) {
-					fract = ibeta_series( a, b, x, 0, normalised, pderiv, y );
-				} else {
-					fract = -( normalised ? 1 : beta( a, b ) );
-					invert = false;
-					fract = -ibeta_series( a, b, x, fract, normalised, pderiv, y );
-				}
+		} else if ( b <= 1 || ( x < 0.1 && ( pow(b * x, a) <= 0.7 ) ) ) {
+			if ( invert ) {
+				fract = -( normalised ? 1 : beta( a, b ) );
+				invert = false;
+				fract = -ibetaSeries( a, b, x, fract, normalised, pderiv, y );
 			} else {
-				tmp = b;
-				b = a;
-				a = tmp;
+				fract = ibetaSeries( a, b, x, 0, normalised, pderiv, y );
+			}
+		} else {
+			tmp = b;
+			b = a;
+			a = tmp;
 
-				tmp = y;
-				y = x;
-				x = tmp;
-				invert = !invert;
+			tmp = y;
+			y = x;
+			x = tmp;
+			invert = !invert;
 
-				if ( y >= 0.3 ) {
-					if (!invert) {
-						fract = ibeta_series(a, b, x, 0, normalised, pderiv, y );
-					} else {
-						fract = -(normalised ? 1 : beta( a, b ));
-						invert = false;
-						fract = -ibeta_series(a, b, x, fract, normalised, pderiv, y );
-					}
+			if ( y >= 0.3 ) {
+				if (invert) {
+					fract = -(normalised ? 1 : beta( a, b ));
+					invert = false;
+					fract = -ibetaSeries(
+						a, b, x, fract, normalised, pderiv, y
+					);
+				} else {
+					fract = ibetaSeries(
+						a, b, x, 0, normalised, pderiv, y
+					);
 				}
-				else if ( a >= 15 ) {
-					if(!invert) {
-						fract = beta_small_b_large_a_series( a, b, x, y, 0, 1, normalised );
-					} else {
-						fract = -(normalised ? 1 : beta( a, b ));
-						invert = false;
-						fract = -beta_small_b_large_a_series( a, b, x, y, fract, 1, normalised );
-					}
+			}
+			else if ( a >= 15 ) {
+				if ( invert ) {
+					fract = -(normalised ? 1 : beta( a, b ));
+					invert = false;
+					fract = -betaSmallBLargeASeries(
+						a, b, x, y, fract, 1, normalised
+					);
+				} else {
+					fract = betaSmallBLargeASeries(
+						a, b, x, y, 0, 1, normalised
+					);
 				}
-				else {
+			}
+			else {
+				if ( normalised ) {
+					prefix = 1;
+				} else {
 					// Sidestep to improve errors:
-					if ( !normalised ) {
-						prefix = rising_factorial_ratio( a + b, a, 20 );
-					} else {
-						prefix = 1;
-					}
-					fract = ibeta_a_step( a, b, x, y, 20, normalised, pderiv );
-					if ( !invert ) {
-						fract = beta_small_b_large_a_series( a + 20, b, x, y, fract, prefix, normalised );
-					} else {
-						fract -= ( normalised ? 1 : beta( a, b ) );
-						invert = false;
-						fract = -beta_small_b_large_a_series( a + 20, b, x, y, fract, prefix, normalised );
-					}
+					prefix = risingFactorialRatio( a + b, a, 20 );
+				}
+				fract = ibetaAStep( a, b, x, y, 20, normalised, pderiv );
+				if ( invert ) {
+					fract -= ( normalised ? 1 : beta( a, b ) );
+					invert = false;
+					fract = -betaSmallBLargeASeries(
+						a + 20, b, x, y, fract, prefix, normalised
+					);
+				} else {
+					fract = betaSmallBLargeASeries(
+						a + 20, b, x, y, fract, prefix, normalised
+					);
 				}
 			}
 		}
 	} else {
 		// Both a,b >= 1:
 		if ( a < b ) {
-			lambda = a - (a + b) * x;
+			lambda = a - ( (a + b) * x );
 		} else {
-			lambda = (a + b) * y - b;
+			lambda = ( (a + b) * y ) - b;
 		}
 		if ( lambda < 0.0 ) {
 			tmp = b;
@@ -3337,69 +3589,77 @@ function ibeta_imp( a, b, x, invert, normalised, pderiv ) {
 				// Relate to the binomial distribution and use a finite sum:
 				k = a - 1;
 				n = b + k;
-				fract = binomial_ccdf( n, k, x, y );
+				fract = binomialCCDF( n, k, x, y );
 				if ( !normalised ) {
 					fract *= beta( a, b );
 				}
 			}
 			else if ( b * x <= 0.7 ) {
-				if( !invert ) {
-					fract = ibeta_series( a, b, x, 0, normalised, pderiv, y );
-				} else {
-					fract = -( normalised ? 1 : beta( a, b ) );
+				if ( invert ) {
+					fract = -( normalised ? 1.0 : beta( a, b ) );
 					invert = false;
-					fract = -ibeta_series( a, b, x, fract, normalised, pderiv, y );
+					fract = -ibetaSeries(
+						a, b, x, fract, normalised, pderiv, y
+					);
+				} else {
+					fract = ibetaSeries(
+						a, b, x, 0.0, normalised, pderiv, y
+					);
 				}
 			}
 			else if ( a > 15.0 ) {
 				// Sidestep so we can use the series representation:
 				n = floor( b );
 				if ( n === b ) {
-					--n;
+					n -= 1;
 				}
 				bbar = b - n;
-				if ( !normalised ) {
-					prefix = rising_factorial_ratio( a + bbar, bbar, n );
-				} else {
+				if ( normalised ) {
 					prefix = 1;
+				} else {
+					prefix = risingFactorialRatio( a + bbar, bbar, n );
 				}
-				fract = ibeta_a_step( bbar, a, y, x, n, normalised );
-				fract = beta_small_b_large_a_series( a, bbar, x, y, fract, 1.0, normalised );
+				fract = ibetaAStep( bbar, a, y, x, n, normalised );
+				fract = betaSmallBLargeASeries(
+					a, bbar, x, y, fract, 1.0, normalised
+				);
 				fract /= prefix;
 			}
 			else if ( normalised ) {
 				n = floor( b );
 				bbar = b - n;
 				if ( bbar <= 0 ) {
-					--n;
+					n -= 1;
 					bbar += 1;
 				}
-				fract = ibeta_a_step( bbar, a, y, x, n, normalised );
-				fract += ibeta_a_step( a, bbar, x, y, 20, normalised );
+				fract = ibetaAStep( bbar, a, y, x, n, normalised );
+				fract += ibetaAStep( a, bbar, x, y, 20, normalised );
 				if ( invert ) {
 					fract -= 1;
 				}
-				fract = beta_small_b_large_a_series( a + 20.0, bbar, x, y, fract, 1, normalised );
+				fract = betaSmallBLargeASeries(
+					a + 20.0, bbar, x, y, fract, 1, normalised
+				);
 				if ( invert ) {
 					fract = -fract;
 					invert = false;
 				}
 			}
 			else {
-				fract = ibeta_fraction2( a, b, x, y, normalised, pderiv );
+				fract = ibetaFraction2( a, b, x, y, normalised, pderiv );
 			}
 		} else {
-			fract = ibeta_fraction2( a, b, x, y, normalised, pderiv );
+			fract = ibetaFraction2( a, b, x, y, normalised, pderiv );
 		}
 	}
 	if ( pderiv ) {
 		if ( pderiv.value < 0.0 ) {
-			pderiv.value = ibeta_power_terms( a, b, x, y, true );
+			pderiv.value = ibetaPowerTerms( a, b, x, y, true );
 		}
 		div = y * x;
-		if( pderiv.value !== 0.0 ) {
-			if( ( MAX_FLOAT64 * div < pderiv.value ) ) {
-				// Overflow, return an arbitarily large value:
+		if ( pderiv.value !== 0.0 ) {
+			if ( ( MAX_FLOAT64 * div < pderiv.value ) ) {
+				// Overflow, return an arbitrarily large value:
 				pderiv.value = MAX_FLOAT64 / 2.0;
 			} else {
 				pderiv.value /= div;
@@ -3407,18 +3667,18 @@ function ibeta_imp( a, b, x, invert, normalised, pderiv ) {
 		}
 	}
 	return invert ? ( normalised ? 1.0 : beta( a, b ) ) - fract : fract;
-} // end FUNCTION ibeta_imp()
+} // end FUNCTION ibetaImp()
 
 
 // EXPORTS //
 
-module.exports = ibeta_imp;
+module.exports = ibetaImp;
 
-},{"./beta_small_b_large_a_series.js":52,"./binomial_ccdf.js":54,"./ibeta_a_step.js":56,"./ibeta_fraction2.js":57,"./ibeta_power_terms.js":59,"./ibeta_series.js":60,"./rising_factorial_ratio.js":65,"@stdlib/math/base/special/asin":37,"@stdlib/math/base/special/beta":51,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/expm1":150,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/max":242,"@stdlib/math/base/special/min":246,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-half-pi":381,"@stdlib/math/constants/float64-max":391,"@stdlib/math/constants/float64-pi":399,"@stdlib/math/constants/float64-smallest-normal":401,"@stdlib/math/constants/int32-max":406}],59:[function(require,module,exports){
+},{"./beta_small_b_large_a_series.js":56,"./binomial_ccdf.js":58,"./ibeta_a_step.js":60,"./ibeta_fraction2.js":61,"./ibeta_power_terms.js":63,"./ibeta_series.js":64,"./rising_factorial_ratio.js":67,"@stdlib/math/base/special/asin":41,"@stdlib/math/base/special/beta":55,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/min":269,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-half-pi":415,"@stdlib/math/constants/float64-max":427,"@stdlib/math/constants/float64-pi":436,"@stdlib/math/constants/float64-smallest-normal":438,"@stdlib/math/constants/int32-max":443}],63:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/beta.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/beta.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -3432,95 +3692,260 @@ module.exports = ibeta_imp;
 
 // MODULES //
 
+var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+var expm1 = require( '@stdlib/math/base/special/expm1' );
 var log1p = require( '@stdlib/math/base/special/log1p' );
+var sqrt = require( '@stdlib/math/base/special/sqrt' );
 var abs = require( '@stdlib/math/base/special/abs' );
 var exp = require( '@stdlib/math/base/special/exp' );
 var pow = require( '@stdlib/math/base/special/pow' );
+var max = require( '@stdlib/math/base/special/max' );
+var min = require( '@stdlib/math/base/special/min' );
 var ln = require( '@stdlib/math/base/special/ln' );
 var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
-var lower_gamma_series = require( './lower_gamma_series.js' );
-var upper_gamma_fraction = require( './upper_gamma_fraction.js' );
+var E = require( '@stdlib/math/constants/float64-e' );
 
 
-// MAIN //
+// VARIABLES //
 
-function ibeta_power_terms( a, b, x, y, normalised ) {
+var G = 10.90051099999999983936049829935654997826;
+var NUM = [
+	709811.662581657956893540610814842699825,
+	679979.847415722640161734319823103390728,
+	293136.785721159725251629480984140341656,
+	74887.5403291467179935942448101441897121,
+	12555.29058241386295096255111537516768137,
+	1443.42992444170669746078056942194198252,
+	115.2419459613734722083208906727972935065,
+	6.30923920573262762719523981992008976989,
+	0.2266840463022436475495508977579735223818,
+	0.004826466289237661857584712046231435101741,
+	0.4624429436045378766270459638520555557321e-4
+];
+var DENOM = [
+	0.0,
+	362880.0,
+	1026576.0,
+	1172700.0,
+	723680.0,
+	269325.0,
+	63273.0,
+	9450.0,
+	870.0,
+	45.0,
+	1.0
+];
+
+
+// FUNCTIONS //
+
+/**
+* Calculates the Lanczos approximation scaled by exp(G).
+*
+* @private
+* @param {number} z - input value
+* @returns {number} Lanczos approximation
+*/
+var lanczosSumExpGScaled = evalrational( NUM, DENOM );
+
+
+/**
+* Computes the leading power terms in the incomplete beta function. When normalized,
+*
+* ``` tex
+* \frac{ x^a y^b }{ \operatorname{Beta}(a,b) }
+* ```
+*
+* and otherwise
+*
+* ``` tex
+* x^a y^b
+* ```
+*
+* #### Notes
+*
+* - Almost all of the error in the incomplete beta comes from this function, particularly when a and b are large. Computing large powers are *hard* though, and using logarithms just leads to horrendous cancellation errors.
+* - For \\( l1 * l2 > 0 \\) or \\( \operatorname{min}( a, b ) < 1 \\), the two power terms both go in the same direction (towards zero or towards infinity). In this case if either term overflows or underflows, then the product of the two must do so also. Alternatively, if one exponent is less than one, then we can't productively use it to eliminate overflow or underflow from the other term.  Problems with spurious overflow/underflow can't be ruled out in this case, but it is *very* unlikely since one of the power terms will evaluate to a number close to 1.
+* - If \\( \max( \abs(l1), \abs(l2) ) < 0.5 \\), both exponents are near one and both the exponents are greater than one, and, further, these two power terms tend in opposite directions (one toward zero, the other toward infinity), so we have to combine the terms to avoid any risk of overflow or underflow. We do this by moving one power term inside the other, we have:
+*
+*    ``` tex
+*    (1 + l_1)^a \cdot (1 + l_2)^b \\
+*    = ((1 + l_1) \cdot (1 + l_2)^(b/a))^a \\
+*    = (1 + l_1 + l_3 + l_1*l_3)^a
+*    ```
+*
+*    and
+*
+*    ``` tex
+*    l_3 = (1 + l_2)^(b/a) - 1 \\
+*    = \exp((b/a) * \ln(1 + l_2)) - 1
+*    ```
+*
+*  The tricky bit is deciding which term to move inside. By preference we move the larger term inside, so that the size of the largest exponent is reduced.  However, that can only be done as long as l3 (see above) is also small.
+*
+* @private
+* @param {NonNegativeNumber} a - function parameter
+* @param {NonNegativeNumber} b - function parameter
+* @param {Probability} x - function parameter
+* @param {Probability} y - probability equal to `1-x`
+* @param {boolean} normalised - boolean indicating whether to evaluate the power terms of the regularized or non-regularized incomplete beta function
+* @returns {number} power terms
+*/
+function ibetaPowerTerms( a, b, x, y, normalised ) {
 	var result;
-	var lb1;
-	var lb2;
-	var la;
-	var e1;
+	var smallA;
+	var ratio;
+	var agh;
+	var bgh;
+	var cgh;
+	var l1;
+	var l2;
+	var l3;
+	var p1;
 	var b1;
 	var b2;
-	var lb;
-	var lc;
-	var p1;
-	var p2;
-	var p3;
-	var sa;
-	var sb;
-	var sc;
 	var c;
+	var l;
 
 	if ( !normalised ) {
+		// Can we do better here?
 		return pow( x, a ) * pow( y, b );
 	}
-	result = 0.0;
 	c = a + b;
-	// Integration limits for the gamma functions:
-	la = a + 5.0;
-	lb = b + 5.0;
-	lc = a + b + 5.0;
-	// Gamma function partials:
-	sa = lower_gamma_series( a, la ) / a;
-	sa += upper_gamma_fraction( a, la );
-	sb = lower_gamma_series( b, lb ) / b;
-	sb += upper_gamma_fraction( b, lb );
-	sc = lower_gamma_series( c, lc ) / c;
-	sc += upper_gamma_fraction( c, lc );
-	// Gamma function powers combined with incomplete beta powers:
-	b1 = (x * lc) / la;
-	b2 = (y * lc) / lb;
-	e1 = lc - la - lb;
-	lb1 = a * ln( b1 );
-	lb2 = b * ln( b2 );
 
-	if (
-		lb1 >= MAX_LN || lb1 <= MIN_LN  ||
-		lb2 >= MAX_LN || lb2 <= MIN_LN ||
-		e1 >= MAX_LN || e1 <= MIN_LN
-	) {
-		result = exp( lb1 + lb2 - e1 );
-	} else {
-		if( abs(b1 - 1) * a < 10 && a > 1 ) {
-			p1 = exp( a * log1p( (x * b - y * la) / la ) );
-		} else {
-			p1 = pow( b1, a );
+	// Combine power terms with Lanczos approximation:
+	agh = a + G - 0.5;
+	bgh = b + G - 0.5;
+	cgh = c + G - 0.5;
+	result = lanczosSumExpGScaled( c );
+	result /= lanczosSumExpGScaled( a ) * lanczosSumExpGScaled( b );
+
+	// Combine with the leftover terms from the Lanczos approximation:
+	result *= sqrt( bgh / E );
+	result *= sqrt( agh / cgh );
+
+	// `l1` and `l2` are the base of the exponents minus one:
+	l1 = ( ( x * b ) - ( y * agh ) ) / agh;
+	l2 = ( ( y * a ) - ( x * bgh ) ) / bgh;
+	if ( min( abs(l1), abs(l2) ) < 0.2 ) {
+		// When the base of the exponent is very near 1 we get really gross errors unless extra care is taken:
+		if ( l1 * l2 > 0 || min( a, b ) < 1 ) {
+			if ( abs(l1) < 0.1 ) {
+				result *= exp( a * log1p( l1 ) );
+			} else {
+				result *= pow( ( x*cgh ) / agh, a );
+			}
+			if ( abs(l2) < 0.1 ) {
+				result *= exp( b * log1p( l2 ) );
+			} else {
+				result *= pow((y * cgh) / bgh, b);
+			}
 		}
-		if( abs(b2 - 1) * b < 10 && b > 1 ) {
-			p2 = exp( b * log1p( (y * a - x * lb) / lb ) );
-		} else {
-			p2 = pow( b2, b );
+		else if ( max( abs(l1), abs(l2) ) < 0.5 ) {
+			smallA = a < b;
+			ratio = b / a;
+			if (
+				(smallA && (ratio * l2 < 0.1)) ||
+				(!smallA && (l1 / ratio > 0.1))
+			) {
+				l3 = expm1( ratio * log1p( l2 ) );
+				l3 = l1 + l3 + ( l3 * l1 );
+				l3 = a * log1p( l3 );
+				result *= exp( l3 );
+			}
+			else {
+				l3 = expm1( log1p( l1 ) / ratio );
+				l3 = l2 + l3 + ( l3 * l2 );
+				l3 = b * log1p( l3 );
+				result *= exp( l3 );
+			}
 		}
-		p3 = exp( e1 );
-		result = p1 * p2 / p3;
+		else if ( abs(l1) < abs(l2) ) {
+			// First base near 1 only:
+			l = ( a * log1p( l1 ) ) + ( b * ln( ( y*cgh ) / bgh ) );
+			if ( l <= MIN_LN || l >= MAX_LN ) {
+				l += ln(result);
+				if ( l >= MAX_LN ) {
+					return NaN;
+				}
+				result = exp( l );
+			} else {
+				result *= exp( l );
+			}
+		}
+		else {
+			// Second base near 1 only:
+			l = ( b * log1p( l2 ) ) + ( a * ln( (x*cgh) / agh ) );
+			if ( l <= MIN_LN || l >= MAX_LN ) {
+				l += ln(result);
+				if ( l >= MAX_LN ) {
+					return NaN;
+				}
+				result = exp( l );
+			} else {
+				result *= exp( l );
+			}
+		}
 	}
-	// Combine with the remaining gamma function components:
-	result /= sa * sb / sc;
+	else {
+		// General case:
+		b1 = (x * cgh) / agh;
+		b2 = (y * cgh) / bgh;
+		l1 = a * ln(b1);
+		l2 = b * ln(b2);
+		if (
+			l1 >= MAX_LN ||
+			l1 <= MIN_LN ||
+			l2 >= MAX_LN ||
+			l2 <= MIN_LN
+		) {
+			// Oops, under/overflow, sidestep if we can:
+			if ( a < b ) {
+				p1 = pow( b2, b / a );
+				l3 = a * ( ln(b1) + ln(p1) );
+				if ( l3 < MAX_LN && l3 > MIN_LN ) {
+					result *= pow( p1 * b1, a );
+				} else {
+					l2 += l1 + ln(result);
+					if ( l2 >= MAX_LN ) {
+						return NaN;
+					}
+					result = exp( l2 );
+				}
+			}
+			else {
+				p1 = pow( b1, a / b );
+				l3 = ( ln(p1) + ln(b2) ) * b;
+				if ( l3 < MAX_LN && l3 > MIN_LN ) {
+					result *= pow( p1 * b2, b );
+				} else {
+					l2 += l1 + ln( result );
+					if (l2 >= MAX_LN) {
+						return NaN;
+					}
+					result = exp( l2 );
+				}
+			}
+		}
+		else {
+			// Finally the normal case:
+			result *= pow( b1, a ) * pow( b2, b );
+		}
+	}
 	return result;
-} // end FUNCTION ibeta_power_terms()
+} // end FUNCTION ibetaPowerTerms()
 
 
 // EXPORTS //
 
-module.exports = ibeta_power_terms;
+module.exports = ibetaPowerTerms;
 
-},{"./lower_gamma_series.js":62,"./upper_gamma_fraction.js":67,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-ln":389,"@stdlib/math/constants/float64-min-ln":396}],60:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/min":269,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-max-ln":423,"@stdlib/math/constants/float64-min-ln":432}],64:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/beta.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/beta.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -3534,127 +3959,183 @@ module.exports = ibeta_power_terms;
 
 // MODULES //
 
+var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
 var sumSeries = require( '@stdlib/math/base/tools/sum-series' );
 var log1p = require( '@stdlib/math/base/special/log1p' );
+var sqrt = require( '@stdlib/math/base/special/sqrt' );
 var exp = require( '@stdlib/math/base/special/exp' );
 var pow = require( '@stdlib/math/base/special/pow' );
 var ln = require( '@stdlib/math/base/special/ln' );
 var MIN_VALUE = require( '@stdlib/math/constants/float64-smallest-normal' );
 var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
-var lower_gamma_series = require( './lower_gamma_series.js' );
-var upper_gamma_fraction = require( './upper_gamma_fraction.js' );
+var E = require( '@stdlib/math/constants/float64-e' );
 
 
-// MAIN //
+// VARIABLES //
+
+var G = 10.90051099999999983936049829935654997826;
+var NUM = [
+	709811.662581657956893540610814842699825,
+	679979.847415722640161734319823103390728,
+	293136.785721159725251629480984140341656,
+	74887.5403291467179935942448101441897121,
+	12555.29058241386295096255111537516768137,
+	1443.42992444170669746078056942194198252,
+	115.2419459613734722083208906727972935065,
+	6.30923920573262762719523981992008976989,
+	0.2266840463022436475495508977579735223818,
+	0.004826466289237661857584712046231435101741,
+	0.4624429436045378766270459638520555557321e-4
+];
+var DENOM = [
+	0,
+	362880,
+	1026576,
+	1172700,
+	723680,
+	269325,
+	63273,
+	9450,
+	870,
+	45,
+	1
+];
+
+
+// FUNCTIONS //
+
+/**
+* Calculate the Lanczos approximation scaled by exp(G).
+*
+* @private
+* @param {number} z - input value
+* @returns {number} Lanczos approximation
+*/
+var lanczosSumExpGScaled = evalrational( NUM, DENOM );
 
 /**
 * Series approximation to the incomplete beta.
 *
 * @private
+* @param {NonNegativeNumber} a_ - function parameter
+* @param {NonNegativeNumber} b_ - function parameter
+* @param {Probability} x_ - function parameter
+* @param {number} mult - initial value
+* @returns {Function} series function
 */
-function ibeta_series_t( a_, b_, x_, mult ) {
-	var result = mult,
-		x = x_,
-		apn = a_,
-		poch = 1 - b_,
-		n = 1;
-	return function next() {
-		var r = result / apn;
-		apn += 1;
-		result *= poch * x / n;
-		++n;
-		poch += 1;
-		return r;
-	};
-} // end FUNCTION ibeta_series_t()
+function ibetaSeriesT( a_, b_, x_, mult ) {
+	var result = mult;
+	var poch = 1.0 - b_;
+	var apn = a_;
+	var x = x_;
+	var n = 1;
+	return next;
 
+	/**
+	* Calculate the next term of the series.
+	*
+	* @private
+	* @returns {number} series expansion term
+	*/
+	function next() {
+		var r = result / apn;
+		apn += 1.0;
+		result *= poch * x / n;
+		n += 1;
+		poch += 1.0;
+		return r;
+	} // end FUNCTION next()
+} // end FUNCTION ibetaSeriesT()
+
+
+// MAIN //
 
 /**
-* Incomplete Beta series again without Lanczos support.
+* Incomplete beta series.
 *
 * @private
+* @param {NonNegativeNumber} a - function parameter
+* @param {NonNegativeNumber} b - function parameter
+* @param {Probability} x - function parameter
+* @param {NonNegativeInteger} s0 - initial value
+* @param {boolean} normalised - boolean indicating whether to evaluate the power terms of the regularized or non-regularized incomplete beta function
+* @param {Object} pderiv - object holding the derivative in the `value` property
+* @param {Probability} y - probability equal to `1-x`
+* @returns {number} function value
 */
-function ibeta_series( a, b, x, s0, normalised, pderiv, y ) {
+function ibetaSeries( a, b, x, s0, normalised, pderiv, y ) {
 	var result;
-	var lb1;
-	var lb2;
-	var lb;
-	var lc;
-	var sa;
-	var sb;
-	var sc;
-	var b1;
-	var b2;
-	var e1;
-	var la;
+	var agh;
+	var bgh;
+	var cgh;
+	var l1;
+	var l2;
 	var c;
-	var p;
 	var s;
 
 	if ( normalised ) {
 		c = a + b;
-		// Figure out integration limits for the gamma function:
-		la = a + 5;
-		lb = b + 5;
-		lc = a + b + 5;
-		// Calculate the gamma parts:
-		sa = lower_gamma_series( a, la ) / a;
-		sa += upper_gamma_fraction( a, la );
-		sb = lower_gamma_series( b, lb ) / b;
-		sb += upper_gamma_fraction( b, lb );
-		sc = lower_gamma_series( c, lc ) / c;
-		sc += upper_gamma_fraction( c, lc );
-		// And their combined power-terms:
-		b1 = ( x * lc ) / la;
-		b2 = lc / lb;
-		e1 = lc - la - lb;
-		lb1 = a * ln( b1 );
-		lb2 = b * ln( b2 );
 
+		// Incomplete beta power term, combined with the Lanczos approximation:
+		agh = a + G - 0.5;
+		bgh = b + G - 0.5;
+		cgh = c + G - 0.5;
+		result = lanczosSumExpGScaled( c ) / ( lanczosSumExpGScaled( a ) *
+			lanczosSumExpGScaled( b ) );
+
+		l1 = ln( cgh / bgh ) * ( b - 0.5 );
+		l2 = ln( x * cgh / agh ) * a;
+
+		// Check for over/underflow in the power terms:
 		if (
-			lb1 >= MAX_LN || lb1 <= MIN_LN ||
-			lb2 >= MAX_LN || lb2 <= MIN_LN ||
-			e1 >= MAX_LN || e1 <= MIN_LN
+			l1 > MIN_LN &&
+			l1 < MAX_LN &&
+			l2 > MIN_LN &&
+			l2 < MAX_LN
 		) {
-			p = lb1 + lb2 - e1;
-			result = exp( p );
-		} else {
-			result = pow( b1, a );
-			if ( a * b < lb * 10 ) {
-				result *= exp( b * log1p( a / lb ) );
+			if ( a * b < bgh * 10.0 ) {
+				result *= exp( ( b-0.5 ) * log1p( a / bgh ) );
 			} else {
-				result *= pow( b2, b );
+				result *= pow( cgh / bgh, b - 0.5 );
 			}
-			result /= exp( e1 );
-		}
-		// Combine the results:
-		result /= sa * sb / sc;
+			result *= pow( x * cgh / agh, a );
+			result *= sqrt( agh / E );
 
-		if ( pderiv ) {
-			pderiv.value = result * pow( y, b );
+			if ( pderiv ) {
+				pderiv.value = result * pow( y, b );
+			}
 		}
-	} else {
+		else {
+			// We need logs, and this *will* cancel:
+			result = ln( result ) + l1 + l2 + ( ( ln( agh ) - 1.0 ) / 2.0 );
+			if ( pderiv ) {
+				pderiv.value = exp( result + ( b * ln( y ) ) );
+			}
+			result = exp(result);
+		}
+	}
+	else {
 		// Non-normalised, just compute the power:
 		result = pow( x, a );
 	}
 	if ( result < MIN_VALUE ) {
-		// Safeguard: series can't cope with denorms...
-		return s0;
+		return s0; // Safeguard: series can't cope with denorms.
 	}
-	s = ibeta_series_t( a, b, x, result );
+	s = ibetaSeriesT( a, b, x, result );
 	result = sumSeries( s, {
-		'initialValue': s0
+		'initialValue': s0,
+		'maxTerms': 100
 	});
 	return result;
-} // end FUNCTION ibeta_series()
+} // end FUNCTION ibetaSeries()
 
 
-// EXPORTS
+// EXPORTS //
 
-module.exports = ibeta_series;
+module.exports = ibetaSeries;
 
-},{"./lower_gamma_series.js":62,"./upper_gamma_fraction.js":67,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/tools/sum-series":346,"@stdlib/math/constants/float64-max-ln":389,"@stdlib/math/constants/float64-min-ln":396,"@stdlib/math/constants/float64-smallest-normal":401}],61:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/base/tools/sum-series":380,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-max-ln":423,"@stdlib/math/constants/float64-min-ln":432,"@stdlib/math/constants/float64-smallest-normal":438}],65:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3687,110 +4168,7 @@ var betainc = require( './betainc.js' );
 
 module.exports = betainc;
 
-},{"./betainc.js":53}],62:[function(require,module,exports){
-'use strict';
-
-/*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/gamma.hpp}.
-*
-* The implementation has been modified for JavaScript.
-*/
-
-/*
-* Copyright John Maddock 2006-7, 2013-14.
-* Copyright Paul A. Bristow 2007, 2013-14.
-* Copyright Nikhar Agrawal 2013-14
-* Copyright Christopher Kormanyos 2013-14
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
-// MODULES //
-
-var sumSeries = require( '@stdlib/math/base/tools/sum-series' );
-var lower_incomplete_gamma_series = require( './lower_incomplete_gamma_series.js' );
-
-
-// MAIN //
-
-/**
-* Sums elements of the series expansion of the lower incomplete gamma function.
-*
-* #### Method
-*
-* Multiply result by ((z^a) * (e^-z) / a) to get the full lower incomplete integral. Then divide by tgamma(a) to get the normalised value.
-*
-* @private
-* @param {number} a - function parameter
-* @param {number} z - function parameter
-* @param {number} initialValue - initial value of the resulting sum
-* @returns {number} sum of terms of lower gamma series
-*/
-function lower_gamma_series( a, z, initialValue ) {
-	var result;
-	var s;
-
-	initialValue = initialValue || 0.0;
-	s = lower_incomplete_gamma_series( a, z );
-	result = sumSeries( s, {
-		'initialValue': initialValue
-	});
-	return result;
-} // end FUNCTION lower_gamma_series()
-
-
-// EXPORTS //
-
-module.exports = lower_gamma_series;
-
-},{"./lower_incomplete_gamma_series.js":63,"@stdlib/math/base/tools/sum-series":346}],63:[function(require,module,exports){
-'use strict';
-
-/*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/gamma.hpp}.
-*
-* The implementation has been modified for JavaScript.
-*/
-
-/*
-* Copyright John Maddock 2006-7, 2013-14.
-* Copyright Paul A. Bristow 2007, 2013-14.
-* Copyright Nikhar Agrawal 2013-14
-* Copyright Christopher Kormanyos 2013-14
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
-// MAIN //
-
-/**
-* Creates a function to evaluate a series expansion of the incomplete gamma function.
-*
-* @private
-* @param {number} a1 - function parameter
-* @param {number} z1 - function parameter
-* @returns {Function} series function
-*/
-function lower_incomplete_gamma_series( a1, z1 ) {
-	var result = 1.0;
-	var a = a1;
-	var z = z1;
-	return function next() {
-		var r = result;
-		a += 1.0;
-		result *= z/a;
-		return r;
-	};
-} // end FUNCTION lower_incomplete_gamma_series()
-
-
-// EXPORTS //
-
-module.exports = lower_incomplete_gamma_series;
-
-},{}],64:[function(require,module,exports){
+},{"./betainc.js":57}],66:[function(require,module,exports){
 'use strict';
 
 /*
@@ -3867,7 +4245,7 @@ var DENOM = [
 * @param {number} z - input value
 * @returns {number} Lanczos approximation
 */
-var lanczos_sum_expG_scaled = evalrational( NUM, DENOM );
+var lanczosSumExpGScaled = evalrational( NUM, DENOM );
 
 
 // MAIN //
@@ -3880,46 +4258,31 @@ var lanczos_sum_expG_scaled = evalrational( NUM, DENOM );
 * @param {number} z - input value
 * @returns {number} (z^a)(e^-z)/tgamma(a)
 */
-function regularised_gamma_prefix( a, z ) {
+function regularisedGammaPrefix( a, z ) {
+	var amza;
 	var alz;
 	var amz;
-	var amza;
 	var sq;
 	var agh = a + G - 0.5;
 	var prefix;
 	var d = ( (z - a) - G + 0.5 ) / agh;
 
 	if ( a < 1 ) {
-		//
-		// We have to treat a < 1 as a special case because our Lanczos
-		// approximations are optimised against the factorials with a > 1,
-		// and for high precision types especially (128-bit reals for example)
-		// very small values of a can give rather eroneous results for gamma
-		// unless we do this:
-		//
-		// TODO: is this still required?  Lanczos approx should be better now?
-		//
+		// We have to treat a < 1 as a special case because our Lanczos approximations are optimised against the factorials with a > 1, and very small values of a can give rather erroneous results
 		if ( z <= MIN_LN ) {
 			// Oh dear, have to use logs, should be free of cancellation errors though:
-			return exp( a * ln(z) - z - gammaln( a ) );
+			return exp( ( a * ln(z) ) - z - gammaln( a ) );
 		}
-		else {
-			// direct calculation, no danger of overflow as gamma(a) < 1/a
-			// for small a.
-			return pow( z, a ) * exp( -z ) / gamma( a );
-		}
+		// Direct calculation, no danger of overflow as gamma(a) < 1/a for small a:
+		return pow( z, a ) * exp( -z ) / gamma( a );
 	}
 	else if ( abs(d*d*a) <= 100 && a > 150 ) {
-		// special case for large a and a ~ z.
-		prefix = a * ( log1p( d ) - d ) + z * (0.5 - G) / agh;
+		// Special case for large a and a ~ z.
+		prefix = ( a * ( log1p( d ) - d ) ) + ( z * ( 0.5-G ) / agh );
 		prefix = exp( prefix );
 	}
 	else {
-		//
-		// general case.
-		// direct computation is most accurate, but use various fallbacks
-		// for different parts of the problem domain:
-		//
+		// General case. Direct computation is most accurate, but use various fallbacks for different parts of the problem domain:
 		alz = a * ln(z / agh);
 		amz = a - z;
 		if (
@@ -3931,12 +4294,12 @@ function regularised_gamma_prefix( a, z ) {
 				min(alz, amz)/2 > MIN_LN &&
 				max(alz, amz)/2 < MAX_LN
 			) {
-				// compute square root of the result and then square it:
+				// Compute square root of the result and then square it:
 				sq = pow( z / agh, a / 2 ) * exp( amz / 2 );
 				prefix = sq * sq;
 			}
 			else if (
-				min(alz, amz)/4 > MIN_LN  &&
+				min(alz, amz)/4 > MIN_LN &&
 				max(alz, amz)/4 < MAX_LN &&
 				z > a
 			) {
@@ -3960,16 +4323,16 @@ function regularised_gamma_prefix( a, z ) {
 			prefix = pow( z / agh, a ) * exp( amz );
 		}
 	}
-	prefix *= sqrt( agh / E ) / lanczos_sum_expG_scaled( a );
+	prefix *= sqrt( agh / E ) / lanczosSumExpGScaled( a );
 	return prefix;
-} // end FUNCTION regularised_gamma_prefix()
+} // end FUNCTION regularisedGammaPrefix()
 
 
 // EXPORTS //
 
-module.exports = regularised_gamma_prefix;
+module.exports = regularisedGammaPrefix;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/max":242,"@stdlib/math/base/special/min":246,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-e":375,"@stdlib/math/constants/float64-max-ln":389,"@stdlib/math/constants/float64-min-ln":396}],65:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/min":269,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-max-ln":423,"@stdlib/math/constants/float64-min-ln":432}],67:[function(require,module,exports){
 'use strict';
 
 /*
@@ -3989,17 +4352,20 @@ module.exports = regularised_gamma_prefix;
 
 /**
 * Calculates
-*	(a)(a+1)(a+2)...(a+k-1)
-*	_______________________
-*	(b)(b+1)(b+2)...(b+k-1)
-* This function computes the delta in: beta(a,b,x) = prefix + delta * beta(a+k,b,x). It is only called with small k, for large k it is grossly inefficient.
 *
+*    ``` tex
+*    \frac{ (a)(a+1)(a+2)...(a+k-1) }{ (b)(b+1)(b+2)...(b+k-1) }
+*    ```
+*
+* - This function computes the delta in `beta(a,b,x) = prefix + delta * beta(a+k,b,x)`. It is only called with small `k`, for large `k` it is grossly inefficient.
+*
+* @private
 * @param {number} a - input value
 * @param {number} b - input value
 * @param {number} k - input value
 * @returns {number} ratio value
 */
-function rising_factorial_ratio( a, b, k ) {
+function risingFactorialRatio( a, b, k ) {
 	var result;
 	var i;
 	if ( k === 0 ) {
@@ -4010,18 +4376,18 @@ function rising_factorial_ratio( a, b, k ) {
 		result *= ( a + i ) / ( b + i );
 	}
 	return result;
-} // end FUNCTION rising_factorial_ratio()
+} // end FUNCTION risingFactorialRatio()
 
 
 // EXPORTS //
 
-module.exports = rising_factorial_ratio;
+module.exports = risingFactorialRatio;
 
-},{}],66:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/gamma.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/gamma.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -4091,64 +4457,83 @@ var DENOM = [
 * @param {number} z - input value
 * @returns {number} Lanczos approximation
 */
-var lanczos_sum = evalrational( NUM, DENOM );
+var lanczosSum = evalrational( NUM, DENOM );
 
 
 /**
-* Calculate the ratio of two gamma functions.
+* Calculates the ratio of two gamma functions via Lanczos approximation.
+*
+* #### Notes
+*
+* - When \\( z < \epsilon \\), we get spurious numeric overflow unless we're very careful, this can occur either inside lanczosSum(z) or in the final combination of terms, to avoid this, split the product up into 2 (or 3) parts:
+*
+*   ``` tex
+*    G(z) / G(L) = 1 / (z \cdot G(L)) ; z < \eps, L = z + \delta = \delta \\
+*    z * G(L) = z * G(lim) \cdot (G(L)/G(lim)) ; lim = \text{largest factorial}
+*   ````
 *
 * @private
+* @param {number} z - function value
+* @param {number} delta - difference
+* @returns {number} gamma ratio
 */
-function tgamma_delta_ratio_imp_lanczos( z, delta ) {
+function tgammaDeltaRatioImpLanczos( z, delta ) {
 	var result;
 	var ratio;
 	var zgh;
 	if ( z < EPSILON ) {
-		//
-		// We get spurious numeric overflow unless we're very careful, this
-		// can occur either inside Lanczos::lanczos_sum(z) or in the
-		// final combination of terms, to avoid this, split the product up
-		// into 2 (or 3) parts:
-		//
-		// G(z) / G(L) = 1 / (z * G(L)) ; z < eps, L = z + delta = delta
-		//    z * G(L) = z * G(lim) * (G(L)/G(lim)) ; lim = largest factorial
-		//
 		if ( MAX_FACTORIAL < delta ) {
-			ratio = tgamma_delta_ratio_imp_lanczos( delta, MAX_FACTORIAL - delta );
+			ratio = tgammaDeltaRatioImpLanczos( delta, MAX_FACTORIAL - delta );
 			ratio *= z;
 			ratio *= factorial( MAX_FACTORIAL - 1 );
 			return 1.0 / ratio;
-		} else {
-			return 1.0 / ( z * gamma( z + delta ) );
 		}
+		return 1.0 / ( z * gamma( z + delta ) );
 	}
 	zgh = z + G - 0.5;
-	if ( abs(delta) < 10 ) {
-		result = exp( ( 0.5 - z ) * log1p( delta / zgh ));
+	if ( z + delta === z ) {
+		if ( abs(delta) < 10.0 ) {
+			result = exp( ( 0.5 - z ) * log1p( delta / zgh ) );
+		} else {
+			result = 1.0;
+		}
 	} else {
-		result = pow( zgh / (zgh + delta), z - 0.5 );
+		if ( abs(delta) < 10.0 ) {
+			result = exp( ( 0.5 - z ) * log1p( delta / zgh ));
+		} else {
+			result = pow( zgh / (zgh + delta), z - 0.5 );
+		}
+		// Split the calculation up to avoid spurious overflow:
+		result *= lanczosSum( z ) / lanczosSum( z + delta );
 	}
-	// Split the calculation up to avoid spurious overflow:
-	result *= lanczos_sum( z ) / lanczos_sum( z + delta );
 	result *= pow( E / ( zgh + delta ), delta );
 	return result;
-} // end FUNCTION tgamma_delta_ratio_imp_lanczos()
+} // end FUNCTION tgammaDeltaRatioImpLanczos()
 
-function tgamma_delta_ratio_imp( z, delta ) {
+
+// MAIN //
+
+/**
+* Implementation of the gamma ratio.
+*
+* @private
+* @param {number} z - function value
+* @param {number} delta - difference
+* @returns {number} gamma ratio
+*/
+function tgammaDeltaRatioImp( z, delta ) {
 	var result;
 
 	if ( z <= 0.0 || z + delta <= 0.0 ) {
-		// This isn't very sofisticated, or accurate, but it does work:
+		// This isn't very sophisticated, or accurate, but it does work:
 		return gamma( z ) / gamma( z + delta );
 	}
 	if ( floor(delta) === delta ) {
 		if ( floor(z) === z ) {
-			//
-			// Both z and delta are integers, see if we can just use table lookup
-			// of the factorials to get the result:
-			//
-			if( (z <= MAX_FACTORIAL ) && (z + delta <= MAX_FACTORIAL ) ) {
-				return factorial( floor(z) - 1 ) / factorial( floor(z+delta) - 1 );
+			// Both z and delta are integers, see if we can just use table lookup of the factorials to get the result:
+			if ( z <= MAX_FACTORIAL && ( z + delta <= MAX_FACTORIAL ) ) {
+				return factorial( floor(z) - 1.0 ) /
+					factorial( floor(z+delta) - 1.0 );
 			}
 		}
 		if ( abs(delta) < 20 ) {
@@ -4158,135 +4543,74 @@ function tgamma_delta_ratio_imp( z, delta ) {
 			}
 			if ( delta < 0 ) {
 				z -= 1.0;
+				result = z;
+				delta += 1;
+				while ( delta !== 0 ) {
+					z -= 1;
+					result *= z;
+					delta += 1;
+				}
+				return result;
 			}
-			result = z;
-			while ( 0 !== ( delta -= 1 ) ) {
-				z -= 1.0;
-				result *= z;
-			}
-			return result;
-		} else {
 			result = 1.0 / z;
-			while ( 0 !== ( delta -= 1 ) ) {
+			delta -= 1;
+			while ( delta !== 0 ) {
 				z += 1;
 				result /= z;
+				delta -= 1;
 			}
 			return result;
 		}
 	}
-	return tgamma_delta_ratio_imp_lanczos( z, delta );
-} // end FUNCTION tgamma_delta_ratio_imp()
+	return tgammaDeltaRatioImpLanczos( z, delta );
+} // end FUNCTION tgammaDeltaRatioImp()
 
 
 // EXPORTS //
 
-module.exports = tgamma_delta_ratio_imp;
+module.exports = tgammaDeltaRatioImp;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/factorial":153,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-e":375,"@stdlib/math/constants/float64-eps":376}],67:[function(require,module,exports){
-'use strict';
-
-/*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/gamma.hpp}.
-*
-* The implementation has been modified for JavaScript.
-*/
-
-/*
-* Copyright John Maddock 2006-7, 2013-14.
-* Copyright Paul A. Bristow 2007, 2013-14.
-* Copyright Nikhar Agrawal 2013-14
-* Copyright Christopher Kormanyos 2013-14
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
-// MODULES //
-
-var continuedFraction = require( '@stdlib/math/base/tools/continued-fraction' );
-var upper_incomplete_gamma_fract = require( './upper_incomplete_gamma_fract.js' );
-
-
-// MAIN //
-
-/**
-* Evaluate the lower incomplete gamma integral via a series expansion and divide by gamma(z) to normalise.
-*
-* @param {number} a - function parameter
-* @param {number} z - function parameter
-* @returns {number} function value
-*/
-function upper_gamma_fraction( a, z ) {
-	var f = upper_incomplete_gamma_fract( a, z );
-	return 1.0 / ( z - a + 1.0 + continuedFraction( f ) );
-} // end FUNCTION upper_gamma_fraction()
-
-
-// EXPORTS //
-
-module.exports = upper_gamma_fraction;
-
-},{"./upper_incomplete_gamma_fract.js":68,"@stdlib/math/base/tools/continued-fraction":337}],68:[function(require,module,exports){
-'use strict';
-
-/*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/gamma.hpp}.
-*
-* The implementation has been modified for JavaScript.
-*/
-
-/*
-* Copyright John Maddock 2006-7, 2013-14.
-* Copyright Paul A. Bristow 2007, 2013-14.
-* Copyright Nikhar Agrawal 2013-14
-* Copyright Christopher Kormanyos 2013-14
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
-// MAIN //
-
-/**
-* Creates a function to evaluate a series expansion of the upper incomplete gamma fraction.
-*
-* @private
-* @param {number} a1 - function parameter
-* @param {number} z1 - function parameter
-* @returns {Function} series function
-*/
-function upper_incomplete_gamma_fract( a1, z1 ) {
-	var z = z1 - a1 + 1.0;
-	var a = a1;
-	var k = 0;
-	return function next() {
-		++k;
-		z += 2.0;
-		return [
-			k * (a - k),
-			z
-		];
-	};
-} // end FUNCTION upper_incomplete_gamma_fract()
-
-
-// EXPORTS //
-
-module.exports = upper_incomplete_gamma_fract;
-
-},{}],69:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/factorial":156,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-eps":410}],69:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var ibeta_inv_imp = require( './ibeta_inv_imp.js' );
+var ibetaInvImp = require( './ibeta_inv_imp.js' );
 
 
 // MAIN //
 
+/**
+* Returns a value p such that `p = betainc(a, b, x)`.
+*
+* @param {Probability} p - function parameter
+* @param {PositiveNumber} a - function parameter
+* @param {PositiveNumber} b - function parameter
+* @param {boolean} [upper=false] - boolean indicating if the function should return the inverse of the upper tail of the incomplete beta function
+* @returns {number} function value
+*
+* @example
+* var y = betaincinv( 0.2, 3.0, 3.0 );
+* // returns ~0.327
+*
+* @example
+* var y = betaincinv( 0.4, 3.0, 3.0 );
+* // returns ~0.446
+*
+* @example
+* var y = betaincinv( 0.4, 3.0, 3.0, true );
+* // returns ~0.554
+*
+* @example
+* var y = betaincinv( 0.4, 1.0, 6.0 );
+* // returns ~0.082
+*
+* @example
+* var y = betaincinv( 0.8, 1.0, 6.0 );
+* // returns ~0.235
+*/
 function betaincinv( p, a, b, upper ) {
-	var vals;
 	if (
 		isnan( p ) ||
 		isnan( a ) ||
@@ -4294,16 +4618,16 @@ function betaincinv( p, a, b, upper ) {
 	) {
 		return NaN;
 	}
-	// The arguments and b to the incomplete beta function inverse must be greater than zero.
 	if ( a <= 0.0 || b <= 0.0 ) {
 		return NaN;
 	}
-	// p must be inside the range [0,1]
 	if ( p < 0.0 || p > 1.0 ) {
 		return NaN;
 	}
-	vals = ibeta_inv_imp( a, b, p, 1.0 - p );
-	return upper ? vals[ 1 ] : vals[ 0 ];
+	if ( upper ) {
+		return ibetaInvImp( a, b, 1.0 - p, p )[ 0 ];
+	}
+	return ibetaInvImp( a, b, p, 1.0 - p )[ 0 ];
 } // end FUNCTION betaincinv()
 
 
@@ -4315,7 +4639,7 @@ module.exports = betaincinv;
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/t_distribution_inv.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/detail/t_distribution_inv.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -4330,207 +4654,46 @@ module.exports = betaincinv;
 
 // MODULES //
 
-var erfcinv = require( '@stdlib/math/base/special/erfcinv' );
-var floor = require( '@stdlib/math/base/special/floor' );
-var ldexp = require( '@stdlib/math/base/special/ldexp' );
-var round = require( '@stdlib/math/base/special/round' );
-var acos = require( '@stdlib/math/base/special/acos' );
-var sqrt = require( '@stdlib/math/base/special/sqrt' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var cos = require( '@stdlib/math/base/special/cos' );
-var pow = require( '@stdlib/math/base/special/pow' );
-var sin = require( '@stdlib/math/base/special/sin' );
-var SQRT2 = require( '@stdlib/math/constants/float64-sqrt-two' );
-var PI = require( '@stdlib/math/constants/float64-pi' );
-var inverse_students_t_body_series = require( './inverse_students_t_body_series.js' );
-var inverse_students_t_tail_series = require( './inverse_students_t_tail_series.js' );
-var inverse_students_t_hill = require( './inverse_students_t_hill.js' );
+var inverseStudentsT = require( './inverse_students_t.js' );
 
 
 // MAIN //
 
-function inverse_students_t( df, u, v, pexact ) {
-	//
-	// df = number of degrees of freedom.
-	// u = probablity.
-	// v = 1 - u.
-	// l = lanczos type to use.
-	//
-	var invert, result, tmp,
-		tolerance, alpha, root_alpha,
-		r, x, a, b, c,
-		p, p0, p2, p4, p5,
-		crossover;
+/**
+* Returns the inverse of the incomplete beta function via the Student t distribution.
+*
+* @private
+* @param {PositiveNumber} a - function parameter
+* @param {Probability} p - probability value
+* @param {Object} py - placeholder object holding one minus the returned value
+* @returns {number} function value
+*/
+function findIBetaInvFromTDist( a, p, py ) {
+	var df;
+	var u;
+	var v;
+	var t;
 
-	invert = false;
-	result = 0;
-	if ( pexact ) {
-		pexact.value = false;
-	}
-	if ( u > v ) {
-		// function is symmetric, invert it:
-		tmp = v;
-		v = u;
-		u = tmp;
-		invert = true;
-	}
-	if ( floor(df) === df && df < 20 ) {
-		//
-		// we have integer degrees of freedom, try for the special
-		// cases first:
-		//
-		tolerance = ldexp( 1.0, ( 2 * 53 ) / 3 );
-
-		switch ( floor( df ) ) {
-			case 1:
-				//
-				// df = 1 is the same as the Cauchy distribution, see
-				// Shaw Eq 35:
-				//
-				if ( u === 0.5 ) {
-					result = 0;
-				} else {
-					result = -cos( PI * u) / sin( PI * u);
-				}
-				if ( pexact ) {
-					pexact.value = true;
-				}
-			break;
-			case 2:
-				//
-				// df = 2 has an exact result, see Shaw Eq 36:
-				//
-				result = (2 * u - 1) / sqrt(2 * u * v);
-				if ( pexact ) {
-					pexact.value = true;
-				}
-			break;
-			case 4:
-				// df = 4 has an exact result, see Shaw Eq 38 & 39:
-				alpha = 4 * u * v;
-				root_alpha = sqrt( alpha );
-				r = 4 * cos( acos( root_alpha ) / 3 ) / root_alpha;
-				x = sqrt( r - 4 );
-				result = u - 0.5 < 0 ? -x : x;
-				if ( pexact ) {
-					pexact.value = true;
-				}
-			break;
-			case 6:
-				// We get numeric overflow in this area:
-				if ( u < 1e-150 ) {
-					return ( invert ? -1 : 1 ) * inverse_students_t_hill( df, u );
-				}
-				//
-				// Newton-Raphson iteration of a polynomial case,
-				// choice of seed value is taken from Shaw's online
-				// supplement:
-				//
-				a = 4 * (u - u * u);//1 - 4 * (u - 0.5f) * (u - 0.5f);
-				b = pow( a, 1/3 );
-				c = 0.85498797333834849467655443627193;
-				p = 6 * (1 + c * (1 / b - 1));
-				do {
-					p2 = p * p;
-					p4 = p2 * p2;
-					p5 = p * p4;
-					p0 = p;
-					// next term is given by Eq 41:
-					p = 2 * (8 * a * p5 - 270 * p2 + 2187) / (5 * (4 * a * p4 - 216 * p - 243));
-				} while( abs( (p - p0) / p ) > tolerance );
-				//
-				// Use Eq 45 to extract the result:
-				//
-				p = sqrt( p - df );
-				result = (u - 0.5) < 0 ? -p : p;
-			break;
-		default:
-			if ( df > 0x10000000 ) {
-				result = - erfcinv( 2 * u ) * SQRT2;
-				if( pexact && (df >= 1e20) ) {
-					pexact.value = true;
-				}
-			} else if ( df < 3 ) {
-				//
-				// Use a roughly linear scheme to choose between Shaw's
-				// tail series and body series:
-				//
-				crossover = 0.2742 - df * 0.0242143;
-				if ( u > crossover ) {
-					result = inverse_students_t_body_series( df, u );
-				} else {
-					result = inverse_students_t_tail_series( df, u );
-				}
-			} else {
-				//
-				// Use Hill's method except in the exteme tails
-				// where we use Shaw's tail series.
-				// The crossover point is roughly exponential in -df:
-				//
-				crossover = ldexp( 1.0, round( df / -0.654 ) );
-				if( u > crossover ) {
-					result = inverse_students_t_hill( df, u );
-				} else {
-					result = inverse_students_t_tail_series( df, u );
-				}
-			}
-		}
-	} else {
-		if(df > 0x10000000) {
-			result = -erfcinv( 2 * u ) * SQRT2;
-			if ( pexact && df >= 1e20 ) {
-				pexact.value = true;
-			}
-		} else if ( df < 3 ) {
-			//
-			// Use a roughly linear scheme to choose between Shaw's
-			// tail series and body series:
-			//
-			crossover = 0.2742 - df * 0.0242143;
-			if ( u > crossover ) {
-				result = inverse_students_t_body_series( df, u );
-			} else {
-				result = inverse_students_t_tail_series( df, u );
-			}
-		} else {
-			//
-			// Use Hill's method except in the exteme tails
-			// where we use Shaw's tail series.
-			// The crossover point is roughly exponential in -df:
-			//
-			crossover = ldexp( 1.0, round( df / -0.654) );
-			if ( u > crossover ) {
-				result = inverse_students_t_hill( df, u );
-			} else {
-				result = inverse_students_t_tail_series( df, u );
-			}
-		}
-	}
-	return invert ? -result : result;
-}
-
-function find_ibeta_inv_from_t_dist( a, p, py, pol ) {
-	var u, v, df, t;
-	u = p / 2;
-	v = 1 - u;
-	df = a * 2;
-	t = inverse_students_t( df, u, v, pol );
+	u = p / 2.0;
+	v = 1.0 - u;
+	df = a * 2.0;
+	t = inverseStudentsT( df, u, v );
 	if ( py ) {
-		py.value = t * t / (df + t * t);
+		py.value = t * t / ( df + ( t*t ) );
 	}
-	return df / (df + t * t);
-}
+	return df / ( df + ( t*t ) );
+} // end FUNCTION findIBetaInvFromTDist()
 
 
 // EXPORTS //
 
-module.exports = find_ibeta_inv_from_t_dist;
+module.exports = findIBetaInvFromTDist;
 
-},{"./inverse_students_t_body_series.js":75,"./inverse_students_t_hill.js":76,"./inverse_students_t_tail_series.js":77,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/acos":25,"@stdlib/math/base/special/cos":110,"@stdlib/math/base/special/erfcinv":139,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ldexp":225,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/round":273,"@stdlib/math/base/special/sin":289,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-pi":399,"@stdlib/math/constants/float64-sqrt-two":404}],71:[function(require,module,exports){
+},{"./inverse_students_t.js":75}],71:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/tools/roots.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/tools/roots.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -4553,13 +4716,26 @@ var MAX_VALUE = require( '@stdlib/math/constants/float64-max' );
 
 // MAIN //
 
-function halley_iterate( fun, guess, minimum, maximum, digits, max_iter ) {
+/**
+* Performs root finding via third order Halley iteration.
+*
+* @private
+* @param {Array} fun - array of function and its first two derivatives
+* @param {number} guess - initial starting value.
+* @param {number} minimum - minimum possible value for the result,used as initial lower bracket.
+* @param {number} maximum - maximum possible value for the result, used as initial upper bracket.
+* @param {PositiveInteger} digits - desired number of binary digits
+* @param {PositiveInteger} maxIter - maximum number of iterations
+* @returns {number} function value
+*/
+function halleyIterate( fun, guess, minimum, maximum, digits, maxIter ) {
 	var convergence;
 	var outOfBounds;
 	var delta1;
 	var delta2;
 	var factor;
 	var result;
+	var f0Last;
 	var count;
 	var delta;
 	var denom;
@@ -4567,7 +4743,6 @@ function halley_iterate( fun, guess, minimum, maximum, digits, max_iter ) {
 	var num;
 	var res;
 	var f0;
-	var last_f0;
 	var f1;
 	var f2;
 
@@ -4575,96 +4750,104 @@ function halley_iterate( fun, guess, minimum, maximum, digits, max_iter ) {
 	outOfBounds = false;
 	result = guess;
 	factor = ldexp( 1.0, 1.0 - digits );
-	delta = max( 10000000 * guess, 10000000 );  // arbitarily large delta
-	last_f0 = 0;
+	delta = max( 10000000 * guess, 10000000 );  // Arbitrarily large delta...
+	f0Last = 0;
 	delta1 = delta;
 	delta2 = delta;
 
-	count = max_iter;
+	count = maxIter;
 	do {
-		last_f0 = f0;
+		f0Last = f0;
 		delta2 = delta1;
 		delta1 = delta;
 		res = fun( result);
 		f0 = res[ 0 ];
 		f1 = res[ 1 ];
 		f2 = res[ 2 ];
+		count -= 1;
 
 		if ( f0 === 0.0 ) {
 			break;
 		}
-		if ( f1 === 0.0 && f2 === 0.0 ) {
+		if ( f1 === 0.0 ) {
 			// Oops zero derivative!!!
-			if ( last_f0 === 0.0 ) {
-				// this must be the first iteration, pretend that we had a
-				// previous one at either min or max:
+			if ( f0Last === 0.0 ) {
+				// Must be the first iteration, pretend that we had a previous one at either min or max:
 				if ( result === minimum ) {
 					guess = maximum;
 				} else {
 					guess = minimum;
 				}
-				last_f0 = fun( guess );
+				f0Last = fun( guess );
 				delta = guess - result;
 			}
-			if ( sign( last_f0 ) * sign( f0 ) < 0 ) {
-				// we've crossed over so move in opposite direction to last step:
+			if ( sign( f0Last ) * sign( f0 ) < 0 ) {
+				// We've crossed over so move in opposite direction to last step:
 				if ( delta < 0 ) {
-					delta = ( result - minimum ) / 2;
+					delta = ( result - minimum ) / 2.0;
 				} else {
-					delta = ( result - maximum ) / 2;
+					delta = ( result - maximum ) / 2.0;
 				}
+			// Move in same direction as last step:
+			} else if ( delta < 0 ) {
+				delta = (result - maximum) / 2;
 			} else {
-				// move in same direction as last step:
-				if ( delta < 0 ) {
-					delta = (result - maximum) / 2;
-				} else {
-					delta = (result - minimum) / 2;
-				}
+				delta = (result - minimum) / 2;
 			}
+			// eslint-disable-next-line no-negated-condition
+		} else if ( f2 === 0.0 ) {
+			delta = f0 / f1;
 		} else {
-			if ( f2 !== 0.0 ) {
-				denom = 2.0 * f0;
-				num = 2.0 * f1 - f0 * (f2 / f1);
-				if ( abs(num) < 1 && ( abs(denom) >= abs(num) * MAX_VALUE ) ) {
-					// Possible overflow, use Newton step:
-					delta = f0 / f1;
-				} else {
-					delta = denom / num;
-				}
-				if ( delta * f1 / f0 < 0.0 ) {
-					// Probably cancellation error, try a Newton step instead:
-					delta = f0 / f1;
-				}
-			} else {
+			denom = 2.0 * f0;
+			num = ( 2.0 * f1 ) - ( f0 * ( f2 / f1 ) );
+			if ( abs(num) < 1.0 && ( abs(denom) >= abs(num) * MAX_VALUE ) ) {
+				// Possible overflow, use Newton step:
 				delta = f0 / f1;
+			} else {
+				delta = denom / num;
+			}
+			if ( delta * f1 / f0 < 0.0 ) {
+				// Probably cancellation error, try a Newton step instead:
+				delta = f0 / f1;
+				if ( abs(delta) > 2.0 * abs(guess) ) {
+					delta = ( delta < 0.0 ? -1.0 : 1.0 ) * 2.0 * abs( guess );
+				}
 			}
 		}
 		convergence = abs( delta / delta2 );
 		if ( convergence > 0.8 && convergence < 2.0 ) {
 			// Last two steps haven't converged, try bisection:
-			delta = delta > 0.0 ? (result - minimum) / 2.0 : (result - maximum) / 2.0;
+			delta = delta > 0.0 ?
+				( result - minimum ) / 2.0 :
+				( result - maximum ) / 2.0;
 			if ( abs(delta) > result ) {
-				delta = sign( delta ) * result; // protect against huge jumps!
+				delta = sign( delta ) * result; // Protect against huge jumps!
 			}
-			// reset delta2 so that this branch will *not* be taken on the
-			// next iteration:
+			// Reset delta2 so that this branch will *not* be taken on the next iteration:
 			delta2 = delta * 3;
 		}
 		guess = result;
 		result -= delta;
 
-		// check for out of bounds step:
+		// Check for out of bounds step:
 		if ( result < minimum ) {
-			diff = ( (abs(minimum) < 1) && (abs(result) > 1) && ( MAX_VALUE / abs(result) < abs(minimum)) ) ? 1000  : result / minimum;
+			if (
+				abs(minimum) < 1 &&
+				abs(result) > 1 &&
+				( MAX_VALUE / abs(result) < abs(minimum) )
+			) {
+				diff = 1000.0;
+			} else {
+				diff = result / minimum;
+			}
 			if ( abs(diff) < 1.0 ) {
 				diff = 1.0 / diff;
 			}
 			if ( !outOfBounds && diff > 0.0 && diff < 3.0 ) {
-				// Only a small out of bounds step, lets assume that the result
-				// is probably approximately at minimum:
+				// Only a small out of bounds step, lets assume that the result is probably approximately at minimum:
 				delta = 0.99 * (guess - minimum);
 				result = guess - delta;
-				outOfBounds = true; // only take this branch once!
+				outOfBounds = true; // Only take this branch once!
 			} else {
 				delta = (guess - minimum) / 2.0;
 				result = guess - delta;
@@ -4674,16 +4857,23 @@ function halley_iterate( fun, guess, minimum, maximum, digits, max_iter ) {
 			}
 		}
 		else if ( result > maximum ) {
-			diff = ( abs(maximum) < 1.0 && abs(result) > 1.0 && MAX_VALUE / abs(result) < abs(maximum) ) ? 1000 : result / maximum;
-			if ( abs(diff) < 1 ) {
-				diff = 1 / diff;
+			if (
+				abs(maximum) < 1.0 &&
+				abs(result) > 1.0 &&
+				MAX_VALUE / abs(result) < abs(maximum)
+			) {
+				diff = 1000.0;
+			} else {
+				diff = result / maximum;
+			}
+			if ( abs(diff) < 1.0 ) {
+				diff = 1.0 / diff;
 			}
 			if ( !outOfBounds && diff > 0.0 && diff < 3.0 ) {
-				// Only a small out of bounds step, lets assume that the result
-				// is probably approximately at minimum:
-				delta = 0.99 * (guess  - maximum);
+				// Only a small out of bounds step, lets assume that the result is probably approximately at minimum:
+				delta = 0.99 * (guess - maximum);
 				result = guess - delta;
-				outOfBounds = true; // only take this branch once!
+				outOfBounds = true; // Only take this branch once!
 			} else {
 				delta = ( guess - maximum ) / 2.0;
 				result = guess - delta;
@@ -4698,21 +4888,22 @@ function halley_iterate( fun, guess, minimum, maximum, digits, max_iter ) {
 		} else {
 			minimum = guess;
 		}
-	} while ( --count && ( abs(result * factor) < abs(delta) ) );
+	} while ( count && ( abs(result * factor) < abs(delta) ) );
 
 	return result;
-} // end FUNCTION halley_iterate()
+} // end FUNCTION halleyIterate()
 
 
 // EXPORTS //
 
-module.exports = halley_iterate;
+module.exports = halleyIterate;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/ldexp":225,"@stdlib/math/base/special/max":242,"@stdlib/math/base/special/signum":287,"@stdlib/math/constants/float64-max":391}],72:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/signum":321,"@stdlib/math/constants/float64-max":427}],72:[function(require,module,exports){
+/* eslint-disable max-statements, max-len, no-mixed-operators */
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -4741,47 +4932,68 @@ var sin = require( '@stdlib/math/base/special/sin' );
 var max = require( '@stdlib/math/base/special/max' );
 var min = require( '@stdlib/math/base/special/min' );
 var ln = require( '@stdlib/math/base/special/ln' );
+var FLOAT64_MIN_NORM = require( '@stdlib/math/constants/float64-smallest-normal' );
 var HALF_PI = require( '@stdlib/math/constants/float64-half-pi' );
 var EPSILON = require( '@stdlib/math/constants/float64-eps' );
-var find_ibeta_inv_from_t_dist = require( './find_ibeta_inv_from_t_dist.js' );
-var temme_method_1_ibeta_inverse = require( './temme1.js' );
-var temme_method_2_ibeta_inverse = require( './temme2.js' );
-var temme_method_3_ibeta_inverse = require( './temme3.js' );
-var halley_iterate = require( './halley_iterate.js' );
-var ibeta_roots = require( './ibeta_roots.js' );
+var findIBetaInvFromTDist = require( './find_ibeta_inv_from_t_dist.js' );
+var temme1 = require( './temme1.js' );
+var temme2 = require( './temme2.js' );
+var temme3 = require( './temme3.js' );
+var halleyIterate = require( './halley_iterate.js' );
+var ibetaRoots = require( './ibeta_roots.js' );
+
+
+// VARIABLES //
+
+// Workspace for the polynomial coefficients:
+var terms = new Array( 5 );
 
 
 // MAIN //
 
-function ibeta_inv_imp( a, b, p, q ) {
-	var max_iter;
+/**
+* Calculates the inverse of the incomplete beta function.
+*
+* @private
+* @param {PositiveNumber} a - function parameter
+* @param {PositiveNumber} b - function parameter
+* @param {Probability} p - function parameter
+* @param {Probability} q - probability equal to `1 - p`
+* @returns {Array} two-element array holding function value `y` and `1-y`
+*/
+function ibetaInvImp( a, b, p, q ) {
+	var maxIter;
 	var digits;
 	var invert;
 	var lambda;
 	var lower;
 	var theta;
 	var upper;
+	var roots;
 	var maxv;
 	var minv;
 	var bet;
 	var ppa;
 	var tmp;
 	var xs2;
+	var ap1;
+	var bm1;
 	var fs;
 	var lx;
 	var ps;
 	var xg;
 	var xs;
 	var yp;
+	var a2;
+	var a3;
+	var b2;
 	var r;
 	var l;
 	var u;
 	var x;
 	var y;
-	//
-	// The flag invert is set to true if we swap a for b and p for q,
-	// in which case the result has to be subtracted from 1:
-	//
+
+	// The flag invert is set to true if we swap a for b and p for q, in which case the result has to be subtracted from 1:
 	invert = false;
 	// Handle trivial cases first...
 	if ( q === 0.0 ) {
@@ -4805,18 +5017,14 @@ function ibeta_inv_imp( a, b, p, q ) {
 
 		invert = true;
 	}
-	// Depending upon which approximation method we use, we may end up
-	// calculating either x or y initially (where y = 1-x):
+	// Depending upon which approximation method we use, we may end up calculating either x or y initially (where y = 1-x):
 	x = 0.0; // Set to a safe zero to avoid a
 
-	// For some of the methods we can put tighter bounds
-	// on the result than simply [0,1]:
+	// For some of the methods we can put tighter bounds on the result than simply [0,1]:
 	lower = 0.0;
 	upper = 1.0;
-	//
-	// Student's T with b = 0.5 gets handled as a special case, swap
-	// around if the arguments are in the "wrong" order:
-	//
+
+	// Student's T with b = 0.5 gets handled as a special case, swap around if the arguments are in the "wrong" order:
 	if ( a === 0.5 ) {
 		if ( b === 0.5 ) {
 			x = sin( p * HALF_PI );
@@ -4841,7 +5049,7 @@ function ibeta_inv_imp( a, b, p, q ) {
 	if ( b === 0.5 && a >= 0.5 && p !== 1.0 ) {
 		// We have a Student's T distribution:
 		yp = {};
-		x = find_ibeta_inv_from_t_dist( a, p, yp );
+		x = findIBetaInvFromTDist( a, p, yp );
 		y = yp.value;
 	}
 	else if ( b === 1.0 ) {
@@ -4865,12 +5073,7 @@ function ibeta_inv_imp( a, b, p, q ) {
 		return [ x, y ];
 	}
 	else if ( a + b > 5.0 ) {
-		//
-		// When a+b is large then we can use one of Prof Temme's
-		// asymptotic expansions, begin by swapping things around
-		// so that p < 0.5, we do this to avoid cancellations errors
-		// when p is large.
-		//
+		// When a+b is large then we can use one of Prof Temme's asymptotic expansions, begin by swapping things around so that p < 0.5, we do this to avoid cancellations errors when p is large.
 		if ( p > 0.5 ) {
 			tmp = b;
 			b = a;
@@ -4885,15 +5088,8 @@ function ibeta_inv_imp( a, b, p, q ) {
 		minv = min( a, b );
 		maxv = max( a, b );
 		if ( ( sqrt(minv) > (maxv - minv) ) && minv > 5.0 ) {
-			//
-			// When a and b differ by a small amount
-			// the curve is quite symmetrical and we can use an error
-			// function to approximate the inverse. This is the cheapest
-			// of the three Temme expantions, and the calculated value
-			// for x will never be much larger than p, so we don't have
-			// to worry about cancellation as long as p is small.
-			//
-			x = temme_method_1_ibeta_inverse( a, b, p );
+			// When a and b differ by a small amount the curve is quite symmetrical and we can use an error function to approximate the inverse. This is the cheapest of the three Temme expansions, and the calculated value for x will never be much larger than p, so we don't have to worry about cancellation as long as p is small.
+			x = temme1( a, b, p );
 			y = 1.0 - x;
 		} else {
 			r = a + b;
@@ -4904,31 +5100,16 @@ function ibeta_inv_imp( a, b, p, q ) {
 				lambda <= 0.8 &&
 				r >= 10
 			) {
-				//
-				// The second error function case is the next cheapest
-				// to use, it brakes down when the result is likely to be
-				// very small, if a+b is also small, but we can use a
-				// cheaper expansion there in any case.  As before x won't
-				// be much larger than p, so as long as p is small we should
-				// be free of cancellation error.
-				//
+				// The second error function case is the next cheapest to use, it breaks down when the result is likely to be very small, if `a+b` is also small, but we can use a cheaper expansion there in any case. As before `x` won't be much larger than `p`, so as long as `p` is small we should be free of cancellation error.
 				ppa = pow( p, 1.0/a );
-				if ( ppa < 0.0025 && a + b < 200.0 ) {
+				if ( ppa < 0.0025 && ( a + b < 200.0 ) ) {
 					x = ppa * pow( a * beta( a, b ), 1.0/a );
 				} else {
-					x = temme_method_2_ibeta_inverse( p, r, theta );
+					x = temme2( p, r, theta );
 				}
 				y = 1.0 - x;
 			} else {
-				//
-				// If we get here then a and b are very different in magnitude
-				// and we need to use the third of Temme's methods which
-				// involves inverting the incomplete gamma.  This is much more
-				// expensive than the other methods.  We also can only use this
-				// method when a > b, which can lead to cancellation errors
-				// if we really want y (as we will when x is close to 1), so
-				// a different expansion is used in that case.
-				//
+				// If we get here then a and b are very different in magnitude and we need to use the third of Temme's methods which involves inverting the incomplete gamma.  This is much more expensive than the other methods.  We also can only use this method when a > b, which can lead to cancellation errors if we really want y (as we will when x is close to 1), so a different expansion is used in that case.
 				if ( a < b ) {
 					tmp = b;
 					b = a;
@@ -4939,42 +5120,36 @@ function ibeta_inv_imp( a, b, p, q ) {
 					p = tmp;
 					invert = !invert;
 				}
-
 				// Try and compute the easy way first:
 				bet = 0.0;
 				if ( b < 2.0 ) {
 					bet = beta( a, b );
 				}
-				if ( bet !== 0.0 ) {
+				if ( bet === 0.0 ) {
+					y = 1.0;
+				} else {
 					y = pow( b * q * bet, 1.0/b );
 					x = 1.0 - y;
-				} else {
-					y = 1.0;
 				}
-				if ( y > 1e-5 ) {
-					x = temme_method_3_ibeta_inverse( a, b, p, q );
-					y = 1.0 - x;
-				}
+			}
+			if ( y > 1e-5 ) {
+				x = temme3( a, b, p, q );
+				y = 1.0 - x;
 			}
 		}
 	}
 	else if ( a < 1.0 && b < 1.0 ) {
-		// Both a and b less than 1,
-		// there is a point of inflection at xs:
-		//
-		xs = (1.0 - a) / (2.0 - a - b);
-		//
-		// Now we need to ensure that we start our iteration from the
-		// right side of the inflection point:
-		//
+		// Both a and b less than 1, there is a point of inflection at xs:
+		xs = ( 1.0 - a ) / ( 2.0 - a - b );
+
+		// Now we need to ensure that we start our iteration from the right side of the inflection point:
 		fs = betainc( xs, a, b ) - p;
 		if ( abs(fs) / p < EPSILON * 3.0 ) {
 			// The result is at the point of inflection, best just return it:
 			if ( invert ) {
 				return [ 1.0 - xs, xs ];
-			} else {
-				return [ xs, 1.0 - xs ];
 			}
+			return [ xs, 1.0 - xs ];
 		}
 		if ( fs < 0.0 ) {
 			tmp = b;
@@ -4992,23 +5167,16 @@ function ibeta_inv_imp( a, b, p, q ) {
 		x = xg / ( 1.0 + xg );
 		y = 1.0 / ( 1.0 + xg );
 
-		// And finally we know that our result is below the inflection
-		// point, so set an upper limit on our search:
+		// And finally we know that our result is below the inflection point, so set an upper limit on our search:
 		if ( x > xs ) {
 			x = xs;
 		}
 		upper = xs;
 	}
 	else if ( a > 1.0 && b > 1.0 ) {
-		//
-		// Small a and b, both greater than 1,
-		// there is a point of inflection at xs,
-		// and it's complement is xs2, we must always
-		// start our iteration from the right side of the
-		// point of inflection.
-		//
-		xs = (a - 1) / (a + b - 2);
-		xs2 = (b - 1) / (a + b - 2);
+		// Small a and b, both greater than 1, there is a point of inflection at xs, and it's complement is xs2, we must always start our iteration from the right side of the point of inflection.
+		xs = ( a - 1.0 ) / ( a + b - 2.0 );
+		xs2 = ( b - 1.0 ) / ( a + b - 2.0 );
 		ps = betainc( xs, a, b ) - p;
 
 		if ( ps < 0.0 ) {
@@ -5029,25 +5197,23 @@ function ibeta_inv_imp( a, b, p, q ) {
 		// Estimate x and y, using expm1 to get a good estimate for y when it's very small:
 		lx = ln( p * a * beta( a, b ) ) / a;
 		x = exp( lx );
-		y = x < 0.9 ? 1 - x : -expm1(lx);
+		y = x < 0.9 ? 1.0 - x : -expm1(lx);
 
 		if ( b < a && x < 0.2 ) {
 			// Under a limited range of circumstances we can improve our estimate for x...
-			var ap1, bm1, a_2, a_3, b_2, terms;
-			ap1 = a - 1;
-			bm1 = b - 1;
-			a_2 = a * a;
-			a_3 = a * a_2;
-			b_2 = b * b;
-			terms = new Array( 5 );
-			terms[0] = 0;
-			terms[1] = 1;
-			terms[2] = bm1 / ap1;
+			ap1 = a - 1.0;
+			bm1 = b - 1.0;
+			a2 = a * a;
+			a3 = a * a2;
+			b2 = b * b;
+			terms[ 0 ] = 0;
+			terms[ 1 ] = 1;
+			terms[ 2 ] = bm1 / ap1;
 			ap1 *= ap1;
-			terms[3] = bm1 * (3 * a * b + 5 * b + a_2 - a - 4) / (2 * (a + 2) * ap1);
+			terms[ 3 ] = bm1 * (3 * a * b + 5 * b + a2 - a - 4) / (2 * (a + 2) * ap1);
 			ap1 *= (a + 1);
-			terms[4] = bm1 * (33 * a * b_2 + 31 * b_2 + 8 * a_2 * b_2 - 30 * a * b - 47 * b + 11 * a_2 * b + 6 * a_3 * b + 18 + 4 * a - a_3 + a_2 * a_2 - 10 * a_2);
-			terms[4] /= (3 * (a + 3) * (a + 2) * ap1);
+			terms[ 4 ] = bm1 * (33 * a * b2 + 31 * b2 + 8 * a2 * b2 - 30 * a * b - 47 * b + 11 * a2 * b + 6 * a3 * b + 18 + 4 * a - a3 + a2 * a2 - 10 * a2);
+			terms[ 4 ] /= (3 * (a + 3) * (a + 2) * ap1);
 			x = evalpoly( terms, x );
 		}
 		// Know that result is below the inflection point, so set an upper limit on search...
@@ -5055,27 +5221,9 @@ function ibeta_inv_imp( a, b, p, q ) {
 			x = xs;
 		}
 		upper = xs;
-	} else /*if((a <= 1) != (b <= 1))*/ {
-		//
-		// If all else fails we get here, only one of a and b
-		// is above 1, and a+b is small.  Start by swapping
-		// things around so that we have a concave curve with b > a
-		// and no points of inflection in [0,1].  As long as we expect
-		// x to be small then we can use the simple (and cheap) power
-		// term to estimate x, but when we expect x to be large then
-		// this greatly underestimates x and leaves us trying to
-		// iterate "round the corner" which may take almost forever...
-		//
-		// We could use Temme's inverse gamma function case in that case,
-		// this works really rather well (albeit expensively) even though
-		// strictly speaking we're outside it's defined range.
-		//
-		// However it's expensive to compute, and an alternative approach
-		// which models the curve as a distorted quarter circle is much
-		// cheaper to compute, and still keeps the number of iterations
-		// required down to a reasonable level.  With thanks to Prof Temme
-		// for this suggestion.
-		//
+	} else {
+		// Case: ( a <= 1 ) != ( b <= 1 )
+		// If all else fails we get here, only one of a and b is above 1, and a+b is small.  Start by swapping things around so that we have a concave curve with b > a and no points of inflection in [0,1].  As long as we expect x to be small then we can use the simple (and cheap) power term to estimate x, but when we expect x to be large then this greatly underestimates x and leaves us trying to iterate "round the corner" which may take almost forever. We could use Temme's inverse gamma function case in that case, this works really rather well (albeit expensively) even though strictly speaking we're outside it's defined range. However it's expensive to compute, and an alternative approach which models the curve as a distorted quarter circle is much cheaper to compute, and still keeps the number of iterations required down to a reasonable level. With thanks to Prof. Temme for this suggestion.
 		if ( b < a ) {
 			tmp = b;
 			b = a;
@@ -5089,23 +5237,21 @@ function ibeta_inv_imp( a, b, p, q ) {
 		if ( pow( p, 1.0/a ) < 0.5 ) {
 			x = pow( p * a * beta( a, b ), 1.0/a );
 			if ( x === 0 ) {
-				x = Number.MIN_VALUE;
+				x = FLOAT64_MIN_NORM;
 			}
-		 	y = 1 - x;
+			y = 1.0 - x;
 		}
-		else /*if(pow(q, 1/b) < 0.1)*/ {
+		else {
+			// Case: pow(q, 1/b) < 0.1
 			// Model a distorted quarter circle:
-			y = pow( 1 - pow( p, b * beta( a, b ) ), 1/b );
+			y = pow( 1.0 - pow( p, b * beta( a, b ) ), 1.0/b );
 			if ( y === 0 ) {
-				y = Number.MIN_VALUE;
+				y = FLOAT64_MIN_NORM;
 			}
-			x = 1 - y;
+			x = 1.0 - y;
 		}
 	}
-	//
-	// Now we have a guess for x (and for y) we can set things up for
-	// iteration.  If x > 0.5 it pays to swap things round:
-	//
+	// Now we have a guess for x (and for y) we can set things up for iteration.  If x > 0.5 it pays to swap things round:
 	if ( x > 0.5 ) {
 		tmp = b;
 		b = a;
@@ -5125,13 +5271,7 @@ function ibeta_inv_imp( a, b, p, q ) {
 		lower = l;
 		upper = u;
 	}
-	//
-	// lower bound for our search:
-	//
-	// We're not interested in denormalised answers as these tend to
-	// these tend to take up lots of iterations, given that we can't get
-	// accurate derivatives in this area (they tend to be infinite).
-	//
+	// Lower bound for our search:  We're not interested in denormalised answers as these tend to take up lots of iterations, given that we can't get accurate derivatives in this area (they tend to be infinite).
 	if ( lower === 0 ) {
 		if ( invert ) {
 			// We're not interested in answers smaller than machine epsilon:
@@ -5140,57 +5280,44 @@ function ibeta_inv_imp( a, b, p, q ) {
 				x = lower;
 			}
 		} else {
-			lower = Number.MIN_VALUE;
+			lower = FLOAT64_MIN_NORM;
 		}
 		if ( x < lower ) {
 			x = lower;
 		}
 	}
 	// Figure out how many digits to iterate towards:
-	digits = 64 / 2;
+	digits = 32;
 	if ( x < 1e-50 && ( a < 1.0 || b < 1.0 ) ) {
-		//
-		// If we're in a region where the first derivative is very
-		// large, then we have to take care that the root-finder
-		// doesn't terminate prematurely.  We'll bump the precision
-		// up to avoid this, but we have to take care not to set the
-		// precision too high or the last few iterations will just
-		// thrash around and convergence may be slow in this case.
-		// Try 3/4 of machine epsilon:
-		//
+		// If we're in a region where the first derivative is very large, then we have to take care that the root-finder doesn't terminate prematurely.  We'll bump the precision up to avoid this, but we have to take care not to set the precision too high or the last few iterations will just thrash around and convergence may be slow in this case. Try 3/4 of machine epsilon:
 		digits *= 3;
 		digits /= 2;
 	}
 	// Now iterate, we can use either p or q as the target here depending on which is smaller:
-	max_iter = 1000;
-	x = halley_iterate(
-		ibeta_roots( a, b, ( p < q ? p : q ), ( p < q ? false : true ) ),
-		x,
-		lower,
-		upper,
-		digits,
-		max_iter
-	);
+	maxIter = 1000;
+	roots = ibetaRoots( a, b, ( p < q ? p : q ), p >= q );
+	x = halleyIterate( roots, x, lower, upper, digits, maxIter );
+
 	// Tidy up, if we "lower" was too high then zero is the best answer we have:
 	if ( x === lower ) {
 		x = 0.0;
 	}
 	if ( invert ) {
-		return [ 1.0-x, x ];
+		return [ 1.0 - x, x ];
 	}
-	return [ x, 1.0-x ];
-} // end FUNCTION ibeta_inv_imp()
+	return [ x, 1.0 - x ];
+} // end FUNCTION ibetaInvImp()
 
 
 // EXPORTS //
 
-module.exports= ibeta_inv_imp;
+module.exports= ibetaInvImp;
 
-},{"./find_ibeta_inv_from_t_dist.js":70,"./halley_iterate.js":71,"./ibeta_roots.js":73,"./temme1.js":80,"./temme2.js":81,"./temme3.js":82,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/asin":37,"@stdlib/math/base/special/beta":51,"@stdlib/math/base/special/betainc":61,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/expm1":150,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/max":242,"@stdlib/math/base/special/min":246,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sin":289,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-eps":376,"@stdlib/math/constants/float64-half-pi":381}],73:[function(require,module,exports){
+},{"./find_ibeta_inv_from_t_dist.js":70,"./halley_iterate.js":71,"./ibeta_roots.js":73,"./temme1.js":81,"./temme2.js":82,"./temme3.js":83,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/asin":41,"@stdlib/math/base/special/beta":55,"@stdlib/math/base/special/betainc":65,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/min":269,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sin":323,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-eps":410,"@stdlib/math/constants/float64-half-pi":415,"@stdlib/math/constants/float64-smallest-normal":438}],73:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -5207,14 +5334,34 @@ module.exports= ibeta_inv_imp;
 
 var betainc = require( '@stdlib/math/base/special/betainc/lib/ibeta_imp.js' );
 var abs = require( '@stdlib/math/base/special/abs');
+var FLOAT64_MAX = require( '@stdlib/math/constants/float64-max' );
+var FLOAT64_MIN_NORM = require( '@stdlib/math/constants/float64-smallest-normal' );
 
 
 // MAIN //
 
-function ibeta_roots( a, b, target, invert ) {
+/**
+* Returns a root finding function.
+*
+* @private
+* @param {PositiveNumber} a - function parameter
+* @param {PositiveNumber} b - function parameter
+* @param {Probability} target - probability value
+* @param {boolean} invert - boolean indicating whether to find the roots of the upper or lower incomplete beta function
+* @returns {Function} root finding function
+*/
+function ibetaRoots( a, b, target, invert ) {
 	invert = invert || false;
+	return roots;
 
-	return function roots( x ) {
+	/**
+	* Calculates roots.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Array} roots
+	*/
+	function roots( x ) {
 		var f1p;
 		var f1;
 		var f2;
@@ -5229,14 +5376,13 @@ function ibeta_roots( a, b, target, invert ) {
 			f1 = -f1;
 		}
 		if ( y === 0.0 ) {
-			y = Number.MIN_VALUE * 64.0;
+			y = FLOAT64_MIN_NORM * 64.0;
 		}
 		if ( x === 0.0 ) {
-			x = Number.MIN_VALUE * 64.0;
+			x = FLOAT64_MIN_NORM * 64.0;
 		}
-
-		f2 = f1 * ( -y * a + (b - 2.0) * x + 1.0 );
-		if ( abs( f2 ) < y * x * Number.MAX_VALUE ) {
+		f2 = f1 * ( -(y*a) + ( ( b-2.0 ) * x ) + 1.0 );
+		if ( abs( f2 ) < y * x * FLOAT64_MAX ) {
 			f2 /= (y * x);
 		}
 		if ( invert ) {
@@ -5244,18 +5390,18 @@ function ibeta_roots( a, b, target, invert ) {
 		}
 		// Make sure we don't have a zero derivative:
 		if ( f1 === 0.0 ) {
-			f1 = (invert ? -1.0 : 1.0) * Number.MIN_VALUE * 64.0;
+			f1 = (invert ? -1.0 : 1.0) * FLOAT64_MIN_NORM * 64.0;
 		}
 		return [ f, f1, f2 ];
-	};
-} // end FUNCTION ibeta_roots()
+	} // end FUNCTION roots()
+} // end FUNCTION ibetaRoots()
 
 
 // EXPORTS //
 
-module.exports = ibeta_roots;
+module.exports = ibetaRoots;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/betainc/lib/ibeta_imp.js":58}],74:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/betainc/lib/ibeta_imp.js":62,"@stdlib/math/constants/float64-max":427,"@stdlib/math/constants/float64-smallest-normal":438}],74:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5266,6 +5412,20 @@ module.exports = ibeta_roots;
 * @example
 * var betaincinv = require( '@stdlib/math/base/special/betaincinv' );
 *
+* var y = betaincinv( 0.2, 3.0, 3.0 );
+* // returns ~0.327
+*
+* y = betaincinv( 0.4, 3.0, 3.0 );
+* // returns ~0.446
+*
+* y = betaincinv( 0.4, 3.0, 3.0, true );
+* // returns ~0.554
+*
+* y = betaincinv( 0.4, 1.0, 6.0 );
+* // returns ~0.082
+*
+* y = betaincinv( 0.8, 1.0, 6.0 );
+* // returns ~0.235
 */
 
 // MODULES //
@@ -5278,10 +5438,169 @@ var betaincinv = require( './betaincinv.js' );
 module.exports = betaincinv;
 
 },{"./betaincinv.js":69}],75:[function(require,module,exports){
+/* eslint-disable max-len, no-mixed-operators */
+'use strict';
+
+// MODULES //
+
+var erfcinv = require( '@stdlib/math/base/special/erfcinv' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var ldexp = require( '@stdlib/math/base/special/ldexp' );
+var round = require( '@stdlib/math/base/special/round' );
+var acos = require( '@stdlib/math/base/special/acos' );
+var sqrt = require( '@stdlib/math/base/special/sqrt' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var cos = require( '@stdlib/math/base/special/cos' );
+var pow = require( '@stdlib/math/base/special/pow' );
+var sin = require( '@stdlib/math/base/special/sin' );
+var SQRT2 = require( '@stdlib/math/constants/float64-sqrt-two' );
+var PI = require( '@stdlib/math/constants/float64-pi' );
+var inverseStudentsTBodySeries = require( './inverse_students_t_body_series.js' );
+var inverseStudentsTTailSeries = require( './inverse_students_t_tail_series.js' );
+var inverseStudentsTHill = require( './inverse_students_t_hill.js' );
+
+
+// MAIN //
+
+/**
+* Evaluates Student's t quantiles.
+*
+* @private
+* @param {PositiveNumber} df - degrees of freedom
+* @param {Probability} u - input probability
+* @param {Probability} v - probability equal to `1-u`
+*@returns {number} function value
+*/
+function inverseStudentsT( df, u, v ) {
+	var crossover;
+	var tolerance;
+	var rootAlpha;
+	var invert;
+	var result;
+	var alpha;
+	var tmp;
+	var p0;
+	var p2;
+	var p4;
+	var p5;
+	var p;
+	var r;
+	var x;
+	var a;
+	var b;
+	var c;
+
+	invert = false;
+	result = 0;
+	if ( u > v ) {
+		// Function is symmetric, so invert it:
+		tmp = v;
+		v = u;
+		u = tmp;
+		invert = true;
+	}
+	if ( floor(df) === df && df < 20 ) {
+		// We have integer degrees of freedom, try for the special cases first:
+		tolerance = ldexp( 1.0, ( 2 * 53 ) / 3 );
+
+		switch ( floor( df ) ) {
+		case 1:
+			// `df = 1` is the same as the Cauchy distribution, see Shaw Eq 35:
+			if ( u === 0.5 ) {
+				result = 0;
+			} else {
+				result = -cos( PI * u) / sin( PI * u);
+			}
+			break;
+		case 2:
+			// `df = 2` has an exact result, see Shaw Eq 36:
+			result = ( (2.0*u) - 1) / sqrt( 2.0 * u * v );
+			break;
+		case 4:
+			// `df = 4` has an exact result, see Shaw Eq 38 & 39:
+			alpha = 4 * u * v;
+			rootAlpha = sqrt( alpha );
+			r = 4 * cos( acos( rootAlpha ) / 3 ) / rootAlpha;
+			x = sqrt( r - 4 );
+			result = u - 0.5 < 0 ? -x : x;
+			break;
+		case 6:
+			// We get numeric overflow in this area:
+			if ( u < 1e-150 ) {
+				return ( invert ? -1 : 1 ) * inverseStudentsTHill( df, u );
+			}
+			// Newton-Raphson iteration of a polynomial case, choice of seed value is taken from Shaw's online supplement:
+			a = 4.0 * ( u - (u*u) );// 1 - 4 * (u - 0.5f) * (u - 0.5f);
+			b = pow( a, 1/3 );
+			c = 0.85498797333834849467655443627193;
+			p = 6 * ( 1 + ( c * ( (1/b) - 1 ) ) );
+			do {
+				p2 = p * p;
+				p4 = p2 * p2;
+				p5 = p * p4;
+				p0 = p;
+				// Next term is given by Eq 41:
+				p = 2 * (8 * a * p5 - 270 * p2 + 2187) /
+					(5 * (4 * a * p4 - 216 * p - 243));
+			} while ( abs( (p - p0) / p ) > tolerance );
+			// Use Eq 45 to extract the result:
+			p = sqrt( p - df );
+			result = (u - 0.5) < 0 ? -p : p;
+			break;
+		default:
+			if ( df > 0x10000000 ) {
+				result = erfcinv( 2.0 * u ) * SQRT2;
+			} else if ( df < 3 ) {
+				// Use a roughly linear scheme to choose between Shaw's tail series and body series:
+				crossover = 0.2742 - ( df * 0.0242143 );
+				if ( u > crossover ) {
+					result = inverseStudentsTBodySeries( df, u );
+				} else {
+					result = inverseStudentsTTailSeries( df, u );
+				}
+			} else {
+				// Use Hill's method except in the extreme tails where we use Shaw's tail series. The crossover point is roughly exponential in -df:
+				crossover = ldexp( 1.0, round( df / -0.654 ) );
+				if ( u > crossover ) {
+					result = inverseStudentsTHill( df, u );
+				} else {
+					result = inverseStudentsTTailSeries( df, u );
+				}
+			}
+		}
+	} else if ( df > 0x10000000 ) {
+		result = -erfcinv( 2 * u ) * SQRT2;
+	} else if ( df < 3 ) {
+		// Use a roughly linear scheme to choose between Shaw's tail series and body series:
+		crossover = 0.2742 - ( df * 0.0242143 );
+		if ( u > crossover ) {
+			result = inverseStudentsTBodySeries( df, u );
+		} else {
+			result = inverseStudentsTTailSeries( df, u );
+		}
+	} else {
+		// Use Hill's method except in the extreme tails where we use Shaw's tail series. The crossover point is roughly exponential in -df:
+		crossover = ldexp( 1.0, round( df / -0.654) );
+		if ( u > crossover ) {
+			result = inverseStudentsTHill( df, u );
+		} else {
+			result = inverseStudentsTTailSeries( df, u );
+		}
+	}
+	return invert ? -result : result;
+} // end FUNCTION inverseStudentsT()
+
+
+// EXPORTS //
+
+module.exports = inverseStudentsT;
+
+},{"./inverse_students_t_body_series.js":76,"./inverse_students_t_hill.js":77,"./inverse_students_t_tail_series.js":78,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/acos":29,"@stdlib/math/base/special/cos":113,"@stdlib/math/base/special/erfcinv":142,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/round":307,"@stdlib/math/base/special/sin":323,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-pi":436,"@stdlib/math/constants/float64-sqrt-two":441}],76:[function(require,module,exports){
+/* eslint-disable max-len, no-mixed-operators */
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/t_distribution_inv.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/detail/t_distribution_inv.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -5299,51 +5618,69 @@ module.exports = betaincinv;
 var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
 var sqrt = require( '@stdlib/math/base/special/sqrt');
 var PI = require( '@stdlib/math/constants/float64-pi' );
-var tgamma_delta_ratio = require( './tgamma_delta_ratio.js' );
+var tgammaDeltaRatio = require( './tgamma_delta_ratio.js' );
+
+
+// VARIABLES //
+
+// Workspace for the polynomial coefficients:
+var c = new Array( 10 );
 
 
 // MAIN //
 
-function inverse_students_t_body_series( df, u ) {
+/**
+* Evaluates Student's t quantiles via a body series expansion. Tail and body series are due to Shaw.
+*
+* #### References
+*
+* - Shaw, W.T., 2006, "Sampling Student's T distribution - use of the inverse cumulative distribution function.", Journal of Computational Finance, Vol 9 Issue 4, pp 37-73, Summer 2006 (www.mth.kcl.ac.uk/~shaww/web_page/papers/Tdistribution06.pdf)
+*
+* @private
+* @param {PositiveNumber} df - degrees of freedom
+* @param {Probability} u - input probability
+* @returns {number} function value
+*/
+function inverseStudentsTBodySeries( df, u ) {
 	var idf;
-	var c;
+	var c0;
 	var v;
+
 	// Body series for small N, start with Eq 56 of Shaw:
-	v = tgamma_delta_ratio( df / 2, 0.5 ) *
+	v = tgammaDeltaRatio( df / 2, 0.5 ) *
 		sqrt( df * PI ) * ( u - 0.5 );
-	// Workspace for the polynomial coefficients:
-	c = new Array( 11 );
-	c[ 0 ] = 0;
-	c[ 1 ] = 1;
+	c0 = 0;
+	c[ 0 ] = 1;
+
 	// Figure out what the coefficients are. They depend only on the degrees of freedom (Eq 57 of Shaw):
-	idf = 1 / df;
-	c[2] = 0.16666666666666666667 + 0.16666666666666666667 * idf;
-	c[3] = (0.0083333333333333333333 * idf +
+	idf = 1.0 / df;
+	c[ 1 ] = 0.16666666666666666667 + 0.16666666666666666667 * idf;
+	c[ 2 ] = (0.0083333333333333333333 * idf +
 		0.066666666666666666667) * idf +
 		0.058333333333333333333;
-	c[4] = ((0.00019841269841269841270 * idf +
+	c[ 3 ] = ((0.00019841269841269841270 * idf +
 		0.0017857142857142857143) * idf +
 		0.026785714285714285714) * idf +
 		0.025198412698412698413;
-	c[5] = (((2.7557319223985890653e-6 * idf +
+	c[ 4 ] = (((2.7557319223985890653e-6 * idf +
 		0.00037477954144620811287) * idf -
 		0.0011078042328042328042) * idf +
 		0.010559964726631393298) * idf +
 		0.012039792768959435626;
-	c[6] = ((((2.5052108385441718775e-8 * idf -
+	c[ 5 ] = ((((2.5052108385441718775e-8 * idf -
 		0.000062705427288760622094) * idf +
 		0.00059458674042007375341) * idf -
 		0.0016095979637646304313) * idf +
 		0.0061039211560044893378) * idf +
 		0.0038370059724226390893;
-	c[7] = (((((1.6059043836821614599e-10 * idf +
+	c[ 6 ] = (((((1.6059043836821614599e-10 * idf +
 		0.000015401265401265401265) * idf -
 		0.00016376804137220803887) * idf +
 		0.00069084207973096861986) * idf -
 		0.0012579159844784844785) * idf +
 		0.0010898206731540064873) * idf +
 		0.0032177478835464946576;
-	c[8] = ((((((7.6471637318198164759e-13 * idf -
+	c[ 7 ] = ((((((7.6471637318198164759e-13 * idf -
 		3.9851014346715404916e-6) * idf +
 		0.000049255746366361445727) * idf -
 		0.00024947258047043099953) * idf +
@@ -5351,7 +5688,7 @@ function inverse_students_t_body_series( df, u ) {
 		0.00076245135440323932387) * idf +
 		0.000033530976880017885309) * idf +
 		0.0017438262298340009980;
-	c[9] = (((((((2.8114572543455207632e-15 * idf +
+	c[ 8 ] = (((((((2.8114572543455207632e-15 * idf +
 		1.0914179173496789432e-6) * idf -
 		0.000015303004486655377567) * idf +
 		0.000090867107935219902229) * idf -
@@ -5360,7 +5697,7 @@ function inverse_students_t_body_series( df, u ) {
 		0.00036307660358786885787) * idf -
 		0.00031101086326318780412) * idf +
 		0.00096472747321388644237;
-	c[10] = ((((((((8.2206352466243297170e-18 * idf -
+	c[ 9 ] = ((((((((8.2206352466243297170e-18 * idf -
 		3.1239569599829868045e-7) * idf +
 		4.8903045291975346210e-6) * idf -
 		0.000033202652391372058698) * idf +
@@ -5372,15 +5709,16 @@ function inverse_students_t_body_series( df, u ) {
 		0.00054229262813129686486;
 	// Result is then a polynomial in v (see Eq 56 of Shaw)...
 	// evaluate_odd_polynomial:
-	return c.shift() + v * evalpoly( c, v*v );
-} // end FUNCTION inverse_students_t_body_series()
+	return c0 + ( v * evalpoly( c, v*v ) );
+} // end FUNCTION inverseStudentsTBodySeries()
 
 
 // EXPORTS //
 
-module.exports = inverse_students_t_body_series;
+module.exports = inverseStudentsTBodySeries;
 
-},{"./tgamma_delta_ratio.js":83,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-pi":399}],76:[function(require,module,exports){
+},{"./tgamma_delta_ratio.js":84,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-pi":436}],77:[function(require,module,exports){
+/* eslint-disable no-mixed-operators */
 'use strict';
 
 /*
@@ -5409,13 +5747,19 @@ var SQRT2 = require( '@stdlib/math/constants/float64-sqrt-two' );
 
 // MAIN //
 
-//
-// The main method used is due to Hill:
-//
-// G. W. Hill, Algorithm 396, Student's t-Quantiles,
-// Communications of the ACM, 13(10): 619-620, Oct., 1970.
-//
-function inverse_students_t_hill( ndf, u ) {
+/**
+* Evaluates Student's t quantiles via a method due to Hill.
+*
+* #### References
+*
+* - G. W. Hill, Algorithm 396, Student's t-Quantiles Communications of the ACM, 13(10): 619-620, Oct., 1970.
+*
+* @private
+* @param {PositiveNumber} ndf - degrees of freedom
+* @param {Probability} u - input probability
+* @returns {number} function value
+*/
+function inverseStudentsTHill( ndf, u ) {
 	var a;
 	var b;
 	var c;
@@ -5427,18 +5771,18 @@ function inverse_students_t_hill( ndf, u ) {
 	if ( ndf > 1e20 ) {
 		return -erfcinv( 2 * u ) * SQRT2;
 	}
-	a = 1 / (ndf - 0.5);
-	b = 48 / (a * a);
+	a = 1.0 / ( ndf - 0.5 );
+	b = 48.0 / (a * a);
 	c = ((20700 * a / b - 98) * a - 16) * a + 96.36;
 	d = ((94.5 / (b + c) - 3) / b + 1) * sqrt( a * PI / 2 ) * ndf;
 	y = pow(d * 2 * u, 2 / ndf);
 
-	if (y > (0.05 + a)) {
+	if ( y > ( 0.05 + a ) ) {
 		// Asymptotic inverse expansion about normal:
 		x = -erfcinv( 2 * u ) * SQRT2;
 		y = x * x;
 
-		if (ndf < 5) {
+		if ( ndf < 5.0 ) {
 			c += 0.3 * ( ndf - 4.5 ) * ( x + 0.6 );
 		}
 		c += (((0.05 * d * x - 5) * x - 7) * x - 2) * x + b;
@@ -5451,14 +5795,15 @@ function inverse_students_t_hill( ndf, u ) {
 	}
 	q = sqrt( ndf * y );
 	return -q;
-}
+} // end FUNCTION inverseStudentsTHill()
 
 
 // EXPORTS //
 
-module.exports = inverse_students_t_hill;
+module.exports = inverseStudentsTHill;
 
-},{"@stdlib/math/base/special/erfcinv":139,"@stdlib/math/base/special/expm1":150,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-pi":399,"@stdlib/math/constants/float64-sqrt-two":404}],77:[function(require,module,exports){
+},{"@stdlib/math/base/special/erfcinv":142,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-pi":436,"@stdlib/math/constants/float64-sqrt-two":441}],78:[function(require,module,exports){
+/* eslint-disable max-len, no-mixed-operators */
 'use strict';
 
 /*
@@ -5481,19 +5826,30 @@ var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
 var sqrt = require( '@stdlib/math/base/special/sqrt');
 var pow = require( '@stdlib/math/base/special/pow');
 var PI = require( '@stdlib/math/constants/float64-pi' );
-var tgamma_delta_ratio = require( './tgamma_delta_ratio.js' );
+var tgammaDeltaRatio = require( './tgamma_delta_ratio.js' );
 
 
-//
-// Tail and body series are due to Shaw:
-//
-// www.mth.kcl.ac.uk/~shaww/web_page/papers/Tdistribution06.pdf
-//
-// Shaw, W.T., 2006, "Sampling Student's T distribution - use of
-// the inverse cumulative distribution function."
-// Journal of Computational Finance, Vol 9 Issue 4, pp 37-73, Summer 2006
-//
-function inverse_students_t_tail_series( df, v ) {
+// VARIABLES //
+
+// Array for the coefficients d(k), these depend only on the number of degrees of freedom df, so at least in theory we could tabulate these for fixed df, see p15 of Shaw:
+var d = new Array( 7 );
+
+
+// MAIN //
+
+/**
+* Evaluates Student's t quantiles via a tail series expansion. Tail and body series are due to Shaw.
+*
+* #### References
+*
+* - Shaw, W.T., 2006, "Sampling Student's T distribution - use of the inverse cumulative distribution function.", Journal of Computational Finance, Vol 9 Issue 4, pp 37-73, Summer 2006 (www.mth.kcl.ac.uk/~shaww/web_page/papers/Tdistribution06.pdf)
+*
+* @private
+* @param {number} df - degrees of freedom
+* @param {number} v - function value
+* @returns {number} tail value
+*/
+function inverseStudentsTTailSeries( df, v ) {
 	var result;
 	var power;
 	var div;
@@ -5502,19 +5858,15 @@ function inverse_students_t_tail_series( df, v ) {
 	var np6;
 	var rn;
 	var w;
-	// Tail series expansion, see section 6 of Shaw's paper.
-	// w is calculated using Eq 60:
-	w = tgamma_delta_ratio( df / 2.0, 0.5 ) * sqrt( df * PI ) * v;
-	// define some variables:
+
+	// Tail series expansion, see section 6 of Shaw's paper. `w` is calculated using Eq 60:
+	w = tgammaDeltaRatio( df / 2.0, 0.5 ) * sqrt( df * PI ) * v;
+
+	// Define some variables:
 	np2 = df + 2;
 	np4 = df + 4;
 	np6 = df + 6;
-	//
-	// Calculate the coefficients d(k), these depend only on the
-	// number of degrees of freedom df, so at least in theory
-	// we could tabulate these for fixed df, see p15 of Shaw:
-	//
-	var d = new Array( 7 );
+
 	d[ 0 ] = 1;
 	d[ 1 ] = -(df + 1) / (2 * np2);
 	np2 *= (df + 2);
@@ -5536,10 +5888,8 @@ function inverse_students_t_tail_series( df, v ) {
 	d[ 6 ] = -df * (df + 1) * (df + 11) *
 		((((((((((((945 * df) + 31506) * df + 425858) * df + 2980236) * df + 11266745) * df + 20675018) * df + 7747124) * df - 22574632) * df - 8565600) * df + 18108416) * df - 7099392) * df + 884736) /
 		(46080 * np2 * np4 * np6 * (df + 8) * (df + 10) * (df +12));
-	//
-	// Now bring everthing together to provide the result,
-	//
-	// this is Eq 62 of Shaw:
+
+	// Now bring everything together to provide the result this is Eq 62 of Shaw:
 	rn = sqrt( df );
 	div = pow( rn * w, 1 / df );
 	power = div * div;
@@ -5547,18 +5897,18 @@ function inverse_students_t_tail_series( df, v ) {
 	result *= rn;
 	result /= div;
 	return -result;
-}
+} // end FUNCTION inverseStudentsTTailSeries()
 
 
 // EXPORTS //
 
-module.exports = inverse_students_t_tail_series;
+module.exports = inverseStudentsTTailSeries;
 
-},{"./tgamma_delta_ratio.js":83,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-pi":399}],78:[function(require,module,exports){
+},{"./tgamma_delta_ratio.js":84,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-pi":436}],79:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/tools/roots.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/tools/roots.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -5574,13 +5924,26 @@ module.exports = inverse_students_t_tail_series;
 
 var sign = require( '@stdlib/math/base/special/signum' );
 var abs = require( '@stdlib/math/base/special/abs' );
-var pow = require( '@stdlib/math/base/special/pow' );
+var ldexp = require( '@stdlib/math/base/special/ldexp' );
+var MAX_VALUE = require( '@stdlib/math/constants/float64-max' );
 
 
 // MAIN //
 
-function newton_raphson_iterate( fun, guess, min, max, digits, max_iter ) {
-	var last_f0;
+/**
+* Performs root finding via second order Newton-Raphson iteration.
+*
+* @private
+* @param {Array} fun - two-element array of the function and its first derivative
+* @param {number} guess - initial starting value.
+* @param {number} min - minimum possible value for the result,used as initial lower bracket.
+* @param {number} max - maximum possible value for the result, used as initial upper bracket.
+* @param {PositiveInteger} digits - desired number of binary digits
+* @param {PositiveInteger} maxIter - maximum number of iterations
+* @returns {number} function value
+*/
+function newtonRaphsonIterate( fun, guess, min, max, digits, maxIter ) {
+	var f0last;
 	var delta1;
 	var delta2;
 	var factor;
@@ -5592,55 +5955,51 @@ function newton_raphson_iterate( fun, guess, min, max, digits, max_iter ) {
 	var f1;
 
 	f0 = 0.0;
-	last_f0 = 0.0;
+	f0last = 0.0;
 	result = guess;
 
-	factor = pow( 2, 1 - digits );
-	delta = 1.0;
-	delta1 = Number.MAX_VALUE;
-	delta2 = Number.MAX_VALUE;
+	factor = ldexp( 1.0, 1.0 - digits );
+	delta = MAX_VALUE;
+	delta1 = MAX_VALUE;
+	delta2 = MAX_VALUE;
 
-	count = max_iter;
-
+	count = maxIter;
 	do {
-		last_f0 = f0;
+		f0last = f0;
 		delta2 = delta1;
 		delta1 = delta;
 		res = fun(result);
 		f0 = res[ 0 ];
 		f1 = res[ 1 ];
+		count -= 1;
 		if ( f0 === 0.0 ) {
 			break;
 		}
 		if ( f1 === 0.0 ) {
 			// Oops zero derivative!!!
-			if ( last_f0 === 0.0 ) {
-				// this must be the first iteration, pretend that we had a
-				// previous one at either min or max:
+			if ( f0last === 0.0 ) {
+				// Must be the first iteration, pretend that we had a previous one at either min or max:
 				if ( result === min ) {
 					guess = max;
 				} else {
 					guess = min;
 				}
-				last_f0 = fun( guess );
+				f0last = fun( guess );
 				delta = guess - result;
 			}
-			if ( sign(last_f0) * sign(f0) < 0 ) {
+			if ( sign(f0last) * sign(f0) < 0 ) {
 				// We've crossed over so move in opposite direction to last step:
 				if ( delta < 0 ) {
-				  delta = (result - min) / 2.0;
-				} else {
-					delta = (result - max) / 2.0;
-				}
-			} else {
-				// Move in same direction as last step:
-				if ( delta < 0 ) {
-					delta = (result - max) / 2.0;
-				} else {
 					delta = (result - min) / 2.0;
+				} else {
+					delta = (result - max) / 2.0;
 				}
+			} else if ( delta < 0 ) {
+				delta = (result - max) / 2.0;
+			} else {
+				delta = (result - min) / 2.0;
 			}
-	 	} else {
+		} else {
 			delta = f0 / f1;
 		}
 		if ( abs(delta * 2.0) > abs(delta2) ) {
@@ -5669,21 +6028,21 @@ function newton_raphson_iterate( fun, guess, min, max, digits, max_iter ) {
 			min = guess;
 		}
 	}
-	while ( --count && ( abs(result * factor) < abs(delta) ) );
+	while ( count && ( abs(result * factor) < abs(delta) ) );
 
 	return result;
-} // end FUNCTION newton_raphson_iterate()
+} // end FUNCTION newtonRaphsonIterate()
 
 
 // EXPORTS //
 
-module.exports = newton_raphson_iterate;
+module.exports = newtonRaphsonIterate;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/signum":287}],79:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/special/signum":321,"@stdlib/math/constants/float64-max":427}],80:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -5699,42 +6058,61 @@ module.exports = newton_raphson_iterate;
 // MODULES //
 
 var ln = require( '@stdlib/math/base/special/ln' );
+var MAX_VALUE = require( '@stdlib/math/constants/float64-max' );
 
 
 // MAIN //
 
-function temme_root_finder( t, a ) {
-	return function roots( x ) {
+/**
+* Helper function used by root finding code to convert `eta` to `x`.
+*
+* @private
+* @param {number} t - first parameter
+* @param {number} a - second parameter
+* @returns {Function} root function
+*/
+function temmeRootFinder( t, a ) {
+	return roots;
+
+	/**
+	* Calculates roots.
+	*
+	* @private
+	* @param {number} x - function value
+	* @returns {Array} function roots
+	*/
+	function roots( x ) {
 		var big;
 		var f1;
 		var f;
 		var y;
 
-		y = 1 - x;
+		y = 1.0 - x;
 		if ( y === 0.0 ) {
-			big = Number.MAX_VALUE / 4.0;
+			big = MAX_VALUE / 4.0;
 			return [ -big, -big ];
 		}
 		if ( x === 0.0 ) {
-			big = Number.MAX_VALUE / 4.0;
+			big = MAX_VALUE / 4.0;
 			return [ -big, -big ];
 		}
-		f = ln( x ) + a * ln( y ) + t;
+		f = ln( x ) + ( a * ln( y ) ) + t;
 		f1 = ( 1.0 / x ) - ( a / y );
 		return [ f, f1 ];
-	};
-} // end FUNCTION temme_root_finder()
+	} // end FUNCTION roots()
+} // end FUNCTION temmeRootFinder()
 
 
 // EXPORTS //
 
-module.exports = temme_root_finder;
+module.exports = temmeRootFinder;
 
-},{"@stdlib/math/base/special/ln":228}],80:[function(require,module,exports){
+},{"@stdlib/math/base/special/ln":248,"@stdlib/math/constants/float64-max":427}],81:[function(require,module,exports){
+/* eslint-disable no-mixed-operators */
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -5753,92 +6131,108 @@ var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
 var erfcinv = require( '@stdlib/math/base/special/erfcinv' );
 var sqrt = require( '@stdlib/math/base/special/sqrt');
 var exp = require( '@stdlib/math/base/special/exp');
+var r2 = require( '@stdlib/math/constants/float64-sqrt-two' );
 
 
-//
-// See:
-// "Asymptotic Inversion of the Incomplete Beta Function"
-// N.M. Temme
-// Journal of Computation and Applied Mathematics 41 (1992) 145-157.
-// Section 2.
-//
-function temme_method_1_ibeta_inverse( a, b, z ) {
-	var workspace;
-	var terms;
+// VARIABLES //
+
+// Workspaces for the polynomial coefficients:
+var workspace = new Array( 7 );
+var terms = new Array( 4 );
+
+
+// MAIN //
+
+/**
+* Carries out the first method by Temme.
+*
+* #### References
+*
+* - "Asymptotic Inversion of the Incomplete Beta Function", N.M. Temme, Journal of Computation and Applied Mathematics 41 (1992) 145-157, Section 2.
+*
+* @private
+* @param {PositiveNumber} a - function parameter
+* @param {PositiveNumber} b - function parameter
+* @param {Probability} z - function parameter
+* @returns {number} function value
+*/
+function temme1( a, b, z ) {
 	var eta0;
+	var eta2;
 	var eta;
-	var eta_2;
-	var r2;
+	var B2;
+	var B3;
 	var B;
-	var B_2;
-	var B_3;
 	var c;
 	var x;
 
-	r2 = sqrt( 2 );
 	// Get the first approximation for eta from the inverse error function (Eq: 2.9 and 2.10):
-	eta0 = erfcinv( 2 * z );
-	eta0 /= -sqrt(a / 2);
-
-	terms = [ 0.0, 0.0, 0.0, 0.0 ];
-	workspace = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+	eta0 = erfcinv( 2.0 * z );
+	eta0 /= -sqrt( a / 2.0 );
 
 	terms[ 0 ] = eta0;
 
 	// Calculate powers:
 	B = b - a;
-	B_2 = B * B;
-	B_3 = B_2 * B;
+	B2 = B * B;
+	B3 = B2 * B;
 
 	// Calculate correction terms:
 
 	// See eq following 2.15:
-	workspace[0] = -B * r2 / 2;
-	workspace[1] = (1 - 2 * B) / 8;
-	workspace[2] = -(B * r2 / 48);
-	workspace[3] = -1 / 192;
-	workspace[4] = -B * r2 / 3840;
-	terms[1] = evalpoly( workspace, eta0 );
+	workspace[ 0 ] = -B * r2 / 2;
+	workspace[ 1 ] = ( 1 - (2.0*B) ) / 8.0;
+	workspace[ 2 ] = -(B * r2 / 48.0);
+	workspace[ 3 ] = -1.0 / 192.0;
+	workspace[ 4 ] = -B * r2 / 3840.0;
+	workspace[ 5 ] = 0.0;
+	workspace[ 6 ] = 0.0;
+	terms[ 1 ] = evalpoly( workspace, eta0 );
+
 	// Eq Following 2.17:
-	workspace[0] = B * r2 * (3 * B - 2) / 12;
-	workspace[1] = (20 * B_2 - 12 * B + 1) / 128;
-	workspace[2] = B * r2 * (20 * B - 1) / 960;
-	workspace[3] = (16 * B_2 + 30 * B - 15) / 4608;
-	workspace[4] = B * r2 * (21 * B + 32) / 53760;
-	workspace[5] = (-32 * B_2 + 63) / 368640;
-	workspace[6] = -B * r2 * (120 * B + 17) / 25804480;
-	terms[2] = evalpoly( workspace, eta0 );
+	workspace[ 0 ] = B * r2 * ( (3.0*B) - 2.0) / 12.0;
+	workspace[ 1 ] = ( (20.0*B2) - (12.0*B) + 1.0 ) / 128.0;
+	workspace[ 2 ] = B * r2 * (20 * B - 1) / 960;
+	workspace[ 3 ] = (16 * B2 + 30 * B - 15) / 4608;
+	workspace[ 4 ] = B * r2 * (21 * B + 32) / 53760;
+	workspace[ 5 ] = (-32 * B2 + 63) / 368640;
+	workspace[ 6 ] = -B * r2 * (120 * B + 17) / 25804480;
+	terms[ 2 ] = evalpoly( workspace, eta0 );
+
 	// Eq Following 2.17:
-	workspace[0] = B * r2 * (-75 * B_2 + 80 * B - 16) / 480;
-	workspace[1] = (-1080 * B_3 + 868 * B_2 - 90 * B - 45) / 9216;
-	workspace[2] = B * r2 * (-1190 * B_2 + 84 * B + 373) / 53760;
-	workspace[3] = (-2240 * B_3 - 2508 * B_2 + 2100 * B - 165) / 368640;
-	terms[3] = evalpoly( workspace, eta0 );
+	workspace[ 0 ] = B * r2 * (-75 * B2 + 80 * B - 16) / 480;
+	workspace[ 1 ] = (-1080 * B3 + 868 * B2 - 90 * B - 45) / 9216;
+	workspace[ 2 ] = B * r2 * (-1190 * B2 + 84 * B + 373) / 53760;
+	workspace[ 3 ] = (-2240 * B3 - 2508 * B2 + 2100 * B - 165) / 368640;
+	workspace[ 4 ] = 0.0;
+	workspace[ 5 ] = 0.0;
+	workspace[ 6 ] = 0.0;
+	terms[ 3 ] = evalpoly( workspace, eta0 );
 
 	// Bring them together to get a final estimate for eta:
-	eta = evalpoly( terms, 1/a );
+	eta = evalpoly( terms, 1.0/a );
 
 	// Now we need to convert eta to x, by solving the appropriate quadratic equation:
-	eta_2 = eta * eta;
-	c = -exp( -eta_2 / 2 );
-	if ( eta_2 === 0 ) {
+	eta2 = eta * eta;
+	c = -exp( -eta2 / 2.0 );
+	if ( eta2 === 0.0 ) {
 		x = 0.5;
 	} else {
-		x = ( 1 + eta * sqrt( (1 + c) / eta_2) ) / 2;
+		x = ( 1.0 + ( eta * sqrt( ( 1.0+c ) / eta2 ) ) ) / 2.0;
 	}
 	return x;
-} // end FUNCTION temme_method_1_ibeta_inverse()
+} // end FUNCTION temme1()
 
 
 // EXPORTS //
 
-module.exports = temme_method_1_ibeta_inverse;
+module.exports = temme1;
 
-},{"@stdlib/math/base/special/erfcinv":139,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalpoly":340}],81:[function(require,module,exports){
+},{"@stdlib/math/base/special/erfcinv":142,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-sqrt-two":441}],82:[function(require,module,exports){
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -5861,209 +6255,262 @@ var ln = require( '@stdlib/math/base/special/ln' );
 var sqrt = require( '@stdlib/math/base/special/sqrt' );
 var sin = require( '@stdlib/math/base/special/sin' );
 var cos = require( '@stdlib/math/base/special/cos' );
-var temme_root_finder = require( './root_finder.js');
-var newton_raphson_iterate = require( './newton_raphson.js' );
+var temmeRootFinder = require( './root_finder.js');
+var newtonRaphsonIterate = require( './newton_raphson.js' );
 
 
-//
-// See:
-// "Asymptotic Inversion of the Incomplete Beta Function"
-// N.M. Temme
-// Journal of Computation and Applied Mathematics 41 (1992) 145-157.
-// Section 3.
-//
-function temme_method_2_ibeta_inverse( z, r, theta ) {
-	var workspace;
+// VARIABLES //
+
+// Polynomial coefficients:
+var workspace = new Array( 6 );
+var terms = new Array( 4 );
+var co1 = [
+	-1.0,
+	-5.0,
+	5.0
+];
+var co2 = [
+	1.0,
+	21.0,
+	-69.0,
+	46.0
+];
+var co3 = [
+	7.0,
+	-2.0,
+	33.0,
+	-62.0,
+	31.0
+];
+var co4 = [
+	25.0,
+	-52.0,
+	-17.0,
+	88.0,
+	-115.0,
+	46.0
+];
+var co5 = [
+	7.0,
+	12.0,
+	-78.0,
+	52.0
+];
+var co6 = [
+	-7.0,
+	2.0,
+	183.0,
+	-370.0,
+	185.0
+];
+var co7 = [
+	-533.0,
+	776.0,
+	-1835.0,
+	10240.0,
+	-13525.0,
+	5410.0
+];
+var co8 = [
+	-1579.0,
+	3747.0,
+	-3372.0,
+	-15821.0,
+	45588.0,
+	-45213.0,
+	15071.0
+];
+var co9 = [
+	449.0,
+	-1259.0,
+	-769.0,
+	6686.0,
+	-9260.0,
+	3704.0
+];
+var co10 = [
+	63149.0,
+	-151557.0,
+	140052.0,
+	-727469.0,
+	2239932.0,
+	-2251437.0,
+	750479.0
+];
+var co11 = [
+	29233.0,
+	-78755.0,
+	105222.0,
+	146879.0,
+	-1602610.0,
+	3195183.0,
+	-2554139.0,
+	729754.0
+];
+var co12 = [
+	1.0,
+	-13.0,
+	13.0
+];
+var co13 = [
+	1.0,
+	21.0,
+	-69.0,
+	46.0
+];
+
+
+// MAIN //
+
+/**
+* Carries out the second method by Temme.
+*
+* #### References
+*
+* - "Asymptotic Inversion of the Incomplete Beta Function", N.M. Temme, Journal of Computation and Applied Mathematics 41 (1992) 145-157, Section 3.
+*
+* @private
+* @param {number} z - function parameter
+* @param {number} r - function parameter
+* @param {number} theta - function parameter
+* @returns {number} function value
+*/
+function temme2( z, r, theta ) {
+	var upper;
+	var lower;
 	var alpha;
-	var terms;
-	var co10;
-	var co11;
-	var co12;
-	var co13;
+	var roots;
 	var eta0;
-	var co5;
-	var co4;
-	var co3;
-	var co2;
-	var co1;
-	var co6;
-	var co7;
-	var co8;
-	var co9;
 	var eta;
-	var sc_3;
-	var lu;
-	var sc_7;
-	var sc_4;
-	var sc_6;
-	var sc_2;
+	var sc7;
+	var sc6;
+	var sc5;
+	var sc4;
+	var sc3;
+	var sc2;
 	var sc;
-	var sc_5;
+	var lu;
+	var s2;
+	var c2;
 	var c;
-	var c_2;
-	var s_2;
 	var s;
 	var u;
 	var x;
 
-	//
-	// Get first estimate for eta, see Eq 3.9 and 3.10,
-	// but note there is a typo in Eq 3.10:
-	//
-	eta0 = erfcinv( 2 * z );
-	eta0 /= -sqrt(r / 2);
+	// Get first estimate for eta, see Eq 3.9 and 3.10, but note there is a typo in Eq 3.10:
+	eta0 = erfcinv( 2.0 * z );
+	eta0 /= -sqrt( r / 2.0 );
 
 	s = sin( theta );
 	c = cos( theta );
-	//
-	// Now we need to purturb eta0 to get eta, which we do by
-	// evaluating the polynomial in 1/r at the bottom of page 151,
-	// to do this we first need the error terms e1, e2 e3
-	// which we'll fill into the array "terms".  Since these
-	// terms are themselves polynomials, we'll need another
-	// array "workspace" to calculate those...
-	//
-	terms = [ 0.0, 0.0, 0.0, 0.0 ];
-	terms[0] = eta0;
-	workspace = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+	// Now we need to perturb eta0 to get eta, which we do by evaluating the polynomial in 1/r at the bottom of page 151, to do this we first need the error terms e1, e2 e3 which we'll fill into the array "terms".  Since these terms are themselves polynomials, we'll need another array "workspace" to calculate those...
+	terms[ 0 ] = eta0;
 
 	// Some powers of sin(theta) cos(theta) that we'll need later:
 	sc = s * c;
-	sc_2 = sc * sc;
-	sc_3 = sc_2 * sc;
-	sc_4 = sc_2 * sc_2;
-	sc_5 = sc_2 * sc_3;
-	sc_6 = sc_3 * sc_3;
-	sc_7 = sc_4 * sc_3;
+	sc2 = sc * sc;
+	sc3 = sc2 * sc;
+	sc4 = sc2 * sc2;
+	sc5 = sc2 * sc3;
+	sc6 = sc3 * sc3;
+	sc7 = sc4 * sc3;
 
 	// Calculate e1 and put it in terms[1], see the middle of page 151:
-	workspace[0] = (2 * s * s - 1) / (3 * s * c);
-	co1 = [ -1, -5, 5 ];
-	workspace[1] = -evalpoly( co1, s*s ) / (36 * sc_2);
-	co2 = [ 1, 21, -69, 46 ];
-	workspace[2] = evalpoly( co2, s*s ) / (1620 * sc_3);
-	co3 = [ 7, -2, 33, -62, 31 ];
-	workspace[3] = evalpoly( co3, s*s ) / (6480 * sc_4);
-	co4 = [ 25, -52, -17, 88, -115, 46 ];
-	workspace[4] = evalpoly( co4, s*s ) / (90720 * sc_5);
-	terms[1] = evalpoly( workspace, eta0 );
+	workspace[ 0 ] = ( (2.0*s*s) - 1.0 ) / ( 3.0 * s * c );
+	workspace[ 1 ] = -evalpoly( co1, s*s ) / (36 * sc2);
+	workspace[ 2 ] = evalpoly( co2, s*s ) / (1620 * sc3);
+	workspace[ 3 ] = evalpoly( co3, s*s ) / (6480 * sc4);
+	workspace[ 4 ] = evalpoly( co4, s*s ) / (90720 * sc5);
+	workspace[ 5 ] = 0.0;
+	terms[ 1 ] = evalpoly( workspace, eta0 );
 
 	// Now evaluate e2 and put it in terms[2]:
-	co5 = [ 7, 12, -78, 52 ];
-	workspace[0] = -evalpoly( co5, s*s, 4 ) / (405 * sc_3);
-	co6 = [ -7, 2, 183, -370, 185 ];
-	workspace[1] = evalpoly( co6, s*s, 5 ) / (2592 * sc_4);
-	co7 = [ -533, 776, -1835, 10240, -13525, 5410 ];
-	workspace[2] = -evalpoly( co7, s*s, 6 ) / (204120 * sc_5);
-	co8 = [ -1579, 3747, -3372, -15821, 45588, -45213, 15071 ];
-	workspace[3] = -evalpoly( co8, s*s, 7 ) / (2099520 * sc_6);
-	terms[2] = evalpoly( workspace, eta0, 4 );
+	workspace[ 0 ] = -evalpoly( co5, s*s, 4 ) / (405 * sc3);
+	workspace[ 1 ] = evalpoly( co6, s*s, 5 ) / (2592 * sc4);
+	workspace[ 2 ] = -evalpoly( co7, s*s, 6 ) / (204120 * sc5);
+	workspace[ 3 ] = -evalpoly( co8, s*s, 7 ) / (2099520 * sc6);
+	workspace[ 4 ] = 0.0;
+	workspace[ 5 ] = 0.0;
+	terms[ 2 ] = evalpoly( workspace, eta0, 4 );
 
 	// And e3, and put it in terms[3]:
-	co9 = [ 449, -1259, -769, 6686, -9260, 3704 ];
-	workspace[0] = evalpoly( co9, s*s ) / (102060 * sc_5);
-	co10 = [ 63149, -151557, 140052, -727469, 2239932, -2251437, 750479 ];
-	workspace[1] = -evalpoly( co10, s*s ) / (20995200 * sc_6);
-	co11 = [ 29233, -78755, 105222, 146879, -1602610, 3195183, -2554139, 729754 ];
-	workspace[2] = evalpoly( co11, s*s ) / (36741600 * sc_7);
-	terms[3] = evalpoly( workspace, eta0 );
+	workspace[ 0 ] = evalpoly( co9, s*s ) / (102060 * sc5);
+	workspace[ 1 ] = -evalpoly( co10, s*s ) / (20995200 * sc6);
+	workspace[ 2 ] = evalpoly( co11, s*s ) / (36741600 * sc7);
+	workspace[ 3 ] = 0.0;
+	workspace[ 4 ] = 0.0;
+	workspace[ 5 ] = 0.0;
+	terms[ 3 ] = evalpoly( workspace, eta0 );
 
+	// Bring the correction terms together to evaluate eta; this is the last equation on page 151:
+	eta = evalpoly( terms, 1.0/r );
 
-	// Bring the correction terms together to evaluate eta,
-	// this is the last equation on page 151:
-	eta = evalpoly( terms, 1/r );
-	//
-	// Now that we have eta we need to back solve for x,
-	// we seek the value of x that gives eta in Eq 3.2.
-	// The two methods used are described in section 5.
-	//
-	// Begin by defining a few variables we'll need later:
-	//
-	s_2 = s * s;
-	c_2 = c * c;
+	// Now that we have eta we need to back solve for x, we seek the value of x that gives eta in Eq 3.2. The two methods used are described in section 5. Begin by defining a few variables we'll need later:
+	s2 = s * s;
+	c2 = c * c;
 	alpha = c / s;
 	alpha *= alpha;
-	lu = (-(eta * eta) / (2 * s_2) + ln(s_2) + c_2 * ln(c_2) / s_2);
-	//
-	// Temme doesn't specify what value to switch on here,
-	// but this seems to work pretty well:
-	//
+	lu = ( -( eta*eta ) / ( 2.0*s2 ) ) + ln(s2) + ( c2 * ln(c2) / s2 );
+
+	// Temme doesn't specify what value to switch on here, but this seems to work pretty well:
 	if ( abs(eta) < 0.7 ) {
-		//
-		// Small eta use the expansion Temme gives in the second equation
-		// of section 5, it's a polynomial in eta:
-		//
-		workspace[0] = s * s;
-		workspace[1] = s * c;
-		workspace[2] = (1 - 2 * workspace[0]) / 3;
-		co12 = [ 1, -13, 13 ];
-		workspace[3] = evalpoly( co12, workspace[0] ) / (36 * s * c);
-		co13 = [ 1, 21, -69, 46 ];
-		workspace[4] = evalpoly( co13, workspace[0] ) / (270 * workspace[0] * c * c);
+		// Small eta use the expansion Temme gives in the second equation of section 5, it's a polynomial in eta:
+		workspace[ 0 ] = s * s;
+		workspace[ 1 ] = s * c;
+		workspace[ 2 ] = ( 1.0 - ( 2.0 * workspace[0] ) ) / 3.0;
+		workspace[ 3 ] = evalpoly( co12, workspace[0] ) / ( 36.0 * s * c );
+		workspace[ 4 ] = evalpoly( co13, workspace[0] ) /
+			( 270.0 * workspace[0] * c * c );
+		workspace[ 5 ] = 0.0;
 		x = evalpoly( workspace, eta );
 	} else {
-		//
-		// If eta is large we need to solve Eq 3.2 more directly,
-		// begin by getting an initial approximation for x from
-		// the last equation on page 155, this is a polynomial in u:
-		//
-		u = exp(lu);
-		workspace[0] = u;
-		workspace[1] = alpha;
-		workspace[2] = 0;
-		workspace[3] = 3 * alpha * (3 * alpha + 1) / 6;
-		workspace[4] = 4 * alpha * (4 * alpha + 1) * (4 * alpha + 2) / 24;
-		workspace[5] = 5 * alpha * (5 * alpha + 1) * (5 * alpha + 2) * (5 * alpha + 3) / 120;
+		// If eta is large we need to solve Eq 3.2 more directly, begin by getting an initial approximation for x from the last equation on page 155, this is a polynomial in u:
+		u = exp( lu );
+		workspace[ 0 ] = u;
+		workspace[ 1 ] = alpha;
+		workspace[ 2 ] = 0;
+		workspace[ 3 ] = 3 * alpha * ((3*alpha) + 1) / 6;
+		workspace[ 4 ] = 4 * alpha * ((4*alpha) + 1) * ((4*alpha) + 2) / 24;
+		workspace[ 5 ] = 5 * alpha * ((5*alpha) + 1) * ((5*alpha) + 2) *
+			( (5*alpha) + 3) / 120;
 		x = evalpoly( workspace, u );
-		//
-		// At this point we may or may not have the right answer, Eq-3.2 has
-		// two solutions for x for any given eta, however the mapping in 3.2
-		// is 1:1 with the sign of eta and x-sin^2(theta) being the same.
-		// So we can check if we have the right root of 3.2, and if not
-		// switch x for 1-x.  This transformation is motivated by the fact
-		// that the distribution is *almost* symetric so 1-x will be in the right
-		// ball park for the solution:
-		//
-		if ( (x - s_2) * eta < 0 ) {
-			x = 1 - x;
+
+		// At this point we may or may not have the right answer, Eq-3.2 has two solutions for x for any given eta, however the mapping in 3.2 is 1:1 with the sign of eta and x-sin^2(theta) being the same. So we can check if we have the right root of 3.2, and if not switch x for 1-x.  This transformation is motivated by the fact that the distribution is *almost* symmetric so 1-x will be in the right ball park for the solution:
+		if ( ( x - s2 ) * eta < 0.0 ) {
+			x = 1.0 - x;
 		}
 	}
-	//
-	// The final step is a few Newton-Raphson iterations to
-	// clean up our approximation for x, this is pretty cheap
-	// in general, and very cheap compared to an incomplete beta
-	// evaluation.  The limits set on x come from the observation
-	// that the sign of eta and x-sin^2(theta) are the same.
-	//
-	var lower, upper;
-	if ( eta < 0 ) {
-		lower = 0;
-		upper = s_2;
+	// The final step is a few Newton-Raphson iterations to clean up our approximation for x, this is pretty cheap in general, and very cheap compared to an incomplete beta evaluation. The limits set on x come from the observation that the sign of eta and x-sin^2(theta) are the same.
+	if ( eta < 0.0 ) {
+		lower = 0.0;
+		upper = s2;
 	} else {
-		lower = s_2;
-		upper = 1;
+		lower = s2;
+		upper = 1.0;
 	}
 	// If our initial approximation is out of bounds then bisect:
-	if ( (x < lower) || (x > upper) ) {
+	if ( x < lower || x > upper ) {
 		x = ( lower + upper ) / 2;
 	}
-	// And iterate...
-	x = newton_raphson_iterate(
-		temme_root_finder( -lu, alpha ), x, lower, upper, 100
-	);
+	roots = temmeRootFinder( -lu, alpha );
+
+	// And iterate:
+	x = newtonRaphsonIterate( roots, x, lower, upper, 32, 100 );
 	return x;
-} // end FUNCTION temme_method_2_ibeta_inverse()
+} // end FUNCTION temme2()
 
 
 // EXPORTS //
 
-module.exports = temme_method_2_ibeta_inverse;
+module.exports = temme2;
 
-},{"./newton_raphson.js":78,"./root_finder.js":79,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/cos":110,"@stdlib/math/base/special/erfcinv":139,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sin":289,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalpoly":340}],82:[function(require,module,exports){
+},{"./newton_raphson.js":79,"./root_finder.js":80,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/cos":113,"@stdlib/math/base/special/erfcinv":142,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/sin":323,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalpoly":374}],83:[function(require,module,exports){
+/* eslint-disable max-statements, no-mixed-operators, max-len */
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/detail/ibeta_inverse.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -6081,310 +6528,140 @@ module.exports = temme_method_2_ibeta_inverse;
 var gammaincinv = require( '@stdlib/math/base/special/gammaincinv' );
 var ln = require( '@stdlib/math/base/special/ln' );
 var sqrt = require( '@stdlib/math/base/special/sqrt' );
-var temme_root_finder = require( './root_finder.js' );
-var newton_raphson_iterate = require( './newton_raphson.js' );
+var temmeRootFinder = require( './root_finder.js' );
+var newtonRaphsonIterate = require( './newton_raphson.js' );
 
 
+// MAIN //
 
-//
-// See:
-// "Asymptotic Inversion of the Incomplete Beta Function"
-// N.M. Temme
-// Journal of Computation and Applied Mathematics 41 (1992) 145-157.
-// Section 4.
-//
-function temme_method_3_ibeta_inverse( a, b, p, q ) {
+/**
+* Carries out the third method by Temme.
+*
+* #### References
+*
+* - "Asymptotic Inversion of the Incomplete Beta Function", N.M. Temme, Journal of Computation and Applied Mathematics 41 (1992) 145-157, Section 4.
+*
+* @private
+* @param {PositiveNumber} a - function parameter
+* @param {PositiveNumber} b - function parameter
+* @param {Probability} p - function parameter
+* @param {Probability} q - probability equal to `1-p`
+* @returns {number} function value
+*/
+function temme3( a, b, p, q ) {
 	var cross;
+	var roots;
 	var lower;
 	var upper;
 	var eta0;
 	var eta;
+	var w10;
+	var w12;
+	var w13;
+	var w14;
 	var e1;
 	var e2;
 	var e3;
 	var mu;
+	var d2;
+	var d3;
+	var d4;
+	var w2;
+	var w3;
+	var w4;
+	var w5;
+	var w6;
+	var w7;
+	var w8;
+	var w9;
 	var w1;
-	var w1_2;
-	var w1_3;
-	var w1_4;
 	var d;
-	var d_2;
-	var d_3;
-	var d_4;
 	var w;
-	var w_2;
-	var w_3;
-	var w_4;
-	var w_5;
-	var w_6;
-	var w_7;
-	var w_8;
-	var w_9;
-	var w_10;
 	var u;
 	var x;
+
 	// Begin by getting an initial approximation for the quantity eta from the dominant part of the incomplete beta:
-	if( p < q ) {
-		eta0 = gammaincinv( p, b, {
-			'tail': 'upper'
-		});
+	if ( p < q ) {
+		eta0 = gammaincinv( p, b, true );
 	} else {
-		eta0 = gammaincinv(q, b, {
-			'tail': 'lower'
-		});
+		eta0 = gammaincinv( q, b, false );
 	}
 	eta0 /= a;
+
 	// Define the variables and powers we'll need later on:
 	mu = b / a;
-	w = sqrt(1 + mu);
-	w_2 = w * w;
-	w_3 = w_2 * w;
-	w_4 = w_2 * w_2;
-	w_5 = w_3 * w_2;
-	w_6 = w_3 * w_3;
-	w_7 = w_4 * w_3;
-	w_8 = w_4 * w_4;
-	w_9 = w_5 * w_4;
-	w_10 = w_5 * w_5;
+	w = sqrt( 1.0 + mu );
+	w2 = w * w;
+	w3 = w2 * w;
+	w4 = w2 * w2;
+	w5 = w3 * w2;
+	w6 = w3 * w3;
+	w7 = w4 * w3;
+	w8 = w4 * w4;
+	w9 = w5 * w4;
+	w10 = w5 * w5;
 	d = eta0 - mu;
-	d_2 = d * d;
-	d_3 = d_2 * d;
-	d_4 = d_2 * d_2;
-	w1 = w + 1;
-	w1_2 = w1 * w1;
-	w1_3 = w1 * w1_2;
-	w1_4 = w1_2 * w1_2;
-	//
-	// Now we need to compute the purturbation error terms that
-	// convert eta0 to eta, these are all polynomials of polynomials.
-	// Probably these should be re-written to use tabulated data
-	// (see examples above), but it's less of a win in this case as we
-	// need to calculate the individual powers for the denominator terms
-	// anyway, so we might as well use them for the numerator-polynomials
-	// as well....
-	//
+	d2 = d * d;
+	d3 = d2 * d;
+	d4 = d2 * d2;
+	w1 = w + 1.0;
+	w12 = w1 * w1;
+	w13 = w1 * w12;
+	w14 = w12 * w12;
+
+	// Now we need to compute the perturbation error terms that convert eta0 to eta, these are all polynomials of polynomials. Probably these should be re-written to use tabulated data (see examples above), but it's less of a win in this case as we need to calculate the individual powers for the denominator terms anyway, so we might as well use them for the numerator-polynomials as well.
 	// Refer to p154-p155 for the details of these expansions:
-	//
 	e1 = (w + 2) * (w - 1) / (3 * w);
-	e1 += (w_3 + 9 * w_2 + 21 * w + 5) * d / (36 * w_2 * w1);
-	e1 -= (w_4 - 13 * w_3 + 69 * w_2 + 167 * w + 46) * d_2 / (1620 * w1_2 * w_3);
-	e1 -= (7 * w_5 + 21 * w_4 + 70 * w_3 + 26 * w_2 - 93 * w - 31) * d_3 / (6480 * w1_3 * w_4);
-	e1 -= (75 * w_6 + 202 * w_5 + 188 * w_4 - 888 * w_3 - 1345 * w_2 + 118 * w + 138) * d_4 / (272160 * w1_4 * w_5);
+	e1 += (w3 + 9 * w2 + 21 * w + 5) * d / (36 * w2 * w1);
+	e1 -= (w4 - 13 * w3 + 69 * w2 + 167 * w + 46) * d2 / (1620 * w12 * w3);
+	e1 -= (7 * w5 + 21 * w4 + 70 * w3 + 26 * w2 - 93 * w - 31) * d3 / (6480 * w13 * w4);
+	e1 -= (75 * w6 + 202 * w5 + 188 * w4 - 888 * w3 - 1345 * w2 + 118 * w + 138) * d4 / (272160 * w14 * w5);
 
-	e2 = (28 * w_4 + 131 * w_3 + 402 * w_2 + 581 * w + 208) * (w - 1) / (1620 * w1 * w_3);
-	e2 -= (35 * w_6 - 154 * w_5 - 623 * w_4 - 1636 * w_3 - 3983 * w_2 - 3514 * w - 925) * d / (12960 * w1_2 * w_4);
-	e2 -= (2132 * w_7 + 7915 * w_6 + 16821 * w_5 + 35066 * w_4 + 87490 * w_3 + 141183 * w_2 + 95993 * w + 21640) * d_2  / (816480 * w_5 * w1_3);
-	e2 -= (11053 * w_8 + 53308 * w_7 + 117010 * w_6 + 163924 * w_5 + 116188 * w_4 - 258428 * w_3 - 677042 * w_2 - 481940 * w - 105497) * d_3 / (14696640 * w1_4 * w_6);
+	e2 = (28 * w4 + 131 * w3 + 402 * w2 + 581 * w + 208) * (w - 1) / (1620 * w1 * w3);
+	e2 -= (35 * w6 - 154 * w5 - 623 * w4 - 1636 * w3 - 3983 * w2 - 3514 * w - 925) * d / (12960 * w12 * w4);
+	e2 -= (2132 * w7 + 7915 * w6 + 16821 * w5 + 35066 * w4 + 87490 * w3 + 141183 * w2 + 95993 * w + 21640) * d2 / (816480 * w5 * w13);
+	e2 -= (11053 * w8 + 53308 * w7 + 117010 * w6 + 163924 * w5 + 116188 * w4 - 258428 * w3 - 677042 * w2 - 481940 * w - 105497) * d3 / (14696640 * w14 * w6);
 
-	e3 = -((3592 * w_7 + 8375 * w_6 - 1323 * w_5 - 29198 * w_4 - 89578 * w_3 - 154413 * w_2 - 116063 * w - 29632) * (w - 1)) / (816480 * w_5 * w1_2);
-	e3 -= (442043 * w_9 + 2054169 * w_8 + 3803094 * w_7 + 3470754 * w_6 + 2141568 * w_5 - 2393568 * w_4 - 19904934 * w_3 - 34714674 * w_2 - 23128299 * w - 5253353) * d / (146966400 * w_6 * w1_3);
-	e3 -= (116932 * w_10 + 819281 * w_9 + 2378172 * w_8 + 4341330 * w_7 + 6806004 * w_6 + 10622748 * w_5 + 18739500 * w_4 + 30651894 * w_3 + 30869976 * w_2 + 15431867 * w + 2919016) * d_2 / (146966400 * w1_4 * w_7);
-	//
-	// Combine eta0 and the error terms to compute eta (Second eqaution p155):
-	//
+	e3 = -((3592 * w7 + 8375 * w6 - 1323 * w5 - 29198 * w4 - 89578 * w3 - 154413 * w2 - 116063 * w - 29632) * (w - 1)) / (816480 * w5 * w12);
+	e3 -= (442043 * w9 + 2054169 * w8 + 3803094 * w7 + 3470754 * w6 + 2141568 * w5 - 2393568 * w4 - 19904934 * w3 - 34714674 * w2 - 23128299 * w - 5253353) * d / (146966400 * w6 * w13);
+	e3 -= (116932 * w10 + 819281 * w9 + 2378172 * w8 + 4341330 * w7 + 6806004 * w6 + 10622748 * w5 + 18739500 * w4 + 30651894 * w3 + 30869976 * w2 + 15431867 * w + 2919016) * d2 / (146966400 * w14 * w7);
+
+	// Combine eta0 and the error terms to compute eta (Second equation p155):
 	eta = eta0 + e1 / a + e2 / (a * a) + e3 / (a * a * a);
-	//
-	// Now we need to solve Eq 4.2 to obtain x.  For any given value of
-	// eta there are two solutions to this equation, and since the distribtion
-	// may be very skewed, these are not related by x ~ 1-x we used when
-	// implementing section 3 above.  However we know that:
-	//
-	//  cross < x <= 1       ; iff eta < mu
-	//          x == cross   ; iff eta == mu
-	//     0 <= x < cross    ; iff eta > mu
-	//
-	// Where cross == 1 / (1 + mu)
-	// Many thanks to Prof Temme for clarifying this point.
-	//
-	// Therefore we'll just jump straight into Newton iterations
-	// to solve Eq 4.2 using these bounds, and simple bisection
-	// as the first guess, in practice this converges pretty quickly
-	// and we only need a few digits correct anyway:
-	//
+	/*
+		Now we need to solve Eq 4.2 to obtain x.  For any given value of
+		eta there are two solutions to this equation, and since the distribution
+		may be very skewed, these are not related by x ~ 1-x we used when
+		implementing section 3 above.  However we know that:
+
+			cross < x <= 1       ; iff eta < mu
+				x == cross   ; iff eta == mu
+				0 <= x < cross    ; iff eta > mu
+
+		Where cross == 1 / (1 + mu)
+		Many thanks to Prof Temme for clarifying this point. Therefore we'll just jump straight into Newton iterations to solve Eq 4.2 using these bounds, and simple bisection as the first guess, in practice this converges pretty quickly and we only need a few digits correct anyway:
+	*/
 	if ( eta <= 0 ) {
 		eta = Number.MIN_VALUE;
 	}
-	u = eta - mu * ln(eta) + (1 + mu) * ln(1 + mu) - mu;
-	cross = 1 / (1 + mu);
-	lower = eta < mu ? cross : 0;
-	upper = eta < mu ? 1 : cross;
-	x = (lower + upper) / 2;
-	x = newton_raphson_iterate(
-		temme_root_finder(u, mu), x, lower, upper, 100
-	);
+	u = eta - ( mu*ln(eta) ) + ( ( 1.0+mu ) * ln( 1.0+mu ) ) - mu;
+	cross = 1.0 / ( 1.0 + mu );
+	lower = eta < mu ? cross : 0.0;
+	upper = eta < mu ? 1.0 : cross;
+	x = (lower + upper) / 2.0;
+	roots = temmeRootFinder( u, mu );
+	x = newtonRaphsonIterate( roots, x, lower, upper, 32, 100 );
 	return x;
-} // end FUNCTION temme_method_3_ibeta_inverse()
+} // end FUNCTION temme3()
 
 
 // EXPORTS //
 
-module.exports = temme_method_3_ibeta_inverse;
+module.exports = temme3;
 
-},{"./newton_raphson.js":78,"./root_finder.js":79,"@stdlib/math/base/special/gammaincinv":196,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sqrt":304}],83:[function(require,module,exports){
-'use strict';
-
-/*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/gamma.hpp}.
-*
-* The implementation has been modified for JavaScript.
-*/
-
-/*
-* Copyright John Maddock 2006-7, 2013-14.
-* Copyright Paul A. Bristow 2007, 2013-14.
-* Copyright Nikhar Agrawal 2013-14
-* Copyright Christopher Kormanyos 2013-14
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
-// MODULES //
-
-var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
-var factorial = require( '@stdlib/math/base/special/factorial' );
-var floor = require( '@stdlib/math/base/special/floor' );
-var gamma = require( '@stdlib/math/base/special/gamma' );
-var log1p = require( '@stdlib/math/base/special/log1p' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var exp = require( '@stdlib/math/base/special/exp' );
-var pow = require( '@stdlib/math/base/special/pow' );
-var EPSILON = require( '@stdlib/math/constants/float64-eps' );
-var E = require( '@stdlib/math/constants/float64-e' );
-
-
-// VARIABLES //
-
-var MAX_FACTORIAL = 170;
-var G = 10.90051099999999983936049829935654997826;
-var NUM = [
-	38474670393.31776828316099004518914832218,
-	36857665043.51950660081971227404959150474,
-	15889202453.72942008945006665994637853242,
-	4059208354.298834770194507810788393801607,
-	680547661.1834733286087695557084801366446,
-	78239755.00312005289816041245285376206263,
-	6246580.776401795264013335510453568106366,
-	341986.3488721347032223777872763188768288,
-	12287.19451182455120096222044424100527629,
-	261.6140441641668190791708576058805625502,
-	2.506628274631000502415573855452633787834
-];
-var DENOM = [
-	0,
-	362880,
-	1026576,
-	1172700,
-	723680,
-	269325,
-	63273,
-	9450,
-	870,
-	45,
-	1
-];
-
-
-// FUNCTIONS //
-
-/**
-* Calculate the Lanczos sum approximation.
-*
-* @private
-* @param {number} z - input value
-* @returns {number} Lanczos approximation
-*/
-var lanczos_sum = evalrational( NUM, DENOM );
-
-/**
-* Calculate the ratio of two gamma functions.
-*
-* @private
-*/
-function tgamma_delta_ratio_imp_lanczos( z, delta ) {
-	var result;
-	var ratio;
-	var zgh;
-	if ( z < EPSILON ) {
-		//
-		// We get spurious numeric overflow unless we're very careful, this
-		// can occur either inside Lanczos::lanczos_sum(z) or in the
-		// final combination of terms, to avoid this, split the product up
-		// into 2 (or 3) parts:
-		//
-		// G(z) / G(L) = 1 / (z * G(L)) ; z < eps, L = z + delta = delta
-		//    z * G(L) = z * G(lim) * (G(L)/G(lim)) ; lim = largest factorial
-		//
-		if ( MAX_FACTORIAL < delta ) {
-			ratio = tgamma_delta_ratio_imp_lanczos( delta, MAX_FACTORIAL - delta );
-			ratio *= z;
-			ratio *= factorial( MAX_FACTORIAL - 1 );
-			return 1.0 / ratio;
-		} else {
-			return 1.0 / ( z * gamma( z + delta ) );
-		}
-	}
-	zgh = z + G - 0.5;
-	if ( abs(delta) < 10 ) {
-		result = exp( ( 0.5 - z ) * log1p( delta / zgh ));
-	} else {
-		result = pow( zgh / (zgh + delta), z - 0.5 );
-	}
-	// Split the calculation up to avoid spurious overflow:
-	result *= lanczos_sum( z ) / lanczos_sum( z + delta );
-	result *= pow( E / ( zgh + delta ), delta );
-	return result;
-} // end FUNCTION tgamma_delta_ratio_imp_lanczos()
-
-function tgamma_delta_ratio_imp( z, delta ) {
-	var result;
-
-	if ( z <= 0.0 || z + delta <= 0.0 ) {
-		// This isn't very sofisticated, or accurate, but it does work:
-		return gamma( z ) / gamma( z + delta );
-	}
-	if ( floor(delta) === delta ) {
-		if ( floor(z) === z ) {
-			//
-			// Both z and delta are integers, see if we can just use table lookup
-			// of the factorials to get the result:
-			//
-			if( (z <= MAX_FACTORIAL ) && (z + delta <= MAX_FACTORIAL ) ) {
-				return factorial( floor(z) - 1 ) / factorial( floor(z+delta) - 1 );
-			}
-		}
-		if ( abs(delta) < 20 ) {
-			// Delta is a small integer, we can use a finite product:
-			if ( delta === 0 ) {
-				return 1.0;
-			}
-			if ( delta < 0 ) {
-				z -= 1.0;
-			}
-			result = z;
-			while ( 0 !== ( delta -= 1 ) ) {
-				z -= 1.0;
-				result *= z;
-			}
-			return result;
-		} else {
-			result = 1.0 / z;
-			while ( 0 !== ( delta -= 1 ) ) {
-				z += 1;
-				result /= z;
-			}
-			return result;
-		}
-	}
-	return tgamma_delta_ratio_imp_lanczos( z, delta );
-} // end FUNCTION tgamma_delta_ratio_imp()
-
-
-// EXPORTS //
-
-module.exports = tgamma_delta_ratio_imp;
-
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/factorial":153,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-e":375,"@stdlib/math/constants/float64-eps":376}],84:[function(require,module,exports){
+},{"./newton_raphson.js":79,"./root_finder.js":80,"@stdlib/math/base/special/gammaincinv":216,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/sqrt":338}],84:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/factorial":156,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-eps":410,"dup":68}],85:[function(require,module,exports){
 'use strict';
 
 /*
@@ -6419,18 +6696,23 @@ var correction = require( './gamma_correction.js' );
 * @example
 * var v = betaln( 0.0, 0.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = betaln( 1.0, 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = betaln( -1.0, 2.0 );
 * // returns NaN
+*
 * @example
 * var v = betaln( 5.0, 0.2 );
 * // returns ~1.218
+*
 * @example
 * var v = betaln( 4.0, 1.0 );
 * // returns ~-1.386
+*
 * @example
 * var v = betaln( NaN, 2.0 );
 * // returns NaN
@@ -6474,7 +6756,7 @@ function betaln( a, b ) {
 
 module.exports = betaln;
 
-},{"./gamma_correction.js":86,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/max":242,"@stdlib/math/base/special/min":246,"@stdlib/math/constants/float64-ln-sqrt-two-pi":384,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],85:[function(require,module,exports){
+},{"./gamma_correction.js":87,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/min":269,"@stdlib/math/constants/float64-ln-sqrt-two-pi":418,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],86:[function(require,module,exports){
 'use strict';
 
 /*
@@ -6527,7 +6809,7 @@ function dcseval( x, cs ) {
 
 module.exports = dcseval;
 
-},{}],86:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 'use strict';
 
 /*
@@ -6597,7 +6879,7 @@ function gammaCorrection( x ) {
 
 module.exports = gammaCorrection;
 
-},{"./dceval.js":85,"@stdlib/math/base/special/pow":254}],87:[function(require,module,exports){
+},{"./dceval.js":86,"@stdlib/math/base/special/pow":285}],88:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6636,7 +6918,141 @@ var betaln = require( './betaln.js' );
 
 module.exports = betaln;
 
-},{"./betaln.js":84}],88:[function(require,module,exports){
+},{"./betaln.js":85}],89:[function(require,module,exports){
+'use strict';
+
+/**
+* Evaluate Binet's formula extended to real numbers.
+*
+* @module @stdlib/math/base/special/binet
+*
+* @example
+* var binet = require( '@stdlib/math/base/special/binet' );
+*
+* var y = binet( 0.0 );
+* // returns 0.0
+*
+* y = binet( 1.0 );
+* // returns 1.0
+*
+* y = binet( 2.0 );
+* // returns 1.0
+*
+* y = binet( 3.0 );
+* // returns 2.0
+*
+* y = binet( 4.0 );
+* // returns 3.0
+*
+* y = binet( 5.0 );
+* // returns ~5.0
+*
+* y = binet( 6.0 );
+* // returns ~8.0
+*/
+
+// MODULES //
+
+var binet = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = binet;
+
+},{"./main.js":90}],90:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var cospi = require( '@stdlib/math/base/special/cospi' );
+var pow = require( '@stdlib/math/base/special/pow' );
+var PHI = require( '@stdlib/math/constants/float64-phi' );
+var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var NINF = require( '@stdlib/math/constants/float64-ninf' );
+
+
+// VARIABLES //
+
+var SQRT_5 = 2.23606797749979;
+
+
+// MAIN //
+
+/**
+* Evaluates Binet's formula extended to real numbers.
+*
+* ## Notes
+*
+* * [Non integer Fibonacci numbers]{@link https://math.stackexchange.com/questions/798190/non-integer-fibonacci-numbers}
+* * [Interpolated Fibonacci numbers - real or complex]{@link https://math.stackexchange.com/questions/589841/interpolated-fibonacci-numbers-real-or-complex}
+*
+*
+* @param {number} x - input value
+* @returns {number} real-valued result
+*
+* @example
+* var y = binet( 0.0 );
+* // returns 0.0
+*
+* @example
+* var y = binet( 1.0 );
+* // returns 1.0
+*
+* @example
+* var y = binet( 2.0 );
+* // returns 1.0
+*
+* @example
+* var y = binet( 3.0 );
+* // returns 2.0
+*
+* @example
+* var y = binet( 4.0 );
+* // returns 3.0
+*
+* @example
+* var y = binet( 5.0 );
+* // returns ~5.0
+*
+* @example
+* var y = binet( 6.0 );
+* // returns ~8.0
+*
+* @example
+* var y = binet( NaN );
+* // returns NaN
+*
+* @example
+* var y = binet( 3.14 );
+* // returns ~2.12
+*
+* @example
+* var y = binet( -1.0 );
+* // returns 1.0
+*/
+function binet( x ) {
+	var a;
+	var b;
+	if (
+		isnan( x ) ||
+		x === PINF ||
+		x === NINF
+	) {
+		return NaN;
+	}
+	a = pow( PHI, x );
+	b = cospi( x ) / a;
+	return ( a - b ) / SQRT_5;
+} // end FUNCTION binet()
+
+
+// EXPORTS //
+
+module.exports = binet;
+
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/cospi":122,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-phi":434,"@stdlib/math/constants/float64-pinf":437}],91:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6663,6 +7079,30 @@ var round = require( '@stdlib/math/base/special/round' );
 * @param {integer} n - input value
 * @param {integer} k - second input value
 * @returns {number} function value
+*
+* @example
+* var v = binomcoef( 8, 2 );
+* // returns 28
+*
+* @example
+* var v = binomcoef( 0, 0 );
+* // returns 1
+*
+* @example
+* var v = binomcoef( -4, 2 );
+* // returns 10
+*
+* @example
+* var v = binomcoef( NaN, 3 );
+* // returns NaN
+*
+* @example
+* var v = binomcoef( 5, NaN );
+* // returns NaN
+*
+* @example
+* var v = binomcoef( NaN, NaN );
+* // returns NaN
 */
 function binomcoef( n, k ) {
 	var res;
@@ -6709,7 +7149,7 @@ function binomcoef( n, k ) {
 
 module.exports = binomcoef;
 
-},{"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-odd":14,"@stdlib/math/base/special/round":273}],89:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-odd":18,"@stdlib/math/base/special/round":307}],92:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6751,7 +7191,7 @@ var binomcoef = require( './binomcoef.js' );
 
 module.exports = binomcoef;
 
-},{"./binomcoef.js":88}],90:[function(require,module,exports){
+},{"./binomcoef.js":91}],93:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6776,21 +7216,27 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var v = binomcoefln( 8, 2 );
 * // returns ~3.332
+*
 * @example
 * var v = binomcoefln( 0, 0 );
 * // returns 0.0
+*
 * @example
 * var v = binomcoefln( -4, 2 );
 * // returns ~2.302
+*
 * @example
 * var v = binomcoefln( 88, 3 );
 * // returns ~11.606
+*
 * @example
 * var v = binomcoefln( NaN, 3 );
 * // returns NaN
+*
 * @example
 * var v = binomcoefln( 5, NaN );
 * // returns NaN
+*
 * @example
 * var v = binomcoefln( NaN, NaN );
 * // returns NaN
@@ -6829,7 +7275,7 @@ function binomcoefln( n, k ) {
 
 module.exports = binomcoefln;
 
-},{"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/betaln":87,"@stdlib/math/base/special/ln":228,"@stdlib/math/constants/float64-ninf":397}],91:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/betaln":88,"@stdlib/math/base/special/ln":248,"@stdlib/math/constants/float64-ninf":433}],94:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6871,7 +7317,7 @@ var binomcoefln = require( './binomcoefln.js' );
 
 module.exports = binomcoefln;
 
-},{"./binomcoefln.js":90}],92:[function(require,module,exports){
+},{"./binomcoefln.js":93}],95:[function(require,module,exports){
 'use strict';
 
 /*
@@ -6988,15 +7434,19 @@ var polyval = evalpoly( P );
 * @example
 * var v = cbrt( 64.0 );
 * // returns 4.0
+*
 * @example
 * var v = cbrt( 27.0 );
 * // returns 3.0
+*
 * @example
 * var v = cbrt( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = cbrt( -9.0 );
 * // returns ~-2.08
+*
 * @example
 * var v = cbrt( NaN );
 * // returns NaN
@@ -7055,7 +7505,7 @@ function cbrt( x ) {
 
 module.exports = cbrt;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/constants/float64-smallest-normal":401}],93:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/constants/float64-smallest-normal":438}],96:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7094,7 +7544,7 @@ var cbrt = require( './cbrt.js' );
 
 module.exports = cbrt;
 
-},{"./cbrt.js":92}],94:[function(require,module,exports){
+},{"./cbrt.js":95}],97:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -7128,7 +7578,7 @@ var ceil = Math.ceil;
 
 module.exports = ceil;
 
-},{}],95:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7161,7 +7611,7 @@ var ceil = require( './ceil.js' );
 
 module.exports = ceil;
 
-},{"./ceil.js":94}],96:[function(require,module,exports){
+},{"./ceil.js":97}],99:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7238,7 +7688,7 @@ function ceil10( x ) {
 
 module.exports = ceil10;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":392,"@stdlib/math/constants/float64-pinf":400}],97:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":428,"@stdlib/math/constants/float64-pinf":437}],100:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7268,7 +7718,7 @@ var ceil10 = require( './ceil10.js' );
 
 module.exports = ceil10;
 
-},{"./ceil10.js":96}],98:[function(require,module,exports){
+},{"./ceil10.js":99}],101:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7345,7 +7795,7 @@ function ceil2( x ) {
 
 module.exports = ceil2;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log2":237,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base2-exponent":388,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":394,"@stdlib/math/constants/float64-pinf":400}],99:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log2":257,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base2-exponent":422,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":430,"@stdlib/math/constants/float64-pinf":437}],102:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7375,7 +7825,7 @@ var ceil2 = require( './ceil2.js' );
 
 module.exports = ceil2;
 
-},{"./ceil2.js":98}],100:[function(require,module,exports){
+},{"./ceil2.js":101}],103:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7454,7 +7904,7 @@ function ceilb( x, n, b ) {
 
 module.exports = ceilb;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/ceiln":103,"@stdlib/math/base/special/pow":254}],101:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/ceiln":106,"@stdlib/math/base/special/pow":285}],104:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7487,7 +7937,7 @@ var ceilb = require( './ceilb.js' );
 
 module.exports = ceilb;
 
-},{"./ceilb.js":100}],102:[function(require,module,exports){
+},{"./ceilb.js":103}],105:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7638,7 +8088,7 @@ function ceiln( x, n ) {
 
 module.exports = ceiln;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-max-safe-integer":390,"@stdlib/math/constants/float64-min-base10-exponent":393,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":392,"@stdlib/math/constants/float64-pinf":400}],103:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-max-safe-integer":424,"@stdlib/math/constants/float64-min-base10-exponent":429,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":428,"@stdlib/math/constants/float64-pinf":437}],106:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7671,7 +8121,7 @@ var ceiln = require( './ceiln.js' );
 
 module.exports = ceiln;
 
-},{"./ceiln.js":102}],104:[function(require,module,exports){
+},{"./ceiln.js":105}],107:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7775,7 +8225,7 @@ function ceilsd( x, n, b ) {
 
 module.exports = ceilsd;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/utils/float64-exponent":348}],105:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/utils/float64-exponent":382}],108:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7808,7 +8258,7 @@ var ceilsd = require( './ceilsd.js' );
 
 module.exports = ceilsd;
 
-},{"./ceilsd.js":104}],106:[function(require,module,exports){
+},{"./ceilsd.js":107}],109:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7839,15 +8289,19 @@ var MAGNITUDE_MASK = 0x7fffffff;
 * @example
 * var z = copysign( -3.14, 10.0 );
 * // returns 3.14
+*
 * @example
 * var z = copysign( 3.14, -1.0 );
 * // returns -3.14
+*
 * @example
 * var z = copysign( 1.0, -0.0 );
 * // returns -1.0
+*
 * @example
 * var z = copysign( -3.14, -0.0 );
 * // returns -3.14
+*
 * @example
 * var z = copysign( -0.0, 1.0 );
 * // returns 0.0
@@ -7881,7 +8335,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-to-words":368}],107:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-to-words":402}],110:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7917,7 +8371,7 @@ var copysign = require( './copysign.js' );
 
 module.exports = copysign;
 
-},{"./copysign.js":106}],108:[function(require,module,exports){
+},{"./copysign.js":109}],111:[function(require,module,exports){
 'use strict';
 
 /*
@@ -7956,12 +8410,15 @@ var remPio2 = require( './rem_pio2.js' );
 * @example
 * var v = cos( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = cos( Math.PI/4.0 );
 * // returns ~0.707
+*
 * @example
 * var v = cos( -Math.PI/6.0 );
 * // returns ~0.866
+*
 * @example
 * var v = cos( NaN );
 * // returns NaN
@@ -7986,25 +8443,23 @@ function cos( x ) {
 				return 1.0;
 			}
 		}
-		return cosKernel(x,z);
+		return cosKernel( x, z );
 	}
 	// Case: cos(Inf or NaN) is NaN */
 	else if ( ix >= 0x7ff00000 ) {
 		return NaN;
 	}
 	// Case: Argument reduction needed...
-	else {
-		n = remPio2( x, y );
-		switch ( n & 3 ) {
-		case 0:
-			return cosKernel( y[0], y[1] );
-		case 1:
-			return -sinKernel( y[0], y[1], 1 );
-		case 2:
-			return -cosKernel( y[0], y[1] );
-		default:
-			return sinKernel( y[0], y[1], 1 );
-		}
+	n = remPio2( x, y );
+	switch ( n & 3 ) {
+	case 0:
+		return cosKernel( y[0], y[1] );
+	case 1:
+		return -sinKernel( y[0], y[1], 1 );
+	case 2:
+		return -cosKernel( y[0], y[1] );
+	default:
+		return sinKernel( y[0], y[1], 1 );
 	}
 } // end FUNCTION cos()
 
@@ -8013,7 +8468,7 @@ function cos( x ) {
 
 module.exports = cos;
 
-},{"./cos_kernel.js":109,"./rem_pio2.js":111,"./sin_kernel.js":113,"@stdlib/math/base/utils/float64-get-high-word":354}],109:[function(require,module,exports){
+},{"./cos_kernel.js":112,"./rem_pio2.js":114,"./sin_kernel.js":116,"@stdlib/math/base/utils/float64-get-high-word":388}],112:[function(require,module,exports){
 'use strict';
 
 /*
@@ -8106,7 +8561,7 @@ function cosKernel( x, y ) {
 
 module.exports = cosKernel;
 
-},{}],110:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8136,7 +8591,7 @@ var cos = require( './cos.js' );
 
 module.exports = cos;
 
-},{"./cos.js":108}],111:[function(require,module,exports){
+},{"./cos.js":111}],114:[function(require,module,exports){
 'use strict';
 
 /*
@@ -8392,7 +8847,7 @@ function remPio2Medium( x, ix, y ) {
 
 module.exports = remPio2;
 
-},{"./rem_pio2_kernel.js":112,"@stdlib/math/base/special/round":273,"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-get-low-word":356}],112:[function(require,module,exports){
+},{"./rem_pio2_kernel.js":115,"@stdlib/math/base/special/round":307,"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-get-low-word":390}],115:[function(require,module,exports){
 'use strict';
 
 /*
@@ -8736,7 +9191,7 @@ function remPio2Kernel( x, y, e0, nx, prec ) {
 
 module.exports = remPio2Kernel;
 
-},{"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ldexp":225}],113:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ldexp":245}],116:[function(require,module,exports){
 'use strict';
 
 /*
@@ -8827,7 +9282,7 @@ function sinKernel( x, y, iy ) {
 
 module.exports = sinKernel;
 
-},{}],114:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8864,12 +9319,15 @@ var exp = require( '@stdlib/math/base/special/exp' );
 * @example
 * var v = cosh( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = cosh( 2.0 );
 * // returns ~3.762
+*
 * @example
 * var v = cosh( -2.0 );
 * // returns ~3.762
+*
 * @example
 * var v = cosh( NaN );
 * // returns NaN
@@ -8892,7 +9350,7 @@ function cosh( x ) {
 
 module.exports = cosh;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/exp":144}],115:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/exp":147}],118:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8925,7 +9383,7 @@ var cosh = require( './cosh.js' );
 
 module.exports = cosh;
 
-},{"./cosh.js":114}],116:[function(require,module,exports){
+},{"./cosh.js":117}],119:[function(require,module,exports){
 'use strict';
 
 /*
@@ -8986,12 +9444,15 @@ var polyval = evalpoly( P );
 * @example
 * var v = cosm1( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = cosm1( Math.PI/4.0 );
 * // returns ~-0.291
+*
 * @example
 * var v = cosm1( -Math.PI/6.0 );
 * // returns ~~-0.134
+*
 * @example
 * var v = cosm1( NaN );
 * // returns NaN
@@ -9012,7 +9473,7 @@ function cosm1( x ) {
 
 module.exports = cosm1;
 
-},{"@stdlib/math/base/special/cos":110,"@stdlib/math/base/tools/evalpoly":340}],117:[function(require,module,exports){
+},{"@stdlib/math/base/special/cos":113,"@stdlib/math/base/tools/evalpoly":374}],120:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9042,7 +9503,7 @@ var cosm1 = require( './cosm1.js' );
 
 module.exports = cosm1;
 
-},{"./cosm1.js":116}],118:[function(require,module,exports){
+},{"./cosm1.js":119}],121:[function(require,module,exports){
 'use strict';
 
 /*
@@ -9079,12 +9540,15 @@ var MAX_INTEGER = require( '@stdlib/math/constants/float64-max-safe-integer' ) +
 * @example
 * var y = cospi( 0.0 );
 * // returns 1.0
+*
 * @example
 * var y = cospi( 0.5 );
 * // returns 0.0
+*
 * @example
 * var y = cospi( 0.1 );
 * // returns ~0.951
+*
 * @example
 * var y = cospi( NaN );
 * // returns NaN
@@ -9132,7 +9596,7 @@ function cospi( x ) {
 
 module.exports = cospi;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/cos":110,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/sin":289,"@stdlib/math/constants/float64-max-safe-integer":390,"@stdlib/math/constants/float64-pi":399}],119:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/cos":113,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/sin":323,"@stdlib/math/constants/float64-max-safe-integer":424,"@stdlib/math/constants/float64-pi":436}],122:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9165,7 +9629,7 @@ var cospi = require( './cospi.js' );
 
 module.exports = cospi;
 
-},{"./cospi.js":118}],120:[function(require,module,exports){
+},{"./cospi.js":121}],123:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9206,7 +9670,7 @@ function covercos( x ) {
 
 module.exports = covercos;
 
-},{"@stdlib/math/base/special/sin":289}],121:[function(require,module,exports){
+},{"@stdlib/math/base/special/sin":323}],124:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9239,7 +9703,7 @@ var covercos = require( './covercos.js' );
 
 module.exports = covercos;
 
-},{"./covercos.js":120}],122:[function(require,module,exports){
+},{"./covercos.js":123}],125:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9280,7 +9744,7 @@ function coversin( x ) {
 
 module.exports = coversin;
 
-},{"@stdlib/math/base/special/sin":289}],123:[function(require,module,exports){
+},{"@stdlib/math/base/special/sin":323}],126:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9313,7 +9777,7 @@ var coversin = require( './coversin.js' );
 
 module.exports = coversin;
 
-},{"./coversin.js":122}],124:[function(require,module,exports){
+},{"./coversin.js":125}],127:[function(require,module,exports){
 'use strict';
 
 // VARIABLES //
@@ -9349,7 +9813,7 @@ function deg2rad( x ) {
 
 module.exports = deg2rad;
 
-},{}],125:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9379,7 +9843,7 @@ var deg2rad = require( './deg2rad.js' );
 
 module.exports = deg2rad;
 
-},{"./deg2rad.js":124}],126:[function(require,module,exports){
+},{"./deg2rad.js":127}],129:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9430,7 +9894,7 @@ function digamma( x ) {
 
 module.exports = digamma;
 
-},{"@stdlib/math/base/special/ln":228,"@stdlib/math/base/tools/evalpoly":340}],127:[function(require,module,exports){
+},{"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalpoly":374}],130:[function(require,module,exports){
 'use strict';
 
 /*
@@ -9531,15 +9995,19 @@ var MIN_SAFE_ASYMPTOTIC = 10.0; // BIG
 * @example
 * var v = digamma( -2.5 );
 * // returns ~1.103
+*
 * @example
 * var v = digamma( 1.0 );
 * // returns ~-0.577
+*
 * @example
 * var v = digamma( 10.0 );
 * // returns ~2.252
+*
 * @example
 * var v = digamma( NaN );
 * // returns NaN
+*
 * @example
 * var v = digamma( -1.0 );
 * // returns NaN
@@ -9594,7 +10062,7 @@ function digamma( x ) {
 
 module.exports = digamma;
 
-},{"./asymptotic_expansion.js":126,"./rational_approximation.js":129,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/tan":307,"@stdlib/math/constants/float64-pi":399}],128:[function(require,module,exports){
+},{"./asymptotic_expansion.js":129,"./rational_approximation.js":132,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/tan":341,"@stdlib/math/constants/float64-pi":436}],131:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9630,7 +10098,7 @@ var digamma = require( './digamma.js' );
 
 module.exports = digamma;
 
-},{"./digamma.js":127}],129:[function(require,module,exports){
+},{"./digamma.js":130}],132:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9693,7 +10161,7 @@ function digamma( x ) {
 
 module.exports = digamma;
 
-},{"@stdlib/math/base/tools/evalrational":343}],130:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalrational":377}],133:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9737,7 +10205,7 @@ function diracDelta( x ) {
 
 module.exports = diracDelta;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/constants/float64-pinf":400}],131:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/constants/float64-pinf":437}],134:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9767,7 +10235,7 @@ var diracDelta = require( './dirac_delta.js' );
 
 module.exports = diracDelta;
 
-},{"./dirac_delta.js":130}],132:[function(require,module,exports){
+},{"./dirac_delta.js":133}],135:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9789,15 +10257,19 @@ var LN2 = require( '@stdlib/math/constants/float64-ln-two' );
 * @example
 * var v = eta( 0.0 );
 * // returns 0.5
+*
 * @example
 * var v = eta( -1.0 );
 * // returns 0.25
+*
 * @example
 * var v = eta( 1.0 ); // => ln(2)
 * // returns ~0.6931
+*
 * @example
 * var v = eta( 3.14 );
 * // returns ~0.9096
+*
 * @example
 * var v = eta( NaN );
 * // returns NaN
@@ -9818,7 +10290,7 @@ function eta( s ) {
 
 module.exports = eta;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/powm1":262,"@stdlib/math/base/special/riemann-zeta":270,"@stdlib/math/constants/float64-ln-two":385}],133:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/powm1":293,"@stdlib/math/base/special/riemann-zeta":301,"@stdlib/math/constants/float64-ln-two":419}],136:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9854,7 +10326,7 @@ var eta = require( './eta.js' );
 
 module.exports = eta;
 
-},{"./eta.js":132}],134:[function(require,module,exports){
+},{"./eta.js":135}],137:[function(require,module,exports){
 'use strict';
 
 /*
@@ -10209,12 +10681,15 @@ var polyvalSB = evalpoly( SB );
 * @example
 * var y = erf( 2.0 );
 * // returns ~0.9953
+*
 * @example
 * var y = erf( -1.0 );
 * // returns ~-0.8427
+*
 * @example
 * var y = erf( -0.0 );
 * // returns -0.0
+*
 * @example
 * var y = erf( NaN );
 * // returns NaN
@@ -10309,7 +10784,7 @@ function erf( x ) {
 
 module.exports = erf;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-set-low-word":363,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],135:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-set-low-word":397,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],138:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10342,7 +10817,7 @@ var erf = require( './erf.js' );
 
 module.exports = erf;
 
-},{"./erf.js":134}],136:[function(require,module,exports){
+},{"./erf.js":137}],139:[function(require,module,exports){
 'use strict';
 
 /*
@@ -10694,18 +11169,23 @@ var polyvalSB = evalpoly( SB );
 * @example
 * var y = erfc( 2.0 );
 * // returns ~0.0047
+*
 * @example
 * var y = erfc( -1.0 );
 * // returns ~-1.8427
+*
 * @example
 * var y = erfc( 0.0 );
 * // returns 1.0
+*
 * @example
 * var y = erfc( Number.POSITIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var y = erfc( Number.NEGATIVE_INFINITY );
 * // returns 2.0
+*
 * @example
 * var y = erfc( NaN );
 * // returns NaN
@@ -10807,7 +11287,7 @@ function erfc( x ) {
 
 module.exports = erfc;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-set-low-word":363,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],137:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-set-low-word":397,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],140:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10846,7 +11326,7 @@ var erfc = require( './erfc.js' );
 
 module.exports = erfc;
 
-},{"./erfc.js":136}],138:[function(require,module,exports){
+},{"./erfc.js":139}],141:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11085,15 +11565,19 @@ var rationalFcnR5 = evalrational( P5, Q5 );
 * @example
 * var y = erfcinv( 0.5 );
 * // returns ~0.4769
+*
 * @example
 * var y = erfcinv( 0.8 );
 * // returns ~-0.1791
+*
 * @example
 * var y = erfcinv( 0.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var y = erfcinv( 2.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var y = erfcinv( NaN );
 * // returns NaN
@@ -11172,7 +11656,7 @@ function erfcinv( x ) {
 
 module.exports = erfcinv;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],139:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],142:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11208,7 +11692,7 @@ var erfcinv = require( './erfcinv.js' );
 
 module.exports = erfcinv;
 
-},{"./erfcinv.js":138}],140:[function(require,module,exports){
+},{"./erfcinv.js":141}],143:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11441,21 +11925,27 @@ var rationalFcnR5 = evalrational( P5, Q5 );
 * @example
 * var y = erfinv( 0.5 );
 * // returns ~0.4769
+*
 * @example
 * var y = erfinv( 0.8 );
 * // returns ~0.9062
+*
 * @example
 * var y = erfinv( 0.0 );
 * // returns 0.0
+*
 * @example
 * var y = erfinv( -0.0 );
 * // returns -0.0
+*
 * @example
 * var y = erfinv( -1.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var y = erfinv( 1.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var y = erfinv( NaN );
 * // returns NaN
@@ -11536,7 +12026,7 @@ function erfinv( x ) {
 
 module.exports = erfinv;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],141:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],144:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11578,7 +12068,7 @@ var erfinv = require( './erfinv.js' );
 
 module.exports = erfinv;
 
-},{"./erfinv.js":140}],142:[function(require,module,exports){
+},{"./erfinv.js":143}],145:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11709,12 +12199,15 @@ var NEG_NEARZERO = -NEARZERO;
 * @example
 * var v = exp( 4.0 );
 * // returns ~54.5982
+*
 * @example
 * var v = exp( -9.0 );
 * // returns ~1.234e-4
+*
 * @example
 * var v = exp( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = exp( NaN );
 * // returns NaN
@@ -11759,7 +12252,7 @@ function exp( x ) {
 
 module.exports = exp;
 
-},{"./expmulti.js":143,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/trunc":315,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],143:[function(require,module,exports){
+},{"./expmulti.js":146,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/trunc":349,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],146:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11815,7 +12308,7 @@ function expmulti( hi, lo, k ) {
 
 module.exports = expmulti;
 
-},{"@stdlib/math/base/special/ldexp":225,"@stdlib/math/base/tools/evalpoly":340}],144:[function(require,module,exports){
+},{"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/tools/evalpoly":374}],147:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11848,7 +12341,7 @@ var exp = require( './exp.js' );
 
 module.exports = exp;
 
-},{"./exp.js":142}],145:[function(require,module,exports){
+},{"./exp.js":145}],148:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11943,12 +12436,15 @@ var polyvalQ = evalpoly( Q );
 * @example
 * var v = exp10( 3.0 );
 * // returns 1000
+*
 * @example
 * var v = exp10( -9.0 );
 * // returns 1e-9
+*
 * @example
 * var v = exp10( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = exp10( NaN );
 * // returns NaN
@@ -11992,7 +12488,7 @@ function exp10( x ) {
 
 module.exports = exp10;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ldexp":225,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-min-base10-exponent":393,"@stdlib/math/constants/float64-pinf":400}],146:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-min-base10-exponent":429,"@stdlib/math/constants/float64-pinf":437}],149:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12025,7 +12521,7 @@ var exp10 = require( './exp10.js' );
 
 module.exports = exp10;
 
-},{"./exp10.js":145}],147:[function(require,module,exports){
+},{"./exp10.js":148}],150:[function(require,module,exports){
 'use strict';
 
 // TODO: replace with TOMS (Openlibm) algo
@@ -12120,12 +12616,15 @@ var polyvalQ = evalpoly( Q );
 * @example
 * var v = exp2( 3.0 );
 * // returns 8.0
+*
 * @example
 * var v = exp2( -9.0 );
 * // returns ~0.002
+*
 * @example
 * var v = exp2( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = exp2( NaN );
 * // returns NaN
@@ -12163,7 +12662,7 @@ function exp2( x ) {
 
 module.exports = exp2;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ldexp":225,"@stdlib/math/base/special/round":273,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-max-base2-exponent":388,"@stdlib/math/constants/float64-min-base2-exponent":395,"@stdlib/math/constants/float64-pinf":400}],148:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/special/round":307,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-max-base2-exponent":422,"@stdlib/math/constants/float64-min-base2-exponent":431,"@stdlib/math/constants/float64-pinf":437}],151:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12196,7 +12695,7 @@ var exp2 = require( './exp2.js' );
 
 module.exports = exp2;
 
-},{"./exp2.js":147}],149:[function(require,module,exports){
+},{"./exp2.js":150}],152:[function(require,module,exports){
 'use strict';
 
 /*
@@ -12401,12 +12900,15 @@ var polyval = evalpoly.factory( Q );
 * @example
 * var v = expm1( 0.2 );
 * // returns ~0.221
+*
 * @example
 * var v = expm1( -9.0 );
 * // returns ~-0.999
+*
 * @example
 * var v = expm1( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = expm1( NaN );
 * // returns NaN
@@ -12541,7 +13043,7 @@ function expm1( x ) {
 
 module.exports = expm1;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-half-ln-two":380,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],150:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-half-ln-two":414,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],153:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12574,7 +13076,7 @@ var expm1 = require( './expm1.js' );
 
 module.exports = expm1;
 
-},{"./expm1.js":149}],151:[function(require,module,exports){
+},{"./expm1.js":152}],154:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12602,21 +13104,27 @@ var MAX_FACTORIAL = 170; // TODO: consider extracting as a constant
 * @example
 * var v = factorial( 3.0 );
 * // returns 6.0
+*
 * @example
 * var v = factorial( -1.5 );
 * // returns ~-3.545
+*
 * @example
 * var v = factorial( -0.5 );
 * // returns ~1.772
+*
 * @example
 * var v = factorial( 0.5 );
 * // returns ~0.886
+*
 * @example
 * var v = factorial( -10.0 );
 * // returns NaN
+*
 * @example
 * var v = factorial( 171.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = factorial( NaN );
 * // returns NaN
@@ -12642,7 +13150,7 @@ function factorial( x ) {
 
 module.exports = factorial;
 
-},{"./factorials.json":152,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/gamma":173,"@stdlib/math/constants/float64-pinf":400}],152:[function(require,module,exports){
+},{"./factorials.json":155,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/gamma":188,"@stdlib/math/constants/float64-pinf":437}],155:[function(require,module,exports){
 module.exports=[
 	1,
 	1,
@@ -12817,7 +13325,7 @@ module.exports=[
 	0.7257415615307998967396728211129263114717e307
 ]
 
-},{}],153:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12859,41 +13367,46 @@ var factorial = require( './factorial.js' );
 
 module.exports = factorial;
 
-},{"./factorial.js":151}],154:[function(require,module,exports){
+},{"./factorial.js":154}],157:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
+var isNegativeInteger = require( '@stdlib/math/base/assert/is-negative-integer' );
 var gammaln = require( '@stdlib/math/base/special/gammaln' );
 
 
 // MAIN //
 
 /**
-* Evaluate the natural logarithm factorial of x.
+* Evaluates the natural logarithm of the factorial of `x`.
 *
 * @param {number} x - input value
-* @returns {number} natural logarithm factorial of x
+* @returns {number} natural logarithm of factorial of `x`
 *
 * @example
 * var v = factorialln( 3.0 );
 * // returns ~1.792
+*
 * @example
 * var v = factorialln( 2.4 );
 * // returns ~1.092
+*
 * @example
 * var v = factorialln( -1.0 );
-* // returns +Infinity
+* // returns NaN
+*
 * @example
 * var v = factorialln( -1.5 );
 * // returns ~1.266
+*
 * @example
 * var v = factorialln( NaN );
 * // returns NaN
 */
 function factorialln( x ) {
-	if ( x < 1.0 ) {
-		return 0.0;
+	if ( isNegativeInteger( x ) ) {
+		return NaN;
 	}
 	return gammaln( x + 1.0 );
 } // end FUNCTION factorialln()
@@ -12903,11 +13416,11 @@ function factorialln( x ) {
 
 module.exports = factorialln;
 
-},{"@stdlib/math/base/special/gammaln":200}],155:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-negative-integer":12,"@stdlib/math/base/special/gammaln":220}],158:[function(require,module,exports){
 'use strict';
 
 /**
-* Evaluate the natural logarithm factorial of n.
+* Evaluate the natural logarithm of the factorial function.
 *
 * @module @stdlib/math/base/special/factorialln
 *
@@ -12921,7 +13434,7 @@ module.exports = factorialln;
 * // returns ~1.092
 *
 * v = factorialln( -1.0 );
-* // returns Number.POSITIVE_INFINITY
+* // returns NaN
 *
 * v = factorialln( -1.5 );
 * // returns ~1.266
@@ -12939,7 +13452,477 @@ var factorialln = require( './factorialln.js' );
 
 module.exports = factorialln;
 
-},{"./factorialln.js":154}],156:[function(require,module,exports){
+},{"./factorialln.js":157}],159:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/factorials.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* (C) Copyright John Maddock 2006, 2010.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/math/base/assert/is-nonnegative-integer' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var FLOAT64_MAX = require( '@stdlib/math/constants/float64-max' );
+var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var gammaDeltaRatio = require( './tgamma_delta_ratio.js' );
+
+
+// VARIABLES //
+
+var MAX_FACTORIAL = 170;
+
+
+// FUNCTIONS //
+
+/**
+* Computes the rising factorial of x and n.
+*
+* ## Notes
+*
+* * The rising factorial is defined as
+*
+*   ``` tex
+*   \operatorname{risingFactorial}(x, n) = x (x-1) (x-2) (x-3) \ldots (x-n+1)
+*   ```
+*
+*   or equivalently
+*
+*   ``` tex
+*   \operatorname{risingFactorial}(x, n) = \frac{ \Gamma(x + n) }{ \Gamma(x) };
+*   ```
+*
+* @private
+* @param {number} x - first function parameter
+* @param {integer} n - second function parameter
+* @returns {number} function value
+*/
+function risingFactorial( x, n ) {
+	var result;
+	var inv;
+	var val;
+
+	if ( isnan( x ) || !isInteger( n ) ) {
+		return NaN;
+	}
+	if ( x < 0.0 ) {
+		// For x less than zero, we really have a falling factorial, modulo a possible change of sign. Note that the falling factorial isn't defined for negative n, so we'll get rid of that case first:
+		inv = false;
+		if ( n < 0.0 ) {
+			x += n;
+			n = -n;
+			inv = true;
+		}
+		result = ( (n&1) ? -1 : 1 ) * fallingFactorial( -x, n );
+		if ( inv ) {
+			result = 1.0 / result;
+		}
+		return result;
+	}
+	if ( n === 0.0 ) {
+		return 1.0;
+	}
+	if ( x === 0.0 ) {
+		if ( n < 0 ) {
+			return -gammaDeltaRatio( x + 1.0, -n );
+		}
+		return 0.0;
+	}
+	if ( x < 1.0 && x + n < 0.0 ) {
+		val = gammaDeltaRatio( 1.0 - x, -n );
+		return ( n & 1 ) ? -val : val;
+	}
+	// We don't optimize this for small n, because gammaDeltaRatio is already optimized for that use case:
+	return 1.0 / gammaDeltaRatio( x, n );
+} // end FUNCTION risingFactorial()
+
+
+// MAIN //
+
+/**
+* Computes the falling factorial of x and n.
+*
+* ## Notes
+*
+* * The falling factorial is defined as
+*
+*   ``` tex
+*   \operatorname{fallingFactorial}(x, n) = x (x-1) (x-2) (x-3) \ldots (x-n+1)
+*   ```
+*
+* @param {number} x - first function parameter
+* @param {NonNegativeInteger} n - second function parameter
+* @returns {number} function value
+*
+* @example
+* var v = fallingFactorial( 0.9, 5 );
+* // returns ~0.644
+*
+* @example
+* var v = fallingFactorial( -9.0, 3 );
+* // returns -990
+*
+* @example
+* var v = fallingFactorial( 0.0, 2 );
+* // returns 0.0
+*
+* @example
+* var v = fallingFactorial( 3.0, -2 );
+* // returns NaN
+*/
+function fallingFactorial( x, n ) {
+	var result;
+	var xp1;
+	var n2;
+	var t1;
+	var t2;
+
+	if ( isnan( x ) || !isNonNegativeInteger( n ) ) {
+		return NaN;
+	}
+	if ( x === 0.0 ) {
+		return 0.0;
+	}
+	if ( x < 0 ) {
+		// For x < 0 we really have a rising factorial modulo a possible change of sign:
+		return ( n&1 ? -1 : 1 ) * risingFactorial( -x, n );
+	}
+	if ( n === 0 ) {
+		return 1.0;
+	}
+	if ( x < 0.5 ) {
+		// 1 + x below will throw away digits, so split up calculation:
+		if ( n > MAX_FACTORIAL - 2 ) {
+			// If the two end of the range are far apart we have a ratio of two very large numbers, split the calculation up into two blocks:
+			t1 = x * fallingFactorial( x - 1, MAX_FACTORIAL - 2 );
+			t2 = fallingFactorial( x-MAX_FACTORIAL+1, n-MAX_FACTORIAL+1 );
+			if ( FLOAT64_MAX / abs(t1) < abs(t2) ) {
+				return PINF;
+			}
+			return t1 * t2;
+		}
+		return x * fallingFactorial( x - 1.0, n - 1.0 );
+	}
+	if ( x <= n - 1.0 ) {
+		// `x+1-n` will be negative and gammaDeltaRatio won't handle it, split the product up into three parts:
+		xp1 = x + 1.0;
+		n2 = abs( floor( xp1 ) );
+		if ( n2 === xp1 ) {
+			return 0.0;
+		}
+		result = gammaDeltaRatio( xp1, -n2 );
+		x -= n2;
+		result *= x;
+		n2 += 1.0;
+		if ( n2 < n ) {
+			result *= fallingFactorial( x - 1.0, n - n2 );
+		}
+		return result;
+	}
+	// Simple case: just the ratio of two (positive argument) gamma functions. Note that we don't optimize this for small n, because gammaDeltaRatio is already optimized for that use case:
+	return gammaDeltaRatio( x + 1.0, -n );
+} // end FUNCTION fallingFactorial()
+
+
+// EXPORTS //
+
+module.exports = fallingFactorial;
+
+},{"./tgamma_delta_ratio.js":161,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-nonnegative-integer":16,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/floor":170,"@stdlib/math/constants/float64-max":427,"@stdlib/math/constants/float64-pinf":437}],160:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the falling factorial.
+*
+* @module @stdlib/math/base/special/falling-factorial
+*
+* @example
+* var fallingFactorial = require( '@stdlib/math/base/special/falling-factorial' );
+*
+* var v = fallingFactorial( 0.9, 5 );
+* // returns ~0.644
+*
+* v = fallingFactorial( -9.0, 3 );
+* // returns -990
+*
+* v = fallingFactorial( 0.0, 2 );
+* // returns 0.0
+*
+* v = fallingFactorial( 3.0, -2s );
+* // returns NaN
+*/
+
+// MODULES //
+
+var fallingFactorial = require( './falling_factorial.js' );
+
+
+// EXPORTS //
+
+module.exports = fallingFactorial;
+
+},{"./falling_factorial.js":159}],161:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/factorial":156,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-eps":410,"dup":68}],162:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the Fibonacci number index.
+*
+* @module @stdlib/math/base/special/fibonacci-index
+*
+* @example
+* var fibonacciIndex = require( '@stdlib/math/base/special/fibonacci-index' );
+*
+* var n = fibonacciIndex( 0 );
+* // returns NaN
+*
+* n = fibonacciIndex( 1 );
+* // returns NaN
+*
+* n = fibonacciIndex( 2 );
+* // returns 3
+*
+* n = fibonacciIndex( 3 );
+* // returns 4
+*
+* n = fibonacciIndex( 5 );
+* // returns 5
+*
+* n = fibonacciIndex( 8 );
+* // returns 6
+*/
+
+// MODULES //
+
+var fibonacciIndex = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = fibonacciIndex;
+
+},{"./main.js":163}],163:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var ln = require( '@stdlib/math/base/special/ln' );
+var round = require( '@stdlib/math/base/special/round' );
+var PHI = require( '@stdlib/math/constants/float64-phi' );
+var PINF = require( '@stdlib/math/constants/float64-pinf' );
+
+
+// VARIABLES //
+
+var SQRT_5 = 2.23606797749979;
+var LN_PHI = ln( PHI );
+
+
+// MAIN //
+
+/**
+* Computes the Fibonacci number index.
+*
+* ## Notes
+*
+* * We use `round` instead of `floor` due to errors introduced by floating-point precision.
+*
+*
+* @param {NonNegativeInteger} F - Fibonacci number
+* @returns {NonNegativeInteger} Fibonacci number index
+*
+* @example
+* var n = fibonacciIndex( 0 );
+* // returns NaN
+*
+* @example
+* var n = fibonacciIndex( 1 );
+* // returns NaN
+*
+* @example
+* var n = fibonacciIndex( 2 );
+* // returns 3
+*
+* @example
+* var n = fibonacciIndex( 3 );
+* // returns 4
+*
+* @example
+* var n = fibonacciIndex( 5 );
+* // returns 5
+*
+* @example
+* var n = fibonacciIndex( 8 );
+* // returns 6
+*
+* @example
+* var n = fibonacciIndex( NaN );
+* // returns NaN
+*
+* @example
+* var n = fibonacciIndex( 3.14 );
+* // returns NaN
+*
+* @example
+* var n = fibonacciIndex( -1 );
+* // returns NaN
+*/
+function fibonacciIndex( F ) {
+	var x;
+	if (
+		isnan( F ) ||
+		isInteger( F ) === false ||
+		F <= 1 ||
+		F === PINF
+	) {
+		return NaN;
+	}
+	x = ( F*SQRT_5 ) + 0.5;
+	return round( ln( x ) / LN_PHI );
+} // end FUNCTION fibonacciIndex()
+
+
+// EXPORTS //
+
+module.exports = fibonacciIndex;
+
+},{"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/round":307,"@stdlib/math/constants/float64-phi":434,"@stdlib/math/constants/float64-pinf":437}],164:[function(require,module,exports){
+module.exports=[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657,46368,75025,121393,196418,317811,514229,832040,1346269,2178309,3524578,5702887,9227465,14930352,24157817,39088169,63245986,102334155,165580141,267914296,433494437,701408733,1134903170,1836311903,2971215073,4807526976,7778742049,12586269025,20365011074,32951280099,53316291173,86267571272,139583862445,225851433717,365435296162,591286729879,956722026041,1548008755920,2504730781961,4052739537881,6557470319842,10610209857723,17167680177565,27777890035288,44945570212853,72723460248141,117669030460994,190392490709135,308061521170129,498454011879264,806515533049393,1304969544928657,2111485077978050,3416454622906707,5527939700884757,8944394323791464]
+
+},{}],165:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var MAX_FIBONACCI = require( '@stdlib/math/constants/float64-max-safe-nth-fibonacci' );
+var FIBONACCI = require( './fibonacci.json' );
+
+
+// MAIN //
+
+/**
+* Computes the nth Fibonacci number.
+*
+* @param {NonNegativeInteger} n - the Fibonacci number to compute
+* @returns {NonNegativeInteger} Fibonacci number
+*
+* @example
+* var y = fibonacci( 0 );
+* // returns 0
+*
+* @example
+* var y = fibonacci( 1 );
+* // returns 1
+*
+* @example
+* var y = fibonacci( 2 );
+* // returns 1
+*
+* @example
+* var y = fibonacci( 3 );
+* // returns 2
+*
+* @example
+* var y = fibonacci( 4 );
+* // returns 3
+*
+* @example
+* var y = fibonacci( 5 );
+* // returns 5
+*
+* @example
+* var y = fibonacci( 6 );
+* // returns 8
+*
+* @example
+* var y = fibonacci( NaN );
+* // returns NaN
+*
+* @example
+* var y = fibonacci( 3.14 );
+* // returns NaN
+*
+* @example
+* var y = fibonacci( -1.0 );
+* // returns NaN
+*/
+function fibonacci( n ) {
+	if (
+		isnan( n ) ||
+		isInteger( n ) === false ||
+		n < 0 ||
+		n > MAX_FIBONACCI
+	) {
+		return NaN;
+	}
+	return FIBONACCI[ n ];
+} // end FUNCTION fibonacci()
+
+
+// EXPORTS //
+
+module.exports = fibonacci;
+
+},{"./fibonacci.json":164,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/constants/float64-max-safe-nth-fibonacci":425}],166:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the nth Fibonacci number.
+*
+* @module @stdlib/math/base/special/fibonacci
+*
+* @example
+* var fibonacci = require( '@stdlib/math/base/special/fibonacci' );
+*
+* var y = fibonacci( 0 );
+* // returns 0
+*
+* y = fibonacci( 1 );
+* // returns 1
+*
+* y = fibonacci( 2 );
+* // returns 1
+*
+* y = fibonacci( 3 );
+* // returns 2
+*
+* y = fibonacci( 4 );
+* // returns 3
+*
+* y = fibonacci( 5 );
+* // returns 5
+*
+* y = fibonacci( 6 );
+* // returns 8
+*/
+
+// MODULES //
+
+var fibonacci = require( './fibonacci.js' );
+
+
+// EXPORTS //
+
+module.exports = fibonacci;
+
+},{"./fibonacci.js":165}],167:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12967,18 +13950,23 @@ var SIGN_MASK = 0x80000000;
 * @example
 * var z = flipsign( -3.14, 10.0 );
 * // returns -3.14
+*
 * @example
 * var z = flipsign( -3.14, -1.0 );
 * // returns 3.14
+*
 * @example
 * var z = flipsign( 1.0, -0.0 );
 * // returns -1.0
+*
 * @example
 * var z = flipsign( -3.14, -0.0 );
 * // returns 3.14
+*
 * @example
 * var z = flipsign( -0.0, 1.0 );
 * // returns -0.0
+*
 * @example
 * var z = flipsign( 0.0, -1.0 );
 * // returns -0.0
@@ -13009,7 +13997,7 @@ function flipsign( x, y ) {
 
 module.exports = flipsign;
 
-},{"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-to-words":368}],157:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-to-words":402}],168:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13048,7 +14036,7 @@ var flipsign = require( './flipsign.js' );
 
 module.exports = flipsign;
 
-},{"./flipsign.js":156}],158:[function(require,module,exports){
+},{"./flipsign.js":167}],169:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -13082,7 +14070,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],159:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13115,7 +14103,7 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":158}],160:[function(require,module,exports){
+},{"./floor.js":169}],171:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13192,7 +14180,7 @@ function floor10( x ) {
 
 module.exports = floor10;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":392,"@stdlib/math/constants/float64-ninf":397}],161:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":428,"@stdlib/math/constants/float64-ninf":433}],172:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13222,7 +14210,7 @@ var floor10 = require( './floor10.js' );
 
 module.exports = floor10;
 
-},{"./floor10.js":160}],162:[function(require,module,exports){
+},{"./floor10.js":171}],173:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13299,7 +14287,7 @@ function floor2( x ) {
 
 module.exports = floor2;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log2":237,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base2-exponent":388,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":394,"@stdlib/math/constants/float64-ninf":397}],163:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log2":257,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base2-exponent":422,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":430,"@stdlib/math/constants/float64-ninf":433}],174:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13329,7 +14317,7 @@ var floor2 = require( './floor2.js' );
 
 module.exports = floor2;
 
-},{"./floor2.js":162}],164:[function(require,module,exports){
+},{"./floor2.js":173}],175:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13408,7 +14396,7 @@ function floorb( x, n, b ) {
 
 module.exports = floorb;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/floorn":167,"@stdlib/math/base/special/pow":254}],165:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/floorn":178,"@stdlib/math/base/special/pow":285}],176:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13441,7 +14429,7 @@ var floorb = require( './floorb.js' );
 
 module.exports = floorb;
 
-},{"./floorb.js":164}],166:[function(require,module,exports){
+},{"./floorb.js":175}],177:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13592,7 +14580,7 @@ function floorn( x, n ) {
 
 module.exports = floorn;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-max-safe-integer":390,"@stdlib/math/constants/float64-min-base10-exponent":393,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":392,"@stdlib/math/constants/float64-ninf":397}],167:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-max-safe-integer":424,"@stdlib/math/constants/float64-min-base10-exponent":429,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":428,"@stdlib/math/constants/float64-ninf":433}],178:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13625,7 +14613,7 @@ var floorn = require( './floorn.js' );
 
 module.exports = floorn;
 
-},{"./floorn.js":166}],168:[function(require,module,exports){
+},{"./floorn.js":177}],179:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13728,7 +14716,7 @@ function floorsd( x, n, b ) {
 
 module.exports = floorsd;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/utils/float64-exponent":348}],169:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/utils/float64-exponent":382}],180:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13761,7 +14749,7 @@ var floorsd = require( './floorsd.js' );
 
 module.exports = floorsd;
 
-},{"./floorsd.js":168}],170:[function(require,module,exports){
+},{"./floorsd.js":179}],181:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13794,18 +14782,23 @@ var SET_EXP_MASK = 0x3fe00000; // 1071644672
 * @example
 * var out = frexp( 4.0 );
 * // returns [ 0.5, 3 ]
+*
 * @example
 * var out = frexp( 0.0 );
 * // returns [ 0.0, 0 ]
+*
 * @example
 * var out = frexp( -0.0 );
 * // returns [ -0.0, 0 ]
+*
 * @example
 * var out = frexp( NaN );
 * // returns [ NaN, 0 ]
+*
 * @example
 * var out = frexp( Number.POSITIVE_INFINITY );
 * // returns [ Number.POSITIVE_INFINITY, 0 ]
+*
 * @example
 * var out = frexp( Number.NEGATIVE_INFINITY );
 * // returns [ Number.NEGATIVE_INFINITY, 0 ]
@@ -13848,7 +14841,7 @@ function frexp( x ) {
 
 module.exports = frexp;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/utils/float64-exponent":348,"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-normalize":358,"@stdlib/math/base/utils/float64-to-words":368}],171:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/utils/float64-exponent":382,"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-normalize":392,"@stdlib/math/base/utils/float64-to-words":402}],182:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13887,7 +14880,269 @@ var frexp = require( './frexp.js' );
 
 module.exports = frexp;
 
-},{"./frexp.js":170}],172:[function(require,module,exports){
+},{"./frexp.js":181}],183:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/lanczos.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* Copyright John Maddock 2006.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+
+
+// VARIABLES //
+
+var NUM = [
+	709811.662581657956893540610814842699825,
+	679979.847415722640161734319823103390728,
+	293136.785721159725251629480984140341656,
+	74887.5403291467179935942448101441897121,
+	12555.29058241386295096255111537516768137,
+	1443.42992444170669746078056942194198252,
+	115.2419459613734722083208906727972935065,
+	6.30923920573262762719523981992008976989,
+	0.2266840463022436475495508977579735223818,
+	0.004826466289237661857584712046231435101741,
+	0.4624429436045378766270459638520555557321e-4
+];
+var DENOM = [
+	0.0,
+	362880.0,
+	1026576.0,
+	1172700.0,
+	723680.0,
+	269325.0,
+	63273.0,
+	9450.0,
+	870.0,
+	45.0,
+	1.0
+];
+
+
+// MAIN //
+
+/**
+* Calculates the Lanczos sum for the approximation of the gamma function (scaled by `exp(-g)`, where `g = 10.900511`.
+*
+* @name gammaLanczosSumExpGScaled
+* @type {Function}
+* @param {number} x - input value
+* @returns {number} Lanczos sum approximation
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( 4.0 );
+* // returns ~0.018
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( -1.5 );
+* // returns ~25.337
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( -0.5 );
+* // returns ~-12.911
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( 0.5 );
+* // returns ~1.772
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( NaN );
+* // returns NaN
+*/
+var gammaLanczosSumExpGScaled = evalrational( NUM, DENOM );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSumExpGScaled;
+
+},{"@stdlib/math/base/tools/evalrational":377}],184:[function(require,module,exports){
+'use strict';
+
+/**
+* Calculate the Lanczos sum for the approximation of the gamma function (scaled by `exp(-g)`, where `g = 10.900511`.
+*
+* @module @stdlib/math/base/special/gamma-lanczos-sum-expg-scaled
+*
+* @example
+* var gammaLanczosSumExpGScaled = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' );
+*
+* var v = gammaLanczosSumExpGScaled( 4.0 );
+* // returns ~0.018
+*
+* v = gammaLanczosSumExpGScaled( -1.5 );
+* // returns ~25.337
+*
+* v = gammaLanczosSumExpGScaled( -0.5 );
+* // returns ~-12.911
+*
+* v = gammaLanczosSumExpGScaled( 0.5 );
+* // returns ~1.772
+*
+* v = gammaLanczosSumExpGScaled( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* v = gammaLanczosSumExpGScaled( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var gammaLanczosSumExpGScaled = require( './gamma_lanczos_sum_expg_scaled.js' );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSumExpGScaled;
+
+},{"./gamma_lanczos_sum_expg_scaled.js":183}],185:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/lanczos.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* Copyright John Maddock 2006.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+
+
+// VARIABLES //
+
+var NUM = [
+	38474670393.31776828316099004518914832218,
+	36857665043.51950660081971227404959150474,
+	15889202453.72942008945006665994637853242,
+	4059208354.298834770194507810788393801607,
+	680547661.1834733286087695557084801366446,
+	78239755.00312005289816041245285376206263,
+	6246580.776401795264013335510453568106366,
+	341986.3488721347032223777872763188768288,
+	12287.19451182455120096222044424100527629,
+	261.6140441641668190791708576058805625502,
+	2.506628274631000502415573855452633787834
+];
+var DENOM = [
+	0.0,
+	362880.0,
+	1026576.0,
+	1172700.0,
+	723680.0,
+	269325.0,
+	63273.0,
+	9450.0,
+	870.0,
+	45.0,
+	1.0
+];
+
+
+// MAIN //
+
+/**
+* Calculates the Lanczos sum approximation.
+*
+* @name gammaLanczosSum
+* @type {Function}
+* @param {number} x - input value
+* @returns {number} Lanczos sum approximation
+*
+* @example
+* var v = gammaLanczosSum( 4.0 );
+* // returns ~950.366
+*
+* @example
+* var v = gammaLanczosSum( -1.5 );
+* // returns ~1373366.245
+*
+* @example
+* var v = gammaLanczosSum( -0.5 );
+* // returns ~-699841.735
+*
+* @example
+* var v = gammaLanczosSum( 0.5 );
+* // returns ~96074.186
+*
+* @example
+* var v = gammaLanczosSum( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* @example
+* var v = gammaLanczosSum( NaN );
+* // returns NaN
+*/
+var gammaLanczosSum = evalrational( NUM, DENOM );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSum;
+
+},{"@stdlib/math/base/tools/evalrational":377}],186:[function(require,module,exports){
+'use strict';
+
+/**
+* Calculate the Lanczos sum for the approximation of the gamma function.
+*
+* @module @stdlib/math/base/special/gamma-lanczos-sum
+*
+* @example
+* var gammaLanczosSum = require( '@stdlib/math/base/special/gamma-lanczos-sum' );
+*
+* var v = gammaLanczosSum( 4.0 );
+* // returns ~950.366
+*
+* v = gammaLanczosSum( -1.5 );
+* // returns ~1373366.245
+*
+* v = gammaLanczosSum( -0.5 );
+* // returns ~-699841.735
+*
+* v = gammaLanczosSum( 0.5 );
+* // returns ~96074.186
+*
+* v = gammaLanczosSum( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* v = gammaLanczosSum( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var gammaLanczosSum = require( './gamma_lanczos_sum.js' );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSum;
+
+},{"./gamma_lanczos_sum.js":185}],187:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13974,12 +15229,12 @@ var rateval = evalrational( P, Q );
 *
 * * Relative error:
 *
-* arithmetic | domain | # trials | peak | rms
-* ---------- | ------ | -------- | ---- | ---
-* DEC | -34,34 | 10000 | 1.3e-16 | 2.5e-17
-* IEEE | -170,-33 | 20000 | 2.3e-15 | 3.3e-16
-* IEEE | -33, 33 | 20000 | 9.4e-16 | 2.2e-16
-* IEEE | 33, 171.6 | 20000 | 2.3e-15 | 3.2e-16
+*   | arithmetic | domain    | # trials | peak    | rms     |
+*   |:----------:|:---------:|:--------:|:-------:|:-------:|
+*   | DEC        | -34,34    | 10000    | 1.3e-16 | 2.5e-17 |
+*   | IEEE       | -170,-33  | 20000    | 2.3e-15 | 3.3e-16 |
+*   | IEEE       | -33, 33   | 20000    | 9.4e-16 | 2.2e-16 |
+*   | IEEE       | 33, 171.6 | 20000    | 2.3e-15 | 3.2e-16 |
 *
 * * Error for arguments outside the test range will be larger owing to error amplification by the exponential function.
 *
@@ -13990,21 +15245,27 @@ var rateval = evalrational( P, Q );
 * @example
 * var v = gamma( 4.0 );
 * // returns 6.0
+*
 * @example
 * var v = gamma( -1.5 );
 * // returns ~2.363
+*
 * @example
 * var v = gamma( -0.5 );
 * // returns ~-3.545
+*
 * @example
 * var v = gamma( 0.5 );
 * // returns ~1.772
+*
 * @example
 * var v = gamma( 0.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = gamma( -0.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = gamma( NaN );
 * // returns NaN
@@ -14086,7 +15347,7 @@ function gamma( x ) {
 
 module.exports = gamma;
 
-},{"./small_approximation.js":174,"./stirling_approximation.js":175,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-negative-zero":12,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/sin":289,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pi":399,"@stdlib/math/constants/float64-pinf":400}],173:[function(require,module,exports){
+},{"./small_approximation.js":189,"./stirling_approximation.js":190,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-negative-zero":14,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/sin":323,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pi":436,"@stdlib/math/constants/float64-pinf":437}],188:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14128,7 +15389,7 @@ var gamma = require( './gamma.js' );
 
 module.exports = gamma;
 
-},{"./gamma.js":172}],174:[function(require,module,exports){
+},{"./gamma.js":187}],189:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14154,7 +15415,7 @@ function gamma( x, z ) {
 
 module.exports = gamma;
 
-},{"@stdlib/math/constants/float64-eulergamma":377}],175:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-eulergamma":411}],190:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14215,7 +15476,323 @@ function gamma( x ) {
 
 module.exports = gamma;
 
-},{"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-sqrt-two-pi":403}],176:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-sqrt-two-pi":440}],191:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/gamma.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* (C) Copyright John Maddock 2006-7, 2013-14.
+* (C) Copyright Paul A. Bristow 2007, 2013-14.
+* (C) Copyright Nikhar Agrawal 2013-14.
+* (C) Copyright Christopher Kormanyos 2013-14.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var gamma = require( '@stdlib/math/base/special/gamma' );
+var expm1 = require( '@stdlib/math/base/special/expm1' );
+var log1p = require( '@stdlib/math/base/special/log1p' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var lgammaSmallImp = require( './lgamma_small_imp.js' );
+
+
+// MAIN //
+
+/**
+* Computes `gamma(x+1) - 1`.
+*
+* @param {number} x - input value
+* @returns {number} function value
+*
+* @example
+* var v = gammap1m1( 0.2 );
+* // returns ~-0.082
+*
+* @example
+* var v = gammap1m1( -9.2 );
+* // returns -1.0
+*
+* @example
+* var v = gammap1m1( 0.0 );
+* // returns 0.0
+*
+* @example
+* var v = gammap1m1( -3.0 );
+* // returns NaN
+*
+* @example
+* var v = gammap1m1( NaN );
+* // returns NaN
+*/
+function gammap1m1( x ) {
+	if ( isnan( x ) ) {
+		return NaN;
+	}
+	if ( x < 0.0 ) {
+		if ( x < -0.5 ) {
+			// Best method is simply to subtract 1 from gamma:
+			return gamma( 1.0 + x ) - 1.0;
+		}
+		// Use expm1 on the logarithm of gamma:
+		return expm1( -log1p( x ) + lgammaSmallImp( x+2.0, x+1.0, x ) );
+	}
+	if ( x < 2.0 ) {
+		// Use expm1 on the logarithm of gamma:
+		return expm1( lgammaSmallImp( x+1.0, x, x-1.0 ) );
+	}
+	// Best method is simply to subtract 1 from gamma:
+	return gamma( 1.0 + x ) - 1.0;
+} // end FUNCTION gammap1m1()
+
+
+// EXPORTS //
+
+module.exports = gammap1m1;
+
+},{"./lgamma_small_imp.js":193,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/log1p":255}],192:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute `gamma(x+1) - 1` without cancellation errors.
+*
+* @module @stdlib/math/base/special/gamma1pm1
+*
+* @example
+* var gamma1pm1 = require( '@stdlib/math/base/special/gamma1pm1' );
+*
+* var v = gamma1pm1( 0.2 );
+* // returns ~-0.082
+*
+* v = gamma1pm1( -5.3 );
+* // returns ~-1.102
+*
+* v = gamma1pm1( 0.0 );
+* // returns 0.0
+*
+* v = gamma1pm1( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var gamma1pm1 = require( './gamma1pm1.js' );
+
+
+// EXPORTS //
+
+module.exports = gamma1pm1;
+
+},{"./gamma1pm1.js":191}],193:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/detail/lgamma_small.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* (C) Copyright John Maddock 2006-7, 2013-14.
+* (C) Copyright Paul A. Bristow 2007, 2013-14.
+* (C) Copyright Nikhar Agrawal 2013-14.
+* (C) Copyright Christopher Kormanyos 2013-14.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+var ln = require( '@stdlib/math/base/special/ln' );
+var EPS = require( '@stdlib/math/constants/float64-eps' );
+
+
+// VARIABLES //
+
+var Y1 = 0.158963680267333984375;
+var Y2 = 0.52815341949462890625;
+var Y3 = 0.452017307281494140625;
+
+var P1 = [
+	-0.180355685678449379109e-1,
+	0.25126649619989678683e-1,
+	0.494103151567532234274e-1,
+	0.172491608709613993966e-1,
+	-0.259453563205438108893e-3,
+	-0.541009869215204396339e-3,
+	-0.324588649825948492091e-4,
+	0.0
+];
+var Q1 = [
+	0.1e1,
+	0.196202987197795200688e1,
+	0.148019669424231326694e1,
+	0.541391432071720958364e0,
+	0.988504251128010129477e-1,
+	0.82130967464889339326e-2,
+	0.224936291922115757597e-3,
+	-0.223352763208617092964e-6
+];
+
+var P2 = [
+	0.490622454069039543534e-1,
+	-0.969117530159521214579e-1,
+	-0.414983358359495381969e0,
+	-0.406567124211938417342e0,
+	-0.158413586390692192217e0,
+	-0.240149820648571559892e-1,
+	-0.100346687696279557415e-2
+];
+var Q2 = [
+	0.1e1,
+	0.302349829846463038743e1,
+	0.348739585360723852576e1,
+	0.191415588274426679201e1,
+	0.507137738614363510846e0,
+	0.577039722690451849648e-1,
+	0.195768102601107189171e-2
+];
+
+var P3 = [
+	-0.292329721830270012337e-1,
+	0.144216267757192309184e0,
+	-0.142440390738631274135e0,
+	0.542809694055053558157e-1,
+	-0.850535976868336437746e-2,
+	0.431171342679297331241e-3,
+	0.0
+];
+var Q3 = [
+	0.1e1,
+	-0.150169356054485044494e1,
+	0.846973248876495016101e0,
+	-0.220095151814995745555e0,
+	0.25582797155975869989e-1,
+	-0.100666795539143372762e-2,
+	-0.827193521891290553639e-6
+];
+
+
+// FUNCTIONS //
+
+// Compile functions to evaluate rational functions based on the above coefficients...
+var rateval1 = evalrational( P1, Q1 );
+var rateval2 = evalrational( P2, Q2 );
+var rateval3 = evalrational( P3, Q3 );
+
+
+// MAIN //
+
+/**
+* Evaluates the natural logarithm of the gamma function for small arguments.
+*
+* ## Method
+*
+* 1. For \\( z > 2 \\), begin by performing argument reduction until \\( z \\) is in [2,3). Use the following form:
+*
+*    ``` tex
+*    \operatorname{gammaln}(z) = (z-2)(z+1)(Y + R(z-2))
+*    ```
+*
+*    where \\( R(z-2) \\) is a rational approximation optimized for low absolute error. As long as the absolute error is small compared to the constant \\( Y \\), then any rounding error in the computation will get wiped out.
+*
+* 2. If \\( z < 1 \\), use recurrence to shift to \\( z \\) in the interval [1,2]. Then, use one of two approximations: one for \\( z \\) in [1,1.5] and one for \\( z \\) in [1.5,2]:
+*
+*    - For \(( z \\) in [1,1.5], use
+*
+*      ``` tex
+*      \operatorname{gammaln}(z) = (z-1)(z-2)(Y + R(z-1))
+*      ```
+*
+*      where \\( R(z-1) \\) is a rational approximation optimized for low absolute error. As long as the absolute error is small compared to the constant \\( Y \\), then any rounding error in the computation will get wiped out.
+*
+*    - For \\( z \\) in [1.5,2], use
+*
+*      ``` tex
+*      \operatorname{gammaln}(z) = (2-z)(1-z)(Y + R(2-z))
+*      ```
+*
+*      where \\( R(2-z) \\) is a rational approximation optimized for low absolute error. As long as the absolute error is small compared to the constant \\( Y \\), then any rounding error in the computation will get wiped out.
+*
+*
+* ## Notes
+*
+* * Relative error:
+*
+*   | function | peak         | maximum deviation |
+*   |:--------:|:------------:|:-----------------:|
+*   | R(Z-2)   | 4.231e-18    | 5.900e-24         |
+*   | R(Z-1)   | 1.230011e-17 | 3.139e-021        |
+*   | R(2-Z)   | 1.797565e-17 | 2.151e-021        |
+*
+*
+* @private
+* @param {number} z - input value
+* @param {number} zm1 - z minus one
+* @param {number} zm2 - z minus two
+* @returns {number} function value
+*/
+function lgammaSmallImp( z, zm1, zm2 ) {
+	var prefix;
+	var result;
+	var r;
+	var R;
+
+	if ( z < EPS ) {
+		return -ln( z );
+	}
+	if ( zm1 === 0.0 || zm2 === 0.0 ) {
+		return 0.0;
+	}
+	result = 0.0;
+	if ( z > 2.0 ) {
+		if ( z >= 3.0 ) {
+			do {
+				z -= 1.0;
+				zm2 -= 1.0;
+				result += ln(z);
+			} while ( z >= 3.0 );
+			zm2 = z - 2.0;
+		}
+		r = zm2 * ( z + 1.0 );
+		R = rateval1( zm2 );
+		result += ( r * Y1 ) + ( r * R );
+		return result;
+	}
+	if ( z < 1.0 ) {
+		result += -ln(z);
+		zm2 = zm1;
+		zm1 = z;
+		z += 1.0;
+	}
+	if ( z <= 1.5 ) {
+		r = rateval2( zm1 );
+		prefix = zm1 * zm2;
+		result += ( prefix * Y2 ) + ( prefix * r );
+		return result;
+	}
+	// Case: 1.5 < z <= 2
+	r = zm2 * zm1;
+	R = rateval3( -zm2 );
+	result += ( r * Y3 ) + ( r * R );
+	return result;
+} // end FUNCTION lgammaSmallImp()
+
+
+// EXPORTS //
+
+module.exports = lgammaSmallImp;
+
+},{"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-eps":410}],194:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14247,7 +15824,7 @@ var exp = require( '@stdlib/math/base/special/exp' );
 * @param {number} x - function parameter
 * @returns {number} upper gamma fraction
 */
-function finite_gamma_q( a, x ) {
+function finiteGammaQ( a, x ) {
 	var term;
 	var sum;
 	var e;
@@ -14257,21 +15834,21 @@ function finite_gamma_q( a, x ) {
 	sum = e;
 	if ( sum !== 0.0 ) {
 		term = sum;
-		for ( n = 1; n < a; ++n ){
+		for ( n = 1; n < a; ++n ) {
 			term /= n;
 			term *= x;
 			sum += term;
 		}
 	}
 	return sum;
-} // end FUNCTION finite_gamma_q()
+} // end FUNCTION finiteGammaQ()
 
 
 // EXPORTS //
 
-module.exports = finite_gamma_q;
+module.exports = finiteGammaQ;
 
-},{"@stdlib/math/base/special/exp":144}],177:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":147}],195:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14306,7 +15883,7 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 * @param {number} x - function parameter
 * @returns {number} upper gamma fraction
 */
-function finite_half_gamma_q( a, x ) {
+function finiteHalfGammaQ( a, x ) {
 	var half;
 	var term;
 	var sum;
@@ -14320,7 +15897,7 @@ function finite_half_gamma_q( a, x ) {
 		half = 0.5;
 		term /= half;
 		sum = term;
-		for( n = 2; n < a; ++n ) {
+		for ( n = 2; n < a; ++n ) {
 			term /= n - half;
 			term *= x;
 			sum += term;
@@ -14328,16 +15905,14 @@ function finite_half_gamma_q( a, x ) {
 		e += sum;
 	}
 	return e;
-} // end FUNCTION finite_half_gamma_q()
+} // end FUNCTION finiteHalfGammaQ()
 
 
 // EXPORTS //
 
-module.exports = finite_half_gamma_q;
+module.exports = finiteHalfGammaQ;
 
-},{"@stdlib/math/base/special/erfc":137,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-pi":399}],178:[function(require,module,exports){
-arguments[4][55][0].apply(exports,arguments)
-},{"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-ln":389,"@stdlib/math/constants/float64-min-ln":396,"dup":55}],179:[function(require,module,exports){
+},{"@stdlib/math/base/special/erfc":140,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-pi":436}],196:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14349,6 +15924,79 @@ arguments[4][55][0].apply(exports,arguments)
 /*
 * (C) Copyright John Maddock 2006.
 * (C) Copyright Paul A. Bristow 2007.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var exp = require( '@stdlib/math/base/special/exp' );
+var pow = require( '@stdlib/math/base/special/pow' );
+var ln = require( '@stdlib/math/base/special/ln' );
+var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
+var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
+
+
+// MAIN //
+
+/**
+* Calculates the power term prefix (z^a)(e^-z) used in the non-normalised incomplete gammas.
+*
+* @private
+* @param {number} a - function parameter
+* @param {number} z - function parameter
+* @returns {number} power term prefix
+*/
+function fullIGammaPrefix( a, z ) {
+	var prefix;
+	var alz;
+
+	alz = a * ln( z );
+	if ( z >= 1.0 ) {
+		if ( ( alz < MAX_LN ) && ( -z > MIN_LN ) ) {
+			prefix = pow( z, a ) * exp( -z );
+		}
+		else if ( a >= 1.0 ) {
+			prefix = pow( z / exp(z/a), a );
+		}
+		else {
+			prefix = exp( alz - z );
+		}
+	}
+	else {
+		/* eslint-disable no-lonely-if */
+		if ( alz > MIN_LN ) {
+			prefix = pow( z, a ) * exp( -z );
+		}
+		else if ( z/a < MAX_LN ) {
+			prefix = pow( z / exp(z/a), a );
+		} else {
+			prefix = exp( alz - z );
+		}
+	}
+	return prefix;
+} // end FUNCTION fullIGammaPrefix()
+
+
+// EXPORTS //
+
+module.exports = fullIGammaPrefix;
+
+},{"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-ln":423,"@stdlib/math/constants/float64-min-ln":432}],197:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_62_0/boost/math/special_functions/gamma.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* (C) Copyright John Maddock 2006-7, 2013-14.
+* (C) Copyright Paul A. Bristow 2007, 2013-14.
+* (C) Copyright Nikhar Agrawal 2013-14
+* (C) Christopher Kormanyos 2013-14
 * Use, modification and distribution are subject to the
 * Boost Software License, Version 1.0. (See accompanying file
 * LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -14368,14 +16016,14 @@ var FLOAT64_MAX = require( '@stdlib/math/constants/float64-max' );
 var SQRT_TWO_PI = require( '@stdlib/math/constants/float64-sqrt-two-pi' );
 var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var finite_gamma_q = require( './finite_gamma_q.js' );
-var finite_half_gamma_q = require( './finite_half_gamma_q.js' );
-var full_igamma_prefix = require( './full_igamma_prefix.js' );
-var igamma_temme_large = require( './igamma_temme_large.js' );
-var lower_gamma_series = require( './lower_gamma_series.js' );
-var regularised_gamma_prefix = require( './regularised_gamma_prefix.js' );
-var tgamma_small_upper_part = require( './tgamma_small_upper_part.js' );
-var upper_gamma_fraction = require( './upper_gamma_fraction.js' );
+var finiteGammaQ = require( './finite_gamma_q.js' );
+var finiteHalfGammaQ = require( './finite_half_gamma_q.js' );
+var fullIGammaPrefix = require( './full_igamma_prefix.js' );
+var igammaTemmeLarge = require( './igamma_temme_large.js' );
+var lowerGammaSeries = require( './lower_gamma_series.js' );
+var regularisedGammaPrefix = require( './regularised_gamma_prefix.js' );
+var tgammaSmallUpperPart = require( './tgamma_small_upper_part.js' );
+var upperGammaFraction = require( './upper_gamma_fraction.js' );
 
 
 // VARIABLES //
@@ -14388,72 +16036,65 @@ var MAX_FACTORIAL = 170; // TODO: consider extracting as a constant
 /**
 * Computes the regularized incomplete gamma function. The upper tail is calculated via the modified Lentz's method for computing continued fractions, the lower tail using a power expansion.
 *
+*
+* #### Notes
+*
+* - When a >= MAX_FACTORIAL and computing the non-normalized incomplete gamma, result is rather hard to compute unless we use logs. There are really two options a) if x is a long way from a in value then we can reliably use methods 2 and 4 below in logarithmic form and go straight to the result. Otherwise we let the regularized gamma take the strain (the result is unlikely to underflow in the central region anyway) and combine with lgamma in the hopes that we get a finite result.
+*
 * @param {NonNegativeNumber} x - function parameter
-* @param {PositiveNumber} s - function parameter
+* @param {PositiveNumber} a - function parameter
 * @param {boolean} [regularized=true] - boolean indicating if the function should evaluate the regularized or non-regularized incomplete gamma functions
 * @param {boolean} [upper=false] - boolean indicating if the function should return the upper tail of the incomplete gamma function
 * @returns {number} function value
 */
 function gammainc( x, a, regularized, upper ) {
+	var optimisedInvert;
 	var normalised;
-	var invert;
+	var evalMethod;
 	var initValue;
-	var optimised_invert;
+	var isHalfInt;
+	var useTemme;
+	var isSmallA;
+	var invert;
 	var result;
+	var isInt;
 	var sigma;
-	var eval_method;
 	var gam;
-	var use_temme;
-	var fa;
-	var is_int;
-	var is_half_int;
-	var is_small_a;
 	var res;
+	var fa;
 	var g;
 
 	if ( x < 0.0 || a <= 0.0 ) {
 		return NaN;
 	}
-	normalised = ( regularized !== undefined ) ? regularized : true;
-	invert = upper ? true : false;
+	normalised = ( regularized === void 0 ) ? true : regularized;
+	invert = upper;
 	result = 0.0;
-
 	if ( a >= MAX_FACTORIAL && !normalised ) {
-		//
-		// When we're computing the non-normalized incomplete gamma
-		// and a is large the result is rather hard to compute unless
-		// we use logs.  There are really two options - if x is a long
-		// way from a in value then we can reliably use methods 2 and 4
-		// below in logarithmic form and go straight to the result.
-		// Otherwise we let the regularized gamma take the strain
-		// (the result is unlikely to unerflow in the central region anyway)
-		// and combine with lgamma in the hopes that we get a finite result.
-		//
 		if ( invert && ( a * 4.0 < x ) ) {
 			// This is method 4 below, done in logs:
-			result = a * ln(x) - x;
-			result += ln( upper_gamma_fraction( a, x ) );
+			result = ( a * ln(x) ) - x;
+			result += ln( upperGammaFraction( a, x ) );
 		}
 		else if ( !invert && ( a > 4.0 * x ) ) {
 			// This is method 2 below, done in logs:
-			result = a * ln(x) - x;
+			result = ( a * ln(x) ) - x;
 			initValue = 0;
-			result += ln( lower_gamma_series( a, x, initValue ) / a );
+			result += ln( lowerGammaSeries( a, x, initValue ) / a );
 		}
 		else {
 			result = gammainc( a, x, true, invert );
 			if ( result === 0.0 ) {
 				if ( invert ) {
 					// Try http://functions.wolfram.com/06.06.06.0039.01
-					result = 1 + 1 / (12 * a) + 1 / (288 * a * a);
-					result = ln( result ) - a + (a - 0.5) * ln(a) + ln( SQRT_TWO_PI );
+					result = 1.0 + ( 1.0 / (12.0*a) ) + ( 1.0 / (288.0*a*a) );
+					result = ln( result ) - a + ( ( a-0.5 ) * ln(a) );
+					result += ln( SQRT_TWO_PI );
 				} else {
-					// This is method 2 below, done in logs, we're really outside the
-					// range of this method, but since the result is almost certainly
-					// infinite, we should probably be OK:
-					result = a * ln( x ) - x;
+					// This is method 2 below, done in logs, we're really outside the range of this method, but since the result is almost certainly infinite, we should probably be OK:
+					result = ( a * ln( x ) ) - x;
 					initValue = 0.0;
-					result += ln( lower_gamma_series( a, x, initValue ) / a);
+					result += ln( lowerGammaSeries( a, x, initValue ) / a);
 				}
 			}
 			else {
@@ -14465,118 +16106,106 @@ function gammainc( x, a, regularized, upper ) {
 		}
 		return exp( result );
 	}
-
-	is_small_a = (a < 30) && (a <= x + 1.0 ) && (x < MAX_LN );
-	if ( is_small_a ) {
+	isSmallA = ( a < 30 ) && ( a <= x + 1.0 ) && ( x < MAX_LN );
+	if ( isSmallA ) {
 		fa = floor( a );
-		is_int = ( fa === a );
-		is_half_int = is_int ? false : ( abs( fa - a ) === 0.5 );
+		isInt = ( fa === a );
+		isHalfInt = isInt ? false : ( abs( fa - a ) === 0.5 );
 	} else {
-		is_int = is_half_int = false;
+		isInt = isHalfInt = false;
 	}
-	if ( is_int && x > 0.6 )
-	// Calculate Q via finite sum:
-	{
+	if ( isInt && x > 0.6 ) {
+		// Calculate Q via finite sum:
 		invert = !invert;
-		eval_method = 0;
+		evalMethod = 0;
 	}
-	else if ( is_half_int && x > 0.2 )
-	// Calculate Q via finite sum for half integer a:
-	{
+	else if ( isHalfInt && x > 0.2 ) {
+		// Calculate Q via finite sum for half integer a:
 		invert = !invert;
-		eval_method = 1;
+		evalMethod = 1;
 	}
-	else if ( x < SQRT_EPSILON && a > 1.0 )
-	{
-		eval_method = 6;
+	else if ( x < SQRT_EPSILON && a > 1.0 ) {
+		evalMethod = 6;
 	}
-	else if ( x < 0.5 )
-	{
+	else if ( x < 0.5 ) {
 		// Changeover criterion chosen to give a changeover at Q ~ 0.33:
 		if ( -0.4 / ln( x ) < a ) {
-			eval_method = 2;
+			evalMethod = 2;
 		} else {
-			eval_method = 3;
+			evalMethod = 3;
 		}
 	}
-	else if ( x < 1.1 )
-	{
-		// Changover here occurs when P ~ 0.75 or Q ~ 0.25:
+	else if ( x < 1.1 ) {
+		// Changeover here occurs when P ~ 0.75 or Q ~ 0.25:
 		if ( x * 0.75 < a ) {
-			eval_method = 2;
+			evalMethod = 2;
 		} else {
-			eval_method = 3;
+			evalMethod = 3;
 		}
 	}
-	else
-	{
-		/* Begin by testing whether we're in the "bad" zone
-		where the result will be near 0.5 and the usual
-		series and continued fractions are slow to converge: */
-		use_temme = false;
+	else {
+		// Begin by testing whether we're in the "bad" zone where the result will be near 0.5 and the usual series and continued fractions are slow to converge:
+		useTemme = false;
 		if ( normalised && a > 20 ) {
 			sigma = abs( (x-a)/a );
 			if ( a > 200 ) {
-				// This limit is chosen so that we use Temme's expansion
-				// only if the result would be larger than about 10^-6.
-				// Below that the regular series and continued fractions
-				// converge OK, and if we use Temme's method we get increasing
-				// errors from the dominant erfc term as it's (inexact) argument
-				// increases in magnitude.
+				// Limit chosen so that we use Temme's expansion only if the result would be larger than about 10^-6. Below that the regular series and continued fractions converge OK, and if we use Temme's method we get increasing errors from the dominant erfc term as it's (inexact) argument increases in magnitude.
 				if ( 20 / a > sigma * sigma ) {
-					use_temme = true;
+					useTemme = true;
 				}
-			} else {
-				if ( sigma < 0.4 ) {
-					use_temme = true;
-				}
+			} else if ( sigma < 0.4 ) {
+				useTemme = true;
 			}
 		}
-		if ( use_temme ) {
-			eval_method = 5;
+		if ( useTemme ) {
+			evalMethod = 5;
 		}
-		// Regular case where the result will not be too close to 0.5.
-		else
-		{
-			// Changeover here occurs at P ~ Q ~ 0.5
-			// Note that series computation of P is about x2 faster than continued fraction
-			// calculation of Q, so try and use the CF only when really necessary, especially
-			// for small x.
-			if ( x - ( 1.0 / (3.0 * x) ) < a ) {
-				eval_method = 2;
-			} else {
-				eval_method = 4;
-				invert = !invert;
-			}
+		// Regular case where the result will not be too close to 0.5: Changeover occurs at P ~ Q ~ 0.5. Note that series computation of P is about x2 faster than continued fraction calculation of Q, so try and use the CF only when really necessary, especially for small x.
+		else if ( x - ( 1.0 / (3.0 * x) ) < a ) {
+			evalMethod = 2;
+		} else {
+			evalMethod = 4;
+			invert = !invert;
 		}
 	}
 
-	switch( eval_method ) {
+	/* eslint-disable default-case */
+	switch ( evalMethod ) {
 	case 0:
-		result = finite_gamma_q( a, x );
+		result = finiteGammaQ( a, x );
 		if (normalised === false ) {
 			result *= gamma( a );
 		}
-	break;
+		break;
 	case 1:
-		result = finite_half_gamma_q( a, x );
+		result = finiteHalfGammaQ( a, x );
 		if ( normalised === false ) {
 			result *= gamma( a );
 		}
-	break;
+		break;
 	case 2:
 		// Compute P:
-		result = normalised ? regularised_gamma_prefix( a, x ) : full_igamma_prefix( a, x );
+		result = normalised ?
+			regularisedGammaPrefix( a, x ) :
+			fullIGammaPrefix( a, x );
 		if ( result !== 0.0 ) {
 			initValue = 0.0;
-			optimised_invert = false;
+			optimisedInvert = false;
 			if ( invert ) {
 				initValue = normalised ? 1.0 : gamma(a);
-				if ( normalised || result >= 1.0 || FLOAT64_MAX * result > initValue ) {
+				if (
+					normalised ||
+					result >= 1.0 ||
+					FLOAT64_MAX * result > initValue
+				) {
 					initValue /= result;
-					if ( normalised || a < 1.0 || ( FLOAT64_MAX / a > initValue ) ) {
+					if (
+						normalised ||
+						a < 1.0 ||
+						( FLOAT64_MAX / a > initValue )
+					) {
 						initValue *= -a;
-						optimised_invert = true;
+						optimisedInvert = true;
 					}
 					else {
 						initValue = 0.0;
@@ -14587,42 +16216,45 @@ function gammainc( x, a, regularized, upper ) {
 				}
 			}
 		}
-		result *= lower_gamma_series( a, x, initValue ) / a;
-		if ( optimised_invert ) {
+		result *= lowerGammaSeries( a, x, initValue ) / a;
+		if ( optimisedInvert ) {
 			invert = false;
 			result = -result;
 		}
-	break;
+		break;
 	case 3:
 		// Compute Q:
 		invert = !invert;
-		res = tgamma_small_upper_part( a, x, invert );
+		res = tgammaSmallUpperPart( a, x, invert );
 		result = res[ 0 ];
 		g = res[ 1 ];
 		invert = false;
 		if ( normalised ) {
 			result /= g;
 		}
-	break;
+		break;
 	case 4:
 		// Compute Q:
-		result = normalised ? regularised_gamma_prefix( a, x ) : full_igamma_prefix( a, x );
+		result = normalised ?
+			regularisedGammaPrefix( a, x ) :
+			fullIGammaPrefix( a, x );
 		if ( result !== 0 ) {
-			result *= upper_gamma_fraction( a, x );
+			result *= upperGammaFraction( a, x );
 		}
-	break;
+		break;
 	case 5:
-		result = igamma_temme_large( a, x );
+		result = igammaTemmeLarge( a, x );
 		if ( x >= a ) {
 			invert = !invert;
 		}
-	break;
+		break;
 	case 6:
-		// x is so small that P is necessarily very small too,
-		// use http://functions.wolfram.com/GammaBetaErf/GammaRegularized/06/01/05/01/01/
-		result = !normalised ? pow( x, a ) / a : pow(x, a) / gamma( a + 1.0 );
-		result *= 1.0 - a * x / ( a + 1.0 );
-	break;
+		// Since x is so small that P is necessarily very small too, use http://functions.wolfram.com/GammaBetaErf/GammaRegularized/06/01/05/01/01/
+		result = normalised ?
+			pow(x, a) / gamma( a + 1.0 ) :
+			pow( x, a ) / a;
+		result *= 1.0 - ( a * x / ( a + 1.0 ) );
+		break;
 	}
 	if ( normalised && result > 1.0 ) {
 		result = 1.0;
@@ -14639,7 +16271,7 @@ function gammainc( x, a, regularized, upper ) {
 
 module.exports = gammainc;
 
-},{"./finite_gamma_q.js":176,"./finite_half_gamma_q.js":177,"./full_igamma_prefix.js":178,"./igamma_temme_large.js":181,"./lower_gamma_series.js":183,"./regularised_gamma_prefix.js":185,"./tgamma_small_upper_part.js":187,"./upper_gamma_fraction.js":188,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max":391,"@stdlib/math/constants/float64-max-ln":389,"@stdlib/math/constants/float64-pinf":400,"@stdlib/math/constants/float64-sqrt-eps":402,"@stdlib/math/constants/float64-sqrt-two-pi":403}],180:[function(require,module,exports){
+},{"./finite_gamma_q.js":194,"./finite_half_gamma_q.js":195,"./full_igamma_prefix.js":196,"./igamma_temme_large.js":199,"./lower_gamma_series.js":201,"./regularised_gamma_prefix.js":203,"./tgamma_small_upper_part.js":205,"./upper_gamma_fraction.js":206,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max":427,"@stdlib/math/constants/float64-max-ln":423,"@stdlib/math/constants/float64-pinf":437,"@stdlib/math/constants/float64-sqrt-eps":439,"@stdlib/math/constants/float64-sqrt-two-pi":440}],198:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14675,39 +16307,38 @@ var log1p = require( '@stdlib/math/base/special/log1p' );
 * @example
 * var v = gammap1m1( 1e-3 );
 * // returns ~-0.001
+*
 * @example
 * var v = gammap1m1( -3/2 );
 * // returns ~-4.545
+*
 * @example
 * var v = gammap1m1( 4.0 );
 * // returns 23
+*
 * @example
 * var v = gammap1m1( 1/2 );
 * // returns ~-0.114
+*
 * @example
 * var v = gammap1m1( NaN );
 * // returns NaN
 */
 function gammap1m1( x ) {
-	var result;
-	if ( x < 0.0 ) {
-		if ( x < -0.5 ) {
-			// Best method is simply to subtract 1 from gamma:
-			result = gamma( 1.0 + x ) - 1.0;
-		} else {
-			// Use expm1 on gammaln:
-			result = expm1( -log1p(x) + gammaln( x + 2.0 ) );
-		}
-	} else {
-		if ( x < 2.0 ) {
-			// Use expm1 on gammaln:
-			result = expm1( gammaln( x + 1.0 ) );
-		} else {
-			// Best method is simply to subtract 1 from gamma:
-			result = gamma( 1.0 + x ) - 1.0;
-		}
+	if ( x < -0.5 ) {
+		// Best method is simply to subtract 1 from gamma:
+		return gamma( 1.0 + x ) - 1.0;
 	}
-	return result;
+	if ( x < 0.0 ) {
+		// Use expm1 on gammaln:
+		return expm1( -log1p(x) + gammaln( x + 2.0 ) );
+	}
+	if ( x < 2.0 ) {
+		// Use expm1 on gammaln:
+		return expm1( gammaln( x + 1.0 ) );
+	}
+	// Best method is simply to subtract 1 from gamma:
+	return gamma( 1.0 + x ) - 1.0;
 } // end FUNCTION gammap1m1()
 
 
@@ -14715,7 +16346,7 @@ function gammap1m1( x ) {
 
 module.exports = gammap1m1;
 
-},{"@stdlib/math/base/special/expm1":150,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/log1p":235}],181:[function(require,module,exports){
+},{"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/log1p":255}],199:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14743,6 +16374,9 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 
 
 // VARIABLES //
+
+// Pre-allocate workspace array:
+var workspace = new Array( 10 );
 
 // Polynomical coefficients...
 var C0 = [
@@ -14865,20 +16499,20 @@ var polyvalC8 = evalpoly.factory( C8 );
 * @param {number} x - function parameter
 * @returns {number} value of asymptotic expansion
 */
-function igamma_temme_large( a, x ) {
-	var workspace;
+function igammaTemmeLarge( a, x ) {
 	var result;
-	var sigma = (x - a) / a;
-	var phi = -ln( 1 + sigma ) + sigma;
+	var sigma;
+	var phi;
 	var y;
 	var z;
 
+	sigma = ( x - a ) / a;
+	phi = -ln( 1 + sigma ) + sigma;
 	y = a * phi;
 	z = sqrt( 2 * phi );
 	if ( x < a ) {
 		z = -z;
 	}
-	workspace = new Array( 10 );
 	workspace[ 0 ] = polyvalC0( z );
 	workspace[ 1 ] = polyvalC1( z );
 	workspace[ 2 ] = polyvalC2( z );
@@ -14889,22 +16523,21 @@ function igamma_temme_large( a, x ) {
 	workspace[ 7 ] = polyvalC7( z );
 	workspace[ 8 ] = polyvalC8( z );
 	workspace[ 9 ] = -0.00059676129019274625;
-
-	result = evalpoly( workspace, 1/a );
+	result = evalpoly( workspace, 1.0/a );
 	result *= exp( -y ) / sqrt( 2.0 * PI * a );
 	if ( x < a ) {
 		result = -result;
 	}
 	result += erfc( sqrt(y) ) / 2.0;
 	return result;
-} // end FUNCTION igamma_temme_large()
+} // end FUNCTION igammaTemmeLarge()
 
 
 // EXPORTS //
 
-module.exports = igamma_temme_large;
+module.exports = igammaTemmeLarge;
 
-},{"@stdlib/math/base/special/erfc":137,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-pi":399}],182:[function(require,module,exports){
+},{"@stdlib/math/base/special/erfc":140,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-pi":436}],200:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14943,7 +16576,7 @@ var gammainc = require( './gammainc.js' );
 
 module.exports = gammainc;
 
-},{"./gammainc.js":179}],183:[function(require,module,exports){
+},{"./gammainc.js":197}],201:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14963,7 +16596,7 @@ module.exports = gammainc;
 // MODULES //
 
 var sumSeries = require( '@stdlib/math/base/tools/sum-series' );
-var lower_incomplete_gamma_series = require( './lower_incomplete_gamma_series' );
+var lowerIncompleteGammaSeries = require( './lower_incomplete_gamma_series' );
 
 
 // MAIN //
@@ -14981,25 +16614,24 @@ var lower_incomplete_gamma_series = require( './lower_incomplete_gamma_series' )
 * @param {number} initialValue - initial value of the resulting sum
 * @returns {number} sum of terms of lower gamma series
 */
-function lower_gamma_series( a, z, initialValue ) {
+function lowerGammaSeries( a, z, initialValue ) {
 	var result;
 	var s;
 
 	initialValue = initialValue || 0.0;
-	s = lower_incomplete_gamma_series( a, z );
+	s = lowerIncompleteGammaSeries( a, z );
 	result = sumSeries( s, {
 		'initialValue': initialValue
 	});
 	return result;
-
-} // end FUNCTION lower_gamma_series()
+} // end FUNCTION lowerGammaSeries()
 
 
 // EXPORTS //
 
-module.exports = lower_gamma_series;
+module.exports = lowerGammaSeries;
 
-},{"./lower_incomplete_gamma_series":184,"@stdlib/math/base/tools/sum-series":346}],184:[function(require,module,exports){
+},{"./lower_incomplete_gamma_series":202,"@stdlib/math/base/tools/sum-series":380}],202:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15026,24 +16658,32 @@ module.exports = lower_gamma_series;
 * @param {number} z1 - function parameter
 * @returns {Function} series function
 */
-function lower_incomplete_gamma_series( a1, z1 ) {
+function lowerIncompleteGammaSeries( a1, z1 ) {
 	var result = 1.0;
 	var a = a1;
 	var z = z1;
-	return function next() {
+	return next;
+
+	/**
+	* Calculate the next term of the series.
+	*
+	* @private
+	* @returns {number} series expansion term
+	*/
+	function next() {
 		var r = result;
 		a += 1.0;
 		result *= z/a;
 		return r;
-	};
-} // end FUNCTION lower_incomplete_gamma_series()
+	} // end FUNCTION next()
+} // end FUNCTION lowerIncompleteGammaSeries()
 
 
 // EXPORTS //
 
-module.exports = lower_incomplete_gamma_series;
+module.exports = lowerIncompleteGammaSeries;
 
-},{}],185:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15118,7 +16758,7 @@ var DENOM = [
 * @param {number} z - input value
 * @returns {number} Lanczos approximation
 */
-var lanczos_sum_expG_scaled = evalrational( NUM, DENOM );
+var lanczosSumExpGScaled = evalrational( NUM, DENOM );
 
 
 // MAIN //
@@ -15131,46 +16771,33 @@ var lanczos_sum_expG_scaled = evalrational( NUM, DENOM );
 * @param {number} z - input value
 * @returns {number} (z^a)(e^-z)/tgamma(a)
 */
-function regularised_gamma_prefix( a, z ) {
+function regularisedGammaPrefix( a, z ) {
+	var prefix;
+	var amza;
+	var agh;
 	var alz;
 	var amz;
-	var amza;
 	var sq;
-	var agh = a + G - 0.5;
-	var prefix;
-	var d = ( (z - a) - G + 0.5 ) / agh;
+	var d;
 
+	agh = a + G - 0.5;
+	d = ( (z - a) - G + 0.5 ) / agh;
 	if ( a < 1 ) {
-		//
-		// We have to treat a < 1 as a special case because our Lanczos
-		// approximations are optimised against the factorials with a > 1,
-		// and for high precision types especially (128-bit reals for example)
-		// very small values of a can give rather eroneous results for gamma
-		// unless we do this:
-		//
-		// TODO: is this still required?  Lanczos approx should be better now?
-		//
+		// Treat a < 1 as a special case because our Lanczos approximations are optimised against the factorials with a > 1, and for high precision types very small values of `a` can give rather erroneous results for gamma:
 		if ( z <= LOG_MIN_VALUE ) {
-			// Oh dear, have to use logs, should be free of cancellation errors though:
-			return exp( a * ln(z) - z - gammaln( a ) );
+			// Use logs, so should be free of cancellation errors:
+			return exp( ( a * ln(z) ) - ( z - gammaln( a ) ) );
 		}
-		else {
-			// direct calculation, no danger of overflow as gamma(a) < 1/a
-			// for small a.
-			return pow( z, a ) * exp( -z ) / gamma( a );
-		}
+		// No danger of overflow as gamma(a) < 1/a for small a, so direct calculation:
+		return pow( z, a ) * exp( -z ) / gamma( a );
 	}
 	else if ( abs(d*d*a) <= 100 && a > 150 ) {
-		// special case for large a and a ~ z.
-		prefix = a * ( log1p( d ) - d ) + z * (0.5 - G) / agh;
+		// Special case for large a and a ~ z:
+		prefix = ( a * ( log1p( d ) - d ) ) + ( z * (0.5 - G) / agh );
 		prefix = exp( prefix );
 	}
 	else {
-		//
-		// general case.
-		// direct computation is most accurate, but use various fallbacks
-		// for different parts of the problem domain:
-		//
+		// General case. direct computation is most accurate, but use various fallbacks for different parts of the problem domain:
 		alz = a * ln(z / agh);
 		amz = a - z;
 		if (
@@ -15182,16 +16809,16 @@ function regularised_gamma_prefix( a, z ) {
 				min(alz, amz)/2 > LOG_MIN_VALUE &&
 				max(alz, amz)/2 < LOG_MAX_VALUE
 			) {
-				// compute square root of the result and then square it:
+				// Compute square root of the result and then square it:
 				sq = pow( z / agh, a / 2 ) * exp( amz / 2 );
 				prefix = sq * sq;
 			}
 			else if (
-				min(alz, amz)/4 > LOG_MIN_VALUE  &&
+				min(alz, amz)/4 > LOG_MIN_VALUE &&
 				max(alz, amz)/4 < LOG_MAX_VALUE &&
 				z > a
 			) {
-				// compute the 4th root of the result then square it twice:
+				// Compute the 4th root of the result then square it twice:
 				sq = pow( z / agh, a / 4 ) * exp( amz / 4 );
 				prefix = sq * sq;
 				prefix *= prefix;
@@ -15206,21 +16833,20 @@ function regularised_gamma_prefix( a, z ) {
 				prefix = exp( alz + amz );
 			}
 		}
-		else
-		{
+		else {
 			prefix = pow( z / agh, a ) * exp( amz );
 		}
 	}
-	prefix *= sqrt( agh / E ) / lanczos_sum_expG_scaled( a );
+	prefix *= sqrt( agh / E ) / lanczosSumExpGScaled( a );
 	return prefix;
-} // end FUNCTION regularised_gamma_prefix()
+} // end FUNCTION regularisedGammaPrefix()
 
 
 // EXPORTS //
 
-module.exports = regularised_gamma_prefix;
+module.exports = regularisedGammaPrefix;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/max":242,"@stdlib/math/base/special/min":246,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-e":375}],186:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/min":269,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409}],204:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15245,7 +16871,7 @@ module.exports = regularised_gamma_prefix;
 * @param {number} x - function parameter
 * @returns {Function}  series function
 */
-function small_gamma2_series( a, x ) {
+function smallGamma2Series( a, x ) {
 	var result;
 	var apn;
 	var n;
@@ -15255,21 +16881,30 @@ function small_gamma2_series( a, x ) {
 	x = -x;
 	apn = a + 1.0;
 	n = 1;
-	return function next() {
+	return next;
+
+	/**
+	* Calculate the next term of the series.
+	*
+	* @private
+	* @returns {number} series expansion term
+	*/
+	function next() {
 		r = result / apn;
 		result *= x;
-		result /= ++n;
+		n += 1;
+		result /= n;
 		apn += 1.0;
 		return r;
-	};
-} // end FUNCTION small_gamma2_series()
+	} // end FUNCTION next();
+} // end FUNCTION smallGamma2Series()
 
 
 // EXPORTS //
 
-module.exports = small_gamma2_series;
+module.exports = smallGamma2Series;
 
-},{}],187:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15290,7 +16925,7 @@ module.exports = small_gamma2_series;
 
 var powm1 = require( '@stdlib/math/base/special/powm1' );
 var sumSeries = require( '@stdlib/math/base/tools/sum-series' );
-var small_gamma2_series = require( './small_gamma2_series.js' );
+var smallGamma2Series = require( './small_gamma2_series.js' );
 var tgamma1pm1 = require( './gammap1m1.js' );
 
 
@@ -15302,9 +16937,9 @@ var tgamma1pm1 = require( './gammap1m1.js' );
 * @param {number} a - function parameter
 * @param {number} x - function parameter
 * @param {boolean} invert - boolean indicating if the upper tail of the incomplete gamma function should be evaluated
-* @returns {number} full upper fraction (Q)
+* @returns {Array} full upper fraction (Q) and pgam
 */
-function tgamma_small_upper_part( a, x, invert ) {
+function tgammaSmallUpperPart( a, x, invert ) {
 	var initialValue;
 	var result;
 	var pgam;
@@ -15316,7 +16951,7 @@ function tgamma_small_upper_part( a, x, invert ) {
 	p = powm1( x, a );
 	result -= p;
 	result /= a;
-	s = small_gamma2_series( a, x );
+	s = smallGamma2Series( a, x );
 	p += 1.0;
 	initialValue = invert ? pgam : 0.0;
 	result = -p * sumSeries( s, {
@@ -15326,14 +16961,14 @@ function tgamma_small_upper_part( a, x, invert ) {
 		result = -result;
 	}
 	return [ result, pgam ];
-} // end FUNCTION tgamma_small_upper_part()
+} // end FUNCTION tgammaSmallUpperPart()
 
 
 // EXPORTS //
 
-module.exports = tgamma_small_upper_part;
+module.exports = tgammaSmallUpperPart;
 
-},{"./gammap1m1.js":180,"./small_gamma2_series.js":186,"@stdlib/math/base/special/powm1":262,"@stdlib/math/base/tools/sum-series":346}],188:[function(require,module,exports){
+},{"./gammap1m1.js":198,"./small_gamma2_series.js":204,"@stdlib/math/base/special/powm1":293,"@stdlib/math/base/tools/sum-series":380}],206:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15353,7 +16988,7 @@ module.exports = tgamma_small_upper_part;
 // MODULES //
 
 var continuedFraction = require( '@stdlib/math/base/tools/continued-fraction' );
-var upper_incomplete_gamma_fract = require( './upper_incomplete_gamma_fract' );
+var upperIncompleteGammaFract = require( './upper_incomplete_gamma_fract' );
 
 
 // MAIN //
@@ -15361,21 +16996,22 @@ var upper_incomplete_gamma_fract = require( './upper_incomplete_gamma_fract' );
 /**
 * Evaluate the lower incomplete gamma integral via a series expansion and divide by gamma(z) to normalise.
 *
+* @private
 * @param {number} a - function parameter
 * @param {number} z - function parameter
 * @returns {number} function value
 */
-function upper_gamma_fraction( a, z ) {
-	var f = upper_incomplete_gamma_fract( a, z );
+function upperGammaFraction( a, z ) {
+	var f = upperIncompleteGammaFract( a, z );
 	return 1.0 / ( z - a + 1.0 + continuedFraction( f ) );
-} // end FUNCTION upper_gamma_fraction()
+} // end FUNCTION upperGammaFraction()
 
 
 // EXPORTS //
 
-module.exports = upper_gamma_fraction;
+module.exports = upperGammaFraction;
 
-},{"./upper_incomplete_gamma_fract":189,"@stdlib/math/base/tools/continued-fraction":337}],189:[function(require,module,exports){
+},{"./upper_incomplete_gamma_fract":207,"@stdlib/math/base/tools/continued-fraction":371}],207:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15402,26 +17038,34 @@ module.exports = upper_gamma_fraction;
 * @param {number} z1 - function parameter
 * @returns {Function} series function
 */
-function upper_incomplete_gamma_fract( a1, z1 ) {
+function upperIncompleteGammaFract( a1, z1 ) {
 	var z = z1 - a1 + 1.0;
 	var a = a1;
 	var k = 0;
-	return function next() {
-		++k;
+	return next;
+
+	/**
+	* Calculate the next term of the series.
+	*
+	* @private
+	* @returns {Array} series expansion terms
+	*/
+	function next() {
+		k += 1;
 		z += 2.0;
 		return [
 			k * (a - k),
 			z
 		];
-	};
-} // end FUNCTION upper_incomplete_gamma_fract()
+	} // end FUNCTION next()
+} // end FUNCTION upperIncompleteGammaFract()
 
 
 // EXPORTS //
 
-module.exports = upper_incomplete_gamma_fract;
+module.exports = upperIncompleteGammaFract;
 
-},{}],190:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -15449,8 +17093,8 @@ function chepolsum( n, t, ak ) {
 	do {
 		u2 = u1;
 		u1 = u0;
-		u0 = tt*u1 - u2 + ak[ k ];
-		k = k - 1;
+		u0 = ( tt*u1 ) - u2 + ak[ k ];
+		k -= 1;
 	} while ( k >= 0 );
 	return ( u0 - u2 ) / 2.0;
 } // end FUNCTION chepolsum()
@@ -15460,7 +17104,260 @@ function chepolsum( n, t, ak ) {
 
 module.exports = chepolsum;
 
-},{}],191:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
+/* eslint-disable max-statements */
+'use strict';
+
+// MODULES //
+
+var debug = require( 'debug' )( 'gammaincinv:compute' );
+var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
+var gammaln = require( '@stdlib/math/base/special/gammaln' );
+var erfcinv = require( '@stdlib/math/base/special/erfcinv' );
+var gamma = require( '@stdlib/math/base/special/gamma' );
+var sqrt = require( '@stdlib/math/base/special/sqrt' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var exp = require( '@stdlib/math/base/special/exp' );
+var min = require( '@stdlib/math/base/special/min' );
+var pow = require( '@stdlib/math/base/special/pow' );
+var ln = require( '@stdlib/math/base/special/ln' );
+var SQRT_TWO_PI = require( '@stdlib/math/constants/float64-sqrt-two-pi' );
+var MAX_FLOAT32 = require( '@stdlib/math/constants/float32-max' );
+var PI = require( '@stdlib/math/constants/float64-pi' );
+var higherNewton = require( './higher_newton.js' );
+var lambdaeta = require( './lambdaeta.js' );
+var gamstar = require( './gamstar.js' );
+var eps1 = require( './eps1.js' );
+var eps2 = require( './eps2.js' );
+var eps3 = require( './eps3.js' );
+
+
+// VARIABLES //
+
+var ONEO6 = 0.166666666666666666666666666667;
+var ONEO12 = 0.0833333333333333333333333333333;
+var ONEO24 = 0.0416666666666666666666666666667;
+
+
+// MAIN //
+
+/**
+* This routine computes xr in the equations P(a,xr)=p and Q(a,xr)=q with a as a given positive parameter; p and q satisfy p+q=1. The equation is inverted with min(p,q).
+*
+* @private
+* @param {number} a - scale value of incomplete gamma function
+* @param {Probability} p - probability value
+* @param {Probability} q - probability value
+* @returns {number} solution of the equations P(a,xr)=p and Q(a,xr)=q with a as a given positive parameter.
+*/
+function compute( a, p, q ) {
+	var ap1inv;
+	var invfp;
+	var lgama;
+	var pcase;
+	var porq;
+	var ainv;
+	var logr;
+	var ap22;
+	var ap14;
+	var ap13;
+	var ap12;
+	var vgam;
+	var vmin;
+	var xini;
+	var ap1;
+	var ap2;
+	var ap3;
+	var eta;
+	var p6;
+	var p5;
+	var x0;
+	var ck;
+	var a2;
+	var L2;
+	var L3;
+	var L4;
+	var b2;
+	var b3;
+	var p3;
+	var a4;
+	var fp;
+	var p4;
+	var p2;
+	var a3;
+	var xr;
+	var b;
+	var L;
+	var i;
+	var k;
+	var m;
+	var r;
+	var s;
+	var y;
+
+	ck = new Array( 5 );
+	if ( p < 0.5) {
+		pcase = true;
+		porq = p;
+		s = -1;
+	} else {
+		pcase = false;
+		porq = q;
+		s = 1;
+	}
+	k = 0;
+	if ( abs( a - 1 ) < 1e-4 ) {
+		m = 0;
+		if ( pcase ) {
+			if ( p < 1e-3 ) {
+				p2 = p * p;
+				p3 = p2 * p;
+				p4 = p3 * p;
+				p5 = p4 * p;
+				p6 = p5 * p;
+				x0 = p + ( p2*0.5 ) + ( p3*(1/3) ) + ( p4*0.25 );
+				x0 += ( p5*0.2 ) + ( p6*(1/6) );
+			} else {
+				x0 = -ln( 1 - p );
+			}
+		} else {
+			x0 = -ln( q );
+		}
+		if ( a === 1 ) {
+			k = 2;
+			xr = x0;
+		} else {
+			lgama = gammaln( a );
+			k = 1;
+		}
+	}
+	if ( q < 1e-30 && a < 0.5 ) {
+		m = 0;
+		x0 = -ln( q * gamma(a) ) + ( ( a-1.0 ) * ln( -ln( q * gamma(a) ) ));
+		k = 1;
+		lgama = gammaln( a );
+	}
+	if ( a > 1.0 && a < 500.0 && p < 1e-80 ) {
+		m = 0;
+		ainv = 1.0 / a;
+		ap1inv = 1.0 / ( a + 1.0 );
+		x0 = ( gammaln( a+1.0 )+ ln( p ) ) * ainv;
+		x0 = exp( x0 );
+		xini = x0;
+		for ( i = 0; i < 10; i++ ) {
+			x0 = xini * exp( x0 * ainv ) * pow( 1.0 - ( x0*ap1inv ), ainv );
+		}
+		k = 1;
+		lgama = gammaln( a );
+	}
+
+	logr = (1.0/a) * ( ln(p) + gammaln( a + 1 ) );
+	if ( ( logr < ln( 0.2 * ( 1.0+a ) ) ) && ( k === 0 ) ) {
+		r = exp( logr );
+		m = 0;
+		a2 = a * a;
+		a3 = a2 * a;
+		a4 = a3 * a;
+		ap1 = a + 1;
+		ap12 = ap1 * ap1;
+		ap13 = ap1 * ap12;
+		ap14 = ap12 * ap12;
+		ap2 = a + 2;
+		ap22 = ap2 * ap2;
+		ap3 = a + 3;
+		ck[ 0 ] = 1.0;
+		ck[ 1 ] = 1.0 / ap1;
+		ck[ 2 ] = 0.5 * ( ( 3.0*a ) + 5.0 ) / ( ap12 * ap2 );
+		ck[ 3 ] = (1/3) * ( 31.0 + (8.0*a2) + (33.0*a) ) / ( ap13 * ap2 * ap3 );
+		ck[ 4 ] = ONEO24 * ( 2888.0 + (1179.0*a3) + (125.0*a4) + (3971.0*a2) +
+			(5661.0*a) ) / ( ap14 * ap22 * ap3 * ( a+4.0 ) );
+		x0 = r * evalpoly( ck, r );
+		lgama = gammaln( a );
+		k = 1;
+	}
+	if ( ( a < 10.0 ) && ( k === 0 ) ) {
+		vgam = sqrt( a ) / ( gamstar(a) * SQRT_TWO_PI );
+		vmin = min( 0.02, vgam );
+		if ( q < vmin ) {
+			m = 0;
+			b = 1.0 - a;
+			b2 = b * b;
+			b3 = b2 * b;
+			eta = sqrt( -2.0/a * ln( q / vgam ) );
+			x0 = a * lambdaeta(eta);
+			L = ln( x0 );
+			if ( x0 > 5 ) {
+				L2 = L * L;
+				L3 = L2 * L;
+				L4 = L3 * L;
+				r = 1.0 / x0;
+				ck[ 0 ] = L - 1.0;
+				ck[ 1 ] = ( (3.0*b) - (2.0*b*L) + L2 - ( 2.0*L ) + 2.0 ) * 0.5;
+				ck[ 2 ] =( (24*b*L) - (11*b2) - (24*b) - (6*L2) + (12*L) -
+					12.0 - (9*b*L2) + (6*b2*L) + (2*L3) ) * ONEO6;
+				ck[ 3 ] = ( (-12*b3*L) + (84*b*L2) - (114*b2*L) + (72+(36*L2)) +
+					(((3*L4)-(72*L)+162) * (b-(168*b*L))) - ((12*L3)+(25*b3)) -
+					( (22*b*L3)+(36*b2*L2)+(120*b2) ) ) * ONEO12;
+				ck[ 4 ] = 0.0;
+				x0 = x0 - L + ( b*r*evalpoly( ck, r ) );
+			} else {
+				r = 1.0 / x0;
+				L2 = L * L;
+				ck[ 0 ] = L - 1.0;
+				if ( ( L - ( b*r*ck[ 0 ] ) ) < x0 ) {
+					x0 = x0 - L + ( b * r * ck[ 0 ] );
+				}
+			}
+			lgama = gammaln( a );
+			k = 1;
+		}
+	}
+	if ( ( abs( porq - 0.5 ) < 1e-5 ) && ( k === 0 ) ) {
+		m = 0;
+		ainv = 1.0 / a;
+		x0 = a - (1/3) + ( ( 0.0197530864197530864197530864198 +
+			( 0.00721144424848128551832255535959 * ainv ) ) * ainv );
+		lgama = gammaln( a );
+		k = 1;
+	}
+	if ( ( a < 1 ) && ( k === 0 ) ) {
+		m = 0;
+		if (pcase) {
+			x0 = exp( (1/a) * ( ln(porq) + gammaln(a+1) ) );
+		} else {
+			x0 = exp( (1/a) * ( ln(1-porq) + gammaln(a+1) ) );
+		}
+		lgama = gammaln( a );
+		k = 1;
+	}
+	if ( k === 0 ) {
+		m = 1;
+		ainv = 1 / a;
+		r = erfcinv( 2 * porq );
+		eta = s * r / sqrt( a * 0.5 );
+		if ( r < MAX_FLOAT32 ) {
+			eta += ( eps1(eta) + ( (eps2(eta)+(eps3(eta)*ainv))*ainv ) ) * ainv;
+			x0 = a * lambdaeta(eta);
+			y = eta;
+			fp = -sqrt( a / (2*PI) ) * exp( -0.5*a*y*y ) / ( gamstar(a) );
+			invfp = 1 / fp;
+		} else {
+			debug( 'Warning: Overflow problems in one or more steps of the computation.' );
+			return NaN;
+		}
+	}
+	if ( k < 2 ) {
+		xr = higherNewton( x0, a, m, p, q, lgama, invfp, pcase );
+	}
+	return xr;
+} // end FUNCTION compute()
+
+
+// EXPORTS //
+
+module.exports = compute;
+
+},{"./eps1.js":210,"./eps2.js":211,"./eps3.js":212,"./gamstar.js":214,"./higher_newton.js":215,"./lambdaeta.js":217,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/erfcinv":142,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/min":269,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float32-max":407,"@stdlib/math/constants/float64-pi":436,"@stdlib/math/constants/float64-sqrt-two-pi":440,"debug":455}],210:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15517,7 +17414,7 @@ function eps1( eta ) {
 
 module.exports = eps1;
 
-},{"./lambdaeta.js":197,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/tools/evalrational":343}],192:[function(require,module,exports){
+},{"./lambdaeta.js":217,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalrational":377}],211:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15596,7 +17493,7 @@ function eps2( eta ) {
 	if ( eta < -5.0 ) {
 		x = eta * eta;
 		lnmeta = ln( -eta );
-		return ( 12.0 - x - 6.0 * ( lnmeta*lnmeta ) ) / ( 12.0 * x * eta );
+		return ( 12.0 - x - ( 6.0*( lnmeta*lnmeta ) ) ) / ( 12.0 * x * eta );
 	}
 	else if ( eta < -2.0 ) {
 		return rateval1( eta );
@@ -15608,9 +17505,7 @@ function eps2( eta ) {
 		x = 1.0 / eta;
 		return rateval3( eta ) / ( -12.0 * eta );
 	}
-	else {
-		return -1.0 / ( 12.0 * eta );
-	}
+	return -1.0 / ( 12.0 * eta );
 } // end FUNCTION eps2()
 
 
@@ -15618,7 +17513,7 @@ function eps2( eta ) {
 
 module.exports = eps2;
 
-},{"@stdlib/math/base/special/ln":228,"@stdlib/math/base/tools/evalrational":343}],193:[function(require,module,exports){
+},{"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalrational":377}],212:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15629,45 +17524,80 @@ var ln = require( '@stdlib/math/base/special/ln' );
 
 // VARIABLES //
 
-var ak1 = new Array( 5 );
-var bk1 = new Array( 5 );
-ak1[ 0 ] = 4.95346498136e-2;  bk1[ 0 ] = 1.00000000000e+0;
-ak1[ 1 ] = 2.99521337141e-2;  bk1[ 1 ] = 7.59803615283e-1;
-ak1[ 2 ] = 6.88296911516e-3;  bk1[ 2 ] = 2.61547111595e-1;
-ak1[ 3 ] = 5.12634846317e-4;  bk1[ 3 ] = 4.64854522477e-2;
-ak1[ 4 ] = -2.01411722031e-5; bk1[ 4 ] = 4.03751193496e-3;
+var ak1 = [
+	4.95346498136e-2,
+	2.99521337141e-2,
+	6.88296911516e-3,
+	5.12634846317e-4,
+	-2.01411722031e-5
+];
+var bk1 = [
+	1.00000000000e+0,
+	7.59803615283e-1,
+	2.61547111595e-1,
+	4.64854522477e-2,
+	4.03751193496e-3
+];
 
-var ak2 = new Array( 5 );
-var bk2 = new Array( 5 );
-ak2[ 0 ] = 4.52313583942e-3;  bk2[ 0 ] = 1.00000000000e+0;
-ak2[ 1 ] = 1.20744920113e-3;  bk2[ 1 ] = 9.12203410349e-1;
-ak2[ 2 ] = -7.89724156582e-5; bk2[ 2 ] = 4.05368773071e-1;
-ak2[ 3 ] = -5.04476066942e-5; bk2[ 3 ] = 9.01638932349e-2;
-ak2[ 4 ] = -5.35770949796e-6; bk2[ 4 ] = 9.48935714996e-3;
+var ak2 = [
+	4.52313583942e-3,
+	1.20744920113e-3,
+	-7.89724156582e-5,
+	-5.04476066942e-5,
+	-5.35770949796e-6
+];
+var bk2 = [
+	1.00000000000e+0,
+	9.12203410349e-1,
+	4.05368773071e-1,
+	9.01638932349e-2,
+	9.48935714996e-3
+];
 
-var ak3 = new Array( 5 );
-var bk3 = new Array( 5 );
-ak3[ 0 ] = 4.39937562904e-3;  bk3[ 0 ] = 1.00000000000e+0;
-ak3[ 1 ] = 4.87225670639e-4;  bk3[ 1 ] = 7.94435257415e-1;
-ak3[ 2 ] = -1.28470657374e-4; bk3[ 2 ] = 3.33094721709e-1;
-ak3[ 3 ] = 5.29110969589e-6;  bk3[ 3 ] = 7.03527806143e-2;
-ak3[ 4 ] = 1.57166771750e-7;  bk3[ 4 ] = 8.06110846078e-3;
+var ak3 = [
+	4.39937562904e-3,
+	4.87225670639e-4,
+	-1.28470657374e-4,
+	5.29110969589e-6,
+	1.57166771750e-7
+];
+var bk3 = [
+	1.00000000000e+0,
+	7.94435257415e-1,
+	3.33094721709e-1,
+	7.03527806143e-2,
+	8.06110846078e-3
+];
 
-var ak4 = new Array( 5 );
-var bk4 = new Array( 5 );
-ak4[ 0 ] = -1.14811912320e-3;  bk4[ 0 ] = 1.00000000000e+0;
-ak4[ 1 ] = -1.12850923276e-1;  bk4[ 1 ] = 1.42482206905e+1;
-ak4[ 2 ] = 1.51623048511e+0;   bk4[ 2 ] = 6.97360396285e+1;
-ak4[ 3 ] = -2.18472031183e-1;  bk4[ 3 ] = 2.18938950816e+2;
-ak4[ 4 ] = 7.30002451555e-2;   bk4[ 4 ] = 2.77067027185e+2;
+var ak4 = [
+	-1.14811912320e-3,
+	-1.12850923276e-1,
+	1.51623048511e+0,
+	-2.18472031183e-1,
+	7.30002451555e-2
+];
+var bk4 = [
+	1.00000000000e+0,
+	1.42482206905e+1,
+	6.97360396285e+1,
+	2.18938950816e+2,
+	2.77067027185e+2
+];
 
-var ak5 = new Array( 5 );
-var bk5 = new Array( 5 );
-ak5[ 0 ] = -1.45727889667e-4;  bk5[ 0 ] = 1.00000000000e+0;
-ak5[ 1 ] = -2.90806748131e-1;  bk5[ 1 ] = 1.39612587808e+2;
-ak5[ 2 ] = -1.33085045450e+1;  bk5[ 2 ] = 2.18901116348e+3;
-ak5[ 3 ] = 1.99722374056e+2;   bk5[ 3 ] = 7.11524019009e+3;
-ak5[ 4 ] = -1.14311378756e+1;  bk5[ 4 ] = 4.55746081453e+4;
+var ak5 = [
+	-1.45727889667e-4,
+	-2.90806748131e-1,
+	-1.33085045450e+1,
+	1.99722374056e+2,
+	-1.14311378756e+1
+];
+var bk5 = [
+	1.00000000000e+0,
+	1.39612587808e+2,
+	2.18901116348e+3,
+	7.11524019009e+3,
+	4.55746081453e+4
+];
 
 
 // FUNCTIONS //
@@ -15696,7 +17626,7 @@ function eps3( eta ) {
 	if ( eta < -8.0 ) {
 		x = eta * eta;
 		y = ln( -eta ) / eta;
-		return ( -30.0 + eta * y * ( 6.0 * x * y * y - 12.0 + x ) ) /
+		return ( -30.0 + ( eta*y*( (6.0*x*y*y) - 12.0+x ) ) ) /
 			( 12.0 * eta * x * x );
 	}
 	else if ( eta < -4.0 ) {
@@ -15716,10 +17646,8 @@ function eps3( eta ) {
 		x = 1.0 / eta;
 		return rational5( x ) / ( eta * eta );
 	}
-	else {
-		eta3 = eta * eta * eta;
-		return - ln( eta ) / ( 12.0 * eta3 );
-	}
+	eta3 = eta * eta * eta;
+	return -ln( eta ) / ( 12.0 * eta3 );
 } // end FUNCTION eps3()
 
 
@@ -15727,31 +17655,15 @@ function eps3( eta ) {
 
 module.exports = eps3;
 
-},{"@stdlib/math/base/special/ln":228,"@stdlib/math/base/tools/evalrational":343}],194:[function(require,module,exports){
+},{"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalrational":377}],213:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var gammainc = require( '@stdlib/math/base/special/gammainc' );
-var gammaln = require( '@stdlib/math/base/special/gammaln' );
-var erfcinv = require( '@stdlib/math/base/special/erfcinv' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var gamma = require( '@stdlib/math/base/special/gamma' );
-var sqrt = require( '@stdlib/math/base/special/sqrt' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var exp = require( '@stdlib/math/base/special/exp' );
-var pow = require( '@stdlib/math/base/special/pow' );
-var ln = require( '@stdlib/math/base/special/ln' );
 var FLOAT32_SMALLEST = require( '@stdlib/math/constants/float32-smallest-normal' );
-var SQRT_TWO_PI = require( '@stdlib/math/constants/float64-sqrt-two-pi' );
-var MAX_FLOAT32 = require( '@stdlib/math/constants/float32-max' );
 var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var PI = require( '@stdlib/math/constants/float64-pi' );
-var lambdaeta = require( './lambdaeta.js' );
-var gamstar = require( './gamstar.js' );
-var eps1 = require( './eps1.js' );
-var eps2 = require( './eps2.js' );
-var eps3 = require( './eps3.js' );
+var compute = require( './compute.js' );
 
 
 // MAIN //
@@ -15819,284 +17731,11 @@ function gammaincinv( p, a, upper ) {
 } // end FUNCTION gammaincinv()
 
 
-/**
-* This routine computes xr in the equations P(a,xr)=p and Q(a,xr)=q with a as a given positive parameter; p and q satisfy p+q=1. The equation is inverted with min(p,q).
-*
-* @private
-* @param {number} a - scale value of incomplete gamma function
-* @param {Probability} p - probability value
-* @param {Probability} q - probability value
-* @returns {number} solution of the equations P(a,xr)=p and Q(a,xr)=q with a as a given positive parameter.
-*/
-function compute( a, p, q ) {
-	var warning;
-	var ap1inv;
-	var invfp;
-	var lgama;
-	var pcase;
-	var porq;
-	var ainv;
-	var dlnr;
-	var logr;
-	var ap22;
-	var ap14;
-	var ap13;
-	var ap12;
-	var vgam;
-	var vmin;
-	var xini;
-	var ap1;
-	var ap2;
-	var ap3;
-	var eta;
-	var p6;
-	var p5;
-	var x0;
-	var ck;
-	var a2;
-	var x2;
-	var L2;
-	var L3;
-	var L4;
-	var b2;
-	var b3;
-	var p3;
-	var a4;
-	var fp;
-	var px;
-	var qx;
-	var p4;
-	var p2;
-	var a3;
-	var xr;
-	var b;
-	var L;
-	var i;
-	var k;
-	var m;
-	var n;
-	var r;
-	var s;
-	var t;
-	var x;
-	var y;
-
-	ck = new Array( 5 );
-	if ( p < 0.5) {
-		pcase = true;
-		porq = p;
-		s = -1;
-	} else {
-		pcase = false;
-		porq = q;
-		s = 1;
-	}
-	k = 0;
-	if ( abs( a - 1 ) < 1e-4 ) {
-		m = 0;
-		if ( pcase ) {
-			if ( p < 1e-3 ) {
-				p2 = p * p;
-				p3 = p2 * p;
-				p4 = p3 * p;
-				p5 = p4 * p;
-				p6 = p5 * p;
-				x0 = p + p2 * 0.5 + p3 * (1/3) + p4 * 0.25 + p5 * 0.2 + p6 * (1/6);
-			} else {
-				x0 = - ln( 1 - p );
-			}
-		} else {
-			x0 = - ln( q );
-		}
-		if ( a === 1 ) {
-			k = 2;
-			xr = x0;
-		} else {
-			lgama = gammaln( a );
-			k = 1;
-		}
-	}
-	if ( q < 1e-30 && a < 0.5 ) {
-		m = 0;
-		x0 = - ln( q * gamma(a) ) + ( a - 1 ) * ln( -ln( q * gamma(a) ) );
-		k = 1;
-		lgama = gammaln( a );
-	}
-	if ( a > 1 && a < 500 && p < 1e-80 ) {
-		m = 0;
-		ainv = 1 / a;
-		ap1inv = 1 / ( a + 1 );
-		x0 = ( gammaln( a + 1 )+ ln( p ) ) * ainv;
-		x0 = exp( x0 );
-		xini = x0;
-		for ( i = 0; i < 10; i++ ) {
-			x0 = xini * exp( x0 * ainv ) * pow( 1.0 - x0 * ap1inv, ainv );
-		}
-		k = 1;
-		lgama = gammaln( a );
-	}
-
-	logr = (1/a) * ( ln(p) + gammaln( a + 1 ) );
-
-	if ( ( logr < ln( 0.2 * ( 1 + a ) ) ) && ( k === 0 ) ) {
-		r = exp( logr );
-		m = 0;
-		a2 = a * a;
-		a3 = a2 * a;
-		a4 = a3 * a;
-		ap1 = a + 1;
-		ap12 = ap1 * ap1;
-		ap13 = ap1 * ap12;
-		ap14 = ap12 * ap12;
-		ap2 = a + 2;
-		ap22 = ap2 * ap2;
-		ap3 = a + 3;
-		ck[ 0 ] = 1;
-		ck[ 1 ] = 1 / ap1;
-		ck[ 2 ] = 0.5 * ( 3 * a + 5 ) / ( ap12 * ap2 );
-		ck[ 3 ] = (1/3) * ( 31 + 8 * a2 + 33 * a ) / ( ap13 * ap2 * ap3 );
-		ck[ 4 ] = 0.0416666666666666666666666666667 *( 2888 + 1179 * a3 + 125 * a4 + 3971 * a2 + 5661 * a ) / ( ap14 * ap22 * ap3 * ( a + 4 ) );
-		x0 = r * ( 1 + r * ( ck[ 1 ] + r * ( ck[ 2 ] + r * ( ck[ 3 ] + r * ck[ 4 ] ) ) ) );
-		lgama = gammaln( a );
-		k = 1;
-	}
-
-	if ( ( a < 10 ) && ( k === 0 ) ) {
-		vgam = sqrt( a ) / ( gamstar(a) * SQRT_TWO_PI );
-		vmin = Math.min( 0.02, vgam );
-		if ( q < vmin ) {
-			m = 0;
-			b = 1 - a;
-			b2 = b * b;
-			b3 = b2 * b;
-			eta = sqrt( -2/a * ln( q / vgam ) );
-			x0 = a * lambdaeta(eta);
-			L = ln( x0 );
-			if ( x0 > 5 ) {
-				L2 = L * L;
-				L3 = L2 * L;
-				L4 = L3 * L;
-				r = 1 / x0;
-				ck[ 0 ] = L - 1;
-				ck[ 1 ] = ( 3 * b - 2 * b * L + L2 - 2 * L + 2 ) * 0.5;
-				ck[ 2 ] =(24*b*L-11*b2-24*b-6*L2+12*L-12-9*b*L2+6*b2*L+2*L3)*
-					0.166666666666666666666666666667;
-				ck[ 3 ] =(-12*b3*L+84*b*L2-114*b2*L+72+36*L2+3*L4-
-					72*L+162*b-168*b*L-12*L3+25*b3-
-					22*b*L3+36*b2*L2+120*b2)*0.0833333333333333333333333333333;
-				x0 = x0 - L + b * r * ( ck[ 0 ] + r * ( ck[ 1 ] + r * ( ck[ 2 ] + r * ck[ 3 ] ) ) );
-			} else {
-				r = 1 / x0;
-				L2 = L * L;
-				ck[ 0 ] = L - 1;
-				if ( ( L - b * r * ck[ 0 ] ) < x0 ) {
-					x0 = x0 - L + b * r * ck[ 0 ];
-				}
-			}
-			lgama = gammaln( a );
-			k = 1;
-		}
-	}
-	if ( ( abs( porq - 0.5 ) < 1e-5 ) && ( k === 0 ) ) {
-		m = 0;
-		ainv = 1 / a;
-		x0 = a - (1/3) + (0.0197530864197530864197530864198 + 0.00721144424848128551832255535959 * ainv) * ainv;
-		lgama = gammaln( a );
-		k = 1;
-	}
-	if ( ( a < 1 ) && ( k === 0 ) ) {
-		m = 0;
-		if (pcase) {
-			x0 = exp( (1/a) * ( ln(porq) + gammaln(a+1) ) );
-		} else {
-			x0 = exp( (1/a) * ( ln(1-porq) + gammaln(a+1) ) );
-		}
-		lgama = gammaln( a );
-		k = 1;
-	}
-	if ( k === 0 ) {
-		m = 1;
-		ainv = 1 / a;
-		r = erfcinv( 2 * porq );
-		eta = s * r / sqrt( a * 0.5 );
-		if ( r < MAX_FLOAT32 ) {
-			eta = eta + ( eps1(eta)+(eps2(eta)+eps3(eta)*ainv ) * ainv ) * ainv;
-			x0 = a * lambdaeta(eta);
-			y = eta;
-			fp = - sqrt( a / (2*PI) ) * exp( -0.5*a*y*y ) / ( gamstar(a) );
-			invfp = 1 / fp;
-		} else {
-			warning = 'Warning: Overflow problems in one or more steps of the computation.';
-			console.log( warning );
-			return NaN;
-		}
-	}
-	x = x0;
-	if ( k < 2 ) {
-		t = 1;
-		n = 1;
-		a2 = a * a;
-		a3 = a2 * a;
-		xini = x0;
-		// Implementation of the high order Newton-like method
-		do {
-			x = x0;
-			x2 = x * x;
-			if ( m === 0 ) {
-				dlnr = ( 1 - a ) * ln( x ) + x + lgama;
-				if ( dlnr > ln( MAX_FLOAT32 ) ) {
-					warning = 'Warning: overflow problems in one or more steps of the computation.';
-					warning += 'The initial approximation to the root is returned.';
-					console.log( warning );
-					return xini;
-				} else {
-					r = exp( dlnr );
-				}
-			} else {
-				r = - invfp * x;
-			}
-			if ( pcase ) {
-				// gammainc( x, s[, regularized = true ][, upper = false ] )
-				px = gammainc( x, a, true, false );
-				ck[ 0 ] = - r * ( px - p );
-			} else {
-				// gammainc( x, s[, regularized = true ][, upper = true ] )
-				qx = gammainc( x, a, true, true );
-				ck[ 0 ] = r * ( qx - q );
-			}
-			r = ck[ 0 ];
-			if ( ( p > 1e-120 ) || ( n > 1 ) ) {
-				ck[ 1 ] = 0.5 * ( x - a + 1 ) / x;
-				ck[ 2 ] = 0.166666666666666666666666666667 *
-					(2*x2-4*x*a+4*x+2*a2-3*a+1) / x2;
-				x0 = x + r * ( 1 + r * ( ck[ 1 ] + r * ck[ 2 ] ) );
-			} else {
-				x0 = x + r;
-			}
-			t = abs( x/x0 - 1 );
-			n = n + 1;
-			x = x0;
-			if ( x < 0 ) {
-				x = xini;
-				n = 100;
-			}
-		} while ( ( ( t > 2e-14 ) && ( n < 35 ) ) );
-		if ( ( t > 2e-14 ) || ( n > 99 ) ) {
-			warning = 'Warning: the number of iterations in the Newton method reached the upper limit N=35.\n';
-			warning += 'The last value obtained for the root is given as output.';
-			console.log( warning );
-		}
-		xr = x || 0;
-	}
-	return xr;
-} // end FUNCTION compute()
-
-
 // EXPORTS //
 
 module.exports = gammaincinv;
 
-},{"./eps1.js":191,"./eps2.js":192,"./eps3.js":193,"./gamstar.js":195,"./lambdaeta.js":197,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/erfcinv":139,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammainc":182,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float32-max":373,"@stdlib/math/constants/float32-smallest-normal":374,"@stdlib/math/constants/float64-pi":399,"@stdlib/math/constants/float64-pinf":400,"@stdlib/math/constants/float64-sqrt-two-pi":403}],195:[function(require,module,exports){
+},{"./compute.js":209,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/constants/float32-smallest-normal":408,"@stdlib/math/constants/float64-pinf":437}],214:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16123,7 +17762,7 @@ function gamstar( x ) {
 		return exp( stirling(x) );
 	}
 	else if ( x > 0.0 ) {
-		return gamma(x) / ( exp( -x + ( x - 0.5 ) * ln(x) ) * SQRT_TWO_PI );
+		return gamma(x) / ( exp( -x + ( ( x-0.5 ) * ln(x) ) ) * SQRT_TWO_PI );
 	}
 	// Case: x <= 0.0
 	return FLOAT32_MAX;
@@ -16134,7 +17773,108 @@ function gamstar( x ) {
 
 module.exports = gamstar;
 
-},{"./stirling.js":198,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/ln":228,"@stdlib/math/constants/float32-max":373,"@stdlib/math/constants/float64-sqrt-two-pi":403}],196:[function(require,module,exports){
+},{"./stirling.js":218,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/ln":248,"@stdlib/math/constants/float32-max":407,"@stdlib/math/constants/float64-sqrt-two-pi":440}],215:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var debug = require( 'debug' )( 'gammaincinv:higher_newton' );
+var gammainc = require( '@stdlib/math/base/special/gammainc' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var exp = require( '@stdlib/math/base/special/exp' );
+var ln = require( '@stdlib/math/base/special/ln' );
+var MAX_FLOAT32 = require( '@stdlib/math/constants/float32-max' );
+
+
+// MAIN //
+
+/**
+* Implementation of the high order Newton-like method.
+*
+* @private
+* @param {number} x0 - initial value
+* @param {number} a - scale parameter
+* @param {number} m - indicator
+* @param {Probability} p - probability value
+* @param {Probability} q - probability value
+* @param {number} lgama - logarithm of scale parameter
+* @param {number} invfp - one over `fp`
+* @param {boolean} pcase - boolean indicating whether p < 0.5
+* @returns {number} function value of the inverse
+*/
+function higherNewton( x0, a, m, p, q, lgama, invfp, pcase ) {
+	var dlnr;
+	var xini;
+	var ck0;
+	var ck1;
+	var ck2;
+	var a2;
+	var x2;
+	var px;
+	var qx;
+	var xr;
+	var t;
+	var n;
+	var r;
+	var x;
+
+	x = x0;
+	t = 1;
+	n = 1;
+	a2 = a * a;
+	xini = x0;
+	do {
+		x = x0;
+		x2 = x * x;
+		if ( m === 0 ) {
+			dlnr = ( ( 1.0-a ) * ln( x ) ) + x + lgama;
+			if ( dlnr > ln( MAX_FLOAT32 ) ) {
+				debug( 'Warning: overflow problems in one or more steps of the computation. The initial approximation to the root is returned.' );
+				return xini;
+			}
+			r = exp( dlnr );
+		} else {
+			r = -invfp * x;
+		}
+		if ( pcase ) {
+			// gammainc( x, s[, regularized = true ][, upper = false ] )
+			px = gammainc( x, a, true, false );
+			ck0 = -r * ( px - p );
+		} else {
+			// gammainc( x, s[, regularized = true ][, upper = true ] )
+			qx = gammainc( x, a, true, true );
+			ck0 = r * ( qx - q );
+		}
+		r = ck0;
+		if ( ( p > 1e-120 ) || ( n > 1 ) ) {
+			ck1 = 0.5 * ( x - a + 1.0 ) / x;
+			ck2 = ( (2*x2) - (4*x*a) + (4*x) + (2*a2) - (3*a) + 1 ) / x2;
+			ck2 /= 6.0;
+			x0 = x + ( r * ( 1.0 + ( r * ( ck1 + (r*ck2) ) ) ) );
+		} else {
+			x0 = x + r;
+		}
+		t = abs( ( x/x0 ) - 1.0 );
+		n += 1;
+		x = x0;
+		if ( x < 0 ) {
+			x = xini;
+			n = 100;
+		}
+	} while ( ( ( t > 2e-14 ) && ( n < 35 ) ) );
+	if ( ( t > 2e-14 ) || ( n > 99 ) ) {
+		debug( 'Warning: the number of iterations in the Newton method reached the upper limit N=35. The last value obtained for the root is given as output.' );
+	}
+	xr = x || 0;
+	return xr;
+} // end FUNCTION higherNewton()
+
+
+// EXPORTS //
+
+module.exports = higherNewton;
+
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/gammainc":200,"@stdlib/math/base/special/ln":248,"@stdlib/math/constants/float32-max":407,"debug":455}],216:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16173,7 +17913,7 @@ var gammaincinv = require( './gammaincinv.js' );
 
 module.exports = gammaincinv;
 
-},{"./gammaincinv.js":194}],197:[function(require,module,exports){
+},{"./gammaincinv.js":213}],217:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16185,6 +17925,9 @@ var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
 
 
 // VARIABLES //
+
+var ONEO12 = 0.0833333333333333333333333333333;
+var ONEO120 = 0.00833333333333333333333333333333;
 
 var AK1 = [
 	0,
@@ -16216,7 +17959,7 @@ var polyval2 = evalpoly.factory( AK2 );
 // MAIN //
 
 /**
-* lambdaeta is the positive number satisfying eta^2/2=lambda-1-ln(lambda) with sign(lambda-1)=sign(eta);
+* Returns the positive number satisfying eta^2/2=lambda-1-ln(lambda) with sign(lambda-1)=sign(eta);
 *
 * @private
 * @param {number} eta - eta value
@@ -16256,22 +17999,24 @@ function lambdaeta( eta ) {
 		L3 = L2 * L;
 		L4 = L3 * L;
 		L5 = L4 * L;
-		ak[ 0 ] = 1;
-		ak[ 1 ] = ( 2 - L ) * 0.5;
-		ak[ 2 ] = ( -9 * L + 6 + 2 * L2 ) * 0.166666666666666666666666666667;
-		ak[ 4 ] = (60+350*L2-300*L-125*L3+12*L4)*0.0166666666666666666666666666667;
-		ak[ 3 ] = -(3*L3+36*L-22*L2-12)*0.0833333333333333333333333333333;
-		ak[ 5 ] = -(-120-274*L4+900*L-1700*L2+1125*L3+20*L5)*
-				0.00833333333333333333333333333333;
-		la = la + L*r*( ak[ 0 ] + r * ( ak[ 1 ] + r * ( ak[ 2 ] + r * ( ak[ 3 ] + r * ( ak[ 4 ] + r * ak[ 5 ] ) ) ) ) );
+		ak[ 0 ] = 1.0;
+		ak[ 1 ] = ( 2.0-L ) * 0.5;
+		ak[ 2 ] = ( ( -9.0*L ) + 6.0 + ( 2.0*L2 ) ) / 6.0;
+		ak[ 4 ] = ( 60.0 + (350.0*L2) - (300.0*L) - (125.0*L3) + (12.0*L4) );
+		ak[ 4 ] /= 60.0;
+		ak[ 3 ] = -( (3*L3)+ (36*L) - (22*L2) - 12 ) * ONEO12;
+		ak[ 5 ] = -(-120 - (274*L4) + (900*L) -
+			(1700*L2) + (1125*L3) + (20*L5));
+		ak[ 5 ] *= ONEO120;
+		la += ( L * r * evalpoly( ak, r ) );
 	}
 	r = 1.0;
-	if ( ( eta > -3.5 && eta < -0.03 ) || ( eta > 0.03 && eta < 40.0  ) ) {
+	if ( ( eta > -3.5 && eta < -0.03 ) || ( eta > 0.03 && eta < 40.0 ) ) {
 		r = 1.0;
 		q = la;
 		do {
 			la = q * ( s + ln(q) ) / ( q - 1.0 );
-			r = abs( q/la - 1.0 );
+			r = abs( ( q/la ) - 1.0 );
 			q = la;
 		} while ( r > 1e-8 );
 	}
@@ -16283,7 +18028,7 @@ function lambdaeta( eta ) {
 
 module.exports = lambdaeta;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/tools/evalpoly":340}],198:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalpoly":374}],218:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16326,7 +18071,7 @@ var C = [
 	-0.25328157302663562668e-2,
 	0.60992926669463371e-3,
 	-0.33543297638406e-3,
-	0.250505279903e-3,
+	0.250505279903e-3
 ];
 var C6 = 0.30865217988013567769;
 
@@ -16359,26 +18104,24 @@ function stirling( x ) {
 		return MAX_FLOAT32;
 	}
 	else if ( x < 1.0 ) {
-		return gammaln( x + 1 ) - (x+0.5) * ln(x) + x - LN_SQRT_TWO_PI;
+		return gammaln( x+1.0 ) - ( (x+0.5) * ln(x) ) + x - LN_SQRT_TWO_PI;
 	}
 	else if ( x < 2.0 ) {
-		return gammaln( x ) - (x-0.5) * ln(x) + x - LN_SQRT_TWO_PI;
+		return gammaln( x ) - ( (x-0.5) * ln(x) ) + x - LN_SQRT_TWO_PI;
 	}
 	else if ( x < 3.0 ) {
-		return gammaln( x - 1 ) - (x-0.5) * ln(x) + x - LN_SQRT_TWO_PI + ln(x-1);
+		return gammaln( x-1.0 ) - ( (x-0.5) * ln(x) ) + x -
+			LN_SQRT_TWO_PI + ln( x-1.0 );
 	}
 	else if ( x < 12.0 ) {
-		z = 18.0 / ( x * x ) - 1.0;
+		z = ( 18.0 / ( x * x ) ) - 1.0;
 		return chepolsum( 17, z, A ) / ( 12.0 * x );
 	}
-	else {
-		z = 1.0 / ( x * x );
-		if ( x < 1000.0 ) {
-			return polyval1( z ) / ( C6 + z ) / x;
-		} else {
-			return polyval2( z ) / x;
-		}
+	z = 1.0 / ( x * x );
+	if ( x < 1000.0 ) {
+		return polyval1( z ) / ( C6 + z ) / x;
 	}
+	return polyval2( z ) / x;
 } // end FUNCTION stirling()
 
 
@@ -16386,7 +18129,7 @@ function stirling( x ) {
 
 module.exports = stirling;
 
-},{"./chepolsum.js":190,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float32-max":373,"@stdlib/math/constants/float32-smallest-normal":374,"@stdlib/math/constants/float64-ln-sqrt-two-pi":384}],199:[function(require,module,exports){
+},{"./chepolsum.js":208,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float32-max":407,"@stdlib/math/constants/float32-smallest-normal":408,"@stdlib/math/constants/float64-ln-sqrt-two-pi":418}],219:[function(require,module,exports){
 'use strict';
 
 /*
@@ -16666,21 +18409,27 @@ minimum (\\(\mathrm{ymin} = 1.461632144968362245\\)) to maintain monotonicity. O
 * @example
 * var v = gammaln( 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = gammaln( 2.0 );
 * // returns 0.0
+*
 * @example
 * var v = gammaln( 4.0 );
 * // returns ~1.792
+*
 * @example
 * var v = gammaln( -0.5 );
 * // returns ~1.266
+*
 * @example
 * var v = gammaln( 0.5 );
 * // returns ~0.572
+*
 * @example
 * var v = gammaln( 0.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = gammaln( NaN );
 * // returns NaN
@@ -16845,7 +18594,7 @@ function gammaln( x ) {
 
 module.exports = gammaln;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sinpi":300,"@stdlib/math/base/special/trunc":315,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-pi":399,"@stdlib/math/constants/float64-pinf":400}],200:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/sinpi":334,"@stdlib/math/base/special/trunc":349,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-pi":436,"@stdlib/math/constants/float64-pinf":437}],220:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16887,7 +18636,7 @@ var gammaln = require( './gammaln.js' );
 
 module.exports = gammaln;
 
-},{"./gammaln.js":199}],201:[function(require,module,exports){
+},{"./gammaln.js":219}],221:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16952,7 +18701,7 @@ function gcd( a, b ) {
 
 module.exports = gcd;
 
-},{}],202:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17017,7 +18766,7 @@ function gcd( a, b ) {
 
 module.exports = gcd;
 
-},{}],203:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17084,7 +18833,7 @@ function gcd( a, b ) {
 
 module.exports = gcd;
 
-},{"./binary_gcd.js":201,"./bitwise_binary_gcd.js":202,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400,"@stdlib/math/constants/int32-max":406}],204:[function(require,module,exports){
+},{"./binary_gcd.js":221,"./bitwise_binary_gcd.js":222,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437,"@stdlib/math/constants/int32-max":443}],224:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17108,7 +18857,7 @@ var gcd = require( './gcd.js' );
 
 module.exports = gcd;
 
-},{"./gcd.js":203}],205:[function(require,module,exports){
+},{"./gcd.js":223}],225:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17149,7 +18898,7 @@ function hacovercos( x ) {
 
 module.exports = hacovercos;
 
-},{"@stdlib/math/base/special/sin":289}],206:[function(require,module,exports){
+},{"@stdlib/math/base/special/sin":323}],226:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17182,7 +18931,7 @@ var hacovercos = require( './hacovercos.js' );
 
 module.exports = hacovercos;
 
-},{"./hacovercos.js":205}],207:[function(require,module,exports){
+},{"./hacovercos.js":225}],227:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17223,7 +18972,7 @@ function hacoversin( x ) {
 
 module.exports = hacoversin;
 
-},{"@stdlib/math/base/special/sin":289}],208:[function(require,module,exports){
+},{"@stdlib/math/base/special/sin":323}],228:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17256,7 +19005,7 @@ var hacoversin = require( './hacoversin.js' );
 
 module.exports = hacoversin;
 
-},{"./hacoversin.js":207}],209:[function(require,module,exports){
+},{"./hacoversin.js":227}],229:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17297,7 +19046,7 @@ function havercos( x ) {
 
 module.exports = havercos;
 
-},{"@stdlib/math/base/special/cos":110}],210:[function(require,module,exports){
+},{"@stdlib/math/base/special/cos":113}],230:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17330,7 +19079,7 @@ var havercos = require( './havercos.js' );
 
 module.exports = havercos;
 
-},{"./havercos.js":209}],211:[function(require,module,exports){
+},{"./havercos.js":229}],231:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17371,7 +19120,7 @@ function haversin( x ) {
 
 module.exports = haversin;
 
-},{"@stdlib/math/base/special/cos":110}],212:[function(require,module,exports){
+},{"@stdlib/math/base/special/cos":113}],232:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17404,7 +19153,7 @@ var haversin = require( './haversin.js' );
 
 module.exports = haversin;
 
-},{"./haversin.js":211}],213:[function(require,module,exports){
+},{"./haversin.js":231}],233:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17478,7 +19227,7 @@ function heaviside( x, continuity ) {
 
 module.exports = heaviside;
 
-},{"@stdlib/math/base/assert/is-nan":10}],214:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10}],234:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17520,7 +19269,7 @@ var heaviside = require( './heaviside.js' );
 
 module.exports = heaviside;
 
-},{"./heaviside.js":213}],215:[function(require,module,exports){
+},{"./heaviside.js":233}],235:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17583,7 +19332,7 @@ function hypot( x, y ) {
 
 module.exports = hypot;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/constants/float64-pinf":400}],216:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/constants/float64-pinf":437}],236:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17613,7 +19362,7 @@ var hypot = require( './hypot.js' );
 
 module.exports = hypot;
 
-},{"./hypot.js":215}],217:[function(require,module,exports){
+},{"./hypot.js":235}],237:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -17647,7 +19396,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],218:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17677,7 +19426,7 @@ var absInt32 = require( './abs.js' );
 
 module.exports = absInt32;
 
-},{"./abs.js":217}],219:[function(require,module,exports){
+},{"./abs.js":237}],239:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17713,7 +19462,7 @@ var inv = require( './inv.js' );
 
 module.exports = inv;
 
-},{"./inv.js":220}],220:[function(require,module,exports){
+},{"./inv.js":240}],240:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17751,7 +19500,7 @@ function inv( x ) {
 
 module.exports = inv;
 
-},{}],221:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17787,7 +19536,7 @@ var kroneckerDelta = require( './kronecker_delta.js' );
 
 module.exports = kroneckerDelta;
 
-},{"./kronecker_delta.js":222}],222:[function(require,module,exports){
+},{"./kronecker_delta.js":242}],242:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17839,7 +19588,7 @@ function kroneckerDelta( i, j ) {
 
 module.exports = kroneckerDelta;
 
-},{"@stdlib/math/base/assert/is-nan":10}],223:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10}],243:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17863,7 +19612,7 @@ var lcm = require( './lcm.js' );
 
 module.exports = lcm;
 
-},{"./lcm.js":224}],224:[function(require,module,exports){
+},{"./lcm.js":244}],244:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17917,7 +19666,7 @@ function lcm( a, b ) {
 
 module.exports = lcm;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/gcd":204}],225:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/gcd":224}],245:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17959,7 +19708,7 @@ var ldexp = require( './ldexp.js' );
 
 module.exports = ldexp;
 
-},{"./ldexp.js":226}],226:[function(require,module,exports){
+},{"./ldexp.js":246}],246:[function(require,module,exports){
 'use strict';
 
 // NOTES //
@@ -18007,21 +19756,27 @@ var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
 * @example
 * var x = ldexp( 0.5, 3 ); // => 0.5 * 2^3 = 0.5 * 8
 * // returns 4.0
+*
 * @example
 * var x = ldexp( 4.0, -2 ); // => 4 * 2^(-2) = 4 * (1/4)
 * // returns 1.0
+*
 * @example
 * var x = ldexp( 0.0, 20 );
 * // returns 0.0
+*
 * @example
 * var x = ldexp( -0.0, 39 );
 * // returns -0.0
+*
 * @example
 * var x = ldexp( NaN, -101 );
 * // returns NaN
+*
 * @example
 * var x = ldexp( Number.POSITIVE_INFINITY, 11 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var x = ldexp( Number.NEGATIVE_INFINITY, -118 );
 * // returns Number.NEGATIVE_INFINITY
@@ -18082,7 +19837,7 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/copysign":107,"@stdlib/math/base/utils/float64-exponent":348,"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-normalize":358,"@stdlib/math/base/utils/float64-to-words":368,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-max-base2-exponent":388,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":387,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":394,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],227:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/copysign":110,"@stdlib/math/base/utils/float64-exponent":382,"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-normalize":392,"@stdlib/math/base/utils/float64-to-words":402,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-max-base2-exponent":422,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":421,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":430,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],247:[function(require,module,exports){
 'use strict';
 
 /*
@@ -18273,6 +20028,15 @@ setReadOnly( special, 'betaincinv', require( '@stdlib/math/base/special/betainci
 * @see {@link module:@stdlib/math/base/special/betaln}
 */
 setReadOnly( special, 'betaln', require( '@stdlib/math/base/special/betaln' ) );
+
+/**
+* @name binet
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/binet}
+*/
+setReadOnly( special, 'binet', require( '@stdlib/math/base/special/binet' ) );
 
 /**
 * @name binomcoef
@@ -18545,6 +20309,33 @@ setReadOnly( special, 'factorial', require( '@stdlib/math/base/special/factorial
 setReadOnly( special, 'factorialln', require( '@stdlib/math/base/special/factorialln' ) );
 
 /**
+* @name fallingFactorial
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/falling-factorial}
+*/
+setReadOnly( special, 'fallingFactorial', require( '@stdlib/math/base/special/falling-factorial' ) );
+
+/**
+* @name fibonacci
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/fibonacci}
+*/
+setReadOnly( special, 'fibonacci', require( '@stdlib/math/base/special/fibonacci' ) );
+
+/**
+* @name fibonacciIndex
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/fibonacci-index}
+*/
+setReadOnly( special, 'fibonacciIndex', require( '@stdlib/math/base/special/fibonacci-index' ) );
+
+/**
 * @name flipsign
 * @memberof special
 * @readonly
@@ -18624,6 +20415,33 @@ setReadOnly( special, 'frexp', require( '@stdlib/math/base/special/frexp' ) );
 * @see {@link module:@stdlib/math/base/special/gamma}
 */
 setReadOnly( special, 'gamma', require( '@stdlib/math/base/special/gamma' ) );
+
+/**
+* @name gammaLanczosSum
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/gamma-lanczos-sum}
+*/
+setReadOnly( special, 'gammaLanczosSum', require( '@stdlib/math/base/special/gamma-lanczos-sum' ) );
+
+/**
+* @name gammaLanczosSumExpGScaled
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled}
+*/
+setReadOnly( special, 'gammaLanczosSumExpGScaled', require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ) );
+
+/**
+* @name gamma1pm1
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/gamma1pm1}
+*/
+setReadOnly( special, 'gamma1pm1', require( '@stdlib/math/base/special/gamma1pm1' ) );
 
 /**
 * @name gammainc
@@ -18815,6 +20633,15 @@ setReadOnly( special, 'log2', require( '@stdlib/math/base/special/log2' ) );
 setReadOnly( special, 'logit', require( '@stdlib/math/base/special/logit' ) );
 
 /**
+* @name lucas
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/lucas}
+*/
+setReadOnly( special, 'lucas', require( '@stdlib/math/base/special/lucas' ) );
+
+/**
 * @name max
 * @memberof special
 * @readonly
@@ -18858,6 +20685,33 @@ setReadOnly( special, 'minabs', require( '@stdlib/math/base/special/minabs' ) );
 * @see {@link module:@stdlib/math/base/special/modf}
 */
 setReadOnly( special, 'modf', require( '@stdlib/math/base/special/modf' ) );
+
+/**
+* @name negafibonacci
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/negafibonacci}
+*/
+setReadOnly( special, 'negafibonacci', require( '@stdlib/math/base/special/negafibonacci' ) );
+
+/**
+* @name negalucas
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/negalucas}
+*/
+setReadOnly( special, 'negalucas', require( '@stdlib/math/base/special/negalucas' ) );
+
+/**
+* @name nonfibonacci
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/nonfibonacci}
+*/
+setReadOnly( special, 'nonfibonacci', require( '@stdlib/math/base/special/nonfibonacci' ) );
 
 /**
 * @name pdiff
@@ -18912,6 +20766,15 @@ setReadOnly( special, 'ramp', require( '@stdlib/math/base/special/ramp' ) );
 * @see {@link module:@stdlib/math/base/special/riemann-zeta}
 */
 setReadOnly( special, 'zeta', require( '@stdlib/math/base/special/riemann-zeta' ) );
+
+/**
+* @name risingFactorial
+* @memberof special
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/math/base/special/rising-factorial}
+*/
+setReadOnly( special, 'risingFactorial', require( '@stdlib/math/base/special/rising-factorial' ) );
 
 /**
 * @name round
@@ -19161,7 +21024,7 @@ setReadOnly( special, 'xlogy', require( '@stdlib/math/base/special/xlogy' ) );
 
 module.exports = special;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/abs2":23,"@stdlib/math/base/special/acos":25,"@stdlib/math/base/special/acosh":27,"@stdlib/math/base/special/acovercos":29,"@stdlib/math/base/special/acoversin":31,"@stdlib/math/base/special/ahavercos":33,"@stdlib/math/base/special/ahaversin":35,"@stdlib/math/base/special/asin":37,"@stdlib/math/base/special/asinh":39,"@stdlib/math/base/special/atan":41,"@stdlib/math/base/special/atan2":43,"@stdlib/math/base/special/atanh":45,"@stdlib/math/base/special/avercos":47,"@stdlib/math/base/special/aversin":49,"@stdlib/math/base/special/beta":51,"@stdlib/math/base/special/betainc":61,"@stdlib/math/base/special/betaincinv":74,"@stdlib/math/base/special/betaln":87,"@stdlib/math/base/special/binomcoef":89,"@stdlib/math/base/special/binomcoefln":91,"@stdlib/math/base/special/cbrt":93,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/ceil10":97,"@stdlib/math/base/special/ceil2":99,"@stdlib/math/base/special/ceilb":101,"@stdlib/math/base/special/ceiln":103,"@stdlib/math/base/special/ceilsd":105,"@stdlib/math/base/special/copysign":107,"@stdlib/math/base/special/cos":110,"@stdlib/math/base/special/cosh":115,"@stdlib/math/base/special/cosm1":117,"@stdlib/math/base/special/cospi":119,"@stdlib/math/base/special/covercos":121,"@stdlib/math/base/special/coversin":123,"@stdlib/math/base/special/deg2rad":125,"@stdlib/math/base/special/digamma":128,"@stdlib/math/base/special/dirac-delta":131,"@stdlib/math/base/special/dirichlet-eta":133,"@stdlib/math/base/special/erf":135,"@stdlib/math/base/special/erfc":137,"@stdlib/math/base/special/erfcinv":139,"@stdlib/math/base/special/erfinv":141,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/exp10":146,"@stdlib/math/base/special/exp2":148,"@stdlib/math/base/special/expm1":150,"@stdlib/math/base/special/factorial":153,"@stdlib/math/base/special/factorialln":155,"@stdlib/math/base/special/flipsign":157,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/floor10":161,"@stdlib/math/base/special/floor2":163,"@stdlib/math/base/special/floorb":165,"@stdlib/math/base/special/floorn":167,"@stdlib/math/base/special/floorsd":169,"@stdlib/math/base/special/frexp":171,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammainc":182,"@stdlib/math/base/special/gammaincinv":196,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/gcd":204,"@stdlib/math/base/special/hacovercos":206,"@stdlib/math/base/special/hacoversin":208,"@stdlib/math/base/special/havercos":210,"@stdlib/math/base/special/haversin":212,"@stdlib/math/base/special/heaviside":214,"@stdlib/math/base/special/hypot":216,"@stdlib/math/base/special/int32-abs":218,"@stdlib/math/base/special/inv":219,"@stdlib/math/base/special/kronecker-delta":221,"@stdlib/math/base/special/lcm":223,"@stdlib/math/base/special/ldexp":225,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log":230,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/log2":237,"@stdlib/math/base/special/logit":240,"@stdlib/math/base/special/max":242,"@stdlib/math/base/special/maxabs":244,"@stdlib/math/base/special/min":246,"@stdlib/math/base/special/minabs":248,"@stdlib/math/base/special/modf":250,"@stdlib/math/base/special/pdiff":252,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/powm1":262,"@stdlib/math/base/special/rad2deg":264,"@stdlib/math/base/special/ramp":266,"@stdlib/math/base/special/riemann-zeta":270,"@stdlib/math/base/special/round":273,"@stdlib/math/base/special/round10":275,"@stdlib/math/base/special/round2":277,"@stdlib/math/base/special/roundb":279,"@stdlib/math/base/special/roundn":281,"@stdlib/math/base/special/roundsd":283,"@stdlib/math/base/special/sici":285,"@stdlib/math/base/special/signum":287,"@stdlib/math/base/special/sin":289,"@stdlib/math/base/special/sinc":296,"@stdlib/math/base/special/sinh":298,"@stdlib/math/base/special/sinpi":300,"@stdlib/math/base/special/spence":302,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/special/sqrt1pm1":305,"@stdlib/math/base/special/tan":307,"@stdlib/math/base/special/tanh":312,"@stdlib/math/base/special/trunc":315,"@stdlib/math/base/special/trunc10":317,"@stdlib/math/base/special/trunc2":319,"@stdlib/math/base/special/truncb":321,"@stdlib/math/base/special/truncn":323,"@stdlib/math/base/special/truncsd":325,"@stdlib/math/base/special/vercos":327,"@stdlib/math/base/special/versin":329,"@stdlib/math/base/special/xlog1py":331,"@stdlib/math/base/special/xlogy":333,"@stdlib/utils/define-read-only-property":408}],228:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/abs2":27,"@stdlib/math/base/special/acos":29,"@stdlib/math/base/special/acosh":31,"@stdlib/math/base/special/acovercos":33,"@stdlib/math/base/special/acoversin":35,"@stdlib/math/base/special/ahavercos":37,"@stdlib/math/base/special/ahaversin":39,"@stdlib/math/base/special/asin":41,"@stdlib/math/base/special/asinh":43,"@stdlib/math/base/special/atan":45,"@stdlib/math/base/special/atan2":47,"@stdlib/math/base/special/atanh":49,"@stdlib/math/base/special/avercos":51,"@stdlib/math/base/special/aversin":53,"@stdlib/math/base/special/beta":55,"@stdlib/math/base/special/betainc":65,"@stdlib/math/base/special/betaincinv":74,"@stdlib/math/base/special/betaln":88,"@stdlib/math/base/special/binet":89,"@stdlib/math/base/special/binomcoef":92,"@stdlib/math/base/special/binomcoefln":94,"@stdlib/math/base/special/cbrt":96,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/ceil10":100,"@stdlib/math/base/special/ceil2":102,"@stdlib/math/base/special/ceilb":104,"@stdlib/math/base/special/ceiln":106,"@stdlib/math/base/special/ceilsd":108,"@stdlib/math/base/special/copysign":110,"@stdlib/math/base/special/cos":113,"@stdlib/math/base/special/cosh":118,"@stdlib/math/base/special/cosm1":120,"@stdlib/math/base/special/cospi":122,"@stdlib/math/base/special/covercos":124,"@stdlib/math/base/special/coversin":126,"@stdlib/math/base/special/deg2rad":128,"@stdlib/math/base/special/digamma":131,"@stdlib/math/base/special/dirac-delta":134,"@stdlib/math/base/special/dirichlet-eta":136,"@stdlib/math/base/special/erf":138,"@stdlib/math/base/special/erfc":140,"@stdlib/math/base/special/erfcinv":142,"@stdlib/math/base/special/erfinv":144,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/exp10":149,"@stdlib/math/base/special/exp2":151,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/factorial":156,"@stdlib/math/base/special/factorialln":158,"@stdlib/math/base/special/falling-factorial":160,"@stdlib/math/base/special/fibonacci":166,"@stdlib/math/base/special/fibonacci-index":162,"@stdlib/math/base/special/flipsign":168,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/floor10":172,"@stdlib/math/base/special/floor2":174,"@stdlib/math/base/special/floorb":176,"@stdlib/math/base/special/floorn":178,"@stdlib/math/base/special/floorsd":180,"@stdlib/math/base/special/frexp":182,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gamma-lanczos-sum":186,"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled":184,"@stdlib/math/base/special/gamma1pm1":192,"@stdlib/math/base/special/gammainc":200,"@stdlib/math/base/special/gammaincinv":216,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/gcd":224,"@stdlib/math/base/special/hacovercos":226,"@stdlib/math/base/special/hacoversin":228,"@stdlib/math/base/special/havercos":230,"@stdlib/math/base/special/haversin":232,"@stdlib/math/base/special/heaviside":234,"@stdlib/math/base/special/hypot":236,"@stdlib/math/base/special/int32-abs":238,"@stdlib/math/base/special/inv":239,"@stdlib/math/base/special/kronecker-delta":241,"@stdlib/math/base/special/lcm":243,"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log":250,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/log2":257,"@stdlib/math/base/special/logit":260,"@stdlib/math/base/special/lucas":262,"@stdlib/math/base/special/max":265,"@stdlib/math/base/special/maxabs":267,"@stdlib/math/base/special/min":269,"@stdlib/math/base/special/minabs":271,"@stdlib/math/base/special/modf":273,"@stdlib/math/base/special/negafibonacci":275,"@stdlib/math/base/special/negalucas":278,"@stdlib/math/base/special/nonfibonacci":281,"@stdlib/math/base/special/pdiff":283,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/powm1":293,"@stdlib/math/base/special/rad2deg":295,"@stdlib/math/base/special/ramp":297,"@stdlib/math/base/special/riemann-zeta":301,"@stdlib/math/base/special/rising-factorial":304,"@stdlib/math/base/special/round":307,"@stdlib/math/base/special/round10":309,"@stdlib/math/base/special/round2":311,"@stdlib/math/base/special/roundb":313,"@stdlib/math/base/special/roundn":315,"@stdlib/math/base/special/roundsd":317,"@stdlib/math/base/special/sici":319,"@stdlib/math/base/special/signum":321,"@stdlib/math/base/special/sin":323,"@stdlib/math/base/special/sinc":330,"@stdlib/math/base/special/sinh":332,"@stdlib/math/base/special/sinpi":334,"@stdlib/math/base/special/spence":336,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/special/sqrt1pm1":339,"@stdlib/math/base/special/tan":341,"@stdlib/math/base/special/tanh":346,"@stdlib/math/base/special/trunc":349,"@stdlib/math/base/special/trunc10":351,"@stdlib/math/base/special/trunc2":353,"@stdlib/math/base/special/truncb":355,"@stdlib/math/base/special/truncn":357,"@stdlib/math/base/special/truncsd":359,"@stdlib/math/base/special/vercos":361,"@stdlib/math/base/special/versin":363,"@stdlib/math/base/special/xlog1py":365,"@stdlib/math/base/special/xlogy":367,"@stdlib/utils/define-read-only-property":445}],248:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19197,7 +21060,7 @@ var ln = require( './ln.js' );
 
 module.exports = ln;
 
-},{"./ln.js":229}],229:[function(require,module,exports){
+},{"./ln.js":249}],249:[function(require,module,exports){
 'use strict';
 
 /*
@@ -19270,21 +21133,25 @@ var polyvalQ = evalpoly( Q );
 /**
 * Evaluates the natural logarithm.
 *
-* @param {number} x - input value
+* @param {NonNegativeNumber} x - input value
 * @returns {number} function value
 *
 * @example
 * var v = ln( 4.0 );
 * // returns ~1.386
+*
 * @example
 * var v = ln( 0.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = ln( Number.POSITIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = ln( NaN );
 * // returns NaN
+*
 * @example
 * var v = ln( -4.0 );
 * // returns NaN
@@ -19373,7 +21240,7 @@ function ln( x ) {
 
 module.exports = ln;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/base/utils/float64-to-words":368,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-ninf":397}],230:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/base/utils/float64-to-words":402,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-ninf":433}],250:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19403,7 +21270,7 @@ var log = require( './log.js' );
 
 module.exports = log;
 
-},{"./log.js":231}],231:[function(require,module,exports){
+},{"./log.js":251}],251:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19423,21 +21290,27 @@ var ln = require( '@stdlib/math/base/special/ln' );
 * @example
 * var v = log( 100.0, 10.0 );
 * // returns 2.0
+*
 * @example
 * var v = log( 16.0, 2.0 );
 * // returns 4.0
+*
 * @example
 * var v = log( 5.0, 1.0 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = log( NaN, 2.0 );
 * // returns NaN
+*
 * @example
 * var v = log( 1.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = log( -4.0, 2.0 );
 * // returns NaN
+*
 * @example
 * var v = log( 4.0, -2.0 );
 * // returns NaN
@@ -19451,7 +21324,7 @@ function log( x, b ) {
 
 module.exports = log;
 
-},{"@stdlib/math/base/special/ln":228}],232:[function(require,module,exports){
+},{"@stdlib/math/base/special/ln":248}],252:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19490,7 +21363,7 @@ var log10 = require( './log10.js' );
 
 module.exports = log10;
 
-},{"./log10.js":234}],233:[function(require,module,exports){
+},{"./log10.js":254}],253:[function(require,module,exports){
 'use strict';
 
 /*
@@ -19597,7 +21470,7 @@ function klog( x ) {
 
 module.exports = klog;
 
-},{"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-to-words":368}],234:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-to-words":402}],254:[function(require,module,exports){
 'use strict';
 
 /*
@@ -19655,24 +21528,29 @@ var HIGH_BIASED_EXP_0 = 0x3ff00000;
 /**
 * Evaluates the common logarithm (base ten).
 *
-* @param {number} x - input value
+* @param {NonNegativeNumber} x - input value
 * @returns {number} function value
 *
 * @example
 * var v = log10( 4.0 );
 * // returns 2.0
+*
 * @example
 * var v = log10( 8.0 );
 * // returns 3.0
+*
 * @example
 * var v = log10( 0.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = log10( Number.POSITIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = log10( NaN );
 * // returns NaN
+*
 * @example
 * var v = log10( -4.0 );
 * // returns NaN
@@ -19731,7 +21609,7 @@ function log10( x ) {
 
 module.exports = log10;
 
-},{"./klog.js":233,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/base/utils/float64-set-low-word":363,"@stdlib/math/base/utils/float64-to-words":368,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-ninf":397}],235:[function(require,module,exports){
+},{"./klog.js":253,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/base/utils/float64-set-low-word":397,"@stdlib/math/base/utils/float64-to-words":402,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-ninf":433}],255:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19770,7 +21648,7 @@ var log1p = require( './log1p.js' );
 
 module.exports = log1p;
 
-},{"./log1p.js":236}],236:[function(require,module,exports){
+},{"./log1p.js":256}],256:[function(require,module,exports){
 'use strict';
 
 /*
@@ -19833,7 +21711,7 @@ var Lp = [
 	2.222219843214978396e-01, // 0x3FCC71C5 0x1D8E78AF
 	1.818357216161805012e-01, // 0x3FC74664 0x96CB03DE
 	1.531383769920937332e-01, // 0x3FC39A09 0xD078C69F
-	1.479819860511658591e-01, // 0x3FC2F112 0xDF3E5244
+	1.479819860511658591e-01 // 0x3FC2F112 0xDF3E5244
 ];
 
 
@@ -19983,18 +21861,23 @@ var polyval = evalpoly.factory( Lp );
 * @example
 * var v = log1p( 4.0 );
 * // returns ~1.609
+*
 * @example
 * var v = log1p( -1.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = log1p( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = log1p( -0.0 );
 * // returns -0.0
+*
 * @example
 * var v = log1p( -2.0 );
 * // returns NaN
+*
 * @example
 * var v = log1p( NaN );
 * // returns NaN
@@ -20035,11 +21918,11 @@ function log1p( x ) {
 	// Check if argument reduction is needed and if we can just return a small value approximation requiring less computation but with equivalent accuracy...
 	if ( y < SQRT2M1 ) { // if |x| < sqrt(2)-1 => ~0.41422
 		if ( y < SMALL ) { // if |x| < 2**-29
-			if( y < TINY ) { // if |x| < 2**-54
+			if ( y < TINY ) { // if |x| < 2**-54
 				return x;
 			}
 			// Use a simple two-term Taylor series...
-			return x - x*x*0.5;
+			return x - ( x*x*0.5 );
 		}
 		// Check if `f=x` can be represented exactly (no need for correction terms), allowing us to bypass argument reduction...
 		if ( x > SQRT2HALFM1 ) { // if x > sqrt(2)/2-1 => ~-0.2929
@@ -20095,13 +21978,13 @@ function log1p( x ) {
 	}
 	// Approximation of log1p(f)...
 	hfsq = 0.5 * f * f;
-	if( hu === 0 ) { // if |f| < 2**-20
+	if ( hu === 0 ) { // if |f| < 2**-20
 		if ( f === 0.0 ) {
 			c += k * LN2_LO;
-			return k * LN2_HI + c;
+			return ( k * LN2_HI ) + c;
 		}
-		R = hfsq * (1.0 - TWO_THIRDS*f); // avoid division
-		return k*LN2_HI - ( (R - (k*LN2_LO + c)) - f );
+		R = hfsq * (1.0 - ( TWO_THIRDS*f ) ); // avoid division
+		return ( k*LN2_HI ) - ( (R - ( (k*LN2_LO) + c)) - f );
 	}
 	s = f / (2.0 + f);
 	z = s * s;
@@ -20109,9 +21992,9 @@ function log1p( x ) {
 	R = z * polyval( z );
 
 	if ( k === 0 ) {
-		return f - ( hfsq - s*(hfsq+R) );
+		return f - ( hfsq - ( s*(hfsq+R) ) );
 	}
-	return k*LN2_HI - ( (hfsq - (s*(hfsq+R) + (k*LN2_LO + c))) - f );
+	return ( k*LN2_HI ) - ( (hfsq - ( (s*(hfsq+R)) + ((k*LN2_LO) + c))) - f );
 } // end FUNCTION log1p()
 
 
@@ -20119,7 +22002,7 @@ function log1p( x ) {
 
 module.exports = log1p;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],237:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],257:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20158,7 +22041,7 @@ var log2 = require( './log2.js' );
 
 module.exports = log2;
 
-},{"./log2.js":239}],238:[function(require,module,exports){
+},{"./log2.js":259}],258:[function(require,module,exports){
 'use strict';
 
 /*
@@ -20268,7 +22151,7 @@ function klog( x ) {
 
 module.exports = klog;
 
-},{"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-to-words":368}],239:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-to-words":402}],259:[function(require,module,exports){
 'use strict';
 
 /*
@@ -20294,6 +22177,7 @@ var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
 var setHighWord = require( '@stdlib/math/base/utils/float64-set-high-word' );
 var setLowWord = require( '@stdlib/math/base/utils/float64-set-low-word' );
 var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
 var NINF = require( '@stdlib/math/constants/float64-ninf' );
 var klog = require( './klog.js' );
@@ -20301,9 +22185,9 @@ var klog = require( './klog.js' );
 
 // VARIABLES //
 
-var TWO54 =  1.80143985094819840000e+16; /* 0x43500000, 0x00000000 */
-var IVLN2HI =  1.44269504072144627571e+00; /* 0x3ff71547, 0x65200000 */
-var IVLN2LO =  1.67517131648865118353e-10; /* 0x3de705fc, 0x2eefa200 */
+var TWO54 = 1.80143985094819840000e+16; /* 0x43500000, 0x00000000 */
+var IVLN2HI = 1.44269504072144627571e+00; /* 0x3ff71547, 0x65200000 */
+var IVLN2LO = 1.67517131648865118353e-10; /* 0x3de705fc, 0x2eefa200 */
 
 // 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
 var HIGH_SIGNIFICAND_MASK = 0x000fffff;
@@ -20326,24 +22210,29 @@ var ABS_MASK = 0x7fffffff;
 /**
 * Evaluates the binary logarithm (base two).
 *
-* @param {number} x - input value
+* @param {NonNegativeNumber} x - input value
 * @returns {number} function value
 *
 * @example
 * var v = log2( 4.0 );
 * // returns 2.0
+*
 * @example
 * var v = log2( 8.0 );
 * // returns 3.0
+*
 * @example
 * var v = log2( 0.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = log2( Number.POSITIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = log2( NaN );
 * // returns NaN
+*
 * @example
 * var v = log2( -4.0 );
 * // returns NaN
@@ -20358,7 +22247,7 @@ function log2( x ) {
 	var i;
 	var k;
 
-	if ( x < 0.0 ) {
+	if ( isnan( x ) || x < 0.0 ) {
 		return NaN;
 	}
 
@@ -20390,7 +22279,7 @@ function log2( x ) {
 	hi = x = x - 1;
 	hi = setLowWord( hi, 0 );
 	lo = x - hi;
-	return (x+f) * IVLN2LO + (lo+f) * IVLN2HI + hi * IVLN2HI + k;
+	return ( (x+f) * IVLN2LO ) + ( (lo+f) * IVLN2HI ) + ( hi * IVLN2HI ) + k;
 } // end FUNCTION log2()
 
 
@@ -20398,7 +22287,7 @@ function log2( x ) {
 
 module.exports = log2;
 
-},{"./klog.js":238,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/base/utils/float64-set-low-word":363,"@stdlib/math/base/utils/float64-to-words":368,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-ninf":397}],240:[function(require,module,exports){
+},{"./klog.js":258,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/base/utils/float64-set-low-word":397,"@stdlib/math/base/utils/float64-to-words":402,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-ninf":433}],260:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20434,7 +22323,7 @@ var logit = require( './logit.js' );
 
 module.exports = logit;
 
-},{"./logit.js":241}],241:[function(require,module,exports){
+},{"./logit.js":261}],261:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20457,15 +22346,19 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var y = logit( 0.2 );
 * // returns ~-1.386
+*
 * @example
 * var y = logit( 0.9 );
 * // returns ~2.197
+*
 * @example
 * var y = logit( -4.0 );
 * // returns NaN
+*
 * @example
 * var y = logit( 1.5 );
 * // returns NaN
+*
 * @example
 * var y = logit( NaN );
 * // returns NaN
@@ -20491,7 +22384,128 @@ function logit( p ) {
 
 module.exports = logit;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-probability":18,"@stdlib/math/base/special/ln":228,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],242:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-probability":22,"@stdlib/math/base/special/ln":248,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],262:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the nth Lucas number.
+*
+* @module @stdlib/math/base/special/lucas
+*
+* @example
+* var lucas = require( '@stdlib/math/base/special/lucas' );
+*
+* var y = lucas( 0 );
+* // returns 2
+*
+* y = lucas( 1 );
+* // returns 1
+*
+* y = lucas( 2 );
+* // returns 3
+*
+* y = lucas( 3 );
+* // returns 4
+*
+* y = lucas( 4 );
+* // returns 7
+*
+* y = lucas( 5 );
+* // returns 11
+*
+* y = lucas( 6 );
+* // returns 18
+*/
+
+// MODULES //
+
+var lucas = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = lucas;
+
+},{"./main.js":264}],263:[function(require,module,exports){
+module.exports=[2,1,3,4,7,11,18,29,47,76,123,199,322,521,843,1364,2207,3571,5778,9349,15127,24476,39603,64079,103682,167761,271443,439204,710647,1149851,1860498,3010349,4870847,7881196,12752043,20633239,33385282,54018521,87403803,141422324,228826127,370248451,599074578,969323029,1568397607,2537720636,4106118243,6643838879,10749957122,17393796001,28143753123,45537549124,73681302247,119218851371,192900153618,312119004989,505019158607,817138163596,1322157322203,2139295485799,3461452808002,5600748293801,9062201101803,14662949395604,23725150497407,38388099893011,62113250390418,100501350283429,162614600673847,263115950957276,425730551631123,688846502588399,1114577054219522,1803423556807921,2918000611027443,4721424167835364,7639424778862807]
+
+},{}],264:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var MAX_LUCAS = require( '@stdlib/math/constants/float64-max-safe-nth-lucas' );
+var LUCAS = require( './lucas.json' );
+
+
+// MAIN //
+
+/**
+* Computes the nth Lucas number.
+*
+* @param {NonNegativeInteger} n - the Lucas number to compute
+* @returns {NonNegativeInteger} Lucas number
+*
+* @example
+* var y = lucas( 0 );
+* // returns 2
+*
+* @example
+* var y = lucas( 1 );
+* // returns 1
+*
+* @example
+* var y = lucas( 2 );
+* // returns 3
+*
+* @example
+* var y = lucas( 3 );
+* // returns 4
+*
+* @example
+* var y = lucas( 4 );
+* // returns 7
+*
+* @example
+* var y = lucas( 5 );
+* // returns 11
+*
+* @example
+* var y = lucas( 6 );
+* // returns 18
+*
+* @example
+* var y = lucas( NaN );
+* // returns NaN
+*
+* @example
+* var y = lucas( 3.14 );
+* // returns NaN
+*
+* @example
+* var y = lucas( -1.0 );
+* // returns NaN
+*/
+function lucas( n ) {
+	if (
+		isnan( n ) ||
+		isInteger( n ) === false ||
+		n < 0 ||
+		n > MAX_LUCAS
+	) {
+		return NaN;
+	}
+	return LUCAS[ n ];
+} // end FUNCTION lucas()
+
+
+// EXPORTS //
+
+module.exports = lucas;
+
+},{"./lucas.json":263,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/constants/float64-max-safe-nth-lucas":426}],265:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20524,7 +22538,7 @@ var max = require( './max.js' );
 
 module.exports = max;
 
-},{"./max.js":243}],243:[function(require,module,exports){
+},{"./max.js":266}],266:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20610,7 +22624,7 @@ function max( x, y ) {
 
 module.exports = max;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-positive-zero":16,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],244:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-positive-zero":20,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],267:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20643,7 +22657,7 @@ var maxabs = require( './maxabs.js' );
 
 module.exports = maxabs;
 
-},{"./maxabs.js":245}],245:[function(require,module,exports){
+},{"./maxabs.js":268}],268:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20703,7 +22717,7 @@ function maxabs( x, y ) {
 
 module.exports = maxabs;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/max":242,"@stdlib/math/constants/float64-pinf":400}],246:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/max":265,"@stdlib/math/constants/float64-pinf":437}],269:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20736,7 +22750,7 @@ var min = require( './min.js' );
 
 module.exports = min;
 
-},{"./min.js":247}],247:[function(require,module,exports){
+},{"./min.js":270}],270:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20822,7 +22836,7 @@ function min( x, y ) {
 
 module.exports = min;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-negative-zero":12,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],248:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-negative-zero":14,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],271:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20855,7 +22869,7 @@ var minabs = require( './minabs.js' );
 
 module.exports = minabs;
 
-},{"./minabs.js":249}],249:[function(require,module,exports){
+},{"./minabs.js":272}],272:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20915,7 +22929,7 @@ function minabs( x, y ) {
 
 module.exports = minabs;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/min":246,"@stdlib/math/constants/float64-pinf":400}],250:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/min":269,"@stdlib/math/constants/float64-pinf":437}],273:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20939,7 +22953,7 @@ var modf = require( './modf.js' );
 
 module.exports = modf;
 
-},{"./modf.js":251}],251:[function(require,module,exports){
+},{"./modf.js":274}],274:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21052,7 +23066,368 @@ function modf( x ) {
 
 module.exports = modf;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-to-words":368,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-high-word-exponent-mask":382,"@stdlib/math/constants/float64-high-word-significand-mask":383,"@stdlib/math/constants/float64-pinf":400}],252:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-to-words":402,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-high-word-exponent-mask":416,"@stdlib/math/constants/float64-high-word-significand-mask":417,"@stdlib/math/constants/float64-pinf":437}],275:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the nth negaFibonacci number.
+*
+* @module @stdlib/math/base/special/negafibonacci
+*
+* @example
+* var negafibonacci = require( '@stdlib/math/base/special/negafibonacci' );
+*
+* var y = negafibonacci( 0 );
+* // returns 0
+*
+* y = negafibonacci( -1 );
+* // returns 1
+*
+* y = negafibonacci( -2 );
+* // returns -1
+*
+* y = negafibonacci( -3 );
+* // returns 2
+*
+* y = negafibonacci( -4 );
+* // returns -3
+*
+* y = negafibonacci( -5 );
+* // returns 5
+*
+* y = negafibonacci( -6 );
+* // returns -8
+*/
+
+// MODULES //
+
+var negafibonacci = require( './negafibonacci.js' );
+
+
+// EXPORTS //
+
+module.exports = negafibonacci;
+
+},{"./negafibonacci.js":277}],276:[function(require,module,exports){
+module.exports=[0,1,-1,2,-3,5,-8,13,-21,34,-55,89,-144,233,-377,610,-987,1597,-2584,4181,-6765,10946,-17711,28657,-46368,75025,-121393,196418,-317811,514229,-832040,1346269,-2178309,3524578,-5702887,9227465,-14930352,24157817,-39088169,63245986,-102334155,165580141,-267914296,433494437,-701408733,1134903170,-1836311903,2971215073,-4807526976,7778742049,-12586269025,20365011074,-32951280099,53316291173,-86267571272,139583862445,-225851433717,365435296162,-591286729879,956722026041,-1548008755920,2504730781961,-4052739537881,6557470319842,-10610209857723,17167680177565,-27777890035288,44945570212853,-72723460248141,117669030460994,-190392490709135,308061521170129,-498454011879264,806515533049393,-1304969544928657,2111485077978050,-3416454622906707,5527939700884757,-8944394323791464]
+
+},{}],277:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var MAX_FIBONACCI = require( '@stdlib/math/constants/float64-max-safe-nth-fibonacci' );
+var NEGAFIBONACCI = require( './negafibonacci.json' );
+
+
+// MAIN //
+
+/**
+* Computes the nth negaFibonacci number.
+*
+* @param {NonPositiveInteger} n - the negaFibonacci number to compute
+* @returns {integer} negaFibonacci number
+*
+* @example
+* var y = negafibonacci( 0 );
+* // returns 0
+*
+* @example
+* var y = negafibonacci( -1 );
+* // returns 1
+*
+* @example
+* var y = negafibonacci( -2 );
+* // returns -1
+*
+* @example
+* var y = negafibonacci( -3 );
+* // returns 2
+*
+* @example
+* var y = negafibonacci( -4 );
+* // returns -3
+*
+* @example
+* var y = negafibonacci( -5 );
+* // returns 5
+*
+* @example
+* var y = negafibonacci( -6 );
+* // returns -8
+*
+* @example
+* var y = negafibonacci( NaN );
+* // returns NaN
+*
+* @example
+* var y = negafibonacci( -3.14 );
+* // returns NaN
+*
+* @example
+* var y = negafibonacci( -1.0 );
+* // returns NaN
+*/
+function negafibonacci( n ) {
+	var an;
+	if (
+		isnan( n ) ||
+		isInteger( n ) === false ||
+		n > 0
+	) {
+		return NaN;
+	}
+	an = abs( n );
+	if ( an > MAX_FIBONACCI ) {
+		return NaN;
+	}
+	return NEGAFIBONACCI[ an ];
+} // end FUNCTION negafibonacci()
+
+
+// EXPORTS //
+
+module.exports = negafibonacci;
+
+},{"./negafibonacci.json":276,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float64-max-safe-nth-fibonacci":425}],278:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the nth negaLucas number.
+*
+* @module @stdlib/math/base/special/negalucas
+*
+* @example
+* var negalucas = require( '@stdlib/math/base/special/negalucas' );
+*
+* var y = negalucas( 0 );
+* // returns 2
+*
+* y = negalucas( -1 );
+* // returns -1
+*
+* y = negalucas( -2 );
+* // returns 3
+*
+* y = negalucas( -3 );
+* // returns -4
+*
+* y = negalucas( -4 );
+* // returns 7
+*
+* y = negalucas( -5 );
+* // returns -11
+*
+* y = negalucas( -6 );
+* // returns 18
+*/
+
+// MODULES //
+
+var negalucas = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = negalucas;
+
+},{"./main.js":279}],279:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var MAX_LUCAS = require( '@stdlib/math/constants/float64-max-safe-nth-lucas' );
+var NEGALUCAS = require( './negalucas.json' );
+
+
+// MAIN //
+
+/**
+* Computes the nth negaLucas number.
+*
+* @param {NonPositiveInteger} n - the negaLucas number to compute
+* @returns {integer} negaLucas number
+*
+* @example
+* var y = negalucas( 0 );
+* // returns 2
+*
+* @example
+* var y = negalucas( -1 );
+* // returns -1
+*
+* @example
+* var y = negalucas( -2 );
+* // returns 3
+*
+* @example
+* var y = negalucas( -3 );
+* // returns -4
+*
+* @example
+* var y = negalucas( -4 );
+* // returns 7
+*
+* @example
+* var y = negalucas( -5 );
+* // returns -11
+*
+* @example
+* var y = negalucas( -6 );
+* // returns 18
+*
+* @example
+* var y = negalucas( NaN );
+* // returns NaN
+*
+* @example
+* var y = negalucas( -3.14 );
+* // returns NaN
+*
+* @example
+* var y = negalucas( -1.0 );
+* // returns NaN
+*/
+function negalucas( n ) {
+	var an;
+	if (
+		isnan( n ) ||
+		isInteger( n ) === false ||
+		n > 0
+	) {
+		return NaN;
+	}
+	an = abs( n );
+	if ( an > MAX_LUCAS ) {
+		return NaN;
+	}
+	return NEGALUCAS[ an ];
+} // end FUNCTION negalucas()
+
+
+// EXPORTS //
+
+module.exports = negalucas;
+
+},{"./negalucas.json":280,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float64-max-safe-nth-lucas":426}],280:[function(require,module,exports){
+module.exports=[2,-1,3,-4,7,-11,18,-29,47,-76,123,-199,322,-521,843,-1364,2207,-3571,5778,-9349,15127,-24476,39603,-64079,103682,-167761,271443,-439204,710647,-1149851,1860498,-3010349,4870847,-7881196,12752043,-20633239,33385282,-54018521,87403803,-141422324,228826127,-370248451,599074578,-969323029,1568397607,-2537720636,4106118243,-6643838879,10749957122,-17393796001,28143753123,-45537549124,73681302247,-119218851371,192900153618,-312119004989,505019158607,-817138163596,1322157322203,-2139295485799,3461452808002,-5600748293801,9062201101803,-14662949395604,23725150497407,-38388099893011,62113250390418,-100501350283429,162614600673847,-263115950957276,425730551631123,-688846502588399,1114577054219522,-1803423556807921,2918000611027443,-4721424167835364,7639424778862807]
+
+},{}],281:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the nth non-Fibonacci number.
+*
+* @module @stdlib/math/base/special/nonfibonacci
+*
+* @example
+* var nonfibonacci = require( '@stdlib/math/base/special/nonfibonacci' );
+*
+* var v = nonfibonacci( 1 );
+* // returns 4
+*
+* v = nonfibonacci( 2 );
+* // returns 6
+*
+* v = nonfibonacci( 3 );
+* // returns 7
+*/
+
+// MODULES //
+
+var nonfibonacci = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = nonfibonacci;
+
+},{"./main.js":282}],282:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var ln = require( '@stdlib/math/base/special/ln' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var PHI = require( '@stdlib/math/constants/float64-phi' );
+var PINF = require( '@stdlib/math/constants/float64-pinf' );
+
+
+// VARIABLES //
+
+var SQRT_5 = 2.23606797749979;
+var LN_PHI = ln( PHI );
+
+
+// MAIN //
+
+/**
+* Computes the nth non-Fibonacci number.
+*
+* ## References
+*
+* * Gould, H.W. 1965. "Non-Fibonacci Numbers." *Fibonacci Quarterly*, no. 3: 177–83. <http://www.fq.math.ca/Scanned/3-3/gould.pdf>.
+* * Farhi, Bakir. 2011. "An explicit formula generating the non-Fibonacci numbers." *arXiv* abs/1105.1127 \[Math.NT\] (May): 1–5. <https://arxiv.org/abs/1105.1127>.
+*
+*
+* @param {NonNegativeInteger} n - the non-Fibonacci number to compute
+* @returns {NonNegativeInteger} non-Fibonacci number
+*
+* @example
+* var v = nonfibonacci( 1 );
+* // returns 4
+*
+* @example
+* var v = nonfibonacci( 2 );
+* // returns 6
+*
+* @example
+* var v = nonfibonacci( 3 );
+* // returns 7
+*
+* @example
+* var v = nonfibonacci( NaN );
+* // returns NaN
+*
+* @example
+* var v = nonfibonacci( 3.14 );
+* // returns NaN
+*
+* @example
+* var v = nonfibonacci( -1 );
+* // returns NaN
+*/
+function nonfibonacci( n ) {
+	var a;
+	var b;
+	if (
+		isnan( n ) ||
+		isInteger( n ) === false ||
+		n < 1 ||
+		n === PINF
+	) {
+		return NaN;
+	}
+	n += 1;
+	a = ln( n * SQRT_5 ) / LN_PHI;
+	b = ln( (SQRT_5 * (n+a)) - 5.0 + (3.0/n) ) / LN_PHI;
+	return floor( n + b - 2.0 );
+} // end FUNCTION nonfibonacci()
+
+
+// EXPORTS //
+
+module.exports = nonfibonacci;
+
+},{"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ln":248,"@stdlib/math/constants/float64-phi":434,"@stdlib/math/constants/float64-pinf":437}],283:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21085,7 +23460,7 @@ var pdiff = require( './pdiff.js' );
 
 module.exports = pdiff;
 
-},{"./pdiff.js":253}],253:[function(require,module,exports){
+},{"./pdiff.js":284}],284:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21133,7 +23508,7 @@ function pdiff( x, y ) {
 
 module.exports = pdiff;
 
-},{"@stdlib/math/base/assert/is-nan":10}],254:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10}],285:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21178,7 +23553,7 @@ var pow = require( './pow.js' );
 
 module.exports = pow;
 
-},{"./pow.js":257}],255:[function(require,module,exports){
+},{"./pow.js":288}],286:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21374,7 +23749,7 @@ function log2ax( ax, ahx ) {
 
 module.exports = log2ax;
 
-},{"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/base/utils/float64-set-low-word":363,"@stdlib/math/constants/float64-exponent-bias":378}],256:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/base/utils/float64-set-low-word":397,"@stdlib/math/constants/float64-exponent-bias":412}],287:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21444,7 +23819,7 @@ function logx( ax ) {
 
 module.exports = logx;
 
-},{"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-set-low-word":363}],257:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-set-low-word":397}],288:[function(require,module,exports){
 'use strict';
 
 /*
@@ -21596,24 +23971,31 @@ var OVT = 8.0085662595372944372e-17;
 * @example
 * var v = pow( 2.0, 3.0 );
 * // returns 8.0
+*
 * @example
 * var v = pow( 4.0, 0.5 );
 * // returns 2.0
+*
 * @example
 * var v = pow( 100.0, 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = pow( Math.PI, 5.0 );
 * // returns ~306.0197
+*
 * @example
 * var v = pow( Math.PI, -0.2 );
 * // returns ~0.7954
+*
 * @example
 * var v = pow( NaN, 3.0 );
 * // returns NaN
+*
 * @example
 * var v = pow( 5.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = pow( NaN, NaN );
 * // returns NaN
@@ -21807,7 +24189,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"./log2ax.js":255,"./logx.js":256,"./pow2.js":258,"./x_is_zero.js":259,"./y_is_huge.js":260,"./y_is_infinite.js":261,"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-odd":14,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/sqrt":304,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-get-low-word":356,"@stdlib/math/base/utils/float64-set-low-word":363,"@stdlib/math/base/utils/float64-to-words":368,"@stdlib/math/base/utils/uint32-to-int32":371,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],258:[function(require,module,exports){
+},{"./log2ax.js":286,"./logx.js":287,"./pow2.js":289,"./x_is_zero.js":290,"./y_is_huge.js":291,"./y_is_infinite.js":292,"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-odd":18,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/sqrt":338,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-get-low-word":390,"@stdlib/math/base/utils/float64-set-low-word":397,"@stdlib/math/base/utils/float64-to-words":402,"@stdlib/math/base/utils/uint32-to-int32":405,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],289:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21934,7 +24316,7 @@ function pow2( j, hp, lp ) {
 
 module.exports = pow2;
 
-},{"@stdlib/math/base/special/ldexp":225,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-high-word":361,"@stdlib/math/base/utils/float64-set-low-word":363,"@stdlib/math/base/utils/uint32-to-int32":371,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-ln-two":385}],259:[function(require,module,exports){
+},{"@stdlib/math/base/special/ldexp":245,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-high-word":395,"@stdlib/math/base/utils/float64-set-low-word":397,"@stdlib/math/base/utils/uint32-to-int32":405,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-ln-two":419}],290:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21958,18 +24340,23 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var v = pow( 0.0, 2 );
 * // returns 0.0
+*
 * @example
 * var v = pow( -0.0, -9 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, -9 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( -0.0, 9 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, Number.NEGATIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 0.0, Number.POSITIVE_INFINITY );
 * // returns 0.0
@@ -21999,7 +24386,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/assert/is-odd":14,"@stdlib/math/base/special/copysign":107,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],260:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-odd":18,"@stdlib/math/base/special/copysign":110,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],291:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22032,6 +24419,7 @@ var TINY = 1.0e-300;
 * @example
 * var v = pow( 9.0, 3.6893488147419103e19 );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( -3.14, -3.6893488147419103e19 );
 * // returns 0.0
@@ -22066,7 +24454,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":354}],261:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":388}],292:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22088,24 +24476,31 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var v = pow( -1.0, Number.POSITIVE_INFINITY );
 * // returns NaN
+*
 * @example
 * var v = pow( -1.0, Number.NEGATIVE_INFINITY );
 * // returns NaN
+*
 * @example
 * var v = pow( 1.0, Number.POSITIVE_INFINITY );
 * // returns 1.0
+*
 * @example
 * var v = pow( 1.0, Number.NEGATIVE_INFINITY );
 * // returns 1.0
+*
 * @example
 * var v = pow( 0.5, Number.POSITIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var v = pow( 0.5, Number.NEGATIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
+*
 * @example
 * var v = pow( 1.5, Number.NEGATIVE_INFINITY );
 * // returns 0.0
+*
 * @example
 * var v = pow( 1.5, Number.POSITIVE_INFINITY );
 * // returns Number.POSITIVE_INFINITY
@@ -22131,7 +24526,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/constants/float64-pinf":400}],262:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float64-pinf":437}],293:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22176,7 +24571,7 @@ var powm1 = require( './powm1.js' );
 
 module.exports = powm1;
 
-},{"./powm1.js":263}],263:[function(require,module,exports){
+},{"./powm1.js":294}],294:[function(require,module,exports){
 'use strict';
 
 /*
@@ -22214,24 +24609,31 @@ var trunc = require( '@stdlib/math/base/special/trunc' );
 * @example
 * var y = powm1( 2.0, 3.0 );
 * // returns 7.0
+*
 * @example
 * var y = powm1( 4.0, 0.5 );
 * // returns 1.0
+*
 * @example
 * var y = powm1( 0.0, 100.0 );
 * // returns -1.0
+*
 * @example
 * var y = powm1( 100.0, 0.0 );
 * // returns 0.0
+*
 * @example
 * var y = powm1( 0.0, 0.0 );
 * // returns 0.0
+*
 * @example
 * var y = powm1( Math.PI, 5.0 );
 * // returns ~305.0197
+*
 * @example
 * var y = powm1( NaN, 3.0 );
 * // returns NaN
+*
 * @example
 * var y = powm1( 5.0, NaN );
 * // returns NaN
@@ -22279,7 +24681,7 @@ function powm1( b, x ) {
 
 module.exports = powm1;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/expm1":150,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/trunc":315}],264:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/trunc":349}],295:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22310,7 +24712,7 @@ var rad2deg = require( './rad2deg.js' );
 
 module.exports = rad2deg;
 
-},{"./rad2deg.js":265}],265:[function(require,module,exports){
+},{"./rad2deg.js":296}],296:[function(require,module,exports){
 'use strict';
 
 // VARIABLES //
@@ -22330,9 +24732,11 @@ var CONST_180_DIV_PI = 57.29577951308232;
 * @example
 * var d = rad2deg( Math.PI/2.0 );
 * // returns 90.0
+*
 * @example
 * var d = rad2deg( -Math.PI/4.0 );
 * // returns -45.0
+*
 * @example
 * var d = rad2deg( NaN );
 * // returns NaN
@@ -22346,7 +24750,7 @@ function rad2deg( x ) {
 
 module.exports = rad2deg;
 
-},{}],266:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22376,7 +24780,7 @@ var ramp = require( './ramp.js' );
 
 module.exports = ramp;
 
-},{"./ramp.js":267}],267:[function(require,module,exports){
+},{"./ramp.js":298}],298:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22419,7 +24823,7 @@ function ramp( x ) {
 
 module.exports = ramp;
 
-},{"@stdlib/math/base/assert/is-nan":10}],268:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10}],299:[function(require,module,exports){
 module.exports=[1.00000000000000000000000000000000000000000,
 0.166666666666666666666666666666666666666667,
 -0.0333333333333333333333333333333333333333333,
@@ -22551,7 +24955,7 @@ module.exports=[1.00000000000000000000000000000000000000000,
 -7.95021250458852528538243631671158693036798e302,
 1.33527841873546338750122832017820518292039e306]
 
-},{}],269:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 module.exports=[
 	-0.5,
 	1.644934066848226436472415166646025189218949901206798437735,
@@ -22583,7 +24987,7 @@ module.exports=[
 	1.000000000000000055511151248454812437237365905094302816723
 ]
 
-},{}],270:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22622,7 +25026,7 @@ var zeta = require( './zeta.js' );
 
 module.exports = zeta;
 
-},{"./zeta.js":272}],271:[function(require,module,exports){
+},{"./zeta.js":303}],302:[function(require,module,exports){
 module.exports=[
 	1.202056903159594285399738161511449990764986292340498881792,
 	1.036927755143369926331365486457034168057080919501912811974,
@@ -22682,7 +25086,7 @@ module.exports=[
 	1.000000000000000000000000000000000096296497219361792654016
 ]
 
-},{}],272:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 'use strict';
 
 /*
@@ -22952,18 +25356,23 @@ var rateval6 = evalrational( P6, Q6 );
 * @example
 * var v = zeta( 1.1 );
 * // returns ~10.584
+*
 * @example
 * var v = zeta( -4.0 );
 * // returns 0.0
+*
 * @example
 * var v = zeta( 70.0 );
 * // returns 1.0
+*
 * @example
 * var v = zeta( 0.5 );
 * // returns ~-1.46
+*
 * @example
 * var v = zeta( 1.0 ); // pole
 * // returns NaN
+*
 * @example
 * var v = zeta( NaN );
 * // returns NaN
@@ -23085,7 +25494,230 @@ function zeta( s ) {
 
 module.exports = zeta;
 
-},{"./bernoulli.json":268,"./even_nonnegative_integers.json":269,"./odd_positive_integers.json":271,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/gamma":173,"@stdlib/math/base/special/gammaln":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/sinpi":300,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-ln-sqrt-two-pi":384,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400,"@stdlib/math/constants/float64-sqrt-eps":402,"@stdlib/math/constants/float64-two-pi":405}],273:[function(require,module,exports){
+},{"./bernoulli.json":299,"./even_nonnegative_integers.json":300,"./odd_positive_integers.json":302,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/gammaln":220,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/sinpi":334,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-ln-sqrt-two-pi":418,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437,"@stdlib/math/constants/float64-sqrt-eps":439,"@stdlib/math/constants/float64-two-pi":442}],304:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the rising factorial.
+*
+* @module @stdlib/math/base/special/rising-factorial
+*
+* @example
+* var risingFactorial = require( '@stdlib/math/base/special/rising-factorial' );
+*
+* var v = risingFactorial( 0.9, 5.0 );
+* // returns ~94.766
+*
+* v = risingFactorial( -9.0, 3.0 );
+* // returns -504
+*
+* v = risingFactorial( 0.0, 2.0 );
+* // returns 0.0
+*
+* v = risingFactorial( 3.0, -2.0 );
+* // returns 0.5
+*/
+
+// MODULES //
+
+var risingFactorial = require( './rising_factorial.js' );
+
+
+// EXPORTS //
+
+module.exports = risingFactorial;
+
+},{"./rising_factorial.js":305}],305:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/factorials.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* (C) Copyright John Maddock 2006, 2010.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/math/base/assert/is-nonnegative-integer' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var FLOAT64_MAX = require( '@stdlib/math/constants/float64-max' );
+var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var gammaDeltaRatio = require( './tgamma_delta_ratio.js' );
+
+
+// VARIABLES //
+
+var MAX_FACTORIAL = 170;
+
+
+// FUNCTIONS //
+
+/**
+* Computes the falling factorial of x and n.
+*
+* ## Notes
+*
+* * The falling factorial is defined as
+*
+*   ``` tex
+*   \operatorname{fallingFactorial}(x, n) = x (x-1) (x-2) (x-3) \ldots (x-n+1)
+*   ```
+*
+* @private
+* @param {number} x - first function parameter
+* @param {NonNegativeInteger} n - second function parameter
+* @returns {number} function value
+*/
+function fallingFactorial( x, n ) {
+	var result;
+	var xp1;
+	var n2;
+	var t1;
+	var t2;
+
+	if ( isnan( x ) || !isNonNegativeInteger( n ) ) {
+		return NaN;
+	}
+	if ( x === 0.0 ) {
+		return 0.0;
+	}
+	if ( x < 0 ) {
+		// For x < 0 we really have a rising factorial modulo a possible change of sign:
+		return ( n&1 ? -1 : 1 ) * risingFactorial( -x, n );
+	}
+	if ( n === 0 ) {
+		return 1;
+	}
+	if ( x < 0.5 ) {
+		// 1 + x below will throw away digits, so split up calculation:
+		if ( n > MAX_FACTORIAL - 2 ) {
+			// If the two end of the range are far apart we have a ratio of two very large numbers, split the calculation up into two blocks:
+			t1 = x * fallingFactorial( x - 1, MAX_FACTORIAL - 2 );
+			t2 = fallingFactorial( x-MAX_FACTORIAL+1, n-MAX_FACTORIAL+1 );
+			if ( FLOAT64_MAX / abs(t1) < abs(t2) ) {
+				return PINF;
+			}
+			return t1 * t2;
+		}
+		return x * fallingFactorial( x - 1.0, n - 1 );
+	}
+	if ( x <= n - 1 ) {
+		// `x+1-n` will be negative and gammaDeltaRatio won't handle it, split the product up into three parts:
+		xp1 = x + 1.0;
+		n2 = abs( floor( xp1 ) );
+		if ( n2 === xp1 ) {
+			return 0.0;
+		}
+		result = gammaDeltaRatio( xp1, -n2 );
+		x -= n2;
+		result *= x;
+		n2 += 1;
+		if ( n2 < n ) {
+			result *= fallingFactorial( x - 1.0, n - n2 );
+		}
+		return result;
+	}
+	// Simple case: just the ratio of two (positive argument) gamma functions. Note that we don't optimize this for small n, because gammaDeltaRatio is already optimized for that use case:
+	return gammaDeltaRatio( x + 1.0, -n );
+} // end FUNCTION fallingFactorial()
+
+
+// MAIN //
+
+/**
+* Computes the rising factorial of x and n.
+*
+* ## Notes
+*
+* * The rising factorial is defined as
+*
+*   ``` tex
+*   \operatorname{risingFactorial}(x, n) = x (x-1) (x-2) (x-3) \ldots (x-n+1)
+*   ```
+*
+*   or equivalently
+*
+*   ``` tex
+*   \operatorname{risingFactorial}(x, n) = \frac{ \Gamma(x + n) }{ \Gamma(x) };
+*   ```
+*
+* @param {number} x - first function parameter
+* @param {integer} n - second function parameter
+* @returns {number} function value
+*
+* @example
+* var v = risingFactorial( 0.9, 5.0 );
+* // returns ~94.766
+*
+* @example
+* var v = risingFactorial( -9.0, 3.0 );
+* // returns -504
+*
+* @example
+* var v = risingFactorial( 0.0, 2.0 );
+* // returns 0.0
+*
+* @example
+* var v = risingFactorial( 3.0, -2.0 );
+* // returns 0.5
+*/
+function risingFactorial( x, n ) {
+	var result;
+	var inv;
+	var val;
+
+	if ( isnan( x ) || !isInteger( n ) ) {
+		return NaN;
+	}
+	if ( x < 0.0 ) {
+		// For x less than zero, we really have a falling factorial, modulo a possible change of sign. Note that the falling factorial isn't defined for negative n, so we'll get rid of that case first:
+		inv = false;
+		if ( n < 0.0 ) {
+			x += n;
+			n = -n;
+			inv = true;
+		}
+		result = ( (n&1) ? -1 : 1 ) * fallingFactorial( -x, n );
+		if ( inv ) {
+			result = 1.0 / result;
+		}
+		return result;
+	}
+	if ( n === 0 ) {
+		return 1.0;
+	}
+	if ( x === 0.0 ) {
+		if ( n < 0 ) {
+			return -gammaDeltaRatio( x + 1.0, -n );
+		}
+		return 0.0;
+	}
+	if ( x < 1.0 && x + n < 0 ) {
+		val = gammaDeltaRatio( 1.0 - x, -n );
+		return ( n & 1 ) ? -val : val;
+	}
+	// We don't optimize this for small `n`, because gammaDeltaRatio is already optimized for that use case:
+	return 1.0 / gammaDeltaRatio( x, n );
+} // end FUNCTION risingFactorial()
+
+
+// EXPORTS //
+
+module.exports = risingFactorial;
+
+},{"./tgamma_delta_ratio.js":306,"@stdlib/math/base/assert/is-integer":8,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-nonnegative-integer":16,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/floor":170,"@stdlib/math/constants/float64-max":427,"@stdlib/math/constants/float64-pinf":437}],306:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/special/factorial":156,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/gamma":188,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-e":409,"@stdlib/math/constants/float64-eps":410,"dup":68}],307:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -23141,7 +25773,7 @@ var round = require( './round.js' );
 
 module.exports = round;
 
-},{"./round.js":274}],274:[function(require,module,exports){
+},{"./round.js":308}],308:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -23203,7 +25835,7 @@ var round = Math.round;
 
 module.exports = round;
 
-},{}],275:[function(require,module,exports){
+},{}],309:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23233,7 +25865,7 @@ var round10 = require( './round10.js' );
 
 module.exports = round10;
 
-},{"./round10.js":276}],276:[function(require,module,exports){
+},{"./round10.js":310}],310:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23330,7 +25962,7 @@ function round10( x ) {
 
 module.exports = round10;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":392}],277:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":428}],311:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23360,7 +25992,7 @@ var round2 = require( './round2.js' );
 
 module.exports = round2;
 
-},{"./round2.js":278}],278:[function(require,module,exports){
+},{"./round2.js":312}],312:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23459,7 +26091,7 @@ function round2( x ) {
 
 module.exports = round2;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log2":237,"@stdlib/math/base/special/pow":254,"@stdlib/math/constants/float64-max-base2-exponent":388,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":394,"@stdlib/math/constants/float64-pinf":400}],279:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log2":257,"@stdlib/math/base/special/pow":285,"@stdlib/math/constants/float64-max-base2-exponent":422,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":430,"@stdlib/math/constants/float64-pinf":437}],313:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23492,7 +26124,7 @@ var roundb = require( './roundb.js' );
 
 module.exports = roundb;
 
-},{"./roundb.js":280}],280:[function(require,module,exports){
+},{"./roundb.js":314}],314:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23571,7 +26203,7 @@ function roundb( x, n, b ) {
 
 module.exports = roundb;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/round":273,"@stdlib/math/base/special/roundn":281}],281:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/round":307,"@stdlib/math/base/special/roundn":315}],315:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23604,7 +26236,7 @@ var roundn = require( './roundn.js' );
 
 module.exports = roundn;
 
-},{"./roundn.js":282}],282:[function(require,module,exports){
+},{"./roundn.js":316}],316:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23696,10 +26328,12 @@ var HUGE = 1e+308;
 * // Round a value to 2 decimal places:
 * var v = roundn( Math.PI, -2 );
 * // returns 3.14
+*
 * @example
 * // If n = 0, `roundn` behaves like `round`:
 * var v = roundn( Math.PI, 0 );
 * // returns 3.0
+*
 * @example
 * // Round a value to the nearest thousand:
 * var v = roundn( 12368.0, 3 );
@@ -23756,7 +26390,7 @@ function roundn( x, n ) {
 
 module.exports = roundn;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/round":273,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-max-safe-integer":390,"@stdlib/math/constants/float64-min-base10-exponent":393,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":392}],283:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/round":307,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-max-safe-integer":424,"@stdlib/math/constants/float64-min-base10-exponent":429,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":428}],317:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23789,7 +26423,7 @@ var roundsd = require( './roundsd.js' );
 
 module.exports = roundsd;
 
-},{"./roundsd.js":284}],284:[function(require,module,exports){
+},{"./roundsd.js":318}],318:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23893,7 +26527,7 @@ function roundsd( x, n, b ) {
 
 module.exports = roundsd;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/round":273,"@stdlib/math/base/utils/float64-exponent":348}],285:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/round":307,"@stdlib/math/base/utils/float64-exponent":382}],319:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23926,7 +26560,7 @@ var sici = require( './sici.js' );
 
 module.exports = sici;
 
-},{"./sici.js":286}],286:[function(require,module,exports){
+},{"./sici.js":320}],320:[function(require,module,exports){
 'use strict';
 
 /*
@@ -24215,7 +26849,7 @@ function sici( x ) {
 
 module.exports = sici;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/cos":110,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sin":289,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-eulergamma":377,"@stdlib/math/constants/float64-half-pi":381,"@stdlib/math/constants/float64-ninf":397}],287:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/cos":113,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/sin":323,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-eulergamma":411,"@stdlib/math/constants/float64-half-pi":415,"@stdlib/math/constants/float64-ninf":433}],321:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24251,7 +26885,7 @@ var signum = require( './signum.js' );
 
 module.exports = signum;
 
-},{"./signum.js":288}],288:[function(require,module,exports){
+},{"./signum.js":322}],322:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24270,15 +26904,19 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * @example
 * var sign = signum( -5.0 );
 * // returns -1.0
+*
 * @example
 * var sign = signum( 5.0 );
 * // returns 1.0
+*
 * @example
 * var sign = signum( -0.0 );
 * // returns -0.0
+*
 * @example
 * var sign = signum( 0.0 );
 * // returns 0.0
+*
 * @example
 * var sign = signum( NaN );
 * // returns NaN
@@ -24295,7 +26933,7 @@ function signum( x ) {
 
 module.exports = signum;
 
-},{"@stdlib/math/base/assert/is-nan":10}],289:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10}],323:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24328,7 +26966,7 @@ var sin = require( './sin.js' );
 
 module.exports = sin;
 
-},{"./sin.js":295}],290:[function(require,module,exports){
+},{"./sin.js":329}],324:[function(require,module,exports){
 'use strict';
 
 /*
@@ -24430,7 +27068,7 @@ function kernelCos( x, y ) {
 
 module.exports = kernelCos;
 
-},{}],291:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 /* eslint-disable no-plusplus */
 'use strict';
 
@@ -24811,7 +27449,7 @@ function kernelRemPio2( x, y, e0, nx, prec ) {
 
 module.exports = kernelRemPio2;
 
-},{"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ldexp":225}],292:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ldexp":245}],326:[function(require,module,exports){
 'use strict';
 
 /*
@@ -24907,7 +27545,7 @@ function kernelSin( x, y, iy ) {
 
 module.exports = kernelSin;
 
-},{}],293:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 'use strict';
 
 /*
@@ -25132,7 +27770,7 @@ function remPio2( x, y ) {
 
 module.exports = remPio2;
 
-},{"./kernel_rem_pio2.js":291,"./rem_pio2_medium.js":294,"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-get-low-word":356}],294:[function(require,module,exports){
+},{"./kernel_rem_pio2.js":325,"./rem_pio2_medium.js":328,"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-get-low-word":390}],328:[function(require,module,exports){
 'use strict';
 
 /*
@@ -25243,7 +27881,7 @@ function remPio2( x, ix, y ) {
 
 module.exports = remPio2;
 
-},{"@stdlib/math/base/special/round":273,"@stdlib/math/base/utils/float64-get-high-word":354}],295:[function(require,module,exports){
+},{"@stdlib/math/base/special/round":307,"@stdlib/math/base/utils/float64-get-high-word":388}],329:[function(require,module,exports){
 'use strict';
 
 /*
@@ -25299,12 +27937,12 @@ var Y = [ 0.0, 0.0 ];
 * * Let `S`, `C`, and `T` denote the `sin`, `cos` and `tan`, respectively, on `[-PI/4, +PI/4]`.
 * * Reduce the argument `x` to `y1+y2 = x-k*pi/2` in `[-pi/4 , +pi/4]`, and let `n = k mod 4`. We have
 *
-* | n   |  sin(x)  |  cos(x)  |  tan(x)  |
-* | --- |----------|----------|----------|
-* |  0  |     S    |     C    |    T     |
-* |  1  |     C    |    -S    |   -1/T   |
-* |  2  |    -S    |    -C    |    T     |
-* |  3  |    -C    |     S    |   -1/T   |
+*   | n   |  sin(x)  |  cos(x)  |  tan(x)  |
+*   |:---:|:--------:|:--------:|:--------:|
+*   |  0  |     S    |     C    |    T     |
+*   |  1  |     C    |    -S    |   -1/T   |
+*   |  2  |    -S    |    -C    |    T     |
+*   |  3  |    -C    |     S    |   -1/T   |
 *
 *
 * @param {number} x - input value
@@ -25366,7 +28004,7 @@ function sin( x ) {
 
 module.exports = sin;
 
-},{"./kernel_cos.js":290,"./kernel_sin.js":292,"./rem_pio2.js":293,"@stdlib/math/base/utils/float64-get-high-word":354}],296:[function(require,module,exports){
+},{"./kernel_cos.js":324,"./kernel_sin.js":326,"./rem_pio2.js":327,"@stdlib/math/base/utils/float64-get-high-word":388}],330:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25399,7 +28037,7 @@ var sinc = require( './sinc.js' );
 
 module.exports = sinc;
 
-},{"./sinc.js":297}],297:[function(require,module,exports){
+},{"./sinc.js":331}],331:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25442,12 +28080,15 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 * @example
 * var v = sinc( 0.5 );
 * // returns ~0.637
+*
 * @example
 * var v = sinc( -1.2 );
 * // returns ~-0.156
+*
 * @example
 * var v = sinc( 0.0 );
 * // returns 1.0
+*
 * @example
 * var v = sinc( NaN );
 * // returns NaN
@@ -25470,7 +28111,7 @@ function sinc( x ) {
 
 module.exports = sinc;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/sinpi":300,"@stdlib/math/constants/float64-pi":399}],298:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/sinpi":334,"@stdlib/math/constants/float64-pi":436}],332:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25503,7 +28144,7 @@ var sinh = require( './sinh.js' );
 
 module.exports = sinh;
 
-},{"./sinh.js":299}],299:[function(require,module,exports){
+},{"./sinh.js":333}],333:[function(require,module,exports){
 'use strict';
 
 /*
@@ -25607,12 +28248,15 @@ var rateval = evalrational( P, Q );
 * @example
 * var v = sinh( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = sinh( 2.0 );
 * // returns ~3.627
+*
 * @example
 * var v = sinh( -2.0 );
 * // returns ~-3.627
+*
 * @example
 * var v = sinh( NaN );
 * // returns NaN
@@ -25639,14 +28283,14 @@ function sinh( x ) {
 			return a;
 		}
 		a = exp( a );
-		a = 0.5*a - (0.5/a);
+		a = (0.5*a) - (0.5/a);
 		if ( x < 0.0 ) {
 			a = -a;
 		}
 		return a;
 	}
 	a *= a;
-	return x + x*a*rateval( a );
+	return x + ( x*a*rateval( a ) );
 } // end FUNCTION sinh()
 
 
@@ -25654,7 +28298,7 @@ function sinh( x ) {
 
 module.exports = sinh;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/tools/evalrational":343,"@stdlib/math/constants/float64-ln-two":385,"@stdlib/math/constants/float64-ninf":397,"@stdlib/math/constants/float64-pinf":400}],300:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/tools/evalrational":377,"@stdlib/math/constants/float64-ln-two":419,"@stdlib/math/constants/float64-ninf":433,"@stdlib/math/constants/float64-pinf":437}],334:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25687,7 +28331,7 @@ var sinpi = require( './sinpi.js' );
 
 module.exports = sinpi;
 
-},{"./sinpi.js":301}],301:[function(require,module,exports){
+},{"./sinpi.js":335}],335:[function(require,module,exports){
 'use strict';
 
 /*
@@ -25721,12 +28365,15 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 * @example
 * var y = sinpi( 0.0 );
 * // returns 0.0
+*
 * @example
 * var y = sinpi( 0.5 );
 * // returns 1.0
+*
 * @example
 * var y = sinpi( 0.9 );
 * // returns ~0.309
+*
 * @example
 * var y = sinpi( NaN );
 * // returns NaN
@@ -25773,7 +28420,7 @@ function sinpi( x ) {
 
 module.exports = sinpi;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/copysign":107,"@stdlib/math/base/special/cos":110,"@stdlib/math/base/special/sin":289,"@stdlib/math/constants/float64-pi":399}],302:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/copysign":110,"@stdlib/math/base/special/cos":113,"@stdlib/math/base/special/sin":323,"@stdlib/math/constants/float64-pi":436}],336:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25806,7 +28453,7 @@ var spence = require( './spence.js' );
 
 module.exports = spence;
 
-},{"./spence.js":303}],303:[function(require,module,exports){
+},{"./spence.js":337}],337:[function(require,module,exports){
 'use strict';
 
 /*
@@ -25895,12 +28542,15 @@ var polyvalB = evalpoly( B );
 * @example
 * var v = spence( 3.0 );
 * // returns ~-1.437
+*
 * @example
 * var v = spence( 0.0 );
 * // returns ~1.645
+*
 * @example
 * var v = spence( -9.0 );
 * // returns NaN
+*
 * @example
 * var v = spence( NaN );
 * // returns NaN
@@ -25952,7 +28602,7 @@ function spence( x ) {
 
 module.exports = spence;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/tools/evalpoly":340,"@stdlib/math/constants/float64-pi-squared":398}],304:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/tools/evalpoly":374,"@stdlib/math/constants/float64-pi-squared":435}],338:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25988,7 +28638,7 @@ var sqrt = Math.sqrt;
 
 module.exports = sqrt;
 
-},{}],305:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
 'use strict';
 
 /**
@@ -26021,7 +28671,7 @@ var sqrt1pm1 = require( './sqrt1pm1.js' );
 
 module.exports = sqrt1pm1;
 
-},{"./sqrt1pm1.js":306}],306:[function(require,module,exports){
+},{"./sqrt1pm1.js":340}],340:[function(require,module,exports){
 'use strict';
 
 /*
@@ -26057,18 +28707,23 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * @example
 * var v = sqrt1pm1( 3.0 );
 * // returns 1.0
+*
 * @example
 * var v = sqrt1pm1( 0.5 );
 * // returns ~0.225
+*
 * @example
 * var v = sqrt1pm1( 0.02 );
 * // returns ~0.01
+*
 * @example
 * var v = sqrt1pm1( -0.5 );
 * // returns ~-0.292
+*
 * @example
 * var v = sqrt1pm1( -1.1 );
 * // returns NaN
+*
 * @example
 * var v = sqrt1pm1( NaN );
 * // returns NaN
@@ -26088,7 +28743,7 @@ function sqrt1pm1( x ) {
 
 module.exports = sqrt1pm1;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/expm1":150,"@stdlib/math/base/special/log1p":235,"@stdlib/math/base/special/sqrt":304}],307:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/expm1":153,"@stdlib/math/base/special/log1p":255,"@stdlib/math/base/special/sqrt":338}],341:[function(require,module,exports){
 'use strict';
 
 /**
@@ -26119,7 +28774,7 @@ var tan = require( './tan.js' );
 
 module.exports = tan;
 
-},{"./tan.js":310}],308:[function(require,module,exports){
+},{"./tan.js":344}],342:[function(require,module,exports){
 'use strict';
 
 /*
@@ -26375,9 +29030,9 @@ function remPio2Medium( x, ix, y ) {
 
 module.exports = remPio2;
 
-},{"./rem_pio2_kernel.js":309,"@stdlib/math/base/special/round":273,"@stdlib/math/base/utils/float64-from-words":350,"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-get-low-word":356}],309:[function(require,module,exports){
-arguments[4][112][0].apply(exports,arguments)
-},{"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ldexp":225,"dup":112}],310:[function(require,module,exports){
+},{"./rem_pio2_kernel.js":343,"@stdlib/math/base/special/round":307,"@stdlib/math/base/utils/float64-from-words":384,"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-get-low-word":390}],343:[function(require,module,exports){
+arguments[4][115][0].apply(exports,arguments)
+},{"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ldexp":245,"dup":115}],344:[function(require,module,exports){
 'use strict';
 
 /*
@@ -26411,14 +29066,14 @@ var remPio2 = require( './rem_pio2.js' );
 *
 * #### Method
 *
-* Let S,C and T denote the sin, cos and tan respectively on [-PI/4, +PI/4]. Reduce the argument x to y1+y2 = x-k*pi/2 in [-pi/4 , +pi/4], and let n = k mod 4. We have
+* * Let S,C and T denote the sin, cos and tan respectively on [-PI/4, +PI/4]. Reduce the argument x to y1+y2 = x-k*pi/2 in [-pi/4 , +pi/4], and let n = k mod 4. We have
 *
-* | n   |  sin(x)  |  cos(x)  |  tan(x)  |
-* | --- |----------|----------|----------|
-* |  0  |     S    |     C    |    T     |
-* |  1  |     C    |    -S    |   -1/T   |
-* |  2  |    -S    |    -C    |    T     |
-* |  3  |    -C    |     S    |   -1/T   |
+*   | n   |  sin(x)  |  cos(x)  |  tan(x)  |
+*   |:---:|:--------:|:--------:|:--------:|
+*   |  0  |     S    |     C    |    T     |
+*   |  1  |     C    |    -S    |   -1/T   |
+*   |  2  |    -S    |    -C    |    T     |
+*   |  3  |    -C    |     S    |   -1/T   |
 *
 * @param {number} x - input value
 * @returns {number} tangent (in radians)
@@ -26426,12 +29081,15 @@ var remPio2 = require( './rem_pio2.js' );
 * @example
 * var v = tan( 0.0 );
 * // returns ~0.0
+*
 * @example
 * var v = tan( -Math.PI/4.0 );
 * // returns ~-1.0
+*
 * @example
 * var v = tan( Math.PI/4.0 );
 * // returns ~1.0
+*
 * @example
 * var v = tan( NaN );
 * // returns NaN
@@ -26451,7 +29109,7 @@ function tan( x ) {
 	if ( ix <= 0x3fe921fb ) {
 		// Case: x < 2**-27
 		if ( ix < 0x3e400000 ) {
-			if ( (x|0) === 0  ) {
+			if ( (x|0) === 0 ) {
 				// Generate inexact...
 				return x;
 			}
@@ -26463,10 +29121,8 @@ function tan( x ) {
 		return NaN;
 	}
 	// Argument reduction needed...
-	else {
-		n = remPio2( x, y );
-		return tanKernel( y[0], y[1], 1 - ( (n&1) << 1 ) );
-	}
+	n = remPio2( x, y );
+	return tanKernel( y[0], y[1], 1 - ( (n&1) << 1 ) );
 } // end FUNCTION tan()
 
 
@@ -26474,7 +29130,7 @@ function tan( x ) {
 
 module.exports = tan;
 
-},{"./rem_pio2.js":308,"./tan_kernel.js":311,"@stdlib/math/base/utils/float64-get-high-word":354}],311:[function(require,module,exports){
+},{"./rem_pio2.js":342,"./tan_kernel.js":345,"@stdlib/math/base/utils/float64-get-high-word":388}],345:[function(require,module,exports){
 'use strict';
 
 /*
@@ -26627,7 +29283,7 @@ function tanKernel( x, y, k ) {
 
 module.exports = tanKernel;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/base/utils/float64-set-low-word":363}],312:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/base/utils/float64-set-low-word":397}],346:[function(require,module,exports){
 'use strict';
 
 /**
@@ -26663,7 +29319,7 @@ var tanh = require( './tanh.js' );
 
 module.exports = tanh;
 
-},{"./tanh.js":313}],313:[function(require,module,exports){
+},{"./tanh.js":347}],347:[function(require,module,exports){
 'use strict';
 
 /*
@@ -26758,12 +29414,15 @@ var ratval = evalrational( P, Q );
 * @example
 * var v = tanh( 0.0 );
 * // returns 0.0
+*
 * @example
 * var v = tanh( 2.0 );
 * // returns ~0.964
+*
 * @example
 * var v = tanh( -2.0 );
 * // returns ~-0.964
+*
 * @example
 * var v = tanh( NaN );
 * // returns NaN
@@ -26796,7 +29455,7 @@ function tanh( x ) {
 
 module.exports = tanh;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/exp":144,"@stdlib/math/base/tools/evalrational":343}],314:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/exp":147,"@stdlib/math/base/tools/evalrational":377}],348:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -26822,7 +29481,7 @@ tape( 'the exported object contains special functions', function test( t ) {
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/special/test/test.js")
-},{"./../lib":227,"object-keys":440,"tape":466}],315:[function(require,module,exports){
+},{"./../lib":247,"object-keys":480,"tape":506}],349:[function(require,module,exports){
 'use strict';
 
 /**
@@ -26864,7 +29523,7 @@ var trunc = require( './trunc.js' );
 
 module.exports = trunc;
 
-},{"./trunc.js":316}],316:[function(require,module,exports){
+},{"./trunc.js":350}],350:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -26921,7 +29580,7 @@ function trunc( x ) {
 
 module.exports = trunc;
 
-},{"@stdlib/math/base/special/ceil":95,"@stdlib/math/base/special/floor":159}],317:[function(require,module,exports){
+},{"@stdlib/math/base/special/ceil":98,"@stdlib/math/base/special/floor":170}],351:[function(require,module,exports){
 'use strict';
 
 /**
@@ -26951,7 +29610,7 @@ var trunc10 = require( './trunc10.js' );
 
 module.exports = trunc10;
 
-},{"./trunc10.js":318}],318:[function(require,module,exports){
+},{"./trunc10.js":352}],352:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27006,7 +29665,7 @@ function trunc10( x ) {
 
 module.exports = trunc10;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254}],319:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285}],353:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27036,7 +29695,7 @@ var trunc2 = require( './trunc2.js' );
 
 module.exports = trunc2;
 
-},{"./trunc2.js":320}],320:[function(require,module,exports){
+},{"./trunc2.js":354}],354:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27091,7 +29750,7 @@ function trunc2( x ) {
 
 module.exports = trunc2;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/log2":237,"@stdlib/math/base/special/pow":254}],321:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/log2":257,"@stdlib/math/base/special/pow":285}],355:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27124,7 +29783,7 @@ var truncb = require( './truncb.js' );
 
 module.exports = truncb;
 
-},{"./truncb.js":322}],322:[function(require,module,exports){
+},{"./truncb.js":356}],356:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27203,7 +29862,7 @@ function truncb( x, n, b ) {
 
 module.exports = truncb;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/trunc":315,"@stdlib/math/base/special/truncn":323}],323:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/trunc":349,"@stdlib/math/base/special/truncn":357}],357:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27236,7 +29895,7 @@ var truncn = require( './truncn.js' );
 
 module.exports = truncn;
 
-},{"./truncn.js":324}],324:[function(require,module,exports){
+},{"./truncn.js":358}],358:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27383,7 +30042,7 @@ function truncn( x, n ) {
 
 module.exports = truncn;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/trunc":315,"@stdlib/math/constants/float64-max-base10-exponent":386,"@stdlib/math/constants/float64-max-safe-integer":390,"@stdlib/math/constants/float64-min-base10-exponent":393,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":392}],325:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/trunc":349,"@stdlib/math/constants/float64-max-base10-exponent":420,"@stdlib/math/constants/float64-max-safe-integer":424,"@stdlib/math/constants/float64-min-base10-exponent":429,"@stdlib/math/constants/float64-min-base10-exponent-subnormal":428}],359:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27416,7 +30075,7 @@ var truncsd = require( './truncsd.js' );
 
 module.exports = truncsd;
 
-},{"./truncsd.js":326}],326:[function(require,module,exports){
+},{"./truncsd.js":360}],360:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27520,7 +30179,7 @@ function truncsd( x, n, b ) {
 
 module.exports = truncsd;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/base/special/floor":159,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log10":232,"@stdlib/math/base/special/pow":254,"@stdlib/math/base/special/trunc":315,"@stdlib/math/base/utils/float64-exponent":348}],327:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/base/special/floor":170,"@stdlib/math/base/special/ln":248,"@stdlib/math/base/special/log10":252,"@stdlib/math/base/special/pow":285,"@stdlib/math/base/special/trunc":349,"@stdlib/math/base/utils/float64-exponent":382}],361:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27553,7 +30212,7 @@ var vercos = require( './vercos.js' );
 
 module.exports = vercos;
 
-},{"./vercos.js":328}],328:[function(require,module,exports){
+},{"./vercos.js":362}],362:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27594,7 +30253,7 @@ function vercos( x ) {
 
 module.exports = vercos;
 
-},{"@stdlib/math/base/special/cos":110}],329:[function(require,module,exports){
+},{"@stdlib/math/base/special/cos":113}],363:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27627,7 +30286,7 @@ var versin = require( './versin.js' );
 
 module.exports = versin;
 
-},{"./versin.js":330}],330:[function(require,module,exports){
+},{"./versin.js":364}],364:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27668,7 +30327,7 @@ function versin( x ) {
 
 module.exports = versin;
 
-},{"@stdlib/math/base/special/cos":110}],331:[function(require,module,exports){
+},{"@stdlib/math/base/special/cos":113}],365:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27713,7 +30372,7 @@ var xlog1py = require( './xlog1py.js' );
 
 module.exports = xlog1py;
 
-},{"./xlog1py.js":332}],332:[function(require,module,exports){
+},{"./xlog1py.js":366}],366:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27775,7 +30434,7 @@ function xlog1py( x, y ) {
 
 module.exports = xlog1py;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/log1p":235}],333:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/log1p":255}],367:[function(require,module,exports){
 'use strict';
 
 /**
@@ -27817,7 +30476,7 @@ var xlogy = require( './xlogy.js' );
 
 module.exports = xlogy;
 
-},{"./xlogy.js":334}],334:[function(require,module,exports){
+},{"./xlogy.js":368}],368:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -27875,7 +30534,7 @@ function xlogy( x, y ) {
 
 module.exports = xlogy;
 
-},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":228}],335:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/ln":248}],369:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -28047,7 +30706,7 @@ function continuedFraction( generator, options ) {
 
 module.exports = continuedFraction;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/constants/float32-smallest-normal":374,"@stdlib/math/constants/float64-eps":376}],336:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float32-smallest-normal":408,"@stdlib/math/constants/float64-eps":410}],370:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -28253,7 +30912,7 @@ function continuedFraction( generator, options ) {
 
 module.exports = continuedFraction;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/constants/float32-smallest-normal":374,"@stdlib/math/constants/float64-eps":376}],337:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float32-smallest-normal":408,"@stdlib/math/constants/float64-eps":410}],371:[function(require,module,exports){
 'use strict';
 
 /**
@@ -28287,7 +30946,7 @@ var hasGeneratorsSupport = require( '@stdlib/utils/detect-generator-support' )()
 
 module.exports = hasGeneratorsSupport ? require( './generators.js' ) : require( './basic.js' );
 
-},{"./basic.js":335,"./generators.js":336,"@stdlib/utils/detect-generator-support":410}],338:[function(require,module,exports){
+},{"./basic.js":369,"./generators.js":370,"@stdlib/utils/detect-generator-support":447}],372:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -28334,8 +30993,13 @@ function evalpoly( c, x ) {
 
 module.exports = evalpoly;
 
-},{}],339:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 'use strict';
+
+// MODULES //
+
+var evalpoly = require( './evalpoly.js' );
+
 
 // MAIN //
 
@@ -28365,6 +31029,10 @@ function factory( c ) {
 	var m;
 	var i;
 
+	// Avoid exceeding the maximum stack size on V8 :(. Note that the choice of `500` was empirically determined...
+	if ( c.length > 500 ) {
+		return polyval;
+	}
 	// Code generation. Start with the function definition...
 	f = 'return function evalpoly(x){';
 
@@ -28418,6 +31086,17 @@ function factory( c ) {
 	*        return c[0]+x*(c[1]+x*(c[2]+x*(c[3]+...+x*(c[n-2]+x*c[n-1]))));
 	*    }
 	*/
+
+	/**
+	* Evaluates a polynomial.
+	*
+	* @private
+	* @param {number} x - value at which to evaluate a polynomial
+	* @returns {number} evaluated polynomial
+	*/
+	function polyval( x ) {
+		return evalpoly( c, x );
+	} // end FUNCTON polyval()
 } // end FUNCTION factory()
 
 
@@ -28425,7 +31104,7 @@ function factory( c ) {
 
 module.exports = factory;
 
-},{}],340:[function(require,module,exports){
+},{"./evalpoly.js":372}],374:[function(require,module,exports){
 'use strict';
 
 /**
@@ -28467,7 +31146,7 @@ setReadOnly( evalpoly, 'factory', factory );
 
 module.exports = evalpoly;
 
-},{"./evalpoly.js":338,"./factory.js":339,"@stdlib/utils/define-read-only-property":408}],341:[function(require,module,exports){
+},{"./evalpoly.js":372,"./factory.js":373,"@stdlib/utils/define-read-only-property":445}],375:[function(require,module,exports){
 'use strict';
 
 /*
@@ -28565,9 +31244,13 @@ function evalrational( P, Q, x ) {
 
 module.exports = evalrational;
 
-},{"@stdlib/math/base/special/abs":21}],342:[function(require,module,exports){
-/* jshint evil:true */
+},{"@stdlib/math/base/special/abs":25}],376:[function(require,module,exports){
 'use strict';
+
+// MODULES //
+
+var evalrational = require( './evalrational.js' );
+
 
 // MAIN //
 
@@ -28602,6 +31285,10 @@ function factory( P, Q ) {
 	var m;
 	var i;
 
+	// Avoid exceeding maximum stack size on V8 :(. Note that the value of `500` was empirically determined...
+	if ( P.length > 500 ) {
+		return rational;
+	}
 	// Code generation. Start with the function definition...
 	f = 'return function evalrational(x){';
 
@@ -28712,7 +31399,7 @@ function factory( P, Q ) {
 	f += '//# sourceURL=evalrational.factory.js';
 
 	// Create the function in the global scope:
-	return ( new Function( f ) )();
+	return ( new Function( f ) )(); // eslint-disable-line no-new-func
 
 	/*
 	* returns
@@ -28737,6 +31424,17 @@ function factory( P, Q ) {
 	*		return s1 / s2;
 	*	}
 	*/
+
+	/**
+	* Evaluates a rational function.
+	*
+	* @private
+	* @param {number} x - value at which to evaluate a rational function
+	* @returns {number} evaluated rational function
+	*/
+	function rational( x ) {
+		return evalrational( P, Q, x );
+	} // end FUNCTION rational()
 } // end FUNCTION factory()
 
 
@@ -28744,7 +31442,7 @@ function factory( P, Q ) {
 
 module.exports = factory;
 
-},{}],343:[function(require,module,exports){
+},{"./evalrational.js":375}],377:[function(require,module,exports){
 'use strict';
 
 /**
@@ -28795,7 +31493,7 @@ setReadOnly( evalrational, 'factory', factory );
 
 module.exports = evalrational;
 
-},{"./evalrational.js":341,"./factory.js":342,"@stdlib/utils/define-read-only-property":408}],344:[function(require,module,exports){
+},{"./evalrational.js":375,"./factory.js":376,"@stdlib/utils/define-read-only-property":445}],378:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -28865,7 +31563,7 @@ function sumSeries( generator, options ) {
 
 module.exports = sumSeries;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/constants/float64-eps":376}],345:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float64-eps":410}],379:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -28948,7 +31646,7 @@ function sumSeries( generator, options ) {
 
 module.exports = sumSeries;
 
-},{"@stdlib/math/base/special/abs":21,"@stdlib/math/constants/float64-eps":376}],346:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float64-eps":410}],380:[function(require,module,exports){
 'use strict';
 
 /**
@@ -28981,7 +31679,7 @@ var hasGeneratorsSupport = require( '@stdlib/utils/detect-generator-support' )()
 
 module.exports = hasGeneratorsSupport ? require( './generators.js' ) : require( './basic.js' );
 
-},{"./basic.js":344,"./generators.js":345,"@stdlib/utils/detect-generator-support":410}],347:[function(require,module,exports){
+},{"./basic.js":378,"./generators.js":379,"@stdlib/utils/detect-generator-support":447}],381:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29028,7 +31726,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":354,"@stdlib/math/constants/float64-exponent-bias":378,"@stdlib/math/constants/float64-high-word-exponent-mask":382}],348:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":388,"@stdlib/math/constants/float64-exponent-bias":412,"@stdlib/math/constants/float64-high-word-exponent-mask":416}],382:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29061,7 +31759,7 @@ var exponent = require( './exponent.js' );
 
 module.exports = exponent;
 
-},{"./exponent.js":347}],349:[function(require,module,exports){
+},{"./exponent.js":381}],383:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29158,7 +31856,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":351}],350:[function(require,module,exports){
+},{"./indices.js":385}],384:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29200,7 +31898,7 @@ var fromWords = require( './from_words.js' );
 
 module.exports = fromWords;
 
-},{"./from_words.js":349}],351:[function(require,module,exports){
+},{"./from_words.js":383}],385:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29229,7 +31927,7 @@ module.exports = {
 	'LOW': LOW
 };
 
-},{"@stdlib/assert/is-little-endian":2}],352:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":2}],386:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29302,7 +32000,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":353}],353:[function(require,module,exports){
+},{"./high.js":387}],387:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29324,7 +32022,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":2}],354:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":2}],388:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29348,7 +32046,7 @@ var getHighWord = require( './get_high_word.js' );
 
 module.exports = getHighWord;
 
-},{"./get_high_word.js":352}],355:[function(require,module,exports){
+},{"./get_high_word.js":386}],389:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29421,7 +32119,7 @@ function getLowWord( x ) {
 
 module.exports = getLowWord;
 
-},{"./low.js":357}],356:[function(require,module,exports){
+},{"./low.js":391}],390:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29445,7 +32143,7 @@ var getLowWord = require( './get_low_word.js' );
 
 module.exports = getLowWord;
 
-},{"./get_low_word.js":355}],357:[function(require,module,exports){
+},{"./get_low_word.js":389}],391:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29467,7 +32165,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":2}],358:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":2}],392:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29498,7 +32196,7 @@ var normalize = require( './normalize.js' );
 
 module.exports = normalize;
 
-},{"./normalize.js":359}],359:[function(require,module,exports){
+},{"./normalize.js":393}],393:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29566,9 +32264,9 @@ function normalize( x ) {
 
 module.exports = normalize;
 
-},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":21,"@stdlib/math/constants/float64-smallest-normal":401}],360:[function(require,module,exports){
-arguments[4][353][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":2,"dup":353}],361:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":6,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":25,"@stdlib/math/constants/float64-smallest-normal":438}],394:[function(require,module,exports){
+arguments[4][387][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":2,"dup":387}],395:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29604,7 +32302,7 @@ var setHighWord = require( './set_high_word.js' );
 
 module.exports = setHighWord;
 
-},{"./set_high_word.js":362}],362:[function(require,module,exports){
+},{"./set_high_word.js":396}],396:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29690,7 +32388,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":360}],363:[function(require,module,exports){
+},{"./high.js":394}],397:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29734,9 +32432,9 @@ var setLowWord = require( './set_low_word.js' );
 
 module.exports = setLowWord;
 
-},{"./set_low_word.js":365}],364:[function(require,module,exports){
-arguments[4][357][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":2,"dup":357}],365:[function(require,module,exports){
+},{"./set_low_word.js":399}],398:[function(require,module,exports){
+arguments[4][391][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":2,"dup":391}],399:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29830,7 +32528,7 @@ function setLowWord( x, low ) {
 
 module.exports = setLowWord;
 
-},{"./low.js":364}],366:[function(require,module,exports){
+},{"./low.js":398}],400:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29863,7 +32561,7 @@ var signbit = require( './signbit.js' );
 
 module.exports = signbit;
 
-},{"./signbit.js":367}],367:[function(require,module,exports){
+},{"./signbit.js":401}],401:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -29905,7 +32603,7 @@ function signbit( x ) {
 
 module.exports = signbit;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":354}],368:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":388}],402:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29929,9 +32627,9 @@ var toWords = require( './to_words.js' );
 
 module.exports = toWords;
 
-},{"./to_words.js":370}],369:[function(require,module,exports){
-arguments[4][351][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":2,"dup":351}],370:[function(require,module,exports){
+},{"./to_words.js":404}],403:[function(require,module,exports){
+arguments[4][385][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":2,"dup":385}],404:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -30007,7 +32705,7 @@ function toWords( x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":369}],371:[function(require,module,exports){
+},{"./indices.js":403}],405:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30035,7 +32733,7 @@ var uint32ToInt32 = require( './uint32_to_int32.js' );
 
 module.exports = uint32ToInt32;
 
-},{"./uint32_to_int32.js":372}],372:[function(require,module,exports){
+},{"./uint32_to_int32.js":406}],406:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -30066,7 +32764,7 @@ function uint32ToInt32( x ) {
 
 module.exports = uint32ToInt32;
 
-},{}],373:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30102,7 +32800,7 @@ var FLOAT32_MAX = 3.4028234663852886e+38;
 
 module.exports = FLOAT32_MAX;
 
-},{}],374:[function(require,module,exports){
+},{}],408:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30145,7 +32843,7 @@ var FLOAT32_SMALLEST_NORMAL = 1.1754943508222875e-38;
 module.exports = FLOAT32_SMALLEST_NORMAL;
 
 
-},{}],375:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30179,7 +32877,7 @@ var E = 2.718281828459045235360287471352662497757247093699959574966;
 
 module.exports = E;
 
-},{}],376:[function(require,module,exports){
+},{}],410:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30216,7 +32914,7 @@ var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
 
 module.exports = FLOAT64_EPSILON;
 
-},{}],377:[function(require,module,exports){
+},{}],411:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30249,7 +32947,7 @@ var GAMMA = 0.577215664901532860606512090082402431042;
 
 module.exports = GAMMA;
 
-},{}],378:[function(require,module,exports){
+},{}],412:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30287,7 +32985,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],379:[function(require,module,exports){
+},{}],413:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30319,7 +33017,7 @@ var FOURTH_PI = 7.85398163397448309616e-1;
 
 module.exports = FOURTH_PI;
 
-},{}],380:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30354,7 +33052,7 @@ var HALF_LN2 = 3.46573590279972654709e-01; // 0x3FD62E42 0xFEFA39EF
 
 module.exports = HALF_LN2;
 
-},{}],381:[function(require,module,exports){
+},{}],415:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30386,7 +33084,7 @@ var HALF_PI = 1.5707963267948966;
 
 module.exports = HALF_PI;
 
-},{}],382:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30422,7 +33120,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],383:[function(require,module,exports){
+},{}],417:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30458,7 +33156,7 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
 
 module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
 
-},{}],384:[function(require,module,exports){
+},{}],418:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30493,7 +33191,7 @@ var LN_SQRT_TWO_PI = 9.189385332046727417803297364056176398613974736377834128171
 
 module.exports = LN_SQRT_TWO_PI;
 
-},{}],385:[function(require,module,exports){
+},{}],419:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30528,7 +33226,7 @@ var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393
 
 module.exports = LN2;
 
-},{}],386:[function(require,module,exports){
+},{}],420:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30560,7 +33258,7 @@ var FLOAT64_MAX_BASE10_EXPONENT = 308|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE10_EXPONENT;
 
-},{}],387:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30598,7 +33296,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],388:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30636,7 +33334,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],389:[function(require,module,exports){
+},{}],423:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30649,6 +33347,7 @@ module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 * var FLOAT64_MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 * // returns 709.782712893384
 */
+
 
 // MAIN //
 
@@ -30671,7 +33370,7 @@ var FLOAT64_MAX_LN = 709.782712893384;
 
 module.exports = FLOAT64_MAX_LN;
 
-},{}],390:[function(require,module,exports){
+},{}],424:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30708,7 +33407,74 @@ var FLOAT64_MAX_SAFE_INTEGER = 9007199254740991;
 
 module.exports = FLOAT64_MAX_SAFE_INTEGER;
 
-},{}],391:[function(require,module,exports){
+},{}],425:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum safe nth Fibonacci number when stored in double-precision floating-point format.
+*
+* @module @stdlib/math/constants/float64-max-safe-nth-fibonacci
+* @type {integer}
+*
+* @example
+* var FLOAT64_MAX_SAFE_NTH_FIBONACCI = require( '@stdlib/math/constants/float64-max-safe-nth-fibonacci' );
+* // returns 78
+*/
+
+
+// MAIN //
+
+/**
+* The maximum safe nth Fibonacci number when stored in double-precision floating-point format.
+*
+* @constant
+* @type {integer}
+* @default 78
+* @see [Fibonacci number]{@link https://en.wikipedia.org/wiki/Fibonacci_number}
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX_SAFE_NTH_FIBONACCI = 78|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX_SAFE_NTH_FIBONACCI;
+
+},{}],426:[function(require,module,exports){
+/* eslint-disable id-length */
+'use strict';
+
+/**
+* Maximum safe nth Lucas number when stored in double-precision floating-point format.
+*
+* @module @stdlib/math/constants/float64-max-safe-nth-lucas
+* @type {integer}
+*
+* @example
+* var FLOAT64_MAX_SAFE_NTH_LUCAS = require( '@stdlib/math/constants/float64-max-safe-nth-lucas' );
+* // returns 76
+*/
+
+
+// MAIN //
+
+/**
+* The maximum safe nth Lucas number when stored in double-precision floating-point format.
+*
+* @constant
+* @type {integer}
+* @default 76
+* @see [Lucas number]{@link https://en.wikipedia.org/wiki/Lucas_number}
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX_SAFE_NTH_LUCAS = 76|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX_SAFE_NTH_LUCAS;
+
+},{}],427:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30744,7 +33510,7 @@ var FLOAT64_MAX = 1.7976931348623157e+308;
 
 module.exports = FLOAT64_MAX;
 
-},{}],392:[function(require,module,exports){
+},{}],428:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30776,7 +33542,7 @@ var FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL = -324|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL;
 
-},{}],393:[function(require,module,exports){
+},{}],429:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30812,7 +33578,7 @@ var FLOAT64_MIN_BASE10_EXPONENT = -308|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE10_EXPONENT;
 
-},{}],394:[function(require,module,exports){
+},{}],430:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30850,7 +33616,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],395:[function(require,module,exports){
+},{}],431:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30888,7 +33654,7 @@ var FLOAT64_MIN_BASE2_EXPONENT = -1022|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT;
 
-},{}],396:[function(require,module,exports){
+},{}],432:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30901,6 +33667,7 @@ module.exports = FLOAT64_MIN_BASE2_EXPONENT;
 * var FLOAT64_MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
 * // returns -708.3964185322641
 */
+
 
 // MAIN //
 
@@ -30923,7 +33690,7 @@ var FLOAT64_MIN_LN = -708.3964185322641;
 
 module.exports = FLOAT64_MIN_LN;
 
-},{}],397:[function(require,module,exports){
+},{}],433:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30959,7 +33726,40 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{}],398:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
+'use strict';
+
+/**
+* Golden ratio.
+*
+* @module @stdlib/math/constants/float64-phi
+* @type {number}
+*
+* @example
+* var PHI = require( '@stdlib/math/constants/float64-phi' );
+* // returns 1.618033988749895
+*/
+
+
+// MAIN //
+
+/**
+* Golden ratio.
+*
+* @constant
+* @type {number}
+* @default 1.618033988749895
+* @see [OEIS]{@link http://oeis.org/A001622}
+* @see [Wikipedia]{@link http://en.wikipedia.org/wiki/Golden_ratio}
+*/
+var PHI = 1.61803398874989484820458683436563811772030917980576286213544862; // eslint-disable-line max-len
+
+
+// EXPORTS //
+
+module.exports = PHI;
+
+},{}],435:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30991,7 +33791,7 @@ var PI_SQUARED = 9.8696044010893586188344909998761511353136994072407906264133493
 
 module.exports = PI_SQUARED;
 
-},{}],399:[function(require,module,exports){
+},{}],436:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31023,7 +33823,7 @@ var PI = 3.141592653589793238462643383279502884197169399375105820974944592307816
 
 module.exports = PI;
 
-},{}],400:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31059,7 +33859,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY;
 
 module.exports = FLOAT64_PINF;
 
-},{}],401:[function(require,module,exports){
+},{}],438:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31101,7 +33901,7 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],402:[function(require,module,exports){
+},{}],439:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31138,7 +33938,7 @@ var FLOAT64_SQRT_EPSILON = 0.1490116119384765625e-7;
 
 module.exports = FLOAT64_SQRT_EPSILON;
 
-},{}],403:[function(require,module,exports){
+},{}],440:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31170,7 +33970,7 @@ var SQRT_TWO_PI = 2.506628274631000502415765284811045253e+00;
 
 module.exports = SQRT_TWO_PI;
 
-},{}],404:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31205,7 +34005,7 @@ var SQRT2 = 1.414213562373095048801688724209698078569671875376948073176679737990
 
 module.exports = SQRT2;
 
-},{}],405:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31237,7 +34037,7 @@ var TWO_PI = 6.28318530717958647692528676655900576839433879875021164194988918461
 
 module.exports = TWO_PI;
 
-},{}],406:[function(require,module,exports){
+},{}],443:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31278,7 +34078,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],407:[function(require,module,exports){
+},{}],444:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31307,7 +34107,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{}],408:[function(require,module,exports){
+},{}],445:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31332,7 +34132,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":407}],409:[function(require,module,exports){
+},{"./define_read_only_property.js":444}],446:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -31367,7 +34167,7 @@ function hasGeneratorSupport() {
 
 module.exports = hasGeneratorSupport;
 
-},{"@stdlib/utils/eval":411}],410:[function(require,module,exports){
+},{"@stdlib/utils/eval":448}],447:[function(require,module,exports){
 'use strict';
 
 /**
@@ -31391,7 +34191,7 @@ var hasGeneratorSupport = require( './detect_generator_support.js' );
 
 module.exports = hasGeneratorSupport;
 
-},{"./detect_generator_support.js":409}],411:[function(require,module,exports){
+},{"./detect_generator_support.js":446}],448:[function(require,module,exports){
 /* eslint-disable no-eval */
 'use strict';
 
@@ -31416,7 +34216,7 @@ var evil = eval;
 
 module.exports = evil;
 
-},{}],412:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -31532,11 +34332,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],413:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 
-},{}],414:[function(require,module,exports){
-arguments[4][413][0].apply(exports,arguments)
-},{"dup":413}],415:[function(require,module,exports){
+},{}],451:[function(require,module,exports){
+arguments[4][450][0].apply(exports,arguments)
+},{"dup":450}],452:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -31722,7 +34522,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],416:[function(require,module,exports){
+},{}],453:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -31829,7 +34629,7 @@ function from (value, encodingOrOffset, length) {
     throw new TypeError('"value" argument must not be a number')
   }
 
-  if (value instanceof ArrayBuffer) {
+  if (isArrayBuffer(value)) {
     return fromArrayBuffer(value, encodingOrOffset, length)
   }
 
@@ -32089,7 +34889,7 @@ function byteLength (string, encoding) {
   if (Buffer.isBuffer(string)) {
     return string.length
   }
-  if (isArrayBufferView(string) || string instanceof ArrayBuffer) {
+  if (isArrayBufferView(string) || isArrayBuffer(string)) {
     return string.byteLength
   }
   if (typeof string !== 'string') {
@@ -33421,6 +36221,14 @@ function blitBuffer (src, dst, offset, length) {
   return i
 }
 
+// ArrayBuffers from another context (i.e. an iframe) do not pass the `instanceof` check
+// but they should be treated as valid. See: https://github.com/feross/buffer/issues/166
+function isArrayBuffer (obj) {
+  return obj instanceof ArrayBuffer ||
+    (obj != null && obj.constructor != null && obj.constructor.name === 'ArrayBuffer' &&
+      typeof obj.byteLength === 'number')
+}
+
 // Node 0.10 supports `ArrayBuffer` but lacks `ArrayBuffer.isView`
 function isArrayBufferView (obj) {
   return (typeof ArrayBuffer.isView === 'function') && ArrayBuffer.isView(obj)
@@ -33430,7 +36238,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":412,"ieee754":435}],417:[function(require,module,exports){
+},{"base64-js":449,"ieee754":474}],454:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -33541,7 +36349,400 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":437}],418:[function(require,module,exports){
+},{"../../is-buffer/index.js":476}],455:[function(require,module,exports){
+(function (process){
+/**
+ * This is the web browser implementation of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = require('./debug');
+exports.log = log;
+exports.formatArgs = formatArgs;
+exports.save = save;
+exports.load = load;
+exports.useColors = useColors;
+exports.storage = 'undefined' != typeof chrome
+               && 'undefined' != typeof chrome.storage
+                  ? chrome.storage.local
+                  : localstorage();
+
+/**
+ * Colors.
+ */
+
+exports.colors = [
+  'lightseagreen',
+  'forestgreen',
+  'goldenrod',
+  'dodgerblue',
+  'darkorchid',
+  'crimson'
+];
+
+/**
+ * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+ * and the Firebug extension (any Firefox version) are known
+ * to support "%c" CSS customizations.
+ *
+ * TODO: add a `localStorage` variable to explicitly enable/disable colors
+ */
+
+function useColors() {
+  // NB: In an Electron preload script, document will be defined but not fully
+  // initialized. Since we know we're in Chrome, we'll just detect this case
+  // explicitly
+  if (typeof window !== 'undefined' && window.process && window.process.type === 'renderer') {
+    return true;
+  }
+
+  // is webkit? http://stackoverflow.com/a/16459606/376773
+  // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+  return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
+    // is firebug? http://stackoverflow.com/a/398120/376773
+    (typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
+    // is firefox >= v31?
+    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+    // double check webkit in userAgent just in case we are in a worker
+    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
+}
+
+/**
+ * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+ */
+
+exports.formatters.j = function(v) {
+  try {
+    return JSON.stringify(v);
+  } catch (err) {
+    return '[UnexpectedJSONParseError]: ' + err.message;
+  }
+};
+
+
+/**
+ * Colorize log arguments if enabled.
+ *
+ * @api public
+ */
+
+function formatArgs(args) {
+  var useColors = this.useColors;
+
+  args[0] = (useColors ? '%c' : '')
+    + this.namespace
+    + (useColors ? ' %c' : ' ')
+    + args[0]
+    + (useColors ? '%c ' : ' ')
+    + '+' + exports.humanize(this.diff);
+
+  if (!useColors) return;
+
+  var c = 'color: ' + this.color;
+  args.splice(1, 0, c, 'color: inherit')
+
+  // the final "%c" is somewhat tricky, because there could be other
+  // arguments passed either before or after the %c, so we need to
+  // figure out the correct index to insert the CSS into
+  var index = 0;
+  var lastC = 0;
+  args[0].replace(/%[a-zA-Z%]/g, function(match) {
+    if ('%%' === match) return;
+    index++;
+    if ('%c' === match) {
+      // we only are interested in the *last* %c
+      // (the user may have provided their own)
+      lastC = index;
+    }
+  });
+
+  args.splice(lastC, 0, c);
+}
+
+/**
+ * Invokes `console.log()` when available.
+ * No-op when `console.log` is not a "function".
+ *
+ * @api public
+ */
+
+function log() {
+  // this hackery is required for IE8/9, where
+  // the `console.log` function doesn't have 'apply'
+  return 'object' === typeof console
+    && console.log
+    && Function.prototype.apply.call(console.log, console, arguments);
+}
+
+/**
+ * Save `namespaces`.
+ *
+ * @param {String} namespaces
+ * @api private
+ */
+
+function save(namespaces) {
+  try {
+    if (null == namespaces) {
+      exports.storage.removeItem('debug');
+    } else {
+      exports.storage.debug = namespaces;
+    }
+  } catch(e) {}
+}
+
+/**
+ * Load `namespaces`.
+ *
+ * @return {String} returns the previously persisted debug modes
+ * @api private
+ */
+
+function load() {
+  var r;
+  try {
+    r = exports.storage.debug;
+  } catch(e) {}
+
+  // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+  if (!r && typeof process !== 'undefined' && 'env' in process) {
+    r = process.env.DEBUG;
+  }
+
+  return r;
+}
+
+/**
+ * Enable namespaces listed in `localStorage.debug` initially.
+ */
+
+exports.enable(load());
+
+/**
+ * Localstorage attempts to return the localstorage.
+ *
+ * This is necessary because safari throws
+ * when a user disables cookies/localstorage
+ * and you attempt to access it.
+ *
+ * @return {LocalStorage}
+ * @api private
+ */
+
+function localstorage() {
+  try {
+    return window.localStorage;
+  } catch (e) {}
+}
+
+}).call(this,require('_process'))
+},{"./debug":456,"_process":452}],456:[function(require,module,exports){
+
+/**
+ * This is the common logic for both the Node.js and web browser
+ * implementations of `debug()`.
+ *
+ * Expose `debug()` as the module.
+ */
+
+exports = module.exports = createDebug.debug = createDebug['default'] = createDebug;
+exports.coerce = coerce;
+exports.disable = disable;
+exports.enable = enable;
+exports.enabled = enabled;
+exports.humanize = require('ms');
+
+/**
+ * The currently active debug mode names, and names to skip.
+ */
+
+exports.names = [];
+exports.skips = [];
+
+/**
+ * Map of special "%n" handling functions, for the debug "format" argument.
+ *
+ * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
+ */
+
+exports.formatters = {};
+
+/**
+ * Previous log timestamp.
+ */
+
+var prevTime;
+
+/**
+ * Select a color.
+ * @param {String} namespace
+ * @return {Number}
+ * @api private
+ */
+
+function selectColor(namespace) {
+  var hash = 0, i;
+
+  for (i in namespace) {
+    hash  = ((hash << 5) - hash) + namespace.charCodeAt(i);
+    hash |= 0; // Convert to 32bit integer
+  }
+
+  return exports.colors[Math.abs(hash) % exports.colors.length];
+}
+
+/**
+ * Create a debugger with the given `namespace`.
+ *
+ * @param {String} namespace
+ * @return {Function}
+ * @api public
+ */
+
+function createDebug(namespace) {
+
+  function debug() {
+    // disabled?
+    if (!debug.enabled) return;
+
+    var self = debug;
+
+    // set `diff` timestamp
+    var curr = +new Date();
+    var ms = curr - (prevTime || curr);
+    self.diff = ms;
+    self.prev = prevTime;
+    self.curr = curr;
+    prevTime = curr;
+
+    // turn the `arguments` into a proper Array
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+
+    args[0] = exports.coerce(args[0]);
+
+    if ('string' !== typeof args[0]) {
+      // anything else let's inspect with %O
+      args.unshift('%O');
+    }
+
+    // apply any `formatters` transformations
+    var index = 0;
+    args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match, format) {
+      // if we encounter an escaped % then don't increase the array index
+      if (match === '%%') return match;
+      index++;
+      var formatter = exports.formatters[format];
+      if ('function' === typeof formatter) {
+        var val = args[index];
+        match = formatter.call(self, val);
+
+        // now we need to remove `args[index]` since it's inlined in the `format`
+        args.splice(index, 1);
+        index--;
+      }
+      return match;
+    });
+
+    // apply env-specific formatting (colors, etc.)
+    exports.formatArgs.call(self, args);
+
+    var logFn = debug.log || exports.log || console.log.bind(console);
+    logFn.apply(self, args);
+  }
+
+  debug.namespace = namespace;
+  debug.enabled = exports.enabled(namespace);
+  debug.useColors = exports.useColors();
+  debug.color = selectColor(namespace);
+
+  // env-specific initialization logic for debug instances
+  if ('function' === typeof exports.init) {
+    exports.init(debug);
+  }
+
+  return debug;
+}
+
+/**
+ * Enables a debug mode by namespaces. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} namespaces
+ * @api public
+ */
+
+function enable(namespaces) {
+  exports.save(namespaces);
+
+  exports.names = [];
+  exports.skips = [];
+
+  var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
+  var len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    if (!split[i]) continue; // ignore empty strings
+    namespaces = split[i].replace(/\*/g, '.*?');
+    if (namespaces[0] === '-') {
+      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    } else {
+      exports.names.push(new RegExp('^' + namespaces + '$'));
+    }
+  }
+}
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+function disable() {
+  exports.enable('');
+}
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+function enabled(name) {
+  var i, len;
+  for (i = 0, len = exports.skips.length; i < len; i++) {
+    if (exports.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (i = 0, len = exports.names.length; i < len; i++) {
+    if (exports.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Coerce `val`.
+ *
+ * @param {Mixed} val
+ * @return {Mixed}
+ * @api private
+ */
+
+function coerce(val) {
+  if (val instanceof Error) return val.stack || val.message;
+  return val;
+}
+
+},{"ms":478}],457:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -33637,7 +36838,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":419,"./lib/keys.js":420}],419:[function(require,module,exports){
+},{"./lib/is_arguments.js":458,"./lib/keys.js":459}],458:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -33659,7 +36860,7 @@ function unsupported(object){
     false;
 };
 
-},{}],420:[function(require,module,exports){
+},{}],459:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -33670,7 +36871,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],421:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -33728,14 +36929,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":431,"object-keys":440}],422:[function(require,module,exports){
+},{"foreach":470,"object-keys":480}],461:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],423:[function(require,module,exports){
+},{}],462:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -33747,12 +36948,14 @@ var mod = require('./helpers/mod');
 var IsCallable = require('is-callable');
 var toPrimitive = require('es-to-primitive/es5');
 
+var has = require('has');
+
 // https://es5.github.io/#x9
 var ES5 = {
 	ToPrimitive: toPrimitive,
 
 	ToBoolean: function ToBoolean(value) {
-		return Boolean(value);
+		return !!value;
 	},
 	ToNumber: function ToNumber(value) {
 		return Number(value);
@@ -33818,33 +37021,181 @@ var ES5 = {
 		if (typeof x === 'string') {
 			return 'String';
 		}
+	},
+
+	// http://ecma-international.org/ecma-262/6.0/#sec-property-descriptor-specification-type
+	IsPropertyDescriptor: function IsPropertyDescriptor(Desc) {
+		if (this.Type(Desc) !== 'Object') {
+			return false;
+		}
+		var allowed = {
+			'[[Configurable]]': true,
+			'[[Enumerable]]': true,
+			'[[Get]]': true,
+			'[[Set]]': true,
+			'[[Value]]': true,
+			'[[Writable]]': true
+		};
+		// jscs:disable
+		for (var key in Desc) { // eslint-disable-line
+			if (has(Desc, key) && !allowed[key]) {
+				return false;
+			}
+		}
+		// jscs:enable
+		var isData = has(Desc, '[[Value]]');
+		var IsAccessor = has(Desc, '[[Get]]') || has(Desc, '[[Set]]');
+		if (isData && IsAccessor) {
+			throw new TypeError('Property Descriptors may not be both accessor and data descriptors');
+		}
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.1
+	IsAccessorDescriptor: function IsAccessorDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Get]]') && !has(Desc, '[[Set]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.2
+	IsDataDescriptor: function IsDataDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!has(Desc, '[[Value]]') && !has(Desc, '[[Writable]]')) {
+			return false;
+		}
+
+		return true;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.3
+	IsGenericDescriptor: function IsGenericDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return false;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (!this.IsAccessorDescriptor(Desc) && !this.IsDataDescriptor(Desc)) {
+			return true;
+		}
+
+		return false;
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.4
+	FromPropertyDescriptor: function FromPropertyDescriptor(Desc) {
+		if (typeof Desc === 'undefined') {
+			return Desc;
+		}
+
+		if (!this.IsPropertyDescriptor(Desc)) {
+			throw new TypeError('Desc must be a Property Descriptor');
+		}
+
+		if (this.IsDataDescriptor(Desc)) {
+			return {
+				value: Desc['[[Value]]'],
+				writable: !!Desc['[[Writable]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else if (this.IsAccessorDescriptor(Desc)) {
+			return {
+				get: Desc['[[Get]]'],
+				set: Desc['[[Set]]'],
+				enumerable: !!Desc['[[Enumerable]]'],
+				configurable: !!Desc['[[Configurable]]']
+			};
+		} else {
+			throw new TypeError('FromPropertyDescriptor must be called with a fully populated Property Descriptor');
+		}
+	},
+
+	// http://ecma-international.org/ecma-262/5.1/#sec-8.10.5
+	ToPropertyDescriptor: function ToPropertyDescriptor(Obj) {
+		if (this.Type(Obj) !== 'Object') {
+			throw new TypeError('ToPropertyDescriptor requires an object');
+		}
+
+		var desc = {};
+		if (has(Obj, 'enumerable')) {
+			desc['[[Enumerable]]'] = this.ToBoolean(Obj.enumerable);
+		}
+		if (has(Obj, 'configurable')) {
+			desc['[[Configurable]]'] = this.ToBoolean(Obj.configurable);
+		}
+		if (has(Obj, 'value')) {
+			desc['[[Value]]'] = Obj.value;
+		}
+		if (has(Obj, 'writable')) {
+			desc['[[Writable]]'] = this.ToBoolean(Obj.writable);
+		}
+		if (has(Obj, 'get')) {
+			var getter = Obj.get;
+			if (typeof getter !== 'undefined' && !this.IsCallable(getter)) {
+				throw new TypeError('getter must be a function');
+			}
+			desc['[[Get]]'] = getter;
+		}
+		if (has(Obj, 'set')) {
+			var setter = Obj.set;
+			if (typeof setter !== 'undefined' && !this.IsCallable(setter)) {
+				throw new TypeError('setter must be a function');
+			}
+			desc['[[Set]]'] = setter;
+		}
+
+		if ((has(desc, '[[Get]]') || has(desc, '[[Set]]')) && (has(desc, '[[Value]]') || has(desc, '[[Writable]]'))) {
+			throw new TypeError('Invalid property descriptor. Cannot both specify accessors and a value or writable attribute');
+		}
+		return desc;
 	}
 };
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":424,"./helpers/isNaN":425,"./helpers/mod":426,"./helpers/sign":427,"es-to-primitive/es5":428,"is-callable":438}],424:[function(require,module,exports){
+},{"./helpers/isFinite":463,"./helpers/isNaN":464,"./helpers/mod":465,"./helpers/sign":466,"es-to-primitive/es5":467,"has":473,"is-callable":477}],463:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],425:[function(require,module,exports){
+},{}],464:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],426:[function(require,module,exports){
+},{}],465:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],427:[function(require,module,exports){
+},{}],466:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],428:[function(require,module,exports){
+},{}],467:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -33883,12 +37234,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":429,"is-callable":438}],429:[function(require,module,exports){
+},{"./helpers/isPrimitive":468,"is-callable":477}],468:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],430:[function(require,module,exports){
+},{}],469:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -34192,7 +37543,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],431:[function(require,module,exports){
+},{}],470:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -34216,7 +37567,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],432:[function(require,module,exports){
+},{}],471:[function(require,module,exports){
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
 var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
@@ -34266,17 +37617,17 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],433:[function(require,module,exports){
+},{}],472:[function(require,module,exports){
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":432}],434:[function(require,module,exports){
+},{"./implementation":471}],473:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":433}],435:[function(require,module,exports){
+},{"function-bind":472}],474:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -34362,7 +37713,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],436:[function(require,module,exports){
+},{}],475:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -34387,7 +37738,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],437:[function(require,module,exports){
+},{}],476:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -34410,7 +37761,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],438:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -34451,7 +37802,161 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],439:[function(require,module,exports){
+},{}],478:[function(require,module,exports){
+/**
+ * Helpers.
+ */
+
+var s = 1000;
+var m = s * 60;
+var h = m * 60;
+var d = h * 24;
+var y = d * 365.25;
+
+/**
+ * Parse or format the given `val`.
+ *
+ * Options:
+ *
+ *  - `long` verbose formatting [false]
+ *
+ * @param {String|Number} val
+ * @param {Object} [options]
+ * @throws {Error} throw an error if val is not a non-empty string or a number
+ * @return {String|Number}
+ * @api public
+ */
+
+module.exports = function(val, options) {
+  options = options || {};
+  var type = typeof val;
+  if (type === 'string' && val.length > 0) {
+    return parse(val);
+  } else if (type === 'number' && isNaN(val) === false) {
+    return options.long ? fmtLong(val) : fmtShort(val);
+  }
+  throw new Error(
+    'val is not a non-empty string or a valid number. val=' +
+      JSON.stringify(val)
+  );
+};
+
+/**
+ * Parse the given `str` and return milliseconds.
+ *
+ * @param {String} str
+ * @return {Number}
+ * @api private
+ */
+
+function parse(str) {
+  str = String(str);
+  if (str.length > 100) {
+    return;
+  }
+  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
+    str
+  );
+  if (!match) {
+    return;
+  }
+  var n = parseFloat(match[1]);
+  var type = (match[2] || 'ms').toLowerCase();
+  switch (type) {
+    case 'years':
+    case 'year':
+    case 'yrs':
+    case 'yr':
+    case 'y':
+      return n * y;
+    case 'days':
+    case 'day':
+    case 'd':
+      return n * d;
+    case 'hours':
+    case 'hour':
+    case 'hrs':
+    case 'hr':
+    case 'h':
+      return n * h;
+    case 'minutes':
+    case 'minute':
+    case 'mins':
+    case 'min':
+    case 'm':
+      return n * m;
+    case 'seconds':
+    case 'second':
+    case 'secs':
+    case 'sec':
+    case 's':
+      return n * s;
+    case 'milliseconds':
+    case 'millisecond':
+    case 'msecs':
+    case 'msec':
+    case 'ms':
+      return n;
+    default:
+      return undefined;
+  }
+}
+
+/**
+ * Short format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtShort(ms) {
+  if (ms >= d) {
+    return Math.round(ms / d) + 'd';
+  }
+  if (ms >= h) {
+    return Math.round(ms / h) + 'h';
+  }
+  if (ms >= m) {
+    return Math.round(ms / m) + 'm';
+  }
+  if (ms >= s) {
+    return Math.round(ms / s) + 's';
+  }
+  return ms + 'ms';
+}
+
+/**
+ * Long format for `ms`.
+ *
+ * @param {Number} ms
+ * @return {String}
+ * @api private
+ */
+
+function fmtLong(ms) {
+  return plural(ms, d, 'day') ||
+    plural(ms, h, 'hour') ||
+    plural(ms, m, 'minute') ||
+    plural(ms, s, 'second') ||
+    ms + ' ms';
+}
+
+/**
+ * Pluralization helper.
+ */
+
+function plural(ms, n, name) {
+  if (ms < n) {
+    return;
+  }
+  if (ms < n * 1.5) {
+    return Math.floor(ms / n) + ' ' + name;
+  }
+  return Math.ceil(ms / n) + ' ' + name + 's';
+}
+
+},{}],479:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -34645,7 +38150,7 @@ function inspectString (str) {
     }
 }
 
-},{}],440:[function(require,module,exports){
+},{}],480:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -34787,7 +38292,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":441}],441:[function(require,module,exports){
+},{"./isArguments":481}],481:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -34806,7 +38311,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],442:[function(require,module,exports){
+},{}],482:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -35034,7 +38539,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":415}],443:[function(require,module,exports){
+},{"_process":452}],483:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -35081,10 +38586,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":415}],444:[function(require,module,exports){
+},{"_process":452}],484:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":445}],445:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":485}],485:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -35209,7 +38714,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":447,"./_stream_writable":449,"core-util-is":417,"inherits":436,"process-nextick-args":443}],446:[function(require,module,exports){
+},{"./_stream_readable":487,"./_stream_writable":489,"core-util-is":454,"inherits":475,"process-nextick-args":483}],486:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -35257,8 +38762,8 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":448,"core-util-is":417,"inherits":436}],447:[function(require,module,exports){
-(function (process){
+},{"./_stream_transform":488,"core-util-is":454,"inherits":475}],487:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -35315,11 +38820,12 @@ var Stream = require('./internal/streams/stream');
 // properly optimized away early in Ignition+TurboFan.
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -35514,7 +39020,7 @@ function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
     if (er) {
       stream.emit('error', er);
     } else if (state.objectMode || chunk && chunk.length > 0) {
-      if (typeof chunk !== 'string' && Object.getPrototypeOf(chunk) !== Buffer.prototype && !state.objectMode) {
+      if (typeof chunk !== 'string' && !state.objectMode && Object.getPrototypeOf(chunk) !== Buffer.prototype) {
         chunk = _uint8ArrayToBuffer(chunk);
       }
 
@@ -36265,8 +39771,8 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-}).call(this,require('_process'))
-},{"./_stream_duplex":445,"./internal/streams/BufferList":450,"./internal/streams/destroy":451,"./internal/streams/stream":452,"_process":415,"core-util-is":417,"events":430,"inherits":436,"isarray":453,"process-nextick-args":443,"safe-buffer":460,"string_decoder/":454,"util":413}],448:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":485,"./internal/streams/BufferList":490,"./internal/streams/destroy":491,"./internal/streams/stream":492,"_process":452,"core-util-is":454,"events":469,"inherits":475,"isarray":493,"process-nextick-args":483,"safe-buffer":500,"string_decoder/":494,"util":450}],488:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -36481,8 +39987,8 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":445,"core-util-is":417,"inherits":436}],449:[function(require,module,exports){
-(function (process){
+},{"./_stream_duplex":485,"core-util-is":454,"inherits":475}],489:[function(require,module,exports){
+(function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -36565,11 +40071,12 @@ var Stream = require('./internal/streams/stream');
 
 /*<replacement>*/
 var Buffer = require('safe-buffer').Buffer;
+var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
 }
 function _isUint8Array(obj) {
-  return Object.prototype.toString.call(obj) === '[object Uint8Array]' || Buffer.isBuffer(obj);
+  return Buffer.isBuffer(obj) || obj instanceof OurUint8Array;
 }
 /*</replacement>*/
 
@@ -37146,9 +40653,8 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-
-}).call(this,require('_process'))
-},{"./_stream_duplex":445,"./internal/streams/destroy":451,"./internal/streams/stream":452,"_process":415,"core-util-is":417,"inherits":436,"process-nextick-args":443,"safe-buffer":460,"util-deprecate":472}],450:[function(require,module,exports){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./_stream_duplex":485,"./internal/streams/destroy":491,"./internal/streams/stream":492,"_process":452,"core-util-is":454,"inherits":475,"process-nextick-args":483,"safe-buffer":500,"util-deprecate":512}],490:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -37223,7 +40729,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":460}],451:[function(require,module,exports){
+},{"safe-buffer":500}],491:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -37296,17 +40802,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":443}],452:[function(require,module,exports){
+},{"process-nextick-args":483}],492:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":430}],453:[function(require,module,exports){
+},{"events":469}],493:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],454:[function(require,module,exports){
+},{}],494:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -37579,10 +41085,10 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":460}],455:[function(require,module,exports){
+},{"safe-buffer":500}],495:[function(require,module,exports){
 module.exports = require('./readable').PassThrough
 
-},{"./readable":456}],456:[function(require,module,exports){
+},{"./readable":496}],496:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -37591,13 +41097,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":445,"./lib/_stream_passthrough.js":446,"./lib/_stream_readable.js":447,"./lib/_stream_transform.js":448,"./lib/_stream_writable.js":449}],457:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":485,"./lib/_stream_passthrough.js":486,"./lib/_stream_readable.js":487,"./lib/_stream_transform.js":488,"./lib/_stream_writable.js":489}],497:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":456}],458:[function(require,module,exports){
+},{"./readable":496}],498:[function(require,module,exports){
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":449}],459:[function(require,module,exports){
+},{"./lib/_stream_writable.js":489}],499:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -37630,7 +41136,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this,require('_process'))
-},{"_process":415,"through":471}],460:[function(require,module,exports){
+},{"_process":452,"through":511}],500:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -37694,7 +41200,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":416}],461:[function(require,module,exports){
+},{"buffer":453}],501:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -37823,7 +41329,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":430,"inherits":436,"readable-stream/duplex.js":444,"readable-stream/passthrough.js":455,"readable-stream/readable.js":456,"readable-stream/transform.js":457,"readable-stream/writable.js":458}],462:[function(require,module,exports){
+},{"events":469,"inherits":475,"readable-stream/duplex.js":484,"readable-stream/passthrough.js":495,"readable-stream/readable.js":496,"readable-stream/transform.js":497,"readable-stream/writable.js":498}],502:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -37838,7 +41344,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":423,"function-bind":433}],463:[function(require,module,exports){
+},{"es-abstract/es5":462,"function-bind":472}],503:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -37858,7 +41364,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":462,"./polyfill":464,"./shim":465,"define-properties":421,"function-bind":433}],464:[function(require,module,exports){
+},{"./implementation":502,"./polyfill":504,"./shim":505,"define-properties":460,"function-bind":472}],504:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -37872,7 +41378,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":462}],465:[function(require,module,exports){
+},{"./implementation":502}],505:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -37884,7 +41390,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":464,"define-properties":421}],466:[function(require,module,exports){
+},{"./polyfill":504,"define-properties":460}],506:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -38038,7 +41544,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":467,"./lib/results":469,"./lib/test":470,"_process":415,"defined":422,"through":471}],467:[function(require,module,exports){
+},{"./lib/default_stream":507,"./lib/results":509,"./lib/test":510,"_process":452,"defined":461,"through":511}],507:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -38073,7 +41579,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":415,"fs":414,"through":471}],468:[function(require,module,exports){
+},{"_process":452,"fs":451,"through":511}],508:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -38081,7 +41587,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":415}],469:[function(require,module,exports){
+},{"_process":452}],509:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -38272,7 +41778,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":415,"events":430,"function-bind":433,"has":434,"inherits":436,"object-inspect":439,"resumer":459,"through":471}],470:[function(require,module,exports){
+},{"_process":452,"events":469,"function-bind":472,"has":473,"inherits":475,"object-inspect":479,"resumer":499,"through":511}],510:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -38773,7 +42279,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":468,"deep-equal":418,"defined":422,"events":430,"has":434,"inherits":436,"path":442,"string.prototype.trim":463}],471:[function(require,module,exports){
+},{"./next_tick":508,"deep-equal":457,"defined":461,"events":469,"has":473,"inherits":475,"path":482,"string.prototype.trim":503}],511:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -38885,7 +42391,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":415,"stream":461}],472:[function(require,module,exports){
+},{"_process":452,"stream":501}],512:[function(require,module,exports){
 (function (global){
 
 /**
@@ -38956,4 +42462,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[314]);
+},{}]},{},[348]);
