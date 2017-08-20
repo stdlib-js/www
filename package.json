@@ -1,7 +1,7 @@
 {
   "name": "@stdlib/website",
   "version": "0.0.0",
-  "description": "Website for stdlib, a standard library for Node.js and JavaScript.",
+  "description": "Website for stdlib, a standard library for JavaScript and Node.js.",
   "author": {
     "name": "The Stdlib Authors",
     "url": "https://github.com/stdlib-js/www/graphs/contributors"
