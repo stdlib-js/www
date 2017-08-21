@@ -47,8 +47,8 @@ server {
   # Set the address and port.
   #
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
-  listen [::]:443 ssl http2;
-  listen 443 ssl http2;
+  listen [::]:443 ssl; # http2;
+  listen 443 ssl; # http2;
 
   # Listen on the www host:
   server_name www.stdlib.io;
@@ -67,8 +67,8 @@ server {
   # Set the address and port.
   #
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
-  listen [::]:443 ssl http2;
-  listen 443 ssl http2;
+  listen [::]:443 ssl; # http2;
+  listen 443 ssl; # http2;
 
   # Specify the host name to which to respond:
   server_name stdlib.io;
