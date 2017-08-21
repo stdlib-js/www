@@ -78,12 +78,30 @@ server {
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name www.stdlib.io;
 
-  # Define absolute paths to an SSL certificate and SSL certificate key.
+  # Specify the absolute file path of a certificate in the PEM format for the given virtual server.
   #
-  # [1]: https://letsencrypt.org/getting-started/
-  # [2]: https://certbot.eff.org/
-  # [3]: https://certbot.eff.org/docs/using.html#where-are-my-certificates
+  # ## Usage
+  #
+  # Syntax: `ssl_certificate file;`
+  #
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate
+  # [2]: https://letsencrypt.org/getting-started/
+  # [3]: https://certbot.eff.org/
+  # [4]: https://certbot.eff.org/docs/using.html#where-are-my-certificates
   ssl_certificate /etc/letsencrypt/live/stdlib.io/fullchain.pem;
+
+  # Specify the absolute file path of the secret key in the PEM format for the given virtual server.
+  #
+  # ## Usage
+  #
+  # Syntax: `ssl_certificate_key file;`
+  #
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key
+  # [2]: https://letsencrypt.org/getting-started/
+  # [3]: https://certbot.eff.org/
+  # [4]: https://certbot.eff.org/docs/using.html#where-are-my-certificates
   ssl_certificate_key /etc/letsencrypt/live/stdlib.io/privkey.pem;
 
   # Include an SSL configuration:
@@ -118,12 +136,30 @@ server {
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name stdlib.io;
 
-  # Define absolute paths to an SSL certificate and SSL certificate key.
+  # Specify the absolute file path of a certificate in the PEM format for the given virtual server.
   #
-  # [1]: https://letsencrypt.org/getting-started/
-  # [2]: https://certbot.eff.org/
-  # [3]: https://certbot.eff.org/docs/using.html#where-are-my-certificates
+  # ## Usage
+  #
+  # Syntax: `ssl_certificate file;`
+  #
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate
+  # [2]: https://letsencrypt.org/getting-started/
+  # [3]: https://certbot.eff.org/
+  # [4]: https://certbot.eff.org/docs/using.html#where-are-my-certificates
   ssl_certificate /etc/letsencrypt/live/stdlib.io/fullchain.pem;
+
+  # Specify the absolute file path of the secret key in the PEM format for the given virtual server.
+  #
+  # ## Usage
+  #
+  # Syntax: `ssl_certificate_key file;`
+  #
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key
+  # [2]: https://letsencrypt.org/getting-started/
+  # [3]: https://certbot.eff.org/
+  # [4]: https://certbot.eff.org/docs/using.html#where-are-my-certificates
   ssl_certificate_key /etc/letsencrypt/live/stdlib.io/privkey.pem;
 
   # Include an SSL configuration:
