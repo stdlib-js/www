@@ -25,6 +25,9 @@ TOOLS_MAKE_LIB_DIR ?= $(TOOLS_MAKE_DIR)/lib
 # Define the root build directory:
 BUILD_DIR ?= $(ROOT_DIR)/build
 
+# Define the directory for writing reports:
+REPORTS_DIR ?= $(ROOT_DIR)/reports
+
 # Define the root directory for storing temporary files:
 TMP_DIR ?= $(ROOT_DIR)/tmp
 
@@ -33,6 +36,9 @@ CONFIG_DIR ?= $(ROOT_DIR)/etc
 
 # Define the root directory for documentation:
 DOCS_DIR ?= $(ROOT_DIR)/docs
+
+# Define the directory for public WWW assets:
+WWW_DIR ?= $(ROOT_DIR)/public
 
 # Define the top-level directory containing executables:
 LOCAL_BIN_DIR ?= $(ROOT_DIR)/bin
