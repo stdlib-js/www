@@ -61,6 +61,10 @@ server {
   # Listen on the www host:
   server_name www.stdlib.io;
 
+  # Define absolute paths to an SSL certificate and SSL certificate key:
+  ssl_certificate /etc/letsencrypt/live/stdlib.io/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/stdlib.io/privkey.pem;
+
   # Include an SSL configuration:
   include directive-only/ssl.conf;
 
