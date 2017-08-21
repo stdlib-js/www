@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # A utility to resolve `include` statements and inject file contents into a specified configuration file.
 #
