@@ -1,5 +1,13 @@
 # Server configuration for stdlib.io.
 #
+# ## Usage
+#
+# To enable this configuration file
+#
+# ``` bash
+# $ sudo ln -s /etc/nginx/sites-available/stdlib.io /etc/nginx/sites-enabled/stdlib.io
+# ```
+#
 # ## Notes
 #
 # * We redirect all HTTP requests to HTTPS, and we redirect all www requests to non-www.
