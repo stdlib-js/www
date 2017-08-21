@@ -165,16 +165,43 @@ server {
   # Include an SSL configuration:
   include directive-only/ssl.conf;
 
-  # Absolute path to root directory for static assets:
+  # Specify the absolute path to root directory for requests.
+  #
+  # ## Usage
+  #
+  # Syntax: `root path;`
+  # Default: `root html;`
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#root
   root /srv/www/stdlib.io/public;
 
-  # Specify a charset:
+  # Specify the charset in the "Content-Type" response header field.
+  #
+  # ## Usage
+  #
+  # Syntax: `charset charset | off;`
+  # Default: `charset off;`
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_charset_module.html#charset
   charset utf-8;
 
-  # Define a custom 404 page:
+  # Define the URI that will be shown for non-existent resources.
+  #
+  # ## Usage
+  #
+  # Syntax: `error_page code ... [=[response]] uri;`
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#error_page
   error_page 404 /404.html;
 
-  # Files to serve if none specified:
+  # Define files to be used as an index.
+  #
+  # ## Usage
+  #
+  # Syntax: `index file ...;`
+  # Default: `index index.html;`
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_index_module.html#index
   index index.html index.htm;
 
   # Include common configuration rules:
@@ -182,17 +209,30 @@ server {
 
   # Absolute path to a directory dedicated to storing domain access logs.
   #
+  # ## Usage
+  #
+  # Syntax: `access_log path [format [buffer=size] [gzip[=level]] [flush=time] [if=condition]];`
+  # Syntax: `access_log off;`
+  # Default: `access_log logs/access.log combined;`
+  #
   # [1]: http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/var.html
   access_log /var/log/www/stdlib.io/access.log;
 
   # Absolute path to a directory dedicated for storing domain error logs.
+  #
+  # ## Usage
+  #
+  # Syntax: `error_log file [level];`
+  # Default: `error_log logs/error.log error;`
   #
   # [1]: http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/var.html
   error_log /var/log/www/stdlib.io/error.log warn;
 
   # Define a root location directive:
   location / {
-    # Turn on auto-indexing of directory contents:
+    # Turn on auto-indexing of directory contents.
+    #
+    # [1]: http://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex
     autoindex on;
   }
 }
