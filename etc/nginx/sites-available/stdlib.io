@@ -98,6 +98,9 @@ server {
   # Absolute path to a directory dedicated to storing domain access logs:
   access_log /var/www/stdlib.io/logs/access.log;
 
+  # Absolute path to a directory dedicated for storing domain error logs:
+  error_log /var/www/stdlib.io/logs/error.log warn;
+
   # Define a root location directive:
   location / {
     # Turn on auto-indexing of directory contents:
