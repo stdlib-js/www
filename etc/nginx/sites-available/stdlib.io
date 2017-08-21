@@ -103,10 +103,14 @@ server {
   # Include common configuration rules:
   include common.conf;
 
-  # Absolute path to a directory dedicated to storing domain access logs:
+  # Absolute path to a directory dedicated to storing domain access logs.
+  #
+  # [1]: http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/var.html
   access_log /var/log/www/stdlib.io/access.log;
 
-  # Absolute path to a directory dedicated for storing domain error logs:
+  # Absolute path to a directory dedicated for storing domain error logs.
+  #
+  # [1]: http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/var.html
   error_log /var/log/www/stdlib.io/error.log warn;
 
   # Define a root location directive:
