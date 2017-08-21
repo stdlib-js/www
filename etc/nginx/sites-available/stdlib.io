@@ -104,10 +104,10 @@ server {
   include common.conf;
 
   # Absolute path to a directory dedicated to storing domain access logs:
-  access_log /var/www/stdlib.io/logs/access.log;
+  access_log /var/log/www/stdlib.io/access.log;
 
   # Absolute path to a directory dedicated for storing domain error logs:
-  error_log /var/www/stdlib.io/logs/error.log warn;
+  error_log /var/log/www/stdlib.io/error.log warn;
 
   # Define a root location directive:
   location / {
