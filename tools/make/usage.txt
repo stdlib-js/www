@@ -4,7 +4,6 @@ Usage: make <cmd>
   make help                   Print this message.
   make notes                  Search for code annotations.
   make list-files             List files.
-  make list-contributors      List contributors.
   make install                Run install sequence.
   make clean                  Run all cleanup tasks.
   make clean-node             Remove Node dependencies.
