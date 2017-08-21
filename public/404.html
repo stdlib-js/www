@@ -1,10 +1,1153 @@
----
-layout: default
-title: "404: Page not found"
-permalink: /404.html
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>stdlib - 404</title>
+	<style>/*
+		* Modified `reset.css`.
+		*/
 
-<div class="page">
-	<h1 class="page-title">404: Page not found</h1>
-	<p class="lead">Oops! The page you're looking for does not exist. Head back to the <a href="https://github.com/stdlib-js/stdlib">homepage</a> to try and find it again.</p>
-</div>
+		/* http://meyerweb.com/eric/tools/css/reset/
+		   v2.0 | 20110126
+		   License: none (public domain)
+		*/
+
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed,
+		figure, figcaption, footer, header, hgroup,
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		ol,
+		ul {
+			list-style: none;
+		}
+
+		blockquote,
+		q {
+			quotes: none;
+		}
+
+		blockquote:before,
+		blockquote:after,
+		q:before,
+		q:after {
+			content: '';
+			content: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+	</style>
+	<style>/*
+		* Modified `normalize.css`.
+		*/
+
+		/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
+
+		/**
+		 * 1. Change the default font family in all browsers (opinionated).
+		 * 2. Correct the line height in all browsers.
+		 * 3. Prevent adjustments of font size after orientation changes in
+		 *    IE on Windows Phone and in iOS.
+		 */
+
+		/* Document
+		   ========================================================================== */
+
+		html {
+		  font-family: sans-serif; /* 1 */
+		  line-height: 1.15; /* 2 */
+		  -ms-text-size-adjust: 100%; /* 3 */
+		  -webkit-text-size-adjust: 100%; /* 3 */
+		}
+
+		/* Sections
+		   ========================================================================== */
+
+		/**
+		 * Remove the margin in all browsers (opinionated).
+		 */
+
+		body {
+		  margin: 0;
+		}
+
+		/**
+		 * Add the correct display in IE 9-.
+		 */
+
+		article,
+		aside,
+		details,
+		figcaption,
+		figure,
+		footer,
+		header,
+		hgroup,
+		menu,
+		nav,
+		section  {
+		  display: block;
+		}
+
+		/**
+		 * Correct the font size and margin on `h1` elements within `section` and
+		 * `article` contexts in Chrome, Firefox, and Safari.
+		 */
+
+		h1 {
+		  font-size: 2em;
+		  margin: 0.67em 0;
+		}
+
+		/* Grouping content
+		   ========================================================================== */
+
+		/**
+		 * Add the correct display in IE 9-.
+		 * 1. Add the correct display in IE.
+		 */
+
+		figcaption,
+		figure,
+		main { /* 1 */
+		  display: block;
+		}
+
+		/**
+		 * Add the correct margin in IE 8.
+		 */
+
+		figure {
+		  margin: 1em 40px;
+		}
+
+		/**
+		 * 1. Add the correct box sizing in Firefox.
+		 * 2. Show the overflow in Edge and IE.
+		 */
+
+		hr {
+		  box-sizing: content-box; /* 1 */
+		  height: 0; /* 1 */
+		  overflow: visible; /* 2 */
+		}
+
+		/**
+		 * 1. Correct the inheritance and scaling of font size in all browsers.
+		 * 2. Correct the odd `em` font sizing in all browsers.
+		 */
+
+		pre {
+		  font-family: monospace, monospace; /* 1 */
+		  font-size: 1em; /* 2 */
+		}
+
+		/* Text-level semantics
+		   ========================================================================== */
+
+		/**
+		 * 1. Remove the gray background on active links in IE 10.
+		 * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+		 */
+
+		a {
+		  background-color: transparent; /* 1 */
+		  -webkit-text-decoration-skip: objects; /* 2 */
+		}
+
+		/**
+		 * Remove the outline on focused links when they are also active or hovered
+		 * in all browsers (opinionated).
+		 */
+
+		a:active,
+		a:hover {
+		  outline-width: 0;
+		}
+
+		/**
+		 * 1. Remove the bottom border in Firefox 39-.
+		 * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+		 */
+
+		abbr[title] {
+		  border-bottom: none; /* 1 */
+		  text-decoration: underline; /* 2 */
+		  text-decoration: underline dotted; /* 2 */
+		}
+
+		/**
+		 * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+		 */
+
+		b,
+		strong {
+		  font-weight: inherit;
+		}
+
+		/**
+		 * Add the correct font weight in Chrome, Edge, and Safari.
+		 */
+
+		b,
+		strong {
+		  font-weight: bolder;
+		}
+
+		/**
+		 * 1. Correct the inheritance and scaling of font size in all browsers.
+		 * 2. Correct the odd `em` font sizing in all browsers.
+		 */
+
+		code,
+		kbd,
+		samp {
+		  font-family: monospace, monospace; /* 1 */
+		  font-size: 1em; /* 2 */
+		}
+
+		/**
+		 * Add the correct font style in Android 4.3-.
+		 */
+
+		dfn {
+		  font-style: italic;
+		}
+
+		/**
+		 * Add the correct background and color in IE 9-.
+		 */
+
+		mark {
+		  background-color: #ff0;
+		  color: #000;
+		}
+
+		/**
+		 * Add the correct font size in all browsers.
+		 */
+
+		small {
+		  font-size: 80%;
+		}
+
+		/**
+		 * Prevent `sub` and `sup` elements from affecting the line height in
+		 * all browsers.
+		 */
+
+		sub,
+		sup {
+		  font-size: 75%;
+		  line-height: 0;
+		  position: relative;
+		  vertical-align: baseline;
+		}
+
+		sub {
+		  bottom: -0.25em;
+		}
+
+		sup {
+		  top: -0.5em;
+		}
+
+		/* Embedded content
+		   ========================================================================== */
+
+		/**
+		 * Add the correct display in IE 9-.
+		 */
+
+		audio,
+		video {
+		  display: inline-block;
+		}
+
+		/**
+		 * Add the correct display in iOS 4-7.
+		 */
+
+		audio:not([controls]) {
+		  display: none;
+		  height: 0;
+		}
+
+		/**
+		 * Remove the border on images inside links in IE 10-.
+		 */
+
+		img {
+		  border-style: none;
+		}
+
+		/**
+		 * Hide the overflow in IE.
+		 */
+
+		svg:not(:root) {
+		  overflow: hidden;
+		}
+
+		/* Forms
+		   ========================================================================== */
+
+		/**
+		 * 1. Change the font styles in all browsers (opinionated).
+		 * 2. Remove the margin in Firefox and Safari.
+		 */
+
+		button,
+		input,
+		optgroup,
+		select,
+		textarea {
+		  font-family: sans-serif; /* 1 */
+		  font-size: 100%; /* 1 */
+		  line-height: 1.15; /* 1 */
+		  margin: 0; /* 2 */
+		}
+
+		/**
+		 * Show the overflow in IE.
+		 * 1. Show the overflow in Edge.
+		 */
+
+		button,
+		input { /* 1 */
+		  overflow: visible;
+		}
+
+		/**
+		 * Remove the inheritance of text transform in Edge, Firefox, and IE.
+		 * 1. Remove the inheritance of text transform in Firefox.
+		 */
+
+		button,
+		select { /* 1 */
+		  text-transform: none;
+		}
+
+		/**
+		 * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+		 *    controls in Android 4.
+		 * 2. Correct the inability to style clickable types in iOS and Safari.
+		 */
+
+		button,
+		html [type="button"], /* 1 */
+		[type="reset"],
+		[type="submit"] {
+		  -webkit-appearance: button; /* 2 */
+		}
+
+		/**
+		 * Remove the inner border and padding in Firefox.
+		 */
+
+		button::-moz-focus-inner,
+		[type="button"]::-moz-focus-inner,
+		[type="reset"]::-moz-focus-inner,
+		[type="submit"]::-moz-focus-inner {
+		  border-style: none;
+		  padding: 0;
+		}
+
+		/**
+		 * Restore the focus styles unset by the previous rule.
+		 */
+
+		button:-moz-focusring,
+		[type="button"]:-moz-focusring,
+		[type="reset"]:-moz-focusring,
+		[type="submit"]:-moz-focusring {
+		  outline: 1px dotted ButtonText;
+		}
+
+		/**
+		 * Change the border, margin, and padding in all browsers (opinionated).
+		 */
+
+		fieldset {
+		  border: 1px solid #c0c0c0;
+		  margin: 0 2px;
+		  padding: 0.35em 0.625em 0.75em;
+		}
+
+		/**
+		 * 1. Correct the text wrapping in Edge and IE.
+		 * 2. Correct the color inheritance from `fieldset` elements in IE.
+		 * 3. Remove the padding so developers are not caught out when they zero out
+		 *    `fieldset` elements in all browsers.
+		 */
+
+		legend {
+		  box-sizing: border-box; /* 1 */
+		  color: inherit; /* 2 */
+		  display: table; /* 1 */
+		  max-width: 100%; /* 1 */
+		  padding: 0; /* 3 */
+		  white-space: normal; /* 1 */
+		}
+
+		/**
+		 * 1. Add the correct display in IE 9-.
+		 * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+		 */
+
+		progress {
+		  display: inline-block; /* 1 */
+		  vertical-align: baseline; /* 2 */
+		}
+
+		/**
+		 * Remove the default vertical scrollbar in IE.
+		 */
+
+		textarea {
+		  overflow: auto;
+		}
+
+		/**
+		 * 1. Add the correct box sizing in IE 10-.
+		 * 2. Remove the padding in IE 10-.
+		 */
+
+		[type="checkbox"],
+		[type="radio"] {
+		  box-sizing: border-box; /* 1 */
+		  padding: 0; /* 2 */
+		}
+
+		/**
+		 * Correct the cursor style of increment and decrement buttons in Chrome.
+		 */
+
+		[type="number"]::-webkit-inner-spin-button,
+		[type="number"]::-webkit-outer-spin-button {
+		  height: auto;
+		}
+
+		/**
+		 * 1. Correct the odd appearance in Chrome and Safari.
+		 * 2. Correct the outline style in Safari.
+		 */
+
+		[type="search"] {
+		  -webkit-appearance: textfield; /* 1 */
+		  outline-offset: -2px; /* 2 */
+		}
+
+		/**
+		 * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+		 */
+
+		[type="search"]::-webkit-search-cancel-button,
+		[type="search"]::-webkit-search-decoration {
+		  -webkit-appearance: none;
+		}
+
+		/**
+		 * 1. Correct the inability to style clickable types in iOS and Safari.
+		 * 2. Change font properties to `inherit` in Safari.
+		 */
+
+		::-webkit-file-upload-button {
+		  -webkit-appearance: button; /* 1 */
+		  font: inherit; /* 2 */
+		}
+
+		/* Interactive
+		   ========================================================================== */
+
+		/*
+		 * Add the correct display in IE 9-.
+		 * 1. Add the correct display in Edge, IE, and Firefox.
+		 */
+
+		details, /* 1 */
+		menu {
+		  display: block;
+		}
+
+		/*
+		 * Add the correct display in all browsers.
+		 */
+
+		summary {
+		  display: list-item;
+		}
+
+		/* Scripting
+		   ========================================================================== */
+
+		/**
+		 * Add the correct display in IE 9-.
+		 */
+
+		canvas {
+		  display: inline-block;
+		}
+
+		/**
+		 * Add the correct display in IE.
+		 */
+
+		template {
+		  display: none;
+		}
+
+		/* Hidden
+		   ========================================================================== */
+
+		/**
+		 * Add the correct display in IE 10-.
+		 */
+
+		[hidden] {
+		  display: none;
+		}
+		</style>
+			<style>/*
+		* Layout stylesheet.
+		*
+		* 1. General rules.
+		* 2. Class-level rules.
+		* 3. Lists.
+		* 4. Definition lists.
+		* 5. Blockquotes.
+		* 6. Horizontal rules.
+		* 7. Tables.
+		* 8. Code.
+		*/
+
+		/*
+		* General top-level rules.
+		*/
+
+		html {
+			box-sizing: border-box;
+		}
+
+		*, *:before, *:after {
+			box-sizing: inherit;
+		}
+
+		input {
+			margin: 0;
+		}
+
+		img {
+			box-sizing: content-box;
+			max-width: 100%;
+		}
+
+		/*
+		* Headings.
+		*/
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin-top: 24px;
+			margin-bottom: 16px;
+		}
+
+		h1,
+		h2 {
+			padding-bottom: 0.3em;
+		}
+
+		/*
+		* Clearfix.
+		*/
+
+		.group:before,
+		.group:after {
+		    content: "";
+		    display: table;
+		}
+
+		.group:after {
+		    clear: both;
+		}
+
+		.group {
+		    zoom: 1; /* for IE 6/7 (trigger hasLayout) */
+		}
+	</style>
+	<style>/*
+		* Typography stylesheet.
+		*
+		* 1. General rules.
+		* 2. Tables.
+		* 3. Code.
+		*/
+
+		body {
+			font-size: 16px;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		}
+
+		h1 {
+			font-size: 2.25em; /* 16px * 2.25 => 36px */
+		}
+
+		h2 {
+			font-size: 1.75em; /* 16px * 1.75 => 28px */
+		}
+
+		h3 {
+			font-size: 1.5em; /* 16px * 1.5 => 24px */
+		}
+
+		h4 {
+			font-size: 1.25em; /* 16px * 1.25 => 20px */
+		}
+
+		h5 {
+			font-size: 1.0em; /* 16px * 1.0 => 16px */
+		}
+
+		h6 {
+			font-size: 0.875em; /* 16px * 0.875 => 14px */
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-weight: 600;
+			line-height: 1.25;
+		}
+
+		strong {
+			font-weight: 600;
+		}
+
+		input {
+			font: inherit;
+			font-size: inherit;
+			line-height: inherit;
+		}
+
+		a {
+			color: #4078c0;
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:active {
+			text-decoration: underline;
+		}
+	</style>
+	<style>
+		#animation {
+			position: fixed;
+
+			top: 0;
+			left: 0;
+
+			width: 100%;
+			height: 100%;
+
+			z-index: -1;
+		}
+
+		.main .container {
+			width: 50%;
+			margin-left: 25%;
+			margin-top: 200px;
+		}
+
+		.main .container h1 {
+			padding-bottom: 0;
+			text-align: center;
+			font-size: 8em;
+		}
+
+		.main .container .description {
+			padding-bottom: 1em;
+			text-align: center;
+		}
+
+		.main .container .message {
+			text-align: center;
+		}
+	</style>
+
+	<meta name="description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numeric computing.">
+	<meta name="author" content="stdlib">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+
+	<!-- Facebook Open Graph -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="stdlib">
+	<meta property="og:url" content="http://stdlib.io/">
+	<meta property="og:title" content="A standard library for JavaScript and Node.js.">
+	<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numeric computing.">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:image" content="">
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
+	<meta name="twitter:site" content="@stdlibjs">
+	<meta name="twitter:url" content="http://stdlib.io/">
+	<meta name="twitter:title" content="stdlib">
+	<meta name="twitter:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numeric computing.">
+	<meta name="twitter:image" content="">
+</head>
+<body>
+	<div class="main">
+		<canvas id="animation">
+			<!-- Fallback content -->Your browser does not support the Canvas element.
+		</canvas>
+
+		<div class="container">
+			<h1 class="status">404</h1>
+			<p class="description">Page Not Found</p>
+			<p class="message">Oh no! The page you're looking for does not exist. Head back to the <a href="https://stdlib.io">homepage</a> to try again.</p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		(function script() {
+			'use strict';
+
+			/*
+			* Particle animation.
+			*
+			* ## Notes
+			*
+			* * Use `sin()` to create an arc up and to the right for particle paths.
+			*
+			* ## TODO
+			*
+			* * Consider using stdlib functionality.
+			*
+			*/
+
+			// VARIABLES //
+
+			// Canvas width:
+			var WIDTH = window.innerWidth;
+
+			// Canvas height:
+			var HEIGHT = window.innerHeight;
+
+			// Canvas x-limits:
+			var XLIMITS = [ 0, WIDTH ];
+
+			// Canvas y-limits:
+			var YLIMITS = [ 0, HEIGHT ];
+
+			// Number of particles to animate:
+			var NUMPARTICLES = 100;
+
+			// Particle radius (pixels):
+			var RADIUS = 7.5;
+
+			// Particle translation velocity factor (pixels per update interval):
+			var VELOCITY = -25;
+
+			// Get the current time (in seconds):
+			var STARTTIME = now();
+
+			// Average number of seconds before a particle undergoes a state transition:
+			var STATETIME = 2.0;
+
+			// Animation interval (milliseconds):
+			var INTERVAL = 40;
+
+			// Particle colors (omitting opacity):
+			var COLORS = [
+				'rgba(236,164,69,',
+				'rgba(224,145,55,',
+				'rgba(166,107,41,',
+				'rgba(0,106,146,',
+				'rgba(29,138,189,',
+				'rgba(29,137,194,',
+				'rgba(89,165,206,'
+			];
+
+			// The mathematical constant `pi`:
+			var PI = Math.PI;
+
+			// Two times the mathematical constant `pi`:
+			var TWO_PI = 2.0 * PI;
+
+			// Particle cache:
+			var PARTICLES;
+
+			// Cache a reference to the DOM element in which to draw the animation:
+			var canvas = document.querySelector( '#animation' );
+
+
+			// FUNCTIONS //
+
+			/**
+			* Computes the square root of a number.
+			*
+			* @private
+			* @name sqrt
+			* @type {Function}
+			* @param {number} x - input value
+			* @returns {number} square root
+			*/
+			var sqrt = Math.sqrt;
+
+			/**
+			* Computes `x` raised to the power `y`.
+			*
+			* @private
+			* @name pow
+			* @type {Function}
+			* @param {number} x - base
+			* @param {number} y - exponent
+			* @returns {number} function result
+			*/
+			var pow = Math.pow;
+
+			/**
+			* Rounds a number toward negative infinity.
+			*
+			* @private
+			* @name floor
+			* @type {Function}
+			* @param {number} x - input value
+			* @returns {number} rounded number
+			*/
+			var floor = Math.floor;
+
+			/**
+			* Generates a pseudorandom uniform number on the interval [0,1).
+			*
+			* @private
+			* @name rand
+			* @type {Function}
+			* @returns {number} pseudorandom uniform number
+			*/
+			var rand = Math.random;
+
+			/**
+			* Returns the number of seconds since the Unix epoch.
+			*
+			* @private
+			* @returns {number} number of seconds since the Unix epoch
+			*/
+			function now() {
+				var d = ( new Date() ).getTime();
+				return ( d/1000 )|0; // asm type annotation
+			} // end FUNCTION now()
+
+			/**
+			* Returns an array of particles.
+			*
+			* @private
+			* @param {number} N - number of particles to create
+			* @returns {Array<Object>} particle array
+			*/
+			function createParticles( N ) {
+				var speed;
+				var shear;
+				var out;
+				var vx;
+				var vy;
+				var p;
+				var i;
+				var j;
+
+				out = new Array( N );
+				for ( i = 0; i < N; i++ ) {
+					p = {};
+
+					// Initial (x,y) coordinates:
+					p.x = rand() * WIDTH;
+					p.y = rand() * HEIGHT;
+
+					// Initial (x,y) velocities:
+					p.vx = rand() * VELOCITY; // ((rand()*(VELOCITY*2))-VELOCITY)
+					p.vy = rand() * VELOCITY; // ((rand()*(VELOCITY*2))-VELOCITY)
+
+					// Compute the particle speed:
+					speed = sqrt( pow( p.vx, 2 ) + pow( p.vy, 2 ) );
+
+					// Compute shear factors, which allow us to orient particles diagonally:
+					p.shear = new Array( 2 );
+					p.shear[ 0 ] = 0.0; // -Math.cos( PI * vx / speed )
+					p.shear[ 1 ] = 0.0; // 1.0-Math.sin( vy / speed )
+
+					// Particle radius:
+					p.radius = RADIUS * ( 1.5-rand() );
+
+					// Define scale factors for radii in the (x,y) plane (scales other than 1:1 produce ellipses):
+					p.scale = [ 0.5, 0.5 ];
+
+					// Generate a random color with a random opacity:
+					j = floor( rand()*COLORS.length );
+					p.color = COLORS[ j ] + rand() + ')';
+
+					// Generate a random size factor:
+					p.sizeFactor = 2.0 * rand();
+
+					// Specify a time in the future when a particle will next transition:
+					p.transitionTime = STARTTIME + STATETIME + ( rand()*STATETIME );
+
+					// Add the particle to the particle list:
+					out[ i ] = p;
+				}
+				return out;
+			} // end FUNCTION createParticles()
+
+			/**
+			* Reset a particle.
+			*
+			* @private
+			* @param {Object} p - particle
+			*/
+			function resetParticle( p ) {
+				var j;
+
+				// Compute a random coordinate along the x-axis:
+				p.x = rand() * WIDTH;
+
+				// Place the particle at the bottom of the canvas:
+				p.y = HEIGHT + p.radius;
+
+				// Generate new velocities:
+				p.vx = ( rand()*VELOCITY ) + 0.5;
+				p.vy = ( rand()*VELOCITY ) + 0.5;
+
+				// Generate a new color:
+				j = floor( rand()*COLORS.length );
+				p.color = COLORS[ j ] + rand() + ')';
+
+				// Generate a new radius:
+				p.radius = RADIUS * ( 1.5-rand() );
+			} // end FUNCTION resetParticle()
+
+			/**
+			* Event listener invoked upon a "resize" event.
+			*
+			* @private
+			* @param {Object} evt - event object
+			*/
+			function resize() {
+				WIDTH = window.innerWidth;
+				HEIGHT = window.innerHeight;
+
+				canvas.width = WIDTH;
+				canvas.height = HEIGHT;
+
+				XLIMITS = [ 0, WIDTH ];
+				YLIMITS = [ 0, HEIGHT ];
+			} // end FUNCTION resize()
+
+			/**
+			* Redraws an animation.
+			*
+			* @private
+			* @param {Context} ctx - canvas context
+			*/
+			function redraw( ctx ) {
+				var radius;
+				var xpos;
+				var ypos;
+				var dt;
+				var t;
+				var p;
+				var i;
+
+				// Clear the canvas and make it fully transparent:
+				ctx.clearRect(0, 0, WIDTH, HEIGHT );
+
+				// Update each particle...
+				for ( i = 0; i < PARTICLES.length; i++ ) {
+					p = PARTICLES[ i ];
+
+					// Compute the elapsed time:
+					t = now();
+					dt = t - STARTTIME;
+
+					// Note: can achieve an interesting effect by either setting `STARTTIME` equal to `t` within the last `else` case or by increasing the increments for the third case.
+					if ( dt < 5 ) {
+						// ...do nothing
+					} else if ( dt < 6 ) {
+						p.vx -= 1.0;
+						p.vy -= 2.0;
+					} else if ( dt < 7 ) {
+						p.vx += 0.25;
+						p.vy += 0.5;
+					} else {
+						STARTTIME = t;
+						p.vx = rand() * VELOCITY;
+						p.vy = rand() * VELOCITY;
+					}
+					// Update the particle coordinates:
+					p.x += p.vx;
+					p.y += p.vy;
+
+					// Determine if the particle has completely left the canvas...
+					xpos = [ p.x+p.radius, p.x-p.radius ];
+					ypos = [ p.y+p.radius, p.y-p.radius ];
+					if (
+						xpos[ 0 ] < XLIMITS[ 0 ] ||
+						xpos[ 1 ] > XLIMITS[ 1 ] ||
+						ypos[ 0 ] < YLIMITS[ 0 ] ||
+						ypos[ 1 ] > YLIMITS[ 1 ]
+					) {
+						// The particle has left the canvas, so we need to reset the particle:
+						resetParticle( p );
+					} else {
+						// Induce the particle to change directions up and to the right...
+						p.vx += rand() * 0.005;
+						p.vy -= rand() * 0.01;
+					}
+					dt = t - p.transitionTime;
+					if ( t < p.transitionTime ) {
+						radius = p.radius;
+					} else if ( dt < 0.5) {
+						radius = p.radius * p.sizeFactor; // p.radius * 1.03;
+					} else if ( dt < 1.0 ) {
+						radius = p.radius; // p.radius * 0.95;
+					} else {
+						p.transitionTime = t + STATETIME + ( rand()*STATETIME );
+					}
+					// Save the current state:
+					ctx.save();
+
+					// Translate the context to the particle position:
+					ctx.translate( p.x, p.y );
+
+					// Create the shifted particle within the translated context...
+					ctx.fillStyle = p.color;
+					ctx.scale( p.scale[ 0 ], p.scale[ 1 ] );
+
+					/*
+					* @param {number} hscale - horizontal scale
+					* @param {number} hskew - horizontal skew
+					* @param {number} vskew - vertical skew
+					* @param {number} vscale - vertical scale
+					* @param {number} hmove - horizontal move
+					* @param {number} vmove - vertical move
+					*/
+					ctx.transform( 1, p.shear[ 0 ], p.shear[ 1 ], 1, 0, 0 );
+					ctx.beginPath();
+
+					/*
+					* Notes:
+					*   - units are in radians
+					*
+					* @param {number} x - x position
+					* @param {number} y - y position
+					* @param {number} r - radius
+					* @param {number} startAngle - start angle
+					* @param {number} endAngle - end angle
+					* @param {boolean} dir - draw direction (anticlockwise)
+					*/
+					ctx.arc( 0, 0, radius, 0, TWO_PI, true );
+					// ctx.arc( p.x, p.y, p.radius, 0, TWO_PI, true );
+
+					ctx.closePath();
+					ctx.fill();
+
+					// Restore the original state:
+					ctx.restore();
+				}
+			} // end FUNCTION redraw()
+
+			/**
+			* Returns a "redraw" callback.
+			*
+			* @private
+			* @param {Context} ctx - canvas context
+			* @returns {Function} callback
+			*/
+			function redrawWrapper( ctx ) {
+				return wrapper;
+				/**
+				* Redraws an animation.
+				*
+				* @private
+				*/
+				function wrapper() {
+					redraw( ctx );
+				} // end FUNCTION wrapper()
+			} // end FUNCTION redrawWrapper()
+
+
+			// MAIN //
+
+			/**
+			* Main execution sequence.
+			*
+			* @private
+			*/
+			function main() {
+				var context;
+
+				// Only run an animation if a user's browser supports HTML5 canvas...
+				if ( canvas && canvas.getContext ) {
+					// Cache the rendering context:
+					context = canvas.getContext( '2d' );
+
+					// Add an event listener for window 'resize' events:
+					window.addEventListener( 'resize', resize, false );
+
+					// Create particles:
+					PARTICLES = createParticles( NUMPARTICLES );
+
+					// Start the animation:
+					setInterval( redrawWrapper( context ), INTERVAL );
+
+					// Perform an initial canvas resize:
+					resize();
+				}
+			} // end FUNCTION main()
+
+			// Run the animation:
+			main();
+		})();
+	</script>
+</body>
+</html>
