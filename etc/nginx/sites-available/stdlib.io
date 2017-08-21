@@ -28,7 +28,13 @@ server {
   listen 80 default_server;
   listen [::]:80 default_server ipv6only=on;
 
-  # Listen on both www and non-www hosts:
+  # Set the virtual server names.
+  #
+  # ## Notes
+  #
+  # * Listen on both www and non-www hosts.
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name stdlib.io www.stdlib.io;
 
   # Redirect to the `https` host (declared below) with a `301` Moved Permanently response.
@@ -58,7 +64,13 @@ server {
   listen [::]:443 ssl; # http2;
   listen 443 ssl; # http2;
 
-  # Listen on the www host:
+  # Set the virtual server name.
+  #
+  # ## Notes
+  #
+  # * Listen on the www host.
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name www.stdlib.io;
 
   # Define absolute paths to an SSL certificate and SSL certificate key.
@@ -86,7 +98,13 @@ server {
   listen [::]:443 ssl; # http2;
   listen 443 ssl; # http2;
 
-  # Specify the host name to which to respond:
+  # Set the virtual server name.
+  #
+  # ## Notes
+  #
+  # * Listen on the non-www host.
+  #
+  # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name stdlib.io;
 
   # Define absolute paths to an SSL certificate and SSL certificate key.
