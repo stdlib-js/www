@@ -39,6 +39,10 @@ server {
 
   # Redirect to the `https` host (declared below) with a `301` Moved Permanently response.
   #
+  # ## Usage
+  #
+  # Syntax: `return value;`
+  #
   # ## Notes
   #
   # * Avoids the redirect chain:
@@ -47,6 +51,7 @@ server {
   #   http://www -> https://www -> https://
   #   ```
   #
+  # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
   return 301 https://stdlib.io$request_uri;
 }
 
@@ -85,6 +90,12 @@ server {
   include directive-only/ssl.conf;
 
   # Redirect to the non-www host (declared below) with a `301` Moved Permanently response.
+  #
+  # ## Usage
+  #
+  # Syntax: `return value;`
+  #
+  # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
   return 301 https://stdlib.io$request_uri;
 }
 
