@@ -9,16 +9,22 @@
 2. webhook server to trigger build
 3. landing page
 4. GitHub pages redirect
-5. clean-up inline.sh script, including ability to run from a directory other than the conf directory (i.e., resolve includes relative to conf file, rather than cwd)
+5. a "staging" version of the website in order to test out features before going live
 6. a script which can do
 
    - git pull
+   - nginx stop
    - rm -rf etc/nginx
    - cp -R nginx
    - symlink
-   - nginx restart
+   - nginx start
 
-7. Makefile and associated tools
-8. move inline.sh to tools
-9. resolve source links (should this resolve to a particular commit? as in the commit when docs were built?)
-10. 
+7. resolve source links (should this resolve to a particular commit? as in the commit when docs were built?)
+8. rehype/lowlight transformation of Markdown converted to HTML
+9. remark transform when converting to HTML to remove equation divs and replace with MathJax markup
+10. percent-encode the `@` symbol in the package URLs => `%40stdlib`
+11. diffie-hellman: https://mozilla.github.io/server-side-tls/ssl-config-generator/
+
+    - see digital ocean blog
+
+12. SSL-stapling config
