@@ -697,6 +697,7 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
 var PINF = require( '@stdlib/math/constants/float64-pinf' );
 var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var EPS = require( '@stdlib/math/constants/float64-eps' );
 var factory = require( './../lib/factory.js' );
 
 
@@ -706,15 +707,6 @@ var smallSmall = require( './fixtures/julia/small_small.json' );
 var smallLarge = require( './fixtures/julia/small_large.json' );
 var largeSmall = require( './fixtures/julia/large_small.json' );
 var largeLarge = require( './fixtures/julia/large_large.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -811,15 +803,13 @@ tape( 'if provided a nonpositive `v`, the created function always returns `NaN`'
 
 tape( 'the created function evaluates the pdf for `x` given parameter `v` (when `x` and `v` are small)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var pdf;
 	var tol;
 	var i;
 	var v;
 	var x;
 	var y;
-
-	tol = 2e-15;
 
 	expected = smallSmall.expected;
 	x = smallSmall.x;
@@ -830,8 +820,9 @@ tape( 'the created function evaluates the pdf for `x` given parameter `v` (when 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 10.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -839,15 +830,13 @@ tape( 'the created function evaluates the pdf for `x` given parameter `v` (when 
 
 tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is large and `v` small)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var pdf;
 	var tol;
 	var i;
 	var v;
 	var x;
 	var y;
-
-	tol = 4e-15;
 
 	expected = largeSmall.expected;
 	x = largeSmall.x;
@@ -858,8 +847,9 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is l
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 10.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -867,15 +857,13 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is l
 
 tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is small and `v` large)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var pdf;
 	var tol;
 	var i;
 	var v;
 	var x;
 	var y;
-
-	tol = 9e-15;
 
 	expected = smallLarge.expected;
 	x = smallLarge.x;
@@ -886,8 +874,9 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is s
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 40.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -895,7 +884,7 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is s
 
 tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` and `v` are large)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var pdf;
 	var tol;
 	var i;
@@ -903,26 +892,25 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` and 
 	var x;
 	var y;
 
-	tol = 1e-14;
-
 	expected = largeLarge.expected;
 	x = largeLarge.x;
 	v = largeLarge.v;
 	for ( i = 0; i < x.length; i++ ) {
 		pdf = factory( v[i] );
-		y = pdf( x[i]  );
+		y = pdf( x[i] );
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 40.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/dist/t/pdf/test/test.factory.js")
-},{"./../lib/factory.js":14,"./fixtures/julia/large_large.json":18,"./fixtures/julia/large_small.json":19,"./fixtures/julia/small_large.json":20,"./fixtures/julia/small_small.json":21,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":26,"@stdlib/math/constants/float64-ninf":91,"@stdlib/math/constants/float64-pinf":92,"tape":150}],23:[function(require,module,exports){
+},{"./../lib/factory.js":14,"./fixtures/julia/large_large.json":18,"./fixtures/julia/large_small.json":19,"./fixtures/julia/small_large.json":20,"./fixtures/julia/small_small.json":21,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":26,"@stdlib/math/constants/float64-eps":84,"@stdlib/math/constants/float64-ninf":91,"@stdlib/math/constants/float64-pinf":92,"tape":150}],23:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -957,6 +945,7 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
 var PINF = require( '@stdlib/math/constants/float64-pinf' );
 var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var EPS = require( '@stdlib/math/constants/float64-eps' );
 var pdf = require( './../lib' );
 
 
@@ -966,15 +955,6 @@ var smallSmall = require( './fixtures/julia/small_small.json' );
 var smallLarge = require( './fixtures/julia/small_large.json' );
 var largeSmall = require( './fixtures/julia/large_small.json' );
 var largeLarge = require( './fixtures/julia/large_large.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -1043,14 +1023,12 @@ tape( 'if provided a nonpositive `v`, the function always returns `NaN`', functi
 
 tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` and `v` are small)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var v;
 	var y;
 	var i;
-
-	tol = 2e-15;
 
 	expected = smallSmall.expected;
 	x = smallSmall.x;
@@ -1060,8 +1038,9 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` and 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 10.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -1069,14 +1048,12 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` and 
 
 tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is large and `v` small)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var v;
 	var y;
 	var i;
-
-	tol = 4e-15;
 
 	expected = largeSmall.expected;
 	x = largeSmall.x;
@@ -1086,8 +1063,9 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is l
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 10.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -1095,14 +1073,12 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is l
 
 tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is small and `v` large)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var v;
 	var y;
 	var i;
-
-	tol = 9e-15;
 
 	expected = smallLarge.expected;
 	x = smallLarge.x;
@@ -1112,8 +1088,9 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is s
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 40.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -1121,14 +1098,12 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` is s
 
 tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` and `v` are large)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var v;
 	var y;
 	var i;
-
-	tol = 1e-14;
 
 	expected = largeLarge.expected;
 	x = largeLarge.x;
@@ -1138,15 +1113,16 @@ tape( 'the function evaluates the pdf for `x` given parameter `v` (when `x` and 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+'. v: '+v[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. v: '+v[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 40.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. v: '+v[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/dist/t/pdf/test/test.pdf.js")
-},{"./../lib":15,"./fixtures/julia/large_large.json":18,"./fixtures/julia/large_small.json":19,"./fixtures/julia/small_large.json":20,"./fixtures/julia/small_small.json":21,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":26,"@stdlib/math/constants/float64-ninf":91,"@stdlib/math/constants/float64-pinf":92,"tape":150}],25:[function(require,module,exports){
+},{"./../lib":15,"./fixtures/julia/large_large.json":18,"./fixtures/julia/large_small.json":19,"./fixtures/julia/small_large.json":20,"./fixtures/julia/small_small.json":21,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":26,"@stdlib/math/constants/float64-eps":84,"@stdlib/math/constants/float64-ninf":91,"@stdlib/math/constants/float64-pinf":92,"tape":150}],25:[function(require,module,exports){
 'use strict';
 
 /**

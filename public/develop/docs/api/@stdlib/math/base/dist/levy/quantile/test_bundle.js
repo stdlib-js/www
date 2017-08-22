@@ -518,8 +518,8 @@ tape( 'if provided a negative `c`, the created function always returns `NaN`', f
 
 tape( 'the created function evaluates the quantile function at `p` given positive `mu`', function test( t ) {
 	var expected;
+	var quantile;
 	var delta;
-	var pdf;
 	var tol;
 	var mu;
 	var c;
@@ -532,8 +532,8 @@ tape( 'the created function evaluates the quantile function at `p` given positiv
 	mu = positiveMean.mu;
 	c = positiveMean.c;
 	for ( i = 0; i < p.length; i++ ) {
-		pdf = factory( mu[i], c[i] );
-		y = pdf( p[i] );
+		quantile = factory( mu[i], c[i] );
+		y = quantile( p[i] );
 		if ( expected[i] !== null ) {
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu: '+mu[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
@@ -549,8 +549,8 @@ tape( 'the created function evaluates the quantile function at `p` given positiv
 
 tape( 'the created function evaluates the quantile function at `p` given negative `mu`', function test( t ) {
 	var expected;
+	var quantile;
 	var delta;
-	var pdf;
 	var tol;
 	var mu;
 	var c;
@@ -563,8 +563,8 @@ tape( 'the created function evaluates the quantile function at `p` given negativ
 	mu = negativeMean.mu;
 	c = negativeMean.c;
 	for ( i = 0; i < p.length; i++ ) {
-		pdf = factory( mu[i], c[i] );
-		y = pdf( p[i] );
+		quantile = factory( mu[i], c[i] );
+		y = quantile( p[i] );
 		if ( expected[i] !== null ) {
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu:'+mu[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
@@ -580,8 +580,8 @@ tape( 'the created function evaluates the quantile function at `p` given negativ
 
 tape( 'the created function evaluates the quantile function at `p` given large variance ( = large `c`)', function test( t ) {
 	var expected;
+	var quantile;
 	var delta;
-	var pdf;
 	var tol;
 	var mu;
 	var c;
@@ -594,8 +594,8 @@ tape( 'the created function evaluates the quantile function at `p` given large v
 	mu = largeVariance.mu;
 	c = largeVariance.c;
 	for ( i = 0; i < p.length; i++ ) {
-		pdf = factory( mu[i], c[i] );
-		y = pdf( p[i] );
+		quantile = factory( mu[i], c[i] );
+		y = quantile( p[i] );
 		if ( expected[i] !== null ) {
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu: '+mu[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );

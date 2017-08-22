@@ -6121,7 +6121,7 @@ var randu = require( '@stdlib/math/base/random/randu' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var EPS = require( '@stdlib/math/constants/float64-eps' );
 var pkg = require( './../package.json' ).name;
-var pdf = require( './../lib' );
+var quantile = require( './../lib' );
 
 
 // MAIN //
@@ -6140,7 +6140,7 @@ bench( pkg, function benchmark( b ) {
 		min = randu() * 10.0;
 		max = min + ( randu() * 40.0 ) + EPS;
 		mode = min + ( ( max - min ) * randu() );
-		y = pdf( p, min, max, mode );
+		y = quantile( p, min, max, mode );
 		if ( isnan( y ) ) {
 			b.fail( 'should not return NaN' );
 		}
@@ -6154,7 +6154,7 @@ bench( pkg, function benchmark( b ) {
 });
 
 bench( pkg+':factory', function benchmark( b ) {
-	var mypdf;
+	var myquantile;
 	var mode;
 	var min;
 	var max;
@@ -6165,12 +6165,12 @@ bench( pkg+':factory', function benchmark( b ) {
 	min = -1.5;
 	max = 1.5;
 	mode = 0.5;
-	mypdf = pdf.factory( min, max, mode );
+	myquantile = quantile.factory( min, max, mode );
 
 	b.tic();
 	for ( i = 0; i < b.iterations; i++ ) {
 		p = randu();
-		y = mypdf( p );
+		y = myquantile( p );
 		if ( isnan( y ) ) {
 			b.fail( 'should not return NaN' );
 		}

@@ -1762,7 +1762,7 @@ tape( 'if `x > 170.6144...`, the function returns positive infinity', function t
 	t.end();
 });
 
-tape( 'if `x < -171.56749...`, the function returns positive infinity', function test( t ) {
+tape( 'if `x < -171.56749...`, the function returns zero', function test( t ) {
 	var values;
 	var v;
 	var i;
@@ -1770,7 +1770,7 @@ tape( 'if `x < -171.56749...`, the function returns positive infinity', function
 	values = incrspace( -171.57, -1000.0, -10.1234 );
 	for ( i = 0; i < values.length; i++ ) {
 		v = factorial( values[ i ] );
-		t.strictEqual( v, PINF, 'returns +infinity when provided ' + values[ i ] );
+		t.strictEqual( v, 0.0, 'returns 0 when provided ' + values[ i ] );
 	}
 	t.end();
 });
@@ -2041,11 +2041,11 @@ function gamma( x ) {
 		}
 		return PINF;
 	}
-	if (
-		x < -170.5674972726612 ||
-		x > 171.61447887182298
-	) {
+	if ( x > 171.61447887182298 ) {
 		return PINF;
+	}
+	if ( x < -170.5674972726612 ) {
+		return 0.0;
 	}
 	q = abs( x );
 	if ( q > 33.0 ) {
@@ -2160,7 +2160,7 @@ var EULER = require( '@stdlib/math/constants/float64-eulergamma' );
 * @returns {number} function value
 */
 function gamma( x, z ) {
-	return z / ( (1.0 + EULER*x) * x );
+	return z / ( ( 1.0 + ( EULER*x ) ) * x );
 } // end FUNCTION gamma()
 
 
@@ -2211,12 +2211,12 @@ function gamma( x ) {
 	var v;
 
 	w = 1.0 / x;
-	w = 1.0 + w * polyval( w );
+	w = 1.0 + ( w * polyval( w ) );
 	y = exp( x );
 
 	// Check `x` to avoid `pow()` overflow...
 	if ( x > MAX_STIRLING ) {
-		v = pow( x, 0.5*x - 0.25 );
+		v = pow( x, ( 0.5*x ) - 0.25 );
 		y = v * (v/y);
 	} else {
 		y = pow( x, x-0.5 ) / y;

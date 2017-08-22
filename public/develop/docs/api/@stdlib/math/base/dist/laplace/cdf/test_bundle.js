@@ -506,15 +506,6 @@ var negativeMean = require( './fixtures/julia/negative_mean.json' );
 var largeVariance = require( './fixtures/julia/large_variance.json' );
 
 
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
-
-
 // TESTS //
 
 tape( 'main export is a function', function test( t ) {
@@ -571,15 +562,13 @@ tape( 'if provided a negative `b`, the function returns `NaN`', function test( t
 
 tape( 'the function evaluates the cdf for `x` given positive `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = positiveMean.expected;
 	x = positiveMean.x;
@@ -590,8 +579,9 @@ tape( 'the function evaluates the cdf for `x` given positive `mu`', function tes
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -599,15 +589,13 @@ tape( 'the function evaluates the cdf for `x` given positive `mu`', function tes
 
 tape( 'the function evaluates the cdf for `x` given negative `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = negativeMean.expected;
 	x = negativeMean.x;
@@ -618,8 +606,9 @@ tape( 'the function evaluates the cdf for `x` given negative `mu`', function tes
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -627,15 +616,13 @@ tape( 'the function evaluates the cdf for `x` given negative `mu`', function tes
 
 tape( 'the function evaluates the cdf for `x` given large variance ( = large `b` )', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = largeVariance.expected;
 	x = largeVariance.x;
@@ -646,8 +633,9 @@ tape( 'the function evaluates the cdf for `x` given large variance ( = large `b`
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -674,15 +662,6 @@ var factory = require( './../lib/factory.js' );
 var positiveMean = require( './fixtures/julia/positive_mean.json' );
 var negativeMean = require( './fixtures/julia/negative_mean.json' );
 var largeVariance = require( './fixtures/julia/large_variance.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -789,7 +768,7 @@ tape( 'if provided a nonpositive `b`, the created function always returns `NaN`'
 
 tape( 'the created function evaluates the cdf for `x` given positive `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var cdf;
 	var tol;
 	var mu;
@@ -797,8 +776,6 @@ tape( 'the created function evaluates the cdf for `x` given positive `mu`', func
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = positiveMean.expected;
 	x = positiveMean.x;
@@ -810,8 +787,9 @@ tape( 'the created function evaluates the cdf for `x` given positive `mu`', func
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -819,7 +797,7 @@ tape( 'the created function evaluates the cdf for `x` given positive `mu`', func
 
 tape( 'the created function evaluates the cdf for `x` given negative `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var cdf;
 	var tol;
 	var mu;
@@ -827,8 +805,6 @@ tape( 'the created function evaluates the cdf for `x` given negative `mu`', func
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = negativeMean.expected;
 	x = negativeMean.x;
@@ -840,8 +816,9 @@ tape( 'the created function evaluates the cdf for `x` given negative `mu`', func
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -849,7 +826,7 @@ tape( 'the created function evaluates the cdf for `x` given negative `mu`', func
 
 tape( 'the created function evaluates the cdf for `x` given large variance ( = large `b`)', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var cdf;
 	var tol;
 	var mu;
@@ -857,8 +834,6 @@ tape( 'the created function evaluates the cdf for `x` given large variance ( = l
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = largeVariance.expected;
 	x = largeVariance.x;
@@ -870,8 +845,9 @@ tape( 'the created function evaluates the cdf for `x` given large variance ( = l
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();

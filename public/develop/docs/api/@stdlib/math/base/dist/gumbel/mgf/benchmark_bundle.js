@@ -6408,7 +6408,7 @@ var randu = require( '@stdlib/math/base/random/randu' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var EPS = require( '@stdlib/math/constants/float64-eps' );
 var pkg = require( './../package.json' ).name;
-var pdf = require( './../lib' );
+var mgf = require( './../lib' );
 
 
 // MAIN //
@@ -6425,7 +6425,7 @@ bench( pkg, function benchmark( b ) {
 		mu = ( randu()*100.0 ) - 50.0;
 		beta = ( randu()*20.0 ) + EPS;
 		t = randu() * (1.0/beta);
-		y = pdf( t, mu, beta );
+		y = mgf( t, mu, beta );
 		if ( isnan( y ) ) {
 			b.fail( 'should not return NaN' );
 		}
@@ -6448,7 +6448,7 @@ bench( pkg+':factory', function benchmark( b ) {
 
 	mu = 10.0;
 	beta = 4.0;
-	mymgf = pdf.factory( mu, beta );
+	mymgf = mgf.factory( mu, beta );
 
 	b.tic();
 	for ( i = 0; i < b.iterations; i++ ) {
@@ -8155,11 +8155,11 @@ function gamma( x ) {
 		}
 		return PINF;
 	}
-	if (
-		x < -170.5674972726612 ||
-		x > 171.61447887182298
-	) {
+	if ( x > 171.61447887182298 ) {
 		return PINF;
+	}
+	if ( x < -170.5674972726612 ) {
+		return 0.0;
 	}
 	q = abs( x );
 	if ( q > 33.0 ) {
@@ -8274,7 +8274,7 @@ var EULER = require( '@stdlib/math/constants/float64-eulergamma' );
 * @returns {number} function value
 */
 function gamma( x, z ) {
-	return z / ( (1.0 + EULER*x) * x );
+	return z / ( ( 1.0 + ( EULER*x ) ) * x );
 } // end FUNCTION gamma()
 
 
@@ -8325,12 +8325,12 @@ function gamma( x ) {
 	var v;
 
 	w = 1.0 / x;
-	w = 1.0 + w * polyval( w );
+	w = 1.0 + ( w * polyval( w ) );
 	y = exp( x );
 
 	// Check `x` to avoid `pow()` overflow...
 	if ( x > MAX_STIRLING ) {
-		v = pow( x, 0.5*x - 0.25 );
+		v = pow( x, ( 0.5*x ) - 0.25 );
 		y = v * (v/y);
 	} else {
 		y = pow( x, x-0.5 ) / y;

@@ -405,15 +405,6 @@ var mediumRange = require( './fixtures/julia/medium_range.json' );
 var largeRange = require( './fixtures/julia/large_range.json' );
 
 
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
-
-
 // TESTS //
 
 tape( 'main export is a function', function test( t ) {
@@ -531,7 +522,7 @@ tape( 'if `p` is equal to the inflection point `( c - a ) / ( b - a )`, the crea
 tape( 'the created function evaluates the quantile for `p` given a small range `b - a`', function test( t ) {
 	var expected;
 	var quantile;
-	var bool;
+	var delta;
 	var tol;
 	var a;
 	var b;
@@ -539,8 +530,6 @@ tape( 'the created function evaluates the quantile for `p` given a small range `
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = smallRange.expected;
 	p = smallRange.p;
@@ -553,8 +542,9 @@ tape( 'the created function evaluates the quantile for `p` given a small range `
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -563,7 +553,7 @@ tape( 'the created function evaluates the quantile for `p` given a small range `
 tape( 'the created function evaluates the quantile for `p` given a medium range `b - a`', function test( t ) {
 	var expected;
 	var quantile;
-	var bool;
+	var delta;
 	var tol;
 	var a;
 	var b;
@@ -571,8 +561,6 @@ tape( 'the created function evaluates the quantile for `p` given a medium range 
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = mediumRange.expected;
 	p = mediumRange.p;
@@ -585,8 +573,9 @@ tape( 'the created function evaluates the quantile for `p` given a medium range 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', a: '+a[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. a: '+a[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -595,7 +584,7 @@ tape( 'the created function evaluates the quantile for `p` given a medium range 
 tape( 'the created function evaluates the quantile for `p` given a large range `b - a`', function test( t ) {
 	var expected;
 	var quantile;
-	var bool;
+	var delta;
 	var tol;
 	var a;
 	var b;
@@ -603,8 +592,6 @@ tape( 'the created function evaluates the quantile for `p` given a large range `
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = largeRange.expected;
 	p = largeRange.p;
@@ -617,8 +604,9 @@ tape( 'the created function evaluates the quantile for `p` given a large range `
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -669,15 +657,6 @@ var quantile = require( './../lib' );
 var smallRange = require( './fixtures/julia/small_range.json' );
 var mediumRange = require( './fixtures/julia/medium_range.json' );
 var largeRange = require( './fixtures/julia/large_range.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -753,7 +732,7 @@ tape( 'if `p` is equal to the inflection point `( c - a ) / ( b - a )`, the func
 
 tape( 'the function evaluates the quantile for `x` given a small range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var a;
 	var b;
@@ -761,8 +740,6 @@ tape( 'the function evaluates the quantile for `x` given a small range `b - a`',
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = smallRange.expected;
 	p = smallRange.p;
@@ -774,8 +751,9 @@ tape( 'the function evaluates the quantile for `x` given a small range `b - a`',
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -783,7 +761,7 @@ tape( 'the function evaluates the quantile for `x` given a small range `b - a`',
 
 tape( 'the function evaluates the quantile for `x` given a medium range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var a;
 	var b;
@@ -791,8 +769,6 @@ tape( 'the function evaluates the quantile for `x` given a medium range `b - a`'
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = mediumRange.expected;
 	p = mediumRange.p;
@@ -804,8 +780,9 @@ tape( 'the function evaluates the quantile for `x` given a medium range `b - a`'
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -814,7 +791,7 @@ tape( 'the function evaluates the quantile for `x` given a medium range `b - a`'
 
 tape( 'the function evaluates the quantile for `x` given a large range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var a;
 	var b;
@@ -822,8 +799,6 @@ tape( 'the function evaluates the quantile for `x` given a large range `b - a`',
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = largeRange.expected;
 	p = largeRange.p;
@@ -835,8 +810,9 @@ tape( 'the function evaluates the quantile for `x` given a large range `b - a`',
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();

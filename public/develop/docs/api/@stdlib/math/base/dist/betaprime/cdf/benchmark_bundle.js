@@ -235,7 +235,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/constants/uint32-max":322}],5:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/constants/uint32-max":329}],5:[function(require,module,exports){
 'use strict';
 
 /**
@@ -307,7 +307,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/constants/uint32-max":322}],7:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/constants/uint32-max":329}],7:[function(require,module,exports){
 'use strict';
 
 /**
@@ -367,7 +367,7 @@ function isArray( value ) {
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":384}],9:[function(require,module,exports){
+},{"@stdlib/utils/native-class":391}],9:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -465,7 +465,7 @@ setReadOnly( isBoolean, 'isObject', isObject );
 
 module.exports = isBoolean;
 
-},{"./generic.js":9,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-read-only-property":360}],11:[function(require,module,exports){
+},{"./generic.js":9,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-read-only-property":367}],11:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -506,7 +506,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":14,"@stdlib/utils/detect-tostringtag-support":366,"@stdlib/utils/native-class":384}],12:[function(require,module,exports){
+},{"./try2serialize.js":14,"@stdlib/utils/detect-tostringtag-support":373,"@stdlib/utils/native-class":391}],12:[function(require,module,exports){
 'use strict';
 
 /**
@@ -739,7 +739,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":372,"@stdlib/utils/native-class":384}],20:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":379,"@stdlib/utils/native-class":391}],20:[function(require,module,exports){
 'use strict';
 
 /**
@@ -801,7 +801,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":401}],22:[function(require,module,exports){
+},{"@stdlib/utils/type-of":408}],22:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -905,7 +905,7 @@ setReadOnly( isInteger, 'isObject', isObject );
 
 module.exports = isInteger;
 
-},{"./generic.js":22,"./object.js":25,"./primitive.js":26,"@stdlib/utils/define-read-only-property":360}],24:[function(require,module,exports){
+},{"./generic.js":22,"./object.js":25,"./primitive.js":26,"@stdlib/utils/define-read-only-property":367}],24:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -937,7 +937,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],25:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],25:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1196,7 +1196,7 @@ setReadOnly( isnan, 'isObject', isObject );
 
 module.exports = isnan;
 
-},{"./generic.js":30,"./object.js":32,"./primitive.js":33,"@stdlib/utils/define-read-only-property":360}],32:[function(require,module,exports){
+},{"./generic.js":30,"./object.js":32,"./primitive.js":33,"@stdlib/utils/define-read-only-property":367}],32:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1482,7 +1482,7 @@ setReadOnly( isNonNegativeIntegerArray, 'objects', arrayfun( isNonNegativeIntege
 
 module.exports = isNonNegativeIntegerArray;
 
-},{"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/assert/tools/array-like-function":79,"@stdlib/utils/define-read-only-property":360}],39:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/assert/tools/array-like-function":79,"@stdlib/utils/define-read-only-property":367}],39:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1593,7 +1593,7 @@ setReadOnly( isNonNegativeInteger, 'isObject', isObject );
 
 module.exports = isNonNegativeInteger;
 
-},{"./generic.js":39,"./object.js":41,"./primitive.js":42,"@stdlib/utils/define-read-only-property":360}],41:[function(require,module,exports){
+},{"./generic.js":39,"./object.js":41,"./primitive.js":42,"@stdlib/utils/define-read-only-property":367}],41:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1776,7 +1776,7 @@ setReadOnly( isNonNegativeNumber, 'isObject', isObject );
 
 module.exports = isNonNegativeNumber;
 
-},{"./generic.js":43,"./object.js":45,"./primitive.js":46,"@stdlib/utils/define-read-only-property":360}],45:[function(require,module,exports){
+},{"./generic.js":43,"./object.js":45,"./primitive.js":46,"@stdlib/utils/define-read-only-property":367}],45:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2006,7 +2006,7 @@ setReadOnly( isNumber, 'isObject', isObject );
 
 module.exports = isNumber;
 
-},{"./generic.js":49,"./object.js":51,"./primitive.js":52,"@stdlib/utils/define-read-only-property":360}],51:[function(require,module,exports){
+},{"./generic.js":49,"./object.js":51,"./primitive.js":52,"@stdlib/utils/define-read-only-property":367}],51:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2047,7 +2047,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":54,"@stdlib/utils/detect-tostringtag-support":366,"@stdlib/utils/native-class":384}],52:[function(require,module,exports){
+},{"./try2serialize.js":54,"@stdlib/utils/detect-tostringtag-support":373,"@stdlib/utils/native-class":391}],52:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2165,7 +2165,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":56,"@stdlib/assert/tools/array-function":77,"@stdlib/utils/define-read-only-property":360}],56:[function(require,module,exports){
+},{"./is_object_like.js":56,"@stdlib/assert/tools/array-function":77,"@stdlib/utils/define-read-only-property":367}],56:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2385,7 +2385,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":20,"@stdlib/assert/is-object":57,"@stdlib/utils/get-prototype-of":372,"@stdlib/utils/native-class":384}],61:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":20,"@stdlib/assert/is-object":57,"@stdlib/utils/get-prototype-of":379,"@stdlib/utils/native-class":391}],61:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2500,7 +2500,7 @@ setReadOnly( isPositiveInteger, 'isObject', isObject );
 
 module.exports = isPositiveInteger;
 
-},{"./generic.js":61,"./object.js":63,"./primitive.js":64,"@stdlib/utils/define-read-only-property":360}],63:[function(require,module,exports){
+},{"./generic.js":61,"./object.js":63,"./primitive.js":64,"@stdlib/utils/define-read-only-property":367}],63:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2650,7 +2650,7 @@ function isRegExp( value ) {
 
 module.exports = isRegExp;
 
-},{"./try2exec.js":68,"@stdlib/utils/detect-tostringtag-support":366,"@stdlib/utils/native-class":384}],68:[function(require,module,exports){
+},{"./try2exec.js":68,"@stdlib/utils/detect-tostringtag-support":373,"@stdlib/utils/native-class":391}],68:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2737,7 +2737,7 @@ setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":71,"@stdlib/assert/tools/array-function":77,"@stdlib/utils/define-read-only-property":360}],70:[function(require,module,exports){
+},{"@stdlib/assert/is-string":71,"@stdlib/assert/tools/array-function":77,"@stdlib/utils/define-read-only-property":367}],70:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2828,7 +2828,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":70,"./object.js":72,"./primitive.js":73,"@stdlib/utils/define-read-only-property":360}],72:[function(require,module,exports){
+},{"./generic.js":70,"./object.js":72,"./primitive.js":73,"@stdlib/utils/define-read-only-property":367}],72:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2869,7 +2869,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":74,"@stdlib/utils/detect-tostringtag-support":366,"@stdlib/utils/native-class":384}],73:[function(require,module,exports){
+},{"./try2valueof.js":74,"@stdlib/utils/detect-tostringtag-support":373,"@stdlib/utils/native-class":391}],73:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3287,7 +3287,7 @@ setReadOnly( bench, 'createHarness', createHarness );
 setReadOnly( bench, 'createStream', createStream );
 setReadOnly( bench, 'onFinish', onFinish );
 
-},{"./get_harness.js":102,"./harness":103,"@stdlib/assert/is-function":20,"@stdlib/streams/utils/transform":331,"@stdlib/utils/define-read-only-property":360}],81:[function(require,module,exports){
+},{"./get_harness.js":102,"./harness":103,"@stdlib/assert/is-function":20,"@stdlib/streams/utils/transform":338,"@stdlib/utils/define-read-only-property":367}],81:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3386,7 +3386,7 @@ function comment( msg ) {
 
 module.exports = comment;
 
-},{"@stdlib/regexp/eol":323,"@stdlib/string/replace":341,"@stdlib/string/trim":345}],84:[function(require,module,exports){
+},{"@stdlib/regexp/eol":330,"@stdlib/string/replace":348,"@stdlib/string/trim":352}],84:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -3916,7 +3916,7 @@ setReadOnly( Benchmark.prototype, 'end', require( './end.js' ) );
 
 module.exports = Benchmark;
 
-},{"./assert.js":81,"./comment.js":83,"./deep_equal.js":84,"./end.js":85,"./ended.js":86,"./equal.js":87,"./exit.js":88,"./fail.js":89,"./not_deep_equal.js":91,"./not_equal.js":92,"./not_ok.js":93,"./ok.js":94,"./pass.js":95,"./run.js":96,"./skip.js":98,"./todo.js":99,"@stdlib/time/tic":347,"@stdlib/time/toc":351,"@stdlib/utils/define-read-only-property":360,"@stdlib/utils/inherit":379,"events":412}],91:[function(require,module,exports){
+},{"./assert.js":81,"./comment.js":83,"./deep_equal.js":84,"./end.js":85,"./ended.js":86,"./equal.js":87,"./exit.js":88,"./fail.js":89,"./not_deep_equal.js":91,"./not_equal.js":92,"./not_ok.js":93,"./ok.js":94,"./pass.js":95,"./run.js":96,"./skip.js":98,"./todo.js":99,"@stdlib/time/tic":354,"@stdlib/time/toc":358,"@stdlib/utils/define-read-only-property":367,"@stdlib/utils/inherit":386,"events":419}],91:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4346,7 +4346,7 @@ function createExitHarness() {
 
 module.exports = createExitHarness;
 
-},{"./harness":103,"./log":109,"./utils/can_emit_exit.js":120,"./utils/process.js":123,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":20,"@stdlib/assert/is-node-writable-stream-like":36,"@stdlib/assert/is-plain-object":59,"@stdlib/utils/noop":389,"@stdlib/utils/omit":391,"@stdlib/utils/pick":393}],102:[function(require,module,exports){
+},{"./harness":103,"./log":109,"./utils/can_emit_exit.js":120,"./utils/process.js":123,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":20,"@stdlib/assert/is-node-writable-stream-like":36,"@stdlib/assert/is-plain-object":59,"@stdlib/utils/noop":396,"@stdlib/utils/omit":398,"@stdlib/utils/pick":400}],102:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4685,7 +4685,7 @@ function createHarness( options, clbk ) {
 
 module.exports = createHarness;
 
-},{"./../benchmark-class":90,"./../defaults.json":100,"./../runner":117,"./../utils/next_tick.js":122,"./init.js":104,"./validate.js":107,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":20,"@stdlib/assert/is-plain-object":59,"@stdlib/assert/is-string":71,"@stdlib/utils/copy":357,"@stdlib/utils/define-read-only-property":360}],104:[function(require,module,exports){
+},{"./../benchmark-class":90,"./../defaults.json":100,"./../runner":117,"./../utils/next_tick.js":122,"./init.js":104,"./validate.js":107,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":20,"@stdlib/assert/is-plain-object":59,"@stdlib/assert/is-string":71,"@stdlib/utils/copy":364,"@stdlib/utils/define-read-only-property":367}],104:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4857,7 +4857,7 @@ function iterations( name, options, benchmark, clbk ) {
 
 module.exports = iterations;
 
-},{"./../benchmark-class":90,"@stdlib/assert/is-string":71,"@stdlib/utils/copy":357}],106:[function(require,module,exports){
+},{"./../benchmark-class":90,"@stdlib/assert/is-string":71,"@stdlib/utils/copy":364}],106:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4962,7 +4962,7 @@ function pretest( name, options, benchmark, clbk ) {
 
 module.exports = pretest;
 
-},{"./../benchmark-class":90,"@stdlib/assert/is-string":71,"@stdlib/utils/copy":357}],107:[function(require,module,exports){
+},{"./../benchmark-class":90,"@stdlib/assert/is-string":71,"@stdlib/utils/copy":364}],107:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5157,7 +5157,7 @@ function createStream() {
 
 module.exports = createStream;
 
-},{"./log.js":110,"@stdlib/streams/utils/transform":331,"@stdlib/string/from-code-point":337}],110:[function(require,module,exports){
+},{"./log.js":110,"@stdlib/streams/utils/transform":338,"@stdlib/string/from-code-point":344}],110:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -5426,7 +5426,7 @@ function createStream( options ) {
 
 module.exports = createStream;
 
-},{"./../utils/next_tick.js":122,"@stdlib/assert/is-string":71,"@stdlib/streams/utils/transform":331}],114:[function(require,module,exports){
+},{"./../utils/next_tick.js":122,"@stdlib/assert/is-string":71,"@stdlib/streams/utils/transform":338}],114:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5529,7 +5529,7 @@ function encodeAssertion( result, count ) {
 
 module.exports = encodeAssertion;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/regexp/eol":323,"@stdlib/string/replace":341}],115:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/regexp/eol":330,"@stdlib/string/replace":348}],115:[function(require,module,exports){
 'use strict';
 
 // VARIABLES //
@@ -5792,7 +5792,7 @@ Object.defineProperty( Runner.prototype, 'exit', {
 
 module.exports = Runner;
 
-},{"./clear.js":111,"./close.js":112,"./create_stream.js":113,"./exit.js":116,"./push.js":118,"./run.js":119,"@stdlib/streams/utils/transform":331,"@stdlib/utils/inherit":379,"events":412}],118:[function(require,module,exports){
+},{"./clear.js":111,"./close.js":112,"./create_stream.js":113,"./exit.js":116,"./push.js":118,"./run.js":119,"@stdlib/streams/utils/transform":338,"@stdlib/utils/inherit":386,"events":419}],118:[function(require,module,exports){
 /* eslint-disable no-underscore-dangle */
 'use strict';
 
@@ -5958,7 +5958,7 @@ module.exports = nextTick;
 module.exports = process;
 
 }).call(this,require('_process'))
-},{"_process":406}],124:[function(require,module,exports){
+},{"_process":413}],124:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6145,7 +6145,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],129:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],129:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6205,7 +6205,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":205}],131:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":204}],131:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6320,7 +6320,7 @@ function isNegativeZero( x ) {
 
 module.exports = isNegativeZero;
 
-},{"@stdlib/math/constants/float64-ninf":315}],135:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-ninf":322}],135:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6458,7 +6458,7 @@ function isPositiveZero( x ) {
 
 module.exports = isPositiveZero;
 
-},{"@stdlib/math/constants/float64-pinf":317}],139:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-pinf":324}],139:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6659,7 +6659,7 @@ setReadOnly( cdf, 'factory', factory );
 
 module.exports = cdf;
 
-},{"./cdf.js":139,"./factory.js":140,"@stdlib/utils/define-read-only-property":360}],142:[function(require,module,exports){
+},{"./cdf.js":139,"./factory.js":140,"@stdlib/utils/define-read-only-property":367}],142:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6749,7 +6749,7 @@ bench( pkg+':factory', function benchmark( b ) {
 	b.end();
 });
 
-},{"./../lib":146,"./../package.json":148,"@stdlib/bench":124,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/random/randu":160,"@stdlib/math/constants/float64-eps":300}],144:[function(require,module,exports){
+},{"./../lib":146,"./../package.json":148,"@stdlib/bench":124,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/random/randu":160,"@stdlib/math/constants/float64-eps":306}],144:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6824,7 +6824,7 @@ function cdf( x, alpha, beta ) {
 
 module.exports = cdf;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/dist/beta/cdf":141,"@stdlib/math/constants/float64-pinf":317}],145:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/dist/beta/cdf":141,"@stdlib/math/constants/float64-pinf":324}],145:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6896,7 +6896,7 @@ function factory( alpha, beta ) {
 
 module.exports = factory;
 
-},{"./nan.js":147,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/dist/beta/cdf":141,"@stdlib/math/constants/float64-pinf":317}],146:[function(require,module,exports){
+},{"./nan.js":147,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/dist/beta/cdf":141,"@stdlib/math/constants/float64-pinf":324}],146:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6941,7 +6941,7 @@ setReadOnly( cdf, 'factory', factory );
 
 module.exports = cdf;
 
-},{"./cdf.js":144,"./factory.js":145,"@stdlib/utils/define-read-only-property":360}],147:[function(require,module,exports){
+},{"./cdf.js":144,"./factory.js":145,"@stdlib/utils/define-read-only-property":367}],147:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7176,7 +7176,7 @@ function factory( seed ) {
 
 module.exports = factory;
 
-},{"./create_table.js":149,"@stdlib/assert/is-positive-integer":62,"@stdlib/math/base/random/minstd":155,"@stdlib/math/base/special/floor":205,"@stdlib/math/constants/int32-max":321,"@stdlib/utils/define-read-only-property":360}],151:[function(require,module,exports){
+},{"./create_table.js":149,"@stdlib/assert/is-positive-integer":62,"@stdlib/math/base/random/minstd":155,"@stdlib/math/base/special/floor":204,"@stdlib/math/constants/int32-max":328,"@stdlib/utils/define-read-only-property":367}],151:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7215,7 +7215,7 @@ setReadOnly( minstd, 'factory', factory );
 
 module.exports = minstd;
 
-},{"./factory.js":150,"./minstd_shuffled.js":152,"@stdlib/utils/define-read-only-property":360}],152:[function(require,module,exports){
+},{"./factory.js":150,"./minstd_shuffled.js":152,"@stdlib/utils/define-read-only-property":367}],152:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7292,7 +7292,7 @@ function randint32() {
 
 module.exports = randint32;
 
-},{"@stdlib/math/base/special/floor":205,"@stdlib/math/constants/int32-max":321}],154:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":204,"@stdlib/math/constants/int32-max":328}],154:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7394,7 +7394,7 @@ function factory( seed ) {
 
 module.exports = factory;
 
-},{"./rand_int32.js":157,"@stdlib/assert/is-positive-integer":62,"@stdlib/math/constants/int32-max":321,"@stdlib/utils/define-read-only-property":360}],155:[function(require,module,exports){
+},{"./rand_int32.js":157,"@stdlib/assert/is-positive-integer":62,"@stdlib/math/constants/int32-max":328,"@stdlib/utils/define-read-only-property":367}],155:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7433,7 +7433,7 @@ setReadOnly( minstd, 'factory', factory );
 
 module.exports = minstd;
 
-},{"./factory.js":154,"./minstd.js":156,"@stdlib/utils/define-read-only-property":360}],156:[function(require,module,exports){
+},{"./factory.js":154,"./minstd.js":156,"@stdlib/utils/define-read-only-property":367}],156:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7522,7 +7522,7 @@ module.exports = minstd;
 
 },{"./factory.js":154,"./rand_int32.js":157}],157:[function(require,module,exports){
 arguments[4][153][0].apply(exports,arguments)
-},{"@stdlib/math/base/special/floor":205,"@stdlib/math/constants/int32-max":321,"dup":153}],158:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":204,"@stdlib/math/constants/int32-max":328,"dup":153}],158:[function(require,module,exports){
 module.exports={
 	"name": "minstd-shuffle"
 }
@@ -7635,7 +7635,7 @@ function factory( opts ) {
 
 module.exports = factory;
 
-},{"./defaults.json":158,"./prngs.js":161,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":59,"@stdlib/utils/define-read-only-property":360}],160:[function(require,module,exports){
+},{"./defaults.json":158,"./prngs.js":161,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":59,"@stdlib/utils/define-read-only-property":367}],160:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7677,7 +7677,7 @@ setReadOnly( randu, 'factory', factory );
 
 module.exports = randu;
 
-},{"./factory.js":159,"./uniform.js":162,"@stdlib/utils/define-read-only-property":360}],161:[function(require,module,exports){
+},{"./factory.js":159,"./uniform.js":162,"@stdlib/utils/define-read-only-property":367}],161:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -7955,7 +7955,7 @@ function asin( x ) {
 
 module.exports = asin;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/constants/float64-fourth-pi":303}],166:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/base/tools/evalrational":276,"@stdlib/math/constants/float64-fourth-pi":309}],166:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8167,7 +8167,7 @@ function beta( a, b ) {
 
 module.exports = beta;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/constants/float64-e":299,"@stdlib/math/constants/float64-eps":300}],168:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/base/tools/evalrational":276,"@stdlib/math/constants/float64-e":305,"@stdlib/math/constants/float64-eps":306}],168:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8224,6 +8224,7 @@ module.exports = beta;
 
 // MODULES //
 
+var gammaDeltaRatio = require( '@stdlib/math/base/special/gamma-delta-ratio' );
 var factorial = require( '@stdlib/math/base/special/factorial' );
 var gammainc = require( '@stdlib/math/base/special/gammainc' );
 var log1p = require( '@stdlib/math/base/special/log1p' );
@@ -8234,7 +8235,6 @@ var MIN_VALUE = require( '@stdlib/math/constants/float64-smallest-normal' );
 var EPSILON = require( '@stdlib/math/constants/float64-eps' );
 var fullIGammaPrefix = require( './full_igamma_prefix.js' );
 var regularisedGammaPrefix = require( './regularised_gamma_prefix.js' );
-var tgammaDeltaRatio = require( './tgamma_delta_ratio.js');
 
 
 // MAIN //
@@ -8289,7 +8289,7 @@ function betaSmallBLargeASeries( a, b, x, y, s0, mult, normalised ) {
 		return s0;
 	}
 	if ( normalised ) {
-		prefix = h / tgammaDeltaRatio( a, b );
+		prefix = h / gammaDeltaRatio( a, b );
 		prefix /= pow( t, b );
 	} else {
 		prefix = fullIGammaPrefix( b, u ) / pow( t, b );
@@ -8352,7 +8352,7 @@ function betaSmallBLargeASeries( a, b, x, y, s0, mult, normalised ) {
 
 module.exports = betaSmallBLargeASeries;
 
-},{"./full_igamma_prefix.js":172,"./regularised_gamma_prefix.js":179,"./tgamma_delta_ratio.js":181,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/factorial":203,"@stdlib/math/base/special/gammainc":216,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/pow":238,"@stdlib/math/constants/float64-eps":300,"@stdlib/math/constants/float64-smallest-normal":318}],170:[function(require,module,exports){
+},{"./full_igamma_prefix.js":172,"./regularised_gamma_prefix.js":179,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/factorial":202,"@stdlib/math/base/special/gamma-delta-ratio":207,"@stdlib/math/base/special/gammainc":222,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/pow":244,"@stdlib/math/constants/float64-eps":306,"@stdlib/math/constants/float64-smallest-normal":325}],170:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8486,7 +8486,7 @@ function binomialCCDF( n, k, x, y ) {
 
 module.exports = binomialCCDF;
 
-},{"@stdlib/math/base/special/binomcoef":183,"@stdlib/math/base/special/floor":205,"@stdlib/math/base/special/pow":238,"@stdlib/math/constants/float64-smallest-normal":318}],172:[function(require,module,exports){
+},{"@stdlib/math/base/special/binomcoef":182,"@stdlib/math/base/special/floor":204,"@stdlib/math/base/special/pow":244,"@stdlib/math/constants/float64-smallest-normal":325}],172:[function(require,module,exports){
 'use strict';
 
 /*
@@ -8554,7 +8554,7 @@ function fullIGammaPrefix( a, z ) {
 
 module.exports = fullIGammaPrefix;
 
-},{"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":238,"@stdlib/math/constants/float64-max-ln":311,"@stdlib/math/constants/float64-min-ln":314}],173:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/pow":244,"@stdlib/math/constants/float64-max-ln":318,"@stdlib/math/constants/float64-min-ln":321}],173:[function(require,module,exports){
 'use strict';
 
 /*
@@ -8721,7 +8721,7 @@ function ibetaFraction2( a, b, x, y, normalised, pderiv ) {
 
 module.exports = ibetaFraction2;
 
-},{"./ibeta_power_terms.js":176,"@stdlib/math/base/tools/continued-fraction":264}],175:[function(require,module,exports){
+},{"./ibeta_power_terms.js":176,"@stdlib/math/base/tools/continued-fraction":270}],175:[function(require,module,exports){
 /* eslint-disable max-statements */
 'use strict';
 
@@ -9133,7 +9133,7 @@ function ibetaImp( a, b, x, invert, normalised, pderiv ) {
 
 module.exports = ibetaImp;
 
-},{"./beta_small_b_large_a_series.js":169,"./binomial_ccdf.js":171,"./ibeta_a_step.js":173,"./ibeta_fraction2.js":174,"./ibeta_power_terms.js":176,"./ibeta_series.js":177,"./rising_factorial_ratio.js":180,"@stdlib/math/base/special/asin":166,"@stdlib/math/base/special/beta":168,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/expm1":200,"@stdlib/math/base/special/floor":205,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/max":232,"@stdlib/math/base/special/min":234,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/constants/float64-half-pi":305,"@stdlib/math/constants/float64-max":312,"@stdlib/math/constants/float64-pi":316,"@stdlib/math/constants/float64-smallest-normal":318,"@stdlib/math/constants/int32-max":321}],176:[function(require,module,exports){
+},{"./beta_small_b_large_a_series.js":169,"./binomial_ccdf.js":171,"./ibeta_a_step.js":173,"./ibeta_fraction2.js":174,"./ibeta_power_terms.js":176,"./ibeta_series.js":177,"./rising_factorial_ratio.js":180,"@stdlib/math/base/special/asin":166,"@stdlib/math/base/special/beta":168,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/expm1":199,"@stdlib/math/base/special/floor":204,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/max":238,"@stdlib/math/base/special/min":240,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/constants/float64-half-pi":312,"@stdlib/math/constants/float64-max":319,"@stdlib/math/constants/float64-pi":323,"@stdlib/math/constants/float64-smallest-normal":325,"@stdlib/math/constants/int32-max":328}],176:[function(require,module,exports){
 'use strict';
 
 /*
@@ -9151,7 +9151,7 @@ module.exports = ibetaImp;
 
 // MODULES //
 
-var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+var lanczosSumExpGScaled = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' );
 var expm1 = require( '@stdlib/math/base/special/expm1' );
 var log1p = require( '@stdlib/math/base/special/log1p' );
 var sqrt = require( '@stdlib/math/base/special/sqrt' );
@@ -9163,51 +9163,11 @@ var min = require( '@stdlib/math/base/special/min' );
 var ln = require( '@stdlib/math/base/special/ln' );
 var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
+var G = require( '@stdlib/math/constants/float64-gamma-lanczos-g' );
 var E = require( '@stdlib/math/constants/float64-e' );
 
 
-// VARIABLES //
-
-var G = 10.90051099999999983936049829935654997826;
-var NUM = [
-	709811.662581657956893540610814842699825,
-	679979.847415722640161734319823103390728,
-	293136.785721159725251629480984140341656,
-	74887.5403291467179935942448101441897121,
-	12555.29058241386295096255111537516768137,
-	1443.42992444170669746078056942194198252,
-	115.2419459613734722083208906727972935065,
-	6.30923920573262762719523981992008976989,
-	0.2266840463022436475495508977579735223818,
-	0.004826466289237661857584712046231435101741,
-	0.4624429436045378766270459638520555557321e-4
-];
-var DENOM = [
-	0.0,
-	362880.0,
-	1026576.0,
-	1172700.0,
-	723680.0,
-	269325.0,
-	63273.0,
-	9450.0,
-	870.0,
-	45.0,
-	1.0
-];
-
-
-// FUNCTIONS //
-
-/**
-* Calculates the Lanczos approximation scaled by exp(G).
-*
-* @private
-* @param {number} z - input value
-* @returns {number} Lanczos approximation
-*/
-var lanczosSumExpGScaled = evalrational( NUM, DENOM );
-
+// MAIN //
 
 /**
 * Computes the leading power terms in the incomplete beta function. When normalized,
@@ -9400,7 +9360,7 @@ function ibetaPowerTerms( a, b, x, y, normalised ) {
 
 module.exports = ibetaPowerTerms;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/expm1":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/max":232,"@stdlib/math/base/special/min":234,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/constants/float64-e":299,"@stdlib/math/constants/float64-max-ln":311,"@stdlib/math/constants/float64-min-ln":314}],177:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/expm1":199,"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled":209,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/max":238,"@stdlib/math/base/special/min":240,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/constants/float64-e":305,"@stdlib/math/constants/float64-gamma-lanczos-g":310,"@stdlib/math/constants/float64-max-ln":318,"@stdlib/math/constants/float64-min-ln":321}],177:[function(require,module,exports){
 'use strict';
 
 /*
@@ -9418,7 +9378,7 @@ module.exports = ibetaPowerTerms;
 
 // MODULES //
 
-var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+var lanczosSumExpGScaled = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' );
 var sumSeries = require( '@stdlib/math/base/tools/sum-series' );
 var log1p = require( '@stdlib/math/base/special/log1p' );
 var sqrt = require( '@stdlib/math/base/special/sqrt' );
@@ -9428,50 +9388,11 @@ var ln = require( '@stdlib/math/base/special/ln' );
 var MIN_VALUE = require( '@stdlib/math/constants/float64-smallest-normal' );
 var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
+var G = require( '@stdlib/math/constants/float64-gamma-lanczos-g' );
 var E = require( '@stdlib/math/constants/float64-e' );
 
 
-// VARIABLES //
-
-var G = 10.90051099999999983936049829935654997826;
-var NUM = [
-	709811.662581657956893540610814842699825,
-	679979.847415722640161734319823103390728,
-	293136.785721159725251629480984140341656,
-	74887.5403291467179935942448101441897121,
-	12555.29058241386295096255111537516768137,
-	1443.42992444170669746078056942194198252,
-	115.2419459613734722083208906727972935065,
-	6.30923920573262762719523981992008976989,
-	0.2266840463022436475495508977579735223818,
-	0.004826466289237661857584712046231435101741,
-	0.4624429436045378766270459638520555557321e-4
-];
-var DENOM = [
-	0,
-	362880,
-	1026576,
-	1172700,
-	723680,
-	269325,
-	63273,
-	9450,
-	870,
-	45,
-	1
-];
-
-
 // FUNCTIONS //
-
-/**
-* Calculate the Lanczos approximation scaled by exp(G).
-*
-* @private
-* @param {number} z - input value
-* @returns {number} Lanczos approximation
-*/
-var lanczosSumExpGScaled = evalrational( NUM, DENOM );
 
 /**
 * Series approximation to the incomplete beta.
@@ -9594,7 +9515,7 @@ function ibetaSeries( a, b, x, s0, normalised, pderiv, y ) {
 
 module.exports = ibetaSeries;
 
-},{"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/base/tools/sum-series":273,"@stdlib/math/constants/float64-e":299,"@stdlib/math/constants/float64-max-ln":311,"@stdlib/math/constants/float64-min-ln":314,"@stdlib/math/constants/float64-smallest-normal":318}],178:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled":209,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/base/tools/sum-series":279,"@stdlib/math/constants/float64-e":305,"@stdlib/math/constants/float64-gamma-lanczos-g":310,"@stdlib/math/constants/float64-max-ln":318,"@stdlib/math/constants/float64-min-ln":321,"@stdlib/math/constants/float64-smallest-normal":325}],178:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9648,7 +9569,7 @@ module.exports = betainc;
 
 // MODULES //
 
-var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+var lanczosSumExpGScaled = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' );
 var gammaln = require( '@stdlib/math/base/special/gammaln' );
 var gamma = require( '@stdlib/math/base/special/gamma' );
 var log1p = require( '@stdlib/math/base/special/log1p' );
@@ -9661,50 +9582,8 @@ var min = require( '@stdlib/math/base/special/min' );
 var ln = require( '@stdlib/math/base/special/ln' );
 var MAX_LN = require( '@stdlib/math/constants/float64-max-ln' );
 var MIN_LN = require( '@stdlib/math/constants/float64-min-ln' );
+var G = require( '@stdlib/math/constants/float64-gamma-lanczos-g' );
 var E = require( '@stdlib/math/constants/float64-e' );
-
-
-// VARIABLES //
-
-var G = 10.90051099999999983936049829935654997826;
-var NUM = [
-	709811.662581657956893540610814842699825,
-	679979.847415722640161734319823103390728,
-	293136.785721159725251629480984140341656,
-	74887.5403291467179935942448101441897121,
-	12555.29058241386295096255111537516768137,
-	1443.42992444170669746078056942194198252,
-	115.2419459613734722083208906727972935065,
-	6.30923920573262762719523981992008976989,
-	0.2266840463022436475495508977579735223818,
-	0.004826466289237661857584712046231435101741,
-	0.4624429436045378766270459638520555557321e-4
-];
-var DENOM = [
-	0,
-	362880,
-	1026576,
-	1172700,
-	723680,
-	269325,
-	63273,
-	9450,
-	870,
-	45,
-	1
-];
-
-
-// FUNCTIONS //
-
-/**
-* Calculate the Lanczos approximation scaled by exp(G).
-*
-* @private
-* @param {number} z - input value
-* @returns {number} Lanczos approximation
-*/
-var lanczosSumExpGScaled = evalrational( NUM, DENOM );
 
 
 // MAIN //
@@ -9791,7 +9670,7 @@ function regularisedGammaPrefix( a, z ) {
 
 module.exports = regularisedGammaPrefix;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/gamma":207,"@stdlib/math/base/special/gammaln":225,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/max":232,"@stdlib/math/base/special/min":234,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/constants/float64-e":299,"@stdlib/math/constants/float64-max-ln":311,"@stdlib/math/constants/float64-min-ln":314}],180:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/gamma":213,"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled":209,"@stdlib/math/base/special/gammaln":231,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/max":238,"@stdlib/math/base/special/min":240,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/constants/float64-e":305,"@stdlib/math/constants/float64-gamma-lanczos-g":310,"@stdlib/math/constants/float64-max-ln":318,"@stdlib/math/constants/float64-min-ln":321}],180:[function(require,module,exports){
 'use strict';
 
 /*
@@ -9843,193 +9722,6 @@ function risingFactorialRatio( a, b, k ) {
 module.exports = risingFactorialRatio;
 
 },{}],181:[function(require,module,exports){
-'use strict';
-
-/*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/gamma.hpp}.
-*
-* The implementation has been modified for JavaScript.
-*/
-
-/*
-* Copyright John Maddock 2006-7, 2013-14.
-* Copyright Paul A. Bristow 2007, 2013-14.
-* Copyright Nikhar Agrawal 2013-14
-* Copyright Christopher Kormanyos 2013-14
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
-// MODULES //
-
-var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
-var factorial = require( '@stdlib/math/base/special/factorial' );
-var floor = require( '@stdlib/math/base/special/floor' );
-var gamma = require( '@stdlib/math/base/special/gamma' );
-var log1p = require( '@stdlib/math/base/special/log1p' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var exp = require( '@stdlib/math/base/special/exp' );
-var pow = require( '@stdlib/math/base/special/pow' );
-var EPSILON = require( '@stdlib/math/constants/float64-eps' );
-var E = require( '@stdlib/math/constants/float64-e' );
-
-
-// VARIABLES //
-
-var MAX_FACTORIAL = 170;
-var G = 10.90051099999999983936049829935654997826;
-var NUM = [
-	38474670393.31776828316099004518914832218,
-	36857665043.51950660081971227404959150474,
-	15889202453.72942008945006665994637853242,
-	4059208354.298834770194507810788393801607,
-	680547661.1834733286087695557084801366446,
-	78239755.00312005289816041245285376206263,
-	6246580.776401795264013335510453568106366,
-	341986.3488721347032223777872763188768288,
-	12287.19451182455120096222044424100527629,
-	261.6140441641668190791708576058805625502,
-	2.506628274631000502415573855452633787834
-];
-var DENOM = [
-	0,
-	362880,
-	1026576,
-	1172700,
-	723680,
-	269325,
-	63273,
-	9450,
-	870,
-	45,
-	1
-];
-
-
-// FUNCTIONS //
-
-/**
-* Calculate the Lanczos sum approximation.
-*
-* @private
-* @param {number} z - input value
-* @returns {number} Lanczos approximation
-*/
-var lanczosSum = evalrational( NUM, DENOM );
-
-
-/**
-* Calculates the ratio of two gamma functions via Lanczos approximation.
-*
-* #### Notes
-*
-* - When \\( z < \epsilon \\), we get spurious numeric overflow unless we're very careful, this can occur either inside lanczosSum(z) or in the final combination of terms, to avoid this, split the product up into 2 (or 3) parts:
-*
-*   ``` tex
-*    G(z) / G(L) = 1 / (z \cdot G(L)) ; z < \eps, L = z + \delta = \delta \\
-*    z * G(L) = z * G(lim) \cdot (G(L)/G(lim)) ; lim = \text{largest factorial}
-*   ````
-*
-* @private
-* @param {number} z - function value
-* @param {number} delta - difference
-* @returns {number} gamma ratio
-*/
-function tgammaDeltaRatioImpLanczos( z, delta ) {
-	var result;
-	var ratio;
-	var zgh;
-	if ( z < EPSILON ) {
-		if ( MAX_FACTORIAL < delta ) {
-			ratio = tgammaDeltaRatioImpLanczos( delta, MAX_FACTORIAL - delta );
-			ratio *= z;
-			ratio *= factorial( MAX_FACTORIAL - 1 );
-			return 1.0 / ratio;
-		}
-		return 1.0 / ( z * gamma( z + delta ) );
-	}
-	zgh = z + G - 0.5;
-	if ( z + delta === z ) {
-		if ( abs(delta) < 10.0 ) {
-			result = exp( ( 0.5 - z ) * log1p( delta / zgh ) );
-		} else {
-			result = 1.0;
-		}
-	} else {
-		if ( abs(delta) < 10.0 ) {
-			result = exp( ( 0.5 - z ) * log1p( delta / zgh ));
-		} else {
-			result = pow( zgh / (zgh + delta), z - 0.5 );
-		}
-		// Split the calculation up to avoid spurious overflow:
-		result *= lanczosSum( z ) / lanczosSum( z + delta );
-	}
-	result *= pow( E / ( zgh + delta ), delta );
-	return result;
-} // end FUNCTION tgammaDeltaRatioImpLanczos()
-
-
-// MAIN //
-
-/**
-* Implementation of the gamma ratio.
-*
-* @private
-* @param {number} z - function value
-* @param {number} delta - difference
-* @returns {number} gamma ratio
-*/
-function tgammaDeltaRatioImp( z, delta ) {
-	var result;
-
-	if ( z <= 0.0 || z + delta <= 0.0 ) {
-		// This isn't very sophisticated, or accurate, but it does work:
-		return gamma( z ) / gamma( z + delta );
-	}
-	if ( floor(delta) === delta ) {
-		if ( floor(z) === z ) {
-			// Both z and delta are integers, see if we can just use table lookup of the factorials to get the result:
-			if ( z <= MAX_FACTORIAL && ( z + delta <= MAX_FACTORIAL ) ) {
-				return factorial( floor(z) - 1.0 ) /
-					factorial( floor(z+delta) - 1.0 );
-			}
-		}
-		if ( abs(delta) < 20 ) {
-			// Delta is a small integer, we can use a finite product:
-			if ( delta === 0 ) {
-				return 1.0;
-			}
-			if ( delta < 0 ) {
-				z -= 1.0;
-				result = z;
-				delta += 1;
-				while ( delta !== 0 ) {
-					z -= 1;
-					result *= z;
-					delta += 1;
-				}
-				return result;
-			}
-			result = 1.0 / z;
-			delta -= 1;
-			while ( delta !== 0 ) {
-				z += 1;
-				result /= z;
-				delta -= 1;
-			}
-			return result;
-		}
-	}
-	return tgammaDeltaRatioImpLanczos( z, delta );
-} // end FUNCTION tgammaDeltaRatioImp()
-
-
-// EXPORTS //
-
-module.exports = tgammaDeltaRatioImp;
-
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/factorial":203,"@stdlib/math/base/special/floor":205,"@stdlib/math/base/special/gamma":207,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/constants/float64-e":299,"@stdlib/math/constants/float64-eps":300}],182:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -10126,7 +9818,7 @@ function binomcoef( n, k ) {
 
 module.exports = binomcoef;
 
-},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-odd":135,"@stdlib/math/base/special/round":248}],183:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-odd":135,"@stdlib/math/base/special/round":254}],182:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10168,7 +9860,7 @@ var binomcoef = require( './binomcoef.js' );
 
 module.exports = binomcoef;
 
-},{"./binomcoef.js":182}],184:[function(require,module,exports){
+},{"./binomcoef.js":181}],183:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -10202,7 +9894,7 @@ var ceil = Math.ceil;
 
 module.exports = ceil;
 
-},{}],185:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10235,7 +9927,7 @@ var ceil = require( './ceil.js' );
 
 module.exports = ceil;
 
-},{"./ceil.js":184}],186:[function(require,module,exports){
+},{"./ceil.js":183}],185:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -10312,7 +10004,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/math/base/utils/float64-from-words":277,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-to-words":293}],187:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-from-words":283,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-to-words":299}],186:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10348,7 +10040,7 @@ var copysign = require( './copysign.js' );
 
 module.exports = copysign;
 
-},{"./copysign.js":186}],188:[function(require,module,exports){
+},{"./copysign.js":185}],187:[function(require,module,exports){
 'use strict';
 
 /*
@@ -10445,7 +10137,7 @@ function cos( x ) {
 
 module.exports = cos;
 
-},{"./cos_kernel.js":189,"./rem_pio2.js":191,"./sin_kernel.js":193,"@stdlib/math/base/utils/float64-get-high-word":281}],189:[function(require,module,exports){
+},{"./cos_kernel.js":188,"./rem_pio2.js":190,"./sin_kernel.js":192,"@stdlib/math/base/utils/float64-get-high-word":287}],188:[function(require,module,exports){
 'use strict';
 
 /*
@@ -10538,7 +10230,7 @@ function cosKernel( x, y ) {
 
 module.exports = cosKernel;
 
-},{}],190:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10568,7 +10260,7 @@ var cos = require( './cos.js' );
 
 module.exports = cos;
 
-},{"./cos.js":188}],191:[function(require,module,exports){
+},{"./cos.js":187}],190:[function(require,module,exports){
 'use strict';
 
 /*
@@ -10824,7 +10516,7 @@ function remPio2Medium( x, ix, y ) {
 
 module.exports = remPio2;
 
-},{"./rem_pio2_kernel.js":192,"@stdlib/math/base/special/round":248,"@stdlib/math/base/utils/float64-from-words":277,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-get-low-word":283}],192:[function(require,module,exports){
+},{"./rem_pio2_kernel.js":191,"@stdlib/math/base/special/round":254,"@stdlib/math/base/utils/float64-from-words":283,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-get-low-word":289}],191:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11168,7 +10860,7 @@ function remPio2Kernel( x, y, e0, nx, prec ) {
 
 module.exports = remPio2Kernel;
 
-},{"@stdlib/math/base/special/floor":205,"@stdlib/math/base/special/ldexp":226}],193:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":204,"@stdlib/math/base/special/ldexp":232}],192:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11259,7 +10951,7 @@ function sinKernel( x, y, iy ) {
 
 module.exports = sinKernel;
 
-},{}],194:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11729,7 +11421,7 @@ function erfc( x ) {
 
 module.exports = erfc;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/base/utils/float64-set-low-word":290,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],195:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/base/utils/float64-set-low-word":296,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],194:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11768,7 +11460,7 @@ var erfc = require( './erfc.js' );
 
 module.exports = erfc;
 
-},{"./erfc.js":194}],196:[function(require,module,exports){
+},{"./erfc.js":193}],195:[function(require,module,exports){
 'use strict';
 
 /*
@@ -11952,7 +11644,7 @@ function exp( x ) {
 
 module.exports = exp;
 
-},{"./expmulti.js":197,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/trunc":260,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],197:[function(require,module,exports){
+},{"./expmulti.js":196,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/trunc":266,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],196:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12008,7 +11700,7 @@ function expmulti( hi, lo, k ) {
 
 module.exports = expmulti;
 
-},{"@stdlib/math/base/special/ldexp":226,"@stdlib/math/base/tools/evalpoly":267}],198:[function(require,module,exports){
+},{"@stdlib/math/base/special/ldexp":232,"@stdlib/math/base/tools/evalpoly":273}],197:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12041,7 +11733,7 @@ var exp = require( './exp.js' );
 
 module.exports = exp;
 
-},{"./exp.js":196}],199:[function(require,module,exports){
+},{"./exp.js":195}],198:[function(require,module,exports){
 'use strict';
 
 /*
@@ -12389,7 +12081,7 @@ function expm1( x ) {
 
 module.exports = expm1;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-set-high-word":288,"@stdlib/math/constants/float64-exponent-bias":302,"@stdlib/math/constants/float64-half-ln-two":304,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],200:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-set-high-word":294,"@stdlib/math/constants/float64-exponent-bias":308,"@stdlib/math/constants/float64-half-ln-two":311,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],199:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12422,7 +12114,7 @@ var expm1 = require( './expm1.js' );
 
 module.exports = expm1;
 
-},{"./expm1.js":199}],201:[function(require,module,exports){
+},{"./expm1.js":198}],200:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12496,7 +12188,7 @@ function factorial( x ) {
 
 module.exports = factorial;
 
-},{"./factorials.json":202,"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/gamma":207,"@stdlib/math/constants/float64-pinf":317}],202:[function(require,module,exports){
+},{"./factorials.json":201,"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/gamma":213,"@stdlib/math/constants/float64-pinf":324}],201:[function(require,module,exports){
 module.exports=[
 	1,
 	1,
@@ -12671,7 +12363,7 @@ module.exports=[
 	0.7257415615307998967396728211129263114717e307
 ]
 
-},{}],203:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12713,7 +12405,7 @@ var factorial = require( './factorial.js' );
 
 module.exports = factorial;
 
-},{"./factorial.js":201}],204:[function(require,module,exports){
+},{"./factorial.js":200}],203:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -12747,7 +12439,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],205:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12780,7 +12472,509 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":204}],206:[function(require,module,exports){
+},{"./floor.js":203}],205:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/gamma.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* Copyright John Maddock 2006-7, 2013-14.
+* Copyright Paul A. Bristow 2007, 2013-14.
+* Copyright Nikhar Agrawal 2013-14.
+* Copyright Christopher Kormanyos 2013-14.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var abs = require( '@stdlib/math/base/special/abs' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var gamma = require( '@stdlib/math/base/special/gamma' );
+var factorial = require( '@stdlib/math/base/special/factorial' );
+var gammaDeltaRatioLanczos = require( './gamma_delta_ratio_lanczos.js' );
+
+
+// VARIABLES //
+
+var MAX_FACTORIAL = 170;
+
+
+// MAIN //
+
+/**
+* Computes the ratio of two gamma functions.
+*
+* ## Notes
+*
+* * Specifically, the function evaluates
+*
+*   ``` tex
+*   \frac{ \Gamma( z ) }{ \Gamma( z + \delta ) }
+*   ```
+*
+* @param {number} z - first gamma parameter
+* @param {number} delta - difference
+* @returns {number} gamma ratio
+*
+* @example
+* var y = gammaDeltaRatio( 2.0, 3.0 );
+* // returns ~0.042
+*
+* @example
+* var y = gammaDeltaRatio( 4.0, 0.5 );
+* // returns 2.0
+*
+* @example
+* var y = gammaDeltaRatio( 100.0, 0.0 );
+* // returns 1.0
+*/
+function gammaDeltaRatio( z, delta ) {
+	var result;
+	var idelta;
+	var iz;
+
+	if ( z <= 0.0 || z + delta <= 0.0 ) {
+		// This isn't very sophisticated, or accurate, but it does work:
+		return gamma( z ) / gamma( z + delta );
+	}
+	idelta = floor( delta );
+	if ( idelta === delta ) {
+		iz = floor( z );
+		if ( iz === z ) {
+			// As both `z` and `delta` are integers, see if we can use a table lookup:
+			if ( z <= MAX_FACTORIAL && ( z + delta <= MAX_FACTORIAL ) ) {
+				return factorial( iz - 1.0 ) / factorial( idelta + iz - 1.0 ); // eslint-disable-line max-len
+			}
+		}
+		if ( abs(delta) < 20.0 ) {
+			// As `delta` is a small integer, we can use a finite product:
+			if ( delta === 0.0 ) {
+				return 1.0;
+			}
+			if ( delta < 0.0 ) {
+				z -= 1.0;
+				result = z;
+				delta += 1.0;
+				while ( delta !== 0.0 ) {
+					z -= 1.0;
+					result *= z;
+					delta += 1.0;
+				}
+				return result;
+			}
+			result = 1.0 / z;
+			delta -= 1.0;
+			while ( delta !== 0.0 ) {
+				z += 1.0;
+				result /= z;
+				delta -= 1.0;
+			}
+			return result;
+		}
+	}
+	return gammaDeltaRatioLanczos( z, delta );
+} // end FUNCTION gammaDeltaRatio()
+
+
+// EXPORTS //
+
+module.exports = gammaDeltaRatio;
+
+},{"./gamma_delta_ratio_lanczos.js":206,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/factorial":202,"@stdlib/math/base/special/floor":204,"@stdlib/math/base/special/gamma":213}],206:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/gamma.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* Copyright John Maddock 2006-7, 2013-14.
+* Copyright Paul A. Bristow 2007, 2013-14.
+* Copyright Nikhar Agrawal 2013-14.
+* Copyright Christopher Kormanyos 2013-14.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var lanczosSum = require( '@stdlib/math/base/special/gamma-lanczos-sum' );
+var gamma = require( '@stdlib/math/base/special/gamma' );
+var log1p = require( '@stdlib/math/base/special/log1p' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var exp = require( '@stdlib/math/base/special/exp' );
+var pow = require( '@stdlib/math/base/special/pow' );
+var EPSILON = require( '@stdlib/math/constants/float64-eps' );
+var E = require( '@stdlib/math/constants/float64-e' );
+var G = require( '@stdlib/math/constants/float64-gamma-lanczos-g' );
+
+
+// VARIABLES //
+
+var MAX_FACTORIAL = 170;
+var FACTORIAL_169 = 4.269068009004705e+304;
+
+
+/**
+* Calculates the ratio of two gamma functions via Lanczos approximation.
+*
+* ## Notes
+*
+* * When \\( z < \epsilon \\), we get spurious numeric overflow unless we're very careful. This can occur either inside `lanczosSum(z)` or in the final combination of terms. To avoid this, split the product up into 2 (or 3) parts:
+*
+*   ``` tex
+*   \begin{align}
+*   G(z) / G(L) &= 1 / (z \cdot G(L)) ; z < \eps, L = z + \delta = \delta \\
+*   z * G(L) &= z * G(lim) \cdot (G(L)/G(lim)) ; lim = \text{largest factorial}
+*   \end{align}
+*   ````
+*
+* @private
+* @param {number} z - first gamma parameter
+* @param {number} delta - difference
+* @returns {number} gamma ratio
+*/
+function gammaDeltaRatioLanczos( z, delta ) {
+	var result;
+	var ratio;
+	var zgh;
+
+	if ( z < EPSILON ) {
+		if ( delta > MAX_FACTORIAL ) {
+			ratio = gammaDeltaRatioLanczos( delta, MAX_FACTORIAL-delta );
+			ratio *= z;
+			ratio *= FACTORIAL_169;
+			return 1.0 / ratio;
+		}
+		return 1.0 / ( z * gamma( z+delta ) );
+	}
+	zgh = z + G - 0.5;
+	if ( z + delta === z ) {
+		if ( abs(delta) < 10.0 ) {
+			result = exp( ( 0.5-z ) * log1p( delta/zgh ) );
+		} else {
+			result = 1.0;
+		}
+	} else {
+		if ( abs(delta) < 10.0 ) {
+			result = exp( ( 0.5-z ) * log1p( delta/zgh ));
+		} else {
+			result = pow( zgh / (zgh+delta), z-0.5 );
+		}
+		// Split up the calculation to avoid spurious overflow:
+		result *= lanczosSum( z ) / lanczosSum( z + delta );
+	}
+	result *= pow( E / ( zgh+delta ), delta );
+	return result;
+} // end FUNCTION gammaDeltaRatioLanczos()
+
+
+// EXPORTS //
+
+module.exports = gammaDeltaRatioLanczos;
+
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/gamma":213,"@stdlib/math/base/special/gamma-lanczos-sum":211,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/pow":244,"@stdlib/math/constants/float64-e":305,"@stdlib/math/constants/float64-eps":306,"@stdlib/math/constants/float64-gamma-lanczos-g":310}],207:[function(require,module,exports){
+'use strict';
+
+/**
+* Calculate the ratio of two gamma functions.
+*
+* @module @stdlib/math/base/special/gamma-delta-ratio
+*
+* @example
+* var gammaDeltaRatio = require( '@stdlib/math/base/special/gamma-delta-ratio' );
+*
+* var y = gammaDeltaRatio( 2.0, 3.0 );
+* // returns ~0.042
+*
+* y = gammaDeltaRatio( 4.0, 0.5 );
+* // returns 2.0
+*
+* y = gammaDeltaRatio( 100.0, 0.0 );
+* // returns 1.0
+*/
+
+// MODULES //
+
+var gammaDeltaRatio = require( './gamma_delta_ratio.js' );
+
+
+// EXPORTS //
+
+module.exports = gammaDeltaRatio;
+
+},{"./gamma_delta_ratio.js":205}],208:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/lanczos.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* Copyright John Maddock 2006.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+
+
+// VARIABLES //
+
+var NUM = [
+	709811.662581657956893540610814842699825,
+	679979.847415722640161734319823103390728,
+	293136.785721159725251629480984140341656,
+	74887.5403291467179935942448101441897121,
+	12555.29058241386295096255111537516768137,
+	1443.42992444170669746078056942194198252,
+	115.2419459613734722083208906727972935065,
+	6.30923920573262762719523981992008976989,
+	0.2266840463022436475495508977579735223818,
+	0.004826466289237661857584712046231435101741,
+	0.4624429436045378766270459638520555557321e-4
+];
+var DENOM = [
+	0.0,
+	362880.0,
+	1026576.0,
+	1172700.0,
+	723680.0,
+	269325.0,
+	63273.0,
+	9450.0,
+	870.0,
+	45.0,
+	1.0
+];
+
+
+// MAIN //
+
+/**
+* Calculates the Lanczos sum for the approximation of the gamma function (scaled by `exp(-g)`, where `g = 10.900511`.
+*
+* @name gammaLanczosSumExpGScaled
+* @type {Function}
+* @param {number} x - input value
+* @returns {number} Lanczos sum approximation
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( 4.0 );
+* // returns ~0.018
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( -1.5 );
+* // returns ~25.337
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( -0.5 );
+* // returns ~-12.911
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( 0.5 );
+* // returns ~1.772
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* @example
+* var v = gammaLanczosSumExpGScaled( NaN );
+* // returns NaN
+*/
+var gammaLanczosSumExpGScaled = evalrational( NUM, DENOM );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSumExpGScaled;
+
+},{"@stdlib/math/base/tools/evalrational":276}],209:[function(require,module,exports){
+'use strict';
+
+/**
+* Calculate the Lanczos sum for the approximation of the gamma function (scaled by `exp(-g)`, where `g = 10.900511`.
+*
+* @module @stdlib/math/base/special/gamma-lanczos-sum-expg-scaled
+*
+* @example
+* var gammaLanczosSumExpGScaled = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' );
+*
+* var v = gammaLanczosSumExpGScaled( 4.0 );
+* // returns ~0.018
+*
+* v = gammaLanczosSumExpGScaled( -1.5 );
+* // returns ~25.337
+*
+* v = gammaLanczosSumExpGScaled( -0.5 );
+* // returns ~-12.911
+*
+* v = gammaLanczosSumExpGScaled( 0.5 );
+* // returns ~1.772
+*
+* v = gammaLanczosSumExpGScaled( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* v = gammaLanczosSumExpGScaled( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var gammaLanczosSumExpGScaled = require( './gamma_lanczos_sum_expg_scaled.js' );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSumExpGScaled;
+
+},{"./gamma_lanczos_sum_expg_scaled.js":208}],210:[function(require,module,exports){
+'use strict';
+
+/*
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/lanczos.hpp}.
+*
+* The implementation has been modified for JavaScript.
+*/
+
+/*
+* Copyright John Maddock 2006.
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+// MODULES //
+
+var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
+
+
+// VARIABLES //
+
+var NUM = [
+	38474670393.31776828316099004518914832218,
+	36857665043.51950660081971227404959150474,
+	15889202453.72942008945006665994637853242,
+	4059208354.298834770194507810788393801607,
+	680547661.1834733286087695557084801366446,
+	78239755.00312005289816041245285376206263,
+	6246580.776401795264013335510453568106366,
+	341986.3488721347032223777872763188768288,
+	12287.19451182455120096222044424100527629,
+	261.6140441641668190791708576058805625502,
+	2.506628274631000502415573855452633787834
+];
+var DENOM = [
+	0.0,
+	362880.0,
+	1026576.0,
+	1172700.0,
+	723680.0,
+	269325.0,
+	63273.0,
+	9450.0,
+	870.0,
+	45.0,
+	1.0
+];
+
+
+// MAIN //
+
+/**
+* Calculates the Lanczos sum approximation.
+*
+* @name gammaLanczosSum
+* @type {Function}
+* @param {number} x - input value
+* @returns {number} Lanczos sum approximation
+*
+* @example
+* var v = gammaLanczosSum( 4.0 );
+* // returns ~950.366
+*
+* @example
+* var v = gammaLanczosSum( -1.5 );
+* // returns ~1373366.245
+*
+* @example
+* var v = gammaLanczosSum( -0.5 );
+* // returns ~-699841.735
+*
+* @example
+* var v = gammaLanczosSum( 0.5 );
+* // returns ~96074.186
+*
+* @example
+* var v = gammaLanczosSum( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* @example
+* var v = gammaLanczosSum( NaN );
+* // returns NaN
+*/
+var gammaLanczosSum = evalrational( NUM, DENOM );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSum;
+
+},{"@stdlib/math/base/tools/evalrational":276}],211:[function(require,module,exports){
+'use strict';
+
+/**
+* Calculate the Lanczos sum for the approximation of the gamma function.
+*
+* @module @stdlib/math/base/special/gamma-lanczos-sum
+*
+* @example
+* var gammaLanczosSum = require( '@stdlib/math/base/special/gamma-lanczos-sum' );
+*
+* var v = gammaLanczosSum( 4.0 );
+* // returns ~950.366
+*
+* v = gammaLanczosSum( -1.5 );
+* // returns ~1373366.245
+*
+* v = gammaLanczosSum( -0.5 );
+* // returns ~-699841.735
+*
+* v = gammaLanczosSum( 0.5 );
+* // returns ~96074.186
+*
+* v = gammaLanczosSum( 0.0 );
+* // returns Number.POSITIVE_INFINITY
+*
+* v = gammaLanczosSum( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var gammaLanczosSum = require( './gamma_lanczos_sum.js' );
+
+
+// EXPORTS //
+
+module.exports = gammaLanczosSum;
+
+},{"./gamma_lanczos_sum.js":210}],212:[function(require,module,exports){
 'use strict';
 
 /*
@@ -12926,11 +13120,11 @@ function gamma( x ) {
 		}
 		return PINF;
 	}
-	if (
-		x < -170.5674972726612 ||
-		x > 171.61447887182298
-	) {
+	if ( x > 171.61447887182298 ) {
 		return PINF;
+	}
+	if ( x < -170.5674972726612 ) {
+		return 0.0;
 	}
 	q = abs( x );
 	if ( q > 33.0 ) {
@@ -12985,7 +13179,7 @@ function gamma( x ) {
 
 module.exports = gamma;
 
-},{"./small_approximation.js":208,"./stirling_approximation.js":209,"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-negative-zero":133,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/floor":205,"@stdlib/math/base/special/sin":250,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pi":316,"@stdlib/math/constants/float64-pinf":317}],207:[function(require,module,exports){
+},{"./small_approximation.js":214,"./stirling_approximation.js":215,"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-negative-zero":133,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/floor":204,"@stdlib/math/base/special/sin":256,"@stdlib/math/base/tools/evalrational":276,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pi":323,"@stdlib/math/constants/float64-pinf":324}],213:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13027,7 +13221,7 @@ var gamma = require( './gamma.js' );
 
 module.exports = gamma;
 
-},{"./gamma.js":206}],208:[function(require,module,exports){
+},{"./gamma.js":212}],214:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13045,7 +13239,7 @@ var EULER = require( '@stdlib/math/constants/float64-eulergamma' );
 * @returns {number} function value
 */
 function gamma( x, z ) {
-	return z / ( (1.0 + EULER*x) * x );
+	return z / ( ( 1.0 + ( EULER*x ) ) * x );
 } // end FUNCTION gamma()
 
 
@@ -13053,7 +13247,7 @@ function gamma( x, z ) {
 
 module.exports = gamma;
 
-},{"@stdlib/math/constants/float64-eulergamma":301}],209:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-eulergamma":307}],215:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13096,12 +13290,12 @@ function gamma( x ) {
 	var v;
 
 	w = 1.0 / x;
-	w = 1.0 + w * polyval( w );
+	w = 1.0 + ( w * polyval( w ) );
 	y = exp( x );
 
 	// Check `x` to avoid `pow()` overflow...
 	if ( x > MAX_STIRLING ) {
-		v = pow( x, 0.5*x - 0.25 );
+		v = pow( x, ( 0.5*x ) - 0.25 );
 		y = v * (v/y);
 	} else {
 		y = pow( x, x-0.5 ) / y;
@@ -13114,7 +13308,7 @@ function gamma( x ) {
 
 module.exports = gamma;
 
-},{"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/constants/float64-sqrt-two-pi":320}],210:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/constants/float64-sqrt-two-pi":327}],216:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13170,7 +13364,7 @@ function finiteGammaQ( a, x ) {
 
 module.exports = finiteGammaQ;
 
-},{"@stdlib/math/base/special/exp":198}],211:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":197}],217:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13234,7 +13428,7 @@ function finiteHalfGammaQ( a, x ) {
 
 module.exports = finiteHalfGammaQ;
 
-},{"@stdlib/math/base/special/erfc":195,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/constants/float64-pi":316}],212:[function(require,module,exports){
+},{"@stdlib/math/base/special/erfc":194,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/constants/float64-pi":323}],218:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13305,7 +13499,7 @@ function fullIGammaPrefix( a, z ) {
 
 module.exports = fullIGammaPrefix;
 
-},{"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":238,"@stdlib/math/constants/float64-max-ln":311,"@stdlib/math/constants/float64-min-ln":314}],213:[function(require,module,exports){
+},{"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/pow":244,"@stdlib/math/constants/float64-max-ln":318,"@stdlib/math/constants/float64-min-ln":321}],219:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13593,7 +13787,7 @@ function gammainc( x, a, regularized, upper ) {
 
 module.exports = gammainc;
 
-},{"./finite_gamma_q.js":210,"./finite_half_gamma_q.js":211,"./full_igamma_prefix.js":212,"./igamma_temme_large.js":215,"./lower_gamma_series.js":217,"./regularised_gamma_prefix.js":219,"./tgamma_small_upper_part.js":221,"./upper_gamma_fraction.js":222,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/floor":205,"@stdlib/math/base/special/gamma":207,"@stdlib/math/base/special/gammaln":225,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":238,"@stdlib/math/constants/float64-max":312,"@stdlib/math/constants/float64-max-ln":311,"@stdlib/math/constants/float64-pinf":317,"@stdlib/math/constants/float64-sqrt-eps":319,"@stdlib/math/constants/float64-sqrt-two-pi":320}],214:[function(require,module,exports){
+},{"./finite_gamma_q.js":216,"./finite_half_gamma_q.js":217,"./full_igamma_prefix.js":218,"./igamma_temme_large.js":221,"./lower_gamma_series.js":223,"./regularised_gamma_prefix.js":225,"./tgamma_small_upper_part.js":227,"./upper_gamma_fraction.js":228,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/floor":204,"@stdlib/math/base/special/gamma":213,"@stdlib/math/base/special/gammaln":231,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/pow":244,"@stdlib/math/constants/float64-max":319,"@stdlib/math/constants/float64-max-ln":318,"@stdlib/math/constants/float64-pinf":324,"@stdlib/math/constants/float64-sqrt-eps":326,"@stdlib/math/constants/float64-sqrt-two-pi":327}],220:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13668,7 +13862,7 @@ function gammap1m1( x ) {
 
 module.exports = gammap1m1;
 
-},{"@stdlib/math/base/special/expm1":200,"@stdlib/math/base/special/gamma":207,"@stdlib/math/base/special/gammaln":225,"@stdlib/math/base/special/log1p":230}],215:[function(require,module,exports){
+},{"@stdlib/math/base/special/expm1":199,"@stdlib/math/base/special/gamma":213,"@stdlib/math/base/special/gammaln":231,"@stdlib/math/base/special/log1p":236}],221:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13859,7 +14053,7 @@ function igammaTemmeLarge( a, x ) {
 
 module.exports = igammaTemmeLarge;
 
-},{"@stdlib/math/base/special/erfc":195,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/constants/float64-pi":316}],216:[function(require,module,exports){
+},{"@stdlib/math/base/special/erfc":194,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/constants/float64-pi":323}],222:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13898,7 +14092,7 @@ var gammainc = require( './gammainc.js' );
 
 module.exports = gammainc;
 
-},{"./gammainc.js":213}],217:[function(require,module,exports){
+},{"./gammainc.js":219}],223:[function(require,module,exports){
 'use strict';
 
 /*
@@ -13953,7 +14147,7 @@ function lowerGammaSeries( a, z, initialValue ) {
 
 module.exports = lowerGammaSeries;
 
-},{"./lower_incomplete_gamma_series":218,"@stdlib/math/base/tools/sum-series":273}],218:[function(require,module,exports){
+},{"./lower_incomplete_gamma_series":224,"@stdlib/math/base/tools/sum-series":279}],224:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14005,7 +14199,7 @@ function lowerIncompleteGammaSeries( a1, z1 ) {
 
 module.exports = lowerIncompleteGammaSeries;
 
-},{}],219:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14168,7 +14362,7 @@ function regularisedGammaPrefix( a, z ) {
 
 module.exports = regularisedGammaPrefix;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":198,"@stdlib/math/base/special/gamma":207,"@stdlib/math/base/special/gammaln":225,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/log1p":230,"@stdlib/math/base/special/max":232,"@stdlib/math/base/special/min":234,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/tools/evalrational":270,"@stdlib/math/constants/float64-e":299}],220:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/exp":197,"@stdlib/math/base/special/gamma":213,"@stdlib/math/base/special/gammaln":231,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/log1p":236,"@stdlib/math/base/special/max":238,"@stdlib/math/base/special/min":240,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/base/tools/evalrational":276,"@stdlib/math/constants/float64-e":305}],226:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14226,7 +14420,7 @@ function smallGamma2Series( a, x ) {
 
 module.exports = smallGamma2Series;
 
-},{}],221:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14290,7 +14484,7 @@ function tgammaSmallUpperPart( a, x, invert ) {
 
 module.exports = tgammaSmallUpperPart;
 
-},{"./gammap1m1.js":214,"./small_gamma2_series.js":220,"@stdlib/math/base/special/powm1":246,"@stdlib/math/base/tools/sum-series":273}],222:[function(require,module,exports){
+},{"./gammap1m1.js":220,"./small_gamma2_series.js":226,"@stdlib/math/base/special/powm1":252,"@stdlib/math/base/tools/sum-series":279}],228:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14333,7 +14527,7 @@ function upperGammaFraction( a, z ) {
 
 module.exports = upperGammaFraction;
 
-},{"./upper_incomplete_gamma_fract":223,"@stdlib/math/base/tools/continued-fraction":264}],223:[function(require,module,exports){
+},{"./upper_incomplete_gamma_fract":229,"@stdlib/math/base/tools/continued-fraction":270}],229:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14387,7 +14581,7 @@ function upperIncompleteGammaFract( a1, z1 ) {
 
 module.exports = upperIncompleteGammaFract;
 
-},{}],224:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 'use strict';
 
 /*
@@ -14852,7 +15046,7 @@ function gammaln( x ) {
 
 module.exports = gammaln;
 
-},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/sinpi":257,"@stdlib/math/base/special/trunc":260,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/constants/float64-pi":316,"@stdlib/math/constants/float64-pinf":317}],225:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/sinpi":263,"@stdlib/math/base/special/trunc":266,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/constants/float64-pi":323,"@stdlib/math/constants/float64-pinf":324}],231:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14894,7 +15088,7 @@ var gammaln = require( './gammaln.js' );
 
 module.exports = gammaln;
 
-},{"./gammaln.js":224}],226:[function(require,module,exports){
+},{"./gammaln.js":230}],232:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14936,7 +15130,7 @@ var ldexp = require( './ldexp.js' );
 
 module.exports = ldexp;
 
-},{"./ldexp.js":227}],227:[function(require,module,exports){
+},{"./ldexp.js":233}],233:[function(require,module,exports){
 'use strict';
 
 // NOTES //
@@ -15065,7 +15259,7 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/copysign":187,"@stdlib/math/base/utils/float64-exponent":275,"@stdlib/math/base/utils/float64-from-words":277,"@stdlib/math/base/utils/float64-normalize":285,"@stdlib/math/base/utils/float64-to-words":293,"@stdlib/math/constants/float64-exponent-bias":302,"@stdlib/math/constants/float64-max-base2-exponent":310,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":309,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":313,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],228:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/copysign":186,"@stdlib/math/base/utils/float64-exponent":281,"@stdlib/math/base/utils/float64-from-words":283,"@stdlib/math/base/utils/float64-normalize":291,"@stdlib/math/base/utils/float64-to-words":299,"@stdlib/math/constants/float64-exponent-bias":308,"@stdlib/math/constants/float64-max-base2-exponent":317,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":316,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":320,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],234:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15101,7 +15295,7 @@ var ln = require( './ln.js' );
 
 module.exports = ln;
 
-},{"./ln.js":229}],229:[function(require,module,exports){
+},{"./ln.js":235}],235:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15281,7 +15475,7 @@ function ln( x ) {
 
 module.exports = ln;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-set-high-word":288,"@stdlib/math/base/utils/float64-to-words":293,"@stdlib/math/constants/float64-exponent-bias":302,"@stdlib/math/constants/float64-ninf":315}],230:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-set-high-word":294,"@stdlib/math/base/utils/float64-to-words":299,"@stdlib/math/constants/float64-exponent-bias":308,"@stdlib/math/constants/float64-ninf":322}],236:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15320,7 +15514,7 @@ var log1p = require( './log1p.js' );
 
 module.exports = log1p;
 
-},{"./log1p.js":231}],231:[function(require,module,exports){
+},{"./log1p.js":237}],237:[function(require,module,exports){
 'use strict';
 
 /*
@@ -15674,7 +15868,7 @@ function log1p( x ) {
 
 module.exports = log1p;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-set-high-word":288,"@stdlib/math/constants/float64-exponent-bias":302,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],232:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-set-high-word":294,"@stdlib/math/constants/float64-exponent-bias":308,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],238:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15707,7 +15901,7 @@ var max = require( './max.js' );
 
 module.exports = max;
 
-},{"./max.js":233}],233:[function(require,module,exports){
+},{"./max.js":239}],239:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15793,7 +15987,7 @@ function max( x, y ) {
 
 module.exports = max;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-positive-zero":137,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],234:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-positive-zero":137,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],240:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15826,7 +16020,7 @@ var min = require( './min.js' );
 
 module.exports = min;
 
-},{"./min.js":235}],235:[function(require,module,exports){
+},{"./min.js":241}],241:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -15912,7 +16106,7 @@ function min( x, y ) {
 
 module.exports = min;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-negative-zero":133,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],236:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-negative-zero":133,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],242:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15936,7 +16130,7 @@ var modf = require( './modf.js' );
 
 module.exports = modf;
 
-},{"./modf.js":237}],237:[function(require,module,exports){
+},{"./modf.js":243}],243:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16049,7 +16243,7 @@ function modf( x ) {
 
 module.exports = modf;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/utils/float64-from-words":277,"@stdlib/math/base/utils/float64-to-words":293,"@stdlib/math/constants/float64-exponent-bias":302,"@stdlib/math/constants/float64-high-word-exponent-mask":306,"@stdlib/math/constants/float64-high-word-significand-mask":307,"@stdlib/math/constants/float64-pinf":317}],238:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/utils/float64-from-words":283,"@stdlib/math/base/utils/float64-to-words":299,"@stdlib/math/constants/float64-exponent-bias":308,"@stdlib/math/constants/float64-high-word-exponent-mask":313,"@stdlib/math/constants/float64-high-word-significand-mask":314,"@stdlib/math/constants/float64-pinf":324}],244:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16094,7 +16288,7 @@ var pow = require( './pow.js' );
 
 module.exports = pow;
 
-},{"./pow.js":241}],239:[function(require,module,exports){
+},{"./pow.js":247}],245:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16290,7 +16484,7 @@ function log2ax( ax, ahx ) {
 
 module.exports = log2ax;
 
-},{"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-set-high-word":288,"@stdlib/math/base/utils/float64-set-low-word":290,"@stdlib/math/constants/float64-exponent-bias":302}],240:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-set-high-word":294,"@stdlib/math/base/utils/float64-set-low-word":296,"@stdlib/math/constants/float64-exponent-bias":308}],246:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16360,7 +16554,7 @@ function logx( ax ) {
 
 module.exports = logx;
 
-},{"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/base/utils/float64-set-low-word":290}],241:[function(require,module,exports){
+},{"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/base/utils/float64-set-low-word":296}],247:[function(require,module,exports){
 'use strict';
 
 /*
@@ -16730,7 +16924,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"./log2ax.js":239,"./logx.js":240,"./pow2.js":242,"./x_is_zero.js":243,"./y_is_huge.js":244,"./y_is_infinite.js":245,"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-odd":135,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/sqrt":259,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-get-low-word":283,"@stdlib/math/base/utils/float64-set-low-word":290,"@stdlib/math/base/utils/float64-to-words":293,"@stdlib/math/base/utils/uint32-to-int32":296,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],242:[function(require,module,exports){
+},{"./log2ax.js":245,"./logx.js":246,"./pow2.js":248,"./x_is_zero.js":249,"./y_is_huge.js":250,"./y_is_infinite.js":251,"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-integer":129,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/assert/is-odd":135,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/sqrt":265,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-get-low-word":289,"@stdlib/math/base/utils/float64-set-low-word":296,"@stdlib/math/base/utils/float64-to-words":299,"@stdlib/math/base/utils/uint32-to-int32":302,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],248:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16857,7 +17051,7 @@ function pow2( j, hp, lp ) {
 
 module.exports = pow2;
 
-},{"@stdlib/math/base/special/ldexp":226,"@stdlib/math/base/tools/evalpoly":267,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-set-high-word":288,"@stdlib/math/base/utils/float64-set-low-word":290,"@stdlib/math/base/utils/uint32-to-int32":296,"@stdlib/math/constants/float64-exponent-bias":302,"@stdlib/math/constants/float64-ln-two":308}],243:[function(require,module,exports){
+},{"@stdlib/math/base/special/ldexp":232,"@stdlib/math/base/tools/evalpoly":273,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-set-high-word":294,"@stdlib/math/base/utils/float64-set-low-word":296,"@stdlib/math/base/utils/uint32-to-int32":302,"@stdlib/math/constants/float64-exponent-bias":308,"@stdlib/math/constants/float64-ln-two":315}],249:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16927,7 +17121,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/assert/is-odd":135,"@stdlib/math/base/special/copysign":187,"@stdlib/math/constants/float64-ninf":315,"@stdlib/math/constants/float64-pinf":317}],244:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-odd":135,"@stdlib/math/base/special/copysign":186,"@stdlib/math/constants/float64-ninf":322,"@stdlib/math/constants/float64-pinf":324}],250:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -16995,7 +17189,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":281}],245:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":287}],251:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17067,7 +17261,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-pinf":317}],246:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-pinf":324}],252:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17112,7 +17306,7 @@ var powm1 = require( './powm1.js' );
 
 module.exports = powm1;
 
-},{"./powm1.js":247}],247:[function(require,module,exports){
+},{"./powm1.js":253}],253:[function(require,module,exports){
 'use strict';
 
 /*
@@ -17222,7 +17416,7 @@ function powm1( b, x ) {
 
 module.exports = powm1;
 
-},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/expm1":200,"@stdlib/math/base/special/ln":228,"@stdlib/math/base/special/pow":238,"@stdlib/math/base/special/trunc":260}],248:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/expm1":199,"@stdlib/math/base/special/ln":234,"@stdlib/math/base/special/pow":244,"@stdlib/math/base/special/trunc":266}],254:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -17278,7 +17472,7 @@ var round = require( './round.js' );
 
 module.exports = round;
 
-},{"./round.js":249}],249:[function(require,module,exports){
+},{"./round.js":255}],255:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -17340,7 +17534,7 @@ var round = Math.round;
 
 module.exports = round;
 
-},{}],250:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17373,7 +17567,7 @@ var sin = require( './sin.js' );
 
 module.exports = sin;
 
-},{"./sin.js":256}],251:[function(require,module,exports){
+},{"./sin.js":262}],257:[function(require,module,exports){
 'use strict';
 
 /*
@@ -17475,7 +17669,7 @@ function kernelCos( x, y ) {
 
 module.exports = kernelCos;
 
-},{}],252:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 /* eslint-disable no-plusplus */
 'use strict';
 
@@ -17856,7 +18050,7 @@ function kernelRemPio2( x, y, e0, nx, prec ) {
 
 module.exports = kernelRemPio2;
 
-},{"@stdlib/math/base/special/floor":205,"@stdlib/math/base/special/ldexp":226}],253:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":204,"@stdlib/math/base/special/ldexp":232}],259:[function(require,module,exports){
 'use strict';
 
 /*
@@ -17952,7 +18146,7 @@ function kernelSin( x, y, iy ) {
 
 module.exports = kernelSin;
 
-},{}],254:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 'use strict';
 
 /*
@@ -18177,7 +18371,7 @@ function remPio2( x, y ) {
 
 module.exports = remPio2;
 
-},{"./kernel_rem_pio2.js":252,"./rem_pio2_medium.js":255,"@stdlib/math/base/utils/float64-from-words":277,"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/base/utils/float64-get-low-word":283}],255:[function(require,module,exports){
+},{"./kernel_rem_pio2.js":258,"./rem_pio2_medium.js":261,"@stdlib/math/base/utils/float64-from-words":283,"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/base/utils/float64-get-low-word":289}],261:[function(require,module,exports){
 'use strict';
 
 /*
@@ -18288,7 +18482,7 @@ function remPio2( x, ix, y ) {
 
 module.exports = remPio2;
 
-},{"@stdlib/math/base/special/round":248,"@stdlib/math/base/utils/float64-get-high-word":281}],256:[function(require,module,exports){
+},{"@stdlib/math/base/special/round":254,"@stdlib/math/base/utils/float64-get-high-word":287}],262:[function(require,module,exports){
 'use strict';
 
 /*
@@ -18411,7 +18605,7 @@ function sin( x ) {
 
 module.exports = sin;
 
-},{"./kernel_cos.js":251,"./kernel_sin.js":253,"./rem_pio2.js":254,"@stdlib/math/base/utils/float64-get-high-word":281}],257:[function(require,module,exports){
+},{"./kernel_cos.js":257,"./kernel_sin.js":259,"./rem_pio2.js":260,"@stdlib/math/base/utils/float64-get-high-word":287}],263:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18444,7 +18638,7 @@ var sinpi = require( './sinpi.js' );
 
 module.exports = sinpi;
 
-},{"./sinpi.js":258}],258:[function(require,module,exports){
+},{"./sinpi.js":264}],264:[function(require,module,exports){
 'use strict';
 
 /*
@@ -18533,7 +18727,7 @@ function sinpi( x ) {
 
 module.exports = sinpi;
 
-},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/copysign":187,"@stdlib/math/base/special/cos":190,"@stdlib/math/base/special/sin":250,"@stdlib/math/constants/float64-pi":316}],259:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/base/special/copysign":186,"@stdlib/math/base/special/cos":189,"@stdlib/math/base/special/sin":256,"@stdlib/math/constants/float64-pi":323}],265:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18569,7 +18763,7 @@ var sqrt = Math.sqrt;
 
 module.exports = sqrt;
 
-},{}],260:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18611,7 +18805,7 @@ var trunc = require( './trunc.js' );
 
 module.exports = trunc;
 
-},{"./trunc.js":261}],261:[function(require,module,exports){
+},{"./trunc.js":267}],267:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -18668,7 +18862,7 @@ function trunc( x ) {
 
 module.exports = trunc;
 
-},{"@stdlib/math/base/special/ceil":185,"@stdlib/math/base/special/floor":205}],262:[function(require,module,exports){
+},{"@stdlib/math/base/special/ceil":184,"@stdlib/math/base/special/floor":204}],268:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -18840,7 +19034,7 @@ function continuedFraction( generator, options ) {
 
 module.exports = continuedFraction;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float32-smallest-normal":298,"@stdlib/math/constants/float64-eps":300}],263:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float32-smallest-normal":304,"@stdlib/math/constants/float64-eps":306}],269:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19046,7 +19240,7 @@ function continuedFraction( generator, options ) {
 
 module.exports = continuedFraction;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float32-smallest-normal":298,"@stdlib/math/constants/float64-eps":300}],264:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float32-smallest-normal":304,"@stdlib/math/constants/float64-eps":306}],270:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19080,7 +19274,7 @@ var hasGeneratorsSupport = require( '@stdlib/utils/detect-generator-support' )()
 
 module.exports = hasGeneratorsSupport ? require( './generators.js' ) : require( './basic.js' );
 
-},{"./basic.js":262,"./generators.js":263,"@stdlib/utils/detect-generator-support":362}],265:[function(require,module,exports){
+},{"./basic.js":268,"./generators.js":269,"@stdlib/utils/detect-generator-support":369}],271:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -19127,7 +19321,7 @@ function evalpoly( c, x ) {
 
 module.exports = evalpoly;
 
-},{}],266:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19238,7 +19432,7 @@ function factory( c ) {
 
 module.exports = factory;
 
-},{"./evalpoly.js":265}],267:[function(require,module,exports){
+},{"./evalpoly.js":271}],273:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19280,7 +19474,7 @@ setReadOnly( evalpoly, 'factory', factory );
 
 module.exports = evalpoly;
 
-},{"./evalpoly.js":265,"./factory.js":266,"@stdlib/utils/define-read-only-property":360}],268:[function(require,module,exports){
+},{"./evalpoly.js":271,"./factory.js":272,"@stdlib/utils/define-read-only-property":367}],274:[function(require,module,exports){
 'use strict';
 
 /*
@@ -19378,7 +19572,7 @@ function evalrational( P, Q, x ) {
 
 module.exports = evalrational;
 
-},{"@stdlib/math/base/special/abs":164}],269:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164}],275:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19576,7 +19770,7 @@ function factory( P, Q ) {
 
 module.exports = factory;
 
-},{"./evalrational.js":268}],270:[function(require,module,exports){
+},{"./evalrational.js":274}],276:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19627,7 +19821,7 @@ setReadOnly( evalrational, 'factory', factory );
 
 module.exports = evalrational;
 
-},{"./evalrational.js":268,"./factory.js":269,"@stdlib/utils/define-read-only-property":360}],271:[function(require,module,exports){
+},{"./evalrational.js":274,"./factory.js":275,"@stdlib/utils/define-read-only-property":367}],277:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19697,7 +19891,7 @@ function sumSeries( generator, options ) {
 
 module.exports = sumSeries;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-eps":300}],272:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-eps":306}],278:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19780,7 +19974,7 @@ function sumSeries( generator, options ) {
 
 module.exports = sumSeries;
 
-},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-eps":300}],273:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-eps":306}],279:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19813,7 +20007,7 @@ var hasGeneratorsSupport = require( '@stdlib/utils/detect-generator-support' )()
 
 module.exports = hasGeneratorsSupport ? require( './generators.js' ) : require( './basic.js' );
 
-},{"./basic.js":271,"./generators.js":272,"@stdlib/utils/detect-generator-support":362}],274:[function(require,module,exports){
+},{"./basic.js":277,"./generators.js":278,"@stdlib/utils/detect-generator-support":369}],280:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19860,7 +20054,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":281,"@stdlib/math/constants/float64-exponent-bias":302,"@stdlib/math/constants/float64-high-word-exponent-mask":306}],275:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":287,"@stdlib/math/constants/float64-exponent-bias":308,"@stdlib/math/constants/float64-high-word-exponent-mask":313}],281:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19893,7 +20087,7 @@ var exponent = require( './exponent.js' );
 
 module.exports = exponent;
 
-},{"./exponent.js":274}],276:[function(require,module,exports){
+},{"./exponent.js":280}],282:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -19990,7 +20184,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":278}],277:[function(require,module,exports){
+},{"./indices.js":284}],283:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20032,7 +20226,7 @@ var fromWords = require( './from_words.js' );
 
 module.exports = fromWords;
 
-},{"./from_words.js":276}],278:[function(require,module,exports){
+},{"./from_words.js":282}],284:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20061,7 +20255,7 @@ module.exports = {
 	'LOW': LOW
 };
 
-},{"@stdlib/assert/is-little-endian":28}],279:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":28}],285:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20134,7 +20328,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":280}],280:[function(require,module,exports){
+},{"./high.js":286}],286:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20156,7 +20350,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":28}],281:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":28}],287:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20180,7 +20374,7 @@ var getHighWord = require( './get_high_word.js' );
 
 module.exports = getHighWord;
 
-},{"./get_high_word.js":279}],282:[function(require,module,exports){
+},{"./get_high_word.js":285}],288:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20253,7 +20447,7 @@ function getLowWord( x ) {
 
 module.exports = getLowWord;
 
-},{"./low.js":284}],283:[function(require,module,exports){
+},{"./low.js":290}],289:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20277,7 +20471,7 @@ var getLowWord = require( './get_low_word.js' );
 
 module.exports = getLowWord;
 
-},{"./get_low_word.js":282}],284:[function(require,module,exports){
+},{"./get_low_word.js":288}],290:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20299,7 +20493,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":28}],285:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":28}],291:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20330,7 +20524,7 @@ var normalize = require( './normalize.js' );
 
 module.exports = normalize;
 
-},{"./normalize.js":286}],286:[function(require,module,exports){
+},{"./normalize.js":292}],292:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20398,9 +20592,9 @@ function normalize( x ) {
 
 module.exports = normalize;
 
-},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-smallest-normal":318}],287:[function(require,module,exports){
-arguments[4][280][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":28,"dup":280}],288:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":127,"@stdlib/math/base/assert/is-nan":131,"@stdlib/math/base/special/abs":164,"@stdlib/math/constants/float64-smallest-normal":325}],293:[function(require,module,exports){
+arguments[4][286][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":28,"dup":286}],294:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20436,7 +20630,7 @@ var setHighWord = require( './set_high_word.js' );
 
 module.exports = setHighWord;
 
-},{"./set_high_word.js":289}],289:[function(require,module,exports){
+},{"./set_high_word.js":295}],295:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20522,7 +20716,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":287}],290:[function(require,module,exports){
+},{"./high.js":293}],296:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20566,9 +20760,9 @@ var setLowWord = require( './set_low_word.js' );
 
 module.exports = setLowWord;
 
-},{"./set_low_word.js":292}],291:[function(require,module,exports){
-arguments[4][284][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":28,"dup":284}],292:[function(require,module,exports){
+},{"./set_low_word.js":298}],297:[function(require,module,exports){
+arguments[4][290][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":28,"dup":290}],298:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20662,7 +20856,7 @@ function setLowWord( x, low ) {
 
 module.exports = setLowWord;
 
-},{"./low.js":291}],293:[function(require,module,exports){
+},{"./low.js":297}],299:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20686,9 +20880,9 @@ var toWords = require( './to_words.js' );
 
 module.exports = toWords;
 
-},{"./to_words.js":295}],294:[function(require,module,exports){
-arguments[4][278][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":28,"dup":278}],295:[function(require,module,exports){
+},{"./to_words.js":301}],300:[function(require,module,exports){
+arguments[4][284][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":28,"dup":284}],301:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20764,7 +20958,7 @@ function toWords( x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":294}],296:[function(require,module,exports){
+},{"./indices.js":300}],302:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20792,7 +20986,7 @@ var uint32ToInt32 = require( './uint32_to_int32.js' );
 
 module.exports = uint32ToInt32;
 
-},{"./uint32_to_int32.js":297}],297:[function(require,module,exports){
+},{"./uint32_to_int32.js":303}],303:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -20823,7 +21017,7 @@ function uint32ToInt32( x ) {
 
 module.exports = uint32ToInt32;
 
-},{}],298:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20866,7 +21060,7 @@ var FLOAT32_SMALLEST_NORMAL = 1.1754943508222875e-38;
 module.exports = FLOAT32_SMALLEST_NORMAL;
 
 
-},{}],299:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20900,7 +21094,7 @@ var E = 2.718281828459045235360287471352662497757247093699959574966;
 
 module.exports = E;
 
-},{}],300:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20937,7 +21131,7 @@ var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
 
 module.exports = FLOAT64_EPSILON;
 
-},{}],301:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20970,7 +21164,7 @@ var GAMMA = 0.577215664901532860606512090082402431042;
 
 module.exports = GAMMA;
 
-},{}],302:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21008,7 +21202,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],303:[function(require,module,exports){
+},{}],309:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21040,7 +21234,39 @@ var FOURTH_PI = 7.85398163397448309616e-1;
 
 module.exports = FOURTH_PI;
 
-},{}],304:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
+'use strict';
+
+/**
+* Arbitrary constant `g` to be used in Lanczos approximation functions.
+*
+* @module @stdlib/math/constants/float64-gamma-lanczos-g
+* @type {number}
+*
+* @example
+* var FLOAT64_GAMMA_LANCZOS_G = require( '@stdlib/math/constants/float64-gamma-lanczos-g' );
+* // returns 10.900511
+*/
+
+
+// MAIN //
+
+/**
+* Arbitrary constant `g` to be used in Lanczos approximation functions.
+*
+* @constant
+* @type {number}
+* @default 10.900511
+* @see [Lanczos Approximation]{@link https://en.wikipedia.org/wiki/Lanczos_approximation}
+*/
+var FLOAT64_GAMMA_LANCZOS_G = 10.90051099999999983936049829935654997826;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_GAMMA_LANCZOS_G;
+
+},{}],311:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21075,7 +21301,7 @@ var HALF_LN2 = 3.46573590279972654709e-01; // 0x3FD62E42 0xFEFA39EF
 
 module.exports = HALF_LN2;
 
-},{}],305:[function(require,module,exports){
+},{}],312:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21107,7 +21333,7 @@ var HALF_PI = 1.5707963267948966;
 
 module.exports = HALF_PI;
 
-},{}],306:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21143,7 +21369,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],307:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21179,7 +21405,7 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
 
 module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
 
-},{}],308:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21214,7 +21440,7 @@ var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393
 
 module.exports = LN2;
 
-},{}],309:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21252,7 +21478,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],310:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21290,7 +21516,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],311:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21326,7 +21552,7 @@ var FLOAT64_MAX_LN = 709.782712893384;
 
 module.exports = FLOAT64_MAX_LN;
 
-},{}],312:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21362,7 +21588,7 @@ var FLOAT64_MAX = 1.7976931348623157e+308;
 
 module.exports = FLOAT64_MAX;
 
-},{}],313:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21400,7 +21626,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],314:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21436,7 +21662,7 @@ var FLOAT64_MIN_LN = -708.3964185322641;
 
 module.exports = FLOAT64_MIN_LN;
 
-},{}],315:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21472,7 +21698,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{}],316:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21504,7 +21730,7 @@ var PI = 3.141592653589793238462643383279502884197169399375105820974944592307816
 
 module.exports = PI;
 
-},{}],317:[function(require,module,exports){
+},{}],324:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21540,7 +21766,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY;
 
 module.exports = FLOAT64_PINF;
 
-},{}],318:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21582,7 +21808,7 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],319:[function(require,module,exports){
+},{}],326:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21619,7 +21845,7 @@ var FLOAT64_SQRT_EPSILON = 0.1490116119384765625e-7;
 
 module.exports = FLOAT64_SQRT_EPSILON;
 
-},{}],320:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21651,7 +21877,7 @@ var SQRT_TWO_PI = 2.506628274631000502415765284811045253e+00;
 
 module.exports = SQRT_TWO_PI;
 
-},{}],321:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21692,7 +21918,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],322:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21733,7 +21959,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],323:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21779,7 +22005,7 @@ var RE_EOL = /\r?\n/;
 
 module.exports = RE_EOL;
 
-},{}],324:[function(require,module,exports){
+},{}],331:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21840,7 +22066,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],325:[function(require,module,exports){
+},{}],332:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21904,7 +22130,7 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 module.exports = RE_REGEXP;
 
-},{}],326:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21932,7 +22158,7 @@ function _transform( chunk, encoding, clbk ) {
 
 module.exports = _transform;
 
-},{"debug":409}],327:[function(require,module,exports){
+},{"debug":416}],334:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22105,7 +22331,7 @@ function ctor( options ) {
 
 module.exports = ctor;
 
-},{"./_transform.js":326,"./defaults.json":328,"./destroy.js":329,"./validate.js":334,"@stdlib/utils/copy":357,"debug":409,"readable-stream":431}],328:[function(require,module,exports){
+},{"./_transform.js":333,"./defaults.json":335,"./destroy.js":336,"./validate.js":341,"@stdlib/utils/copy":364,"debug":416,"readable-stream":438}],335:[function(require,module,exports){
 module.exports={
 	"objectMode": false,
 	"encoding": null,
@@ -22113,7 +22339,7 @@ module.exports={
 	"decodeStrings": true
 }
 
-},{}],329:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -22167,7 +22393,7 @@ function destroy( error ) {
 module.exports = destroy;
 
 }).call(this,require('_process'))
-},{"_process":406,"debug":409}],330:[function(require,module,exports){
+},{"_process":413,"debug":416}],337:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22244,7 +22470,7 @@ function streamFactory( options ) {
 
 module.exports = streamFactory;
 
-},{"./stream.js":333,"@stdlib/utils/copy":357}],331:[function(require,module,exports){
+},{"./stream.js":340,"@stdlib/utils/copy":364}],338:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22375,7 +22601,7 @@ setReadOnly( transform, 'ctor', ctor );
 
 module.exports = transform;
 
-},{"./ctor.js":327,"./factory.js":330,"./object_mode.js":332,"./stream.js":333,"@stdlib/utils/define-read-only-property":360}],332:[function(require,module,exports){
+},{"./ctor.js":334,"./factory.js":337,"./object_mode.js":339,"./stream.js":340,"@stdlib/utils/define-read-only-property":367}],339:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22442,7 +22668,7 @@ function objectMode( options ) {
 
 module.exports = objectMode;
 
-},{"./stream.js":333}],333:[function(require,module,exports){
+},{"./stream.js":340}],340:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22549,7 +22775,7 @@ TransformStream.prototype.destroy = destroy;
 
 module.exports = TransformStream;
 
-},{"./_transform.js":326,"./defaults.json":328,"./destroy.js":329,"./validate.js":334,"@stdlib/utils/copy":357,"debug":409,"readable-stream":431}],334:[function(require,module,exports){
+},{"./_transform.js":333,"./defaults.json":335,"./destroy.js":336,"./validate.js":341,"@stdlib/utils/copy":364,"debug":416,"readable-stream":438}],341:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22633,7 +22859,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":20,"@stdlib/assert/is-nonnegative-number":44,"@stdlib/assert/is-plain-object":59,"@stdlib/assert/is-string":71}],335:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":20,"@stdlib/assert/is-nonnegative-number":44,"@stdlib/assert/is-plain-object":59,"@stdlib/assert/is-string":71}],342:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22665,7 +22891,7 @@ var UNICODE_MAX_BMP = 0xFFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX_BMP;
 
-},{}],336:[function(require,module,exports){
+},{}],343:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22697,7 +22923,7 @@ var UNICODE_MAX = 0x10FFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX;
 
-},{}],337:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22721,7 +22947,7 @@ var fromCodePoint = require( './main.js' );
 
 module.exports = fromCodePoint;
 
-},{"./main.js":338}],338:[function(require,module,exports){
+},{"./main.js":345}],345:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22820,7 +23046,7 @@ function fromCodePoint( args ) {
 
 module.exports = fromCodePoint;
 
-},{"@stdlib/assert/is-array-like-object":3,"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/string/constants/unicode-max":336,"@stdlib/string/constants/unicode-max-bmp":335}],339:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":3,"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/string/constants/unicode-max":343,"@stdlib/string/constants/unicode-max-bmp":342}],346:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22847,7 +23073,7 @@ var ltrim = require( './left_trim.js' );
 
 module.exports = ltrim;
 
-},{"./left_trim.js":340}],340:[function(require,module,exports){
+},{"./left_trim.js":347}],347:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22895,7 +23121,7 @@ function ltrim( str ) {
 
 module.exports = ltrim;
 
-},{"@stdlib/assert/is-string":71,"@stdlib/string/replace":341}],341:[function(require,module,exports){
+},{"@stdlib/assert/is-string":71,"@stdlib/string/replace":348}],348:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22924,7 +23150,7 @@ var replace = require( './replace.js' );
 
 module.exports = replace;
 
-},{"./replace.js":342}],342:[function(require,module,exports){
+},{"./replace.js":349}],349:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22992,7 +23218,7 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{"@stdlib/assert/is-function":20,"@stdlib/assert/is-regexp":66,"@stdlib/assert/is-string":71,"@stdlib/utils/escape-regexp-string":368}],343:[function(require,module,exports){
+},{"@stdlib/assert/is-function":20,"@stdlib/assert/is-regexp":66,"@stdlib/assert/is-string":71,"@stdlib/utils/escape-regexp-string":375}],350:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23022,7 +23248,7 @@ var rtrim = require( './right_trim.js' );
 
 module.exports = rtrim;
 
-},{"./right_trim.js":344}],344:[function(require,module,exports){
+},{"./right_trim.js":351}],351:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23070,7 +23296,7 @@ function rtrim( str ) {
 
 module.exports = rtrim;
 
-},{"@stdlib/assert/is-string":71,"@stdlib/string/replace":341}],345:[function(require,module,exports){
+},{"@stdlib/assert/is-string":71,"@stdlib/string/replace":348}],352:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23100,7 +23326,7 @@ var trim = require( './trim.js' );
 
 module.exports = trim;
 
-},{"./trim.js":346}],346:[function(require,module,exports){
+},{"./trim.js":353}],353:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23139,7 +23365,7 @@ function trim( str ) {
 
 module.exports = trim;
 
-},{"@stdlib/string/left-trim":339,"@stdlib/string/right-trim":343}],347:[function(require,module,exports){
+},{"@stdlib/string/left-trim":346,"@stdlib/string/right-trim":350}],354:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23215,7 +23441,7 @@ function tic() {
 
 module.exports = tic;
 
-},{"./now.js":349,"@stdlib/assert/is-object":57,"@stdlib/math/base/special/modf":236,"@stdlib/math/base/special/round":248,"system.global":434}],348:[function(require,module,exports){
+},{"./now.js":356,"@stdlib/assert/is-object":57,"@stdlib/math/base/special/modf":242,"@stdlib/math/base/special/round":254,"system.global":441}],355:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23227,7 +23453,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 
 module.exports = isFunction( Date.now );
 
-},{"@stdlib/assert/is-function":20}],349:[function(require,module,exports){
+},{"@stdlib/assert/is-function":20}],356:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23250,7 +23476,7 @@ if ( bool ) {
 
 module.exports = now;
 
-},{"./detect.js":348,"./polyfill.js":350}],350:[function(require,module,exports){
+},{"./detect.js":355,"./polyfill.js":357}],357:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -23275,7 +23501,7 @@ function now() {
 
 module.exports = now;
 
-},{}],351:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23301,7 +23527,7 @@ var toc = require( './toc.js' );
 
 module.exports = toc;
 
-},{"./toc.js":352}],352:[function(require,module,exports){
+},{"./toc.js":359}],359:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23360,7 +23586,7 @@ function toc( time ) {
 
 module.exports = toc;
 
-},{"@stdlib/assert/is-nonnegative-integer-array":38,"@stdlib/time/tic":347}],353:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer-array":38,"@stdlib/time/tic":354}],360:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23416,7 +23642,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":16,"@stdlib/regexp/function-name":324,"@stdlib/utils/native-class":384}],354:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":16,"@stdlib/regexp/function-name":331,"@stdlib/utils/native-class":391}],361:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23446,7 +23672,7 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":353}],355:[function(require,module,exports){
+},{"./constructor_name.js":360}],362:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23505,7 +23731,7 @@ function copy( value, level ) {
 
 module.exports = copy;
 
-},{"./deep_copy.js":356,"@stdlib/assert/is-array":7,"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/math/constants/float64-pinf":317}],356:[function(require,module,exports){
+},{"./deep_copy.js":363,"@stdlib/assert/is-array":7,"@stdlib/assert/is-nonnegative-integer":40,"@stdlib/math/constants/float64-pinf":324}],363:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -23790,7 +24016,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 module.exports = deepCopy;
 
 }).call(this,require("buffer").Buffer)
-},{"./typed_arrays.js":358,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":7,"@stdlib/assert/is-buffer":16,"@stdlib/assert/is-error":18,"@stdlib/utils/index-of":376,"@stdlib/utils/regexp-from-string":396,"@stdlib/utils/type-of":401,"buffer":407,"object-keys":418}],357:[function(require,module,exports){
+},{"./typed_arrays.js":365,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":7,"@stdlib/assert/is-buffer":16,"@stdlib/assert/is-error":18,"@stdlib/utils/index-of":383,"@stdlib/utils/regexp-from-string":403,"@stdlib/utils/type-of":408,"buffer":414,"object-keys":425}],364:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23830,7 +24056,7 @@ var copy = require( './copy.js' );
 
 module.exports = copy;
 
-},{"./copy.js":355}],358:[function(require,module,exports){
+},{"./copy.js":362}],365:[function(require,module,exports){
 /* eslint-disable no-new-func */
 'use strict';
 
@@ -23870,7 +24096,7 @@ function createTypedArrayFcns() {
 
 module.exports = createTypedArrayFcns();
 
-},{}],359:[function(require,module,exports){
+},{}],366:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23899,7 +24125,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{}],360:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23924,7 +24150,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":359}],361:[function(require,module,exports){
+},{"./define_read_only_property.js":366}],368:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -23959,7 +24185,7 @@ function hasGeneratorSupport() {
 
 module.exports = hasGeneratorSupport;
 
-},{"@stdlib/utils/eval":369}],362:[function(require,module,exports){
+},{"@stdlib/utils/eval":376}],369:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23983,7 +24209,7 @@ var hasGeneratorSupport = require( './detect_generator_support.js' );
 
 module.exports = hasGeneratorSupport;
 
-},{"./detect_generator_support.js":361}],363:[function(require,module,exports){
+},{"./detect_generator_support.js":368}],370:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -24009,7 +24235,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],364:[function(require,module,exports){
+},{}],371:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24033,7 +24259,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":363}],365:[function(require,module,exports){
+},{"./detect_symbol_support.js":370}],372:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24061,7 +24287,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":364}],366:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":371}],373:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24085,7 +24311,7 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":365}],367:[function(require,module,exports){
+},{"./has_tostringtag_support.js":372}],374:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24150,7 +24376,7 @@ function rescape( str ) {
 
 module.exports = rescape;
 
-},{"@stdlib/assert/is-string":71}],368:[function(require,module,exports){
+},{"@stdlib/assert/is-string":71}],375:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24174,7 +24400,7 @@ var rescape = require( './escape_regexp_string.js' );
 
 module.exports = rescape;
 
-},{"./escape_regexp_string.js":367}],369:[function(require,module,exports){
+},{"./escape_regexp_string.js":374}],376:[function(require,module,exports){
 /* eslint-disable no-eval */
 'use strict';
 
@@ -24199,7 +24425,7 @@ var evil = eval;
 
 module.exports = evil;
 
-},{}],370:[function(require,module,exports){
+},{}],377:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24221,7 +24447,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":373,"./polyfill.js":374,"@stdlib/assert/is-function":20}],371:[function(require,module,exports){
+},{"./native.js":380,"./polyfill.js":381,"@stdlib/assert/is-function":20}],378:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24259,7 +24485,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":370}],372:[function(require,module,exports){
+},{"./detect.js":377}],379:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24283,14 +24509,14 @@ var getPrototype = require( './get_prototype_of.js' );
 
 module.exports = getPrototype;
 
-},{"./get_prototype_of.js":371}],373:[function(require,module,exports){
+},{"./get_prototype_of.js":378}],380:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.getPrototypeOf;
 
-},{}],374:[function(require,module,exports){
+},{}],381:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24329,7 +24555,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":375,"@stdlib/utils/native-class":384}],375:[function(require,module,exports){
+},{"./proto.js":382,"@stdlib/utils/native-class":391}],382:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24349,7 +24575,7 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],376:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24406,7 +24632,7 @@ var indexOf = require( './index_of.js' );
 
 module.exports = indexOf;
 
-},{"./index_of.js":377}],377:[function(require,module,exports){
+},{"./index_of.js":384}],384:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24521,7 +24747,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":23,"@stdlib/assert/is-nan":31}],378:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":23,"@stdlib/assert/is-nan":31}],385:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24538,7 +24764,7 @@ if ( typeof objectCreate === 'function' ) {
 	module.exports = createObject;
 }
 
-},{"./native.js":381,"./polyfill.js":382}],379:[function(require,module,exports){
+},{"./native.js":388,"./polyfill.js":389}],386:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24576,7 +24802,7 @@ var inherit = require( './inherit.js' );
 
 module.exports = inherit;
 
-},{"./inherit.js":380}],380:[function(require,module,exports){
+},{"./inherit.js":387}],387:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24647,14 +24873,14 @@ function inherit( ctor, superCtor ) {
 
 module.exports = inherit;
 
-},{"./detect.js":378,"./validate.js":383}],381:[function(require,module,exports){
+},{"./detect.js":385,"./validate.js":390}],388:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.create;
 
-},{}],382:[function(require,module,exports){
+},{}],389:[function(require,module,exports){
 'use strict';
 
 // FUNCTIONS //
@@ -24692,7 +24918,7 @@ function createObject( proto ) {
 
 module.exports = createObject;
 
-},{}],383:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24727,7 +24953,7 @@ function validate( value ) {
 
 module.exports = validate;
 
-},{}],384:[function(require,module,exports){
+},{}],391:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24770,7 +24996,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":385,"./polyfill.js":386,"@stdlib/utils/detect-tostringtag-support":366}],385:[function(require,module,exports){
+},{"./native_class.js":392,"./polyfill.js":393,"@stdlib/utils/detect-tostringtag-support":373}],392:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24810,7 +25036,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":387}],386:[function(require,module,exports){
+},{"./tostring.js":394}],393:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -24875,21 +25101,21 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":387,"./tostringtag.js":388,"@stdlib/assert/has-own-property":2}],387:[function(require,module,exports){
+},{"./tostring.js":394,"./tostringtag.js":395,"@stdlib/assert/has-own-property":2}],394:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
 
-},{}],388:[function(require,module,exports){
+},{}],395:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
-},{}],389:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24913,7 +25139,7 @@ var noop = require( './noop.js' );
 
 module.exports = noop;
 
-},{"./noop.js":390}],390:[function(require,module,exports){
+},{"./noop.js":397}],397:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24932,7 +25158,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],391:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24961,7 +25187,7 @@ var omit = require( './omit.js' );
 
 module.exports = omit;
 
-},{"./omit.js":392}],392:[function(require,module,exports){
+},{"./omit.js":399}],399:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25028,7 +25254,7 @@ function omit( obj, keys ) {
 
 module.exports = omit;
 
-},{"@stdlib/assert/is-string":71,"@stdlib/assert/is-string-array":69,"@stdlib/utils/index-of":376,"object-keys":418}],393:[function(require,module,exports){
+},{"@stdlib/assert/is-string":71,"@stdlib/assert/is-string-array":69,"@stdlib/utils/index-of":383,"object-keys":425}],400:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25057,7 +25283,7 @@ var pick = require( './pick.js' );
 
 module.exports = pick;
 
-},{"./pick.js":394}],394:[function(require,module,exports){
+},{"./pick.js":401}],401:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25118,7 +25344,7 @@ function pick( obj, keys ) {
 
 module.exports = pick;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-string":71,"@stdlib/assert/is-string-array":69}],395:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-string":71,"@stdlib/assert/is-string-array":69}],402:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25155,7 +25381,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":71,"@stdlib/regexp/regexp":325}],396:[function(require,module,exports){
+},{"@stdlib/assert/is-string":71,"@stdlib/regexp/regexp":332}],403:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25179,7 +25405,7 @@ var reFromString = require( './from_string.js' );
 
 module.exports = reFromString;
 
-},{"./from_string.js":395}],397:[function(require,module,exports){
+},{"./from_string.js":402}],404:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25216,7 +25442,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":398,"./fixtures/re.js":399,"./fixtures/typedarray.js":400}],398:[function(require,module,exports){
+},{"./fixtures/nodelist.js":405,"./fixtures/re.js":406,"./fixtures/typedarray.js":407}],405:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25233,7 +25459,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":434}],399:[function(require,module,exports){
+},{"system.global":441}],406:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -25243,7 +25469,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],400:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -25253,7 +25479,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],401:[function(require,module,exports){
+},{}],408:[function(require,module,exports){
 'use strict';
 
 /**
@@ -25282,7 +25508,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":397,"./polyfill.js":402,"./typeof.js":403}],402:[function(require,module,exports){
+},{"./check.js":404,"./polyfill.js":409,"./typeof.js":410}],409:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25307,7 +25533,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":354}],403:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":361}],410:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -25367,7 +25593,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":354}],404:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":361}],411:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -25483,9 +25709,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],405:[function(require,module,exports){
+},{}],412:[function(require,module,exports){
 
-},{}],406:[function(require,module,exports){
+},{}],413:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -25671,7 +25897,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],407:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -27387,7 +27613,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":404,"ieee754":414}],408:[function(require,module,exports){
+},{"base64-js":411,"ieee754":421}],415:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -27498,7 +27724,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":416}],409:[function(require,module,exports){
+},{"../../is-buffer/index.js":423}],416:[function(require,module,exports){
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -27687,7 +27913,7 @@ function localstorage() {
 }
 
 }).call(this,require('_process'))
-},{"./debug":410,"_process":406}],410:[function(require,module,exports){
+},{"./debug":417,"_process":413}],417:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -27891,7 +28117,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":417}],411:[function(require,module,exports){
+},{"ms":424}],418:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -27949,7 +28175,7 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":413,"object-keys":418}],412:[function(require,module,exports){
+},{"foreach":420,"object-keys":425}],419:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -28253,7 +28479,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],413:[function(require,module,exports){
+},{}],420:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -28277,7 +28503,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],414:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -28363,7 +28589,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],415:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -28388,7 +28614,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],416:[function(require,module,exports){
+},{}],423:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -28411,7 +28637,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],417:[function(require,module,exports){
+},{}],424:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -28565,7 +28791,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],418:[function(require,module,exports){
+},{}],425:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -28707,7 +28933,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":419}],419:[function(require,module,exports){
+},{"./isArguments":426}],426:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -28726,7 +28952,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],420:[function(require,module,exports){
+},{}],427:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -28773,7 +28999,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":406}],421:[function(require,module,exports){
+},{"_process":413}],428:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -28898,7 +29124,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":423,"./_stream_writable":425,"core-util-is":408,"inherits":415,"process-nextick-args":420}],422:[function(require,module,exports){
+},{"./_stream_readable":430,"./_stream_writable":432,"core-util-is":415,"inherits":422,"process-nextick-args":427}],429:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -28946,7 +29172,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":424,"core-util-is":408,"inherits":415}],423:[function(require,module,exports){
+},{"./_stream_transform":431,"core-util-is":415,"inherits":422}],430:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -29956,7 +30182,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":421,"./internal/streams/BufferList":426,"./internal/streams/destroy":427,"./internal/streams/stream":428,"_process":406,"core-util-is":408,"events":412,"inherits":415,"isarray":429,"process-nextick-args":420,"safe-buffer":432,"string_decoder/":430,"util":405}],424:[function(require,module,exports){
+},{"./_stream_duplex":428,"./internal/streams/BufferList":433,"./internal/streams/destroy":434,"./internal/streams/stream":435,"_process":413,"core-util-is":415,"events":419,"inherits":422,"isarray":436,"process-nextick-args":427,"safe-buffer":439,"string_decoder/":437,"util":412}],431:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -30171,7 +30397,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":421,"core-util-is":408,"inherits":415}],425:[function(require,module,exports){
+},{"./_stream_duplex":428,"core-util-is":415,"inherits":422}],432:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -30838,7 +31064,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":421,"./internal/streams/destroy":427,"./internal/streams/stream":428,"_process":406,"core-util-is":408,"inherits":415,"process-nextick-args":420,"safe-buffer":432,"util-deprecate":437}],426:[function(require,module,exports){
+},{"./_stream_duplex":428,"./internal/streams/destroy":434,"./internal/streams/stream":435,"_process":413,"core-util-is":415,"inherits":422,"process-nextick-args":427,"safe-buffer":439,"util-deprecate":444}],433:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -30913,7 +31139,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":432}],427:[function(require,module,exports){
+},{"safe-buffer":439}],434:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -30986,17 +31212,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":420}],428:[function(require,module,exports){
+},{"process-nextick-args":427}],435:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":412}],429:[function(require,module,exports){
+},{"events":419}],436:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],430:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -31269,7 +31495,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":432}],431:[function(require,module,exports){
+},{"safe-buffer":439}],438:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -31278,7 +31504,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":421,"./lib/_stream_passthrough.js":422,"./lib/_stream_readable.js":423,"./lib/_stream_transform.js":424,"./lib/_stream_writable.js":425}],432:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":428,"./lib/_stream_passthrough.js":429,"./lib/_stream_readable.js":430,"./lib/_stream_transform.js":431,"./lib/_stream_writable.js":432}],439:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -31342,7 +31568,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":407}],433:[function(require,module,exports){
+},{"buffer":414}],440:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -31360,7 +31586,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],434:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -31381,7 +31607,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":433,"./polyfill":435,"./shim":436,"define-properties":411}],435:[function(require,module,exports){
+},{"./implementation":440,"./polyfill":442,"./shim":443,"define-properties":418}],442:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -31395,7 +31621,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":433}],436:[function(require,module,exports){
+},{"./implementation":440}],443:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -31421,7 +31647,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":435,"define-properties":411}],437:[function(require,module,exports){
+},{"./polyfill":442,"define-properties":418}],444:[function(require,module,exports){
 (function (global){
 
 /**

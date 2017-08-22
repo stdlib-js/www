@@ -431,15 +431,6 @@ var negativeMean = require( './fixtures/julia/negative_mean.json' );
 var largeVariance = require( './fixtures/julia/large_variance.json' );
 
 
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
-
-
 // TESTS //
 
 tape( 'main export is a function', function test( t ) {
@@ -536,8 +527,8 @@ tape( 'if provided a nonpositive `b`, the created function always returns `NaN`'
 
 tape( 'the created function evaluates the quantile function at `p` given positive `mu`', function test( t ) {
 	var expected;
-	var bool;
-	var pdf;
+	var quantile;
+	var delta;
 	var tol;
 	var mu;
 	var b;
@@ -545,21 +536,20 @@ tape( 'the created function evaluates the quantile function at `p` given positiv
 	var p;
 	var y;
 
-	tol = EPS;
-
 	expected = positiveMean.expected;
 	p = positiveMean.p;
 	mu = positiveMean.mu;
 	b = positiveMean.b;
 	for ( i = 0; i < p.length; i++ ) {
-		pdf = factory( mu[i], b[i] );
-		y = pdf( p[i] );
+		quantile = factory( mu[i], b[i] );
+		y = quantile( p[i] );
 		if ( expected[i] !== null ) {
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu: '+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 			} else {
-				bool = almostEqual( y, expected[i], tol );
-				t.ok( bool, 'within tolerance. p: '+p[i]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+				delta = abs( y - expected[ i ] );
+				tol = 1.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 			}
 		}
 	}
@@ -568,8 +558,8 @@ tape( 'the created function evaluates the quantile function at `p` given positiv
 
 tape( 'the created function evaluates the quantile function at `p` given negative `mu`', function test( t ) {
 	var expected;
-	var bool;
-	var pdf;
+	var quantile;
+	var delta;
 	var tol;
 	var mu;
 	var b;
@@ -577,21 +567,20 @@ tape( 'the created function evaluates the quantile function at `p` given negativ
 	var p;
 	var y;
 
-	tol = EPS;
-
 	expected = negativeMean.expected;
 	p = negativeMean.p;
 	mu = negativeMean.mu;
 	b = negativeMean.b;
 	for ( i = 0; i < p.length; i++ ) {
-		pdf = factory( mu[i], b[i] );
-		y = pdf( p[i] );
+		quantile = factory( mu[i], b[i] );
+		y = quantile( p[i] );
 		if ( expected[i] !== null ) {
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 			} else {
-				bool = almostEqual( y, expected[i], tol );
-				t.ok( bool, 'within tolerance. p: '+p[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+				delta = abs( y - expected[ i ] );
+				tol = 1.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 			}
 		}
 	}
@@ -600,8 +589,8 @@ tape( 'the created function evaluates the quantile function at `p` given negativ
 
 tape( 'the created function evaluates the quantile function at `p` given large variance ( = large `b`)', function test( t ) {
 	var expected;
-	var bool;
-	var pdf;
+	var quantile;
+	var delta;
 	var tol;
 	var mu;
 	var b;
@@ -609,21 +598,20 @@ tape( 'the created function evaluates the quantile function at `p` given large v
 	var p;
 	var y;
 
-	tol = EPS;
-
 	expected = largeVariance.expected;
 	p = largeVariance.p;
 	mu = largeVariance.mu;
 	b = largeVariance.b;
 	for ( i = 0; i < p.length; i++ ) {
-		pdf = factory( mu[i], b[i] );
-		y = pdf( p[i] );
+		quantile = factory( mu[i], b[i] );
+		y = quantile( p[i] );
 		if ( expected[i] !== null ) {
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu: '+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 			} else {
-				bool = almostEqual( y, expected[i], tol );
-				t.ok( bool, 'within tolerance. p: '+p[i]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+				delta = abs( y - expected[ i ] );
+				tol = 1.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 			}
 		}
 	}
@@ -677,15 +665,6 @@ var negativeMean = require( './fixtures/julia/negative_mean.json' );
 var largeVariance = require( './fixtures/julia/large_variance.json' );
 
 
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
-
-
 // TESTS //
 
 tape( 'main export is a function', function test( t ) {
@@ -715,13 +694,13 @@ tape( 'if provided a number outside `[0,1]` for `p` and a finite `mu` and `b`, t
 tape( 'if provided a nonpositive `b`, the function returns `NaN`', function test( t ) {
 	var y;
 
-	y = quantile( 0.5,  2.0, -1.0 );
+	y = quantile( 0.5, 2.0, -1.0 );
 	t.equal( isnan( y ), true, 'returns NaN' );
 
 	y = quantile( 0.2, 2.0, -1.0 );
 	t.equal( isnan( y ), true, 'returns NaN' );
 
-	y = quantile( 0.5,  2.0, 0.0 );
+	y = quantile( 0.5, 2.0, 0.0 );
 	t.equal( isnan( y ), true, 'returns NaN' );
 
 	y = quantile( 0.2, 2.0, 0.0 );
@@ -730,7 +709,7 @@ tape( 'if provided a nonpositive `b`, the function returns `NaN`', function test
 	y = quantile( 0.8, 1.0, NINF );
 	t.equal( isnan( y ), true, 'returns NaN' );
 
-	y = quantile( 0.7 , PINF, NINF );
+	y = quantile( 0.7, PINF, NINF );
 	t.equal( isnan( y ), true, 'returns NaN' );
 
 	y = quantile( 0.7, NINF, NINF );
@@ -744,15 +723,13 @@ tape( 'if provided a nonpositive `b`, the function returns `NaN`', function test
 
 tape( 'the function evaluates the quantile function at `p` given positive `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = positiveMean.expected;
 	p = positiveMean.p;
@@ -764,8 +741,9 @@ tape( 'the function evaluates the quantile function at `p` given positive `mu`',
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 			} else {
-				bool = almostEqual( y, expected[i], tol );
-				t.ok( bool, 'within tolerance. p: '+p[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+				delta = abs( y - expected[ i ] );
+				tol = 1.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 			}
 		}
 	}
@@ -774,15 +752,13 @@ tape( 'the function evaluates the quantile function at `p` given positive `mu`',
 
 tape( 'the function evaluates the quantile function at `p` given negative `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = negativeMean.expected;
 	p = negativeMean.p;
@@ -794,8 +770,9 @@ tape( 'the function evaluates the quantile function at `p` given negative `mu`',
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 			} else {
-				bool = almostEqual( y, expected[i], tol );
-				t.ok( bool, 'within tolerance. p: '+p[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+				delta = abs( y - expected[ i ] );
+				tol = 1.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 			}
 		}
 	}
@@ -804,15 +781,13 @@ tape( 'the function evaluates the quantile function at `p` given negative `mu`',
 
 tape( 'the function evaluates the quantile function at `p` given large variance ( = large `b` )', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var p;
 	var y;
-
-	tol = EPS;
 
 	expected = largeVariance.expected;
 	p = largeVariance.p;
@@ -824,8 +799,9 @@ tape( 'the function evaluates the quantile function at `p` given large variance 
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'p: '+p[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 			} else {
-				bool = almostEqual( y, expected[i], tol );
-				t.ok( bool, 'within tolerance. p: '+p[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+				delta = abs( y - expected[ i ] );
+				tol = 1.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 			}
 		}
 	}

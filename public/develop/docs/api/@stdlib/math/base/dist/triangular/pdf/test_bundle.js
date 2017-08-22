@@ -406,15 +406,6 @@ var mediumRange = require( './fixtures/julia/medium_range.json' );
 var largeRange = require( './fixtures/julia/large_range.json' );
 
 
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
-
-
 // TESTS //
 
 tape( 'main export is a function', function test( t ) {
@@ -559,7 +550,7 @@ tape( 'if provided valid parameters, the created function returns `2/(b-a)` in c
 
 tape( 'the created function evaluates the pdf for `x` given small range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var pdf;
 	var tol;
 	var a;
@@ -568,8 +559,6 @@ tape( 'the created function evaluates the pdf for `x` given small range `b - a`'
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = smallRange.expected;
 	x = smallRange.x;
@@ -582,8 +571,9 @@ tape( 'the created function evaluates the pdf for `x` given small range `b - a`'
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -591,7 +581,7 @@ tape( 'the created function evaluates the pdf for `x` given small range `b - a`'
 
 tape( 'the created function evaluates the pdf for `x` given a medium range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var pdf;
 	var tol;
 	var a;
@@ -600,8 +590,6 @@ tape( 'the created function evaluates the pdf for `x` given a medium range `b - 
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = mediumRange.expected;
 	x = mediumRange.x;
@@ -614,8 +602,9 @@ tape( 'the created function evaluates the pdf for `x` given a medium range `b - 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -623,7 +612,7 @@ tape( 'the created function evaluates the pdf for `x` given a medium range `b - 
 
 tape( 'the created function evaluates the pdf for `x` given a large range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var pdf;
 	var tol;
 	var a;
@@ -632,8 +621,6 @@ tape( 'the created function evaluates the pdf for `x` given a large range `b - a
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = largeRange.expected;
 	x = largeRange.x;
@@ -646,8 +633,9 @@ tape( 'the created function evaluates the pdf for `x` given a large range `b - a
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -698,15 +686,6 @@ var pdf = require( './../lib' );
 var smallRange = require( './fixtures/julia/small_range.json' );
 var mediumRange = require( './fixtures/julia/medium_range.json' );
 var largeRange = require( './fixtures/julia/large_range.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -787,7 +766,7 @@ tape( 'the function returns `2/(b-a)` if provided `x = c`', function test( t ) {
 
 tape( 'the function evaluates the pdf for `x` given a small range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var a;
@@ -795,8 +774,6 @@ tape( 'the function evaluates the pdf for `x` given a small range `b - a`', func
 	var c;
 	var y;
 	var i;
-
-	tol = EPS;
 
 	expected = smallRange.expected;
 	x = smallRange.x;
@@ -808,8 +785,9 @@ tape( 'the function evaluates the pdf for `x` given a small range `b - a`', func
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -817,7 +795,7 @@ tape( 'the function evaluates the pdf for `x` given a small range `b - a`', func
 
 tape( 'the function evaluates the pdf for `x` given a medium range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var a;
@@ -825,8 +803,6 @@ tape( 'the function evaluates the pdf for `x` given a medium range `b - a`', fun
 	var c;
 	var y;
 	var i;
-
-	tol = EPS;
 
 	expected = mediumRange.expected;
 	x = mediumRange.x;
@@ -838,8 +814,9 @@ tape( 'the function evaluates the pdf for `x` given a medium range `b - a`', fun
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -847,7 +824,7 @@ tape( 'the function evaluates the pdf for `x` given a medium range `b - a`', fun
 
 tape( 'the function evaluates the pdf for `x` given a large range `b - a`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var a;
@@ -855,8 +832,6 @@ tape( 'the function evaluates the pdf for `x` given a large range `b - a`', func
 	var c;
 	var y;
 	var i;
-
-	tol = EPS;
 
 	expected = largeRange.expected;
 	x = largeRange.x;
@@ -868,8 +843,9 @@ tape( 'the function evaluates the pdf for `x` given a large range `b - a`', func
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', a: '+a[i]+', b: '+b[i]+', c: '+c[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. a: '+a[i]+'. b: '+b[i]+'. c: '+c[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();

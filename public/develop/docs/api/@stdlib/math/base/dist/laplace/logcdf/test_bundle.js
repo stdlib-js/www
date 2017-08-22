@@ -435,15 +435,6 @@ var negativeMean = require( './fixtures/julia/negative_mean.json' );
 var largeVariance = require( './fixtures/julia/large_variance.json' );
 
 
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
-
-
 // TESTS //
 
 tape( 'main export is a function', function test( t ) {
@@ -549,15 +540,13 @@ tape( 'if provided a nonpositive `b`, the created function always returns `NaN`'
 tape( 'the created function evaluates the logcdf for `x` given positive `mu`', function test( t ) {
 	var expected;
 	var logcdf;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = positiveMean.expected;
 	x = positiveMean.x;
@@ -569,8 +558,9 @@ tape( 'the created function evaluates the logcdf for `x` given positive `mu`', f
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -579,15 +569,13 @@ tape( 'the created function evaluates the logcdf for `x` given positive `mu`', f
 tape( 'the created function evaluates the logcdf for `x` given negative `mu`', function test( t ) {
 	var expected;
 	var logcdf;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = negativeMean.expected;
 	x = negativeMean.x;
@@ -599,8 +587,9 @@ tape( 'the created function evaluates the logcdf for `x` given negative `mu`', f
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -609,15 +598,13 @@ tape( 'the created function evaluates the logcdf for `x` given negative `mu`', f
 tape( 'the created function evaluates the logcdf for `x` given large variance ( = large `b`)', function test( t ) {
 	var expected;
 	var logcdf;
-	var bool;
+	var delta;
 	var tol;
 	var mu;
 	var b;
 	var i;
 	var x;
 	var y;
-
-	tol = EPS;
 
 	expected = largeVariance.expected;
 	x = largeVariance.x;
@@ -629,8 +616,9 @@ tape( 'the created function evaluates the logcdf for `x` given large variance ( 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -681,15 +669,6 @@ var logcdf = require( './../lib' );
 var positiveMean = require( './fixtures/julia/positive_mean.json' );
 var negativeMean = require( './fixtures/julia/negative_mean.json' );
 var largeVariance = require( './fixtures/julia/large_variance.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -748,15 +727,13 @@ tape( 'if provided a negative `b`, the function returns `NaN`', function test( t
 
 tape( 'the function evaluates the logcdf for `x` given positive `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var mu;
 	var b;
 	var y;
 	var i;
-
-	tol = EPS;
 
 	expected = positiveMean.expected;
 	x = positiveMean.x;
@@ -767,8 +744,9 @@ tape( 'the function evaluates the logcdf for `x` given positive `mu`', function 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -776,15 +754,13 @@ tape( 'the function evaluates the logcdf for `x` given positive `mu`', function 
 
 tape( 'the function evaluates the logcdf for `x` given negative `mu`', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var mu;
 	var b;
 	var y;
 	var i;
-
-	tol = EPS;
 
 	expected = negativeMean.expected;
 	x = negativeMean.x;
@@ -795,8 +771,9 @@ tape( 'the function evaluates the logcdf for `x` given negative `mu`', function 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -804,15 +781,13 @@ tape( 'the function evaluates the logcdf for `x` given negative `mu`', function 
 
 tape( 'the function evaluates the logcdf for `x` given large variance ( = large `b` )', function test( t ) {
 	var expected;
-	var bool;
+	var delta;
 	var tol;
 	var x;
 	var mu;
 	var b;
 	var y;
 	var i;
-
-	tol = EPS;
 
 	expected = largeVariance.expected;
 	x = largeVariance.x;
@@ -823,8 +798,9 @@ tape( 'the function evaluates the logcdf for `x` given large variance ( = large 
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'x: '+x[i]+', mu:'+mu[i]+', b: '+b[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. x: '+x[i]+'. mu:'+mu[i]+'. b: '+b[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. mu: '+mu[i]+'. b: '+b[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();

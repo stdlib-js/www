@@ -1004,6 +1004,7 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
 var PINF = require( '@stdlib/math/constants/float64-pinf' );
 var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var EPS = require( '@stdlib/math/constants/float64-eps' );
 var factory = require( './../lib/factory.js' );
 
 
@@ -1012,15 +1013,6 @@ var factory = require( './../lib/factory.js' );
 var largeRate = require( './fixtures/julia/large_rate.json' );
 var largeShape = require( './fixtures/julia/large_shape.json' );
 var bothLarge = require( './fixtures/julia/both_large.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -1172,15 +1164,13 @@ tape( 'if `alpha` equals `0`, the created function evaluates a degenerate distri
 tape( 'the created function evaluates the quantile for `p` given large `alpha` and `beta`', function test( t ) {
 	var expected;
 	var quantile;
-	var bool;
+	var alpha;
+	var delta;
+	var beta;
 	var tol;
 	var p;
-	var alpha;
-	var beta;
 	var y;
 	var i;
-
-	tol = 3e-13;
 
 	expected = bothLarge.expected;
 	p = bothLarge.p;
@@ -1192,8 +1182,9 @@ tape( 'the created function evaluates the quantile for `p` given large `alpha` a
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', alpha:'+alpha[i]+', beta: '+beta[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. alpha:'+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1350.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. alpha: '+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -1202,15 +1193,13 @@ tape( 'the created function evaluates the quantile for `p` given large `alpha` a
 tape( 'the created function evaluates the quantile for `p` given large shape parameter `alpha`', function test( t ) {
 	var expected;
 	var quantile;
-	var bool;
+	var alpha;
+	var delta;
+	var beta;
 	var tol;
 	var p;
-	var alpha;
-	var beta;
 	var y;
 	var i;
-
-	tol = 4e-15;
 
 	expected = largeShape.expected;
 	p = largeShape.p;
@@ -1222,8 +1211,9 @@ tape( 'the created function evaluates the quantile for `p` given large shape par
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', alpha:'+alpha[i]+', beta: '+beta[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. alpha:'+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 20.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. alpha: '+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -1232,15 +1222,13 @@ tape( 'the created function evaluates the quantile for `p` given large shape par
 tape( 'the created function evaluates the quantile for `p` given large rate parameter `beta`', function test( t ) {
 	var expected;
 	var quantile;
-	var bool;
+	var alpha;
+	var delta;
+	var beta;
 	var tol;
 	var p;
-	var alpha;
-	var beta;
 	var y;
 	var i;
-
-	tol = 5e-14;
 
 	expected = largeRate.expected;
 	p = largeRate.p;
@@ -1252,15 +1240,16 @@ tape( 'the created function evaluates the quantile for `p` given large rate para
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', alpha:'+alpha[i]+', beta: '+beta[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. alpha:'+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 200.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. alpha: '+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/dist/gamma/quantile/test/test.factory.js")
-},{"./../lib/factory.js":22,"./fixtures/julia/both_large.json":26,"./fixtures/julia/large_rate.json":27,"./fixtures/julia/large_shape.json":28,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":33,"@stdlib/math/constants/float64-ninf":172,"@stdlib/math/constants/float64-pinf":174,"tape":240}],30:[function(require,module,exports){
+},{"./../lib/factory.js":22,"./fixtures/julia/both_large.json":26,"./fixtures/julia/large_rate.json":27,"./fixtures/julia/large_shape.json":28,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":33,"@stdlib/math/constants/float64-eps":159,"@stdlib/math/constants/float64-ninf":172,"@stdlib/math/constants/float64-pinf":174,"tape":240}],30:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -1295,6 +1284,7 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
 var PINF = require( '@stdlib/math/constants/float64-pinf' );
 var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var EPS = require( '@stdlib/math/constants/float64-eps' );
 var quantile = require( './../lib' );
 
 
@@ -1303,15 +1293,6 @@ var quantile = require( './../lib' );
 var largeRate = require( './fixtures/julia/large_rate.json' );
 var largeShape = require( './fixtures/julia/large_shape.json' );
 var bothLarge = require( './fixtures/julia/both_large.json' );
-
-
-// FUNCTIONS //
-
-function almostEqual( a, b, tol ) {
-	var delta = abs( a - b );
-	tol = tol * abs( b );
-	return ( delta <= tol );
-}
 
 
 // TESTS //
@@ -1408,14 +1389,12 @@ tape( 'if provided `alpha` equal to `0.0`, the function returns `0.0` for  a val
 tape( 'the function evaluates the quantile for `x` given large parameters `alpha` and `beta`', function test( t ) {
 	var expected;
 	var alpha;
-	var bool;
+	var delta;
+	var beta;
 	var tol;
 	var p;
-	var beta;
 	var y;
 	var i;
-
-	tol = 3e-13;
 
 	expected = bothLarge.expected;
 	p = bothLarge.p;
@@ -1426,8 +1405,9 @@ tape( 'the function evaluates the quantile for `x` given large parameters `alpha
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', alpha:'+alpha[i]+', beta: '+beta[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. alpha:'+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 1350.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. alpha: '+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -1436,14 +1416,12 @@ tape( 'the function evaluates the quantile for `x` given large parameters `alpha
 tape( 'the function evaluates the quantile for `x` given large shape parameter `alpha`', function test( t ) {
 	var expected;
 	var alpha;
-	var bool;
+	var delta;
+	var beta;
 	var tol;
 	var p;
-	var beta;
 	var y;
 	var i;
-
-	tol = 4e-15;
 
 	expected = largeShape.expected;
 	p = largeShape.p;
@@ -1454,8 +1432,9 @@ tape( 'the function evaluates the quantile for `x` given large shape parameter `
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', alpha:'+alpha[i]+', beta: '+beta[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. alpha:'+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 20.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. alpha: '+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -1464,14 +1443,12 @@ tape( 'the function evaluates the quantile for `x` given large shape parameter `
 tape( 'the function evaluates the quantile for `x` given large rate parameter `beta`', function test( t ) {
 	var expected;
 	var alpha;
-	var bool;
+	var delta;
+	var beta;
 	var tol;
 	var p;
-	var beta;
 	var y;
 	var i;
-
-	tol = 5e-14;
 
 	expected = largeRate.expected;
 	p = largeRate.p;
@@ -1482,15 +1459,16 @@ tape( 'the function evaluates the quantile for `x` given large rate parameter `b
 		if ( y === expected[i] ) {
 			t.equal( y, expected[i], 'p: '+p[i]+', alpha:'+alpha[i]+', beta: '+beta[i]+', y: '+y+', expected: '+expected[i] );
 		} else {
-			bool = almostEqual( y, expected[i], tol );
-			t.ok( bool, 'within tolerance. p: '+p[i]+'. alpha:'+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			delta = abs( y - expected[ i ] );
+			tol = 200.0 * EPS * abs( expected[ i ] );
+			t.ok( delta <= tol, 'within tolerance. p: '+p[ i ]+'. alpha: '+alpha[i]+'. beta: '+beta[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/dist/gamma/quantile/test/test.quantile.js")
-},{"./../lib":23,"./fixtures/julia/both_large.json":26,"./fixtures/julia/large_rate.json":27,"./fixtures/julia/large_shape.json":28,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":33,"@stdlib/math/constants/float64-ninf":172,"@stdlib/math/constants/float64-pinf":174,"tape":240}],32:[function(require,module,exports){
+},{"./../lib":23,"./fixtures/julia/both_large.json":26,"./fixtures/julia/large_rate.json":27,"./fixtures/julia/large_shape.json":28,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/special/abs":33,"@stdlib/math/constants/float64-eps":159,"@stdlib/math/constants/float64-ninf":172,"@stdlib/math/constants/float64-pinf":174,"tape":240}],32:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4403,11 +4381,11 @@ function gamma( x ) {
 		}
 		return PINF;
 	}
-	if (
-		x < -170.5674972726612 ||
-		x > 171.61447887182298
-	) {
+	if ( x > 171.61447887182298 ) {
 		return PINF;
+	}
+	if ( x < -170.5674972726612 ) {
+		return 0.0;
 	}
 	q = abs( x );
 	if ( q > 33.0 ) {
@@ -4522,7 +4500,7 @@ var EULER = require( '@stdlib/math/constants/float64-eulergamma' );
 * @returns {number} function value
 */
 function gamma( x, z ) {
-	return z / ( (1.0 + EULER*x) * x );
+	return z / ( ( 1.0 + ( EULER*x ) ) * x );
 } // end FUNCTION gamma()
 
 
@@ -4573,12 +4551,12 @@ function gamma( x ) {
 	var v;
 
 	w = 1.0 / x;
-	w = 1.0 + w * polyval( w );
+	w = 1.0 + ( w * polyval( w ) );
 	y = exp( x );
 
 	// Check `x` to avoid `pow()` overflow...
 	if ( x > MAX_STIRLING ) {
-		v = pow( x, 0.5*x - 0.25 );
+		v = pow( x, ( 0.5*x ) - 0.25 );
 		y = v * (v/y);
 	} else {
 		y = pow( x, x-0.5 ) / y;
