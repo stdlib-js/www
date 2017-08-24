@@ -1210,24 +1210,31 @@ var TWO_OVER_PI = 2.0 / PI;
 * @example
 * var y = cdf( 9.0, 0.0, 10.0 );
 * // returns ~0.795
+*
 * @example
 * var y = cdf( 0.5, 0.0, 2.0 );
 * // returns ~0.333
+*
 * @example
 * var y = cdf( +Infinity, 2.0, 4.0 );
 * // returns 1.0
+*
 * @example
 * var y = cdf( -Infinity, 2.0, 4.0 );
 * // returns 0.0
+*
 * @example
 * var y = cdf( NaN, 0.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = cdf( 0.0, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = cdf( 0.0, 0.0, NaN );
 * // returns NaN
+*
 * @example
 * var y = cdf( 2.0, 1.0, 0.0 );
 * // returns NaN
@@ -2272,21 +2279,27 @@ var LN_FOURTH_PI = ln( FOURTH_PI );
 * @example
 * var v = entropy( 0.0, 1.0 );
 * // returns ~-0.242
+*
 * @example
 * var v = entropy( 4.0, 12.0 );
 * // returns ~1.838
+*
 * @example
 * var v = entropy( -4.0, 4.0 );
 * // returns ~1.838
+*
 * @example
 * var v = entropy( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = entropy( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = entropy( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = entropy( NaN, 2.0 );
 * // returns NaN
@@ -2387,21 +2400,27 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * @example
 * var v = kurtosis( 0.0, 1.0 );
 * // returns -1.5
+*
 * @example
 * var v = kurtosis( 4.0, 12.0 );
 * // returns -1.5
+*
 * @example
 * var v = kurtosis( -4.0, 4.0 );
 * // returns -1.5
+*
 * @example
 * var v = kurtosis( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = kurtosis( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = kurtosis( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = kurtosis( NaN, 2.0 );
 * // returns NaN
@@ -2550,21 +2569,27 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var y = logpdf( 2.0, 0.0, 4.0 );
 * // returns ~-1.838
+*
 * @example
 * var y = logpdf( 5.0, 0.0, 4.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var y = logpdf( 0.25, 0.0, 1.0 );
 * // returns ~-0.308
+*
 * @example
 * var y = logpdf( NaN, 0.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = logpdf( 0.0, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = logpdf( 0.0, 0.0, NaN );
 * // returns NaN
+*
 * @example
 * var y = logpdf( 2.0, 3.0, 1.0 );
 * // returns NaN
@@ -2656,21 +2681,27 @@ module.exports = mean;
 * @example
 * var v = mean( 0.0, 1.0 );
 * // returns 0.5
+*
 * @example
 * var v = mean( 4.0, 12.0 );
 * // returns 8.0
+*
 * @example
 * var v = mean( -4.0, 4.0 );
 * // returns 0.0
+*
 * @example
 * var v = mean( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = mean( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = mean( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = mean( NaN, 2.0 );
 * // returns NaN
@@ -2734,21 +2765,27 @@ module.exports = median;
 * @example
 * var v = median( 0.0, 1.0 );
 * // returns 0.5
+*
 * @example
 * var v = median( 4.0, 12.0 );
 * // returns 8.0
+*
 * @example
 * var v = median( -4.0, 4.0 );
 * // returns 0.0
+*
 * @example
 * var v = median( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = median( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = median( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = median( NaN, 2.0 );
 * // returns NaN
@@ -2817,21 +2854,27 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * @example
 * var v = mode( 0.0, 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = mode( 4.0, 12.0 );
 * // returns 4.0
+*
 * @example
 * var v = mode( -4.0, 4.0 );
 * // returns -4.0
+*
 * @example
 * var v = mode( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = mode( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = mode( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = mode( NaN, 2.0 );
 * // returns NaN
@@ -3000,21 +3043,27 @@ var PI = require( '@stdlib/math/constants/float64-pi' );
 * @example
 * var y = pdf( 2.0, 0.0, 4.0 );
 * // returns ~0.159
+*
 * @example
 * var y = pdf( 5.0, 0.0, 4.0 );
 * // returns 0.0
+*
 * @example
 * var y = pdf( 0.25, 0.0, 1.0 );
 * // returns ~0.735
+*
 * @example
 * var y = pdf( NaN, 0.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = pdf( 0.0, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = pdf( 0.0, 0.0, NaN );
 * // returns NaN
+*
 * @example
 * var y = pdf( 2.0, 3.0, 1.0 );
 * // returns NaN
@@ -3183,24 +3232,31 @@ var HALF_PI = require( '@stdlib/math/constants/float64-half-pi' );
 * @example
 * var y = quantile( 0.8, 0.0, 1.0 );
 * // returns ~0.905
+*
 * @example
 * var y = quantile( 0.5, 0.0, 10.0 );
 * // returns ~5.0
+*
 * @example
 * var y = quantile( 1.1, 0.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( -0.2, 0.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( NaN, 0.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( 0.0, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( 0.0, 0.0, NaN );
 * // returns NaN
+*
 * @example
 * var y = quantile( 0.5, 2.0, 1.0 );
 * // returns NaN
@@ -3274,21 +3330,27 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * @example
 * var v = skewness( 0.0, 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = skewness( 4.0, 12.0 );
 * // returns 0.0
+*
 * @example
 * var v = skewness( -4.0, 4.0 );
 * // returns 0.0
+*
 * @example
 * var v = skewness( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = skewness( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = skewness( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = skewness( NaN, 2.0 );
 * // returns NaN
@@ -3354,26 +3416,32 @@ var SQRT1OVER8 = 0.35355339059327373; // sqrt( 1.0/8.0 )
 *
 * @param {number} a - minimum support
 * @param {number} b - maximum support
-* @returns {number} standard deviation
+* @returns {PositiveNumber} standard deviation
 *
 * @example
 * var v = stdev( 0.0, 1.0 );
 * // returns ~0.354
+*
 * @example
 * var v = stdev( 4.0, 12.0 );
 * // returns ~2.828
+*
 * @example
 * var v = stdev( -4.0, 4.0 );
 * // returns ~2.828
+*
 * @example
 * var v = stdev( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = stdev( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = stdev( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = stdev( NaN, 2.0 );
 * // returns NaN
@@ -3435,26 +3503,32 @@ var pow = require( '@stdlib/math/base/special/pow' );
 *
 * @param {number} a - minimum support
 * @param {number} b - maximum support
-* @returns {number} variance
+* @returns {PositiveNumber} variance
 *
 * @example
 * var v = variance( 0.0, 1.0 );
 * // returns ~0.125
+*
 * @example
 * var v = variance( 4.0, 12.0 );
 * // returns 8.0
+*
 * @example
 * var v = variance( -4.0, 4.0 );
 * // returns 8.0
+*
 * @example
 * var v = variance( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = variance( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = variance( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = variance( NaN, 2.0 );
 * // returns NaN
@@ -3463,7 +3537,7 @@ function variance( a, b ) {
 	if ( a >= b ) {
 		return NaN;
 	}
-	return (1.0/8.0) * pow( b-a, 2.0 );
+	return 0.125 * pow( b-a, 2.0 );
 } // end FUNCTION variance()
 
 

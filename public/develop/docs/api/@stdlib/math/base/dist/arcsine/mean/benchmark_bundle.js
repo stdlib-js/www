@@ -6193,21 +6193,27 @@ module.exports = mean;
 * @example
 * var v = mean( 0.0, 1.0 );
 * // returns 0.5
+*
 * @example
 * var v = mean( 4.0, 12.0 );
 * // returns 8.0
+*
 * @example
 * var v = mean( -4.0, 4.0 );
 * // returns 0.0
+*
 * @example
 * var v = mean( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = mean( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = mean( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = mean( NaN, 2.0 );
 * // returns NaN

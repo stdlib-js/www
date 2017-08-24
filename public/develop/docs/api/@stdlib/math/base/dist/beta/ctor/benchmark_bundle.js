@@ -6658,7 +6658,7 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * @param {number} x - input value
 * @param {PositiveNumber} alpha - first shape parameter
 * @param {PositiveNumber} beta - second shape parameter
-* @returns {number} evaluated CDF
+* @returns {Probability} evaluated CDF
 *
 * @example
 * var y = cdf( 0.5, 1.0, 1.0 );
@@ -6772,7 +6772,7 @@ function factory( alpha, beta ) {
 	*
 	* @private
 	* @param {number} x - input value
-	* @returns {number} evaluated CDF
+	* @returns {Probability} evaluated CDF
 	*
 	* @example
 	* var y = cdf( 2.0 );
@@ -7891,21 +7891,27 @@ var betaln = require( '@stdlib/math/base/special/betaln' );
 * @example
 * var v = entropy( 1.0, 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = entropy( 4.0, 12.0 );
 * // returns ~-0.869
+*
 * @example
 * var v = entropy( 8.0, 2.0 );
 * // returns ~-0.795
+*
 * @example
 * var v = entropy( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = entropy( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = entropy( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = entropy( NaN, 2.0 );
 * // returns NaN
@@ -8002,21 +8008,27 @@ module.exports = kurtosis;
 * @example
 * var v = kurtosis( 1.0, 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = kurtosis( 4.0, 12.0 );
 * // returns ~0.529
+*
 * @example
 * var v = kurtosis( 8.0, 2.0 );
 * // returns ~-0.829
+*
 * @example
 * var v = kurtosis( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = kurtosis( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = kurtosis( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = kurtosis( NaN, 2.0 );
 * // returns NaN
@@ -8210,33 +8222,43 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @example
 * var y = logpdf( 0.5, 1.0, 1.0 );
 * // returns 0.0
+*
 * @example
 * var y = logpdf( 0.5, 2.0, 4.0 );
 * // returns ~0.223
+*
 * @example
 * var y = logpdf( 0.2, 2.0, 2.0 );
 * // returns ~-0.041
+*
 * @example
 * var y = logpdf( 0.8, 4.0, 4.0 );
 * // returns ~-0.557
+*
 * @example
 * var y = logpdf( -0.5, 4.0, 2.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var y = logpdf( 1.5, 4.0, 2.0 );
 * // returns Number.NEGATIVE_INFINITY
+*
 * @example
 * var y = logpdf( 0.5, -1.0, 0.5 );
 * // returns NaN
+*
 * @example
 * var y = logpdf( 0.5, 0.5, -1.0 );
 * // returns NaN
+*
 * @example
 * var y = logpdf( NaN, 1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = logpdf( 0.5, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = logpdf( 0.5, 1.0, NaN );
 * // returns NaN
@@ -8352,21 +8374,27 @@ module.exports = mean;
 * @example
 * var v = mean( 1.0, 1.0 );
 * // returns 0.5
+*
 * @example
 * var v = mean( 4.0, 12.0 );
 * // returns 0.25
+*
 * @example
 * var v = mean( 8.0, 2.0 );
 * // returns 0.8
+*
 * @example
 * var v = mean( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = mean( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = mean( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = mean( NaN, 2.0 );
 * // returns NaN
@@ -8433,21 +8461,27 @@ var betaincinv = require( '@stdlib/math/base/special/betaincinv' );
 * @example
 * var v = median( 1.0, 1.0 );
 * // returns 0.5
+*
 * @example
 * var v = median( 4.0, 12.0 );
 * // returns ~0.239
+*
 * @example
 * var v = median( 8.0, 2.0 );
 * // returns ~0.820
+*
 * @example
 * var v = median( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = median( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = median( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = median( NaN, 2.0 );
 * // returns NaN
@@ -8659,33 +8693,43 @@ var mgf0 = require( './_mgf.js' );
 * @example
 * var y = mgf( 0.5, 1.0, 1.0 );
 * // returns ~1.297
+*
 * @example
 * var y = mgf( 0.5, 2.0, 4.0 );
 * // returns ~1.186
+*
 * @example
 * var y = mgf( 3.0, 2.0, 2.0 );
 * // returns ~5.575
+*
 * @example
 * var y = mgf( -0.8, 4.0, 4.0 );
 * // returns ~0.676
+*
 * @example
 * var y = mgf( NaN, 1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = mgf( 0.0, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = mgf( 0.0, 1.0, NaN );
 * // returns NaN
+*
 * @example
 * var y = mgf( 2.0, -1.0, 0.5 );
 * // returns NaN
+*
 * @example
 * var y = mgf( 2.0, 0.0, 0.5 );
 * // returns NaN
+*
 * @example
 * var y = mgf( 2.0, 0.5, -1.0 );
 * // returns NaN
+*
 * @example
 * var y = mgf( 2.0, 0.5, 0.0 );
 * // returns NaN
@@ -8772,21 +8816,27 @@ module.exports = mode;
 * @example
 * var v = mode( 4.0, 12.0 );
 * // returns ~0.214
+*
 * @example
 * var v = mode( 8.0, 2.0 );
 * // returns ~0.875
+*
 * @example
 * var v = mode( 1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = mode( 2.0, 0.8 );
 * // returns NaN
+*
 * @example
 * var v = mode( -0.1, 2.0 );
 * // returns NaN
+*
 * @example
 * var v = mode( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = mode( NaN, 2.0 );
 * // returns NaN
@@ -8991,33 +9041,43 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 * @example
 * var y = pdf( 0.5, 1.0, 1.0 );
 * // returns 1.0
+*
 * @example
 * var y = pdf( 0.5, 2.0, 4.0 );
 * // returns 1.25
+*
 * @example
 * var y = pdf( 0.2, 2.0, 2.0 );
 * // returns ~0.96
+*
 * @example
 * var y = pdf( 0.8, 4.0, 4.0 );
 * // returns ~0.573
+*
 * @example
 * var y = pdf( -0.5, 4.0, 2.0 );
 * // returns 0.0
+*
 * @example
 * var y = pdf( 1.5, 4.0, 2.0 );
 * // returns 0.0
+*
 * @example
 * var y = pdf( 0.5, -1.0, 0.5 );
 * // returns NaN
+*
 * @example
 * var y = pdf( 0.5, 0.5, -1.0 );
 * // returns NaN
+*
 * @example
 * var y = pdf( NaN, 1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = pdf( 0.5, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = pdf( 0.5, 1.0, NaN );
 * // returns NaN
@@ -9221,27 +9281,35 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * @example
 * var y = quantile( 0.8, 2.0, 1.0 );
 * // returns ~0.894
+*
 * @example
 * var y = quantile( 0.5, 4.0, 2.0 );
 * // returns ~0.686
+*
 * @example
 * var y = quantile( 1.1, 1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( -0.2, 1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( NaN, 1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( 0.5, NaN, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( 0.5, 1.0, NaN );
 * // returns NaN
+*
 * @example
 * var y = quantile( 0.5, -1.0, 1.0 );
 * // returns NaN
+*
 * @example
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
@@ -9316,21 +9384,27 @@ var sqrt = require( '@stdlib/math/base/special/sqrt' );
 * @example
 * var v = skewness( 1.0, 1.0 );
 * // returns 0.0
+*
 * @example
 * var v = skewness( 4.0, 12.0 );
 * // returns ~0.529
+*
 * @example
 * var v = skewness( 8.0, 2.0 );
 * // returns ~-0.829
+*
 * @example
 * var v = skewness( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = skewness( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = skewness( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = skewness( NaN, 2.0 );
 * // returns NaN
@@ -9402,21 +9476,27 @@ var sqrt = require( '@stdlib/math/base/special/sqrt' );
 * @example
 * var v = stdev( 1.0, 1.0 );
 * // returns 0.289
+*
 * @example
 * var v = stdev( 4.0, 12.0 );
 * // returns ~0.105
+*
 * @example
 * var v = stdev( 8.0, 2.0 );
 * // returns ~0.121
+*
 * @example
 * var v = stdev( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = stdev( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = stdev( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = stdev( NaN, 2.0 );
 * // returns NaN
@@ -9483,21 +9563,27 @@ module.exports = variance;
 * @example
 * var v = variance( 1.0, 1.0 );
 * // returns 0.5
+*
 * @example
 * var v = variance( 4.0, 12.0 );
 * // returns ~0.239
+*
 * @example
 * var v = variance( 8.0, 2.0 );
 * // returns ~0.820
+*
 * @example
 * var v = variance( 1.0, -0.1 );
 * // returns NaN
+*
 * @example
 * var v = variance( -0.1, 1.0 );
 * // returns NaN
+*
 * @example
 * var v = variance( 2.0, NaN );
 * // returns NaN
+*
 * @example
 * var v = variance( NaN, 2.0 );
 * // returns NaN
@@ -12167,7 +12253,7 @@ module.exports = betainc;
 'use strict';
 
 /*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_61_0/boost/math/special_functions/gamma.hpp}.
+* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/gamma.hpp}.
 *
 * The implementation has been modified for JavaScript.
 */
@@ -12175,8 +12261,8 @@ module.exports = betainc;
 /*
 * Copyright John Maddock 2006-7, 2013-14.
 * Copyright Paul A. Bristow 2007, 2013-14.
-* Copyright Nikhar Agrawal 2013-14
-* Copyright Christopher Kormanyos 2013-14
+* Copyright Nikhar Agrawal 2013-14.
+* Copyright Christopher Kormanyos 2013-14.
 * Use, modification and distribution are subject to the
 * Boost Software License, Version 1.0. (See accompanying file
 * LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -12204,33 +12290,35 @@ var E = require( '@stdlib/math/constants/float64-e' );
 // MAIN //
 
 /**
-* Computes (z^a)(e^-z)/tgamma(a).
+* Computes `(z^a)*(e^-z) / gamma(a)`.
 *
 * @private
 * @param {number} a - input value
 * @param {number} z - input value
-* @returns {number} (z^a)(e^-z)/tgamma(a)
+* @returns {number} function value
 */
 function regularisedGammaPrefix( a, z ) {
+	var prefix;
 	var amza;
+	var agh;
 	var alz;
 	var amz;
 	var sq;
-	var agh = a + G - 0.5;
-	var prefix;
-	var d = ( (z - a) - G + 0.5 ) / agh;
+	var d;
 
-	if ( a < 1 ) {
-		// We have to treat a < 1 as a special case because our Lanczos approximations are optimised against the factorials with a > 1, and very small values of a can give rather erroneous results
+	agh = a + G - 0.5;
+	d = ( (z - a) - G + 0.5 ) / agh;
+	if ( a < 1.0 ) {
+		// Treat a < 1 as a special case because our Lanczos approximations are optimized against the factorials with a > 1, and for high precision types very small values of `a` can give rather erroneous results for gamma:
 		if ( z <= MIN_LN ) {
-			// Oh dear, have to use logs, should be free of cancellation errors though:
+			// Use logs, so should be free of cancellation errors:
 			return exp( ( a * ln(z) ) - z - gammaln( a ) );
 		}
-		// Direct calculation, no danger of overflow as gamma(a) < 1/a for small a:
+		// No danger of overflow as gamma(a) < 1/a for small a, so direct calculation:
 		return pow( z, a ) * exp( -z ) / gamma( a );
 	}
-	else if ( abs(d*d*a) <= 100 && a > 150 ) {
-		// Special case for large a and a ~ z.
+	else if ( abs(d*d*a) <= 100.0 && a > 150.0 ) {
+		// Special case for large a and a ~ z:
 		prefix = ( a * ( log1p( d ) - d ) ) + ( z * ( 0.5-G ) / agh );
 		prefix = exp( prefix );
 	}
@@ -12244,20 +12332,20 @@ function regularisedGammaPrefix( a, z ) {
 		) {
 			amza = amz / a;
 			if (
-				min(alz, amz)/2 > MIN_LN &&
-				max(alz, amz)/2 < MAX_LN
+				min(alz, amz)/2.0 > MIN_LN &&
+				max(alz, amz)/2.0 < MAX_LN
 			) {
 				// Compute square root of the result and then square it:
-				sq = pow( z / agh, a / 2 ) * exp( amz / 2 );
+				sq = pow( z / agh, a / 2.0 ) * exp( amz / 2.0 );
 				prefix = sq * sq;
 			}
 			else if (
-				min(alz, amz)/4 > MIN_LN &&
-				max(alz, amz)/4 < MAX_LN &&
+				min(alz, amz)/4.0 > MIN_LN &&
+				max(alz, amz)/4.0 < MAX_LN &&
 				z > a
 			) {
 				// Compute the 4th root of the result then square it twice:
-				sq = pow( z / agh, a / 4 ) * exp( amz / 4 );
+				sq = pow( z / agh, a / 4.0 ) * exp( amz / 4.0 );
 				prefix = sq * sq;
 				prefix *= prefix;
 			}
@@ -19844,169 +19932,8 @@ function lowerIncompleteGammaSeries( a1, z1 ) {
 module.exports = lowerIncompleteGammaSeries;
 
 },{}],287:[function(require,module,exports){
-'use strict';
-
-/*
-* The original C++ code and copyright notice is from the [Boost library]{@link http://www.boost.org/doc/libs/1_37_0/boost/math/special_functions/gamma.hpp}.
-*
-* The implementation has been modified for JavaScript.
-*/
-
-/*
-* (C) Copyright John Maddock 2006.
-* (C) Copyright Paul A. Bristow 2007.
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-*/
-
-// MODULES //
-
-var evalrational = require( '@stdlib/math/base/tools/evalrational' ).factory;
-var gammaln = require( '@stdlib/math/base/special/gammaln' );
-var gamma = require( '@stdlib/math/base/special/gamma' );
-var log1p = require( '@stdlib/math/base/special/log1p' );
-var sqrt = require( '@stdlib/math/base/special/sqrt' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var exp = require( '@stdlib/math/base/special/exp' );
-var pow = require( '@stdlib/math/base/special/pow' );
-var max = require( '@stdlib/math/base/special/max' );
-var min = require( '@stdlib/math/base/special/min' );
-var ln = require( '@stdlib/math/base/special/ln' );
-var E = require( '@stdlib/math/constants/float64-e' );
-
-
-// VARIABLES //
-
-var LOG_MAX_VALUE = 709.0;
-var LOG_MIN_VALUE = -708.0;
-var G = 10.90051099999999983936049829935654997826;
-var NUM = [
-	709811.662581657956893540610814842699825,
-	679979.847415722640161734319823103390728,
-	293136.785721159725251629480984140341656,
-	74887.5403291467179935942448101441897121,
-	12555.29058241386295096255111537516768137,
-	1443.42992444170669746078056942194198252,
-	115.2419459613734722083208906727972935065,
-	6.30923920573262762719523981992008976989,
-	0.2266840463022436475495508977579735223818,
-	0.004826466289237661857584712046231435101741,
-	0.4624429436045378766270459638520555557321e-4
-];
-var DENOM = [
-	0,
-	362880,
-	1026576,
-	1172700,
-	723680,
-	269325,
-	63273,
-	9450,
-	870,
-	45,
-	1
-];
-
-
-// FUNCTIONS //
-
-/**
-* Calculate the Lanczos approximation scaled by exp(G).
-*
-* @private
-* @param {number} z - input value
-* @returns {number} Lanczos approximation
-*/
-var lanczosSumExpGScaled = evalrational( NUM, DENOM );
-
-
-// MAIN //
-
-/**
-* Computes (z^a)(e^-z)/tgamma(a).
-*
-* @private
-* @param {number} a - input value
-* @param {number} z - input value
-* @returns {number} (z^a)(e^-z)/tgamma(a)
-*/
-function regularisedGammaPrefix( a, z ) {
-	var prefix;
-	var amza;
-	var agh;
-	var alz;
-	var amz;
-	var sq;
-	var d;
-
-	agh = a + G - 0.5;
-	d = ( (z - a) - G + 0.5 ) / agh;
-	if ( a < 1 ) {
-		// Treat a < 1 as a special case because our Lanczos approximations are optimised against the factorials with a > 1, and for high precision types very small values of `a` can give rather erroneous results for gamma:
-		if ( z <= LOG_MIN_VALUE ) {
-			// Use logs, so should be free of cancellation errors:
-			return exp( ( a * ln(z) ) - ( z - gammaln( a ) ) );
-		}
-		// No danger of overflow as gamma(a) < 1/a for small a, so direct calculation:
-		return pow( z, a ) * exp( -z ) / gamma( a );
-	}
-	else if ( abs(d*d*a) <= 100 && a > 150 ) {
-		// Special case for large a and a ~ z:
-		prefix = ( a * ( log1p( d ) - d ) ) + ( z * (0.5 - G) / agh );
-		prefix = exp( prefix );
-	}
-	else {
-		// General case. direct computation is most accurate, but use various fallbacks for different parts of the problem domain:
-		alz = a * ln(z / agh);
-		amz = a - z;
-		if (
-			min(alz, amz) <= LOG_MIN_VALUE ||
-			max(alz, amz) >= LOG_MAX_VALUE
-		) {
-			amza = amz / a;
-			if (
-				min(alz, amz)/2 > LOG_MIN_VALUE &&
-				max(alz, amz)/2 < LOG_MAX_VALUE
-			) {
-				// Compute square root of the result and then square it:
-				sq = pow( z / agh, a / 2 ) * exp( amz / 2 );
-				prefix = sq * sq;
-			}
-			else if (
-				min(alz, amz)/4 > LOG_MIN_VALUE &&
-				max(alz, amz)/4 < LOG_MAX_VALUE &&
-				z > a
-			) {
-				// Compute the 4th root of the result then square it twice:
-				sq = pow( z / agh, a / 4 ) * exp( amz / 4 );
-				prefix = sq * sq;
-				prefix *= prefix;
-			}
-			else if (
-				amza > LOG_MIN_VALUE &&
-				amza < LOG_MAX_VALUE
-			) {
-				prefix = pow( (z * exp(amza)) / agh, a );
-			}
-			else {
-				prefix = exp( alz + amz );
-			}
-		}
-		else {
-			prefix = pow( z / agh, a ) * exp( amz );
-		}
-	}
-	prefix *= sqrt( agh / E ) / lanczosSumExpGScaled( a );
-	return prefix;
-} // end FUNCTION regularisedGammaPrefix()
-
-
-// EXPORTS //
-
-module.exports = regularisedGammaPrefix;
-
-},{"@stdlib/math/base/special/abs":199,"@stdlib/math/base/special/exp":259,"@stdlib/math/base/special/gamma":275,"@stdlib/math/base/special/gammaln":304,"@stdlib/math/base/special/ln":307,"@stdlib/math/base/special/log1p":309,"@stdlib/math/base/special/max":311,"@stdlib/math/base/special/min":313,"@stdlib/math/base/special/pow":317,"@stdlib/math/base/special/sqrt":340,"@stdlib/math/base/tools/evalrational":356,"@stdlib/math/constants/float64-e":386}],288:[function(require,module,exports){
+arguments[4][216][0].apply(exports,arguments)
+},{"@stdlib/math/base/special/abs":199,"@stdlib/math/base/special/exp":259,"@stdlib/math/base/special/gamma":275,"@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled":271,"@stdlib/math/base/special/gammaln":304,"@stdlib/math/base/special/ln":307,"@stdlib/math/base/special/log1p":309,"@stdlib/math/base/special/max":311,"@stdlib/math/base/special/min":313,"@stdlib/math/base/special/pow":317,"@stdlib/math/base/special/sqrt":340,"@stdlib/math/constants/float64-e":386,"@stdlib/math/constants/float64-gamma-lanczos-g":391,"@stdlib/math/constants/float64-max-ln":400,"@stdlib/math/constants/float64-min-ln":403,"dup":216}],288:[function(require,module,exports){
 'use strict';
 
 /*
