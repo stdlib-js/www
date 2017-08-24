@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>@stdlib/math/base/dist/geometric/stdev</title>
+	<style>/*
+* Modified `reset.css`.
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+</style>
+	<style>/*
+* Modified `normalize.css`.
+*/
+
+/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
+
+/**
+ * 1. Change the default font family in all browsers (opinionated).
+ * 2. Correct the line height in all browsers.
+ * 3. Prevent adjustments of font size after orientation changes in
+ *    IE on Windows Phone and in iOS.
+ */
+
+/* Document
+   ========================================================================== */
+
+html {
+  font-family: sans-serif; /* 1 */
+  line-height: 1.15; /* 2 */
+  -ms-text-size-adjust: 100%; /* 3 */
+  -webkit-text-size-adjust: 100%; /* 3 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers (opinionated).
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section  {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in IE.
+ */
+
+figcaption,
+figure,
+main { /* 1 */
+  display: block;
+}
+
+/**
+ * Add the correct margin in IE 8.
+ */
+
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+
+a {
+  background-color: transparent; /* 1 */
+  -webkit-text-decoration-skip: objects; /* 2 */
+}
+
+/**
+ * Remove the outline on focused links when they are also active or hovered
+ * in all browsers (opinionated).
+ */
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+/**
+ * 1. Remove the bottom border in Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+
+b,
+strong {
+  font-weight: inherit;
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font style in Android 4.3-.
+ */
+
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Add the correct background and color in IE 9-.
+ */
+
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+audio,
+video {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in iOS 4-7.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Remove the border on images inside links in IE 10-.
+ */
+
+img {
+  border-style: none;
+}
+
+/**
+ * Hide the overflow in IE.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+ *    controls in Android 4.
+ * 2. Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+html [type="button"], /* 1 */
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Change the border, margin, and padding in all browsers (opinionated).
+ */
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * 1. Add the correct display in IE 9-.
+ * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Remove the default vertical scrollbar in IE.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10-.
+ * 2. Remove the padding in IE 10-.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ */
+
+details, /* 1 */
+menu {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Scripting
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+canvas {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in IE.
+ */
+
+template {
+  display: none;
+}
+
+/* Hidden
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10-.
+ */
+
+[hidden] {
+  display: none;
+}
+</style>
+	<style>/*
+* Layout stylesheet.
+*
+* 1. General rules.
+* 2. Class-level rules.
+* 3. Lists.
+* 4. Definition lists.
+* 5. Blockquotes.
+* 6. Horizontal rules.
+* 7. Tables.
+* 8. Code.
+*/
+
+/*
+* General top-level rules.
+*/
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+input {
+	margin: 0;
+}
+
+img {
+	box-sizing: content-box;
+	max-width: 100%;
+}
+
+/*
+* Headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 24px;
+	margin-bottom: 16px;
+}
+
+h1,
+h2 {
+	padding-bottom: 0.3em;
+}
+
+/*
+* Clearfix.
+*/
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1; /* for IE 6/7 (trigger hasLayout) */
+}
+
+/*
+* General class level rules.
+*/
+
+.main {
+	width: 87.5%;
+	max-width: 1200px;
+	margin-left: 12.5%;
+}
+
+.top-nav {
+	display: block;
+	width: 100%;
+	height: 64px;
+	padding: 0 40px;
+}
+
+.top-nav-items {
+	width: 100%;
+	height: 100%;
+}
+
+.top-nav-item {
+	float: right;
+	padding: 0 16px;
+}
+
+.readme {
+	margin-bottom: 40px;
+}
+
+.readme > h1,
+.readme > h2,
+.readme > h3,
+.readme > h4,
+.readme > h5,
+.readme > h6,
+.readme > section,
+.readme > p,
+.readme > blockquote,
+.readme > pre,
+.readme > code,
+.readme > ul,
+.readme > hr {
+	width: 55%;
+}
+
+.readme p,
+.readme blockquote,
+.readme dl,
+.readme table,
+.readme pre {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+
+/*
+* Lists.
+*/
+
+.readme ul,
+.readme ol {
+	margin-top: 0;
+	margin-bottom: 16px;
+	padding-left: 2em;
+}
+
+.readme ul ul,
+.readme ul ol,
+.readme ol ol,
+.readme ol ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/*
+* Set the top margin of any list item children which are paragraphs.
+*/
+.readme li > p {
+	margin-top: 16px;
+}
+
+/*
+* Add space between adjacent list items.
+*/
+.readme li + li {
+	margin-top: 0.25em;
+}
+
+/*
+* Definition lists.
+*/
+
+.readme dl {
+	padding: 0;
+}
+
+.readme dl dt {
+	margin-top: 16px;
+	padding: 0;
+}
+
+.readme dl dd {
+	margin-bottom: 16px;
+	padding: 0 16px;
+}
+
+.readme dd {
+	margin-left: 0;
+}
+
+/*
+* Blockquotes.
+*/
+
+.readme blockquote {
+	padding: 0 1.0em;
+}
+
+.readme blockquote > :first-child {
+	margin-top: 0;
+}
+
+.readme blockquote > :last-child {
+	margin-bottom: 0;
+}
+
+/*
+* Horizontal rules.
+*/
+
+.readme hr {
+	height: 0.25em;
+	margin: 24px 0;
+	padding: 0;
+}
+
+.readme hr::before {
+	display: table;
+	content: "";
+}
+
+/*
+* Tables.
+*/
+
+.readme table {
+	display: block;
+	width: 100%;
+}
+
+.readme table th,
+.readme table td {
+	padding: 6px 13px;
+}
+
+.readme td,
+.readme th {
+	padding: 0;
+}
+
+/*
+* Code.
+*/
+
+.readme pre {
+	padding: 16px;
+}
+
+.readme pre code {
+	display: inline;
+	max-width: inherit;
+	padding: 0;
+}
+
+.readme code {
+	margin: 0;
+	padding: 0;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+}
+
+.readme code::before,
+.readme code::after {
+	letter-spacing: -0.2em;
+	content: "\00a0";
+}
+
+.readme pre code::before,
+.readme pre code::after {
+	content: normal;
+}
+
+.readme kbd {
+	display: inline-block;
+	padding: 3px 5px;
+}
+
+/*
+* Equations.
+*/
+
+.readme div.equation {
+	margin-top: 0;
+	margin-bottom: 16px;
+}
+</style>
+	<style>/*
+* Typography stylesheet.
+*
+* 1. General rules.
+* 2. Tables.
+* 3. Code.
+*/
+
+body {
+	font-size: 16px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1 {
+	font-size: 2.25em; /* 16px * 2.25 => 36px */
+}
+
+h2 {
+	font-size: 1.75em; /* 16px * 1.75 => 28px */
+}
+
+h3 {
+	font-size: 1.5em; /* 16px * 1.5 => 24px */
+}
+
+h4 {
+	font-size: 1.25em; /* 16px * 1.25 => 20px */
+}
+
+h5 {
+	font-size: 1.0em; /* 16px * 1.0 => 16px */
+}
+
+h6 {
+	font-size: 0.875em; /* 16px * 0.875 => 14px */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+strong {
+	font-weight: 600;
+}
+
+input {
+	font: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+a {
+	color: #4078c0;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+
+/*
+* General class rules.
+*/
+
+.top-nav {
+	line-height: 64px;
+}
+
+.readme {
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+
+.readme a:not([href]) {
+	color: inherit;
+	text-decoration: none;
+}
+
+.readme blockquote {
+	color: #777;
+}
+
+.readme input {
+	-webkit-font-feature-settings: "liga" 0;
+	font-feature-settings: "liga" 0;
+}
+
+.readme dl dt {
+	font-size: 1.0em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+/*
+* Tables.
+*/
+
+.readme table th {
+	font-weight: bold;
+}
+
+/*
+* Code.
+*/
+
+.readme pre,
+.readme code,
+.readme kbd {
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.readme pre,
+.readme code {
+	font-size: 14px;
+}
+
+.readme pre {
+	line-height: 1.45;
+	word-wrap: normal;
+}
+
+.readme pre code {
+	line-height: inherit;
+	word-wrap: normal;
+}
+
+.readme pre > code {
+	font-size: 1.0em;
+	white-space: pre;
+	word-break: normal;
+}
+
+.readme kbd {
+	color: #555;
+	font-size: 11px;
+	line-height: 10px;
+	vertical-align: middle;
+}
+</style>
+	<style>/*
+* Stylesheet for syntax highlighting with highlight.js.
+*
+* [1]: https://github.com/isagalaev/highlight.js
+* [2]: https://github.com/jmblog/color-themes-for-highlightjs
+*/
+
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829; /* tomorrow red */
+}
+
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f; /* tomorrow orange */
+}
+
+.hljs-attribute {
+	color: #eab700; /* tomorrow yellow */
+}
+
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00; /* tomorrow green */
+}
+
+.hljs-title,
+.hljs-section {
+	color: #4271ae; /* tomorrow blue */
+}
+
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8; /* tomorrow purple */
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	background: white;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+	<style>/*
+* Stylesheet for miscellaneous rules.
+*/
+
+body {
+	overflow-x: hidden;
+}
+
+img {
+	background-color: #fff;
+}
+
+.main {
+	-moz-transition:all 200ms ease-in;
+	-webkit-transition:all 200ms ease-in;
+	-o-transition:all 200ms ease-in;
+	transition:all 200ms ease-in;
+}
+
+/*
+* Both `h1` and `h2` elements should be underlined.
+*/
+.readme h1,
+.readme h2 {
+	border-bottom: 1px solid #eee;
+}
+
+/*
+* To the left of a blockquote, create a vertical gray bar, similar to how GitHub styles blockquotes.
+*/
+.readme blockquote {
+	border-left: 0.25em solid #ddd;
+}
+
+/*
+* Horizontal rule should be gray, similar to how GitHub renders horizontal rules.
+*/
+.readme hr {
+	overflow: hidden;
+
+	background: transparent;
+	background-color: #e7e7e7;
+
+	border: 0;
+	border-bottom: 1px solid #eee;
+}
+
+/*
+* Lists.
+*/
+
+/*
+* Top-level unordered list items should use a solid dot.
+*/
+.readme ul {
+	list-style-type: disc;
+}
+
+/*
+* Top-level ordered list items should be numbered.
+*/
+.readme ol {
+	list-style-type: decimal;
+}
+
+/*
+* Second-level unordered and ordered list items should use lowercase Roman numerals.
+*/
+.readme ol ol,
+.readme ul ul {
+	list-style-type: lower-roman;
+}
+
+/*
+* Third-level ordered list items should should use lowercase letters.
+*/
+.readme ul ul ol,
+.readme ul ol ol,
+.readme ol ul ol,
+.readme ol ol ol {
+	list-style-type: lower-alpha;
+}
+
+/*
+* Tables.
+*/
+
+.readme table {
+	overflow: auto;
+}
+
+.readme table th,
+.readme table td {
+	border: 1px solid #ddd;
+}
+
+.readme table tr {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+}
+
+/*
+* Highlight every other table row.
+*/
+.readme table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+/*
+* Code.
+*/
+
+.readme pre {
+	overflow: auto;
+	background-color: #f7f7f7;
+	border-radius: 3px;
+}
+
+/*
+* Code containers should have slightly rounded corners and have a light gray background, similar to GitHub.
+*/
+.readme code {
+	background-color: #fff; /* fallback */
+	background-color: rgba(0,0,0,0.04);
+	border-radius: 3px;
+}
+
+.readme pre code {
+	overflow: visible;
+	background-color: transparent;
+	border: 0;
+}
+
+/*
+* Style `code` elements which are direct children of `pre` elements.
+*/
+.readme pre > code {
+	background: transparent;
+	border: 0;
+}
+
+.readme kbd {
+	background-color: #fcfcfc;
+
+	border: solid 1px #ccc;
+	border-bottom-color: #bbb;
+	border-radius: 3px;
+
+	box-shadow: inset 0 -1px 0 #bbb;
+}
+</style>
+	<meta name="description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numeric computing.">
+<meta name="author" content="stdlib">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Facebook Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="stdlib">
+<meta property="og:url" content="https://stdlib.io/">
+<meta property="og:title" content="A standard library for JavaScript and Node.js.">
+<meta property="og:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numeric computing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="A standard library for JavaScript and Node.js.">
+<meta name="twitter:site" content="@stdlibjs">
+<meta name="twitter:url" content="https://stdlib.io/">
+<meta name="twitter:title" content="stdlib">
+<meta name="twitter:description" content="stdlib is a standard library for JavaScript and Node.js, with an emphasis on numeric computing.">
+<meta name="twitter:image" content="">
+
+<style>/*
+* Component styles.
+*
+* 1. Hamburger menu.
+* 2. Slideout menu.
+* 3. Menu sections.
+*/
+
+/*
+* Hamburger menu icon.
+*/
+
+/*
+* Style each hamburger menu line.
+*/
+.hamburger-menu-icon span {
+	display: block;
+	position: absolute;
+	left: 0;
+
+	height: 5px;
+	width: 100%;
+
+	color: #000;
+
+	opacity: 1;
+	background-color: #000;
+	border-radius: 3px;
+}
+
+/*
+* Position the hamburger menu lines.
+*/
+.hamburger-menu-icon span:nth-child(1) {
+	top: 0;
+}
+
+.hamburger-menu-icon span:nth-child(2) {
+	top: 10px;
+}
+
+.hamburger-menu-icon span:nth-child(3) {
+	top: 20px;
+}
+
+/*
+* Slideout menu.
+*/
+
+/*
+* Initially position the menu off canvas.
+*/
+.slideout-menu {
+	position: fixed;
+	top: 0;
+	left: -400px; /* -width */
+	right: 0;
+	bottom: 0;
+
+	padding-bottom: 40px;
+
+	z-index: 0;
+
+	width: 400px;
+
+	/*font-family: "Helvetica Neue";*/
+
+	overflow-y: auto;
+
+	background-color: #1D1F20;
+	background-image: linear-gradient(145deg, #1D1F20, #404348);
+
+	-moz-transition: all 200ms ease-in;
+	-webkit-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+	transition: all 200ms ease-in;
+}
+
+/*
+* Slideout menu sibling which triggers the slideout.
+*/
+.slideout-menu-label {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+
+	z-index: 500;
+
+	width: 30px;
+	height: 25px;
+
+	cursor: pointer;
+
+	-moz-transition: all 200ms ease-in;
+	-webkit-transition: all 200ms ease-in;
+	-o-transition: all 200ms ease-in;
+	transition: all 200ms ease-in;
+}
+
+/*
+* Hide the input element.
+*/
+.slideout-menu-input {
+	display: none;
+}
+
+/*
+* When the input element is selected, make the slideout menu visible.
+*/
+.slideout-menu-input:checked ~ .slideout-menu {
+	left: 0px;
+}
+
+/*
+* When the input element is selected, move the trigger element to ensure the element is still visible.
+*/
+.slideout-menu-input:checked ~ .slideout-menu-label {
+	left: 410px;
+}
+
+/*
+* When the input element is selected, translate a "main" element. Assumes that the slideout menu has a sibling with class `.main`.
+*/
+.slideout-menu-input:checked ~ .main {
+	-webkit-transform:translate3d(400px, 0, 0);
+	-moz-transform:translate3d(400px, 0, 0);
+	-o-transform:translate3d(400px, 0, 0);
+	transform:translate3d(400px, 0, 0);
+}
+
+/*
+* Menu.
+*/
+
+/*
+* Style the menu header and add a bottom border to delineate the header from menu contents.
+*/
+.menu-header {
+	color: #fff;
+	border-bottom: 1px solid #2a2d2f;
+	padding: 20px 0 20px 0.5em;
+}
+
+/*
+* Ensure that menu sections are adjacent.
+*/
+.menu > ul,
+.menu > ul > li,
+.menu-section {
+	margin-bottom: 0;
+}
+
+/*
+* Hide the input element.
+*/
+.menu-section-input {
+	display: none;
+}
+
+/*
+* Style menu triggers and top-level list items.
+*/
+.menu > ul > li > a,
+.menu-section-label {
+	display: block;
+	position: relative;
+
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 0.5em;
+
+	cursor: pointer;
+
+	color: #85888d;
+
+	background-color: transparent;
+	transition: background-color .15s ease-in-out;
+}
+
+/*
+* Initially hide the section items.
+*/
+.menu-section-list {
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+/*
+* Pad each list item descendant. Nested list items will be further indented, thus producing a tree-like effect.
+*/
+.menu-section-list li {
+	padding-left: 1.5em;
+}
+
+/*
+* Style menu tree "leaves". These are the actual navigation elements.
+*/
+.menu-section-list li a {
+	display: block;
+
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 0.5em;
+
+	cursor: pointer;
+
+	color: #c7c7c7; /* #fff; */
+
+	background-color: transparent;
+}
+
+/*
+* When a menu section is selected, show the section items.
+*/
+.menu-section-input:checked ~ .menu-section-list {
+	opacity: 1;
+	height: auto;
+}
+
+/*
+* Highlight a selected item.
+*/
+.menu-section-input:checked + label,
+.menu-section-label:hover {
+	/*background-color: #313334;*/
+}
+
+/*
+* Use a '+' to indicate more content is available. Align the '+' to the far right of the container.
+*/
+.menu-section-label:after,
+.menu-section-input:checked + .menu-section-label:after {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	content: "+";
+
+	width: 2em;
+	height: 100%;
+
+	line-height: 2.0em;
+	text-align: center;
+
+	background-color: transparent;
+	transition: background-color .15s ease-in-out;
+}
+
+/*
+* When a section has been selected, change the '+' to a '-' to indicate that a section is currently open and a user can close the section.
+*/
+.menu-section-input:checked + .menu-section-label:after {
+	content: "-";
+}
+
+/*
+* When hovering over a trigger element, change color.
+*/
+.menu-section-label:hover:after,
+.menu-section-input:checked + .menu-section-label:after {
+	/*background-color: #313334;*/
+}
+</style>
+</head>
+<body>
+	<nav class="top-nav">
+			<ul class="top-nav-items">
+				<li class="top-nav-item"><a href="https://github.com/stdlib-js/stdlib">Source</a></li>
+				<li class="top-nav-item"><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/stdev/benchmark.html">Benchmarks</a></li>
+				<li class="top-nav-item"><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/stdev/test.html">Tests</a></li>
+			</li>
+	</nav>
+	<input class="slideout-menu-input" id="slideout-menu-input-root" name="slideout-menu-input-root" type="checkbox"><label class="slideout-menu-label hamburger-menu-icon" for="slideout-menu-input-root"><span></span><span></span><span></span></label><nav class="menu slideout-menu"><a class="menu-header-wrapper" href="https://github.com/stdlib-js/stdlib"><header class="menu-header"><span class="menu-header-title">stdlib</span></header></a><ul><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1645982932" name="menu-section-1645982932" type="checkbox"><label class="menu-section-label" for="menu-section-1645982932">assert</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/assert/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/assert/contains">contains</a></li><li><a href="/develop/docs/api/@stdlib/assert/has-own-property">has-own-property</a></li><li><a href="/develop/docs/api/@stdlib/assert/has-property">has-property</a></li><li><a href="/develop/docs/api/@stdlib/assert/has-prototype">has-prototype</a></li><li><a href="/develop/docs/api/@stdlib/assert/instance-of">instance-of</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-absolute-path">is-absolute-path</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-alphagram">is-alphagram</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-anagram">is-anagram</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-arguments">is-arguments</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-array">is-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-array-array">is-array-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-array-length">is-array-length</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-array-like">is-array-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-array-like-object">is-array-like-object</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-arraybuffer">is-arraybuffer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-ascii">is-ascii</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-between">is-between</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-between-array">is-between-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-binary-string">is-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-boolean">is-boolean</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-boolean-array">is-boolean-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-browser">is-browser</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-buffer">is-buffer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-capitalized">is-capitalized</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-collection">is-collection</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-darwin">is-darwin</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-date-object">is-date-object</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-date-object-array">is-date-object-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-digit-string">is-digit-string</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-electron">is-electron</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-electron-main">is-electron-main</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-electron-renderer">is-electron-renderer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-email-address">is-email-address</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-empty-array">is-empty-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-empty-object">is-empty-object</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-empty-string">is-empty-string</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-enumerable-property">is-enumerable-property</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-error">is-error</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-eval-error">is-eval-error</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-even">is-even</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-falsy">is-falsy</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-falsy-array">is-falsy-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-finite">is-finite</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-finite-array">is-finite-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-float32array">is-float32array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-float64array">is-float64array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-function">is-function</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-function-array">is-function-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-hex-string">is-hex-string</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-infinite">is-infinite</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-int16array">is-int16array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-int32array">is-int32array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-int8array">is-int8array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-integer">is-integer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-integer-array">is-integer-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-json">is-json</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-leap-year">is-leap-year</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-little-endian">is-little-endian</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-lowercase">is-lowercase</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-matrix">is-matrix</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-matrix-like">is-matrix-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nan">is-nan</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nan-array">is-nan-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-native-function">is-native-function</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-negative-integer">is-negative-integer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-negative-integer-array">is-negative-integer-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-negative-number">is-negative-number</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-negative-number-array">is-negative-number-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-negative-zero">is-negative-zero</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-node">is-node</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-node-duplex-stream-like">is-node-duplex-stream-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-node-readable-stream-like">is-node-readable-stream-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-node-repl">is-node-repl</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-node-stream-like">is-node-stream-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-node-transform-stream-like">is-node-transform-stream-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-node-writable-stream-like">is-node-writable-stream-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonnegative-integer">is-nonnegative-integer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonnegative-integer-array">is-nonnegative-integer-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonnegative-number">is-nonnegative-number</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonnegative-number-array">is-nonnegative-number-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonpositive-integer">is-nonpositive-integer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonpositive-integer-array">is-nonpositive-integer-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonpositive-number">is-nonpositive-number</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-nonpositive-number-array">is-nonpositive-number-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-null">is-null</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-null-array">is-null-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-number">is-number</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-number-array">is-number-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-numeric-array">is-numeric-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-object">is-object</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-object-array">is-object-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-object-like">is-object-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-odd">is-odd</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-plain-object">is-plain-object</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-plain-object-array">is-plain-object-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-positive-integer">is-positive-integer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-positive-integer-array">is-positive-integer-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-positive-number">is-positive-number</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-positive-number-array">is-positive-number-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-positive-zero">is-positive-zero</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-primitive">is-primitive</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-primitive-array">is-primitive-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-probability">is-probability</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-probability-array">is-probability-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-range-error">is-range-error</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-reference-error">is-reference-error</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-regexp">is-regexp</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-regexp-string">is-regexp-string</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-relative-path">is-relative-path</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-safe-integer">is-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-safe-integer-array">is-safe-integer-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-same-value">is-same-value</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-strict-equal">is-strict-equal</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-string">is-string</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-string-array">is-string-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-symbol">is-symbol</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-symbol-array">is-symbol-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-syntax-error">is-syntax-error</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-truthy">is-truthy</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-truthy-array">is-truthy-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-type-error">is-type-error</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-typed-array">is-typed-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-typed-array-like">is-typed-array-like</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-uint16array">is-uint16array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-uint32array">is-uint32array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-uint8array">is-uint8array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-uint8clampedarray">is-uint8clampedarray</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-unc-path">is-unc-path</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-undefined">is-undefined</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-undefined-or-null">is-undefined-or-null</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-unity-probability-array">is-unity-probability-array</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-uppercase">is-uppercase</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-uri">is-uri</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-uri-error">is-uri-error</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-web-worker">is-web-worker</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-whitespace">is-whitespace</a></li><li><a href="/develop/docs/api/@stdlib/assert/is-windows">is-windows</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1954056955" name="menu-section-1954056955" type="checkbox"><label class="menu-section-label" for="menu-section-1954056955">tools</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/assert/tools/array-function">array-function</a></li><li><a href="/develop/docs/api/@stdlib/assert/tools/array-like-function">array-like-function</a></li><li><a href="/develop/docs/api/@stdlib/assert/tools/typed-array-function">typed-array-function</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-380644720" name="menu-section-380644720" type="checkbox"><label class="menu-section-label" for="menu-section-380644720">bench</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/bench/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/bench/harness">harness</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-28890907" name="menu-section-28890907" type="checkbox"><label class="menu-section-label" for="menu-section-28890907">crypto</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/crypto/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/crypto/arc4">arc4</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1521968694" name="menu-section-1521968694" type="checkbox"><label class="menu-section-label" for="menu-section-1521968694">datasets</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/datasets/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/datasets/afinn-111">afinn-111</a></li><li><a href="/develop/docs/api/@stdlib/datasets/afinn-96">afinn-96</a></li><li><a href="/develop/docs/api/@stdlib/datasets/dale-chall-new">dale-chall-new</a></li><li><a href="/develop/docs/api/@stdlib/datasets/female-first-names-en">female-first-names-en</a></li><li><a href="/develop/docs/api/@stdlib/datasets/frb-sf-wage-rigidity">frb-sf-wage-rigidity</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-acanthus-mollis">img-acanthus-mollis</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-airplane-from-above">img-airplane-from-above</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-allium-oreophilum">img-allium-oreophilum</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-black-canyon">img-black-canyon</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-dust-bowl-home">img-dust-bowl-home</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-french-alpine-landscape">img-french-alpine-landscape</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-locomotion-house-cat">img-locomotion-house-cat</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-locomotion-nude-male">img-locomotion-nude-male</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-march-pastoral">img-march-pastoral</a></li><li><a href="/develop/docs/api/@stdlib/datasets/img-nagasaki-boats">img-nagasaki-boats</a></li><li><a href="/develop/docs/api/@stdlib/datasets/liu-negative-opinion-words-en">liu-negative-opinion-words-en</a></li><li><a href="/develop/docs/api/@stdlib/datasets/liu-positive-opinion-words-en">liu-positive-opinion-words-en</a></li><li><a href="/develop/docs/api/@stdlib/datasets/male-first-names-en">male-first-names-en</a></li><li><a href="/develop/docs/api/@stdlib/datasets/minard-napoleons-march">minard-napoleons-march</a></li><li><a href="/develop/docs/api/@stdlib/datasets/moby-dick">moby-dick</a></li><li><a href="/develop/docs/api/@stdlib/datasets/month-names-en">month-names-en</a></li><li><a href="/develop/docs/api/@stdlib/datasets/nightingales-rose">nightingales-rose</a></li><li><a href="/develop/docs/api/@stdlib/datasets/savoy-stopwords-fin">savoy-stopwords-fin</a></li><li><a href="/develop/docs/api/@stdlib/datasets/savoy-stopwords-fr">savoy-stopwords-fr</a></li><li><a href="/develop/docs/api/@stdlib/datasets/savoy-stopwords-ger">savoy-stopwords-ger</a></li><li><a href="/develop/docs/api/@stdlib/datasets/savoy-stopwords-it">savoy-stopwords-it</a></li><li><a href="/develop/docs/api/@stdlib/datasets/savoy-stopwords-por">savoy-stopwords-por</a></li><li><a href="/develop/docs/api/@stdlib/datasets/savoy-stopwords-sp">savoy-stopwords-sp</a></li><li><a href="/develop/docs/api/@stdlib/datasets/savoy-stopwords-swe">savoy-stopwords-swe</a></li><li><a href="/develop/docs/api/@stdlib/datasets/sotu">sotu</a></li><li><a href="/develop/docs/api/@stdlib/datasets/spache-revised">spache-revised</a></li><li><a href="/develop/docs/api/@stdlib/datasets/spam-assassin">spam-assassin</a></li><li><a href="/develop/docs/api/@stdlib/datasets/stopwords-en">stopwords-en</a></li><li><a href="/develop/docs/api/@stdlib/datasets/us-states-abbr">us-states-abbr</a></li><li><a href="/develop/docs/api/@stdlib/datasets/us-states-capitals">us-states-capitals</a></li><li><a href="/develop/docs/api/@stdlib/datasets/us-states-capitals-names">us-states-capitals-names</a></li><li><a href="/develop/docs/api/@stdlib/datasets/us-states-names">us-states-names</a></li><li><a href="/develop/docs/api/@stdlib/datasets/us-states-names-capitals">us-states-names-capitals</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1050120641" name="menu-section-1050120641" type="checkbox"><label class="menu-section-label" for="menu-section-1050120641">fastmath</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/fastmath/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-711965163" name="menu-section-711965163" type="checkbox"><label class="menu-section-label" for="menu-section-711965163">special</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/fastmath/special/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/abs">abs</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/acosh">acosh</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/alpha-max-plus-beta-min">alpha-max-plus-beta-min</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/asinh">asinh</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/atanh">atanh</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/hypot">hypot</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/max">max</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/min">min</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/pow-int">pow-int</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/uint32-log2">uint32-log2</a></li><li><a href="/develop/docs/api/@stdlib/fastmath/special/uint32-sqrt">uint32-sqrt</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-54148279" name="menu-section-54148279" type="checkbox"><label class="menu-section-label" for="menu-section-54148279">fs</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/fs/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/fs/exists">exists</a></li><li><a href="/develop/docs/api/@stdlib/fs/read-dir">read-dir</a></li><li><a href="/develop/docs/api/@stdlib/fs/read-file">read-file</a></li><li><a href="/develop/docs/api/@stdlib/fs/read-file-list">read-file-list</a></li><li><a href="/develop/docs/api/@stdlib/fs/read-json">read-json</a></li><li><a href="/develop/docs/api/@stdlib/fs/read-wasm">read-wasm</a></li><li><a href="/develop/docs/api/@stdlib/fs/resolve-parent-path">resolve-parent-path</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1138568188" name="menu-section-1138568188" type="checkbox"><label class="menu-section-label" for="menu-section-1138568188">math</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1075125803" name="menu-section-1075125803" type="checkbox"><label class="menu-section-label" for="menu-section-1075125803">base</label><ul class="menu-section-list"><li><section class="menu-section"><input class="menu-section-input" id="menu-section-270882124" name="menu-section-270882124" type="checkbox"><label class="menu-section-label" for="menu-section-270882124">assert</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/assert/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/int32-is-even">int32-is-even</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/int32-is-odd">int32-is-odd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-even">is-even</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-finite">is-finite</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-infinite">is-infinite</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-integer">is-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-nan">is-nan</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-negative-integer">is-negative-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-negative-zero">is-negative-zero</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-nonnegative-integer">is-nonnegative-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-nonpositive-integer">is-nonpositive-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-odd">is-odd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-positive-integer">is-positive-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-positive-zero">is-positive-zero</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-probability">is-probability</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/is-safe-integer">is-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/base/assert/uint32-is-pow2">uint32-is-pow2</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-238169727" name="menu-section-238169727" type="checkbox"><label class="menu-section-label" for="menu-section-238169727">blas</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/blas/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/asum">asum</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/axpy">axpy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/copy">copy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/dasum">dasum</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/daxpy">daxpy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/dcopy">dcopy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/sasum">sasum</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/saxpy">saxpy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/blas/scopy">scopy</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-9083681" name="menu-section-9083681" type="checkbox"><label class="menu-section-label" for="menu-section-9083681">complex</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/complex/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/abs">abs</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/abs2">abs2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/add">add</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/ceil">ceil</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/divide">divide</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/floor">floor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/inv">inv</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/multiply">multiply</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/phase">phase</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/polar">polar</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/round">round</a></li><li><a href="/develop/docs/api/@stdlib/math/base/complex/subtract">subtract</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1353006201" name="menu-section-1353006201" type="checkbox"><label class="menu-section-label" for="menu-section-1353006201">dist</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-422374830" name="menu-section-422374830" type="checkbox"><label class="menu-section-label" for="menu-section-422374830">arcsine</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/arcsine/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-658800177" name="menu-section-658800177" type="checkbox"><label class="menu-section-label" for="menu-section-658800177">beta</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/beta/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1684542472" name="menu-section-1684542472" type="checkbox"><label class="menu-section-label" for="menu-section-1684542472">betaprime</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/betaprime/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-94412863" name="menu-section-94412863" type="checkbox"><label class="menu-section-label" for="menu-section-94412863">binomial</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/pmf">pmf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/binomial/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-659144560" name="menu-section-659144560" type="checkbox"><label class="menu-section-label" for="menu-section-659144560">cauchy</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cauchy/quantile">quantile</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1208914841" name="menu-section-1208914841" type="checkbox"><label class="menu-section-label" for="menu-section-1208914841">chi</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chi/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1944644920" name="menu-section-1944644920" type="checkbox"><label class="menu-section-label" for="menu-section-1944644920">chisquare</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/chisquare/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-142024627" name="menu-section-142024627" type="checkbox"><label class="menu-section-label" for="menu-section-142024627">cosine</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/cosine/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-198087630" name="menu-section-198087630" type="checkbox"><label class="menu-section-label" for="menu-section-198087630">degenerate</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/pmf">pmf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/degenerate/quantile">quantile</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1987093929" name="menu-section-1987093929" type="checkbox"><label class="menu-section-label" for="menu-section-1987093929">erlang</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/erlang/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-860333347" name="menu-section-860333347" type="checkbox"><label class="menu-section-label" for="menu-section-860333347">exponential</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/exponential/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-816589997" name="menu-section-816589997" type="checkbox"><label class="menu-section-label" for="menu-section-816589997">f</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/f/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-974612861" name="menu-section-974612861" type="checkbox"><label class="menu-section-label" for="menu-section-974612861">frechet</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/frechet/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-219613457" name="menu-section-219613457" type="checkbox"><label class="menu-section-label" for="menu-section-219613457">gamma</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gamma/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1249609874" name="menu-section-1249609874" type="checkbox"><label class="menu-section-label" for="menu-section-1249609874">geometric</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/logpmf">logpmf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/pmf">pmf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/geometric/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-663284081" name="menu-section-663284081" type="checkbox"><label class="menu-section-label" for="menu-section-663284081">gumbel</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/gumbel/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-2018983304" name="menu-section-2018983304" type="checkbox"><label class="menu-section-label" for="menu-section-2018983304">hypergeometric</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/pmf">pmf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/hypergeometric/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-884468522" name="menu-section-884468522" type="checkbox"><label class="menu-section-label" for="menu-section-884468522">invgamma</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/invgamma/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1666466253" name="menu-section-1666466253" type="checkbox"><label class="menu-section-label" for="menu-section-1666466253">kumaraswamy</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/kumaraswamy/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1357002241" name="menu-section-1357002241" type="checkbox"><label class="menu-section-label" for="menu-section-1357002241">laplace</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/laplace/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1863630680" name="menu-section-1863630680" type="checkbox"><label class="menu-section-label" for="menu-section-1863630680">levy</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/levy/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1153574172" name="menu-section-1153574172" type="checkbox"><label class="menu-section-label" for="menu-section-1153574172">logistic</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/logistic/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1093546747" name="menu-section-1093546747" type="checkbox"><label class="menu-section-label" for="menu-section-1093546747">lognormal</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/lognormal/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-50526428" name="menu-section-50526428" type="checkbox"><label class="menu-section-label" for="menu-section-50526428">negative-binomial</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/pmf">pmf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/negative-binomial/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1950568305" name="menu-section-1950568305" type="checkbox"><label class="menu-section-label" for="menu-section-1950568305">normal</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/normal/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-544116141" name="menu-section-544116141" type="checkbox"><label class="menu-section-label" for="menu-section-544116141">pareto-type1</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/pareto-type1/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1828408503" name="menu-section-1828408503" type="checkbox"><label class="menu-section-label" for="menu-section-1828408503">poisson</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/pmf">pmf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/poisson/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1007739550" name="menu-section-1007739550" type="checkbox"><label class="menu-section-label" for="menu-section-1007739550">rayleigh</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/rayleigh/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-214088385" name="menu-section-214088385" type="checkbox"><label class="menu-section-label" for="menu-section-214088385">t</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/t/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1828213245" name="menu-section-1828213245" type="checkbox"><label class="menu-section-label" for="menu-section-1828213245">triangular</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/triangular/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1929805943" name="menu-section-1929805943" type="checkbox"><label class="menu-section-label" for="menu-section-1929805943">truncated-normal</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/truncated-normal/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/truncated-normal/pdf">pdf</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-227937790" name="menu-section-227937790" type="checkbox"><label class="menu-section-label" for="menu-section-227937790">uniform</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/uniform/variance">variance</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-617953772" name="menu-section-617953772" type="checkbox"><label class="menu-section-label" for="menu-section-617953772">weibull</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/cdf">cdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/ctor">ctor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/entropy">entropy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/logcdf">logcdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/logpdf">logpdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/median">median</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/mgf">mgf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/mode">mode</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/pdf">pdf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/quantile">quantile</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/base/dist/weibull/variance">variance</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1076620483" name="menu-section-1076620483" type="checkbox"><label class="menu-section-label" for="menu-section-1076620483">random</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/random/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/arcsine">arcsine</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/beta">beta</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/betaprime">betaprime</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/binomial">binomial</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/box-muller">box-muller</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/cauchy">cauchy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/chi">chi</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/chisquare">chisquare</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/cosine">cosine</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/erlang">erlang</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/exponential">exponential</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/f">f</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/frechet">frechet</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/gamma">gamma</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/geometric">geometric</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/gumbel">gumbel</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/hypergeometric">hypergeometric</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/improved-ziggurat">improved-ziggurat</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/invgamma">invgamma</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/kumaraswamy">kumaraswamy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/laplace">laplace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/levy">levy</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/logistic">logistic</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/lognormal">lognormal</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/minstd">minstd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/minstd-shuffle">minstd-shuffle</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/negative-binomial">negative-binomial</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/normal">normal</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/pareto-type1">pareto-type1</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/poisson">poisson</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/randn">randn</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/randu">randu</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/rayleigh">rayleigh</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/t">t</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/triangular">triangular</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/uniform">uniform</a></li><li><a href="/develop/docs/api/@stdlib/math/base/random/weibull">weibull</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-926402293" name="menu-section-926402293" type="checkbox"><label class="menu-section-label" for="menu-section-926402293">special</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/special/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/abs">abs</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/abs2">abs2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/acos">acos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/acosh">acosh</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/acovercos">acovercos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/acoversin">acoversin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ahavercos">ahavercos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ahaversin">ahaversin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/asin">asin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/asinh">asinh</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/atan">atan</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/atan2">atan2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/atanh">atanh</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/avercos">avercos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/aversin">aversin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/beta">beta</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/betainc">betainc</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/betaincinv">betaincinv</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/betaln">betaln</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/binet">binet</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/binomcoef">binomcoef</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/binomcoefln">binomcoefln</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/cbrt">cbrt</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ceil">ceil</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ceil10">ceil10</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ceil2">ceil2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ceilb">ceilb</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ceiln">ceiln</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ceilsd">ceilsd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/copysign">copysign</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/cos">cos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/cosh">cosh</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/cosm1">cosm1</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/cospi">cospi</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/covercos">covercos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/coversin">coversin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/deg2rad">deg2rad</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/digamma">digamma</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/dirac-delta">dirac-delta</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/dirichlet-eta">dirichlet-eta</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/erf">erf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/erfc">erfc</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/erfcinv">erfcinv</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/erfinv">erfinv</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/exp">exp</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/exp10">exp10</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/exp2">exp2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/expm1">expm1</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/factorial">factorial</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/factorialln">factorialln</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/falling-factorial">falling-factorial</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/fibonacci">fibonacci</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/fibonacci-index">fibonacci-index</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/flipsign">flipsign</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/floor">floor</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/floor10">floor10</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/floor2">floor2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/floorb">floorb</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/floorn">floorn</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/floorsd">floorsd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/frexp">frexp</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gamma">gamma</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gamma-delta-ratio">gamma-delta-ratio</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gamma-lanczos-sum">gamma-lanczos-sum</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled">gamma-lanczos-sum-expg-scaled</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gamma1pm1">gamma1pm1</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gammainc">gammainc</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gammaincinv">gammaincinv</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gammaln">gammaln</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/gcd">gcd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/hacovercos">hacovercos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/hacoversin">hacoversin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/havercos">havercos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/haversin">haversin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/heaviside">heaviside</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/hypot">hypot</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/int32-abs">int32-abs</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/inv">inv</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/kronecker-delta">kronecker-delta</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/lcm">lcm</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ldexp">ldexp</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ln">ln</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/log">log</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/log10">log10</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/log1p">log1p</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/log2">log2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/logit">logit</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/lucas">lucas</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/max">max</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/maxabs">maxabs</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/min">min</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/minabs">minabs</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/modf">modf</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/negafibonacci">negafibonacci</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/negalucas">negalucas</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/nonfibonacci">nonfibonacci</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/pdiff">pdiff</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/pow">pow</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/powm1">powm1</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/rad2deg">rad2deg</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/ramp">ramp</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/riemann-zeta">riemann-zeta</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/rising-factorial">rising-factorial</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/round">round</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/round10">round10</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/round2">round2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/roundb">roundb</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/roundn">roundn</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/roundsd">roundsd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sici">sici</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/signum">signum</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sin">sin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sinc">sinc</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sincos">sincos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sinh">sinh</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sinpi">sinpi</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/spence">spence</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sqrt">sqrt</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/sqrt1pm1">sqrt1pm1</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/tan">tan</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/tanh">tanh</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/trunc">trunc</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/trunc10">trunc10</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/trunc2">trunc2</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/truncb">truncb</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/truncn">truncn</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/truncsd">truncsd</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/vercos">vercos</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/versin">versin</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/xlog1py">xlog1py</a></li><li><a href="/develop/docs/api/@stdlib/math/base/special/xlogy">xlogy</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-7403048" name="menu-section-7403048" type="checkbox"><label class="menu-section-label" for="menu-section-7403048">tools</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/tools/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/tools/continued-fraction">continued-fraction</a></li><li><a href="/develop/docs/api/@stdlib/math/base/tools/evalpoly">evalpoly</a></li><li><a href="/develop/docs/api/@stdlib/math/base/tools/evalrational">evalrational</a></li><li><a href="/develop/docs/api/@stdlib/math/base/tools/fibpoly">fibpoly</a></li><li><a href="/develop/docs/api/@stdlib/math/base/tools/lucaspoly">lucaspoly</a></li><li><a href="/develop/docs/api/@stdlib/math/base/tools/sum-series">sum-series</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-786897701" name="menu-section-786897701" type="checkbox"><label class="menu-section-label" for="menu-section-786897701">utils</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/base/utils/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/absolute-difference">absolute-difference</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-exponent">float32-exponent</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-from-binary-string">float32-from-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-from-word">float32-from-word</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-normalize">float32-normalize</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-signbit">float32-signbit</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-significand">float32-significand</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-to-binary-string">float32-to-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-to-int32">float32-to-int32</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-to-uint32">float32-to-uint32</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float32-to-word">float32-to-word</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-epsilon-difference">float64-epsilon-difference</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-exponent">float64-exponent</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-from-binary-string">float64-from-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-from-words">float64-from-words</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-get-high-word">float64-get-high-word</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-get-low-word">float64-get-low-word</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-normalize">float64-normalize</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-set-high-word">float64-set-high-word</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-set-low-word">float64-set-low-word</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-signbit">float64-signbit</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-to-binary-string">float64-to-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-to-float32">float64-to-float32</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-to-int32">float64-to-int32</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-to-uint32">float64-to-uint32</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/float64-to-words">float64-to-words</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/int32-to-uint32">int32-to-uint32</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/relative-difference">relative-difference</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint16-from-binary-string">uint16-from-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint16-to-binary-string">uint16-to-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint32-from-binary-string">uint32-from-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint32-rotl">uint32-rotl</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint32-rotr">uint32-rotr</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint32-to-binary-string">uint32-to-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint32-to-int32">uint32-to-int32</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint8-from-binary-string">uint8-from-binary-string</a></li><li><a href="/develop/docs/api/@stdlib/math/base/utils/uint8-to-binary-string">uint8-to-binary-string</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-2007575249" name="menu-section-2007575249" type="checkbox"><label class="menu-section-label" for="menu-section-2007575249">constants</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/constants/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/complex128-num-bytes">complex128-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/complex64-num-bytes">complex64-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-eps">float16-eps</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-exponent-bias">float16-exponent-bias</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-max">float16-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-max-safe-integer">float16-max-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-min-safe-integer">float16-min-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-ninf">float16-ninf</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-num-bytes">float16-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-pinf">float16-pinf</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-precision">float16-precision</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-smallest-normal">float16-smallest-normal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-smallest-subnormal">float16-smallest-subnormal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float16-sqrt-eps">float16-sqrt-eps</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-eps">float32-eps</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-exponent-bias">float32-exponent-bias</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-max">float32-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-max-safe-integer">float32-max-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-min-safe-integer">float32-min-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-ninf">float32-ninf</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-num-bytes">float32-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-pinf">float32-pinf</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-precision">float32-precision</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-smallest-normal">float32-smallest-normal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-smallest-subnormal">float32-smallest-subnormal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float32-sqrt-eps">float32-sqrt-eps</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-catalan">float64-catalan</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-e">float64-e</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-eps">float64-eps</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-eulergamma">float64-eulergamma</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-exponent-bias">float64-exponent-bias</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-fourth-pi">float64-fourth-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-fourth-root-eps">float64-fourth-root-eps</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-gamma-lanczos-g">float64-gamma-lanczos-g</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-glaisher-kinkelin">float64-glaisher-kinkelin</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-half-ln-two">float64-half-ln-two</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-half-pi">float64-half-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-high-word-exponent-mask">float64-high-word-exponent-mask</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-high-word-significand-mask">float64-high-word-significand-mask</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-ln-half">float64-ln-half</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-ln-pi">float64-ln-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-ln-sqrt-two-pi">float64-ln-sqrt-two-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-ln-two">float64-ln-two</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-ln-two-pi">float64-ln-two-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max">float64-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-base10-exponent">float64-max-base10-exponent</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-base10-exponent-subnormal">float64-max-base10-exponent-subnormal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-base2-exponent">float64-max-base2-exponent</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-base2-exponent-subnormal">float64-max-base2-exponent-subnormal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-ln">float64-max-ln</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-safe-fibonacci">float64-max-safe-fibonacci</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-safe-integer">float64-max-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-safe-lucas">float64-max-safe-lucas</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-safe-nth-fibonacci">float64-max-safe-nth-fibonacci</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-max-safe-nth-lucas">float64-max-safe-nth-lucas</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-min-base10-exponent">float64-min-base10-exponent</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-min-base10-exponent-subnormal">float64-min-base10-exponent-subnormal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-min-base2-exponent">float64-min-base2-exponent</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-min-base2-exponent-subnormal">float64-min-base2-exponent-subnormal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-min-ln">float64-min-ln</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-min-safe-integer">float64-min-safe-integer</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-ninf">float64-ninf</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-num-bytes">float64-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-phi">float64-phi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-pi">float64-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-pi-squared">float64-pi-squared</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-pinf">float64-pinf</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-precision">float64-precision</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-smallest-normal">float64-smallest-normal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-smallest-subnormal">float64-smallest-subnormal</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-eps">float64-sqrt-eps</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-half">float64-sqrt-half</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-half-pi">float64-sqrt-half-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-phi">float64-sqrt-phi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-pi">float64-sqrt-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-three">float64-sqrt-three</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-two">float64-sqrt-two</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-sqrt-two-pi">float64-sqrt-two-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/float64-two-pi">float64-two-pi</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int16-max">int16-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int16-min">int16-min</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int16-num-bytes">int16-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int32-max">int32-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int32-min">int32-min</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int32-num-bytes">int32-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int8-max">int8-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int8-min">int8-min</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/int8-num-bytes">int8-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/uint16-max">uint16-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/uint16-num-bytes">uint16-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/uint32-max">uint32-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/uint32-num-bytes">uint32-num-bytes</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/uint8-max">uint8-max</a></li><li><a href="/develop/docs/api/@stdlib/math/constants/uint8-num-bytes">uint8-num-bytes</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1185362481" name="menu-section-1185362481" type="checkbox"><label class="menu-section-label" for="menu-section-1185362481">random</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/random/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/random/sample">sample</a></li><li><a href="/develop/docs/api/@stdlib/math/random/shuffle">shuffle</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-2022576608" name="menu-section-2022576608" type="checkbox"><label class="menu-section-label" for="menu-section-2022576608">statistics</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/statistics/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/chi2gof">chi2gof</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-63248159" name="menu-section-63248159" type="checkbox"><label class="menu-section-label" for="menu-section-63248159">incr</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/count">count</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/kurtosis">kurtosis</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/max">max</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/mean">mean</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/midrange">midrange</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/min">min</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/mmean">mmean</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/mstdev">mstdev</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/msum">msum</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/msummary">msummary</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/mvariance">mvariance</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/prod">prod</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/range">range</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/skewness">skewness</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/stdev">stdev</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/sum">sum</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/summary">summary</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/incr/variance">variance</a></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/math/statistics/kstest">kstest</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/pcorrtest">pcorrtest</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/ttest">ttest</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/ttest2">ttest2</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/ztest">ztest</a></li><li><a href="/develop/docs/api/@stdlib/math/statistics/ztest2">ztest2</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-90267462" name="menu-section-90267462" type="checkbox"><label class="menu-section-label" for="menu-section-90267462">utils</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/math/utils/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/math/utils/incrspace">incrspace</a></li><li><a href="/develop/docs/api/@stdlib/math/utils/linspace">linspace</a></li><li><a href="/develop/docs/api/@stdlib/math/utils/logspace">logspace</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-512362761" name="menu-section-512362761" type="checkbox"><label class="menu-section-label" for="menu-section-512362761">ml</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/ml/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/ml/online-binary-classification">online-binary-classification</a></li><li><a href="/develop/docs/api/@stdlib/ml/online-sgd-regression">online-sgd-regression</a></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/namespace">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1718204998" name="menu-section-1718204998" type="checkbox"><label class="menu-section-label" for="menu-section-1718204998">net</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/net/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/net/http-server">http-server</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-888948420" name="menu-section-888948420" type="checkbox"><label class="menu-section-label" for="menu-section-888948420">nlp</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/nlp/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/nlp/expand-contractions">expand-contractions</a></li><li><a href="/develop/docs/api/@stdlib/nlp/lda">lda</a></li><li><a href="/develop/docs/api/@stdlib/nlp/tokenize">tokenize</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-226547199" name="menu-section-226547199" type="checkbox"><label class="menu-section-label" for="menu-section-226547199">plot</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/plot/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-2133946130" name="menu-section-2133946130" type="checkbox"><label class="menu-section-label" for="menu-section-2133946130">components</label><ul class="menu-section-list"><li><section class="menu-section"><input class="menu-section-input" id="menu-section-770141513" name="menu-section-770141513" type="checkbox"><label class="menu-section-label" for="menu-section-770141513">svg</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/plot/components/svg/annotations">annotations</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/axis">axis</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/background">background</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/canvas">canvas</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/clip-path">clip-path</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/defs">defs</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/graph">graph</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/marks">marks</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/path">path</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/rug">rug</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/symbols">symbols</a></li><li><a href="/develop/docs/api/@stdlib/plot/components/svg/title">title</a></li></ul></section></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/plot/ctor">ctor</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1001779052" name="menu-section-1001779052" type="checkbox"><label class="menu-section-label" for="menu-section-1001779052">sparklines</label><ul class="menu-section-list"><li><section class="menu-section"><input class="menu-section-input" id="menu-section-68339649" name="menu-section-68339649" type="checkbox"><label class="menu-section-label" for="menu-section-68339649">unicode</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/plot/sparklines/unicode/base">base</a></li><li><a href="/develop/docs/api/@stdlib/plot/sparklines/unicode/column">column</a></li><li><a href="/develop/docs/api/@stdlib/plot/sparklines/unicode/line">line</a></li><li><a href="/develop/docs/api/@stdlib/plot/sparklines/unicode/tristate">tristate</a></li><li><a href="/develop/docs/api/@stdlib/plot/sparklines/unicode/win-loss">win-loss</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-67477834" name="menu-section-67477834" type="checkbox"><label class="menu-section-label" for="menu-section-67477834">unicode</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/plot/unicode/stemleaf">stemleaf</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1445895212" name="menu-section-1445895212" type="checkbox"><label class="menu-section-label" for="menu-section-1445895212">regexp</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/regexp/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/regexp/basename">basename</a></li><li><a href="/develop/docs/api/@stdlib/regexp/basename-posix">basename-posix</a></li><li><a href="/develop/docs/api/@stdlib/regexp/basename-windows">basename-windows</a></li><li><a href="/develop/docs/api/@stdlib/regexp/color-hexadecimal">color-hexadecimal</a></li><li><a href="/develop/docs/api/@stdlib/regexp/decimal-number">decimal-number</a></li><li><a href="/develop/docs/api/@stdlib/regexp/dirname">dirname</a></li><li><a href="/develop/docs/api/@stdlib/regexp/dirname-posix">dirname-posix</a></li><li><a href="/develop/docs/api/@stdlib/regexp/dirname-windows">dirname-windows</a></li><li><a href="/develop/docs/api/@stdlib/regexp/eol">eol</a></li><li><a href="/develop/docs/api/@stdlib/regexp/extended-length-path">extended-length-path</a></li><li><a href="/develop/docs/api/@stdlib/regexp/extname">extname</a></li><li><a href="/develop/docs/api/@stdlib/regexp/extname-posix">extname-posix</a></li><li><a href="/develop/docs/api/@stdlib/regexp/extname-windows">extname-windows</a></li><li><a href="/develop/docs/api/@stdlib/regexp/filename">filename</a></li><li><a href="/develop/docs/api/@stdlib/regexp/filename-posix">filename-posix</a></li><li><a href="/develop/docs/api/@stdlib/regexp/filename-windows">filename-windows</a></li><li><a href="/develop/docs/api/@stdlib/regexp/function-name">function-name</a></li><li><a href="/develop/docs/api/@stdlib/regexp/native-function">native-function</a></li><li><a href="/develop/docs/api/@stdlib/regexp/regexp">regexp</a></li><li><a href="/develop/docs/api/@stdlib/regexp/unc-path">unc-path</a></li><li><a href="/develop/docs/api/@stdlib/regexp/utf16-surrogate-pair">utf16-surrogate-pair</a></li><li><a href="/develop/docs/api/@stdlib/regexp/utf16-unpaired-surrogate">utf16-unpaired-surrogate</a></li><li><a href="/develop/docs/api/@stdlib/regexp/whitespace">whitespace</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-150797470" name="menu-section-150797470" type="checkbox"><label class="menu-section-label" for="menu-section-150797470">repl</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/repl/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/repl/code-blocks">code-blocks</a></li><li><a href="/develop/docs/api/@stdlib/repl/help">help</a></li><li><a href="/develop/docs/api/@stdlib/repl/server">server</a></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/stdlib">stdlib</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1569470206" name="menu-section-1569470206" type="checkbox"><label class="menu-section-label" for="menu-section-1569470206">streams</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/streams/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-367829114" name="menu-section-367829114" type="checkbox"><label class="menu-section-label" for="menu-section-367829114">base</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/streams/base/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/streams/base/stderr">stderr</a></li><li><a href="/develop/docs/api/@stdlib/streams/base/stdin">stdin</a></li><li><a href="/develop/docs/api/@stdlib/streams/base/stdout">stdout</a></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/streams/math">math</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-615167778" name="menu-section-615167778" type="checkbox"><label class="menu-section-label" for="menu-section-615167778">utils</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/streams/utils/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/streams/utils/debug">debug</a></li><li><a href="/develop/docs/api/@stdlib/streams/utils/inspect">inspect</a></li><li><a href="/develop/docs/api/@stdlib/streams/utils/join">join</a></li><li><a href="/develop/docs/api/@stdlib/streams/utils/split">split</a></li><li><a href="/develop/docs/api/@stdlib/streams/utils/transform">transform</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-108218363" name="menu-section-108218363" type="checkbox"><label class="menu-section-label" for="menu-section-108218363">string</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/string/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/string/capitalize">capitalize</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-235878632" name="menu-section-235878632" type="checkbox"><label class="menu-section-label" for="menu-section-235878632">constants</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/string/constants/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/path-delimiter">path-delimiter</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/path-delimiter-posix">path-delimiter-posix</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/path-delimiter-win32">path-delimiter-win32</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/path-sep">path-sep</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/path-sep-posix">path-sep-posix</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/path-sep-win32">path-sep-win32</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/unicode-max">unicode-max</a></li><li><a href="/develop/docs/api/@stdlib/string/constants/unicode-max-bmp">unicode-max-bmp</a></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/string/ends-with">ends-with</a></li><li><a href="/develop/docs/api/@stdlib/string/from-code-point">from-code-point</a></li><li><a href="/develop/docs/api/@stdlib/string/left-pad">left-pad</a></li><li><a href="/develop/docs/api/@stdlib/string/left-trim">left-trim</a></li><li><a href="/develop/docs/api/@stdlib/string/lowercase">lowercase</a></li><li><a href="/develop/docs/api/@stdlib/string/pad">pad</a></li><li><a href="/develop/docs/api/@stdlib/string/percent-encode">percent-encode</a></li><li><a href="/develop/docs/api/@stdlib/string/remove-first">remove-first</a></li><li><a href="/develop/docs/api/@stdlib/string/remove-last">remove-last</a></li><li><a href="/develop/docs/api/@stdlib/string/remove-punctuation">remove-punctuation</a></li><li><a href="/develop/docs/api/@stdlib/string/remove-utf8-bom">remove-utf8-bom</a></li><li><a href="/develop/docs/api/@stdlib/string/remove-words">remove-words</a></li><li><a href="/develop/docs/api/@stdlib/string/repeat">repeat</a></li><li><a href="/develop/docs/api/@stdlib/string/replace">replace</a></li><li><a href="/develop/docs/api/@stdlib/string/reverse">reverse</a></li><li><a href="/develop/docs/api/@stdlib/string/right-pad">right-pad</a></li><li><a href="/develop/docs/api/@stdlib/string/right-trim">right-trim</a></li><li><a href="/develop/docs/api/@stdlib/string/startcase">startcase</a></li><li><a href="/develop/docs/api/@stdlib/string/starts-with">starts-with</a></li><li><a href="/develop/docs/api/@stdlib/string/trim">trim</a></li><li><a href="/develop/docs/api/@stdlib/string/uncapitalize">uncapitalize</a></li><li><a href="/develop/docs/api/@stdlib/string/uppercase">uppercase</a></li><li><a href="/develop/docs/api/@stdlib/string/utf16-to-utf8-array">utf16-to-utf8-array</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1000745873" name="menu-section-1000745873" type="checkbox"><label class="menu-section-label" for="menu-section-1000745873">time</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/time/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1725534900" name="menu-section-1725534900" type="checkbox"><label class="menu-section-label" for="menu-section-1725534900">constants</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/time/constants/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/hours-in-day">hours-in-day</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/hours-in-week">hours-in-week</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/milliseconds-in-day">milliseconds-in-day</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/milliseconds-in-hour">milliseconds-in-hour</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/milliseconds-in-minute">milliseconds-in-minute</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/milliseconds-in-second">milliseconds-in-second</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/milliseconds-in-week">milliseconds-in-week</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/minutes-in-day">minutes-in-day</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/minutes-in-hour">minutes-in-hour</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/minutes-in-week">minutes-in-week</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/months-in-year">months-in-year</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/seconds-in-day">seconds-in-day</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/seconds-in-hour">seconds-in-hour</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/seconds-in-minute">seconds-in-minute</a></li><li><a href="/develop/docs/api/@stdlib/time/constants/seconds-in-week">seconds-in-week</a></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/time/day-of-quarter">day-of-quarter</a></li><li><a href="/develop/docs/api/@stdlib/time/day-of-year">day-of-year</a></li><li><a href="/develop/docs/api/@stdlib/time/days-in-month">days-in-month</a></li><li><a href="/develop/docs/api/@stdlib/time/days-in-year">days-in-year</a></li><li><a href="/develop/docs/api/@stdlib/time/hours-in-month">hours-in-month</a></li><li><a href="/develop/docs/api/@stdlib/time/hours-in-year">hours-in-year</a></li><li><a href="/develop/docs/api/@stdlib/time/iso-weeks-in-year">iso-weeks-in-year</a></li><li><a href="/develop/docs/api/@stdlib/time/minutes-in-month">minutes-in-month</a></li><li><a href="/develop/docs/api/@stdlib/time/minutes-in-year">minutes-in-year</a></li><li><a href="/develop/docs/api/@stdlib/time/now">now</a></li><li><a href="/develop/docs/api/@stdlib/time/quarter-of-year">quarter-of-year</a></li><li><a href="/develop/docs/api/@stdlib/time/seconds-in-month">seconds-in-month</a></li><li><a href="/develop/docs/api/@stdlib/time/seconds-in-year">seconds-in-year</a></li><li><a href="/develop/docs/api/@stdlib/time/tic">tic</a></li><li><a href="/develop/docs/api/@stdlib/time/toc">toc</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-70978071" name="menu-section-70978071" type="checkbox"><label class="menu-section-label" for="menu-section-70978071">tools</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/tools/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/tools/cli">cli</a></li><li><a href="/develop/docs/api/@stdlib/tools/disposable-http-server">disposable-http-server</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-719198833" name="menu-section-719198833" type="checkbox"><label class="menu-section-label" for="menu-section-719198833">library-manifest</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/tools/library-manifest/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1148377970" name="menu-section-1148377970" type="checkbox"><label class="menu-section-label" for="menu-section-1148377970">test</label><ul class="menu-section-list"><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1520929348" name="menu-section-1520929348" type="checkbox"><label class="menu-section-label" for="menu-section-1520929348">fixtures</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/tools/library-manifest/test/fixtures/beep">beep</a></li></ul></section></li></ul></section></li></ul></section></li><li><a href="/develop/docs/api/@stdlib/tools/simple-http-server">simple-http-server</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1836240946" name="menu-section-1836240946" type="checkbox"><label class="menu-section-label" for="menu-section-1836240946">types</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/types/">namespace</a></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-718129112" name="menu-section-718129112" type="checkbox"><label class="menu-section-label" for="menu-section-718129112">array</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/types/array/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/types/array/float32">float32</a></li><li><a href="/develop/docs/api/@stdlib/types/array/float64">float64</a></li><li><a href="/develop/docs/api/@stdlib/types/array/int16">int16</a></li><li><a href="/develop/docs/api/@stdlib/types/array/int32">int32</a></li><li><a href="/develop/docs/api/@stdlib/types/array/int8">int8</a></li><li><a href="/develop/docs/api/@stdlib/types/array/reviver">reviver</a></li><li><a href="/develop/docs/api/@stdlib/types/array/to-json">to-json</a></li><li><a href="/develop/docs/api/@stdlib/types/array/typed">typed</a></li><li><a href="/develop/docs/api/@stdlib/types/array/uint16">uint16</a></li><li><a href="/develop/docs/api/@stdlib/types/array/uint32">uint32</a></li><li><a href="/develop/docs/api/@stdlib/types/array/uint8">uint8</a></li><li><a href="/develop/docs/api/@stdlib/types/array/uint8c">uint8c</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-875026665" name="menu-section-875026665" type="checkbox"><label class="menu-section-label" for="menu-section-875026665">complex</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/types/complex/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/conj">conj</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/factory">factory</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/float32">float32</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/float64">float64</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/imag">imag</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/real">real</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/reim">reim</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/reviver">reviver</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/reviver-float32">reviver-float32</a></li><li><a href="/develop/docs/api/@stdlib/types/complex/reviver-float64">reviver-float64</a></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-1075015212" name="menu-section-1075015212" type="checkbox"><label class="menu-section-label" for="menu-section-1075015212">utils</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/types/utils/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/types/utils/real-max">real-max</a></li><li><a href="/develop/docs/api/@stdlib/types/utils/real-min">real-min</a></li><li><a href="/develop/docs/api/@stdlib/types/utils/safe-int-max">safe-int-max</a></li><li><a href="/develop/docs/api/@stdlib/types/utils/safe-int-min">safe-int-min</a></li><li><a href="/develop/docs/api/@stdlib/types/utils/size-of">size-of</a></li><li><a href="/develop/docs/api/@stdlib/types/utils/type-max">type-max</a></li><li><a href="/develop/docs/api/@stdlib/types/utils/type-min">type-min</a></li></ul></section></li></ul></section></li><li><section class="menu-section"><input class="menu-section-input" id="menu-section-2054861579" name="menu-section-2054861579" type="checkbox"><label class="menu-section-label" for="menu-section-2054861579">utils</label><ul class="menu-section-list"><li><a href="/develop/docs/api/@stdlib/utils/">namespace</a></li><li><a href="/develop/docs/api/@stdlib/utils/any">any</a></li><li><a href="/develop/docs/api/@stdlib/utils/any-by">any-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/any-by-async">any-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/any-by-right">any-by-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/any-by-right-async">any-by-right-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/append">append</a></li><li><a href="/develop/docs/api/@stdlib/utils/argument-function">argument-function</a></li><li><a href="/develop/docs/api/@stdlib/utils/argv">argv</a></li><li><a href="/develop/docs/api/@stdlib/utils/bifurcate">bifurcate</a></li><li><a href="/develop/docs/api/@stdlib/utils/bifurcate-by">bifurcate-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/bifurcate-by-async">bifurcate-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/bifurcate-in">bifurcate-in</a></li><li><a href="/develop/docs/api/@stdlib/utils/bifurcate-own">bifurcate-own</a></li><li><a href="/develop/docs/api/@stdlib/utils/capitalize-keys">capitalize-keys</a></li><li><a href="/develop/docs/api/@stdlib/utils/compose">compose</a></li><li><a href="/develop/docs/api/@stdlib/utils/compose-async">compose-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/configdir">configdir</a></li><li><a href="/develop/docs/api/@stdlib/utils/constant-function">constant-function</a></li><li><a href="/develop/docs/api/@stdlib/utils/constructor-name">constructor-name</a></li><li><a href="/develop/docs/api/@stdlib/utils/convert-path">convert-path</a></li><li><a href="/develop/docs/api/@stdlib/utils/copy">copy</a></li><li><a href="/develop/docs/api/@stdlib/utils/count-by">count-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/count-by-async">count-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/curry">curry</a></li><li><a href="/develop/docs/api/@stdlib/utils/curry-right">curry-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/cwd">cwd</a></li><li><a href="/develop/docs/api/@stdlib/utils/deep-get">deep-get</a></li><li><a href="/develop/docs/api/@stdlib/utils/deep-pluck">deep-pluck</a></li><li><a href="/develop/docs/api/@stdlib/utils/deep-set">deep-set</a></li><li><a href="/develop/docs/api/@stdlib/utils/define-read-only-property">define-read-only-property</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-class-support">detect-class-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-float32array-support">detect-float32array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-float64array-support">detect-float64array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-function-name-support">detect-function-name-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-generator-support">detect-generator-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-int16array-support">detect-int16array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-int32array-support">detect-int32array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-int8array-support">detect-int8array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-map-support">detect-map-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-proxy-support">detect-proxy-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-set-support">detect-set-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-symbol-support">detect-symbol-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-tostringtag-support">detect-tostringtag-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-uint16array-support">detect-uint16array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-uint32array-support">detect-uint32array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-uint8array-support">detect-uint8array-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-uint8clampedarray-support">detect-uint8clampedarray-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-wasm-support">detect-wasm-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-weakmap-support">detect-weakmap-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/detect-weakset-support">detect-weakset-support</a></li><li><a href="/develop/docs/api/@stdlib/utils/dirname">dirname</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-until">do-until</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-until-async">do-until-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-until-each">do-until-each</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-until-each-right">do-until-each-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-while">do-while</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-while-async">do-while-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-while-each">do-while-each</a></li><li><a href="/develop/docs/api/@stdlib/utils/do-while-each-right">do-while-each-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/entries">entries</a></li><li><a href="/develop/docs/api/@stdlib/utils/entries-in">entries-in</a></li><li><a href="/develop/docs/api/@stdlib/utils/env">env</a></li><li><a href="/develop/docs/api/@stdlib/utils/error-reviver">error-reviver</a></li><li><a href="/develop/docs/api/@stdlib/utils/error-to-json">error-to-json</a></li><li><a href="/develop/docs/api/@stdlib/utils/escape-regexp-string">escape-regexp-string</a></li><li><a href="/develop/docs/api/@stdlib/utils/eval">eval</a></li><li><a href="/develop/docs/api/@stdlib/utils/every">every</a></li><li><a href="/develop/docs/api/@stdlib/utils/every-by">every-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/every-by-async">every-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/every-by-right">every-by-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/every-by-right-async">every-by-right-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/extname">extname</a></li><li><a href="/develop/docs/api/@stdlib/utils/find">find</a></li><li><a href="/develop/docs/api/@stdlib/utils/flatten-array">flatten-array</a></li><li><a href="/develop/docs/api/@stdlib/utils/flatten-object">flatten-object</a></li><li><a href="/develop/docs/api/@stdlib/utils/for-each">for-each</a></li><li><a href="/develop/docs/api/@stdlib/utils/for-each-async">for-each-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/for-each-right">for-each-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/for-each-right-async">for-each-right-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/for-in">for-in</a></li><li><a href="/develop/docs/api/@stdlib/utils/for-own">for-own</a></li><li><a href="/develop/docs/api/@stdlib/utils/from-entries">from-entries</a></li><li><a href="/develop/docs/api/@stdlib/utils/function-name">function-name</a></li><li><a href="/develop/docs/api/@stdlib/utils/function-sequence">function-sequence</a></li><li><a href="/develop/docs/api/@stdlib/utils/function-sequence-async">function-sequence-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/get-prototype-of">get-prototype-of</a></li><li><a href="/develop/docs/api/@stdlib/utils/getuid">getuid</a></li><li><a href="/develop/docs/api/@stdlib/utils/group">group</a></li><li><a href="/develop/docs/api/@stdlib/utils/group-by">group-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/group-by-async">group-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/group-in">group-in</a></li><li><a href="/develop/docs/api/@stdlib/utils/group-own">group-own</a></li><li><a href="/develop/docs/api/@stdlib/utils/homedir">homedir</a></li><li><a href="/develop/docs/api/@stdlib/utils/identity-function">identity-function</a></li><li><a href="/develop/docs/api/@stdlib/utils/if-else">if-else</a></li><li><a href="/develop/docs/api/@stdlib/utils/if-else-async">if-else-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/if-then">if-then</a></li><li><a href="/develop/docs/api/@stdlib/utils/if-then-async">if-then-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/index-of">index-of</a></li><li><a href="/develop/docs/api/@stdlib/utils/inherit">inherit</a></li><li><a href="/develop/docs/api/@stdlib/utils/inmap">inmap</a></li><li><a href="/develop/docs/api/@stdlib/utils/inmap-async">inmap-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/inmap-right">inmap-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/inmap-right-async">inmap-right-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/key-by">key-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/key-by-right">key-by-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/keys-in">keys-in</a></li><li><a href="/develop/docs/api/@stdlib/utils/lowercase-keys">lowercase-keys</a></li><li><a href="/develop/docs/api/@stdlib/utils/map-function">map-function</a></li><li><a href="/develop/docs/api/@stdlib/utils/map-function-async">map-function-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/map-keys">map-keys</a></li><li><a href="/develop/docs/api/@stdlib/utils/map-keys-async">map-keys-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/map-values">map-values</a></li><li><a href="/develop/docs/api/@stdlib/utils/map-values-async">map-values-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/memoize">memoize</a></li><li><a href="/develop/docs/api/@stdlib/utils/merge">merge</a></li><li><a href="/develop/docs/api/@stdlib/utils/move-property">move-property</a></li><li><a href="/develop/docs/api/@stdlib/utils/native-class">native-class</a></li><li><a href="/develop/docs/api/@stdlib/utils/node-version">node-version</a></li><li><a href="/develop/docs/api/@stdlib/utils/none">none</a></li><li><a href="/develop/docs/api/@stdlib/utils/none-by">none-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/none-by-async">none-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/none-by-right">none-by-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/none-by-right-async">none-by-right-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/noop">noop</a></li><li><a href="/develop/docs/api/@stdlib/utils/num-cpus">num-cpus</a></li><li><a href="/develop/docs/api/@stdlib/utils/object-inverse">object-inverse</a></li><li><a href="/develop/docs/api/@stdlib/utils/object-inverse-by">object-inverse-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/omit">omit</a></li><li><a href="/develop/docs/api/@stdlib/utils/omit-by">omit-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/open-url">open-url</a></li><li><a href="/develop/docs/api/@stdlib/utils/papply">papply</a></li><li><a href="/develop/docs/api/@stdlib/utils/papply-right">papply-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/parallel">parallel</a></li><li><a href="/develop/docs/api/@stdlib/utils/parse-json">parse-json</a></li><li><a href="/develop/docs/api/@stdlib/utils/pick">pick</a></li><li><a href="/develop/docs/api/@stdlib/utils/pick-by">pick-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/platform">platform</a></li><li><a href="/develop/docs/api/@stdlib/utils/pluck">pluck</a></li><li><a href="/develop/docs/api/@stdlib/utils/pop">pop</a></li><li><a href="/develop/docs/api/@stdlib/utils/prepend">prepend</a></li><li><a href="/develop/docs/api/@stdlib/utils/push">push</a></li><li><a href="/develop/docs/api/@stdlib/utils/read-stdin">read-stdin</a></li><li><a href="/develop/docs/api/@stdlib/utils/reduce">reduce</a></li><li><a href="/develop/docs/api/@stdlib/utils/reduce-async">reduce-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/reduce-right">reduce-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/reduce-right-async">reduce-right-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/regexp-from-string">regexp-from-string</a></li><li><a href="/develop/docs/api/@stdlib/utils/reorder-arguments">reorder-arguments</a></li><li><a href="/develop/docs/api/@stdlib/utils/reverse-arguments">reverse-arguments</a></li><li><a href="/develop/docs/api/@stdlib/utils/series-waterfall">series-waterfall</a></li><li><a href="/develop/docs/api/@stdlib/utils/shift">shift</a></li><li><a href="/develop/docs/api/@stdlib/utils/some">some</a></li><li><a href="/develop/docs/api/@stdlib/utils/some-by">some-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/some-by-async">some-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/some-by-right">some-by-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/some-by-right-async">some-by-right-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/tabulate">tabulate</a></li><li><a href="/develop/docs/api/@stdlib/utils/tabulate-by">tabulate-by</a></li><li><a href="/develop/docs/api/@stdlib/utils/tabulate-by-async">tabulate-by-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/timeit">timeit</a></li><li><a href="/develop/docs/api/@stdlib/utils/tmpdir">tmpdir</a></li><li><a href="/develop/docs/api/@stdlib/utils/try-catch">try-catch</a></li><li><a href="/develop/docs/api/@stdlib/utils/try-catch-async">try-catch-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/try-function">try-function</a></li><li><a href="/develop/docs/api/@stdlib/utils/try-require">try-require</a></li><li><a href="/develop/docs/api/@stdlib/utils/try-then">try-then</a></li><li><a href="/develop/docs/api/@stdlib/utils/try-then-async">try-then-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/type-of">type-of</a></li><li><a href="/develop/docs/api/@stdlib/utils/uncapitalize-keys">uncapitalize-keys</a></li><li><a href="/develop/docs/api/@stdlib/utils/uncurry">uncurry</a></li><li><a href="/develop/docs/api/@stdlib/utils/uncurry-right">uncurry-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/unshift">unshift</a></li><li><a href="/develop/docs/api/@stdlib/utils/until">until</a></li><li><a href="/develop/docs/api/@stdlib/utils/until-async">until-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/until-each">until-each</a></li><li><a href="/develop/docs/api/@stdlib/utils/until-each-right">until-each-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/unzip">unzip</a></li><li><a href="/develop/docs/api/@stdlib/utils/uppercase-keys">uppercase-keys</a></li><li><a href="/develop/docs/api/@stdlib/utils/values">values</a></li><li><a href="/develop/docs/api/@stdlib/utils/values-in">values-in</a></li><li><a href="/develop/docs/api/@stdlib/utils/while">while</a></li><li><a href="/develop/docs/api/@stdlib/utils/while-async">while-async</a></li><li><a href="/develop/docs/api/@stdlib/utils/while-each">while-each</a></li><li><a href="/develop/docs/api/@stdlib/utils/while-each-right">while-each-right</a></li><li><a href="/develop/docs/api/@stdlib/utils/zip">zip</a></li></ul></section></li></ul></nav>
+	<div class="main">
+		<article class="readme group">
+			<h1 id="standard-deviation">Standard Deviation</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Geometric_distribution">Geometric</a> distribution <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+<p>The <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> for a <a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric</a> random variable is</p>
+<!-- <equation class="equation" label="eq:geometric_stdev" align="center" raw="\sigma = \frac{\sqrt{1-p}}{p}" alt="Standard deviation for a geometric distribution."> -->
+<div class="equation" align="center" data-raw-text="\sigma = \frac{\sqrt{1-p}}{p}" data-equation="eq:geometric_stdev">
+    <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="12.76ex" height="6.676ex" style="vertical-align: -2.338ex;" viewBox="0 -1867.7 5494 2874.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title"><title id="MathJax-SVG-1-Title">sigma equals StartFraction StartRoot 1 minus p EndRoot Over p EndFraction</title><defs aria-hidden="true"><path stroke-width="1" id="E1-MJMATHI-3C3" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"></path><path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path stroke-width="1" id="E1-MJMAIN-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path stroke-width="1" id="E1-MJMAIN-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path stroke-width="1" id="E1-MJMATHI-70" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path><path stroke-width="1" id="E1-MJSZ1-221A" d="M263 249Q264 249 315 130T417 -108T470 -228L725 302Q981 837 982 839Q989 850 1001 850Q1008 850 1013 844T1020 832V826L741 243Q645 43 540 -176Q479 -303 469 -324T453 -348Q449 -350 436 -350L424 -349L315 -96Q206 156 205 156L171 130Q138 104 137 104L111 130L263 249Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)" aria-hidden="true"> <use xlink:href="#E1-MJMATHI-3C3" x="0" y="0"></use> <use xlink:href="#E1-MJMAIN-3D" x="850" y="0"></use><g transform="translate(1628,0)"><g transform="translate(397,0)"><rect stroke="none" width="3347" height="60" x="0" y="220"></rect><g transform="translate(60,878)"> <use xlink:href="#E1-MJSZ1-221A" x="0" y="-8"></use><rect stroke="none" width="2226" height="60" x="1000" y="783"></rect><g transform="translate(1000,0)"> <use xlink:href="#E1-MJMAIN-31" x="0" y="0"></use> <use xlink:href="#E1-MJMAIN-2212" x="722" y="0"></use> <use xlink:href="#E1-MJMATHI-70" x="1723" y="0"></use></g></g> <use xlink:href="#E1-MJMATHI-70" x="1421" y="-686"></use></g></g></g></svg>
+</div>
+<!-- </equation> -->
+<p>where <code>p</code> is the success probability.</p>
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdev = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/dist/geometric/stdev'</span> );
+</code></pre>
+<h4 id="stdev-p-">stdev( p )</h4>
+<p>Returns the <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> of a <a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric</a> distribution with success probability <code>p</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = stdev( <span class="hljs-number">0.1</span> );
+<span class="hljs-comment">// returns 3.0</span>
+
+v = stdev( <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre>
+<p>If provided a success probability <code>p</code> outside of <code>[0,1]</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = stdev( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = stdev( <span class="hljs-number">1.5</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = stdev( <span class="hljs-number">-1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/random/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> stdev = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/dist/geometric/stdev'</span> );
+
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> p;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    p = randu();
+    v = stdev( p );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'p: %d, SD(X;p): %d'</span>,
+        p.toFixed( <span class="hljs-number">4</span> ),
+        v.toFixed( <span class="hljs-number">4</span> )
+    );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->
+
+		</article>
+	</div>
+	<script type="text/javascript">/* eslint-disable strict */
+(function script() { // eslint-disable-line no-restricted-syntax
+	'use strict';
+
+	main();
+
+	/**
+	* Main execution sequence.
+	*
+	* @private
+	*/
+	function main() {
+		var state;
+		var links;
+		var el;
+		var i;
+
+		// Initialize the browser history state:
+		if ( history && history.replaceState ) {
+			state = {
+				'url': location.href
+			};
+			history.replaceState( state, '', location.href );
+		}
+		// Add an event listener for whenever the active history changes:
+		if ( window.addEventListener ) {
+			window.addEventListener( 'popstate', onPopState );
+		} else if ( window.attachEvent ) {
+			// Non-standard IE8 and previous versions:
+			el.attachEvent( 'onpopstate', onPopState );
+		}
+		// The goal is to intercept all navigation links so we can manually manage how content is loaded into the current page. This allows us to prevent fresh page loads each time a user clicks on a menu link.
+		el = document.querySelector( '.slideout-menu' );
+		links = el.querySelectorAll( 'a' );
+
+		// For each link, add a `click` listener we'll use to intercept requests for new resources...
+		for ( i = 0; i < links.length; i++ ) {
+			addClickListener( links[ i ], onClick );
+		}
+	} // end FUNCTION main()
+
+	/**
+	* Callback invoked upon a change in the active history.
+	*
+	* @private
+	* @param {Object} evt - event object
+	*/
+	function onPopState( evt ) {
+		if ( evt.state && evt.state.url ) {
+			load( evt.state.url, false );
+		}
+	} // end FUNCTION onPopState()
+
+	/**
+	* Adds a `click` event listener.
+	*
+	* @private
+	* @param {DOMElement} el - DOM element to which to attach the listener
+	* @param {Callback} clbk - callback invoked upon a `click` event
+	*/
+	function addClickListener( el, clbk ) {
+		if ( el.addEventListener ) {
+			el.addEventListener( 'click', clbk );
+		} else if ( el.attachEvent ) {
+			// Non-standard IE8 and previous versions:
+			el.attachEvent( 'onclick', clbk );
+		}
+	} // end FUNCTION addClickListener()
+
+	/**
+	* Callback invoked upon a `click` event.
+	*
+	* @private
+	* @param {Object} evt - event object
+	*/
+	function onClick( evt ) {
+		var target;
+		var href;
+
+		// Prevent the browser from doing its default behavior (e.g., navigating to a new page):
+		evt.preventDefault();
+
+		// Extract the resource name to we can request it manually:
+		target = evt.target || evt.srcElement;
+		href = target.getAttribute( 'href' );
+
+		// Load the resource:
+		load( href, true );
+	} // end FUNCTION onClick()
+
+	/**
+	* Loads a resource.
+	*
+	* @private
+	* @param {string} url - URL (relative or absolute)
+	* @param {boolean} bool - boolean indicating whether to update the browser history
+	*/
+	function load( url, bool ) {
+		var xhttp;
+
+		// Request the resource...
+		xhttp = new XMLHttpRequest(); // TODO: account for older IE browsers
+		xhttp.onreadystatechange = onReady;
+		xhttp.open( 'GET', url, true );
+		xhttp.send();
+
+		/**
+		* Callback invoked upon a state change in the HTTP request.
+		*
+		* @private
+		*/
+		function onReady() {
+			var container;
+			var state;
+			var tmp;
+			var el;
+
+			// Process the request once the request is complete and successful...
+			if ( this.readyState === 4 && this.status === 200 ) { // eslint-disable-line no-invalid-this
+				// Create a temporary DOM element into which we can insert the request HTML page (note: we don't have to worry about the requested HTML containing script tags, as script content is not executed when using `innerHTML`):
+				container = document.createElement( 'div' );
+				container.innerHTML = this.responseText; // eslint-disable-line no-invalid-this
+
+				// Extract the content we want to load into the existing page:
+				tmp = container.querySelector( '.readme' );
+
+				// Insert the content into the page:
+				el = document.querySelector( '.readme' );
+				el.innerHTML = tmp.innerHTML;
+
+				// Update the top navigation:
+				tmp = container.querySelector( '.top-nav' );
+				el = document.querySelector( '.top-nav' );
+				el.innerHTML = tmp.innerHTML;
+
+				// Reset the scroll position:
+				document.querySelector( 'body' ).scrollTop = 0;
+
+				// Update browser history (note: browser history API available IE10+):
+				if ( bool && history && history.pushState ) {
+					state = {
+						'url': url
+					};
+					history.pushState( state, '', url );
+				}
+			}
+		} // end FUNCTION onReady()
+	} // end FUNCTION load()
+})();
+</script>
+</body>
+</html>
