@@ -234,7 +234,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/math/constants/float64-ninf":58,"@stdlib/math/constants/float64-pinf":60}],6:[function(require,module,exports){
+},{"@stdlib/math/constants/float64-ninf":60,"@stdlib/math/constants/float64-pinf":62}],6:[function(require,module,exports){
 'use strict';
 
 /**
@@ -446,7 +446,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/math/base/utils/float64-from-words":39,"@stdlib/math/base/utils/float64-get-high-word":43,"@stdlib/math/base/utils/float64-to-words":49}],11:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-from-words":41,"@stdlib/math/base/utils/float64-get-high-word":45,"@stdlib/math/base/utils/float64-to-words":51}],11:[function(require,module,exports){
 'use strict';
 
 /**
@@ -505,9 +505,9 @@ module.exports = copysign;
 // MODULES //
 
 var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var cosKernel = require( './cos_kernel.js' );
-var sinKernel = require( './sin_kernel.js' );
-var remPio2 = require( './rem_pio2.js' );
+var kernelCos = require( '@stdlib/math/base/special/kernel-cos' );
+var kernelSin = require( '@stdlib/math/base/special/kernel-sin' );
+var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 
 
 // MAIN //
@@ -554,23 +554,23 @@ function cos( x ) {
 				return 1.0;
 			}
 		}
-		return cosKernel( x, z );
+		return kernelCos( x, z );
 	}
 	// Case: cos(Inf or NaN) is NaN */
 	else if ( ix >= 0x7ff00000 ) {
 		return NaN;
 	}
 	// Case: Argument reduction needed...
-	n = remPio2( x, y );
+	n = rempio2( x, y );
 	switch ( n & 3 ) {
 	case 0:
-		return cosKernel( y[0], y[1] );
+		return kernelCos( y[0], y[1] );
 	case 1:
-		return -sinKernel( y[0], y[1], 1 );
+		return -kernelSin( y[0], y[1] );
 	case 2:
-		return -cosKernel( y[0], y[1] );
+		return -kernelCos( y[0], y[1] );
 	default:
-		return sinKernel( y[0], y[1], 1 );
+		return kernelSin( y[0], y[1] );
 	}
 } // end FUNCTION cos()
 
@@ -579,100 +579,7 @@ function cos( x ) {
 
 module.exports = cos;
 
-},{"./cos_kernel.js":13,"./rem_pio2.js":15,"./sin_kernel.js":17,"@stdlib/math/base/utils/float64-get-high-word":43}],13:[function(require,module,exports){
-'use strict';
-
-/*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_cos.c?view=co}.
-*
-* The implementation follows the original, but has been modified for JavaScript.
-*/
-
-/*
-* ====================================================
-* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunSoft, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ====================================================
-*/
-
-// VARIABLES //
-
-var C1  =  4.16666666666666019037e-02; /* 0x3FA55555, 0x5555554C */
-var C2  = -1.38888888888741095749e-03; /* 0xBF56C16C, 0x16C15177 */
-var C3  =  2.48015872894767294178e-05; /* 0x3EFA01A0, 0x19CB1590 */
-var C4  = -2.75573143513906633035e-07; /* 0xBE927E4F, 0x809C52AD */
-var C5  =  2.08757232129817482790e-09; /* 0x3E21EE9E, 0xBDB4B1C4 */
-var C6  = -1.13596475577881948265e-11; /* 0xBDA8FAE9, 0xBE8838D4 */
-
-
-// MAIN //
-
-/**
-* Compute the cos function on \\( [-\pi/4, \pi/4] \\), \\( \pi/4 \approx 0.785398164 \\)
-*
-* #### Method
-*
-* * Since \\( \cos(-x) = \cos(x) \\), we need only to consider positive x.
-* * If \\( x < 2^-27 \\), return 1 with inexact if \\( x \ne 0 \\).
-* * \\( cos(x) \\) is approximated by a polynomial of degree 14 on \\( [0,\pi/4] \\)
-*
-*   ``` tex
-*   \cos(x) \approx 1 - \frac{x \cdot x}{2} + C_1 \cdot x^4 + \ldots + C_6 \cdot x^{14}
-*   ```
-*
-*   where the remez error is
-*
-*   ``` tex
-*   \left| \cos(x) - \left( 1 - 0.5x^2 + C_1x^4 +C_2x^6 +C_3x^8 +C_4x^{10} +C_5x^{12}  +C_6x^{15} \right) \right| \le 2^{-58}
-*   ```
-* * Let \\( C_1x^4 +C_2x^6 +C_3x^8 +C_4x^{10} +C_5x^{12}  +C_6x^{14} \\), then
-*
-*   ``` tex
-*    \cos(x) \approx 1 - \tfrac{x \cdot x}{2} + r
-*   ```
-*
-*   Since \\( \cos(x+y) \approx \cos(x) - \sin(x) \cdot y \approx \cos(x) - x \cdot y \\), a correction term is necessary in \\( \cos(x) \\) and hence
-*
-*   ``` tex
-*   \cos(x+y) = 1 - \left( \frac{x \cdot x}{2} - (r - x \cdot y) \right)
-*   ```
-*
-*   For better accuracy, rearrange to
-*
-*   ``` tex
-*   \cos(x+y) \approx w + \left( tmp + ( r - x \cdot y ) \right)
-*   ```
-*
-*   where \\( w = 1 - \frac{x \cdot x}{2} \\) and \\( tmp \\) is a tiny correction term ( \\( 1 - \frac{x \cdot x}{2} = w + tmp \\) exactly in infinite precision). The exactness of w + tmp in infinite precision depends on w and tmp having the same precision as x.
-*
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
-* @param {number} y - tail of x.
-* @returns {number} cosine (in radians)
-*/
-function cosKernel( x, y ) {
-	var hz;
-	var r;
-	var w;
-	var z;
-
-	z  = x * x;
-	w  = z * z;
-	r  = z * ( C1 + z*(C2+z*C3) ) + w * w * ( C4 + z*(C5+z*C6) );
-	hz = 0.5 * z;
-	w  = 1.0 - hz;
-	return w + ( ( (1.0-w) - hz ) + ( z*r - x*y ) );
-} // end FUNCTION cosKernel()
-
-
-// EXPORTS //
-
-module.exports = cosKernel;
-
-},{}],14:[function(require,module,exports){
+},{"@stdlib/math/base/special/kernel-cos":16,"@stdlib/math/base/special/kernel-sin":18,"@stdlib/math/base/special/rempio2":22,"@stdlib/math/base/utils/float64-get-high-word":45}],13:[function(require,module,exports){
 'use strict';
 
 /**
@@ -702,698 +609,7 @@ var cos = require( './cos.js' );
 
 module.exports = cos;
 
-},{"./cos.js":12}],15:[function(require,module,exports){
-'use strict';
-
-/*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/e_rem_pio2.c?view=co}.
-*
-* The implementation follows the original, but has been modified for JavaScript.
-*/
-
-/*
-* ====================================================
-* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunSoft, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ====================================================
-*
-* Optimized by Bruce D. Evans.
-*/
-
-// MODULES //
-
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var getLowWord = require( '@stdlib/math/base/utils/float64-get-low-word' );
-var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
-var round = require( '@stdlib/math/base/special/round' );
-var remPio2Kernel = require( './rem_pio2_kernel.js' );
-
-
-// VARIABLES //
-
-var ZERO =  0.00000000000000000000e+00; /* 0x00000000, 0x00000000 */
-var TWO24 =  1.67772160000000000000e+07; /* 0x41700000, 0x00000000 */
-
-// 53 bits of 2/PI
-var INVPIO2 =  6.36619772367581382433e-01; /* 0x3FE45F30, 0x6DC9C883 */
-
-// First 33 bit of PI/2
-var PIO2_1  =  1.57079632673412561417e+00; /* 0x3FF921FB, 0x54400000 */
-
-// PIO2_1T = PI/2 - PIO2_1
-var PIO2_1T =  6.07710050650619224932e-11; /* 0x3DD0B461, 0x1A626331 */
-
-// Second 33 bit of PI/2
-var PIO2_2  =  6.07710050630396597660e-11; /* 0x3DD0B461, 0x1A600000 */
-
-// PIO2_2T = PI/2 - ( PIO2_1 + PIO2_2 )
-var PIO2_2T =  2.02226624879595063154e-21; /* 0x3BA3198A, 0x2E037073 */
-
-// Third 33 bit of PI/2
-var PIO2_3  =  2.02226624871116645580e-21; /* 0x3BA3198A, 0x2E000000 */
-
-// PIO2_3T = PI/2 - ( PIO2_1 + PIO2_2 + PIO2_3 )
-var PIO2_3T =  8.47842766036889956997e-32; /* 0x397B839A, 0x252049C1 */
-
-
-// MAIN //
-
-/**
-* Compute x - n*pi/2 = r. Returns n and stores the remainder `r`
-* as two numbers y[0] and y[1] such that y[0]+y[1] = r.
-*
-* @private
-* @param {number} x - input value
-* @param {Array} y - remainder elements
-* @returns {integer} n - factor of pi/2
-*/
-function remPio2( x, y ) {
-	var low;
-	var e0;
-	var hx;
-	var ix;
-	var nx;
-	var tx;
-	var ty;
-	var i;
-	var n;
-	var z;
-
-	tx = new Array( 3 );
-	ty = new Array( 2 );
-
-	hx = getHighWord( x );
-	ix = hx & 0x7fffffff;
-
-	// Case: |x| ~<= pi/4 , no need for reduction
-	if ( ix <= 0x3fe921fb ) {
-		y[ 0 ] = x;
-		y[ 1 ] = 0;
-		return 0;
-	}
-
-	// Case: |x| ~<= 5pi/4
-	if ( ix <= 0x400f6a7a ) {
-		// Case: |x| ~= pi/2 or 2pi/2
-		if ( (ix & 0xfffff) === 0x921fb ) {
-			// Cancellation => use medium case
-			return remPio2Medium( x, ix, y );
-		}
-		// Case: |x| ~<= 3pi/4
-		if ( ix <= 0x4002d97c ) {
-			if ( x > 0.0 ) {
-				z = x - PIO2_1;
-				y[ 0 ] = z - PIO2_1T;
-				y[ 1 ] = ( z - y[0] ) - PIO2_1T;
-				return 1.0;
-			} else {
-				z = x + PIO2_1;
-				y[ 0 ] = z + PIO2_1T;
-				y[ 1 ] = ( z - y[0] ) + PIO2_1T;
-				return -1.0;
-			}
-		}
-		else {
-			if ( x > 0.0 ) {
-				z = x - 2 * PIO2_1;
-				y[ 0 ] = z - 2 * PIO2_1T;
-				y[ 1 ] = ( z - y[0] ) -2 * PIO2_1T;
-				return 2;
-			} else {
-				z = x + 2 * PIO2_1;
-				y[ 0 ] = z + 2 * PIO2_1T;
-				y[ 1 ] = ( z - y[0] ) + 2 * PIO2_1T;
-				return -2;
-			}
-		}
-	}
-	// Case: |x| ~<= 9pi/4
-	if ( ix <= 0x401c463b ) {
-		// Case: |x| ~<= 7pi/4
-		if ( ix <= 0x4015fdbc ) {
-			// Case: |x| ~= 3pi/2
-			if ( ix === 0x4012d97c ) {
-				return remPio2Medium( x, ix, y );
-			}
-			if ( x > 0.0 ) {
-				z = x - 3 * PIO2_1;
-				y[ 0 ] = z - 3 * PIO2_1T;
-				y[ 1 ] = (z-y[0]) - 3 * PIO2_1T;
-				return 3;
-			} else {
-				z = x + 3 * PIO2_1;
-				y[ 0 ] = z + 3 * PIO2_1T;
-				y[ 1 ] = ( z - y[0] ) + 3 * PIO2_1T;
-				return -3;
-			}
-		} else {
-			if ( ix === 0x401921fb ) {
-				// Case: |x| ~= 4pi/2
-				return remPio2Medium( x, ix, y );
-			}
-			if ( x > 0.0 ) {
-				z = x - 4.0 * PIO2_1;
-				y[ 0 ] = z - 4.0 * PIO2_1T;
-				y[ 1 ] = ( z - y[0] ) - 4.0 * PIO2_1T;
-				return +4;
-			} else {
-				z = x + 4.0 * PIO2_1;
-				y[ 0 ] = z + 4.0 * PIO2_1T;
-				y[ 1 ] = ( z - y[0] ) + 4.0 * PIO2_1T;
-				return -4;
-			}
-		}
-	}
-	// Case: |x| ~< 2^20*(pi/2), medium size
-	if ( ix < 0x413921fb ) {
-		return remPio2Medium( x, ix, y );
-	}
-	// All other (large) arguments...
-	// Case: x is inf or NaN */
-	if ( ix >= 0x7ff00000 ) {
-		y[ 0 ] = y[ 1 ] = NaN;
-		return 0.0;
-	}
-	// Set z = scalbn(|x|,ilogb(x)-23)...
-	low = getLowWord( x );
-	// e0 = ilogb(z)-23:
-	e0 = ( ix >> 20 ) - 1046;
-	z = fromWords( ix - ((e0<<20)|0), low );
-	for ( i = 0; i < 2; i++ ) {
-		tx[ i ] = z|0;
-		z = ( z - tx[i] ) * TWO24;
-	}
-	tx[ 2 ] = z;
-	nx = 3;
-	while ( tx[ nx-1 ] === ZERO ) {
-		// Skip zero term...
-		nx--;
-	}
-	n = remPio2Kernel( tx, ty, e0, nx, 1 );
-	if ( x < 0.0 ) {
-		y[ 0 ] = -ty[ 0 ];
-		y[ 1 ] = -ty[ 1 ];
-		return -n;
-	}
-	y[ 0 ] = ty[ 0 ];
-	y[ 1 ] = ty[ 1 ];
-	return n;
-} // end FUNCTION remPio2()
-
-
-/**
-* Compute x - n*pi/2 = r for medium-sized inputs.
-*
-* @private
-* @param {number} x - input value
-* @param {int32} ix - higher word
-* @param {Array} y - remainder elements
-* @returns {integer} n - factor of pi/2
-*/
-function remPio2Medium( x, ix, y ) {
-	var high;
-	var n;
-	var t;
-	var r;
-	var w;
-	var i;
-	var j;
-
-	n = round( x * INVPIO2 );
-	r = x - n * PIO2_1;
-	w = n * PIO2_1T;
-	// 1st round good to 85 bit...
-	j = ix >> 20;
-	y[ 0 ] = r - w;
-	high = getHighWord( y[0] );
-	i = j - ( (high>>20) & 0x7ff );
-	if ( i > 16 ) {
-		// 2nd iteration needed, good to 118...
-		t  = r;
-		w  = n * PIO2_2;
-		r  = t - w;
-		w  = n * PIO2_2T - ( (t-r) - w );
-		y[ 0 ] = r - w;
-		high = getHighWord( y[0] );
-		i = j - ( (high>>20) & 0x7ff );
-		if ( i > 49 )  {
-			// 3rd iteration need, 151 bits acc
-			t  = r;
-			w  = n * PIO2_3;
-			r  = t - w;
-			w  = n * PIO2_3T - ( (t-r) - w );
-			y[ 0 ] = r - w;
-		}
-	}
-	y[ 1 ] = ( r - y[0] ) - w;
-	return n;
-} // end FUNCTION remPio2Medium()
-
-
-// EXPORTS //
-
-module.exports = remPio2;
-
-},{"./rem_pio2_kernel.js":16,"@stdlib/math/base/special/round":22,"@stdlib/math/base/utils/float64-from-words":39,"@stdlib/math/base/utils/float64-get-high-word":43,"@stdlib/math/base/utils/float64-get-low-word":45}],16:[function(require,module,exports){
-'use strict';
-
-/*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_rem_pio2.c?view=co}.
-*
-* The implementation follows the original, but has been modified for JavaScript.
-*/
-
-/*
-* ====================================================
-* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunSoft, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ====================================================
-*/
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-var ldexp = require( '@stdlib/math/base/special/ldexp' );
-
-
-// VARIABLES //
-
-var INIT_JK = [
-	3,
-	4,
-	4,
-	6
-]; /* initial value for jk */
-
-/*
-* Table of constants for 2/pi, 396 Hex digits (476 decimal) of 2/pi
-*
-*		integer array, contains the (24*i)-th to (24*i+23)-th
-*		bit of 2/pi after binary point. The corresponding
-*		floating value is
-*
-*			ipio2[i] * 2^(-24(i+1)).
-*
-* NB: This table must have at least (e0-3)/24 + jk terms.
-*     For quad precision (e0 <= 16360, jk = 6), this is 686.
-*/
-var IPIO2 = [
-	0xA2F983, 0x6E4E44, 0x1529FC, 0x2757D1, 0xF534DD, 0xC0DB62,
-	0x95993C, 0x439041, 0xFE5163, 0xABDEBB, 0xC561B7, 0x246E3A,
-	0x424DD2, 0xE00649, 0x2EEA09, 0xD1921C, 0xFE1DEB, 0x1CB129,
-	0xA73EE8, 0x8235F5, 0x2EBB44, 0x84E99C, 0x7026B4, 0x5F7E41,
-	0x3991D6, 0x398353, 0x39F49C, 0x845F8B, 0xBDF928, 0x3B1FF8,
-	0x97FFDE, 0x05980F, 0xEF2F11, 0x8B5A0A, 0x6D1F6D, 0x367ECF,
-	0x27CB09, 0xB74F46, 0x3F669E, 0x5FEA2D, 0x7527BA, 0xC7EBE5,
-	0xF17B3D, 0x0739F7, 0x8A5292, 0xEA6BFB, 0x5FB11F, 0x8D5D08,
-	0x560330, 0x46FC7B, 0x6BABF0, 0xCFBC20, 0x9AF436, 0x1DA9E3,
-	0x91615E, 0xE61B08, 0x659985, 0x5F14A0, 0x68408D, 0xFFD880,
-	0x4D7327, 0x310606, 0x1556CA, 0x73A8C9, 0x60E27B, 0xC08C6B
-];
-
-// Double precision array, obtained by cutting pi/2 into 24 bits chunks...
-var PIO2 = [
-	1.57079625129699707031e+00, /* 0x3FF921FB, 0x40000000 */
-	7.54978941586159635335e-08, /* 0x3E74442D, 0x00000000 */
-	5.39030252995776476554e-15, /* 0x3CF84698, 0x80000000 */
-	3.28200341580791294123e-22, /* 0x3B78CC51, 0x60000000 */
-	1.27065575308067607349e-29, /* 0x39F01B83, 0x80000000 */
-	1.22933308981111328932e-36, /* 0x387A2520, 0x40000000 */
-	2.73370053816464559624e-44, /* 0x36E38222, 0x80000000 */
-	2.16741683877804819444e-51 /* 0x3569F31D, 0x00000000 */
-];
-var TWO24 =  1.67772160000000000000e+07; /* 0x41700000, 0x00000000 */
-var TWON24 =  5.96046447753906250000e-08; /* 0x3E700000, 0x00000000 */
-
-
-// FUNCTIONS //
-
-/**
-* Helper function performing the computation for remPio2Kernel().
-*
-* @private
-* @param {PositiveNumber} x - input value
-* @param {Array} y - ouput result in an array of double precision numbers.
-* @param {integer} jz - number of terms of ipio2[] used.
-* @param {Array} q - array with integral value, representing the 24-bits chunk of the product of x and 2/pi.
-* @param {integer} q0 - the corresponding exponent of q[0]. Note that the exponent for q[i] would be q0-24*i.
-* @param {integer} jk - jk+1 is the initial number of terms of IPIO2[] needed in the computation.
-* @param {integer} jv - index for pointing to the suitable ipio2[] for the computation
-* @param {integer} jx - nx - 1
-* @param {Array} f - IPIO2[] in floating point
-* @param {PositiveInteger} prec - precision in bits (can be 24 (single), 53 (double), 64 (extended), 113 (quad))
-* @returns {number} last three digits of N
-*/
-function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
-	var carry;
-	var fq;
-	var fw;
-	var ih;
-	var iq;
-	var jp;
-	var i;
-	var k;
-	var n;
-	var j;
-	var z;
-
-	// jp+1 is the number of terms in PIo2[] needed:
-	jp = jk;
-
-	fq = new Array( 20 );
-	iq = new Array( 20 );
-
-	// Distill q[] into iq[] reversingly...
-	for ( i = 0, j = jz, z = q[ jz ]; j > 0; i++, j-- ) {
-		fw = ( TWON24 * z ) | 0;
-		iq[ i ] = ( z-TWO24 * fw ) | 0;
-		z = q[ j-1 ] + fw;
-	}
-
-	// Compute n...
-	z  = ldexp( z, q0 );
-	// Trim off integer >= 8:
-	z -= 8.0 * floor( z * 0.125 );
-	n  = z | 0;
-	z -= n;
-	ih = 0;
-	if ( q0 > 0 ) {
-		// Need iq[jz-1] to determine n...
-		i  = ( iq[jz-1] >> (24-q0) );
-		n += i;
-		iq[ jz-1 ] -= i << (24-q0);
-		ih = iq[ jz-1 ] >> (23-q0);
-	}
-	else if ( q0 === 0 ) {
-		ih = iq[ jz-1 ] >> 23;
-	}
-	else if ( z >= 0.5 ) {
-		ih = 2;
-	}
-	// Case: q > 0.5
-	if ( ih > 0 ) {
-		n += 1;
-		carry = 0;
-		// Compute 1-q:
-		for ( i = 0; i < jz; i++ ) {
-			j = iq[ i ];
-			if ( carry === 0 ) {
-				if ( j !== 0 ) {
-					carry = 1;
-					iq[ i ] = 0x1000000 - j;
-				}
-			} else  {
-				iq[ i ] = 0xffffff - j;
-			}
-		}
-		if ( q0 > 0 ) {
-			// Rare case: chance is 1 in 12...
-			switch ( q0 ) {
-			case 1:
-				iq[ jz-1 ] &= 0x7fffff;
-			break;
-			case 2:
-				iq[ jz-1 ] &= 0x3fffff;
-			break;
-			}
-		}
-		if ( ih === 2 ) {
-			z = 1.0 - z;
-			if ( carry !== 0 ) {
-				z -= ldexp( 1.0, q0 );
-			}
-		}
-	}
-	// Check if recomputation is needed...
-	if ( z === 0.0 ) {
-		j = 0;
-		for ( i = jz - 1; i >= jk; i-- ) {
-			j |= iq[ i ];
-		}
-		if ( j === 0 ) {
-			// Need recomputation...
-			for( k = 1; iq[jk-k] === 0; k++ ) {}   /* k = no. of terms needed */
-			for ( i = jz + 1; i <= jz + k; i++ ) {
-				// Add q[jz+1] to q[jz+k]...
-				f[ jx+i ] = IPIO2[ jv+i ];
-				for ( j = 0, fw = 0.0; j <= jx; j++ ) {
-					fw += x[ j ] * f[ jx + i-j ];
-				}
-				q[ i ] = fw;
-			}
-			jz += k;
-			return compute( x, y, jz, q, q0, jk, jv, jx, f, prec );
-		}
-	}
-	// Chop off zero terms...
-	if ( z === 0.0 ) {
-		jz -= 1;
-		q0 -= 24;
-		while ( iq[jz] === 0 ) {
-			jz--;
-			q0-=24;
-		}
-	} else {
-		// Break z into 24-bit if necessary...
-		z = ldexp( z, -q0 );
-		if ( z >= TWO24 ) {
-			fw = (TWON24*z) | 0;
-			iq[ jz ] = ( z - TWO24*fw ) | 0;
-			jz += 1;
-			q0 += 24;
-			iq[ jz ] = fw;
-		} else {
-			iq[ jz ] = z | 0;
-		}
-	}
-	// Convert integer "bit" chunk to floating-point value...
-	fw = ldexp( 1.0, q0 );
-	for( i = jz; i >= 0; i-- ) {
-		q[ i ] = fw * iq[i];
-		fw *= TWON24;
-	}
-	// Compute PIo2[0,...,jp]*q[jz,...,0]...
-	for( i = jz; i >= 0; i-- ) {
-		for( fw = 0.0, k = 0; k <= jp && k <= jz - i; k++ ) {
-			fw += PIO2[ k ] * q[ i+k ];
-		}
-		fq[ jz-i ] = fw;
-	}
-	// Compress fq[] into y[]...
-	switch ( prec ) {
-	case 0:
-		fw = 0.0;
-		for ( i = jz; i >= 0; i-- ) {
-			fw += fq[ i ];
-		}
-		y[ 0 ] = ( ih === 0 )? fw: -fw;
-	break;
-	case 1:
-	case 2:
-		fw = 0.0;
-		for ( i = jz; i >= 0; i-- ) {
-			fw += fq[ i ];
-		}
-		y[ 0 ] = ( ih === 0 ) ? fw: -fw;
-		fw = fq[ 0 ] - fw;
-		for ( i = 1; i <= jz; i++ ) {
-			fw += fq[i];
-		}
-		y[ 1 ] = ( ih === 0 )? fw: -fw;
-	break;
-	case 3:
-		for ( i = jz; i > 0; i-- ) {
-			fw = fq[ i-1 ] + fq[ i ];
-			fq[ i ] += fq[ i-1 ]-fw;
-			fq[ i-1 ] = fw;
-		}
-		for ( i = jz; i > 1; i-- ) {
-			fw = fq[ i-1 ] + fq[ i ];
-			fq[ i ]  += fq[ i-1 ] - fw;
-			fq[ i-1 ] = fw;
-		}
-		for ( fw = 0.0, i = jz; i >= 2; i-- ) {
-			fw += fq[ i ];
-		}
-		if ( ih === 0 ) {
-			y[ 0 ] =  fq[ 0 ];
-			y[ 1 ] =  fq[ 1 ];
-			y[ 2 ] =  fw;
-		} else {
-			y[ 0 ] = -fq[ 0 ];
-			y[ 1 ] = -fq[ 1 ];
-			y[ 2 ] = -fw;
-		}
-	}
-	return n & 7;
-} // end FUNCTION compute()
-
-
-// MAIN //
-
-/*
-* Return the last three digits of N with `y = x - N*pi/2` so that `|y| < pi/2`.
-*
-* #### Method
-*
-* The method is to compute the integer (mod 8) and fraction parts of (2/pi)*x without doing the full multiplication. In general we skip the part of the product that are known to be a huge integer (more accurately, = 0 mod 8 ). Thus the number of operations are independent of the exponent of the input.
-*
-* @param {PositiveNumber} x - input value
-* @param {Array} y - ouput result in an array of double precision numbers.
-* @param {PositiveInteger} e0 - The exponent of x[0]. Must be <= 16360
-* @param {PositiveInteger} nx - dimension of x[]
-* @param {PositiveInteger} prec - precision in bits (can be 24 (single), 53 (double), 64 (extended), 113 (quad))
-* @returns {number} last three digits of N
-*/
-function remPio2Kernel( x, y, e0, nx, prec ) {
-	var fw;
-	var jk;
-	var jv;
-	var jx;
-	var jz;
-	var q0;
-	var i;
-	var j;
-	var f;
-	var m;
-	var q;
-
-	f = new Array( 20 );
-	q = new Array( 20 );
-
-	// Initialize jk...
-	jk = INIT_JK[ prec ];
-	// Determine jx, jv, q0, note that 3 > q0
-	jx =  nx - 1;
-	jv = ( e0 - 3 ) / 24;
-	jv = jv | 0;
-	if ( jv < 0 ) {
-		jv = 0;
-	}
-	q0 =  e0 - 24 * ( jv + 1 );
-
-	// Set up f[0] to f[jx+jk] where f[jx+jk] = ipio2[jv+jk]:
-	j = jv - jx;
-	m = jx + jk;
-	for ( i = 0; i <= m; i++, j++ ) {
-		f[ i ] = ( j < 0 ) ? 0.0 : IPIO2[ j ];
-	}
-	// Compute q[0],q[1],...q[jk]:
-	for ( i = 0; i <= jk; i++ ) {
-		for ( j = 0, fw = 0.0; j <= jx; j++ ) {
-			fw += x[ j ] * f[ jx + i-j ];
-		}
-		q[ i ] = fw;
-	}
-	jz = jk;
-	return compute( x, y, jz, q, q0, jk, jv, jx, f, prec );
-} // end FUNCTION remPio2Kernel()
-
-
-// EXPORTS //
-
-module.exports = remPio2Kernel;
-
-},{"@stdlib/math/base/special/floor":19,"@stdlib/math/base/special/ldexp":20}],17:[function(require,module,exports){
-'use strict';
-
-/*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_sin.c?view=co}.
-*
-* The implementation follows the original, but has been modified for JavaScript.
-*/
-
-/*
-* ====================================================
-* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunSoft, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ====================================================
-*/
-
-// VARIABLES //
-
-var S1  = -1.66666666666666324348e-01; /* 0xBFC55555, 0x55555549 */
-var S2  =  8.33333333332248946124e-03; /* 0x3F811111, 0x1110F8A6 */
-var S3  = -1.98412698298579493134e-04; /* 0xBF2A01A0, 0x19C161D5 */
-var S4  =  2.75573137070700676789e-06; /* 0x3EC71DE3, 0x57B1FE7D */
-var S5  = -2.50507602534068634195e-08; /* 0xBE5AE5E6, 0x8A2B9CEB */
-var S6  =  1.58969099521155010221e-10; /* 0x3DE5D93A, 0x5ACFD57C */
-
-
-// MAIN //
-
-/**
-* Computes the sin function on \\( \approx [-\pi/4, \pi/4] \\) (except on -0), \\( \pi/4 \approx 0.7854 \\)
-*
-* #### Method
-*
-* * Since \\( \sin(-x) = -\sin(x) \\), we need only to consider positive x.
-* * Callers must return \\( \sin(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves -0. Callers may do the optimization \\( \sin(x) \approx x \\) for tiny x.
-* * \\( \sin(x) \\) is approximated by a polynomial of degree 13 on \\( \left[0,\tfrac{pi}{4} \right] \\)
-*
-*   ``` tex
-*   \sin(x) \approx x + S_1 \cdot x^3 + \ldots + S_6 \cdot x^{13}
-*   ```
-*
-*   where
-*
-*   ``` tex
-*   \left| \frac{\sin(x)}{x} \left( 1 + S_1 \cdot x + S_2 \cdot x + S_3 \cdot x + S_4 \cdot x + S_5 \cdot x + S_6 \cdot x \right) \right| \le 2^{-58}
-*   ```
-*
-* * We have \\( \sin(x+y) = \sin(x) + \sin'(x') \cdot y \approx \sin(x) + (1-x*x/2) \cdot y \\). For better accuracy, let
-*
-*   ``` tex
-*   r = x^3 * \left( S_2 + x^2 \cdot \left( S_3 + x^2 * \left( S_4 + x^2 \cdot ( S_5+x^2 \cdot S_6 ) \right) \right) \right)
-*   ```
-*
-*   then
-*
-*   ``` tex
-*   \sin(x) = x + \left( S_1 \cdot x + ( x \cdot (r-y/2) + y ) \right)
-*   ```
-*
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
-* @param {number} y - tail of x.
-* @param {number} iy - indicates whether y is 0. (if iy = 0, y assumed to be 0).
-* @returns sine (in radians)
-*/
-function sinKernel( x, y, iy ) {
-	var r;
-	var v;
-	var w;
-	var z;
-
-	z = x * x;
-	w = z * z;
-	r = S2 + z * ( S3 + z*S4 ) + z * w * ( S5 + z*S6 );
-	v = z * x;
-	if ( iy === 0 ) {
-		return x + v * ( S1 + z*r );
-	}
-	else {
-		return x - ( ( z * (0.5*y-v*r) - y ) - v * S1 );
-	}
-} // end FUNCTION sinKernel()
-
-
-// EXPORTS //
-
-module.exports = sinKernel;
-
-},{}],18:[function(require,module,exports){
+},{"./cos.js":12}],14:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -1427,7 +643,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],19:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1460,7 +676,332 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":18}],20:[function(require,module,exports){
+},{"./floor.js":14}],16:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the cosine of a number on `[-pi/4, pi/4]`.
+*
+* @module @stdlib/math/base/special/kernel-cos
+*
+* @example
+* var kernelCos = require( '@stdlib/math/base/special/kernel-cos' );
+*
+* var v = kernelCos( 0.0, 0.0 );
+* // returns ~1.0
+*
+* v = kernelCos( Math.PI/6.0, 0.0 );
+* // returns ~0.866
+*
+* v = kernelCos( 0.785, -1.144e-17 );
+* // returns ~0.707
+*
+* v = kernelCos( NaN, 0.0 );
+* // returns NaN
+*/
+
+// MODULES //
+
+var kernelCos = require( './kernel_cos.js' );
+
+
+// EXPORTS //
+
+module.exports = kernelCos;
+
+},{"./kernel_cos.js":17}],17:[function(require,module,exports){
+'use strict';
+
+/*
+* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_cos.c?view=co}.
+*
+* The implementation follows the original, but has been modified for JavaScript.
+*/
+
+/*
+* ====================================================
+* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+*
+* Developed at SunSoft, a Sun Microsystems, Inc. business.
+* Permission to use, copy, modify, and distribute this
+* software is freely granted, provided that this notice
+* is preserved.
+* ====================================================
+*/
+
+// MODULES //
+
+var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
+
+
+// VARIABLES //
+
+var C13 = [
+	4.16666666666666019037e-02,  // 0x3FA55555, 0x5555554C
+	-1.38888888888741095749e-03, // 0xBF56C16C, 0x16C15177
+	2.48015872894767294178e-05  // 0x3EFA01A0, 0x19CB1590
+];
+var C46 = [
+	-2.75573143513906633035e-07, // 0xBE927E4F, 0x809C52AD
+	2.08757232129817482790e-09, // 0x3E21EE9E, 0xBDB4B1C4
+	-1.13596475577881948265e-11 // 0xBDA8FAE9, 0xBE8838D4
+];
+
+
+// FUNCTIONS //
+
+// Create polynomial functions based on above coefficients...
+var polyval13 = evalpoly( C13 );
+var polyval46 = evalpoly( C46 );
+
+
+// MAIN //
+
+/**
+* Computes the cosine on \\( [-\pi/4, \pi/4] \\), where \\( \pi/4 \approx 0.785398164 \\).
+*
+* ## Method
+*
+* * Since \\( \cos(-x) = \cos(x) \\), we need only to consider positive \\(x\\).
+* * If \\( x < 2^{-27} \\), return \\(1\\) which is inexact if \\( x \ne 0 \\).
+* * \\( cos(x) \\) is approximated by a polynomial of degree \\(14\\) on \\( [0,\pi/4] \\).
+*
+*   ``` tex
+*   \cos(x) \approx 1 - \frac{x \cdot x}{2} + C_1 \cdot x^4 + \ldots + C_6 \cdot x^{14}
+*   ```
+*
+*   where the Remez error is
+*
+*   ``` tex
+*   \left| \cos(x) - \left( 1 - \frac{x^2}{2} + C_1x^4 + C_2x^6 + C_3x^8 + C_4x^{10} + C_5x^{12} + C_6x^{15} \right) \right| \le 2^{-58}
+*   ```
+*
+* * Let \\( C_1x^4 + C_2x^6 + C_3x^8 + C_4x^{10} + C_5x^{12} + C_6x^{14} \\), then
+*
+*   ``` tex
+*   \cos(x) \approx 1 - \frac{x \cdot x}{2} + r
+*   ```
+*
+*   Since
+*
+*   ``` tex
+*   \cos(x+y) \approx \cos(x) - \sin(x) \cdot y \approx \cos(x) - x \cdot y
+*   ```
+
+*   a correction term is necessary in \\( \cos(x) \\). Hence,
+*
+*   ``` tex
+*   \cos(x+y) = 1 - \left( \frac{x \cdot x}{2} - (r - x \cdot y) \right)
+*   ```
+*
+*   For better accuracy, rearrange to
+*
+*   ``` tex
+*   \cos(x+y) \approx w + \left( t + ( r - x \cdot y ) \right)
+*   ```
+*
+*   where \\( w = 1 - \frac{x \cdot x}{2} \\) and \\( t \\) is a tiny correction term (\\( 1 - \frac{x \cdot x}{2} = w + t \\) exactly in infinite precision). The exactness of \\(w + t\\) in infinite precision depends on \\(w\\) and \\(t\\) having the same precision as \\(x\\).
+*
+*
+* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
+* @param {number} y - tail of `x`
+* @returns {number} cosine (in radians)
+*
+* @example
+* var v = kernelCos( 0.0, 0.0 );
+* // returns ~1.0
+*
+* @example
+* var v = kernelCos( Math.PI/6.0, 0.0 );
+* // returns ~0.866
+*
+* @example
+* var v = kernelCos( 0.785, -1.144e-17 );
+* // returns ~0.707
+*
+* @example
+* var v = kernelCos( NaN, 0.0 );
+* // returns NaN
+*/
+function kernelCos( x, y ) {
+	var hz;
+	var r;
+	var w;
+	var z;
+
+	z = x * x;
+	w = z * z;
+	r = z * polyval13( z );
+	r += w * w * polyval46( z );
+	hz = 0.5 * z;
+	w = 1.0 - hz;
+	return w + ( ((1.0-w) - hz) + ((z*r) - (x*y)) );
+} // end FUNCTION kernelCos()
+
+
+// EXPORTS //
+
+module.exports = kernelCos;
+
+},{"@stdlib/math/base/tools/evalpoly":37}],18:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the sine of a number on `[-pi/4, pi/4]`.
+*
+* @module @stdlib/math/base/special/kernel-sin
+*
+* @example
+* var kernelSin = require( '@stdlib/math/base/special/kernel-sin' );
+*
+* var v = kernelSin( 0.0, 0.0 );
+* // returns ~0.0
+*
+* v = kernelSin( Math.PI/6.0, 0.0 );
+* // returns ~0.5
+*
+* v = kernelSin( 0.619, 9.279e-18 );
+* // returns ~0.581
+*
+* v = kernelSin( NaN, 0.0 );
+* // returns NaN
+*
+* v = kernelSin( 3.0, NaN );
+* // returns NaN
+*
+* v = kernelSin( NaN, NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var kernelSin = require( './kernel_sin.js' );
+
+
+// EXPORTS //
+
+module.exports = kernelSin;
+
+},{"./kernel_sin.js":19}],19:[function(require,module,exports){
+'use strict';
+
+/*
+* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_sin.c?view=co}.
+*
+* The implementation follows the original, but has been modified for JavaScript.
+*/
+
+/*
+* ====================================================
+* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+*
+* Developed at SunSoft, a Sun Microsystems, Inc. business.
+* Permission to use, copy, modify, and distribute this
+* software is freely granted, provided that this notice
+* is preserved.
+* ====================================================
+*/
+
+// VARIABLES //
+
+var S1 = -1.66666666666666324348e-01; // 0xBFC55555, 0x55555549
+var S2 = 8.33333333332248946124e-03;  // 0x3F811111, 0x1110F8A6
+var S3 = -1.98412698298579493134e-04; // 0xBF2A01A0, 0x19C161D5
+var S4 = 2.75573137070700676789e-06;  // 0x3EC71DE3, 0x57B1FE7D
+var S5 = -2.50507602534068634195e-08; // 0xBE5AE5E6, 0x8A2B9CEB
+var S6 = 1.58969099521155010221e-10;  // 0x3DE5D93A, 0x5ACFD57C
+
+
+// MAIN //
+
+/**
+* Computes the sine on \\( \approx [-\pi/4, \pi/4] \\) (except on \\(-0\\)), where \\( \pi/4 \approx 0.7854 \\).
+*
+* ## Method
+*
+* * Since \\( \sin(-x) = -\sin(x) \\), we need only to consider positive \\(x\\).
+* * Callers must return \\( \sin(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves \\(-0\\). Callers may do the optimization \\( \sin(x) \approx x \\) for tiny \\(x\\).
+* * \\( \sin(x) \\) is approximated by a polynomial of degree \\(13\\) on \\( \left[0,\tfrac{pi}{4}\right] \\)
+*
+*   ``` tex
+*   \sin(x) \approx x + S_1 \cdot x^3 + \ldots + S_6 \cdot x^{13}
+*   ```
+*
+*   where
+*
+*   ``` tex
+*   \left| \frac{\sin(x)}{x} \left( 1 + S_1 \cdot x + S_2 \cdot x + S_3 \cdot x + S_4 \cdot x + S_5 \cdot x + S_6 \cdot x \right) \right| \le 2^{-58}
+*   ```
+*
+* * We have
+*
+*   ``` tex
+*   \sin(x+y) = \sin(x) + \sin'(x') \cdot y \approx \sin(x) + (1-x*x/2) \cdot y
+*   ```
+*
+*   For better accuracy, let
+*
+*   ``` tex
+*   r = x^3 * \left( S_2 + x^2 \cdot \left( S_3 + x^2 * \left( S_4 + x^2 \cdot ( S_5+x^2 \cdot S_6 ) \right) \right) \right)
+*   ```
+*
+*   then
+*
+*   ``` tex
+*   \sin(x) = x + \left( S_1 \cdot x + ( x \cdot (r-y/2) + y ) \right)
+*   ```
+*
+*
+* @param {number} x - input value (assumed to be bounded by `~pi/4` in magnitude)
+* @param {number} y - tail of `x`
+* @returns {number} sine (in radians)
+*
+* @example
+* var v = kernelSin( 0.0, 0.0 );
+* // returns ~0.0
+*
+* @example
+* var v = kernelSin( Math.PI/6.0, 0.0 );
+* // returns ~0.5
+*
+* @example
+* var v = kernelSin( 0.619, 9.279e-18 );
+* // returns ~0.581
+*
+* @example
+* var v = kernelSin( NaN, 0.0 );
+* // returns NaN
+*
+* @example
+* var v = kernelSin( 3.0, NaN );
+* // returns NaN
+*
+* @example
+* var v = kernelSin( NaN, NaN );
+* // returns NaN
+*/
+function kernelSin( x, y ) {
+	var r;
+	var v;
+	var w;
+	var z;
+
+	z = x * x;
+	w = z * z;
+	r = S2 + (z * (S3 + (z*S4))) + (z * w * (S5 + (z*S6)));
+	v = z * x;
+	if ( y === 0 ) {
+		return x + (v * (S1 + (z*r)));
+	}
+	return x - (((z*((0.5*y) - (v*r))) - y) - (v*S1));
+} // end FUNCTION kernelSin()
+
+
+// EXPORTS //
+
+module.exports = kernelSin;
+
+},{}],20:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1631,261 +1172,39 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/copysign":11,"@stdlib/math/base/utils/float64-exponent":37,"@stdlib/math/base/utils/float64-from-words":39,"@stdlib/math/base/utils/float64-normalize":47,"@stdlib/math/base/utils/float64-to-words":49,"@stdlib/math/constants/float64-exponent-bias":53,"@stdlib/math/constants/float64-max-base2-exponent":56,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":55,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":57,"@stdlib/math/constants/float64-ninf":58,"@stdlib/math/constants/float64-pinf":60}],22:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/copysign":11,"@stdlib/math/base/utils/float64-exponent":39,"@stdlib/math/base/utils/float64-from-words":41,"@stdlib/math/base/utils/float64-normalize":49,"@stdlib/math/base/utils/float64-to-words":51,"@stdlib/math/constants/float64-exponent-bias":55,"@stdlib/math/constants/float64-max-base2-exponent":58,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":57,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":59,"@stdlib/math/constants/float64-ninf":60,"@stdlib/math/constants/float64-pinf":62}],22:[function(require,module,exports){
 'use strict';
 
-// TODO: implementation
-
 /**
-* Round a numeric value to the nearest integer.
+* Compute `x - n*pi/2 = r`.
 *
-* @module @stdlib/math/base/special/round
+* @module @stdlib/math/base/special/rempio2
 *
 * @example
-* var round = require( '@stdlib/math/base/special/round' );
+* var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 *
-* var v = round( -4.2 );
-* // returns -4.0
+* var x = 128.0;
+* var y = new Array( 2 );
+* var n = rempio2( x, y );
+* // returns 81.0
 *
-* v = round( -4.5 );
-* // returns -4.0
+* var y1 = y[ 0 ];
+* // returns ~0.765
 *
-* v = round( -4.6 );
-* // returns -5.0
-*
-* v = round( 9.99999 );
-* // returns 10.0
-*
-* v = round( 9.5 );
-* // returns 10.0
-*
-* v = round( 9.2 );
-* // returns 9.0
-*
-* v = round( 0.0 );
-* // returns 0.0
-*
-* v = round( -0.0 );
-* // returns -0.0
-*
-* v = round( Number.POSITIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
-*
-* v = round( Number.NEGATIVE_INFINITY );
-* // returns Number.NEGATIVE_INFINITY
-*
-* v = round( NaN );
-* // returns NaN
+* var y2 = y[ 1 ];
+* // returns ~3.618e-17
 */
 
 // MODULES //
 
-var round = require( './round.js' );
+var rempio2 = require( './rempio2.js' );
 
 
 // EXPORTS //
 
-module.exports = round;
+module.exports = rempio2;
 
-},{"./round.js":23}],23:[function(require,module,exports){
-'use strict';
-
-// TODO: implementation
-
-/**
-* Rounds a numeric value to the nearest integer.
-*
-* @param {number} x - input value
-* @returns {number} function value
-*
-* @example
-* var v = round( -4.2 );
-* // returns -4.0
-*
-* @example
-* var v = round( -4.5 );
-* // returns -4.0
-*
-* @example
-* var v = round( -4.6 );
-* // returns -5.0
-*
-* @example
-* var v = round( 9.99999 );
-* // returns 10.0
-*
-* @example
-* var v = round( 9.5 );
-* // returns 10.0
-*
-* @example
-* var v = round( 9.2 );
-* // returns 9.0
-*
-* @example
-* var v = round( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = round( -0.0 );
-* // returns -0.0
-*
-* @example
-* var v = round( Number.POSITIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var v = round( Number.NEGATIVE_INFINITY );
-* // returns Number.NEGATIVE_INFINITY
-*
-* @example
-* var v = round( NaN );
-* // returns NaN
-*/
-var round = Math.round;
-
-
-// EXPORTS //
-
-module.exports = round;
-
-},{}],24:[function(require,module,exports){
-'use strict';
-
-/**
-* Compute the sine of a number.
-*
-* @module @stdlib/math/base/special/sin
-*
-* @example
-* var sin = require( '@stdlib/math/base/special/sin' );
-*
-* var v = sin( 0.0 );
-* // returns ~0.0
-*
-* v = sin( Math.PI/2.0 );
-* // returns ~1.0
-*
-* v = sin( -Math.PI/6.0 );
-* // returns ~-0.5
-*
-* v = sin( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var sin = require( './sin.js' );
-
-
-// EXPORTS //
-
-module.exports = sin;
-
-},{"./sin.js":30}],25:[function(require,module,exports){
-'use strict';
-
-/*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_cos.c?view=co}.
-*
-* The implementation follows the original, but has been modified for JavaScript.
-*/
-
-/*
-* ====================================================
-* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunSoft, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ====================================================
-*/
-
-// VARIABLES //
-
-var C1 = 4.16666666666666019037e-02;  // 0x3FA55555, 0x5555554C
-var C2 = -1.38888888888741095749e-03; // 0xBF56C16C, 0x16C15177
-var C3 = 2.48015872894767294178e-05;  // 0x3EFA01A0, 0x19CB1590
-var C4 = -2.75573143513906633035e-07; // 0xBE927E4F, 0x809C52AD
-var C5 = 2.08757232129817482790e-09;  // 0x3E21EE9E, 0xBDB4B1C4
-var C6 = -1.13596475577881948265e-11; // 0xBDA8FAE9, 0xBE8838D4
-
-
-// MAIN //
-
-/**
-* Computes the cosine on \\( [-\pi/4, \pi/4] \\), where \\( \pi/4 \approx 0.785398164 \\).
-*
-* ## Method
-*
-* * Since \\( \cos(-x) = \cos(x) \\), we need only to consider positive \\(x\\).
-* * If \\( x < 2^{-27} \\), return \\(1\\) which is inexact if \\( x \ne 0 \\).
-* * \\( cos(x) \\) is approximated by a polynomial of degree \\(14\\) on \\( [0,\pi/4] \\).
-*
-*   ``` tex
-*   \cos(x) \approx 1 - \frac{x \cdot x}{2} + C_1 \cdot x^4 + \ldots + C_6 \cdot x^{14}
-*   ```
-*
-*   where the Remez error is
-*
-*   ``` tex
-*   \left| \cos(x) - \left( 1 - \frac{x^2}{2} + C_1x^4 + C_2x^6 + C_3x^8 + C_4x^{10} + C_5x^{12} + C_6x^{15} \right) \right| \le 2^{-58}
-*   ```
-*
-* * Let \\( C_1x^4 + C_2x^6 + C_3x^8 + C_4x^{10} + C_5x^{12} + C_6x^{14} \\), then
-*
-*   ``` tex
-*   \cos(x) \approx 1 - \frac{x \cdot x}{2} + r
-*   ```
-*
-*   Since
-*
-*   ``` tex
-*   \cos(x+y) \approx \cos(x) - \sin(x) \cdot y \approx \cos(x) - x \cdot y
-*   ```
-
-*   a correction term is necessary in \\( \cos(x) \\). Hence,
-*
-*   ``` tex
-*   \cos(x+y) = 1 - \left( \frac{x \cdot x}{2} - (r - x \cdot y) \right)
-*   ```
-*
-*   For better accuracy, rearrange to
-*
-*   ``` tex
-*   \cos(x+y) \approx w + \left( t + ( r - x \cdot y ) \right)
-*   ```
-*
-*   where \\( w = 1 - \frac{x \cdot x}{2} \\) and \\( t \\) is a tiny correction term (\\( 1 - \frac{x \cdot x}{2} = w + t \\) exactly in infinite precision). The exactness of \\(w + t\\) in infinite precision depends on \\(w\\) and \\(t\\) having the same precision as \\(x\\).
-*
-*
-* @private
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
-* @param {number} y - tail of `x`
-* @returns {number} cosine (in radians)
-*/
-function kernelCos( x, y ) {
-	var hz;
-	var r;
-	var w;
-	var z;
-	z = x * x;
-	w = z * z;
-	r = z * (C1 + (z * (C2 + (z*C3))));
-	r += w * w * (C4 + (z * (C5 + (z*C6))));
-	hz = 0.5 * z;
-	w = 1.0 - hz;
-	return w + ( ((1.0-w) - hz) + ((z*r) - (x*y)) );
-} // end FUNCTION kernelCos()
-
-
-// EXPORTS //
-
-module.exports = kernelCos;
-
-},{}],26:[function(require,module,exports){
-/* eslint-disable no-plusplus */
+},{"./rempio2.js":24}],23:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1913,16 +1232,13 @@ var ldexp = require( '@stdlib/math/base/special/ldexp' );
 
 // VARIABLES //
 
-// Initial value for `jk`:
-var INIT_JK = [ 3, 4, 4, 6 ];
-
 /*
 * Table of constants for `2/pi` (`396` hex digits, `476` decimal).
 *
 * Integer array which contains the (24*i)-th to (24*i+23)-th bit of `2/pi` after binary point. The corresponding floating value is
 *
-* ``` text
-* ipio2[i] * 2^(-24(i+1))
+* ``` tex
+* \operatorname{ipio2}[i] \cdot 2^{-24(i+1)}
 * ```
 *
 * This table must have at least `(e0-3)/24 + jk` terms. For quad precision (e0 <= 16360, jk = 6), this is `686`.
@@ -1981,11 +1297,11 @@ function zero( arr ) {
 } // end FUNCTION zero()
 
 /**
-* Performs the computation for `kernelRemPio2()`.
+* Performs the computation for `kernelRempio2()`.
 *
 * @private
 * @param {PositiveNumber} x - input value
-* @param {Array<number>} y - output result in an array of double precision numbers
+* @param {Collection} y - output result in an array of double precision numbers
 * @param {integer} jz - number of terms of `ipio2[]` used
 * @param {Array<integer>} q - array with integral values, representing the 24-bits chunk of the product of `x` and `2/pi`
 * @param {integer} q0 - the corresponding exponent of `q[0]` (the exponent for `q[i]` would be `q0-24*i`)
@@ -1993,10 +1309,9 @@ function zero( arr ) {
 * @param {integer} jv - index for pointing to the suitable `ipio2[]` for the computation
 * @param {integer} jx - `nx - 1`
 * @param {Array<number>} f - `IPIO2[]` in floating point
-* @param {PositiveInteger} prec - precision in bits (can be 24 (single), 53 (double), 64 (extended), 113 (quad))
-* @returns {number} last three digits of `N`
+* @returns {number} last three binary digits of `N`
 */
-function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
+function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 	var carry;
 	var fw;
 	var ih;
@@ -2013,6 +1328,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
 	// Distill `q[]` into `IQ[]` in reverse order...
 	z = q[ jz ];
 	j = jz;
+	// eslint-disable-next-line no-plusplus
 	for ( i = 0; j > 0; i++, j-- ) {
 		fw = ( TWON24 * z )|0;
 		IQ[ i ] = ( z - (TWO24*fw) )|0;
@@ -2020,7 +1336,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
 	}
 	// Compute `n`...
 	z = ldexp( z, q0 );
-	z -= 8.0 * floor( z*0.125 ); // trim off integer >= 8
+	z -= 8.0 * floor( z*0.125 ); // Trim off integer >= 8
 	n = z|0;
 	z -= n;
 	ih = 0;
@@ -2056,14 +1372,12 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
 		}
 		if ( q0 > 0 ) {
 			// Rare case: chance is 1 in 12...
-			switch ( q0 ) {
+			switch ( q0 ) { // eslint-disable-line default-case
 			case 1:
 				IQ[ jz-1 ] &= 0x7fffff;
 				break;
 			case 2:
 				IQ[ jz-1 ] &= 0x3fffff;
-				break;
-			default:
 				break;
 			}
 		}
@@ -2083,7 +1397,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
 		if ( j === 0 ) {
 			// Need re-computation...
 			for ( k = 1; IQ[ jk-k ] === 0; k++ ) {
-				// k = number of terms needed
+				// `k` is the number of terms needed...
 			}
 			for ( i = jz+1; i <= jz+k; i++ ) {
 				// Add `q[jz+1]` to `q[jz+k]`...
@@ -2095,7 +1409,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
 				q[ i ] = fw;
 			}
 			jz += k;
-			return compute( x, y, jz, q, q0, jk, jv, jx, f, prec );
+			return compute( x, y, jz, q, q0, jk, jv, jx, f );
 		}
 	}
 	// Chop off zero terms...
@@ -2134,66 +1448,23 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
 		FQ[ jz-i ] = fw;
 	}
 	// Compress `FQ[]` into `y[]`...
-	switch ( prec ) {
-	case 0:
-		fw = 0.0;
-		for ( i = jz; i >= 0; i-- ) {
-			fw += FQ[ i ];
-		}
-		if ( ih === 0 ) {
-			y[ 0 ] = fw;
-		} else {
-			y[ 0 ] = -fw;
-		}
-		break;
-	case 1:
-	case 2:
-		fw = 0.0;
-		for ( i = jz; i >= 0; i-- ) {
-			fw += FQ[ i ];
-		}
-		if ( ih === 0 ) {
-			y[ 0 ] = fw;
-		} else {
-			y[ 0 ] = -fw;
-		}
-		fw = FQ[ 0 ] - fw;
-		for ( i = 1; i <= jz; i++ ) {
-			fw += FQ[i];
-		}
-		if ( ih === 0 ) {
-			y[ 1 ] = fw;
-		} else {
-			y[ 1 ] = -fw;
-		}
-		break;
-	case 3:
-		for ( i = jz; i > 0; i-- ) {
-			fw = FQ[ i-1 ] + FQ[ i ];
-			FQ[ i ] += FQ[ i-1 ] - fw;
-			FQ[ i-1 ] = fw;
-		}
-		for ( i = jz; i > 1; i-- ) {
-			fw = FQ[ i-1 ] + FQ[ i ];
-			FQ[ i ] += FQ[ i-1 ] - fw;
-			FQ[ i-1 ] = fw;
-		}
-		fw = 0.0;
-		for ( i = jz; i >= 2; i-- ) {
-			fw += FQ[ i ];
-		}
-		if ( ih === 0 ) {
-			y[ 0 ] = FQ[ 0 ];
-			y[ 1 ] = FQ[ 1 ];
-			y[ 2 ] = fw;
-		} else {
-			y[ 0 ] = -FQ[ 0 ];
-			y[ 1 ] = -FQ[ 1 ];
-			y[ 2 ] = -fw;
-		}
-		break;
-	default:
-		break;
+	fw = 0.0;
+	for ( i = jz; i >= 0; i-- ) {
+		fw += FQ[ i ];
+	}
+	if ( ih === 0 ) {
+		y[ 0 ] = fw;
+	} else {
+		y[ 0 ] = -fw;
+	}
+	fw = FQ[ 0 ] - fw;
+	for ( i = 1; i <= jz; i++ ) {
+		fw += FQ[i];
+	}
+	if ( ih === 0 ) {
+		y[ 1 ] = fw;
+	} else {
+		y[ 1 ] = -fw;
 	}
 	return ( n & 7 );
 } // end FUNCTION compute()
@@ -2202,21 +1473,20 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f, prec ) {
 // MAIN //
 
 /**
-* Return the last three digits of `N` with `y = x - N*pi/2` so that `|y| < pi/2`.
+* Returns the last three binary digits of `N` with `y = x - N*pi/2` so that `|y| < pi/2`.
 *
 * ## Method
 *
-* The method is to compute the integer (mod 8) and fraction parts of `(2/pi)*x` without doing the full multiplication. In general, we skip the part of the product that is known to be a huge integer (more accurately, equals 0 mod 8 ). Thus, the number of operations are independent of the exponent of the input.
+* * The method is to compute the integer (mod 8) and fraction parts of `(2/pi)*x` without doing the full multiplication. In general, we skip the part of the product that is known to be a huge integer (more accurately, equals 0 mod 8 ). Thus, the number of operations is independent of the exponent of the input.
 *
 * @private
 * @param {PositiveNumber} x - input value
-* @param {Array<number>} y - output result in an array of double precision numbers
+* @param {Collection} y - output result in an array of double precision numbers
 * @param {PositiveInteger} e0 - the exponent of `x[0]` (must be <= 16360)
 * @param {PositiveInteger} nx - dimension of `x[]`
-* @param {PositiveInteger} prec - precision in bits (can be 24 (single), 53 (double), 64 (extended), 113 (quad))
-* @returns {number} last three digits of `N`
+* @returns {number} last three binary digits of `N`
 */
-function kernelRemPio2( x, y, e0, nx, prec ) {
+function kernelRempio2( x, y, e0, nx ) {
 	var fw;
 	var jk;
 	var jv;
@@ -2227,8 +1497,8 @@ function kernelRemPio2( x, y, e0, nx, prec ) {
 	var j;
 	var m;
 
-	// Initialize `jk`:
-	jk = INIT_JK[ prec ];
+	// Initialize `jk` for double-precision floating-point numbers:
+	jk = 4;
 
 	// Determine `jx`, `jv`, `q0` (note that `q0 < 3`):
 	jx = nx - 1;
@@ -2241,6 +1511,7 @@ function kernelRemPio2( x, y, e0, nx, prec ) {
 	// Set up `F[0]` to `F[jx+jk]` where `F[jx+jk] = IPIO2[jv+jk]`:
 	j = jv - jx;
 	m = jx + jk;
+	// eslint-disable-next-line no-plusplus
 	for ( i = 0; i <= m; i++, j++ ) {
 		if ( j < 0 ) {
 			F[ i ] = 0.0;
@@ -2257,111 +1528,15 @@ function kernelRemPio2( x, y, e0, nx, prec ) {
 		Q[ i ] = fw;
 	}
 	jz = jk;
-	return compute( x, y, jz, Q, q0, jk, jv, jx, F, prec );
-} // end FUNCTION kernelRemPio2()
+	return compute( x, y, jz, Q, q0, jk, jv, jx, F );
+} // end FUNCTION kernelRempio2()
 
 
 // EXPORTS //
 
-module.exports = kernelRemPio2;
+module.exports = kernelRempio2;
 
-},{"@stdlib/math/base/special/floor":19,"@stdlib/math/base/special/ldexp":20}],27:[function(require,module,exports){
-'use strict';
-
-/*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/k_sin.c?view=co}.
-*
-* The implementation follows the original, but has been modified for JavaScript.
-*/
-
-/*
-* ====================================================
-* Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunSoft, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ====================================================
-*/
-
-// VARIABLES //
-
-var S1 = -1.66666666666666324348e-01; // 0xBFC55555, 0x55555549
-var S2 = 8.33333333332248946124e-03;  // 0x3F811111, 0x1110F8A6
-var S3 = -1.98412698298579493134e-04; // 0xBF2A01A0, 0x19C161D5
-var S4 = 2.75573137070700676789e-06;  // 0x3EC71DE3, 0x57B1FE7D
-var S5 = -2.50507602534068634195e-08; // 0xBE5AE5E6, 0x8A2B9CEB
-var S6 = 1.58969099521155010221e-10;  // 0x3DE5D93A, 0x5ACFD57C
-
-
-// MAIN //
-
-/**
-* Computes the sine on \\( \approx [-\pi/4, \pi/4] \\) (except on \\(-0\\)), where \\( \pi/4 \approx 0.7854 \\).
-*
-* ## Method
-*
-* * Since \\( \sin(-x) = -\sin(x) \\), we need only to consider positive \\(x\\).
-* * Callers must return \\( \sin(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves \\(-0\\). Callers may do the optimization \\( \sin(x) \approx x \\) for tiny \\(x\\).
-* * \\( \sin(x) \\) is approximated by a polynomial of degree \\(13\\) on \\( \left[0,\tfrac{pi}{4}\right] \\)
-*
-*   ``` tex
-*   \sin(x) \approx x + S_1 \cdot x^3 + \ldots + S_6 \cdot x^{13}
-*   ```
-*
-*   where
-*
-*   ``` tex
-*   \left| \frac{\sin(x)}{x} \left( 1 + S_1 \cdot x + S_2 \cdot x + S_3 \cdot x + S_4 \cdot x + S_5 \cdot x + S_6 \cdot x \right) \right| \le 2^{-58}
-*   ```
-*
-* * We have
-*
-*   ``` tex
-*   \sin(x+y) = \sin(x) + \sin'(x') \cdot y \approx \sin(x) + (1-x*x/2) \cdot y
-*   ```
-*
-*   For better accuracy, let
-*
-*   ``` tex
-*   r = x^3 * \left( S_2 + x^2 \cdot \left( S_3 + x^2 * \left( S_4 + x^2 \cdot ( S_5+x^2 \cdot S_6 ) \right) \right) \right)
-*   ```
-*
-*   then
-*
-*   ``` tex
-*   \sin(x) = x + \left( S_1 \cdot x + ( x \cdot (r-y/2) + y ) \right)
-*   ```
-*
-*
-* @private
-* @param {number} x - input value (assumed to be bounded by `~pi/4` in magnitude)
-* @param {number} y - tail of `x`
-* @param {number} iy - indicates whether `y` is `0` (if `iy = 0`, `y` assumed to be `0`)
-* @returns {number} sine (in radians)
-*/
-function kernelSin( x, y, iy ) {
-	var r;
-	var v;
-	var w;
-	var z;
-	z = x * x;
-	w = z * z;
-	r = S2 + (z * (S3 + (z*S4))) + (z * w * (S5 + (z*S6)));
-	v = z * x;
-	if ( iy === 0 ) {
-		return x + (v * (S1 + (z*r)));
-	}
-	return x - (((z*((0.5*y) - (v*r))) - y) - (v*S1));
-} // end FUNCTION kernelSin()
-
-
-// EXPORTS //
-
-module.exports = kernelSin;
-
-},{}],28:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":15,"@stdlib/math/base/special/ldexp":20}],24:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2388,8 +1563,8 @@ module.exports = kernelSin;
 var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
 var getLowWord = require( '@stdlib/math/base/utils/float64-get-low-word' );
 var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
-var remPio2Kernel = require( './kernel_rem_pio2.js' );
-var remPio2Medium = require( './rem_pio2_medium.js' );
+var rempio2Kernel = require( './kernel_rempio2.js' );
+var rempio2Medium = require( './rempio2_medium.js' );
 
 
 // VARIABLES //
@@ -2455,14 +1630,35 @@ var TY = new Array( 2 );
 * ## Notes
 *
 * * Returns `n` and stores the remainder `r` as two numbers `y[0]` and `y[1]`, such that `y[0]+y[1] = r`.
+* * The function does not perform input validation for `y` due to performance considerations. You should ensure to only supply an array, typed array, or an array-like object for `y`.
 *
 *
-* @private
 * @param {number} x - input value
-* @param {Array<number>} y - remainder elements
+* @param {Collection} y - remainder elements
 * @returns {integer} factor of `pi/2`
+*
+* @example
+* var x = 128.0;
+* var y = new Array( 2 );
+* var n = rempio2( x, y );
+* // returns 81.0
+*
+* var y1 = y[ 0 ];
+* // returns ~0.765
+* var y2 = y[ 1 ];
+* // returns ~3.618e-17
+*
+* @example
+* var y = new Array( 2 );
+* var n = rempio2( NaN, y );
+* // returns 0.0
+*
+* var y1 = y[ 0 ];
+* // returns NaN
+* var y2 = y[ 1 ];
+* // returns NaN
 */
-function remPio2( x, y ) {
+function rempio2( x, y ) {
 	var low;
 	var e0;
 	var hx;
@@ -2486,7 +1682,7 @@ function remPio2( x, y ) {
 		// Case: |x| ~= pi/2 or pi
 		if ( (ix & SIGNIFICAND_MASK) === PI_HIGH_WORD_SIGNIFICAND ) {
 			// Cancellation => use medium case
-			return remPio2Medium( x, ix, y );
+			return rempio2Medium( x, ix, y );
 		}
 		// Case: |x| ~<= 3pi/4
 		if ( ix <= THREE_PIO4_HIGH_WORD ) {
@@ -2518,7 +1714,7 @@ function remPio2( x, y ) {
 		if ( ix <= SEVEN_PIO4_HIGH_WORD ) {
 			// Case: |x| ~= 3pi/2
 			if ( ix === THREE_PIO2_HIGH_WORD ) {
-				return remPio2Medium( x, ix, y );
+				return rempio2Medium( x, ix, y );
 			}
 			if ( x > 0.0 ) {
 				z = x - ( 3.0*PIO2_1 );
@@ -2533,7 +1729,7 @@ function remPio2( x, y ) {
 		}
 		// Case: |x| ~= 4pi/2
 		if ( ix === TWO_PI_HIGH_WORD ) {
-			return remPio2Medium( x, ix, y );
+			return rempio2Medium( x, ix, y );
 		}
 		if ( x > 0.0 ) {
 			z = x - ( 4.0*PIO2_1 );
@@ -2548,7 +1744,7 @@ function remPio2( x, y ) {
 	}
 	// Case: |x| ~< 2^20*pi/2 (medium size)
 	if ( ix < MEDIUM ) {
-		return remPio2Medium( x, ix, y );
+		return rempio2Medium( x, ix, y );
 	}
 	// Case: x is NaN or infinity
 	if ( ix >= EXPONENT_MASK ) {
@@ -2558,7 +1754,7 @@ function remPio2( x, y ) {
 	}
 	// Set z = scalbn(|x|, ilogb(x)-23)...
 	low = getLowWord( x );
-	e0 = (ix >> 20) - 1046; // e0 = ilogb(z) - 23 => unbiased exponent minus 23
+	e0 = (ix >> 20) - 1046; // `e0 = ilogb(z) - 23` => unbiased exponent minus 23
 	z = fromWords( ix - ((e0 << 20)|0), low );
 	for ( i = 0; i < 2; i++ ) {
 		TX[ i ] = z|0;
@@ -2570,7 +1766,7 @@ function remPio2( x, y ) {
 		// Skip zero term...
 		nx -= 1;
 	}
-	n = remPio2Kernel( TX, TY, e0, nx, 1 );
+	n = rempio2Kernel( TX, TY, e0, nx, 1 );
 	if ( x < 0.0 ) {
 		y[ 0 ] = -TY[ 0 ];
 		y[ 1 ] = -TY[ 1 ];
@@ -2579,14 +1775,14 @@ function remPio2( x, y ) {
 	y[ 0 ] = TY[ 0 ];
 	y[ 1 ] = TY[ 1 ];
 	return n;
-} // end FUNCTION remPio2()
+} // end FUNCTION rempio2()
 
 
 // EXPORTS //
 
-module.exports = remPio2;
+module.exports = rempio2;
 
-},{"./kernel_rem_pio2.js":26,"./rem_pio2_medium.js":29,"@stdlib/math/base/utils/float64-from-words":39,"@stdlib/math/base/utils/float64-get-high-word":43,"@stdlib/math/base/utils/float64-get-low-word":45}],29:[function(require,module,exports){
+},{"./kernel_rempio2.js":23,"./rempio2_medium.js":25,"@stdlib/math/base/utils/float64-from-words":41,"@stdlib/math/base/utils/float64-get-high-word":45,"@stdlib/math/base/utils/float64-get-low-word":47}],25:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2647,10 +1843,10 @@ var EXPONENT_MASK = 0x7ff;
 * @private
 * @param {number} x - input value
 * @param {uint32} ix - high word of `x`
-* @param {Array<number>} y - remainder elements
+* @param {Collection} y - remainder elements
 * @returns {integer} factor of `pi/2`
 */
-function remPio2( x, ix, y ) {
+function rempio2Medium( x, ix, y ) {
 	var high;
 	var n;
 	var t;
@@ -2690,14 +1886,165 @@ function remPio2( x, ix, y ) {
 	}
 	y[ 1 ] = (r - y[0]) - w;
 	return n;
-} // end FUNCTION remPio2()
+} // end FUNCTION rempio2Medium()
 
 
 // EXPORTS //
 
-module.exports = remPio2;
+module.exports = rempio2Medium;
 
-},{"@stdlib/math/base/special/round":22,"@stdlib/math/base/utils/float64-get-high-word":43}],30:[function(require,module,exports){
+},{"@stdlib/math/base/special/round":26,"@stdlib/math/base/utils/float64-get-high-word":45}],26:[function(require,module,exports){
+'use strict';
+
+// TODO: implementation
+
+/**
+* Round a numeric value to the nearest integer.
+*
+* @module @stdlib/math/base/special/round
+*
+* @example
+* var round = require( '@stdlib/math/base/special/round' );
+*
+* var v = round( -4.2 );
+* // returns -4.0
+*
+* v = round( -4.5 );
+* // returns -4.0
+*
+* v = round( -4.6 );
+* // returns -5.0
+*
+* v = round( 9.99999 );
+* // returns 10.0
+*
+* v = round( 9.5 );
+* // returns 10.0
+*
+* v = round( 9.2 );
+* // returns 9.0
+*
+* v = round( 0.0 );
+* // returns 0.0
+*
+* v = round( -0.0 );
+* // returns -0.0
+*
+* v = round( Number.POSITIVE_INFINITY );
+* // returns Number.POSITIVE_INFINITY
+*
+* v = round( Number.NEGATIVE_INFINITY );
+* // returns Number.NEGATIVE_INFINITY
+*
+* v = round( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var round = require( './round.js' );
+
+
+// EXPORTS //
+
+module.exports = round;
+
+},{"./round.js":27}],27:[function(require,module,exports){
+'use strict';
+
+// TODO: implementation
+
+/**
+* Rounds a numeric value to the nearest integer.
+*
+* @param {number} x - input value
+* @returns {number} function value
+*
+* @example
+* var v = round( -4.2 );
+* // returns -4.0
+*
+* @example
+* var v = round( -4.5 );
+* // returns -4.0
+*
+* @example
+* var v = round( -4.6 );
+* // returns -5.0
+*
+* @example
+* var v = round( 9.99999 );
+* // returns 10.0
+*
+* @example
+* var v = round( 9.5 );
+* // returns 10.0
+*
+* @example
+* var v = round( 9.2 );
+* // returns 9.0
+*
+* @example
+* var v = round( 0.0 );
+* // returns 0.0
+*
+* @example
+* var v = round( -0.0 );
+* // returns -0.0
+*
+* @example
+* var v = round( Number.POSITIVE_INFINITY );
+* // returns Number.POSITIVE_INFINITY
+*
+* @example
+* var v = round( Number.NEGATIVE_INFINITY );
+* // returns Number.NEGATIVE_INFINITY
+*
+* @example
+* var v = round( NaN );
+* // returns NaN
+*/
+var round = Math.round;
+
+
+// EXPORTS //
+
+module.exports = round;
+
+},{}],28:[function(require,module,exports){
+'use strict';
+
+/**
+* Compute the sine of a number.
+*
+* @module @stdlib/math/base/special/sin
+*
+* @example
+* var sin = require( '@stdlib/math/base/special/sin' );
+*
+* var v = sin( 0.0 );
+* // returns ~0.0
+*
+* v = sin( Math.PI/2.0 );
+* // returns ~1.0
+*
+* v = sin( -Math.PI/6.0 );
+* // returns ~-0.5
+*
+* v = sin( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+var sin = require( './sin.js' );
+
+
+// EXPORTS //
+
+module.exports = sin;
+
+},{"./sin.js":29}],29:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2720,9 +2067,9 @@ module.exports = remPio2;
 // MODULES //
 
 var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var kernelCos = require( './kernel_cos.js' );
-var kernelSin = require( './kernel_sin.js' );
-var remPio2 = require( './rem_pio2.js' );
+var kernelCos = require( '@stdlib/math/base/special/kernel-cos' );
+var kernelSin = require( '@stdlib/math/base/special/kernel-sin' );
+var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 
 
 // VARIABLES //
@@ -2802,14 +2149,14 @@ function sin( x ) {
 		return NaN;
 	}
 	// Argument reduction...
-	n = remPio2( x, Y );
+	n = rempio2( x, Y );
 	switch ( n & 3 ) {
 	case 0:
-		return kernelSin( Y[0], Y[1], 1 );
+		return kernelSin( Y[0], Y[1] );
 	case 1:
 		return kernelCos( Y[0], Y[1] );
 	case 2:
-		return -kernelSin( Y[0], Y[1], 1 );
+		return -kernelSin( Y[0], Y[1] );
 	default:
 		return -kernelCos( Y[0], Y[1] );
 	}
@@ -2820,7 +2167,7 @@ function sin( x ) {
 
 module.exports = sin;
 
-},{"./kernel_cos.js":25,"./kernel_sin.js":27,"./rem_pio2.js":28,"@stdlib/math/base/utils/float64-get-high-word":43}],31:[function(require,module,exports){
+},{"@stdlib/math/base/special/kernel-cos":16,"@stdlib/math/base/special/kernel-sin":18,"@stdlib/math/base/special/rempio2":22,"@stdlib/math/base/utils/float64-get-high-word":45}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2853,7 +2200,7 @@ var sinpi = require( './sinpi.js' );
 
 module.exports = sinpi;
 
-},{"./sinpi.js":32}],32:[function(require,module,exports){
+},{"./sinpi.js":31}],31:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2942,13 +2289,13 @@ function sinpi( x ) {
 
 module.exports = sinpi;
 
-},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/base/special/copysign":11,"@stdlib/math/base/special/cos":14,"@stdlib/math/base/special/sin":24,"@stdlib/math/constants/float64-pi":59}],33:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/base/special/copysign":11,"@stdlib/math/base/special/cos":13,"@stdlib/math/base/special/sin":28,"@stdlib/math/constants/float64-pi":61}],32:[function(require,module,exports){
 module.exports={"expected":[-0.0,0.30871849442917204,0.5872773239766755,0.8084632147357804,0.9506678326991512,0.9999987687634074,0.9516367311567749,0.8103063569629751,0.5898146477066691,0.3117021206564178,0.0031384490471553766,-0.30573182735974125,-0.5847342156315931,-0.8066121092375382,-0.9496895702711083,-0.9999889188888583,-0.9525962561004394,-0.8121415177643543,-0.5923461618292225,-0.3146826766530981,-0.006276867180943299,0.30274214886645745,0.582185347720787,0.8047530587014282,0.9487019535084202,0.9999692192367803,0.9535463980789327,0.8139686790638443,0.5948718414092085,0.3176601330610744,0.009415223488300803,-0.29974948839731513,-0.579630745350245,-0.8028860814388872,-0.9477049921390001,-0.9999396700012125,-0.954487147733464,-0.8157878228640871,-0.5973916615689694,-0.32063446055273825,-0.012553487056773914,0.2967538754296807,0.5770704336825467,0.8010111958394297,0.9466986959828045,0.9999002714732118,0.9554184957977425,0.8175989312467226,0.5999055974885623,0.32360562983130103,0.015691626974822116,-0.29375533947004506,-0.5745044379364723,-0.7991284203704665,-0.9456830749517365,-0.9998510240408491,-0.9563404330981221,-0.8194019863725382,-0.6024136244060033,-0.3265736116310821,-0.018829612332122846,0.2907539100535624,0.571932783386789,0.7972377735771226,0.9446581390495483,0.9997919281892061,0.9572529505536113,0.8211969704816456,0.6049157176175115,0.329538376717797,0.02196741221987594,-0.28774961674401484,-0.5693554953640028,-0.7953392740820545,-0.9436238983717422,-0.9997229845003712,-0.9581560391760165,-0.8229838658936545,-0.6074118524777521,-0.3324998958888456,-0.025104995731063454,0.28474248913335115,0.5667725992541083,0.7934329405852673,0.9425803631054719,0.99964419365343,0.9590496900700175,0.8247626550078475,0.6099020044000798,0.3354581399735997,0.028242331960932638,-0.2817325568414375,-0.5641841204983399,-0.7915187918639297,-0.9415275435294412,-0.9995555564244644,-0.9599338944332539,-0.8265333203033537,-0.6123861488567803,-0.3384130798336903,-0.03137939000703252,0.2787198495157658,0.5615900845929197,0.7895968467721899,0.940465450013819,0.999457073686541,0.960808643556413,0.8282958443393202,0.6148642613793122,0.3413646863632527,0.03451613896969685,-0.2757043968311618,-0.5589905170888075,-0.7876671242409891,-0.9393940930200758,-0.9993487464097035,-0.9616739288233153,-0.8300502097550855,-0.617336317558548,-0.344312930489381,-0.037652547952303814,0.2726862284894928,0.5563854435914488,0.7857296432778755,0.9383134831009717,0.9992305756609635,0.9625297417109987,0.8317963992703485,0.6198022930450144,0.34725778317216266,0.04078858606158036,-0.2696653742193749,-0.553774889760522,-0.783784422966845,-0.9372236309003918,-0.9991025626042893,-0.9633760737898033,-0.8335343956853408,-0.6222621635490975,-0.3501992154051325,-0.04392422240790649,0.26664186377588034,0.5511588813096868,0.7818314824680417,0.9361245471532569,0.9989647085005952,0.9642129167234541,0.8352641818809945,0.6247159048414215,0.3531371982155163,0.047059426105619556,-0.26361572694024427,-0.5485374440063299,-0.7798708410177358,-0.9350162426854173,-0.9988170147077283,-0.965040262269143,-0.8369857408191116,-0.6271634927528776,-0.35607170266451643,-0.05019416627331841,0.2605869935195717,0.5459106036713489,0.7779025179280236,0.9338987284135464,0.9986594826804559,0.96585810227761,0.8386990555425073,0.6296049031750024,0.35900269984759653,0.05332841203416763,-0.25755569334654355,-0.543278386178749,-0.7759265325866641,-0.9327720153450331,-0.9984921139704505,-0.9666664286932241,-0.8404041091752745,-0.6320401120601798,-0.36193016089476654,-0.056462132516201684,0.254521856279123,0.5406408174556112,0.7739429044568894,0.9316361145778735,0.9983149102262749,0.9674652335540612,0.8421008849228038,0.6344690954218785,0.3648540569708668,0.05959529685262892,-0.25148551220026133,-0.5379979234816888,-0.7719516530772115,-0.9304910373005615,-0.998127873193366,-0.9682545089919732,-0.8437893660720462,-0.6368918293348873,-0.36777435927585245,-0.0627278741821357,0.24844669101764696,0.5353497302891878,0.7699527980612308,0.9293367947919784,0.9979310047140173,0.9690342472327087,0.845469535991654,0.639308289935552,0.3706910390450766,0.06585983364919032,-0.24540542266323764,-0.532696263962511,-0.767946359097443,-0.9281733984212822,-0.9977243067273611,-0.9698044405959231,-0.8471413781321435,-0.6417184534220092,-0.37360406754957415,-0.06899114440434695,0.24236173709322528,0.5300375506380012,0.7659323559490444,0.9270008596477952,0.9975077812693521,0.9705650814952992,0.8488048760260594,0.644122296054422,0.37651341609634437,0.07212177560450497,-0.23931566428756776,-0.5273736165036832,-0.7639108084537376,-0.9258191900208915,-0.9972814304727357,-0.9713161624386102,-0.8504600132881358,-0.6465197941552128,-0.3794190560286338,-0.07525169641339091,0.23626723424973708,0.5247044877990064,0.7618817365235365,0.9246284011798831,0.9970452565670442,0.972057676027794,0.8521067736154583,0.6489109241092967,0.3823209587262184,0.07838087600159495,-0.23321647700642364,-0.5220301908145859,-0.7598451601445696,-0.9234285048539221,-0.9967992618785643,-0.9727896149590257,-0.8537451407876243,-0.6512956623643151,-0.38521909560564427,-0.08150928354705277,0.23016342260724054,0.5193507518919442,0.7578010993768834,0.9222195128618174,0.9965434488303153,0.9735119720227899,0.8553750986669028,0.6536739854308662,0.38811343812067395,0.08463688823530453,-0.22710810112442764,-0.5166661974232509,-0.7557495743542451,-0.9210014371120199,-0.996277819942027,-0.9742247401039513,-0.8569966311983934,-0.6560458698827373,-0.39100395776232044,-0.08776365925979852,0.22405054265255533,0.5139765538510634,0.7536906052839726,0.9197742896024378,0.9960023778301138,0.9749279121818251,0.8586097224101844,0.6584112923571017,0.39389062605929287,0.09088956582219448,-0.22099077730822805,-0.511281847668066,-0.7516242124466196,-0.9185380824203351,-0.9957171252076493,-0.9756214813302458,-0.8602143564135102,-0.6607702295548835,-0.39677341457823556,-0.094014577132667,0.21792883522978768,0.5085821054168091,0.7495504161959506,0.9172928277422123,0.9954220648843395,0.9763054407176364,0.8618105174029077,0.6631226582407849,0.39965229492400844,0.09713866241020881,-0.21486474657701674,-0.5058773536894867,-0.7474692369586237,-0.9160385378336869,-0.9951171997664952,-0.9769797836070738,-0.8633981896563494,-0.6654685552436499,-0.4025272387399662,-0.10026179088293395,0.2117985415308412,0.5031676191275197,0.7453806952340184,0.9147752250493725,0.994802532857003,0.9776445033563576,0.8649773575354889,0.6678078974566588,0.4053982177082381,0.1033839317883809,-0.2087302502930333,-0.500452928421525,-0.743284811594034,-0.9135029018327567,-0.9944780672552967,-0.978299593418073,-0.8665480054856788,-0.670140661837556,-0.4082652035500067,-0.10650505437381554,0.20565990308595772,0.4977333083108983,0.741181606682887,0.9122215807160791,0.9941438061573254,0.9789450473396485,0.8681101180362147,0.6724668254088768,0.4111281680257862,0.10962512789653411,-0.20258753015209913,-0.4950087855835895,-0.7390711012169074,-0.9109312743202073,-0.9937997528555234,-0.9795808587634541,-0.8696636798004652,-0.6747863652581734,-0.4139870829357012,-0.11274412162416599,0.19951316175400458,0.4922793870758388,0.7369533159843348,0.9096319953545225,0.9934459107387787,0.9802070214268148,0.8712086754760229,0.6770992585382413,0.4168419201197433,0.11586200483495424,-0.19643682817389813,-0.4895451396719121,-0.7348282718451137,-0.9083237566167569,-0.9930822832923916,-0.980823529162086,-0.8727450898448553,-0.6794054824673437,-0.4196926514581305,-0.11897874681814691,0.19335855971331692,0.48680607030383655,0.7326959897306882,0.9070065709929229,0.9927088740980534,0.9814303758967495,0.8742729077734551,0.6817050143294363,0.4225392488714618,0.12209431687416648,-0.19027838669281266,-0.48406220595113497,-0.7305564906438106,-0.9056804514571496,-0.9923256868338024,-0.9820275556534294,-0.875792114212989,-0.6839978314743747,-0.4253816843210753,-0.12520868431500098,0.1871963394517625,0.4813135736405604,0.7284097956582741,0.9043454110715642,0.9919327252739926,0.9826150625499728,0.8773026941994455,0.6862839113182021,0.4282199298093039,0.12832181846446192,-0.18411244834798246,-0.4785602004458294,-0.7262559259187962,-0.9030014629861632,-0.9915299932892452,-0.9831928907995032,-0.8788046328537831,-0.6885632313432751,-0.43105395737975116,-0.131433688658575,0.1810267437574504,0.4758021134873758,0.7240949026407497,0.901648620438683,0.9911174948464274,0.9837610347104779,0.8802979153820655,0.6908357690985497,0.4338837391175667,0.13454426424574928,-0.1779392560740069,-0.4730393399320042,-0.7219267471099691,-0.9002868967544692,-0.990695234008602,-0.9843194886867439,-0.8817825270756503,-0.6931015021997865,-0.43670924714970105,-0.13765351458716774,0.17485001570905573,0.47027190699274063,0.7197514806825406,0.8989163053463557,0.9902632149349907,0.9848682472275927,0.88325845331127,0.6953604083297711,0.43953045364526044,0.14076140905706688,-0.17175905309128642,-0.467499841928486,-0.717569124784592,-0.897536859714493,-0.9898214418809321,-0.985407304927811,-0.8847256795512184,-0.6976124652385343,-0.44234733081566047,-0.14386791704303836,0.1686663986662865,0.464723172043767,0.7153797009120816,0.896148573446274,0.989369919197841,0.9859366564777494,0.8861841913434833,0.6998576507435548,0.4451598509149802,0.14697300794633056,-0.16557208289637354,-0.4619419246884674,-0.7131832306306021,-0.8947514602161611,-0.9889086513331644,-0.9864562966633511,-0.8876339743218887,-0.7020959427300415,-0.4479679862402155,-0.15007665118212787,0.16247613626020724,0.4591561272575584,0.7109797355751056,0.8933455337855614,0.988437642830342,0.9869662203662192,0.8890750142062368,0.7043273191510564,0.4507717091315515,0.15317881617994034,-0.1593785892525111,-0.456365807190829,-0.7087692374497843,-0.8919308080026906,-0.9879568983287474,-0.9874664225636629,-0.8905072968024378,-0.7065517580277942,-0.45357099197263556,-0.15627947238377216,0.15627947238377216,0.45357099197263556,0.7065517580277942,0.8905072968024378,0.9874664225636629,0.9879568983287474,0.8919308080026906,0.7087692374497843,0.456365807190829,0.1593785892525111,-0.15317881617994034,-0.4507717091315515,-0.7043273191510564,-0.8890750142062368,-0.9869662203662192,-0.988437642830342,-0.8933455337855614,-0.7109797355751056,-0.4591561272575584,-0.16247613626020724,0.15007665118212787,0.4479679862402155,0.7020959427300415,0.8876339743218887,0.9864562966633511,0.9889086513331644,0.8947514602161611,0.7131832306306021,0.4619419246884674,0.16557208289637354,-0.14697300794633056,-0.4451598509149802,-0.6998576507435548,-0.8861841913434833,-0.9859366564777494,-0.989369919197841,-0.896148573446274,-0.7153797009120816,-0.464723172043767,-0.1686663986662865,0.14386791704303836,0.44234733081566047,0.6976124652385343,0.8847256795512184,0.985407304927811,0.9898214418809321,0.897536859714493,0.717569124784592,0.467499841928486,0.17175905309128642,-0.14076140905706688,-0.43953045364526044,-0.6953604083297711,-0.88325845331127,-0.9848682472275927,-0.9902632149349907,-0.8989163053463557,-0.7197514806825406,-0.47027190699274063,-0.17485001570905573,0.13765351458716774,0.43670924714970105,0.6931015021997865,0.8817825270756503,0.9843194886867439,0.990695234008602,0.9002868967544692,0.7219267471099691,0.4730393399320042,0.1779392560740069,-0.13454426424574928,-0.4338837391175667,-0.6908357690985497,-0.8802979153820655,-0.9837610347104779,-0.9911174948464274,-0.901648620438683,-0.7240949026407497,-0.4758021134873758,-0.1810267437574504,0.131433688658575,0.43105395737975116,0.6885632313432751,0.8788046328537831,0.9831928907995032,0.9915299932892452,0.9030014629861632,0.7262559259187962,0.4785602004458294,0.18411244834798246,-0.12832181846446192,-0.4282199298093039,-0.6862839113182021,-0.8773026941994455,-0.9826150625499728,-0.9919327252739926,-0.9043454110715642,-0.7284097956582741,-0.4813135736405604,-0.1871963394517625,0.12520868431500098,0.4253816843210753,0.6839978314743747,0.875792114212989,0.9820275556534294,0.9923256868338024,0.9056804514571496,0.7305564906438106,0.48406220595113497,0.19027838669281266,-0.12209431687416648,-0.4225392488714618,-0.6817050143294363,-0.8742729077734551,-0.9814303758967495,-0.9927088740980534,-0.9070065709929229,-0.7326959897306882,-0.48680607030383655,-0.19335855971331692,0.11897874681814691,0.4196926514581305,0.6794054824673437,0.8727450898448553,0.980823529162086,0.9930822832923916,0.9083237566167569,0.7348282718451137,0.4895451396719121,0.19643682817389813,-0.11586200483495424,-0.4168419201197433,-0.6770992585382413,-0.8712086754760229,-0.9802070214268148,-0.9934459107387787,-0.9096319953545225,-0.7369533159843348,-0.4922793870758388,-0.19951316175400458,0.11274412162414381,0.4139870829357012,0.6747863652581734,0.8696636798004652,0.9795808587634587,0.9937997528555258,0.9109312743202073,0.7390711012169074,0.4950087855835895,0.20258753015207728,-0.10962512789651192,-0.4111281680257862,-0.6724668254088768,-0.8681101180362147,-0.978945047339653,-0.9941438061573279,-0.9122215807160791,-0.741181606682887,-0.4977333083108789,-0.20565990308593587,0.10650505437379335,0.4082652035500067,0.670140661837556,0.8665480054856899,0.9782995934180684,0.9944780672552991,0.9135029018327567,0.743284811594034,0.5004529284215057,0.20873025029305514,-0.1033839317883809,-0.4053982177082381,-0.6678078974566588,-0.8649773575355001,-0.9776445033563528,-0.994802532857003,-0.9147752250493725,-0.7453806952340184,-0.5031676191275005,-0.21179854153086303,0.10026179088292284,0.4025272387399662,0.6654685552436582,0.8633981896563607,0.9769797836070715,0.9951171997664963,0.9160385378336869,0.7474692369586162,0.5058773536894675,0.21486474657702764,-0.09713866241020881,-0.39965229492400844,-0.6631226582407933,-0.8618105174028964,-0.9763054407176339,-0.9954220648843395,-0.9172928277422079,-0.7495504161959432,-0.5085821054168284,-0.21792883522979858,0.094014577132667,0.39677341457824583,0.6607702295549003,0.8602143564134987,0.9756214813302434,0.9957171252076493,0.9185380824203306,0.7516242124466049,0.5112818476680852,0.22099077730823893,-0.09088956582219448,-0.39389062605930314,-0.6584112923571186,-0.8586097224101786,-0.9749279121818225,-0.9960023778301138,-0.9197742896024335,-0.7536906052839579,-0.513976553851073,-0.22405054265255533,0.08776365925979852,0.3910039577623307,0.6560458698827204,0.8569966311983876,0.9742247401039513,0.996277819942026,0.9210014371120155,0.7557495743542596,0.5166661974232606,0.22710810112442764,-0.08463688823531566,-0.3881134381206842,-0.6536739854308493,-0.855375098666897,-0.9735119720227899,-0.9965434488303143,-0.9222195128618087,-0.757801099376898,-0.5193507518919538,-0.23016342260724054,0.08150928354706388,0.38521909560566486,0.6512956623643067,0.8537451407876185,0.9727896149590257,0.9967992618785634,0.9234285048539135,0.7598451601445768,0.5220301908145859,0.23321647700642364,-0.07838087600160608,-0.3823209587261978,-0.6489109241092883,-0.8521067736154583,-0.9720576760277966,-0.9970452565670435,-0.9246284011798915,-0.7618817365235436,-0.5247044877990064,-0.23626723424972623,0.07525169641340204,0.37941905602861314,0.6465197941552042,0.8504600132881358,0.9713161624386129,0.997281430472734,0.9258191900209,0.7639108084537448,0.5273736165036832,0.23931566428755693,-0.07212177560452723,-0.37651341609633404,-0.6441222960544134,-0.8488048760260594,-0.9705650814953019,-0.9975077812693506,-0.9270008596477993,-0.7659323559490444,-0.5300375506380012,-0.24236173709321446,0.06899114440432468,0.3736040675495638,0.6417184534220092,0.8471413781321494,0.9698044405959259,0.9977243067273626,0.9281733984212863,0.767946359097443,0.5326962639625016,0.24540542266322685,-0.06585983364916805,-0.37069103904506623,-0.639308289935552,-0.8454695359916599,-0.9690342472327141,-0.9979310047140187,-0.9293367947919825,-0.7699527980612308,-0.5353497302891783,-0.24844669101762534,0.06272787418212455,0.36777435927584207,0.6368918293348873,0.8437893660720522,0.9682545089919787,0.9981278731933667,0.9304910373005615,0.7719516530772115,0.5379979234816794,0.2514855122002829,-0.05959529685261778,-0.3648540569708668,-0.6344690954218785,-0.8421008849228098,-0.9674652335540556,-0.9983149102262755,-0.9316361145778735,-0.7739429044568823,-0.5406408174556019,-0.2545218562791446,0.05646213251619054,0.36193016089476654,0.6320401120601885,0.8404041091752866,0.9666664286932183,0.9984921139704511,0.9327720153450331,0.7759265325866571,0.5432783861787303,0.2575556933465543,-0.05332841203415649,-0.35900269984759653,-0.629604903175011,-0.8386990555425194,-0.9658581022776072,-0.9986594826804559,-0.9338987284135464,-0.7779025179280166,-0.5459106036713303,-0.2605869935195825,0.05019416627331283,0.35607170266452165,0.6271634927528906,0.8369857408190994,0.9650402622691401,0.9988170147077283,0.9350162426854153,0.7798708410177254,0.5485374440063439,0.26361572694025504,-0.047059426105619556,-0.35313719821552675,-0.6247159048414345,-0.8352641818809853,-0.9642129167234511,-0.9989647085005952,-0.936124547153253,-0.7818314824680312,-0.5511588813097008,-0.26664186377588567,0.04392422240790649,0.3501992154051429,0.6222621635491149,0.8335343956853316,0.9633760737898018,0.9991025626042891,0.937223630900388,0.7837844229668312,0.5537748897605314,0.2696653742193803,-0.04078858606158593,-0.34725778317217837,-0.6198022930449969,-0.8317963992703424,-0.9625297417109987,-0.9992305756609633,-0.9383134831009659,-0.785729643277886,-0.556385443591458,-0.2726862284894928,0.03765254795230939,0.3443129304893967,0.6173363175585348,0.8300502097550793,0.9616739288233153,0.9993487464097032,0.93939409302007,0.7876671242409994,0.5589905170888122,0.2757043968311618,-0.034516138969708,-0.34136468636327366,-0.614864261379299,-0.8282958443393171,-0.9608086435564146,-0.9994570736865406,-0.9404654500138114,-0.7895968467721968,-0.5615900845929243,-0.27871984951576045,0.03137939000704925,0.3384130798336693,0.6123861488567715,0.8265333203033537,0.9599338944332555,0.9995555564244639,0.9415275435294487,0.7915187918639366,0.5641841204983399,0.2817325568414321,-0.02824233196094937,-0.3354581399735839,-0.6099020044000709,-0.8247626550078475,-0.9590496900700206,-0.9996441936534296,-0.9425803631054774,-0.7934329405852707,-0.5667725992541083,-0.2847424891333405,0.02510499573108298,0.33249989588883244,0.6074118524777476,0.822983865893656,0.9581560391760205,0.9997229845003707,0.9436238983717469,0.7953392740820578,0.5693554953639981,0.2877496167440015,-0.021967412219853624,-0.32953837671778646,-0.6049157176175093,-0.8211969704816487,-0.957252950553616,-0.9997919281892065,-0.944658139049552,-0.7972377735771226,-0.5719327833867822,-0.29075391005354634,0.01882961233210332,0.3265736116310742,0.6024136244060033,0.8194019863725431,0.9563404330981278,0.9998510240408495,0.9456830749517393,0.7991284203704648,0.5745044379364632,0.2937553394700264,-0.01569162697480817,-0.32360562983129576,-0.5999055974885645,-0.817598931246729,-0.9554184957977492,-0.999900271473212,-0.9466986959828063,-0.8010111958394264,-0.5770704336825353,-0.296753875429702,0.012553487056761358,0.3206344605527356,0.597391661568975,0.815787822864096,0.9544871477334581,0.9999396700012126,0.9477049921390005,0.8028860814388822,0.5796307453502313,0.2997494883973324,-0.009415223488291038,-0.3176601330610744,-0.5948718414092162,-0.8139686790638548,-0.9535463980789276,-0.9999692192367803,-0.9487019535084197,-0.8047530587014216,-0.5821853477207711,-0.3027421488664721,0.006276867180937021,0.31468267665310146,0.5923461618292326,0.8121415177643669,0.9525962561004352,0.9999889188888583,0.9496895702711068,0.80661210923753,0.5847342156316107,0.3057318273597532,-0.0031384490471522376,-0.3117021206564237,-0.5898146477066815,-0.8103063569629635,-0.9516367311567716,-0.9999987687634074,-0.9506678326991489,-0.8084632147357704,-0.5872773239766905,-0.30871849442918087,0.0,0.30871849442918087,0.5872773239766905,0.8084632147357704,0.9506678326991489,0.9999987687634074,0.9516367311567716,0.8103063569629635,0.5898146477066815,0.3117021206564237,0.0031384490471522376,-0.3057318273597532,-0.5847342156316107,-0.80661210923753,-0.9496895702711068,-0.9999889188888583,-0.9525962561004352,-0.8121415177643669,-0.5923461618292326,-0.31468267665310146,-0.006276867180937021,0.3027421488664721,0.5821853477207711,0.8047530587014216,0.9487019535084197,0.9999692192367803,0.9535463980789276,0.8139686790638548,0.5948718414092162,0.3176601330610744,0.009415223488291038,-0.2997494883973324,-0.5796307453502313,-0.8028860814388822,-0.9477049921390005,-0.9999396700012126,-0.9544871477334581,-0.815787822864096,-0.597391661568975,-0.3206344605527356,-0.012553487056761358,0.296753875429702,0.5770704336825353,0.8010111958394264,0.9466986959828063,0.999900271473212,0.9554184957977492,0.817598931246729,0.5999055974885645,0.32360562983129576,0.01569162697480817,-0.2937553394700264,-0.5745044379364632,-0.7991284203704648,-0.9456830749517393,-0.9998510240408495,-0.9563404330981278,-0.8194019863725431,-0.6024136244060033,-0.3265736116310742,-0.01882961233210332,0.29075391005354634,0.5719327833867822,0.7972377735771226,0.944658139049552,0.9997919281892065,0.957252950553616,0.8211969704816487,0.6049157176175093,0.32953837671778646,0.021967412219853624,-0.2877496167440015,-0.5693554953639981,-0.7953392740820578,-0.9436238983717469,-0.9997229845003707,-0.9581560391760205,-0.822983865893656,-0.6074118524777476,-0.33249989588883244,-0.02510499573108298,0.2847424891333405,0.5667725992541083,0.7934329405852707,0.9425803631054774,0.9996441936534296,0.9590496900700206,0.8247626550078475,0.6099020044000709,0.3354581399735839,0.02824233196094937,-0.2817325568414321,-0.5641841204983399,-0.7915187918639366,-0.9415275435294487,-0.9995555564244639,-0.9599338944332555,-0.8265333203033537,-0.6123861488567715,-0.3384130798336693,-0.03137939000704925,0.27871984951576045,0.5615900845929243,0.7895968467721968,0.9404654500138114,0.9994570736865406,0.9608086435564146,0.8282958443393171,0.614864261379299,0.34136468636327366,0.034516138969708,-0.2757043968311618,-0.5589905170888122,-0.7876671242409994,-0.93939409302007,-0.9993487464097032,-0.9616739288233153,-0.8300502097550793,-0.6173363175585348,-0.3443129304893967,-0.03765254795230939,0.2726862284894928,0.556385443591458,0.785729643277886,0.9383134831009659,0.9992305756609633,0.9625297417109987,0.8317963992703424,0.6198022930449969,0.34725778317217837,0.04078858606158593,-0.2696653742193803,-0.5537748897605314,-0.7837844229668312,-0.937223630900388,-0.9991025626042891,-0.9633760737898018,-0.8335343956853316,-0.6222621635491149,-0.3501992154051429,-0.04392422240790649,0.26664186377588567,0.5511588813097008,0.7818314824680312,0.936124547153253,0.9989647085005952,0.9642129167234511,0.8352641818809853,0.6247159048414345,0.35313719821552675,0.047059426105619556,-0.26361572694025504,-0.5485374440063439,-0.7798708410177254,-0.9350162426854153,-0.9988170147077283,-0.9650402622691401,-0.8369857408190994,-0.6271634927528906,-0.35607170266452165,-0.05019416627331283,0.2605869935195825,0.5459106036713303,0.7779025179280166,0.9338987284135464,0.9986594826804559,0.9658581022776072,0.8386990555425194,0.629604903175011,0.35900269984759653,0.05332841203415649,-0.2575556933465543,-0.5432783861787303,-0.7759265325866571,-0.9327720153450331,-0.9984921139704511,-0.9666664286932183,-0.8404041091752866,-0.6320401120601885,-0.36193016089476654,-0.05646213251619054,0.2545218562791446,0.5406408174556019,0.7739429044568823,0.9316361145778735,0.9983149102262755,0.9674652335540556,0.8421008849228098,0.6344690954218785,0.3648540569708668,0.05959529685261778,-0.2514855122002829,-0.5379979234816794,-0.7719516530772115,-0.9304910373005615,-0.9981278731933667,-0.9682545089919787,-0.8437893660720522,-0.6368918293348873,-0.36777435927584207,-0.06272787418212455,0.24844669101762534,0.5353497302891783,0.7699527980612308,0.9293367947919825,0.9979310047140187,0.9690342472327141,0.8454695359916599,0.639308289935552,0.37069103904506623,0.06585983364916805,-0.24540542266322685,-0.5326962639625016,-0.767946359097443,-0.9281733984212863,-0.9977243067273626,-0.9698044405959259,-0.8471413781321494,-0.6417184534220092,-0.3736040675495638,-0.06899114440432468,0.24236173709321446,0.5300375506380012,0.7659323559490444,0.9270008596477993,0.9975077812693506,0.9705650814953019,0.8488048760260594,0.6441222960544134,0.37651341609633404,0.07212177560452723,-0.23931566428755693,-0.5273736165036832,-0.7639108084537448,-0.9258191900209,-0.997281430472734,-0.9713161624386129,-0.8504600132881358,-0.6465197941552042,-0.37941905602861314,-0.07525169641340204,0.23626723424972623,0.5247044877990064,0.7618817365235436,0.9246284011798915,0.9970452565670435,0.9720576760277966,0.8521067736154583,0.6489109241092883,0.3823209587261978,0.07838087600160608,-0.23321647700642364,-0.5220301908145859,-0.7598451601445768,-0.9234285048539135,-0.9967992618785634,-0.9727896149590257,-0.8537451407876185,-0.6512956623643067,-0.38521909560566486,-0.08150928354706388,0.23016342260724054,0.5193507518919538,0.757801099376898,0.9222195128618087,0.9965434488303143,0.9735119720227899,0.855375098666897,0.6536739854308493,0.3881134381206842,0.08463688823531566,-0.22710810112442764,-0.5166661974232606,-0.7557495743542596,-0.9210014371120155,-0.996277819942026,-0.9742247401039513,-0.8569966311983876,-0.6560458698827204,-0.3910039577623307,-0.08776365925979852,0.22405054265255533,0.513976553851073,0.7536906052839579,0.9197742896024335,0.9960023778301138,0.9749279121818225,0.8586097224101786,0.6584112923571186,0.39389062605930314,0.09088956582219448,-0.22099077730823893,-0.5112818476680852,-0.7516242124466049,-0.9185380824203306,-0.9957171252076493,-0.9756214813302434,-0.8602143564134987,-0.6607702295549003,-0.39677341457824583,-0.094014577132667,0.21792883522979858,0.5085821054168284,0.7495504161959432,0.9172928277422079,0.9954220648843395,0.9763054407176339,0.8618105174028964,0.6631226582407933,0.39965229492400844,0.09713866241020881,-0.21486474657702764,-0.5058773536894675,-0.7474692369586162,-0.9160385378336869,-0.9951171997664963,-0.9769797836070715,-0.8633981896563607,-0.6654685552436582,-0.4025272387399662,-0.10026179088292284,0.21179854153086303,0.5031676191275005,0.7453806952340184,0.9147752250493725,0.994802532857003,0.9776445033563528,0.8649773575355001,0.6678078974566588,0.4053982177082381,0.1033839317883809,-0.20873025029305514,-0.5004529284215057,-0.743284811594034,-0.9135029018327567,-0.9944780672552991,-0.9782995934180684,-0.8665480054856899,-0.670140661837556,-0.4082652035500067,-0.10650505437379335,0.20565990308593587,0.4977333083108789,0.741181606682887,0.9122215807160791,0.9941438061573279,0.978945047339653,0.8681101180362147,0.6724668254088768,0.4111281680257862,0.10962512789651192,-0.20258753015207728,-0.4950087855835895,-0.7390711012169074,-0.9109312743202073,-0.9937997528555258,-0.9795808587634587,-0.8696636798004652,-0.6747863652581734,-0.4139870829357012,-0.11274412162414381,0.19951316175400458,0.4922793870758388,0.7369533159843348,0.9096319953545225,0.9934459107387787,0.9802070214268148,0.8712086754760229,0.6770992585382413,0.4168419201197433,0.11586200483495424,-0.19643682817389813,-0.4895451396719121,-0.7348282718451137,-0.9083237566167569,-0.9930822832923916,-0.980823529162086,-0.8727450898448553,-0.6794054824673437,-0.4196926514581305,-0.11897874681814691,0.19335855971331692,0.48680607030383655,0.7326959897306882,0.9070065709929229,0.9927088740980534,0.9814303758967495,0.8742729077734551,0.6817050143294363,0.4225392488714618,0.12209431687416648,-0.19027838669281266,-0.48406220595113497,-0.7305564906438106,-0.9056804514571496,-0.9923256868338024,-0.9820275556534294,-0.875792114212989,-0.6839978314743747,-0.4253816843210753,-0.12520868431500098,0.1871963394517625,0.4813135736405604,0.7284097956582741,0.9043454110715642,0.9919327252739926,0.9826150625499728,0.8773026941994455,0.6862839113182021,0.4282199298093039,0.12832181846446192,-0.18411244834798246,-0.4785602004458294,-0.7262559259187962,-0.9030014629861632,-0.9915299932892452,-0.9831928907995032,-0.8788046328537831,-0.6885632313432751,-0.43105395737975116,-0.131433688658575,0.1810267437574504,0.4758021134873758,0.7240949026407497,0.901648620438683,0.9911174948464274,0.9837610347104779,0.8802979153820655,0.6908357690985497,0.4338837391175667,0.13454426424574928,-0.1779392560740069,-0.4730393399320042,-0.7219267471099691,-0.9002868967544692,-0.990695234008602,-0.9843194886867439,-0.8817825270756503,-0.6931015021997865,-0.43670924714970105,-0.13765351458716774,0.17485001570905573,0.47027190699274063,0.7197514806825406,0.8989163053463557,0.9902632149349907,0.9848682472275927,0.88325845331127,0.6953604083297711,0.43953045364526044,0.14076140905706688,-0.17175905309128642,-0.467499841928486,-0.717569124784592,-0.897536859714493,-0.9898214418809321,-0.985407304927811,-0.8847256795512184,-0.6976124652385343,-0.44234733081566047,-0.14386791704303836,0.1686663986662865,0.464723172043767,0.7153797009120816,0.896148573446274,0.989369919197841,0.9859366564777494,0.8861841913434833,0.6998576507435548,0.4451598509149802,0.14697300794633056,-0.16557208289637354,-0.4619419246884674,-0.7131832306306021,-0.8947514602161611,-0.9889086513331644,-0.9864562966633511,-0.8876339743218887,-0.7020959427300415,-0.4479679862402155,-0.15007665118212787,0.16247613626020724,0.4591561272575584,0.7109797355751056,0.8933455337855614,0.988437642830342,0.9869662203662192,0.8890750142062368,0.7043273191510564,0.4507717091315515,0.15317881617994034,-0.1593785892525111,-0.456365807190829,-0.7087692374497843,-0.8919308080026906,-0.9879568983287474,-0.9874664225636629,-0.8905072968024378,-0.7065517580277942,-0.45357099197263556,-0.15627947238377216,0.15627947238377216,0.45357099197263556,0.7065517580277942,0.8905072968024378,0.9874664225636629,0.9879568983287474,0.8919308080026906,0.7087692374497843,0.456365807190829,0.1593785892525111,-0.15317881617994034,-0.4507717091315515,-0.7043273191510564,-0.8890750142062368,-0.9869662203662192,-0.988437642830342,-0.8933455337855614,-0.7109797355751056,-0.4591561272575584,-0.16247613626020724,0.15007665118212787,0.4479679862402155,0.7020959427300415,0.8876339743218887,0.9864562966633511,0.9889086513331644,0.8947514602161611,0.7131832306306021,0.4619419246884674,0.16557208289637354,-0.14697300794633056,-0.4451598509149802,-0.6998576507435548,-0.8861841913434833,-0.9859366564777494,-0.989369919197841,-0.896148573446274,-0.7153797009120816,-0.464723172043767,-0.1686663986662865,0.14386791704303836,0.44234733081566047,0.6976124652385343,0.8847256795512184,0.985407304927811,0.9898214418809321,0.897536859714493,0.717569124784592,0.467499841928486,0.17175905309128642,-0.14076140905706688,-0.43953045364526044,-0.6953604083297711,-0.88325845331127,-0.9848682472275927,-0.9902632149349907,-0.8989163053463557,-0.7197514806825406,-0.47027190699274063,-0.17485001570905573,0.13765351458716774,0.43670924714970105,0.6931015021997865,0.8817825270756503,0.9843194886867439,0.990695234008602,0.9002868967544692,0.7219267471099691,0.4730393399320042,0.1779392560740069,-0.13454426424574928,-0.4338837391175667,-0.6908357690985497,-0.8802979153820655,-0.9837610347104779,-0.9911174948464274,-0.901648620438683,-0.7240949026407497,-0.4758021134873758,-0.1810267437574504,0.131433688658575,0.43105395737975116,0.6885632313432751,0.8788046328537831,0.9831928907995032,0.9915299932892452,0.9030014629861632,0.7262559259187962,0.4785602004458294,0.18411244834798246,-0.12832181846446192,-0.4282199298093039,-0.6862839113182021,-0.8773026941994455,-0.9826150625499728,-0.9919327252739926,-0.9043454110715642,-0.7284097956582741,-0.4813135736405604,-0.1871963394517625,0.12520868431500098,0.4253816843210753,0.6839978314743747,0.875792114212989,0.9820275556534294,0.9923256868338024,0.9056804514571496,0.7305564906438106,0.48406220595113497,0.19027838669281266,-0.12209431687416648,-0.4225392488714618,-0.6817050143294363,-0.8742729077734551,-0.9814303758967495,-0.9927088740980534,-0.9070065709929229,-0.7326959897306882,-0.48680607030383655,-0.19335855971331692,0.11897874681814691,0.4196926514581305,0.6794054824673437,0.8727450898448553,0.980823529162086,0.9930822832923916,0.9083237566167569,0.7348282718451137,0.4895451396719121,0.19643682817389813,-0.11586200483495424,-0.4168419201197433,-0.6770992585382413,-0.8712086754760229,-0.9802070214268148,-0.9934459107387787,-0.9096319953545225,-0.7369533159843348,-0.4922793870758388,-0.19951316175400458,0.11274412162416599,0.4139870829357012,0.6747863652581734,0.8696636798004652,0.9795808587634541,0.9937997528555234,0.9109312743202073,0.7390711012169074,0.4950087855835895,0.20258753015209913,-0.10962512789653411,-0.4111281680257862,-0.6724668254088768,-0.8681101180362147,-0.9789450473396485,-0.9941438061573254,-0.9122215807160791,-0.741181606682887,-0.4977333083108983,-0.20565990308595772,0.10650505437381554,0.4082652035500067,0.670140661837556,0.8665480054856788,0.978299593418073,0.9944780672552967,0.9135029018327567,0.743284811594034,0.500452928421525,0.2087302502930333,-0.1033839317883809,-0.4053982177082381,-0.6678078974566588,-0.8649773575354889,-0.9776445033563576,-0.994802532857003,-0.9147752250493725,-0.7453806952340184,-0.5031676191275197,-0.2117985415308412,0.10026179088293395,0.4025272387399662,0.6654685552436499,0.8633981896563494,0.9769797836070738,0.9951171997664952,0.9160385378336869,0.7474692369586237,0.5058773536894867,0.21486474657701674,-0.09713866241020881,-0.39965229492400844,-0.6631226582407849,-0.8618105174029077,-0.9763054407176364,-0.9954220648843395,-0.9172928277422123,-0.7495504161959506,-0.5085821054168091,-0.21792883522978768,0.094014577132667,0.39677341457823556,0.6607702295548835,0.8602143564135102,0.9756214813302458,0.9957171252076493,0.9185380824203351,0.7516242124466196,0.511281847668066,0.22099077730822805,-0.09088956582219448,-0.39389062605929287,-0.6584112923571017,-0.8586097224101844,-0.9749279121818251,-0.9960023778301138,-0.9197742896024378,-0.7536906052839726,-0.5139765538510634,-0.22405054265255533,0.08776365925979852,0.39100395776232044,0.6560458698827373,0.8569966311983934,0.9742247401039513,0.996277819942027,0.9210014371120199,0.7557495743542451,0.5166661974232509,0.22710810112442764,-0.08463688823530453,-0.38811343812067395,-0.6536739854308662,-0.8553750986669028,-0.9735119720227899,-0.9965434488303153,-0.9222195128618174,-0.7578010993768834,-0.5193507518919442,-0.23016342260724054,0.08150928354705277,0.38521909560564427,0.6512956623643151,0.8537451407876243,0.9727896149590257,0.9967992618785643,0.9234285048539221,0.7598451601445696,0.5220301908145859,0.23321647700642364,-0.07838087600159495,-0.3823209587262184,-0.6489109241092967,-0.8521067736154583,-0.972057676027794,-0.9970452565670442,-0.9246284011798831,-0.7618817365235365,-0.5247044877990064,-0.23626723424973708,0.07525169641339091,0.3794190560286338,0.6465197941552128,0.8504600132881358,0.9713161624386102,0.9972814304727357,0.9258191900208915,0.7639108084537376,0.5273736165036832,0.23931566428756776,-0.07212177560450497,-0.37651341609634437,-0.644122296054422,-0.8488048760260594,-0.9705650814952992,-0.9975077812693521,-0.9270008596477952,-0.7659323559490444,-0.5300375506380012,-0.24236173709322528,0.06899114440434695,0.37360406754957415,0.6417184534220092,0.8471413781321435,0.9698044405959231,0.9977243067273611,0.9281733984212822,0.767946359097443,0.532696263962511,0.24540542266323764,-0.06585983364919032,-0.3706910390450766,-0.639308289935552,-0.845469535991654,-0.9690342472327087,-0.9979310047140173,-0.9293367947919784,-0.7699527980612308,-0.5353497302891878,-0.24844669101764696,0.0627278741821357,0.36777435927585245,0.6368918293348873,0.8437893660720462,0.9682545089919732,0.998127873193366,0.9304910373005615,0.7719516530772115,0.5379979234816888,0.25148551220026133,-0.05959529685262892,-0.3648540569708668,-0.6344690954218785,-0.8421008849228038,-0.9674652335540612,-0.9983149102262749,-0.9316361145778735,-0.7739429044568894,-0.5406408174556112,-0.254521856279123,0.056462132516201684,0.36193016089476654,0.6320401120601798,0.8404041091752745,0.9666664286932241,0.9984921139704505,0.9327720153450331,0.7759265325866641,0.543278386178749,0.25755569334654355,-0.05332841203416763,-0.35900269984759653,-0.6296049031750024,-0.8386990555425073,-0.96585810227761,-0.9986594826804559,-0.9338987284135464,-0.7779025179280236,-0.5459106036713489,-0.2605869935195717,0.05019416627331841,0.35607170266451643,0.6271634927528776,0.8369857408191116,0.965040262269143,0.9988170147077283,0.9350162426854173,0.7798708410177358,0.5485374440063299,0.26361572694024427,-0.047059426105619556,-0.3531371982155163,-0.6247159048414215,-0.8352641818809945,-0.9642129167234541,-0.9989647085005952,-0.9361245471532569,-0.7818314824680417,-0.5511588813096868,-0.26664186377588034,0.04392422240790649,0.3501992154051325,0.6222621635490975,0.8335343956853408,0.9633760737898033,0.9991025626042893,0.9372236309003918,0.783784422966845,0.553774889760522,0.2696653742193749,-0.04078858606158036,-0.34725778317216266,-0.6198022930450144,-0.8317963992703485,-0.9625297417109987,-0.9992305756609635,-0.9383134831009717,-0.7857296432778755,-0.5563854435914488,-0.2726862284894928,0.037652547952303814,0.344312930489381,0.617336317558548,0.8300502097550855,0.9616739288233153,0.9993487464097035,0.9393940930200758,0.7876671242409891,0.5589905170888075,0.2757043968311618,-0.03451613896969685,-0.3413646863632527,-0.6148642613793122,-0.8282958443393202,-0.960808643556413,-0.999457073686541,-0.940465450013819,-0.7895968467721899,-0.5615900845929197,-0.2787198495157658,0.03137939000703252,0.3384130798336903,0.6123861488567803,0.8265333203033537,0.9599338944332539,0.9995555564244644,0.9415275435294412,0.7915187918639297,0.5641841204983399,0.2817325568414375,-0.028242331960932638,-0.3354581399735997,-0.6099020044000798,-0.8247626550078475,-0.9590496900700175,-0.99964419365343,-0.9425803631054719,-0.7934329405852673,-0.5667725992541083,-0.28474248913335115,0.025104995731063454,0.3324998958888456,0.6074118524777521,0.8229838658936545,0.9581560391760165,0.9997229845003712,0.9436238983717422,0.7953392740820545,0.5693554953640028,0.28774961674401484,-0.02196741221987594,-0.329538376717797,-0.6049157176175115,-0.8211969704816456,-0.9572529505536113,-0.9997919281892061,-0.9446581390495483,-0.7972377735771226,-0.571932783386789,-0.2907539100535624,0.018829612332122846,0.3265736116310821,0.6024136244060033,0.8194019863725382,0.9563404330981221,0.9998510240408491,0.9456830749517365,0.7991284203704665,0.5745044379364723,0.29375533947004506,-0.015691626974822116,-0.32360562983130103,-0.5999055974885623,-0.8175989312467226,-0.9554184957977425,-0.9999002714732118,-0.9466986959828045,-0.8010111958394297,-0.5770704336825467,-0.2967538754296807,0.012553487056773914,0.32063446055273825,0.5973916615689694,0.8157878228640871,0.954487147733464,0.9999396700012125,0.9477049921390001,0.8028860814388872,0.579630745350245,0.29974948839731513,-0.009415223488300803,-0.3176601330610744,-0.5948718414092085,-0.8139686790638443,-0.9535463980789327,-0.9999692192367803,-0.9487019535084202,-0.8047530587014282,-0.582185347720787,-0.30274214886645745,0.006276867180943299,0.3146826766530981,0.5923461618292225,0.8121415177643543,0.9525962561004394,0.9999889188888583,0.9496895702711083,0.8066121092375382,0.5847342156315931,0.30573182735974125,-0.0031384490471553766,-0.3117021206564178,-0.5898146477066691,-0.8103063569629751,-0.9516367311567749,-0.9999987687634074,-0.9506678326991512,-0.8084632147357804,-0.5872773239766755,-0.30871849442917204,0.0],"x":[-100.0,-99.9000999000999,-99.8001998001998,-99.7002997002997,-99.6003996003996,-99.5004995004995,-99.4005994005994,-99.3006993006993,-99.2007992007992,-99.1008991008991,-99.000999000999,-98.9010989010989,-98.80119880119881,-98.7012987012987,-98.6013986013986,-98.5014985014985,-98.4015984015984,-98.3016983016983,-98.2017982017982,-98.1018981018981,-98.001998001998,-97.9020979020979,-97.8021978021978,-97.7022977022977,-97.6023976023976,-97.5024975024975,-97.40259740259741,-97.3026973026973,-97.2027972027972,-97.1028971028971,-97.002997002997,-96.90309690309691,-96.8031968031968,-96.7032967032967,-96.6033966033966,-96.5034965034965,-96.40359640359641,-96.3036963036963,-96.2037962037962,-96.1038961038961,-96.00399600399601,-95.90409590409591,-95.8041958041958,-95.7042957042957,-95.6043956043956,-95.50449550449551,-95.4045954045954,-95.3046953046953,-95.2047952047952,-95.1048951048951,-95.00499500499501,-94.9050949050949,-94.8051948051948,-94.7052947052947,-94.60539460539461,-94.50549450549451,-94.4055944055944,-94.3056943056943,-94.2057942057942,-94.10589410589411,-94.00599400599401,-93.9060939060939,-93.8061938061938,-93.7062937062937,-93.60639360639361,-93.50649350649351,-93.4065934065934,-93.3066933066933,-93.20679320679321,-93.10689310689311,-93.00699300699301,-92.9070929070929,-92.8071928071928,-92.70729270729271,-92.60739260739261,-92.5074925074925,-92.4075924075924,-92.3076923076923,-92.20779220779221,-92.10789210789211,-92.007992007992,-91.9080919080919,-91.80819180819181,-91.70829170829171,-91.60839160839161,-91.5084915084915,-91.4085914085914,-91.30869130869131,-91.20879120879121,-91.10889110889111,-91.008991008991,-90.9090909090909,-90.80919080919081,-90.70929070929071,-90.60939060939062,-90.5094905094905,-90.40959040959041,-90.30969030969031,-90.20979020979021,-90.10989010989012,-90.00999000999,-89.91008991008991,-89.81018981018981,-89.71028971028971,-89.6103896103896,-89.5104895104895,-89.41058941058941,-89.31068931068931,-89.21078921078922,-89.1108891108891,-89.01098901098901,-88.91108891108891,-88.81118881118881,-88.71128871128872,-88.6113886113886,-88.51148851148851,-88.41158841158841,-88.31168831168831,-88.21178821178822,-88.1118881118881,-88.01198801198801,-87.91208791208791,-87.81218781218782,-87.71228771228772,-87.61238761238761,-87.51248751248751,-87.41258741258741,-87.31268731268732,-87.21278721278722,-87.11288711288711,-87.01298701298701,-86.91308691308691,-86.81318681318682,-86.7132867132867,-86.61338661338661,-86.51348651348651,-86.41358641358642,-86.31368631368632,-86.21378621378621,-86.11388611388611,-86.01398601398601,-85.91408591408592,-85.81418581418582,-85.71428571428571,-85.61438561438561,-85.51448551448551,-85.41458541458542,-85.31468531468532,-85.21478521478521,-85.11488511488511,-85.01498501498502,-84.91508491508492,-84.81518481518482,-84.71528471528471,-84.61538461538461,-84.51548451548452,-84.41558441558442,-84.31568431568432,-84.21578421578421,-84.11588411588411,-84.01598401598402,-83.91608391608392,-83.81618381618381,-83.71628371628371,-83.61638361638362,-83.51648351648352,-83.41658341658342,-83.31668331668331,-83.21678321678321,-83.11688311688312,-83.01698301698302,-82.91708291708292,-82.81718281718281,-82.71728271728271,-82.61738261738262,-82.51748251748252,-82.41758241758242,-82.31768231768231,-82.21778221778222,-82.11788211788212,-82.01798201798202,-81.91808191808192,-81.81818181818181,-81.71828171828172,-81.61838161838162,-81.51848151848152,-81.41858141858143,-81.31868131868131,-81.21878121878122,-81.11888111888112,-81.01898101898102,-80.91908091908093,-80.81918081918081,-80.71928071928072,-80.61938061938062,-80.51948051948052,-80.41958041958041,-80.31968031968032,-80.21978021978022,-80.11988011988012,-80.01998001998003,-79.92007992007991,-79.82017982017982,-79.72027972027972,-79.62037962037962,-79.52047952047953,-79.42057942057941,-79.32067932067932,-79.22077922077922,-79.12087912087912,-79.02097902097903,-78.92107892107892,-78.82117882117882,-78.72127872127872,-78.62137862137862,-78.52147852147853,-78.42157842157842,-78.32167832167832,-78.22177822177822,-78.12187812187813,-78.02197802197803,-77.92207792207792,-77.82217782217782,-77.72227772227772,-77.62237762237763,-77.52247752247752,-77.42257742257742,-77.32267732267732,-77.22277722277722,-77.12287712287713,-77.02297702297702,-76.92307692307692,-76.82317682317682,-76.72327672327673,-76.62337662337663,-76.52347652347652,-76.42357642357642,-76.32367632367632,-76.22377622377623,-76.12387612387613,-76.02397602397602,-75.92407592407592,-75.82417582417582,-75.72427572427573,-75.62437562437563,-75.52447552447552,-75.42457542457542,-75.32467532467533,-75.22477522477523,-75.12487512487513,-75.02497502497502,-74.92507492507492,-74.82517482517483,-74.72527472527473,-74.62537462537462,-74.52547452547452,-74.42557442557442,-74.32567432567433,-74.22577422577423,-74.12587412587412,-74.02597402597402,-73.92607392607393,-73.82617382617383,-73.72627372627373,-73.62637362637362,-73.52647352647352,-73.42657342657343,-73.32667332667333,-73.22677322677323,-73.12687312687312,-73.02697302697302,-72.92707292707293,-72.82717282717283,-72.72727272727273,-72.62737262737262,-72.52747252747253,-72.42757242757243,-72.32767232767233,-72.22777222777223,-72.12787212787212,-72.02797202797203,-71.92807192807193,-71.82817182817183,-71.72827172827172,-71.62837162837162,-71.52847152847153,-71.42857142857143,-71.32867132867133,-71.22877122877122,-71.12887112887113,-71.02897102897103,-70.92907092907093,-70.82917082917083,-70.72927072927072,-70.62937062937063,-70.52947052947053,-70.42957042957043,-70.32967032967034,-70.22977022977022,-70.12987012987013,-70.02997002997003,-69.93006993006993,-69.83016983016984,-69.73026973026973,-69.63036963036963,-69.53046953046953,-69.43056943056943,-69.33066933066934,-69.23076923076923,-69.13086913086913,-69.03096903096903,-68.93106893106894,-68.83116883116882,-68.73126873126873,-68.63136863136863,-68.53146853146853,-68.43156843156844,-68.33166833166833,-68.23176823176823,-68.13186813186813,-68.03196803196803,-67.93206793206794,-67.83216783216783,-67.73226773226773,-67.63236763236763,-67.53246753246754,-67.43256743256744,-67.33266733266733,-67.23276723276723,-67.13286713286713,-67.03296703296704,-66.93306693306694,-66.83316683316683,-66.73326673326673,-66.63336663336663,-66.53346653346654,-66.43356643356644,-66.33366633366633,-66.23376623376623,-66.13386613386614,-66.03396603396604,-65.93406593406593,-65.83416583416583,-65.73426573426573,-65.63436563436564,-65.53446553446554,-65.43456543456543,-65.33466533466533,-65.23476523476523,-65.13486513486514,-65.03496503496504,-64.93506493506493,-64.83516483516483,-64.73526473526474,-64.63536463536464,-64.53546453546454,-64.43556443556443,-64.33566433566433,-64.23576423576424,-64.13586413586414,-64.03596403596404,-63.93606393606394,-63.836163836163834,-63.73626373626374,-63.63636363636363,-63.536463536463536,-63.43656343656344,-63.336663336663335,-63.23676323676324,-63.136863136863134,-63.03696303696304,-62.93706293706294,-62.837162837162836,-62.73726273726274,-62.637362637362635,-62.53746253746254,-62.437562437562434,-62.33766233766234,-62.23776223776224,-62.137862137862136,-62.03796203796204,-61.938061938061935,-61.83816183816184,-61.73826173826174,-61.63836163836164,-61.53846153846154,-61.438561438561436,-61.33866133866134,-61.23876123876124,-61.13886113886114,-61.03896103896104,-60.93906093906094,-60.83916083916084,-60.739260739260736,-60.63936063936064,-60.53946053946054,-60.43956043956044,-60.33966033966034,-60.23976023976024,-60.13986013986014,-60.03996003996004,-59.94005994005994,-59.84015984015984,-59.74025974025974,-59.64035964035964,-59.54045954045954,-59.44055944055944,-59.34065934065934,-59.24075924075924,-59.14085914085914,-59.04095904095904,-58.94105894105894,-58.841158841158844,-58.74125874125874,-58.64135864135864,-58.54145854145854,-58.44155844155844,-58.341658341658345,-58.24175824175824,-58.141858141858144,-58.04195804195804,-57.94205794205794,-57.84215784215784,-57.74225774225774,-57.642357642357645,-57.54245754245754,-57.442557442557444,-57.34265734265734,-57.24275724275724,-57.142857142857146,-57.04295704295704,-56.943056943056945,-56.84315684315684,-56.743256743256744,-56.64335664335665,-56.54345654345654,-56.443556443556446,-56.34365634365634,-56.243756243756245,-56.14385614385614,-56.043956043956044,-55.94405594405595,-55.84415584415584,-55.744255744255746,-55.64435564435564,-55.544455544455545,-55.44455544455545,-55.344655344655344,-55.24475524475525,-55.14485514485514,-55.044955044955046,-54.94505494505494,-54.845154845154845,-54.74525474525475,-54.645354645354644,-54.54545454545455,-54.44555444555444,-54.345654345654346,-54.24575424575425,-54.145854145854145,-54.04595404595405,-53.946053946053944,-53.84615384615385,-53.74625374625375,-53.646353646353646,-53.54645354645355,-53.446553446553445,-53.34665334665335,-53.246753246753244,-53.14685314685315,-53.04695304695305,-52.947052947052946,-52.84715284715285,-52.747252747252745,-52.64735264735265,-52.54745254745255,-52.44755244755245,-52.34765234765235,-52.247752247752246,-52.14785214785215,-52.047952047952045,-51.94805194805195,-51.84815184815185,-51.74825174825175,-51.64835164835165,-51.548451548451546,-51.44855144855145,-51.34865134865135,-51.24875124875125,-51.14885114885115,-51.04895104895105,-50.94905094905095,-50.84915084915085,-50.74925074925075,-50.64935064935065,-50.54945054945055,-50.44955044955045,-50.34965034965035,-50.24975024975025,-50.14985014985015,-50.04995004995005,-49.95004995004995,-49.85014985014985,-49.75024975024975,-49.65034965034965,-49.55044955044955,-49.45054945054945,-49.35064935064935,-49.25074925074925,-49.15084915084915,-49.05094905094905,-48.95104895104895,-48.85114885114885,-48.75124875124875,-48.65134865134865,-48.55144855144855,-48.451548451548454,-48.35164835164835,-48.25174825174825,-48.15184815184815,-48.05194805194805,-47.952047952047955,-47.85214785214785,-47.752247752247754,-47.65234765234765,-47.55244755244755,-47.45254745254745,-47.35264735264735,-47.252747252747255,-47.15284715284715,-47.052947052947054,-46.95304695304695,-46.85314685314685,-46.753246753246756,-46.65334665334665,-46.553446553446555,-46.45354645354645,-46.353646353646354,-46.25374625374625,-46.15384615384615,-46.053946053946056,-45.95404595404595,-45.854145854145855,-45.75424575424575,-45.654345654345654,-45.55444555444556,-45.45454545454545,-45.354645354645356,-45.25474525474525,-45.154845154845155,-45.05494505494506,-44.955044955044954,-44.85514485514486,-44.75524475524475,-44.655344655344656,-44.55544455544455,-44.455544455544455,-44.35564435564436,-44.255744255744254,-44.15584415584416,-44.05594405594405,-43.956043956043956,-43.85614385614386,-43.756243756243755,-43.65634365634366,-43.556443556443554,-43.45654345654346,-43.35664335664335,-43.256743256743256,-43.15684315684316,-43.056943056943055,-42.95704295704296,-42.857142857142854,-42.75724275724276,-42.65734265734266,-42.557442557442556,-42.45754245754246,-42.357642357642355,-42.25774225774226,-42.15784215784216,-42.05794205794206,-41.95804195804196,-41.858141858141856,-41.75824175824176,-41.658341658341655,-41.55844155844156,-41.45854145854146,-41.35864135864136,-41.25874125874126,-41.158841158841156,-41.05894105894106,-40.95904095904096,-40.85914085914086,-40.75924075924076,-40.65934065934066,-40.55944055944056,-40.45954045954046,-40.35964035964036,-40.25974025974026,-40.15984015984016,-40.05994005994006,-39.96003996003996,-39.86013986013986,-39.76023976023976,-39.66033966033966,-39.56043956043956,-39.46053946053946,-39.36063936063936,-39.260739260739264,-39.16083916083916,-39.06093906093906,-38.96103896103896,-38.86113886113886,-38.76123876123876,-38.66133866133866,-38.561438561438564,-38.46153846153846,-38.36163836163836,-38.26173826173826,-38.16183816183816,-38.061938061938065,-37.96203796203796,-37.862137862137864,-37.76223776223776,-37.66233766233766,-37.562437562437566,-37.46253746253746,-37.362637362637365,-37.26273726273726,-37.162837162837164,-37.06293706293706,-36.96303696303696,-36.863136863136866,-36.76323676323676,-36.663336663336665,-36.56343656343656,-36.463536463536464,-36.36363636363637,-36.26373626373626,-36.163836163836166,-36.06393606393606,-35.964035964035965,-35.86413586413586,-35.764235764235764,-35.66433566433567,-35.56443556443556,-35.464535464535466,-35.36463536463536,-35.264735264735265,-35.16483516483517,-35.064935064935064,-34.96503496503497,-34.86513486513486,-34.765234765234766,-34.66533466533467,-34.565434565434565,-34.46553446553447,-34.365634365634364,-34.26573426573427,-34.16583416583416,-34.065934065934066,-33.96603396603397,-33.866133866133865,-33.76623376623377,-33.666333666333664,-33.56643356643357,-33.46653346653347,-33.366633366633366,-33.26673326673327,-33.166833166833165,-33.06693306693307,-32.967032967032964,-32.86713286713287,-32.76723276723277,-32.667332667332666,-32.56743256743257,-32.467532467532465,-32.36763236763237,-32.26773226773227,-32.16783216783217,-32.06793206793207,-31.96803196803197,-31.86813186813187,-31.768231768231768,-31.668331668331668,-31.568431568431567,-31.46853146853147,-31.36863136863137,-31.26873126873127,-31.16883116883117,-31.068931068931068,-30.969030969030968,-30.86913086913087,-30.76923076923077,-30.66933066933067,-30.56943056943057,-30.46953046953047,-30.369630369630368,-30.26973026973027,-30.16983016983017,-30.06993006993007,-29.97002997002997,-29.87012987012987,-29.77022977022977,-29.67032967032967,-29.57042957042957,-29.47052947052947,-29.37062937062937,-29.27072927072927,-29.170829170829172,-29.070929070929072,-28.97102897102897,-28.87112887112887,-28.77122877122877,-28.67132867132867,-28.571428571428573,-28.471528471528472,-28.371628371628372,-28.27172827172827,-28.17182817182817,-28.07192807192807,-27.972027972027973,-27.872127872127873,-27.772227772227772,-27.672327672327672,-27.57242757242757,-27.47252747252747,-27.372627372627374,-27.272727272727273,-27.172827172827173,-27.072927072927072,-26.973026973026972,-26.873126873126875,-26.773226773226774,-26.673326673326674,-26.573426573426573,-26.473526473526473,-26.373626373626372,-26.273726273726275,-26.173826173826175,-26.073926073926074,-25.974025974025974,-25.874125874125873,-25.774225774225773,-25.674325674325676,-25.574425574425575,-25.474525474525475,-25.374625374625374,-25.274725274725274,-25.174825174825173,-25.074925074925076,-24.975024975024976,-24.875124875124875,-24.775224775224775,-24.675324675324674,-24.575424575424574,-24.475524475524477,-24.375624375624376,-24.275724275724276,-24.175824175824175,-24.075924075924075,-23.976023976023978,-23.876123876123877,-23.776223776223777,-23.676323676323676,-23.576423576423576,-23.476523476523475,-23.376623376623378,-23.276723276723278,-23.176823176823177,-23.076923076923077,-22.977022977022976,-22.877122877122876,-22.77722277722278,-22.677322677322678,-22.577422577422578,-22.477522477522477,-22.377622377622377,-22.277722277722276,-22.17782217782218,-22.07792207792208,-21.978021978021978,-21.878121878121878,-21.778221778221777,-21.678321678321677,-21.57842157842158,-21.47852147852148,-21.37862137862138,-21.278721278721278,-21.178821178821178,-21.07892107892108,-20.97902097902098,-20.87912087912088,-20.77922077922078,-20.67932067932068,-20.579420579420578,-20.47952047952048,-20.37962037962038,-20.27972027972028,-20.17982017982018,-20.07992007992008,-19.98001998001998,-19.88011988011988,-19.78021978021978,-19.68031968031968,-19.58041958041958,-19.48051948051948,-19.38061938061938,-19.280719280719282,-19.18081918081918,-19.08091908091908,-18.98101898101898,-18.88111888111888,-18.781218781218783,-18.681318681318682,-18.581418581418582,-18.48151848151848,-18.38161838161838,-18.28171828171828,-18.181818181818183,-18.081918081918083,-17.982017982017982,-17.882117882117882,-17.78221778221778,-17.68231768231768,-17.582417582417584,-17.482517482517483,-17.382617382617383,-17.282717282717282,-17.182817182817182,-17.08291708291708,-16.983016983016984,-16.883116883116884,-16.783216783216783,-16.683316683316683,-16.583416583416582,-16.483516483516482,-16.383616383616385,-16.283716283716284,-16.183816183816184,-16.083916083916083,-15.984015984015985,-15.884115884115884,-15.784215784215784,-15.684315684315685,-15.584415584415584,-15.484515484515484,-15.384615384615385,-15.284715284715285,-15.184815184815184,-15.084915084915085,-14.985014985014985,-14.885114885114884,-14.785214785214785,-14.685314685314685,-14.585414585414586,-14.485514485514486,-14.385614385614385,-14.285714285714286,-14.185814185814186,-14.085914085914085,-13.986013986013987,-13.886113886113886,-13.786213786213786,-13.686313686313687,-13.586413586413586,-13.486513486513486,-13.386613386613387,-13.286713286713287,-13.186813186813186,-13.086913086913087,-12.987012987012987,-12.887112887112886,-12.787212787212788,-12.687312687312687,-12.587412587412587,-12.487512487512488,-12.387612387612387,-12.287712287712287,-12.187812187812188,-12.087912087912088,-11.988011988011989,-11.888111888111888,-11.788211788211788,-11.688311688311689,-11.588411588411589,-11.488511488511488,-11.38861138861139,-11.288711288711289,-11.188811188811188,-11.08891108891109,-10.989010989010989,-10.889110889110889,-10.78921078921079,-10.68931068931069,-10.589410589410589,-10.48951048951049,-10.38961038961039,-10.289710289710289,-10.18981018981019,-10.08991008991009,-9.99000999000999,-9.89010989010989,-9.79020979020979,-9.69030969030969,-9.59040959040959,-9.49050949050949,-9.390609390609391,-9.290709290709291,-9.19080919080919,-9.090909090909092,-8.991008991008991,-8.89110889110889,-8.791208791208792,-8.691308691308691,-8.591408591408591,-8.491508491508492,-8.391608391608392,-8.291708291708291,-8.191808191808192,-8.091908091908092,-7.992007992007992,-7.892107892107892,-7.792207792207792,-7.6923076923076925,-7.592407592407592,-7.492507492507492,-7.392607392607393,-7.292707292707293,-7.192807192807193,-7.092907092907093,-6.993006993006993,-6.893106893106893,-6.793206793206793,-6.693306693306694,-6.593406593406593,-6.4935064935064934,-6.393606393606394,-6.293706293706293,-6.193806193806194,-6.093906093906094,-5.994005994005994,-5.894105894105894,-5.794205794205794,-5.694305694305695,-5.594405594405594,-5.4945054945054945,-5.394605394605395,-5.294705294705294,-5.194805194805195,-5.094905094905095,-4.995004995004995,-4.895104895104895,-4.795204795204795,-4.695304695304696,-4.595404595404595,-4.495504495504496,-4.395604395604396,-4.2957042957042955,-4.195804195804196,-4.095904095904096,-3.996003996003996,-3.896103896103896,-3.796203796203796,-3.6963036963036964,-3.5964035964035963,-3.4965034965034967,-3.3966033966033966,-3.2967032967032965,-3.196803196803197,-3.096903096903097,-2.997002997002997,-2.897102897102897,-2.797202797202797,-2.6973026973026974,-2.5974025974025974,-2.4975024975024973,-2.3976023976023977,-2.2977022977022976,-2.197802197802198,-2.097902097902098,-1.998001998001998,-1.898101898101898,-1.7982017982017982,-1.6983016983016983,-1.5984015984015985,-1.4985014985014986,-1.3986013986013985,-1.2987012987012987,-1.1988011988011988,-1.098901098901099,-0.999000999000999,-0.8991008991008991,-0.7992007992007992,-0.6993006993006993,-0.5994005994005994,-0.4995004995004995,-0.3996003996003996,-0.2997002997002997,-0.1998001998001998,-0.0999000999000999,0.0,0.0999000999000999,0.1998001998001998,0.2997002997002997,0.3996003996003996,0.4995004995004995,0.5994005994005994,0.6993006993006993,0.7992007992007992,0.8991008991008991,0.999000999000999,1.098901098901099,1.1988011988011988,1.2987012987012987,1.3986013986013985,1.4985014985014986,1.5984015984015985,1.6983016983016983,1.7982017982017982,1.898101898101898,1.998001998001998,2.097902097902098,2.197802197802198,2.2977022977022976,2.3976023976023977,2.4975024975024973,2.5974025974025974,2.6973026973026974,2.797202797202797,2.897102897102897,2.997002997002997,3.096903096903097,3.196803196803197,3.2967032967032965,3.3966033966033966,3.4965034965034967,3.5964035964035963,3.6963036963036964,3.796203796203796,3.896103896103896,3.996003996003996,4.095904095904096,4.195804195804196,4.2957042957042955,4.395604395604396,4.495504495504496,4.595404595404595,4.695304695304696,4.795204795204795,4.895104895104895,4.995004995004995,5.094905094905095,5.194805194805195,5.294705294705294,5.394605394605395,5.4945054945054945,5.594405594405594,5.694305694305695,5.794205794205794,5.894105894105894,5.994005994005994,6.093906093906094,6.193806193806194,6.293706293706293,6.393606393606394,6.4935064935064934,6.593406593406593,6.693306693306694,6.793206793206793,6.893106893106893,6.993006993006993,7.092907092907093,7.192807192807193,7.292707292707293,7.392607392607393,7.492507492507492,7.592407592407592,7.6923076923076925,7.792207792207792,7.892107892107892,7.992007992007992,8.091908091908092,8.191808191808192,8.291708291708291,8.391608391608392,8.491508491508492,8.591408591408591,8.691308691308691,8.791208791208792,8.89110889110889,8.991008991008991,9.090909090909092,9.19080919080919,9.290709290709291,9.390609390609391,9.49050949050949,9.59040959040959,9.69030969030969,9.79020979020979,9.89010989010989,9.99000999000999,10.08991008991009,10.18981018981019,10.289710289710289,10.38961038961039,10.48951048951049,10.589410589410589,10.68931068931069,10.78921078921079,10.889110889110889,10.989010989010989,11.08891108891109,11.188811188811188,11.288711288711289,11.38861138861139,11.488511488511488,11.588411588411589,11.688311688311689,11.788211788211788,11.888111888111888,11.988011988011989,12.087912087912088,12.187812187812188,12.287712287712287,12.387612387612387,12.487512487512488,12.587412587412587,12.687312687312687,12.787212787212788,12.887112887112886,12.987012987012987,13.086913086913087,13.186813186813186,13.286713286713287,13.386613386613387,13.486513486513486,13.586413586413586,13.686313686313687,13.786213786213786,13.886113886113886,13.986013986013987,14.085914085914085,14.185814185814186,14.285714285714286,14.385614385614385,14.485514485514486,14.585414585414586,14.685314685314685,14.785214785214785,14.885114885114884,14.985014985014985,15.084915084915085,15.184815184815184,15.284715284715285,15.384615384615385,15.484515484515484,15.584415584415584,15.684315684315685,15.784215784215784,15.884115884115884,15.984015984015985,16.083916083916083,16.183816183816184,16.283716283716284,16.383616383616385,16.483516483516482,16.583416583416582,16.683316683316683,16.783216783216783,16.883116883116884,16.983016983016984,17.08291708291708,17.182817182817182,17.282717282717282,17.382617382617383,17.482517482517483,17.582417582417584,17.68231768231768,17.78221778221778,17.882117882117882,17.982017982017982,18.081918081918083,18.181818181818183,18.28171828171828,18.38161838161838,18.48151848151848,18.581418581418582,18.681318681318682,18.781218781218783,18.88111888111888,18.98101898101898,19.08091908091908,19.18081918081918,19.280719280719282,19.38061938061938,19.48051948051948,19.58041958041958,19.68031968031968,19.78021978021978,19.88011988011988,19.98001998001998,20.07992007992008,20.17982017982018,20.27972027972028,20.37962037962038,20.47952047952048,20.579420579420578,20.67932067932068,20.77922077922078,20.87912087912088,20.97902097902098,21.07892107892108,21.178821178821178,21.278721278721278,21.37862137862138,21.47852147852148,21.57842157842158,21.678321678321677,21.778221778221777,21.878121878121878,21.978021978021978,22.07792207792208,22.17782217782218,22.277722277722276,22.377622377622377,22.477522477522477,22.577422577422578,22.677322677322678,22.77722277722278,22.877122877122876,22.977022977022976,23.076923076923077,23.176823176823177,23.276723276723278,23.376623376623378,23.476523476523475,23.576423576423576,23.676323676323676,23.776223776223777,23.876123876123877,23.976023976023978,24.075924075924075,24.175824175824175,24.275724275724276,24.375624375624376,24.475524475524477,24.575424575424574,24.675324675324674,24.775224775224775,24.875124875124875,24.975024975024976,25.074925074925076,25.174825174825173,25.274725274725274,25.374625374625374,25.474525474525475,25.574425574425575,25.674325674325676,25.774225774225773,25.874125874125873,25.974025974025974,26.073926073926074,26.173826173826175,26.273726273726275,26.373626373626372,26.473526473526473,26.573426573426573,26.673326673326674,26.773226773226774,26.873126873126875,26.973026973026972,27.072927072927072,27.172827172827173,27.272727272727273,27.372627372627374,27.47252747252747,27.57242757242757,27.672327672327672,27.772227772227772,27.872127872127873,27.972027972027973,28.07192807192807,28.17182817182817,28.27172827172827,28.371628371628372,28.471528471528472,28.571428571428573,28.67132867132867,28.77122877122877,28.87112887112887,28.97102897102897,29.070929070929072,29.170829170829172,29.27072927072927,29.37062937062937,29.47052947052947,29.57042957042957,29.67032967032967,29.77022977022977,29.87012987012987,29.97002997002997,30.06993006993007,30.16983016983017,30.26973026973027,30.369630369630368,30.46953046953047,30.56943056943057,30.66933066933067,30.76923076923077,30.86913086913087,30.969030969030968,31.068931068931068,31.16883116883117,31.26873126873127,31.36863136863137,31.46853146853147,31.568431568431567,31.668331668331668,31.768231768231768,31.86813186813187,31.96803196803197,32.06793206793207,32.16783216783217,32.26773226773227,32.36763236763237,32.467532467532465,32.56743256743257,32.667332667332666,32.76723276723277,32.86713286713287,32.967032967032964,33.06693306693307,33.166833166833165,33.26673326673327,33.366633366633366,33.46653346653347,33.56643356643357,33.666333666333664,33.76623376623377,33.866133866133865,33.96603396603397,34.065934065934066,34.16583416583416,34.26573426573427,34.365634365634364,34.46553446553447,34.565434565434565,34.66533466533467,34.765234765234766,34.86513486513486,34.96503496503497,35.064935064935064,35.16483516483517,35.264735264735265,35.36463536463536,35.464535464535466,35.56443556443556,35.66433566433567,35.764235764235764,35.86413586413586,35.964035964035965,36.06393606393606,36.163836163836166,36.26373626373626,36.36363636363637,36.463536463536464,36.56343656343656,36.663336663336665,36.76323676323676,36.863136863136866,36.96303696303696,37.06293706293706,37.162837162837164,37.26273726273726,37.362637362637365,37.46253746253746,37.562437562437566,37.66233766233766,37.76223776223776,37.862137862137864,37.96203796203796,38.061938061938065,38.16183816183816,38.26173826173826,38.36163836163836,38.46153846153846,38.561438561438564,38.66133866133866,38.76123876123876,38.86113886113886,38.96103896103896,39.06093906093906,39.16083916083916,39.260739260739264,39.36063936063936,39.46053946053946,39.56043956043956,39.66033966033966,39.76023976023976,39.86013986013986,39.96003996003996,40.05994005994006,40.15984015984016,40.25974025974026,40.35964035964036,40.45954045954046,40.55944055944056,40.65934065934066,40.75924075924076,40.85914085914086,40.95904095904096,41.05894105894106,41.158841158841156,41.25874125874126,41.35864135864136,41.45854145854146,41.55844155844156,41.658341658341655,41.75824175824176,41.858141858141856,41.95804195804196,42.05794205794206,42.15784215784216,42.25774225774226,42.357642357642355,42.45754245754246,42.557442557442556,42.65734265734266,42.75724275724276,42.857142857142854,42.95704295704296,43.056943056943055,43.15684315684316,43.256743256743256,43.35664335664335,43.45654345654346,43.556443556443554,43.65634365634366,43.756243756243755,43.85614385614386,43.956043956043956,44.05594405594405,44.15584415584416,44.255744255744254,44.35564435564436,44.455544455544455,44.55544455544455,44.655344655344656,44.75524475524475,44.85514485514486,44.955044955044954,45.05494505494506,45.154845154845155,45.25474525474525,45.354645354645356,45.45454545454545,45.55444555444556,45.654345654345654,45.75424575424575,45.854145854145855,45.95404595404595,46.053946053946056,46.15384615384615,46.25374625374625,46.353646353646354,46.45354645354645,46.553446553446555,46.65334665334665,46.753246753246756,46.85314685314685,46.95304695304695,47.052947052947054,47.15284715284715,47.252747252747255,47.35264735264735,47.45254745254745,47.55244755244755,47.65234765234765,47.752247752247754,47.85214785214785,47.952047952047955,48.05194805194805,48.15184815184815,48.25174825174825,48.35164835164835,48.451548451548454,48.55144855144855,48.65134865134865,48.75124875124875,48.85114885114885,48.95104895104895,49.05094905094905,49.15084915084915,49.25074925074925,49.35064935064935,49.45054945054945,49.55044955044955,49.65034965034965,49.75024975024975,49.85014985014985,49.95004995004995,50.04995004995005,50.14985014985015,50.24975024975025,50.34965034965035,50.44955044955045,50.54945054945055,50.64935064935065,50.74925074925075,50.84915084915085,50.94905094905095,51.04895104895105,51.14885114885115,51.24875124875125,51.34865134865135,51.44855144855145,51.548451548451546,51.64835164835165,51.74825174825175,51.84815184815185,51.94805194805195,52.047952047952045,52.14785214785215,52.247752247752246,52.34765234765235,52.44755244755245,52.54745254745255,52.64735264735265,52.747252747252745,52.84715284715285,52.947052947052946,53.04695304695305,53.14685314685315,53.246753246753244,53.34665334665335,53.446553446553445,53.54645354645355,53.646353646353646,53.74625374625375,53.84615384615385,53.946053946053944,54.04595404595405,54.145854145854145,54.24575424575425,54.345654345654346,54.44555444555444,54.54545454545455,54.645354645354644,54.74525474525475,54.845154845154845,54.94505494505494,55.044955044955046,55.14485514485514,55.24475524475525,55.344655344655344,55.44455544455545,55.544455544455545,55.64435564435564,55.744255744255746,55.84415584415584,55.94405594405595,56.043956043956044,56.14385614385614,56.243756243756245,56.34365634365634,56.443556443556446,56.54345654345654,56.64335664335665,56.743256743256744,56.84315684315684,56.943056943056945,57.04295704295704,57.142857142857146,57.24275724275724,57.34265734265734,57.442557442557444,57.54245754245754,57.642357642357645,57.74225774225774,57.84215784215784,57.94205794205794,58.04195804195804,58.141858141858144,58.24175824175824,58.341658341658345,58.44155844155844,58.54145854145854,58.64135864135864,58.74125874125874,58.841158841158844,58.94105894105894,59.04095904095904,59.14085914085914,59.24075924075924,59.34065934065934,59.44055944055944,59.54045954045954,59.64035964035964,59.74025974025974,59.84015984015984,59.94005994005994,60.03996003996004,60.13986013986014,60.23976023976024,60.33966033966034,60.43956043956044,60.53946053946054,60.63936063936064,60.739260739260736,60.83916083916084,60.93906093906094,61.03896103896104,61.13886113886114,61.23876123876124,61.33866133866134,61.438561438561436,61.53846153846154,61.63836163836164,61.73826173826174,61.83816183816184,61.938061938061935,62.03796203796204,62.137862137862136,62.23776223776224,62.33766233766234,62.437562437562434,62.53746253746254,62.637362637362635,62.73726273726274,62.837162837162836,62.93706293706294,63.03696303696304,63.136863136863134,63.23676323676324,63.336663336663335,63.43656343656344,63.536463536463536,63.63636363636363,63.73626373626374,63.836163836163834,63.93606393606394,64.03596403596404,64.13586413586414,64.23576423576424,64.33566433566433,64.43556443556443,64.53546453546454,64.63536463536464,64.73526473526474,64.83516483516483,64.93506493506493,65.03496503496504,65.13486513486514,65.23476523476523,65.33466533466533,65.43456543456543,65.53446553446554,65.63436563436564,65.73426573426573,65.83416583416583,65.93406593406593,66.03396603396604,66.13386613386614,66.23376623376623,66.33366633366633,66.43356643356644,66.53346653346654,66.63336663336663,66.73326673326673,66.83316683316683,66.93306693306694,67.03296703296704,67.13286713286713,67.23276723276723,67.33266733266733,67.43256743256744,67.53246753246754,67.63236763236763,67.73226773226773,67.83216783216783,67.93206793206794,68.03196803196803,68.13186813186813,68.23176823176823,68.33166833166833,68.43156843156844,68.53146853146853,68.63136863136863,68.73126873126873,68.83116883116882,68.93106893106894,69.03096903096903,69.13086913086913,69.23076923076923,69.33066933066934,69.43056943056943,69.53046953046953,69.63036963036963,69.73026973026973,69.83016983016984,69.93006993006993,70.02997002997003,70.12987012987013,70.22977022977022,70.32967032967034,70.42957042957043,70.52947052947053,70.62937062937063,70.72927072927072,70.82917082917083,70.92907092907093,71.02897102897103,71.12887112887113,71.22877122877122,71.32867132867133,71.42857142857143,71.52847152847153,71.62837162837162,71.72827172827172,71.82817182817183,71.92807192807193,72.02797202797203,72.12787212787212,72.22777222777223,72.32767232767233,72.42757242757243,72.52747252747253,72.62737262737262,72.72727272727273,72.82717282717283,72.92707292707293,73.02697302697302,73.12687312687312,73.22677322677323,73.32667332667333,73.42657342657343,73.52647352647352,73.62637362637362,73.72627372627373,73.82617382617383,73.92607392607393,74.02597402597402,74.12587412587412,74.22577422577423,74.32567432567433,74.42557442557442,74.52547452547452,74.62537462537462,74.72527472527473,74.82517482517483,74.92507492507492,75.02497502497502,75.12487512487513,75.22477522477523,75.32467532467533,75.42457542457542,75.52447552447552,75.62437562437563,75.72427572427573,75.82417582417582,75.92407592407592,76.02397602397602,76.12387612387613,76.22377622377623,76.32367632367632,76.42357642357642,76.52347652347652,76.62337662337663,76.72327672327673,76.82317682317682,76.92307692307692,77.02297702297702,77.12287712287713,77.22277722277722,77.32267732267732,77.42257742257742,77.52247752247752,77.62237762237763,77.72227772227772,77.82217782217782,77.92207792207792,78.02197802197803,78.12187812187813,78.22177822177822,78.32167832167832,78.42157842157842,78.52147852147853,78.62137862137862,78.72127872127872,78.82117882117882,78.92107892107892,79.02097902097903,79.12087912087912,79.22077922077922,79.32067932067932,79.42057942057941,79.52047952047953,79.62037962037962,79.72027972027972,79.82017982017982,79.92007992007991,80.01998001998003,80.11988011988012,80.21978021978022,80.31968031968032,80.41958041958041,80.51948051948052,80.61938061938062,80.71928071928072,80.81918081918081,80.91908091908093,81.01898101898102,81.11888111888112,81.21878121878122,81.31868131868131,81.41858141858143,81.51848151848152,81.61838161838162,81.71828171828172,81.81818181818181,81.91808191808192,82.01798201798202,82.11788211788212,82.21778221778222,82.31768231768231,82.41758241758242,82.51748251748252,82.61738261738262,82.71728271728271,82.81718281718281,82.91708291708292,83.01698301698302,83.11688311688312,83.21678321678321,83.31668331668331,83.41658341658342,83.51648351648352,83.61638361638362,83.71628371628371,83.81618381618381,83.91608391608392,84.01598401598402,84.11588411588411,84.21578421578421,84.31568431568432,84.41558441558442,84.51548451548452,84.61538461538461,84.71528471528471,84.81518481518482,84.91508491508492,85.01498501498502,85.11488511488511,85.21478521478521,85.31468531468532,85.41458541458542,85.51448551448551,85.61438561438561,85.71428571428571,85.81418581418582,85.91408591408592,86.01398601398601,86.11388611388611,86.21378621378621,86.31368631368632,86.41358641358642,86.51348651348651,86.61338661338661,86.7132867132867,86.81318681318682,86.91308691308691,87.01298701298701,87.11288711288711,87.21278721278722,87.31268731268732,87.41258741258741,87.51248751248751,87.61238761238761,87.71228771228772,87.81218781218782,87.91208791208791,88.01198801198801,88.1118881118881,88.21178821178822,88.31168831168831,88.41158841158841,88.51148851148851,88.6113886113886,88.71128871128872,88.81118881118881,88.91108891108891,89.01098901098901,89.1108891108891,89.21078921078922,89.31068931068931,89.41058941058941,89.5104895104895,89.6103896103896,89.71028971028971,89.81018981018981,89.91008991008991,90.00999000999,90.10989010989012,90.20979020979021,90.30969030969031,90.40959040959041,90.5094905094905,90.60939060939062,90.70929070929071,90.80919080919081,90.9090909090909,91.008991008991,91.10889110889111,91.20879120879121,91.30869130869131,91.4085914085914,91.5084915084915,91.60839160839161,91.70829170829171,91.80819180819181,91.9080919080919,92.007992007992,92.10789210789211,92.20779220779221,92.3076923076923,92.4075924075924,92.5074925074925,92.60739260739261,92.70729270729271,92.8071928071928,92.9070929070929,93.00699300699301,93.10689310689311,93.20679320679321,93.3066933066933,93.4065934065934,93.50649350649351,93.60639360639361,93.7062937062937,93.8061938061938,93.9060939060939,94.00599400599401,94.10589410589411,94.2057942057942,94.3056943056943,94.4055944055944,94.50549450549451,94.60539460539461,94.7052947052947,94.8051948051948,94.9050949050949,95.00499500499501,95.1048951048951,95.2047952047952,95.3046953046953,95.4045954045954,95.50449550449551,95.6043956043956,95.7042957042957,95.8041958041958,95.90409590409591,96.00399600399601,96.1038961038961,96.2037962037962,96.3036963036963,96.40359640359641,96.5034965034965,96.6033966033966,96.7032967032967,96.8031968031968,96.90309690309691,97.002997002997,97.1028971028971,97.2027972027972,97.3026973026973,97.40259740259741,97.5024975024975,97.6023976023976,97.7022977022977,97.8021978021978,97.9020979020979,98.001998001998,98.1018981018981,98.2017982017982,98.3016983016983,98.4015984015984,98.5014985014985,98.6013986013986,98.7012987012987,98.80119880119881,98.9010989010989,99.000999000999,99.1008991008991,99.2007992007992,99.3006993006993,99.4005994005994,99.5004995004995,99.6003996003996,99.7002997002997,99.8001998001998,99.9000999000999,100.0]}
 
-},{}],34:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 module.exports={"expected":[-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"x":[-1000.0,-999.0,-998.0,-997.0,-996.0,-995.0,-994.0,-993.0,-992.0,-991.0,-990.0,-989.0,-988.0,-987.0,-986.0,-985.0,-984.0,-983.0,-982.0,-981.0,-980.0,-979.0,-978.0,-977.0,-976.0,-975.0,-974.0,-973.0,-972.0,-971.0,-970.0,-969.0,-968.0,-967.0,-966.0,-965.0,-964.0,-963.0,-962.0,-961.0,-960.0,-959.0,-958.0,-957.0,-956.0,-955.0,-954.0,-953.0,-952.0,-951.0,-950.0,-949.0,-948.0,-947.0,-946.0,-945.0,-944.0,-943.0,-942.0,-941.0,-940.0,-939.0,-938.0,-937.0,-936.0,-935.0,-934.0,-933.0,-932.0,-931.0,-930.0,-929.0,-928.0,-927.0,-926.0,-925.0,-924.0,-923.0,-922.0,-921.0,-920.0,-919.0,-918.0,-917.0,-916.0,-915.0,-914.0,-913.0,-912.0,-911.0,-910.0,-909.0,-908.0,-907.0,-906.0,-905.0,-904.0,-903.0,-902.0,-901.0,-900.0,-899.0,-898.0,-897.0,-896.0,-895.0,-894.0,-893.0,-892.0,-891.0,-890.0,-889.0,-888.0,-887.0,-886.0,-885.0,-884.0,-883.0,-882.0,-881.0,-880.0,-879.0,-878.0,-877.0,-876.0,-875.0,-874.0,-873.0,-872.0,-871.0,-870.0,-869.0,-868.0,-867.0,-866.0,-865.0,-864.0,-863.0,-862.0,-861.0,-860.0,-859.0,-858.0,-857.0,-856.0,-855.0,-854.0,-853.0,-852.0,-851.0,-850.0,-849.0,-848.0,-847.0,-846.0,-845.0,-844.0,-843.0,-842.0,-841.0,-840.0,-839.0,-838.0,-837.0,-836.0,-835.0,-834.0,-833.0,-832.0,-831.0,-830.0,-829.0,-828.0,-827.0,-826.0,-825.0,-824.0,-823.0,-822.0,-821.0,-820.0,-819.0,-818.0,-817.0,-816.0,-815.0,-814.0,-813.0,-812.0,-811.0,-810.0,-809.0,-808.0,-807.0,-806.0,-805.0,-804.0,-803.0,-802.0,-801.0,-800.0,-799.0,-798.0,-797.0,-796.0,-795.0,-794.0,-793.0,-792.0,-791.0,-790.0,-789.0,-788.0,-787.0,-786.0,-785.0,-784.0,-783.0,-782.0,-781.0,-780.0,-779.0,-778.0,-777.0,-776.0,-775.0,-774.0,-773.0,-772.0,-771.0,-770.0,-769.0,-768.0,-767.0,-766.0,-765.0,-764.0,-763.0,-762.0,-761.0,-760.0,-759.0,-758.0,-757.0,-756.0,-755.0,-754.0,-753.0,-752.0,-751.0,-750.0,-749.0,-748.0,-747.0,-746.0,-745.0,-744.0,-743.0,-742.0,-741.0,-740.0,-739.0,-738.0,-737.0,-736.0,-735.0,-734.0,-733.0,-732.0,-731.0,-730.0,-729.0,-728.0,-727.0,-726.0,-725.0,-724.0,-723.0,-722.0,-721.0,-720.0,-719.0,-718.0,-717.0,-716.0,-715.0,-714.0,-713.0,-712.0,-711.0,-710.0,-709.0,-708.0,-707.0,-706.0,-705.0,-704.0,-703.0,-702.0,-701.0,-700.0,-699.0,-698.0,-697.0,-696.0,-695.0,-694.0,-693.0,-692.0,-691.0,-690.0,-689.0,-688.0,-687.0,-686.0,-685.0,-684.0,-683.0,-682.0,-681.0,-680.0,-679.0,-678.0,-677.0,-676.0,-675.0,-674.0,-673.0,-672.0,-671.0,-670.0,-669.0,-668.0,-667.0,-666.0,-665.0,-664.0,-663.0,-662.0,-661.0,-660.0,-659.0,-658.0,-657.0,-656.0,-655.0,-654.0,-653.0,-652.0,-651.0,-650.0,-649.0,-648.0,-647.0,-646.0,-645.0,-644.0,-643.0,-642.0,-641.0,-640.0,-639.0,-638.0,-637.0,-636.0,-635.0,-634.0,-633.0,-632.0,-631.0,-630.0,-629.0,-628.0,-627.0,-626.0,-625.0,-624.0,-623.0,-622.0,-621.0,-620.0,-619.0,-618.0,-617.0,-616.0,-615.0,-614.0,-613.0,-612.0,-611.0,-610.0,-609.0,-608.0,-607.0,-606.0,-605.0,-604.0,-603.0,-602.0,-601.0,-600.0,-599.0,-598.0,-597.0,-596.0,-595.0,-594.0,-593.0,-592.0,-591.0,-590.0,-589.0,-588.0,-587.0,-586.0,-585.0,-584.0,-583.0,-582.0,-581.0,-580.0,-579.0,-578.0,-577.0,-576.0,-575.0,-574.0,-573.0,-572.0,-571.0,-570.0,-569.0,-568.0,-567.0,-566.0,-565.0,-564.0,-563.0,-562.0,-561.0,-560.0,-559.0,-558.0,-557.0,-556.0,-555.0,-554.0,-553.0,-552.0,-551.0,-550.0,-549.0,-548.0,-547.0,-546.0,-545.0,-544.0,-543.0,-542.0,-541.0,-540.0,-539.0,-538.0,-537.0,-536.0,-535.0,-534.0,-533.0,-532.0,-531.0,-530.0,-529.0,-528.0,-527.0,-526.0,-525.0,-524.0,-523.0,-522.0,-521.0,-520.0,-519.0,-518.0,-517.0,-516.0,-515.0,-514.0,-513.0,-512.0,-511.0,-510.0,-509.0,-508.0,-507.0,-506.0,-505.0,-504.0,-503.0,-502.0,-501.0,-500.0,-499.0,-498.0,-497.0,-496.0,-495.0,-494.0,-493.0,-492.0,-491.0,-490.0,-489.0,-488.0,-487.0,-486.0,-485.0,-484.0,-483.0,-482.0,-481.0,-480.0,-479.0,-478.0,-477.0,-476.0,-475.0,-474.0,-473.0,-472.0,-471.0,-470.0,-469.0,-468.0,-467.0,-466.0,-465.0,-464.0,-463.0,-462.0,-461.0,-460.0,-459.0,-458.0,-457.0,-456.0,-455.0,-454.0,-453.0,-452.0,-451.0,-450.0,-449.0,-448.0,-447.0,-446.0,-445.0,-444.0,-443.0,-442.0,-441.0,-440.0,-439.0,-438.0,-437.0,-436.0,-435.0,-434.0,-433.0,-432.0,-431.0,-430.0,-429.0,-428.0,-427.0,-426.0,-425.0,-424.0,-423.0,-422.0,-421.0,-420.0,-419.0,-418.0,-417.0,-416.0,-415.0,-414.0,-413.0,-412.0,-411.0,-410.0,-409.0,-408.0,-407.0,-406.0,-405.0,-404.0,-403.0,-402.0,-401.0,-400.0,-399.0,-398.0,-397.0,-396.0,-395.0,-394.0,-393.0,-392.0,-391.0,-390.0,-389.0,-388.0,-387.0,-386.0,-385.0,-384.0,-383.0,-382.0,-381.0,-380.0,-379.0,-378.0,-377.0,-376.0,-375.0,-374.0,-373.0,-372.0,-371.0,-370.0,-369.0,-368.0,-367.0,-366.0,-365.0,-364.0,-363.0,-362.0,-361.0,-360.0,-359.0,-358.0,-357.0,-356.0,-355.0,-354.0,-353.0,-352.0,-351.0,-350.0,-349.0,-348.0,-347.0,-346.0,-345.0,-344.0,-343.0,-342.0,-341.0,-340.0,-339.0,-338.0,-337.0,-336.0,-335.0,-334.0,-333.0,-332.0,-331.0,-330.0,-329.0,-328.0,-327.0,-326.0,-325.0,-324.0,-323.0,-322.0,-321.0,-320.0,-319.0,-318.0,-317.0,-316.0,-315.0,-314.0,-313.0,-312.0,-311.0,-310.0,-309.0,-308.0,-307.0,-306.0,-305.0,-304.0,-303.0,-302.0,-301.0,-300.0,-299.0,-298.0,-297.0,-296.0,-295.0,-294.0,-293.0,-292.0,-291.0,-290.0,-289.0,-288.0,-287.0,-286.0,-285.0,-284.0,-283.0,-282.0,-281.0,-280.0,-279.0,-278.0,-277.0,-276.0,-275.0,-274.0,-273.0,-272.0,-271.0,-270.0,-269.0,-268.0,-267.0,-266.0,-265.0,-264.0,-263.0,-262.0,-261.0,-260.0,-259.0,-258.0,-257.0,-256.0,-255.0,-254.0,-253.0,-252.0,-251.0,-250.0,-249.0,-248.0,-247.0,-246.0,-245.0,-244.0,-243.0,-242.0,-241.0,-240.0,-239.0,-238.0,-237.0,-236.0,-235.0,-234.0,-233.0,-232.0,-231.0,-230.0,-229.0,-228.0,-227.0,-226.0,-225.0,-224.0,-223.0,-222.0,-221.0,-220.0,-219.0,-218.0,-217.0,-216.0,-215.0,-214.0,-213.0,-212.0,-211.0,-210.0,-209.0,-208.0,-207.0,-206.0,-205.0,-204.0,-203.0,-202.0,-201.0,-200.0,-199.0,-198.0,-197.0,-196.0,-195.0,-194.0,-193.0,-192.0,-191.0,-190.0,-189.0,-188.0,-187.0,-186.0,-185.0,-184.0,-183.0,-182.0,-181.0,-180.0,-179.0,-178.0,-177.0,-176.0,-175.0,-174.0,-173.0,-172.0,-171.0,-170.0,-169.0,-168.0,-167.0,-166.0,-165.0,-164.0,-163.0,-162.0,-161.0,-160.0,-159.0,-158.0,-157.0,-156.0,-155.0,-154.0,-153.0,-152.0,-151.0,-150.0,-149.0,-148.0,-147.0,-146.0,-145.0,-144.0,-143.0,-142.0,-141.0,-140.0,-139.0,-138.0,-137.0,-136.0,-135.0,-134.0,-133.0,-132.0,-131.0,-130.0,-129.0,-128.0,-127.0,-126.0,-125.0,-124.0,-123.0,-122.0,-121.0,-120.0,-119.0,-118.0,-117.0,-116.0,-115.0,-114.0,-113.0,-112.0,-111.0,-110.0,-109.0,-108.0,-107.0,-106.0,-105.0,-104.0,-103.0,-102.0,-101.0,-100.0,-99.0,-98.0,-97.0,-96.0,-95.0,-94.0,-93.0,-92.0,-91.0,-90.0,-89.0,-88.0,-87.0,-86.0,-85.0,-84.0,-83.0,-82.0,-81.0,-80.0,-79.0,-78.0,-77.0,-76.0,-75.0,-74.0,-73.0,-72.0,-71.0,-70.0,-69.0,-68.0,-67.0,-66.0,-65.0,-64.0,-63.0,-62.0,-61.0,-60.0,-59.0,-58.0,-57.0,-56.0,-55.0,-54.0,-53.0,-52.0,-51.0,-50.0,-49.0,-48.0,-47.0,-46.0,-45.0,-44.0,-43.0,-42.0,-41.0,-40.0,-39.0,-38.0,-37.0,-36.0,-35.0,-34.0,-33.0,-32.0,-31.0,-30.0,-29.0,-28.0,-27.0,-26.0,-25.0,-24.0,-23.0,-22.0,-21.0,-20.0,-19.0,-18.0,-17.0,-16.0,-15.0,-14.0,-13.0,-12.0,-11.0,-10.0,-9.0,-8.0,-7.0,-6.0,-5.0,-4.0,-3.0,-2.0,-1.0,0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0,21.0,22.0,23.0,24.0,25.0,26.0,27.0,28.0,29.0,30.0,31.0,32.0,33.0,34.0,35.0,36.0,37.0,38.0,39.0,40.0,41.0,42.0,43.0,44.0,45.0,46.0,47.0,48.0,49.0,50.0,51.0,52.0,53.0,54.0,55.0,56.0,57.0,58.0,59.0,60.0,61.0,62.0,63.0,64.0,65.0,66.0,67.0,68.0,69.0,70.0,71.0,72.0,73.0,74.0,75.0,76.0,77.0,78.0,79.0,80.0,81.0,82.0,83.0,84.0,85.0,86.0,87.0,88.0,89.0,90.0,91.0,92.0,93.0,94.0,95.0,96.0,97.0,98.0,99.0,100.0,101.0,102.0,103.0,104.0,105.0,106.0,107.0,108.0,109.0,110.0,111.0,112.0,113.0,114.0,115.0,116.0,117.0,118.0,119.0,120.0,121.0,122.0,123.0,124.0,125.0,126.0,127.0,128.0,129.0,130.0,131.0,132.0,133.0,134.0,135.0,136.0,137.0,138.0,139.0,140.0,141.0,142.0,143.0,144.0,145.0,146.0,147.0,148.0,149.0,150.0,151.0,152.0,153.0,154.0,155.0,156.0,157.0,158.0,159.0,160.0,161.0,162.0,163.0,164.0,165.0,166.0,167.0,168.0,169.0,170.0,171.0,172.0,173.0,174.0,175.0,176.0,177.0,178.0,179.0,180.0,181.0,182.0,183.0,184.0,185.0,186.0,187.0,188.0,189.0,190.0,191.0,192.0,193.0,194.0,195.0,196.0,197.0,198.0,199.0,200.0,201.0,202.0,203.0,204.0,205.0,206.0,207.0,208.0,209.0,210.0,211.0,212.0,213.0,214.0,215.0,216.0,217.0,218.0,219.0,220.0,221.0,222.0,223.0,224.0,225.0,226.0,227.0,228.0,229.0,230.0,231.0,232.0,233.0,234.0,235.0,236.0,237.0,238.0,239.0,240.0,241.0,242.0,243.0,244.0,245.0,246.0,247.0,248.0,249.0,250.0,251.0,252.0,253.0,254.0,255.0,256.0,257.0,258.0,259.0,260.0,261.0,262.0,263.0,264.0,265.0,266.0,267.0,268.0,269.0,270.0,271.0,272.0,273.0,274.0,275.0,276.0,277.0,278.0,279.0,280.0,281.0,282.0,283.0,284.0,285.0,286.0,287.0,288.0,289.0,290.0,291.0,292.0,293.0,294.0,295.0,296.0,297.0,298.0,299.0,300.0,301.0,302.0,303.0,304.0,305.0,306.0,307.0,308.0,309.0,310.0,311.0,312.0,313.0,314.0,315.0,316.0,317.0,318.0,319.0,320.0,321.0,322.0,323.0,324.0,325.0,326.0,327.0,328.0,329.0,330.0,331.0,332.0,333.0,334.0,335.0,336.0,337.0,338.0,339.0,340.0,341.0,342.0,343.0,344.0,345.0,346.0,347.0,348.0,349.0,350.0,351.0,352.0,353.0,354.0,355.0,356.0,357.0,358.0,359.0,360.0,361.0,362.0,363.0,364.0,365.0,366.0,367.0,368.0,369.0,370.0,371.0,372.0,373.0,374.0,375.0,376.0,377.0,378.0,379.0,380.0,381.0,382.0,383.0,384.0,385.0,386.0,387.0,388.0,389.0,390.0,391.0,392.0,393.0,394.0,395.0,396.0,397.0,398.0,399.0,400.0,401.0,402.0,403.0,404.0,405.0,406.0,407.0,408.0,409.0,410.0,411.0,412.0,413.0,414.0,415.0,416.0,417.0,418.0,419.0,420.0,421.0,422.0,423.0,424.0,425.0,426.0,427.0,428.0,429.0,430.0,431.0,432.0,433.0,434.0,435.0,436.0,437.0,438.0,439.0,440.0,441.0,442.0,443.0,444.0,445.0,446.0,447.0,448.0,449.0,450.0,451.0,452.0,453.0,454.0,455.0,456.0,457.0,458.0,459.0,460.0,461.0,462.0,463.0,464.0,465.0,466.0,467.0,468.0,469.0,470.0,471.0,472.0,473.0,474.0,475.0,476.0,477.0,478.0,479.0,480.0,481.0,482.0,483.0,484.0,485.0,486.0,487.0,488.0,489.0,490.0,491.0,492.0,493.0,494.0,495.0,496.0,497.0,498.0,499.0,500.0,501.0,502.0,503.0,504.0,505.0,506.0,507.0,508.0,509.0,510.0,511.0,512.0,513.0,514.0,515.0,516.0,517.0,518.0,519.0,520.0,521.0,522.0,523.0,524.0,525.0,526.0,527.0,528.0,529.0,530.0,531.0,532.0,533.0,534.0,535.0,536.0,537.0,538.0,539.0,540.0,541.0,542.0,543.0,544.0,545.0,546.0,547.0,548.0,549.0,550.0,551.0,552.0,553.0,554.0,555.0,556.0,557.0,558.0,559.0,560.0,561.0,562.0,563.0,564.0,565.0,566.0,567.0,568.0,569.0,570.0,571.0,572.0,573.0,574.0,575.0,576.0,577.0,578.0,579.0,580.0,581.0,582.0,583.0,584.0,585.0,586.0,587.0,588.0,589.0,590.0,591.0,592.0,593.0,594.0,595.0,596.0,597.0,598.0,599.0,600.0,601.0,602.0,603.0,604.0,605.0,606.0,607.0,608.0,609.0,610.0,611.0,612.0,613.0,614.0,615.0,616.0,617.0,618.0,619.0,620.0,621.0,622.0,623.0,624.0,625.0,626.0,627.0,628.0,629.0,630.0,631.0,632.0,633.0,634.0,635.0,636.0,637.0,638.0,639.0,640.0,641.0,642.0,643.0,644.0,645.0,646.0,647.0,648.0,649.0,650.0,651.0,652.0,653.0,654.0,655.0,656.0,657.0,658.0,659.0,660.0,661.0,662.0,663.0,664.0,665.0,666.0,667.0,668.0,669.0,670.0,671.0,672.0,673.0,674.0,675.0,676.0,677.0,678.0,679.0,680.0,681.0,682.0,683.0,684.0,685.0,686.0,687.0,688.0,689.0,690.0,691.0,692.0,693.0,694.0,695.0,696.0,697.0,698.0,699.0,700.0,701.0,702.0,703.0,704.0,705.0,706.0,707.0,708.0,709.0,710.0,711.0,712.0,713.0,714.0,715.0,716.0,717.0,718.0,719.0,720.0,721.0,722.0,723.0,724.0,725.0,726.0,727.0,728.0,729.0,730.0,731.0,732.0,733.0,734.0,735.0,736.0,737.0,738.0,739.0,740.0,741.0,742.0,743.0,744.0,745.0,746.0,747.0,748.0,749.0,750.0,751.0,752.0,753.0,754.0,755.0,756.0,757.0,758.0,759.0,760.0,761.0,762.0,763.0,764.0,765.0,766.0,767.0,768.0,769.0,770.0,771.0,772.0,773.0,774.0,775.0,776.0,777.0,778.0,779.0,780.0,781.0,782.0,783.0,784.0,785.0,786.0,787.0,788.0,789.0,790.0,791.0,792.0,793.0,794.0,795.0,796.0,797.0,798.0,799.0,800.0,801.0,802.0,803.0,804.0,805.0,806.0,807.0,808.0,809.0,810.0,811.0,812.0,813.0,814.0,815.0,816.0,817.0,818.0,819.0,820.0,821.0,822.0,823.0,824.0,825.0,826.0,827.0,828.0,829.0,830.0,831.0,832.0,833.0,834.0,835.0,836.0,837.0,838.0,839.0,840.0,841.0,842.0,843.0,844.0,845.0,846.0,847.0,848.0,849.0,850.0,851.0,852.0,853.0,854.0,855.0,856.0,857.0,858.0,859.0,860.0,861.0,862.0,863.0,864.0,865.0,866.0,867.0,868.0,869.0,870.0,871.0,872.0,873.0,874.0,875.0,876.0,877.0,878.0,879.0,880.0,881.0,882.0,883.0,884.0,885.0,886.0,887.0,888.0,889.0,890.0,891.0,892.0,893.0,894.0,895.0,896.0,897.0,898.0,899.0,900.0,901.0,902.0,903.0,904.0,905.0,906.0,907.0,908.0,909.0,910.0,911.0,912.0,913.0,914.0,915.0,916.0,917.0,918.0,919.0,920.0,921.0,922.0,923.0,924.0,925.0,926.0,927.0,928.0,929.0,930.0,931.0,932.0,933.0,934.0,935.0,936.0,937.0,938.0,939.0,940.0,941.0,942.0,943.0,944.0,945.0,946.0,947.0,948.0,949.0,950.0,951.0,952.0,953.0,954.0,955.0,956.0,957.0,958.0,959.0,960.0,961.0,962.0,963.0,964.0,965.0,966.0,967.0,968.0,969.0,970.0,971.0,972.0,973.0,974.0,975.0,976.0,977.0,978.0,979.0,980.0,981.0,982.0,983.0,984.0,985.0,986.0,987.0,988.0,989.0,990.0,991.0,992.0,993.0,994.0,995.0,996.0,997.0,998.0,999.0,1000.0]}
 
-},{}],35:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -3028,7 +2375,207 @@ tape( 'the function computes `sin(πx)`', function test( t ) {
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/special/sinpi/test/test.js")
-},{"./../lib/":31,"./fixtures/julia/decimals.json":33,"./fixtures/julia/integers.json":34,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-eps":52,"@stdlib/math/constants/float64-ninf":58,"@stdlib/math/constants/float64-pinf":60,"tape":116}],36:[function(require,module,exports){
+},{"./../lib/":30,"./fixtures/julia/decimals.json":32,"./fixtures/julia/integers.json":33,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-eps":54,"@stdlib/math/constants/float64-ninf":60,"@stdlib/math/constants/float64-pinf":62,"tape":120}],35:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* #### Notes
+*
+* * The implementation uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
+*
+*
+* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*
+* @example
+* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
+* // returns 123.0
+*/
+function evalpoly( c, x ) {
+	var p;
+	var i;
+
+	i = c.length;
+	if ( i < 2 || x === 0.0 ) {
+		if ( i === 0 ) {
+			return 0.0;
+		}
+		return c[ 0 ];
+	}
+	i -= 1;
+	p = ( c[ i ] * x ) + c[ i-1 ];
+	i -= 2;
+	while ( i >= 0 ) {
+		p = ( p * x ) + c[ i ];
+		i -= 1;
+	}
+	return p;
+} // end FUNCTION evalpoly()
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],36:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var evalpoly = require( './evalpoly.js' );
+
+
+// MAIN //
+
+/**
+* Generates a function for evaluating a polynomial.
+*
+* #### Notes
+*
+* * The compiled function uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
+*
+*
+* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
+* @returns {Function} function for evaluating a polynomial
+*
+* @example
+* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
+*
+* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
+* // returns 123.0
+*
+* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
+* // returns 38.0
+*/
+function factory( c ) {
+	var f;
+	var n;
+	var m;
+	var i;
+
+	// Avoid exceeding the maximum stack size on V8 :(. Note that the choice of `500` was empirically determined...
+	if ( c.length > 500 ) {
+		return polyval;
+	}
+	// Code generation. Start with the function definition...
+	f = 'return function evalpoly(x){';
+
+	// Create the function body...
+	n = c.length;
+
+	// If no coefficients, the function always returns 0...
+	if ( n === 0 ) {
+		f += 'return 0.0;';
+	}
+	// If only one coefficient, the function always returns that coefficient...
+	else if ( n === 1 ) {
+		f += 'return ' + c[ 0 ] + ';';
+	}
+	// If more than one coefficient, apply Horner's method...
+	else {
+		// If `x == 0`, return the first coefficient...
+		f += 'if(x===0.0){return ' + c[ 0 ] + ';}';
+
+		// Otherwise, evaluate the polynomial...
+		f += 'return ' + c[ 0 ];
+		m = n - 1;
+		for ( i = 1; i < n; i++ ) {
+			f += '+x*';
+			if ( i < m ) {
+				f += '(';
+			}
+			f += c[ i ];
+		}
+		// Close all the parentheses...
+		for ( i = 0; i < m-1; i++ ) {
+			f += ')';
+		}
+		f += ';';
+	}
+	// Close the function:
+	f += '}';
+
+	// Add a source directive for debugging:
+	f += '//# sourceURL=evalpoly.factory.js';
+
+	// Create the function in the global scope:
+	return ( new Function( f ) )(); // eslint-disable-line no-new-func
+
+	/*
+	* returns
+	*    function evalpoly( x ) {
+	*        if ( x === 0.0 ) {
+	*            return c[ 0 ];
+	*        }
+	*        return c[0]+x*(c[1]+x*(c[2]+x*(c[3]+...+x*(c[n-2]+x*c[n-1]))));
+	*    }
+	*/
+
+	/**
+	* Evaluates a polynomial.
+	*
+	* @private
+	* @param {number} x - value at which to evaluate a polynomial
+	* @returns {number} evaluated polynomial
+	*/
+	function polyval( x ) {
+		return evalpoly( c, x );
+	} // end FUNCTON polyval()
+} // end FUNCTION factory()
+
+
+// EXPORTS //
+
+module.exports = factory;
+
+},{"./evalpoly.js":35}],37:[function(require,module,exports){
+'use strict';
+
+/**
+* Evaluate a polynomial.
+*
+* @module @stdlib/math/base/tools/evalpoly
+*
+* @example
+* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
+*
+* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
+* // returns 123.0
+*
+* @example
+* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
+*
+* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
+*
+* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
+* // returns 123.0
+*
+* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
+* // returns 38.0
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var evalpoly = require( './evalpoly.js' );
+var factory = require( './factory.js' );
+
+
+// MAIN //
+
+setReadOnly( evalpoly, 'factory', factory );
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{"./evalpoly.js":35,"./factory.js":36,"@stdlib/utils/define-read-only-property":65}],38:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3075,7 +2622,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":43,"@stdlib/math/constants/float64-exponent-bias":53,"@stdlib/math/constants/float64-high-word-exponent-mask":54}],37:[function(require,module,exports){
+},{"@stdlib/math/base/utils/float64-get-high-word":45,"@stdlib/math/constants/float64-exponent-bias":55,"@stdlib/math/constants/float64-high-word-exponent-mask":56}],39:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3108,7 +2655,7 @@ var exponent = require( './exponent.js' );
 
 module.exports = exponent;
 
-},{"./exponent.js":36}],38:[function(require,module,exports){
+},{"./exponent.js":38}],40:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3205,7 +2752,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":40}],39:[function(require,module,exports){
+},{"./indices.js":42}],41:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3247,7 +2794,7 @@ var fromWords = require( './from_words.js' );
 
 module.exports = fromWords;
 
-},{"./from_words.js":38}],40:[function(require,module,exports){
+},{"./from_words.js":40}],42:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3276,7 +2823,7 @@ module.exports = {
 	'LOW': LOW
 };
 
-},{"@stdlib/assert/is-little-endian":2}],41:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":2}],43:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3349,7 +2896,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":42}],42:[function(require,module,exports){
+},{"./high.js":44}],44:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3371,7 +2918,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":2}],43:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":2}],45:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3395,7 +2942,7 @@ var getHighWord = require( './get_high_word.js' );
 
 module.exports = getHighWord;
 
-},{"./get_high_word.js":41}],44:[function(require,module,exports){
+},{"./get_high_word.js":43}],46:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3468,7 +3015,7 @@ function getLowWord( x ) {
 
 module.exports = getLowWord;
 
-},{"./low.js":46}],45:[function(require,module,exports){
+},{"./low.js":48}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3492,7 +3039,7 @@ var getLowWord = require( './get_low_word.js' );
 
 module.exports = getLowWord;
 
-},{"./get_low_word.js":44}],46:[function(require,module,exports){
+},{"./get_low_word.js":46}],48:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3514,7 +3061,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":2}],47:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":2}],49:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3545,7 +3092,7 @@ var normalize = require( './normalize.js' );
 
 module.exports = normalize;
 
-},{"./normalize.js":48}],48:[function(require,module,exports){
+},{"./normalize.js":50}],50:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3613,7 +3160,7 @@ function normalize( x ) {
 
 module.exports = normalize;
 
-},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-smallest-normal":61}],49:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-smallest-normal":63}],51:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3637,9 +3184,9 @@ var toWords = require( './to_words.js' );
 
 module.exports = toWords;
 
-},{"./to_words.js":51}],50:[function(require,module,exports){
-arguments[4][40][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":2,"dup":40}],51:[function(require,module,exports){
+},{"./to_words.js":53}],52:[function(require,module,exports){
+arguments[4][42][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":2,"dup":42}],53:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3715,7 +3262,7 @@ function toWords( x ) {
 
 module.exports = toWords;
 
-},{"./indices.js":50}],52:[function(require,module,exports){
+},{"./indices.js":52}],54:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3752,7 +3299,7 @@ var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
 
 module.exports = FLOAT64_EPSILON;
 
-},{}],53:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3790,7 +3337,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],54:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3826,7 +3373,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],55:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3864,7 +3411,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],56:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3902,7 +3449,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],57:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3940,7 +3487,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],58:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3976,7 +3523,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{}],59:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4008,7 +3555,7 @@ var PI = 3.141592653589793238462643383279502884197169399375105820974944592307816
 
 module.exports = PI;
 
-},{}],60:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4044,7 +3591,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY;
 
 module.exports = FLOAT64_PINF;
 
-},{}],61:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4086,7 +3633,61 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],62:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
+'use strict';
+
+/**
+* Defines a read-only property.
+*
+* @param {Object} obj - object on which to define the property
+* @param {string} prop - property name
+* @param {*} value - value to set
+*
+* @example
+* var obj = {};
+* setReadOnly( obj, 'foo', 'bar' );
+* obj.foo = 'boop'; // => throws
+*/
+function setReadOnly( obj, prop, value ) {
+	Object.defineProperty( obj, prop, {
+		'value': value,
+		'configurable': false,
+		'writable': false,
+		'enumerable': true
+	});
+} // end FUNCTION setReadOnly()
+
+
+// EXPORTS //
+
+module.exports = setReadOnly;
+
+},{}],65:[function(require,module,exports){
+'use strict';
+
+/**
+* Defines a read-only property.
+*
+* @module @stdlib/utils/define-read-only-property
+*
+* @example
+* var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+*
+* var obj = {};
+* setReadOnly( obj, 'foo', 'bar' );
+* obj.foo = 'boop'; // => throws
+*/
+
+// MODULES //
+
+var setReadOnly = require( './define_read_only_property.js' );
+
+
+// EXPORTS //
+
+module.exports = setReadOnly;
+
+},{"./define_read_only_property.js":64}],66:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -4202,11 +3803,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],63:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 
-},{}],64:[function(require,module,exports){
-arguments[4][63][0].apply(exports,arguments)
-},{"dup":63}],65:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
+arguments[4][67][0].apply(exports,arguments)
+},{"dup":67}],69:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -4392,7 +3993,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],66:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -6108,7 +5709,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":62,"ieee754":85}],67:[function(require,module,exports){
+},{"base64-js":66,"ieee754":89}],71:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6219,7 +5820,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":87}],68:[function(require,module,exports){
+},{"../../is-buffer/index.js":91}],72:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6315,7 +5916,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":69,"./lib/keys.js":70}],69:[function(require,module,exports){
+},{"./lib/is_arguments.js":73,"./lib/keys.js":74}],73:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -6337,7 +5938,7 @@ function unsupported(object){
     false;
 };
 
-},{}],70:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -6348,7 +5949,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],71:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -6406,14 +6007,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":81,"object-keys":90}],72:[function(require,module,exports){
+},{"foreach":85,"object-keys":94}],76:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],73:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -6651,28 +6252,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":74,"./helpers/isNaN":75,"./helpers/mod":76,"./helpers/sign":77,"es-to-primitive/es5":78,"has":84,"is-callable":88}],74:[function(require,module,exports){
+},{"./helpers/isFinite":78,"./helpers/isNaN":79,"./helpers/mod":80,"./helpers/sign":81,"es-to-primitive/es5":82,"has":88,"is-callable":92}],78:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],75:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],76:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],77:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],78:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -6711,12 +6312,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":79,"is-callable":88}],79:[function(require,module,exports){
+},{"./helpers/isPrimitive":83,"is-callable":92}],83:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],80:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7020,7 +6621,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],81:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -7044,7 +6645,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],82:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
 var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
@@ -7094,17 +6695,17 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],83:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":82}],84:[function(require,module,exports){
+},{"./implementation":86}],88:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":83}],85:[function(require,module,exports){
+},{"function-bind":87}],89:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -7190,7 +6791,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],86:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -7215,7 +6816,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],87:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -7238,7 +6839,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],88:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -7279,7 +6880,7 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],89:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -7473,7 +7074,7 @@ function inspectString (str) {
     }
 }
 
-},{}],90:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -7615,7 +7216,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":91}],91:[function(require,module,exports){
+},{"./isArguments":95}],95:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -7634,7 +7235,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],92:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7862,7 +7463,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":65}],93:[function(require,module,exports){
+},{"_process":69}],97:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -7909,10 +7510,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":65}],94:[function(require,module,exports){
+},{"_process":69}],98:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":95}],95:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":99}],99:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8037,7 +7638,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":97,"./_stream_writable":99,"core-util-is":67,"inherits":86,"process-nextick-args":93}],96:[function(require,module,exports){
+},{"./_stream_readable":101,"./_stream_writable":103,"core-util-is":71,"inherits":90,"process-nextick-args":97}],100:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8085,7 +7686,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":98,"core-util-is":67,"inherits":86}],97:[function(require,module,exports){
+},{"./_stream_transform":102,"core-util-is":71,"inherits":90}],101:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9095,7 +8696,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":95,"./internal/streams/BufferList":100,"./internal/streams/destroy":101,"./internal/streams/stream":102,"_process":65,"core-util-is":67,"events":80,"inherits":86,"isarray":103,"process-nextick-args":93,"safe-buffer":110,"string_decoder/":104,"util":63}],98:[function(require,module,exports){
+},{"./_stream_duplex":99,"./internal/streams/BufferList":104,"./internal/streams/destroy":105,"./internal/streams/stream":106,"_process":69,"core-util-is":71,"events":84,"inherits":90,"isarray":107,"process-nextick-args":97,"safe-buffer":114,"string_decoder/":108,"util":67}],102:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9310,7 +8911,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":95,"core-util-is":67,"inherits":86}],99:[function(require,module,exports){
+},{"./_stream_duplex":99,"core-util-is":71,"inherits":90}],103:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9977,7 +9578,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":95,"./internal/streams/destroy":101,"./internal/streams/stream":102,"_process":65,"core-util-is":67,"inherits":86,"process-nextick-args":93,"safe-buffer":110,"util-deprecate":122}],100:[function(require,module,exports){
+},{"./_stream_duplex":99,"./internal/streams/destroy":105,"./internal/streams/stream":106,"_process":69,"core-util-is":71,"inherits":90,"process-nextick-args":97,"safe-buffer":114,"util-deprecate":126}],104:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -10052,7 +9653,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":110}],101:[function(require,module,exports){
+},{"safe-buffer":114}],105:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -10125,17 +9726,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":93}],102:[function(require,module,exports){
+},{"process-nextick-args":97}],106:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":80}],103:[function(require,module,exports){
+},{"events":84}],107:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],104:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -10408,10 +10009,10 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":110}],105:[function(require,module,exports){
+},{"safe-buffer":114}],109:[function(require,module,exports){
 module.exports = require('./readable').PassThrough
 
-},{"./readable":106}],106:[function(require,module,exports){
+},{"./readable":110}],110:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -10420,13 +10021,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":95,"./lib/_stream_passthrough.js":96,"./lib/_stream_readable.js":97,"./lib/_stream_transform.js":98,"./lib/_stream_writable.js":99}],107:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":99,"./lib/_stream_passthrough.js":100,"./lib/_stream_readable.js":101,"./lib/_stream_transform.js":102,"./lib/_stream_writable.js":103}],111:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":106}],108:[function(require,module,exports){
+},{"./readable":110}],112:[function(require,module,exports){
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":99}],109:[function(require,module,exports){
+},{"./lib/_stream_writable.js":103}],113:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -10459,7 +10060,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this,require('_process'))
-},{"_process":65,"through":121}],110:[function(require,module,exports){
+},{"_process":69,"through":125}],114:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -10523,7 +10124,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":66}],111:[function(require,module,exports){
+},{"buffer":70}],115:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10652,7 +10253,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":80,"inherits":86,"readable-stream/duplex.js":94,"readable-stream/passthrough.js":105,"readable-stream/readable.js":106,"readable-stream/transform.js":107,"readable-stream/writable.js":108}],112:[function(require,module,exports){
+},{"events":84,"inherits":90,"readable-stream/duplex.js":98,"readable-stream/passthrough.js":109,"readable-stream/readable.js":110,"readable-stream/transform.js":111,"readable-stream/writable.js":112}],116:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -10667,7 +10268,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":73,"function-bind":83}],113:[function(require,module,exports){
+},{"es-abstract/es5":77,"function-bind":87}],117:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -10687,7 +10288,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":112,"./polyfill":114,"./shim":115,"define-properties":71,"function-bind":83}],114:[function(require,module,exports){
+},{"./implementation":116,"./polyfill":118,"./shim":119,"define-properties":75,"function-bind":87}],118:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -10701,7 +10302,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":112}],115:[function(require,module,exports){
+},{"./implementation":116}],119:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -10713,7 +10314,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":114,"define-properties":71}],116:[function(require,module,exports){
+},{"./polyfill":118,"define-properties":75}],120:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -10867,7 +10468,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":117,"./lib/results":119,"./lib/test":120,"_process":65,"defined":72,"through":121}],117:[function(require,module,exports){
+},{"./lib/default_stream":121,"./lib/results":123,"./lib/test":124,"_process":69,"defined":76,"through":125}],121:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -10902,7 +10503,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":65,"fs":64,"through":121}],118:[function(require,module,exports){
+},{"_process":69,"fs":68,"through":125}],122:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -10910,7 +10511,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":65}],119:[function(require,module,exports){
+},{"_process":69}],123:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -11101,7 +10702,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":65,"events":80,"function-bind":83,"has":84,"inherits":86,"object-inspect":89,"resumer":109,"through":121}],120:[function(require,module,exports){
+},{"_process":69,"events":84,"function-bind":87,"has":88,"inherits":90,"object-inspect":93,"resumer":113,"through":125}],124:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -11602,7 +11203,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":118,"deep-equal":68,"defined":72,"events":80,"has":84,"inherits":86,"path":92,"string.prototype.trim":113}],121:[function(require,module,exports){
+},{"./next_tick":122,"deep-equal":72,"defined":76,"events":84,"has":88,"inherits":90,"path":96,"string.prototype.trim":117}],125:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -11714,7 +11315,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":65,"stream":111}],122:[function(require,module,exports){
+},{"_process":69,"stream":115}],126:[function(require,module,exports){
 (function (global){
 
 /**
@@ -11785,4 +11386,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[35]);
+},{}]},{},[34]);
