@@ -7341,8 +7341,8 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 /**
 * Computes the cosine of a number.
 *
-* @param {number} x - input value
-* @returns {number} cosine (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} cosine
 *
 * @example
 * var v = cos( 0.0 );
@@ -8454,9 +8454,9 @@ var polyval46 = evalpoly( C46 );
 *   where \\( w = 1 - \frac{x \cdot x}{2} \\) and \\( t \\) is a tiny correction term (\\( 1 - \frac{x \cdot x}{2} = w + t \\) exactly in infinite precision). The exactness of \\(w + t\\) in infinite precision depends on \\(w\\) and \\(t\\) having the same precision as \\(x\\).
 *
 *
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
+* @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
 * @param {number} y - tail of `x`
-* @returns {number} cosine (in radians)
+* @returns {number} cosine
 *
 * @example
 * var v = kernelCos( 0.0, 0.0 );
@@ -8780,10 +8780,10 @@ var polyvalEven = evalpoly( T_EVEN );
 *   = 1 - 2 \cdot \left( \tan(y) - \tfrac{\tan(y)^2}{1+\tan(y)} \right)
 *   ```
 *
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
+* @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
 * @param {number} y - tail of x.
 * @param {integer} [k=1] - indicates whether tan (if k = 1) or -1/tan (if k = -1) is returned.
-* @returns {number} tangent (in radians)
+* @returns {number} tangent
 *
 * @example
 * var out = kernelTan( Math.PI/4.0, 0.0, 1 );
@@ -10333,8 +10333,8 @@ var Y = [ 0.0, 0.0 ];
 *   |  3  |    -C    |     S    |   -1/T   |
 *
 *
-* @param {number} x - input value
-* @returns {number} sine (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} sine
 *
 * @example
 * var v = sin( 0.0 );
@@ -10588,8 +10588,8 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 *   |  2  |    -S    |    -C    |    T     |
 *   |  3  |    -C    |     S    |   -1/T   |
 *
-* @param {number} x - input value
-* @returns {number} tangent (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} tangent
 *
 * @example
 * var v = tan( 0.0 );

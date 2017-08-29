@@ -17382,8 +17382,8 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 /**
 * Computes the cosine of a number.
 *
-* @param {number} x - input value
-* @returns {number} cosine (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} cosine
 *
 * @example
 * var v = cos( 0.0 );
@@ -23601,9 +23601,9 @@ var polyval46 = evalpoly( C46 );
 *   where \\( w = 1 - \frac{x \cdot x}{2} \\) and \\( t \\) is a tiny correction term (\\( 1 - \frac{x \cdot x}{2} = w + t \\) exactly in infinite precision). The exactness of \\(w + t\\) in infinite precision depends on \\(w\\) and \\(t\\) having the same precision as \\(x\\).
 *
 *
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
+* @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
 * @param {number} y - tail of `x`
-* @returns {number} cosine (in radians)
+* @returns {number} cosine
 *
 * @example
 * var v = kernelCos( 0.0, 0.0 );
@@ -27197,8 +27197,8 @@ var Y = [ 0.0, 0.0 ];
 *   |  3  |    -C    |     S    |   -1/T   |
 *
 *
-* @param {number} x - input value
-* @returns {number} sine (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} sine
 *
 * @example
 * var v = sin( 0.0 );
@@ -27539,8 +27539,8 @@ var ratval = evalrational( P, Q );
 *   | IEEE       | -2,2   | 30000    | 2.5e-16 | 5.8e-17 |
 *
 *
-* @param {number} x - input value
-* @returns {number} hyperbolic tangent (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} hyperbolic tangent
 *
 * @example
 * var v = tanh( 0.0 );
@@ -27573,7 +27573,7 @@ function tanh( x ) {
 		}
 	} else {
 		if ( x === 0.0 ) {
-			return x; // handle `+-0`
+			return x; // Handle `+-0`
 		}
 		s = x * x;
 		z = x + ( x*s*ratval( s ) );
