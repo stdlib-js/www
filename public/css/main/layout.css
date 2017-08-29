@@ -90,6 +90,10 @@ h2 {
 	padding: 0 16px;
 }
 
+.top-nav-item a {
+	display: block;
+}
+
 .main {
 	width: 100%;
 	margin-bottom: 40px;
