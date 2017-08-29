@@ -40,7 +40,7 @@
 15. Consider JS bundle minify
 16. Replace `@stdlib/stdlib` HTML doc with something less repo/dev focused
 17. Determine whether to delineate the doc version with `.` or with `_` in URL
-18. 
+18. add support for different build targets (e.g., a `www` target where we can refer to common assets like `reset.css`, package ToC, etc, and a standalone target which inlines everything such that package docs can be standalone)
 19. 
 20. resolve source URLs (see note in build-package/lib/build.js)
 21. sidenote/marginnote styling: https://edwardtufte.github.io/tufte-css/
