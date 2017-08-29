@@ -8,6 +8,10 @@
 
 2. webhook server to trigger build
 3. landing page
+
+   - main website
+   - docs specific
+
 4. GitHub pages redirect
 5. a "staging" version of the website in order to test out features before going live
 6. a script which can do
@@ -19,12 +23,25 @@
    - symlink
    - nginx start
 
-7. resolve source links (should this resolve to a particular commit? as in the commit when docs were built?)
-8. rehype/lowlight transformation of Markdown converted to HTML
-9. remark transform when converting to HTML to remove equation divs and replace with MathJax markup
-10. percent-encode the `@` symbol in the package URLs => `%40stdlib`
+7. Use URL shortening for click tracking (e.g., Bit.ly)
+
+   - should add a privacy policy to the repo describing what data is collected and why and should link to this policy in the docs (footer link)
+
+8. highlight currently viewed package in the side panel navigation
+9. build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
+10. 
 11. diffie-hellman: https://mozilla.github.io/server-side-tls/ssl-config-generator/
 
     - see digital ocean blog
 
 12. SSL-stapling config
+13. HTML minify (rehype plugin)
+14. CSS and JavaScript in HTML minify (rehype plugin)
+15. Consider JS bundle minify
+16. Replace `@stdlib/stdlib` HTML doc with something less repo/dev focused
+17. Determine whether to delineate the doc version with `.` or with `_` in URL
+18. 
+19. 
+20. resolve source URLs (see note in build-package/lib/build.js)
+21. sidenote/marginnote styling: https://edwardtufte.github.io/tufte-css/
+22. host the exact Lato font-weight we need for the side menu (200), rather than rely on Google (if we place the website behind a CDN, we should be okay)
