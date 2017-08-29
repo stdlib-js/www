@@ -17306,6 +17306,10 @@ exports.realpath = function realpath(p, cache, cb) {
 
 }).call(this,require('_process'))
 },{"_process":186,"fs":185,"path":229}],209:[function(require,module,exports){
+'use strict';
+
+/* eslint no-invalid-this: 1 */
+
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
 var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
@@ -17356,6 +17360,8 @@ module.exports = function bind(that) {
 };
 
 },{}],210:[function(require,module,exports){
+'use strict';
+
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
