@@ -42,6 +42,10 @@
 17. Determine whether to delineate the doc version with `.` or with `_` in URL
 18. add support for different build targets (e.g., a `www` target where we can refer to common assets like `reset.css`, package ToC, etc, and a standalone target which inlines everything such that package docs can be standalone)
 19. investigate [hammer.js](https://github.com/hammerjs/hammer.js) for touch support
+
+    - swipe right to reveal slideout menu
+    - swipe left to close slideout menu
+    
 20. resolve source URLs (see note in build-package/lib/build.js)
 21. sidenote/marginnote styling: https://edwardtufte.github.io/tufte-css/
 22. host the exact Lato font-weight we need for the side menu (200), rather than rely on Google (if we place the website behind a CDN, we should be okay)
