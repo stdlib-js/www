@@ -1267,8 +1267,8 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 /**
 * Computes the cosine of a number.
 *
-* @param {number} x - input value
-* @returns {number} cosine (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} cosine
 *
 * @example
 * var v = cos( 0.0 );
@@ -1416,8 +1416,8 @@ var polyval = evalpoly( P );
 /**
 * Computes the cosine of a number minus one.
 *
-* @param {number} x - input value
-* @returns {number} cosine minus one (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} cosine minus one
 *
 * @example
 * var v = cosm1( 0.0 );
@@ -1789,9 +1789,9 @@ var polyval46 = evalpoly( C46 );
 *   where \\( w = 1 - \frac{x \cdot x}{2} \\) and \\( t \\) is a tiny correction term (\\( 1 - \frac{x \cdot x}{2} = w + t \\) exactly in infinite precision). The exactness of \\(w + t\\) in infinite precision depends on \\(w\\) and \\(t\\) having the same precision as \\(x\\).
 *
 *
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
+* @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
 * @param {number} y - tail of `x`
-* @returns {number} cosine (in radians)
+* @returns {number} cosine
 *
 * @example
 * var v = kernelCos( 0.0, 0.0 );

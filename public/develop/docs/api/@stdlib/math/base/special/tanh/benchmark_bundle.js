@@ -8106,8 +8106,8 @@ var ratval = evalrational( P, Q );
 *   | IEEE       | -2,2   | 30000    | 2.5e-16 | 5.8e-17 |
 *
 *
-* @param {number} x - input value
-* @returns {number} hyperbolic tangent (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} hyperbolic tangent
 *
 * @example
 * var v = tanh( 0.0 );
@@ -8140,7 +8140,7 @@ function tanh( x ) {
 		}
 	} else {
 		if ( x === 0.0 ) {
-			return x; // handle `+-0`
+			return x; // Handle `+-0`
 		}
 		s = x * x;
 		z = x + ( x*s*ratval( s ) );

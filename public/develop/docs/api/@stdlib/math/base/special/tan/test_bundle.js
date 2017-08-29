@@ -677,10 +677,10 @@ var polyvalEven = evalpoly( T_EVEN );
 *   = 1 - 2 \cdot \left( \tan(y) - \tfrac{\tan(y)^2}{1+\tan(y)} \right)
 *   ```
 *
-* @param {number} x - input value (assumed to be bounded by ~pi/4 in magnitude)
+* @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
 * @param {number} y - tail of x.
 * @param {integer} [k=1] - indicates whether tan (if k = 1) or -1/tan (if k = -1) is returned.
-* @returns {number} tangent (in radians)
+* @returns {number} tangent
 *
 * @example
 * var out = kernelTan( Math.PI/4.0, 0.0, 1 );
@@ -1854,8 +1854,8 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 *   |  2  |    -S    |    -C    |    T     |
 *   |  3  |    -C    |     S    |   -1/T   |
 *
-* @param {number} x - input value
-* @returns {number} tangent (in radians)
+* @param {number} x - input value (in radians)
+* @returns {number} tangent
 *
 * @example
 * var v = tan( 0.0 );
