@@ -8365,6 +8365,10 @@ module.exports = function forEach (obj, fn, ctx) {
 
 
 },{}],135:[function(require,module,exports){
+'use strict';
+
+/* eslint no-invalid-this: 1 */
+
 var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
 var slice = Array.prototype.slice;
 var toStr = Object.prototype.toString;
@@ -8415,6 +8419,8 @@ module.exports = function bind(that) {
 };
 
 },{}],136:[function(require,module,exports){
+'use strict';
+
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
