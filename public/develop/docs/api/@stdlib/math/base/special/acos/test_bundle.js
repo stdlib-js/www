@@ -2405,11 +2405,11 @@ tape( 'the function computes the arccosine', function test( t ) {
 	for ( i = 0; i < x.length; i++ ) {
 		y = acos( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -2429,11 +2429,11 @@ tape( 'the function computes the arccosine (small negative numbers)', function t
 	for ( i = 0; i < x.length; i++ ) {
 		y = acos( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -2453,11 +2453,11 @@ tape( 'the function computes the arccosine (small positive numbers)', function t
 	for ( i = 0; i < x.length; i++ ) {
 		y = acos( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();

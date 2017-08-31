@@ -970,7 +970,7 @@ tape( 'the function evaluates the atan2 function (when x and y are positive)', f
 		actual = atan2( y[i], x[i] );
 		delta = abs( actual - expected[i] );
 		tol = EPS * abs( expected[i] );
-		t.equal( delta <= tol, true, 'within tolerance. y: '+y[i]+'. x: '+x[i]+'. Actual: '+actual+'. Expected: '+expected[i]+'. Tolerance: '+tol+'. Delta: '+delta+'.' );
+		t.equal( delta <= tol, true, 'within tolerance. y: '+y[i]+'. x: '+x[i]+'. Actual: '+actual+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 	}
 	t.end();
 });
@@ -991,7 +991,7 @@ tape( 'the function evaluates the atan2 function (when x is negative and y is po
 		actual = atan2( y[i], x[i] );
 		delta = abs( actual - expected[i] );
 		tol = 2.0 * EPS * abs( expected[i] );
-		t.equal( delta <= tol, true, 'within tolerance. y: '+y[i]+'. x: '+x[i]+'. Actual: '+actual+'. Expected: '+expected[i]+'. Tolerance: '+tol+'. Delta: '+delta+'.' );
+		t.equal( delta <= tol, true, 'within tolerance. y: '+y[i]+'. x: '+x[i]+'. Actual: '+actual+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 	}
 	t.end();
 });
@@ -1012,7 +1012,7 @@ tape( 'the function evaluates the atan2 function (when x and y are negative)', f
 		actual = atan2( y[i], x[i] );
 		delta = abs( actual - expected[i] );
 		tol = 2.0 * EPS * abs( expected[i] );
-		t.equal( delta <= tol, true, 'within tolerance. y: '+y[i]+'. x: '+x[i]+'. Actual: '+actual+'. Expected: '+expected[i]+'. Tolerance: '+tol+'. Delta: '+delta+'.' );
+		t.equal( delta <= tol, true, 'within tolerance. y: '+y[i]+'. x: '+x[i]+'. Actual: '+actual+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 	}
 	t.end();
 });

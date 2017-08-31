@@ -7156,7 +7156,7 @@ module.exports = floor;
 'use strict';
 
 /**
-* Compute the tangent of a number on `[-pi/4, pi/4]`.
+* Compute the tangent of a number on `[-π/4, π/4]`.
 *
 * @module @stdlib/math/base/special/kernel-tan
 *
@@ -7215,23 +7215,26 @@ var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
 
 var PIO4 = 7.85398163397448278999e-01;
 var PIO4LO = 3.06161699786838301793e-17;
-var T0 = 3.33333333333334091986e-01; /* 3FD55555, 55555563 */
+var T0 = 3.33333333333334091986e-01; // 3FD55555, 55555563
 var T_ODD = [
-	1.33333333333201242699e-01, /* T1 => 3FC11111, 1110FE7A */
-	2.18694882948595424599e-02, /* T3 => 3FABA1BA, 1BB341FE */
-	3.59207910759131235356e-03, /* T5 => 3F6D6D22, C9560328 */
-	5.88041240820264096874e-04, /* T7 => 3F4344D8, F2F26501 */
-	7.81794442939557092300e-05, /* T9 => 3F147E88, A03792A6 */
-	-1.85586374855275456654e-05 /* T11 => BEF375CB, DB605373 */
+	1.33333333333201242699e-01, // T1 => 3FC11111, 1110FE7A
+	2.18694882948595424599e-02, // T3 => 3FABA1BA, 1BB341FE
+	3.59207910759131235356e-03, // T5 => 3F6D6D22, C9560328
+	5.88041240820264096874e-04, // T7 => 3F4344D8, F2F26501
+	7.81794442939557092300e-05, // T9 => 3F147E88, A03792A6
+	-1.85586374855275456654e-05 // T11 => BEF375CB, DB605373
 ];
 var T_EVEN = [
-	5.39682539762260521377e-02, /* T2 => 3FABA1BA, 1BB341FE */
-	8.86323982359930005737e-03, /* T4 => 3F8226E3, E96E8493 */
-	1.45620945432529025516e-03, /* T6 => 3F57DBC8, FEE08315 */
-	2.46463134818469906812e-04, /* T8 => 3F3026F7, 1A8D1068 */
-	7.14072491382608190305e-05, /* T10 => 3F12B80F, 32F0A7E9 */
-	2.59073051863633712884e-05 /* T12 => 3EFB2A70, 74BF7AD4 */
+	5.39682539762260521377e-02, // T2 => 3FABA1BA, 1BB341FE
+	8.86323982359930005737e-03, // T4 => 3F8226E3, E96E8493
+	1.45620945432529025516e-03, // T6 => 3F57DBC8, FEE08315
+	2.46463134818469906812e-04, // T8 => 3F3026F7, 1A8D1068
+	7.14072491382608190305e-05, // T10 => 3F12B80F, 32F0A7E9
+	2.59073051863633712884e-05  // T12 => 3EFB2A70, 74BF7AD4
 ];
+
+// Absolute value mask: 2147483647 => 0x7fffffff => 01111111111111111111111111111111
+var HIGH_WORD_ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 
 // FUNCTIONS //
@@ -7248,9 +7251,11 @@ var polyvalEven = evalpoly( T_EVEN );
 *
 * ## Method
 *
-* * Since \\( \tan(-x) = -\tan(x) \\), we need only to consider positive x.
-* * Callers must return \\( \tan(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves -0. Callers may do the optimization \\( \tan(x) \approx x \\) for tiny x.
-* * \\( \tan(x) \\) is approximated by a odd polynomial of degree 27 on \\( [0,0.67434] \\)
+* * Since \\( \tan(-x) = -\tan(x) \\), we need only to consider positive \\( x \\).
+*
+* * Callers must return \\( \tan(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves \\( -0 \\). Callers may do the optimization \\( \tan(x) \approx x \\) for tiny \\( x \\).
+*
+* * \\( \tan(x) \\) is approximated by a odd polynomial of degree 27 on \\( [0, 0.67434] \\)
 *
 *   ``` tex
 *   \tan(x) \approx x + T_1 x^3 + \ldots + T_{13} x^{27}
@@ -7273,16 +7278,17 @@ var polyvalEven = evalpoly( T_EVEN );
 *   \tan(x+y) = x^3 + \left( T_1 \cdot x^2 + (x \cdot (r+y)+y) \right)
 *   ```
 *
-* * For x in \\( [0.67434,\pi/4] \\),  let \\( y = \pi/4 - x \\), then
+* * For \\( x \\) in \\( [0.67434, \pi/4] \\),  let \\( y = \pi/4 - x \\), then
 *
 *   ``` tex
 *   \tan(x) = \tan\left(\tfrac{\pi}{4}-y\right) = \frac{1-\tan(y)}{1+\tan(y)} \\
 *   = 1 - 2 \cdot \left( \tan(y) - \tfrac{\tan(y)^2}{1+\tan(y)} \right)
 *   ```
 *
-* @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
-* @param {number} y - tail of x.
-* @param {integer} [k=1] - indicates whether tan (if k = 1) or -1/tan (if k = -1) is returned.
+*
+* @param {number} x - input value (in radians, assumed to be bounded by ~π/4 in magnitude)
+* @param {number} y - tail of x
+* @param {integer} k - indicates whether tan (if k = 1) or -1/tan (if k = -1) is returned
 * @returns {number} tangent
 *
 * @example
@@ -7310,7 +7316,7 @@ var polyvalEven = evalpoly( T_EVEN );
 * // returns NaN
 *
 * @example
-* var out = kernelTan( 3.0, 0.0, NaN );
+* var out = kernelTan( NaN, NaN, 1 );
 * // returns NaN
 */
 function kernelTan( x, y, k ) {
@@ -7327,7 +7333,7 @@ function kernelTan( x, y, k ) {
 	hx = getHighWord( x );
 
 	// High word of |x|:
-	ix = hx & 0x7fffffff;
+	ix = hx & HIGH_WORD_ABS_MASK;
 
 	// Case: |x| >= 0.6744
 	if ( ix >= 0x3FE59428 ) {
@@ -7352,17 +7358,17 @@ function kernelTan( x, y, k ) {
 	w = x + r;
 	if ( ix >= 0x3FE59428 ) {
 		v = k;
-		// eslint-disable-next-line max-len
-		return ( 1.0 - ( (hx >> 30) & 2 ) ) * ( v - (2.0 * (x - ((w * w / (w + v)) - r)) ));
+		return ( 1.0 - ( (hx >> 30) & 2 ) ) * ( v - (2.0 * (x - ((w * w / (w + v)) - r)) )); // eslint-disable-line max-len
 	}
-	if ( k !== -1 ) {
+	if ( k === 1 ) {
 		return w;
 	}
-	// Compute `-1.0 / (x+r)` accurately:
+	// Compute -1/(x+r) accurately...
 	z = w;
 	setLowWord( z, 0 );
-	v = r - (z - x); // `z + v = r + x`
-	t = a = -1.0 / w; // `a = -1.0 / w`
+	v = r - (z - x); // z + v = r + x
+	a = -1.0 / w; // a = -1/w
+	t = a;
 	setLowWord( t, 0 );
 	s = 1.0 + (t * z);
 	return t + (a * (s + (t * v)));
@@ -7685,17 +7691,16 @@ module.exports = modf;
 'use strict';
 
 /**
-* Compute `x - n*pi/2 = r`.
+* Compute `x - nπ/2 = r`.
 *
 * @module @stdlib/math/base/special/rempio2
 *
 * @example
 * var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 *
-* var x = 128.0;
 * var y = new Array( 2 );
-* var n = rempio2( x, y );
-* // returns 81.0
+* var n = rempio2( 128.0, y );
+* // returns 81
 *
 * var y1 = y[ 0 ];
 * // returns ~0.765
@@ -7742,15 +7747,15 @@ var ldexp = require( '@stdlib/math/base/special/ldexp' );
 // VARIABLES //
 
 /*
-* Table of constants for `2/pi` (`396` hex digits, `476` decimal).
+* Table of constants for `2/π` (`396` hex digits, `476` decimal).
 *
-* Integer array which contains the (24*i)-th to (24*i+23)-th bit of `2/pi` after binary point. The corresponding floating value is
+* Integer array which contains the (`24*i`)-th to (`24*i+23`)-th bit of `2/π` after binary point. The corresponding floating value is
 *
 * ``` tex
 * \operatorname{ipio2}[i] \cdot 2^{-24(i+1)}
 * ```
 *
-* This table must have at least `(e0-3)/24 + jk` terms. For quad precision (e0 <= 16360, jk = 6), this is `686`.
+* This table must have at least `(e0-3)/24 + jk` terms. For quad precision (`e0 <= 16360`, `jk = 6`), this is `686`.
 */
 var IPIO2 = [
 	0xA2F983, 0x6E4E44, 0x1529FC, 0x2757D1, 0xF534DD, 0xC0DB62,
@@ -7766,7 +7771,7 @@ var IPIO2 = [
 	0x4D7327, 0x310606, 0x1556CA, 0x73A8C9, 0x60E27B, 0xC08C6B
 ];
 
-// Double precision array, obtained by cutting `pi/2` into `24` bits chunks...
+// Double precision array, obtained by cutting `π/2` into `24` bits chunks...
 var PIO2 = [
 	1.57079625129699707031e+00, // 0x3FF921FB, 0x40000000
 	7.54978941586159635335e-08, // 0x3E74442D, 0x00000000
@@ -7810,9 +7815,9 @@ function zero( arr ) {
 *
 * @private
 * @param {PositiveNumber} x - input value
-* @param {Collection} y - output result in an array of double precision numbers
+* @param {(Array|TypedArray|Object)} y - output object for storing double precision numbers
 * @param {integer} jz - number of terms of `ipio2[]` used
-* @param {Array<integer>} q - array with integral values, representing the 24-bits chunk of the product of `x` and `2/pi`
+* @param {Array<integer>} q - array with integral values, representing the 24-bits chunk of the product of `x` and `2/π`
 * @param {integer} q0 - the corresponding exponent of `q[0]` (the exponent for `q[i]` would be `q0-24*i`)
 * @param {integer} jk - `jk+1` is the initial number of terms of `IPIO2[]` needed in the computation
 * @param {integer} jv - index for pointing to the suitable `ipio2[]` for the computation
@@ -7837,11 +7842,11 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 	// Distill `q[]` into `IQ[]` in reverse order...
 	z = q[ jz ];
 	j = jz;
-	// eslint-disable-next-line no-plusplus
-	for ( i = 0; j > 0; i++, j-- ) {
+	for ( i = 0; j > 0; i++ ) {
 		fw = ( TWON24 * z )|0;
 		IQ[ i ] = ( z - (TWO24*fw) )|0;
 		z = q[ j-1 ] + fw;
+		j -= 1;
 	}
 	// Compute `n`...
 	z = ldexp( z, q0 );
@@ -7982,15 +7987,15 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 // MAIN //
 
 /**
-* Returns the last three binary digits of `N` with `y = x - N*pi/2` so that `|y| < pi/2`.
+* Returns the last three binary digits of `N` with `y = x - Nπ/2` so that `|y| < π/2`.
 *
 * ## Method
 *
-* * The method is to compute the integer (mod 8) and fraction parts of `(2/pi)*x` without doing the full multiplication. In general, we skip the part of the product that is known to be a huge integer (more accurately, equals 0 mod 8 ). Thus, the number of operations is independent of the exponent of the input.
+* * The method is to compute the integer (`mod 8`) and fraction parts of `2x/π` without doing the full multiplication. In general, we skip the part of the product that is known to be a huge integer (more accurately, equals `0 mod 8` ). Thus, the number of operations is independent of the exponent of the input.
 *
 * @private
 * @param {PositiveNumber} x - input value
-* @param {Collection} y - output result in an array of double precision numbers
+* @param {(Array|TypedArray|Object)} y - remainder elements
 * @param {PositiveInteger} e0 - the exponent of `x[0]` (must be <= 16360)
 * @param {PositiveInteger} nx - dimension of `x[]`
 * @returns {number} last three binary digits of `N`
@@ -8020,13 +8025,13 @@ function kernelRempio2( x, y, e0, nx ) {
 	// Set up `F[0]` to `F[jx+jk]` where `F[jx+jk] = IPIO2[jv+jk]`:
 	j = jv - jx;
 	m = jx + jk;
-	// eslint-disable-next-line no-plusplus
-	for ( i = 0; i <= m; i++, j++ ) {
+	for ( i = 0; i <= m; i++ ) {
 		if ( j < 0 ) {
 			F[ i ] = 0.0;
 		} else {
 			F[ i ] = IPIO2[ j ];
 		}
+		j += 1;
 	}
 	// Compute `Q[0],Q[1],...,Q[jk]`:
 	for ( i = 0; i <= jk; i++ ) {
@@ -8081,10 +8086,10 @@ var rempio2Medium = require( './rempio2_medium.js' );
 var ZERO = 0.00000000000000000000e+00;    // 0x00000000, 0x00000000
 var TWO24 = 1.67772160000000000000e+07;   // 0x41700000, 0x00000000
 
-// 33 bits of PI/2:
+// 33 bits of π/2:
 var PIO2_1 = 1.57079632673412561417e+00;  // 0x3FF921FB, 0x54400000
 
-// PIO2_1T = PI/2 - PIO2_1:
+// PIO2_1T = π/2 - PIO2_1:
 var PIO2_1T = 6.07710050650619224932e-11; // 0x3DD0B461, 0x1A626331
 var TWO_PIO2_1T = 2.0 * PIO2_1T;
 var THREE_PIO2_1T = 3.0 * PIO2_1T;
@@ -8099,31 +8104,31 @@ var EXPONENT_MASK = 0x7ff00000;
 // High word significand mask: 0xfffff = 1048575 => 00000000000011111111111111111111
 var SIGNIFICAND_MASK = 0xfffff;
 
-// High word significand for PI and PI/2: 0x921fb = 598523 => 00000000000010010010000111111011
+// High word significand for π and π/2: 0x921fb = 598523 => 00000000000010010010000111111011
 var PI_HIGH_WORD_SIGNIFICAND = 0x921fb;
 
-// High word for PI/4: 0x3fe921fb = 1072243195 => 00111111111010010010000111111011
+// High word for π/4: 0x3fe921fb = 1072243195 => 00111111111010010010000111111011
 var PIO4_HIGH_WORD = 0x3fe921fb;
 
-// High word for 3*PI/4: 0x4002d97c = 1073928572 => 01000000000000101101100101111100
+// High word for 3π/4: 0x4002d97c = 1073928572 => 01000000000000101101100101111100
 var THREE_PIO4_HIGH_WORD = 0x4002d97c;
 
-// High word for 5*PI/4: 0x400f6a7a = 1074752122 => 01000000000011110110101001111010
+// High word for 5π/4: 0x400f6a7a = 1074752122 => 01000000000011110110101001111010
 var FIVE_PIO4_HIGH_WORD = 0x400f6a7a;
 
-// High word for 6*PI/4: 0x4012d97c = 1074977148 => 01000000000100101101100101111100
+// High word for 6π/4: 0x4012d97c = 1074977148 => 01000000000100101101100101111100
 var THREE_PIO2_HIGH_WORD = 0x4012d97c;
 
-// High word for 7*PI/4: 0x4015fdbc = 1075183036 => 01000000000101011111110110111100
+// High word for 7π/4: 0x4015fdbc = 1075183036 => 01000000000101011111110110111100
 var SEVEN_PIO4_HIGH_WORD = 0x4015fdbc;
 
-// High word for 8*PI/4: 0x401921fb = 1075388923 => 01000000000110010010000111111011
+// High word for 8π/4: 0x401921fb = 1075388923 => 01000000000110010010000111111011
 var TWO_PI_HIGH_WORD = 0x401921fb;
 
-// High word for 9*PI/4: 0x401c463b = 1075594811 => 01000000000111000100011000111011
+// High word for 9π/4: 0x401c463b = 1075594811 => 01000000000111000100011000111011
 var NINE_PIO4_HIGH_WORD = 0x401c463b;
 
-// 2^20*pi/2 = 1647099.3291652855 => 0100000100111001001000011111101101010100010001000010110100011000 => high word => 0x413921fb = 1094263291 => 01000001001110010010000111111011
+// 2^20*π/2 = 1647099.3291652855 => 0100000100111001001000011111101101010100010001000010110100011000 => high word => 0x413921fb = 1094263291 => 01000001001110010010000111111011
 var MEDIUM = 0x413921fb;
 
 // Arrays for storing temporary values (note that, in C, this would not be thread-safe):
@@ -8134,36 +8139,36 @@ var TY = new Array( 2 );
 // MAIN //
 
 /**
-* Computes `x - n*pi/2 = r`.
+* Computes `x - nπ/2 = r`.
 *
 * ## Notes
 *
 * * Returns `n` and stores the remainder `r` as two numbers `y[0]` and `y[1]`, such that `y[0]+y[1] = r`.
-* * The function does not perform input validation for `y` due to performance considerations. You should ensure to only supply an array, typed array, or an array-like object for `y`.
 *
 *
 * @param {number} x - input value
-* @param {Collection} y - remainder elements
-* @returns {integer} factor of `pi/2`
+* @param {(Array|TypedArray|Object)} y - remainder elements
+* @returns {integer} factor of `π/2`
 *
 * @example
-* var x = 128.0;
 * var y = new Array( 2 );
-* var n = rempio2( x, y );
-* // returns 81.0
+* var n = rempio2( 128.0, y );
+* // returns 81
 *
 * var y1 = y[ 0 ];
 * // returns ~0.765
+*
 * var y2 = y[ 1 ];
 * // returns ~3.618e-17
 *
 * @example
 * var y = new Array( 2 );
 * var n = rempio2( NaN, y );
-* // returns 0.0
+* // returns 0
 *
 * var y1 = y[ 0 ];
 * // returns NaN
+*
 * var y2 = y[ 1 ];
 * // returns NaN
 */
@@ -8180,20 +8185,20 @@ function rempio2( x, y ) {
 	hx = getHighWord( x );
 	ix = hx & ABS_MASK;
 
-	// Case: |x| ~<= pi/4 (no need for reduction)
+	// Case: |x| ~<= π/4 (no need for reduction)
 	if ( ix <= PIO4_HIGH_WORD ) {
 		y[ 0 ] = x;
 		y[ 1 ] = 0.0;
 		return 0;
 	}
-	// Case: |x| ~<= 5pi/4
+	// Case: |x| ~<= 5π/4
 	if ( ix <= FIVE_PIO4_HIGH_WORD ) {
-		// Case: |x| ~= pi/2 or pi
+		// Case: |x| ~= π/2 or π
 		if ( (ix & SIGNIFICAND_MASK) === PI_HIGH_WORD_SIGNIFICAND ) {
 			// Cancellation => use medium case
 			return rempio2Medium( x, ix, y );
 		}
-		// Case: |x| ~<= 3pi/4
+		// Case: |x| ~<= 3π/4
 		if ( ix <= THREE_PIO4_HIGH_WORD ) {
 			if ( x > 0.0 ) {
 				z = x - PIO2_1;
@@ -8217,11 +8222,11 @@ function rempio2( x, y ) {
 		y[ 1 ] = (z - y[0]) + TWO_PIO2_1T;
 		return -2;
 	}
-	// Case: |x| ~<= 9pi/4
+	// Case: |x| ~<= 9π/4
 	if ( ix <= NINE_PIO4_HIGH_WORD ) {
-		// Case: |x| ~<= 7pi/4
+		// Case: |x| ~<= 7π/4
 		if ( ix <= SEVEN_PIO4_HIGH_WORD ) {
-			// Case: |x| ~= 3pi/2
+			// Case: |x| ~= 3π/2
 			if ( ix === THREE_PIO2_HIGH_WORD ) {
 				return rempio2Medium( x, ix, y );
 			}
@@ -8236,7 +8241,7 @@ function rempio2( x, y ) {
 			y[ 1 ] = (z - y[0]) + THREE_PIO2_1T;
 			return -3;
 		}
-		// Case: |x| ~= 4pi/2
+		// Case: |x| ~= 4π/2
 		if ( ix === TWO_PI_HIGH_WORD ) {
 			return rempio2Medium( x, ix, y );
 		}
@@ -8251,7 +8256,7 @@ function rempio2( x, y ) {
 		y[ 1 ] = (z - y[0]) + FOUR_PIO2_1T;
 		return -4;
 	}
-	// Case: |x| ~< 2^20*pi/2 (medium size)
+	// Case: |x| ~< 2^20*π/2 (medium size)
 	if ( ix < MEDIUM ) {
 		return rempio2Medium( x, ix, y );
 	}
@@ -8319,25 +8324,25 @@ var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
 
 // VARIABLES //
 
-// 53 bits of 2/PI:
+// 53 bits of 2/π:
 var INVPIO2 = 6.36619772367581382433e-01; // 0x3FE45F30, 0x6DC9C883
 
-// First 33 bits of PI/2:
+// First 33 bits of π/2:
 var PIO2_1 = 1.57079632673412561417e+00;  // 0x3FF921FB, 0x54400000
 
-// PIO2_1T = PI/2 - PIO2_1:
+// PIO2_1T = π/2 - PIO2_1:
 var PIO2_1T = 6.07710050650619224932e-11; // 0x3DD0B461, 0x1A626331
 
-// Another 33 bits of PI/2:
+// Another 33 bits of π/2:
 var PIO2_2 = 6.07710050630396597660e-11;  // 0x3DD0B461, 0x1A600000
 
-// PIO2_2T = PI/2 - ( PIO2_1 + PIO2_2 ):
+// PIO2_2T = π/2 - ( PIO2_1 + PIO2_2 ):
 var PIO2_2T = 2.02226624879595063154e-21; // 0x3BA3198A, 0x2E037073
 
-// Another 33 bits of PI/2:
+// Another 33 bits of π/2:
 var PIO2_3 = 2.02226624871116645580e-21;  // 0x3BA3198A, 0x2E000000
 
-// PIO2_3T = PI/2 - ( PIO2_1 + PIO2_2 + PIO2_3 ):
+// PIO2_3T = π/2 - ( PIO2_1 + PIO2_2 + PIO2_3 ):
 var PIO2_3T = 8.47842766036889956997e-32; // 0x397B839A, 0x252049C1
 
 // Exponent mask (2047 => 0x7ff):
@@ -8347,13 +8352,13 @@ var EXPONENT_MASK = 0x7ff;
 // MAIN //
 
 /**
-* Computes `x - n*pi/2 = r` for medium-sized inputs.
+* Computes `x - nπ/2 = r` for medium-sized inputs.
 *
 * @private
 * @param {number} x - input value
 * @param {uint32} ix - high word of `x`
-* @param {Collection} y - remainder elements
-* @returns {integer} factor of `pi/2`
+* @param {(Array|TypedArray|Object)} y - remainder elements
+* @returns {integer} factor of `π/2`
 */
 function rempio2Medium( x, ix, y ) {
 	var high;
@@ -8611,7 +8616,7 @@ module.exports = tan;
 'use strict';
 
 /*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/s_tan.c?view=log}.
+* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/s_tan.c?view=markup}.
 *
 * The implementation follows the original, but has been modified for JavaScript.
 */
@@ -8634,14 +8639,36 @@ var kernelTan = require( '@stdlib/math/base/special/kernel-tan' );
 var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 
 
+// VARIABLES //
+
+// Scratch buffer. Note that, in C, this would not be thread safe.
+var buffer = new Array( 2 );
+
+// High word absolute value mask: 0x7fffffff => 01111111111111111111111111111111
+var HIGH_WORD_ABS_MASK = 0x7fffffff|0;
+
+// High word for pi/4: 0x3fe921fb => 00111111111010010010000111111011
+var HIGH_WORD_PIO4 = 0x3fe921fb|0;
+
+// High word exponent mask: 0x7ff00000 => 01111111111100000000000000000000
+var HIGH_WORD_EXPONENT_MASK = 0x7ff00000|0;
+
+// High word for a small value: 2^-27 = 7.450580596923828e-9 => high word => 0x3e400000 => 00111110010000000000000000000000
+var HIGH_WORD_TWO_NEG_27 = 0x3e400000|0;
+
+
 // MAIN //
 
 /**
 * Evaluates the tangent of a number.
 *
-* #### Method
+* ## Method
 *
-* * Let S,C and T denote the sin, cos and tan respectively on [-PI/4, +PI/4]. Reduce the argument x to y1+y2 = x-k*pi/2 in [-pi/4 , +pi/4], and let n = k mod 4. We have
+* * Let \\(S\\), \\(C\\), and \\(T\\) denote the \\(\sin\\), \\(\cos\\), and \\(\tan\\), respectively, on \\([-\pi/4, +\pi/4]\\).
+*
+* * Reduce the argument \\(x\\) to \\(y1+y2 = x-k\pi/2\\) in \\([-\pi/4, +\pi/4]\\), and let \\(n = k \mod 4\\).
+*
+* * We have
 *
 *   | n   |  sin(x)  |  cos(x)  |  tan(x)  |
 *   |:---:|:--------:|:--------:|:--------:|
@@ -8649,6 +8676,7 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 *   |  1  |     C    |    -S    |   -1/T   |
 *   |  2  |    -S    |    -C    |    T     |
 *   |  3  |    -C    |     S    |   -1/T   |
+*
 *
 * @param {number} x - input value (in radians)
 * @returns {number} tangent
@@ -8670,34 +8698,27 @@ var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 * // returns NaN
 */
 function tan( x ) {
-	var y;
-	var z;
-	var n;
 	var ix;
+	var n;
 
-	z = 0.0;
-	y = new Array( 2 );
 	ix = getHighWord( x );
-	ix &= 0x7fffffff;
+	ix &= HIGH_WORD_ABS_MASK;
 
 	// Case: |x| ~< pi/4
-	if ( ix <= 0x3fe921fb ) {
-		// Case: x < 2**-27
-		if ( ix < 0x3e400000 ) {
-			if ( (x|0) === 0 ) {
-				// Generate inexact...
-				return x;
-			}
+	if ( ix <= HIGH_WORD_PIO4 ) {
+		// Case: |x| < 2**-27
+		if ( ix < HIGH_WORD_TWO_NEG_27 ) {
+			return x;
 		}
-		return kernelTan( x, z, 1 );
+		return kernelTan( x, 0.0, 1 );
 	}
 	// Case: tan(Inf or NaN) is NaN
-	else if ( ix >= 0x7ff00000 ) {
+	if ( ix >= HIGH_WORD_EXPONENT_MASK ) {
 		return NaN;
 	}
 	// Argument reduction needed...
-	n = rempio2( x, y );
-	return kernelTan( y[0], y[1], 1 - ( (n&1) << 1 ) );
+	n = rempio2( x, buffer );
+	return kernelTan( buffer[ 0 ], buffer[ 1 ], 1-((n&1)<<1) );
 } // end FUNCTION tan()
 
 

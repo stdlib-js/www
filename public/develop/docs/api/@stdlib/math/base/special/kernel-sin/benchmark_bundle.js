@@ -6924,7 +6924,7 @@ bench( pkg, function benchmark( b ) {
 'use strict';
 
 /**
-* Compute the sine of a number on `[-pi/4, pi/4]`.
+* Compute the sine of a number on `[-π/4, π/4]`.
 *
 * @module @stdlib/math/base/special/kernel-sin
 *
@@ -6997,7 +6997,9 @@ var S6 = 1.58969099521155010221e-10;  // 0x3DE5D93A, 0x5ACFD57C
 * ## Method
 *
 * * Since \\( \sin(-x) = -\sin(x) \\), we need only to consider positive \\(x\\).
+*
 * * Callers must return \\( \sin(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves \\(-0\\). Callers may do the optimization \\( \sin(x) \approx x \\) for tiny \\(x\\).
+*
 * * \\( \sin(x) \\) is approximated by a polynomial of degree \\(13\\) on \\( \left[0,\tfrac{pi}{4}\right] \\)
 *
 *   ``` tex
@@ -7029,9 +7031,9 @@ var S6 = 1.58969099521155010221e-10;  // 0x3DE5D93A, 0x5ACFD57C
 *   ```
 *
 *
-* @param {number} x - input value (assumed to be bounded by `~pi/4` in magnitude)
+* @param {number} x - input value (in radians, assumed to be bounded by `~pi/4` in magnitude)
 * @param {number} y - tail of `x`
-* @returns {number} sine (in radians)
+* @returns {number} sine
 *
 * @example
 * var v = kernelSin( 0.0, 0.0 );
@@ -7067,7 +7069,7 @@ function kernelSin( x, y ) {
 	w = z * z;
 	r = S2 + (z * (S3 + (z*S4))) + (z * w * (S5 + (z*S6)));
 	v = z * x;
-	if ( y === 0 ) {
+	if ( y === 0.0 ) {
 		return x + (v * (S1 + (z*r)));
 	}
 	return x - (((z*((0.5*y) - (v*r))) - y) - (v*S1));
@@ -7082,7 +7084,7 @@ module.exports = kernelSin;
 module.exports={
   "name": "@stdlib/math/base/special/kernel-sin",
   "version": "0.0.0",
-  "description": "Compute the sine of a number on `[-pi/4, pi/4]`.",
+  "description": "Compute the sine of a number on `[-π/4, π/4]`.",
   "author": {
     "name": "The Stdlib Authors",
     "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"

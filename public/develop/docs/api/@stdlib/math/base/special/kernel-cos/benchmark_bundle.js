@@ -6924,7 +6924,7 @@ bench( pkg, function benchmark( b ) {
 'use strict';
 
 /**
-* Compute the cosine of a number on `[-pi/4, pi/4]`.
+* Compute the cosine of a number on `[-π/4, π/4]`.
 *
 * @module @stdlib/math/base/special/kernel-cos
 *
@@ -6983,12 +6983,12 @@ var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
 var C13 = [
 	4.16666666666666019037e-02,  // 0x3FA55555, 0x5555554C
 	-1.38888888888741095749e-03, // 0xBF56C16C, 0x16C15177
-	2.48015872894767294178e-05  // 0x3EFA01A0, 0x19CB1590
+	2.48015872894767294178e-05   // 0x3EFA01A0, 0x19CB1590
 ];
 var C46 = [
 	-2.75573143513906633035e-07, // 0xBE927E4F, 0x809C52AD
-	2.08757232129817482790e-09, // 0x3E21EE9E, 0xBDB4B1C4
-	-1.13596475577881948265e-11 // 0xBDA8FAE9, 0xBE8838D4
+	2.08757232129817482790e-09,  // 0x3E21EE9E, 0xBDB4B1C4
+	-1.13596475577881948265e-11  // 0xBDA8FAE9, 0xBE8838D4
 ];
 
 
@@ -7007,7 +7007,9 @@ var polyval46 = evalpoly( C46 );
 * ## Method
 *
 * * Since \\( \cos(-x) = \cos(x) \\), we need only to consider positive \\(x\\).
+*
 * * If \\( x < 2^{-27} \\), return \\(1\\) which is inexact if \\( x \ne 0 \\).
+*
 * * \\( cos(x) \\) is approximated by a polynomial of degree \\(14\\) on \\( [0,\pi/4] \\).
 *
 *   ``` tex
@@ -7091,7 +7093,7 @@ module.exports = kernelCos;
 module.exports={
   "name": "@stdlib/math/base/special/kernel-cos",
   "version": "0.0.0",
-  "description": "Compute the cosine of a number on `[-pi/4, pi/4]`.",
+  "description": "Compute the cosine of a number on `[-π/4, π/4]`.",
   "author": {
     "name": "The Stdlib Authors",
     "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"

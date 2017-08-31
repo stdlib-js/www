@@ -6899,7 +6899,7 @@ var kernelTan = require( './../lib' );
 
 // MAIN //
 
-bench( pkg+'::k=1', function benchmark( b ) {
+bench( pkg+':k=1', function benchmark( b ) {
 	var x;
 	var y;
 	var i;
@@ -6907,7 +6907,7 @@ bench( pkg+'::k=1', function benchmark( b ) {
 	b.tic();
 	for ( i = 0; i < b.iterations; i++ ) {
 		x = ( randu()*8.0/PI ) - ( 4.0/PI );
-		y = kernelTan( x, 0, 1 );
+		y = kernelTan( x, 0.0, 1 );
 		if ( isnan( y ) ) {
 			b.fail( 'should not return NaN' );
 		}
@@ -6920,7 +6920,7 @@ bench( pkg+'::k=1', function benchmark( b ) {
 	b.end();
 });
 
-bench( pkg+'::k=-1', function benchmark( b ) {
+bench( pkg+':k=-1', function benchmark( b ) {
 	var x;
 	var y;
 	var i;
@@ -6928,7 +6928,7 @@ bench( pkg+'::k=-1', function benchmark( b ) {
 	b.tic();
 	for ( i = 0; i < b.iterations; i++ ) {
 		x = ( randu()*8.0/PI ) - ( 4.0/PI );
-		y = kernelTan( x, 0, -1 );
+		y = kernelTan( x, 0.0, -1 );
 		if ( isnan( y ) ) {
 			b.fail( 'should not return NaN' );
 		}
@@ -6945,7 +6945,7 @@ bench( pkg+'::k=-1', function benchmark( b ) {
 'use strict';
 
 /**
-* Compute the tangent of a number on `[-pi/4, pi/4]`.
+* Compute the tangent of a number on `[-π/4, π/4]`.
 *
 * @module @stdlib/math/base/special/kernel-tan
 *
@@ -7004,23 +7004,26 @@ var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
 
 var PIO4 = 7.85398163397448278999e-01;
 var PIO4LO = 3.06161699786838301793e-17;
-var T0 = 3.33333333333334091986e-01; /* 3FD55555, 55555563 */
+var T0 = 3.33333333333334091986e-01; // 3FD55555, 55555563
 var T_ODD = [
-	1.33333333333201242699e-01, /* T1 => 3FC11111, 1110FE7A */
-	2.18694882948595424599e-02, /* T3 => 3FABA1BA, 1BB341FE */
-	3.59207910759131235356e-03, /* T5 => 3F6D6D22, C9560328 */
-	5.88041240820264096874e-04, /* T7 => 3F4344D8, F2F26501 */
-	7.81794442939557092300e-05, /* T9 => 3F147E88, A03792A6 */
-	-1.85586374855275456654e-05 /* T11 => BEF375CB, DB605373 */
+	1.33333333333201242699e-01, // T1 => 3FC11111, 1110FE7A
+	2.18694882948595424599e-02, // T3 => 3FABA1BA, 1BB341FE
+	3.59207910759131235356e-03, // T5 => 3F6D6D22, C9560328
+	5.88041240820264096874e-04, // T7 => 3F4344D8, F2F26501
+	7.81794442939557092300e-05, // T9 => 3F147E88, A03792A6
+	-1.85586374855275456654e-05 // T11 => BEF375CB, DB605373
 ];
 var T_EVEN = [
-	5.39682539762260521377e-02, /* T2 => 3FABA1BA, 1BB341FE */
-	8.86323982359930005737e-03, /* T4 => 3F8226E3, E96E8493 */
-	1.45620945432529025516e-03, /* T6 => 3F57DBC8, FEE08315 */
-	2.46463134818469906812e-04, /* T8 => 3F3026F7, 1A8D1068 */
-	7.14072491382608190305e-05, /* T10 => 3F12B80F, 32F0A7E9 */
-	2.59073051863633712884e-05 /* T12 => 3EFB2A70, 74BF7AD4 */
+	5.39682539762260521377e-02, // T2 => 3FABA1BA, 1BB341FE
+	8.86323982359930005737e-03, // T4 => 3F8226E3, E96E8493
+	1.45620945432529025516e-03, // T6 => 3F57DBC8, FEE08315
+	2.46463134818469906812e-04, // T8 => 3F3026F7, 1A8D1068
+	7.14072491382608190305e-05, // T10 => 3F12B80F, 32F0A7E9
+	2.59073051863633712884e-05  // T12 => 3EFB2A70, 74BF7AD4
 ];
+
+// Absolute value mask: 2147483647 => 0x7fffffff => 01111111111111111111111111111111
+var HIGH_WORD_ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 
 // FUNCTIONS //
@@ -7037,9 +7040,11 @@ var polyvalEven = evalpoly( T_EVEN );
 *
 * ## Method
 *
-* * Since \\( \tan(-x) = -\tan(x) \\), we need only to consider positive x.
-* * Callers must return \\( \tan(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves -0. Callers may do the optimization \\( \tan(x) \approx x \\) for tiny x.
-* * \\( \tan(x) \\) is approximated by a odd polynomial of degree 27 on \\( [0,0.67434] \\)
+* * Since \\( \tan(-x) = -\tan(x) \\), we need only to consider positive \\( x \\).
+*
+* * Callers must return \\( \tan(-0) = -0 \\) without calling here since our odd polynomial is not evaluated in a way that preserves \\( -0 \\). Callers may do the optimization \\( \tan(x) \approx x \\) for tiny \\( x \\).
+*
+* * \\( \tan(x) \\) is approximated by a odd polynomial of degree 27 on \\( [0, 0.67434] \\)
 *
 *   ``` tex
 *   \tan(x) \approx x + T_1 x^3 + \ldots + T_{13} x^{27}
@@ -7062,16 +7067,17 @@ var polyvalEven = evalpoly( T_EVEN );
 *   \tan(x+y) = x^3 + \left( T_1 \cdot x^2 + (x \cdot (r+y)+y) \right)
 *   ```
 *
-* * For x in \\( [0.67434,\pi/4] \\),  let \\( y = \pi/4 - x \\), then
+* * For \\( x \\) in \\( [0.67434, \pi/4] \\),  let \\( y = \pi/4 - x \\), then
 *
 *   ``` tex
 *   \tan(x) = \tan\left(\tfrac{\pi}{4}-y\right) = \frac{1-\tan(y)}{1+\tan(y)} \\
 *   = 1 - 2 \cdot \left( \tan(y) - \tfrac{\tan(y)^2}{1+\tan(y)} \right)
 *   ```
 *
-* @param {number} x - input value (in radians, assumed to be bounded by ~pi/4 in magnitude)
-* @param {number} y - tail of x.
-* @param {integer} [k=1] - indicates whether tan (if k = 1) or -1/tan (if k = -1) is returned.
+*
+* @param {number} x - input value (in radians, assumed to be bounded by ~π/4 in magnitude)
+* @param {number} y - tail of x
+* @param {integer} k - indicates whether tan (if k = 1) or -1/tan (if k = -1) is returned
 * @returns {number} tangent
 *
 * @example
@@ -7099,7 +7105,7 @@ var polyvalEven = evalpoly( T_EVEN );
 * // returns NaN
 *
 * @example
-* var out = kernelTan( 3.0, 0.0, NaN );
+* var out = kernelTan( NaN, NaN, 1 );
 * // returns NaN
 */
 function kernelTan( x, y, k ) {
@@ -7116,7 +7122,7 @@ function kernelTan( x, y, k ) {
 	hx = getHighWord( x );
 
 	// High word of |x|:
-	ix = hx & 0x7fffffff;
+	ix = hx & HIGH_WORD_ABS_MASK;
 
 	// Case: |x| >= 0.6744
 	if ( ix >= 0x3FE59428 ) {
@@ -7141,17 +7147,17 @@ function kernelTan( x, y, k ) {
 	w = x + r;
 	if ( ix >= 0x3FE59428 ) {
 		v = k;
-		// eslint-disable-next-line max-len
-		return ( 1.0 - ( (hx >> 30) & 2 ) ) * ( v - (2.0 * (x - ((w * w / (w + v)) - r)) ));
+		return ( 1.0 - ( (hx >> 30) & 2 ) ) * ( v - (2.0 * (x - ((w * w / (w + v)) - r)) )); // eslint-disable-line max-len
 	}
-	if ( k !== -1 ) {
+	if ( k === 1 ) {
 		return w;
 	}
-	// Compute `-1.0 / (x+r)` accurately:
+	// Compute -1/(x+r) accurately...
 	z = w;
 	setLowWord( z, 0 );
-	v = r - (z - x); // `z + v = r + x`
-	t = a = -1.0 / w; // `a = -1.0 / w`
+	v = r - (z - x); // z + v = r + x
+	a = -1.0 / w; // a = -1/w
+	t = a;
 	setLowWord( t, 0 );
 	s = 1.0 + (t * z);
 	return t + (a * (s + (t * v)));
@@ -7166,7 +7172,7 @@ module.exports = kernelTan;
 module.exports={
   "name": "@stdlib/math/base/special/kernel-tan",
   "version": "0.0.0",
-  "description": "Compute the tangent of a number on `[-pi/4, pi/4]`.",
+  "description": "Compute the tangent of a number on `[-π/4, π/4]`.",
   "author": {
     "name": "The Stdlib Authors",
     "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"

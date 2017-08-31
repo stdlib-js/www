@@ -719,11 +719,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[-1e-308,-1
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -743,11 +743,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[1e-300,1e-
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -767,11 +767,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[-0.8,0.8]`
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -791,11 +791,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[-1.0,-0.8]
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -815,11 +815,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[0.8,1.0]`'
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -839,11 +839,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[-3.0,-1.0]
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -863,11 +863,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[1.0,3.0]`'
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -887,11 +887,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[3.0,28.0]`
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -911,11 +911,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[-28.0,-3.0
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -935,11 +935,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[28.0,100.0
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -959,11 +959,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[-100.0,-28
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -983,11 +983,11 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[-1e200,-1e
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -1007,17 +1007,17 @@ tape( 'the function computes the hyperbolic arcsine on the interval `[1e300,1e30
 	for ( i = 0; i < x.length; i++ ) {
 		y = asinh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
 });
 
-tape( 'the function returns `NaN` if provided a `NaN`', function test( t ) {
+tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 	var v = asinh( NaN );
 	t.equal( isnan( v ), true, 'returns NaN' );
 	t.end();

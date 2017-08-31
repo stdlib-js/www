@@ -2513,11 +2513,11 @@ tape( 'the function computes the hyperbolic arccosine on the interval [1.0,3.0]'
 	for ( i = 0; i < x.length; i++ ) {
 		y = acosh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -2537,11 +2537,11 @@ tape( 'the function computes the hyperbolic arccosine on the interval [3.0,28.0]
 	for ( i = 0; i < x.length; i++ ) {
 		y = acosh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -2561,11 +2561,11 @@ tape( 'the function computes the hyperbolic arccosine on the interval [28.0,100.
 	for ( i = 0; i < x.length; i++ ) {
 		y = acosh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -2585,17 +2585,17 @@ tape( 'the function computes the hyperbolic arccosine for huge values', function
 	for ( i = 0; i < x.length; i++ ) {
 		y = acosh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
 });
 
-tape( 'the function returns `NaN` if provided a `NaN`', function test( t ) {
+tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 	var v = acosh( NaN );
 	t.equal( isnan( v ), true, 'returns NaN' );
 	t.end();
