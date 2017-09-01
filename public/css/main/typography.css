@@ -84,29 +84,6 @@ a:active {
 	text-decoration: none;
 }
 
-.main blockquote {
-	color: #777;
-}
-
-.main input {
-	-webkit-font-feature-settings: "liga" 0;
-	font-feature-settings: "liga" 0;
-}
-
-.main dl dt {
-	font-size: 1.0em;
-	font-style: italic;
-	font-weight: bold;
-}
-
-/*
-* Tables.
-*/
-
-.main table th {
-	font-weight: bold;
-}
-
 /*
 * Code.
 */
