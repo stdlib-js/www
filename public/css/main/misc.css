@@ -14,6 +14,10 @@ img {
 * Style the top-navigation.
 */
 .top-nav {
+	-webkit-box-shadow: #ced4da 0 -5px 15px 0;
+	-moz-box-shadow: #ced4da 0 -5px 15px 0;
+	-ms-box-shadow: #ced4da 0 -5px 15px 0;
+	-o-box-shadow: #ced4da 0 -5px 15px 0;
 	box-shadow: #ced4da 0 -5px 15px 0;
 }
 
