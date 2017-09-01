@@ -10,6 +10,16 @@ img {
 	background-color: #fff;
 }
 
+/*
+* Style the top-navigation.
+*/
+.top-nav {
+	box-shadow: #ced4da 0 -5px 15px 0;
+}
+
+/*
+* For certain animations, the backface of an element can become visible. Prevent this.
+*/
 .main {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;

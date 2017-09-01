@@ -14,6 +14,9 @@
 
 4. GitHub pages redirect
 5. a "staging" version of the website in order to test out features before going live
+
+   - we need a much shorter build process for this to realistically be viable
+
 6. a script which can do
 
    - git pull
@@ -27,7 +30,7 @@
 
    - should add a privacy policy to the repo describing what data is collected and why and should link to this policy in the docs (footer link)
 
-8. highlight currently viewed package in the side panel navigation
+8. view which transforms slideout menu into a fullscreen mega menu overlay (maybe with a touch of transparency, so can see the page update underneath)
 9. build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
 10. 
 11. diffie-hellman: https://mozilla.github.io/server-side-tls/ssl-config-generator/
@@ -45,7 +48,9 @@
 
     - swipe right to reveal slideout menu
     - swipe left to close slideout menu
-    
+
 20. resolve source URLs (see note in build-package/lib/build.js)
 21. sidenote/marginnote styling: https://edwardtufte.github.io/tufte-css/
 22. host the exact Lato font-weight we need for the side menu (200), rather than rely on Google (if we place the website behind a CDN, we should be okay)
+
+    - need to update font links to hosted resources
