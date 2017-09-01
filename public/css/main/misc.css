@@ -29,3 +29,57 @@ img {
 	-o-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
+
+/*
+* Code.
+*/
+
+.main pre {
+	overflow: auto;
+	background-color: #f7f7f7;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+/*
+* Code containers should have slightly rounded corners and have a light gray background, similar to GitHub.
+*/
+.main code {
+	background-color: #fff; /* fallback */
+	background-color: rgba(0,0,0,0.04);
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.main pre code {
+	overflow: visible;
+	background-color: transparent;
+	border: 0;
+}
+
+/*
+* Style `code` elements which are direct children of `pre` elements.
+*/
+.main pre > code {
+	background: transparent;
+	border: 0;
+}
+
+.main kbd {
+	background-color: #fcfcfc;
+
+	border: solid 1px #ccc;
+	border-bottom-color: #bbb;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	-webkit-box-shadow: inset 0 -1px 0 #bbb;
+	-moz-box-shadow: inset 0 -1px 0 #bbb;
+	box-shadow: inset 0 -1px 0 #bbb;
+}
