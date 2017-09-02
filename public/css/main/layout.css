@@ -2,16 +2,17 @@
 * Layout stylesheet.
 *
 * 1. General rules.
-* 2. Positioning.
-* 3. Grid.
-* 4. Class-level rules.
-* 5. Lists.
-* 6. Definition lists.
-* 7. Blockquotes.
-* 8. Horizontal rules.
-* 9. Tables.
-* 10. Code.
-* 11. Media queries.
+* 2. Clearfix.
+* 3. Positioning.
+* 4. Grid.
+* 5. Main.
+* 6. Lists.
+* 7. Definition lists.
+* 8. Blockquotes.
+* 9. Horizontal rules.
+* 10. Tables.
+* 11. Code.
+* 12. Classes.
 */
 
 /*
@@ -42,18 +43,14 @@ img {
 	max-width: 100%;
 }
 
-/*
-* Headings.
-*/
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin-top: 24px;
-	margin-bottom: 16px;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
 }
 
 h1,
@@ -83,11 +80,11 @@ h2 {
 * Positioning.
 */
 
-.left {
+.left-align {
 	text-align: left;
 }
 
-.right {
+.right-align {
 	text-align: right;
 }
 
@@ -112,16 +109,21 @@ h2 {
 
 .row {
 	position: relative;
+
 	width: 100%;
-	height: 100%;
+	min-height: 32em; /* 512px */
+	padding: 6.25em 0; /* 100px 0 */
+
 	zoom: 1; /* for IE 6/7 (trigger hasLayout) */
 }
 
 .row [class^="col"] {
 	float: left;
-	margin-left: 2%;
-	margin-right: 2%;
+
 	min-height: 0.125em;
+
+	/* Define gutters between columns. */
+	margin: 0 2%;
 }
 
 .row::before,
@@ -153,7 +155,7 @@ h2 {
 }
 
 /*
-* Fixed column widths for small screens.
+* Provide fixed column widths for small screens.
 */
 .col-1-sm {
 	width: 4.33%;
@@ -265,55 +267,13 @@ h2 {
 }
 
 /*
-* General class level rules.
+* Main.
 */
-
-.top-nav {
-	display: block;
-	position: fixed;
-	top: 0;
-	left: 0;
-
-	z-index: 100;
-
-	width: 100%;
-	height: 64px;
-	padding: 0 40px;
-}
-
-.top-nav-items {
-	width: 100%;
-	height: 100%;
-}
-
-.top-nav-item {
-	float: right;
-	padding: 0 16px;
-}
-
-.top-nav-item a {
-	display: block;
-}
-
-.splash .subtitle {
-	margin-top: 0.8em;
-}
-
-.splash .logo {
-	margin-top: -50px;
-	margin-left: 90px;
-}
-
-.splash .downarrow {
-	position: absolute;
-	top: 95%;
-	left: 50%;
-}
 
 .main {
 	width: 100%;
 	height: 100%;
-	margin-bottom: 40px;
+	margin-bottom: 6.25em; /* 100px */
 }
 
 .main p,
@@ -322,7 +282,7 @@ h2 {
 .main table,
 .main pre {
 	margin-top: 0;
-	margin-bottom: 16px;
+	margin-bottom: 1em;
 }
 
 /*
@@ -332,7 +292,7 @@ h2 {
 .main ul,
 .main ol {
 	margin-top: 0;
-	margin-bottom: 16px;
+	margin-bottom: 1em;
 	padding-left: 2em;
 }
 
@@ -348,7 +308,7 @@ h2 {
 * Set the top margin of any list item children which are paragraphs.
 */
 .main li > p {
-	margin-top: 16px;
+	margin-top: 1em;
 }
 
 /*
@@ -367,13 +327,13 @@ h2 {
 }
 
 .main dl dt {
-	margin-top: 16px;
+	margin-top: 1em;
 	padding: 0;
 }
 
 .main dl dd {
-	margin-bottom: 16px;
-	padding: 0 16px;
+	margin-bottom: 1em;
+	padding: 0 1em;
 }
 
 .main dd {
@@ -385,7 +345,7 @@ h2 {
 */
 
 .main blockquote {
-	padding: 0 1.0em;
+	padding: 0 1em;
 }
 
 .main blockquote > :first-child {
@@ -402,7 +362,7 @@ h2 {
 
 .main hr {
 	height: 0.25em;
-	margin: 24px 0;
+	margin: 1.5em 0;
 	padding: 0;
 }
 
@@ -435,7 +395,7 @@ h2 {
 */
 
 .main pre {
-	padding: 16px;
+	padding: 1em;
 }
 
 .main pre code {
@@ -468,11 +428,146 @@ h2 {
 }
 
 /*
-* Media queries.
+* General class level rules.
 */
 
-@media only screen and (max-width: 45em) { /* 720px */
+/*
+* Top navigation.
+*/
+.top-nav {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	z-index: 100;
+
+	width: 100%;
+	height: 4em;
+	padding: 0 2.5em;
+}
+
+.top-nav-items {
+	width: 100%;
+	height: 100%;
+}
+
+.top-nav-item {
+	float: right;
+	padding: 0 1em;
+}
+
+.top-nav-item a {
+	display: block;
+}
+
+/*
+* Specify the "splash" section layout.
+*/
+.splash {
+	height: 100%;
+	padding: 0;
+}
+
+.splash .logo {
+	margin: 0;
+}
+
+.splash .subtitle {
+	margin-top: 0.8em;
+}
+
+.splash .downarrow {
+	position: absolute;
+	top: 95%;
+	left: 50%;
+}
+
+@media only screen and (min-width: 60em) { /* 960px */
+	/*
+	* For bigger screens, we need to tweak the logo position to appear centered.
+	*/
 	.splash .logo {
+		margin-top: -50px; /* roughly half the height */
+		margin-left: 90px; /* roughly half the width */
+	}
+}
+
+/*
+* General asset positioning.
+*/
+.asset {
+	display: block;
+	position: relative;
+	width: 96%;
+	margin: 0;
+}
+
+@media only screen and (min-width: 45em) { /* 720px */
+	.asset-left {
 		margin-left: 0;
+		margin-right: 4%;
+	}
+
+	.asset-right {
+		margin-left: 4%;
+		margin-right: 0;
+	}
+}
+
+/*
+* Specify equation asset layout.
+*/
+.asset .equation {
+	display: block;
+	position: relative;
+	min-height: 6.25em; /* 100px */
+}
+
+.asset .equation img {
+	position: absolute;
+	top: 40%; /* vertical alignment */
+}
+
+/*
+* General blurb positioning.
+*/
+.blurb {
+	display: block;
+	position: relative;
+	width: 96%;
+	margin: 0 auto;
+	margin-bottom: 4em;
+}
+
+@media only screen and (min-width: 45em) { /* 720px */
+	.blurb {
+		width: 80%;
+	}
+
+	.blurb-left {
+		margin-left: 2%;
+		margin-right: 18%;
+	}
+
+	.blurb-right {
+		margin-left: 18%;
+		margin-right: 2%;
+	}
+}
+
+@media only screen and (min-width: 60em) { /* 960px */
+	.blurb {
+		width: 70%;
+	}
+
+	.blurb-left {
+		margin-left: 2%;
+		margin-right: 28%;
+	}
+
+	.blurb-right {
+		margin-left: 28%;
+		margin-right: 2%;
 	}
 }

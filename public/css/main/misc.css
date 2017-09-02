@@ -87,11 +87,19 @@ img {
 }
 
 /*
-* Miscellaneous rules.
+* Define a top border. Useful for things like separating sections.
 */
-
 .border-top {
 	border-top-width: 1px;
 	border-top-style: solid;
 	border-top-color: #e9ecef;
+}
+
+/*
+* Define a diffuse shadow. Useful for things like images.
+*/
+.diffuse-shadow {
+	-webkit-box-shadow: #e2e2e2 0 0 50px 0;
+	-moz-box-shadow: #e2e2e2 0 0 50px 0;
+	box-shadow: #e2e2e2 0 0 50px 0;
 }
