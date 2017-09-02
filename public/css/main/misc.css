@@ -14,6 +14,8 @@ img {
 * Style the top-navigation.
 */
 .top-nav {
+	background-color: #ffffff;
+
 	-webkit-box-shadow: #ced4da 0 -5px 15px 0;
 	-moz-box-shadow: #ced4da 0 -5px 15px 0;
 	box-shadow: #ced4da 0 -5px 15px 0;
@@ -82,4 +84,14 @@ img {
 	-webkit-box-shadow: inset 0 -1px 0 #bbb;
 	-moz-box-shadow: inset 0 -1px 0 #bbb;
 	box-shadow: inset 0 -1px 0 #bbb;
+}
+
+/*
+* Miscellaneous rules.
+*/
+
+.border-top {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #e9ecef;
 }
