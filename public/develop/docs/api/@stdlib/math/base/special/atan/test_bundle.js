@@ -468,11 +468,11 @@ tape( 'the function computes the arctangent on the interval `[-1e-308,-1e-300]`'
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -492,11 +492,11 @@ tape( 'the function computes the arctangent on the interval `[1e-300,1e-308]`', 
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -516,11 +516,11 @@ tape( 'the function computes the arctangent on the interval `[-0.8,0.8]`', funct
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -540,11 +540,11 @@ tape( 'the function computes the arctangent on the interval `[-1.0,-0.8]`', func
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -564,11 +564,11 @@ tape( 'the function computes the arctangent on the interval `[0.8,1.0]`', functi
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -588,11 +588,11 @@ tape( 'the function computes the arctangent on the interval `[-3.0,-1.0]`', func
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -612,11 +612,11 @@ tape( 'the function computes the arctangent on the interval `[1.0,3.0]`', functi
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -636,11 +636,11 @@ tape( 'the function computes the arctangent on the interval `[3.0,100.0]`', func
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -660,11 +660,11 @@ tape( 'the function computes the arctangent on the interval `[-100.0,-3.0]`', fu
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -684,11 +684,11 @@ tape( 'the function computes the arctangent on the interval `[100.0,1000.0]`', f
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -708,11 +708,11 @@ tape( 'the function computes the arctangent on the interval `[-1000.0,-100.0]`',
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -732,11 +732,11 @@ tape( 'the function computes the arctangent on the interval `[-1e200,-1e208]`', 
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -756,17 +756,17 @@ tape( 'the function computes the arctangent on the interval `[1e300,1e308]`', fu
 	for ( i = 0; i < x.length; i++ ) {
 		y = atan( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1.0 * EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
 });
 
-tape( 'the function returns `NaN` if provided a `NaN`', function test( t ) {
+tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 	var v = atan( NaN );
 	t.equal( isnan( v ), true, 'returns NaN' );
 	t.end();

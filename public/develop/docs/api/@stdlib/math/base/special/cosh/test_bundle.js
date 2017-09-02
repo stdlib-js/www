@@ -700,11 +700,11 @@ tape( 'the function computes the hyperbolic cosine', function test( t ) {
 	for ( i = 0; i < x.length; i++ ) {
 		y = cosh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -724,11 +724,11 @@ tape( 'the function computes the hyperbolic cosine (tiny values)', function test
 	for ( i = 0; i < x.length; i++ ) {
 		y = cosh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -748,11 +748,11 @@ tape( 'the function computes the hyperbolic cosine (large values)', function tes
 	for ( i = 0; i < x.length; i++ ) {
 		y = cosh( x[i] );
 		if ( y === expected[ i ] ) {
-			t.equal( y, expected[ i ], 'x: '+x[i]+'. Expected: '+expected[i] );
+			t.equal( y, expected[ i ], 'x: '+x[i]+'. E: '+expected[i] );
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. Expected: '+expected[i]+'. Tolerance: '+tol+'.' );
+			t.ok( delta <= tol, 'within tolerance. x: '+x[i]+'. Value: '+y+'. E: '+expected[i]+'. tol: '+tol+'. Δ: '+delta+'.' );
 		}
 	}
 	t.end();
@@ -764,7 +764,7 @@ tape( 'the function returns `1` if provided `0`', function test( t ) {
 	t.end();
 });
 
-tape( 'the function returns `NaN` if provided a `NaN`', function test( t ) {
+tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 	var v = cosh( NaN );
 	t.equal( isnan( v ), true, 'returns NaN' );
 	t.end();

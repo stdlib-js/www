@@ -2714,7 +2714,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 800.0 * EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2737,7 +2737,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 1450.0 * EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2760,7 +2760,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 500.0 * EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2783,7 +2783,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 130.0 * EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2806,7 +2806,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 130.0 * EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2829,7 +2829,7 @@ tape( 'the function evaluates Bessel function of the first kind of zero order (J
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 2.5 * EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2852,7 +2852,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2875,7 +2875,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -2898,7 +2898,7 @@ tape( 'the function evaluates the Bessel function of the first kind of zero orde
 		} else {
 			delta = abs( y - expected[i] );
 			tol = 900.0 * EPS * abs( expected[i] );
-			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. Tolerance: '+tol+'.' );
+			t.equal( delta <= tol, true, 'within tolerance. x: '+x[i]+'. y: '+y+'. E: '+expected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 	}
 	t.end();
@@ -3289,17 +3289,16 @@ module.exports = ldexp;
 'use strict';
 
 /**
-* Compute `x - n*pi/2 = r`.
+* Compute `x - nπ/2 = r`.
 *
 * @module @stdlib/math/base/special/rempio2
 *
 * @example
 * var rempio2 = require( '@stdlib/math/base/special/rempio2' );
 *
-* var x = 128.0;
 * var y = new Array( 2 );
-* var n = rempio2( x, y );
-* // returns 81.0
+* var n = rempio2( 128.0, y );
+* // returns 81
 *
 * var y1 = y[ 0 ];
 * // returns ~0.765
@@ -3346,15 +3345,15 @@ var ldexp = require( '@stdlib/math/base/special/ldexp' );
 // VARIABLES //
 
 /*
-* Table of constants for `2/pi` (`396` hex digits, `476` decimal).
+* Table of constants for `2/π` (`396` hex digits, `476` decimal).
 *
-* Integer array which contains the (24*i)-th to (24*i+23)-th bit of `2/pi` after binary point. The corresponding floating value is
+* Integer array which contains the (`24*i`)-th to (`24*i+23`)-th bit of `2/π` after binary point. The corresponding floating value is
 *
 * ``` tex
 * \operatorname{ipio2}[i] \cdot 2^{-24(i+1)}
 * ```
 *
-* This table must have at least `(e0-3)/24 + jk` terms. For quad precision (e0 <= 16360, jk = 6), this is `686`.
+* This table must have at least `(e0-3)/24 + jk` terms. For quad precision (`e0 <= 16360`, `jk = 6`), this is `686`.
 */
 var IPIO2 = [
 	0xA2F983, 0x6E4E44, 0x1529FC, 0x2757D1, 0xF534DD, 0xC0DB62,
@@ -3370,7 +3369,7 @@ var IPIO2 = [
 	0x4D7327, 0x310606, 0x1556CA, 0x73A8C9, 0x60E27B, 0xC08C6B
 ];
 
-// Double precision array, obtained by cutting `pi/2` into `24` bits chunks...
+// Double precision array, obtained by cutting `π/2` into `24` bits chunks...
 var PIO2 = [
 	1.57079625129699707031e+00, // 0x3FF921FB, 0x40000000
 	7.54978941586159635335e-08, // 0x3E74442D, 0x00000000
@@ -3414,9 +3413,9 @@ function zero( arr ) {
 *
 * @private
 * @param {PositiveNumber} x - input value
-* @param {Collection} y - output result in an array of double precision numbers
+* @param {(Array|TypedArray|Object)} y - output object for storing double precision numbers
 * @param {integer} jz - number of terms of `ipio2[]` used
-* @param {Array<integer>} q - array with integral values, representing the 24-bits chunk of the product of `x` and `2/pi`
+* @param {Array<integer>} q - array with integral values, representing the 24-bits chunk of the product of `x` and `2/π`
 * @param {integer} q0 - the corresponding exponent of `q[0]` (the exponent for `q[i]` would be `q0-24*i`)
 * @param {integer} jk - `jk+1` is the initial number of terms of `IPIO2[]` needed in the computation
 * @param {integer} jv - index for pointing to the suitable `ipio2[]` for the computation
@@ -3441,11 +3440,11 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 	// Distill `q[]` into `IQ[]` in reverse order...
 	z = q[ jz ];
 	j = jz;
-	// eslint-disable-next-line no-plusplus
-	for ( i = 0; j > 0; i++, j-- ) {
+	for ( i = 0; j > 0; i++ ) {
 		fw = ( TWON24 * z )|0;
 		IQ[ i ] = ( z - (TWO24*fw) )|0;
 		z = q[ j-1 ] + fw;
+		j -= 1;
 	}
 	// Compute `n`...
 	z = ldexp( z, q0 );
@@ -3586,15 +3585,15 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 // MAIN //
 
 /**
-* Returns the last three binary digits of `N` with `y = x - N*pi/2` so that `|y| < pi/2`.
+* Returns the last three binary digits of `N` with `y = x - Nπ/2` so that `|y| < π/2`.
 *
 * ## Method
 *
-* * The method is to compute the integer (mod 8) and fraction parts of `(2/pi)*x` without doing the full multiplication. In general, we skip the part of the product that is known to be a huge integer (more accurately, equals 0 mod 8 ). Thus, the number of operations is independent of the exponent of the input.
+* * The method is to compute the integer (`mod 8`) and fraction parts of `2x/π` without doing the full multiplication. In general, we skip the part of the product that is known to be a huge integer (more accurately, equals `0 mod 8` ). Thus, the number of operations is independent of the exponent of the input.
 *
 * @private
 * @param {PositiveNumber} x - input value
-* @param {Collection} y - output result in an array of double precision numbers
+* @param {(Array|TypedArray|Object)} y - remainder elements
 * @param {PositiveInteger} e0 - the exponent of `x[0]` (must be <= 16360)
 * @param {PositiveInteger} nx - dimension of `x[]`
 * @returns {number} last three binary digits of `N`
@@ -3624,13 +3623,13 @@ function kernelRempio2( x, y, e0, nx ) {
 	// Set up `F[0]` to `F[jx+jk]` where `F[jx+jk] = IPIO2[jv+jk]`:
 	j = jv - jx;
 	m = jx + jk;
-	// eslint-disable-next-line no-plusplus
-	for ( i = 0; i <= m; i++, j++ ) {
+	for ( i = 0; i <= m; i++ ) {
 		if ( j < 0 ) {
 			F[ i ] = 0.0;
 		} else {
 			F[ i ] = IPIO2[ j ];
 		}
+		j += 1;
 	}
 	// Compute `Q[0],Q[1],...,Q[jk]`:
 	for ( i = 0; i <= jk; i++ ) {
@@ -3685,10 +3684,10 @@ var rempio2Medium = require( './rempio2_medium.js' );
 var ZERO = 0.00000000000000000000e+00;    // 0x00000000, 0x00000000
 var TWO24 = 1.67772160000000000000e+07;   // 0x41700000, 0x00000000
 
-// 33 bits of PI/2:
+// 33 bits of π/2:
 var PIO2_1 = 1.57079632673412561417e+00;  // 0x3FF921FB, 0x54400000
 
-// PIO2_1T = PI/2 - PIO2_1:
+// PIO2_1T = π/2 - PIO2_1:
 var PIO2_1T = 6.07710050650619224932e-11; // 0x3DD0B461, 0x1A626331
 var TWO_PIO2_1T = 2.0 * PIO2_1T;
 var THREE_PIO2_1T = 3.0 * PIO2_1T;
@@ -3703,31 +3702,31 @@ var EXPONENT_MASK = 0x7ff00000;
 // High word significand mask: 0xfffff = 1048575 => 00000000000011111111111111111111
 var SIGNIFICAND_MASK = 0xfffff;
 
-// High word significand for PI and PI/2: 0x921fb = 598523 => 00000000000010010010000111111011
+// High word significand for π and π/2: 0x921fb = 598523 => 00000000000010010010000111111011
 var PI_HIGH_WORD_SIGNIFICAND = 0x921fb;
 
-// High word for PI/4: 0x3fe921fb = 1072243195 => 00111111111010010010000111111011
+// High word for π/4: 0x3fe921fb = 1072243195 => 00111111111010010010000111111011
 var PIO4_HIGH_WORD = 0x3fe921fb;
 
-// High word for 3*PI/4: 0x4002d97c = 1073928572 => 01000000000000101101100101111100
+// High word for 3π/4: 0x4002d97c = 1073928572 => 01000000000000101101100101111100
 var THREE_PIO4_HIGH_WORD = 0x4002d97c;
 
-// High word for 5*PI/4: 0x400f6a7a = 1074752122 => 01000000000011110110101001111010
+// High word for 5π/4: 0x400f6a7a = 1074752122 => 01000000000011110110101001111010
 var FIVE_PIO4_HIGH_WORD = 0x400f6a7a;
 
-// High word for 6*PI/4: 0x4012d97c = 1074977148 => 01000000000100101101100101111100
+// High word for 6π/4: 0x4012d97c = 1074977148 => 01000000000100101101100101111100
 var THREE_PIO2_HIGH_WORD = 0x4012d97c;
 
-// High word for 7*PI/4: 0x4015fdbc = 1075183036 => 01000000000101011111110110111100
+// High word for 7π/4: 0x4015fdbc = 1075183036 => 01000000000101011111110110111100
 var SEVEN_PIO4_HIGH_WORD = 0x4015fdbc;
 
-// High word for 8*PI/4: 0x401921fb = 1075388923 => 01000000000110010010000111111011
+// High word for 8π/4: 0x401921fb = 1075388923 => 01000000000110010010000111111011
 var TWO_PI_HIGH_WORD = 0x401921fb;
 
-// High word for 9*PI/4: 0x401c463b = 1075594811 => 01000000000111000100011000111011
+// High word for 9π/4: 0x401c463b = 1075594811 => 01000000000111000100011000111011
 var NINE_PIO4_HIGH_WORD = 0x401c463b;
 
-// 2^20*pi/2 = 1647099.3291652855 => 0100000100111001001000011111101101010100010001000010110100011000 => high word => 0x413921fb = 1094263291 => 01000001001110010010000111111011
+// 2^20*π/2 = 1647099.3291652855 => 0100000100111001001000011111101101010100010001000010110100011000 => high word => 0x413921fb = 1094263291 => 01000001001110010010000111111011
 var MEDIUM = 0x413921fb;
 
 // Arrays for storing temporary values (note that, in C, this would not be thread-safe):
@@ -3738,36 +3737,36 @@ var TY = new Array( 2 );
 // MAIN //
 
 /**
-* Computes `x - n*pi/2 = r`.
+* Computes `x - nπ/2 = r`.
 *
 * ## Notes
 *
 * * Returns `n` and stores the remainder `r` as two numbers `y[0]` and `y[1]`, such that `y[0]+y[1] = r`.
-* * The function does not perform input validation for `y` due to performance considerations. You should ensure to only supply an array, typed array, or an array-like object for `y`.
 *
 *
 * @param {number} x - input value
-* @param {Collection} y - remainder elements
-* @returns {integer} factor of `pi/2`
+* @param {(Array|TypedArray|Object)} y - remainder elements
+* @returns {integer} factor of `π/2`
 *
 * @example
-* var x = 128.0;
 * var y = new Array( 2 );
-* var n = rempio2( x, y );
-* // returns 81.0
+* var n = rempio2( 128.0, y );
+* // returns 81
 *
 * var y1 = y[ 0 ];
 * // returns ~0.765
+*
 * var y2 = y[ 1 ];
 * // returns ~3.618e-17
 *
 * @example
 * var y = new Array( 2 );
 * var n = rempio2( NaN, y );
-* // returns 0.0
+* // returns 0
 *
 * var y1 = y[ 0 ];
 * // returns NaN
+*
 * var y2 = y[ 1 ];
 * // returns NaN
 */
@@ -3784,20 +3783,20 @@ function rempio2( x, y ) {
 	hx = getHighWord( x );
 	ix = hx & ABS_MASK;
 
-	// Case: |x| ~<= pi/4 (no need for reduction)
+	// Case: |x| ~<= π/4 (no need for reduction)
 	if ( ix <= PIO4_HIGH_WORD ) {
 		y[ 0 ] = x;
 		y[ 1 ] = 0.0;
 		return 0;
 	}
-	// Case: |x| ~<= 5pi/4
+	// Case: |x| ~<= 5π/4
 	if ( ix <= FIVE_PIO4_HIGH_WORD ) {
-		// Case: |x| ~= pi/2 or pi
+		// Case: |x| ~= π/2 or π
 		if ( (ix & SIGNIFICAND_MASK) === PI_HIGH_WORD_SIGNIFICAND ) {
 			// Cancellation => use medium case
 			return rempio2Medium( x, ix, y );
 		}
-		// Case: |x| ~<= 3pi/4
+		// Case: |x| ~<= 3π/4
 		if ( ix <= THREE_PIO4_HIGH_WORD ) {
 			if ( x > 0.0 ) {
 				z = x - PIO2_1;
@@ -3821,11 +3820,11 @@ function rempio2( x, y ) {
 		y[ 1 ] = (z - y[0]) + TWO_PIO2_1T;
 		return -2;
 	}
-	// Case: |x| ~<= 9pi/4
+	// Case: |x| ~<= 9π/4
 	if ( ix <= NINE_PIO4_HIGH_WORD ) {
-		// Case: |x| ~<= 7pi/4
+		// Case: |x| ~<= 7π/4
 		if ( ix <= SEVEN_PIO4_HIGH_WORD ) {
-			// Case: |x| ~= 3pi/2
+			// Case: |x| ~= 3π/2
 			if ( ix === THREE_PIO2_HIGH_WORD ) {
 				return rempio2Medium( x, ix, y );
 			}
@@ -3840,7 +3839,7 @@ function rempio2( x, y ) {
 			y[ 1 ] = (z - y[0]) + THREE_PIO2_1T;
 			return -3;
 		}
-		// Case: |x| ~= 4pi/2
+		// Case: |x| ~= 4π/2
 		if ( ix === TWO_PI_HIGH_WORD ) {
 			return rempio2Medium( x, ix, y );
 		}
@@ -3855,7 +3854,7 @@ function rempio2( x, y ) {
 		y[ 1 ] = (z - y[0]) + FOUR_PIO2_1T;
 		return -4;
 	}
-	// Case: |x| ~< 2^20*pi/2 (medium size)
+	// Case: |x| ~< 2^20*π/2 (medium size)
 	if ( ix < MEDIUM ) {
 		return rempio2Medium( x, ix, y );
 	}
@@ -3923,25 +3922,25 @@ var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
 
 // VARIABLES //
 
-// 53 bits of 2/PI:
+// 53 bits of 2/π:
 var INVPIO2 = 6.36619772367581382433e-01; // 0x3FE45F30, 0x6DC9C883
 
-// First 33 bits of PI/2:
+// First 33 bits of π/2:
 var PIO2_1 = 1.57079632673412561417e+00;  // 0x3FF921FB, 0x54400000
 
-// PIO2_1T = PI/2 - PIO2_1:
+// PIO2_1T = π/2 - PIO2_1:
 var PIO2_1T = 6.07710050650619224932e-11; // 0x3DD0B461, 0x1A626331
 
-// Another 33 bits of PI/2:
+// Another 33 bits of π/2:
 var PIO2_2 = 6.07710050630396597660e-11;  // 0x3DD0B461, 0x1A600000
 
-// PIO2_2T = PI/2 - ( PIO2_1 + PIO2_2 ):
+// PIO2_2T = π/2 - ( PIO2_1 + PIO2_2 ):
 var PIO2_2T = 2.02226624879595063154e-21; // 0x3BA3198A, 0x2E037073
 
-// Another 33 bits of PI/2:
+// Another 33 bits of π/2:
 var PIO2_3 = 2.02226624871116645580e-21;  // 0x3BA3198A, 0x2E000000
 
-// PIO2_3T = PI/2 - ( PIO2_1 + PIO2_2 + PIO2_3 ):
+// PIO2_3T = π/2 - ( PIO2_1 + PIO2_2 + PIO2_3 ):
 var PIO2_3T = 8.47842766036889956997e-32; // 0x397B839A, 0x252049C1
 
 // Exponent mask (2047 => 0x7ff):
@@ -3951,13 +3950,13 @@ var EXPONENT_MASK = 0x7ff;
 // MAIN //
 
 /**
-* Computes `x - n*pi/2 = r` for medium-sized inputs.
+* Computes `x - nπ/2 = r` for medium-sized inputs.
 *
 * @private
 * @param {number} x - input value
 * @param {uint32} ix - high word of `x`
-* @param {Collection} y - remainder elements
-* @returns {integer} factor of `pi/2`
+* @param {(Array|TypedArray|Object)} y - remainder elements
+* @returns {integer} factor of `π/2`
 */
 function rempio2Medium( x, ix, y ) {
 	var high;
@@ -4208,36 +4207,35 @@ var C6 = -1.13596475577881948265e-11; // 0xBDA8FAE9, 0xBE8838D4
 // MAIN //
 
 /**
-* Computes the sine and cosine on \\( \approx [-\pi/4, \pi/4] \\) (except on \\(-0\\)), where \\( \pi/4 \approx 0.7854 \\).
+* Computes the sine and cosine on \\( \approx [-\pi/4, \pi/4] \\) (except for \\(-0\\)), where \\( \pi/4 \approx 0.7854 \\).
 *
 * @private
 * @param {(Array|TypedArray|Object)} out - destination array
-* @param {number} x - input value (assumed to be bounded by `~pi/4` in magnitude)
+* @param {number} x - input value (in radians, assumed to be bounded by `~π/4` in magnitude)
 * @param {number} y - tail of `x`
-* @param {number} iy - indicates whether `y` is `0` (if `iy = 0`, `y` assumed to be `0`)
-* @returns {(Array|TypedArray|Object)} sine and cosine (in radians)
+* @returns {(Array|TypedArray|Object)} sine and cosine
 */
-function kernelSincos( out, x, y, iy ) {
+function kernelSincos( out, x, y ) {
 	var hz;
 	var r;
 	var v;
 	var w;
 	var z;
+
 	z = x * x;
 	w = z * z;
 	r = S2 + (z * (S3 + (z*S4))) + (z * w * (S5 + (z*S6)));
 	v = z * x;
-	if ( iy === 0 ) {
-		out[0] = x + (v * (S1 + (z*r)));
+	if ( y === 0.0 ) {
+		out[ 0 ] = x + (v * (S1 + (z*r)));
 	} else {
-		out[0] = x - (((z*((0.5*y) - (v*r))) - y) - (v*S1));
+		out[ 0 ] = x - (((z*((0.5*y) - (v*r))) - y) - (v*S1));
 	}
-
 	r = z * (C1 + (z * (C2 + (z*C3))));
 	r += w * w * (C4 + (z * (C5 + (z*C6))));
 	hz = 0.5 * z;
 	w = 1.0 - hz;
-	out[1] = w + ( ((1.0-w) - hz) + ((z*r) - (x*y)) );
+	out[ 1 ] = w + ( ((1.0-w) - hz) + ((z*r) - (x*y)) );
 
 	return out;
 } // end FUNCTION kernelSincos()
@@ -4261,8 +4259,8 @@ var computeSincos = require( './sincos.js' );
 * Simultaneously computes the sine and cosine of a number.
 *
 * @param {(Array|TypedArray|Object)} [out] - destination array
-* @param {number} x - input value
-* @returns {(Array|TypedArray|Object)} sine and cosine (in radians)
+* @param {number} x - input value (in radians)
+* @returns {(Array|TypedArray|Object)} sine and cosine
 *
 * @example
 * var v = sincos( 0.0 );
@@ -4354,8 +4352,11 @@ var Y = [ 0.0, 0.0 ];
 *
 * ## Method
 *
-* * Let `S`, `C`, and `T` denote the `sin`, `cos` and `tan`, respectively, on `[-PI/4, +PI/4]`.
-* * Reduce the argument `x` to `y1+y2 = x-k*pi/2` in `[-pi/4 , +pi/4]`, and let `n = k mod 4`. We have
+* * Let \\(S\\), \\(C\\), and \\(T\\) denote the \\(\sin\\), \\(\cos\\) and \\(\tan\\), respectively, on \\([-\pi/4, +\pi/4]\\).
+*
+* * Reduce the argument \\(x\\) to \\(y1+y2 = x-k\pi/2\\) in \\([-\pi/4, +\pi/4]\\), and let \\(n = k \mod 4\\).
+*
+* * We have
 *
 *   | n   |  sin(x)  |  cos(x)  |  tan(x)  |
 *   |:---:|:--------:|:--------:|:--------:|
@@ -4392,45 +4393,45 @@ function sincos( out, x ) {
 
 	ix = getHighWord( x );
 
-	// Case: |x| ~< pi/4
+	// Case: |x| ~< π/4
 	ix &= ABS_MASK;
 	if ( ix <= PIO4_HIGH_WORD ) {
 		// Case: |x| ~< 2^-26
 		if ( ix < SMALL_HIGH_WORD ) {
 			if ( (x|0) === 0 ) {
-				out[0] = x;
-				out[1] = 0.0;
+				out[ 0 ] = x;
+				out[ 1 ] = 0.0;
 			}
 		}
-		return kernelSincos( out, x, 0.0, 0 );
+		return kernelSincos( out, x, 0.0 );
 	}
 	// Case: x is NaN or infinity
 	if ( ix >= EXPONENT_MASK ) {
-		out[0] = NaN;
-		out[1] = NaN;
+		out[ 0 ] = NaN;
+		out[ 1 ] = NaN;
 		return out;
 	}
 	// Argument reduction...
 	n = rempio2( x, Y );
 
 	// Compute the sine and cosine together:
-	kernelSincos( out, Y[0], Y[1], 1 );
+	kernelSincos( out, Y[ 0 ], Y[ 1 ] );
 
 	switch ( n & 3 ) {
 	case 1:
-		ix = out[1];
-		out[1] = -out[0];
-		out[0] = ix;
+		ix = out[ 1 ];
+		out[ 1 ] = -out[ 0 ];
+		out[ 0 ] = ix;
 		return out;
 	case 2:
-		out[0] *= -1;
-		out[1] *= -1;
+		out[ 0 ] *= -1;
+		out[ 1 ] *= -1;
 		return out;
 	case 3:
 		// Passing
-		ix = -out[1];
-		out[1] = out[0];
-		out[0] = ix;
+		ix = -out[ 1 ];
+		out[ 1 ] = out[ 0 ];
+		out[ 0 ] = ix;
 		return out;
 	default:
 		return out;
