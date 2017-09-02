@@ -10,6 +10,9 @@
 3. landing page
 
    - main website
+
+     * fix top nav on mobile
+
    - docs specific
 
 4. GitHub pages redirect
@@ -32,7 +35,7 @@
 
 8. view which transforms slideout menu into a fullscreen mega menu overlay (maybe with a touch of transparency, so can see the page update underneath)
 9. build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
-10. 
+10. update docs top-nav to match landing page (menu bar styling etc, fonts, box shadow, etc)
 11. diffie-hellman: https://mozilla.github.io/server-side-tls/ssl-config-generator/
 
     - see digital ocean blog
