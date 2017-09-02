@@ -71,6 +71,7 @@ a:active {
 */
 
 .top-nav,
+.bottom-nav,
 .splash .subtitle {
 	font-family: "LatoLatinWebLight";
 }
@@ -79,7 +80,12 @@ a:active {
 	line-height: 4em;
 }
 
-.top-nav a {
+.bottom-nav {
+	font-size: 0.75em;
+}
+
+.top-nav a,
+.bottom-nav a {
 	color: #656565;
 }
 

@@ -103,3 +103,9 @@ img {
 	-moz-box-shadow: #e2e2e2 0 0 50px 0;
 	box-shadow: #e2e2e2 0 0 50px 0;
 }
+
+.diffuse-shadow-dark {
+	-webkit-box-shadow: #636161 0 0 50px 0;
+	-moz-box-shadow: #636161 0 0 50px 0;
+	box-shadow: #636161 0 0 50px 0;
+}

@@ -163,7 +163,94 @@
 			</div>
 		</section>
 
+		<section class="row feature border-top">
+			<div class="col-6">
+				<div class="asset asset-right">
+					<div class="code diffuse-shadow">
+						<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indicator</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ];
+}
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> out = groupBy( arr, indicator );
+<span class="hljs-comment">// returns { 'b': [ 'beep', 'boop', 'bar' ], 'f': [ 'foo' ] }</span>
+</code></pre>
+					</div>
+					<div class="code diffuse-shadow">
+						<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> key, value </span>) </span>{
+    <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">1</span> );
+}
+
+<span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">var</span> obj2 = omitBy( obj1, predicate );
+<span class="hljs-comment">// returns { 'a': 1 }</span>
+</code></pre>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="blurb blurb-left">
+					<h4 class="title">Utilities</h4>
+					<p class="text">
+						Comprehensive documentation. Consistent APIs. Well-tested utilities for application and library development. Everything you would expect from a standard library.
+
+						<!-- Stop wasting time trying to find the right package and start using high quality implementations. -->
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="row feature border-top">
+			<div class="col-6">
+				<div class="blurb blurb-right">
+					<h4 class="title">REPL</h4>
+					<p class="text">
+						A read-eval-print-loop with integrated help and examples. Interactively manipulate data and prototype solutions with over 1500 built-in functions for mathematics, statistics, machine learning, streams, plotting, and more.
+					</p>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="asset asset-left">
+					<img class="diffuse-shadow" src="/img/repl.png">
+				</div>
+			</div>
+		</section>
+
+		<section class="row feature border-top">
+			<div class="col-6">
+				<div class="asset asset-right">
+					<img class="diffuse-shadow-dark" src="/img/editor.png">
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="blurb blurb-left">
+					<h4 class="title">Open Source</h4>
+					<p class="text">
+						Designed from the ground-up to be forkable, hackable, and extensible. All code is licensed under a commercial friendly Apache license. Built with love by people from around the world.
+					</p>
+				</div>
+			</div>
+		</section>
+
 	</div>
+	<footer>
+		<div class="bottom-nav center">
+			<a href="https://www.patreon.com/athan">Donate</a>
+			/
+			<a href="/develop/docs/api/@stdlib">Docs</a>
+			/
+			<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
+			/
+			<a href="https://twitter.com/stdlibjs">Twitter</a>
+			/
+			<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
+		</div>
+	</footer>
 </body>
 </html>
 
