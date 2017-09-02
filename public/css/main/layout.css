@@ -119,6 +119,8 @@ h2 {
 
 .row [class^="col"] {
 	float: left;
+	margin-left: 2%;
+	margin-right: 2%;
 	min-height: 0.125em;
 }
 
