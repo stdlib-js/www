@@ -477,10 +477,11 @@ h2 {
 
 .splash .logo {
 	margin: 0;
+	margin-top: -70px; /* roughly the height */
 }
 
 .splash .subtitle {
-	margin-top: 0.8em;
+	margin-top: 0.5em;
 }
 
 .splash .downarrow {
@@ -489,13 +490,21 @@ h2 {
 	left: 50%;
 }
 
+@media only screen and (min-width: 45em) { /* 720px */
+	/*
+	* For medium screens, we need to tweak the logo position to appear centered.
+	*/
+	.splash .logo {
+		margin-left: 50px;
+	}
+}
+
 @media only screen and (min-width: 60em) { /* 960px */
 	/*
 	* For bigger screens, we need to tweak the logo position to appear centered.
 	*/
 	.splash .logo {
-		margin-top: -50px; /* roughly half the height */
-		margin-left: 90px; /* roughly half the width */
+		margin-left: 80px;
 	}
 }
 
