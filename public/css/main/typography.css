@@ -70,10 +70,21 @@ a:active {
 * General class rules.
 */
 
+.main {
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+
+.main a:not([href]) {
+	color: inherit;
+	text-decoration: none;
+}
+
 .top-nav,
 .bottom-nav,
 .splash,
-.button {
+.button,
+.blurb .text {
 	font-family: "LatoLatinWebLight";
 }
 
@@ -86,17 +97,15 @@ a:active {
 }
 
 .top-nav a,
-.bottom-nav a {
-	color: #656565;
+.bottom-nav a,
+.splash .subtitle,
+.splash .downarrow p,
+.blurb .text {
+	color: #585858;
 }
 
 .splash .subtitle {
 	font-size: 1.1em;
-	color: #3c3c3c;
-}
-
-.splash .downarrow p {
-	color: #656565;
 }
 
 .button {
@@ -107,16 +116,6 @@ a:active {
 
 .button:hover,
 .button:active {
-	text-decoration: none;
-}
-
-.main {
-	line-height: 1.5;
-	word-wrap: break-word;
-}
-
-.main a:not([href]) {
-	color: inherit;
 	text-decoration: none;
 }
 
