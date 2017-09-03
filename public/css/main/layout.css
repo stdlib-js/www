@@ -111,7 +111,7 @@ h2 {
 	position: relative;
 
 	width: 100%;
-	min-height: 32em; /* 512px */
+	min-height: 35em; /* 560px */
 	padding: 6.25em 0; /* 100px 0 */
 
 	zoom: 1; /* for IE 6/7 (trigger hasLayout) */
