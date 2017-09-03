@@ -87,6 +87,13 @@ img {
 }
 
 /*
+* Style pseudo-button elements.
+*/
+.button {
+	border: 1px solid #000;
+}
+
+/*
 * Define a top border. Useful for things like separating sections.
 */
 .border-top {

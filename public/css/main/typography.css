@@ -72,7 +72,8 @@ a:active {
 
 .top-nav,
 .bottom-nav,
-.splash {
+.splash,
+.button {
 	font-family: "LatoLatinWebLight";
 }
 
@@ -96,6 +97,17 @@ a:active {
 
 .splash .downarrow p {
 	color: #656565;
+}
+
+.button {
+	text-transform: uppercase;
+	font-size: 0.67em;
+	color: #000000;
+}
+
+.button:hover,
+.button:active {
+	text-decoration: none;
 }
 
 .main {
