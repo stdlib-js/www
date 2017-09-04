@@ -64,6 +64,17 @@ img {
 	transform: rotate(0);
 }
 
+.splash .background {
+	background: transparent;
+}
+
+@media only screen and (min-width: 43.75em) { /* 700px */
+	/*.splash .background {
+		opacity: 0.08;
+		background-image: url("/img/bkgd.png");
+	}*/
+}
+
 /*
 * For certain animations, the backface of an element can become visible. Prevent this.
 */
@@ -134,6 +145,7 @@ img {
 */
 .button {
 	border: 1px solid #000;
+	background-color: #ffffff;
 }
 
 /*
