@@ -2,8 +2,8 @@
 * Typography stylesheet.
 *
 * 1. General rules.
-* 2. Tables.
-* 3. Code.
+* 2. Code.
+* 3. Class-level rules.
 */
 
 body {
@@ -67,59 +67,6 @@ a:active {
 }
 
 /*
-* General class rules.
-*/
-
-.main {
-	line-height: 1.5;
-	word-wrap: break-word;
-}
-
-.main a:not([href]) {
-	color: inherit;
-	text-decoration: none;
-}
-
-.top-nav,
-.bottom-nav,
-.splash,
-.button,
-.blurb .text {
-	font-family: "LatoLatinWebLight";
-}
-
-.top-nav {
-	line-height: 4em;
-}
-
-.bottom-nav {
-	font-size: 0.85em;
-}
-
-.top-nav a,
-.bottom-nav a,
-.splash .subtitle,
-.splash .downarrow p,
-.blurb .text {
-	color: #585858;
-}
-
-.splash .subtitle {
-	font-size: 1.1em;
-}
-
-.button {
-	text-transform: uppercase;
-	font-size: 0.67em;
-	color: #000000;
-}
-
-.button:hover,
-.button:active {
-	text-decoration: none;
-}
-
-/*
 * Code.
 */
 
@@ -155,4 +102,73 @@ a:active {
 	font-size: 11px;
 	line-height: 10px;
 	vertical-align: middle;
+}
+
+/*
+* General class rules.
+*/
+
+.main {
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+
+.main a:not([href]) {
+	color: inherit;
+	text-decoration: none;
+}
+
+.top-nav,
+.bottom-nav,
+.splash,
+.button,
+.blurb .text {
+	font-family: "LatoLatinWebLight";
+}
+
+.top-nav {
+	line-height: 4em;
+}
+
+.bottom-nav {
+	font-size: 0.85em;
+}
+
+/*.top-nav a {
+	color: #fff;
+}*/
+
+.top-nav a,
+.bottom-nav a,
+.splash .subtitle,
+.splash .downarrow p,
+.blurb .text {
+	color: #585858;
+}
+
+.top-nav-item a:hover,
+.top-nav-item a:active {
+	text-decoration: none;
+}
+
+@media only screen and (min-width: 43.75em) { /* 700px */
+	.top-nav-item a:hover,
+	.top-nav-item a:active {
+		text-decoration: underline;
+	}
+}
+
+.splash .subtitle {
+	font-size: 1.1em;
+}
+
+.button {
+	text-transform: uppercase;
+	font-size: 0.67em;
+	color: #000000;
+}
+
+.button:hover,
+.button:active {
+	text-decoration: none;
 }

@@ -432,7 +432,7 @@ h2 {
 */
 
 /*
-* Top navigation.
+* Mobile first top navigation.
 */
 .top-nav {
 	display: block;
@@ -443,24 +443,124 @@ h2 {
 	z-index: 100;
 
 	width: 100%;
+	min-height: 4em;
+}
+
+.top-nav-input {
+	display: none;
+}
+
+.top-nav-label {
+	display: block;
+	position: fixed;
+
+	top: 0;
+	left: 0;
+
+	z-index: 101;
+
+	width: 100px;
 	height: 4em;
-	padding: 0 2.5em;
 }
 
 .top-nav-items {
-	width: 100%;
-	height: 100%;
+	display: none;
+	margin-top: 3em;
 }
 
 .top-nav-item {
-	float: right;
-	padding: 0 1em;
+	height: 4em;
 }
 
 .top-nav-item a {
 	display: block;
+	padding: 0 1em;
 }
 
+.top-nav-input:checked ~ .top-nav .top-nav-items {
+	display: block;
+}
+
+@media only screen and (min-width: 43.75em) { /* 700px */
+	.top-nav {
+		padding: 0 2.5em;
+	}
+
+	.top-nav-label {
+		display: none;
+	}
+
+	.top-nav-items {
+		display: block;
+		position: relative;
+		float: right;
+
+		height: 100%;
+		margin-top: 0;
+	}
+
+	.top-nav-item {
+		float: left;
+	}
+
+	.top-nav-item a:hover,
+	.top-nav-item a:active {
+		background-color: transparent;
+		text-decoration: underline;
+	}
+}
+
+/*
+* Hamburger menu container.
+*/
+.hamburger-menu-icon {
+	display: block;
+	position: absolute;
+
+	top: 50%;
+	left: 0;
+
+	width: 30px;
+	height: 25px;
+
+	margin-left: 15px; /* half width */
+	margin-top: -12px; /* half height */
+}
+
+/*
+* Style each hamburger menu line.
+*/
+.hamburger-menu-icon span {
+	display: block;
+	position: absolute;
+	left: 0;
+
+	height: 5px;
+	width: 100%;
+}
+
+/*
+* Position the hamburger menu lines.
+*/
+.hamburger-menu-icon span:nth-child(1) {
+	top: 0;
+}
+
+.hamburger-menu-icon span:nth-child(2) {
+	top: 10px;
+}
+
+.hamburger-menu-icon span:nth-child(3) {
+	top: 10px;
+}
+
+.hamburger-menu-icon span:nth-child(4) {
+	top: 20px;
+}
+
+/*
+* Bottom navigation.
+*/
 .bottom-nav {
 	width: 100%;
 	min-height: 5em;

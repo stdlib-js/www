@@ -13,12 +13,55 @@ img {
 /*
 * Style the top-navigation.
 */
+.top-nav-label {
+	cursor: pointer;
+	background-color: transparent;
+}
+
 .top-nav {
 	background-color: #ffffff;
+	/*background-color: #000000;*/
 
 	-webkit-box-shadow: #ced4da 0 -5px 15px 0;
 	-moz-box-shadow: #ced4da 0 -5px 15px 0;
 	box-shadow: #ced4da 0 -5px 15px 0;
+}
+
+.top-nav-item a:hover,
+.top-nav-item a:active {
+	background-color: #f7f7f7;
+}
+
+@media only screen and (min-width: 43.75em) { /* 700px */
+	.top-nav-item a:hover,
+	.top-nav-item a:active {
+		background-color: transparent;
+	}
+}
+
+/*
+* Style the hamburger menu icon.
+*/
+.hamburger-menu-icon {
+	cursor: pointer;
+}
+
+/*
+* Style each hamburger menu line.
+*/
+.hamburger-menu-icon span {
+	opacity: 1;
+	background-color: #333333;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	-webkit-transform: rotate(0);
+	-moz-transform: rotate(0);
+	-ms-transform: rotate(0);
+	-o-transform: rotate(0);
+	transform: rotate(0);
 }
 
 /*
