@@ -71,7 +71,7 @@ img {
 @media only screen and (min-width: 60em) { /* 960px */
 	.splash .background {
 		opacity: 0.08;
-		background-image: url("/img/bkgd.png");
+		background-image: url("/img/bkgd.min.png");
 		background-repeat: no-repeat;
 	}
 }
