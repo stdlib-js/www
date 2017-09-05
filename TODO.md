@@ -57,3 +57,5 @@
 22. host the exact Lato font-weight we need for the side menu (200), rather than rely on Google (if we place the website behind a CDN, we should be okay)
 
     - need to update font links to hosted resources
+
+23. Background image slideshow? (see https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/)
