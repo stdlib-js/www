@@ -56,3 +56,4 @@
     - need to update font links to hosted resources
 
 23. Background image slideshow? (see https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/)
+24. (docs) on smaller devices, convert top nav to dropdown on right side (use a downarrow as the icon?)
