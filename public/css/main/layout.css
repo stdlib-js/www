@@ -645,7 +645,7 @@ h2 {
 /*
 * Mobile-first row column positioning.
 *
-* By floating columns within a row, we are able to dynamically update row order. When floating `left`, columns visually appear in the same order as in markup. When floating `right`, columns visually appear in reverse order as in markup.
+* By floating columns within a row, we are able to dynamically update row order. When floating `left`, columns visually appear in the same order as in markup. When floating `right`, columns visually appear in reverse order.
 *
 * As an example, in wider viewports, we can alternate row column order, creating a zig-zag pattern (two-column).
 */
