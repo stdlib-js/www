@@ -1,8 +1,7 @@
 [
 	"./../common/reset.css",
 	"./../common/normalize.css",
-	"./../common/highlight.css",
 	"./layout.css",
-	"./typegraphy.css",
+	"./typography.css",
 	"./main.css"
 ]
