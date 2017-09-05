@@ -10,11 +10,16 @@ var CleanCSS = require( 'clean-css' );
 
 // VARIABLES //
 
+// Parent directory containing source CSS files:
 var dirpath = path.resolve( __dirname, '..', '..', 'public', 'css' );
+
+// Child directories containing source CSS files to bundle and minify:
 var dirs = [
 	path.join( dirpath, '404' ),
 	path.join( dirpath, 'main' )
 ];
+
+// CSS processor options:
 var copts = {
 	'returnPromise': false,
 	'compatibility': 'ie9',
