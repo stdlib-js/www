@@ -27,7 +27,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-(function() {
+(function script() {
 	var RE_WINDOWS = /Windows.+?(?=;)/g; // matches from Windows up to the first occurrence of `;` non-greedily
 	var RE_FIREFOX = /Firefox\/(\d+)/;
 	var RE_IE = /MSIE|Trident/i;
