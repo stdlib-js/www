@@ -39,7 +39,9 @@
   "bugs": {
     "url": "https://github.com/stdlib-js/stdlib/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@stdlib/stdlib": "0.0.18"
+  },
   "devDependencies": {
     "browserify": "^14.4.0",
     "clean-css": "^4.1.8",
