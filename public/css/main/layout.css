@@ -108,6 +108,7 @@ h2 {
 */
 
 .row {
+	display: block;
 	position: relative;
 
 	width: 100%;
@@ -642,6 +643,13 @@ h2 {
 }
 
 /*
+* General row column positioning (mobile first).
+*/
+.floating-columns .col {
+	float: left;
+}
+
+/*
 * General asset positioning.
 */
 .asset {
@@ -649,18 +657,6 @@ h2 {
 	position: relative;
 	width: 96%;
 	margin: 0;
-}
-
-@media only screen and (min-width: 45em) { /* 720px */
-	.asset-left {
-		margin-left: 0;
-		margin-right: 4%;
-	}
-
-	.asset-right {
-		margin-left: 4%;
-		margin-right: 0;
-	}
 }
 
 /*
@@ -704,11 +700,36 @@ h2 {
 		width: 80%;
 	}
 
+	/* Rules for floating columns. */
+	.main > .floating-columns:nth-child(odd) > .col {
+		float: right;
+	}
+
+	.main > .floating-columns:nth-child(even) > .col {
+		float: left;
+	}
+
+	/* Rules for explicit asset positioning and assets within floating-columns. */
+	.main > .floating-columns:nth-child(odd) > .col > .asset,
+	.asset-left {
+		margin-left: 0;
+		margin-right: 4%;
+	}
+
+	.main > .floating-columns:nth-child(even) > .col > .asset,
+	.asset-right {
+		margin-left: 4%;
+		margin-right: 0;
+	}
+
+	/* Rules for explicit blurb positioning and blurbs within floating-columns. */
+	.main > .floating-columns:nth-child(even) > .col > .blurb,
 	.blurb-left {
 		margin-left: 2%;
 		margin-right: 18%;
 	}
 
+	.main > .floating-columns:nth-child(odd) > .col > .blurb,
 	.blurb-right {
 		margin-left: 18%;
 		margin-right: 2%;
@@ -720,11 +741,14 @@ h2 {
 		width: 70%;
 	}
 
+	/* Rules for explicit blurb positioning and blurbs within floating-columns. */
+	.main > .floating-columns:nth-child(even) > .col > .blurb,
 	.blurb-left {
 		margin-left: 2%;
 		margin-right: 28%;
 	}
 
+	.main > .floating-columns:nth-child(odd) > .col > .blurb,
 	.blurb-right {
 		margin-left: 28%;
 		margin-right: 2%;
