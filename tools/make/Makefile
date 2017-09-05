@@ -7,6 +7,7 @@ include $(TOOLS_MAKE_LIB_DIR)/help/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/init/Makefile
 
 # Please keep sorted in alphabetical order:
+include $(TOOLS_MAKE_LIB_DIR)/css/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/debug/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/docs/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/install/Makefile
