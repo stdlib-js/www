@@ -84,6 +84,294 @@
 ({1:[function(require,module,exports){
 'use strict';
 
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+var builtin = require( './float64array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float64array.js":1,"./polyfill.js":3,"@stdlib/utils/detect-float64array-support":24}],3:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of double-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+// FUNCTIONS //
+
+var has = Object.prototype.hasOwnProperty;
+
+
+// MAIN //
+
+/**
+* Tests if an object has a specified property.
+*
+* @param {*} value - value to test
+* @param {*} property - property to test
+* @returns {boolean} boolean indicating if an object has a specified property
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'bap' );
+* // returns false
+*/
+function hasOwnProp( value, property ) {
+	if (
+		value === void 0 ||
+		value === null
+	) {
+		return false;
+	}
+	return has.call( value, property );
+}
+
+
+// EXPORTS //
+
+module.exports = hasOwnProp;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+/**
+* Test whether an object has a specified property.
+*
+* @module @stdlib/assert/has-own-property
+*
+* @example
+* var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+*
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* bool = hasOwnProp( beep, 'bop' );
+* // returns false
+*/
+
+// MODULES //
+
+var hasOwnProp = require( './has_own_property.js' );
+
+
+// EXPORTS //
+
+module.exports = hasOwnProp;
+
+},{"./has_own_property.js":4}],6:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float64Array.
+*
+* @module @stdlib/assert/is-float64array
+*
+* @example
+* var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+*
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* bool = isFloat64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat64Array = require( './is_float64array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"./is_float64array.js":7}],7:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float64Array
+*
+* @example
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat64Array( [] );
+* // returns false
+*/
+function isFloat64Array( value ) {
+	return ( nativeClass( value ) === '[object Float64Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"@stdlib/utils/native-class":29}],8:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NINF;
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_PINF;
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
 /**
 * Test if a numeric value is `NaN`.
 *
@@ -108,7 +396,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":2}],2:[function(require,module,exports){
+},{"./is_nan.js":11}],11:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -128,15 +416,15 @@ module.exports = isnan;
 * // returns false
 */
 function isnan( x ) {
-	return (x !== x);
-} // end FUNCTION isnan()
+	return ( x !== x );
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{}],3:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 /**
@@ -163,12 +451,12 @@ var isNegativeZero = require( './is_negative_zero.js' );
 
 module.exports = isNegativeZero;
 
-},{"./is_negative_zero.js":4}],4:[function(require,module,exports){
+},{"./is_negative_zero.js":13}],13:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 
 
 // MAIN //
@@ -189,14 +477,14 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 */
 function isNegativeZero( x ) {
 	return (x === 0.0 && 1.0/x === NINF);
-} // end FUNCTION isNegativeZero()
+}
 
 
 // EXPORTS //
 
 module.exports = isNegativeZero;
 
-},{"@stdlib/math/constants/float64-ninf":12}],5:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-ninf":8}],14:[function(require,module,exports){
 'use strict';
 
 /**
@@ -223,12 +511,12 @@ var isPositiveZero = require( './is_positive_zero.js' );
 
 module.exports = isPositiveZero;
 
-},{"./is_positive_zero.js":6}],6:[function(require,module,exports){
+},{"./is_positive_zero.js":15}],15:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
 
 
 // MAIN //
@@ -249,14 +537,14 @@ var PINF = require( '@stdlib/math/constants/float64-pinf' );
 */
 function isPositiveZero( x ) {
 	return (x === 0.0 && 1.0/x === PINF);
-} // end FUNCTION isPositiveZero()
+}
 
 
 // EXPORTS //
 
 module.exports = isPositiveZero;
 
-},{"@stdlib/math/constants/float64-pinf":13}],7:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-pinf":9}],16:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -269,36 +557,48 @@ var round = require( '@stdlib/math/base/special/round' );
 /**
 * Rounds a complex number to the nearest integer.
 *
+* @private
+* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} re - real component
 * @param {number} im - imaginary component
-* @returns {Array<number>} rounded components
+* @returns {(Array|TypedArray|Object)} rounded components
 *
 * @example
-* var v = cround( -4.2, 5.5 );
+* var out = new Array( 2 );
+*
+* var v = cround( out, -4.2, 5.5 );
 * // returns [ -4.0, 6.0 ]
 *
+* var bool = ( v === out );
+* // returns true
+*
 * @example
-* var v = cround( 9.99999, 0.1 );
+* var out = new Array( 2 );
+* var v = cround( out, 9.99999, 0.1 );
 * // returns [ 10.0, 0.0 ]
 *
 * @example
-* var v = cround( 0.0, 0.0 );
+* var out = new Array( 2 );
+* var v = cround( out, 0.0, 0.0 );
 * // returns [ 0.0, 0.0 ]
 *
 * @example
-* var v = cround( NaN, NaN );
+* var out = new Array( 2 );
+* var v = cround( out, NaN, NaN );
 * // returns [ NaN, NaN ]
 */
-function cround( re, im ) {
-	return [ round( re ), round( im ) ];
-} // end FUNCTION cround()
+function cround( out, re, im ) {
+	out[ 0 ] = round( re );
+	out[ 1 ] = round( im );
+	return out;
+}
 
 
 // EXPORTS //
 
 module.exports = cround;
 
-},{"@stdlib/math/base/special/round":10}],8:[function(require,module,exports){
+},{"@stdlib/math/base/special/round":20}],17:[function(require,module,exports){
 'use strict';
 
 /**
@@ -320,29 +620,96 @@ module.exports = cround;
 *
 * v = cround( NaN, NaN );
 * // returns [ NaN, NaN ]
+*
+* @example
+* var cround = require( '@stdlib/math/base/complex/round' );
+*
+* var out = new Array( 2 );
+*
+* var v = cround( out, -4.2, 5.5 );
+* // returns [ -5.0, 6.0 ]
+*
+* var bool = ( v === out );
+* // returns true
 */
 
 // MODULES //
 
-var cround = require( './cround.js' );
+var cround = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = cround;
 
-},{"./cround.js":7}],9:[function(require,module,exports){
+},{"./main.js":18}],18:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var round = require( './cround.js' );
+
+
+// MAIN //
+
+/**
+* Rounds a complex number to the nearest integer.
+*
+* @param {(Array|TypedArray|Object)} [out] - output array
+* @param {number} re - real component
+* @param {number} im - imaginary component
+* @returns {(Array|TypedArray|Object)} rounded components
+*
+* @example
+* var v = cround( -4.2, 5.5 );
+* // returns [ -4.0, 6.0 ]
+*
+* @example
+* var out = new Array( 2 );
+*
+* var v = cround( out, -4.2, 5.5 );
+* // returns [ -4.0, 6.0 ]
+*
+* var bool = ( v === out );
+* // returns true
+*
+* @example
+* var v = cround( 9.99999, 0.1 );
+* // returns [ 10.0, 0.0 ]
+*
+* @example
+* var v = cround( 0.0, 0.0 );
+* // returns [ 0.0, 0.0 ]
+*
+* @example
+* var v = cround( NaN, NaN );
+* // returns [ NaN, NaN ]
+*/
+function cround( out, re, im ) {
+	if ( arguments.length === 2 ) {
+		return round( [ 0.0, 0.0 ], out, re );
+	}
+	return round( out, re, im );
+}
+
+
+// EXPORTS //
+
+module.exports = cround;
+
+},{"./cround.js":16}],19:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
 // MODULES //
 
 var tape = require( 'tape' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isNegativeZero = require( '@stdlib/math/base/assert/is-negative-zero' );
 var isPositiveZero = require( '@stdlib/math/base/assert/is-positive-zero' );
+var Float64Array = require( '@stdlib/array/float64' );
 var cround = require( './../lib' );
 
 
@@ -354,7 +721,7 @@ tape( 'main export is a function', function test( t ) {
 	t.end();
 });
 
-tape( 'the function rounds real and imaginary components to the nearest integer.', function test( t ) {
+tape( 'the function rounds real and imaginary components to the nearest integer', function test( t ) {
 	var expected;
 	var actual;
 
@@ -369,6 +736,57 @@ tape( 'the function rounds real and imaginary components to the nearest integer.
 	actual = cround( 0.0, 0.0 );
 	expected = [ 0.0, 0.0 ];
 	t.deepEqual( actual, expected, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'the function rounds real and imaginary components to the nearest integer (output array)', function test( t ) {
+	var expected;
+	var actual;
+	var out;
+
+	out = new Array( 2 );
+	actual = cround( out, -4.2, 5.5 );
+
+	expected = [ -4.0, 6.0 ];
+
+	t.deepEqual( actual, expected, 'returns expected value' );
+	t.strictEqual( actual, out, 'returns output value' );
+
+	t.end();
+});
+
+tape( 'the function rounds real and imaginary components to the nearest integer (output typed array)', function test( t ) {
+	var expected;
+	var actual;
+	var out;
+
+	out = new Float64Array( 2 );
+	actual = cround( out, 9.99999, 0.1 );
+
+	expected = new Float64Array( [ 10.0, 0.0 ] );
+
+	t.deepEqual( actual, expected, 'returns expected value' );
+	t.strictEqual( actual, out, 'returns output value' );
+
+	t.end();
+});
+
+tape( 'the function rounds real and imaginary components to the nearest integer (output object)', function test( t ) {
+	var expected;
+	var actual;
+	var out;
+
+	out = {};
+	actual = cround( out, 0.0, 0.0 );
+
+	expected = {
+		'0': 0.0,
+		'1': 0.0
+	};
+
+	t.deepEqual( actual, expected, 'returns expected value' );
+	t.strictEqual( actual, out, 'returns output value' );
 
 	t.end();
 });
@@ -409,7 +827,7 @@ tape( 'the function returns `-infinity` if provided `-infinity`', function test(
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/complex/round/test/test.js")
-},{"./../lib":8,"@stdlib/math/base/assert/is-nan":1,"@stdlib/math/base/assert/is-negative-zero":3,"@stdlib/math/base/assert/is-positive-zero":5,"@stdlib/math/constants/float64-ninf":12,"@stdlib/math/constants/float64-pinf":13,"tape":68}],10:[function(require,module,exports){
+},{"./../lib":17,"@stdlib/array/float64":2,"@stdlib/constants/math/float64-ninf":8,"@stdlib/constants/math/float64-pinf":9,"@stdlib/math/base/assert/is-nan":10,"@stdlib/math/base/assert/is-negative-zero":12,"@stdlib/math/base/assert/is-positive-zero":14,"tape":88}],20:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -446,11 +864,11 @@ tape( 'the function returns `-infinity` if provided `-infinity`', function test(
 * v = round( -0.0 );
 * // returns -0.0
 *
-* v = round( Number.POSITIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
+* v = round( Infinity );
+* // returns Infinity
 *
-* v = round( Number.NEGATIVE_INFINITY );
-* // returns Number.NEGATIVE_INFINITY
+* v = round( -Infinity );
+* // returns -Infinity
 *
 * v = round( NaN );
 * // returns NaN
@@ -465,7 +883,7 @@ var round = require( './round.js' );
 
 module.exports = round;
 
-},{"./round.js":11}],11:[function(require,module,exports){
+},{"./round.js":21}],21:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -509,12 +927,12 @@ module.exports = round;
 * // returns -0.0
 *
 * @example
-* var v = round( Number.POSITIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
+* var v = round( Infinity );
+* // returns Infinity
 *
 * @example
-* var v = round( Number.NEGATIVE_INFINITY );
-* // returns Number.NEGATIVE_INFINITY
+* var v = round( -Infinity );
+* // returns -Infinity
 *
 * @example
 * var v = round( NaN );
@@ -527,79 +945,362 @@ var round = Math.round;
 
 module.exports = round;
 
-},{}],12:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
-/**
-* Double-precision floating-point negative infinity.
-*
-* @module @stdlib/math/constants/float64-ninf
-* @type {number}
-*
-* @example
-* var FLOAT64_NINF = require( '@stdlib/math/constants/float64-ninf' );
-* // returns Number.NEGATIVE_INFINITY
-*/
+// MODULES //
+
+var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+var GlobalFloat64Array = require( './float64array.js' );
 
 
 // MAIN //
 
 /**
-* Double-precision floating-point negative infinity has the bit sequence
+* Tests for native `Float64Array` support.
 *
-* ``` binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
+* @returns {boolean} boolean indicating if an environment has `Float64Array` support
 *
-* @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @example
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
 */
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+function hasFloat64ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat64Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat64Array( [ 1.0, 3.14, -3.14, NaN ] );
+		bool = (
+			isFloat64Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.14 &&
+			arr[ 2 ] === -3.14 &&
+			arr[ 3 ] !== arr[ 3 ]
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
 
 
 // EXPORTS //
 
-module.exports = FLOAT64_NINF;
+module.exports = hasFloat64ArraySupport;
 
-},{}],13:[function(require,module,exports){
+},{"./float64array.js":23,"@stdlib/assert/is-float64array":6}],23:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Float64Array === 'function' ) ? Float64Array : null;
+
+},{}],24:[function(require,module,exports){
 'use strict';
 
 /**
-* Double-precision floating-point positive infinity.
+* Test for native `Float64Array` support.
 *
-* @module @stdlib/math/constants/float64-pinf
-* @type {number}
+* @module @stdlib/utils/detect-float64array-support
 *
 * @example
-* var FLOAT64_PINF = require( '@stdlib/math/constants/float64-pinf' );
-* // returns Number.POSITIVE_INFINITY
+* var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+*
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
 */
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( './detect_float64array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasFloat64ArraySupport;
+
+},{"./detect_float64array_support.js":22}],25:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+/**
+* Tests for native `Symbol` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Symbol` support
+*
+* @example
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+function hasSymbolSupport() {
+	return (
+		typeof Symbol === 'function' &&
+		typeof Symbol( 'foo' ) === 'symbol'
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = hasSymbolSupport;
+
+},{}],26:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Symbol` support.
+*
+* @module @stdlib/utils/detect-symbol-support
+*
+* @example
+* var hasSymbolSupport = require( '@stdlib/utils/detect-symbol-support' );
+*
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasSymbolSupport = require( './detect_symbol_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasSymbolSupport;
+
+},{"./detect_symbol_support.js":25}],27:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
 
 
 // MAIN //
 
 /**
-* Double-precision floating-point positive infinity has the bit sequence
+* Tests for native `toStringTag` support.
 *
-* ``` binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
+* @returns {boolean} boolean indicating if an environment has `toStringTag` support
 *
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @example
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
 */
-var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+function hasToStringTagSupport() {
+	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
+}
 
 
 // EXPORTS //
 
-module.exports = FLOAT64_PINF;
+module.exports = hasToStringTagSupport;
 
-},{}],14:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":26}],28:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `toStringTag` support.
+*
+* @module @stdlib/utils/detect-tostringtag-support
+*
+* @example
+* var hasToStringTagSupport = require( '@stdlib/utils/detect-tostringtag-support' );
+*
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasToStringTagSupport = require( './has_tostringtag_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasToStringTagSupport;
+
+},{"./has_tostringtag_support.js":27}],29:[function(require,module,exports){
+'use strict';
+
+/**
+* Returns a string value indicating a specification defined classification of an object.
+*
+* @module @stdlib/utils/native-class
+*
+* @example
+* var nativeClass = require( '@stdlib/utils/native-class' );
+*
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* function Beep() {
+*     return this;
+* }
+* str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+
+// MODULES //
+
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var nativeClass;
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
+} else {
+	nativeClass = builtin;
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./native_class.js":30,"./polyfill.js":31,"@stdlib/utils/detect-tostringtag-support":28}],30:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var toStr = require( './tostring.js' );
+
+
+// MAIN //
+
+/**
+* Returns a string value indicating a specification defined classification (via the internal property `[[Class]]`) of an object.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+function nativeClass( v ) {
+	return toStr.call( v );
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./tostring.js":32}],31:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var toStringTag = require( './tostringtag.js' );
+var toStr = require( './tostring.js' );
+
+
+// MAIN //
+
+/**
+* Returns a string value indicating a specification defined classification of an object in environments supporting `Symbol.toStringTag`.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+function nativeClass( v ) {
+	var isOwn;
+	var tag;
+	var out;
+
+	if ( v === null || v === void 0 ) {
+		return toStr.call( v );
+	}
+	tag = v[ toStringTag ];
+	isOwn = hasOwnProp( v, toStringTag );
+
+	// Attempt to override the `toStringTag` property. For built-ins having a `Symbol.toStringTag` property (e.g., `JSON`, `Math`, etc), the `Symbol.toStringTag` property is read-only (e.g., , so we need to wrap in a `try/catch`.
+	try {
+		v[ toStringTag ] = void 0;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return toStr.call( v );
+	}
+	out = toStr.call( v );
+
+	if ( isOwn ) {
+		v[ toStringTag ] = tag;
+	} else {
+		delete v[ toStringTag ];
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./tostring.js":32,"./tostringtag.js":33,"@stdlib/assert/has-own-property":5}],32:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
+
+// EXPORTS //
+
+module.exports = toStr;
+
+},{}],33:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
+
+// EXPORTS //
+
+module.exports = toStrTag;
+
+},{}],34:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -715,11 +1416,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],15:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 
-},{}],16:[function(require,module,exports){
-arguments[4][15][0].apply(exports,arguments)
-},{"dup":15}],17:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
+arguments[4][35][0].apply(exports,arguments)
+},{"dup":35}],37:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -905,11 +1606,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],18:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -2621,7 +3322,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":14,"ieee754":37}],19:[function(require,module,exports){
+},{"base64-js":34,"ieee754":57}],39:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2732,7 +3433,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":39}],20:[function(require,module,exports){
+},{"../../is-buffer/index.js":59}],40:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -2828,7 +3529,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":21,"./lib/keys.js":22}],21:[function(require,module,exports){
+},{"./lib/is_arguments.js":41,"./lib/keys.js":42}],41:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -2850,7 +3551,7 @@ function unsupported(object){
     false;
 };
 
-},{}],22:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -2861,7 +3562,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],23:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -2919,14 +3620,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":33,"object-keys":42}],24:[function(require,module,exports){
+},{"foreach":53,"object-keys":63}],44:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],25:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -3164,28 +3865,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":26,"./helpers/isNaN":27,"./helpers/mod":28,"./helpers/sign":29,"es-to-primitive/es5":30,"has":36,"is-callable":40}],26:[function(require,module,exports){
+},{"./helpers/isFinite":46,"./helpers/isNaN":47,"./helpers/mod":48,"./helpers/sign":49,"es-to-primitive/es5":50,"has":56,"is-callable":60}],46:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],27:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],28:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],29:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],30:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -3224,12 +3925,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":31,"is-callable":40}],31:[function(require,module,exports){
+},{"./helpers/isPrimitive":51,"is-callable":60}],51:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],32:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3533,7 +4234,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],33:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -3557,7 +4258,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],34:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -3611,19 +4312,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],35:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":34}],36:[function(require,module,exports){
+},{"./implementation":54}],56:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":35}],37:[function(require,module,exports){
+},{"function-bind":55}],57:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -3709,7 +4410,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],38:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -3734,11 +4435,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],39:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -3757,7 +4458,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],40:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -3798,7 +4499,14 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],41:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],62:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -3992,7 +4700,7 @@ function inspectString (str) {
     }
 }
 
-},{}],42:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -4134,7 +4842,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":43}],43:[function(require,module,exports){
+},{"./isArguments":64}],64:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -4153,7 +4861,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],44:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4381,7 +5089,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":17}],45:[function(require,module,exports){
+},{"_process":37}],66:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -4428,10 +5136,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":17}],46:[function(require,module,exports){
+},{"_process":37}],67:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":47}],47:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":68}],68:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4556,7 +5264,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":49,"./_stream_writable":51,"core-util-is":19,"inherits":38,"process-nextick-args":45}],48:[function(require,module,exports){
+},{"./_stream_readable":70,"./_stream_writable":72,"core-util-is":39,"inherits":58,"process-nextick-args":66}],69:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4604,7 +5312,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":50,"core-util-is":19,"inherits":38}],49:[function(require,module,exports){
+},{"./_stream_transform":71,"core-util-is":39,"inherits":58}],70:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5614,7 +6322,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":47,"./internal/streams/BufferList":52,"./internal/streams/destroy":53,"./internal/streams/stream":54,"_process":17,"core-util-is":19,"events":32,"inherits":38,"isarray":55,"process-nextick-args":45,"safe-buffer":62,"string_decoder/":56,"util":15}],50:[function(require,module,exports){
+},{"./_stream_duplex":68,"./internal/streams/BufferList":73,"./internal/streams/destroy":74,"./internal/streams/stream":75,"_process":37,"core-util-is":39,"events":52,"inherits":58,"isarray":61,"process-nextick-args":66,"safe-buffer":81,"string_decoder/":87,"util":35}],71:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5829,7 +6537,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":47,"core-util-is":19,"inherits":38}],51:[function(require,module,exports){
+},{"./_stream_duplex":68,"core-util-is":39,"inherits":58}],72:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6496,7 +7204,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":47,"./internal/streams/destroy":53,"./internal/streams/stream":54,"_process":17,"core-util-is":19,"inherits":38,"process-nextick-args":45,"safe-buffer":62,"util-deprecate":74}],52:[function(require,module,exports){
+},{"./_stream_duplex":68,"./internal/streams/destroy":74,"./internal/streams/stream":75,"_process":37,"core-util-is":39,"inherits":58,"process-nextick-args":66,"safe-buffer":81,"util-deprecate":94}],73:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -6571,7 +7279,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":62}],53:[function(require,module,exports){
+},{"safe-buffer":81}],74:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -6644,17 +7352,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":45}],54:[function(require,module,exports){
+},{"process-nextick-args":66}],75:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":32}],55:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":52}],76:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":77}],77:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":68,"./lib/_stream_passthrough.js":69,"./lib/_stream_readable.js":70,"./lib/_stream_transform.js":71,"./lib/_stream_writable.js":72}],78:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":77}],79:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":72}],80:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],56:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":37,"through":93}],81:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":38}],82:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":52,"inherits":58,"readable-stream/duplex.js":67,"readable-stream/passthrough.js":76,"readable-stream/readable.js":77,"readable-stream/transform.js":78,"readable-stream/writable.js":79}],83:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":45,"function-bind":55}],84:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":83,"./polyfill":85,"./shim":86,"define-properties":43,"function-bind":55}],85:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":83}],86:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":85,"define-properties":43}],87:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -6927,312 +7933,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":62}],57:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":58}],58:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":47,"./lib/_stream_passthrough.js":48,"./lib/_stream_readable.js":49,"./lib/_stream_transform.js":50,"./lib/_stream_writable.js":51}],59:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":58}],60:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":51}],61:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":17,"through":73}],62:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":18}],63:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":32,"inherits":38,"readable-stream/duplex.js":46,"readable-stream/passthrough.js":57,"readable-stream/readable.js":58,"readable-stream/transform.js":59,"readable-stream/writable.js":60}],64:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":25,"function-bind":35}],65:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":64,"./polyfill":66,"./shim":67,"define-properties":23,"function-bind":35}],66:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":64}],67:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":66,"define-properties":23}],68:[function(require,module,exports){
+},{"safe-buffer":81}],88:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -7386,7 +8087,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":69,"./lib/results":71,"./lib/test":72,"_process":17,"defined":24,"through":73}],69:[function(require,module,exports){
+},{"./lib/default_stream":89,"./lib/results":91,"./lib/test":92,"_process":37,"defined":44,"through":93}],89:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -7421,7 +8122,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":17,"fs":16,"through":73}],70:[function(require,module,exports){
+},{"_process":37,"fs":36,"through":93}],90:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -7429,7 +8130,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":17}],71:[function(require,module,exports){
+},{"_process":37}],91:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -7620,7 +8321,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":17,"events":32,"function-bind":35,"has":36,"inherits":38,"object-inspect":41,"resumer":61,"through":73}],72:[function(require,module,exports){
+},{"_process":37,"events":52,"function-bind":55,"has":56,"inherits":58,"object-inspect":62,"resumer":80,"through":93}],92:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -8121,7 +8822,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":70,"deep-equal":20,"defined":24,"events":32,"has":36,"inherits":38,"path":44,"string.prototype.trim":65}],73:[function(require,module,exports){
+},{"./next_tick":90,"deep-equal":40,"defined":44,"events":52,"has":56,"inherits":58,"path":65,"string.prototype.trim":84}],93:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -8233,7 +8934,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":17,"stream":63}],74:[function(require,module,exports){
+},{"_process":37,"stream":82}],94:[function(require,module,exports){
 (function (global){
 
 /**
@@ -8304,4 +9005,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[9]);
+},{}]},{},[19]);

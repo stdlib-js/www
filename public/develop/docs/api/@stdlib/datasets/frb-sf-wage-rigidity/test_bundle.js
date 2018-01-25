@@ -84,6 +84,627 @@
 ({1:[function(require,module,exports){
 'use strict';
 
+// MAIN //
+
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/utils/detect-float32array-support' );
+var builtin = require( './float32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/utils/detect-float32array-support":154}],3:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of single-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+var builtin = require( './float64array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/utils/detect-float64array-support":157}],6:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of double-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int16
+*
+* @example
+* var ctor = require( '@stdlib/array/int16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int16Array>
+*/
+
+// MODULES //
+
+var hasInt16ArraySupport = require( '@stdlib/utils/detect-int16array-support' );
+var builtin = require( './int16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/utils/detect-int16array-support":159}],8:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int16Array === 'function' ) ? Int16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int32
+*
+* @example
+* var ctor = require( '@stdlib/array/int32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int32Array>
+*/
+
+// MODULES //
+
+var hasInt32ArraySupport = require( '@stdlib/utils/detect-int32array-support' );
+var builtin = require( './int32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/utils/detect-int32array-support":162}],11:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int32Array === 'function' ) ? Int32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],13:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int8
+*
+* @example
+* var ctor = require( '@stdlib/array/int8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int8Array>
+*/
+
+// MODULES //
+
+var hasInt8ArraySupport = require( '@stdlib/utils/detect-int8array-support' );
+var builtin = require( './int8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/utils/detect-int8array-support":165}],14:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int8Array === 'function' ) ? Int8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],15:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],16:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 16-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint16
+*
+* @example
+* var ctor = require( '@stdlib/array/uint16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint16Array>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+var builtin = require( './uint16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/utils/detect-uint16array-support":175}],17:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 16-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],18:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],19:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 32-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint32
+*
+* @example
+* var ctor = require( '@stdlib/array/uint32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint32Array>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+var builtin = require( './uint32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/utils/detect-uint32array-support":178}],20:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 32-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],21:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],22:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint8
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8Array>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+var builtin = require( './uint8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/utils/detect-uint8array-support":181}],23:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],24:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],25:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @module @stdlib/array/uint8c
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8c' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8ClampedArray>
+*/
+
+// MODULES //
+
+var hasUint8ClampedArraySupport = require( '@stdlib/utils/detect-uint8clampedarray-support' ); // eslint-disable-line id-length
+var builtin = require( './uint8clampedarray.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ClampedArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/utils/detect-uint8clampedarray-support":184}],26:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],28:[function(require,module,exports){
+'use strict';
+
 // FUNCTIONS //
 
 var has = Object.prototype.hasOwnProperty;
@@ -122,14 +743,14 @@ function hasOwnProp( value, property ) {
 		return false;
 	}
 	return has.call( value, property );
-} // end FUNCTION hasOwnProp()
+}
 
 
 // EXPORTS //
 
 module.exports = hasOwnProp;
 
-},{}],2:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 /**
@@ -160,7 +781,7 @@ var hasOwnProp = require( './has_own_property.js' );
 
 module.exports = hasOwnProp;
 
-},{"./has_own_property.js":1}],3:[function(require,module,exports){
+},{"./has_own_property.js":28}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -196,7 +817,7 @@ var instanceOf = require( './instance_of.js' );
 
 module.exports = instanceOf;
 
-},{"./instance_of.js":4}],4:[function(require,module,exports){
+},{"./instance_of.js":31}],31:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -235,14 +856,14 @@ function instanceOf( value, constructor ) {
 		throw new TypeError( 'invalid input argument. `constructor` argument must be callable. Value: `'+constructor+'`.' );
 	}
 	return ( value instanceof constructor );
-} // end FUNCTION instanceOf()
+}
 
 
 // EXPORTS //
 
 module.exports = instanceOf;
 
-},{}],5:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 /**
@@ -272,13 +893,13 @@ var isArrayLike = require( './is_array_like.js' );
 
 module.exports = isArrayLike;
 
-},{"./is_array_like.js":6}],6:[function(require,module,exports){
+},{"./is_array_like.js":33}],33:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
-var MAX_LENGTH = require( '@stdlib/math/constants/uint32-max' );
+var MAX_LENGTH = require( '@stdlib/constants/array/max-array-length' );
 
 
 // MAIN //
@@ -307,14 +928,14 @@ function isArrayLike( value ) {
 		value.length >= 0 &&
 		value.length <= MAX_LENGTH
 	);
-} // end FUNCTION isArrayLike()
+}
 
 
 // EXPORTS //
 
 module.exports = isArrayLike;
 
-},{"@stdlib/math/base/assert/is-integer":62,"@stdlib/math/constants/uint32-max":70}],7:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":105,"@stdlib/math/base/assert/is-integer":131}],34:[function(require,module,exports){
 'use strict';
 
 /**
@@ -341,7 +962,7 @@ var isArray = require( './is_array.js' );
 
 module.exports = isArray;
 
-},{"./is_array.js":8}],8:[function(require,module,exports){
+},{"./is_array.js":35}],35:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -367,14 +988,21 @@ var nativeClass = require( '@stdlib/utils/native-class' );
 */
 function isArray( value ) {
 	return ( nativeClass( value ) === '[object Array]' );
-} // end FUNCTION isArray()
+}
 
 
 // EXPORTS //
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":95}],9:[function(require,module,exports){
+},{"@stdlib/utils/native-class":194}],36:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = true;
+
+},{}],37:[function(require,module,exports){
 'use strict';
 
 /**
@@ -401,7 +1029,7 @@ var isBuffer = require( './is_buffer.js' );
 
 module.exports = isBuffer;
 
-},{"./is_buffer.js":10}],10:[function(require,module,exports){
+},{"./is_buffer.js":38}],38:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -441,20 +1069,21 @@ function isBuffer( value ) {
 			value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
 			(
 				value.constructor &&
+
 				// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
 				typeof value.constructor.isBuffer === 'function' &&
 				value.constructor.isBuffer( value )
 			)
 		)
 	);
-} // end FUNCTION isBuffer()
+}
 
 
 // EXPORTS //
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":34}],11:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":72}],39:[function(require,module,exports){
 'use strict';
 
 /**
@@ -481,7 +1110,7 @@ var isError = require( './is_error.js' );
 
 module.exports = isError;
 
-},{"./is_error.js":12}],12:[function(require,module,exports){
+},{"./is_error.js":40}],40:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -522,14 +1151,134 @@ function isError( value ) {
 		value = getPrototypeOf( value );
 	}
 	return false;
-} // end FUNCTION isError()
+}
 
 
 // EXPORTS //
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":89,"@stdlib/utils/native-class":95}],13:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":188,"@stdlib/utils/native-class":194}],41:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float32Array.
+*
+* @module @stdlib/assert/is-float32array
+*
+* @example
+* var isFloat32Array = require( '@stdlib/assert/is-float32array' );
+*
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* bool = isFloat32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat32Array = require( './is_float32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat32Array;
+
+},{"./is_float32array.js":42}],42:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float32Array
+*
+* @example
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat32Array( [] );
+* // returns false
+*/
+function isFloat32Array( value ) {
+	return ( nativeClass( value ) === '[object Float32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat32Array;
+
+},{"@stdlib/utils/native-class":194}],43:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float64Array.
+*
+* @module @stdlib/assert/is-float64array
+*
+* @example
+* var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+*
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* bool = isFloat64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat64Array = require( './is_float64array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"./is_float64array.js":44}],44:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float64Array
+*
+* @example
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat64Array( [] );
+* // returns false
+*/
+function isFloat64Array( value ) {
+	return ( nativeClass( value ) === '[object Float64Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"@stdlib/utils/native-class":194}],45:[function(require,module,exports){
 'use strict';
 
 /**
@@ -557,7 +1306,7 @@ var isFunction = require( './is_function.js' );
 
 module.exports = isFunction;
 
-},{"./is_function.js":14}],14:[function(require,module,exports){
+},{"./is_function.js":46}],46:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -584,14 +1333,194 @@ var typeOf = require( '@stdlib/utils/type-of' );
 function isFunction( value ) {
 	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
 	return ( typeOf( value ) === 'function' );
-} // end FUNCTION isFunction()
+}
 
 
 // EXPORTS //
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":108}],15:[function(require,module,exports){
+},{"@stdlib/utils/type-of":207}],47:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int16Array.
+*
+* @module @stdlib/assert/is-int16array
+*
+* @example
+* var isInt16Array = require( '@stdlib/assert/is-int16array' );
+*
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* bool = isInt16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt16Array = require( './is_int16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt16Array;
+
+},{"./is_int16array.js":48}],48:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int16Array
+*
+* @example
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt16Array( [] );
+* // returns false
+*/
+function isInt16Array( value ) {
+	return ( nativeClass( value ) === '[object Int16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt16Array;
+
+},{"@stdlib/utils/native-class":194}],49:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int32Array.
+*
+* @module @stdlib/assert/is-int32array
+*
+* @example
+* var isInt32Array = require( '@stdlib/assert/is-int32array' );
+*
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* bool = isInt32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt32Array = require( './is_int32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt32Array;
+
+},{"./is_int32array.js":50}],50:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int32Array
+*
+* @example
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt32Array( [] );
+* // returns false
+*/
+function isInt32Array( value ) {
+	return ( nativeClass( value ) === '[object Int32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt32Array;
+
+},{"@stdlib/utils/native-class":194}],51:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int8Array.
+*
+* @module @stdlib/assert/is-int8array
+*
+* @example
+* var isInt8Array = require( '@stdlib/assert/is-int8array' );
+*
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* bool = isInt8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt8Array = require( './is_int8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt8Array;
+
+},{"./is_int8array.js":52}],52:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int8Array
+*
+* @example
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt8Array( [] );
+* // returns false
+*/
+function isInt8Array( value ) {
+	return ( nativeClass( value ) === '[object Int8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt8Array;
+
+},{"@stdlib/utils/native-class":194}],53:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -626,14 +1555,14 @@ var isObject = require( './object.js' );
 */
 function isInteger( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./object.js":18,"./primitive.js":19}],16:[function(require,module,exports){
+},{"./object.js":56,"./primitive.js":57}],54:[function(require,module,exports){
 'use strict';
 
 /**
@@ -695,13 +1624,13 @@ setReadOnly( isInteger, 'isObject', isObject );
 
 module.exports = isInteger;
 
-},{"./generic.js":15,"./object.js":18,"./primitive.js":19,"@stdlib/utils/define-read-only-property":82}],17:[function(require,module,exports){
+},{"./generic.js":53,"./object.js":56,"./primitive.js":57,"@stdlib/utils/define-read-only-property":151}],55:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 var isInt = require( '@stdlib/math/base/assert/is-integer' );
 
 
@@ -720,14 +1649,14 @@ function isInteger( value ) {
 		value > NINF &&
 		isInt( value )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/assert/is-integer":62,"@stdlib/math/constants/float64-ninf":68,"@stdlib/math/constants/float64-pinf":69}],18:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-ninf":106,"@stdlib/constants/math/float64-pinf":107,"@stdlib/math/base/assert/is-integer":131}],56:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -757,14 +1686,14 @@ function isInteger( value ) {
 		isNumber( value ) &&
 		isInt( value.valueOf() )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./integer.js":17,"@stdlib/assert/is-number":29}],19:[function(require,module,exports){
+},{"./integer.js":55,"@stdlib/assert/is-number":67}],57:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -794,14 +1723,14 @@ function isInteger( value ) {
 		isNumber( value ) &&
 		isInt( value )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./integer.js":17,"@stdlib/assert/is-number":29}],20:[function(require,module,exports){
+},{"./integer.js":55,"@stdlib/assert/is-number":67}],58:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -836,14 +1765,14 @@ var isObject = require( './object.js' );
 */
 function isnan( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"./object.js":22,"./primitive.js":23}],21:[function(require,module,exports){
+},{"./object.js":60,"./primitive.js":61}],59:[function(require,module,exports){
 'use strict';
 
 /**
@@ -908,7 +1837,7 @@ setReadOnly( isnan, 'isObject', isObject );
 
 module.exports = isnan;
 
-},{"./generic.js":20,"./object.js":22,"./primitive.js":23,"@stdlib/utils/define-read-only-property":82}],22:[function(require,module,exports){
+},{"./generic.js":58,"./object.js":60,"./primitive.js":61,"@stdlib/utils/define-read-only-property":151}],60:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -938,14 +1867,14 @@ function isnan( value ) {
 		isNumber( value ) &&
 		isNan( value.valueOf() )
 	);
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":29,"@stdlib/math/base/assert/is-nan":64}],23:[function(require,module,exports){
+},{"@stdlib/assert/is-number":67,"@stdlib/math/base/assert/is-nan":133}],61:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -979,14 +1908,14 @@ function isnan( value ) {
 		isNumber( value ) &&
 		isNan( value )
 	);
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":29,"@stdlib/math/base/assert/is-nan":64}],24:[function(require,module,exports){
+},{"@stdlib/assert/is-number":67,"@stdlib/math/base/assert/is-nan":133}],62:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1025,14 +1954,14 @@ var isObject = require( './object.js' );
 */
 function isNonNegativeInteger( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":26,"./primitive.js":27}],25:[function(require,module,exports){
+},{"./object.js":64,"./primitive.js":65}],63:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1097,7 +2026,7 @@ setReadOnly( isNonNegativeInteger, 'isObject', isObject );
 
 module.exports = isNonNegativeInteger;
 
-},{"./generic.js":24,"./object.js":26,"./primitive.js":27,"@stdlib/utils/define-read-only-property":82}],26:[function(require,module,exports){
+},{"./generic.js":62,"./object.js":64,"./primitive.js":65,"@stdlib/utils/define-read-only-property":151}],64:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1126,14 +2055,14 @@ function isNonNegativeInteger( value ) {
 		isInteger( value ) &&
 		value.valueOf() >= 0
 	);
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":16}],27:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":54}],65:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1162,14 +2091,14 @@ function isNonNegativeInteger( value ) {
 		isInteger( value ) &&
 		value >= 0
 	);
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":16}],28:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":54}],66:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1204,14 +2133,14 @@ var isObject = require( './object.js' );
 */
 function isNumber( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{"./object.js":30,"./primitive.js":31}],29:[function(require,module,exports){
+},{"./object.js":68,"./primitive.js":69}],67:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1276,7 +2205,7 @@ setReadOnly( isNumber, 'isObject', isObject );
 
 module.exports = isNumber;
 
-},{"./generic.js":28,"./object.js":30,"./primitive.js":31,"@stdlib/utils/define-read-only-property":82}],30:[function(require,module,exports){
+},{"./generic.js":66,"./object.js":68,"./primitive.js":69,"@stdlib/utils/define-read-only-property":151}],68:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1310,14 +2239,14 @@ function isNumber( value ) {
 		return ( nativeClass( value ) === '[object Number]' );
 	}
 	return false;
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":33,"@stdlib/utils/detect-tostringtag-support":86,"@stdlib/utils/native-class":95}],31:[function(require,module,exports){
+},{"./try2serialize.js":71,"@stdlib/utils/detect-tostringtag-support":173,"@stdlib/utils/native-class":194}],69:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1340,17 +2269,17 @@ module.exports = isNumber;
 */
 function isNumber( value ) {
 	return ( typeof value === 'number' );
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{}],32:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var toString = Number.prototype.toString; // non-generic
 
 
@@ -1358,12 +2287,12 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],33:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
+var toString = require( './tostring.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -1382,14 +2311,14 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./tostring.js":32}],34:[function(require,module,exports){
+},{"./tostring.js":70}],72:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1435,7 +2364,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":35,"@stdlib/assert/tools/array-function":48,"@stdlib/utils/define-read-only-property":82}],35:[function(require,module,exports){
+},{"./is_object_like.js":73,"@stdlib/assert/tools/array-function":95,"@stdlib/utils/define-read-only-property":151}],73:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1461,14 +2390,14 @@ function isObjectLike( value ) {
 		value !== null &&
 		typeof value === 'object'
 	);
-} // end FUNCTION isObjectLike()
+}
 
 
 // EXPORTS //
 
 module.exports = isObjectLike;
 
-},{}],36:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1495,7 +2424,7 @@ var isObject = require( './is_object.js' );
 
 module.exports = isObject;
 
-},{"./is_object.js":37}],37:[function(require,module,exports){
+},{"./is_object.js":75}],75:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1525,14 +2454,14 @@ function isObject( value ) {
 		value !== null &&
 		!isArray( value )
 	);
-} // end FUNCTION isObject()
+}
 
 
 // EXPORTS //
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":7}],38:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34}],76:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1568,7 +2497,7 @@ var isPlainObjectArray = arrayfun( isPlainObject );
 
 module.exports = isPlainObjectArray;
 
-},{"@stdlib/assert/is-plain-object":39,"@stdlib/assert/tools/array-like-function":50}],39:[function(require,module,exports){
+},{"@stdlib/assert/is-plain-object":77,"@stdlib/assert/tools/array-like-function":97}],77:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1595,7 +2524,7 @@ var isPlainObject = require( './is_plain_object.js' );
 
 module.exports = isPlainObject;
 
-},{"./is_plain_object.js":40}],40:[function(require,module,exports){
+},{"./is_plain_object.js":78}],78:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1631,7 +2560,7 @@ function ownProps( obj ) {
 		}
 	}
 	return true;
-} // end FUNCTION ownProps()
+}
 
 
 // MAIN //
@@ -1684,14 +2613,14 @@ function isPlainObject( value ) {
 			ownProps( value )
 		)
 	);
-} // end FUNCTION isPlainObject()
+}
 
 
 // EXPORTS //
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":13,"@stdlib/assert/is-object":36,"@stdlib/utils/get-prototype-of":89,"@stdlib/utils/native-class":95}],41:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-function":45,"@stdlib/assert/is-object":74,"@stdlib/utils/get-prototype-of":188,"@stdlib/utils/native-class":194}],79:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1718,14 +2647,14 @@ var isObject = require( './object.js' );
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./object.js":43,"./primitive.js":44}],42:[function(require,module,exports){
+},{"./object.js":81,"./primitive.js":82}],80:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1782,7 +2711,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":41,"./object.js":43,"./primitive.js":44,"@stdlib/utils/define-read-only-property":82}],43:[function(require,module,exports){
+},{"./generic.js":79,"./object.js":81,"./primitive.js":82,"@stdlib/utils/define-read-only-property":151}],81:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1816,14 +2745,14 @@ function isString( value ) {
 		return ( nativeClass( value ) === '[object String]' );
 	}
 	return false;
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./try2valueof.js":45,"@stdlib/utils/detect-tostringtag-support":86,"@stdlib/utils/native-class":95}],44:[function(require,module,exports){
+},{"./try2valueof.js":83,"@stdlib/utils/detect-tostringtag-support":173,"@stdlib/utils/native-class":194}],82:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1842,19 +2771,19 @@ module.exports = isString;
 */
 function isString( value ) {
 	return ( typeof value === 'string' );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{}],45:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
+var valueOf = require( './valueof.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -1873,17 +2802,17 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./valueof.js":46}],46:[function(require,module,exports){
+},{"./valueof.js":84}],84:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var valueOf = String.prototype.valueOf; // non-generic
 
 
@@ -1891,7 +2820,286 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],47:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint16Array.
+*
+* @module @stdlib/assert/is-uint16array
+*
+* @example
+* var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+*
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* bool = isUint16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint16Array = require( './is_uint16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"./is_uint16array.js":86}],86:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint16Array
+*
+* @example
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint16Array( [] );
+* // returns false
+*/
+function isUint16Array( value ) {
+	return ( nativeClass( value ) === '[object Uint16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"@stdlib/utils/native-class":194}],87:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint32Array.
+*
+* @module @stdlib/assert/is-uint32array
+*
+* @example
+* var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+*
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* bool = isUint32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint32Array = require( './is_uint32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"./is_uint32array.js":88}],88:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint32Array
+*
+* @example
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint32Array( [] );
+* // returns false
+*/
+function isUint32Array( value ) {
+	return ( nativeClass( value ) === '[object Uint32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"@stdlib/utils/native-class":194}],89:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8Array.
+*
+* @module @stdlib/assert/is-uint8array
+*
+* @example
+* var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+*
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* bool = isUint8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8Array = require( './is_uint8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"./is_uint8array.js":90}],90:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8Array
+*
+* @example
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8Array( [] );
+* // returns false
+*/
+function isUint8Array( value ) {
+	return ( nativeClass( value ) === '[object Uint8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"@stdlib/utils/native-class":194}],91:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8ClampedArray.
+*
+* @module @stdlib/assert/is-uint8clampedarray
+*
+* @example
+* var isUint8ClampedArray = require( '@stdlib/assert/is-uint8clampedarray' );
+*
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8ClampedArray = require( './is_uint8array_clamped.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8ClampedArray;
+
+},{"./is_uint8array_clamped.js":92}],92:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8ClampedArray.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8ClampedArray
+*
+* @example
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+function isUint8ClampedArray( value ) {
+	return ( nativeClass( value ) === '[object Uint8ClampedArray]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8ClampedArray;
+
+},{"@stdlib/utils/native-class":194}],93:[function(require,module,exports){
+'use strict';
+
+/**
+* Boolean indicating if the current process is running on Windows.
+*
+* @module @stdlib/assert/is-windows
+* @type {boolean}
+*
+* @example
+* var isWindows = require( '@stdlib/assert/is-windows' );
+*
+* if ( isWindows ) {
+*     console.log( 'Running on Windows...' );
+* } else {
+*     console.log( 'Running on %s...', process.platform );
+* }
+*/
+
+// MODULES //
+
+var platform = require( '@stdlib/os/platform' );
+
+
+// MAIN //
+
+/**
+* Boolean indicating if the current process is running on Windows.
+*
+* @constant
+* @type {boolean}
+*/
+var IS_WINDOWS = ( platform === 'win32' );
+
+
+// EXPORTS //
+
+module.exports = IS_WINDOWS;
+
+},{"@stdlib/os/platform":137}],94:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1927,6 +3135,7 @@ function arrayfcn( predicate ) {
 		throw new TypeError( 'invalid input argument. Must provide a function. Value: `' + predicate + '`.' );
 	}
 	return every;
+
 	/**
 	* Tests if every element in an array passes a test condition.
 	*
@@ -1950,15 +3159,15 @@ function arrayfcn( predicate ) {
 			}
 		}
 		return true;
-	} // end FUNCTION every()
-} // end FUNCTION arrayfcn()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":7}],48:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34}],95:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1991,7 +3200,7 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":47}],49:[function(require,module,exports){
+},{"./arrayfcn.js":94}],96:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2027,6 +3236,7 @@ function arraylikefcn( predicate ) {
 		throw new TypeError( 'invalid input argument. Must provide a function. Value: `' + predicate + '`.' );
 	}
 	return every;
+
 	/**
 	* Tests if every element in an array-like object passes a test condition.
 	*
@@ -2050,15 +3260,15 @@ function arraylikefcn( predicate ) {
 			}
 		}
 		return true;
-	} // end FUNCTION every()
-} // end FUNCTION arraylikefcn()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":5}],50:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32}],97:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2091,10 +3301,733 @@ var arraylikefcn = require( './arraylikefcn.js' );
 
 module.exports = arraylikefcn;
 
-},{"./arraylikefcn.js":49}],51:[function(require,module,exports){
+},{"./arraylikefcn.js":96}],98:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer;
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":214}],99:[function(require,module,exports){
+'use strict';
+
+/**
+* Buffer constructor.
+*
+* @module @stdlib/buffer/ctor
+*
+* @example
+* var ctor = require( '@stdlib/buffer/ctor' );
+*
+* var b = new ctor( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*/
+
+// MODULES //
+
+var hasNodeBufferSupport = require( '@stdlib/utils/detect-node-buffer-support' );
+var main = require( './buffer.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasNodeBufferSupport() ) {
+	ctor = main;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./buffer.js":98,"./polyfill.js":100,"@stdlib/utils/detect-node-buffer-support":168}],100:[function(require,module,exports){
+'use strict';
+
+// TODO: write (browser) polyfill
+
+// MAIN //
+
+/**
+* Buffer constructor.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],101:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+var bool = isFunction( Buffer.from );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{"@stdlib/assert/is-function":45,"@stdlib/buffer/ctor":99}],102:[function(require,module,exports){
+'use strict';
+
+/**
+* Copy buffer data to a new `Buffer` instance.
+*
+* @module @stdlib/buffer/from-buffer
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+* var copyBuffer = require( '@stdlib/buffer/from-buffer' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = copyBuffer( b1 );
+* // returns <Buffer>
+*/
+
+// MODULES //
+
+var hasFrom = require( './has_from.js' );
+var main = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var copyBuffer;
+if ( hasFrom ) {
+	copyBuffer = main;
+} else {
+	copyBuffer = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = copyBuffer;
+
+},{"./has_from.js":101,"./main.js":103,"./polyfill.js":104}],103:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+/**
+* Copies buffer data to a new `Buffer` instance.
+*
+* @param {Buffer} buffer - buffer from which to copy
+* @throws {TypeError} must provide a `Buffer` instance
+* @returns {Buffer} new `Buffer` instance
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = fromBuffer( b1 );
+* // returns <Buffer>
+*/
+function fromBuffer( buffer ) {
+	if ( !isBuffer( buffer ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a Buffer. Value: `' + buffer + '`' );
+	}
+	return Buffer.from( buffer );
+}
+
+
+// EXPORTS //
+
+module.exports = fromBuffer;
+
+},{"@stdlib/assert/is-buffer":37,"@stdlib/buffer/ctor":99}],104:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+/**
+* Copies buffer data to a new `Buffer` instance.
+*
+* @param {Buffer} buffer - buffer from which to copy
+* @throws {TypeError} must provide a `Buffer` instance
+* @returns {Buffer} new `Buffer` instance
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = fromBuffer( b1 );
+* // returns <Buffer>
+*/
+function fromBuffer( buffer ) {
+	if ( !isBuffer( buffer ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a Buffer. Value: `' + buffer + '`' );
+	}
+	return new Buffer( buffer ); // eslint-disable-line no-buffer-constructor
+}
+
+
+// EXPORTS //
+
+module.exports = fromBuffer;
+
+},{"@stdlib/assert/is-buffer":37,"@stdlib/buffer/ctor":99}],105:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum length of a generic array.
+*
+* @module @stdlib/constants/array/max-array-length
+*
+* @example
+* var MAX_ARRAY_LENGTH = require( '@stdlib/constants/array/max-array-length' );
+* // returns 4294967295
+*/
+
+// MAIN //
+
+/**
+* Maximum length of a generic array.
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = MAX_ARRAY_LENGTH;
+
+},{}],106:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NINF;
+
+},{}],107:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_PINF;
+
+},{}],108:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-max
+* @type {integer32}
+*
+* @example
+* var INT16_MAX = require( '@stdlib/constants/math/int16-max' );
+* // returns 32767
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{15} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 0111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 32767
+*/
+var INT16_MAX = 32767|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT16_MAX;
+
+},{}],109:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-min
+* @type {integer32}
+*
+* @example
+* var INT16_MIN = require( '@stdlib/constants/math/int16-min' );
+* // returns -32768
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{15})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 1000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -32768
+*/
+var INT16_MIN = -32768|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT16_MIN;
+
+},{}],110:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-max
+* @type {integer32}
+*
+* @example
+* var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+* // returns 2147483647
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{31} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 2147483647
+*/
+var INT32_MAX = 2147483647|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT32_MAX;
+
+},{}],111:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-min
+* @type {integer32}
+*
+* @example
+* var INT32_MIN = require( '@stdlib/constants/math/int32-min' );
+* // returns -2147483648
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{31})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -2147483648
+*/
+var INT32_MIN = -2147483648|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT32_MIN;
+
+},{}],112:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-max
+* @type {integer32}
+*
+* @example
+* var INT8_MAX = require( '@stdlib/constants/math/int8-max' );
+* // returns 127
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* 2^{7} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 127
+*/
+var INT8_MAX = 127|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT8_MAX;
+
+},{}],113:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-min
+* @type {integer32}
+*
+* @example
+* var INT8_MIN = require( '@stdlib/constants/math/int8-min' );
+* // returns -128
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* -(2^{7})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -128
+*/
+var INT8_MIN = -128|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT8_MIN;
+
+},{}],114:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* @module @stdlib/constants/math/uint16-max
+* @type {integer32}
+*
+* @example
+* var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+* // returns 65535
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{16} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 1111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 65535
+*/
+var UINT16_MAX = 65535|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT16_MAX;
+
+},{}],115:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* @module @stdlib/constants/math/uint32-max
+* @type {uinteger32}
+*
+* @example
+* var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+* // returns 4294967295
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var UINT32_MAX = 4294967295;
+
+
+// EXPORTS //
+
+module.exports = UINT32_MAX;
+
+},{}],116:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* @module @stdlib/constants/math/uint8-max
+* @type {integer32}
+*
+* @example
+* var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+* // returns 255
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{8} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 255
+*/
+var UINT8_MAX = 255|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT8_MAX;
+
+},{}],117:[function(require,module,exports){
 module.exports=[{"date":"01/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1980","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1980","all_workers":6.6051640043,"hourly_workers":7.1045695125,"non_hourly_workers":6.0894170021,"less_than_high_school":8.2848121697,"high_school":7.281848362,"some_college":5.5040371904,"college":5.0382060963,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1981","all_workers":6.6133956828,"hourly_workers":7.1661873534,"non_hourly_workers":6.0443434409,"less_than_high_school":8.1660029649,"high_school":7.4460828679,"some_college":5.4878128959,"college":4.8829432012,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1981","all_workers":6.6983213317,"hourly_workers":7.3010694756,"non_hourly_workers":6.0813412079,"less_than_high_school":8.3833102331,"high_school":7.4245985834,"some_college":5.8163677583,"college":4.9026024063,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1981","all_workers":6.7864103977,"hourly_workers":7.4189910849,"non_hourly_workers":6.1422436597,"less_than_high_school":8.4621050714,"high_school":7.5215794584,"some_college":5.8352532713,"college":5.0952797566,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1981","all_workers":6.7462924754,"hourly_workers":7.38139413,"non_hourly_workers":6.0986112641,"less_than_high_school":8.2335435165,"high_school":7.4192563569,"some_college":5.7956101647,"college":5.3133191553,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1981","all_workers":6.8042135585,"hourly_workers":7.5058785398,"non_hourly_workers":6.1101393769,"less_than_high_school":8.3995595371,"high_school":7.3820496508,"some_college":5.8949528217,"college":5.3521177734,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1981","all_workers":6.7665064655,"hourly_workers":7.372852509,"non_hourly_workers":6.1753624408,"less_than_high_school":8.232407227,"high_school":7.4647686717,"some_college":5.6933705898,"college":5.3999027478,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1981","all_workers":6.7144888319,"hourly_workers":7.2509574444,"non_hourly_workers":6.188415615,"less_than_high_school":7.8156333052,"high_school":7.5058145206,"some_college":5.7005519391,"college":5.504374931,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1981","all_workers":6.7712377987,"hourly_workers":7.3276541565,"non_hourly_workers":6.2205703786,"less_than_high_school":8.0756629205,"high_school":7.5319628053,"some_college":5.8069874977,"college":5.3892069066,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1981","all_workers":6.834380846,"hourly_workers":7.2901534095,"non_hourly_workers":6.3829693198,"less_than_high_school":7.7629538667,"high_school":7.7159701462,"some_college":5.6064683016,"college":5.7345428244,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1981","all_workers":6.7197482603,"hourly_workers":7.2949711584,"non_hourly_workers":6.129639712,"less_than_high_school":7.8835592916,"high_school":7.5984970382,"some_college":5.3644686148,"college":5.5539963357,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1981","all_workers":6.8095445279,"hourly_workers":7.2896898945,"non_hourly_workers":6.3232345938,"less_than_high_school":7.8209559437,"high_school":7.6031873127,"some_college":5.6951264319,"college":5.7152220752,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1981","all_workers":6.8536732812,"hourly_workers":7.336819217,"non_hourly_workers":6.3624844656,"less_than_high_school":7.9154695513,"high_school":7.6101013168,"some_college":5.8238285443,"college":5.7830817521,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1982","all_workers":7.0708930223,"hourly_workers":7.5652111665,"non_hourly_workers":6.5607356133,"less_than_high_school":8.0589045028,"high_school":7.8957623857,"some_college":6.0391689237,"college":5.9179872108,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1982","all_workers":7.2237516191,"hourly_workers":7.6948400985,"non_hourly_workers":6.7357792854,"less_than_high_school":8.0465508614,"high_school":8.2566079702,"some_college":5.9511592269,"college":5.9965998585,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1982","all_workers":7.2073612832,"hourly_workers":7.5929552405,"non_hourly_workers":6.7971065615,"less_than_high_school":8.0882355507,"high_school":8.2790659798,"some_college":5.8291346512,"college":5.9273870128,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1982","all_workers":7.4477078865,"hourly_workers":7.8904447477,"non_hourly_workers":6.9771710524,"less_than_high_school":8.7692595288,"high_school":8.596601758,"some_college":5.8289944811,"college":6.0208246857,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1982","all_workers":7.5247541054,"hourly_workers":7.8781403729,"non_hourly_workers":7.1183275163,"less_than_high_school":8.9459884437,"high_school":8.7044786997,"some_college":5.7315353981,"college":6.1764300534,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1982","all_workers":7.5892524989,"hourly_workers":8.143638464,"non_hourly_workers":6.94948471,"less_than_high_school":9.1763554092,"high_school":8.635573311,"some_college":6.1263355961,"college":6.0295682924,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1982","all_workers":7.7772552141,"hourly_workers":8.467181654,"non_hourly_workers":6.9605676722,"less_than_high_school":9.8827243066,"high_school":8.6842234579,"some_college":6.5019931588,"college":5.8770657418,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1982","all_workers":7.968119413,"hourly_workers":8.7969529325,"non_hourly_workers":6.9629742293,"less_than_high_school":10.188810285,"high_school":8.8698238778,"some_college":6.858449196,"college":5.8432604778,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1982","all_workers":8.2066007444,"hourly_workers":9.1871724787,"non_hourly_workers":7.0218062116,"less_than_high_school":10.6114196854,"high_school":8.9954956462,"some_college":7.3583639114,"college":5.985412267,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1982","all_workers":8.3389596528,"hourly_workers":9.3612560928,"non_hourly_workers":7.1024496644,"less_than_high_school":10.7135546073,"high_school":9.15455153,"some_college":7.4520732459,"college":6.0927684303,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1982","all_workers":8.4992501267,"hourly_workers":9.776521369,"non_hourly_workers":6.9862888755,"less_than_high_school":11.0762077322,"high_school":9.36927983,"some_college":7.5232184249,"college":6.1062940795,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1982","all_workers":8.4774330203,"hourly_workers":9.8346158714,"non_hourly_workers":6.8769075015,"less_than_high_school":11.1094948978,"high_school":9.3389198016,"some_college":7.5225912125,"college":6.0436227312,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1983","all_workers":8.6462433716,"hourly_workers":10.026210536,"non_hourly_workers":7.0249381913,"less_than_high_school":11.6814705056,"high_school":9.1819013417,"some_college":7.8076268027,"college":6.2973927973,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1983","all_workers":8.8515827643,"hourly_workers":10.4507171304,"non_hourly_workers":6.9721236865,"less_than_high_school":12.5754162986,"high_school":9.3601239466,"some_college":7.9319564408,"college":6.1815860713,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1983","all_workers":9.1272277736,"hourly_workers":10.9767930802,"non_hourly_workers":6.9964687173,"less_than_high_school":12.964344689,"high_school":9.5623413027,"some_college":8.5719976431,"college":6.2609496502,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1983","all_workers":9.3404192122,"hourly_workers":11.2685919216,"non_hourly_workers":7.122879617,"less_than_high_school":13.1280394506,"high_school":9.7815548265,"some_college":9.041196826,"college":6.2739009054,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1983","all_workers":9.5676635765,"hourly_workers":11.6044137606,"non_hourly_workers":7.230102154,"less_than_high_school":13.2140129997,"high_school":10.1246512545,"some_college":9.2754756494,"college":6.417598266,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1983","all_workers":9.9382054575,"hourly_workers":12.0003692985,"non_hourly_workers":7.5665037834,"less_than_high_school":14.2878632233,"high_school":10.728976446,"some_college":9.0737373251,"college":6.4403347523,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1983","all_workers":10.1717211187,"hourly_workers":12.1822263017,"non_hourly_workers":7.8603895394,"less_than_high_school":14.2535249121,"high_school":11.2608177439,"some_college":8.9292532559,"college":6.7474098338,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1983","all_workers":10.3504454563,"hourly_workers":12.3423000343,"non_hourly_workers":8.0433972612,"less_than_high_school":14.1719409259,"high_school":11.4700108203,"some_college":9.1024792286,"college":7.0621499064,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1983","all_workers":10.3690875051,"hourly_workers":12.3505530044,"non_hourly_workers":8.0192210769,"less_than_high_school":14.222705314,"high_school":11.4444271084,"some_college":9.3432039734,"college":6.7068409166,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1983","all_workers":10.6747733666,"hourly_workers":12.675745123,"non_hourly_workers":8.2574030222,"less_than_high_school":14.6837149038,"high_school":11.7993088094,"some_college":9.5531695608,"college":6.9337995567,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1983","all_workers":10.7710825462,"hourly_workers":12.6944898099,"non_hourly_workers":8.402334956,"less_than_high_school":14.9818309171,"high_school":11.8453645605,"some_college":9.6258240563,"college":7.0391877435,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1983","all_workers":10.8995756999,"hourly_workers":12.8682381368,"non_hourly_workers":8.462928472,"less_than_high_school":14.8844383059,"high_school":12.1945789731,"some_college":9.6894971359,"college":7.0704772408,"construction":16.6367712057,"finance":8.0002140675,"manufacturing":9.7111544871},{"date":"01/1/1984","all_workers":11.0251062614,"hourly_workers":13.1180449313,"non_hourly_workers":8.4270202001,"less_than_high_school":15.288981853,"high_school":12.3721637024,"some_college":9.683449795,"college":7.1559469386,"construction":17.6930537105,"finance":7.9538619561,"manufacturing":9.7671202956},{"date":"02/1/1984","all_workers":11.0184390507,"hourly_workers":13.0435879214,"non_hourly_workers":8.4922516987,"less_than_high_school":14.8893447502,"high_school":12.4487687225,"some_college":9.9979667742,"college":7.0012057957,"construction":16.9423657091,"finance":8.2010495379,"manufacturing":9.7121466287},{"date":"03/1/1984","all_workers":11.0043617035,"hourly_workers":12.9689226283,"non_hourly_workers":8.4974828672,"less_than_high_school":14.8791136373,"high_school":12.4703241956,"some_college":9.7780251772,"college":7.116078169,"construction":16.7884211503,"finance":8.0483303036,"manufacturing":9.4287399253},{"date":"04/1/1984","all_workers":10.9822209966,"hourly_workers":12.9847588229,"non_hourly_workers":8.4360651656,"less_than_high_school":14.7948085853,"high_school":12.2250574533,"some_college":9.9112403325,"college":7.3668504587,"construction":15.7692931448,"finance":8.5061284776,"manufacturing":9.8460484591},{"date":"05/1/1984","all_workers":11.035970028,"hourly_workers":13.1514754031,"non_hourly_workers":8.3274012534,"less_than_high_school":14.9146600305,"high_school":12.2407316746,"some_college":10.1854787056,"college":7.2814875378,"construction":16.4509142796,"finance":8.3977115481,"manufacturing":9.6704012217},{"date":"06/1/1984","all_workers":10.9009618929,"hourly_workers":12.9762221905,"non_hourly_workers":8.2153487488,"less_than_high_school":14.2343355362,"high_school":12.0607496958,"some_college":10.3837804348,"college":7.2655839612,"construction":16.2321494237,"finance":7.8304486403,"manufacturing":9.3591902713},{"date":"07/1/1984","all_workers":10.9262882608,"hourly_workers":13.100634788,"non_hourly_workers":8.1351611514,"less_than_high_school":14.5788018482,"high_school":11.814333908,"some_college":10.4725029539,"college":7.4735452401,"construction":16.1088373248,"finance":7.5261252988,"manufacturing":9.541071024},{"date":"08/1/1984","all_workers":10.891844203,"hourly_workers":13.084173184,"non_hourly_workers":8.0800013034,"less_than_high_school":15.0238890021,"high_school":11.7244357415,"some_college":10.4671314609,"college":7.2363365379,"construction":15.4025485246,"finance":8.1809364111,"manufacturing":10.1183593057},{"date":"09/1/1984","all_workers":10.950509104,"hourly_workers":13.2952028846,"non_hourly_workers":7.9588008441,"less_than_high_school":15.1859779255,"high_school":12.0118114962,"some_college":10.2422391027,"college":7.254893108,"construction":15.625924896,"finance":8.2311737021,"manufacturing":10.5311702214},{"date":"10/1/1984","all_workers":10.7786233395,"hourly_workers":13.067871241,"non_hourly_workers":7.8890920709,"less_than_high_school":15.2890565873,"high_school":11.7180238363,"some_college":10.0340501937,"college":7.2241881652,"construction":15.5469333037,"finance":7.7642756401,"manufacturing":10.8692567777},{"date":"11/1/1984","all_workers":10.7990895549,"hourly_workers":13.1645510182,"non_hourly_workers":7.8147073584,"less_than_high_school":15.0176699057,"high_school":11.7066993188,"some_college":10.1986224357,"college":7.1696936069,"construction":15.5269141674,"finance":7.5360523509,"manufacturing":10.8981896563},{"date":"12/1/1984","all_workers":10.9972219093,"hourly_workers":13.4482165949,"non_hourly_workers":7.8746511729,"less_than_high_school":15.4475344223,"high_school":11.690626259,"some_college":10.5758658203,"college":7.2160182542,"construction":15.4981658063,"finance":7.2149294444,"manufacturing":11.1285858599},{"date":"01/1/1985","all_workers":10.972967492,"hourly_workers":13.4797456823,"non_hourly_workers":7.77232338,"less_than_high_school":15.2631030325,"high_school":11.7447580763,"some_college":10.4632196242,"college":7.2960104637,"construction":14.7411464536,"finance":7.2013381732,"manufacturing":11.3238358538},{"date":"02/1/1985","all_workers":11.3176773818,"hourly_workers":13.8251927286,"non_hourly_workers":8.0838147406,"less_than_high_school":15.8994208794,"high_school":11.9674190429,"some_college":10.4885897382,"college":7.8958623647,"construction":14.6353730388,"finance":7.1534112379,"manufacturing":11.5764126129},{"date":"03/1/1985","all_workers":11.3536993845,"hourly_workers":13.7866766092,"non_hourly_workers":8.2148929591,"less_than_high_school":15.3252155307,"high_school":12.1705369046,"some_college":10.4638587094,"college":8.0523738299,"construction":14.5366811309,"finance":7.5047634611,"manufacturing":11.9850869209},{"date":"04/1/1985","all_workers":11.4314360079,"hourly_workers":14.0505438967,"non_hourly_workers":8.0702437347,"less_than_high_school":15.454854092,"high_school":12.5882422542,"some_college":10.136979812,"college":7.8675895488,"construction":15.5062981329,"finance":7.0073639819,"manufacturing":11.8382780603},{"date":"05/1/1985","all_workers":11.327165817,"hourly_workers":13.80517486,"non_hourly_workers":8.1539301044,"less_than_high_school":15.405816924,"high_school":12.3413904152,"some_college":10.1760075324,"college":7.7813921865,"construction":14.88669927,"finance":7.6055422613,"manufacturing":12.0350341066},{"date":"06/1/1985","all_workers":11.4085312238,"hourly_workers":13.9030761578,"non_hourly_workers":8.2292368286,"less_than_high_school":15.4654566019,"high_school":12.5360638828,"some_college":10.1802553556,"college":7.7963447478,"construction":14.4675947209,"finance":9.0836905636,"manufacturing":12.5225722484},{"date":"07/1/1985","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1985","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1985","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1985","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1985","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1985","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1986","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1987","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1987","all_workers":11.9283851594,"hourly_workers":14.9782471395,"non_hourly_workers":7.7211839299,"less_than_high_school":16.8069942208,"high_school":12.8244798861,"some_college":12.129849779,"college":7.4930467375,"construction":17.7663163805,"finance":8.5857444649,"manufacturing":13.7109129272},{"date":"10/1/1987","all_workers":11.8917151084,"hourly_workers":14.9838536253,"non_hourly_workers":7.6470880074,"less_than_high_school":16.6696304213,"high_school":12.923127195,"some_college":12.0153750798,"college":7.3174708599,"construction":17.8319311629,"finance":8.5007725441,"manufacturing":13.158607499},{"date":"11/1/1987","all_workers":11.9987394983,"hourly_workers":15.2127044914,"non_hourly_workers":7.5676249557,"less_than_high_school":16.4729153105,"high_school":13.1965073814,"some_college":12.1839944779,"college":7.1806143008,"construction":18.7443345172,"finance":8.2819091354,"manufacturing":13.4077806812},{"date":"12/1/1987","all_workers":12.1605130812,"hourly_workers":15.4387339217,"non_hourly_workers":7.5814328116,"less_than_high_school":16.0054507673,"high_school":13.4648431879,"some_college":12.4764399187,"college":7.3175881341,"construction":19.1507702907,"finance":8.8652886673,"manufacturing":13.3640635211},{"date":"01/1/1988","all_workers":12.2581603271,"hourly_workers":15.5595344313,"non_hourly_workers":7.6392641352,"less_than_high_school":16.2195644638,"high_school":13.5825178598,"some_college":12.4879107486,"college":7.3597469433,"construction":20.3046620077,"finance":8.6679651669,"manufacturing":13.3106964009},{"date":"02/1/1988","all_workers":12.3285342187,"hourly_workers":15.5948665639,"non_hourly_workers":7.8075805774,"less_than_high_school":16.3757020753,"high_school":13.6651647532,"some_college":12.4642402852,"college":7.6141417649,"construction":18.8589826576,"finance":8.7286469811,"manufacturing":13.4490373283},{"date":"03/1/1988","all_workers":12.3168410976,"hourly_workers":15.4928040174,"non_hourly_workers":7.9031098986,"less_than_high_school":16.6212574109,"high_school":13.633077593,"some_college":12.4443488279,"college":7.5859115627,"construction":18.8732037245,"finance":8.4651784742,"manufacturing":12.8199979133},{"date":"04/1/1988","all_workers":12.2047508213,"hourly_workers":15.3758035474,"non_hourly_workers":7.8042868704,"less_than_high_school":16.8019339097,"high_school":13.5573642299,"some_college":11.9138470347,"college":7.7115776907,"construction":20.143490489,"finance":8.342523697,"manufacturing":12.3642413399},{"date":"05/1/1988","all_workers":12.3711126643,"hourly_workers":15.4051046995,"non_hourly_workers":8.1120974981,"less_than_high_school":16.9049834653,"high_school":13.5671598701,"some_college":11.8851627994,"college":8.4031265925,"construction":20.1927735177,"finance":8.4273082832,"manufacturing":12.2807693015},{"date":"06/1/1988","all_workers":12.1207930423,"hourly_workers":15.1645487563,"non_hourly_workers":7.8410975747,"less_than_high_school":16.9350299868,"high_school":13.3472236119,"some_college":11.4685748261,"college":8.073305034,"construction":19.3309882372,"finance":8.3531016338,"manufacturing":11.9398304903},{"date":"07/1/1988","all_workers":11.8960771443,"hourly_workers":14.7192140176,"non_hourly_workers":7.9184020233,"less_than_high_school":16.0527753448,"high_school":13.1296044942,"some_college":11.1572931706,"college":8.2817813745,"construction":18.5980211603,"finance":8.2993789906,"manufacturing":11.3294196668},{"date":"08/1/1988","all_workers":11.8526971706,"hourly_workers":14.5916715982,"non_hourly_workers":7.9883929241,"less_than_high_school":16.0684469814,"high_school":13.0918514291,"some_college":11.113232313,"college":8.1076891418,"construction":19.0756478609,"finance":8.7331153144,"manufacturing":11.2334920376},{"date":"09/1/1988","all_workers":11.9921959719,"hourly_workers":14.8441544397,"non_hourly_workers":7.9652056063,"less_than_high_school":15.9411798929,"high_school":13.4938434437,"some_college":11.1860462553,"college":8.1094754604,"construction":19.2426010462,"finance":9.7401417351,"manufacturing":11.2089852038},{"date":"10/1/1988","all_workers":11.9700349967,"hourly_workers":14.714424847,"non_hourly_workers":8.0821213121,"less_than_high_school":16.1966662561,"high_school":13.4130061016,"some_college":11.150624823,"college":8.0494515118,"construction":18.4746029446,"finance":9.7915020918,"manufacturing":11.8667240649},{"date":"11/1/1988","all_workers":11.8369343114,"hourly_workers":14.5525136445,"non_hourly_workers":8.0092058961,"less_than_high_school":16.2236443383,"high_school":13.4196124707,"some_college":10.6926016905,"college":8.048636464,"construction":18.1474942694,"finance":9.5909867883,"manufacturing":11.9868643057},{"date":"12/1/1988","all_workers":11.8274651312,"hourly_workers":14.5752503062,"non_hourly_workers":7.9955255057,"less_than_high_school":16.6052156538,"high_school":13.5782401101,"some_college":10.3818272782,"college":8.0583706551,"construction":18.3292872159,"finance":8.9093537519,"manufacturing":12.2537852645},{"date":"01/1/1989","all_workers":11.6311953789,"hourly_workers":14.347497695,"non_hourly_workers":7.8217764323,"less_than_high_school":16.7729680768,"high_school":13.2032211673,"some_college":10.3314324759,"college":7.8215611614,"construction":18.0366822106,"finance":8.917113056,"manufacturing":11.846487341},{"date":"02/1/1989","all_workers":11.5285598767,"hourly_workers":14.1631188578,"non_hourly_workers":7.7877111412,"less_than_high_school":16.9738826049,"high_school":12.8476523848,"some_college":10.2621806877,"college":7.7274996839,"construction":17.9453742052,"finance":9.1114789313,"manufacturing":11.6330743685},{"date":"03/1/1989","all_workers":11.6825413045,"hourly_workers":14.4915674415,"non_hourly_workers":7.6978725343,"less_than_high_school":17.0460030184,"high_school":13.0122467913,"some_college":10.4399848603,"college":7.7844799191,"construction":19.6491242866,"finance":9.241496366,"manufacturing":12.0518986224},{"date":"04/1/1989","all_workers":11.6273512772,"hourly_workers":14.4981934346,"non_hourly_workers":7.5909865891,"less_than_high_school":16.2890261977,"high_school":12.8874731566,"some_college":10.8803195934,"college":7.7450172324,"construction":18.3036156324,"finance":9.7589528001,"manufacturing":12.0867306988},{"date":"05/1/1989","all_workers":11.3800291122,"hourly_workers":14.3515456929,"non_hourly_workers":7.2172784451,"less_than_high_school":16.2083852218,"high_school":12.8033072141,"some_college":10.7195521448,"college":6.9325787527,"construction":17.4467284196,"finance":9.7960895239,"manufacturing":12.0749793725},{"date":"06/1/1989","all_workers":11.4355723762,"hourly_workers":14.3039429555,"non_hourly_workers":7.4489685374,"less_than_high_school":15.8794843184,"high_school":12.8708517148,"some_college":10.7961418297,"college":7.211202476,"construction":17.0956247771,"finance":9.9505915382,"manufacturing":12.4393520252},{"date":"07/1/1989","all_workers":11.2509213357,"hourly_workers":14.2217651614,"non_hourly_workers":7.127170558,"less_than_high_school":15.988823247,"high_school":12.7099933595,"some_college":10.4786393659,"college":6.9334409121,"construction":17.65235875,"finance":9.4073106978,"manufacturing":12.402449844},{"date":"08/1/1989","all_workers":11.0870616546,"hourly_workers":13.9851584606,"non_hourly_workers":7.0743024803,"less_than_high_school":15.7441484844,"high_school":12.484881891,"some_college":10.3627152054,"college":6.9316692121,"construction":17.1515550326,"finance":8.9979929808,"manufacturing":12.1326288069},{"date":"09/1/1989","all_workers":10.819101163,"hourly_workers":13.6769108411,"non_hourly_workers":6.8901512974,"less_than_high_school":15.6001348269,"high_school":11.96736495,"some_college":10.206225778,"college":6.8697018564,"construction":17.3526294186,"finance":8.1727337574,"manufacturing":11.8651678383},{"date":"10/1/1989","all_workers":10.5598529104,"hourly_workers":13.3785542638,"non_hourly_workers":6.6784946349,"less_than_high_school":15.0778422806,"high_school":11.8009185436,"some_college":9.6440498508,"college":6.912413526,"construction":17.4440425059,"finance":7.6846339017,"manufacturing":11.526059362},{"date":"11/1/1989","all_workers":10.5023528063,"hourly_workers":13.3044463288,"non_hourly_workers":6.6308450415,"less_than_high_school":15.0091278928,"high_school":11.8112597913,"some_college":9.4261765035,"college":6.9135787124,"construction":17.1650022438,"finance":8.099003195,"manufacturing":11.5883917411},{"date":"12/1/1989","all_workers":10.3213004195,"hourly_workers":13.1075248802,"non_hourly_workers":6.4407175532,"less_than_high_school":14.9956589641,"high_school":11.3515624837,"some_college":9.5393964678,"college":6.6316744219,"construction":17.4380450432,"finance":7.7385386615,"manufacturing":11.2451716626},{"date":"01/1/1990","all_workers":10.3852785873,"hourly_workers":13.2291042507,"non_hourly_workers":6.4647737928,"less_than_high_school":15.0047464481,"high_school":11.684100759,"some_college":9.363712335,"college":6.7593598208,"construction":16.780586619,"finance":8.2419200967,"manufacturing":11.5333326287},{"date":"02/1/1990","all_workers":10.2516490315,"hourly_workers":13.1692873879,"non_hourly_workers":6.2783708702,"less_than_high_school":14.1998610488,"high_school":11.7264852675,"some_college":9.4232201119,"college":6.6180958813,"construction":17.2271406884,"finance":8.1910885234,"manufacturing":11.26841107},{"date":"03/1/1990","all_workers":10.1166933384,"hourly_workers":12.9948415757,"non_hourly_workers":6.2362931867,"less_than_high_school":14.0373820441,"high_school":11.6752041921,"some_college":9.3784886313,"college":6.3752456357,"construction":15.2268723977,"finance":8.4241715098,"manufacturing":10.9151231831},{"date":"04/1/1990","all_workers":10.0397305628,"hourly_workers":12.7951844343,"non_hourly_workers":6.3130721709,"less_than_high_school":14.195605341,"high_school":11.532603278,"some_college":9.1439883068,"college":6.3162490347,"construction":14.7945619927,"finance":7.8323777058,"manufacturing":10.9413286814},{"date":"05/1/1990","all_workers":9.9537686735,"hourly_workers":12.5596765557,"non_hourly_workers":6.442904994,"less_than_high_school":13.7722778941,"high_school":11.3767089134,"some_college":8.8629959097,"college":6.6625098186,"construction":14.5876034016,"finance":7.1493502673,"manufacturing":10.7455063026},{"date":"06/1/1990","all_workers":9.6980834271,"hourly_workers":12.3744284277,"non_hourly_workers":6.1246560257,"less_than_high_school":13.6035147418,"high_school":11.1507285851,"some_college":8.6191385457,"college":6.4572623641,"construction":15.0432571173,"finance":6.5358475078,"manufacturing":10.2837974149},{"date":"07/1/1990","all_workers":9.672247129,"hourly_workers":12.2347151892,"non_hourly_workers":6.2811931459,"less_than_high_school":13.1613461142,"high_school":11.000209124,"some_college":8.8313389956,"college":6.6239313445,"construction":14.1435683412,"finance":6.9375920434,"manufacturing":10.2884253},{"date":"08/1/1990","all_workers":9.6744333608,"hourly_workers":12.3401008987,"non_hourly_workers":6.1453524195,"less_than_high_school":12.9206580832,"high_school":11.0521035066,"some_college":8.7679280408,"college":6.7130379983,"construction":14.6712280394,"finance":7.3173309784,"manufacturing":9.863159981},{"date":"09/1/1990","all_workers":9.6941811405,"hourly_workers":12.3227990021,"non_hourly_workers":6.2262904228,"less_than_high_school":13.1601909861,"high_school":11.0676303289,"some_college":8.7745916337,"college":6.6581930041,"construction":14.1546803519,"finance":7.7044050617,"manufacturing":9.7773017502},{"date":"10/1/1990","all_workers":9.7667577154,"hourly_workers":12.4331933733,"non_hourly_workers":6.2734385368,"less_than_high_school":13.5986032186,"high_school":10.856874672,"some_college":8.9906827128,"college":6.8135455255,"construction":14.3503207943,"finance":7.8183435928,"manufacturing":9.6122426213},{"date":"11/1/1990","all_workers":9.7041338011,"hourly_workers":12.2980132037,"non_hourly_workers":6.338757557,"less_than_high_school":13.2335488932,"high_school":10.7178669243,"some_college":9.1278532342,"college":6.8264022591,"construction":14.0790732578,"finance":7.7894081218,"manufacturing":9.4119668097},{"date":"12/1/1990","all_workers":9.535516467,"hourly_workers":12.0614838655,"non_hourly_workers":6.3275389877,"less_than_high_school":13.0000298982,"high_school":10.5580013605,"some_college":8.7870684666,"college":6.9081052619,"construction":13.1419054699,"finance":8.1814994109,"manufacturing":9.3351918945},{"date":"01/1/1991","all_workers":9.3957614279,"hourly_workers":11.7830338048,"non_hourly_workers":6.3903228259,"less_than_high_school":12.3858565793,"high_school":10.1271596707,"some_college":9.1627776899,"college":6.7407868358,"construction":12.5759821819,"finance":8.1746047346,"manufacturing":9.1126896922},{"date":"02/1/1991","all_workers":9.2747023654,"hourly_workers":11.6490719645,"non_hourly_workers":6.267380196,"less_than_high_school":12.3309123305,"high_school":9.8715161719,"some_college":9.0575340453,"college":6.7463844274,"construction":12.4037120203,"finance":7.733409854,"manufacturing":9.0727777887},{"date":"03/1/1991","all_workers":9.1985780282,"hourly_workers":11.5480785955,"non_hourly_workers":6.2396169332,"less_than_high_school":12.0837244692,"high_school":9.8126108123,"some_college":8.8863672086,"college":6.8514648594,"construction":12.7974369681,"finance":7.6310412068,"manufacturing":9.0059702887},{"date":"04/1/1991","all_workers":9.136452341,"hourly_workers":11.5780813952,"non_hourly_workers":6.0564122357,"less_than_high_school":12.0722546573,"high_school":10.0139634981,"some_college":8.744625413,"college":6.6021397656,"construction":12.9250549818,"finance":7.7051510936,"manufacturing":8.4381465056},{"date":"05/1/1991","all_workers":9.0760257051,"hourly_workers":11.5778224032,"non_hourly_workers":5.9273714279,"less_than_high_school":12.596168716,"high_school":9.7468424131,"some_college":9.0193401439,"college":6.4172569761,"construction":13.2179390629,"finance":8.6756472996,"manufacturing":8.2939963811},{"date":"06/1/1991","all_workers":9.2146989374,"hourly_workers":11.7318146814,"non_hourly_workers":6.0235356233,"less_than_high_school":12.5670129199,"high_school":9.8619024034,"some_college":9.3020280198,"college":6.3840751693,"construction":13.5348095652,"finance":8.6638502596,"manufacturing":8.3271392937},{"date":"07/1/1991","all_workers":9.2804511528,"hourly_workers":11.9299998327,"non_hourly_workers":5.9062281364,"less_than_high_school":13.1076158082,"high_school":10.0532464305,"some_college":9.1819770973,"college":6.2856530271,"construction":14.5198875173,"finance":8.7262766278,"manufacturing":8.3194720615},{"date":"08/1/1991","all_workers":9.2920878395,"hourly_workers":11.902030344,"non_hourly_workers":6.012489081,"less_than_high_school":13.1730361241,"high_school":9.9872166847,"some_college":9.2605373083,"college":6.2548718278,"construction":13.9853727976,"finance":8.8848093036,"manufacturing":8.7250803656},{"date":"09/1/1991","all_workers":9.3042039903,"hourly_workers":11.8582458793,"non_hourly_workers":6.102927229,"less_than_high_school":13.0645974149,"high_school":10.0111218307,"some_college":9.329151204,"college":6.216177097,"construction":14.00208651,"finance":8.4970868846,"manufacturing":9.0944558697},{"date":"10/1/1991","all_workers":9.3937777605,"hourly_workers":11.9945390244,"non_hourly_workers":6.1170361567,"less_than_high_school":13.3477226579,"high_school":10.2687958688,"some_college":9.2761570812,"college":6.1925924657,"construction":14.3307166552,"finance":8.7191903781,"manufacturing":9.118071819},{"date":"11/1/1991","all_workers":9.397759024,"hourly_workers":11.9046505588,"non_hourly_workers":6.214461082,"less_than_high_school":13.6871138563,"high_school":10.1132077333,"some_college":9.3466196922,"college":6.1028480955,"construction":14.8463407061,"finance":8.3990657958,"manufacturing":9.0077477846},{"date":"12/1/1991","all_workers":9.4891118911,"hourly_workers":12.0069987668,"non_hourly_workers":6.2778551363,"less_than_high_school":13.5154573047,"high_school":10.2491516439,"some_college":9.2653199488,"college":6.3369946849,"construction":14.3019254492,"finance":8.2781406512,"manufacturing":9.2019059303},{"date":"01/1/1992","all_workers":9.6263934389,"hourly_workers":12.0852731123,"non_hourly_workers":6.4842023945,"less_than_high_school":13.9867888473,"high_school":10.3199205185,"some_college":9.383943398,"college":6.4468205941,"construction":14.8187406254,"finance":8.2973818844,"manufacturing":9.3136907848},{"date":"02/1/1992","all_workers":9.8473150676,"hourly_workers":12.4338207735,"non_hourly_workers":6.5580583197,"less_than_high_school":14.4204158832,"high_school":10.6208847171,"some_college":9.4406017111,"college":6.6186946751,"construction":15.4612527053,"finance":8.1261491879,"manufacturing":9.6105333282},{"date":"03/1/1992","all_workers":9.9424084644,"hourly_workers":12.5793996996,"non_hourly_workers":6.5977296398,"less_than_high_school":14.7448857383,"high_school":10.6254624334,"some_college":9.7036396795,"college":6.5957815477,"construction":15.4846595771,"finance":8.230390792,"manufacturing":9.9104088827},{"date":"04/1/1992","all_workers":10.0130320447,"hourly_workers":12.6699200848,"non_hourly_workers":6.6645344278,"less_than_high_school":14.5838001073,"high_school":10.3397678993,"some_college":10.1203331519,"college":6.9066343849,"construction":15.5244332035,"finance":8.3433148398,"manufacturing":10.2681751096},{"date":"05/1/1992","all_workers":10.2183447123,"hourly_workers":12.8449319282,"non_hourly_workers":6.8807154824,"less_than_high_school":14.2899528743,"high_school":10.7592361306,"some_college":10.1712442281,"college":7.0409707708,"construction":16.4263691015,"finance":8.0818175088,"manufacturing":10.1590631475},{"date":"06/1/1992","all_workers":10.3040605585,"hourly_workers":12.9949743975,"non_hourly_workers":6.9282527588,"less_than_high_school":14.5707603196,"high_school":10.8522380589,"some_college":10.1184607663,"college":7.1861935508,"construction":15.8362431955,"finance":8.3769409187,"manufacturing":10.2176982893},{"date":"07/1/1992","all_workers":10.3743303651,"hourly_workers":13.1148498682,"non_hourly_workers":6.9169883359,"less_than_high_school":14.6477850892,"high_school":10.9405446948,"some_college":10.1539093404,"college":7.1876405438,"construction":14.7907036457,"finance":8.0677349952,"manufacturing":10.1514684591},{"date":"08/1/1992","all_workers":10.382995358,"hourly_workers":13.1940301814,"non_hourly_workers":6.8104696348,"less_than_high_school":14.9215783739,"high_school":10.97178636,"some_college":10.077043403,"college":7.1277838474,"construction":14.9910420756,"finance":7.7757341453,"manufacturing":9.8748450138},{"date":"09/1/1992","all_workers":10.4526706211,"hourly_workers":13.3109445993,"non_hourly_workers":6.8268734395,"less_than_high_school":15.3909739972,"high_school":11.0505153225,"some_college":9.8666741969,"college":7.3106819006,"construction":15.2097186839,"finance":7.7446797963,"manufacturing":9.6152952101},{"date":"10/1/1992","all_workers":10.4030458816,"hourly_workers":13.2363820046,"non_hourly_workers":6.8062736546,"less_than_high_school":14.6920669753,"high_school":11.2195994026,"some_college":9.8106839454,"college":7.2364564163,"construction":15.6804451484,"finance":7.479324299,"manufacturing":9.6356255975},{"date":"11/1/1992","all_workers":10.5390904621,"hourly_workers":13.5735062594,"non_hourly_workers":6.6848134844,"less_than_high_school":15.1944272265,"high_school":11.315662143,"some_college":10.0414049962,"college":7.3276811732,"construction":16.4743997826,"finance":7.5472021441,"manufacturing":9.637318659},{"date":"12/1/1992","all_workers":10.4227979973,"hourly_workers":13.4310802093,"non_hourly_workers":6.5951727074,"less_than_high_school":15.3120050549,"high_school":11.0218575577,"some_college":10.2927489205,"college":7.0984067275,"construction":16.7374680518,"finance":7.5006455178,"manufacturing":9.5700283825},{"date":"01/1/1993","all_workers":10.4159509324,"hourly_workers":13.4966293206,"non_hourly_workers":6.4720119309,"less_than_high_school":14.7614160526,"high_school":11.2515549482,"some_college":10.0595431716,"college":7.1691554133,"construction":16.4245190868,"finance":7.2136723572,"manufacturing":9.6827026998},{"date":"02/1/1993","all_workers":10.3614691861,"hourly_workers":13.3857542586,"non_hourly_workers":6.4949446371,"less_than_high_school":14.8228687172,"high_school":11.2186285044,"some_college":9.9845787086,"college":7.0858381688,"construction":16.1551589523,"finance":7.4309287011,"manufacturing":9.4417093786},{"date":"03/1/1993","all_workers":10.3470611477,"hourly_workers":13.3729764675,"non_hourly_workers":6.4575245036,"less_than_high_school":14.5215920779,"high_school":11.2105368701,"some_college":10.1638027637,"college":7.0042232723,"construction":16.7670127026,"finance":7.5879984213,"manufacturing":9.2726726713},{"date":"04/1/1993","all_workers":10.3756149315,"hourly_workers":13.3730713002,"non_hourly_workers":6.5092373727,"less_than_high_school":14.7969032604,"high_school":11.4570215973,"some_college":9.943011343,"college":6.8423704933,"construction":16.9306260964,"finance":7.3488416386,"manufacturing":9.6748392721},{"date":"05/1/1993","all_workers":10.273620693,"hourly_workers":13.3439327267,"non_hourly_workers":6.3355253961,"less_than_high_school":15.3975254431,"high_school":11.3193343731,"some_college":9.803962538,"college":6.5858594082,"construction":16.2021340083,"finance":7.1077116991,"manufacturing":9.8074749666},{"date":"06/1/1993","all_workers":10.2848891899,"hourly_workers":13.2771453898,"non_hourly_workers":6.3915250956,"less_than_high_school":15.6888386135,"high_school":11.1870785306,"some_college":9.9269950632,"college":6.5968554861,"construction":16.1028746515,"finance":6.9659828267,"manufacturing":9.5733416511},{"date":"07/1/1993","all_workers":10.2803519157,"hourly_workers":13.2079490578,"non_hourly_workers":6.4837165,"less_than_high_school":15.8602794679,"high_school":11.1591698058,"some_college":10.0583102274,"college":6.4376748407,"construction":16.9867671845,"finance":7.2846297556,"manufacturing":9.8268162324},{"date":"08/1/1993","all_workers":10.2916347769,"hourly_workers":13.1566155177,"non_hourly_workers":6.5923552767,"less_than_high_school":15.9462954686,"high_school":11.1979726623,"some_college":10.2168100795,"college":6.3154735767,"construction":16.4717174177,"finance":7.1738529463,"manufacturing":10.0696307261},{"date":"09/1/1993","all_workers":10.2724991725,"hourly_workers":13.1220999564,"non_hourly_workers":6.5638816938,"less_than_high_school":15.7975293338,"high_school":11.1367975058,"some_college":10.3080870093,"college":6.3303189691,"construction":16.2605350509,"finance":7.190996157,"manufacturing":10.1146133198},{"date":"10/1/1993","all_workers":10.3694953455,"hourly_workers":13.2423940842,"non_hourly_workers":6.6185485397,"less_than_high_school":15.9166503214,"high_school":10.9734333465,"some_college":10.6008981579,"college":6.54273382,"construction":15.5475554178,"finance":7.3244077874,"manufacturing":10.6497801729},{"date":"11/1/1993","all_workers":10.3384304723,"hourly_workers":13.1897335767,"non_hourly_workers":6.6221988257,"less_than_high_school":15.3632299516,"high_school":11.142919384,"some_college":10.3312471191,"college":6.6230747216,"construction":14.7575401278,"finance":7.4827524315,"manufacturing":11.1057265629},{"date":"12/1/1993","all_workers":10.4768676873,"hourly_workers":13.405170046,"non_hourly_workers":6.6664828583,"less_than_high_school":15.1244375283,"high_school":11.4300170295,"some_college":10.5146441759,"college":6.5922649394,"construction":15.0225408448,"finance":7.7148568211,"manufacturing":10.9487180662},{"date":"01/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1994","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1995","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"09/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"10/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"11/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"12/1/1996","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"01/1/1997","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"02/1/1997","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"03/1/1997","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"04/1/1997","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"05/1/1997","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"06/1/1997","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"07/1/1997","all_workers":null,"hourly_workers":null,"non_hourly_workers":null,"less_than_high_school":null,"high_school":null,"some_college":null,"college":null,"construction":null,"finance":null,"manufacturing":null},{"date":"08/1/1997","all_workers":11.2226239938,"hourly_workers":14.8480876257,"non_hourly_workers":6.3303910062,"less_than_high_school":18.2821814942,"high_school":12.3925064784,"some_college":11.5759243276,"college":7.4374243356,"construction":15.8485183342,"finance":10.3835113403,"manufacturing":10.5743490593},{"date":"09/1/1997","all_workers":11.0200947821,"hourly_workers":14.5234154335,"non_hourly_workers":6.2785349869,"less_than_high_school":18.3714846124,"high_school":12.2046052167,"some_college":11.3459296256,"college":7.1812724818,"construction":16.3075363692,"finance":10.582886247,"manufacturing":10.4752399517},{"date":"10/1/1997","all_workers":11.1403695073,"hourly_workers":14.6116706526,"non_hourly_workers":6.4357518169,"less_than_high_school":17.3781607756,"high_school":12.2108304881,"some_college":11.7803380269,"college":7.4065337666,"construction":16.4360124592,"finance":10.5403356562,"manufacturing":10.6053641283},{"date":"11/1/1997","all_workers":11.0644115571,"hourly_workers":14.2686871805,"non_hourly_workers":6.7129543242,"less_than_high_school":17.3520624991,"high_school":12.0191449454,"some_college":11.5834635858,"college":7.5064325623,"construction":16.3248176235,"finance":10.2857432131,"manufacturing":10.8813639297},{"date":"12/1/1997","all_workers":11.0809570448,"hourly_workers":14.384926274,"non_hourly_workers":6.6726276498,"less_than_high_school":16.6963212747,"high_school":12.1046565837,"some_college":11.6139250524,"college":7.6656731472,"construction":16.5417820482,"finance":10.4518379436,"manufacturing":10.9233136512},{"date":"01/1/1998","all_workers":11.0870896023,"hourly_workers":14.5580537354,"non_hourly_workers":6.4327046869,"less_than_high_school":16.5610354746,"high_school":12.4266836321,"some_college":11.4750664814,"college":7.5069833754,"construction":17.8135828319,"finance":10.3492977611,"manufacturing":11.0905948138},{"date":"02/1/1998","all_workers":10.8155501056,"hourly_workers":14.3496901394,"non_hourly_workers":6.1336559181,"less_than_high_school":15.7309048371,"high_school":12.4624181741,"some_college":11.1422484295,"college":7.2074501046,"construction":18.2529649914,"finance":10.0735472246,"manufacturing":10.4741781359},{"date":"03/1/1998","all_workers":10.9064471422,"hourly_workers":14.5251561312,"non_hourly_workers":6.148632541,"less_than_high_school":15.5522636436,"high_school":12.4977509234,"some_college":11.2180840481,"college":7.4047212795,"construction":17.8805149603,"finance":10.1176576474,"manufacturing":10.5023543595},{"date":"04/1/1998","all_workers":10.6229940556,"hourly_workers":14.188931105,"non_hourly_workers":5.9684440875,"less_than_high_school":14.9610578827,"high_school":12.0705102924,"some_college":11.0564504397,"college":7.2731765479,"construction":17.264379529,"finance":8.8382420437,"manufacturing":9.992697133},{"date":"05/1/1998","all_workers":10.472154083,"hourly_workers":13.9986620067,"non_hourly_workers":5.8597624057,"less_than_high_school":14.9238801095,"high_school":11.734986275,"some_college":11.2820387424,"college":6.9691712778,"construction":16.7777280503,"finance":8.5398598455,"manufacturing":10.2061457367},{"date":"06/1/1998","all_workers":10.4987218933,"hourly_workers":14.2236316823,"non_hourly_workers":5.6161798165,"less_than_high_school":15.1146190191,"high_school":12.1269801867,"some_college":11.1857603391,"college":6.6880193695,"construction":16.2972654715,"finance":9.0689918307,"manufacturing":10.2191011017},{"date":"07/1/1998","all_workers":10.4278095293,"hourly_workers":14.0846161224,"non_hourly_workers":5.493800469,"less_than_high_school":14.8682538972,"high_school":12.1241185922,"some_college":11.1141938923,"college":6.5086731087,"construction":16.8069173354,"finance":8.9272131057,"manufacturing":10.2732488545},{"date":"08/1/1998","all_workers":10.3071575299,"hourly_workers":13.943610501,"non_hourly_workers":5.409867802,"less_than_high_school":13.6162807649,"high_school":12.2349258525,"some_college":11.0611718485,"college":6.5094512913,"construction":15.1710085183,"finance":8.3245047783,"manufacturing":10.4964769081},{"date":"09/1/1998","all_workers":10.573995204,"hourly_workers":14.3032604202,"non_hourly_workers":5.5524781322,"less_than_high_school":13.9293853311,"high_school":12.5201322678,"some_college":11.2007251507,"college":6.8322821201,"construction":14.6427955159,"finance":9.2008142075,"manufacturing":10.7732575648},{"date":"10/1/1998","all_workers":10.4267472879,"hourly_workers":14.1075534428,"non_hourly_workers":5.5052342228,"less_than_high_school":14.3740194651,"high_school":12.4733735757,"some_college":10.70523627,"college":6.7212918114,"construction":14.3967726596,"finance":9.1908258994,"manufacturing":10.7854993658},{"date":"11/1/1998","all_workers":10.4775778692,"hourly_workers":14.250747476,"non_hourly_workers":5.4633821599,"less_than_high_school":14.0222302048,"high_school":12.5070334821,"some_college":10.843185605,"college":6.8127157229,"construction":13.8661516526,"finance":8.9504313712,"manufacturing":10.8231999817},{"date":"12/1/1998","all_workers":10.4479648864,"hourly_workers":14.1798979491,"non_hourly_workers":5.4577901608,"less_than_high_school":14.3957832332,"high_school":12.3724202999,"some_college":10.8235246537,"college":6.7664226343,"construction":13.4488763047,"finance":8.4076464628,"manufacturing":10.3544693241},{"date":"01/1/1999","all_workers":10.2679350868,"hourly_workers":13.8628351749,"non_hourly_workers":5.4812567036,"less_than_high_school":14.3030044339,"high_school":12.0885806439,"some_college":10.7840717504,"college":6.5313165017,"construction":11.8797575265,"finance":8.4824906182,"manufacturing":9.9874608163},{"date":"02/1/1999","all_workers":10.2954383051,"hourly_workers":13.8260843796,"non_hourly_workers":5.56974908,"less_than_high_school":14.7562603061,"high_school":11.9550717473,"some_college":10.5808240883,"college":6.7671718914,"construction":11.7069363606,"finance":8.1824945526,"manufacturing":10.3036700447},{"date":"03/1/1999","all_workers":10.2391248675,"hourly_workers":13.7271323504,"non_hourly_workers":5.5432555168,"less_than_high_school":14.3683256937,"high_school":12.066194268,"some_college":10.5510901768,"college":6.6645924067,"construction":11.9556339256,"finance":7.9696016876,"manufacturing":10.2646280106},{"date":"04/1/1999","all_workers":10.4397681083,"hourly_workers":14.0867402108,"non_hourly_workers":5.5638095547,"less_than_high_school":14.5583161124,"high_school":12.3427427734,"some_college":10.6723473306,"college":6.902280028,"construction":12.5959140781,"finance":8.5652492961,"manufacturing":10.6552065115},{"date":"05/1/1999","all_workers":10.5798214232,"hourly_workers":14.1712053326,"non_hourly_workers":5.8062527976,"less_than_high_school":14.8483815934,"high_school":12.7066927536,"some_college":10.7082885097,"college":6.8479229303,"construction":13.6050419506,"finance":8.3605253085,"manufacturing":10.3011940186},{"date":"06/1/1999","all_workers":10.3504149368,"hourly_workers":13.7966656906,"non_hourly_workers":5.7422197853,"less_than_high_school":14.3791956911,"high_school":12.1182694153,"some_college":10.3790519663,"college":7.1442605586,"construction":12.9721128229,"finance":7.7787895549,"manufacturing":9.8456922859},{"date":"07/1/1999","all_workers":10.4437705746,"hourly_workers":13.9329630567,"non_hourly_workers":5.8943226473,"less_than_high_school":14.6850514492,"high_school":12.298875801,"some_college":10.582005579,"college":7.0215494109,"construction":12.6651775674,"finance":7.7658635528,"manufacturing":10.3267496117},{"date":"08/1/1999","all_workers":10.410806221,"hourly_workers":13.969669061,"non_hourly_workers":5.8088583686,"less_than_high_school":15.1504739594,"high_school":12.3765139262,"some_college":10.2737111254,"college":6.993615435,"construction":12.6462818181,"finance":7.7458661912,"manufacturing":10.244859407},{"date":"09/1/1999","all_workers":10.3515892148,"hourly_workers":13.8558000836,"non_hourly_workers":5.8301994695,"less_than_high_school":15.050225437,"high_school":12.2729407116,"some_college":10.2156928972,"college":7.0731295651,"construction":13.0012899459,"finance":6.9257732101,"manufacturing":9.8163242006},{"date":"10/1/1999","all_workers":10.4673635826,"hourly_workers":14.1029036215,"non_hourly_workers":5.7902543197,"less_than_high_school":15.1634309553,"high_school":12.4487485713,"some_college":10.4573042118,"college":7.0228709547,"construction":13.0710533353,"finance":7.2158494014,"manufacturing":10.1447241011},{"date":"11/1/1999","all_workers":10.306227801,"hourly_workers":14.0005081345,"non_hourly_workers":5.6149041107,"less_than_high_school":14.9473629152,"high_school":12.3694693158,"some_college":10.2985100672,"college":6.8421420861,"construction":12.6958028257,"finance":7.032167215,"manufacturing":10.3542740758},{"date":"12/1/1999","all_workers":10.3545782426,"hourly_workers":14.0444245184,"non_hourly_workers":5.7196384731,"less_than_high_school":15.1234306968,"high_school":12.6974867808,"some_college":10.0630567481,"college":6.9100690045,"construction":13.4138452459,"finance":7.2888142911,"manufacturing":10.8040022195},{"date":"01/1/2000","all_workers":10.6051763411,"hourly_workers":14.4228737233,"non_hourly_workers":5.7826149442,"less_than_high_school":16.1966508913,"high_school":12.7245213192,"some_college":10.1555683287,"college":7.3657279162,"construction":14.1030473058,"finance":7.2459231966,"manufacturing":10.800506387},{"date":"02/1/2000","all_workers":10.68094088,"hourly_workers":14.5376205824,"non_hourly_workers":5.8189967029,"less_than_high_school":16.4022069133,"high_school":12.7976183358,"some_college":10.4061625872,"college":7.2704161312,"construction":14.1659257559,"finance":7.7962881038,"manufacturing":10.6740356342},{"date":"03/1/2000","all_workers":10.7673052869,"hourly_workers":14.6385134451,"non_hourly_workers":5.9362504164,"less_than_high_school":16.2648875962,"high_school":12.8696860772,"some_college":10.4693458515,"college":7.4697347865,"construction":14.6055835308,"finance":8.3743255527,"manufacturing":10.6280329633},{"date":"04/1/2000","all_workers":10.6187303164,"hourly_workers":14.2974505526,"non_hourly_workers":5.9998226058,"less_than_high_school":16.5815892068,"high_school":12.7613882657,"some_college":10.307674718,"college":7.1443143871,"construction":13.9467921578,"finance":8.8583963107,"manufacturing":10.3358071008},{"date":"05/1/2000","all_workers":10.7634566502,"hourly_workers":14.5667859311,"non_hourly_workers":5.9603184543,"less_than_high_school":17.2191712708,"high_school":12.5985595334,"some_college":10.4377603078,"college":7.4573595071,"construction":13.5713238107,"finance":9.4828722988,"manufacturing":10.7313270668},{"date":"06/1/2000","all_workers":11.1601653749,"hourly_workers":15.0240350753,"non_hourly_workers":6.3386791307,"less_than_high_school":18.0667541102,"high_school":13.3028943226,"some_college":11.1269743014,"college":7.2627639961,"construction":14.5819435771,"finance":9.4535926558,"manufacturing":11.2199410476},{"date":"07/1/2000","all_workers":10.9918080704,"hourly_workers":14.8801504165,"non_hourly_workers":6.1341143088,"less_than_high_school":17.8372454931,"high_school":13.2776334394,"some_college":10.7327327627,"college":7.1848928261,"construction":13.7899189778,"finance":9.4257796167,"manufacturing":10.7816254286},{"date":"08/1/2000","all_workers":11.2094225765,"hourly_workers":15.1189488927,"non_hourly_workers":6.2947706517,"less_than_high_school":17.0870037786,"high_school":13.5387802427,"some_college":11.0990844664,"college":7.5376335777,"construction":15.4109734701,"finance":9.1814370286,"manufacturing":11.0618386448},{"date":"09/1/2000","all_workers":11.1328308471,"hourly_workers":15.1390243655,"non_hourly_workers":6.1885362006,"less_than_high_school":17.155323575,"high_school":13.4656950024,"some_college":11.1722688436,"college":7.2985137346,"construction":16.105574374,"finance":9.3108306426,"manufacturing":10.9598429394},{"date":"10/1/2000","all_workers":11.2345276532,"hourly_workers":15.1672406288,"non_hourly_workers":6.3361496371,"less_than_high_school":17.571527192,"high_school":13.5058208857,"some_college":10.9482049611,"college":7.681345964,"construction":16.4966452473,"finance":9.4997624823,"manufacturing":11.0283226526},{"date":"11/1/2000","all_workers":11.2450170822,"hourly_workers":15.0021843168,"non_hourly_workers":6.5589721518,"less_than_high_school":18.5243006488,"high_school":13.1424923828,"some_college":10.8203613098,"college":7.9565835893,"construction":16.7927182066,"finance":9.5556126538,"manufacturing":10.8438665982},{"date":"12/1/2000","all_workers":11.3128685738,"hourly_workers":14.9581712002,"non_hourly_workers":6.7498301807,"less_than_high_school":18.5086706292,"high_school":12.809497558,"some_college":11.2346624099,"college":8.0945892316,"construction":15.6464216618,"finance":9.9566648391,"manufacturing":10.8867119291},{"date":"01/1/2001","all_workers":11.4370220885,"hourly_workers":14.9534012942,"non_hourly_workers":7.0204238486,"less_than_high_school":18.1454153086,"high_school":12.8883716644,"some_college":11.5029646847,"college":8.2159121898,"construction":15.8632616604,"finance":10.4742947213,"manufacturing":11.1379093627},{"date":"02/1/2001","all_workers":11.337831125,"hourly_workers":14.877697213,"non_hourly_workers":6.8954477184,"less_than_high_school":17.8177922065,"high_school":12.8573041261,"some_college":11.3361029564,"college":8.1736969818,"construction":15.7967385416,"finance":10.0816023734,"manufacturing":10.8777658721},{"date":"03/1/2001","all_workers":11.4556187621,"hourly_workers":15.0187279672,"non_hourly_workers":6.9739282065,"less_than_high_school":18.227949069,"high_school":13.0274468217,"some_college":11.5276262685,"college":8.1342146487,"construction":16.6319405283,"finance":9.7376103653,"manufacturing":11.4343032571},{"date":"04/1/2001","all_workers":11.4728078728,"hourly_workers":14.970093567,"non_hourly_workers":7.1046019913,"less_than_high_school":18.4925809342,"high_school":12.7391353646,"some_college":11.7000362595,"college":8.2862717137,"construction":17.6835238715,"finance":8.9694974759,"manufacturing":11.8675186563},{"date":"05/1/2001","all_workers":11.3737273711,"hourly_workers":14.7872141944,"non_hourly_workers":7.11689288,"less_than_high_school":17.4905093112,"high_school":13.1064362075,"some_college":11.4454938817,"college":8.2092700774,"construction":16.7744075195,"finance":8.9597754004,"manufacturing":11.8650714446},{"date":"06/1/2001","all_workers":11.2306895364,"hourly_workers":14.7561937997,"non_hourly_workers":6.7563725577,"less_than_high_school":17.2228478249,"high_school":13.0297821677,"some_college":11.1031221361,"college":8.11641881,"construction":16.1181495374,"finance":8.8844186264,"manufacturing":12.0262065427},{"date":"07/1/2001","all_workers":11.3013870624,"hourly_workers":14.6595919386,"non_hourly_workers":7.0697730445,"less_than_high_school":17.1206080153,"high_school":13.0061374161,"some_college":11.3042205626,"college":8.2628876282,"construction":16.8007185367,"finance":8.9240208694,"manufacturing":12.1763066496},{"date":"08/1/2001","all_workers":11.0839206791,"hourly_workers":14.2786776674,"non_hourly_workers":7.0850441851,"less_than_high_school":17.421942159,"high_school":12.7780161162,"some_college":10.9331048872,"college":8.0513472818,"construction":15.8261439284,"finance":9.6699422919,"manufacturing":12.104121428},{"date":"09/1/2001","all_workers":11.2506258271,"hourly_workers":14.3243888754,"non_hourly_workers":7.3994593539,"less_than_high_school":17.5273618041,"high_school":12.7611341728,"some_college":11.0382751991,"college":8.4128566874,"construction":14.8842762628,"finance":9.2839535159,"manufacturing":12.7769561365},{"date":"10/1/2001","all_workers":11.1692161955,"hourly_workers":14.3242136565,"non_hourly_workers":7.2796289665,"less_than_high_school":17.4193446252,"high_school":12.6645278222,"some_college":11.1862888203,"college":8.1390500798,"construction":14.2437522258,"finance":8.5403315137,"manufacturing":12.7767968634},{"date":"11/1/2001","all_workers":11.297282968,"hourly_workers":14.5721345975,"non_hourly_workers":7.2461841126,"less_than_high_school":16.8156475021,"high_school":13.3180653897,"some_college":11.1333250901,"college":8.0976816964,"construction":14.5096890381,"finance":8.9598116662,"manufacturing":12.7099556921},{"date":"12/1/2001","all_workers":11.4029700958,"hourly_workers":14.7534494093,"non_hourly_workers":7.2423334867,"less_than_high_school":16.9351051462,"high_school":13.8084370094,"some_college":10.925063613,"college":8.1200623932,"construction":15.7728338169,"finance":8.5141277496,"manufacturing":13.1854972385},{"date":"01/1/2002","all_workers":11.2399813499,"hourly_workers":14.7373133575,"non_hourly_workers":6.9964402455,"less_than_high_school":16.0430902504,"high_school":14.1641241889,"some_college":10.6674849659,"college":7.7630774554,"construction":14.9025622566,"finance":8.2937338446,"manufacturing":13.717260665},{"date":"02/1/2002","all_workers":11.5134295744,"hourly_workers":15.010158743,"non_hourly_workers":7.2204549583,"less_than_high_school":16.7840250943,"high_school":14.7099378595,"some_college":10.7333009871,"college":7.8857256375,"construction":15.4561992612,"finance":9.4653512509,"manufacturing":14.333527043},{"date":"03/1/2002","all_workers":11.4712870755,"hourly_workers":14.9092013299,"non_hourly_workers":7.2572592174,"less_than_high_school":17.1706490985,"high_school":14.3545841817,"some_college":10.7739897677,"college":7.8889372363,"construction":14.2746771817,"finance":9.4001742362,"manufacturing":14.0520909451},{"date":"04/1/2002","all_workers":11.6960495002,"hourly_workers":15.2135539208,"non_hourly_workers":7.3831659208,"less_than_high_school":17.0812357233,"high_school":14.8835915222,"some_college":10.7096464892,"college":8.1519454834,"construction":13.9463215224,"finance":9.4879875117,"manufacturing":14.0645684343},{"date":"05/1/2002","all_workers":11.6753006979,"hourly_workers":15.1950579208,"non_hourly_workers":7.3785029195,"less_than_high_school":17.3385560972,"high_school":14.5251458962,"some_college":10.999536176,"college":8.068645627,"construction":14.1505568048,"finance":9.4090153139,"manufacturing":14.2449879323},{"date":"06/1/2002","all_workers":11.6730046764,"hourly_workers":15.0384443227,"non_hourly_workers":7.648790973,"less_than_high_school":16.8090841184,"high_school":14.42498358,"some_college":11.3833831522,"college":8.0013317005,"construction":14.3795962133,"finance":9.9557322254,"manufacturing":14.2597841642},{"date":"07/1/2002","all_workers":11.6942717625,"hourly_workers":15.2149024534,"non_hourly_workers":7.4373850813,"less_than_high_school":17.0206473124,"high_school":14.3408370127,"some_college":11.2311065139,"college":8.2507007888,"construction":14.2802340846,"finance":10.0149692283,"manufacturing":14.3458549654},{"date":"08/1/2002","all_workers":11.8979510837,"hourly_workers":15.5987315295,"non_hourly_workers":7.4143818226,"less_than_high_school":17.892217072,"high_school":14.2818637586,"some_college":11.6896966455,"college":8.2922260371,"construction":14.5258860621,"finance":9.5690967474,"manufacturing":14.6358131266},{"date":"09/1/2002","all_workers":11.9748066952,"hourly_workers":15.8694851996,"non_hourly_workers":7.2185724372,"less_than_high_school":18.3003008735,"high_school":14.5383233931,"some_college":11.7435326624,"college":8.2327590988,"construction":15.4203023978,"finance":10.4289725598,"manufacturing":14.7318580185},{"date":"10/1/2002","all_workers":12.0230559816,"hourly_workers":15.8701764439,"non_hourly_workers":7.2954531923,"less_than_high_school":17.9615610311,"high_school":14.9436685772,"some_college":11.5287156963,"college":8.3704726052,"construction":15.790870264,"finance":10.7462555735,"manufacturing":14.3912513602},{"date":"11/1/2002","all_workers":12.139505765,"hourly_workers":16.1683942134,"non_hourly_workers":7.2124201768,"less_than_high_school":17.868551879,"high_school":15.4483052608,"some_college":11.999548734,"college":7.9791039152,"construction":15.5393137425,"finance":10.3088562085,"manufacturing":14.5576323843},{"date":"12/1/2002","all_workers":12.0697421279,"hourly_workers":16.1178941825,"non_hourly_workers":7.0996457322,"less_than_high_school":17.5317871521,"high_school":15.3647678961,"some_college":12.1474156897,"college":7.773705843,"construction":15.4818904716,"finance":10.1380122276,"manufacturing":14.1229112861},{"date":"01/1/2003","all_workers":12.3257166863,"hourly_workers":16.3079772161,"non_hourly_workers":7.3611145941,"less_than_high_school":18.2303105655,"high_school":15.4682664626,"some_college":12.2744126024,"college":8.1332247426,"construction":16.6164722401,"finance":10.0757839865,"manufacturing":14.0262969934},{"date":"02/1/2003","all_workers":12.1919035523,"hourly_workers":16.1283639262,"non_hourly_workers":7.3097968114,"less_than_high_school":18.1578832527,"high_school":15.109535429,"some_college":12.0288259747,"college":8.2848115827,"construction":15.9027670153,"finance":9.8550052529,"manufacturing":13.7972515306},{"date":"03/1/2003","all_workers":12.2930044097,"hourly_workers":16.3652927679,"non_hourly_workers":7.2315382908,"less_than_high_school":18.7052019193,"high_school":15.391198816,"some_college":11.9944977664,"college":8.1926847444,"construction":16.9334348026,"finance":9.9998842494,"manufacturing":14.3961338895},{"date":"04/1/2003","all_workers":12.2332332235,"hourly_workers":16.4037051808,"non_hourly_workers":6.985678271,"less_than_high_school":18.6798848227,"high_school":15.3308693024,"some_college":12.2336660272,"college":7.7892274614,"construction":16.2410521519,"finance":10.1137854381,"manufacturing":14.4346350096},{"date":"05/1/2003","all_workers":12.2149996008,"hourly_workers":16.3031796982,"non_hourly_workers":7.0250415136,"less_than_high_school":18.9898143545,"high_school":15.3277867002,"some_college":12.0931524171,"college":7.8092553136,"construction":17.2591275808,"finance":9.8400058999,"manufacturing":13.950541314},{"date":"06/1/2003","all_workers":12.4071064595,"hourly_workers":16.446949878,"non_hourly_workers":7.2583155633,"less_than_high_school":19.9717351182,"high_school":15.5236710737,"some_college":11.6969563924,"college":8.2983491457,"construction":17.3556336026,"finance":9.1888704011,"manufacturing":13.9438223734},{"date":"07/1/2003","all_workers":12.6397282198,"hourly_workers":16.7610376423,"non_hourly_workers":7.3918197042,"less_than_high_school":19.9833333399,"high_school":15.8347472814,"some_college":12.2899615223,"college":8.2094657815,"construction":18.5553753233,"finance":9.8107056208,"manufacturing":13.8763909554},{"date":"08/1/2003","all_workers":12.6731404035,"hourly_workers":16.9351596667,"non_hourly_workers":7.3305145964,"less_than_high_school":20.0438959003,"high_school":16.0116346464,"some_college":12.0572809985,"college":8.4156335559,"construction":19.2693432255,"finance":9.8997816485,"manufacturing":13.9763787058},{"date":"09/1/2003","all_workers":12.8294239238,"hourly_workers":16.9719192607,"non_hourly_workers":7.550339107,"less_than_high_school":20.2123021156,"high_school":15.8709900398,"some_college":12.1876540824,"college":8.7885212761,"construction":18.8529170026,"finance":9.3827924313,"manufacturing":14.0285791882},{"date":"10/1/2003","all_workers":12.9136579033,"hourly_workers":17.0819167769,"non_hourly_workers":7.5477752048,"less_than_high_school":19.318778366,"high_school":16.0763698954,"some_college":12.4278826954,"college":8.7507735749,"construction":19.6840688917,"finance":9.5780577231,"manufacturing":14.7070200499},{"date":"11/1/2003","all_workers":12.817558796,"hourly_workers":16.7615273588,"non_hourly_workers":7.6786689573,"less_than_high_school":19.7846669355,"high_school":15.2543161633,"some_college":12.3902803981,"college":9.0464790651,"construction":21.360942788,"finance":9.6265142413,"manufacturing":14.633077571},{"date":"12/1/2003","all_workers":13.0153144525,"hourly_workers":17.0152902907,"non_hourly_workers":7.8007289741,"less_than_high_school":20.4448375282,"high_school":15.2681446918,"some_college":12.557863847,"college":9.3663972878,"construction":21.6728138024,"finance":10.0803131899,"manufacturing":15.3799991249},{"date":"01/1/2004","all_workers":12.8318844118,"hourly_workers":16.7577282684,"non_hourly_workers":7.6939587867,"less_than_high_school":20.7301851317,"high_school":14.9124249196,"some_college":12.4443523282,"college":9.1978734947,"construction":21.5092582086,"finance":10.0276102524,"manufacturing":14.9921183009},{"date":"02/1/2004","all_workers":13.0054119321,"hourly_workers":17.0878955829,"non_hourly_workers":7.6644934887,"less_than_high_school":19.9781315125,"high_school":15.209671437,"some_college":12.9747951813,"college":9.157948132,"construction":21.9403090547,"finance":9.5826290553,"manufacturing":15.3221193272},{"date":"03/1/2004","all_workers":12.993827681,"hourly_workers":17.166680798,"non_hourly_workers":7.5796288138,"less_than_high_school":19.1875736389,"high_school":15.1301564893,"some_college":13.182466504,"college":9.3208228919,"construction":21.9145502492,"finance":9.8604217904,"manufacturing":14.723674811},{"date":"04/1/2004","all_workers":13.114412982,"hourly_workers":17.4146936919,"non_hourly_workers":7.5491124211,"less_than_high_school":19.4151743717,"high_school":15.0925129602,"some_college":13.2553653286,"college":9.6021616216,"construction":23.0546489415,"finance":10.2363060779,"manufacturing":14.7658644207},{"date":"05/1/2004","all_workers":13.3990232829,"hourly_workers":17.8488004496,"non_hourly_workers":7.7104943392,"less_than_high_school":19.6322252067,"high_school":15.4035851993,"some_college":13.523581779,"college":9.8514857446,"construction":21.6402209508,"finance":10.1779303516,"manufacturing":15.7557986323},{"date":"06/1/2004","all_workers":13.506374953,"hourly_workers":18.1050754101,"non_hourly_workers":7.6490644395,"less_than_high_school":20.2008817336,"high_school":15.1225124576,"some_college":13.7924194297,"college":10.0516142966,"construction":22.1764523631,"finance":11.420074999,"manufacturing":15.905792195},{"date":"07/1/2004","all_workers":13.4595701132,"hourly_workers":18.0439158382,"non_hourly_workers":7.6239548445,"less_than_high_school":19.8160767972,"high_school":15.0966031222,"some_college":13.7200724823,"college":10.0390875415,"construction":21.1598098455,"finance":10.9163840173,"manufacturing":16.171160982},{"date":"08/1/2004","all_workers":13.5093923024,"hourly_workers":17.9694502171,"non_hourly_workers":7.7265715722,"less_than_high_school":19.4986662415,"high_school":15.3709778654,"some_college":13.7474105475,"college":9.9736095654,"construction":20.6380236329,"finance":10.5190261151,"manufacturing":15.5674139922},{"date":"09/1/2004","all_workers":13.076509861,"hourly_workers":17.4912687554,"non_hourly_workers":7.4424089692,"less_than_high_school":18.6177176409,"high_school":15.1374017081,"some_college":13.6649428642,"college":9.1897760101,"construction":20.4816432428,"finance":10.7250956725,"manufacturing":15.0367447768},{"date":"10/1/2004","all_workers":13.117979404,"hourly_workers":17.5450001485,"non_hourly_workers":7.3948009119,"less_than_high_school":19.7170385955,"high_school":14.8056767009,"some_college":13.8540612383,"college":9.1862673263,"construction":19.6155182955,"finance":11.3515234676,"manufacturing":14.7379251512},{"date":"11/1/2004","all_workers":13.1586008914,"hourly_workers":17.7083702606,"non_hourly_workers":7.2994140184,"less_than_high_school":19.9612360241,"high_school":14.8941800976,"some_college":13.7716480694,"college":9.2702918722,"construction":18.22193069,"finance":11.7137848618,"manufacturing":15.0158314574},{"date":"12/1/2004","all_workers":13.1403094361,"hourly_workers":17.67221906,"non_hourly_workers":7.3052629696,"less_than_high_school":19.7992841668,"high_school":14.8865736898,"some_college":13.9303034356,"college":9.1066181187,"construction":16.986587654,"finance":11.7010735893,"manufacturing":14.5458291126},{"date":"01/1/2005","all_workers":13.136990749,"hourly_workers":17.7578423913,"non_hourly_workers":7.2482180059,"less_than_high_school":19.5610162142,"high_school":14.883496615,"some_college":13.9616073501,"college":9.1471548756,"construction":16.8885792332,"finance":11.9983906971,"manufacturing":14.6178647145},{"date":"02/1/2005","all_workers":13.1484623191,"hourly_workers":17.6224580295,"non_hourly_workers":7.5099722466,"less_than_high_school":20.0029554318,"high_school":14.3686675059,"some_college":13.9402411163,"college":9.5059860191,"construction":17.2985070885,"finance":11.6475932142,"manufacturing":14.198936152},{"date":"03/1/2005","all_workers":13.1685832111,"hourly_workers":17.5144606702,"non_hourly_workers":7.6350294691,"less_than_high_school":20.2537500974,"high_school":14.7357071487,"some_college":13.6897536438,"college":9.4071031854,"construction":16.5713973722,"finance":10.834076644,"manufacturing":14.4810462466},{"date":"04/1/2005","all_workers":12.991187623,"hourly_workers":17.2649229684,"non_hourly_workers":7.6305176166,"less_than_high_school":19.9360147566,"high_school":15.0044569378,"some_college":13.3144856108,"college":9.2046305475,"construction":15.9077186676,"finance":10.7980251797,"manufacturing":14.5325042681},{"date":"05/1/2005","all_workers":12.9274578455,"hourly_workers":17.2042282523,"non_hourly_workers":7.5714340376,"less_than_high_school":19.0547074917,"high_school":15.0072917737,"some_college":13.3269310519,"college":9.2694656848,"construction":17.1729537116,"finance":11.1766530871,"manufacturing":13.8510713432},{"date":"06/1/2005","all_workers":12.6706327021,"hourly_workers":16.8975607065,"non_hourly_workers":7.3884889572,"less_than_high_school":18.4156839203,"high_school":14.9425665359,"some_college":12.9369434066,"college":9.0891952281,"construction":16.9625021366,"finance":9.9320198277,"manufacturing":13.5098291818},{"date":"07/1/2005","all_workers":12.5141807238,"hourly_workers":16.4829754349,"non_hourly_workers":7.5705378329,"less_than_high_school":18.4640786325,"high_school":14.7682494871,"some_college":12.5268378496,"college":9.1688936543,"construction":16.3657864261,"finance":9.6274241053,"manufacturing":13.0432881612},{"date":"08/1/2005","all_workers":12.3610551779,"hourly_workers":16.245610073,"non_hourly_workers":7.5444102795,"less_than_high_school":18.577607853,"high_school":14.5364417052,"some_college":12.4632137767,"college":8.8908415722,"construction":16.2274447022,"finance":9.7472311879,"manufacturing":13.1539223101},{"date":"09/1/2005","all_workers":12.7080220473,"hourly_workers":16.6964374639,"non_hourly_workers":7.6501745999,"less_than_high_school":19.3452685483,"high_school":14.5938209539,"some_college":12.6653708914,"college":9.4961454658,"construction":16.5302692504,"finance":10.1304165035,"manufacturing":12.9090357655},{"date":"10/1/2005","all_workers":12.6572435856,"hourly_workers":16.6603255916,"non_hourly_workers":7.7373716124,"less_than_high_school":18.8420232363,"high_school":14.5369000444,"some_college":12.9142976525,"college":9.4165614986,"construction":17.0181445085,"finance":9.1124199526,"manufacturing":12.8133643249},{"date":"11/1/2005","all_workers":12.701504771,"hourly_workers":16.7581871016,"non_hourly_workers":7.6725265595,"less_than_high_school":18.6409708374,"high_school":14.6559010855,"some_college":13.0585929114,"college":9.2806721071,"construction":17.148578066,"finance":8.7644115493,"manufacturing":12.7042086675},{"date":"12/1/2005","all_workers":12.6731847674,"hourly_workers":16.7238884703,"non_hourly_workers":7.6258391647,"less_than_high_school":18.7984552187,"high_school":14.6338799683,"some_college":12.6256932301,"college":9.6001451997,"construction":17.925634608,"finance":8.92044153,"manufacturing":12.6448333068},{"date":"01/1/2006","all_workers":12.7159712022,"hourly_workers":16.7325835773,"non_hourly_workers":7.7092075837,"less_than_high_school":19.0800626279,"high_school":14.7644448855,"some_college":12.4035204833,"college":9.7646209365,"construction":17.961030963,"finance":8.3648961098,"manufacturing":12.7923531365},{"date":"02/1/2006","all_workers":12.542052072,"hourly_workers":16.5555354812,"non_hourly_workers":7.5128546167,"less_than_high_school":19.0501658851,"high_school":14.9227748227,"some_college":12.0986225777,"college":9.4464263383,"construction":17.3824286132,"finance":8.7523442077,"manufacturing":12.6649397703},{"date":"03/1/2006","all_workers":12.4541169011,"hourly_workers":16.3352987613,"non_hourly_workers":7.6167091627,"less_than_high_school":18.0908095609,"high_school":14.5517062893,"some_college":12.0606242912,"college":9.7301301154,"construction":17.2996843508,"finance":8.7553010276,"manufacturing":12.7459926721},{"date":"04/1/2006","all_workers":12.5530639738,"hourly_workers":16.5668668945,"non_hourly_workers":7.5900313582,"less_than_high_school":18.6078369557,"high_school":14.4594216724,"some_college":12.2943149373,"college":9.7168091867,"construction":16.6881549066,"finance":9.2000314024,"manufacturing":12.3908170209},{"date":"05/1/2006","all_workers":12.261772504,"hourly_workers":16.0872648064,"non_hourly_workers":7.5328426514,"less_than_high_school":18.6787378505,"high_school":14.3039517824,"some_college":11.7906697598,"college":9.4114586814,"construction":15.4938937356,"finance":9.0081029963,"manufacturing":12.393607208},{"date":"06/1/2006","all_workers":12.384367769,"hourly_workers":16.2168837231,"non_hourly_workers":7.5810583962,"less_than_high_school":18.0609452689,"high_school":14.5157636897,"some_college":12.0758197429,"college":9.4766501065,"construction":14.5448161435,"finance":9.1776904761,"manufacturing":12.7080919781},{"date":"07/1/2006","all_workers":12.4861622879,"hourly_workers":16.4671721899,"non_hourly_workers":7.5026226633,"less_than_high_school":18.7011563818,"high_school":14.2989086143,"some_college":12.3628534588,"college":9.5489271982,"construction":15.2814306735,"finance":8.8757343747,"manufacturing":13.2324009517},{"date":"08/1/2006","all_workers":12.4949304594,"hourly_workers":16.499268732,"non_hourly_workers":7.4422601341,"less_than_high_school":18.9286253075,"high_school":14.3227913094,"some_college":12.0778073217,"college":9.7425719043,"construction":15.0339474761,"finance":8.6430062641,"manufacturing":13.4327559521},{"date":"09/1/2006","all_workers":12.2801664248,"hourly_workers":16.255364194,"non_hourly_workers":7.3798616182,"less_than_high_school":18.5658478864,"high_school":14.1660130714,"some_college":12.1444755207,"college":9.2946954479,"construction":14.7344186458,"finance":8.3376935991,"manufacturing":14.1891349201},{"date":"10/1/2006","all_workers":12.2568673261,"hourly_workers":16.2924408545,"non_hourly_workers":7.2493337813,"less_than_high_school":18.9547336292,"high_school":14.1928843178,"some_college":11.8081366487,"college":9.3526827346,"construction":14.0208252179,"finance":8.9755513155,"manufacturing":14.3844978385},{"date":"11/1/2006","all_workers":12.0866124251,"hourly_workers":15.9864749895,"non_hourly_workers":7.3393911279,"less_than_high_school":18.6878638489,"high_school":14.0634664728,"some_college":11.5366715766,"college":9.351213482,"construction":13.8233796382,"finance":9.7047133778,"manufacturing":14.2451228999},{"date":"12/1/2006","all_workers":11.8661997701,"hourly_workers":15.7464904815,"non_hourly_workers":7.2279005046,"less_than_high_school":18.5370366619,"high_school":13.6322457354,"some_college":11.5808994399,"college":9.0365799705,"construction":13.9221497459,"finance":9.2108760266,"manufacturing":14.1390591755},{"date":"01/1/2007","all_workers":11.6615319769,"hourly_workers":15.4301539227,"non_hourly_workers":7.1428724923,"less_than_high_school":17.3809344836,"high_school":13.2683619732,"some_college":11.793148305,"college":8.831364631,"construction":12.6793793619,"finance":9.7588018844,"manufacturing":13.6798744561},{"date":"02/1/2007","all_workers":11.6308659001,"hourly_workers":15.37816533,"non_hourly_workers":7.1367330843,"less_than_high_school":16.7542792869,"high_school":13.2414512441,"some_college":11.9464648136,"college":8.7717675667,"construction":12.5694326609,"finance":9.7994400066,"manufacturing":13.7948376973},{"date":"03/1/2007","all_workers":11.487180184,"hourly_workers":15.1885792445,"non_hourly_workers":7.0528915229,"less_than_high_school":17.1872934254,"high_school":13.0584254567,"some_college":11.8219086155,"college":8.5327651318,"construction":12.2301514787,"finance":11.2794226208,"manufacturing":12.8950836292},{"date":"04/1/2007","all_workers":11.36799223,"hourly_workers":14.9441081213,"non_hourly_workers":6.9727095795,"less_than_high_school":17.3899036339,"high_school":12.6521743643,"some_college":11.6251658374,"college":8.5559385387,"construction":13.473962339,"finance":10.494307594,"manufacturing":12.9641023826},{"date":"05/1/2007","all_workers":11.4718395439,"hourly_workers":15.1611879566,"non_hourly_workers":6.9426374046,"less_than_high_school":18.2462759277,"high_school":12.3675751805,"some_college":11.8879908826,"college":8.6423959048,"construction":14.191144853,"finance":10.8305441199,"manufacturing":13.0183250744},{"date":"06/1/2007","all_workers":11.4029249967,"hourly_workers":15.1312945973,"non_hourly_workers":6.8455681599,"less_than_high_school":18.6550110157,"high_school":12.6181482155,"some_college":11.8626426087,"college":8.1951244573,"construction":13.8192560319,"finance":11.0021895469,"manufacturing":13.0149323724},{"date":"07/1/2007","all_workers":11.1531368799,"hourly_workers":14.8400860441,"non_hourly_workers":6.6629867869,"less_than_high_school":17.4546638414,"high_school":12.6000130806,"some_college":11.7749447535,"college":7.8830667617,"construction":14.1517690821,"finance":11.2223727084,"manufacturing":12.0655478868},{"date":"08/1/2007","all_workers":11.0328797323,"hourly_workers":14.5654795535,"non_hourly_workers":6.78985861,"less_than_high_school":17.2223227349,"high_school":12.1973425702,"some_college":11.8784183378,"college":7.9229890458,"construction":14.1902673019,"finance":11.9906193996,"manufacturing":11.3348720331},{"date":"09/1/2007","all_workers":11.130495077,"hourly_workers":14.6481473652,"non_hourly_workers":6.8615684178,"less_than_high_school":16.9122062619,"high_school":12.5229978504,"some_college":11.4370503575,"college":8.4122390234,"construction":14.2071436281,"finance":12.8526578826,"manufacturing":10.6912353327},{"date":"10/1/2007","all_workers":10.9751302598,"hourly_workers":14.4453098124,"non_hourly_workers":6.8370793591,"less_than_high_school":16.1210246932,"high_school":12.3340742096,"some_college":11.4170039593,"college":8.3507690922,"construction":14.7238374356,"finance":12.5052702605,"manufacturing":10.4087314594},{"date":"11/1/2007","all_workers":10.8987380849,"hourly_workers":14.3886271398,"non_hourly_workers":6.7184066789,"less_than_high_school":15.3994814075,"high_school":12.1870948171,"some_college":11.5323322919,"college":8.3175112786,"construction":13.8982270327,"finance":12.0768734356,"manufacturing":10.004734857},{"date":"12/1/2007","all_workers":10.9999156513,"hourly_workers":14.5978825562,"non_hourly_workers":6.680609167,"less_than_high_school":15.4080858924,"high_school":12.4503079504,"some_college":11.7612469992,"college":8.2217115109,"construction":13.6388304483,"finance":12.0520305316,"manufacturing":10.1634588097},{"date":"01/1/2008","all_workers":11.1648596412,"hourly_workers":14.9529065676,"non_hourly_workers":6.6495641561,"less_than_high_school":16.2243630885,"high_school":12.4095237205,"some_college":11.7817502205,"college":8.5109569539,"construction":13.9751663404,"finance":12.0290736272,"manufacturing":10.3946118665},{"date":"02/1/2008","all_workers":11.1373116915,"hourly_workers":15.0739960765,"non_hourly_workers":6.4957233362,"less_than_high_school":17.5580132135,"high_school":12.4683211643,"some_college":11.5913577622,"college":8.3042089268,"construction":13.9574797259,"finance":11.697585703,"manufacturing":10.3804581813},{"date":"03/1/2008","all_workers":11.0585321098,"hourly_workers":15.0214599975,"non_hourly_workers":6.3803480189,"less_than_high_school":17.4612464379,"high_school":12.5135658962,"some_college":11.4727847995,"college":8.1767852023,"construction":14.1253226346,"finance":10.7770417452,"manufacturing":10.7410038314},{"date":"04/1/2008","all_workers":11.0586362577,"hourly_workers":15.1371481533,"non_hourly_workers":6.3127358419,"less_than_high_school":16.4643817583,"high_school":12.6670867399,"some_college":11.7455842026,"college":8.1384483732,"construction":13.6966970591,"finance":10.4847448503,"manufacturing":10.6611325244},{"date":"05/1/2008","all_workers":11.072728164,"hourly_workers":15.2550125622,"non_hourly_workers":6.2285682528,"less_than_high_school":16.2929177224,"high_school":12.775000755,"some_college":11.8761405183,"college":8.0837256439,"construction":14.0010096592,"finance":10.32497181,"manufacturing":11.0339235188},{"date":"06/1/2008","all_workers":10.9414250121,"hourly_workers":15.1024615894,"non_hourly_workers":6.1730387918,"less_than_high_school":16.2315997028,"high_school":12.3273820091,"some_college":11.598461676,"college":8.2887336917,"construction":14.199173416,"finance":10.4737456978,"manufacturing":10.5700030452},{"date":"07/1/2008","all_workers":11.1592025873,"hourly_workers":15.3219866014,"non_hourly_workers":6.3030545397,"less_than_high_school":17.1766536397,"high_school":12.3070761142,"some_college":11.6573627253,"college":8.6206450217,"construction":14.03863471,"finance":10.5855232639,"manufacturing":11.5477013701},{"date":"08/1/2008","all_workers":11.360760182,"hourly_workers":15.467121072,"non_hourly_workers":6.5806072668,"less_than_high_school":16.6711822369,"high_school":12.7499071643,"some_college":11.8700276687,"college":8.7571251703,"construction":14.2700243569,"finance":10.4647383761,"manufacturing":11.7796359618},{"date":"09/1/2008","all_workers":11.3226378364,"hourly_workers":15.4941685236,"non_hourly_workers":6.5183688715,"less_than_high_school":16.9892696245,"high_school":12.8851131026,"some_college":12.0785118424,"college":8.3685949755,"construction":14.1800131538,"finance":9.4944456361,"manufacturing":11.9632223777},{"date":"10/1/2008","all_workers":11.3595845673,"hourly_workers":15.3715330879,"non_hourly_workers":6.6662931852,"less_than_high_school":17.366955206,"high_school":12.8592403261,"some_college":12.1184613769,"college":8.3781929213,"construction":13.8081341749,"finance":9.4635449824,"manufacturing":11.989347784},{"date":"11/1/2008","all_workers":11.5693411481,"hourly_workers":15.6783483003,"non_hourly_workers":6.782813139,"less_than_high_school":17.6339162027,"high_school":13.3783651307,"some_college":12.2792905969,"college":8.4464231871,"construction":15.0916516854,"finance":9.7027403921,"manufacturing":12.7441213508},{"date":"12/1/2008","all_workers":11.5976025019,"hourly_workers":15.4986677314,"non_hourly_workers":7.0342467385,"less_than_high_school":18.7265480542,"high_school":13.50567096,"some_college":11.8930584103,"college":8.4979408437,"construction":16.2928605378,"finance":9.5717269568,"manufacturing":12.5199051617},{"date":"01/1/2009","all_workers":11.6084393312,"hourly_workers":15.4055031076,"non_hourly_workers":7.1593917647,"less_than_high_school":18.2613279365,"high_school":13.9276243424,"some_college":11.8871570276,"college":8.3112456731,"construction":16.9732730972,"finance":9.2709293996,"manufacturing":13.1357865712},{"date":"02/1/2009","all_workers":11.5745425169,"hourly_workers":15.3256429469,"non_hourly_workers":7.1277757847,"less_than_high_school":17.6936966882,"high_school":13.7879485459,"some_college":11.9742419652,"college":8.3594493622,"construction":17.0101451463,"finance":9.1056824065,"manufacturing":12.9505895141},{"date":"03/1/2009","all_workers":11.9411445932,"hourly_workers":16.0307797626,"non_hourly_workers":7.0997545439,"less_than_high_school":18.525852645,"high_school":13.9579527407,"some_college":12.5589868196,"college":8.6192585609,"construction":17.8254259273,"finance":8.6541143739,"manufacturing":13.4831964502},{"date":"04/1/2009","all_workers":12.2428982455,"hourly_workers":16.0929956894,"non_hourly_workers":7.653148658,"less_than_high_school":18.5785630996,"high_school":14.3680521614,"some_college":12.6444103048,"college":9.0736748646,"construction":17.681127424,"finance":9.4233577116,"manufacturing":14.0486774583},{"date":"05/1/2009","all_workers":12.4481350787,"hourly_workers":16.1483416678,"non_hourly_workers":8.0411155703,"less_than_high_school":18.3790570592,"high_school":14.8452081372,"some_college":12.6292482483,"college":9.3935066317,"construction":18.1780095963,"finance":9.7117866717,"manufacturing":13.9456214666},{"date":"06/1/2009","all_workers":12.7164448547,"hourly_workers":16.3879306754,"non_hourly_workers":8.334899749,"less_than_high_school":18.5797936727,"high_school":15.1711150778,"some_college":13.0349416837,"college":9.5697888392,"construction":19.3945345136,"finance":10.0780635218,"manufacturing":14.8445126807},{"date":"07/1/2009","all_workers":12.7478706648,"hourly_workers":16.5636198815,"non_hourly_workers":8.2920318661,"less_than_high_school":18.0872465347,"high_school":15.4144968842,"some_college":13.1764507829,"college":9.4788421589,"construction":19.3169116328,"finance":10.0527269886,"manufacturing":14.317358457},{"date":"08/1/2009","all_workers":12.9676313064,"hourly_workers":17.0521037447,"non_hourly_workers":8.1157127916,"less_than_high_school":18.2259315449,"high_school":15.7872004898,"some_college":13.5531587452,"college":9.4678236085,"construction":19.431468816,"finance":10.5323975886,"manufacturing":15.2096250089},{"date":"09/1/2009","all_workers":13.1570165885,"hourly_workers":17.2062923797,"non_hourly_workers":8.2776776161,"less_than_high_school":17.9303516809,"high_school":15.8307433555,"some_college":13.6635178068,"college":9.872915697,"construction":20.1893050325,"finance":11.4422649294,"manufacturing":15.1349332742},{"date":"10/1/2009","all_workers":13.4872840168,"hourly_workers":17.6041962301,"non_hourly_workers":8.559141655,"less_than_high_school":18.4471138694,"high_school":16.178768771,"some_college":14.0494437613,"college":10.0858016106,"construction":20.4177147243,"finance":11.7605455946,"manufacturing":15.4570015936},{"date":"11/1/2009","all_workers":13.6556445972,"hourly_workers":17.8502650839,"non_hourly_workers":8.6631405076,"less_than_high_school":19.3155124638,"high_school":16.0784753742,"some_college":14.0875443314,"college":10.4255895009,"construction":19.8285842276,"finance":12.1172261553,"manufacturing":15.4181877803},{"date":"12/1/2009","all_workers":14.0229850251,"hourly_workers":18.2671984988,"non_hourly_workers":8.9753144668,"less_than_high_school":18.479210905,"high_school":16.5772045401,"some_college":14.6817827858,"college":10.8190870561,"construction":20.1874549028,"finance":12.8358280813,"manufacturing":15.3094307787},{"date":"01/1/2010","all_workers":14.22392842,"hourly_workers":18.5360546446,"non_hourly_workers":9.056928404,"less_than_high_school":18.8525766009,"high_school":16.451671346,"some_college":15.1800800056,"college":11.0010899307,"construction":20.8638803144,"finance":13.0458876928,"manufacturing":14.44292375},{"date":"02/1/2010","all_workers":14.6078418351,"hourly_workers":18.9468795664,"non_hourly_workers":9.3759049792,"less_than_high_school":18.5305090079,"high_school":16.9201883296,"some_college":15.7600263996,"college":11.2787073453,"construction":21.0752520164,"finance":13.7565736721,"manufacturing":15.382317112},{"date":"03/1/2010","all_workers":14.8241348074,"hourly_workers":19.0566427462,"non_hourly_workers":9.7036880968,"less_than_high_school":18.0361160602,"high_school":17.1088581381,"some_college":15.9958315653,"college":11.594043763,"construction":21.3512052019,"finance":14.8615425928,"manufacturing":15.3400259574},{"date":"04/1/2010","all_workers":14.831055343,"hourly_workers":19.2315753463,"non_hourly_workers":9.5306705275,"less_than_high_school":18.7462353902,"high_school":16.9687923339,"some_college":15.9028754923,"college":11.6665891487,"construction":21.6538851892,"finance":14.2976238548,"manufacturing":15.1968676332},{"date":"05/1/2010","all_workers":15.0206946627,"hourly_workers":19.6197513096,"non_hourly_workers":9.4530382571,"less_than_high_school":18.8466789609,"high_school":17.1076725321,"some_college":16.2265210118,"college":11.7509847344,"construction":22.0077827224,"finance":15.0779260709,"manufacturing":15.1603677416},{"date":"06/1/2010","all_workers":15.2692370367,"hourly_workers":20.0193307097,"non_hourly_workers":9.5531261888,"less_than_high_school":19.2562104832,"high_school":17.3033282314,"some_college":16.7056494677,"college":11.808420894,"construction":21.4982757529,"finance":15.38364132,"manufacturing":15.250338804},{"date":"07/1/2010","all_workers":15.5908594453,"hourly_workers":20.4564814268,"non_hourly_workers":9.7295441102,"less_than_high_school":19.442711196,"high_school":17.4779810894,"some_college":17.13436504,"college":12.1998115428,"construction":21.0939269921,"finance":15.651625752,"manufacturing":15.8191201548},{"date":"08/1/2010","all_workers":15.6414327887,"hourly_workers":20.5110427493,"non_hourly_workers":9.7630235213,"less_than_high_school":19.9132595375,"high_school":17.3479952358,"some_college":17.1785853751,"college":12.2754785879,"construction":20.8738847768,"finance":15.3196528945,"manufacturing":15.6057531452},{"date":"09/1/2010","all_workers":15.7378938091,"hourly_workers":20.8057288729,"non_hourly_workers":9.7417833869,"less_than_high_school":20.7456154032,"high_school":17.7317840226,"some_college":17.3592463599,"college":11.9594030665,"construction":20.9407823688,"finance":14.6782253496,"manufacturing":16.0442603581},{"date":"10/1/2010","all_workers":15.8943939244,"hourly_workers":20.9349806093,"non_hourly_workers":9.9075252523,"less_than_high_school":20.2996563429,"high_school":18.2441955631,"some_college":17.208982296,"college":12.2393446133,"construction":21.4998240025,"finance":15.2524733783,"manufacturing":16.3354234904},{"date":"11/1/2010","all_workers":15.7947679601,"hourly_workers":20.6737973502,"non_hourly_workers":9.9584127948,"less_than_high_school":20.2666159287,"high_school":17.8304472751,"some_college":17.1563849032,"college":12.3373372275,"construction":21.3571884904,"finance":14.3517725308,"manufacturing":16.3726954809},{"date":"12/1/2010","all_workers":15.888241659,"hourly_workers":21.0093503455,"non_hourly_workers":9.7111113839,"less_than_high_school":20.4863466441,"high_school":17.912019006,"some_college":17.3931658576,"college":12.3020194135,"construction":20.9464662315,"finance":14.4506129066,"manufacturing":16.5957599073},{"date":"01/1/2011","all_workers":16.0374096435,"hourly_workers":21.134909532,"non_hourly_workers":9.8482143645,"less_than_high_school":21.1680963033,"high_school":18.3719391926,"some_college":17.4559720416,"college":12.2300403657,"construction":21.9786603995,"finance":14.9631859153,"manufacturing":16.8947929552},{"date":"02/1/2011","all_workers":16.0855735513,"hourly_workers":21.1540295041,"non_hourly_workers":9.922341268,"less_than_high_school":21.9019658523,"high_school":18.1434389209,"some_college":17.5437716268,"college":12.3378468527,"construction":21.7242850282,"finance":15.7593252177,"manufacturing":16.5377010601},{"date":"03/1/2011","all_workers":16.0669446974,"hourly_workers":21.1107250564,"non_hourly_workers":10.0068538341,"less_than_high_school":21.6838885124,"high_school":18.1787664494,"some_college":17.6355190851,"college":12.2984496578,"construction":21.8215971198,"finance":16.1669449591,"manufacturing":16.4768770838},{"date":"04/1/2011","all_workers":16.2544314895,"hourly_workers":21.4123679972,"non_hourly_workers":10.0749163926,"less_than_high_school":21.6440146713,"high_school":18.1742787881,"some_college":18.1694929688,"college":12.3802463298,"construction":21.7782640348,"finance":16.5152409791,"manufacturing":16.6327601175},{"date":"05/1/2011","all_workers":16.4484889525,"hourly_workers":21.6039219549,"non_hourly_workers":10.2414489681,"less_than_high_school":21.8440261888,"high_school":18.6797269808,"some_college":18.027329735,"college":12.5894790139,"construction":21.5197143174,"finance":15.5372602839,"manufacturing":16.4077300699},{"date":"06/1/2011","all_workers":16.2887708,"hourly_workers":21.2917600787,"non_hourly_workers":10.2339042387,"less_than_high_school":20.6786991691,"high_school":18.8962215028,"some_college":17.7062978864,"college":12.5538314549,"construction":21.5132352022,"finance":15.6449378458,"manufacturing":15.9266378457},{"date":"07/1/2011","all_workers":16.3911023405,"hourly_workers":21.2692161459,"non_hourly_workers":10.4484313112,"less_than_high_school":20.4589991055,"high_school":19.422951558,"some_college":17.9392963568,"college":12.267386642,"construction":22.0202367172,"finance":15.7252588819,"manufacturing":16.1929060251},{"date":"08/1/2011","all_workers":16.2676433192,"hourly_workers":21.0350703454,"non_hourly_workers":10.5601562809,"less_than_high_school":20.0632707516,"high_school":19.4778053516,"some_college":17.2733685986,"college":12.5371160332,"construction":21.9424297277,"finance":15.2440165938,"manufacturing":16.4507992758},{"date":"09/1/2011","all_workers":16.5561460846,"hourly_workers":21.3320861883,"non_hourly_workers":10.8062492564,"less_than_high_school":19.2329541005,"high_school":19.6374499461,"some_college":17.6050897387,"college":13.135555204,"construction":21.5599203997,"finance":14.8589132133,"manufacturing":16.8106094047},{"date":"10/1/2011","all_workers":16.324847882,"hourly_workers":21.1379134877,"non_hourly_workers":10.5602906193,"less_than_high_school":19.9887993114,"high_school":19.0526044332,"some_college":17.5095622423,"college":12.8585175341,"construction":20.8233328062,"finance":13.9863481068,"manufacturing":17.2335446025},{"date":"11/1/2011","all_workers":16.219087202,"hourly_workers":21.1497570691,"non_hourly_workers":10.3353643882,"less_than_high_school":19.2012429676,"high_school":19.4771925895,"some_college":17.3615992214,"college":12.5212378437,"construction":21.1061250808,"finance":14.2006109226,"manufacturing":16.3946198775},{"date":"12/1/2011","all_workers":16.0213677597,"hourly_workers":20.7615343995,"non_hourly_workers":10.4229975825,"less_than_high_school":18.4205837243,"high_school":19.2128230105,"some_college":16.9399621109,"college":12.6439748459,"construction":21.6720780629,"finance":14.1177334794,"manufacturing":17.015578236},{"date":"01/1/2012","all_workers":15.9142815713,"hourly_workers":20.5585931091,"non_hourly_workers":10.4580924313,"less_than_high_school":17.3272908443,"high_school":18.662695827,"some_college":16.7618901631,"college":13.0540151372,"construction":20.4039428637,"finance":13.5213075879,"manufacturing":16.8449137224},{"date":"02/1/2012","all_workers":16.0550855573,"hourly_workers":20.7449893136,"non_hourly_workers":10.6501099418,"less_than_high_school":18.0587647402,"high_school":19.1559119022,"some_college":16.5794932355,"college":13.2255547539,"construction":21.4233564278,"finance":13.2302198714,"manufacturing":16.5425681878},{"date":"03/1/2012","all_workers":15.9196847565,"hourly_workers":20.4152721465,"non_hourly_workers":10.6565303167,"less_than_high_school":18.238128827,"high_school":18.9284429023,"some_college":16.2550074366,"college":13.2141452935,"construction":21.1450797131,"finance":12.338847176,"manufacturing":16.3747204011},{"date":"04/1/2012","all_workers":15.875575952,"hourly_workers":20.0965846827,"non_hourly_workers":10.936397957,"less_than_high_school":18.5886771668,"high_school":19.0802246009,"some_college":15.747799915,"college":13.3499814338,"construction":21.4564284658,"finance":11.9301865806,"manufacturing":15.6373961223},{"date":"05/1/2012","all_workers":15.7361245738,"hourly_workers":19.8433815897,"non_hourly_workers":10.9446935886,"less_than_high_school":19.6810566027,"high_school":18.3678440772,"some_college":15.7635505617,"college":13.3413857706,"construction":21.2338537152,"finance":12.1087030007,"manufacturing":15.8533440683},{"date":"06/1/2012","all_workers":16.0065230102,"hourly_workers":20.1689347207,"non_hourly_workers":11.1240690936,"less_than_high_school":20.2051127115,"high_school":18.4578985357,"some_college":16.2403793347,"college":13.4809080981,"construction":22.2197602782,"finance":12.7442694557,"manufacturing":15.7394485775},{"date":"07/1/2012","all_workers":15.9416347755,"hourly_workers":20.0487174202,"non_hourly_workers":11.1313652985,"less_than_high_school":21.5798911022,"high_school":17.9465378711,"some_college":15.599455632,"college":13.9645950136,"construction":23.232786318,"finance":13.5561276177,"manufacturing":15.8085367881},{"date":"08/1/2012","all_workers":16.0928382897,"hourly_workers":20.3275588467,"non_hourly_workers":11.0630906509,"less_than_high_school":21.3173482663,"high_school":17.7739929069,"some_college":16.5482283029,"college":13.8018834715,"construction":23.5731625069,"finance":14.5459431311,"manufacturing":15.1920429638},{"date":"09/1/2012","all_workers":15.7455467694,"hourly_workers":19.8322315854,"non_hourly_workers":10.8496281404,"less_than_high_school":20.5362788576,"high_school":17.3320500159,"some_college":16.6067843709,"college":13.244826303,"construction":23.9277271891,"finance":15.3972892058,"manufacturing":14.5148548895},{"date":"10/1/2012","all_workers":15.9307204148,"hourly_workers":20.2545379144,"non_hourly_workers":10.6876430595,"less_than_high_school":20.3418399581,"high_school":17.6230790782,"some_college":16.7571365279,"college":13.4252199381,"construction":24.4221660979,"finance":16.2009848108,"manufacturing":13.6872910697},{"date":"11/1/2012","all_workers":15.9751850885,"hourly_workers":20.2563258299,"non_hourly_workers":10.7400883368,"less_than_high_school":20.3678897705,"high_school":17.6956161547,"some_college":16.8993755858,"college":13.3495569051,"construction":23.5586206452,"finance":16.1306587485,"manufacturing":14.4146691718},{"date":"12/1/2012","all_workers":15.8588628217,"hourly_workers":20.2511378985,"non_hourly_workers":10.4390695569,"less_than_high_school":20.2989618367,"high_school":17.6874377213,"some_college":16.9085689012,"college":13.0364291186,"construction":23.0007885444,"finance":16.2282155405,"manufacturing":13.6181490864},{"date":"01/1/2013","all_workers":15.6846654757,"hourly_workers":20.1331727936,"non_hourly_workers":10.218770674,"less_than_high_school":20.6927260622,"high_school":18.0139100998,"some_college":16.6759738627,"college":12.4857273052,"construction":22.2847232645,"finance":15.7488337122,"manufacturing":14.34523633},{"date":"02/1/2013","all_workers":15.5959888202,"hourly_workers":20.1308727005,"non_hourly_workers":9.9538616326,"less_than_high_school":19.9129935117,"high_school":18.1024236404,"some_college":16.7023360405,"college":12.1889516313,"construction":23.0943923915,"finance":14.6341335717,"manufacturing":14.5724815447},{"date":"03/1/2013","all_workers":15.7893435914,"hourly_workers":20.5879719777,"non_hourly_workers":9.8907589854,"less_than_high_school":19.5187522994,"high_school":18.5631937674,"some_college":16.8717761742,"college":12.3216279778,"construction":22.6695965008,"finance":14.4831565307,"manufacturing":14.5918673951},{"date":"04/1/2013","all_workers":15.8025750673,"hourly_workers":20.7947862407,"non_hourly_workers":9.6768579415,"less_than_high_school":19.700441794,"high_school":18.4137090953,"some_college":17.1835004792,"college":12.1583913688,"construction":22.1066821996,"finance":15.3519199205,"manufacturing":15.1401418737},{"date":"05/1/2013","all_workers":15.8714121766,"hourly_workers":21.0217792885,"non_hourly_workers":9.5875700624,"less_than_high_school":19.7125747213,"high_school":18.7921380777,"some_college":17.2762956448,"college":12.0251531952,"construction":21.8210195268,"finance":16.0097032404,"manufacturing":15.4414886166},{"date":"06/1/2013","all_workers":15.7817451443,"hourly_workers":21.0668342562,"non_hourly_workers":9.3424281664,"less_than_high_school":21.1572938612,"high_school":18.8503374297,"some_college":16.9030390229,"college":11.8436242279,"construction":21.2128117866,"finance":14.4145291455,"manufacturing":15.4052994596},{"date":"07/1/2013","all_workers":15.6594968602,"hourly_workers":20.9879452447,"non_hourly_workers":9.2013498125,"less_than_high_school":19.2748954177,"high_school":19.0063529133,"some_college":17.0165334745,"college":11.6219093545,"construction":19.9547566947,"finance":13.1133564114,"manufacturing":15.0877258323},{"date":"08/1/2013","all_workers":15.5274928192,"hourly_workers":20.8691692919,"non_hourly_workers":9.0284795581,"less_than_high_school":19.4263499589,"high_school":19.2945581775,"some_college":16.3478845916,"college":11.5947483711,"construction":20.4682814533,"finance":12.3803008344,"manufacturing":14.874639686},{"date":"09/1/2013","all_workers":15.5389480509,"hourly_workers":20.8687260525,"non_hourly_workers":9.142167322,"less_than_high_school":20.6899197787,"high_school":19.4841248517,"some_college":15.6763094064,"college":11.8011406903,"construction":20.1252935436,"finance":11.5721539011,"manufacturing":14.4620731811},{"date":"10/1/2013","all_workers":15.3515764355,"hourly_workers":20.4430368588,"non_hourly_workers":9.2892417621,"less_than_high_school":20.8555576898,"high_school":19.3532628137,"some_college":15.3790765984,"college":11.6559748791,"construction":19.0260081235,"finance":11.0856260181,"manufacturing":14.4211028453},{"date":"11/1/2013","all_workers":15.4934914167,"hourly_workers":20.679168327,"non_hourly_workers":9.3609088855,"less_than_high_school":21.1231735047,"high_school":19.2887097493,"some_college":15.4550116649,"college":11.9890659451,"construction":19.4477949842,"finance":11.8727590785,"manufacturing":13.9210411271},{"date":"12/1/2013","all_workers":15.5965589706,"hourly_workers":20.8064772995,"non_hourly_workers":9.4361107378,"less_than_high_school":21.9381079144,"high_school":19.2132846756,"some_college":15.5521553475,"college":12.0679732059,"construction":18.5052094365,"finance":11.7606307669,"manufacturing":14.4383757225},{"date":"01/1/2014","all_workers":15.8849416991,"hourly_workers":21.1211881259,"non_hourly_workers":9.7221063973,"less_than_high_school":21.5369380509,"high_school":19.1916198658,"some_college":15.9251695788,"college":12.6025197788,"construction":19.1943706301,"finance":12.2613280204,"manufacturing":14.1269328751},{"date":"02/1/2014","all_workers":15.8211974364,"hourly_workers":20.8670123082,"non_hourly_workers":9.9082161918,"less_than_high_school":22.2175212472,"high_school":18.9152190911,"some_college":15.7445456081,"college":12.6677172222,"construction":17.1448106703,"finance":13.2790748119,"manufacturing":14.4976423633},{"date":"03/1/2014","all_workers":15.6029999683,"hourly_workers":20.6658593877,"non_hourly_workers":9.6804346706,"less_than_high_school":22.9319847721,"high_school":18.5262359859,"some_college":15.4374567241,"college":12.4767002982,"construction":17.7236112224,"finance":13.6762665189,"manufacturing":14.7687143592},{"date":"04/1/2014","all_workers":15.5767160799,"hourly_workers":20.571660343,"non_hourly_workers":9.788615667,"less_than_high_school":22.7839317281,"high_school":18.6453668515,"some_college":15.2930834159,"college":12.4985198937,"construction":17.9396571589,"finance":13.8341343876,"manufacturing":14.3340108794},{"date":"05/1/2014","all_workers":15.3238588077,"hourly_workers":20.1301547933,"non_hourly_workers":9.729734926,"less_than_high_school":22.0490047157,"high_school":18.1241077835,"some_college":15.1317784221,"college":12.3698027263,"construction":17.7614780971,"finance":13.590796425,"manufacturing":13.6891225403},{"date":"06/1/2014","all_workers":15.3722664037,"hourly_workers":20.2309305809,"non_hourly_workers":9.7860967075,"less_than_high_school":20.6642502179,"high_school":18.0658485203,"some_college":15.2899177241,"college":12.65397072,"construction":18.5052398235,"finance":14.113301636,"manufacturing":14.0929981596},{"date":"07/1/2014","all_workers":15.4443943083,"hourly_workers":20.3582333501,"non_hourly_workers":9.8155777852,"less_than_high_school":22.1821957094,"high_school":18.3641664239,"some_college":15.2376308023,"college":12.5550546845,"construction":19.5905898829,"finance":14.9018968368,"manufacturing":13.9451512068},{"date":"08/1/2014","all_workers":15.4593673336,"hourly_workers":20.2591147413,"non_hourly_workers":10.0391617876,"less_than_high_school":22.3641554572,"high_school":18.1485258875,"some_college":15.4322640665,"college":12.5410558122,"construction":18.2527127819,"finance":14.4821784304,"manufacturing":13.9526303066},{"date":"09/1/2014","all_workers":15.4907350192,"hourly_workers":20.1213774691,"non_hourly_workers":10.1531761562,"less_than_high_school":22.8564436485,"high_school":17.6970293397,"some_college":15.797492316,"college":12.6083407383,"construction":18.5462934962,"finance":14.111949245,"manufacturing":14.5719821192},{"date":"10/1/2014","all_workers":15.5634260608,"hourly_workers":20.1268721137,"non_hourly_workers":10.2594092491,"less_than_high_school":22.5470987418,"high_school":17.3047740186,"some_college":15.8345006511,"college":13.0883929976,"construction":18.8575461735,"finance":14.2887288422,"manufacturing":14.6919733017},{"date":"11/1/2014","all_workers":15.4437498758,"hourly_workers":19.8315137519,"non_hourly_workers":10.2979996207,"less_than_high_school":22.6452339173,"high_school":17.6192378699,"some_college":15.6759082214,"college":12.6859350656,"construction":19.1062030507,"finance":13.4560653104,"manufacturing":15.2480840948},{"date":"12/1/2014","all_workers":15.3924056037,"hourly_workers":19.7853152598,"non_hourly_workers":10.3577290651,"less_than_high_school":22.5674995405,"high_school":17.5009172051,"some_college":15.5368796508,"college":12.8029207326,"construction":19.8727742313,"finance":13.8966996879,"manufacturing":14.8818109417},{"date":"01/1/2015","all_workers":15.434294672,"hourly_workers":19.7199575643,"non_hourly_workers":10.5186040914,"less_than_high_school":23.4923226302,"high_school":17.6200506009,"some_college":15.4319473652,"college":12.7478717654,"construction":20.1490819053,"finance":13.6243876133,"manufacturing":14.3326837846},{"date":"02/1/2015","all_workers":15.2493010038,"hourly_workers":19.7612015464,"non_hourly_workers":10.1770537167,"less_than_high_school":23.5292839772,"high_school":17.1449060704,"some_college":15.1854938686,"college":12.8180502702,"construction":20.7863864983,"finance":13.3716729792,"manufacturing":13.5725652808},{"date":"03/1/2015","all_workers":15.3526376424,"hourly_workers":19.6534488682,"non_hourly_workers":10.506575338,"less_than_high_school":24.0466606988,"high_school":17.2342095519,"some_college":15.5709787242,"college":12.6709924051,"construction":20.8831661555,"finance":13.4448869805,"manufacturing":14.4351264773},{"date":"04/1/2015","all_workers":15.0908862923,"hourly_workers":19.1882460788,"non_hourly_workers":10.4326782341,"less_than_high_school":23.744829097,"high_school":16.6754693819,"some_college":15.3567080654,"college":12.576224847,"construction":19.8709759643,"finance":12.6298961904,"manufacturing":15.1462582919},{"date":"05/1/2015","all_workers":15.3671876483,"hourly_workers":19.6612869817,"non_hourly_workers":10.5944312794,"less_than_high_school":22.6519147956,"high_school":17.4504466263,"some_college":15.9305164519,"college":12.6771045375,"construction":20.0259735369,"finance":12.1553693181,"manufacturing":15.9068439281},{"date":"06/1/2015","all_workers":15.3810500138,"hourly_workers":19.4008013675,"non_hourly_workers":10.9558427888,"less_than_high_school":22.3546511557,"high_school":17.1992000014,"some_college":16.2329352721,"college":12.740876371,"construction":19.085700172,"finance":12.2910076839,"manufacturing":15.6504764113},{"date":"07/1/2015","all_workers":15.0977356034,"hourly_workers":19.1208805889,"non_hourly_workers":10.7284612648,"less_than_high_school":20.8685536853,"high_school":16.6526155363,"some_college":16.1536314889,"college":12.6081070351,"construction":17.4937030021,"finance":11.8805696854,"manufacturing":15.192259654},{"date":"08/1/2015","all_workers":15.0077443467,"hourly_workers":19.1268838476,"non_hourly_workers":10.5795164312,"less_than_high_school":19.5985663392,"high_school":16.2343984211,"some_college":16.3453348524,"college":12.7299067892,"construction":18.4700841247,"finance":12.8159450885,"manufacturing":15.3194075661},{"date":"09/1/2015","all_workers":15.116359224,"hourly_workers":19.4645127878,"non_hourly_workers":10.4904260789,"less_than_high_school":19.5973020282,"high_school":16.3778674388,"some_college":16.3747669254,"college":12.8827909644,"construction":18.7124266191,"finance":13.3090225186,"manufacturing":15.2027086846},{"date":"10/1/2015","all_workers":15.1720906191,"hourly_workers":19.8297096306,"non_hourly_workers":10.2722508845,"less_than_high_school":20.2145894864,"high_school":17.0963100325,"some_college":16.5172255168,"college":12.3965289254,"construction":19.495596928,"finance":13.6361073637,"manufacturing":15.6312849695},{"date":"11/1/2015","all_workers":15.2206855285,"hourly_workers":19.8356755276,"non_hourly_workers":10.4123747097,"less_than_high_school":20.1395529468,"high_school":16.9902577247,"some_college":16.2459190566,"college":12.798665376,"construction":18.8984194331,"finance":13.7655373991,"manufacturing":15.450201576},{"date":"12/1/2015","all_workers":15.3183429881,"hourly_workers":19.7953072513,"non_hourly_workers":10.5847220036,"less_than_high_school":20.1485274105,"high_school":17.4779298741,"some_college":16.1743579318,"college":12.842889973,"construction":17.7327787063,"finance":14.3437932132,"manufacturing":16.0320710283},{"date":"01/1/2016","all_workers":15.0656604397,"hourly_workers":19.7265033443,"non_hourly_workers":10.0789116263,"less_than_high_school":19.3803747726,"high_school":17.5197334494,"some_college":16.0789447033,"college":12.4515650006,"construction":18.1253688834,"finance":14.7216603232,"manufacturing":16.8251128451},{"date":"02/1/2016","all_workers":15.0883617509,"hourly_workers":19.5715223074,"non_hourly_workers":10.199412786,"less_than_high_school":18.5526582082,"high_school":17.7996717426,"some_college":16.2720693304,"college":12.2835324835,"construction":17.9203758473,"finance":13.8024733875,"manufacturing":16.8283828103},{"date":"03/1/2016","all_workers":14.8821865052,"hourly_workers":19.5478946673,"non_hourly_workers":9.7955810878,"less_than_high_school":17.2426734216,"high_school":17.845473977,"some_college":15.8455392493,"college":12.2870240894,"construction":17.8052333245,"finance":13.4071367698,"manufacturing":16.1505694464},{"date":"04/1/2016","all_workers":14.8467762741,"hourly_workers":19.6885130587,"non_hourly_workers":9.5622609978,"less_than_high_school":17.181332995,"high_school":17.7083491413,"some_college":15.6563693312,"college":12.3646063068,"construction":18.2867980489,"finance":13.7175388462,"manufacturing":16.2400496888},{"date":"05/1/2016","all_workers":14.5484253883,"hourly_workers":19.1722561804,"non_hourly_workers":9.4180975124,"less_than_high_school":17.6351229166,"high_school":17.1359500445,"some_college":15.2265694802,"college":12.1417341974,"construction":17.5511059593,"finance":13.7751684862,"manufacturing":15.8617681459},{"date":"06/1/2016","all_workers":14.109813273,"hourly_workers":18.7454832847,"non_hourly_workers":8.9592008458,"less_than_high_school":18.1472422171,"high_school":16.7524833601,"some_college":14.3928624811,"college":11.8213237052,"construction":17.7149282853,"finance":12.977996262,"manufacturing":15.8821979319},{"date":"07/1/2016","all_workers":14.2793423954,"hourly_workers":18.9009320877,"non_hourly_workers":9.1005132345,"less_than_high_school":18.8268684992,"high_school":16.5648993217,"some_college":14.5292753999,"college":12.1665165127,"construction":18.1033451191,"finance":12.5398764503,"manufacturing":16.2734635865},{"date":"08/1/2016","all_workers":14.1804989357,"hourly_workers":18.8833134754,"non_hourly_workers":8.8652440202,"less_than_high_school":20.2201164515,"high_school":16.6012586122,"some_college":14.3596245433,"college":11.776228534,"construction":17.2582638792,"finance":11.5483364303,"manufacturing":16.3962007883},{"date":"09/1/2016","all_workers":13.8072849683,"hourly_workers":18.1599056607,"non_hourly_workers":8.8734195333,"less_than_high_school":19.4361918791,"high_school":16.3106966984,"some_college":13.9893534262,"college":11.3872188522,"construction":16.5217719595,"finance":11.1276422276,"manufacturing":16.4015886828},{"date":"10/1/2016","all_workers":13.6582582096,"hourly_workers":17.7703936631,"non_hourly_workers":8.984500232,"less_than_high_school":18.5561796815,"high_school":15.6612689156,"some_college":14.0742504439,"college":11.4623306985,"construction":15.5682787384,"finance":10.9565919187,"manufacturing":15.9403825975},{"date":"11/1/2016","all_workers":13.7707402558,"hourly_workers":18.1551654218,"non_hourly_workers":8.7389833677,"less_than_high_school":18.7756159478,"high_school":15.6180386507,"some_college":14.596863504,"college":11.3677236747,"construction":16.9707803195,"finance":11.760586393,"manufacturing":15.7013381045},{"date":"12/1/2016","all_workers":13.7282754318,"hourly_workers":18.2029888346,"non_hourly_workers":8.6865577653,"less_than_high_school":18.2136985253,"high_school":14.9335601571,"some_college":15.1488746083,"college":11.3606184864,"construction":17.7097892654,"finance":10.8333604541,"manufacturing":15.7270826617},{"date":"01/1/2017","all_workers":13.7724069885,"hourly_workers":18.14864849,"non_hourly_workers":8.8308922829,"less_than_high_school":18.4721432053,"high_school":15.0075595937,"some_college":15.0848203981,"college":11.3916296614,"construction":16.6407906705,"finance":11.1587799482,"manufacturing":15.2565877286},{"date":"02/1/2017","all_workers":13.7253923547,"hourly_workers":18.1911679575,"non_hourly_workers":8.6832869564,"less_than_high_school":18.2873710128,"high_school":15.1441966237,"some_college":15.0533593607,"college":11.3069676023,"construction":17.1681271953,"finance":11.9459941296,"manufacturing":15.5455211421},{"date":"03/1/2017","all_workers":13.7976611323,"hourly_workers":18.0984990196,"non_hourly_workers":8.9388256579,"less_than_high_school":19.6609803726,"high_school":14.850475159,"some_college":15.1136716303,"college":11.3909344047,"construction":16.9810805105,"finance":11.7409957904,"manufacturing":15.6220749386}]
 
-},{}],52:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2116,14 +4049,14 @@ var data = require( './../data/data.json' );
 */
 function wages() {
 	return copy( data );
-} // end FUNCTION wages()
+}
 
 
 // EXPORTS //
 
 module.exports = wages;
 
-},{"./../data/data.json":51,"@stdlib/utils/copy":79}],53:[function(require,module,exports){
+},{"./../data/data.json":117,"@stdlib/utils/copy":148}],119:[function(require,module,exports){
 (function (__dirname){
 'use strict';
 
@@ -2148,7 +4081,7 @@ var opts = {
 *
 * ## Notes
 *
-* * This function synchronously reads data from disk for each invocation. Such behavior is intentional and so is the avoidance of `require`. We assume that invocations are infrequent, and we want to avoid the `require` cache. This means that we allow data to be garbage collected and a user is responsible for explicitly caching data.
+* -   This function synchronously reads data from disk for each invocation. Such behavior is intentional and so is the avoidance of `require`. We assume that invocations are infrequent, and we want to avoid the `require` cache. This means that we allow data to be garbage collected and a user is responsible for explicitly caching data.
 *
 *
 * @throws {Error} unable to read data
@@ -2164,7 +4097,7 @@ function wages() {
 		throw data;
 	}
 	return data;
-} // end FUNCTION wages()
+}
 
 
 // EXPORTS //
@@ -2172,16 +4105,95 @@ function wages() {
 module.exports = wages;
 
 }).call(this,"/lib/node_modules/@stdlib/datasets/frb-sf-wage-rigidity/lib")
-},{"@stdlib/fs/read-json":60,"path":145}],54:[function(require,module,exports){
+},{"@stdlib/fs/read-json":129,"path":245}],120:[function(require,module,exports){
+module.exports={
+  "name": "@stdlib/datasets/frb-sf-wage-rigidity",
+  "version": "0.0.0",
+  "description": "Wage rates for U.S. workers that have not changed jobs within the year.",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "The Stdlib Authors",
+    "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"
+  },
+  "contributors": [
+    {
+      "name": "The Stdlib Authors",
+      "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"
+    }
+  ],
+  "bin": {
+    "frb-sf-wage-rigidity": "./bin/cli"
+  },
+  "main": "./lib",
+  "browser": "./lib/browser.js",
+  "directories": {
+    "benchmark": "./benchmark",
+    "bin": "./bin",
+    "data": "./data",
+    "doc": "./docs",
+    "example": "./examples",
+    "lib": "./lib",
+    "scripts": "./scripts",
+    "test": "./test"
+  },
+  "scripts": {},
+  "homepage": "https://github.com/stdlib-js/stdlib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stdlib-js/stdlib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stdlib-js/stdlib/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">2.7.0"
+  },
+  "os": [
+    "aix",
+    "darwin",
+    "freebsd",
+    "linux",
+    "macos",
+    "openbsd",
+    "sunos",
+    "win32",
+    "windows"
+  ],
+  "keywords": [
+    "stdlib",
+    "datasets",
+    "dataset",
+    "data",
+    "wages",
+    "workers",
+    "pay",
+    "industry",
+    "work",
+    "salary",
+    "us",
+    "united",
+    "states",
+    "economics",
+    "growth",
+    "employment",
+    "labor",
+    "statistics",
+    "stats"
+  ]
+}
+
+},{}],121:[function(require,module,exports){
 (function (__filename){
-/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib');});'use strict';
+'use strict';
 
 // MODULES //
 
 var tape = require( 'tape' );
-var proxyquire = require('proxyquireify')(require);
 var isObjectArray = require( '@stdlib/assert/is-plain-object-array' );
-var wages = require( './../lib' );
+var wages = require( './../lib/browser.js' );
 
 
 // TESTS //
@@ -2192,50 +4204,8 @@ tape( 'main export is a function', function test( t ) {
 	t.end();
 });
 
-tape( 'main export is a function (browser)', function test( t ) {
-	var wages = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': true
-	});
-	t.strictEqual( typeof wages, 'function', 'main export is a function' );
-	t.end();
-});
-
-tape( 'main export is a function (non-browser)', function test( t ) {
-	var wages = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': false
-	});
-	t.strictEqual( typeof wages, 'function', 'main export is a function' );
-	t.end();
-});
-
 tape( 'the function returns an array of objects', function test( t ) {
 	var data = wages();
-	t.equal( isObjectArray( data ), true, 'returns an array of objects' );
-	t.end();
-});
-
-tape( 'the function returns an array of objects (browser)', function test( t ) {
-	var wages;
-	var data;
-
-	wages = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': true
-	});
-
-	data = wages();
-	t.equal( isObjectArray( data ), true, 'returns an array of objects' );
-	t.end();
-});
-
-tape( 'the function returns an array of objects (non-browser)', function test( t ) {
-	var wages;
-	var data;
-
-	wages = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': false
-	});
-
-	data = wages();
 	t.equal( isObjectArray( data ), true, 'returns an array of objects' );
 	t.end();
 });
@@ -2260,40 +4230,229 @@ tape( 'the function returns a copy', function test( t ) {
 	t.end();
 });
 
-tape( 'the function returns a copy (browser)', function test( t ) {
-	var wages;
-	var d1;
-	var d2;
-	var v;
+}).call(this,"/lib/node_modules/@stdlib/datasets/frb-sf-wage-rigidity/test/test.browser.js")
+},{"./../lib/browser.js":118,"@stdlib/assert/is-plain-object-array":76,"tape":273}],122:[function(require,module,exports){
+(function (process,__filename,__dirname){
+'use strict';
 
-	wages = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': true
-	});
+// MODULES //
 
-	d1 = wages();
-	d2 = wages();
+var resolve = require( 'path' ).resolve;
+var exec = require( 'child_process' ).exec;
+var tape = require( 'tape' );
+var IS_BROWSER = require( '@stdlib/assert/is-browser' );
+var IS_WINDOWS = require( '@stdlib/assert/is-windows' );
+var RE_EOL = require( '@stdlib/regexp/eol' );
+var readFileSync = require( '@stdlib/fs/read-file' ).sync;
 
-	t.notEqual( d1, d2, 'different references' );
 
-	v = d2[ 5 ];
-	d1[ 5 ] = 'beep';
+// VARIABLES //
 
-	t.equal( d1[ 5 ], 'beep', 'expected element' );
-	t.notEqual( d1[ 5 ], d2[ 5 ], 'no shared state' );
-	t.equal( d2[ 5 ], v, 'expected element' );
+var fpath = resolve( __dirname, '..', 'bin', 'cli' );
+var opts = {
+	'skip': IS_BROWSER || IS_WINDOWS
+};
 
+
+// FIXTURES //
+
+var PKG_VERSION = require( './../package.json' ).version;
+
+
+// TESTS //
+
+tape( 'command-line interface', function test( t ) {
+	t.ok( true, __filename );
 	t.end();
 });
 
-tape( 'the function returns a copy (non-browser)', function test( t ) {
-	var wages;
+tape( 'when invoked with a `--help` flag, the command-line interface prints the help text to `stderr`', opts, function test( t ) {
+	var expected;
+	var cmd;
+
+	expected = readFileSync( resolve( __dirname, '..', 'docs', 'usage.txt' ), {
+		'encoding': 'utf8'
+	});
+	cmd = [
+		process.execPath,
+		fpath,
+		'--help'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), expected+'\n', 'expected value' );
+		}
+		t.end();
+	}
+});
+
+tape( 'when invoked with a `-h` flag, the command-line interface prints the help text to `stderr`', opts, function test( t ) {
+	var expected;
+	var cmd;
+
+	expected = readFileSync( resolve( __dirname, '..', 'docs', 'usage.txt' ), {
+		'encoding': 'utf8'
+	});
+	cmd = [
+		process.execPath,
+		fpath,
+		'-h'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), expected+'\n', 'expected value' );
+		}
+		t.end();
+	}
+});
+
+tape( 'when invoked with a `--version` flag, the command-line interface prints the version to `stderr`', opts, function test( t ) {
+	var cmd = [
+		process.execPath,
+		fpath,
+		'--version'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), PKG_VERSION+'\n', 'expected value' );
+		}
+		t.end();
+	}
+});
+
+tape( 'when invoked with a `-V` flag, the command-line interface prints the version to `stderr`', opts, function test( t ) {
+	var cmd = [
+		process.execPath,
+		fpath,
+		'-V'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), PKG_VERSION+'\n', 'expected value' );
+		}
+		t.end();
+	}
+});
+
+tape( 'the command-line interface prints wage rate data (comma-separated values)', opts, function test( t ) {
+	var expected;
+	var cmd;
+
+	cmd = [
+		process.execPath,
+		fpath
+	];
+
+	expected = readFileSync( resolve( __dirname, '..', 'data', 'data.csv' ) );
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			stdout = stdout.toString();
+			expected = expected.toString();
+			t.strictEqual( stdout, expected, 'prints CSV' );
+			t.strictEqual( stderr.toString(), '', 'does not print to `stderr`' );
+		}
+		t.end();
+	}
+});
+
+tape( 'the command-line interface prints wage rate data (newline-delimited JSON)', opts, function test( t ) {
+	var expected;
+	var cmd;
+
+	cmd = [
+		process.execPath,
+		fpath,
+		'--format ndjson'
+	];
+
+	expected = require( './../data/data.json' );
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		var str;
+		var i;
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			stdout = stdout.toString().split( RE_EOL );
+			for ( i = 0; i < expected.length; i++ ) {
+				str = JSON.stringify( expected[ i ] );
+				t.strictEqual( stdout[ i ], str, 'returns expected JSON string' );
+			}
+			t.strictEqual( stderr.toString(), '', 'does not print to `stderr`' );
+		}
+		t.end();
+	}
+});
+
+}).call(this,require('_process'),"/lib/node_modules/@stdlib/datasets/frb-sf-wage-rigidity/test/test.cli.js","/lib/node_modules/@stdlib/datasets/frb-sf-wage-rigidity/test")
+},{"./../data/data.json":117,"./../package.json":120,"@stdlib/assert/is-browser":36,"@stdlib/assert/is-windows":93,"@stdlib/fs/read-file":125,"@stdlib/regexp/eol":139,"_process":213,"child_process":212,"path":245,"tape":273}],123:[function(require,module,exports){
+(function (__filename){
+'use strict';
+
+// MODULES //
+
+var tape = require( 'tape' );
+var IS_BROWSER = require( '@stdlib/assert/is-browser' );
+var isObjectArray = require( '@stdlib/assert/is-plain-object-array' );
+var wages = require( './../lib' );
+
+
+// VARIABLES //
+
+var opts = {
+	'skip': IS_BROWSER
+};
+
+
+// TESTS //
+
+tape( 'main export is a function', function test( t ) {
+	t.ok( true, __filename );
+	t.equal( typeof wages, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'the function returns an array of objects', opts, function test( t ) {
+	var data = wages();
+	t.equal( isObjectArray( data ), true, 'returns an array of objects' );
+	t.end();
+});
+
+tape( 'the function returns a copy', opts, function test( t ) {
 	var d1;
 	var d2;
 	var v;
-
-	wages = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': false
-	});
 
 	d1 = wages();
 	d2 = wages();
@@ -2311,15 +4470,15 @@ tape( 'the function returns a copy (non-browser)', function test( t ) {
 });
 
 }).call(this,"/lib/node_modules/@stdlib/datasets/frb-sf-wage-rigidity/test/test.js")
-},{"./../lib":52,"@stdlib/assert/is-plain-object-array":38,"proxyquireify":147,"tape":174}],55:[function(require,module,exports){
+},{"./../lib":118,"@stdlib/assert/is-browser":36,"@stdlib/assert/is-plain-object-array":76,"tape":273}],124:[function(require,module,exports){
 (function (__filename){
-/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/wages.js');});'use strict';
+/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/main.js');});'use strict';
 
 // MODULES //
 
 var tape = require( 'tape' );
 var proxyquire = require('proxyquireify')(require);
-var names = require( './../lib/wages.js' );
+var names = require( './../lib/main.js' );
 
 
 // TESTS //
@@ -2331,7 +4490,7 @@ tape( 'main export is a function', function test( t ) {
 });
 
 tape( 'the function throws an error if unable to load data', function test( t ) {
-	var names = proxyquire( './../lib/wages.js', {
+	var names = proxyquire( './../lib/main.js', {
 		'@stdlib/fs/read-json': {
 			'sync': readJSON
 		}
@@ -2344,8 +4503,53 @@ tape( 'the function throws an error if unable to load data', function test( t ) 
 	}
 });
 
-}).call(this,"/lib/node_modules/@stdlib/datasets/frb-sf-wage-rigidity/test/test.wages.js")
-},{"./../lib/wages.js":53,"proxyquireify":147,"tape":174}],56:[function(require,module,exports){
+}).call(this,"/lib/node_modules/@stdlib/datasets/frb-sf-wage-rigidity/test/test.main.js")
+},{"./../lib/main.js":119,"proxyquireify":247,"tape":273}],125:[function(require,module,exports){
+'use strict';
+
+/**
+* Read the entire contents of a file.
+*
+* @module @stdlib/fs/read-file
+*
+* @example
+* var readFile = require( '@stdlib/fs/read-file' );
+*
+* function onFile( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.log( data );
+* }
+* readFile( __filename, onFile );
+*
+* @example
+* var readFileSync = require( '@stdlib/fs/read-file' ).sync;
+*
+* var out = readFileSync( __filename );
+* if ( out instanceof Error ) {
+*     throw out;
+* }
+* console.log( out );
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var readFile = require( './main.js' );
+var sync = require( './sync.js' );
+
+
+// MAIN //
+
+setReadOnly( readFile, 'sync', sync );
+
+
+// EXPORTS //
+
+module.exports = readFile;
+
+},{"./main.js":126,"./sync.js":127,"@stdlib/utils/define-read-only-property":151}],126:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2379,60 +4583,14 @@ function readFile() {
 		args[ i ] = arguments[ i ];
 	}
 	fs.readFile.apply( null, args );
-} // end FUNCTION readFile()
+}
 
 
 // EXPORTS //
 
 module.exports = readFile;
 
-},{"fs":113}],57:[function(require,module,exports){
-'use strict';
-
-/**
-* Read the entire contents of a file.
-*
-* @module @stdlib/fs/read-file
-*
-* @example
-* var readFile = require( '@stdlib/fs/read-file' );
-*
-* function onFile( error, data ) {
-*     if ( error ) {
-*         throw error;
-*     }
-*     console.log( data );
-* }
-* readFile( __filename, onFile );
-*
-* @example
-* var readFileSync = require( '@stdlib/fs/read-file' ).sync;
-*
-* var out = readFileSync( __filename );
-* if ( out instanceof Error ) {
-*     throw out;
-* }
-* console.log( out );
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var readFile = require( './async.js' );
-var sync = require( './sync.js' );
-
-
-// MAIN //
-
-setReadOnly( readFile, 'sync', sync );
-
-
-// EXPORTS //
-
-module.exports = readFile;
-
-},{"./async.js":56,"./sync.js":58,"@stdlib/utils/define-read-only-property":82}],58:[function(require,module,exports){
-/* eslint-disable no-sync */
+},{"fs":212}],127:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2460,22 +4618,22 @@ function readFileSync( file, options ) {
 	var f;
 	try {
 		if ( arguments.length > 1 ) {
-			f = fs.readFileSync( file, options );
+			f = fs.readFileSync( file, options ); // eslint-disable-line no-sync
 		} else {
-			f = fs.readFileSync( file );
+			f = fs.readFileSync( file ); // eslint-disable-line no-sync
 		}
 	} catch ( err ) {
 		return err;
 	}
 	return f;
-} // end FUNCTION readFileSync()
+}
 
 
 // EXPORTS //
 
 module.exports = readFileSync;
 
-},{"fs":113}],59:[function(require,module,exports){
+},{"fs":212}],128:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2564,15 +4722,15 @@ function readJSON( file, options, clbk ) {
 			return done( file );
 		}
 		done( null, file );
-	} // end FUNCTION onRead()
-} // end FUNCTION readJSON()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = readJSON;
 
-},{"@stdlib/assert/instance-of":3,"@stdlib/assert/is-function":13,"@stdlib/assert/is-plain-object":39,"@stdlib/assert/is-string":42,"@stdlib/fs/read-file":57,"@stdlib/string/remove-utf8-bom":73,"@stdlib/utils/parse-json":100}],60:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":30,"@stdlib/assert/is-function":45,"@stdlib/assert/is-plain-object":77,"@stdlib/assert/is-string":80,"@stdlib/fs/read-file":125,"@stdlib/string/remove-utf8-bom":142,"@stdlib/utils/parse-json":199}],129:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2621,7 +4779,7 @@ setReadOnly( readJSON, 'sync', sync );
 
 module.exports = readJSON;
 
-},{"./async.js":59,"./sync.js":61,"@stdlib/utils/define-read-only-property":82}],61:[function(require,module,exports){
+},{"./async.js":128,"./sync.js":130,"@stdlib/utils/define-read-only-property":151}],130:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2686,14 +4844,14 @@ function readJSONSync( file, options ) {
 		return parseJSON( f, opts.reviver );
 	}
 	return parseJSON( f );
-} // end FUNCTION readJSONSync()
+}
 
 
 // EXPORTS //
 
 module.exports = readJSONSync;
 
-},{"@stdlib/assert/instance-of":3,"@stdlib/assert/is-plain-object":39,"@stdlib/assert/is-string":42,"@stdlib/fs/read-file":57,"@stdlib/string/remove-utf8-bom":73,"@stdlib/utils/parse-json":100}],62:[function(require,module,exports){
+},{"@stdlib/assert/instance-of":30,"@stdlib/assert/is-plain-object":77,"@stdlib/assert/is-string":80,"@stdlib/fs/read-file":125,"@stdlib/string/remove-utf8-bom":142,"@stdlib/utils/parse-json":199}],131:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2720,7 +4878,7 @@ var isInteger = require( './is_integer.js' );
 
 module.exports = isInteger;
 
-},{"./is_integer.js":63}],63:[function(require,module,exports){
+},{"./is_integer.js":132}],132:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2746,14 +4904,14 @@ var floor = require( '@stdlib/math/base/special/floor' );
 */
 function isInteger( x ) {
 	return (floor(x) === x);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":67}],64:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":136}],133:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2780,7 +4938,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":65}],65:[function(require,module,exports){
+},{"./is_nan.js":134}],134:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -2800,15 +4958,15 @@ module.exports = isnan;
 * // returns false
 */
 function isnan( x ) {
-	return (x !== x);
-} // end FUNCTION isnan()
+	return ( x !== x );
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{}],66:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -2842,7 +5000,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],67:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2875,120 +5033,105 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":66}],68:[function(require,module,exports){
+},{"./floor.js":135}],137:[function(require,module,exports){
 'use strict';
 
 /**
-* Double-precision floating-point negative infinity.
+* Platform on which the current process is running.
 *
-* @module @stdlib/math/constants/float64-ninf
-* @type {number}
+* @module @stdlib/os/platform
 *
 * @example
-* var FLOAT64_NINF = require( '@stdlib/math/constants/float64-ninf' );
-* // returns Number.NEGATIVE_INFINITY
+* var PLATFORM = require( '@stdlib/os/platform' );
+*
+* if ( PLATFORM === 'win32' ) {
+*    console.log( 'Running on a PC...' );
+* }
+* else if ( PLATFORM === 'darwin' ) {
+*    console.log( 'Running on a Mac...' );
+* }
+* else {
+*    console.log( 'Running on something else...' );
+* }
+*/
+
+// MODULES //
+
+var PLATFORM = require( './platform.js' );
+
+
+// EXPORTS //
+
+module.exports = PLATFORM;
+
+},{"./platform.js":138}],138:[function(require,module,exports){
+(function (process){
+'use strict';
+
+// MAIN //
+
+/**
+* Platform on which the current process is running.
+*
+* @constant
+* @type {string}
+*/
+var PLATFORM = process.platform;
+
+
+// EXPORTS //
+
+module.exports = PLATFORM;
+
+}).call(this,require('_process'))
+},{"_process":213}],139:[function(require,module,exports){
+'use strict';
+
+/**
+* Regular expression to match a newline character sequence.
+*
+* @module @stdlib/regexp/eol
+* @type {RegExp}
+*
+* @example
+* var RE_EOL = require( '@stdlib/regexp/eol' );
+*
+* var bool = RE_EOL.test( '\n' );
+* // returns true
+*
+* bool = RE_EOL.test( '\r\n' );
+* // returns true
+*
+* bool = RE_EOL.test( '\\r\\n' );
+* // returns false
 */
 
 
 // MAIN //
 
 /**
-* Double-precision floating-point negative infinity has the bit sequence
+* Matches a newline character sequence.
 *
-* ``` binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
+* Regular expression: `/\r?\n/`
+*
+* -   `\r?`
+*     -   match a carriage return character (optional)
+*
+* -   `\n`
+*     -   match a line feed character
 *
 * @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @type {RegExp}
+* @default /\r?\n/
 */
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+var RE_EOL = /\r?\n/;
 
 
 // EXPORTS //
 
-module.exports = FLOAT64_NINF;
+module.exports = RE_EOL;
 
-},{}],69:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* @module @stdlib/math/constants/float64-pinf
-* @type {number}
-*
-* @example
-* var FLOAT64_PINF = require( '@stdlib/math/constants/float64-pinf' );
-* // returns Number.POSITIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point positive infinity has the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_PINF = Number.POSITIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_PINF;
-
-},{}],70:[function(require,module,exports){
-'use strict';
-
-/**
-* Maximum unsigned 32-bit integer.
-*
-* @module @stdlib/math/constants/uint32-max
-* @type {uinteger32}
-*
-* @example
-* var UINT32_MAX = require( '@stdlib/math/constants/uint32-max' );
-* // returns 4294967295
-*/
-
-
-// MAIN //
-
-/**
-* The maximum unsigned 32-bit integer is given by
-*
-* ``` tex
-* 2^{32} - 1
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 11111111111111111111111111111111
-* ```
-*
-* @constant
-* @type {uinteger32}
-* @default 4294967295
-*/
-var UINT32_MAX = 4294967295;
-
-
-// EXPORTS //
-
-module.exports = UINT32_MAX;
-
-},{}],71:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3025,18 +5168,23 @@ module.exports = UINT32_MAX;
 *
 * Regular expression: `/^\s*function\s*([^(]*)/i`
 *
-* * `/^\s*`
-*   - Match zero or more spaces at beginning
-* * `function`
-*   - Match the word `function`
-* * `\s*`
-*   - Match zero or more spaces after the word `function`
-* * `()`
-*   - Capture
-* * `[^(]*`
-*   - Match anything except a left parenthesis `(` zero or more times
-* * `/i`
-*   - ignore case
+* -   `/^\s*`
+*     -   Match zero or more spaces at beginning
+*
+* -   `function`
+*     -   Match the word `function`
+*
+* -   `\s*`
+*     -   Match zero or more spaces after the word `function`
+*
+* -   `()`
+*     -   Capture
+*
+* -   `[^(]*`
+*     -   Match anything except a left parenthesis `(` zero or more times
+*
+* -   `/i`
+*     -   ignore case
 *
 * @constant
 * @type {RegExp}
@@ -3049,7 +5197,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],72:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3082,24 +5230,32 @@ module.exports = RE_FUNCTION_NAME;
 *
 * Regular expression: `/^\/((?:\\\/|[^\/])+)\/([imgy]*)$/`
 *
-* * `/^\/`
-*   - match a string that begins with a `/`
-* * `()`
-*   - capture
-* * `(?:)+`
-*   - capture, but do not remember, a group of characters which occur one or more times
-* * `\\\/`
-*   - match the literal `\/`
-* * `|`
-*   - OR
-* * `[^\/]`
-*   - anything which is not the literal `\/`
-* * `\/`
-*   - match the literal `/`
-* * `([imgy]*)`
-*   - capture any characters matching `imgy` occurring zero or more times
-* * `$/`
-*   - string end
+* -   `/^\/`
+*     -   match a string that begins with a `/`
+*
+* -   `()`
+*     -   capture
+*
+* -   `(?:)+`
+*     -   capture, but do not remember, a group of characters which occur one or more times
+*
+* -   `\\\/`
+*     -   match the literal `\/`
+*
+* -   `|`
+*     -   OR
+*
+* -   `[^\/]`
+*     -   anything which is not the literal `\/`
+*
+* -   `\/`
+*     -   match the literal `/`
+*
+* -   `([imgy]*)`
+*     -   capture any characters matching `imgy` occurring zero or more times
+*
+* -   `$/`
+*     -   string end
 *
 *
 * @constant
@@ -3113,7 +5269,7 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 module.exports = RE_REGEXP;
 
-},{}],73:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3137,7 +5293,7 @@ var removeUTF8BOM = require( './remove_utf_8_bom.js' );
 
 module.exports = removeUTF8BOM;
 
-},{"./remove_utf_8_bom.js":74}],74:[function(require,module,exports){
+},{"./remove_utf_8_bom.js":143}],143:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3158,9 +5314,8 @@ var BOM = 65279;
 *
 * ## Notes
 *
-* * A UTF-8 byte order mark ([BOM][1]) is the byte sequence `0xEF,0xBB,0xBF`.
-*
-* * To convert a UTF-8 encoded `Buffer` to a `string`, the `Buffer` must be converted to [UTF-16][2]. The BOM thus gets converted to the single 16-bit code point `'\ufeff'` (UTF-16 BOM).
+* -   A UTF-8 byte order mark ([BOM][1]) is the byte sequence `0xEF,0xBB,0xBF`.
+* -   To convert a UTF-8 encoded `Buffer` to a `string`, the `Buffer` must be converted to [UTF-16][2]. The BOM thus gets converted to the single 16-bit code point `'\ufeff'` (UTF-16 BOM).
 *
 * [1]: https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8
 * [2]: http://es5.github.io/#x4.3.16
@@ -3182,14 +5337,14 @@ function removeUTF8BOM( str ) {
 		return str.slice( 1 );
 	}
 	return str;
-} // end FUNCTION removeUTF8BOM()
+}
 
 
 // EXPORTS //
 
 module.exports = removeUTF8BOM;
 
-},{"@stdlib/assert/is-string":42}],75:[function(require,module,exports){
+},{"@stdlib/assert/is-string":80}],144:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3210,17 +5365,21 @@ var isBuffer = require( '@stdlib/assert/is-buffer' );
 * @example
 * var v = constructorName( 'a' );
 * // returns 'String'
+*
 * @example
 * var v = constructorName( 5 );
 * // returns 'Number'
+*
 * @example
 * var v = constructorName( null );
 * // returns 'Null'
+*
 * @example
 * var v = constructorName( undefined );
 * // returns 'Undefined'
+*
 * @example
-* var v = constructorName( function noop(){} );
+* var v = constructorName( function noop() {} );
 * // returns 'Function'
 */
 function constructorName( v ) {
@@ -3238,14 +5397,14 @@ function constructorName( v ) {
 		return 'Buffer';
 	}
 	return name;
-} // end FUNCTION constructorName()
+}
 
 
 // EXPORTS //
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":9,"@stdlib/regexp/function-name":71,"@stdlib/utils/native-class":95}],76:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":37,"@stdlib/regexp/function-name":140,"@stdlib/utils/native-class":194}],145:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3275,14 +5434,14 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":75}],77:[function(require,module,exports){
+},{"./constructor_name.js":144}],146:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isArray = require( '@stdlib/assert/is-array' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
 var deepCopy = require( './deep_copy.js' );
 
 
@@ -3325,17 +5484,16 @@ function copy( value, level ) {
 	} else {
 		level = PINF;
 	}
-	out = ( isArray(value) ) ? [] : {};
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
 	return deepCopy( value, out, [value], [out], level );
-} // end FUNCTION copy()
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./deep_copy.js":78,"@stdlib/assert/is-array":7,"@stdlib/assert/is-nonnegative-integer":25,"@stdlib/math/constants/float64-pinf":69}],78:[function(require,module,exports){
-(function (Buffer){
+},{"./deep_copy.js":147,"@stdlib/assert/is-array":34,"@stdlib/assert/is-nonnegative-integer":63,"@stdlib/constants/math/float64-pinf":107}],147:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3348,6 +5506,7 @@ var isError = require( '@stdlib/assert/is-error' );
 var typeOf = require( '@stdlib/utils/type-of' );
 var regexp = require( '@stdlib/utils/regexp-from-string' );
 var indexOf = require( '@stdlib/utils/index-of' );
+var copyBuffer = require( '@stdlib/buffer/from-buffer' );
 var typedArrays = require( './typed_arrays.js' );
 
 
@@ -3356,10 +5515,10 @@ var typedArrays = require( './typed_arrays.js' );
 /**
 * Clones a class instance.
 *
-* #### Notes
+* ## Notes
 *
-* * This should __only__ be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered __fragile__.
-* * The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
+* -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
+* -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
 *
 *
 * @private
@@ -3400,7 +5559,7 @@ function cloneInstance( val ) {
 		Object.freeze( ref );
 	}
 	return ref;
-} // end FUNCTION cloneInstance()
+}
 
 /**
 * Copies an error object.
@@ -3416,7 +5575,6 @@ function cloneInstance( val ) {
 * // returns <TypeError>
 */
 function copyError( error ) {
-	/* jshint newcap:false */ // TODO: eslint
 	var cache = [];
 	var refs = [];
 	var keys;
@@ -3458,7 +5616,7 @@ function copyError( error ) {
 		Object.defineProperty( err, key, desc );
 	}
 	return err;
-} // end FUNCTION copyError()
+}
 
 
 // MAIN //
@@ -3496,7 +5654,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 		return val;
 	}
 	if ( isBuffer( val ) ) {
-		return new Buffer( val );
+		return copyBuffer( val );
 	}
 	if ( isError( val ) ) {
 		return copyError( val );
@@ -3576,7 +5734,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 				continue;
 			}
 			// Plain array or object...
-			ref = ( isArray(x) ) ? [] : {};
+			ref = ( isArray( x ) ) ? new Array( x.length ) : {};
 			cache.push( x );
 			refs.push( ref );
 			if ( parent === 'array' ) {
@@ -3611,15 +5769,14 @@ function deepCopy( val, copy, cache, refs, level ) {
 		Object.freeze( copy );
 	}
 	return copy;
-} // end FUNCTION deepCopy()
+}
 
 
 // EXPORTS //
 
 module.exports = deepCopy;
 
-}).call(this,require("buffer").Buffer)
-},{"./typed_arrays.js":80,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":7,"@stdlib/assert/is-buffer":9,"@stdlib/assert/is-error":11,"@stdlib/utils/index-of":93,"@stdlib/utils/regexp-from-string":103,"@stdlib/utils/type-of":108,"buffer":115,"object-keys":143}],79:[function(require,module,exports){
+},{"./typed_arrays.js":149,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-array":34,"@stdlib/assert/is-buffer":37,"@stdlib/assert/is-error":39,"@stdlib/buffer/from-buffer":102,"@stdlib/utils/index-of":192,"@stdlib/utils/regexp-from-string":202,"@stdlib/utils/type-of":207,"object-keys":243}],148:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3659,47 +5816,154 @@ var copy = require( './copy.js' );
 
 module.exports = copy;
 
-},{"./copy.js":77}],80:[function(require,module,exports){
+},{"./copy.js":146}],149:[function(require,module,exports){
 /* eslint-disable no-new-func */
 'use strict';
 
-// MAIN //
+// MODULES //
 
-var ctors = [
-	'Int8Array',
-	'Uint8Array',
-	'Uint8ClampedArray',
-	'Int16Array',
-	'Uint16Array',
-	'Int32Array',
-	'Uint32Array',
-	'Float32Array',
-	'Float64Array'
-];
+var Int8Array = require( '@stdlib/array/int8' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+var Int16Array = require( '@stdlib/array/int16' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+var Int32Array = require( '@stdlib/array/int32' );
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float32Array = require( '@stdlib/array/float32' );
+var Float64Array = require( '@stdlib/array/float64' );
+
+
+// FUNCTIONS //
 
 /**
-* Create functions for copying typed arrays.
+* Copies an `Int8Array`.
 *
 * @private
-* @returns {Object} typed array functions
+* @param {Int8Array} arr - array to copy
+* @returns {Int8Array} new array
 */
-function createTypedArrayFcns() {
-	var typedArrays = {};
-	var ctor;
-	var i;
-	for ( i = 0; i < ctors.length; i++ ) {
-		ctor = ctors[ i ];
-		typedArrays[ ctor.toLowerCase() ] = new Function( 'arr', 'return new '+ctor+'( arr );' );
-	}
-	return typedArrays;
-} // end FUNCTION createTypedArrayFcns()
+function int8array( arr ) {
+	return new Int8Array( arr );
+}
+
+/**
+* Copies a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - array to copy
+* @returns {Uint8Array} new array
+*/
+function uint8array( arr ) {
+	return new Uint8Array( arr );
+}
+
+/**
+* Copies a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - array to copy
+* @returns {Uint8ClampedArray} new array
+*/
+function uint8clampedarray( arr ) {
+	return new Uint8ClampedArray( arr );
+}
+
+/**
+* Copies an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - array to copy
+* @returns {Int16Array} new array
+*/
+function int16array( arr ) {
+	return new Int16Array( arr );
+}
+
+/**
+* Copies a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - array to copy
+* @returns {Uint16Array} new array
+*/
+function uint16array( arr ) {
+	return new Uint16Array( arr );
+}
+
+/**
+* Copies an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - array to copy
+* @returns {Int32Array} new array
+*/
+function int32array( arr ) {
+	return new Int32Array( arr );
+}
+
+/**
+* Copies a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - array to copy
+* @returns {Uint32Array} new array
+*/
+function uint32array( arr ) {
+	return new Uint32Array( arr );
+}
+
+/**
+* Copies a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - array to copy
+* @returns {Float32Array} new array
+*/
+function float32array( arr ) {
+	return new Float32Array( arr );
+}
+
+/**
+* Copies a `Float64Array`.
+*
+* @private
+* @param {Float64Array} arr - array to copy
+* @returns {Float64Array} new array
+*/
+function float64array( arr ) {
+	return new Float64Array( arr );
+}
+
+
+// MAIN //
+
+/**
+* Returns a hash of functions for copying typed arrays.
+*
+* @private
+* @returns {Object} function hash
+*/
+function typedarrays() {
+	var out = {
+		'int8array': int8array,
+		'uint8array': uint8array,
+		'uint8clampedarray': uint8clampedarray,
+		'int16array': int16array,
+		'uint16array': uint16array,
+		'int32array': int32array,
+		'uint32array': uint32array,
+		'float32array': float32array,
+		'float64array': float64array
+	};
+	return out;
+}
 
 
 // EXPORTS //
 
-module.exports = createTypedArrayFcns();
+module.exports = typedarrays();
 
-},{}],81:[function(require,module,exports){
+},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],150:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3721,14 +5985,14 @@ function setReadOnly( obj, prop, value ) {
 		'writable': false,
 		'enumerable': true
 	});
-} // end FUNCTION setReadOnly()
+}
 
 
 // EXPORTS //
 
 module.exports = setReadOnly;
 
-},{}],82:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3753,7 +6017,493 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":81}],83:[function(require,module,exports){
+},{"./define_read_only_property.js":150}],152:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFloat32Array = require( '@stdlib/assert/is-float32array' );
+var GlobalFloat32Array = require( './float32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Float32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float32Array` support
+*
+* @example
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+function hasFloat32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat32Array( [ 1.0, 3.14, -3.14, 5.0e40 ] );
+		bool = (
+			isFloat32Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.140000104904175 &&
+			arr[ 2 ] === -3.140000104904175 &&
+			arr[ 3 ] === Number.POSITIVE_INFINITY
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasFloat32ArraySupport;
+
+},{"./float32array.js":153,"@stdlib/assert/is-float32array":41}],153:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Float32Array === 'function' ) ? Float32Array : null;
+
+},{}],154:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Float32Array` support.
+*
+* @module @stdlib/utils/detect-float32array-support
+*
+* @example
+* var hasFloat32ArraySupport = require( '@stdlib/utils/detect-float32array-support' );
+*
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( './detect_float32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasFloat32ArraySupport;
+
+},{"./detect_float32array_support.js":152}],155:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+var GlobalFloat64Array = require( './float64array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Float64Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float64Array` support
+*
+* @example
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+function hasFloat64ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat64Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat64Array( [ 1.0, 3.14, -3.14, NaN ] );
+		bool = (
+			isFloat64Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.14 &&
+			arr[ 2 ] === -3.14 &&
+			arr[ 3 ] !== arr[ 3 ]
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasFloat64ArraySupport;
+
+},{"./float64array.js":156,"@stdlib/assert/is-float64array":43}],156:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Float64Array === 'function' ) ? Float64Array : null;
+
+},{}],157:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Float64Array` support.
+*
+* @module @stdlib/utils/detect-float64array-support
+*
+* @example
+* var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+*
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( './detect_float64array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasFloat64ArraySupport;
+
+},{"./detect_float64array_support.js":155}],158:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt16Array = require( '@stdlib/assert/is-int16array' );
+var INT16_MAX = require( '@stdlib/constants/math/int16-max' );
+var INT16_MIN = require( '@stdlib/constants/math/int16-min' );
+var GlobalInt16Array = require( './int16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int16Array` support
+*
+* @example
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+function hasInt16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt16Array( [ 1, 3.14, -3.14, INT16_MAX+1 ] );
+		bool = (
+			isInt16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&      // truncation
+			arr[ 2 ] === -3 &&     // truncation
+			arr[ 3 ] === INT16_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt16ArraySupport;
+
+},{"./int16array.js":160,"@stdlib/assert/is-int16array":47,"@stdlib/constants/math/int16-max":108,"@stdlib/constants/math/int16-min":109}],159:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int16Array` support.
+*
+* @module @stdlib/utils/detect-int16array-support
+*
+* @example
+* var hasInt16ArraySupport = require( '@stdlib/utils/detect-int16array-support' );
+*
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt16ArraySupport = require( './detect_int16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt16ArraySupport;
+
+},{"./detect_int16array_support.js":158}],160:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int16Array === 'function' ) ? Int16Array : null;
+
+},{}],161:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt32Array = require( '@stdlib/assert/is-int32array' );
+var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+var INT32_MIN = require( '@stdlib/constants/math/int32-min' );
+var GlobalInt32Array = require( './int32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int32Array` support
+*
+* @example
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+function hasInt32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt32Array( [ 1, 3.14, -3.14, INT32_MAX+1 ] );
+		bool = (
+			isInt32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&      // truncation
+			arr[ 2 ] === -3 &&     // truncation
+			arr[ 3 ] === INT32_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt32ArraySupport;
+
+},{"./int32array.js":163,"@stdlib/assert/is-int32array":49,"@stdlib/constants/math/int32-max":110,"@stdlib/constants/math/int32-min":111}],162:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int32Array` support.
+*
+* @module @stdlib/utils/detect-int32array-support
+*
+* @example
+* var hasInt32ArraySupport = require( '@stdlib/utils/detect-int32array-support' );
+*
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt32ArraySupport = require( './detect_int32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt32ArraySupport;
+
+},{"./detect_int32array_support.js":161}],163:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int32Array === 'function' ) ? Int32Array : null;
+
+},{}],164:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt8Array = require( '@stdlib/assert/is-int8array' );
+var INT8_MAX = require( '@stdlib/constants/math/int8-max' );
+var INT8_MIN = require( '@stdlib/constants/math/int8-min' );
+var GlobalInt8Array = require( './int8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int8Array` support
+*
+* @example
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+function hasInt8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt8Array( [ 1, 3.14, -3.14, INT8_MAX+1 ] );
+		bool = (
+			isInt8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&     // truncation
+			arr[ 2 ] === -3 &&    // truncation
+			arr[ 3 ] === INT8_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt8ArraySupport;
+
+},{"./int8array.js":166,"@stdlib/assert/is-int8array":51,"@stdlib/constants/math/int8-max":112,"@stdlib/constants/math/int8-min":113}],165:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int8Array` support.
+*
+* @module @stdlib/utils/detect-int8array-support
+*
+* @example
+* var hasInt8ArraySupport = require( '@stdlib/utils/detect-int8array-support' );
+*
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt8ArraySupport = require( './detect_int8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt8ArraySupport;
+
+},{"./detect_int8array_support.js":164}],166:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int8Array === 'function' ) ? Int8Array : null;
+
+},{}],167:[function(require,module,exports){
+(function (Buffer){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Buffer === 'function' ) ? Buffer : null;
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":214}],168:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Buffer` support.
+*
+* @module @stdlib/utils/detect-node-buffer-support
+*
+* @example
+* var hasNodeBufferSupport = require( '@stdlib/utils/detect-node-buffer-support' );
+*
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasNodeBufferSupport = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = hasNodeBufferSupport;
+
+},{"./main.js":169}],169:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var GlobalBuffer = require( './buffer.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Buffer` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Buffer` support
+*
+* @example
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+function hasNodeBufferSupport() {
+	var bool;
+	var b;
+
+	if ( typeof GlobalBuffer !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		if ( typeof GlobalBuffer.from === 'function' ) {
+			b = GlobalBuffer.from( [ 1, 2, 3, 4 ] );
+		} else {
+			b = new GlobalBuffer( [ 1, 2, 3, 4 ] ); // Note: this is deprecated behavior starting in Node v6 (see https://nodejs.org/api/buffer.html#buffer_new_buffer_array)
+		}
+		bool = (
+			isBuffer( b ) &&
+			b[ 0 ] === 1 &&
+			b[ 1 ] === 2 &&
+			b[ 2 ] === 3 &&
+			b[ 3 ] === 4
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasNodeBufferSupport;
+
+},{"./buffer.js":167,"@stdlib/assert/is-buffer":37}],170:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -3772,18 +6522,18 @@ function hasSymbolSupport() {
 		typeof Symbol === 'function' &&
 		typeof Symbol( 'foo' ) === 'symbol'
 	);
-} // end FUNCTION hasSymbolSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasSymbolSupport;
 
-},{}],84:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `Symbol` support.
+* Test for native `Symbol` support.
 *
 * @module @stdlib/utils/detect-symbol-support
 *
@@ -3803,7 +6553,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":83}],85:[function(require,module,exports){
+},{"./detect_symbol_support.js":170}],172:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3824,18 +6574,18 @@ var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
 */
 function hasToStringTagSupport() {
 	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
-} // end FUNCTION hasToStringTagSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":84}],86:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":171}],173:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `toStringTag` support.
+* Test for native `toStringTag` support.
 *
 * @module @stdlib/utils/detect-tostringtag-support
 *
@@ -3855,21 +6605,351 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":85}],87:[function(require,module,exports){
+},{"./has_tostringtag_support.js":172}],174:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+var GlobalUint16Array = require( './uint16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint16Array` support
+*
+* @example
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+function hasUint16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT16_MAX+1, UINT16_MAX+2 ];
+		arr = new GlobalUint16Array( arr );
+		bool = (
+			isUint16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT16_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./uint16array.js":176,"@stdlib/assert/is-uint16array":85,"@stdlib/constants/math/uint16-max":114}],175:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint16Array` support.
+*
+* @module @stdlib/utils/detect-uint16array-support
+*
+* @example
+* var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+*
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( './detect_uint16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./detect_uint16array_support.js":174}],176:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint16Array === 'function' ) ? Uint16Array : null;
+
+},{}],177:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+var GlobalUint32Array = require( './uint32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint32Array` support
+*
+* @example
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+function hasUint32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT32_MAX+1, UINT32_MAX+2 ];
+		arr = new GlobalUint32Array( arr );
+		bool = (
+			isUint32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT32_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./uint32array.js":179,"@stdlib/assert/is-uint32array":87,"@stdlib/constants/math/uint32-max":115}],178:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint32Array` support.
+*
+* @module @stdlib/utils/detect-uint32array-support
+*
+* @example
+* var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+*
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( './detect_uint32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./detect_uint32array_support.js":177}],179:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint32Array === 'function' ) ? Uint32Array : null;
+
+},{}],180:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+var GlobalUint8Array = require( './uint8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8Array` support
+*
+* @example
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT8_MAX+1, UINT8_MAX+2 ];
+		arr = new GlobalUint8Array( arr );
+		bool = (
+			isUint8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&           // truncation
+			arr[ 2 ] === UINT8_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&           // wrap around
+			arr[ 4 ] === 1              // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./uint8array.js":182,"@stdlib/assert/is-uint8array":89,"@stdlib/constants/math/uint8-max":116}],181:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8Array` support.
+*
+* @module @stdlib/utils/detect-uint8array-support
+*
+* @example
+* var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+*
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( './detect_uint8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./detect_uint8array_support.js":180}],182:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8Array === 'function' ) ? Uint8Array : null;
+
+},{}],183:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8ClampedArray = require( '@stdlib/assert/is-uint8clampedarray' );
+var GlobalUint8ClampedArray = require( './uint8clampedarray.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8ClampedArray` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8ClampedArray` support
+*
+* @example
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ClampedArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8ClampedArray !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalUint8ClampedArray( [ -1, 0, 1, 3.14, 4.99, 255, 256 ] );
+		bool = (
+			isUint8ClampedArray( arr ) &&
+			arr[ 0 ] === 0 &&   // clamped
+			arr[ 1 ] === 0 &&
+			arr[ 2 ] === 1 &&
+			arr[ 3 ] === 3 &&   // round to nearest
+			arr[ 4 ] === 5 &&   // round to nearest
+			arr[ 5 ] === 255 &&
+			arr[ 6 ] === 255    // clamped
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ClampedArraySupport;
+
+},{"./uint8clampedarray.js":185,"@stdlib/assert/is-uint8clampedarray":91}],184:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8ClampedArray` support.
+*
+* @module @stdlib/utils/detect-uint8clamped-support
+*
+* @example
+* var hasUint8ClampedArraySupport = require( '@stdlib/utils/detect-uint8clampedarray-support' );
+*
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ClampedArraySupport = require( './detect_uint8clampedarray_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ClampedArraySupport;
+
+},{"./detect_uint8clampedarray_support.js":183}],185:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : null;
+
+},{}],186:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isFunction = require( '@stdlib/assert/is-function' );
+var builtin = require( './native.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var getProto;
 if ( isFunction( Object.getPrototypeOf ) ) {
-	getProto = require( './native.js' );
+	getProto = builtin;
 } else {
-	getProto = require( './polyfill.js' );
+	getProto = polyfill;
 }
 
 
@@ -3877,7 +6957,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":90,"./polyfill.js":91,"@stdlib/assert/is-function":13}],88:[function(require,module,exports){
+},{"./native.js":189,"./polyfill.js":190,"@stdlib/assert/is-function":45}],187:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3908,14 +6988,14 @@ function getPrototypeOf( value ) {
 	value = Object( value );
 
 	return getProto( value );
-} // end FUNCTION getPrototypeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":87}],89:[function(require,module,exports){
+},{"./detect.js":186}],188:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3939,14 +7019,19 @@ var getPrototype = require( './get_prototype_of.js' );
 
 module.exports = getPrototype;
 
-},{"./get_prototype_of.js":88}],90:[function(require,module,exports){
+},{"./get_prototype_of.js":187}],189:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var getProto = Object.getPrototypeOf;
+
 
 // EXPORTS //
 
-module.exports = Object.getPrototypeOf;
+module.exports = getProto;
 
-},{}],91:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3978,14 +7063,14 @@ function getPrototypeOf( obj ) {
 	}
 	// Return `null` for objects created via `Object.create( null )`. Also return `null` for cross-realm objects on browsers that lack `__proto__` support, such as IE < 11.
 	return null;
-} // end FUNCTION getPrototypeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":92,"@stdlib/utils/native-class":95}],92:[function(require,module,exports){
+},{"./proto.js":191,"@stdlib/utils/native-class":194}],191:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3998,14 +7083,14 @@ module.exports = getPrototypeOf;
 function getProto( obj ) {
 	// eslint-disable-next-line no-proto
 	return obj.__proto__;
-} // end FUNCTION getProto()
+}
 
 
 // EXPORTS //
 
 module.exports = getProto;
 
-},{}],93:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4062,7 +7147,7 @@ var indexOf = require( './index_of.js' );
 
 module.exports = indexOf;
 
-},{"./index_of.js":94}],94:[function(require,module,exports){
+},{"./index_of.js":193}],193:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4170,14 +7255,14 @@ function indexOf( arr, searchElement, fromIndex ) {
 		}
 	}
 	return -1;
-} // end FUNCTION indexOf()
+}
 
 
 // EXPORTS //
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":16,"@stdlib/assert/is-nan":21}],95:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32,"@stdlib/assert/is-integer":54,"@stdlib/assert/is-nan":59}],194:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4203,16 +7288,18 @@ module.exports = indexOf;
 
 // MODULES //
 
-var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var nativeClass;
-if ( hasToStringTag ) {
-	nativeClass = require( './polyfill.js' );
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
 } else {
-	nativeClass = require( './native_class.js' );
+	nativeClass = builtin;
 }
 
 
@@ -4220,7 +7307,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":96,"./polyfill.js":97,"@stdlib/utils/detect-tostringtag-support":86}],96:[function(require,module,exports){
+},{"./native_class.js":195,"./polyfill.js":196,"@stdlib/utils/detect-tostringtag-support":173}],195:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4253,14 +7340,14 @@ var toStr = require( './tostring.js' );
 */
 function nativeClass( v ) {
 	return toStr.call( v );
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":98}],97:[function(require,module,exports){
+},{"./tostring.js":197}],196:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4318,28 +7405,38 @@ function nativeClass( v ) {
 		delete v[ toStringTag ];
 	}
 	return out;
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":98,"./tostringtag.js":99,"@stdlib/assert/has-own-property":2}],98:[function(require,module,exports){
+},{"./tostring.js":197,"./tostringtag.js":198,"@stdlib/assert/has-own-property":29}],197:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
 
 // EXPORTS //
 
-module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
+module.exports = toStr;
 
-},{}],99:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
 
 // EXPORTS //
 
-module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+module.exports = toStrTag;
 
-},{}],100:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4363,7 +7460,7 @@ var parseJSON = require( './parse_json.js' );
 
 module.exports = parseJSON;
 
-},{"./parse_json.js":101}],101:[function(require,module,exports){
+},{"./parse_json.js":200}],200:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4401,14 +7498,14 @@ function parseJSON( str, reviver ) {
 	} catch ( error ) {
 		return error;
 	}
-} // end FUNCTION parseJSON()
+}
 
 
 // EXPORTS //
 
 module.exports = parseJSON;
 
-},{"@stdlib/assert/is-function":13,"@stdlib/assert/is-string":42}],102:[function(require,module,exports){
+},{"@stdlib/assert/is-function":45,"@stdlib/assert/is-string":80}],201:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4438,14 +7535,14 @@ function reFromString( str ) {
 
 	// Create a new regular expression:
 	return ( str ) ? new RegExp( str[1], str[2] ) : null;
-} // end FUNCTION reFromString()
+}
 
 
 // EXPORTS //
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":42,"@stdlib/regexp/regexp":72}],103:[function(require,module,exports){
+},{"@stdlib/assert/is-string":80,"@stdlib/regexp/regexp":141}],202:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4469,7 +7566,7 @@ var reFromString = require( './from_string.js' );
 
 module.exports = reFromString;
 
-},{"./from_string.js":102}],104:[function(require,module,exports){
+},{"./from_string.js":201}],203:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4491,27 +7588,29 @@ function check() {
 	if (
 		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
 		typeof RE === 'function' ||
+
 		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
 		typeof typedarray === 'object' ||
+
 		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
 		typeof nodeList === 'function'
 	) {
 		return true;
 	}
 	return false;
-} // end FUNCTION check()
+}
 
 
 // EXPORTS //
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":105,"./fixtures/re.js":106,"./fixtures/typedarray.js":107}],105:[function(require,module,exports){
+},{"./fixtures/nodelist.js":204,"./fixtures/re.js":205,"./fixtures/typedarray.js":206}],204:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var root = require( 'system.global' )(); // eslint-disable-line no-redeclare
+var root = require( 'system.global' )(); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -4523,7 +7622,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":171}],106:[function(require,module,exports){
+},{"system.global":270}],205:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -4533,7 +7632,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],107:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -4543,7 +7642,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],108:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4572,7 +7671,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":104,"./polyfill.js":109,"./typeof.js":110}],109:[function(require,module,exports){
+},{"./check.js":203,"./polyfill.js":208,"./typeof.js":209}],208:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4590,14 +7689,14 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 */
 function typeOf( v ) {
 	return ctorName( v ).toLowerCase();
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":76}],110:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":145}],209:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4610,7 +7709,7 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 /*
 * Built-in `typeof` operator behavior:
 *
-* ``` text
+* ```text
 * typeof null => 'object'
 * typeof undefined => 'undefined'
 * typeof 'a' => 'string'
@@ -4650,14 +7749,14 @@ function typeOf( v ) {
 		return ctorName( v ).toLowerCase();
 	}
 	return type;
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":76}],111:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":145}],210:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -4773,11 +7872,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],112:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 
-},{}],113:[function(require,module,exports){
-arguments[4][112][0].apply(exports,arguments)
-},{"dup":112}],114:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
+arguments[4][211][0].apply(exports,arguments)
+},{"dup":211}],213:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -4963,11 +8062,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],115:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -6679,7 +9778,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":111,"ieee754":135}],116:[function(require,module,exports){
+},{"base64-js":210,"ieee754":234}],215:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6790,7 +9889,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":137}],117:[function(require,module,exports){
+},{"../../is-buffer/index.js":236}],216:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6886,7 +9985,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":118,"./lib/keys.js":119}],118:[function(require,module,exports){
+},{"./lib/is_arguments.js":217,"./lib/keys.js":218}],217:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -6908,7 +10007,7 @@ function unsupported(object){
     false;
 };
 
-},{}],119:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -6919,7 +10018,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],120:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -6977,14 +10076,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":131,"object-keys":143}],121:[function(require,module,exports){
+},{"foreach":230,"object-keys":243}],220:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],122:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -7222,28 +10321,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":123,"./helpers/isNaN":124,"./helpers/mod":125,"./helpers/sign":126,"es-to-primitive/es5":127,"has":134,"is-callable":138}],123:[function(require,module,exports){
+},{"./helpers/isFinite":222,"./helpers/isNaN":223,"./helpers/mod":224,"./helpers/sign":225,"es-to-primitive/es5":226,"has":233,"is-callable":237}],222:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],124:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],125:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],126:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],127:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -7282,12 +10381,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":128,"is-callable":138}],128:[function(require,module,exports){
+},{"./helpers/isPrimitive":227,"is-callable":237}],227:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],129:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7591,7 +10690,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],130:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 'use strict'
 
 var mergeDescriptors = require('merge-descriptors')
@@ -7629,7 +10728,7 @@ function isFunction (value) {
   return typeof value === 'function'
 }
 
-},{"is-object":139,"merge-descriptors":140}],131:[function(require,module,exports){
+},{"is-object":238,"merge-descriptors":240}],230:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -7653,7 +10752,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],132:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -7707,19 +10806,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],133:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":132}],134:[function(require,module,exports){
+},{"./implementation":231}],233:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":133}],135:[function(require,module,exports){
+},{"function-bind":232}],234:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -7805,7 +10904,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],136:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -7830,11 +10929,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],137:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -7853,7 +10952,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],138:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -7894,14 +10993,21 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],139:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 "use strict";
 
 module.exports = function isObject(x) {
 	return typeof x === "object" && x !== null;
 };
 
-},{}],140:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],240:[function(require,module,exports){
 /*!
  * merge-descriptors
  * Copyright(c) 2014 Jonathan Ong
@@ -7963,7 +11069,7 @@ function merge(dest, src, redefine) {
   return dest
 }
 
-},{}],141:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 'use strict'
 
 module.exports = function createNotFoundError (path) {
@@ -7972,7 +11078,7 @@ module.exports = function createNotFoundError (path) {
   return err
 }
 
-},{}],142:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -8166,7 +11272,7 @@ function inspectString (str) {
     }
 }
 
-},{}],143:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -8308,7 +11414,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":144}],144:[function(require,module,exports){
+},{"./isArguments":244}],244:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -8327,7 +11433,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],145:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -8555,7 +11661,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":114}],146:[function(require,module,exports){
+},{"_process":213}],246:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8602,7 +11708,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":114}],147:[function(require,module,exports){
+},{"_process":213}],247:[function(require,module,exports){
 'use strict';
 
 var fillMissingKeys = require('fill-keys');
@@ -8697,10 +11803,10 @@ if (require.cache) {
   proxyquire.plugin = replacePrelude.plugin;
 }
 
-},{"fill-keys":130,"module-not-found-error":141}],148:[function(require,module,exports){
+},{"fill-keys":229,"module-not-found-error":241}],248:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":149}],149:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":249}],249:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8825,7 +11931,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":151,"./_stream_writable":153,"core-util-is":116,"inherits":136,"process-nextick-args":146}],150:[function(require,module,exports){
+},{"./_stream_readable":251,"./_stream_writable":253,"core-util-is":215,"inherits":235,"process-nextick-args":246}],250:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8873,7 +11979,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":152,"core-util-is":116,"inherits":136}],151:[function(require,module,exports){
+},{"./_stream_transform":252,"core-util-is":215,"inherits":235}],251:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -9883,7 +12989,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":149,"./internal/streams/BufferList":154,"./internal/streams/destroy":155,"./internal/streams/stream":156,"_process":114,"core-util-is":116,"events":129,"inherits":136,"isarray":157,"process-nextick-args":146,"safe-buffer":164,"string_decoder/":158,"util":112}],152:[function(require,module,exports){
+},{"./_stream_duplex":249,"./internal/streams/BufferList":254,"./internal/streams/destroy":255,"./internal/streams/stream":256,"_process":213,"core-util-is":215,"events":228,"inherits":235,"isarray":239,"process-nextick-args":246,"safe-buffer":262,"string_decoder/":268,"util":211}],252:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10098,7 +13204,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":149,"core-util-is":116,"inherits":136}],153:[function(require,module,exports){
+},{"./_stream_duplex":249,"core-util-is":215,"inherits":235}],253:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -10765,7 +13871,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":149,"./internal/streams/destroy":155,"./internal/streams/stream":156,"_process":114,"core-util-is":116,"inherits":136,"process-nextick-args":146,"safe-buffer":164,"util-deprecate":180}],154:[function(require,module,exports){
+},{"./_stream_duplex":249,"./internal/streams/destroy":255,"./internal/streams/stream":256,"_process":213,"core-util-is":215,"inherits":235,"process-nextick-args":246,"safe-buffer":262,"util-deprecate":279}],254:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -10840,7 +13946,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":164}],155:[function(require,module,exports){
+},{"safe-buffer":262}],255:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -10913,17 +14019,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":146}],156:[function(require,module,exports){
+},{"process-nextick-args":246}],256:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":129}],157:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":228}],257:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":258}],258:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":249,"./lib/_stream_passthrough.js":250,"./lib/_stream_readable.js":251,"./lib/_stream_transform.js":252,"./lib/_stream_writable.js":253}],259:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":258}],260:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":253}],261:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],158:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":213,"through":278}],262:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":214}],263:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":228,"inherits":235,"readable-stream/duplex.js":248,"readable-stream/passthrough.js":257,"readable-stream/readable.js":258,"readable-stream/transform.js":259,"readable-stream/writable.js":260}],264:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":221,"function-bind":232}],265:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":264,"./polyfill":266,"./shim":267,"define-properties":219,"function-bind":232}],266:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":264}],267:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":266,"define-properties":219}],268:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -11196,312 +14600,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":164}],159:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":160}],160:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":149,"./lib/_stream_passthrough.js":150,"./lib/_stream_readable.js":151,"./lib/_stream_transform.js":152,"./lib/_stream_writable.js":153}],161:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":160}],162:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":153}],163:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":114,"through":179}],164:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":115}],165:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":129,"inherits":136,"readable-stream/duplex.js":148,"readable-stream/passthrough.js":159,"readable-stream/readable.js":160,"readable-stream/transform.js":161,"readable-stream/writable.js":162}],166:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":122,"function-bind":133}],167:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":166,"./polyfill":168,"./shim":169,"define-properties":120,"function-bind":133}],168:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":166}],169:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":168,"define-properties":120}],170:[function(require,module,exports){
+},{"safe-buffer":262}],269:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -11519,7 +14618,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],171:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -11540,7 +14639,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":170,"./polyfill":172,"./shim":173,"define-properties":120}],172:[function(require,module,exports){
+},{"./implementation":269,"./polyfill":271,"./shim":272,"define-properties":219}],271:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -11554,7 +14653,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":170}],173:[function(require,module,exports){
+},{"./implementation":269}],272:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -11580,7 +14679,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":172,"define-properties":120}],174:[function(require,module,exports){
+},{"./polyfill":271,"define-properties":219}],273:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -11734,7 +14833,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":175,"./lib/results":177,"./lib/test":178,"_process":114,"defined":121,"through":179}],175:[function(require,module,exports){
+},{"./lib/default_stream":274,"./lib/results":276,"./lib/test":277,"_process":213,"defined":220,"through":278}],274:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -11769,7 +14868,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":114,"fs":113,"through":179}],176:[function(require,module,exports){
+},{"_process":213,"fs":212,"through":278}],275:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -11777,7 +14876,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":114}],177:[function(require,module,exports){
+},{"_process":213}],276:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -11968,7 +15067,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":114,"events":129,"function-bind":133,"has":134,"inherits":136,"object-inspect":142,"resumer":163,"through":179}],178:[function(require,module,exports){
+},{"_process":213,"events":228,"function-bind":232,"has":233,"inherits":235,"object-inspect":242,"resumer":261,"through":278}],277:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -12469,7 +15568,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":176,"deep-equal":117,"defined":121,"events":129,"has":134,"inherits":136,"path":145,"string.prototype.trim":167}],179:[function(require,module,exports){
+},{"./next_tick":275,"deep-equal":216,"defined":220,"events":228,"has":233,"inherits":235,"path":245,"string.prototype.trim":265}],278:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -12581,7 +15680,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":114,"stream":165}],180:[function(require,module,exports){
+},{"_process":213,"stream":263}],279:[function(require,module,exports){
 (function (global){
 
 /**
@@ -12652,4 +15751,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[54,55]);
+},{}]},{},[121,122,123,124]);

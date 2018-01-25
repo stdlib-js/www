@@ -122,7 +122,7 @@ function hasOwnProp( value, property ) {
 		return false;
 	}
 	return has.call( value, property );
-} // end FUNCTION hasOwnProp()
+}
 
 
 // EXPORTS //
@@ -163,6 +163,13 @@ module.exports = hasOwnProp;
 },{"./has_own_property.js":1}],3:[function(require,module,exports){
 'use strict';
 
+// EXPORTS //
+
+module.exports = true;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
 /**
 * Boolean indicating if the current process is running on Darwin.
 *
@@ -181,7 +188,7 @@ module.exports = hasOwnProp;
 
 // MODULES //
 
-var platform = require( '@stdlib/utils/platform' );
+var platform = require( '@stdlib/os/platform' );
 
 
 // MAIN //
@@ -199,7 +206,7 @@ var IS_DARWIN = ( platform === 'darwin' );
 
 module.exports = IS_DARWIN;
 
-},{"@stdlib/utils/platform":31}],4:[function(require,module,exports){
+},{"@stdlib/os/platform":17}],5:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -226,14 +233,14 @@ var isObject = require( './object.js' );
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./object.js":6,"./primitive.js":7}],5:[function(require,module,exports){
+},{"./object.js":7,"./primitive.js":8}],6:[function(require,module,exports){
 'use strict';
 
 /**
@@ -290,7 +297,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":4,"./object.js":6,"./primitive.js":7,"@stdlib/utils/define-read-only-property":14}],6:[function(require,module,exports){
+},{"./generic.js":5,"./object.js":7,"./primitive.js":8,"@stdlib/utils/define-read-only-property":20}],7:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -324,14 +331,14 @@ function isString( value ) {
 		return ( nativeClass( value ) === '[object String]' );
 	}
 	return false;
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./try2valueof.js":8,"@stdlib/utils/detect-tostringtag-support":18,"@stdlib/utils/native-class":19}],7:[function(require,module,exports){
+},{"./try2valueof.js":9,"@stdlib/utils/detect-tostringtag-support":24,"@stdlib/utils/native-class":25}],8:[function(require,module,exports){
 'use strict';
 
 /**
@@ -350,19 +357,19 @@ module.exports = isString;
 */
 function isString( value ) {
 	return ( typeof value === 'string' );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
+var valueOf = require( './valueof.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -381,17 +388,17 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./valueof.js":9}],9:[function(require,module,exports){
+},{"./valueof.js":10}],10:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var valueOf = String.prototype.valueOf; // non-generic
 
 
@@ -399,7 +406,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 /**
@@ -493,7 +500,7 @@ var isURI = require( './is_uri.js' );
 
 module.exports = isURI;
 
-},{"./is_uri.js":11}],11:[function(require,module,exports){
+},{"./is_uri.js":12}],12:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -506,30 +513,47 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 /**
 * Matches parts of a URI according to RFC 3986.
 *
-* ``` text
+* ```text
 * <scheme name> : <hierarchical part > [ ? <query> ] [ # <fragment> ]
 * ```
 *
 * Regular expression: `/(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*)(?:\?[^#]*)?(?:#.*)?/`
 *
-* * `(?:([^:\/?#]+):)`
-*   - match the scheme, including the `:`, but only capture the scheme name
-* * `?`
-*   - match the scheme zero or one times
-* * `(?:\/\/([^\/?#]*))`
-*   - match the hierarchical part which is everything which is not a `/`, `#`, or `?`, but only capture whatever comes after the `//`
-* * `?`
-*   - match the hierarchical part zero or one times
-* * `([^?#]*)`
-*   - capture everything (the path) until meeting a `?` or `#`
-* * `(?:\?[^#]*)`
-*   - match, but don't capture, a query
-* * `?`
-*   - match the query zero or one times
-* * `(?:#.*)`
-*   - match, but don't capture, a fragment
-* * `?`
-*   - match the fragment zero or one times
+* -   `(?:([^:\/?#]+):)`
+*
+*     -   match the scheme, including the `:`, but only capture the scheme name
+*
+* -   `?`
+*
+*     -   match the scheme zero or one times
+*
+* -   `(?:\/\/([^\/?#]*))`
+*
+*     -   match the hierarchical part which is everything which is not a `/`, `#`, or `?`, but only capture whatever comes after the `//`
+*
+* -   `?`
+*
+*     -   match the hierarchical part zero or one times
+*
+* -   `([^?#]*)`
+*
+*     -   capture everything (the path) until meeting a `?` or `#`
+*
+* -   `(?:\?[^#]*)`
+*
+*     -   match, but don't capture, a query
+*
+* -   `?`
+*
+*     -   match the query zero or one times
+*
+* -   `(?:#.*)`
+*
+*     -   match, but don't capture, a fragment
+*
+* -   `?`
+*
+*     -   match the fragment zero or one times
 *
 * @private
 * @constant
@@ -697,14 +721,14 @@ function isURI( value ) {
 		return false;
 	}
 	return true;
-} // end FUNCTION isURI()
+}
 
 
 // EXPORTS //
 
 module.exports = isURI;
 
-},{"@stdlib/assert/is-string":5}],12:[function(require,module,exports){
+},{"@stdlib/assert/is-string":6}],13:[function(require,module,exports){
 'use strict';
 
 /**
@@ -725,7 +749,7 @@ module.exports = isURI;
 
 // MODULES //
 
-var platform = require( '@stdlib/utils/platform' );
+var platform = require( '@stdlib/os/platform' );
 
 
 // MAIN //
@@ -743,7 +767,187 @@ var IS_WINDOWS = ( platform === 'win32' );
 
 module.exports = IS_WINDOWS;
 
-},{"@stdlib/utils/platform":31}],13:[function(require,module,exports){
+},{"@stdlib/os/platform":17}],14:[function(require,module,exports){
+'use strict';
+
+/**
+* Read the entire contents of a file.
+*
+* @module @stdlib/fs/read-file
+*
+* @example
+* var readFile = require( '@stdlib/fs/read-file' );
+*
+* function onFile( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.log( data );
+* }
+* readFile( __filename, onFile );
+*
+* @example
+* var readFileSync = require( '@stdlib/fs/read-file' ).sync;
+*
+* var out = readFileSync( __filename );
+* if ( out instanceof Error ) {
+*     throw out;
+* }
+* console.log( out );
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var readFile = require( './main.js' );
+var sync = require( './sync.js' );
+
+
+// MAIN //
+
+setReadOnly( readFile, 'sync', sync );
+
+
+// EXPORTS //
+
+module.exports = readFile;
+
+},{"./main.js":15,"./sync.js":16,"@stdlib/utils/define-read-only-property":20}],15:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var fs = require( 'fs' );
+
+
+// MAIN //
+
+/**
+* Asynchronously reads the entire contents of a file.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Object|string)} [options] - options
+* @param {Function} clbk - callback to invoke after reading file contents
+*
+* @example
+* function onFile( error, data ) {
+*     if ( error ) {
+*         throw error;
+*     }
+*     console.log( data );
+* }
+* readFile( __filename, onFile );
+*/
+function readFile() {
+	var args;
+	var i;
+	args = new Array( arguments.length );
+	for ( i = 0; i < args.length; i++ ) {
+		args[ i ] = arguments[ i ];
+	}
+	fs.readFile.apply( null, args );
+}
+
+
+// EXPORTS //
+
+module.exports = readFile;
+
+},{"fs":40}],16:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var fs = require( 'fs' );
+
+
+// MAIN //
+
+/**
+* Synchronously reads the entire contents of a file.
+*
+* @param {(string|Buffer|integer)} file - file path or file descriptor
+* @param {(Object|string)} [options] - options
+* @returns {(Buffer|string|Error)} file contents or an error
+*
+* @example
+* var out = readFileSync( __filename );
+* if ( out instanceof Error ) {
+*     throw out;
+* }
+* console.log( out );
+*/
+function readFileSync( file, options ) {
+	var f;
+	try {
+		if ( arguments.length > 1 ) {
+			f = fs.readFileSync( file, options ); // eslint-disable-line no-sync
+		} else {
+			f = fs.readFileSync( file ); // eslint-disable-line no-sync
+		}
+	} catch ( err ) {
+		return err;
+	}
+	return f;
+}
+
+
+// EXPORTS //
+
+module.exports = readFileSync;
+
+},{"fs":40}],17:[function(require,module,exports){
+'use strict';
+
+/**
+* Platform on which the current process is running.
+*
+* @module @stdlib/os/platform
+*
+* @example
+* var PLATFORM = require( '@stdlib/os/platform' );
+*
+* if ( PLATFORM === 'win32' ) {
+*    console.log( 'Running on a PC...' );
+* }
+* else if ( PLATFORM === 'darwin' ) {
+*    console.log( 'Running on a Mac...' );
+* }
+* else {
+*    console.log( 'Running on something else...' );
+* }
+*/
+
+// MODULES //
+
+var PLATFORM = require( './platform.js' );
+
+
+// EXPORTS //
+
+module.exports = PLATFORM;
+
+},{"./platform.js":18}],18:[function(require,module,exports){
+(function (process){
+'use strict';
+
+// MAIN //
+
+/**
+* Platform on which the current process is running.
+*
+* @constant
+* @type {string}
+*/
+var PLATFORM = process.platform;
+
+
+// EXPORTS //
+
+module.exports = PLATFORM;
+
+}).call(this,require('_process'))
+},{"_process":41}],19:[function(require,module,exports){
 'use strict';
 
 /**
@@ -765,14 +969,14 @@ function setReadOnly( obj, prop, value ) {
 		'writable': false,
 		'enumerable': true
 	});
-} // end FUNCTION setReadOnly()
+}
 
 
 // EXPORTS //
 
 module.exports = setReadOnly;
 
-},{}],14:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 /**
@@ -797,7 +1001,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":13}],15:[function(require,module,exports){
+},{"./define_read_only_property.js":19}],21:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -816,18 +1020,18 @@ function hasSymbolSupport() {
 		typeof Symbol === 'function' &&
 		typeof Symbol( 'foo' ) === 'symbol'
 	);
-} // end FUNCTION hasSymbolSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasSymbolSupport;
 
-},{}],16:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `Symbol` support.
+* Test for native `Symbol` support.
 *
 * @module @stdlib/utils/detect-symbol-support
 *
@@ -847,7 +1051,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":15}],17:[function(require,module,exports){
+},{"./detect_symbol_support.js":21}],23:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -868,18 +1072,18 @@ var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
 */
 function hasToStringTagSupport() {
 	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
-} // end FUNCTION hasToStringTagSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":16}],18:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":22}],24:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `toStringTag` support.
+* Test for native `toStringTag` support.
 *
 * @module @stdlib/utils/detect-tostringtag-support
 *
@@ -899,7 +1103,7 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":17}],19:[function(require,module,exports){
+},{"./has_tostringtag_support.js":23}],25:[function(require,module,exports){
 'use strict';
 
 /**
@@ -925,16 +1129,18 @@ module.exports = hasToStringTagSupport;
 
 // MODULES //
 
-var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var nativeClass;
-if ( hasToStringTag ) {
-	nativeClass = require( './polyfill.js' );
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
 } else {
-	nativeClass = require( './native_class.js' );
+	nativeClass = builtin;
 }
 
 
@@ -942,7 +1148,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":20,"./polyfill.js":21,"@stdlib/utils/detect-tostringtag-support":18}],20:[function(require,module,exports){
+},{"./native_class.js":26,"./polyfill.js":27,"@stdlib/utils/detect-tostringtag-support":24}],26:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -975,14 +1181,14 @@ var toStr = require( './tostring.js' );
 */
 function nativeClass( v ) {
 	return toStr.call( v );
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":22}],21:[function(require,module,exports){
+},{"./tostring.js":28}],27:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1040,28 +1246,38 @@ function nativeClass( v ) {
 		delete v[ toStringTag ];
 	}
 	return out;
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":22,"./tostringtag.js":23,"@stdlib/assert/has-own-property":2}],22:[function(require,module,exports){
+},{"./tostring.js":28,"./tostringtag.js":29,"@stdlib/assert/has-own-property":2}],28:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
 
 // EXPORTS //
 
-module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
+module.exports = toStr;
 
-},{}],23:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
 
 // EXPORTS //
 
-module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+module.exports = toStrTag;
 
-},{}],24:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1085,7 +1301,7 @@ var noop = require( './noop.js' );
 
 module.exports = noop;
 
-},{"./noop.js":25}],25:[function(require,module,exports){
+},{"./noop.js":31}],31:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1104,7 +1320,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],26:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /* global window */
 'use strict';
 
@@ -1130,14 +1346,14 @@ function openURL( url ) {
 		throw new TypeError( 'invalid input value. Must provide a valid URI. Value: `' + url + '`.' );
 	}
 	return window.open( url );
-} // end FUNCTION openURL
+}
 
 
 // EXPORTS //
 
 module.exports = openURL;
 
-},{"@stdlib/assert/is-uri":10}],27:[function(require,module,exports){
+},{"@stdlib/assert/is-uri":11}],33:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1208,14 +1424,83 @@ function openURL( url ) {
 	proc.unref();
 
 	return proc;
-} // end FUNCTION openURL
+}
 
 
 // EXPORTS //
 
 module.exports = openURL;
 
-},{"@stdlib/assert/is-darwin":3,"@stdlib/assert/is-uri":10,"@stdlib/assert/is-windows":12,"child_process":35}],28:[function(require,module,exports){
+},{"@stdlib/assert/is-darwin":4,"@stdlib/assert/is-uri":11,"@stdlib/assert/is-windows":13,"child_process":40}],34:[function(require,module,exports){
+module.exports={
+  "name": "@stdlib/utils/open-url",
+  "version": "0.0.0",
+  "description": "Open a URL.",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "The Stdlib Authors",
+    "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"
+  },
+  "contributors": [
+    {
+      "name": "The Stdlib Authors",
+      "url": "https://github.com/stdlib-js/stdlib/graphs/contributors"
+    }
+  ],
+  "bin": {
+    "openurl": "./bin/cli"
+  },
+  "main": "./lib",
+  "browser": "./lib/browser.js",
+  "directories": {
+    "bin": "./bin",
+    "doc": "./docs",
+    "example": "./examples",
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "scripts": {},
+  "homepage": "https://github.com/stdlib-js/stdlib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stdlib-js/stdlib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stdlib-js/stdlib/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">2.7.0"
+  },
+  "os": [
+    "aix",
+    "darwin",
+    "freebsd",
+    "linux",
+    "macos",
+    "openbsd",
+    "sunos",
+    "win32",
+    "windows"
+  ],
+  "keywords": [
+    "stdlib",
+    "stdutils",
+    "stdutil",
+    "utilities",
+    "utility",
+    "utils",
+    "util",
+    "open",
+    "url",
+    "browser",
+    "launch"
+  ]
+}
+
+},{}],35:[function(require,module,exports){
 (function (global,__filename){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/browser.js');});/* global global */
 'use strict';
@@ -1250,7 +1535,7 @@ tape( 'the function throws an error if not provided a valid URI', function test(
 		undefined,
 		[],
 		{},
-		function(){}
+		function noop() {}
 	];
 	for ( i = 0; i < values.length; i++ ) {
 		t.throws( badValue( values[i] ), TypeError, 'throws an error when provided '+values[i] );
@@ -1288,54 +1573,153 @@ tape( 'the function defers to the `window.open` method', function test( t ) {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},"/lib/node_modules/@stdlib/utils/open-url/test/test.browser.js")
-},{"./../lib/browser.js":26,"proxyquireify":69,"tape":92}],29:[function(require,module,exports){
-(function (__filename){
-/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib');});'use strict';
+},{"./../lib/browser.js":32,"proxyquireify":75,"tape":97}],36:[function(require,module,exports){
+(function (process,__filename,__dirname){
+'use strict';
 
 // MODULES //
 
+var resolve = require( 'path' ).resolve;
+var exec = require( 'child_process' ).exec;
 var tape = require( 'tape' );
-var proxyquire = require('proxyquireify')(require);
-var browser = require( './../lib/browser.js' );
-var nonBrowser = require( './../lib/open_url.js' );
-var openURL = require( './../lib' );
+var IS_BROWSER = require( '@stdlib/assert/is-browser' );
+var IS_WINDOWS = require( '@stdlib/assert/is-windows' );
+var readFileSync = require( '@stdlib/fs/read-file' ).sync;
+
+
+// VARIABLES //
+
+var fpath = resolve( __dirname, '..', 'bin', 'cli' );
+var opts = {
+	'skip': IS_BROWSER || IS_WINDOWS
+};
+
+
+// FIXTURES //
+
+var PKG_VERSION = require( './../package.json' ).version;
 
 
 // TESTS //
 
-tape( 'main export is a function', function test( t ) {
+tape( 'command-line interface', function test( t ) {
 	t.ok( true, __filename );
-	t.equal( typeof openURL, 'function', 'main export is a function' );
 	t.end();
 });
 
-tape( 'main export is a function (browser)', function test( t ) {
-	var openURL = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': true
+tape( 'when invoked with a `--help` flag, the command-line interface prints the help text to `stderr`', opts, function test( t ) {
+	var expected;
+	var cmd;
+
+	expected = readFileSync( resolve( __dirname, '..', 'docs', 'usage.txt' ), {
+		'encoding': 'utf8'
 	});
-	t.equal( openURL, browser, 'exports browser implementation' );
-	t.end();
+	cmd = [
+		process.execPath,
+		fpath,
+		'--help'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), expected+'\n', 'expected value' );
+		}
+		t.end();
+	}
 });
 
-tape( 'main export is a function (Node.js)', function test( t ) {
-	var openURL = proxyquire( './../lib', {
-		'@stdlib/assert/is-browser': false
+tape( 'when invoked with a `-h` flag, the command-line interface prints the help text to `stderr`', opts, function test( t ) {
+	var expected;
+	var cmd;
+
+	expected = readFileSync( resolve( __dirname, '..', 'docs', 'usage.txt' ), {
+		'encoding': 'utf8'
 	});
-	t.equal( openURL, nonBrowser, 'exports Node.js implementation' );
-	t.end();
+	cmd = [
+		process.execPath,
+		fpath,
+		'-h'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), expected+'\n', 'expected value' );
+		}
+		t.end();
+	}
 });
 
-}).call(this,"/lib/node_modules/@stdlib/utils/open-url/test/test.js")
-},{"./../lib":26,"./../lib/browser.js":26,"./../lib/open_url.js":27,"proxyquireify":69,"tape":92}],30:[function(require,module,exports){
+tape( 'when invoked with a `--version` flag, the command-line interface prints the version to `stderr`', opts, function test( t ) {
+	var cmd = [
+		process.execPath,
+		fpath,
+		'--version'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), PKG_VERSION+'\n', 'expected value' );
+		}
+		t.end();
+	}
+});
+
+tape( 'when invoked with a `-V` flag, the command-line interface prints the version to `stderr`', opts, function test( t ) {
+	var cmd = [
+		process.execPath,
+		fpath,
+		'-V'
+	];
+
+	exec( cmd.join( ' ' ), done );
+
+	function done( error, stdout, stderr ) {
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			t.strictEqual( stdout.toString(), '', 'does not print to `stdout`' );
+			t.strictEqual( stderr.toString(), PKG_VERSION+'\n', 'expected value' );
+		}
+		t.end();
+	}
+});
+
+// TODO: Figure out testing strategy for openurl CLI
+
+}).call(this,require('_process'),"/lib/node_modules/@stdlib/utils/open-url/test/test.cli.js","/lib/node_modules/@stdlib/utils/open-url/test")
+},{"./../package.json":34,"@stdlib/assert/is-browser":3,"@stdlib/assert/is-windows":13,"@stdlib/fs/read-file":14,"_process":41,"child_process":40,"path":73,"tape":97}],37:[function(require,module,exports){
 (function (__filename){
-/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/open_url.js');});'use strict';
+/* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/main.js');});'use strict';
 
 // MODULES //
 
 var tape = require( 'tape' );
 var proxyquire = require('proxyquireify')(require);
+var IS_BROWSER = require( '@stdlib/assert/is-browser' );
 var noop = require( '@stdlib/utils/noop' );
-var openURL = require( './../lib/open_url.js' );
+var openURL = require( './../lib' );
+
+
+// VARIABLES //
+
+var opts = {
+	'skip': IS_BROWSER
+};
 
 
 // TESTS //
@@ -1361,7 +1745,7 @@ tape( 'the function throws an error if not provided a valid URI', function test(
 		undefined,
 		[],
 		{},
-		function(){}
+		function noop() {}
 	];
 	for ( i = 0; i < values.length; i++ ) {
 		t.throws( badValue( values[i] ), TypeError, 'throws an error when provided '+values[i] );
@@ -1375,11 +1759,11 @@ tape( 'the function throws an error if not provided a valid URI', function test(
 	}
 });
 
-tape( 'if the platform is `Darwin`, the function invokes the `open` command', function test( t ) {
+tape( 'if the platform is `Darwin`, the function invokes the `open` command', opts, function test( t ) {
 	var openURL;
 	var url;
 
-	openURL = proxyquire( './../lib/open_url.js', {
+	openURL = proxyquire( './../lib/main.js', {
 		'@stdlib/assert/is-darwin': true,
 		'@stdlib/assert/is-windows': false,
 		'child_process': {
@@ -1404,11 +1788,11 @@ tape( 'if the platform is `Darwin`, the function invokes the `open` command', fu
 	}
 });
 
-tape( 'if the platform is `Windows`, the function invokes the `cmd` command', function test( t ) {
+tape( 'if the platform is `Windows`, the function invokes the `cmd` command', opts, function test( t ) {
 	var openURL;
 	var url;
 
-	openURL = proxyquire( './../lib/open_url.js', {
+	openURL = proxyquire( './../lib/main.js', {
 		'@stdlib/assert/is-darwin': false,
 		'@stdlib/assert/is-windows': true,
 		'child_process': {
@@ -1436,11 +1820,11 @@ tape( 'if the platform is `Windows`, the function invokes the `cmd` command', fu
 	}
 });
 
-tape( 'if the platform is neither `Darwin` or `Windows`, the function invokes the `xdg-open` command', function test( t ) {
+tape( 'if the platform is neither `Darwin` or `Windows`, the function invokes the `xdg-open` command', opts, function test( t ) {
 	var openURL;
 	var url;
 
-	openURL = proxyquire( './../lib/open_url.js', {
+	openURL = proxyquire( './../lib/main.js', {
 		'@stdlib/assert/is-darwin': false,
 		'@stdlib/assert/is-windows': false,
 		'child_process': {
@@ -1465,60 +1849,8 @@ tape( 'if the platform is neither `Darwin` or `Windows`, the function invokes th
 	}
 });
 
-}).call(this,"/lib/node_modules/@stdlib/utils/open-url/test/test.open_url.js")
-},{"./../lib/open_url.js":27,"@stdlib/utils/noop":24,"proxyquireify":69,"tape":92}],31:[function(require,module,exports){
-'use strict';
-
-/**
-* Platform on which the current process is running.
-*
-* @module @stdlib/utils/platform
-* @type {string}
-*
-* @example
-* var PLATFORM = require( '@stdlib/utils/platform' );
-*
-* if ( PLATFORM === 'win32' ) {
-*    console.log( 'Running on a PC...' );
-* }
-* else if ( PLATFORM === 'darwin' ) {
-*    console.log( 'Running on a Mac...' );
-* }
-* else {
-*    console.log( 'Running on something else...' );
-* }
-*/
-
-// MODULES //
-
-var PLATFORM = require( './platform.js' );
-
-
-// EXPORTS //
-
-module.exports = PLATFORM;
-
-},{"./platform.js":32}],32:[function(require,module,exports){
-(function (process){
-'use strict';
-
-// MAIN //
-
-/**
-* Platform on which the current process is running.
-*
-* @constant
-* @type {string}
-*/
-var PLATFORM = process.platform;
-
-
-// EXPORTS //
-
-module.exports = PLATFORM;
-
-}).call(this,require('_process'))
-},{"_process":36}],33:[function(require,module,exports){
+}).call(this,"/lib/node_modules/@stdlib/utils/open-url/test/test.js")
+},{"./../lib":32,"./../lib/main.js":33,"@stdlib/assert/is-browser":3,"@stdlib/utils/noop":30,"proxyquireify":75,"tape":97}],38:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -1634,11 +1966,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],34:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 
-},{}],35:[function(require,module,exports){
-arguments[4][34][0].apply(exports,arguments)
-},{"dup":34}],36:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
+arguments[4][39][0].apply(exports,arguments)
+},{"dup":39}],41:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1824,11 +2156,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],37:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -3540,7 +3872,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":33,"ieee754":57}],38:[function(require,module,exports){
+},{"base64-js":38,"ieee754":62}],43:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -3651,7 +3983,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":59}],39:[function(require,module,exports){
+},{"../../is-buffer/index.js":64}],44:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -3747,7 +4079,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":40,"./lib/keys.js":41}],40:[function(require,module,exports){
+},{"./lib/is_arguments.js":45,"./lib/keys.js":46}],45:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -3769,7 +4101,7 @@ function unsupported(object){
     false;
 };
 
-},{}],41:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -3780,7 +4112,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],42:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -3838,14 +4170,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":53,"object-keys":65}],43:[function(require,module,exports){
+},{"foreach":58,"object-keys":71}],48:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],44:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -4083,28 +4415,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":45,"./helpers/isNaN":46,"./helpers/mod":47,"./helpers/sign":48,"es-to-primitive/es5":49,"has":56,"is-callable":60}],45:[function(require,module,exports){
+},{"./helpers/isFinite":50,"./helpers/isNaN":51,"./helpers/mod":52,"./helpers/sign":53,"es-to-primitive/es5":54,"has":61,"is-callable":65}],50:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],46:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],47:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],48:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],49:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -4143,12 +4475,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":50,"is-callable":60}],50:[function(require,module,exports){
+},{"./helpers/isPrimitive":55,"is-callable":65}],55:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],51:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4452,7 +4784,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],52:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 'use strict'
 
 var mergeDescriptors = require('merge-descriptors')
@@ -4490,7 +4822,7 @@ function isFunction (value) {
   return typeof value === 'function'
 }
 
-},{"is-object":61,"merge-descriptors":62}],53:[function(require,module,exports){
+},{"is-object":66,"merge-descriptors":68}],58:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -4514,7 +4846,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],54:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -4568,19 +4900,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],55:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":54}],56:[function(require,module,exports){
+},{"./implementation":59}],61:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":55}],57:[function(require,module,exports){
+},{"function-bind":60}],62:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -4666,7 +4998,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],58:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -4691,11 +5023,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],59:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -4714,7 +5046,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],60:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -4755,14 +5087,21 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],61:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 "use strict";
 
 module.exports = function isObject(x) {
 	return typeof x === "object" && x !== null;
 };
 
-},{}],62:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],68:[function(require,module,exports){
 /*!
  * merge-descriptors
  * Copyright(c) 2014 Jonathan Ong
@@ -4824,7 +5163,7 @@ function merge(dest, src, redefine) {
   return dest
 }
 
-},{}],63:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 'use strict'
 
 module.exports = function createNotFoundError (path) {
@@ -4833,7 +5172,7 @@ module.exports = function createNotFoundError (path) {
   return err
 }
 
-},{}],64:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -5027,7 +5366,7 @@ function inspectString (str) {
     }
 }
 
-},{}],65:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -5169,7 +5508,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":66}],66:[function(require,module,exports){
+},{"./isArguments":72}],72:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -5188,7 +5527,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],67:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5416,7 +5755,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":36}],68:[function(require,module,exports){
+},{"_process":41}],74:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -5463,7 +5802,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":36}],69:[function(require,module,exports){
+},{"_process":41}],75:[function(require,module,exports){
 'use strict';
 
 var fillMissingKeys = require('fill-keys');
@@ -5558,10 +5897,10 @@ if (require.cache) {
   proxyquire.plugin = replacePrelude.plugin;
 }
 
-},{"fill-keys":52,"module-not-found-error":63}],70:[function(require,module,exports){
+},{"fill-keys":57,"module-not-found-error":69}],76:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":71}],71:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":77}],77:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5686,7 +6025,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":73,"./_stream_writable":75,"core-util-is":38,"inherits":58,"process-nextick-args":68}],72:[function(require,module,exports){
+},{"./_stream_readable":79,"./_stream_writable":81,"core-util-is":43,"inherits":63,"process-nextick-args":74}],78:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5734,7 +6073,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":74,"core-util-is":38,"inherits":58}],73:[function(require,module,exports){
+},{"./_stream_transform":80,"core-util-is":43,"inherits":63}],79:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6744,7 +7083,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":71,"./internal/streams/BufferList":76,"./internal/streams/destroy":77,"./internal/streams/stream":78,"_process":36,"core-util-is":38,"events":51,"inherits":58,"isarray":79,"process-nextick-args":68,"safe-buffer":86,"string_decoder/":80,"util":34}],74:[function(require,module,exports){
+},{"./_stream_duplex":77,"./internal/streams/BufferList":82,"./internal/streams/destroy":83,"./internal/streams/stream":84,"_process":41,"core-util-is":43,"events":56,"inherits":63,"isarray":67,"process-nextick-args":74,"safe-buffer":90,"string_decoder/":96,"util":39}],80:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6959,7 +7298,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":71,"core-util-is":38,"inherits":58}],75:[function(require,module,exports){
+},{"./_stream_duplex":77,"core-util-is":43,"inherits":63}],81:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7626,7 +7965,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":71,"./internal/streams/destroy":77,"./internal/streams/stream":78,"_process":36,"core-util-is":38,"inherits":58,"process-nextick-args":68,"safe-buffer":86,"util-deprecate":98}],76:[function(require,module,exports){
+},{"./_stream_duplex":77,"./internal/streams/destroy":83,"./internal/streams/stream":84,"_process":41,"core-util-is":43,"inherits":63,"process-nextick-args":74,"safe-buffer":90,"util-deprecate":103}],82:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -7701,7 +8040,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":86}],77:[function(require,module,exports){
+},{"safe-buffer":90}],83:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -7774,17 +8113,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":68}],78:[function(require,module,exports){
+},{"process-nextick-args":74}],84:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":51}],79:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":56}],85:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":86}],86:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":77,"./lib/_stream_passthrough.js":78,"./lib/_stream_readable.js":79,"./lib/_stream_transform.js":80,"./lib/_stream_writable.js":81}],87:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":86}],88:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":81}],89:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],80:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":41,"through":102}],90:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":42}],91:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":56,"inherits":63,"readable-stream/duplex.js":76,"readable-stream/passthrough.js":85,"readable-stream/readable.js":86,"readable-stream/transform.js":87,"readable-stream/writable.js":88}],92:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":49,"function-bind":60}],93:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":92,"./polyfill":94,"./shim":95,"define-properties":47,"function-bind":60}],94:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":92}],95:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":94,"define-properties":47}],96:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -8057,312 +8694,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":86}],81:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":82}],82:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":71,"./lib/_stream_passthrough.js":72,"./lib/_stream_readable.js":73,"./lib/_stream_transform.js":74,"./lib/_stream_writable.js":75}],83:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":82}],84:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":75}],85:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":36,"through":97}],86:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":37}],87:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":51,"inherits":58,"readable-stream/duplex.js":70,"readable-stream/passthrough.js":81,"readable-stream/readable.js":82,"readable-stream/transform.js":83,"readable-stream/writable.js":84}],88:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":44,"function-bind":55}],89:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":88,"./polyfill":90,"./shim":91,"define-properties":42,"function-bind":55}],90:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":88}],91:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":90,"define-properties":42}],92:[function(require,module,exports){
+},{"safe-buffer":90}],97:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -8516,7 +8848,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":93,"./lib/results":95,"./lib/test":96,"_process":36,"defined":43,"through":97}],93:[function(require,module,exports){
+},{"./lib/default_stream":98,"./lib/results":100,"./lib/test":101,"_process":41,"defined":48,"through":102}],98:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -8551,7 +8883,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":36,"fs":35,"through":97}],94:[function(require,module,exports){
+},{"_process":41,"fs":40,"through":102}],99:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -8559,7 +8891,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":36}],95:[function(require,module,exports){
+},{"_process":41}],100:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -8750,7 +9082,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":36,"events":51,"function-bind":55,"has":56,"inherits":58,"object-inspect":64,"resumer":85,"through":97}],96:[function(require,module,exports){
+},{"_process":41,"events":56,"function-bind":60,"has":61,"inherits":63,"object-inspect":70,"resumer":89,"through":102}],101:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -9251,7 +9583,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":94,"deep-equal":39,"defined":43,"events":51,"has":56,"inherits":58,"path":67,"string.prototype.trim":89}],97:[function(require,module,exports){
+},{"./next_tick":99,"deep-equal":44,"defined":48,"events":56,"has":61,"inherits":63,"path":73,"string.prototype.trim":93}],102:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -9363,7 +9695,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":36,"stream":87}],98:[function(require,module,exports){
+},{"_process":41,"stream":91}],103:[function(require,module,exports){
 (function (global){
 
 /**
@@ -9434,4 +9766,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[28,29,30]);
+},{}]},{},[35,36,37]);

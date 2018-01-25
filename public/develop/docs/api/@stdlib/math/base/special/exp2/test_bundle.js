@@ -84,6 +84,429 @@
 ({1:[function(require,module,exports){
 'use strict';
 
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+var builtin = require( './float64array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float64array.js":1,"./polyfill.js":3,"@stdlib/utils/detect-float64array-support":78}],3:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of double-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 16-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint16
+*
+* @example
+* var ctor = require( '@stdlib/array/uint16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint16Array>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+var builtin = require( './uint16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":5,"./uint16array.js":6,"@stdlib/utils/detect-uint16array-support":84}],5:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 16-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 32-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint32
+*
+* @example
+* var ctor = require( '@stdlib/array/uint32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint32Array>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+var builtin = require( './uint32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":8,"./uint32array.js":9,"@stdlib/utils/detect-uint32array-support":87}],8:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 32-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint8
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8Array>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+var builtin = require( './uint8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":11,"./uint8array.js":12,"@stdlib/utils/detect-uint8array-support":90}],11:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],13:[function(require,module,exports){
+'use strict';
+
+// FUNCTIONS //
+
+var has = Object.prototype.hasOwnProperty;
+
+
+// MAIN //
+
+/**
+* Tests if an object has a specified property.
+*
+* @param {*} value - value to test
+* @param {*} property - property to test
+* @returns {boolean} boolean indicating if an object has a specified property
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'bap' );
+* // returns false
+*/
+function hasOwnProp( value, property ) {
+	if (
+		value === void 0 ||
+		value === null
+	) {
+		return false;
+	}
+	return has.call( value, property );
+}
+
+
+// EXPORTS //
+
+module.exports = hasOwnProp;
+
+},{}],14:[function(require,module,exports){
+'use strict';
+
+/**
+* Test whether an object has a specified property.
+*
+* @module @stdlib/assert/has-own-property
+*
+* @example
+* var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+*
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* bool = hasOwnProp( beep, 'bop' );
+* // returns false
+*/
+
+// MODULES //
+
+var hasOwnProp = require( './has_own_property.js' );
+
+
+// EXPORTS //
+
+module.exports = hasOwnProp;
+
+},{"./has_own_property.js":13}],15:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float64Array.
+*
+* @module @stdlib/assert/is-float64array
+*
+* @example
+* var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+*
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* bool = isFloat64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat64Array = require( './is_float64array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"./is_float64array.js":16}],16:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float64Array
+*
+* @example
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat64Array( [] );
+* // returns false
+*/
+function isFloat64Array( value ) {
+	return ( nativeClass( value ) === '[object Float64Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"@stdlib/utils/native-class":92}],17:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+
+
+// MAIN //
+
 var ctors = {
 	'uint16': Uint16Array,
 	'uint8': Uint8Array
@@ -94,7 +517,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{}],2:[function(require,module,exports){
+},{"@stdlib/array/uint16":4,"@stdlib/array/uint8":10}],18:[function(require,module,exports){
 'use strict';
 
 /**
@@ -118,7 +541,7 @@ var IS_LITTLE_ENDIAN = require( './is_little_endian.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./is_little_endian.js":3}],3:[function(require,module,exports){
+},{"./is_little_endian.js":19}],19:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -143,8 +566,10 @@ function isLittleEndian() {
 
 	uint16view = new ctors[ 'uint16' ]( 1 );
 
-	// Set the uint16 view to a value having distinguishable lower and higher order words.
-	// 4660 => 0x1234 => 0x12 0x34 => '00010010 00110100' => (0x12,0x34) == (18,52)
+	/*
+	* Set the uint16 view to a value having distinguishable lower and higher order words.
+	* 4660 => 0x1234 => 0x12 0x34 => '00010010 00110100' => (0x12,0x34) == (18,52)
+	*/
 	uint16view[ 0 ] = 0x1234;
 
 	// Create a uint8 view on top of the uint16 buffer:
@@ -152,14 +577,730 @@ function isLittleEndian() {
 
 	// If little endian, the least significant byte will be first...
 	return ( uint8view[ 0 ] === 0x34 );
-} // end FUNCTION isLittleEndian()
+}
 
 
 // EXPORTS //
 
 module.exports = isLittleEndian();
 
-},{"./ctors.js":1}],4:[function(require,module,exports){
+},{"./ctors.js":17}],20:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint16Array.
+*
+* @module @stdlib/assert/is-uint16array
+*
+* @example
+* var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+*
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* bool = isUint16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint16Array = require( './is_uint16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"./is_uint16array.js":21}],21:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint16Array
+*
+* @example
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint16Array( [] );
+* // returns false
+*/
+function isUint16Array( value ) {
+	return ( nativeClass( value ) === '[object Uint16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"@stdlib/utils/native-class":92}],22:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint32Array.
+*
+* @module @stdlib/assert/is-uint32array
+*
+* @example
+* var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+*
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* bool = isUint32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint32Array = require( './is_uint32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"./is_uint32array.js":23}],23:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint32Array
+*
+* @example
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint32Array( [] );
+* // returns false
+*/
+function isUint32Array( value ) {
+	return ( nativeClass( value ) === '[object Uint32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"@stdlib/utils/native-class":92}],24:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8Array.
+*
+* @module @stdlib/assert/is-uint8array
+*
+* @example
+* var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+*
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* bool = isUint8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8Array = require( './is_uint8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"./is_uint8array.js":25}],25:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8Array
+*
+* @example
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8Array( [] );
+* // returns false
+*/
+function isUint8Array( value ) {
+	return ( nativeClass( value ) === '[object Uint8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"@stdlib/utils/native-class":92}],26:[function(require,module,exports){
+'use strict';
+
+/**
+* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-eps
+* @type {number}
+*
+* @example
+* var FLOAT64_EPSILON = require( '@stdlib/constants/math/float64-eps' );
+* // returns 2.220446049250313e-16
+*/
+
+
+// MAIN //
+
+/**
+* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
+*
+* ## Notes
+*
+* The difference is
+*
+* ```tex
+* \frac{1}{2^{52}}
+* ```
+*
+* @constant
+* @type {number}
+* @default 2.220446049250313e-16
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
+*/
+var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_EPSILON;
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
+/**
+* The bias of a double-precision floating-point number's exponent.
+*
+* @module @stdlib/constants/math/float64-exponent-bias
+* @type {integer32}
+*
+* @example
+* var FLOAT64_EXPONENT_BIAS = require( '@stdlib/constants/math/float64-exponent-bias' );
+* // returns 1023
+*/
+
+
+// MAIN //
+
+/**
+* Bias of a double-precision floating-point number's exponent.
+*
+* ## Notes
+*
+* The bias can be computed via
+*
+* ```tex
+* \mathrm{bias} = 2^{k-1} - 1
+* ```
+*
+* where \\(k\\) is the number of bits in the exponent; here, \\(k = 11\\).
+*
+* @constant
+* @type {integer32}
+* @default 1023
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_EXPONENT_BIAS;
+
+},{}],28:[function(require,module,exports){
+'use strict';
+
+/**
+* High word mask for the exponent of a double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-high-word-exponent-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_EXPONENT_MASK = require( '@stdlib/constants/math/float64-high-word-exponent-mask' );
+* // returns 2146435072
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the exponent of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the exponent of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2146435072 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x7ff00000
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
+
+},{}],29:[function(require,module,exports){
+'use strict';
+
+/**
+* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-max-base2-exponent-subnormal
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/constants/math/float64-max-base2-exponent-subnormal' );
+* // returns -1023
+*/
+
+
+// MAIN //
+
+/**
+* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* ```text
+* 00000000000 => 0 - BIAS = -1023
+* ```
+*
+* where `BIAS = 1023`.
+*
+* @constant
+* @type {integer32}
+* @default -1023
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
+
+},{}],30:[function(require,module,exports){
+'use strict';
+
+/**
+* The maximum biased base 2 exponent for a double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-max-base2-exponent
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MAX_BASE2_EXPONENT = require( '@stdlib/constants/math/float64-max-base2-exponent' );
+* // returns 1023
+*/
+
+
+// MAIN //
+
+/**
+* The maximum biased base 2 exponent for a double-precision floating-point number.
+*
+* ```text
+* 11111111110 => 2046 - BIAS = 1023
+* ```
+*
+* where `BIAS = 1023`.
+*
+* @constant
+* @type {integer32}
+* @default 1023
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX_BASE2_EXPONENT;
+
+},{}],31:[function(require,module,exports){
+'use strict';
+
+/**
+* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-min-base2-exponent-subnormal
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/constants/math/float64-min-base2-exponent-subnormal' );
+* // returns -1074
+*/
+
+
+// MAIN //
+
+/**
+* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* ```text
+* -(BIAS+(52-1)) = -(1023+51) = -1074
+* ```
+*
+* where `BIAS = 1023` and `52` is the number of digits in the significand.
+*
+* @constant
+* @type {integer32}
+* @default -1074
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
+
+},{}],32:[function(require,module,exports){
+'use strict';
+
+/**
+* The minimum biased base 2 exponent for a normal double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-min-base2-exponent
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MIN_BASE2_EXPONENT = require( '@stdlib/constants/math/float64-min-base2-exponent' );
+* // returns -1022
+*/
+
+
+// MAIN //
+
+/**
+* The minimum biased base 2 exponent for a normal double-precision floating-point number.
+*
+* ```text
+* 1 - BIAS = -1022
+* ```
+*
+* where `BIAS = 1023`.
+*
+* @constant
+* @type {integer32}
+* @default -1022
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MIN_BASE2_EXPONENT = -1022|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MIN_BASE2_EXPONENT;
+
+},{}],33:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NINF;
+
+},{}],34:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_PINF;
+
+},{}],35:[function(require,module,exports){
+'use strict';
+
+/**
+* Smallest positive double-precision floating-point normal number.
+*
+* @module @stdlib/constants/math/float64-smallest-normal
+* @type {number}
+*
+* @example
+* var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/constants/math/float64-smallest-normal' );
+* // returns 2.2250738585072014e-308
+*/
+
+
+// MAIN //
+
+/**
+* The smallest positive double-precision floating-point normal number.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* \frac{1}{2^{1023-1}}
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 00000000001 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default 2.2250738585072014e-308
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_SMALLEST_NORMAL;
+
+},{}],36:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* @module @stdlib/constants/math/uint16-max
+* @type {integer32}
+*
+* @example
+* var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+* // returns 65535
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{16} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 1111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 65535
+*/
+var UINT16_MAX = 65535|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT16_MAX;
+
+},{}],37:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* @module @stdlib/constants/math/uint32-max
+* @type {uinteger32}
+*
+* @example
+* var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+* // returns 4294967295
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var UINT32_MAX = 4294967295;
+
+
+// EXPORTS //
+
+module.exports = UINT32_MAX;
+
+},{}],38:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* @module @stdlib/constants/math/uint8-max
+* @type {integer32}
+*
+* @example
+* var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+* // returns 255
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{8} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 255
+*/
+var UINT8_MAX = 255|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT8_MAX;
+
+},{}],39:[function(require,module,exports){
 'use strict';
 
 /**
@@ -170,10 +1311,10 @@ module.exports = isLittleEndian();
 * @example
 * var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 *
-* var bool = isInfinite( Number.POSITIVE_INFINITY );
+* var bool = isInfinite( Infinity );
 * // returns true
 *
-* bool = isInfinite( Number.NEGATIVE_INFINITY );
+* bool = isInfinite( -Infinity );
 * // returns true
 *
 * bool = isInfinite( 5.0 );
@@ -192,13 +1333,13 @@ var isInfinite = require( './is_infinite.js' );
 
 module.exports = isInfinite;
 
-},{"./is_infinite.js":5}],5:[function(require,module,exports){
+},{"./is_infinite.js":40}],40:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 
 
 // MAIN //
@@ -210,11 +1351,11 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @returns {boolean} boolean indicating whether the value is infinite
 *
 * @example
-* var bool = isInfinite( Number.POSITIVE_INFINITY );
+* var bool = isInfinite( Infinity );
 * // returns true
 *
 * @example
-* var bool = isInfinite( Number.NEGATIVE_INFINITY );
+* var bool = isInfinite( -Infinity );
 * // returns true
 *
 * @example
@@ -227,14 +1368,14 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 */
 function isInfinite( x ) {
 	return (x === PINF || x === NINF);
-} // end FUNCTION isInfinite()
+}
 
 
 // EXPORTS //
 
 module.exports = isInfinite;
 
-},{"@stdlib/math/constants/float64-ninf":47,"@stdlib/math/constants/float64-pinf":48}],6:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-ninf":33,"@stdlib/constants/math/float64-pinf":34}],41:[function(require,module,exports){
 'use strict';
 
 /**
@@ -261,7 +1402,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":7}],7:[function(require,module,exports){
+},{"./is_nan.js":42}],42:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -281,15 +1422,15 @@ module.exports = isnan;
 * // returns false
 */
 function isnan( x ) {
-	return (x !== x);
-} // end FUNCTION isnan()
+	return ( x !== x );
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{}],8:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -326,14 +1467,14 @@ function abs( x ) {
 		return 0.0; // handle negative zero
 	}
 	return x;
-} // end FUNCTION abs()
+}
 
 
 // EXPORTS //
 
 module.exports = abs;
 
-},{}],9:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 /**
@@ -369,23 +1510,26 @@ var abs = require( './abs.js' );
 
 module.exports = abs;
 
-},{"./abs.js":8}],10:[function(require,module,exports){
+},{"./abs.js":43}],45:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
+var toWords = require( '@stdlib/number/float64/base/to-words' );
+var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
+var fromWords = require( '@stdlib/number/float64/base/from-words' );
 
 
 // VARIABLES //
 
 // 10000000000000000000000000000000 => 2147483648 => 0x80000000
-var SIGN_MASK = 0x80000000;
+var SIGN_MASK = 0x80000000>>>0; // asm type annotation
 
 // 01111111111111111111111111111111 => 2147483647 => 0x7fffffff
-var MAGNITUDE_MASK = 0x7fffffff;
+var MAGNITUDE_MASK = 0x7fffffff|0; // asm type annotation
+
+// High/low words workspace:
+var WORDS = [ 0, 0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -422,8 +1566,8 @@ function copysign( x, y ) {
 	var hy;
 
 	// Split `x` into higher and lower order words:
-	x = toWords( x );
-	hx = x[ 0 ];
+	toWords( WORDS, x );
+	hx = WORDS[ 0 ];
 
 	// Turn off the sign bit of `x`:
 	hx &= MAGNITUDE_MASK;
@@ -438,15 +1582,15 @@ function copysign( x, y ) {
 	hx |= hy;
 
 	// Return a new value having the same magnitude as `x`, but with the sign of `y`:
-	return fromWords( hx, x[ 1 ] );
-} // end FUNCTION copysign()
+	return fromWords( hx, WORDS[ 1 ] );
+}
 
 
 // EXPORTS //
 
 module.exports = copysign;
 
-},{"@stdlib/math/base/utils/float64-from-words":30,"@stdlib/math/base/utils/float64-get-high-word":34,"@stdlib/math/base/utils/float64-to-words":37}],11:[function(require,module,exports){
+},{"@stdlib/number/float64/base/from-words":63,"@stdlib/number/float64/base/get-high-word":67,"@stdlib/number/float64/base/to-words":72}],46:[function(require,module,exports){
 'use strict';
 
 /**
@@ -482,7 +1626,7 @@ var copysign = require( './copysign.js' );
 
 module.exports = copysign;
 
-},{"./copysign.js":10}],12:[function(require,module,exports){
+},{"./copysign.js":45}],47:[function(require,module,exports){
 'use strict';
 
 // TODO: replace with TOMS (Openlibm) algo
@@ -511,64 +1655,45 @@ module.exports = copysign;
 
 // MODULES //
 
-var FLOAT64_MAX_BASE2_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent' );
-var FLOAT64_MIN_BASE2_EXPONENT = require( '@stdlib/math/constants/float64-min-base2-exponent' );
-var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
+var FLOAT64_MAX_BASE2_EXPONENT = require( '@stdlib/constants/math/float64-max-base2-exponent' ); // eslint-disable-line id-length
+var FLOAT64_MIN_BASE2_EXPONENT = require( '@stdlib/constants/math/float64-min-base2-exponent' ); // eslint-disable-line id-length
 var round = require( '@stdlib/math/base/special/round' );
 var ldexp = require( '@stdlib/math/base/special/ldexp' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-
-
-// VARIABLES //
-
-var P = [
-	1.51390680115615096133e3,
-	2.02020656693165307700e1,
-	2.30933477057345225087e-2
-];
-var Q = [
-	4.36821166879210612817E3,
-	2.33184211722314911771E2,
-	1.0
-];
-
-// FUNCTIONS //
-
-// Compile functions to evaluate polynomials based on the above coefficients...
-var polyvalP = evalpoly( P );
-var polyvalQ = evalpoly( Q );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var polyvalP = require( './polyval_p.js' );
+var polyvalQ = require( './polyval_q.js' );
 
 
 // MAIN //
 
 /**
-* Evaluates the base 2 exponential function.
+* Evaluates the base `2` exponential function.
 *
-* #### Method
+* ## Method
 *
-* * Range reduction is accomplished by separating the argument into an integer \\( k \\) and fraction \\( f \\) such that
+* -   Range reduction is accomplished by separating the argument into an integer \\( k \\) and fraction \\( f \\) such that
 *
-* ``` tex
-* 2^x = 2^k 2^f
-* ```
+*     ```tex
+*     2^x = 2^k 2^f
+*     ```
 *
-* * A Pade' approximate
+* -   A Pade' approximate
 *
-*    ``` tex
-*    1 + 2x \frac{\mathrm{P}\left(x^2\right)}{\mathrm{Q}\left(x^2\right) - x \mathrm{P}\left(x^2\right)}
-*    ```
+*     ```tex
+*     1 + 2x \frac{\mathrm{P}\left(x^2\right)}{\mathrm{Q}\left(x^2\right) - x \mathrm{P}\left(x^2\right)}
+*     ```
 *
-*    approximates \\( 2^x \\) in the basic range \\( [-0.5, 0.5] \\).
+*     approximates \\( 2^x \\) in the basic range \\( [-0.5, 0.5] \\).
 *
 *
-* #### Notes
+* ## Notes
 *
-* * Relative error:
+* -   Relative error:
 *
-*   | arithmetic | domain      | # trials | peak    | rms     |
-*   |:----------:|:-----------:|:--------:|:-------:|:-------:|
-*   | IEEE       | -1022,+1024 | 30000    | 1.8e-16 | 5.4e-17 |
+*     | arithmetic | domain      | # trials | peak    | rms     |
+*     |:----------:|:-----------:|:--------:|:-------:|:-------:|
+*     | IEEE       | -1022,+1024 | 30000    | 1.8e-16 | 5.4e-17 |
 *
 *
 * @param {number} x - input value
@@ -605,7 +1730,7 @@ function exp2( x ) {
 	}
 	// Separate into integer and fractional parts...
 	n = round( x );
-	x = x - n;
+	x -= n;
 
 	xx = x * x;
 	px = x * polyvalP( xx );
@@ -613,17 +1738,15 @@ function exp2( x ) {
 	x = 1.0 + ldexp( x, 1 );
 
 	// Scale by power of 2:
-	x = ldexp( x, n );
-
-	return x;
-} // end FUNCTION exp2()
+	return ldexp( x, n );
+}
 
 
 // EXPORTS //
 
 module.exports = exp2;
 
-},{"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/ldexp":20,"@stdlib/math/base/special/round":22,"@stdlib/math/base/tools/evalpoly":26,"@stdlib/math/constants/float64-max-base2-exponent":44,"@stdlib/math/constants/float64-min-base2-exponent":46,"@stdlib/math/constants/float64-pinf":48}],13:[function(require,module,exports){
+},{"./polyval_p.js":49,"./polyval_q.js":50,"@stdlib/constants/math/float64-max-base2-exponent":30,"@stdlib/constants/math/float64-min-base2-exponent":32,"@stdlib/constants/math/float64-pinf":34,"@stdlib/math/base/assert/is-nan":41,"@stdlib/math/base/special/ldexp":57,"@stdlib/math/base/special/round":59}],48:[function(require,module,exports){
 'use strict';
 
 /**
@@ -656,17 +1779,81 @@ var exp2 = require( './exp2.js' );
 
 module.exports = exp2;
 
-},{"./exp2.js":12}],14:[function(require,module,exports){
-module.exports={"expected":[2.2250738585072014e-308,4.51859810934357e-308,9.176202756461085e-308,1.863469487440426e-307,3.78426525958868e-307,7.684946628560024e-307,1.560630680795227e-306,3.169271355493775e-306,6.436039639843063e-306,1.3070072454926882e-305,2.654222216400415e-305,5.390096801933102e-305,1.0946010230300368e-304,2.222875476352667e-304,4.5141337157640464e-304,9.16713663026906e-304,1.861628371896757e-303,3.7805263898954794e-303,7.677353869577133e-303,1.5590887712422648e-302,3.1661401023154983e-302,6.429680806118449e-302,1.3057159169404458e-301,2.651599833897293e-301,5.384771364049197e-301,1.0935195527020493e-300,2.2206792662085983e-300,4.509673733024158e-300,9.15807946144785e-300,1.8597890753828432e-299,3.776791214220965e-299,7.669768612270846e-299,1.557548385102181e-298,3.163011942828534e-298,6.423328254948302e-298,1.304425864226142e-297,2.6489800423186972e-297,5.379451187719473e-297,1.0924391508712951e-296,2.2184852259293903e-296,4.505218156765623e-296,9.149031241146812e-296,1.8579515961013291e-295,3.773059728915135e-295,7.662190849230685e-295,1.5560095208700832e-294,3.159886873976052e-294,6.41698198012442e-294,1.303137086089141e-293,2.646362839105201e-293,5.374136267746342e-293,1.091359816482008e-292,2.2162933533710323e-292,4.500766982634463e-292,9.13999196052405e-292,1.8561159322570746e-291,3.769331930332483e-291,7.65462057305168e-291,1.5544721770420747e-290,3.156764892704243e-290,6.41064197544676e-290,1.3018495812703607e-289,2.6437482216992804e-289,5.3688265989360775e-289,1.090281548479466e-288,2.214103646391633e-288,4.496320206282068e-288,9.130961610748566e-288,1.8542820820562734e-287,3.765607814829917e-287,7.647057776336176e-287,1.552936352116235e-286,3.1536459959630635e-286,6.404308234719886e-286,1.3005633485116544e-285,2.6411361875459386e-285,5.363522176100087e-285,1.0892043458102461e-284,2.21191610285194e-284,4.4918778233630603e-284,9.121940182995927e-284,1.8524500437068922e-283,3.761887378769133e-283,7.639502451695641e-283,1.55140204459176e-282,3.1505301807047353e-282,6.397980751754482e-282,1.2992783865561194e-281,2.6385267340933275e-281,5.358222994056171e-281,1.0881282074217087e-280,2.209730720614292e-280,4.487439829536355e-280,9.11292766845042e-280,1.850619815419107e-279,3.758170618514531e-279,7.631954591747029e-279,1.5498692529693287e-278,3.147417443884492e-278,6.391659520368865e-278,1.2979946941484014e-277,2.6359198587914963e-277,5.352929047625983e-277,1.0870531322622545e-276,2.207547497543139e-276,4.48300622046622e-276,9.103924058307191e-276,1.8487913954044226e-275,3.754457530434102e-275,7.624414189114594e-275,1.5483379757514682e-274,3.1443077824613213e-274,6.385344534385943e-274,1.29671227003408e-273,2.6333155590930136e-273,5.347640331636293e-273,1.08597911928158e-272,2.2053664315055638e-272,4.4785769918201414e-272,9.094929343767225e-272,1.8469647818761128e-271,3.750748110900316e-271,7.616881236431677e-271,1.5468082114418178e-270,3.1412011933964694e-270,6.37903578763473e-270,1.2954311129599733e-269,2.6307138324535877e-269,5.3423568409202475e-269,1.0849061674301627e-268,2.203187520370061e-268,4.474152139269891e-268,9.08594351604306e-268,1.8451399730496525e-267,3.747042356288337e-267,7.609355726337098e-267,1.5452799585454968e-266,3.138097673654186e-266,6.372733273951844e-266,1.2941512216744452e-265,2.6281146763308185e-265,5.337078570314413e-265,1.083834275659517e-264,2.2010107620079257e-264,4.469731658492574e-264,9.076966566353768e-264,1.8433169671418433e-263,3.743340262976912e-263,7.601837651476949e-263,1.5437532155694658e-262,3.134997220202463e-262,6.366436987178486e-262,1.292872594926687e-261,2.625518088184818e-261,5.33180551466214e-261,1.0827634429224493e-260,2.198836154292035e-260,4.4653155451685064e-260,9.0679984859271e-260,1.8414957623712488e-259,3.739641827349252e-259,7.594327004506387e-259,1.5422279810217956e-258,3.131899830011298e-258,6.360146921161942e-258,1.2915952314675341e-257,2.6229240654788274e-257,5.3265376688106114e-257,1.0816936681725451e-256,2.1966636950973685e-256,4.4609037949822754e-256,9.059039266001619e-256,1.8396763569586287e-255,3.735947045791254e-255,7.586823778085428e-255,1.5407042534120312e-254,3.1288055000546713e-254,6.3538630697570814e-254,1.2903191300487501e-253,2.6203326056779758e-253,5.321275027612104e-253,1.0806249503644233e-252,2.1944933823015247e-252,4.456496403623786e-252,9.050088897822394e-252,1.8378587491259195e-251,3.732255914692389e-251,7.579327964883735e-251,1.539182031251555e-250,3.125714227308811e-250,6.34758542682334e-250,1.2890442894233326e-249,2.6177437062498953e-249,5.316017585925237e-249,1.0795572884539914e-248,2.1923252137836794e-248,4.4520933667857975e-248,9.041147372643157e-248,1.8360429370973948e-247,3.728568430446576e-247,7.571839557576417e-247,1.537661313052855e-246,3.1226260087529346e-246,6.341313986226224e-246,1.2877707083458154e-245,2.6151573646653394e-245,5.310765338612454e-245,1.078490681397848e-244,2.190159187425105e-244,4.447694680166725e-244,9.032214681728406e-244,1.8342289190986476e-243,3.7248845894504155e-243,7.564358548845827e-243,1.5361420973298898e-242,3.1195408413699814e-242,6.335048741838799e-242,1.2864983855716586e-241,2.612573578396943e-241,5.305518280541272e-241,1.0774251281539629e-240,2.1879953011096837e-240,4.443300339468185e-240,9.023290816349143e-240,1.8324166933570247e-239,3.721204388104068e-239,7.556884931383332e-239,1.5346243825984495e-238,3.116458722145135e-238,6.328789687538683e-238,1.285227319857552e-237,2.609992344919836e-237,5.300276406585535e-237,1.0763606276810798e-236,2.185833552722872e-236,4.438910340396039e-236,9.01437576778499e-236,1.8306062581020575e-235,3.7175278228121314e-235,7.549418697885731e-235,1.533108167375427e-234,3.113379648066556e-234,6.322536817209548e-234,1.2839575099617177e-233,2.6074136617122625e-233,5.2950397116229e-233,1.0752971789389721e-232,2.1836739401522153e-232,4.434524678661443e-232,9.00546952732632e-232,1.8287976115645937e-231,3.7138548899818755e-231,7.541959841057042e-231,1.5315934501791812e-230,3.1103036161261187e-230,6.3162901247426e-230,1.2826889546433004e-229,2.6048375262541347e-229,5.28980819053608e-229,1.074234780888695e-228,2.1815164612878628e-228,4.4301433499787393e-228,8.996572086269977e-228,1.8269907519772285e-227,3.7101855860241203e-227,7.534508353610275e-227,1.530080229529897e-226,3.107230623317932e-226,6.3100496040330895e-226,1.281421652662672e-225,2.6022639360286755e-225,5.2845818382141015e-225,1.0731734324920758e-224,2.1793611140215317e-224,4.425766350066506e-224,8.987683435921407e-224,1.8251856775747363e-223,3.706519907354111e-223,7.527064228263856e-223,1.5285685039487385e-222,3.1041606666390775e-222,6.303815248984291e-222,1.280155602781731e-221,2.5996928885209795e-221,5.279360649549784e-221,1.0721131327119679e-220,2.1772078962470226e-220,4.4213936746485974e-220,8.97880356759677e-220,1.8233823865932025e-219,3.702857850389462e-219,7.519627457743407e-219,1.527058271958813e-218,3.101093743090335e-218,6.297587053504009e-218,1.2788908037632971e-217,2.597124381218627e-217,5.274144619440998e-217,1.0710538805125028e-216,2.1750568058607323e-216,4.417025319452047e-216,8.969932472617978e-216,1.821580877270457e-215,3.699199411552499e-215,7.512198034783515e-215,1.5255495320843261e-214,3.0980298496747152e-214,6.2913650115060674e-214,1.2776272543714124e-213,2.594558411612293e-213,5.2689337427919e-213,1.069995674858582e-212,2.1729078407604495e-212,4.4126612802081097e-212,8.961070142318339e-212,1.8197811478465001e-211,3.6955445872682046e-211,7.504775952124165e-211,1.524042282850941e-210,3.09496898339819e-210,6.285149116911792e-210,1.2763649533716418e-209,2.5919949771945194e-209,5.263728014510021e-209,1.06893851471613e-208,2.170760998846725e-208,4.4083015526533026e-208,8.952216568037608e-208,1.817983196562641e-207,3.691893373965095e-207,7.497361202512522e-207,1.5225365227861388e-206,3.091911141270421e-206,6.278939363647028e-206,1.2751038995303679e-205,2.5894340754603252e-205,5.258527429509581e-205,1.0678823990523456e-204,2.1686162780216708e-204,4.403946132527311e-204,8.9433717411241e-204,1.8161870216619273e-203,3.6882457680760865e-203,7.489953778704685e-203,1.5210322504184947e-202,3.08885632030305e-202,6.272735745643621e-202,1.2738440916155934e-201,2.5868757039078164e-201,5.253331982708584e-201,1.0668273268351955e-200,2.1664736761894718e-200,4.3995950155740314e-200,8.934535652936786e-200,1.8143926213895709e-199,3.684601766036749e-199,7.482553673461549e-199,1.5195294642780377e-198,3.085804517511645e-198,6.266538256840897e-198,1.2725855283962378e-197,2.5843198600369594e-197,5.248141669030053e-197,1.0657732970336658e-196,2.164333191256896e-196,4.395248197542604e-196,8.925708294841067e-196,1.8125999939920883e-195,3.680961364286175e-195,7.475160879553521e-195,1.5180281628966088e-194,3.0827557299139914e-194,6.260346891182684e-194,1.2713282086424365e-193,2.581766541350191e-193,5.24295648340327e-193,1.0647203086180138e-192,2.1621948211322664e-192,4.39090567418533e-192,8.916889658210871e-192,1.8108091377177297e-191,3.6773245592678435e-191,7.467775389756383e-191,1.5165283448071403e-190,3.079709954530824e-190,6.254161642618801e-190,1.2700721311258409e-189,2.579215745353025e-189,5.237776420761282e-189,1.063668360559262e-188,2.1600585637259743e-188,4.386567441258708e-188,8.90807973443076e-188,1.8090200508169033e-187,3.6736913474278783e-187,7.460397196853054e-187,1.5150300085440142e-186,3.076667188386546e-186,6.247982505106516e-186,1.268817294619015e-185,2.576667469552831e-185,5.232601476042151e-185,1.0626174518294495e-184,2.1579244169509858e-184,4.382233494524466e-184,8.899278514891702e-184,1.8072327315411757e-183,3.6700617252159148e-183,7.453026293635349e-183,1.5135331526434187e-182,3.0736274285077757e-182,6.241809472607592e-182,1.2675636978957366e-181,2.5741217114594407e-181,5.227431644190169e-181,1.0615675814018828e-180,2.155792378721818e-180,4.377903829747137e-180,8.890485990993168e-180,1.8054471781444106e-179,3.666435689085965e-179,7.445662672900442e-179,1.51203777564263e-178,3.0705906719240683e-178,6.235642539089761e-178,1.2663113397312937e-177,2.5715784685857552e-177,5.222266920153392e-177,1.0605187482505472e-176,2.1536624469550493e-176,4.373578442696821e-176,8.88170215414523e-176,1.80366338888177e-175,3.662813235494675e-175,7.438306327452622e-175,1.5105438760803703e-174,3.0675569156686393e-174,6.229481698528186e-174,1.2650602189018856e-173,2.569037738446322e-173,5.217107298884866e-173,1.0594709513507773e-172,2.1515346195698255e-172,4.3692573291467603e-172,8.872926995764348e-172,1.8018813620101403e-171,3.6591943609021935e-171,7.430957250105049e-171,1.5090514524971619e-170,3.06452615677691e-170,6.22332694490202e-170,1.2638103341849203e-169,2.566499518558954e-169,5.2119527753438567e-169,1.0584241896786682e-168,2.1494088944868395e-168,4.364940484874376e-168,8.864160507275458e-168,1.8001010957885555e-167,3.6555790617730326e-167,7.423615433676223e-167,1.507560503434494e-166,3.0614983922872317e-166,6.217178272198326e-166,1.2625616843593132e-165,2.563963806443309e-165,5.206803344493377e-165,1.0573784622113276e-164,2.1472852696288386e-164,4.36062790566229e-164,8.855402680114074e-164,1.7983225884773446e-163,3.6519673345740426e-163,7.416280870991742e-163,1.5060710274357714e-162,3.058473619241606e-162,6.211035674408638e-162,1.2613142682048863e-161,2.561430599621497e-161,5.201659001301418e-161,1.0563337679271234e-160,2.14516374292113e-160,4.356319587296263e-160,8.846653505721367e-160,1.7965458383385551e-159,3.6483591757767173e-159,7.408953554886046e-159,1.5045830230454824e-158,3.055451834684231e-158,6.2048991455304254e-158,1.2600680845026686e-157,2.5588998956186804e-157,5.196519740742173e-157,1.0552901058051833e-156,2.1430443122903953e-156,4.352015525566218e-156,8.837912975549764e-156,1.7947708436363763e-155,3.6447545818551743e-155,7.4016334781989006e-155,1.5030964888096122e-154,3.0524330356622286e-154,6.198768679568558e-154,1.2588231320351908e-153,2.5563716919617616e-153,5.191385557793363e-153,1.0542474748256851e-152,2.1409269756660384e-152,4.347715716267267e-152,8.829181081058042e-152,1.7929976026362177e-151,3.641153549287158e-151,7.394320633777147e-151,1.5016114232757018e-150,3.049417219226358e-150,6.192644270532115e-150,1.2575794095858388e-149,2.55384598618059e-149,5.186256447438496e-149,1.0532058739698972e-148,2.1388117309790047e-148,4.3434201551974765e-148,8.820457813713762e-148,1.791226113605485e-147,3.637556074554179e-147,7.387015014476443e-147,1.5001278249926676e-146,3.0464043824294523e-146,6.186525912437319e-146,1.2563369159393994e-145,2.5513227758070525e-145,5.181132404666029e-145,1.0521653022200535e-144,2.136698576162366e-144,4.33912883815975e-144,8.811743164993619e-144,1.7894563748132957e-143,3.633962154141082e-143,7.379716613157466e-143,1.4986456925109184e-142,3.043394522327735e-142,6.180413599305325e-142,1.2550956498818596e-141,2.5488020583757768e-141,5.1760134244687635e-141,1.0511257585594342e-140,2.1345875091514074e-140,4.334841760961137e-140,8.803037126382373e-140,1.787688384530266e-139,3.6303717845363275e-139,7.372425422689112e-139,1.4971650243821186e-138,3.040387635980339e-138,6.17430732516393e-138,1.2538556102002577e-137,2.546283831423826e-137,5.1708995018450575e-137,1.0500872419722001e-136,2.132478527883367e-136,4.3305589194123174e-136,8.794339689373551e-136,1.785922141028932e-135,3.626784962231417e-135,7.365141435947318e-135,1.4956858191595405e-134,3.0373837204489427e-134,6.16820708404683e-134,1.2526167956829785e-133,2.5437680924903955e-133,5.165790631798008e-133,1.04904975144364e-132,2.130371630297607e-132,4.3262803093286226e-132,8.78565084546804e-132,1.7841576425835367e-131,3.623201683721745e-131,7.357864645814196e-131,1.4942080753978856e-130,3.0343827727984886e-130,6.1621128699928835e-130,1.2513792051195548e-129,2.5412548391174133e-129,5.160686809335852e-129,1.0480132859600036e-128,2.1282668143352725e-128,4.322005926529517e-128,8.776970586176164e-128,1.7823948874698168e-127,3.619621945506171e-127,7.350595045179756e-127,1.4927317916531064e-126,3.0313847900966974e-126,6.156024677047572e-126,1.2501428373007645e-125,2.538744068849135e-125,5.155588029471147e-125,1.0469778445085836e-124,2.126164077939795e-124,4.317735766838087e-124,8.768298903016637e-124,1.7806338739654237e-123,3.616045744086584e-123,7.343332626940741e-123,1.4912569664827596e-122,3.0283897694143066e-122,6.149942499262017e-122,1.2489076910184317e-121,2.536235779232344e-121,5.15049428722199e-121,1.0459434260775493e-120,2.1240634190566372e-120,4.3134698260820534e-120,8.75963578751551e-120,1.7788746003497103e-119,3.612473075968758e-119,7.336077384001207e-119,1.4897835984457675e-118,3.0253977078245907e-118,6.143866330693454e-118,1.2476737650657234e-117,2.5337299678159447e-117,5.1454055776113996e-117,1.0449100296561937e-116,2.1219648356330413e-116,4.309208100093262e-116,8.75098123120825e-116,1.7771170649035193e-115,3.608903937661776e-115,7.328829309271348e-115,1.4883116861025347e-114,3.022408602404073e-114,6.137796165404271e-114,1.2464410582369976e-113,2.531226632151566e-113,5.140321895666701e-113,1.0438776542348082e-112,2.1198683256185284e-112,4.304950584707164e-112,8.742335225638338e-112,1.775361265909602e-111,3.6053383256783124e-111,7.321588395669234e-111,1.4868412280147127e-110,3.0194224502321656e-110,6.131731997463444e-110,1.2452095693276565e-109,2.5287257697932543e-109,5.135243236420744e-109,1.0428462988045583e-108,2.1177738869645617e-108,4.300697275763838e-108,8.733697762357951e-108,1.773607201652337e-107,3.601776236534061e-107,7.314354636119928e-107,1.4853722227455497e-106,3.0164392483908075e-106,6.125673820945809e-106,1.2439792971344398e-105,2.526227378297173e-105,5.130169594911079e-105,1.0418159623577297e-104,2.115681517624712e-104,4.2964481691073004e-104,8.725068832926589e-104,1.7718548704178663e-103,3.5982176667485844e-103,7.307128023554623e-103,1.4839046688597134e-102,3.01345899396518e-102,6.119621629931333e-102,1.2427502404552273e-101,2.5237314552222008e-101,5.125100966180366e-101,1.0407866438875626e-100,2.113591215554321e-100,4.2922032605858437e-100,8.716448428913113e-100,1.7701042704938171e-99,3.5946626128448826e-99,7.299908550912354e-99,1.4824385649231143e-98,3.010481684043343e-98,6.113575418506556e-98,1.2415223980891346e-97,2.5212379981295266e-97,5.120037345275554e-97,1.0397583423883327e-96,2.111502978711002e-96,4.287962546051355e-96,8.707836541894721e-96,1.7683554001697172e-95,3.591111071348967e-95,7.292696211139136e-95,1.4809739095032545e-94,3.0075073157158763e-94,6.107535180763617e-94,1.240295768836318e-93,2.518747004582849e-93,5.114978727249093e-93,1.0387310568551865e-92,2.1094168050543853e-92,4.2837260213603264e-92,8.6992331634559e-92,1.7666082577367843e-91,3.5875630387907057e-91,7.28549099718709e-91,1.479510701168994e-90,3.004535886076592e-90,6.101500910800736e-90,1.239070351498265e-89,2.5162584721479765e-89,5.109925107158319e-89,1.0377047862843867e-88,2.1073326925458675e-88,4.279493682373345e-88,8.69063828519048e-88,1.7648628414877154e-87,3.5840185117032544e-87,7.278292902016163e-87,1.4780489384906644e-86,3.0015673922220538e-86,6.0954726027212396e-86,1.237846144877648e-85,2.513772398393419e-85,5.104876480064849e-85,1.0366795296731867e-84,2.105250639149108e-84,4.27526552495458e-84,8.682051898700254e-84,1.763119149717104e-83,3.580477486623334e-83,7.27110191859297e-83,1.476588620039835e-82,2.998601831251813e-82,6.089450250635004e-82,1.2366231477781754e-81,2.5112887808900895e-81,5.099832841035782e-81,1.035655286019709e-80,2.1031706428296976e-80,4.271041544972794e-80,8.673473995595658e-80,1.7613771807211573e-79,3.576939960090664e-79,7.263918039891362e-79,1.4751297443896617e-78,2.99563920026793e-78,6.083433848657722e-78,1.235401359004884e-77,2.5088076172110037e-77,5.09479418514299e-77,1.0346320543231875e-76,2.101092701555317e-76,4.2668217383007445e-76,8.664904567494387e-76,1.7596369327978025e-75,3.573405928648878e-75,7.256741258891271e-75,1.4736723101146802e-74,2.9926794963756854e-74,6.077423390910182e-74,1.234180777363967e-73,2.5063289049318722e-73,5.0897605074630126e-73,1.0336098335838253e-72,2.099016813295408e-72,4.262606100815018e-72,8.656343606023614e-72,1.7578984042465772e-71,3.56987538884467e-71,7.249571568580568e-71,1.4722163157907768e-70,2.989722716683159e-70,6.0714188715197e-70,1.2329614016627486e-69,2.503852641630751e-69,5.084731803077257e-69,1.0325886228027517e-68,2.0969429760217077e-68,4.258394628396608e-68,8.647791102817934e-68,1.756161593368735e-67,3.566348337228429e-67,7.242408961953336e-67,1.4707617599952452e-66,2.9867688583011713e-66,6.065420284619276e-66,1.2317432307097305e-65,2.5013788248879404e-65,5.079708067072286e-65,1.0315684209821646e-64,2.0948711877077507e-64,4.254187316930327e-64,8.639247049520885e-64,1.7544264984671734e-63,3.5628247703536696e-63,7.235253432011153e-63,1.469308641306871e-62,2.9838179183433964e-62,6.059427624347345e-62,1.2305262633146654e-61,2.4989074522863305e-61,5.07468929453912e-61,1.0305492271251862e-60,2.092801446329239e-60,4.2499841623050537e-60,8.630711437783584e-60,1.7526931178465691e-59,3.559304684777593e-59,7.228104971761941e-59,1.4678569583057577e-58,2.980869893926536e-58,6.0534408848486116e-58,1.2293104982883847e-57,2.4964385214110495e-57,5.0696754805740284e-57,1.0295310402359243e-56,2.0907337498637095e-56,4.245785160413979e-56,8.622184259266073e-56,1.7509614498131367e-55,3.5557880770605935e-55,7.220963574221097e-55,1.4664067095734112e-54,2.977924782169906e-54,6.047460060273209e-54,1.2280959344429913e-53,2.493972029849613e-53,5.064666620277725e-53,1.028513859319531e-52,2.088668096290862e-52,4.2415903071540185e-52,8.613665505636127e-52,1.7492314926749023e-51,3.55227494376646e-51,7.213829232410352e-51,1.4649578936928261e-50,2.9749825801959053e-50,6.04148514477705e-50,1.2268825705916892e-49,2.4915079751920668e-49,5.059662708756165e-49,1.0274976833820605e-48,2.086604483592269e-48,4.237399598426473e-48,8.605155168569752e-48,1.747503244741425e-47,3.548765281462589e-47,7.2067019393589e-47,1.4635105092482812e-46,2.972043285129596e-46,6.0355161325221766e-46,1.2256704055488556e-45,2.4890463550306422e-45,5.054663741119838e-45,1.0264825114306301e-44,2.0845429097514973e-44,4.233213030136361e-44,8.59665323975169e-44,1.7457767043240724e-43,3.5452590867194877e-43,7.199581688102396e-43,1.4620645548255693e-42,2.9691068940988836e-42,6.029553017675925e-42,1.2244594381301105e-41,2.4865871669601444e-41,5.049669712484066e-41,1.0254683424732569e-40,2.082483372754229e-40,4.22903059819308e-40,8.588159710874216e-40,1.7440518697357774e-39,3.541756356111332e-39,7.192468471683374e-39,1.4606200290117797e-38,2.9661734042346566e-38,6.023595794411869e-38,1.2232496671521488e-37,2.484130408577584e-37,5.0446806179692944e-37,1.024455175519019e-36,2.0804258705879927e-36,4.2248522985097776e-36,8.579674573638492e-36,1.7423287392911392e-35,3.5382570862154367e-35,7.185362283151601e-35,1.4591769303954554e-34,2.9632428126705508e-34,6.017644456908923e-34,1.2220410914329296e-33,2.4816760774824446e-33,5.039696452700443e-33,1.0234430095779029e-32,2.0783704012423874e-32,4.220678127003805e-32,8.57119781975329e-32,1.7406073113065083e-31,3.53476127361264e-31,7.178263115563494e-31,1.4577352575665194e-30,2.9603151165429744e-30,6.011698999351989e-30,1.2208337097914965e-29,2.4792241712765554e-29,5.034717211807446e-29,1.0224318436609135e-28,2.076316962708978e-28,4.216508079596547e-28,8.562729440935907e-28,1.7388875840998476e-27,3.531268914887121e-27,7.171170961982189e-27,1.456295009116288e-26,2.9573903129912546e-26,6.005759415931657e-26,1.2196275210481077e-25,2.4767746875641405e-25,5.029742890424999e-25,1.0214216767800331e-24,2.0742655529813138e-24,4.212342152213296e-24,8.554269428911745e-24,1.7371695559907466e-23,3.5277800066264354e-23,7.16408581547789e-23,1.454856183637469e-22,2.9544683991575136e-22,5.999825700844315e-22,1.2184225240241753e-21,2.474327623951718e-21,5.0247734836926065e-21,1.0204125079481898e-20,2.0722161700549265e-20,4.208180340783491e-20,8.545817775414415e-20,1.7354532253005076e-19,3.524294545421526e-19,7.157007669127577e-19,1.4534187797241678e-18,2.9515493721866986e-18,5.993897848291878e-18,1.217218717542281e-17,2.4718829780482424e-17,5.019808986754597e-17,1.0194043361793169e-16,2.0701688119273378e-16,4.2040226412405533e-16,8.537374472185578e-16,1.7337385903520735e-15,3.520812527866654e-15,7.149936516015068e-15,1.4519827959718648e-14,2.9486332292265916e-14,5.987975852482285e-14,1.2160161004261528e-13,2.4694407474650083e-13,5.014849394760025e-13,1.018397160488312e-12,2.068123476598018e-12,4.199869049521922e-12,8.528939510975175e-12,1.7320256494700526e-11,3.5173339505595126e-11,7.14287234923105e-11,1.450548230977428e-10,2.945719967427749e-10,5.98205970762896e-10,1.2148146715006983e-9,2.467000929815675e-9,5.009894702862824e-9,1.017390979891049e-8,2.066080162068449e-8,4.19571956156906e-8,8.520512883541298e-8,1.7303144009806838e-7,3.5138588101010893e-7,7.135815161872931e-7,1.4491150833391257e-6,2.942809583943593e-6,5.97614940795118e-6,1.2136144295919831e-5,2.4645635227162418e-5,5.004944906221658e-5,0.0001016385793404367,0.00020640388663420678,0.000419157417332742,0.0008512094581650058,0.0017286048432118863,0.003510387103095784,0.00712876494704506,0.01447683351656608,0.029399020759303247,0.05970244947673866,0.12124153735272257,0.2462128523785086,0.5],"x":[-1022.0,-1020.977977977978,-1019.9559559559559,-1018.933933933934,-1017.911911911912,-1016.8898898898899,-1015.8678678678679,-1014.8458458458458,-1013.8238238238238,-1012.8018018018018,-1011.7797797797798,-1010.7577577577578,-1009.7357357357357,-1008.7137137137137,-1007.6916916916917,-1006.6696696696697,-1005.6476476476477,-1004.6256256256256,-1003.6036036036036,-1002.5815815815815,-1001.5595595595596,-1000.5375375375376,-999.5155155155155,-998.4934934934935,-997.4714714714714,-996.4494494494495,-995.4274274274275,-994.4054054054054,-993.3833833833834,-992.3613613613613,-991.3393393393393,-990.3173173173174,-989.2952952952953,-988.2732732732733,-987.2512512512512,-986.2292292292292,-985.2072072072073,-984.1851851851852,-983.1631631631632,-982.1411411411411,-981.1191191191191,-980.097097097097,-979.0750750750751,-978.0530530530531,-977.031031031031,-976.009009009009,-974.986986986987,-973.964964964965,-972.942942942943,-971.9209209209209,-970.8988988988989,-969.8768768768768,-968.8548548548548,-967.8328328328329,-966.8108108108108,-965.7887887887888,-964.7667667667668,-963.7447447447447,-962.7227227227228,-961.7007007007007,-960.6786786786787,-959.6566566566567,-958.6346346346346,-957.6126126126126,-956.5905905905906,-955.5685685685686,-954.5465465465466,-953.5245245245245,-952.5025025025025,-951.4804804804805,-950.4584584584585,-949.4364364364365,-948.4144144144144,-947.3923923923924,-946.3703703703703,-945.3483483483484,-944.3263263263264,-943.3043043043043,-942.2822822822823,-941.2602602602602,-940.2382382382382,-939.2162162162163,-938.1941941941942,-937.1721721721722,-936.1501501501501,-935.1281281281281,-934.1061061061062,-933.0840840840841,-932.0620620620621,-931.04004004004,-930.018018018018,-928.9959959959959,-927.973973973974,-926.951951951952,-925.9299299299299,-924.9079079079079,-923.8858858858858,-922.8638638638639,-921.8418418418419,-920.8198198198198,-919.7977977977978,-918.7757757757757,-917.7537537537537,-916.7317317317318,-915.7097097097097,-914.6876876876877,-913.6656656656656,-912.6436436436436,-911.6216216216217,-910.5995995995996,-909.5775775775776,-908.5555555555555,-907.5335335335335,-906.5115115115115,-905.4894894894895,-904.4674674674675,-903.4454454454454,-902.4234234234234,-901.4014014014014,-900.3793793793794,-899.3573573573574,-898.3353353353353,-897.3133133133133,-896.2912912912913,-895.2692692692692,-894.2472472472473,-893.2252252252252,-892.2032032032032,-891.1811811811812,-890.1591591591591,-889.1371371371372,-888.1151151151151,-887.0930930930931,-886.0710710710711,-885.049049049049,-884.027027027027,-883.005005005005,-881.982982982983,-880.960960960961,-879.9389389389389,-878.9169169169169,-877.894894894895,-876.8728728728729,-875.8508508508509,-874.8288288288288,-873.8068068068068,-872.7847847847847,-871.7627627627628,-870.7407407407408,-869.7187187187187,-868.6966966966967,-867.6746746746746,-866.6526526526527,-865.6306306306307,-864.6086086086086,-863.5865865865866,-862.5645645645645,-861.5425425425425,-860.5205205205206,-859.4984984984985,-858.4764764764765,-857.4544544544544,-856.4324324324324,-855.4104104104105,-854.3883883883884,-853.3663663663664,-852.3443443443443,-851.3223223223223,-850.3003003003003,-849.2782782782783,-848.2562562562563,-847.2342342342342,-846.2122122122122,-845.1901901901902,-844.1681681681682,-843.1461461461462,-842.1241241241241,-841.1021021021021,-840.08008008008,-839.058058058058,-838.0360360360361,-837.014014014014,-835.991991991992,-834.96996996997,-833.9479479479479,-832.925925925926,-831.9039039039039,-830.8818818818819,-829.8598598598599,-828.8378378378378,-827.8158158158158,-826.7937937937938,-825.7717717717718,-824.7497497497498,-823.7277277277277,-822.7057057057057,-821.6836836836837,-820.6616616616617,-819.6396396396397,-818.6176176176176,-817.5955955955956,-816.5735735735735,-815.5515515515516,-814.5295295295296,-813.5075075075075,-812.4854854854855,-811.4634634634634,-810.4414414414415,-809.4194194194195,-808.3973973973974,-807.3753753753754,-806.3533533533533,-805.3313313313313,-804.3093093093094,-803.2872872872873,-802.2652652652653,-801.2432432432432,-800.2212212212212,-799.1991991991991,-798.1771771771772,-797.1551551551552,-796.1331331331331,-795.1111111111111,-794.089089089089,-793.0670670670671,-792.0450450450451,-791.023023023023,-790.001001001001,-788.978978978979,-787.9569569569569,-786.934934934935,-785.9129129129129,-784.8908908908909,-783.8688688688688,-782.8468468468468,-781.8248248248249,-780.8028028028028,-779.7807807807808,-778.7587587587587,-777.7367367367367,-776.7147147147147,-775.6926926926927,-774.6706706706707,-773.6486486486486,-772.6266266266266,-771.6046046046046,-770.5825825825826,-769.5605605605606,-768.5385385385385,-767.5165165165165,-766.4944944944945,-765.4724724724724,-764.4504504504505,-763.4284284284284,-762.4064064064064,-761.3843843843844,-760.3623623623623,-759.3403403403404,-758.3183183183183,-757.2962962962963,-756.2742742742743,-755.2522522522522,-754.2302302302302,-753.2082082082082,-752.1861861861862,-751.1641641641642,-750.1421421421421,-749.1201201201201,-748.0980980980981,-747.0760760760761,-746.0540540540541,-745.032032032032,-744.01001001001,-742.9879879879879,-741.965965965966,-740.943943943944,-739.9219219219219,-738.8998998998999,-737.8778778778778,-736.8558558558559,-735.8338338338339,-734.8118118118118,-733.7897897897898,-732.7677677677677,-731.7457457457457,-730.7237237237238,-729.7017017017017,-728.6796796796797,-727.6576576576576,-726.6356356356356,-725.6136136136137,-724.5915915915916,-723.5695695695696,-722.5475475475475,-721.5255255255255,-720.5035035035035,-719.4814814814815,-718.4594594594595,-717.4374374374374,-716.4154154154154,-715.3933933933934,-714.3713713713714,-713.3493493493494,-712.3273273273273,-711.3053053053053,-710.2832832832833,-709.2612612612612,-708.2392392392393,-707.2172172172172,-706.1951951951952,-705.1731731731732,-704.1511511511511,-703.1291291291292,-702.1071071071071,-701.0850850850851,-700.063063063063,-699.041041041041,-698.019019019019,-696.996996996997,-695.974974974975,-694.952952952953,-693.9309309309309,-692.9089089089089,-691.8868868868869,-690.8648648648649,-689.8428428428429,-688.8208208208208,-687.7987987987988,-686.7767767767767,-685.7547547547548,-684.7327327327328,-683.7107107107107,-682.6886886886887,-681.6666666666666,-680.6446446446447,-679.6226226226227,-678.6006006006006,-677.5785785785786,-676.5565565565565,-675.5345345345345,-674.5125125125126,-673.4904904904905,-672.4684684684685,-671.4464464464464,-670.4244244244244,-669.4024024024025,-668.3803803803804,-667.3583583583584,-666.3363363363363,-665.3143143143143,-664.2922922922922,-663.2702702702703,-662.2482482482483,-661.2262262262262,-660.2042042042042,-659.1821821821821,-658.1601601601602,-657.1381381381382,-656.1161161161161,-655.0940940940941,-654.072072072072,-653.05005005005,-652.0280280280281,-651.006006006006,-649.983983983984,-648.961961961962,-647.9399399399399,-646.9179179179179,-645.8958958958959,-644.8738738738739,-643.8518518518518,-642.8298298298298,-641.8078078078078,-640.7857857857858,-639.7637637637638,-638.7417417417417,-637.7197197197197,-636.6976976976977,-635.6756756756756,-634.6536536536537,-633.6316316316316,-632.6096096096096,-631.5875875875876,-630.5655655655655,-629.5435435435436,-628.5215215215215,-627.4994994994995,-626.4774774774775,-625.4554554554554,-624.4334334334334,-623.4114114114114,-622.3893893893894,-621.3673673673674,-620.3453453453453,-619.3233233233233,-618.3013013013014,-617.2792792792793,-616.2572572572573,-615.2352352352352,-614.2132132132132,-613.1911911911911,-612.1691691691692,-611.1471471471472,-610.1251251251251,-609.1031031031031,-608.081081081081,-607.0590590590591,-606.0370370370371,-605.015015015015,-603.992992992993,-602.9709709709709,-601.9489489489489,-600.926926926927,-599.9049049049049,-598.8828828828829,-597.8608608608608,-596.8388388388388,-595.8168168168169,-594.7947947947948,-593.7727727727728,-592.7507507507507,-591.7287287287287,-590.7067067067067,-589.6846846846847,-588.6626626626627,-587.6406406406406,-586.6186186186186,-585.5965965965966,-584.5745745745746,-583.5525525525526,-582.5305305305305,-581.5085085085085,-580.4864864864865,-579.4644644644644,-578.4424424424425,-577.4204204204204,-576.3983983983984,-575.3763763763764,-574.3543543543543,-573.3323323323324,-572.3103103103103,-571.2882882882883,-570.2662662662663,-569.2442442442442,-568.2222222222222,-567.2002002002002,-566.1781781781782,-565.1561561561562,-564.1341341341341,-563.1121121121121,-562.0900900900901,-561.0680680680681,-560.0460460460461,-559.024024024024,-558.002002002002,-556.9799799799799,-555.957957957958,-554.935935935936,-553.9139139139139,-552.8918918918919,-551.8698698698698,-550.8478478478479,-549.8258258258259,-548.8038038038038,-547.7817817817818,-546.7597597597597,-545.7377377377377,-544.7157157157158,-543.6936936936937,-542.6716716716717,-541.6496496496496,-540.6276276276276,-539.6056056056057,-538.5835835835836,-537.5615615615616,-536.5395395395395,-535.5175175175175,-534.4954954954954,-533.4734734734735,-532.4514514514515,-531.4294294294294,-530.4074074074074,-529.3853853853853,-528.3633633633634,-527.3413413413414,-526.3193193193193,-525.2972972972973,-524.2752752752752,-523.2532532532532,-522.2312312312313,-521.2092092092092,-520.1871871871872,-519.1651651651651,-518.1431431431431,-517.1211211211212,-516.0990990990991,-515.0770770770771,-514.055055055055,-513.033033033033,-512.011011011011,-510.988988988989,-509.966966966967,-508.94494494494495,-507.9229229229229,-506.9009009009009,-505.8788788788789,-504.85685685685684,-503.83483483483485,-502.8128128128128,-501.79079079079077,-500.7687687687688,-499.74674674674674,-498.72472472472475,-497.7027027027027,-496.68068068068067,-495.6586586586587,-494.63663663663664,-493.6146146146146,-492.5925925925926,-491.57057057057057,-490.5485485485485,-489.52652652652654,-488.5045045045045,-487.4824824824825,-486.46046046046047,-485.4384384384384,-484.41641641641644,-483.3943943943944,-482.37237237237235,-481.35035035035037,-480.3283283283283,-479.3063063063063,-478.2842842842843,-477.26226226226225,-476.24024024024027,-475.2182182182182,-474.1961961961962,-473.1741741741742,-472.15215215215215,-471.1301301301301,-470.1081081081081,-469.0860860860861,-468.06406406406404,-467.04204204204206,-466.02002002002,-464.99799799799797,-463.975975975976,-462.95395395395394,-461.93193193193196,-460.9099099099099,-459.88788788788787,-458.8658658658659,-457.84384384384384,-456.8218218218218,-455.7997997997998,-454.77777777777777,-453.75575575575573,-452.73373373373374,-451.7117117117117,-450.6896896896897,-449.6676676676677,-448.64564564564563,-447.62362362362364,-446.6016016016016,-445.57957957957956,-444.5575575575576,-443.53553553553553,-442.5135135135135,-441.4914914914915,-440.46946946946946,-439.4474474474475,-438.42542542542543,-437.4034034034034,-436.3813813813814,-435.35935935935936,-434.3373373373373,-433.31531531531533,-432.2932932932933,-431.27127127127125,-430.24924924924926,-429.2272272272272,-428.20520520520523,-427.1831831831832,-426.16116116116115,-425.13913913913916,-424.1171171171171,-423.0950950950951,-422.0730730730731,-421.05105105105105,-420.029029029029,-419.007007007007,-417.984984984985,-416.962962962963,-415.94094094094095,-414.9189189189189,-413.8968968968969,-412.8748748748749,-411.85285285285283,-410.83083083083085,-409.8088088088088,-408.78678678678676,-407.7647647647648,-406.74274274274273,-405.72072072072075,-404.6986986986987,-403.67667667667666,-402.6546546546547,-401.63263263263264,-400.6106106106106,-399.5885885885886,-398.56656656656656,-397.5445445445445,-396.52252252252254,-395.5005005005005,-394.47847847847845,-393.45645645645646,-392.4344344344344,-391.41241241241244,-390.3903903903904,-389.36836836836835,-388.34634634634637,-387.3243243243243,-386.3023023023023,-385.2802802802803,-384.25825825825825,-383.2362362362362,-382.2142142142142,-381.1921921921922,-380.1701701701702,-379.14814814814815,-378.1261261261261,-377.1041041041041,-376.0820820820821,-375.06006006006004,-374.03803803803805,-373.016016016016,-371.99399399399397,-370.971971971972,-369.94994994994994,-368.92792792792795,-367.9059059059059,-366.88388388388387,-365.8618618618619,-364.83983983983984,-363.8178178178178,-362.7957957957958,-361.77377377377377,-360.7517517517517,-359.72972972972974,-358.7077077077077,-357.6856856856857,-356.66366366366367,-355.6416416416416,-354.61961961961964,-353.5975975975976,-352.57557557557556,-351.55355355355357,-350.5315315315315,-349.5095095095095,-348.4874874874875,-347.46546546546546,-346.44344344344347,-345.4214214214214,-344.3993993993994,-343.3773773773774,-342.35535535535536,-341.3333333333333,-340.31131131131133,-339.2892892892893,-338.26726726726724,-337.24524524524526,-336.2232232232232,-335.20120120120123,-334.1791791791792,-333.15715715715714,-332.13513513513516,-331.1131131131131,-330.0910910910911,-329.0690690690691,-328.04704704704704,-327.025025025025,-326.003003003003,-324.980980980981,-323.95895895895893,-322.93693693693695,-321.9149149149149,-320.8928928928929,-319.8708708708709,-318.84884884884883,-317.82682682682685,-316.8048048048048,-315.78278278278276,-314.7607607607608,-313.73873873873873,-312.7167167167167,-311.6946946946947,-310.67267267267266,-309.6506506506507,-308.62862862862863,-307.6066066066066,-306.5845845845846,-305.56256256256256,-304.5405405405405,-303.51851851851853,-302.4964964964965,-301.47447447447445,-300.45245245245246,-299.4304304304304,-298.40840840840843,-297.3863863863864,-296.36436436436435,-295.34234234234236,-294.3203203203203,-293.2982982982983,-292.2762762762763,-291.25425425425425,-290.2322322322322,-289.2102102102102,-288.1881881881882,-287.1661661661662,-286.14414414414415,-285.1221221221221,-284.1001001001001,-283.0780780780781,-282.05605605605604,-281.03403403403405,-280.012012012012,-278.98998998998997,-277.967967967968,-276.94594594594594,-275.92392392392395,-274.9019019019019,-273.87987987987987,-272.8578578578579,-271.83583583583584,-270.8138138138138,-269.7917917917918,-268.76976976976977,-267.7477477477477,-266.72572572572574,-265.7037037037037,-264.6816816816817,-263.65965965965967,-262.6376376376376,-261.61561561561564,-260.5935935935936,-259.57157157157155,-258.54954954954957,-257.5275275275275,-256.5055055055055,-255.4834834834835,-254.46146146146145,-253.43943943943944,-252.41741741741743,-251.39539539539538,-250.37337337337337,-249.35135135135135,-248.32932932932934,-247.3073073073073,-246.28528528528528,-245.26326326326327,-244.24124124124126,-243.2192192192192,-242.1971971971972,-241.17517517517518,-240.15315315315314,-239.13113113113113,-238.1091091091091,-237.0870870870871,-236.06506506506506,-235.04304304304304,-234.02102102102103,-232.99899899899899,-231.97697697697697,-230.95495495495496,-229.93293293293294,-228.9109109109109,-227.88888888888889,-226.86686686686687,-225.84484484484486,-224.82282282282281,-223.8008008008008,-222.7787787787788,-221.75675675675674,-220.73473473473473,-219.71271271271272,-218.6906906906907,-217.66866866866866,-216.64664664664664,-215.62462462462463,-214.60260260260262,-213.58058058058057,-212.55855855855856,-211.53653653653654,-210.5145145145145,-209.4924924924925,-208.47047047047047,-207.44844844844846,-206.42642642642642,-205.4044044044044,-204.3823823823824,-203.36036036036037,-202.33833833833833,-201.31631631631632,-200.2942942942943,-199.27227227227226,-198.25025025025025,-197.22822822822823,-196.20620620620622,-195.18418418418418,-194.16216216216216,-193.14014014014015,-192.1181181181181,-191.0960960960961,-190.07407407407408,-189.05205205205206,-188.03003003003002,-187.008008008008,-185.985985985986,-184.96396396396398,-183.94194194194193,-182.91991991991992,-181.8978978978979,-180.87587587587586,-179.85385385385385,-178.83183183183183,-177.80980980980982,-176.78778778778778,-175.76576576576576,-174.74374374374375,-173.72172172172174,-172.6996996996997,-171.67767767767768,-170.65565565565566,-169.63363363363362,-168.6116116116116,-167.5895895895896,-166.56756756756758,-165.54554554554554,-164.52352352352352,-163.5015015015015,-162.47947947947947,-161.45745745745745,-160.43543543543544,-159.41341341341342,-158.39139139139138,-157.36936936936937,-156.34734734734735,-155.32532532532534,-154.3033033033033,-153.28128128128128,-152.25925925925927,-151.23723723723722,-150.2152152152152,-149.1931931931932,-148.17117117117118,-147.14914914914914,-146.12712712712712,-145.1051051051051,-144.0830830830831,-143.06106106106105,-142.03903903903904,-141.01701701701703,-139.99499499499498,-138.97297297297297,-137.95095095095095,-136.92892892892894,-135.9069069069069,-134.88488488488488,-133.86286286286287,-132.84084084084085,-131.8188188188188,-130.7967967967968,-129.77477477477478,-128.75275275275274,-127.73073073073073,-126.70870870870871,-125.68668668668668,-124.66466466466467,-123.64264264264264,-122.62062062062063,-121.5985985985986,-120.57657657657657,-119.55455455455456,-118.53253253253253,-117.51051051051051,-116.48848848848849,-115.46646646646647,-114.44444444444444,-113.42242242242243,-112.4004004004004,-111.37837837837837,-110.35635635635636,-109.33433433433433,-108.31231231231232,-107.29029029029029,-106.26826826826827,-105.24624624624624,-104.22422422422423,-103.2022022022022,-102.18018018018019,-101.15815815815816,-100.13613613613613,-99.11411411411412,-98.09209209209209,-97.07007007007007,-96.04804804804805,-95.02602602602603,-94.004004004004,-92.98198198198199,-91.95995995995996,-90.93793793793793,-89.91591591591592,-88.89389389389389,-87.87187187187187,-86.84984984984985,-85.82782782782783,-84.8058058058058,-83.78378378378379,-82.76176176176176,-81.73973973973973,-80.71771771771772,-79.69569569569569,-78.67367367367368,-77.65165165165165,-76.62962962962963,-75.6076076076076,-74.58558558558559,-73.56356356356356,-72.54154154154155,-71.51951951951952,-70.49749749749749,-69.47547547547548,-68.45345345345345,-67.43143143143143,-66.4094094094094,-65.38738738738739,-64.36536536536536,-63.34334334334334,-62.32132132132132,-61.2992992992993,-60.27727727727728,-59.25525525525526,-58.233233233233236,-57.211211211211214,-56.189189189189186,-55.167167167167165,-54.14514514514514,-53.12312312312312,-52.1011011011011,-51.07907907907908,-50.05705705705706,-49.03503503503504,-48.013013013013015,-46.990990990990994,-45.968968968968966,-44.946946946946944,-43.92492492492492,-42.9029029029029,-41.88088088088088,-40.85885885885886,-39.83683683683684,-38.81481481481482,-37.792792792792795,-36.770770770770774,-35.748748748748746,-34.726726726726724,-33.7047047047047,-32.68268268268268,-31.66066066066066,-30.63863863863864,-29.616616616616618,-28.594594594594593,-27.57257257257257,-26.55055055055055,-25.52852852852853,-24.506506506506508,-23.484484484484483,-22.46246246246246,-21.44044044044044,-20.41841841841842,-19.396396396396398,-18.374374374374373,-17.35235235235235,-16.33033033033033,-15.308308308308309,-14.286286286286286,-13.264264264264265,-12.242242242242241,-11.22022022022022,-10.198198198198199,-9.176176176176176,-8.154154154154154,-7.132132132132132,-6.11011011011011,-5.088088088088088,-4.066066066066066,-3.044044044044044,-2.022022022022022,-1.0]}
-},{}],15:[function(require,module,exports){
-module.exports={"expected":[2.0,4.064345431677766,8.259451893999964,16.784632786770516,34.1092727946498,69.3159335303928,140.8619488933658,286.2558092409891,581.7212452899183,1182.1580429019896,2402.349320594916,4881.988743227068,9921.0443230186,20161.27558586665,40971.19416210677,83260.54291157084,169199.80361082667,343843.22442321904,698748.819198931,1.4199782856007067e6,2.885641129081427e6,5.86412117022178e6,1.1916907044497905e7,2.421721335301681e7,4.921356022964979e7,1.0001045434798804e8,2.0323851662463132e8,4.130157682921427e8,8.393193755345259e8,1.7056419348361957e9,3.4661590029647565e9,7.043833754584296e9,1.4314286770971155e10,2.9089103022661026e10,5.9114081490878075e10,1.2013002352763866e11,2.441249561659502e11,4.961040751758094e11,1.0081691657887612e12,2.0487738716659666e12,4.163462362923167e12,8.46087461735454e12,1.7193958549521633e13,3.494109344160253e13,7.10063367536019e13,1.4429714020233738e14,2.9323671129276775e14,5.959076439714859e14,1.2109872552386838e15,2.460935259324669e15,5.001045489445499e15,1.016298819432025e16,2.065294731989027e16,4.197035604513876e16,8.529101242897446e16,1.7332606836443683e17,3.522285070738332e17,7.1578916181611e17,1.4546072049358807e18,2.9560130741333535e18,6.007129116916818e18,1.2207523891919671e19,2.4807796981110555e19,5.041372816508279e19,1.0244940288079992e20,2.0819488128834588e20,4.2308795733149345e20,8.597878032890701e20,1.7472373152550871e21,3.550688000156984e21,7.215611276375509e21,1.466336836394975e22,2.9798497111513554e22,6.055569280302187e22,1.2305962670302256e23,2.5007841580719906e23,5.082025334236033e23,1.0327553225436388e24,2.098737188610577e24,4.264996452410794e24,8.667209423738881e24,1.7613266513383876e25,3.5793199645297165e25,7.2737963731747185e25,1.4781610530133403e26,3.0038785615493954e26,6.104400054473997e26,1.24051952372675e27,2.520949929582958e27,5.123005664894412e27,1.0410832335286503e28,2.1156609420942316e28,4.299388442489902e28,8.737099887621047e28,1.775529600718236e29,3.6081828107439204e29,7.332450661752606e29,1.4900806175048473e30,3.028101175293688e30,6.153624589231514e30,1.2505227993751587e31,2.5412783134246446e31,5.164316451894638e31,1.0494782989498092e32,2.1327211649908138e32,4.334057761986424e32,8.80755393277858e32,1.7898470795472155e33,3.637278400579738e33,7.391577925568265e33,1.5020962987336714e34,3.052519114849152e34,6.203246059773069e34,1.2606067392305942e35,2.561770620867046e35,5.205960359963617e35,1.0579410603256876e36,2.149918957759508e36,4.369006647223659e36,8.878576103806586e36,1.8042800113654913e37,3.6666086108304363e37,7.45118197858948e37,1.514208871763999e38,3.077133955279959e38,6.253267666901283e38,1.270771993751431e39,2.5824281737538485e39,5.247940075316227e39,1.0664720635415134e40,2.1672554297334217e40,4.404237352557951e40,8.950170981946782e40,1.818829327160523e41,3.696175333423224e41,7.511266665539245e41,1.5264191179099024e42,3.1019472843513715e42,6.303692637229401e42,1.2810192186412095e43,2.6032523045878705e43,5.290258305828186e43,1.0750718588844118e44,2.1847316991911007e44,4.439752150524408e44,9.022343185382746e44,1.833495965426977e45,3.72598047554139e45,7.571835862143631e45,1.5387278247858436e46,3.1269607026319176e46,6.354524223388993e46,1.2913490748908432e47,2.624244356616965e47,5.3329177812110774e47,1.0837410010789232e48,2.2023488934285142e48,4.475553331983401e48,9.09509736953833e48,1.8482808722273866e49,3.7560259597474035e49,7.63289347538126e49,1.551135786357449e50,3.15217582359685e50,6.405765704240505e50,1.3017622288214057e51,2.6454056839204847e51,5.3759212531883317e51,1.0924800493227534e52,2.220108148832026e52,4.5116432062680323e52,9.168438227377791e52,1.8631850012531073e53,3.7863137241068156e53,7.694443443736215e53,1.5636438029926177e54,3.1775942737321604e54,6.457420385084267e54,1.3122593521270118e55,2.6667376514969336e55,5.419271495672351e55,1.1012895673228773e56,2.2380106109515252e56,4.5480241013336186e56,9.242370489707873e56,1.8782093138858874e57,3.8168457223133854e57,7.756489737451494e57,1.5762526815133294e58,3.2032176926392784e58,6.50949159787395e58,1.3228411219181689e59,2.688241635351812e59,5.462971304944074e59,1.1101701233318133e60,2.256057434574408e60,4.584698363907507e60,9.316898925484042e60,1.8933547792597355e61,3.847623923814802e61,7.819036358785418e61,1.5889632352475688e62,3.229047733141203e62,6.561982701430975e62,1.3335082207654812e63,2.7099190225864224e63,5.507023499832925e63,1.1191222901844073e64,2.274249783799887e64,4.621668359640628e64,9.392028342117386e64,1.908622374323653e65,3.878650313940171e65,7.882087342269167e65,1.6017762840818484e66,3.2550860613888737e66,6.614897081661948e66,1.3442613367435719e67,2.7317712114874035e67,5.551430921898855e67,1.1281466453346975e68,2.292588832114347e68,4.658936473259725e68,9.467763585785084e68,1.9240130839045055e69,3.9099268940277806e69,7.945646754967956e69,1.614692654513971e70,3.281334356968765e70,6.668238151776546e70,1.3551011634756254e71,2.7537996116167037e71,5.596196435615202e71,1.1372437708932069e72,2.3110757624668647e72,4.696505108721726e72,9.544109541742258e72,1.9395279007706242e73,3.941455681554266e73,8.009718696742762e73,1.6277131797065286e74,3.307794313010974e74,6.722009352507951e74,1.3660284001780243e75,2.776005643902832e75,5.6413229285541085e75,1.1464142536644012e76,2.3297117673456022e76,4.734376689368443e76,9.62107113463821e76,1.955167825695651e77,3.9732387102647517e77,8.074307300514935e77,1.6408386995405226e78,3.3344676362988185e78,6.776214152334259e78,1.3770437517055045e79,2.798390740732351e79,5.68681331157247e79,1.1556586851846986e80,2.348498048854499e80,4.772553658082985e80,9.698653328833335e80,1.970933867523515e81,4.005278030304111e81,8.139416732532951e81,1.6540700606696006e82,3.361356047378742e82,6.83085604770314e82,1.388147928596486e83,2.820956346042053e83,5.732670518999234e83,1.164977661760422e84,2.3674358187913186e84,4.811038477447424e84,9.776861128719737e84,1.9868270432330078e85,4.037575708348976e85,8.205051192640676e85,1.667408116574508e86,3.3884612806710294e86,6.885938563256175e86,1.3993416471192054e87,2.8437039154127037e87,5.778897508825923e87,1.1743717845065381e88,2.386526298725217e88,4.8498336299013625e88,9.855699579043052e88,2.002848378003614e89,4.070133827741123e89,8.271214914548421e89,1.680853727618501e90,3.415785084582414e90,6.941465252057822e90,1.410625629317564e91,2.8666349161622195e91,5.825497262895741e91,1.1838416593850868e92,2.4057707200758118e92,4.888941617902148e92,9.935173765229993e92,2.018998905281874e93,4.102954488622415e93,8.337912166107183e93,1.694407761102417e94,3.4433292216179946e94,6.99743969582258e94,1.422000603057864e95,2.889750827440641e95,5.872472787097732e95,1.1933878972446383e96,2.425170324192901e96,4.928364964086972e96,1.0015288813713864e97,2.035279666847577e97,4.136039808069152e97,8.405147249581656e97,1.7080710913208144e98,3.471095468495319e98,7.053865505148202e98,1.4334673020759296e99,2.9130531403258905e99,5.919827111559077e99,1.203011113859371e100,2.444726362435968e100,4.9681062114342396e100,1.0096049892266385e101,2.051691712881193e101,4.169391920229921e101,8.47292450193037e101,1.7218445996185726e102,3.4990856162594035e102,7.110746319746673e102,1.4450264660241e103,2.9365433579191555e103,5.967563290841228e103,1.2127119299689293e104,2.4644400962551826e104,5.008167923429154e104,1.0177462210332245e105,2.0682361020318568e105,4.203012976462121e105,8.541248295083132e105,1.7357291744472704e106,3.527301470397307e106,7.168085808679811e106,1.4566788405191069e107,2.960222995442761e107,6.015684404137654e107,1.222490971318608e108,2.4843127972730604e108,5.048552684227708e108,1.0259531019362747e109,2.0849139014850924e109,4.236905145471219e109,8.610123036224022e109,1.7497257114230373e110,3.5557448509556904e110,7.225887670596781e110,1.468425177190342e111,2.984093580337103e111,6.064193555471052e111,1.2323488686993826e112,2.50434574736581e112,5.089263098823957e112,1.0342261613155734e113,2.1017261870323e113,4.271070613451148e113,8.6795531680767e113,1.7638351133838482e114,3.584417592657254e114,7.284155633970993e114,1.4802662337279413e115,3.0081566523595177e115,6.11309387389427e115,1.2422862579889808e116,2.5245402387468012e116,5.13030179321865e116,1.042565932819828e117,2.1186740431395774e117,4.30551158422432e117,8.749543169188599e117,1.778058290447962e118,3.613321545019491e118,7.342893457341439e118,1.492202773932118e119,3.03241376368396e119,6.1623885136928674e119,1.2523037801925624e120,2.54489757404923e120,5.17167141458743e120,1.0509729544008086e121,2.135758563017915e121,4.340230279384284e121,8.820097554222551e121,1.7923961600728407e122,3.6424585724744255e122,7.402104929556005e122,1.5042355677620275e123,3.0568664790004165e123,6.212080654586901e123,1.2624020814842102e124,2.565419066410437e124,5.2133746314521715e124,1.059447768348374e125,2.152980848693968e125,4.3752289384395425e125,8.891220874245595e125,1.8068496471139116e126,3.6718305544878756e126,7.46179387001385e126,1.5163653913856038e127,3.081516375616186e127,6.262173501937963e127,1.2725818132487612e128,2.586106039556916e128,5.255414133853739e128,1.0679909213251647e129,2.17034201108064e129,4.410509818956812e129,8.962917717023563e129,1.821419683884429e130,3.701439385681836e130,7.521964128914094e130,1.5285930272298077e131,3.106365043557991e131,6.312670286954239e131,1.2828436321235271e132,2.6069598278889932e132,5.2977926335240644e132,1.0766029644019871e133,2.187843170048988e133,4.4460751967080214e133,9.035192707318074e133,1.8361072102158316e134,3.731286975955677e134,7.582619587502134e134,1.5409192640307385e135,3.131414085673689e135,6.36357426689966e135,1.2931882000407964e136,2.6279817765677133e136,5.340512864062725e136,1.0852844530934884e137,2.2054854545007204e137,4.481927365815901e137,9.10805050718275e137,1.850913173517863e138,3.761375250609778e138,7.643764158320863e138,1.5533448968846888e139,3.1566651177366406e139,6.414888725304763e139,1.3036161842706867e140,2.649173241600894e140,5.383577581111809e140,1.0940359473937355e141,2.2232700024404145e141,4.5180686389024766e141,9.18149581626497e141,1.8658385288402603e142,3.791706150470154e142,7.705401785463962e142,1.5658707272996143e143,3.1821197685490776e143,6.466616972177004e143,1.3141282574638294e144,2.6705355899309002e144,5.426989562534294e144,1.1028580118124634e145,2.241197961049614e145,4.5545013472387807e145,9.255533372110124e145,1.8808842389338524e146,3.8222816320127732e146,7.767536444828202e146,1.5784975632464095e147,3.207779680047529e147,6.518762344214996e147,1.3247250976951688e148,2.6920701995231325e148,5.470751608593871e148,1.111751215411619e149,2.2592704867602186e149,4.591227840894167e149,9.330167950464664e149,1.896051274312876e150,3.853103667490188e150,7.83017214437233e150,1.5912262192115153e151,3.233646507409116e151,6.57132820502453e151,1.335407388507341e152,2.7137784594542845e152,5.51486654213408e152,1.120716131841765e153,2.2774887453293368e153,4.6282504888884275e153,9.405404365587075e153,1.9113406133177297e154,3.8841742450590633e154,7.893312924373153e154,1.6040575162489615e155,3.259721919157439e155,6.624317945333736e155,1.3461758189549164e156,2.7356617700022566e156,5.559337208762115e156,1.129753339379431e157,2.295853911914755e157,4.6655716793451516e157,9.481247470555855e157,1.926753242178011e158,3.9154953689082783e158,7.9569628576889385e158,1.6169922820338917e159,3.286007597271341e159,6.677734983214131e159,1.3570310836489566e160,2.7577215427366942e160,5.604166477030646e160,1.138863420964064e161,2.3143671711501126e161,4.703193819644497e161,9.557702157583648e161,1.9422901550755996e162,3.947069059387123e162,8.02112605001839e162,1.630031350915195e163,3.3125052372918693e163,6.731582764297969e163,1.367973882801768e164,2.779959200609942e164,5.64935723862482e164,1.1480469642360302e165,2.333029717222128e165,4.741119336580133e165,9.634773358333573e165,1.9579523542096935e166,3.9788973531374644e166,8.085806640169539e166,1.6431755639701475e167,3.3392165484333165e167,6.785864762003903e167,1.3790049222716904e168,2.8023761780480605e168,5.694912408546141e168,1.1573045615739813e169,2.3518427539465353e169,4.779350676513549e169,9.712466044236982e169,1.9737408498610083e170,4.0109823032242073e170,8.15100880032487e170,1.6564257690582896e171,3.366143253692709e171,6.840584477758936e171,1.3901249136092743e172,2.8249739210446633e172,5.740834925303376e172,1.1666368101336522e173,2.3708074948469252e173,4.817890305534275e173,9.790785226811455e173,1.989656660456473e174,4.0433259792667705e174,8.216736736308499e174,1.669782820875723e175,3.393287089960144e175,6.895745441225354e175,1.4013345741028584e176,2.847753887253542e176,5.787127751100791e176,1.1760443118861112e177,2.3899251632322906e177,4.85674070961747e177,9.86973595798864e177,2.005700812635854e178,4.0759304675744746e178,8.282994687861304e178,1.6832475810110216e179,3.4206498081324124e179,6.951351210526228e179,1.4126346268245052e180,2.8707175460820135e180,5.833793872027844e180,1.1855276736563106e181,2.409196992276308e181,4.895904394785034e181,9.949323330437867e181,2.0218743413175165e182,4.1087978712801876e182,8.349786928912515e182,1.6968209180002885e183,3.4482331732248876e183,7.007405372478179e183,1.424025800677302e184,2.893866378787045e184,5.880836298254527e184,1.1950875071627836e185,2.428624225096125e185,4.9353838872657153e185,1.0029552477892275e186,2.038178289764703e186,4.1419303104750035e186,8.417117767853411e186,1.7105037073834455e187,3.476038964485909e187,7.063911542821139e187,1.4355088304420526e188,2.917201878570137e188,5.928258064224191e188,1.2047244290567337e189,2.4482081148336803e189,4.975181733660373e189,1.0110428575484645e190,2.054613709653777e190,4.1753299223469355e190,8.48499154781916e190,1.7242968317601703e191,3.504068975510461e191,7.120873366449896e191,1.4470844568243317e192,2.940725550672949e192,5.976062228847868e192,1.214439060961999e193,2.4679499247359785e193,5.015300501105101e193,1.0191956840078908e194,2.0711816611415922e194,4.2089988613178164e194,8.553412646966354e194,1.738201180847634e195,3.5323250143575043e195,7.178294517652541e195,1.4587534265029391e196,2.9644389124757666e196,6.024251875704369e196,1.2242320295147684e197,2.4878509282359848e197,5.0557427774356285e197,1.0274142530604223e198,2.0878832129333843e198,4.2429392991812664e198,8.622385478756757e198,1.752217651537494e199,3.560808903665794e199,7.236178700345823e199,1.4705164921777311e200,2.9883434935947e200,6.0728301132373436e200,1.2341039664045737e201,2.5079124090359303e201,5.096511171356604e201,1.0356990948399e202,2.1047194423526814e202,4.277153425244766e202,8.691914492239273e202,1.7663471479533304e203,3.5895224807706e203,7.294529648312346e203,1.4823744126178213e204,3.0124408359796396e204,6.121800074956725e204,1.2440555084147538e205,2.528135661189543e205,5.1376083126087055e205,1.0440507437550499e206,2.1216914354103143e206,4.3116434464695544e206,8.762004172340994e206,1.7805905815097895e207,3.6184675978239e207,7.353351125444825e207,1.494327952711218e208,3.0367324940151267e208,6.17116491963893e208,1.254087297463234e209,2.548521989184916e209,5.179036852137045e209,1.0524697385237043e210,2.1388002868739643e210,4.3464115876136643e210,8.832659040154488e210,1.7949488709709683e211,3.647646121913025e211,7.412646925987193e211,1.5063778835137017e212,3.0612200346196803e212,6.2209278315335015e212,1.2641999806445183e213,2.569072708029845e213,5.2207994622645854e213,1.0609566222080448e214,2.156047100339779e214,4.381460091374056e214,8.903883653227333e214,1.80942294250925e215,3.677059935180221e215,7.472420874777569e215,1.518524982298796e216,3.085905037347349e216,6.271092020567077e216,1.27439421027114e217,2.5897891433360617e217,5.262898836863321e217,1.0695119422493036e218,2.1734329883028952e218,4.416791218533332e218,8.975682605860249e218,1.8240137297658922e219,3.706710934945779e219,7.532676827498481e219,1.5307700326074272e220,3.110789094488624e220,6.321660722548953e220,1.2846706439154355e221,2.6106726314041282e221,5.305337691526793e221,1.0781362505032438e222,2.1909590722295366e222,4.4524072481045554e222,9.0480605294014e222,1.8387221739108322e223,3.7366010338295665e223,7.593418670923241e223,1.5431138242991829e224,3.135873811174609e224,6.37263719938276e224,1.2950299444525612e225,2.63172451931085e225,5.3481187637477315e225,1.0868301032754163e226,2.2086264826286656e226,4.488310477477194e226,9.121022092542981e226,1.85354922370296e227,3.7667321598735134e227,7.654650323167851e227,1.5555571536029062e228,3.161160805479834e228,6.424024739275411e228,1.305472780102954e229,2.652946164995568e229,5.391244813092991e229,1.095594061357552e230,2.226436359125938e230,4.524503222567411e230,9.194572001626632e230,1.8684958355521824e231,3.7971062566677375e231,7.716375733941323e231,1.568100823167686e232,3.186651708525878e232,6.475826656947677e232,1.315999824475125e233,2.6743389373471194e233,5.434718621382391e233,1.104428690063485e234,2.244389850536702e234,4.560987817966413e234,9.268715000944905e234,1.8835629735806882e235,3.827725283474744e235,7.778598884804061e235,1.5807456421153644e236,3.2123481645880724e236,6.528046293851021e236,1.3266117566097241e237,2.6959042162933857e237,5.478542992866448e237,1.1133345592653538e238,2.2624881149395694e238,4.5977666170899593e238,9.343455873045096e238,1.8987516096846892e239,3.858591215356402e239,7.8413237894229085e239,1.5934924260923661e240,3.238251831200828e240,6.58068701838165e240,1.3373092610230377e241,2.717643392889473e241,5.52272075440982e241,1.1223122434308818e242,2.280732319752174e242,4.634841992332311e242,9.41879943904209e242,1.914062723597999e243,3.889706043300132e243,7.904554493828179e243,1.6063419973219325e244,3.2643643792637805e244,6.633752226096214e244,1.3480930277508237e245,2.739557869407866e245,5.567254755672389e245,1.1313623216601744e246,2.2991236418059504e246,4.672216335218201e246,9.494750558927205e246,1.929497302954641e247,3.9210717743491494e247,7.968295076678332e247,1.6192951846579074e248,3.290687493151099e248,6.687245339933943e248,1.3589637523934532e249,2.761649059428015e249,5.61214786929175e249,1.1404853777228063e250,2.3176632674214995e250,4.7098920565559876e250,9.571314131879403e250,1.945056343352853e251,3.952690431731031e251,8.032549649521249e251,1.6323528236378334e252,3.317222870819379e252,6.741169810435371e252,1.3699221361603593e253,2.783918387928813e253,5.6574029910711254e253,1.1496820000960077e254,2.3363523924861926e254,4.747871586595358e254,9.648495096585797e254,1.9607408484186987e255,3.984564054987279e255,8.097322357057524e255,1.6455157565364564e256,3.343972223916379e256,6.795529115965967e256,1.3809688859154819e257,2.8063672913798734e257,5.703023040164871e257,1.1589527820023619e258,2.3551922225307784e258,4.78615737518263e258,9.726298431557226e258,1.9765518298717197e259,4.016694700106744e259,8.162617377411603e259,1.6587848324208268e260,3.370937277892992e260,6.850326762938362e260,1.3921047142224295e261,2.8289972178335185e261,5.74901095926541e261,1.1682983214477939e262,2.3741839728065813e262,4.82475189191952e262,9.80472915545092e262,1.992490307589746e263,4.049084439657322e263,8.228438922399417e263,1.6721609072046866e264,3.3981197721135046e264,6.905566286041736e264,1.4033303393910923e265,2.8518096270195093e265,5.7953697147957324e265,1.1777192212606906e266,2.3933288683650023e266,4.8636576263209274e266,9.883792327391136e266,2.0085573096742042e267,4.081735362918685e267,8.294791237798109e267,1.685644843703282e268,3.425521459968323e268,6.961251248468231e268,1.414646485523656e269,2.8748059904385514e269,5.842102297099425e269,1.1872160891305167e270,2.412628144135799e270,4.902877087977792e270,9.963493047300106e270,2.024753872517377e271,4.114649576018951e271,8.361678603623775e271,1.6992375116898078e272,3.453144108985997e272,7.017385242141143e272,1.4260538825609723e273,2.8979877914565265e273,5.889211720632161e273,1.1967895376467291e274,2.4320830450071246e274,4.942412806717849e274,1.0043836456224732e275,2.041081040868788e275,4.1478292020695967e275,8.429105334405634e275,1.7129397879509837e276,3.4809895009488456e276,7.073971887949882e276,1.4375532663303085e277,2.9213565254015325e277,5.9367010241588995e277,1.206440184338852e278,2.451694825905058e278,4.9822673327676396e278,1.0124827736665805e279,2.0575398679021086e279,4.1812763813014225e279,8.497075779462324e279,1.7267525563438817e280,3.5090594320070947e280,7.131014835981936e280,1.4491453785924839e281,2.9449136996596665e281,5.984573270948542e281,1.216168651715938e282,2.471464751875701e282,5.022443236919335e282,1.0206472112917037e283,2.0741314152840526e283,4.2149932712045575e283,8.565594323186419e283,1.7406767078523937e284,3.5373557127938994e284,7.188517765756597e284,1.4608309670893705e285,2.96866083377156e285,6.0328315489701e285,1.2259755673069115e286,2.4913940981662122e286,5.062943110695417e286,1.0288774851399712e287,2.090856753242384e287,4.2489820466666626e287,8.634665385324603e287,1.7547131406455167e288,3.565880168543791e288,7.246484386465679e288,1.4726107855928084e289,2.992599459531781e289,6.081478971094698e289,1.2358615637006621e290,2.511484150306474e290,5.103769566514638e290,1.0371741260999933e291,2.1077169606344525e291,4.2832449001122093e291,8.70429342126411e291,1.7688627601348884e292,3.594634639209594e292,7.304918437211115e292,1.4844855939528902e293,3.016731121086717e293,6.130518675294498e293,1.2458272785874264e294,2.5317362041931856e294,5.144925237862913e294,1.045537669341593e295,2.12471312501777e295,4.3177840416459e295,8.774482922317374e295,1.783126479032767e296,3.623620979580259e296,7.3638236872444e296,1.4964561581466212e297,3.041057375034653e297,6.179953824846061e297,1.2558733547996366e298,2.552151566172877e298,5.186412779462017e298,1.053968654350086e299,2.1418463427195075e299,4.352601699193899e299,8.845238416015839e299,1.7975052174117402e300,3.6528410594021935e300,7.423203936213169e300,1.5085232503280266e301,3.065579790525218e301,6.229787608532453e301,1.2660004403530868e302,2.572731553125565e302,5.228234867439588e302,1.0624676249608296e303,2.159117718907546e303,4.3877001186482204e303,8.916564466399981e303,1.8119999027636605e304,3.6822967634990353e304,7.483063014404595e304,1.520687648877495e305,3.0902999493620376e305,6.280023240851841e305,1.2762091884893244e306,2.593477492550898e306,5.270394199504197e306,1.0710351293947985e307,2.1765283676610864e307,4.4230815640102195e307,8.98846567431158e307],"x":[1.0,2.023023023023023,3.046046046046046,4.069069069069069,5.092092092092092,6.115115115115115,7.138138138138138,8.16116116116116,9.184184184184184,10.207207207207206,11.23023023023023,12.253253253253254,13.276276276276276,14.2992992992993,15.322322322322321,16.345345345345347,17.36836836836837,18.39139139139139,19.414414414414413,20.43743743743744,21.46046046046046,22.483483483483482,23.506506506506508,24.52952952952953,25.55255255255255,26.575575575575577,27.5985985985986,28.62162162162162,29.644644644644643,30.66766766766767,31.69069069069069,32.713713713713716,33.73673673673674,34.75975975975976,35.78278278278278,36.805805805805804,37.828828828828826,38.851851851851855,39.87487487487488,40.8978978978979,41.92092092092092,42.94394394394394,43.966966966966964,44.989989989989986,46.013013013013015,47.03603603603604,48.05905905905906,49.08208208208208,50.1051051051051,51.128128128128125,52.151151151151154,53.174174174174176,54.1971971971972,55.22022022022022,56.24324324324324,57.266266266266264,58.289289289289286,59.312312312312315,60.33533533533534,61.35835835835836,62.38138138138138,63.4044044044044,64.42742742742743,65.45045045045045,66.47347347347348,67.49649649649649,68.51951951951952,69.54254254254255,70.56556556556556,71.58858858858859,72.61161161161161,73.63463463463464,74.65765765765765,75.68068068068068,76.70370370370371,77.72672672672672,78.74974974974975,79.77277277277277,80.7957957957958,81.81881881881881,82.84184184184184,83.86486486486487,84.88788788788789,85.91091091091091,86.93393393393393,87.95695695695696,88.97997997997997,90.003003003003,91.02602602602603,92.04904904904905,93.07207207207207,94.09509509509509,95.11811811811812,96.14114114114115,97.16416416416416,98.18718718718719,99.2102102102102,100.23323323323324,101.25625625625625,102.27927927927928,103.30230230230231,104.32532532532532,105.34834834834835,106.37137137137137,107.3943943943944,108.41741741741741,109.44044044044044,110.46346346346347,111.48648648648648,112.50950950950951,113.53253253253253,114.55555555555556,115.57857857857857,116.6016016016016,117.62462462462463,118.64764764764764,119.67067067067067,120.69369369369369,121.71671671671672,122.73973973973973,123.76276276276276,124.78578578578579,125.8088088088088,126.83183183183183,127.85485485485485,128.87787787787786,129.9009009009009,130.92392392392392,131.94694694694695,132.96996996996998,133.99299299299298,135.016016016016,136.03903903903904,137.06206206206207,138.0850850850851,139.1081081081081,140.13113113113113,141.15415415415416,142.17717717717719,143.20020020020021,144.22322322322321,145.24624624624624,146.26926926926927,147.2922922922923,148.3153153153153,149.33833833833833,150.36136136136136,151.3843843843844,152.40740740740742,153.43043043043042,154.45345345345345,155.47647647647648,156.4994994994995,157.52252252252254,158.54554554554554,159.56856856856857,160.5915915915916,161.61461461461462,162.63763763763762,163.66066066066065,164.68368368368368,165.7067067067067,166.72972972972974,167.75275275275274,168.77577577577577,169.7987987987988,170.82182182182183,171.84484484484486,172.86786786786786,173.8908908908909,174.91391391391392,175.93693693693695,176.95995995995995,177.98298298298297,179.006006006006,180.02902902902903,181.05205205205206,182.07507507507506,183.0980980980981,184.12112112112112,185.14414414414415,186.16716716716718,187.19019019019018,188.2132132132132,189.23623623623624,190.25925925925927,191.2822822822823,192.3053053053053,193.32832832832833,194.35135135135135,195.37437437437438,196.39739739739738,197.4204204204204,198.44344344344344,199.46646646646647,200.4894894894895,201.5125125125125,202.53553553553553,203.55855855855856,204.5815815815816,205.60460460460462,206.62762762762762,207.65065065065065,208.67367367367368,209.6966966966967,210.7197197197197,211.74274274274273,212.76576576576576,213.7887887887888,214.81181181181182,215.83483483483482,216.85785785785785,217.88088088088088,218.9039039039039,219.92692692692694,220.94994994994994,221.97297297297297,222.995995995996,224.01901901901903,225.04204204204206,226.06506506506506,227.08808808808809,228.11111111111111,229.13413413413414,230.15715715715714,231.18018018018017,232.2032032032032,233.22622622622623,234.24924924924926,235.27227227227226,236.2952952952953,237.31831831831832,238.34134134134135,239.36436436436438,240.38738738738738,241.4104104104104,242.43343343343344,243.45645645645646,244.47947947947947,245.5025025025025,246.52552552552552,247.54854854854855,248.57157157157158,249.59459459459458,250.6176176176176,251.64064064064064,252.66366366366367,253.6866866866867,254.7097097097097,255.73273273273273,256.75575575575573,257.77877877877876,258.8018018018018,259.8248248248248,260.84784784784785,261.8708708708709,262.8938938938939,263.91691691691693,264.93993993993996,265.962962962963,266.98598598598596,268.009009009009,269.032032032032,270.05505505505505,271.0780780780781,272.1011011011011,273.12412412412414,274.14714714714717,275.1701701701702,276.19319319319317,277.2162162162162,278.2392392392392,279.26226226226225,280.2852852852853,281.3083083083083,282.33133133133134,283.35435435435437,284.3773773773774,285.40040040040043,286.4234234234234,287.44644644644643,288.46946946946946,289.4924924924925,290.5155155155155,291.53853853853855,292.5615615615616,293.5845845845846,294.60760760760763,295.6306306306306,296.65365365365363,297.67667667667666,298.6996996996997,299.7227227227227,300.74574574574575,301.7687687687688,302.7917917917918,303.81481481481484,304.8378378378378,305.86086086086084,306.88388388388387,307.9069069069069,308.9299299299299,309.95295295295296,310.975975975976,311.998998998999,313.02202202202204,314.0450450450451,315.06806806806804,316.0910910910911,317.1141141141141,318.13713713713713,319.16016016016016,320.1831831831832,321.2062062062062,322.22922922922925,323.2522522522523,324.27527527527525,325.2982982982983,326.3213213213213,327.34434434434434,328.36736736736736,329.3903903903904,330.4134134134134,331.43643643643645,332.4594594594595,333.4824824824825,334.5055055055055,335.5285285285285,336.55155155155154,337.57457457457457,338.5975975975976,339.6206206206206,340.64364364364366,341.6666666666667,342.6896896896897,343.7127127127127,344.7357357357357,345.75875875875874,346.7817817817818,347.8048048048048,348.82782782782783,349.85085085085086,350.8738738738739,351.8968968968969,352.9199199199199,353.9429429429429,354.96596596596595,355.988988988989,357.012012012012,358.03503503503504,359.05805805805807,360.0810810810811,361.1041041041041,362.12712712712715,363.1501501501501,364.17317317317315,365.1961961961962,366.2192192192192,367.24224224224224,368.26526526526527,369.2882882882883,370.31131131131133,371.33433433433436,372.35735735735733,373.38038038038036,374.4034034034034,375.4264264264264,376.44944944944945,377.4724724724725,378.4954954954955,379.51851851851853,380.54154154154156,381.5645645645646,382.58758758758756,383.6106106106106,384.6336336336336,385.65665665665665,386.6796796796797,387.7027027027027,388.72572572572574,389.74874874874877,390.7717717717718,391.79479479479477,392.8178178178178,393.8408408408408,394.86386386386386,395.8868868868869,396.9099099099099,397.93293293293294,398.955955955956,399.978978978979,401.00200200200203,402.025025025025,403.04804804804803,404.07107107107106,405.0940940940941,406.1171171171171,407.14014014014015,408.1631631631632,409.1861861861862,410.20920920920923,411.2322322322322,412.25525525525524,413.27827827827826,414.3013013013013,415.3243243243243,416.34734734734735,417.3703703703704,418.3933933933934,419.41641641641644,420.4394394394394,421.46246246246244,422.48548548548547,423.5085085085085,424.5315315315315,425.55455455455456,426.5775775775776,427.6006006006006,428.62362362362364,429.6466466466467,430.66966966966964,431.6926926926927,432.7157157157157,433.73873873873873,434.76176176176176,435.7847847847848,436.8078078078078,437.83083083083085,438.8538538538539,439.87687687687685,440.8998998998999,441.9229229229229,442.94594594594594,443.96896896896897,444.991991991992,446.015015015015,447.03803803803805,448.0610610610611,449.0840840840841,450.1071071071071,451.1301301301301,452.15315315315314,453.17617617617617,454.1991991991992,455.22222222222223,456.24524524524526,457.2682682682683,458.2912912912913,459.3143143143143,460.3373373373373,461.36036036036035,462.3833833833834,463.4064064064064,464.42942942942943,465.45245245245246,466.4754754754755,467.4984984984985,468.52152152152155,469.5445445445445,470.56756756756755,471.5905905905906,472.6136136136136,473.63663663663664,474.65965965965967,475.6826826826827,476.7057057057057,477.72872872872875,478.7517517517517,479.77477477477476,480.7977977977978,481.8208208208208,482.84384384384384,483.86686686686687,484.8898898898899,485.91291291291293,486.93593593593596,487.95895895895893,488.98198198198196,490.005005005005,491.028028028028,492.05105105105105,493.0740740740741,494.0970970970971,495.12012012012013,496.14314314314316,497.1661661661662,498.18918918918916,499.2122122122122,500.2352352352352,501.25825825825825,502.2812812812813,503.3043043043043,504.32732732732734,505.35035035035037,506.3733733733734,507.39639639639637,508.4194194194194,509.4424424424424,510.46546546546546,511.4884884884885,512.5115115115115,513.5345345345345,514.5575575575575,515.5805805805805,516.6036036036036,517.6266266266266,518.6496496496496,519.6726726726727,520.6956956956957,521.7187187187187,522.7417417417417,523.7647647647648,524.7877877877878,525.8108108108108,526.8338338338339,527.8568568568569,528.8798798798799,529.902902902903,530.925925925926,531.9489489489489,532.9719719719719,533.994994994995,535.018018018018,536.041041041041,537.064064064064,538.0870870870871,539.1101101101101,540.1331331331331,541.1561561561562,542.1791791791792,543.2022022022022,544.2252252252252,545.2482482482483,546.2712712712713,547.2942942942943,548.3173173173174,549.3403403403404,550.3633633633634,551.3863863863863,552.4094094094094,553.4324324324324,554.4554554554554,555.4784784784785,556.5015015015015,557.5245245245245,558.5475475475475,559.5705705705706,560.5935935935936,561.6166166166166,562.6396396396397,563.6626626626627,564.6856856856857,565.7087087087087,566.7317317317318,567.7547547547548,568.7777777777778,569.8008008008009,570.8238238238238,571.8468468468468,572.8698698698698,573.8928928928929,574.9159159159159,575.9389389389389,576.961961961962,577.984984984985,579.008008008008,580.031031031031,581.0540540540541,582.0770770770771,583.1001001001001,584.1231231231232,585.1461461461462,586.1691691691692,587.1921921921922,588.2152152152153,589.2382382382382,590.2612612612612,591.2842842842842,592.3073073073073,593.3303303303303,594.3533533533533,595.3763763763764,596.3993993993994,597.4224224224224,598.4454454454454,599.4684684684685,600.4914914914915,601.5145145145145,602.5375375375376,603.5605605605606,604.5835835835836,605.6066066066066,606.6296296296297,607.6526526526527,608.6756756756756,609.6986986986986,610.7217217217217,611.7447447447447,612.7677677677677,613.7907907907908,614.8138138138138,615.8368368368368,616.8598598598599,617.8828828828829,618.9059059059059,619.9289289289289,620.951951951952,621.974974974975,622.997997997998,624.021021021021,625.0440440440441,626.0670670670671,627.0900900900901,628.1131131131131,629.1361361361361,630.1591591591591,631.1821821821821,632.2052052052052,633.2282282282282,634.2512512512512,635.2742742742743,636.2972972972973,637.3203203203203,638.3433433433433,639.3663663663664,640.3893893893894,641.4124124124124,642.4354354354355,643.4584584584585,644.4814814814815,645.5045045045046,646.5275275275276,647.5505505505505,648.5735735735735,649.5965965965966,650.6196196196196,651.6426426426426,652.6656656656656,653.6886886886887,654.7117117117117,655.7347347347347,656.7577577577578,657.7807807807808,658.8038038038038,659.8268268268268,660.8498498498499,661.8728728728729,662.8958958958959,663.918918918919,664.941941941942,665.964964964965,666.9879879879879,668.011011011011,669.034034034034,670.057057057057,671.08008008008,672.1031031031031,673.1261261261261,674.1491491491491,675.1721721721722,676.1951951951952,677.2182182182182,678.2412412412413,679.2642642642643,680.2872872872873,681.3103103103103,682.3333333333334,683.3563563563564,684.3793793793794,685.4024024024025,686.4254254254254,687.4484484484484,688.4714714714714,689.4944944944945,690.5175175175175,691.5405405405405,692.5635635635635,693.5865865865866,694.6096096096096,695.6326326326326,696.6556556556557,697.6786786786787,698.7017017017017,699.7247247247248,700.7477477477478,701.7707707707708,702.7937937937938,703.8168168168169,704.8398398398398,705.8628628628628,706.8858858858858,707.9089089089089,708.9319319319319,709.9549549549549,710.977977977978,712.001001001001,713.024024024024,714.047047047047,715.0700700700701,716.0930930930931,717.1161161161161,718.1391391391392,719.1621621621622,720.1851851851852,721.2082082082082,722.2312312312313,723.2542542542543,724.2772772772772,725.3003003003003,726.3233233233233,727.3463463463463,728.3693693693693,729.3923923923924,730.4154154154154,731.4384384384384,732.4614614614615,733.4844844844845,734.5075075075075,735.5305305305305,736.5535535535536,737.5765765765766,738.5995995995996,739.6226226226227,740.6456456456457,741.6686686686687,742.6916916916917,743.7147147147147,744.7377377377377,745.7607607607607,746.7837837837837,747.8068068068068,748.8298298298298,749.8528528528528,750.8758758758759,751.8988988988989,752.9219219219219,753.944944944945,754.967967967968,755.990990990991,757.014014014014,758.0370370370371,759.0600600600601,760.0830830830831,761.1061061061062,762.1291291291292,763.1521521521521,764.1751751751751,765.1981981981982,766.2212212212212,767.2442442442442,768.2672672672672,769.2902902902903,770.3133133133133,771.3363363363363,772.3593593593594,773.3823823823824,774.4054054054054,775.4284284284284,776.4514514514515,777.4744744744745,778.4974974974975,779.5205205205206,780.5435435435436,781.5665665665666,782.5895895895895,783.6126126126126,784.6356356356356,785.6586586586586,786.6816816816817,787.7047047047047,788.7277277277277,789.7507507507507,790.7737737737738,791.7967967967968,792.8198198198198,793.8428428428429,794.8658658658659,795.8888888888889,796.911911911912,797.934934934935,798.957957957958,799.980980980981,801.0040040040041,802.027027027027,803.05005005005,804.073073073073,805.0960960960961,806.1191191191191,807.1421421421421,808.1651651651651,809.1881881881882,810.2112112112112,811.2342342342342,812.2572572572573,813.2802802802803,814.3033033033033,815.3263263263264,816.3493493493494,817.3723723723724,818.3953953953954,819.4184184184185,820.4414414414415,821.4644644644644,822.4874874874874,823.5105105105105,824.5335335335335,825.5565565565565,826.5795795795796,827.6026026026026,828.6256256256256,829.6486486486486,830.6716716716717,831.6946946946947,832.7177177177177,833.7407407407408,834.7637637637638,835.7867867867868,836.8098098098098,837.8328328328329,838.8558558558559,839.8788788788788,840.9019019019019,841.9249249249249,842.9479479479479,843.9709709709709,844.993993993994,846.017017017017,847.04004004004,848.063063063063,849.0860860860861,850.1091091091091,851.1321321321321,852.1551551551552,853.1781781781782,854.2012012012012,855.2242242242243,856.2472472472473,857.2702702702703,858.2932932932933,859.3163163163163,860.3393393393393,861.3623623623623,862.3853853853853,863.4084084084084,864.4314314314314,865.4544544544544,866.4774774774775,867.5005005005005,868.5235235235235,869.5465465465466,870.5695695695696,871.5925925925926,872.6156156156156,873.6386386386387,874.6616616616617,875.6846846846847,876.7077077077078,877.7307307307308,878.7537537537537,879.7767767767767,880.7997997997998,881.8228228228228,882.8458458458458,883.8688688688688,884.8918918918919,885.9149149149149,886.9379379379379,887.960960960961,888.983983983984,890.007007007007,891.03003003003,892.0530530530531,893.0760760760761,894.0990990990991,895.1221221221222,896.1451451451452,897.1681681681682,898.1911911911911,899.2142142142142,900.2372372372372,901.2602602602602,902.2832832832833,903.3063063063063,904.3293293293293,905.3523523523523,906.3753753753754,907.3983983983984,908.4214214214214,909.4444444444445,910.4674674674675,911.4904904904905,912.5135135135135,913.5365365365366,914.5595595595596,915.5825825825826,916.6056056056057,917.6286286286286,918.6516516516516,919.6746746746746,920.6976976976977,921.7207207207207,922.7437437437437,923.7667667667668,924.7897897897898,925.8128128128128,926.8358358358358,927.8588588588589,928.8818818818819,929.9049049049049,930.927927927928,931.950950950951,932.973973973974,933.996996996997,935.0200200200201,936.0430430430431,937.066066066066,938.089089089089,939.1121121121121,940.1351351351351,941.1581581581581,942.1811811811812,943.2042042042042,944.2272272272272,945.2502502502502,946.2732732732733,947.2962962962963,948.3193193193193,949.3423423423424,950.3653653653654,951.3883883883884,952.4114114114114,953.4344344344345,954.4574574574575,955.4804804804805,956.5035035035035,957.5265265265265,958.5495495495495,959.5725725725725,960.5955955955956,961.6186186186186,962.6416416416416,963.6646646646647,964.6876876876877,965.7107107107107,966.7337337337337,967.7567567567568,968.7797797797798,969.8028028028028,970.8258258258259,971.8488488488489,972.8718718718719,973.894894894895,974.9179179179179,975.9409409409409,976.9639639639639,977.986986986987,979.01001001001,980.033033033033,981.056056056056,982.0790790790791,983.1021021021021,984.1251251251251,985.1481481481482,986.1711711711712,987.1941941941942,988.2172172172172,989.2402402402403,990.2632632632633,991.2862862862863,992.3093093093094,993.3323323323324,994.3553553553553,995.3783783783783,996.4014014014014,997.4244244244244,998.4474474474474,999.4704704704704,1000.4934934934935,1001.5165165165165,1002.5395395395395,1003.5625625625626,1004.5855855855856,1005.6086086086086,1006.6316316316316,1007.6546546546547,1008.6776776776777,1009.7007007007007,1010.7237237237238,1011.7467467467468,1012.7697697697698,1013.7927927927927,1014.8158158158158,1015.8388388388388,1016.8618618618618,1017.8848848848849,1018.9079079079079,1019.9309309309309,1020.9539539539539,1021.976976976977,1023.0]}
-},{}],16:[function(require,module,exports){
-module.exports={"expected":[0.5,0.5003470408924718,0.5006943226597058,0.5010418454688887,0.5013896094873233,0.5017376148824285,0.5020858618217395,0.5024343504729077,0.5027830810037011,0.5031320535820036,0.5034812683758162,0.5038307255532563,0.5041804252825578,0.5045303677320716,0.5048805530702654,0.5052309814657238,0.5055816530871484,0.505932568103358,0.5062837266832884,0.5066351289959926,0.5069867752106414,0.5073386654965224,0.5076908000230412,0.5080431789597207,0.5083958024762016,0.5087486707422422,0.5091017839277188,0.5094551422026253,0.5098087457370741,0.5101625947012952,0.5105166892656371,0.5108710296005661,0.5112256158766674,0.511580448264644,0.5119355269353179,0.5122908520596292,0.5126464238086371,0.5130022423535193,0.5133583078655721,0.5137146205162112,0.5140711804769708,0.5144279879195044,0.5147850430155846,0.5151423459371032,0.5154998968560713,0.5158576959446195,0.5162157433749976,0.5165740393195756,0.5169325839508421,0.5172913774414062,0.5176504199639967,0.5180097116914623,0.5183692527967713,0.5187290434530124,0.5190890838333945,0.5194493741112464,0.5198099144600173,0.5201707050532773,0.5205317460647161,0.5208930376681445,0.521254580037494,0.5216163733468165,0.5219784177702851,0.5223407134821931,0.5227032606569557,0.5230660594691083,0.5234291100933082,0.5237924127043333,0.5241559674770832,0.5245197745865785,0.5248838342079618,0.525248146516497,0.5256127116875696,0.5259775298966869,0.5263426013194779,0.5267079261316936,0.5270735045092071,0.5274393366280135,0.5278054226642297,0.5281717627940955,0.5285383571939726,0.528905206040345,0.5292723095098195,0.5296396677791254,0.5300072810251145,0.5303751494247616,0.5307432731551641,0.5311116523935426,0.5314802873172404,0.5318491781037239,0.532218324930583,0.5325877279755306,0.532957387416403,0.53332730343116,0.5336974761978847,0.534067905894784,0.5344385927001887,0.5348095367925529,0.5351807383504548,0.5355521975525966,0.5359239145778044,0.5362958896050287,0.5366681228133438,0.5370406143819484,0.537413364490166,0.5377863733174438,0.5381596410433545,0.5385331678475945,0.5389069539099857,0.539280999410474,0.5396553045291311,0.540029869446153,0.5404046943418612,0.540779779396702,0.5411551247912472,0.5415307307061937,0.5419065973223642,0.5422827248207065,0.5426591133822942,0.5430357631883266,0.5434126744201286,0.5437898472591512,0.5441672818869712,0.5445449784852913,0.5449229372359404,0.5453011583208739,0.5456796419221732,0.546058388222046,0.5464373974028267,0.5468166696469761,0.5471962051370817,0.5475760040558576,0.547956066586145,0.548336392910912,0.5487169832132531,0.5490978376763908,0.549478956483674,0.5498603398185792,0.5502419878647102,0.5506239008057984,0.5510060788257024,0.5513885221084086,0.551771230838031,0.5521542051988118,0.5525374453751203,0.5529209515514546,0.5533047239124402,0.5536887626428312,0.5540730679275095,0.554457639951486,0.5548424788998992,0.5552275849580167,0.5556129583112344,0.5559985991450769,0.5563845076451978,0.5567706839973792,0.5571571283875324,0.5575438410016977,0.5579308220260446,0.5583180716468715,0.5587055900506066,0.559093377423807,0.5594814339531595,0.5598697598254806,0.5602583552277163,0.5606472203469425,0.5610363553703646,0.5614257604853184,0.5618154358792694,0.5622053817398135,0.5625955982546764,0.5629860856117146,0.5633768439989144,0.5637678736043932,0.5641591746163984,0.5645507472233087,0.5649425916136327,0.5653347079760106,0.5657270964992133,0.5661197573721425,0.5665126907838313,0.5669058969234438,0.5672993759802756,0.5676931281437534,0.5680871536034358,0.5684814525490125,0.5688760251703051,0.569270871657267,0.5696659921999834,0.5700613869886713,0.5704570562136799,0.5708530000654904,0.5712492187347163,0.5716457124121035,0.57204248128853,0.5724395255550063,0.5728368454026759,0.5732344410228145,0.5736323126068309,0.5740304603462665,0.5744288844327957,0.5748275850582261,0.5752265624144982,0.5756258166936858,0.5760253480879963,0.5764251567897701,0.5768252429914812,0.5772256068857373,0.5776262486652799,0.5780271685229839,0.5784283666518583,0.578829843245046,0.5792315984958243,0.5796336325976041,0.5800359457439309,0.5804385381284843,0.5808414099450787,0.5812445613876627,0.5816479926503194,0.5820517039272671,0.5824556954128586,0.5828599673015814,0.5832645197880583,0.5836693530670471,0.5840744673334409,0.5844798627822678,0.5848855396086914,0.5852914980080107,0.5856977381756605,0.5861042603072111,0.5865110645983682,0.5869181512449739,0.5873255204430059,0.587733172388578,0.5881411072779401,0.5885493253074784,0.5889578266737152,0.5893666115733095,0.5897756802030566,0.5901850327598883,0.5905946694408735,0.5910045904432172,0.5914147959642619,0.591825286201487,0.5922360613525086,0.5926471216150802,0.5930584671870925,0.5934700982665738,0.5938820150516894,0.5942942177407424,0.5947067065321737,0.5951194816245616,0.5955325432166223,0.5959458915072102,0.5963595266953174,0.5967734489800743,0.5971876585607495,0.5976021556367497,0.5980169404076203,0.598432013073045,0.5988473738328463,0.5992630228869851,0.5996789604355612,0.6000951866788136,0.6005117018171198,0.6009285060509966,0.6013455995811,0.6017629826082254,0.6021806553333071,0.6025986179574195,0.603016870681776,0.60343541370773,0.6038542472367745,0.6042733714705425,0.6046927866108068,0.6051124928594802,0.6055324904186159,0.605952779490407,0.6063733602771874,0.606794232981431,0.6072153978057523,0.6076368549529066,0.60805860462579,0.6084806470274391,0.6089029823610316,0.6093256108298862,0.609748532637463,0.6101717479873628,0.6105952570833282,0.6110190601292428,0.6114431573291319,0.6118675488871625,0.6122922350076433,0.6127172158950247,0.6131424917538989,0.6135680627890002,0.6139939292052053,0.6144200912075327,0.6148465490011433,0.6152733027913405,0.6157003527835702,0.6161276991834207,0.6165553421966232,0.6169832820290517,0.6174115188867229,0.6178400529757966,0.6182688845025758,0.6186980136735065,0.6191274406951782,0.6195571657743235,0.6199871891178189,0.620417510932684,0.6208481314260825,0.6212790508053218,0.6217102692778529,0.6221417870512711,0.6225736043333158,0.6230057213318703,0.6234381382549625,0.6238708553107645,0.624303872707593,0.6247371906539092,0.6251708093583189,0.6256047290295731,0.6260389498765673,0.6264734721083418,0.6269082959340827,0.6273434215631207,0.627778849204932,0.628214579069138,0.628650611365506,0.6290869463039486,0.629523584094524,0.6299605249474366,0.6303977690730362,0.630835316681819,0.631273167984427,0.6317113231916488,0.6321497825144189,0.6325885461638182,0.6330276143510746,0.633466987287562,0.6339066651848015,0.6343466482544607,0.6347869367083543,0.6352275307584438,0.6356684306168381,0.636109636495793,0.6365511486077119,0.6369929671651455,0.6374350923807921,0.6378775244674976,0.6383202636382556,0.6387633101062073,0.6392066640846424,0.6396503257869982,0.6400942954268602,0.6405385732179625,0.6409831593741869,0.6414280541095643,0.6418732576382736,0.6423187701746429,0.6427645919331486,0.6432107231284162,0.6436571639752201,0.6441039146884838,0.6445509754832801,0.6449983465748308,0.6454460281785073,0.6458940205098302,0.6463423237844702,0.6467909382182472,0.6472398640271312,0.6476891014272419,0.6481386506348491,0.6485885118663728,0.6490386853383829,0.6494891712676002,0.6499399698708953,0.6503910813652896,0.650842505967955,0.6512942438962145,0.6517462953675417,0.6521986605995608,0.6526513398100476,0.653104333216929,0.6535576410382826,0.6540112634923382,0.6544652007974763,0.6549194531722293,0.6553740208352815,0.6558289040054686,0.6562841029017784,0.6567396177433508,0.6571954487494773,0.6576515961396022,0.6581080601333219,0.6585648409503851,0.6590219388106932,0.6594793539343,0.6599370865414123,0.6603951368523895,0.6608535050877442,0.6613121914681418,0.6617711962144011,0.6622305195474939,0.6626901616885458,0.6631501228588352,0.6636104032797947,0.6640710031730104,0.6645319227602221,0.6649931622633236,0.6654547219043627,0.6659166019055414,0.6663788024892157,0.6668413238778961,0.6673041662942475,0.6677673299610895,0.6682308151013959,0.6686946219382959,0.6691587506950731,0.6696232015951663,0.6700879748621692,0.670553070719831,0.6710184893920557,0.6714842311029031,0.6719502960765886,0.6724166845374829,0.6728833967101127,0.6733504328191602,0.673817793089464,0.6742854777460184,0.6747534870139741,0.6752218211186377,0.6756904802854727,0.6761594647400987,0.6766287747082922,0.6770984104159861,0.6775683720892701,0.6780386599543913,0.6785092742377532,0.6789802151659171,0.679451482965601,0.6799230778636804,0.6803950000871885,0.6808672498633158,0.6813398274194107,0.6818127329829792,0.6822859667816854,0.6827595290433514,0.6832334199959571,0.6837076398676412,0.6841821888867001,0.6846570672815894,0.6851322752809225,0.6856078131134721,0.6860836810081693,0.6865598791941042,0.687036407900526,0.6875132673568429,0.6879904577926225,0.6884679794375914,0.6889458325216361,0.6894240172748023,0.6899025339272955,0.6903813827094809,0.6908605638518839,0.6913400775851894,0.691819924140243,0.6923001037480498,0.6927806166397761,0.6932614630467479,0.693742643200452,0.6942241573325362,0.6947060056748086,0.6951881884592386,0.6956707059179561,0.6961535582832528,0.696636745787581,0.6971202686635546,0.697604127143949,0.6980883214617013,0.6985728518499098,0.699057718541835,0.6995429217708993,0.7000284617706868,0.700514338774944,0.7010005530175796,0.7014871047326646,0.7019739941544324,0.7024612215172793,0.7029487870557638,0.7034366910046075,0.7039249335986949,0.7044135150730735,0.704902435662954,0.7053916956037101,0.7058812951308792,0.706371234480162,0.7068615138874229,0.70735213358869,0.707843093820155,0.7083343948181737,0.7088260368192663,0.7093180200601163,0.7098103447775724,0.7103030112086473,0.7107960195905179,0.7112893701605261,0.7117830631561787,0.7122770988151468,0.712771477375267,0.7132661990745406,0.7137612641511343,0.71425667284338,0.7147524253897751,0.7152485220289826,0.7157449629998308,0.7162417485413143,0.716738878892593,0.7172363542929934,0.7177341749820076,0.7182323411992942,0.7187308531846782,0.7192297111781508,0.7197289154198698,0.7202284661501601,0.720728363609513,0.7212286080385867,0.7217291996782066,0.7222301387693653,0.7227314255532225,0.7232330602711053,0.7237350431645087,0.7242373744750946,0.7247400544446932,0.7252430833153025,0.725746461329088,0.726250188728384,0.7267542657556924,0.7272586926536835,0.7277634696651964,0.7282685970332385,0.7287740750009859,0.7292799038117833,0.7297860837091446,0.7302926149367526,0.7307994977384591,0.7313067323582854,0.731814319040422,0.7323222580292289,0.732830549569236,0.7333391939051422,0.7338481912818172,0.7343575419442998,0.7348672461377994,0.7353773041076954,0.7358877160995376,0.7363984823590461,0.7369096031321118,0.7374210786647959,0.7379329092033308,0.7384450949941194,0.7389576362837358,0.7394705333189254,0.7399837863466048,0.7404973956138616,0.7410113613679555,0.7415256838563173,0.74204036332655,0.7425554000264281,0.743070794203898,0.7435865461070786,0.7441026559842607,0.7446191240839077,0.7451359506546551,0.7456531359453112,0.7461706802048571,0.7466885836824464,0.7472068466274058,0.7477254692892351,0.7482444519176074,0.7487637947623685,0.7492834980735384,0.7498035621013103,0.7503239870960507,0.7508447733083005,0.751365920988774,0.7518874303883598,0.7524093017581205,0.752931535349293,0.7534541314132888,0.7539770902016933,0.7545004119662673,0.7550240969589456,0.7555481454318383,0.7560725576372307,0.7565973338275825,0.7571224742555293,0.7576479791738815,0.7581738488356256,0.758700083493923,0.7592266834021115,0.7597536488137042,0.7602809799823903,0.7608086771620353,0.7613367406066806,0.7618651705705441,0.7623939673080202,0.7629231310736797,0.7634526621222703,0.7639825607087161,0.7645128270881187,0.7650434615157564,0.7655744642470849,0.7661058355377368,0.7666375756435226,0.7671696848204302,0.7677021633246252,0.7682350114124508,0.7687682293404282,0.7693018173652568,0.7698357757438141,0.770370104733156,0.7709048045905165,0.7714398755733084,0.7719753179391231,0.7725111319457308,0.7730473178510806,0.7735838759133007,0.7741208063906982,0.7746581095417601,0.7751957856251519,0.7757338348997195,0.776272257624488,0.7768110540586624,0.7773502244616274,0.7778897690929482,0.7784296882123697,0.7789699820798173,0.7795106509553968,0.7800516950993946,0.7805931147722777,0.7811349102346936,0.7816770817474712,0.7822196295716201,0.7827625539683312,0.7833058551989767,0.7838495335251101,0.7843935892084665,0.7849380225109628,0.7854828336946974,0.7860280230219509,0.7865735907551857,0.7871195371570467,0.7876658624903607,0.7882125670181374,0.7887596510035684,0.7893071147100286,0.7898549584010753,0.790403182340449,0.7909517867920731,0.7915007720200542,0.7920501382886822,0.7925998858624306,0.7931500150059562,0.7937005259840997,0.7942514190618856,0.7948026945045221,0.795354352577402,0.7959063935461016,0.7964588176763823,0.7970116252341892,0.7975648164856527,0.7981183916970874,0.798672351134993,0.799226695066054,0.7997814237571401,0.8003365374753064,0.800892036487793,0.8014479210620256,0.8020041914656159,0.8025608479663606,0.803117890832243,0.8036753203314322,0.804233136732283,0.8047913403033371,0.8053499313133221,0.8059089100311525,0.8064682767259289,0.8070280316669394,0.8075881751236584,0.8081487073657477,0.8087096286630562,0.8092709392856198,0.8098326395036622,0.8103947295875946,0.8109572098080158,0.8115200804357124,0.8120833417416589,0.812646993997018,0.8132110374731407,0.813775472441566,0.8143402991740217,0.814905517942424,0.815471129018878,0.8160371326756776,0.8166035291853054,0.8171703188204338,0.8177375018539237,0.818305078558826,0.8188730492083806,0.8194414140760174,0.8200101734353562,0.8205793275602062,0.8211488767245672,0.8217188212026287,0.8222891612687708,0.8228598971975642,0.8234310292637698,0.8240025577423392,0.8245744829084152,0.8251468050373314,0.8257195244046123,0.826292641285974,0.8268661559573236,0.8274400686947601,0.8280143797745737,0.8285890894732467,0.8291641980674532,0.8297397058340594,0.8303156130501234,0.8308919199928959,0.8314686269398199,0.832045734168531,0.8326232419568576,0.8332011505828206,0.8337794603246343,0.8343581714607059,0.8349372842696358,0.8355167990302177,0.8360967160214391,0.8366770355224808,0.8372577578127177,0.8378388831717184,0.8384204118792455,0.839002344215256,0.8395846804599009,0.8401674208935259,0.8407505657966713,0.841334115450072,0.8419180701346576,0.842502430131553,0.8430871957220782,0.8436723671877482,0.8442579448102736,0.8448439288715605,0.8454303196537105,0.8460171174390213,0.8466043225099864,0.8471919351492952,0.8477799556398335,0.8483683842646836,0.8489572213071239,0.8495464670506296,0.8501361217788728,0.8507261857757222,0.8513166593252438,0.8519075427117007,0.852498836219553,0.8530905401334588,0.8536826547382732,0.8542751803190495,0.8548681171610385,0.8554614655496892,0.8560552257706484,0.8566493981097618,0.8572439828530728,0.8578389802868237,0.8584343906974555,0.859030214371608,0.8596264515961196,0.8602231026580284,0.860820167844571,0.8614176474431842,0.8620155417415036,0.8626138510273648,0.863212575588803,0.8638117157140537,0.8644112716915517,0.865011243809933,0.865611632358033,0.8662124376248881,0.8668136598997352,0.8674152994720121,0.8680173566313572,0.86861983166761,0.8692227248708114,0.8698260365312035,0.8704297669392296,0.871033916385535,0.8716384851609663,0.8722434735565725,0.8728488818636042,0.8734547103735143,0.8740609593779578,0.8746676291687926,0.8752747200380786,0.8758822322780787,0.8764901661812589,0.8770985220402876,0.8777073001480368,0.8783165007975817,0.8789261242822008,0.8795361708953764,0.880146640930794,0.8807575346823435,0.8813688524441184,0.8819805945104167,0.8825927611757403,0.8832053527347955,0.8838183694824936,0.8844318117139501,0.8850456797244856,0.8856599738096255,0.8862746942651005,0.8868898413868465,0.8875054154710048,0.8881214168139221,0.8887378457121511,0.8893547024624501,0.8899719873617833,0.8905897007073214,0.8912078427964408,0.8918264139267248,0.892445414395963,0.8930648445021518,0.8936847045434945,0.894304994818401,0.8949257156254886,0.895546867263582,0.8961684500317131,0.8967904642291213,0.897412910155254,0.8980357881097663,0.8986590983925208,0.899282841303589,0.8999070171432503,0.9005316262119925,0.901156668810512,0.901782145239714,0.9024080558007124,0.9030344007948301,0.9036611805235994,0.9042883952887617,0.9049160453922676,0.9055441311362777,0.9061726528231622,0.9068016107555008,0.9074310052360839,0.9080608365679115,0.908691105054194,0.9093218109983525,0.9099529547040186,0.9105845364750343,0.9112165566154532,0.9118490154295391,0.9124819132217676,0.9131152502968255,0.9137490269596109,0.9143832435152336,0.9150179002690153,0.9156529975264895,0.9162885355934018,0.91692451477571,0.9175609353795843,0.9181977977114072,0.9188351020777741,0.9194728487854932,0.9201110381415856,0.9207496704532854,0.9213887460280399,0.9220282651735101,0.9226682281975703,0.9233086354083087,0.9239494871140268,0.9245907836232408,0.9252325252446806,0.9258747122872903,0.9265173450602291,0.9271604238728698,0.9278039490348007,0.9284479208558246,0.9290923396459596,0.9297372057154386,0.9303825193747102,0.9310282809344382,0.9316744907055023,0.9323211489989978,0.9329682561262358,0.9336158123987438,0.9342638181282652,0.93491227362676,0.9355611792064047,0.9362105351795924,0.936860341858933,0.9375105995572535,0.9381613085875978,0.9388124692632275,0.9394640818976212,0.9401161468044752,0.9407686642977037,0.9414216346914386,0.9420750583000299,0.9427289354380458,0.9433832664202727,0.9440380515617158,0.9446932911775986,0.9453489855833636,0.946005135094672,0.9466617400274044,0.9473188006976606,0.9479763174217596,0.9486342905162402,0.9492927202978605,0.9499516070835989,0.9506109511906538,0.9512707529364433,0.9519310126386061,0.9525917306150017,0.9532529071837096,0.9539145426630304,0.9545766373714858,0.9552391916278182,0.9559022057509915,0.9565656800601908,0.9572296148748229,0.9578940105145163,0.9585588672991211,0.9592241855487097,0.9598899655835766,0.9605562077242384,0.9612229122914345,0.9618900796061266,0.9625577099894993,0.9632258037629602,0.9638943612481399,0.9645633827668921,0.9652328686412944,0.9659028191936473,0.9665732347464755,0.9672441156225272,0.9679154621447748,0.9685872746364149,0.9692595534208683,0.9699322988217804,0.9706055111630213,0.9712791907686855,0.971953337963093,0.9726279530707885,0.973303036416542,0.9739785883253492,0.9746546091224311,0.9753310991332345,0.976008058683432,0.9766854880989224,0.9773633877058309,0.9780417578305084,0.9787205987995329,0.9793999109397089,0.9800796945780677,0.9807599500418676,0.981440677658594,0.9821218777559596,0.9828035506619048,0.9834856967045973,0.9841683162124326,0.9848514095140345,0.9855349769382543,0.9862190188141722,0.9869035354710962,0.9875885272385633,0.988273994446339,0.9889599374244178,0.9896463565030231,0.9903332520126079,0.991020624283854,0.991708473647673,0.9923968004352062,0.9930856049778247,0.9937748876071296,0.9944646486549523,0.9951548884533542,0.9958456073346275,0.9965368056312947,0.9972284836761094,0.997920641802056,0.9986132803423502,0.9993063996304388,1.0],"x":[-1.0,-0.998998998998999,-0.997997997997998,-0.996996996996997,-0.995995995995996,-0.994994994994995,-0.993993993993994,-0.992992992992993,-0.991991991991992,-0.990990990990991,-0.98998998998999,-0.988988988988989,-0.987987987987988,-0.986986986986987,-0.985985985985986,-0.984984984984985,-0.983983983983984,-0.982982982982983,-0.9819819819819819,-0.980980980980981,-0.97997997997998,-0.978978978978979,-0.977977977977978,-0.9769769769769769,-0.975975975975976,-0.974974974974975,-0.973973973973974,-0.972972972972973,-0.9719719719719719,-0.970970970970971,-0.96996996996997,-0.968968968968969,-0.9679679679679679,-0.9669669669669669,-0.965965965965966,-0.964964964964965,-0.963963963963964,-0.9629629629629629,-0.9619619619619619,-0.960960960960961,-0.95995995995996,-0.958958958958959,-0.9579579579579579,-0.9569569569569569,-0.955955955955956,-0.954954954954955,-0.953953953953954,-0.9529529529529529,-0.9519519519519519,-0.950950950950951,-0.94994994994995,-0.948948948948949,-0.9479479479479479,-0.9469469469469469,-0.9459459459459459,-0.944944944944945,-0.943943943943944,-0.9429429429429429,-0.9419419419419419,-0.9409409409409409,-0.93993993993994,-0.938938938938939,-0.9379379379379379,-0.9369369369369369,-0.9359359359359359,-0.934934934934935,-0.933933933933934,-0.9329329329329329,-0.9319319319319319,-0.9309309309309309,-0.92992992992993,-0.928928928928929,-0.9279279279279279,-0.9269269269269269,-0.9259259259259259,-0.924924924924925,-0.923923923923924,-0.9229229229229229,-0.9219219219219219,-0.9209209209209209,-0.91991991991992,-0.918918918918919,-0.9179179179179179,-0.9169169169169169,-0.9159159159159159,-0.914914914914915,-0.913913913913914,-0.9129129129129129,-0.9119119119119119,-0.9109109109109109,-0.9099099099099099,-0.908908908908909,-0.9079079079079079,-0.9069069069069069,-0.9059059059059059,-0.9049049049049049,-0.9039039039039038,-0.9029029029029029,-0.9019019019019019,-0.9009009009009009,-0.8998998998998999,-0.8988988988988988,-0.8978978978978979,-0.8968968968968969,-0.8958958958958959,-0.8948948948948949,-0.8938938938938938,-0.8928928928928929,-0.8918918918918919,-0.8908908908908909,-0.8898898898898899,-0.8888888888888888,-0.8878878878878879,-0.8868868868868869,-0.8858858858858859,-0.8848848848848849,-0.8838838838838838,-0.8828828828828829,-0.8818818818818819,-0.8808808808808809,-0.8798798798798799,-0.8788788788788788,-0.8778778778778779,-0.8768768768768769,-0.8758758758758759,-0.8748748748748749,-0.8738738738738738,-0.8728728728728729,-0.8718718718718719,-0.8708708708708709,-0.8698698698698699,-0.8688688688688688,-0.8678678678678678,-0.8668668668668669,-0.8658658658658659,-0.8648648648648649,-0.8638638638638638,-0.8628628628628628,-0.8618618618618619,-0.8608608608608609,-0.8598598598598599,-0.8588588588588588,-0.8578578578578578,-0.8568568568568569,-0.8558558558558559,-0.8548548548548549,-0.8538538538538538,-0.8528528528528528,-0.8518518518518519,-0.8508508508508509,-0.8498498498498499,-0.8488488488488488,-0.8478478478478478,-0.8468468468468469,-0.8458458458458459,-0.8448448448448449,-0.8438438438438438,-0.8428428428428428,-0.8418418418418419,-0.8408408408408409,-0.8398398398398398,-0.8388388388388388,-0.8378378378378378,-0.8368368368368369,-0.8358358358358359,-0.8348348348348348,-0.8338338338338338,-0.8328328328328328,-0.8318318318318318,-0.8308308308308309,-0.8298298298298298,-0.8288288288288288,-0.8278278278278278,-0.8268268268268268,-0.8258258258258259,-0.8248248248248248,-0.8238238238238238,-0.8228228228228228,-0.8218218218218218,-0.8208208208208209,-0.8198198198198198,-0.8188188188188188,-0.8178178178178178,-0.8168168168168168,-0.8158158158158159,-0.8148148148148148,-0.8138138138138138,-0.8128128128128128,-0.8118118118118118,-0.8108108108108109,-0.8098098098098098,-0.8088088088088088,-0.8078078078078078,-0.8068068068068068,-0.8058058058058059,-0.8048048048048048,-0.8038038038038038,-0.8028028028028028,-0.8018018018018018,-0.8008008008008008,-0.7997997997997998,-0.7987987987987988,-0.7977977977977978,-0.7967967967967968,-0.7957957957957958,-0.7947947947947948,-0.7937937937937938,-0.7927927927927928,-0.7917917917917918,-0.7907907907907908,-0.7897897897897898,-0.7887887887887888,-0.7877877877877878,-0.7867867867867868,-0.7857857857857858,-0.7847847847847848,-0.7837837837837838,-0.7827827827827828,-0.7817817817817818,-0.7807807807807807,-0.7797797797797797,-0.7787787787787788,-0.7777777777777778,-0.7767767767767768,-0.7757757757757757,-0.7747747747747747,-0.7737737737737738,-0.7727727727727728,-0.7717717717717718,-0.7707707707707707,-0.7697697697697697,-0.7687687687687688,-0.7677677677677678,-0.7667667667667668,-0.7657657657657657,-0.7647647647647647,-0.7637637637637638,-0.7627627627627628,-0.7617617617617618,-0.7607607607607607,-0.7597597597597597,-0.7587587587587588,-0.7577577577577578,-0.7567567567567568,-0.7557557557557557,-0.7547547547547547,-0.7537537537537538,-0.7527527527527528,-0.7517517517517518,-0.7507507507507507,-0.7497497497497497,-0.7487487487487487,-0.7477477477477478,-0.7467467467467468,-0.7457457457457457,-0.7447447447447447,-0.7437437437437437,-0.7427427427427428,-0.7417417417417418,-0.7407407407407407,-0.7397397397397397,-0.7387387387387387,-0.7377377377377378,-0.7367367367367368,-0.7357357357357357,-0.7347347347347347,-0.7337337337337337,-0.7327327327327328,-0.7317317317317318,-0.7307307307307307,-0.7297297297297297,-0.7287287287287287,-0.7277277277277278,-0.7267267267267268,-0.7257257257257257,-0.7247247247247247,-0.7237237237237237,-0.7227227227227228,-0.7217217217217218,-0.7207207207207207,-0.7197197197197197,-0.7187187187187187,-0.7177177177177178,-0.7167167167167167,-0.7157157157157157,-0.7147147147147147,-0.7137137137137137,-0.7127127127127127,-0.7117117117117117,-0.7107107107107107,-0.7097097097097097,-0.7087087087087087,-0.7077077077077077,-0.7067067067067067,-0.7057057057057057,-0.7047047047047047,-0.7037037037037037,-0.7027027027027027,-0.7017017017017017,-0.7007007007007007,-0.6996996996996997,-0.6986986986986987,-0.6976976976976977,-0.6966966966966966,-0.6956956956956957,-0.6946946946946947,-0.6936936936936937,-0.6926926926926927,-0.6916916916916916,-0.6906906906906907,-0.6896896896896897,-0.6886886886886887,-0.6876876876876877,-0.6866866866866866,-0.6856856856856857,-0.6846846846846847,-0.6836836836836837,-0.6826826826826827,-0.6816816816816816,-0.6806806806806807,-0.6796796796796797,-0.6786786786786787,-0.6776776776776777,-0.6766766766766766,-0.6756756756756757,-0.6746746746746747,-0.6736736736736737,-0.6726726726726727,-0.6716716716716716,-0.6706706706706707,-0.6696696696696697,-0.6686686686686687,-0.6676676676676677,-0.6666666666666666,-0.6656656656656657,-0.6646646646646647,-0.6636636636636637,-0.6626626626626627,-0.6616616616616616,-0.6606606606606606,-0.6596596596596597,-0.6586586586586587,-0.6576576576576577,-0.6566566566566566,-0.6556556556556556,-0.6546546546546547,-0.6536536536536537,-0.6526526526526526,-0.6516516516516516,-0.6506506506506506,-0.6496496496496497,-0.6486486486486487,-0.6476476476476476,-0.6466466466466466,-0.6456456456456456,-0.6446446446446447,-0.6436436436436437,-0.6426426426426426,-0.6416416416416416,-0.6406406406406406,-0.6396396396396397,-0.6386386386386387,-0.6376376376376376,-0.6366366366366366,-0.6356356356356356,-0.6346346346346347,-0.6336336336336337,-0.6326326326326326,-0.6316316316316316,-0.6306306306306306,-0.6296296296296297,-0.6286286286286287,-0.6276276276276276,-0.6266266266266266,-0.6256256256256256,-0.6246246246246246,-0.6236236236236237,-0.6226226226226226,-0.6216216216216216,-0.6206206206206206,-0.6196196196196196,-0.6186186186186187,-0.6176176176176176,-0.6166166166166166,-0.6156156156156156,-0.6146146146146146,-0.6136136136136137,-0.6126126126126126,-0.6116116116116116,-0.6106106106106106,-0.6096096096096096,-0.6086086086086087,-0.6076076076076076,-0.6066066066066066,-0.6056056056056056,-0.6046046046046046,-0.6036036036036037,-0.6026026026026026,-0.6016016016016016,-0.6006006006006006,-0.5995995995995996,-0.5985985985985987,-0.5975975975975976,-0.5965965965965966,-0.5955955955955956,-0.5945945945945946,-0.5935935935935935,-0.5925925925925926,-0.5915915915915916,-0.5905905905905906,-0.5895895895895896,-0.5885885885885885,-0.5875875875875876,-0.5865865865865866,-0.5855855855855856,-0.5845845845845846,-0.5835835835835835,-0.5825825825825826,-0.5815815815815816,-0.5805805805805806,-0.5795795795795796,-0.5785785785785785,-0.5775775775775776,-0.5765765765765766,-0.5755755755755756,-0.5745745745745746,-0.5735735735735735,-0.5725725725725725,-0.5715715715715716,-0.5705705705705706,-0.5695695695695696,-0.5685685685685685,-0.5675675675675675,-0.5665665665665666,-0.5655655655655656,-0.5645645645645646,-0.5635635635635635,-0.5625625625625625,-0.5615615615615616,-0.5605605605605606,-0.5595595595595596,-0.5585585585585585,-0.5575575575575575,-0.5565565565565566,-0.5555555555555556,-0.5545545545545546,-0.5535535535535535,-0.5525525525525525,-0.5515515515515516,-0.5505505505505506,-0.5495495495495496,-0.5485485485485485,-0.5475475475475475,-0.5465465465465466,-0.5455455455455456,-0.5445445445445446,-0.5435435435435435,-0.5425425425425425,-0.5415415415415415,-0.5405405405405406,-0.5395395395395396,-0.5385385385385385,-0.5375375375375375,-0.5365365365365365,-0.5355355355355356,-0.5345345345345346,-0.5335335335335335,-0.5325325325325325,-0.5315315315315315,-0.5305305305305306,-0.5295295295295295,-0.5285285285285285,-0.5275275275275275,-0.5265265265265265,-0.5255255255255256,-0.5245245245245245,-0.5235235235235235,-0.5225225225225225,-0.5215215215215215,-0.5205205205205206,-0.5195195195195195,-0.5185185185185185,-0.5175175175175175,-0.5165165165165165,-0.5155155155155156,-0.5145145145145145,-0.5135135135135135,-0.5125125125125125,-0.5115115115115115,-0.5105105105105106,-0.5095095095095095,-0.5085085085085085,-0.5075075075075075,-0.5065065065065065,-0.5055055055055055,-0.5045045045045045,-0.5035035035035035,-0.5025025025025025,-0.5015015015015015,-0.5005005005005005,-0.4994994994994995,-0.4984984984984985,-0.4974974974974975,-0.4964964964964965,-0.4954954954954955,-0.4944944944944945,-0.4934934934934935,-0.4924924924924925,-0.4914914914914915,-0.4904904904904905,-0.4894894894894895,-0.48848848848848847,-0.4874874874874875,-0.48648648648648657,-0.48548548548548554,-0.48448448448448456,-0.4834834834834835,-0.48248248248248254,-0.48148148148148157,-0.48048048048048053,-0.47947947947947955,-0.4784784784784785,-0.47747747747747754,-0.4764764764764765,-0.47547547547547553,-0.47447447447447455,-0.4734734734734735,-0.47247247247247254,-0.4714714714714715,-0.4704704704704705,-0.46946946946946955,-0.4684684684684685,-0.46746746746746753,-0.4664664664664665,-0.4654654654654655,-0.46446446446446454,-0.4634634634634635,-0.46246246246246253,-0.4614614614614615,-0.4604604604604605,-0.45945945945945954,-0.4584584584584585,-0.45745745745745753,-0.4564564564564565,-0.4554554554554555,-0.45445445445445454,-0.4534534534534535,-0.4524524524524525,-0.4514514514514515,-0.4504504504504505,-0.44944944944944953,-0.4484484484484485,-0.4474474474474475,-0.4464464464464465,-0.4454454454454455,-0.4444444444444445,-0.4434434434434435,-0.4424424424424425,-0.4414414414414415,-0.4404404404404405,-0.43943943943943947,-0.4384384384384385,-0.4374374374374375,-0.4364364364364365,-0.4354354354354355,-0.43443443443443447,-0.4334334334334335,-0.4324324324324325,-0.4314314314314315,-0.4304304304304305,-0.42942942942942947,-0.4284284284284285,-0.4274274274274275,-0.4264264264264265,-0.4254254254254255,-0.42442442442442446,-0.4234234234234235,-0.4224224224224225,-0.42142142142142147,-0.4204204204204205,-0.41941941941941946,-0.4184184184184185,-0.41741741741741745,-0.41641641641641647,-0.4154154154154155,-0.41441441441441446,-0.4134134134134135,-0.41241241241241244,-0.41141141141141147,-0.4104104104104105,-0.40940940940940945,-0.4084084084084085,-0.40740740740740744,-0.40640640640640646,-0.4054054054054055,-0.40440440440440445,-0.40340340340340347,-0.40240240240240244,-0.40140140140140146,-0.4004004004004005,-0.39939939939939945,-0.39839839839839847,-0.39739739739739743,-0.39639639639639646,-0.3953953953953955,-0.39439439439439444,-0.39339339339339346,-0.39239239239239243,-0.39139139139139145,-0.3903903903903905,-0.38938938938938944,-0.38838838838838846,-0.3873873873873874,-0.38638638638638645,-0.3853853853853854,-0.38438438438438444,-0.38338338338338346,-0.3823823823823824,-0.38138138138138145,-0.3803803803803804,-0.37937937937937943,-0.37837837837837845,-0.3773773773773774,-0.37637637637637644,-0.3753753753753754,-0.37437437437437443,-0.37337337337337345,-0.3723723723723724,-0.37137137137137144,-0.3703703703703704,-0.3693693693693694,-0.36836836836836845,-0.3673673673673674,-0.36636636636636644,-0.3653653653653654,-0.3643643643643644,-0.36336336336336345,-0.3623623623623624,-0.36136136136136143,-0.3603603603603604,-0.3593593593593594,-0.35835835835835844,-0.3573573573573574,-0.35635635635635643,-0.3553553553553554,-0.3543543543543544,-0.3533533533533534,-0.3523523523523524,-0.3513513513513514,-0.3503503503503504,-0.3493493493493494,-0.3483483483483484,-0.3473473473473474,-0.3463463463463464,-0.3453453453453454,-0.3443443443443444,-0.3433433433433434,-0.3423423423423424,-0.3413413413413414,-0.3403403403403404,-0.3393393393393394,-0.3383383383383384,-0.3373373373373374,-0.3363363363363364,-0.3353353353353354,-0.3343343343343344,-0.33333333333333337,-0.3323323323323324,-0.3313313313313314,-0.3303303303303304,-0.3293293293293294,-0.32832832832832837,-0.3273273273273274,-0.3263263263263264,-0.3253253253253254,-0.3243243243243244,-0.32332332332332336,-0.3223223223223224,-0.32132132132132135,-0.3203203203203204,-0.3193193193193194,-0.31831831831831836,-0.3173173173173174,-0.31631631631631635,-0.31531531531531537,-0.3143143143143144,-0.31331331331331336,-0.3123123123123124,-0.31131131131131135,-0.31031031031031037,-0.3093093093093094,-0.30830830830830835,-0.3073073073073074,-0.30630630630630634,-0.30530530530530536,-0.3043043043043044,-0.30330330330330335,-0.3023023023023024,-0.30130130130130134,-0.30030030030030036,-0.2992992992992994,-0.29829829829829835,-0.29729729729729737,-0.29629629629629634,-0.29529529529529536,-0.2942942942942944,-0.29329329329329334,-0.29229229229229237,-0.29129129129129133,-0.29029029029029035,-0.2892892892892893,-0.28828828828828834,-0.28728728728728736,-0.28628628628628633,-0.28528528528528535,-0.2842842842842843,-0.28328328328328334,-0.28228228228228236,-0.2812812812812813,-0.28028028028028035,-0.2792792792792793,-0.27827827827827833,-0.27727727727727736,-0.2762762762762763,-0.27527527527527534,-0.2742742742742743,-0.27327327327327333,-0.27227227227227235,-0.2712712712712713,-0.27027027027027034,-0.2692692692692693,-0.26826826826826833,-0.26726726726726735,-0.2662662662662663,-0.26526526526526534,-0.2642642642642643,-0.2632632632632633,-0.26226226226226235,-0.2612612612612613,-0.26026026026026033,-0.2592592592592593,-0.2582582582582583,-0.2572572572572573,-0.2562562562562563,-0.2552552552552553,-0.2542542542542543,-0.25325325325325326,-0.2522522522522523,-0.2512512512512513,-0.2502502502502503,-0.24924924924924927,-0.2482482482482483,-0.24724724724724728,-0.24624624624624628,-0.24524524524524527,-0.24424424424424426,-0.24324324324324328,-0.24224224224224228,-0.24124124124124127,-0.24024024024024027,-0.23923923923923926,-0.23823823823823825,-0.23723723723723728,-0.23623623623623627,-0.23523523523523526,-0.23423423423423426,-0.23323323323323325,-0.23223223223223227,-0.2312312312312313,-0.2302302302302303,-0.22922922922922928,-0.22822822822822827,-0.2272272272272273,-0.2262262262262263,-0.22522522522522528,-0.22422422422422428,-0.22322322322322327,-0.22222222222222227,-0.2212212212212213,-0.22022022022022028,-0.21921921921921927,-0.21821821821821827,-0.21721721721721726,-0.21621621621621628,-0.21521521521521528,-0.21421421421421427,-0.21321321321321327,-0.21221221221221226,-0.21121121121121128,-0.21021021021021027,-0.20920920920920927,-0.20820820820820826,-0.20720720720720726,-0.20620620620620625,-0.20520520520520527,-0.20420420420420426,-0.20320320320320326,-0.20220220220220225,-0.20120120120120125,-0.20020020020020027,-0.19919919919919926,-0.19819819819819826,-0.19719719719719725,-0.19619619619619624,-0.19519519519519526,-0.19419419419419426,-0.19319319319319325,-0.19219219219219225,-0.19119119119119124,-0.19019019019019023,-0.18918918918918926,-0.18818818818818825,-0.18718718718718724,-0.18618618618618624,-0.18518518518518523,-0.18418418418418425,-0.18318318318318325,-0.18218218218218224,-0.18118118118118123,-0.18018018018018023,-0.17917917917917925,-0.17817817817817824,-0.17717717717717724,-0.17617617617617623,-0.17517517517517522,-0.17417417417417422,-0.17317317317317324,-0.17217217217217223,-0.17117117117117123,-0.17017017017017022,-0.16916916916916921,-0.16816816816816824,-0.16716716716716723,-0.16616616616616622,-0.16516516516516522,-0.1641641641641642,-0.16316316316316323,-0.16216216216216223,-0.16116116116116122,-0.16016016016016021,-0.1591591591591592,-0.1581581581581582,-0.15715715715715722,-0.15615615615615622,-0.1551551551551552,-0.1541541541541542,-0.1531531531531532,-0.15215215215215222,-0.15115115115115121,-0.1501501501501502,-0.1491491491491492,-0.1481481481481482,-0.14714714714714722,-0.1461461461461462,-0.1451451451451452,-0.1441441441441442,-0.1431431431431432,-0.14214214214214219,-0.1411411411411412,-0.1401401401401402,-0.1391391391391392,-0.1381381381381382,-0.13713713713713718,-0.1361361361361362,-0.1351351351351352,-0.1341341341341342,-0.13313313313313319,-0.13213213213213218,-0.1311311311311312,-0.1301301301301302,-0.1291291291291292,-0.12812812812812818,-0.12712712712712718,-0.12612612612612617,-0.12512512512512516,-0.12412412412412417,-0.12312312312312317,-0.12212212212212216,-0.12112112112112117,-0.12012012012012016,-0.11911911911911917,-0.11811811811811816,-0.11711711711711716,-0.11611611611611616,-0.11511511511511516,-0.11411411411411415,-0.11311311311311316,-0.11211211211211215,-0.11111111111111116,-0.11011011011011015,-0.10910910910910915,-0.10810810810810816,-0.10710710710710715,-0.10610610610610614,-0.10510510510510515,-0.10410410410410414,-0.10310310310310317,-0.10210210210210216,-0.10110110110110115,-0.10010010010010016,-0.09909909909909916,-0.09809809809809815,-0.09709709709709716,-0.09609609609609615,-0.09509509509509516,-0.09409409409409415,-0.09309309309309315,-0.09209209209209215,-0.09109109109109115,-0.09009009009009014,-0.08908908908908915,-0.08808808808808814,-0.08708708708708715,-0.08608608608608614,-0.08508508508508514,-0.08408408408408415,-0.08308308308308314,-0.08208208208208213,-0.08108108108108114,-0.08008008008008013,-0.07907907907907914,-0.07807807807807814,-0.07707707707707713,-0.07607607607607614,-0.07507507507507513,-0.07407407407407413,-0.07307307307307313,-0.07207207207207213,-0.07107107107107113,-0.07007007007007013,-0.06906906906906912,-0.06806806806806813,-0.06706706706706712,-0.06606606606606612,-0.06506506506506513,-0.06406406406406412,-0.06306306306306311,-0.062062062062062114,-0.061061061061061114,-0.06006006006006011,-0.05905905905905911,-0.05805805805805811,-0.0570570570570571,-0.056056056056056104,-0.055055055055055105,-0.054054054054054106,-0.0530530530530531,-0.0520520520520521,-0.0510510510510511,-0.0500500500500501,-0.049049049049049095,-0.048048048048048096,-0.0470470470470471,-0.0460460460460461,-0.04504504504504509,-0.04404404404404409,-0.04304304304304309,-0.042042042042042094,-0.04104104104104109,-0.04004004004004009,-0.039039039039039096,-0.0380380380380381,-0.03703703703703709,-0.03603603603603609,-0.03503503503503509,-0.03403403403403409,-0.033033033033033087,-0.03203203203203209,-0.031031031031031085,-0.030030030030030082,-0.029029029029029083,-0.02802802802802808,-0.02702702702702708,-0.026026026026026078,-0.02502502502502508,-0.024024024024024076,-0.023023023023023077,-0.022022022022022074,-0.021021021021021075,-0.020020020020020072,-0.019019019019019073,-0.01801801801801807,-0.01701701701701707,-0.016016016016016068,-0.01501501501501507,-0.01401401401401407,-0.013013013013013068,-0.012012012012012067,-0.011011011011011066,-0.010010010010010065,-0.009009009009009064,-0.008008008008008063,-0.0070070070070070625,-0.0060060060060060615,-0.0050050050050050605,-0.0040040040040040595,-0.003003003003003058,-0.0020020020020020575,-0.0010010010010010565,-5.551115123125783e-17]}
-},{}],17:[function(require,module,exports){
-module.exports={"expected":[1.0,1.000694081784944,1.0013886453194116,1.0020836909377775,1.0027792189746465,1.003475229764857,1.004171723643479,1.0048687009458155,1.0055661620074021,1.0062641071640073,1.0069625367516324,1.0076614511065125,1.0083608505651156,1.0090607354641432,1.0097611061405307,1.0104619629314475,1.0111633061742968,1.011865136206716,1.0125674533665767,1.0132702579919852,1.0139735504212828,1.014677330993045,1.0153816000460825,1.0160863579194415,1.0167916049524033,1.0174973414844846,1.0182035678554375,1.0189102844052507,1.0196174914741483,1.0203251894025906,1.0210333785312742,1.0217420592011324,1.0224512317533347,1.023160896529288,1.0238710538706357,1.0245817041192584,1.0252928476172742,1.0260044847070386,1.0267166157311443,1.0274292410324224,1.0281423609539415,1.0288559758390088,1.0295700860311692,1.0302846918742063,1.0309997937121427,1.031715391889239,1.0324314867499955,1.0331480786391511,1.0338651679016841,1.0345827548828126,1.0353008399279935,1.0360194233829245,1.0367385055935425,1.0374580869060248,1.038178167666789,1.0388987482224927,1.039619828920035,1.0403414101065547,1.0410634921294322,1.0417860753362893,1.042509160074988,1.0432327466936333,1.0439568355405702,1.0446814269643863,1.0454065213139114,1.046132118938217,1.0468582201866163,1.0475848254086666,1.0483119349541663,1.049039549173157,1.0497676684159238,1.0504962930329942,1.0512254233751392,1.0519550597933738,1.0526852026389557,1.0534158522633872,1.0541470090184142,1.054878673256027,1.0556108453284596,1.056343525588191,1.0570767143879451,1.05781041208069,1.058544619019639,1.0592793355582508,1.060014562050229,1.0607502988495232,1.0614865463103285,1.0622233047870853,1.0629605746344808,1.0636983562074478,1.0644366498611662,1.0651754559510613,1.065914774832806,1.06665460686232,1.0673949523957693,1.0681358117895683,1.0688771854003773,1.0696190735851059,1.0703614767009095,1.0711043951051933,1.071847829155609,1.0725917792100574,1.0733362456266875,1.0740812287638968,1.074826728980332,1.0755727466348879,1.076319282086709,1.077066335695189,1.0778139078199713,1.078561998820948,1.0793106090582623,1.080059738892306,1.0808093886837224,1.081559558793404,1.0823102495824943,1.0830614614123875,1.0838131946447285,1.084565449641413,1.0853182267645884,1.0860715263766532,1.0868253488402573,1.0875796945183025,1.0883345637739423,1.0890899569705825,1.0898458744718809,1.090602316641748,1.0913592838443464,1.092116776444092,1.0928747948056534,1.0936333392939521,1.0943924102741633,1.0951520081117152,1.0959121331722903,1.096672785821824,1.0974339664265065,1.0981956753527817,1.098957912967348,1.0997206796371584,1.1004839757294205,1.1012478016115967,1.1020121576514048,1.1027770442168172,1.1035424616760623,1.1043084103976235,1.1050748907502408,1.1058419031029092,1.1066094478248805,1.1073775252856624,1.1081461358550193,1.108915279902972,1.1096849577997985,1.1104551699160334,1.1112259166224687,1.1119971982901538,1.1127690152903955,1.1135413679947583,1.1143142567750648,1.1150876820033955,1.1158616440520892,1.1166361432937433,1.1174111801012132,1.118186754847614,1.118962867906319,1.1197395196509614,1.1205167104554328,1.121294440693885,1.1220727107407293,1.122851520970637,1.123630871758539,1.124410763479627,1.1251911965093528,1.1259721712234292,1.1267536879978288,1.1275357472087864,1.1283183492327968,1.1291014944466173,1.1298851832272654,1.1306694159520212,1.1314541929984265,1.132239514744285,1.1330253815676625,1.1338117938468877,1.1345987519605512,1.135386256287507,1.1361743072068715,1.136962905098025,1.1377520503406102,1.138541743314534,1.1393319843999667,1.1401227739773425,1.1409141124273598,1.141706000130981,1.142498437469433,1.143291424824207,1.14408496257706,1.1448790511100126,1.1456736908053518,1.1464688820456292,1.1472646252136618,1.148060920692533,1.1488577688655914,1.1496551701164521,1.1504531248289964,1.151251633387372,1.1520506961759927,1.1528503135795403,1.1536504859829626,1.1544512137714749,1.1552524973305598,1.1560543370459677,1.1568567333037165,1.157659686490092,1.1584631969916486,1.1592672651952083,1.1600718914878618,1.160877076256969,1.1616828198901574,1.1624891227753253,1.163295985300639,1.1641034078545343,1.1649113908257172,1.1657199346031628,1.1665290395761165,1.1673387061340943,1.1681489346668819,1.1689597255645356,1.1697710792173828,1.1705829960160214,1.1713954763513212,1.1722085206144222,1.1730221291967364,1.1738363024899479,1.1746510408860118,1.175466344777156,1.1762822145558802,1.1770986506149568,1.1779156533474304,1.178733223146619,1.1795513604061132,1.1803700655197766,1.181189338881747,1.1820091808864344,1.1828295919285239,1.183650572402974,1.1844721227050172,1.1852942432301603,1.186116934374185,1.1869401965331476,1.1877640301033787,1.1885884354814849,1.1894134130643474,1.1902389632491233,1.1910650864332448,1.1918917830144204,1.1927190533906349,1.1935468979601487,1.194375317121499,1.1952043112734994,1.1960338808152406,1.19686402614609,1.1976947476656925,1.1985260457739702,1.1993579208711225,1.2001903733576271,1.2010234036342395,1.2018570121019931,1.2026911991622,1.2035259652164507,1.2043613106666144,1.205197235914839,1.206033741363552,1.20687082741546,1.2077084944735492,1.208546742941085,1.2093855732216137,1.2102249857189604,1.2110649808372318,1.2119055589808143,1.212746720554375,1.213588465962862,1.2144307956115046,1.2152737099058133,1.21611720925158,1.2169612940548782,1.2178059647220632,1.2186512216597727,1.2194970652749262,1.220343495974726,1.2211905141666564,1.2220381202584856,1.222886314658264,1.223735097774325,1.2245844700152868,1.2254344317900494,1.2262849835077978,1.2271361255780004,1.2279878584104107,1.2288401824150654,1.2296930980022867,1.2305466055826813,1.2314007055671405,1.2322553983668414,1.2331106843932464,1.2339665640581035,1.2348230377734457,1.2356801059515932,1.2365377690051516,1.237396027347013,1.2382548813903564,1.239114331548647,1.2399743782356378,1.240835021865368,1.241696262852165,1.2425581016106435,1.2434205385557058,1.2442835741025422,1.2451472086666315,1.2460114426637405,1.246876276509925,1.247741710621529,1.248607745415186,1.2494743813078184,1.250341618716638,1.2512094580591462,1.2520778997531345,1.2529469442166838,1.2538165918681656,1.2546868431262415,1.255557698409864,1.2564291581382763,1.257301222731012,1.2581738926078974,1.2590471681890483,1.2599210498948732,1.2607955381460725,1.261670633363638,1.2625463359688542,1.2634226463832976,1.2642995650288378,1.2651770923276364,1.2660552287021491,1.2669339745751242,1.267813330369603,1.2686932965089215,1.2695738734167088,1.2704550615168877,1.2713368612336762,1.272219272991586,1.2731022972154238,1.2739859343302913,1.2748701847615844,1.2757550489349954,1.2766405272765111,1.2775266202124147,1.2784133281692849,1.2793006515739964,1.2801885908537207,1.281077146435925,1.281966318748374,1.2828561082191285,1.2837465152765473,1.2846375403492858,1.2855291838662972,1.2864214462568324,1.2873143279504402,1.2882078293769679,1.2891019509665602,1.2899966931496616,1.2908920563570145,1.2917880410196605,1.2926846475689404,1.2935818764364944,1.2944797280542624,1.2953782028544838,1.2962773012696982,1.2971770237327456,1.298077370676766,1.2989783425352004,1.2998799397417906,1.3007821627305791,1.3016850119359102,1.3025884877924292,1.3034925907350834,1.3043973211991218,1.3053026796200955,1.306208666433858,1.3071152820765655,1.3080225269846764,1.3089304015949526,1.3098389063444587,1.310748041670563,1.3116578080109373,1.3125682058035568,1.3134792354867015,1.3143908974989547,1.3153031922792047,1.316216120266644,1.3171296819007703,1.3180438776213865,1.3189587078686,1.3198741730828247,1.3207902737047792,1.3217070101754884,1.3226243829362838,1.3235423924288023,1.324461039094988,1.3253803233770916,1.3263002457176705,1.3272208065595894,1.3281420063460208,1.3290638455204442,1.3299863245266472,1.3309094438087254,1.3318332038110827,1.3327576049784313,1.3336826477557921,1.334608332588495,1.335534659922179,1.3364616302027919,1.3373892438765917,1.3383175013901463,1.3392464031903326,1.3401759497243384,1.341106141439662,1.3420369787841113,1.3429684622058062,1.3439005921531773,1.3448333690749659,1.3457667934202253,1.3467008656383206,1.3476355861789282,1.3485709554920369,1.3495069740279482,1.3504436422372754,1.3513809605709455,1.3523189294801976,1.3532575494165844,1.3541968208319721,1.3551367441785402,1.3560773199087826,1.3570185484755066,1.3579604303318342,1.358902965931202,1.359846155727361,1.360790000174377,1.3617344997266316,1.3626796548388214,1.3636254659659586,1.3645719335633708,1.3655190580867027,1.3664668399919142,1.3674152797352823,1.3683643777734003,1.3693141345631787,1.3702645505618452,1.3712156262269442,1.3721673620163386,1.3731197583882084,1.374072815801052,1.3750265347136859,1.375980915585245,1.3769359588751828,1.3778916650432722,1.3788480345496046,1.379805067854591,1.380762765418962,1.3817211277037678,1.382680155170379,1.383639848280486,1.3846002074960997,1.3855612332795522,1.3865229260934957,1.3874852864009042,1.3884483146650723,1.3894120113496173,1.3903763769184772,1.3913414118359122,1.3923071165665055,1.393273491575162,1.3942405373271092,1.395208254287898,1.3961766429234026,1.3971457036998196,1.3981154370836701,1.3990858435417985,1.4000569235413736,1.4010286775498881,1.4020011060351592,1.4029742094653292,1.403947988308865,1.4049224430345586,1.4058975741115276,1.406873382009215,1.4078498671973898,1.408827030146147,1.4098048713259077,1.4107833912074201,1.4117625902617583,1.412742468960324,1.4137230277748458,1.41470426717738,1.41568618764031,1.4166687896363475,1.4176520736385325,1.4186360401202327,1.4196206895551449,1.4206060224172945,1.4215920391810357,1.4225787403210521,1.4235661263123573,1.4245541976302938,1.425542954750534,1.4265323981490812,1.4275225283022686,1.42851334568676,1.4295048507795505,1.4304970440579652,1.4314899259996616,1.4324834970826286,1.433477757785186,1.434472708585987,1.4354683499640153,1.4364646823985885,1.4374617063693564,1.4384594223563016,1.4394578308397399,1.4404569323003205,1.441456727219026,1.4424572160771734,1.4434583993564132,1.4444602775387305,1.445462851106445,1.4464661205422107,1.4474700863290173,1.4484747489501895,1.4494801088893867,1.450486166630605,1.4514929226581763,1.452500377456768,1.4535085315113847,1.4545173853073672,1.455526939330393,1.456537194066477,1.4575481500019718,1.4585598076235666,1.4595721674182893,1.4605852298735051,1.4615989954769182,1.4626134647165707,1.463628638080844,1.464644516058458,1.465661099138472,1.4666783878102845,1.4676963825636344,1.4687150838885996,1.4697344922755988,1.4707546082153908,1.4717754321990753,1.4727969647180923,1.4738192062642237,1.474842157329592,1.4758658184066615,1.4768901899882387,1.4779152725674716,1.478941066637851,1.4799675726932096,1.4809947912277233,1.482022722735911,1.4830513677126347,1.4840807266531002,1.4851108000528561,1.486141588407796,1.4871730922141573,1.4882053119685215,1.4892382481678155,1.4902719013093102,1.4913062718906225,1.4923413604097142,1.4933771673648928,1.4944136932548118,1.4954509385784704,1.4964889038352147,1.497527589524737,1.498566996147077,1.4996071242026205,1.5006479741921015,1.501689546616601,1.502731841977548,1.5037748607767196,1.5048186035162412,1.5058630706985863,1.5069082628265775,1.5079541804033867,1.5090008239325345,1.5100481939178911,1.511096290863677,1.5121451152744614,1.513194667655165,1.5142449485110585,1.5152959583477632,1.516347697671251,1.517400166987846,1.518453366804223,1.5195072976274084,1.5205619599647808,1.5216173543240705,1.5226734812133613,1.5237303411410883,1.5247879346160407,1.5258462621473596,1.5269053242445405,1.5279651214174323,1.5290256541762375,1.530086923031513,1.5311489284941697,1.5322116710754736,1.5332751512870453,1.5343393696408605,1.5354043266492505,1.5364700228249015,1.5375364586808564,1.5386036347305136,1.5396715514876282,1.540740209466312,1.5418096091810332,1.5428797511466168,1.5439506358782462,1.5450222638914617,1.5460946357021614,1.5471677518266014,1.5482416127813967,1.5493162190835201,1.5503915712503038,1.5514676697994392,1.552544515248976,1.5536221081173247,1.5547004489232548,1.5557795381858963,1.5568593764247394,1.5579399641596348,1.5590213019107937,1.5601033901987893,1.5611862295445553,1.5622698204693872,1.5633541634949424,1.5644392591432401,1.5655251079366623,1.5666117103979533,1.5676990670502202,1.5687871784169332,1.5698760450219256,1.5709656673893948,1.5720560460439017,1.5731471815103717,1.5742390743140935,1.5753317249807217,1.5764251340362747,1.577519302007137,1.5786142294200574,1.5797099168021507,1.580806364680898,1.5819035735841462,1.5830015440401086,1.5841002765773646,1.5851997717248612,1.5863000300119126,1.5874010519681994,1.5885028381237711,1.5896053890090442,1.590708705154804,1.5918127870922034,1.5929176353527645,1.5940232504683787,1.5951296329713056,1.596236783394175,1.597344702269986,1.598453390132108,1.5995628475142805,1.6006730749506128,1.601784072975586,1.6028958421240513,1.6040083829312317,1.6051216959327215,1.6062357816644863,1.6073506406628644,1.6084662734645663,1.6095826806066742,1.6106998626266444,1.611817820062305,1.6129365534518578,1.6140560633338787,1.6151763502473169,1.6162974147314955,1.6174192573261124,1.6185418785712395,1.6196652790073245,1.6207894591751892,1.6219144196160318,1.6230401608714249,1.624166683483318,1.625293987994036,1.6264220749462814,1.627550944883132,1.6286805983480435,1.629811035884848,1.630942258037756,1.6320742653513551,1.633207058370611,1.6343406376408676,1.6354750037078474,1.636610157117652,1.637746098416761,1.638882828152035,1.6400203468707124,1.6411586551204125,1.6422977534491343,1.6434376424052575,1.6445783225375419,1.6457197943951285,1.6468620585275395,1.6480051154846784,1.6491489658168306,1.6502936100746628,1.6514390488092248,1.652585282571948,1.6537323119146472,1.6548801373895203,1.6560287595491476,1.6571781789464937,1.6583283961349067,1.6594794116681189,1.660631226100247,1.6617838399857918,1.6629372538796399,1.664091468337062,1.665246483913715,1.6664023011656413,1.6675589206492687,1.6687163429214118,1.6698745685392715,1.6710335980604354,1.6721934320428784,1.673354071044962,1.6745155156254357,1.6756777663434368,1.676840823758491,1.678004688430512,1.6791693609198017,1.6803348417870518,1.6815011315933426,1.6826682309001437,1.6838361402693152,1.685004860263106,1.6861743914441565,1.6873447343754964,1.6885158896205472,1.689687857743121,1.690860639307421,1.6920342348780426,1.6932086450199728,1.6943838702985905,1.6955599112796673,1.6967367685293673,1.6979144426142478,1.6990929341012593,1.7002722435577455,1.7014523715514445,1.7026333186504878,1.7038150854234013,1.704997672439106,1.7061810802669175,1.7073653094765466,1.7085503606380992,1.709736234322077,1.7109229310993783,1.7121104515412968,1.7132987962195236,1.7144879657061456,1.7156779605736476,1.716868781394911,1.718060428743216,1.7192529031922394,1.7204462053160567,1.721640335689142,1.7228352948863683,1.7240310834830073,1.7252277020547298,1.7264251511776063,1.7276234314281074,1.7288225433831037,1.730022487619866,1.7312232647160661,1.7324248752497764,1.7336273197994707,1.7348305989440242,1.7360347132627145,1.73723966333522,1.7384454497416229,1.739652073062407,1.7408595338784592,1.74206783277107,1.7432769703219329,1.7444869471131452,1.7456977637272084,1.7469094207470286,1.7481219187559158,1.7493352583375852,1.7505494400761572,1.7517644645561574,1.7529803323625177,1.7541970440805752,1.7554146002960738,1.7566330015951634,1.7578522485644017,1.7590723417907528,1.7602932818615882,1.761515069364687,1.7627377048882371,1.7639611890208335,1.7651855223514805,1.7664107054695912,1.7676367389649872,1.7688636234279003,1.7700913594489711,1.771319947619251,1.772549388530201,1.7737796827736931,1.7750108309420096,1.7762428336278442,1.7774756914243022,1.7787094049249002,1.7799439747235668,1.7811794014146427,1.7824156855928817,1.7836528278534496,1.7848908287919263,1.786129689004304,1.787369409086989,1.788609989636802,1.7898514312509772,1.791093734527164,1.7923369000634264,1.793580928458243,1.794825820310508,1.7960715762195325,1.7973181967850418,1.798565682607178,1.7998140342865008,1.8010632524239851,1.8023133376210243,1.803564290479428,1.8048161116014247,1.8060688015896604,1.807322361047199,1.8085767905775234,1.8098320907845353,1.8110882622725555,1.8123453056463243,1.8136032215110016,1.814862010472168,1.816121673135823,1.817382210108388,1.8186436219967053,1.8199059094080372,1.821169072950069,1.8224331132309064,1.8236980308590782,1.8249638264435353,1.826230500593651,1.8274980539192218,1.8287664870304674,1.8300358005380308,1.831305995052979,1.8325770711868037,1.83384902955142,1.8351218707591685,1.8363955954228144,1.8376702041555482,1.8389456975709864,1.8402220762831714,1.8414993409065707,1.84277749205608,1.8440565303470204,1.8453364563951407,1.8466172708166173,1.8478989742280538,1.8491815672464815,1.8504650504893612,1.8517494245745807,1.8530346901204582,1.8543208477457396,1.8556078980696014,1.8568958417116492,1.858184679291919,1.8594744114308772,1.8607650387494203,1.8620565618688765,1.8633489814110047,1.8646422979979955,1.8659365122524718,1.8672316247974876,1.8685276362565304,1.86982454725352,1.8711223584128094,1.8724210703591848,1.8737206837178662,1.875021199114507,1.8763226171751957,1.8776249385264552,1.8789281637952424,1.8802322936089504,1.8815373285954073,1.8828432693828772,1.8841501166000598,1.8854578708760916,1.8867665328405456,1.8880761031234317,1.8893865823551972,1.890697971166727,1.892010270189344,1.8933234800548089,1.8946376013953212,1.8959526348435192,1.8972685810324803,1.898585440595721,1.8999032141671979,1.9012219023813075,1.9025415058728865,1.9038620252772125,1.9051834612300034,1.9065058143674192,1.9078290853260609,1.9091532747429716,1.9104783832556367,1.911804411501983,1.9131313601203817,1.9144592297496459,1.9157880210290326,1.9171177345982424,1.9184483710974196,1.9197799311671533,1.9211124154484769,1.922445824582869,1.9237801592122532,1.9251154199789986,1.9264516075259204,1.9277887224962797,1.9291267655337843,1.9304657372825889,1.9318056383872948,1.933146469492951,1.9344882312450544,1.9358309242895495,1.9371745492728298,1.9385191068417367,1.9398645976435611,1.9412110223260426,1.942558381537371,1.9439066759261863,1.945255906141577,1.946606072833084,1.9479571766506985,1.9493092182448621,1.950662198266469,1.952016117366864,1.953370976197845,1.9547267754116617,1.9560835156610168,1.957441197599066,1.9587998218794178,1.9601593891561353,1.9615199000837351,1.962881355317188,1.9642437555119194,1.9656071013238097,1.9669713934091946,1.9683366324248655,1.9697028190280692,1.9710699538765089,1.9724380376283444,1.9738070709421924,1.9751770544771265,1.976547988892678,1.9779198748488356,1.9792927130060465,1.9806665040252158,1.982041248567708,1.983416947295346,1.9847936008704126,1.9861712099556494,1.9875497752142595,1.9889292973099046,1.9903097769067086,1.991691214669255,1.9930736112625893,1.9944569673522188,1.995841283604112,1.9972265606847006,1.9986127992608775,2.0],"x":[5.551115123125783e-17,0.0010010010010010565,0.0020020020020020575,0.003003003003003058,0.0040040040040040595,0.0050050050050050605,0.0060060060060060615,0.0070070070070070625,0.008008008008008063,0.009009009009009064,0.010010010010010065,0.011011011011011066,0.012012012012012067,0.013013013013013068,0.01401401401401407,0.01501501501501507,0.016016016016016068,0.01701701701701707,0.01801801801801807,0.019019019019019073,0.020020020020020072,0.021021021021021075,0.022022022022022074,0.023023023023023077,0.024024024024024076,0.02502502502502508,0.026026026026026078,0.02702702702702708,0.02802802802802808,0.029029029029029083,0.030030030030030082,0.031031031031031085,0.03203203203203209,0.033033033033033087,0.03403403403403409,0.03503503503503509,0.03603603603603609,0.03703703703703709,0.0380380380380381,0.039039039039039096,0.04004004004004009,0.04104104104104109,0.042042042042042094,0.04304304304304309,0.04404404404404409,0.04504504504504509,0.0460460460460461,0.0470470470470471,0.048048048048048096,0.049049049049049095,0.0500500500500501,0.0510510510510511,0.0520520520520521,0.0530530530530531,0.054054054054054106,0.055055055055055105,0.056056056056056104,0.0570570570570571,0.05805805805805811,0.05905905905905911,0.06006006006006011,0.061061061061061114,0.062062062062062114,0.06306306306306311,0.06406406406406412,0.06506506506506513,0.06606606606606612,0.06706706706706712,0.06806806806806813,0.06906906906906912,0.07007007007007013,0.07107107107107113,0.07207207207207213,0.07307307307307313,0.07407407407407413,0.07507507507507513,0.07607607607607614,0.07707707707707713,0.07807807807807814,0.07907907907907914,0.08008008008008013,0.08108108108108114,0.08208208208208213,0.08308308308308314,0.08408408408408415,0.08508508508508514,0.08608608608608614,0.08708708708708715,0.08808808808808814,0.08908908908908915,0.09009009009009014,0.09109109109109115,0.09209209209209215,0.09309309309309315,0.09409409409409415,0.09509509509509516,0.09609609609609615,0.09709709709709716,0.09809809809809815,0.09909909909909916,0.10010010010010016,0.10110110110110115,0.10210210210210216,0.10310310310310317,0.10410410410410414,0.10510510510510515,0.10610610610610614,0.10710710710710715,0.10810810810810816,0.10910910910910915,0.11011011011011015,0.11111111111111116,0.11211211211211215,0.11311311311311316,0.11411411411411415,0.11511511511511516,0.11611611611611616,0.11711711711711716,0.11811811811811816,0.11911911911911917,0.12012012012012016,0.12112112112112117,0.12212212212212216,0.12312312312312317,0.12412412412412417,0.12512512512512516,0.12612612612612617,0.12712712712712718,0.12812812812812818,0.1291291291291292,0.1301301301301302,0.1311311311311312,0.13213213213213218,0.13313313313313319,0.1341341341341342,0.1351351351351352,0.1361361361361362,0.13713713713713718,0.1381381381381382,0.1391391391391392,0.1401401401401402,0.1411411411411412,0.14214214214214219,0.1431431431431432,0.1441441441441442,0.1451451451451452,0.1461461461461462,0.14714714714714722,0.1481481481481482,0.1491491491491492,0.1501501501501502,0.15115115115115121,0.15215215215215222,0.1531531531531532,0.1541541541541542,0.1551551551551552,0.15615615615615622,0.15715715715715722,0.1581581581581582,0.1591591591591592,0.16016016016016021,0.16116116116116122,0.16216216216216223,0.16316316316316323,0.1641641641641642,0.16516516516516522,0.16616616616616622,0.16716716716716723,0.16816816816816824,0.16916916916916921,0.17017017017017022,0.17117117117117123,0.17217217217217223,0.17317317317317324,0.17417417417417422,0.17517517517517522,0.17617617617617623,0.17717717717717724,0.17817817817817824,0.17917917917917925,0.18018018018018023,0.18118118118118123,0.18218218218218224,0.18318318318318325,0.18418418418418425,0.18518518518518523,0.18618618618618624,0.18718718718718724,0.18818818818818825,0.18918918918918926,0.19019019019019023,0.19119119119119124,0.19219219219219225,0.19319319319319325,0.19419419419419426,0.19519519519519526,0.19619619619619624,0.19719719719719725,0.19819819819819826,0.19919919919919926,0.20020020020020027,0.20120120120120125,0.20220220220220225,0.20320320320320326,0.20420420420420426,0.20520520520520527,0.20620620620620625,0.20720720720720726,0.20820820820820826,0.20920920920920927,0.21021021021021027,0.21121121121121128,0.21221221221221226,0.21321321321321327,0.21421421421421427,0.21521521521521528,0.21621621621621628,0.21721721721721726,0.21821821821821827,0.21921921921921927,0.22022022022022028,0.2212212212212213,0.22222222222222227,0.22322322322322327,0.22422422422422428,0.22522522522522528,0.2262262262262263,0.2272272272272273,0.22822822822822827,0.22922922922922928,0.2302302302302303,0.2312312312312313,0.23223223223223227,0.23323323323323325,0.23423423423423426,0.23523523523523526,0.23623623623623627,0.23723723723723728,0.23823823823823825,0.23923923923923926,0.24024024024024027,0.24124124124124127,0.24224224224224228,0.24324324324324328,0.24424424424424426,0.24524524524524527,0.24624624624624628,0.24724724724724728,0.2482482482482483,0.24924924924924927,0.2502502502502503,0.2512512512512513,0.2522522522522523,0.25325325325325326,0.2542542542542543,0.2552552552552553,0.2562562562562563,0.2572572572572573,0.2582582582582583,0.2592592592592593,0.26026026026026033,0.2612612612612613,0.26226226226226235,0.2632632632632633,0.2642642642642643,0.26526526526526534,0.2662662662662663,0.26726726726726735,0.26826826826826833,0.2692692692692693,0.27027027027027034,0.2712712712712713,0.27227227227227235,0.27327327327327333,0.2742742742742743,0.27527527527527534,0.2762762762762763,0.27727727727727736,0.27827827827827833,0.2792792792792793,0.28028028028028035,0.2812812812812813,0.28228228228228236,0.28328328328328334,0.2842842842842843,0.28528528528528535,0.28628628628628633,0.28728728728728736,0.28828828828828834,0.2892892892892893,0.29029029029029035,0.29129129129129133,0.29229229229229237,0.29329329329329334,0.2942942942942944,0.29529529529529536,0.29629629629629634,0.29729729729729737,0.29829829829829835,0.2992992992992994,0.30030030030030036,0.30130130130130134,0.3023023023023024,0.30330330330330335,0.3043043043043044,0.30530530530530536,0.30630630630630634,0.3073073073073074,0.30830830830830835,0.3093093093093094,0.31031031031031037,0.31131131131131135,0.3123123123123124,0.31331331331331336,0.3143143143143144,0.31531531531531537,0.31631631631631635,0.3173173173173174,0.31831831831831836,0.3193193193193194,0.3203203203203204,0.32132132132132135,0.3223223223223224,0.32332332332332336,0.3243243243243244,0.3253253253253254,0.3263263263263264,0.3273273273273274,0.32832832832832837,0.3293293293293294,0.3303303303303304,0.3313313313313314,0.3323323323323324,0.33333333333333337,0.3343343343343344,0.3353353353353354,0.3363363363363364,0.3373373373373374,0.3383383383383384,0.3393393393393394,0.3403403403403404,0.3413413413413414,0.3423423423423424,0.3433433433433434,0.3443443443443444,0.3453453453453454,0.3463463463463464,0.3473473473473474,0.3483483483483484,0.3493493493493494,0.3503503503503504,0.3513513513513514,0.3523523523523524,0.3533533533533534,0.3543543543543544,0.3553553553553554,0.35635635635635643,0.3573573573573574,0.35835835835835844,0.3593593593593594,0.3603603603603604,0.36136136136136143,0.3623623623623624,0.36336336336336345,0.3643643643643644,0.3653653653653654,0.36636636636636644,0.3673673673673674,0.36836836836836845,0.3693693693693694,0.3703703703703704,0.37137137137137144,0.3723723723723724,0.37337337337337345,0.37437437437437443,0.3753753753753754,0.37637637637637644,0.3773773773773774,0.37837837837837845,0.37937937937937943,0.3803803803803804,0.38138138138138145,0.3823823823823824,0.38338338338338346,0.38438438438438444,0.3853853853853854,0.38638638638638645,0.3873873873873874,0.38838838838838846,0.38938938938938944,0.3903903903903905,0.39139139139139145,0.39239239239239243,0.39339339339339346,0.39439439439439444,0.3953953953953955,0.39639639639639646,0.39739739739739743,0.39839839839839847,0.39939939939939945,0.4004004004004005,0.40140140140140146,0.40240240240240244,0.40340340340340347,0.40440440440440445,0.4054054054054055,0.40640640640640646,0.40740740740740744,0.4084084084084085,0.40940940940940945,0.4104104104104105,0.41141141141141147,0.41241241241241244,0.4134134134134135,0.41441441441441446,0.4154154154154155,0.41641641641641647,0.41741741741741745,0.4184184184184185,0.41941941941941946,0.4204204204204205,0.42142142142142147,0.4224224224224225,0.4234234234234235,0.42442442442442446,0.4254254254254255,0.4264264264264265,0.4274274274274275,0.4284284284284285,0.42942942942942947,0.4304304304304305,0.4314314314314315,0.4324324324324325,0.4334334334334335,0.43443443443443447,0.4354354354354355,0.4364364364364365,0.4374374374374375,0.4384384384384385,0.43943943943943947,0.4404404404404405,0.4414414414414415,0.4424424424424425,0.4434434434434435,0.4444444444444445,0.4454454454454455,0.4464464464464465,0.4474474474474475,0.4484484484484485,0.44944944944944953,0.4504504504504505,0.4514514514514515,0.4524524524524525,0.4534534534534535,0.45445445445445454,0.4554554554554555,0.4564564564564565,0.45745745745745753,0.4584584584584585,0.45945945945945954,0.4604604604604605,0.4614614614614615,0.46246246246246253,0.4634634634634635,0.46446446446446454,0.4654654654654655,0.4664664664664665,0.46746746746746753,0.4684684684684685,0.46946946946946955,0.4704704704704705,0.4714714714714715,0.47247247247247254,0.4734734734734735,0.47447447447447455,0.47547547547547553,0.4764764764764765,0.47747747747747754,0.4784784784784785,0.47947947947947955,0.48048048048048053,0.48148148148148157,0.48248248248248254,0.4834834834834835,0.48448448448448456,0.48548548548548554,0.48648648648648657,0.4874874874874875,0.48848848848848847,0.4894894894894895,0.4904904904904905,0.4914914914914915,0.4924924924924925,0.4934934934934935,0.4944944944944945,0.4954954954954955,0.4964964964964965,0.4974974974974975,0.4984984984984985,0.4994994994994995,0.5005005005005005,0.5015015015015015,0.5025025025025025,0.5035035035035035,0.5045045045045045,0.5055055055055055,0.5065065065065065,0.5075075075075075,0.5085085085085085,0.5095095095095095,0.5105105105105106,0.5115115115115115,0.5125125125125125,0.5135135135135135,0.5145145145145145,0.5155155155155156,0.5165165165165165,0.5175175175175175,0.5185185185185185,0.5195195195195195,0.5205205205205206,0.5215215215215215,0.5225225225225225,0.5235235235235235,0.5245245245245245,0.5255255255255256,0.5265265265265265,0.5275275275275275,0.5285285285285285,0.5295295295295295,0.5305305305305306,0.5315315315315315,0.5325325325325325,0.5335335335335335,0.5345345345345346,0.5355355355355356,0.5365365365365365,0.5375375375375375,0.5385385385385385,0.5395395395395396,0.5405405405405406,0.5415415415415415,0.5425425425425425,0.5435435435435435,0.5445445445445446,0.5455455455455456,0.5465465465465466,0.5475475475475475,0.5485485485485485,0.5495495495495496,0.5505505505505506,0.5515515515515516,0.5525525525525525,0.5535535535535535,0.5545545545545546,0.5555555555555556,0.5565565565565566,0.5575575575575575,0.5585585585585585,0.5595595595595596,0.5605605605605606,0.5615615615615616,0.5625625625625625,0.5635635635635635,0.5645645645645646,0.5655655655655656,0.5665665665665666,0.5675675675675675,0.5685685685685685,0.5695695695695696,0.5705705705705706,0.5715715715715716,0.5725725725725725,0.5735735735735735,0.5745745745745746,0.5755755755755756,0.5765765765765766,0.5775775775775776,0.5785785785785785,0.5795795795795796,0.5805805805805806,0.5815815815815816,0.5825825825825826,0.5835835835835835,0.5845845845845846,0.5855855855855856,0.5865865865865866,0.5875875875875876,0.5885885885885885,0.5895895895895896,0.5905905905905906,0.5915915915915916,0.5925925925925926,0.5935935935935935,0.5945945945945946,0.5955955955955956,0.5965965965965966,0.5975975975975976,0.5985985985985987,0.5995995995995996,0.6006006006006006,0.6016016016016016,0.6026026026026026,0.6036036036036037,0.6046046046046046,0.6056056056056056,0.6066066066066066,0.6076076076076076,0.6086086086086087,0.6096096096096096,0.6106106106106106,0.6116116116116116,0.6126126126126126,0.6136136136136137,0.6146146146146146,0.6156156156156156,0.6166166166166166,0.6176176176176176,0.6186186186186187,0.6196196196196196,0.6206206206206206,0.6216216216216216,0.6226226226226226,0.6236236236236237,0.6246246246246246,0.6256256256256256,0.6266266266266266,0.6276276276276276,0.6286286286286287,0.6296296296296297,0.6306306306306306,0.6316316316316316,0.6326326326326326,0.6336336336336337,0.6346346346346347,0.6356356356356356,0.6366366366366366,0.6376376376376376,0.6386386386386387,0.6396396396396397,0.6406406406406406,0.6416416416416416,0.6426426426426426,0.6436436436436437,0.6446446446446447,0.6456456456456456,0.6466466466466466,0.6476476476476476,0.6486486486486487,0.6496496496496497,0.6506506506506506,0.6516516516516516,0.6526526526526526,0.6536536536536537,0.6546546546546547,0.6556556556556556,0.6566566566566566,0.6576576576576577,0.6586586586586587,0.6596596596596597,0.6606606606606606,0.6616616616616616,0.6626626626626627,0.6636636636636637,0.6646646646646647,0.6656656656656657,0.6666666666666666,0.6676676676676677,0.6686686686686687,0.6696696696696697,0.6706706706706707,0.6716716716716716,0.6726726726726727,0.6736736736736737,0.6746746746746747,0.6756756756756757,0.6766766766766766,0.6776776776776777,0.6786786786786787,0.6796796796796797,0.6806806806806807,0.6816816816816816,0.6826826826826827,0.6836836836836837,0.6846846846846847,0.6856856856856857,0.6866866866866866,0.6876876876876877,0.6886886886886887,0.6896896896896897,0.6906906906906907,0.6916916916916916,0.6926926926926927,0.6936936936936937,0.6946946946946947,0.6956956956956957,0.6966966966966966,0.6976976976976977,0.6986986986986987,0.6996996996996997,0.7007007007007007,0.7017017017017017,0.7027027027027027,0.7037037037037037,0.7047047047047047,0.7057057057057057,0.7067067067067067,0.7077077077077077,0.7087087087087087,0.7097097097097097,0.7107107107107107,0.7117117117117117,0.7127127127127127,0.7137137137137137,0.7147147147147147,0.7157157157157157,0.7167167167167167,0.7177177177177178,0.7187187187187187,0.7197197197197197,0.7207207207207207,0.7217217217217218,0.7227227227227228,0.7237237237237237,0.7247247247247247,0.7257257257257257,0.7267267267267268,0.7277277277277278,0.7287287287287287,0.7297297297297297,0.7307307307307307,0.7317317317317318,0.7327327327327328,0.7337337337337337,0.7347347347347347,0.7357357357357357,0.7367367367367368,0.7377377377377378,0.7387387387387387,0.7397397397397397,0.7407407407407407,0.7417417417417418,0.7427427427427428,0.7437437437437437,0.7447447447447447,0.7457457457457457,0.7467467467467468,0.7477477477477478,0.7487487487487487,0.7497497497497497,0.7507507507507507,0.7517517517517518,0.7527527527527528,0.7537537537537538,0.7547547547547547,0.7557557557557557,0.7567567567567568,0.7577577577577578,0.7587587587587588,0.7597597597597597,0.7607607607607607,0.7617617617617618,0.7627627627627628,0.7637637637637638,0.7647647647647647,0.7657657657657657,0.7667667667667668,0.7677677677677678,0.7687687687687688,0.7697697697697697,0.7707707707707707,0.7717717717717718,0.7727727727727728,0.7737737737737738,0.7747747747747747,0.7757757757757757,0.7767767767767768,0.7777777777777778,0.7787787787787788,0.7797797797797797,0.7807807807807807,0.7817817817817818,0.7827827827827828,0.7837837837837838,0.7847847847847848,0.7857857857857858,0.7867867867867868,0.7877877877877878,0.7887887887887888,0.7897897897897898,0.7907907907907908,0.7917917917917918,0.7927927927927928,0.7937937937937938,0.7947947947947948,0.7957957957957958,0.7967967967967968,0.7977977977977978,0.7987987987987988,0.7997997997997998,0.8008008008008008,0.8018018018018018,0.8028028028028028,0.8038038038038038,0.8048048048048048,0.8058058058058059,0.8068068068068068,0.8078078078078078,0.8088088088088088,0.8098098098098098,0.8108108108108109,0.8118118118118118,0.8128128128128128,0.8138138138138138,0.8148148148148148,0.8158158158158159,0.8168168168168168,0.8178178178178178,0.8188188188188188,0.8198198198198198,0.8208208208208209,0.8218218218218218,0.8228228228228228,0.8238238238238238,0.8248248248248248,0.8258258258258259,0.8268268268268268,0.8278278278278278,0.8288288288288288,0.8298298298298298,0.8308308308308309,0.8318318318318318,0.8328328328328328,0.8338338338338338,0.8348348348348348,0.8358358358358359,0.8368368368368369,0.8378378378378378,0.8388388388388388,0.8398398398398398,0.8408408408408409,0.8418418418418419,0.8428428428428428,0.8438438438438438,0.8448448448448449,0.8458458458458459,0.8468468468468469,0.8478478478478478,0.8488488488488488,0.8498498498498499,0.8508508508508509,0.8518518518518519,0.8528528528528528,0.8538538538538538,0.8548548548548549,0.8558558558558559,0.8568568568568569,0.8578578578578578,0.8588588588588588,0.8598598598598599,0.8608608608608609,0.8618618618618619,0.8628628628628628,0.8638638638638638,0.8648648648648649,0.8658658658658659,0.8668668668668669,0.8678678678678678,0.8688688688688688,0.8698698698698699,0.8708708708708709,0.8718718718718719,0.8728728728728729,0.8738738738738738,0.8748748748748749,0.8758758758758759,0.8768768768768769,0.8778778778778779,0.8788788788788788,0.8798798798798799,0.8808808808808809,0.8818818818818819,0.8828828828828829,0.8838838838838838,0.8848848848848849,0.8858858858858859,0.8868868868868869,0.8878878878878879,0.8888888888888888,0.8898898898898899,0.8908908908908909,0.8918918918918919,0.8928928928928929,0.8938938938938938,0.8948948948948949,0.8958958958958959,0.8968968968968969,0.8978978978978979,0.8988988988988988,0.8998998998998999,0.9009009009009009,0.9019019019019019,0.9029029029029029,0.9039039039039038,0.9049049049049049,0.9059059059059059,0.9069069069069069,0.9079079079079079,0.908908908908909,0.9099099099099099,0.9109109109109109,0.9119119119119119,0.9129129129129129,0.913913913913914,0.914914914914915,0.9159159159159159,0.9169169169169169,0.9179179179179179,0.918918918918919,0.91991991991992,0.9209209209209209,0.9219219219219219,0.9229229229229229,0.923923923923924,0.924924924924925,0.9259259259259259,0.9269269269269269,0.9279279279279279,0.928928928928929,0.92992992992993,0.9309309309309309,0.9319319319319319,0.9329329329329329,0.933933933933934,0.934934934934935,0.9359359359359359,0.9369369369369369,0.9379379379379379,0.938938938938939,0.93993993993994,0.9409409409409409,0.9419419419419419,0.9429429429429429,0.943943943943944,0.944944944944945,0.9459459459459459,0.9469469469469469,0.9479479479479479,0.948948948948949,0.94994994994995,0.950950950950951,0.9519519519519519,0.9529529529529529,0.953953953953954,0.954954954954955,0.955955955955956,0.9569569569569569,0.9579579579579579,0.958958958958959,0.95995995995996,0.960960960960961,0.9619619619619619,0.9629629629629629,0.963963963963964,0.964964964964965,0.965965965965966,0.9669669669669669,0.9679679679679679,0.968968968968969,0.96996996996997,0.970970970970971,0.9719719719719719,0.972972972972973,0.973973973973974,0.974974974974975,0.975975975975976,0.9769769769769769,0.977977977977978,0.978978978978979,0.97997997997998,0.980980980980981,0.9819819819819819,0.982982982982983,0.983983983983984,0.984984984984985,0.985985985985986,0.986986986986987,0.987987987987988,0.988988988988989,0.98998998998999,0.990990990990991,0.991991991991992,0.992992992992993,0.993993993993994,0.994994994994995,0.995995995995996,0.996996996996997,0.997997997997998,0.998998998998999,1.0]}
-},{}],18:[function(require,module,exports){
-module.exports={"expected":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"x":[-5.551115123125783e-17,-5.5400017795359415e-17,-5.5288884359461e-17,-5.5177750923562586e-17,-5.506661748766417e-17,-5.4955484051765757e-17,-5.4844350615867345e-17,-5.473321717996893e-17,-5.4622083744070516e-17,-5.45109503081721e-17,-5.4399816872273687e-17,-5.4288683436375275e-17,-5.417755000047686e-17,-5.4066416564578446e-17,-5.395528312868003e-17,-5.3844149692781617e-17,-5.37330162568832e-17,-5.362188282098479e-17,-5.3510749385086376e-17,-5.339961594918796e-17,-5.3288482513289546e-17,-5.317734907739113e-17,-5.306621564149272e-17,-5.2955082205594306e-17,-5.284394876969589e-17,-5.2732815333797476e-17,-5.262168189789906e-17,-5.251054846200065e-17,-5.2399415026102235e-17,-5.228828159020382e-17,-5.2177148154305406e-17,-5.206601471840699e-17,-5.1954881282508577e-17,-5.1843747846610165e-17,-5.173261441071175e-17,-5.1621480974813336e-17,-5.151034753891492e-17,-5.1399214103016507e-17,-5.1288080667118095e-17,-5.117694723121968e-17,-5.1065813795321266e-17,-5.095468035942285e-17,-5.0843546923524437e-17,-5.0732413487626025e-17,-5.062128005172761e-17,-5.0510146615829196e-17,-5.039901317993078e-17,-5.0287879744032366e-17,-5.017674630813395e-17,-5.006561287223554e-17,-4.9954479436337126e-17,-4.984334600043871e-17,-4.9732212564540296e-17,-4.962107912864188e-17,-4.950994569274347e-17,-4.9398812256845055e-17,-4.928767882094664e-17,-4.9176545385048226e-17,-4.906541194914981e-17,-4.8954278513251397e-17,-4.8843145077352985e-17,-4.873201164145457e-17,-4.8620878205556156e-17,-4.850974476965774e-17,-4.8398611333759327e-17,-4.8287477897860915e-17,-4.81763444619625e-17,-4.8065211026064086e-17,-4.795407759016567e-17,-4.7842944154267257e-17,-4.7731810718368845e-17,-4.762067728247043e-17,-4.7509543846572016e-17,-4.73984104106736e-17,-4.7287276974775186e-17,-4.7176143538876775e-17,-4.706501010297836e-17,-4.6953876667079946e-17,-4.684274323118153e-17,-4.6731609795283116e-17,-4.66204763593847e-17,-4.650934292348629e-17,-4.6398209487587875e-17,-4.628707605168946e-17,-4.6175942615791046e-17,-4.606480917989263e-17,-4.5953675743994217e-17,-4.5842542308095805e-17,-4.573140887219739e-17,-4.5620275436298976e-17,-4.550914200040056e-17,-4.5398008564502147e-17,-4.5286875128603735e-17,-4.517574169270532e-17,-4.5064608256806906e-17,-4.495347482090849e-17,-4.4842341385010077e-17,-4.4731207949111665e-17,-4.462007451321325e-17,-4.4508941077314836e-17,-4.439780764141642e-17,-4.4286674205518006e-17,-4.4175540769619595e-17,-4.406440733372118e-17,-4.3953273897822766e-17,-4.384214046192435e-17,-4.3731007026025936e-17,-4.3619873590127525e-17,-4.350874015422911e-17,-4.3397606718330695e-17,-4.328647328243228e-17,-4.3175339846533866e-17,-4.306420641063545e-17,-4.2953072974737037e-17,-4.2841939538838625e-17,-4.273080610294021e-17,-4.2619672667041796e-17,-4.250853923114338e-17,-4.2397405795244967e-17,-4.2286272359346555e-17,-4.217513892344814e-17,-4.2064005487549726e-17,-4.195287205165131e-17,-4.1841738615752897e-17,-4.1730605179854485e-17,-4.161947174395607e-17,-4.1508338308057656e-17,-4.139720487215924e-17,-4.1286071436260826e-17,-4.1174938000362415e-17,-4.1063804564464e-17,-4.0952671128565586e-17,-4.084153769266717e-17,-4.0730404256768756e-17,-4.0619270820870345e-17,-4.050813738497193e-17,-4.0397003949073515e-17,-4.02858705131751e-17,-4.0174737077276686e-17,-4.0063603641378275e-17,-3.9952470205479857e-17,-3.9841336769581445e-17,-3.973020333368303e-17,-3.9619069897784616e-17,-3.95079364618862e-17,-3.9396803025987787e-17,-3.9285669590089375e-17,-3.917453615419096e-17,-3.9063402718292546e-17,-3.895226928239413e-17,-3.8841135846495717e-17,-3.8730002410597305e-17,-3.861886897469889e-17,-3.8507735538800476e-17,-3.839660210290206e-17,-3.8285468667003646e-17,-3.8174335231105235e-17,-3.806320179520682e-17,-3.7952068359308406e-17,-3.784093492340999e-17,-3.7729801487511576e-17,-3.7618668051613165e-17,-3.750753461571475e-17,-3.7396401179816335e-17,-3.728526774391792e-17,-3.7174134308019506e-17,-3.7063000872121095e-17,-3.6951867436222677e-17,-3.6840734000324265e-17,-3.672960056442585e-17,-3.6618467128527436e-17,-3.6507333692629024e-17,-3.6396200256730607e-17,-3.6285066820832195e-17,-3.617393338493378e-17,-3.6062799949035366e-17,-3.595166651313695e-17,-3.5840533077238537e-17,-3.5729399641340125e-17,-3.561826620544171e-17,-3.5507132769543296e-17,-3.539599933364488e-17,-3.5284865897746466e-17,-3.5173732461848055e-17,-3.506259902594964e-17,-3.4951465590051226e-17,-3.484033215415281e-17,-3.4729198718254396e-17,-3.4618065282355985e-17,-3.450693184645757e-17,-3.4395798410559155e-17,-3.428466497466074e-17,-3.4173531538762326e-17,-3.4062398102863915e-17,-3.3951264666965497e-17,-3.3840131231067085e-17,-3.372899779516867e-17,-3.3617864359270256e-17,-3.3506730923371844e-17,-3.3395597487473427e-17,-3.3284464051575015e-17,-3.31733306156766e-17,-3.3062197179778186e-17,-3.295106374387977e-17,-3.2839930307981357e-17,-3.2728796872082945e-17,-3.261766343618453e-17,-3.2506530000286116e-17,-3.23953965643877e-17,-3.2284263128489286e-17,-3.2173129692590875e-17,-3.206199625669246e-17,-3.1950862820794046e-17,-3.183972938489563e-17,-3.1728595948997216e-17,-3.1617462513098805e-17,-3.150632907720039e-17,-3.1395195641301975e-17,-3.128406220540356e-17,-3.1172928769505146e-17,-3.1061795333606735e-17,-3.0950661897708317e-17,-3.0839528461809905e-17,-3.072839502591149e-17,-3.0617261590013076e-17,-3.0506128154114664e-17,-3.0394994718216247e-17,-3.0283861282317835e-17,-3.017272784641942e-17,-3.0061594410521006e-17,-2.9950460974622594e-17,-2.9839327538724177e-17,-2.9728194102825765e-17,-2.961706066692735e-17,-2.9505927231028936e-17,-2.939479379513052e-17,-2.9283660359232106e-17,-2.9172526923333695e-17,-2.906139348743528e-17,-2.8950260051536866e-17,-2.883912661563845e-17,-2.8727993179740036e-17,-2.8616859743841625e-17,-2.850572630794321e-17,-2.8394592872044795e-17,-2.828345943614638e-17,-2.8172326000247966e-17,-2.8061192564349555e-17,-2.7950059128451137e-17,-2.7838925692552725e-17,-2.772779225665431e-17,-2.7616658820755896e-17,-2.750552538485748e-17,-2.7394391948959067e-17,-2.7283258513060655e-17,-2.717212507716224e-17,-2.7060991641263826e-17,-2.694985820536541e-17,-2.6838724769466997e-17,-2.6727591333568582e-17,-2.661645789767017e-17,-2.6505324461771756e-17,-2.639419102587334e-17,-2.6283057589974926e-17,-2.6171924154076512e-17,-2.60607907181781e-17,-2.5949657282279686e-17,-2.583852384638127e-17,-2.5727390410482856e-17,-2.5616256974584442e-17,-2.550512353868603e-17,-2.5393990102787615e-17,-2.52828566668892e-17,-2.5171723230990786e-17,-2.506058979509237e-17,-2.4949456359193957e-17,-2.4838322923295545e-17,-2.472718948739713e-17,-2.4616056051498716e-17,-2.45049226156003e-17,-2.4393789179701887e-17,-2.4282655743803475e-17,-2.417152230790506e-17,-2.4060388872006646e-17,-2.394925543610823e-17,-2.3838122000209817e-17,-2.3726988564311405e-17,-2.361585512841299e-17,-2.3504721692514576e-17,-2.339358825661616e-17,-2.3282454820717746e-17,-2.3171321384819332e-17,-2.306018794892092e-17,-2.2949054513022506e-17,-2.283792107712409e-17,-2.2726787641225676e-17,-2.2615654205327262e-17,-2.250452076942885e-17,-2.2393387333530435e-17,-2.228225389763202e-17,-2.2171120461733606e-17,-2.205998702583519e-17,-2.194885358993678e-17,-2.1837720154038365e-17,-2.172658671813995e-17,-2.1615453282241536e-17,-2.150431984634312e-17,-2.1393186410444707e-17,-2.1282052974546295e-17,-2.117091953864788e-17,-2.1059786102749466e-17,-2.094865266685105e-17,-2.0837519230952637e-17,-2.0726385795054225e-17,-2.061525235915581e-17,-2.0504118923257396e-17,-2.039298548735898e-17,-2.0281852051460566e-17,-2.0170718615562155e-17,-2.005958517966374e-17,-1.9948451743765326e-17,-1.983731830786691e-17,-1.9726184871968496e-17,-1.9615051436070082e-17,-1.950391800017167e-17,-1.9392784564273255e-17,-1.928165112837484e-17,-1.9170517692476426e-17,-1.905938425657801e-17,-1.89482508206796e-17,-1.8837117384781185e-17,-1.872598394888277e-17,-1.8614850512984356e-17,-1.850371707708594e-17,-1.839258364118753e-17,-1.8281450205289115e-17,-1.81703167693907e-17,-1.8059183333492286e-17,-1.794804989759387e-17,-1.7836916461695457e-17,-1.7725783025797045e-17,-1.761464958989863e-17,-1.7503516154000216e-17,-1.73923827181018e-17,-1.7281249282203386e-17,-1.7170115846304975e-17,-1.705898241040656e-17,-1.6947848974508146e-17,-1.683671553860973e-17,-1.6725582102711316e-17,-1.6614448666812905e-17,-1.650331523091449e-17,-1.6392181795016075e-17,-1.628104835911766e-17,-1.6169914923219246e-17,-1.605878148732083e-17,-1.594764805142242e-17,-1.5836514615524005e-17,-1.572538117962559e-17,-1.5614247743727176e-17,-1.550311430782876e-17,-1.539198087193035e-17,-1.5280847436031935e-17,-1.516971400013352e-17,-1.5058580564235106e-17,-1.494744712833669e-17,-1.483631369243828e-17,-1.4725180256539865e-17,-1.461404682064145e-17,-1.4502913384743036e-17,-1.439177994884462e-17,-1.4280646512946206e-17,-1.4169513077047795e-17,-1.405837964114938e-17,-1.3947246205250966e-17,-1.3836112769352551e-17,-1.3724979333454138e-17,-1.3613845897555723e-17,-1.350271246165731e-17,-1.3391579025758895e-17,-1.328044558986048e-17,-1.3169312153962068e-17,-1.3058178718063653e-17,-1.2947045282165238e-17,-1.2835911846266825e-17,-1.272477841036841e-17,-1.2613644974469997e-17,-1.2502511538571583e-17,-1.2391378102673168e-17,-1.2280244666774755e-17,-1.216911123087634e-17,-1.2057977794977926e-17,-1.1946844359079513e-17,-1.1835710923181098e-17,-1.1724577487282685e-17,-1.161344405138427e-17,-1.1502310615485856e-17,-1.1391177179587443e-17,-1.1280043743689028e-17,-1.1168910307790613e-17,-1.10577768718922e-17,-1.0946643435993786e-17,-1.0835510000095371e-17,-1.0724376564196958e-17,-1.0613243128298543e-17,-1.050210969240013e-17,-1.0390976256501715e-17,-1.02798428206033e-17,-1.0168709384704888e-17,-1.0057575948806473e-17,-9.946442512908058e-18,-9.835309077009645e-18,-9.72417564111123e-18,-9.613042205212817e-18,-9.501908769314403e-18,-9.390775333415988e-18,-9.279641897517575e-18,-9.16850846161916e-18,-9.057375025720746e-18,-8.946241589822333e-18,-8.835108153923918e-18,-8.723974718025505e-18,-8.61284128212709e-18,-8.501707846228676e-18,-8.390574410330263e-18,-8.279440974431848e-18,-8.168307538533433e-18,-8.05717410263502e-18,-7.946040666736606e-18,-7.834907230838192e-18,-7.723773794939778e-18,-7.612640359041363e-18,-7.50150692314295e-18,-7.390373487244535e-18,-7.27924005134612e-18,-7.168106615447708e-18,-7.056973179549293e-18,-6.94583974365088e-18,-6.834706307752465e-18,-6.723572871854051e-18,-6.612439435955637e-18,-6.501306000057223e-18,-6.390172564158809e-18,-6.279039128260395e-18,-6.1679056923619804e-18,-6.0567722564635666e-18,-5.945638820565153e-18,-5.834505384666739e-18,-5.723371948768324e-18,-5.61223851286991e-18,-5.5011050769714964e-18,-5.3899716410730825e-18,-5.278838205174668e-18,-5.167704769276254e-18,-5.05657133337784e-18,-4.945437897479426e-18,-4.834304461581012e-18,-4.723171025682598e-18,-4.612037589784184e-18,-4.50090415388577e-18,-4.389770717987355e-18,-4.2786372820889415e-18,-4.1675038461905276e-18,-4.056370410292114e-18,-3.945236974393699e-18,-3.834103538495285e-18,-3.722970102596871e-18,-3.6118366666984575e-18,-3.500703230800043e-18,-3.389569794901629e-18,-3.278436359003215e-18,-3.167302923104801e-18,-3.056169487206387e-18,-2.9450360513079727e-18,-2.833902615409559e-18,-2.7227691795111445e-18,-2.6116357436127307e-18,-2.5005023077143164e-18,-2.3893688718159025e-18,-2.2782354359174883e-18,-2.1671020000190744e-18,-2.05596856412066e-18,-1.9448351282222463e-18,-1.833701692323832e-18,-1.7225682564254181e-18,-1.611434820527004e-18,-1.50030138462859e-18,-1.389167948730176e-18,-1.2780345128317619e-18,-1.1669010769333478e-18,-1.0557676410349337e-18,-9.446342051365197e-19,-8.335007692381055e-19,-7.223673333396914e-19,-6.112338974412774e-19,-5.001004615428633e-19,-3.8896702564444924e-19,-2.7783358974603517e-19,-1.667001538476211e-19,-5.556671794920703e-20,5.556671794920703e-20,1.667001538476211e-19,2.7783358974603517e-19,3.8896702564444924e-19,5.001004615428633e-19,6.112338974412774e-19,7.223673333396914e-19,8.335007692381055e-19,9.446342051365197e-19,1.0557676410349337e-18,1.1669010769333478e-18,1.2780345128317619e-18,1.389167948730176e-18,1.50030138462859e-18,1.611434820527004e-18,1.7225682564254181e-18,1.833701692323832e-18,1.9448351282222463e-18,2.05596856412066e-18,2.1671020000190744e-18,2.2782354359174883e-18,2.3893688718159025e-18,2.5005023077143164e-18,2.6116357436127307e-18,2.7227691795111445e-18,2.833902615409559e-18,2.9450360513079727e-18,3.056169487206387e-18,3.167302923104801e-18,3.278436359003215e-18,3.389569794901629e-18,3.500703230800043e-18,3.6118366666984575e-18,3.722970102596871e-18,3.834103538495285e-18,3.945236974393699e-18,4.056370410292114e-18,4.1675038461905276e-18,4.2786372820889415e-18,4.389770717987355e-18,4.50090415388577e-18,4.612037589784184e-18,4.723171025682598e-18,4.834304461581012e-18,4.945437897479426e-18,5.05657133337784e-18,5.167704769276254e-18,5.278838205174668e-18,5.3899716410730825e-18,5.5011050769714964e-18,5.61223851286991e-18,5.723371948768324e-18,5.834505384666739e-18,5.945638820565153e-18,6.0567722564635666e-18,6.1679056923619804e-18,6.279039128260395e-18,6.390172564158809e-18,6.501306000057223e-18,6.612439435955637e-18,6.723572871854051e-18,6.834706307752465e-18,6.94583974365088e-18,7.056973179549293e-18,7.168106615447708e-18,7.27924005134612e-18,7.390373487244535e-18,7.50150692314295e-18,7.612640359041363e-18,7.723773794939778e-18,7.834907230838192e-18,7.946040666736606e-18,8.05717410263502e-18,8.168307538533433e-18,8.279440974431848e-18,8.390574410330263e-18,8.501707846228676e-18,8.61284128212709e-18,8.723974718025505e-18,8.835108153923918e-18,8.946241589822333e-18,9.057375025720746e-18,9.16850846161916e-18,9.279641897517575e-18,9.390775333415988e-18,9.501908769314403e-18,9.613042205212817e-18,9.72417564111123e-18,9.835309077009645e-18,9.946442512908058e-18,1.0057575948806473e-17,1.0168709384704888e-17,1.02798428206033e-17,1.0390976256501715e-17,1.050210969240013e-17,1.0613243128298543e-17,1.0724376564196958e-17,1.0835510000095371e-17,1.0946643435993786e-17,1.10577768718922e-17,1.1168910307790613e-17,1.1280043743689028e-17,1.1391177179587443e-17,1.1502310615485856e-17,1.161344405138427e-17,1.1724577487282685e-17,1.1835710923181098e-17,1.1946844359079513e-17,1.2057977794977926e-17,1.216911123087634e-17,1.2280244666774755e-17,1.2391378102673168e-17,1.2502511538571583e-17,1.2613644974469997e-17,1.272477841036841e-17,1.2835911846266825e-17,1.2947045282165238e-17,1.3058178718063653e-17,1.3169312153962068e-17,1.328044558986048e-17,1.3391579025758895e-17,1.350271246165731e-17,1.3613845897555723e-17,1.3724979333454138e-17,1.3836112769352551e-17,1.3947246205250966e-17,1.405837964114938e-17,1.4169513077047795e-17,1.4280646512946206e-17,1.439177994884462e-17,1.4502913384743036e-17,1.461404682064145e-17,1.4725180256539865e-17,1.483631369243828e-17,1.494744712833669e-17,1.5058580564235106e-17,1.516971400013352e-17,1.5280847436031935e-17,1.539198087193035e-17,1.550311430782876e-17,1.5614247743727176e-17,1.572538117962559e-17,1.5836514615524005e-17,1.594764805142242e-17,1.605878148732083e-17,1.6169914923219246e-17,1.628104835911766e-17,1.6392181795016075e-17,1.650331523091449e-17,1.6614448666812905e-17,1.6725582102711316e-17,1.683671553860973e-17,1.6947848974508146e-17,1.705898241040656e-17,1.7170115846304975e-17,1.7281249282203386e-17,1.73923827181018e-17,1.7503516154000216e-17,1.761464958989863e-17,1.7725783025797045e-17,1.7836916461695457e-17,1.794804989759387e-17,1.8059183333492286e-17,1.81703167693907e-17,1.8281450205289115e-17,1.839258364118753e-17,1.850371707708594e-17,1.8614850512984356e-17,1.872598394888277e-17,1.8837117384781185e-17,1.89482508206796e-17,1.905938425657801e-17,1.9170517692476426e-17,1.928165112837484e-17,1.9392784564273255e-17,1.950391800017167e-17,1.9615051436070082e-17,1.9726184871968496e-17,1.983731830786691e-17,1.9948451743765326e-17,2.005958517966374e-17,2.0170718615562155e-17,2.0281852051460566e-17,2.039298548735898e-17,2.0504118923257396e-17,2.061525235915581e-17,2.0726385795054225e-17,2.0837519230952637e-17,2.094865266685105e-17,2.1059786102749466e-17,2.117091953864788e-17,2.1282052974546295e-17,2.1393186410444707e-17,2.150431984634312e-17,2.1615453282241536e-17,2.172658671813995e-17,2.1837720154038365e-17,2.194885358993678e-17,2.205998702583519e-17,2.2171120461733606e-17,2.228225389763202e-17,2.2393387333530435e-17,2.250452076942885e-17,2.2615654205327262e-17,2.2726787641225676e-17,2.283792107712409e-17,2.2949054513022506e-17,2.306018794892092e-17,2.3171321384819332e-17,2.3282454820717746e-17,2.339358825661616e-17,2.3504721692514576e-17,2.361585512841299e-17,2.3726988564311405e-17,2.3838122000209817e-17,2.394925543610823e-17,2.4060388872006646e-17,2.417152230790506e-17,2.4282655743803475e-17,2.4393789179701887e-17,2.45049226156003e-17,2.4616056051498716e-17,2.472718948739713e-17,2.4838322923295545e-17,2.4949456359193957e-17,2.506058979509237e-17,2.5171723230990786e-17,2.52828566668892e-17,2.5393990102787615e-17,2.550512353868603e-17,2.5616256974584442e-17,2.5727390410482856e-17,2.583852384638127e-17,2.5949657282279686e-17,2.60607907181781e-17,2.6171924154076512e-17,2.6283057589974926e-17,2.639419102587334e-17,2.6505324461771756e-17,2.661645789767017e-17,2.6727591333568582e-17,2.6838724769466997e-17,2.694985820536541e-17,2.7060991641263826e-17,2.717212507716224e-17,2.7283258513060655e-17,2.7394391948959067e-17,2.750552538485748e-17,2.7616658820755896e-17,2.772779225665431e-17,2.7838925692552725e-17,2.7950059128451137e-17,2.8061192564349555e-17,2.8172326000247966e-17,2.828345943614638e-17,2.8394592872044795e-17,2.850572630794321e-17,2.8616859743841625e-17,2.8727993179740036e-17,2.883912661563845e-17,2.8950260051536866e-17,2.906139348743528e-17,2.9172526923333695e-17,2.9283660359232106e-17,2.939479379513052e-17,2.9505927231028936e-17,2.961706066692735e-17,2.9728194102825765e-17,2.9839327538724177e-17,2.9950460974622594e-17,3.0061594410521006e-17,3.017272784641942e-17,3.0283861282317835e-17,3.0394994718216247e-17,3.0506128154114664e-17,3.0617261590013076e-17,3.072839502591149e-17,3.0839528461809905e-17,3.0950661897708317e-17,3.1061795333606735e-17,3.1172928769505146e-17,3.128406220540356e-17,3.1395195641301975e-17,3.150632907720039e-17,3.1617462513098805e-17,3.1728595948997216e-17,3.183972938489563e-17,3.1950862820794046e-17,3.206199625669246e-17,3.2173129692590875e-17,3.2284263128489286e-17,3.23953965643877e-17,3.2506530000286116e-17,3.261766343618453e-17,3.2728796872082945e-17,3.2839930307981357e-17,3.295106374387977e-17,3.3062197179778186e-17,3.31733306156766e-17,3.3284464051575015e-17,3.3395597487473427e-17,3.3506730923371844e-17,3.3617864359270256e-17,3.372899779516867e-17,3.3840131231067085e-17,3.3951264666965497e-17,3.4062398102863915e-17,3.4173531538762326e-17,3.428466497466074e-17,3.4395798410559155e-17,3.450693184645757e-17,3.4618065282355985e-17,3.4729198718254396e-17,3.484033215415281e-17,3.4951465590051226e-17,3.506259902594964e-17,3.5173732461848055e-17,3.5284865897746466e-17,3.539599933364488e-17,3.5507132769543296e-17,3.561826620544171e-17,3.5729399641340125e-17,3.5840533077238537e-17,3.595166651313695e-17,3.6062799949035366e-17,3.617393338493378e-17,3.6285066820832195e-17,3.6396200256730607e-17,3.6507333692629024e-17,3.6618467128527436e-17,3.672960056442585e-17,3.6840734000324265e-17,3.6951867436222677e-17,3.7063000872121095e-17,3.7174134308019506e-17,3.728526774391792e-17,3.7396401179816335e-17,3.750753461571475e-17,3.7618668051613165e-17,3.7729801487511576e-17,3.784093492340999e-17,3.7952068359308406e-17,3.806320179520682e-17,3.8174335231105235e-17,3.8285468667003646e-17,3.839660210290206e-17,3.8507735538800476e-17,3.861886897469889e-17,3.8730002410597305e-17,3.8841135846495717e-17,3.895226928239413e-17,3.9063402718292546e-17,3.917453615419096e-17,3.9285669590089375e-17,3.9396803025987787e-17,3.95079364618862e-17,3.9619069897784616e-17,3.973020333368303e-17,3.9841336769581445e-17,3.9952470205479857e-17,4.0063603641378275e-17,4.0174737077276686e-17,4.02858705131751e-17,4.0397003949073515e-17,4.050813738497193e-17,4.0619270820870345e-17,4.0730404256768756e-17,4.084153769266717e-17,4.0952671128565586e-17,4.1063804564464e-17,4.1174938000362415e-17,4.1286071436260826e-17,4.139720487215924e-17,4.1508338308057656e-17,4.161947174395607e-17,4.1730605179854485e-17,4.1841738615752897e-17,4.195287205165131e-17,4.2064005487549726e-17,4.217513892344814e-17,4.2286272359346555e-17,4.2397405795244967e-17,4.250853923114338e-17,4.2619672667041796e-17,4.273080610294021e-17,4.2841939538838625e-17,4.2953072974737037e-17,4.306420641063545e-17,4.3175339846533866e-17,4.328647328243228e-17,4.3397606718330695e-17,4.350874015422911e-17,4.3619873590127525e-17,4.3731007026025936e-17,4.384214046192435e-17,4.3953273897822766e-17,4.406440733372118e-17,4.4175540769619595e-17,4.4286674205518006e-17,4.439780764141642e-17,4.4508941077314836e-17,4.462007451321325e-17,4.4731207949111665e-17,4.4842341385010077e-17,4.495347482090849e-17,4.5064608256806906e-17,4.517574169270532e-17,4.5286875128603735e-17,4.5398008564502147e-17,4.550914200040056e-17,4.5620275436298976e-17,4.573140887219739e-17,4.5842542308095805e-17,4.5953675743994217e-17,4.606480917989263e-17,4.6175942615791046e-17,4.628707605168946e-17,4.6398209487587875e-17,4.650934292348629e-17,4.66204763593847e-17,4.6731609795283116e-17,4.684274323118153e-17,4.6953876667079946e-17,4.706501010297836e-17,4.7176143538876775e-17,4.7287276974775186e-17,4.73984104106736e-17,4.7509543846572016e-17,4.762067728247043e-17,4.7731810718368845e-17,4.7842944154267257e-17,4.795407759016567e-17,4.8065211026064086e-17,4.81763444619625e-17,4.8287477897860915e-17,4.8398611333759327e-17,4.850974476965774e-17,4.8620878205556156e-17,4.873201164145457e-17,4.8843145077352985e-17,4.8954278513251397e-17,4.906541194914981e-17,4.9176545385048226e-17,4.928767882094664e-17,4.9398812256845055e-17,4.950994569274347e-17,4.962107912864188e-17,4.9732212564540296e-17,4.984334600043871e-17,4.9954479436337126e-17,5.006561287223554e-17,5.017674630813395e-17,5.0287879744032366e-17,5.039901317993078e-17,5.0510146615829196e-17,5.062128005172761e-17,5.0732413487626025e-17,5.0843546923524437e-17,5.095468035942285e-17,5.1065813795321266e-17,5.117694723121968e-17,5.1288080667118095e-17,5.1399214103016507e-17,5.151034753891492e-17,5.1621480974813336e-17,5.173261441071175e-17,5.1843747846610165e-17,5.1954881282508577e-17,5.206601471840699e-17,5.2177148154305406e-17,5.228828159020382e-17,5.2399415026102235e-17,5.251054846200065e-17,5.262168189789906e-17,5.2732815333797476e-17,5.284394876969589e-17,5.2955082205594306e-17,5.306621564149272e-17,5.317734907739113e-17,5.3288482513289546e-17,5.339961594918796e-17,5.3510749385086376e-17,5.362188282098479e-17,5.37330162568832e-17,5.3844149692781617e-17,5.395528312868003e-17,5.4066416564578446e-17,5.417755000047686e-17,5.4288683436375275e-17,5.4399816872273687e-17,5.45109503081721e-17,5.4622083744070516e-17,5.473321717996893e-17,5.4844350615867345e-17,5.4955484051765757e-17,5.506661748766417e-17,5.5177750923562586e-17,5.5288884359461e-17,5.5400017795359415e-17,5.551115123125783e-17]}
-},{}],19:[function(require,module,exports){
+},{"./exp2.js":47}],49:[function(require,module,exports){
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 1513.906801156151;
+	}
+	return 1513.906801156151 + (x * (20.202065669316532 + (x * 0.023093347705734523))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],50:[function(require,module,exports){
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 4368.211668792106;
+	}
+	return 4368.211668792106 + (x * (233.1842117223149 + (x * 1.0))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],51:[function(require,module,exports){
+module.exports={"expected":[2.2250738585072014e-308,4.509024350626222e-308,9.137359875406772e-308,1.851649913602667e-307,3.752295465315533e-307,7.603878657404727e-307,1.5408959974230883e-306,3.122564919631273e-306,6.327754562032691e-306,1.2822944863562256e-305,2.5985191644526246e-305,5.265796523242857e-305,1.0670928813425766e-304,2.1624216058974492e-304,4.382062033596222e-304,8.880075751146613e-304,1.7995123013213353e-303,3.646640651898644e-303,7.389773348209625e-303,1.4975084015881007e-302,3.0346416691795603e-302,6.149581565321938e-302,1.2461884318212988e-301,2.5253516700433415e-301,5.1175254837425754e-301,1.0370463404134605e-300,2.101533476641207e-300,4.2586746429121814e-300,8.630036074024242e-300,1.7488427476587974e-299,3.5439608013281894e-299,7.181696683801074e-299,1.4553424868240537e-298,2.949194107198371e-298,5.97642545358131e-298,1.2110990292240295e-297,2.4542443806582765e-297,4.973429368407604e-297,1.0078458313880236e-296,2.042359797644902e-296,4.1387615180105725e-296,8.387036859380077e-296,1.6995999159289054e-295,3.4441721464415434e-295,6.9794789133303015e-295,1.4143638537914504e-294,2.866152524783957e-294,5.808144964468308e-294,1.1769976523082646e-293,2.3851392863194186e-293,4.8333906223071564e-293,9.794675322235316e-293,1.9848522944791877e-292,4.022224832665716e-292,8.150879866230324e-292,1.6517436333784776e-291,3.347193278740002e-291,6.78295506568788e-291,1.3745390717461054e-290,2.785449175852737e-290,5.644602813219422e-290,1.1438564808583534e-289,2.317980010457815e-289,4.6972950005494335e-289,9.518882916435854e-289,1.928964051996223e-288,3.9089695151819434e-288,7.921372435536129e-288,1.605234858413854e-287,3.252945081974985e-287,6.591964814918772e-287,1.3358356512660376e-286,2.7070182218734235e-286,5.485665580649173e-286,1.1116484780030597e-285,2.2527117639210503e-285,4.56503147507959e-285,9.250856102510989e-285,1.8746494760558636e-284,3.7989031708344776e-284,7.698327333033286e-284,1.560035648750406e-283,3.1613506676042733e-283,6.406352349426966e-283,1.2982220177463026e-282,2.6307956781551392e-282,5.331203604307392e-282,1.080347368158634e-281,2.1892813002757532e-281,4.4364921441020384e-281,8.990376221730838e-281,1.821864256329401e-280,3.6919360064910926e-280,7.481562596484116e-280,1.516109130458873e-279,3.072335312065634e-279,6.225966244862933e-279,1.2616674856401405e-278,2.5567193616489533e-278,5.181090872698935e-278,1.0499276155929524e-277,2.12763687236867e-277,4.311572144053168e-277,8.737230772222712e-277,1.77056533015137e-276,3.587980757359316e-276,7.270901387231013e-276,1.473419467883273e-275,2.985826395816652e-275,6.050659340590264e-275,1.2261422334253293e-274,2.48472884021712e-274,5.035204922482346e-274,1.020364403593232e-273,2.067728190110861e-273,4.1901695640526915e-273,8.491213235609459e-273,1.720710847387757e-272,3.486952615794694e-272,7.066171845929848e-272,1.4319318344058468e-271,2.901753344091046e-271,5.88028861963067e-271,1.1916172792759024e-270,2.4147653833328347e-270,4.893426738563149e-270,9.916336142203294e-270,2.0095063794505872e-269,4.072185362763818e-269,8.252122908532593e-269,1.6722601362948656e-268,3.3887691621139374e-268,6.867206952345538e-268,1.3916123840351839e-267,2.8200475693231222e-267,5.714715091988975e-267,1.158064457417923e-266,2.3467719141671175e-266,4.7556406570002385e-266,9.637118086331049e-266,1.95292394250141e-265,3.957523287594109e-265,8.019764738912565e-265,1.6251736703387849e-264,3.293350297356189e-264,6.673844389095413e-264,1.3524282237943523e-263,2.740642415193414e-263,5.553803681265619e-263,1.1254563951519807e-262,2.2806929630250137e-262,4.621734270646178e-262,9.365762079668015e-262,1.8979347187929804e-261,3.846089796172988e-261,7.79394916682624e-261,1.5794130359492842e-260,3.2006181779375588e-260,6.4859264092292046e-260,1.3143473868865072e-259,2.6634731022496343e-259,5.397423114457347e-259,1.0937664905221948e-258,2.21647462209291e-258,4.491598337444419e-258,9.10204674749838e-258,1.84449384761276e-257,3.737793980037121e-257,7.574491969861474e-257,1.534940901181669e-256,3.1104971521456144e-256,6.303299707537642e-256,1.2773388066160856e-255,2.5884766750598516e-255,5.245445814865338e-255,1.0629688906140943e-254,2.1540645014600447e-254,4.365126691308634e-254,8.845756948438574e-254,1.7925577314088247e-253,3.6325474904677334e-253,7.361214112826797e-253,1.4917209852610384e-252,3.022913698422022e-252,6.1258152954846535e-252,1.2413722910442121e-251,2.515591950851594e-251,5.097747798016499e-251,1.033038470463573e-250,2.093411686378339e-250,4.2422161555114446e-250,8.596683598922949e-250,1.7420840002217006e-249,3.530264466414593e-249,7.153941601692846e-249,1.4497180289840974e-248,2.9377963653829833e-248,5.95332837966116e-248,1.2064184983582346e-247,2.4447594695992405e-247,4.954208570515794e-247,1.0039508125597146e-246,2.0344666957256803e-246,4.1227664585119086e-246,8.354623502630845e-246,1.6930314771191539e-245,3.4308614644497834e-245,6.952505341646459e-245,1.4088977659543748e-244,2.855075713528545e-244,5.785698243660826e-244,1.1724489129338085e-243,2.375921445515772e-243,4.814711031746633e-243,9.756821869247632e-243,1.9771814416387674e-242,4.006680152153074e-242,8.11937918471981e-242,1.6453601446035248e-241,3.334257390693786e-241,6.756740999141567e-241,1.3692268946273846e-240,2.774684258593217e-240,5.622788133284163e-240,1.1394358220719889e-239,2.3090217199105963e-239,4.679141378339116e-239,9.482095317549898e-239,1.9215091902825927e-238,3.893862532162576e-238,7.89075873071982e-238,1.5990311119650854e-237,3.240373434658354e-237,6.566488867834387e-237,1.3306730511429196e-236,2.696556416491478e-236,5.464465144970426e-236,1.107352293390856e-235,2.2440057153747746e-235,4.547389011328195e-235,9.21510434606662e-235,1.867404523724552e-234,3.784221560893258e-234,7.668575629970374e-234,1.5540065835546434e-233,3.1491330049521915e-233,6.381593738293521e-233,1.2932047829223186e-232,2.6206284498145348e-232,5.3106001173755394e-232,1.0761721528538322e-231,2.1808203912562705e-231,4.4193464459260354e-231,8.95563114111767e-231,1.8148233028819345e-230,3.67766779223615e-230,7.452648623462721e-230,1.5102498279495045e-229,3.0604616667969986e-229,6.20190477137868e-229,1.2567915230090649e-228,2.5468384158314667e-228,5.161067526000612e-228,1.0458699634166627e-227,2.1194142003889017e-227,4.294909223834933e-227,8.70346402208572e-227,1.7637226315134314e-226,3.5741142986507674e-226,7.242801555967099e-226,1.4677251479876413e-225,2.974287081302893e-225,6.027275375184736e-225,1.221403565132383e-224,2.4751261159566455e-224,5.015745380787906e-224,1.0164210042756415e-223,2.059737047039688e-223,4.173975828029281e-223,8.458397268724589e-223,1.7140608212231202e-222,3.4734766002485105e-222,7.038863232323678e-222,1.426397851645622e-221,2.890538946453684e-221,5.857563085450235e-221,1.1870120394719874e-220,2.4054330466389613e-220,4.874515126600232e-220,9.87801250700154e-220,2.0017402460402942e-219,4.056447599937052e-219,8.220230953333465e-219,1.6657973574512715e-218,3.3756725958731973e-218,6.840667277779992e-218,1.3862342237365398e-217,2.8091489397538427e-217,5.6926294493356115e-217,1.1535888891062239e-216,2.337702351634087e-216,4.7372615465025776e-216,9.599873544330811e-216,1.9453764830692245e-215,3.9422286589529196e-215,7.988770777650005e-215,1.6188928664220552e-214,3.2806224961221915e-214,6.64805200226088e-214,1.3472014984048543e-213,2.7300506624901698e-213,5.5323399124692855e-213,1.1211068471228734e-212,2.2718787756206366e-212,4.6038726677670795e-212,9.329566246430774e-212,1.890599776052364e-211,3.831225824219233e-211,7.763827914342749e-211,1.5733090830220528e-210,3.188248758253473e-210,6.460860268460252e-210,1.3092678323957068e-209,2.6531795855639827e-209,5.376563709178856e-209,1.0895394143745562e-208,2.2079086191223654e-208,4.474239670524646e-208,9.066870094131835e-208,1.8373654376502385e-207,3.723348538606328e-207,7.545218852963374e-207,1.5290088195832262e-206,3.09847602292556e-206,6.278939363647028e-206,1.2724022790769008e-205,2.5784729968463776e-205,5.225173755810794e-205,1.0588608378604837e-204,2.1457396946996455e-204,4.348256798988709e-204,8.811570777506694e-204,1.7856300388022558e-203,3.618508794836466e-203,7.332765250237181e-203,1.4859559355448797e-202,3.0112310527186697e-202,6.1021408750806965e-202,1.2365747631922595e-201,2.505869950017979e-201,5.078046547054435e-201,1.0290460897169248e-200,2.085321284374477e-200,4.2258212751786885e-200,8.563460021033676e-200,1.7353513732959988e-199,3.516621063686363e-199,7.12629378456903e-199,1.444115307969857e-198,2.926442672386957e-198,5.93032056893484e-198,1.2017560563263477e-197,2.4353112148481528e-197,4.935062055185217e-197,1.0000708467992464e-196,2.0266040982542934e-196,4.1068332150727714e-196,8.322335413686365e-196,1.6864884233356034e-195,3.417602224211673e-195,6.925636014645982e-195,1.40345280289093e-194,2.844041710793101e-194,5.763338272629406e-194,1.1679177530590702e-193,2.366739228874441e-193,4.796103632144958e-193,9.719114708388676e-193,1.969540234320819e-192,3.991195547121299e-192,8.088000243800733e-192,1.639001326078916e-191,3.3213714959361574e-191,6.730628242021345e-191,1.3639352474639927e-190,2.7639609444778535e-190,5.601057760478461e-190,1.1350322477926688e-189,2.3000980504425786e-189,4.661057914379305e-189,9.445449891589448e-189,1.9140831393511602e-188,3.8788139330561706e-188,7.860263338598717e-188,1.59285134111702e-187,3.227850372950231e-187,6.541111377567973e-187,1.3255304029053545e-186,2.6861350428183176e-186,5.443346642553261e-186,1.1030727122307212e-185,2.2353333130687786e-185,4.52981473035471e-185,9.179490759330512e-185,1.860187570939118e-184,3.7695966909269134e-184,7.63893890822702e-184,1.5480008188694582e-183,3.1369625598651237e-183,6.356930811691901e-183,1.2882069381910421e-182,2.6105005147314756e-182,5.2900762566791964e-182,1.072013073491372e-181,2.1723921810870578e-181,4.40226701067948e-181,8.921020339715631e-181,1.8078095605866037e-180,3.663454720306987e-180,7.4238463941880515e-180,1.5044131698693571e-179,3.0486339095704045e-179,6.177936288200425e-179,1.2519344044965662e-178,2.5369956568762977e-178,5.14112156347154e-178,1.0418279928368367e-177,2.111223306545415e-177,4.278310700755588e-177,8.669827770208253e-177,1.7569063778328478e-176,3.560301429604516e-176,7.214810322038647e-176,1.4620528349134073e-175,2.9627923627440874e-175,6.00398178172172e-175,1.2166832103568888e-174,2.4655605033164534e-174,4.996361044327173e-174,1.0124928450018268e-173,2.0517767873157023e-173,4.15784467588998e-173,8.42570812561068e-173,1.707436495395095e-172,3.460052665420079e-172,7.01166015823641e-172,1.420885256052338e-171,2.8793678890659764e-171,5.834925378575548e-171,1.1824245975248343e-170,2.396136776599334e-170,4.855676602288596e-170,9.839836981040338e-170,1.994004126383012e-169,4.04077065879612e-169,8.188462250880048e-169,1.6593595552901172e-168,3.362626643893593e-168,6.814230171016892e-168,1.3808768483982265e-167,2.7982924300862914e-167,5.670629161000627e-167,1.1491306175102511e-166,2.328667840212775e-166,4.7189534656993466e-166,9.562772941202793e-166,1.937858192281368e-165,3.926993139418177e-165,7.957896598658624e-165,1.6126363359097994e-164,3.26794388398429e-164,6.622359295188092e-164,1.3419949727256379e-163,2.7194998437027447e-163,5.5109590946372604e-163,1.116774108779276e-162,2.2630986523804673e-162,4.586080094572236e-162,9.293510299124074e-162,1.883293180643442e-161,3.816419297014287e-161,7.73382307137538e-161,1.5672287200237945e-160,3.1759271426293576e-160,6.435891000732005e-160,1.3042079088442473e-159,2.6429258502020726e-159,5.355784919182758e-159,1.0853286745957062e-158,2.1993757211583746e-158,4.456948089594e-158,9.031829387874374e-158,1.83026457683279e-157,3.7089589244306607e-157,7.516058867794284e-157,1.523099663683137e-156,3.0865013517283414e-156,6.254673165105994e-156,1.267484829721117e-155,2.568507979818752e-155,5.2049800421234135e-155,1.0547686614863e-154,2.137447060795515e-154,4.3314521036919784e-154,8.777516725768993e-154,1.778729119629053e-153,3.604524354511025e-153,7.304426333883369e-153,1.4802131659994486e-152,2.999593556901781e-152,6.078557949139592e-152,1.2317957763321727e-151,2.4961855217724693e-151,5.058421435459177e-151,1.0250691383124377e-150,2.077262149323508e-150,4.209489756091699e-150,8.530364842209429e-150,1.7286447659338964e-149,3.503030388576637e-149,7.098752817882954e-149,1.4385342397750865e-148,2.9151328579748345e-148,5.907401676426914e-148,1.1971116332205524e-147,2.4258994747394878e-147,4.915989535336277e-147,9.962058759310717e-147,2.018771887340212e-146,4.090961548792657e-146,8.290172108424847e-146,1.679970656472818e-145,3.4043942269204184e-145,6.89887052945475e-145,1.3980288829602097e-144,2.8330503511355514e-144,5.741064716112671e-144,1.1634041047446548e-143,2.35759249871883e-143,4.777568144505942e-143,9.681553274283687e-143,1.961928557954301e-142,3.97577078539764e-142,8.0567425729829e-142,1.6326670824616072e-141,3.308535401258201e-141,6.704616402796971e-141,1.3586640509138183e-140,2.7532790727229896e-140,5.579411368981021e-140,1.1306456919939494e-139,2.291208868253779e-139,4.643044337529617e-139,9.408946089098848e-139,1.906685787856905e-138,3.863823492226743e-138,7.829885801930094e-138,1.5866954532112245e-137,3.2153757090819583e-137,6.515831963613495e-137,1.3204076294452964e-136,2.6757539445975286e-136,5.422309756750655e-136,1.098809670355343e-135,2.2266944269705366e-135,4.512308368653354e-135,9.14401480831824e-135,1.8529985094901638e-134,3.755028341652778e-134,7.609416723435256e-134,1.5420182646454353e-133,3.1248391498614854e-133,6.332363199830126e-133,1.2832284086155879e-132,2.6004117210495267e-132,5.269631714487085e-132,1.0678700677107243e-131,2.1639965433969638e-131,4.3852535822760513e-131,8.886543298575898e-131,1.8008229242806196e-130,3.649296577595218e-130,7.395155476804376e-130,1.4985990687045718e-129,3.036851863042351e-129,6.15406043594856e-129,1.2470960572757847e-128,2.5271909372028914e-128,5.121252686045348e-128,1.0378016432488542e-127,2.1030640680253387e-127,4.261776325939533e-127,8.636321512255778e-127,1.7501164669079388e-126,3.5465419431127514e-126,7.186927265749852e-126,1.4564024436108732e-125,2.951342067790263e-125,5.9807782109408e-125,1.2119810983226974e-124,2.4560318588713734e-124,4.977051622454701e-124,1.0085798668736353e-123,2.0438472915840416e-123,4.1417758657668715e-123,8.393145316132609e-123,1.7008377705796671e-122,3.446680610033204e-122,6.984562215789774e-122,1.4153939649710737e-121,2.8682400044308747e-121,5.812375159580448e-121,1.1778548846511647e-120,2.386876433827261e-120,4.836910883166608e-120,9.80180899192234e-120,1.9862979044845993e-119,4.025154304283473e-119,8.15681632483814e-119,1.6529466332840917e-118,3.349631110566337e-118,6.787895235662753e-118,1.3755401776926142e-117,2.7874778775396975e-117,5.648713897115662e-117,1.1446895757834382e-116,2.3196682444412523e-116,4.7007161400822934e-116,9.525815720666484e-116,1.9303689574097902e-115,3.9118165005512457e-115,7.927141739016229e-115,1.6064039849926623e-114,3.255314270841528e-114,6.596765882644964e-114,1.3368085686908892e-113,2.7089898006338465e-113,5.489660907189412e-113,1.1124581151568462e-112,2.25435246165683e-112,4.5683562842828275e-112,9.257593697130804e-112,1.8760148230122914e-111,3.801669992551749e-111,7.703934188036614e-111,1.5611718557865807e-110,3.1636531463170027e-110,6.411018231659252e-110,1.299167540364444e-109,2.6327117424212433e-109,5.335086432915408e-109,1.0811342080505286e-108,2.1908758002601165e-108,4.439723335385281e-108,8.996924103331247e-108,1.8231911586913865e-107,3.6946249217546897e-107,7.487011577134342e-107,1.5172133448805213e-106,3.0745729590077744e-106,6.230500748071037e-106,1.262586384817584e-105,2.5585814745633046e-105,5.1848643710220885e-105,1.0506923001341461e-104,2.1291864754093095e-104,4.31471235345204e-104,8.743594282625499e-104,1.7718548704178663e-103,3.5905939598110907e-103,7.276196938856464e-103,1.474492590518635e-102,2.988001036480958e-102,6.055066164063437e-102,1.2270352588085375e-101,2.4865385209083926e-101,5.038872168975135e-101,1.021107556620378e-100,2.06923416038805e-100,4.1932213533787857e-100,8.497397566225371e-100,1.721964077577526e-99,3.4894922373091424e-99,7.071318288690046e-99,1.4329747407181976e-98,2.9038667525694112e-98,5.884571358495869e-98,1.1924851594030637e-97,2.416524108155214e-97,4.896990724998852e-97,9.923558420044743e-97,2.010969945548756e-96,4.0751512216948206e-96,8.258133104594503e-96,1.673478078804509e-95,3.391237274537553e-95,6.872208484755628e-95,1.3926259248369913e-94,2.822101469753542e-94,5.718877240144245e-94,1.158907900313549e-93,2.3484811179044223e-93,4.759104290911636e-93,9.644137003742527e-93,1.9543462984111873e-92,3.960405635705214e-92,8.025605703593474e-92,1.6263573187770265e-91,3.295748914197695e-91,6.678705091451348e-91,1.3534132259415429e-90,2.7426384831666723e-90,5.557848634229087e-90,1.1262760889045585e-89,2.28235404006131e-89,4.625100377697542e-89,9.372583362747029e-89,1.8993170248853464e-88,3.848890984909866e-88,7.799625665238329e-88,1.5805633559473616e-87,3.202949256010546e-87,6.490650246936234e-87,1.315304653952855e-86,2.665412966176478e-86,5.401354172138478e-86,1.094563103845396e-85,2.2180889275500586e-85,4.494869663736714e-85,9.108675961110147e-85,1.8458372315858314e-84,3.740516294635201e-84,7.580008632944461e-84,1.5360588311811735e-83,3.1127625931649267e-83,6.3078905343460995e-83,1.2782691195488315e-82,2.590361917498825e-82,5.249266184257215e-82,1.0637430733923646e-81,2.1556333523032243e-81,4.368305905619641e-81,8.852199500756279e-81,1.7938632892074027e-80,3.635193151816058e-80,7.366575441124955e-80,1.4928074372795037e-79,3.0251153505550746e-79,6.130276856633102e-79,1.2422764088012663e-78,2.517424109800648e-78,5.101460595811465e-78,1.0337908542823144e-77,2.094936362490397e-77,4.2453058514734986e-77,8.602944745839788e-77,1.7433527969317616e-76,3.5328356328680713e-76,7.15915196902691e-76,1.4507738893590033e-75,2.9399360247579335e-75,5.95766431493205e-75,1.2072971585270203e-74,2.4465400397505785e-74,4.9578168256483e-74,1.0046820112205184e-73,2.035948440951397e-73,4.1257691567272757e-73,8.360708352048318e-73,1.6942645478367112e-72,3.433360233589559e-72,6.957568998681826e-72,1.4099238960663162e-71,2.8571551256989943e-71,5.789912090350324e-71,1.1733028323333643e-70,2.3776518794747367e-70,4.8182176878642674e-70,9.763927969462149e-70,1.9786214647994313e-69,4.0095983022504625e-69,8.1252927007133e-69,1.6465584952789644e-68,3.336685801038612e-68,6.761662076855897e-68,1.3702241316027056e-67,2.7767051199627187e-67,5.626883329086416e-67,1.1402656973375825e-66,2.3107034293811098e-66,4.682549296203966e-66,9.48900132859254e-66,1.922908666162329e-65,3.896698514795795e-65,7.896505737589838e-65,1.6001957202238337e-64,3.242733467327633e-64,6.571271380888092e-64,1.3316422085366532e-63,2.698520375697461e-63,5.468445030783796e-63,1.1081588015423091e-62,2.2456400723108272e-62,4.5507009711509675e-62,9.221815901924272e-62,1.8687645940286022e-61,3.786977689682681e-61,7.674160816177769e-61,1.555138399494818e-60,3.1514265852821315e-60,6.386241588304556e-60,1.2941466513819708e-59,2.6225371090726383e-59,5.314467940027328e-59,1.0769559518479046e-58,2.1824087289811783e-58,4.4225651496338895e-58,8.962153717139264e-58,1.8161450771682538e-57,3.680346315656888e-57,7.458076545453412e-57,1.5113497749169164e-56,3.062690665911505e-56,6.206421750105537e-56,1.2577068709196517e-55,2.5486933322434497e-55,5.164826440895864e-55,1.0466316926837531e-54,2.1209578146831737e-54,4.298037297275752e-54,8.70980293944852e-54,1.7650071880974078e-53,3.5767174018667623e-53,7.248076641889716e-53,1.468794123329073e-52,2.9764533176398604e-52,6.031665167620159e-52,1.2222931392429882e-51,2.4769288027803075e-51,5.019398454483931e-51,1.0171612852414434e-50,2.0612371971980045e-50,4.177015823114118e-50,8.464557698776108e-50,1.7153092080578167e-49,3.476006406895141e-49,7.043989785641638e-49,1.4274367274409786e-48,2.892644187248502e-48,5.861829272827565e-48,1.1878765655053437e-47,2.407184974522678e-47,4.878065339308011e-47,9.885206872926806e-47,2.0031981558988958e-46,4.059401996721744e-46,8.226217921808123e-46,1.667010592982103e-45,3.37813116978997e-45,6.845649480782313e-45,1.3872438475102106e-44,2.8111949024812936e-44,5.696775512049002e-44,1.1544290723505879e-43,2.339404949816722e-43,4.740711794518158e-43,9.606865335752947e-43,1.9467933420042896e-42,3.945099867661734e-42,7.994589168771687e-42,1.6200719404176494e-41,3.283011843036227e-41,6.652893919474547e-41,1.3481826938171358e-40,2.7320390162656022e-40,5.53636923291479e-40,1.12192337300741e-39,2.273533433097383e-39,4.607225765834304e-39,9.336361167317173e-39,1.8919767399504294e-38,3.834016187210178e-38,7.769482474808153e-38,1.5744549573818077e-37,3.190570827415838e-37,6.465565849965615e-37,1.310221399914831e-36,2.6551119525043723e-36,5.380479574513002e-36,1.0903329490285837e-35,2.209516685777927e-35,4.4774983541317255e-35,9.07347368784129e-35,1.8387036298511918e-34,3.726060332283093e-34,7.5507141958147986e-34,1.5301224291219258e-33,3.100732708701549e-33,6.283512448300647e-33,1.2733289966319846e-32,2.5803509533943765e-32,5.228979360632339e-32,1.0596320286568417e-31,2.1473024824095314e-31,4.351423726599537e-31,8.817988431311355e-31,1.7869305510154216e-30,3.6211442315051734e-30,7.338105858625591e-30,1.4870381887554015e-29,3.013424196133241e-29,6.106585193646861e-29,1.2374753868080578e-28,2.5076950282277665e-28,5.081744996010654e-28,1.0297955658001187e-27,2.086840068075237e-27,4.228899030401862e-27,8.569696970514981e-27,1.7366152664911362e-26,3.519182293360425e-26,7.131484015411671e-26,1.4451670877642693e-25,2.9285740626265683e-25,5.934639747129406e-25,1.2026313207397564e-24,2.437084903635226e-24,4.9386563655046965e-24,1.0007992195987404e-23,2.0280801169835627e-23,4.1098243087691535e-23,8.328396747004224e-23,1.687716728608359e-22,3.420091336365684e-22,6.93068010218079e-22,1.4044749673208373e-21,2.8461130866654344e-21,5.767535834077907e-21,1.1687683723188273e-20,2.36846297523036e-20,4.799596736098932e-20,9.726193345678538e-20,1.9709746922282072e-19,3.99410241945286e-19,8.093890905846307e-19,1.6401950454919992e-18,3.3237905212106305e-18,6.7355303012611e-18,1.3649286304204871e-17,2.7659739958303348e-17,5.605137129589537e-17,1.1358589158417466e-16,2.301773260615434e-16,4.664452661674002e-16,9.452329212991423e-16,1.915477206680569e-15,3.881638955475664e-15,7.865988135028103e-15,1.5940114485176468e-14,3.230201284808144e-14,6.545875407657474e-14,1.326495814799358e-13,2.6880914119168915e-13,5.447311147313602e-13,1.1038761034724924e-12,2.2369613537103636e-12,4.53311389045607e-12,9.186176377057974e-12,1.8615423849835907e-11,3.772342168113488e-11,7.644502509381586e-11,1.549128260683881e-10,3.139247276201898e-10,6.361560699170569e-10,1.2891451666144178e-9,2.612401797599756e-9,5.293929131368088e-9,1.072793843339771e-8,2.173974380367835e-8,4.405473275072534e-8,8.927517707956807e-8,1.8091262266156934e-7,3.6661228920460993e-7,7.429253338904565e-7,1.5055088658749356e-6,3.050854294278564e-6,6.182435810172875e-6,1.2528462148647585e-5,2.5388434045982612e-5,5.144865951299455e-5,0.00010425867782510564,0.00021127609552380514,0.0004281426685140188,0.0008676142189576355,0.0017581859699947664,0.0035628944726151125,0.0072200650213521496,0.01463117678988978,0.02964950227233812,0.060083546089391836,0.12175693465330449,0.2467356223301618,0.5],"x":[-1022.0,-1020.9810379241517,-1019.9620758483034,-1018.943113772455,-1017.9241516966068,-1016.9051896207585,-1015.8862275449102,-1014.8672654690619,-1013.8483033932135,-1012.8293413173652,-1011.810379241517,-1010.7914171656687,-1009.7724550898204,-1008.753493013972,-1007.7345309381237,-1006.7155688622754,-1005.6966067864272,-1004.6776447105789,-1003.6586826347306,-1002.6397205588822,-1001.6207584830339,-1000.6017964071856,-999.5828343313374,-998.5638722554891,-997.5449101796407,-996.5259481037924,-995.5069860279441,-994.4880239520958,-993.4690618762475,-992.4500998003992,-991.4311377245509,-990.4121756487026,-989.3932135728543,-988.374251497006,-987.3552894211576,-986.3363273453094,-985.3173652694611,-984.2984031936128,-983.2794411177645,-982.2604790419161,-981.2415169660678,-980.2225548902196,-979.2035928143713,-978.184630738523,-977.1656686626746,-976.1467065868263,-975.127744510978,-974.1087824351298,-973.0898203592815,-972.0708582834332,-971.0518962075848,-970.0329341317365,-969.0139720558882,-967.9950099800399,-966.9760479041917,-965.9570858283433,-964.938123752495,-963.9191616766467,-962.9001996007984,-961.88123752495,-960.8622754491018,-959.8433133732535,-958.8243512974052,-957.8053892215569,-956.7864271457086,-955.7674650698602,-954.748502994012,-953.7295409181637,-952.7105788423154,-951.6916167664671,-950.6726546906187,-949.6536926147704,-948.6347305389221,-947.6157684630739,-946.5968063872256,-945.5778443113772,-944.5588822355289,-943.5399201596806,-942.5209580838323,-941.5019960079841,-940.4830339321358,-939.4640718562874,-938.4451097804391,-937.4261477045908,-936.4071856287425,-935.3882235528943,-934.3692614770459,-933.3502994011976,-932.3313373253493,-931.312375249501,-930.2934131736527,-929.2744510978044,-928.2554890219561,-927.2365269461078,-926.2175648702595,-925.1986027944112,-924.1796407185628,-923.1606786427145,-922.1417165668663,-921.122754491018,-920.1037924151697,-919.0848303393213,-918.065868263473,-917.0469061876247,-916.0279441117765,-915.0089820359282,-913.9900199600798,-912.9710578842315,-911.9520958083832,-910.9331337325349,-909.9141716566867,-908.8952095808384,-907.87624750499,-906.8572854291417,-905.8383233532934,-904.8193612774451,-903.8003992015969,-902.7814371257485,-901.7624750499002,-900.7435129740519,-899.7245508982036,-898.7055888223553,-897.6866267465069,-896.6676646706587,-895.6487025948104,-894.6297405189621,-893.6107784431138,-892.5918163672654,-891.5728542914171,-890.5538922155689,-889.5349301397206,-888.5159680638723,-887.497005988024,-886.4780439121756,-885.4590818363273,-884.4401197604791,-883.4211576846308,-882.4021956087824,-881.3832335329341,-880.3642714570858,-879.3453093812375,-878.3263473053893,-877.307385229541,-876.2884231536926,-875.2694610778443,-874.250499001996,-873.2315369261477,-872.2125748502993,-871.1936127744511,-870.1746506986028,-869.1556886227545,-868.1367265469062,-867.1177644710579,-866.0988023952095,-865.0798403193613,-864.060878243513,-863.0419161676647,-862.0229540918164,-861.003992015968,-859.9850299401197,-858.9660678642715,-857.9471057884232,-856.9281437125749,-855.9091816367265,-854.8902195608782,-853.8712574850299,-852.8522954091817,-851.8333333333334,-850.814371257485,-849.7954091816367,-848.7764471057884,-847.7574850299401,-846.7385229540918,-845.7195608782436,-844.7005988023952,-843.6816367265469,-842.6626746506986,-841.6437125748503,-840.624750499002,-839.6057884231537,-838.5868263473054,-837.5678642714571,-836.5489021956088,-835.5299401197605,-834.5109780439121,-833.4920159680639,-832.4730538922156,-831.4540918163673,-830.435129740519,-829.4161676646706,-828.3972055888223,-827.378243512974,-826.3592814371258,-825.3403193612775,-824.3213572854291,-823.3023952095808,-822.2834331337325,-821.2644710578842,-820.245508982036,-819.2265469061877,-818.2075848303393,-817.188622754491,-816.1696606786427,-815.1506986027944,-814.1317365269462,-813.1127744510978,-812.0938123752495,-811.0748502994012,-810.0558882235529,-809.0369261477045,-808.0179640718563,-806.999001996008,-805.9800399201597,-804.9610778443114,-803.942115768463,-802.9231536926147,-801.9041916167664,-800.8852295409182,-799.8662674650699,-798.8473053892216,-797.8283433133732,-796.8093812375249,-795.7904191616766,-794.7714570858284,-793.7524950099801,-792.7335329341317,-791.7145708582834,-790.6956087824351,-789.6766467065868,-788.6576846307386,-787.6387225548903,-786.6197604790419,-785.6007984031936,-784.5818363273453,-783.562874251497,-782.5439121756488,-781.5249500998004,-780.5059880239521,-779.4870259481038,-778.4680638722555,-777.4491017964071,-776.4301397205588,-775.4111776447106,-774.3922155688623,-773.373253493014,-772.3542914171657,-771.3353293413173,-770.316367265469,-769.2974051896208,-768.2784431137725,-767.2594810379242,-766.2405189620758,-765.2215568862275,-764.2025948103792,-763.183632734531,-762.1646706586827,-761.1457085828343,-760.126746506986,-759.1077844311377,-758.0888223552894,-757.0698602794412,-756.0508982035929,-755.0319361277445,-754.0129740518962,-752.9940119760479,-751.9750499001996,-750.9560878243512,-749.937125748503,-748.9181636726547,-747.8992015968064,-746.8802395209581,-745.8612774451097,-744.8423153692614,-743.8233532934132,-742.8043912175649,-741.7854291417166,-740.7664670658683,-739.7475049900199,-738.7285429141716,-737.7095808383234,-736.6906187624751,-735.6716566866268,-734.6526946107784,-733.6337325349301,-732.6147704590818,-731.5958083832336,-730.5768463073853,-729.557884231537,-728.5389221556886,-727.5199600798403,-726.500998003992,-725.4820359281437,-724.4630738522955,-723.4441117764471,-722.4251497005988,-721.4061876247505,-720.3872255489022,-719.3682634730538,-718.3493013972056,-717.3303393213573,-716.311377245509,-715.2924151696607,-714.2734530938123,-713.254491017964,-712.2355289421158,-711.2165668662675,-710.1976047904192,-709.1786427145709,-708.1596806387225,-707.1407185628742,-706.121756487026,-705.1027944111777,-704.0838323353294,-703.064870259481,-702.0459081836327,-701.0269461077844,-700.0079840319361,-698.9890219560879,-697.9700598802395,-696.9510978043912,-695.9321357285429,-694.9131736526946,-693.8942115768463,-692.875249500998,-691.8562874251497,-690.8373253493014,-689.8183632734531,-688.7994011976048,-687.7804391217564,-686.7614770459082,-685.7425149700599,-684.7235528942116,-683.7045908183633,-682.685628742515,-681.6666666666666,-680.6477045908183,-679.6287425149701,-678.6097804391218,-677.5908183632735,-676.5718562874251,-675.5528942115768,-674.5339321357285,-673.5149700598803,-672.496007984032,-671.4770459081836,-670.4580838323353,-669.439121756487,-668.4201596806387,-667.4011976047905,-666.3822355289421,-665.3632734530938,-664.3443113772455,-663.3253493013972,-662.3063872255489,-661.2874251497007,-660.2684630738523,-659.249500998004,-658.2305389221557,-657.2115768463074,-656.192614770459,-655.1736526946107,-654.1546906187625,-653.1357285429142,-652.1167664670659,-651.0978043912176,-650.0788423153692,-649.0598802395209,-648.0409181636727,-647.0219560878244,-646.002994011976,-644.9840319361277,-643.9650698602794,-642.9461077844311,-641.9271457085829,-640.9081836327346,-639.8892215568862,-638.8702594810379,-637.8512974051896,-636.8323353293413,-635.8133732534931,-634.7944111776447,-633.7754491017964,-632.7564870259481,-631.7375249500998,-630.7185628742515,-629.6996007984031,-628.6806387225549,-627.6616766467066,-626.6427145708583,-625.62375249501,-624.6047904191616,-623.5858283433133,-622.5668662674651,-621.5479041916168,-620.5289421157685,-619.5099800399202,-618.4910179640718,-617.4720558882235,-616.4530938123753,-615.434131736527,-614.4151696606787,-613.3962075848303,-612.377245508982,-611.3582834331337,-610.3393213572855,-609.3203592814372,-608.3013972055888,-607.2824351297405,-606.2634730538922,-605.2445109780439,-604.2255489021956,-603.2065868263473,-602.187624750499,-601.1686626746507,-600.1497005988024,-599.1307385229541,-598.1117764471057,-597.0928143712575,-596.0738522954092,-595.0548902195609,-594.0359281437126,-593.0169660678642,-591.9980039920159,-590.9790419161677,-589.9600798403194,-588.9411177644711,-587.9221556886228,-586.9031936127744,-585.8842315369261,-584.8652694610779,-583.8463073852296,-582.8273453093813,-581.8083832335329,-580.7894211576846,-579.7704590818363,-578.751497005988,-577.7325349301398,-576.7135728542914,-575.6946107784431,-574.6756487025948,-573.6566866267465,-572.6377245508982,-571.61876247505,-570.5998003992016,-569.5808383233533,-568.561876247505,-567.5429141716567,-566.5239520958083,-565.5049900199601,-564.4860279441118,-563.4670658682635,-562.4481037924152,-561.4291417165668,-560.4101796407185,-559.3912175648702,-558.372255489022,-557.3532934131737,-556.3343313373254,-555.315369261477,-554.2964071856287,-553.2774451097804,-552.2584830339322,-551.2395209580839,-550.2205588822355,-549.2015968063872,-548.1826347305389,-547.1636726546906,-546.1447105788424,-545.125748502994,-544.1067864271457,-543.0878243512974,-542.0688622754491,-541.0499001996008,-540.0309381237525,-539.0119760479042,-537.9930139720559,-536.9740518962076,-535.9550898203593,-534.9361277445109,-533.9171656686626,-532.8982035928144,-531.8792415169661,-530.8602794411178,-529.8413173652694,-528.8223552894211,-527.8033932135728,-526.7844311377246,-525.7654690618763,-524.746506986028,-523.7275449101796,-522.7085828343313,-521.689620758483,-520.6706586826348,-519.6516966067865,-518.6327345309381,-517.6137724550898,-516.5948103792415,-515.5758483033932,-514.556886227545,-513.5379241516966,-512.5189620758483,-511.5,-510.4810379241517,-509.4620758483034,-508.4431137724551,-507.42415169660677,-506.4051896207585,-505.3862275449102,-504.36726546906186,-503.3483033932136,-502.3293413173653,-501.31037924151696,-500.2914171656687,-499.27245508982037,-498.25349301397205,-497.2345309381237,-496.21556886227546,-495.19660678642714,-494.1776447105788,-493.15868263473055,-492.13972055888223,-491.1207584830339,-490.10179640718565,-489.0828343313373,-488.063872255489,-487.04491017964074,-486.0259481037924,-485.0069860279441,-483.98802395209583,-482.9690618762475,-481.9500998003992,-480.9311377245509,-479.9121756487026,-478.8932135728543,-477.874251497006,-476.8552894211577,-475.83632734530937,-474.81736526946105,-473.7984031936128,-472.77944111776446,-471.76047904191614,-470.7415169660679,-469.72255489021956,-468.70359281437123,-467.68463073852297,-466.66566866267465,-465.6467065868263,-464.62774451097806,-463.60878243512974,-462.5898203592814,-461.57085828343315,-460.55189620758483,-459.5329341317365,-458.51397205588825,-457.4950099800399,-456.4760479041916,-455.45708582834334,-454.438123752495,-453.4191616766467,-452.40019960079843,-451.3812375249501,-450.3622754491018,-449.34331337325347,-448.3243512974052,-447.3053892215569,-446.28642714570856,-445.2674650698603,-444.248502994012,-443.22954091816365,-442.2105788423154,-441.19161676646706,-440.17265469061874,-439.1536926147705,-438.13473053892216,-437.11576846307383,-436.09680638722557,-435.07784431137725,-434.0588822355289,-433.03992015968066,-432.02095808383234,-431.001996007984,-429.98303393213575,-428.96407185628743,-427.9451097804391,-426.92614770459085,-425.9071856287425,-424.8882235528942,-423.8692614770459,-422.8502994011976,-421.8313373253493,-420.812375249501,-419.7934131736527,-418.7744510978044,-417.75548902195607,-416.7365269461078,-415.7175648702595,-414.69860279441116,-413.6796407185629,-412.6606786427146,-411.64171656686625,-410.622754491018,-409.60379241516966,-408.58483033932134,-407.5658682634731,-406.54690618762476,-405.52794411177643,-404.50898203592817,-403.49001996007985,-402.4710578842315,-401.4520958083832,-400.43313373253494,-399.4141716566866,-398.3952095808383,-397.37624750499003,-396.3572854291417,-395.3383233532934,-394.3193612774451,-393.3003992015968,-392.2814371257485,-391.2624750499002,-390.2435129740519,-389.2245508982036,-388.2055888223553,-387.186626746507,-386.16766467065867,-385.1487025948104,-384.1297405189621,-383.11077844311376,-382.0918163672655,-381.0728542914172,-380.05389221556885,-379.0349301397206,-378.01596806387226,-376.99700598802394,-375.9780439121756,-374.95908183632736,-373.94011976047904,-372.9211576846307,-371.90219560878245,-370.8832335329341,-369.8642714570858,-368.84530938123754,-367.8263473053892,-366.8073852295409,-365.78842315369263,-364.7694610778443,-363.750499001996,-362.7315369261477,-361.7125748502994,-360.6936127744511,-359.6746506986028,-358.6556886227545,-357.6367265469062,-356.6177644710579,-355.5988023952096,-354.57984031936127,-353.560878243513,-352.5419161676647,-351.52295409181636,-350.50399201596804,-349.4850299401198,-348.46606786427145,-347.44710578842313,-346.42814371257487,-345.40918163672654,-344.3902195608782,-343.37125748502996,-342.35229540918164,-341.3333333333333,-340.31437125748505,-339.2954091816367,-338.2764471057884,-337.25748502994014,-336.2385229540918,-335.2195608782435,-334.20059880239523,-333.1816367265469,-332.1626746506986,-331.1437125748503,-330.124750499002,-329.1057884231537,-328.08682634730536,-327.0678642714571,-326.0489021956088,-325.02994011976045,-324.0109780439122,-322.99201596806387,-321.97305389221555,-320.9540918163673,-319.93512974051896,-318.91616766467064,-317.8972055888224,-316.87824351297405,-315.85928143712573,-314.84031936127747,-313.82135728542914,-312.8023952095808,-311.78343313373256,-310.76447105788424,-309.7455089820359,-308.72654690618765,-307.70758483033933,-306.688622754491,-305.66966067864274,-304.6506986027944,-303.6317365269461,-302.6127744510978,-301.5938123752495,-300.5748502994012,-299.55588822355287,-298.5369261477046,-297.5179640718563,-296.49900199600796,-295.4800399201597,-294.4610778443114,-293.44211576846305,-292.4231536926148,-291.40419161676647,-290.38522954091815,-289.3662674650699,-288.34730538922156,-287.32834331337324,-286.309381237525,-285.29041916167665,-284.27145708582833,-283.25249500998007,-282.23353293413174,-281.2145708582834,-280.1956087824351,-279.17664670658684,-278.1576846307385,-277.1387225548902,-276.11976047904193,-275.1007984031936,-274.0818363273453,-273.062874251497,-272.0439121756487,-271.0249500998004,-270.0059880239521,-268.9870259481038,-267.96806387225547,-266.9491017964072,-265.9301397205589,-264.91117764471056,-263.8922155688623,-262.873253493014,-261.85429141716565,-260.8353293413174,-259.81636726546907,-258.79740518962075,-257.7784431137725,-256.75948103792416,-255.74051896207584,-254.72155688622755,-253.70259481037925,-252.68363273453093,-251.66467065868264,-250.64570858283435,-249.62674650698602,-248.60778443113773,-247.5888223552894,-246.56986027944112,-245.55089820359282,-244.5319361277445,-243.5129740518962,-242.49401197604791,-241.4750499001996,-240.4560878243513,-239.437125748503,-238.41816367265469,-237.3992015968064,-236.38023952095807,-235.36127744510978,-234.34231536926148,-233.32335329341316,-232.30439121756487,-231.28542914171658,-230.26646706586826,-229.24750499001996,-228.22854291417167,-227.20958083832335,-226.19061876247505,-225.17165668662673,-224.15269461077844,-223.13373253493015,-222.11477045908183,-221.09580838323353,-220.07684630738524,-219.05788423153692,-218.03892215568862,-217.01996007984033,-216.000998003992,-214.98203592814372,-213.96307385229542,-212.9441117764471,-211.9251497005988,-210.9061876247505,-209.8872255489022,-208.8682634730539,-207.84930139720558,-206.8303393213573,-205.811377245509,-204.79241516966067,-203.77345309381238,-202.75449101796409,-201.73552894211576,-200.71656686626747,-199.69760479041915,-198.67864271457086,-197.65968063872256,-196.64071856287424,-195.62175648702595,-194.60279441117765,-193.58383233532933,-192.56487025948104,-191.54590818363275,-190.52694610778443,-189.50798403193613,-188.4890219560878,-187.47005988023952,-186.45109780439122,-185.4321357285429,-184.4131736526946,-183.39421157684632,-182.375249500998,-181.3562874251497,-180.3373253493014,-179.3183632734531,-178.2994011976048,-177.2804391217565,-176.26147704590818,-175.2425149700599,-174.22355289421156,-173.20459081836327,-172.18562874251498,-171.16666666666666,-170.14770459081836,-169.12874251497007,-168.10978043912175,-167.09081836327346,-166.07185628742516,-165.05289421157684,-164.03393213572855,-163.01497005988023,-161.99600798403193,-160.97704590818364,-159.95808383233532,-158.93912175648703,-157.92015968063873,-156.9011976047904,-155.88223552894212,-154.86327345309383,-153.8443113772455,-152.8253493013972,-151.8063872255489,-150.7874251497006,-149.7684630738523,-148.74950099800398,-147.7305389221557,-146.7115768463074,-145.69261477045907,-144.67365269461078,-143.6546906187625,-142.63572854291417,-141.61676646706587,-140.59780439121755,-139.57884231536926,-138.55988023952096,-137.54091816367264,-136.52195608782435,-135.50299401197606,-134.48403193612774,-133.46506986027944,-132.44610778443115,-131.42714570858283,-130.40818363273453,-129.38922155688624,-128.37025948103792,-127.35129740518963,-126.33233532934132,-125.31337325349301,-124.2944111776447,-123.27544910179641,-122.2564870259481,-121.2375249500998,-120.2185628742515,-119.1996007984032,-118.18063872255489,-117.16167664670658,-116.14271457085829,-115.12375249500998,-114.10479041916167,-113.08582834331337,-112.06686626746507,-111.04790419161677,-110.02894211576846,-109.00998003992017,-107.99101796407186,-106.97205588822355,-105.95309381237524,-104.93413173652695,-103.91516966067864,-102.89620758483034,-101.87724550898204,-100.85828343313374,-99.83932135728543,-98.82035928143712,-97.80139720558883,-96.78243512974052,-95.76347305389221,-94.7445109780439,-93.72554890219561,-92.7065868263473,-91.687624750499,-90.6686626746507,-89.6497005988024,-88.63073852295409,-87.61177644710578,-86.59281437125749,-85.57385229540918,-84.55489021956087,-83.53592814371258,-82.51696606786427,-81.49800399201597,-80.47904191616766,-79.46007984031937,-78.44111776447106,-77.42215568862275,-76.40319361277444,-75.38423153692615,-74.36526946107784,-73.34630738522954,-72.32734530938124,-71.30838323353294,-70.28942115768463,-69.27045908183632,-68.25149700598803,-67.23253493013972,-66.21357285429141,-65.19461077844312,-64.17564870259481,-63.156686626746506,-62.137724550898206,-61.1187624750499,-60.0998003992016,-59.08083832335329,-58.06187624750499,-57.04291417165668,-56.02395209580838,-55.00499001996008,-53.986027944111775,-52.967065868263475,-51.94810379241517,-50.92914171656687,-49.91017964071856,-48.89121756487026,-47.87225548902195,-46.85329341317365,-45.83433133732535,-44.815369261477045,-43.796407185628745,-42.77744510978044,-41.75848303393214,-40.73952095808383,-39.72055888223553,-38.70159680638722,-37.68263473053892,-36.66367265469062,-35.644710578842314,-34.625748502994014,-33.60678642714571,-32.58782435129741,-31.568862275449103,-30.5499001996008,-29.530938123752495,-28.51197604790419,-27.493013972055888,-26.474051896207584,-25.45508982035928,-24.436127744510976,-23.417165668662676,-22.398203592814372,-21.37924151696607,-20.360279441117765,-19.34131736526946,-18.322355289421157,-17.303393213572853,-16.28443113772455,-15.265469061876248,-14.246506986027944,-13.22754491017964,-12.208582834331338,-11.189620758483034,-10.17065868263473,-9.151696606786427,-8.132734530938123,-7.11377245508982,-6.094810379241517,-5.075848303393213,-4.0568862275449105,-3.0379241516966067,-2.0189620758483033,-1.0]}
+},{}],52:[function(require,module,exports){
+module.exports={"expected":[2.0,4.055725693462558,8.224455450306175,16.678067642272467,33.820833727035485,68.58401216053144,139.07897014010788,282.03307630877373,571.9243969958904,1159.784235807156,2351.883362017962,4769.296889681674,9671.47996761651,19612.434899235366,39771.328066095295,80650.79855039569,163548.75793955644,331654.44985467324,672549.7368133944,1.3638386238627834e6,2.765677674268456e6,5.608415001683165e6,1.1373096410963643e7,2.3063079664086044e7,4.676876238200371e7,9.484063562206888e7,1.9232380133837268e8,3.900062912762137e8,7.908792680704898e8,1.603794683970175e9,3.252275653408253e9,6.59516896487528e9,1.3374098111785812e10,2.712083666942935e10,5.499733705420297e10,1.1152705648137605e11,2.2616157424388303e11,4.5862465376742737e11,9.300278959699655e11,1.8859690166611526e12,3.8244864989734883e12,7.755534079093708e12,1.5727159415552389e13,3.189252226341881e13,6.467366098653705e13,1.3114931427669245e14,2.659528217959896e14,5.3931584630343106e14,1.0936585673721629e15,2.2177895757833735e15,4.49737308259902e15,9.120055782091906e15,1.849422228062092e16,3.750374624206093e16,7.605245361751342e16,1.5422394509370906e17,3.1274500833185683e17,6.342039828968388e17,1.2860786941654966e18,2.6079912018708854e18,5.288648462876041e18,1.0724653727288793e19,2.1748126837627036e19,4.410221840002322e19,8.94332501518364e19,1.8135836524533324e20,3.677698908249319e20,7.457868977502969e20,1.5123535415268037e21,3.066845557984701e21,6.219142163700023e21,1.2611567332307233e22,2.5574528832235704e22,5.186163684154858e22,1.0516828652164631e23,2.132668608916382e23,4.324759436411604e23,8.770018982149583e23,1.7784395659029177e24,3.6064315208514245e24,7.313348490415245e24,1.4830467688911335e25,3.0074154425991942e25,6.098626040732801e25,1.2367177164109907e26,2.507893909004194e26,5.085664881613321e26,1.0313030864349666e27,2.091341212700762e27,4.240953145073805e27,8.600071317623323e27,1.7439765104247796e28,3.5365451710624697e28,7.171628558184486e28,1.4543079103699305e29,2.94913697914658e29,5.980445309932658e29,1.2127522850920865e30,2.459295301226698e30,4.987113570498422e30,1.0113182322043105e31,2.050814669309074e31,4.1587708734234e31,8.433416942283489e31,1.7101812888250764e32,3.4680130967833815e32,7.032654910944495e32,1.426125960778659e33,2.891987850622015e33,5.864554715474622e33,1.1892512620133694e34,2.4116384496651934e34,4.890472011824659e34,9.91720649575848e34,2.0110734596110687e35,4.078181150792617e35,8.269992037932145e35,1.6770409596486064e36,3.4008090545179733e36,6.896374330484383e36,1.3984901281940556e37,2.835946172485184e37,5.75090987851247e37,1.1662056477535313e38,2.36490510472759e38,4.795703197922216e38,9.725028339016732e38,1.9721023652100994e39,3.999153116360473e39,8.10973402305692e39,1.644542832222985e40,3.334907309323184e40,6.762734629869118e40,1.3713898298214703e41,2.7809904842800587e41,5.639467280184804e41,1.143606617284333e42,2.3190773704669545e42,4.7027708382652453e42,9.536574259609294e42,1.93388646261557e43,3.9216565073346476e43,7.952581528865948e43,1.6126744617988503e44,3.2702826249542765e44,6.631684633455673e44,1.3448146879423345e45,2.7270997414168012e45,5.530184244949545e45,1.1214455165911946e46,2.274137697728668e46,4.611639345574921e46,9.351772091415607e46,1.8964111175279963e47,3.8456616473632e47,7.798474375787302e47,1.581423644784479e48,3.206910254200835e48,6.503174157295359e48,1.318754525940236e49,2.674253307112947e49,5.423018924242537e49,1.0997138593592157e50,2.2300688774299947e50,4.522273822192054e50,9.170551066768614e50,1.859661979235212e51,3.771139435169873e51,7.647353550424078e51,1.550778414072365e52,3.144765929410168e52,6.377153989917292e52,1.2931993644037518e53,2.6224309444908428e53,5.31793028045144e53,1.0784033237234602e54,2.186854033970347e54,4.434640046712925e54,8.9928417893557e54,1.8236249751167009e55,3.698061333410368e55,7.49916118295648e55,1.5207270344566956e56,3.083825853194535e56,6.2535758734826365e56,1.2681394173050398e57,2.5716128088283643e57,5.2148780712012464e57,1.0575057490822768e58,2.144476618768697e58,4.3487044608849075e58,8.818576207643152e58,1.7882863052547763e59,3.6263993577445414e59,7.353840524980387e59,1.4912579981394399e60,3.0240666893178576e60,6.132392485305274e60,1.2435650882524758e61,2.5217794399593203e61,5.1138228339442586e61,1.0370131329721706e62,2.1029204039266438e62,4.26443415675601e62,8.647687588817415e62,1.753632437150183e63,3.55612606611971e63,7.211335927776735e63,1.4623600203237e64,2.965465553759595e64,6.013557419730531e64,1.2194669668156858e65,2.4729117548215863e65,5.014725870847786e65,1.0169176280034265e66,2.062169476014265e66,4.181796864072671e66,8.480110493230246e66,1.7196501005397817e67,3.4872145482622914e67,7.071592821001959e67,1.4340220348921625e68,2.9080000059517687e68,5.897025170363978e68,1.1958358249220164e69,2.4249910401496273e69,4.917549233975709e69,9.972115388551085e69,2.0222082299760165e70,4.1007609379225384e70,8.315780749340096e70,1.6863262823149782e71,3.419638415373054e71,6.934557691790098e71,1.4062331901695593e72,2.851648040185274e72,5.782751112645715e72,1.1726626133228307e73,2.3779989453081958e73,4.8222557107566013e73,9.778873193281129e73,1.9830213631551034e74,4.021295346616682e74,8.154635429137417e74,1.6536482215386157e75,3.353371790021441e75,6.800178064261166e75,1.3789828447672359e76,2.7963880771833072e76,5.670691486762284e76,1.1499384581280687e77,2.331917475265336e77,4.728808809733927e77,9.58937569455526e77,1.9445938694336337e78,3.943369659805837e78,7.996612824047841e78,1.6216034045581322e79,3.2883892962363494e79,6.668402479426697e79,1.3522605635079984e80,2.742198955837742e80,5.5608033808886e80,1.127654657408199e81,2.2867289837015493e81,4.637172746591894e81,9.403550326688805e81,1.9069110334859788e82,3.866954036828118e82,7.841652421301187e82,1.5901795602137497e83,3.2246660497889107e83,6.539180475482573e83,1.3260561134302057e84,2.689059925105962e84,5.453044714756313e84,1.1058026778619e85,2.242416166252078e85,4.5473124304521276e85,9.221325930193076e85,1.8699584251438813e86,3.792019215281367e86,7.689694880760094e86,1.559364655139354e87,3.1621776486629935e87,6.412462568487686e87,1.3003594598691058e88,2.6369506360641868e88,5.347374223538917e88,1.0843741515482966e89,2.198962053880605e89,4.459193450436333e89,9.042632724527191e89,1.8337218938705645e90,3.718536499817792e90,7.540682012194587e90,1.5291468891544088e91,3.1009001637110253e91,6.288200233412456e91,1.275160762614393e92,2.5858511341153236e92,5.243751442050346e92,1.0633608726827342e93,2.1563500063811263e93,4.372782062488992e93,8.867402281374298e93,1.7981875633418918e94,3.646477751155372e94,7.39455675300012e94,1.4995146907454652e95,3.040810129490557e95,6.16634588555796e95,1.2504503721417128e96,2.535741851347452e96,5.1421366892492305e96,1.042754794494218e97,2.1145637060057103e97,4.288045176455502e97,8.695567498439283e97,1.763341826132887e98,3.5758153753022677e98,7.25126314634585e98,1.4704567126346335e99,2.981884535278352e99,6.046852862333705e99,1.2262188259177067e100,2.4866035990409388e100,5.0424910530435424e100,1.0225480261441765e101,2.073587151216156e101,4.204950343410549e101,8.527062573752422e101,1.7291713385065133e102,3.506522312989914e102,7.110746319746673e102,1.4419618274345288e103,2.9241008162591873e103,5.9296754053887775e103,1.2024568447763998e104,2.4384175603197538e104,4.9447763753894986e104,1.0027328297047203e105,2.0334046505559016e105,4.123465743232865e105,8.361822980471339e105,1.6956630153041442e106,3.4385720293115666e106,6.972952464050498e106,1.4140191233871167e107,2.867436844884233e107,5.81476864308903e107,1.1791553293658626e108,2.3911652829461897e108,4.848955237680208e108,9.833016171955005e108,1.9940008166415152e109,4.043560172419112e109,8.199785442170946e109,1.6628040249346937e110,3.3719385035602576e110,6.837828812832434e110,1.386617900185193e111,2.8118709223980613e111,5.702088573334974e111,1.156305356663728e112,2.3448286722547074e112,4.754990946415501e112,9.642469476779485e112,1.955360560270206e113,3.965203032135562e113,8.040887908613829e113,1.630581784460921e114,3.306596219265054e114,6.70532362218964e114,1.3597476648747819e115,2.757381770529261e115,5.591592046710337e115,1.1338981765601872e116,2.2993899842228115e116,4.662847519151408e116,9.455615244060147e116,1.917469084641602e117,3.888364316500494e117,7.885069531986925e117,1.5989839547808894e118,3.2425201544197035e118,6.57538615092501e118,1.3333981278372066e119,2.7039485233421908e119,5.48323674995947e119,1.111925208507425e120,2.2548318186762005e120,4.572489670720934e120,9.272381920317415e120,1.8803118796914298e121,3.8130146010938115e121,7.73227064360194e121,1.5679984359031147e122,3.1796857719007717e122,6.447966641117569e122,1.3075591988484845e123,2.651550719246528e123,5.376981189783784e123,1.0903780382335357e124,2.2111371126255e124,4.483882799722051e124,9.092699338653672e124,1.843874716535364e125,3.7391250316893375e125,7.582432731045636e125,1.5376133623126454e126,3.118069010071338e126,6.323016299068021e126,1.2822209832156207e127,2.600168293162178e127,5.272784676952412e127,1.0692484145205663e128,2.168289133732557e128,4.396992975267351e128,8.916498691883336e128,1.8081436420198058e129,3.6666673132053035e129,7.435498415773244e129,1.5078170984275673e130,3.0576462735673885e130,6.200487276613824e130,1.257373777987504e131,2.5497815688349734e131,5.1706073107205765e131,1.0485282460447683e132,2.1262714739024743e132,4.311786923991334e132,8.743712506184015e132,1.7731049733789997e133,3.5956136988696855e133,7.291411431136068e133,1.4785982341432405e134,2.9983944242615192e134,6.0803326528060886e134,1.2330080682392848e135,2.5003712513023223e135,5.070409963550919e135,1.0282095982781294e136,2.0850680430006882e136,4.2282320173077434e136,8.57427461525792e136,1.7387452929953153e137,3.5259369795940513e137,7.150116600834597e137,1.4499455804629428e138,2.9402907724029858e138,5.962506415942761e138,1.209114523428754e139,2.4519184195043387e139,4.972154266128869e139,1.0082846904499045e140,2.0446630626913666e140,4.146296258915563e140,8.408120134995668e140,1.7050514432611378e141,3.457610473554767e141,7.011559817790573e141,1.4218481652131276e142,2.8833130679288194e142,5.846963445947566e142,1.1856839938232823e143,2.4044045190382606e143,4.8758025926704225e143,9.88745892567228e143,2.005041060395294e144,4.065948272546256e144,8.245185438627682e144,1.672010521540263e145,3.390608015975382e145,6.875688023425653e145,1.3942952288419945e146,2.827439491943446e146,5.733659497092811e146,1.1627075069962328e147,2.357811355053275e147,4.781318046513613e147,9.69585722493062e147,1.9661868633647622e148,3.987157289948622e148,8.085408132360491e148,1.639609875227259e149,3.3249039491071593e149,6.742449187344438e149,1.3672762202989132e150,2.7726486483633055e150,5.622551181055802e150,1.1401762643908002e151,2.312121085282937e151,4.6886644459894014e151,9.507968430811693e151,1.928085592873671e152,3.9098931391064773e152,7.928727031483466e152,1.6078370969019119e153,3.2604731124036287e153,6.6117922874098e153,1.3407807929942597e154,2.71891955572393e154,5.513595950303609e154,1.11808163795086e155,2.2673162132131545e155,4.597806310566358e155,9.323720593664027e155,1.8907226585194364e156,3.834126232684512e156,7.775082136938599e156,1.576680019578164e157,3.19729083288632e157,6.4836672902046e157,1.3147988008372625e158,2.666231639144692e158,5.406752081800897e158,1.0964151668170912e159,2.223379581381206e159,4.50870884726384e159,9.143043158094849e159,1.854083752636095e160,3.7598275566988e160,7.62441461234585e160,1.5461267120451038e161,3.1353329156952677e161,6.358025131872013e161,1.289320294350685e162,2.6145647224503602e162,5.301978661031303e162,1.0751685540867309e163,2.1802943648062458e163,4.421337937328457e163,8.965866935951783e163,1.818154844815282e164,3.686968659405342e164,7.476666761470638e164,1.5161654742976807e165,3.074575634824939e165,6.23481769932715e165,1.2643355168607972e166,2.5638990204447696e166,5.199235566330608e166,1.0543336636365579e167,2.1380440645466243e167,4.335660123168382e167,8.792124079828114e167,1.782922176533466e168,3.615521640405441e168,7.331782006131036e168,1.4867848330565879e169,3.014995724038987e169,6.113997811832745e169,1.2398349007611817e170,2.514215131334334e170,5.09848345352244e170,1.033902517007222e171,2.096612501380875e171,4.25164259554256e171,8.621748057081481e171,1.7483722558832923e172,3.5454591399614406e172,7.189704864531556e172,1.4579735373746516e173,2.9565703679594e173,5.995519202931424e173,1.2158090638489385e174,2.4654940292983713e174,4.999683740851909e174,1.0138672903479925e175,2.0559838096127847e175,4.169253180994753e175,8.454673624355363e175,1.714491852407028e176,3.4767543285196596e176,7.050380930017091e176,1.4297205543284217e177,2.8992771933306217e177,5.87933650273044e177,1.1922488057318874e178,2.4177170572034048e178,4.90279859421121e178,9.942203114207143e178,2.0161424309956452e179,4.088460329534503e179,8.290836802597645e179,1.6812679920301247e180,3.4093808964363506e180,6.913756850238578e180,1.4020150647932521e181,2.84309426045175e181,5.76540522052498e181,1.1691451043053028e182,2.370865919458649e182,4.8077909126515316e182,9.749540566618197e182,1.9770731087744236e183,4.0092331025551155e183,8.130174852556601e183,1.6486879520928295e184,3.3433130439027526e184,6.779780306722375e184,1.374846459300254e185,2.788000054775001e185,5.653681727762929e185,1.1464891122973817e186,2.324922675009942e186,4.714624314175707e186,9.560611483012742e186,1.938760881843375e187,3.931541160986106e187,7.97262625075839e187,1.6167392564787246e188,3.278525471065379e188,6.64839999483557e188,1.3482043339735323e189,2.7339734786669836e189,5.544123241337383e189,1.1242721538807342e190,2.2798697304692658e190,4.623263121806191e190,9.375343515373532e190,1.901191079016879e191,3.855354753675236e191,7.818130665946742e191,1.5854096708363686e192,3.2149933683375015e192,6.519565604139509e192,1.322078486546152e193,2.68099384332963e193,5.436687807203393e193,1.1024857213504581e194,2.2356898333783018e194,4.5336723499226495e194,9.193665717661649e194,1.8643493134112905e195,3.780644705995681e195,7.666628935979854e195,1.5546871978948322e196,3.1526924068996535e196,6.3932277991240495e196,1.2964589124533094e197,2.6290408608776756e197,5.331334284312194e197,1.0811214718661267e198,2.192366065600729e198,4.445817690866097e198,9.015508518648611e198,1.8282214769356658e199,3.7073824086739795e199,7.518063045174996e199,1.5245600728693619e200,3.091598729381674e200,6.269338200314656e200,1.2713358010012086e201,2.578094636569672e201,5.228022328856756e201,1.060171224257003e202,2.149881836844367e202,4.359665501799038e202,8.840803695274246e202,1.792793734889245e203,3.635539806834464e203,7.372376102092135e203,1.4950167589562034e204,3.0316889407278624e204,6.147849365748067e204,1.2466995316101803e205,2.528135661189543e205,5.126712378822632e205,1.039626955889163e206,2.1082208783079476e206,4.275182791823823e206,8.669484346524334e206,1.758052520663628e207,3.565089389256004e207,7.229512317748074e207,1.4660459429147287e208,2.9729400992378696e208,6.028714772802008e208,1.2225406701305055e209,2.479144803575779e209,5.027365638838179e209,1.0194807995933286e210,2.067367236451184e210,4.192337209348827e210,8.50148486780748e210,1.723984530547477e211,3.496004177836929e211,7.089416984252759e211,1.4376365307351711e212,2.9153297077814704e212,5.911888800381932e212,1.1988499652301132e213,2.4311033032953958e213,4.9299440653183605e213,9.99725040652235e213,2.0273052668855613e214,4.1110970296998223e214,8.336740925835491e214,1.6905767186325722e215,3.428257717264103e215,6.95203645385958e215,1.409777643390315e216,2.858835705183565e216,5.797326711450501e216,1.175618344851316e217,2.3839927634596768e217,4.834410351896435e217,9.803521138463755e217,1.988019628383515e218,4.0314311429714076e218,8.175189433987038e218,1.6578162918172235e219,3.361824064881929e219,6.817318118421647e219,1.382458612669509e220,2.8034364577761323e220,5.684984635896096e220,1.1528369127371706e221,2.337795143680071e221,4.7407279151375735e221,9.613546005569968e221,1.9494952770037008e222,3.953309042113862e222,8.01676852814943e222,1.625690704907864e223,3.2966777807590027e223,6.685210389246156e223,1.3556689770934075e224,2.749110751113887e224,5.574819553733307e224,1.1304969450246692e225,2.2924927531587132e225,4.648860880531202e225,9.427252259252318e225,1.9117174603301066e226,3.876700811250856e226,7.861417543028529e226,1.5941876558148866e227,3.232793917944603e227,6.555662677338632e227,1.329398477907881e228,2.695837781850474e228,5.466789278628976e228,1.1085898869040462e229,2.2480682439147198e229,4.558774068751038e229,9.244568560662109e229,1.874671711822801e230,3.8015771142235407e230,7.709076988917741e230,1.5632950808417147e231,3.170148012916648e231,6.428625374032587e231,1.3036370551555533e232,2.643597149772091e232,5.360852441747466e232,1.087107349342822e233,2.204504604140804e233,4.4704329821851315e233,9.065424953375237e233,1.8383438452781516e234,3.7279091833566355e234,7.559688528917176e234,1.5330011500651604e235,3.1087160762134247e235,6.304049831989375e235,1.2783748438233666e236,2.592368849985481e236,5.256968475908989e236,1.0660411058733272e237,2.1617851516888213e237,4.383803791725052e237,8.889752836598836e237,1.802719949396257e238,3.655668808442207e238,7.413194956594271e238,1.5032942628053045e239,3.048474583247129e239,6.181888346571401e239,1.2536021700653057e240,2.5421332652573106e240,5.1550976000549124e240,1.0453830894424817e241,2.119893527681546e241,4.2988533238114636e241,8.717484938904435e241,1.7677863824543593e242,3.5848283259369275e242,7.2695401740772995e242,1.4741630431831619e243,2.989400465295418e243,6.0620941375737055e243,1.229309547497307e244,2.4928711585018008e244,5.055200804014103e244,1.0251253893226172e245,2.078813690248249e245,4.215549047730721e245,8.548555292466454e245,1.7335297670820564e246,3.515360608368389e246,7.128669170573403e246,1.4455963357644318e247,2.9314711006675326e247,5.94462133131007e247,1.2054876735649786e248,2.444563665414916e248,4.957239833564084e248,1.0052602480821632e249,2.0385299083816635e249,4.133859063157646e249,8.382899207800665e249,1.6999369851391846e250,3.447239053948095e250,6.990528001302894e250,1.4175832012876642e251,2.874664306041609e251,5.829424943046267e251,1.1821274259811992e252,2.397192287249326e252,4.861177175783628e252,9.85780058615037e252,1.999026755913993e253,4.053752087939697e253,8.220453248992165e253,1.666995172692245e254,3.380437576382957e254,6.85506376684125e254,1.3901129124752076e255,2.818958327969851e255,5.716460859773723e255,1.1592198592328542e256,2.3507388837313412e256,4.766976044685292e256,9.666773612275217e256,1.9602891056096547e257,3.975197446117862e257,8.061155209403384e257,1.6346917150883238e258,3.3149305948870066e258,6.7222245928641e258,1.3631749499253324e259,2.7643318345483214e259,5.605685823316993e259,1.136756201155264e260,2.3051856661141215e260,4.674600367130268e260,9.479448407819758e260,1.9223021233724957e261,3.8981650561796865e261,7.904944087852844e261,1.6030142421244678e262,3.2506930243852695e262,6.591959610279347e262,1.3367589980838535e263,2.710763907248158e263,5.497057413768591e263,1.1147278495729927e264,2.2605151903657e264,4.584014769014234e264,9.295753238951325e264,1.885051262565112e265,3.822625419539937e265,7.751760065255517e265,1.5719506233106718e266,3.1877002659077503e266,6.464218935749671e266,1.3108549412943415e267,2.658234032905086e267,5.3905340332448135e267,1.0931263690057544e268,2.21671035048901e268,4.4951845617212836e268,9.115617761914515e268,1.8485222584389964e269,3.748549609244488e269,7.601544481715864e269,1.5414889632246598e270,3.1259281971695705e270,6.338953652589787e270,1.2854528599238216e271,2.6067220958639547e271,5.286074889956361e271,1.0719434874381514e272,2.1737543719713597e272,4.408075728840354e272,8.938972996093156e272,1.8127011226711287e273,3.6759092588928177e273,7.454239814064757e273,1.5116175969566824e274,3.065353163333638e274,6.21611579203441e274,1.2605430265646012e275,2.556208370276525e275,5.1836399825872175e275,1.05117109315201e276,2.1316308053608407e276,4.3226549131390736e276,8.76575129759505e276,1.7775741380079296e277,3.604676551776618e277,7.309789653831714e277,1.482325085642586e278,3.0059519679523266e278,6.095658314869226e278,1.2361159023091755e279,2.5066735125464595e279,5.083190084978299e279,1.0308012316200998e280,2.0903235199672202e280,4.238889403790025e280,8.595886333348596e280,1.743127853012258e281,3.534824210225979e281,7.168138685643416e281,1.4536002120834443e282,2.9477018640846906e282,5.977535093417809e282,1.212162133097422e283,2.4580985539227693e283,4.98468673110381e283,1.0108261024599688e284,2.0498166976848937e284,4.1567471238445505e284,8.429313055701369e284,1.7093490769123516e285,3.4663254851649256e285,7.029232666043647e285,1.4254319764500725e286,2.890580545585804e286,5.861700893877615e286,1.1886725461345805e287,2.41046489323576e287,4.888092200342821e287,9.912380564472039e287,2.0100948269355425e288,4.07619661794928e288,8.265967677510942e288,1.6762248745505886e289,3.3991541458678982e289,6.893018402718026e289,1.3978095920706708e290,2.8345661385649092e290,5.748111358998259e290,1.1656381463786477e291,2.3637542897739485e291,4.793369503034216e291,9.72029592585775e291,1.9711426967280123e292,3.997207040300706e292,8.105787647718405e292,1.6437425614301296e293,3.333284469915028e293,6.759443734126973e293,1.3707224813006473e294,2.77963719300908e294,5.636722991095469e294,1.1430501130958377e295,2.317948856299009e295,4.700482366311966e295,9.531933552359452e295,1.932945390834081e296,3.919748142833168e296,7.948711627395219e296,1.6118896988575503e297,3.268691233342058e297,6.628457509530525e297,1.344160271471374e298,2.7257726745689975e298,5.527493135394191e298,1.1208997964827938e299,2.2730310521960833e299,4.6093952202148905e299,9.347221312974411e299,1.8954882820755353e300,3.8437902636354326e300,7.794679466254246e300,1.5806540891796e301,3.2053497009811435e301,6.5000095694008e301,1.318112790918551e302,2.6729519565049732e302,5.4203799636940545e302,1.099178714354255e303,2.2289836767568214e303,4.5200731840655886e303,9.166088474472855e303,1.8587570267235075e304,3.7693043155932564e304,7.64363217961595e304,1.5500237711122634e305,3.1432356169888305e305,6.374050726214044e305,1.292570065086984e306,2.6211548117868955e306,5.315342458353503e306,1.0778785488949093e307,2.1857898625925857e307,4.432482053113321e307,8.98846567431158e307],"x":[1.0,2.0199600798403194,3.039920159680639,4.059880239520958,5.079840319361278,6.099800399201597,7.119760479041916,8.139720558882235,9.159680638722556,10.179640718562874,11.199600798403194,12.219560878243513,13.239520958083832,14.259481037924152,15.27944111776447,16.29940119760479,17.31936127744511,18.339321357285428,19.35928143712575,20.37924151696607,21.39920159680639,22.419161676646706,23.439121756487026,24.459081836327346,25.479041916167663,26.499001996007983,27.518962075848304,28.538922155688624,29.55888223552894,30.57884231536926,31.59880239520958,32.6187624750499,33.63872255489022,34.65868263473054,35.678642714570856,36.69860279441118,37.7185628742515,38.73852295409181,39.75848303393214,40.778443113772454,41.79840319361278,42.818363273453095,43.83832335329341,44.858283433133735,45.87824351297405,46.89820359281437,47.91816367265469,48.93812375249501,49.958083832335326,50.97804391217565,51.99800399201597,53.01796407185629,54.03792415169661,55.057884231536924,56.07784431137725,57.097804391217565,58.11776447105788,59.137724550898206,60.15768463073852,61.17764471057884,62.19760479041916,63.21756487025948,64.2375249500998,65.25748502994011,66.27744510978044,67.29740518962076,68.31736526946108,69.3373253493014,70.35728542914171,71.37724550898204,72.39720558882236,73.41716566866268,74.437125748503,75.45708582834331,76.47704590818363,77.49700598802396,78.51696606786427,79.53692614770459,80.55688622754491,81.57684630738522,82.59680638722556,83.61676646706587,84.63672654690619,85.6566866267465,86.67664670658682,87.69660678642714,88.71656686626747,89.73652694610779,90.7564870259481,91.77644710578842,92.79640718562874,93.81636726546907,94.83632734530939,95.8562874251497,96.87624750499002,97.89620758483034,98.91616766467065,99.93612774451098,100.9560878243513,101.97604790419162,102.99600798403193,104.01596806387225,105.03592814371258,106.0558882235529,107.07584830339322,108.09580838323353,109.11576846307385,110.13572854291417,111.1556886227545,112.17564870259481,113.19560878243513,114.21556886227545,115.23552894211576,116.2554890219561,117.27544910179641,118.29540918163673,119.31536926147704,120.33532934131736,121.35528942115768,122.37524950099801,123.39520958083833,124.41516966067864,125.43512974051896,126.45508982035928,127.47504990019961,128.49500998003992,129.51497005988023,130.53493013972056,131.5548902195609,132.5748502994012,133.59481037924152,134.61477045908183,135.63473053892216,136.6546906187625,137.6746506986028,138.69461077844312,139.71457085828342,140.73453093812375,141.75449101796409,142.7744510978044,143.79441117764472,144.81437125748502,145.83433133732535,146.85429141716565,147.874251497006,148.89421157684632,149.91417165668662,150.93413173652695,151.95409181636725,152.97405189620758,153.99401197604791,155.01397205588822,156.03393213572855,157.05389221556885,158.07385229540918,159.0938123752495,160.11377245508982,161.13373253493015,162.15369261477045,163.17365269461078,164.1936127744511,165.2135728542914,166.23353293413174,167.25349301397205,168.27345309381238,169.29341317365268,170.313373253493,171.33333333333334,172.35329341317365,173.37325349301398,174.39321357285428,175.4131736526946,176.43313373253494,177.45309381237524,178.47305389221557,179.49301397205588,180.5129740518962,181.53293413173654,182.55289421157684,183.57285429141717,184.59281437125748,185.6127744510978,186.63273453093814,187.65269461077844,188.67265469061877,189.69261477045907,190.7125748502994,191.7325349301397,192.75249500998004,193.77245508982037,194.79241516966067,195.812375249501,196.8323353293413,197.85229540918164,198.87225548902197,199.89221556886227,200.9121756487026,201.9321357285429,202.95209580838323,203.97205588822357,204.99201596806387,206.0119760479042,207.0319361277445,208.05189620758483,209.07185628742516,210.09181636726547,211.1117764471058,212.1317365269461,213.15169660678643,214.17165668662673,215.19161676646706,216.2115768463074,217.2315369261477,218.25149700598803,219.27145708582833,220.29141716566866,221.311377245509,222.3313373253493,223.35129740518963,224.37125748502993,225.39121756487026,226.4111776447106,227.4311377245509,228.45109780439122,229.47105788423153,230.49101796407186,231.5109780439122,232.5309381237525,233.55089820359282,234.57085828343313,235.59081836327346,236.61077844311376,237.6307385229541,238.65069860279442,239.67065868263472,240.69061876247505,241.71057884231536,242.7305389221557,243.75049900199602,244.77045908183632,245.79041916167665,246.81037924151696,247.8303393213573,248.85029940119762,249.87025948103792,250.89021956087825,251.91017964071855,252.93013972055888,253.95009980039922,254.97005988023952,255.99001996007985,257.00998003992015,258.02994011976045,259.0499001996008,260.0698602794411,261.0898203592814,262.1097804391218,263.1297405189621,264.1497005988024,265.16966067864274,266.18962075848304,267.20958083832335,268.22954091816365,269.249500998004,270.2694610778443,271.2894211576846,272.309381237525,273.3293413173653,274.3493013972056,275.3692614770459,276.38922155688624,277.40918163672654,278.42914171656685,279.4491017964072,280.4690618762475,281.4890219560878,282.50898203592817,283.5289421157685,284.5489021956088,285.5688622754491,286.58882235528944,287.60878243512974,288.62874251497004,289.6487025948104,290.6686626746507,291.688622754491,292.7085828343313,293.72854291417167,294.748502994012,295.7684630738523,296.78842315369263,297.80838323353294,298.82834331337324,299.8483033932136,300.8682634730539,301.8882235528942,302.9081836327345,303.92814371257487,304.94810379241517,305.96806387225547,306.98802395209583,308.00798403193613,309.02794411177643,310.0479041916168,311.0678642714571,312.0878243512974,313.1077844311377,314.12774451097806,315.14770459081836,316.16766467065867,317.187624750499,318.20758483033933,319.22754491017963,320.24750499001993,321.2674650698603,322.2874251497006,323.3073852295409,324.32734530938126,325.34730538922156,326.36726546906186,327.3872255489022,328.4071856287425,329.4271457085828,330.44710578842313,331.4670658682635,332.4870259481038,333.5069860279441,334.52694610778445,335.54690618762476,336.56686626746506,337.58682634730536,338.6067864271457,339.626746506986,340.6467065868263,341.6666666666667,342.686626746507,343.7065868263473,344.72654690618765,345.74650698602795,346.76646706586826,347.78642714570856,348.8063872255489,349.8263473053892,350.8463073852295,351.8662674650699,352.8862275449102,353.9061876247505,354.92614770459085,355.94610778443115,356.96606786427145,357.98602794411175,359.0059880239521,360.0259481037924,361.0459081836327,362.0658682634731,363.0858283433134,364.1057884231537,365.125748502994,366.14570858283435,367.16566866267465,368.18562874251495,369.2055888223553,370.2255489021956,371.2455089820359,372.2654690618763,373.2854291417166,374.3053892215569,375.3253493013972,376.34530938123754,377.36526946107784,378.38522954091815,379.4051896207585,380.4251497005988,381.4451097804391,382.4650698602794,383.4850299401198,384.5049900199601,385.5249500998004,386.54491017964074,387.56487025948104,388.58483033932134,389.6047904191617,390.624750499002,391.6447105788423,392.6646706586826,393.68463073852297,394.7045908183633,395.7245508982036,396.74451097804393,397.76447105788424,398.78443113772454,399.8043912175649,400.8243512974052,401.8443113772455,402.8642714570858,403.88423153692617,404.90419161676647,405.92415169660677,406.94411177644713,407.96407185628743,408.98403193612774,410.00399201596804,411.0239520958084,412.0439121756487,413.063872255489,414.08383233532936,415.10379241516966,416.12375249500997,417.1437125748503,418.16367265469063,419.18363273453093,420.20359281437123,421.2235528942116,422.2435129740519,423.2634730538922,424.28343313373256,425.30339321357286,426.32335329341316,427.34331337325347,428.3632734530938,429.3832335329341,430.40319361277443,431.4231536926148,432.4431137724551,433.4630738522954,434.48303393213575,435.50299401197606,436.52295409181636,437.54291417165666,438.562874251497,439.5828343313373,440.6027944111776,441.622754491018,442.6427145708583,443.6626746506986,444.68263473053895,445.70259481037925,446.72255489021956,447.74251497005986,448.7624750499002,449.7824351297405,450.8023952095808,451.8223552894212,452.8423153692615,453.8622754491018,454.8822355289421,455.90219560878245,456.92215568862275,457.94211576846305,458.9620758483034,459.9820359281437,461.001996007984,462.0219560878244,463.0419161676647,464.061876247505,465.0818363273453,466.10179640718565,467.12175648702595,468.14171656686625,469.1616766467066,470.1816367265469,471.2015968063872,472.2215568862275,473.2415169660679,474.2614770459082,475.2814371257485,476.30139720558884,477.32135728542914,478.34131736526945,479.3612774451098,480.3812375249501,481.4011976047904,482.4211576846307,483.4411177644711,484.4610778443114,485.4810379241517,486.50099800399204,487.52095808383234,488.54091816367264,489.560878243513,490.5808383233533,491.6007984031936,492.6207584830339,493.64071856287427,494.6606786427146,495.6806387225549,496.70059880239523,497.72055888223554,498.74051896207584,499.76047904191614,500.7804391217565,501.8003992015968,502.8203592814371,503.84031936127747,504.86027944111777,505.88023952095807,506.90019960079843,507.92015968063873,508.94011976047904,509.96007984031934,510.9800399201597,512.0,513.0199600798403,514.0399201596806,515.0598802395209,516.0798403193613,517.0998003992016,518.1197604790419,519.1397205588822,520.1596806387225,521.1796407185628,522.1996007984031,523.2195608782436,524.2395209580839,525.2594810379242,526.2794411177645,527.2994011976048,528.3193612774451,529.3393213572855,530.3592814371258,531.3792415169661,532.3992015968064,533.4191616766467,534.439121756487,535.4590818363273,536.4790419161677,537.499001996008,538.5189620758483,539.5389221556886,540.5588822355289,541.5788423153692,542.5988023952095,543.61876247505,544.6387225548903,545.6586826347306,546.6786427145709,547.6986027944112,548.7185628742515,549.7385229540918,550.7584830339322,551.7784431137725,552.7984031936128,553.8183632734531,554.8383233532934,555.8582834331337,556.878243512974,557.8982035928144,558.9181636726547,559.938123752495,560.9580838323353,561.9780439121756,562.9980039920159,564.0179640718563,565.0379241516966,566.057884231537,567.0778443113772,568.0978043912176,569.1177644710579,570.1377245508982,571.1576846307386,572.1776447105789,573.1976047904192,574.2175648702595,575.2375249500998,576.2574850299401,577.2774451097804,578.2974051896208,579.3173652694611,580.3373253493014,581.3572854291417,582.377245508982,583.3972055888223,584.4171656686626,585.437125748503,586.4570858283433,587.4770459081836,588.497005988024,589.5169660678642,590.5369261477045,591.556886227545,592.5768463073853,593.5968063872256,594.6167664670659,595.6367265469062,596.6566866267465,597.6766467065868,598.6966067864272,599.7165668662675,600.7365269461078,601.7564870259481,602.7764471057884,603.7964071856287,604.816367265469,605.8363273453094,606.8562874251497,607.87624750499,608.8962075848303,609.9161676646706,610.9361277445109,611.9560878243512,612.9760479041917,613.996007984032,615.0159680638723,616.0359281437126,617.0558882235529,618.0758483033932,619.0958083832336,620.1157684630739,621.1357285429142,622.1556886227545,623.1756487025948,624.1956087824351,625.2155688622754,626.2355289421158,627.2554890219561,628.2754491017964,629.2954091816367,630.315369261477,631.3353293413173,632.3552894211576,633.375249500998,634.3952095808384,635.4151696606787,636.435129740519,637.4550898203593,638.4750499001996,639.4950099800399,640.5149700598803,641.5349301397206,642.5548902195609,643.5748502994012,644.5948103792415,645.6147704590818,646.6347305389221,647.6546906187625,648.6746506986028,649.6946107784431,650.7145708582834,651.7345309381237,652.754491017964,653.7744510978044,654.7944111776447,655.814371257485,656.8343313373254,657.8542914171657,658.874251497006,659.8942115768463,660.9141716566867,661.934131736527,662.9540918163673,663.9740518962076,664.9940119760479,666.0139720558882,667.0339321357285,668.0538922155689,669.0738522954092,670.0938123752495,671.1137724550898,672.1337325349301,673.1536926147704,674.1736526946107,675.1936127744511,676.2135728542914,677.2335329341317,678.253493013972,679.2734530938123,680.2934131736527,681.3133732534931,682.3333333333334,683.3532934131737,684.373253493014,685.3932135728543,686.4131736526946,687.4331337325349,688.4530938123753,689.4730538922156,690.4930139720559,691.5129740518962,692.5329341317365,693.5528942115768,694.5728542914171,695.5928143712575,696.6127744510978,697.6327345309381,698.6526946107784,699.6726546906187,700.692614770459,701.7125748502993,702.7325349301398,703.7524950099801,704.7724550898204,705.7924151696607,706.812375249501,707.8323353293413,708.8522954091817,709.872255489022,710.8922155688623,711.9121756487026,712.9321357285429,713.9520958083832,714.9720558882235,715.9920159680639,717.0119760479042,718.0319361277445,719.0518962075848,720.0718562874251,721.0918163672654,722.1117764471057,723.1317365269462,724.1516966067865,725.1716566866268,726.1916167664671,727.2115768463074,728.2315369261477,729.251497005988,730.2714570858284,731.2914171656687,732.311377245509,733.3313373253493,734.3512974051896,735.3712574850299,736.3912175648702,737.4111776447106,738.4311377245509,739.4510978043912,740.4710578842315,741.4910179640718,742.5109780439121,743.5309381237525,744.5508982035929,745.5708582834332,746.5908183632735,747.6107784431138,748.6307385229541,749.6506986027944,750.6706586826348,751.6906187624751,752.7105788423154,753.7305389221557,754.750499001996,755.7704590818363,756.7904191616766,757.810379241517,758.8303393213573,759.8502994011976,760.8702594810379,761.8902195608782,762.9101796407185,763.9301397205588,764.9500998003992,765.9700598802395,766.9900199600798,768.0099800399202,769.0299401197605,770.0499001996008,771.0698602794412,772.0898203592815,773.1097804391218,774.1297405189621,775.1497005988024,776.1696606786427,777.189620758483,778.2095808383234,779.2295409181637,780.249500998004,781.2694610778443,782.2894211576846,783.3093812375249,784.3293413173652,785.3493013972056,786.3692614770459,787.3892215568862,788.4091816367265,789.4291417165668,790.4491017964071,791.4690618762475,792.4890219560879,793.5089820359282,794.5289421157685,795.5489021956088,796.5688622754491,797.5888223552894,798.6087824351298,799.6287425149701,800.6487025948104,801.6686626746507,802.688622754491,803.7085828343313,804.7285429141716,805.748502994012,806.7684630738523,807.7884231536926,808.8083832335329,809.8283433133732,810.8483033932135,811.8682634730538,812.8882235528943,813.9081836327346,814.9281437125749,815.9481037924152,816.9680638722555,817.9880239520958,819.0079840319361,820.0279441117765,821.0479041916168,822.0678642714571,823.0878243512974,824.1077844311377,825.127744510978,826.1477045908183,827.1676646706587,828.187624750499,829.2075848303393,830.2275449101796,831.2475049900199,832.2674650698602,833.2874251497007,834.307385229541,835.3273453093813,836.3473053892216,837.3672654690619,838.3872255489022,839.4071856287425,840.4271457085829,841.4471057884232,842.4670658682635,843.4870259481038,844.5069860279441,845.5269461077844,846.5469061876247,847.5668662674651,848.5868263473054,849.6067864271457,850.626746506986,851.6467065868263,852.6666666666666,853.6866267465069,854.7065868263473,855.7265469061877,856.746506986028,857.7664670658683,858.7864271457086,859.8063872255489,860.8263473053893,861.8463073852296,862.8662674650699,863.8862275449102,864.9061876247505,865.9261477045908,866.9461077844311,867.9660678642715,868.9860279441118,870.0059880239521,871.0259481037924,872.0459081836327,873.065868263473,874.0858283433133,875.1057884231537,876.125748502994,877.1457085828343,878.1656686626746,879.185628742515,880.2055888223553,881.2255489021956,882.245508982036,883.2654690618763,884.2854291417166,885.3053892215569,886.3253493013972,887.3453093812375,888.3652694610779,889.3852295409182,890.4051896207585,891.4251497005988,892.4451097804391,893.4650698602794,894.4850299401197,895.5049900199601,896.5249500998004,897.5449101796407,898.564870259481,899.5848303393213,900.6047904191616,901.624750499002,902.6447105788424,903.6646706586827,904.684630738523,905.7045908183633,906.7245508982036,907.7445109780439,908.7644710578842,909.7844311377246,910.8043912175649,911.8243512974052,912.8443113772455,913.8642714570858,914.8842315369261,915.9041916167664,916.9241516966068,917.9441117764471,918.9640718562874,919.9840319361277,921.003992015968,922.0239520958083,923.0439121756488,924.0638722554891,925.0838323353294,926.1037924151697,927.12375249501,928.1437125748503,929.1636726546906,930.183632734531,931.2035928143713,932.2235528942116,933.2435129740519,934.2634730538922,935.2834331337325,936.3033932135728,937.3233532934132,938.3433133732535,939.3632734530938,940.3832335329341,941.4031936127744,942.4231536926147,943.443113772455,944.4630738522955,945.4830339321358,946.502994011976,947.5229540918164,948.5429141716567,949.562874251497,950.5828343313374,951.6027944111777,952.622754491018,953.6427145708583,954.6626746506986,955.6826347305389,956.7025948103792,957.7225548902196,958.7425149700599,959.7624750499002,960.7824351297405,961.8023952095808,962.8223552894211,963.8423153692614,964.8622754491018,965.8822355289421,966.9021956087824,967.9221556886228,968.942115768463,969.9620758483034,970.9820359281437,972.0019960079841,973.0219560878244,974.0419161676647,975.061876247505,976.0818363273453,977.1017964071856,978.121756487026,979.1417165668663,980.1616766467066,981.1816367265469,982.2015968063872,983.2215568862275,984.2415169660678,985.2614770459082,986.2814371257485,987.3013972055888,988.3213572854291,989.3413173652694,990.3612774451097,991.38123752495,992.4011976047905,993.4211576846308,994.4411177644711,995.4610778443114,996.4810379241517,997.500998003992,998.5209580838323,999.5409181636727,1000.560878243513,1001.5808383233533,1002.6007984031936,1003.6207584830339,1004.6407185628742,1005.6606786427145,1006.6806387225549,1007.7005988023952,1008.7205588822355,1009.7405189620758,1010.7604790419161,1011.7804391217564,1012.8003992015969,1013.8203592814372,1014.8403193612775,1015.8602794411178,1016.8802395209581,1017.9001996007984,1018.9201596806387,1019.9401197604791,1020.9600798403194,1021.9800399201597,1023.0]}
+},{}],53:[function(require,module,exports){
+module.exports={"expected":[0.5,0.5003446252630009,0.5006894880591457,0.5010345885521541,0.5013799269058588,0.5017255032842054,0.5020713178512526,0.5024173707711721,0.5027636622082485,0.5031101923268803,0.5034569612915785,0.5038039692669679,0.504151216417787,0.5044987029088875,0.5048464289052347,0.5051943945719078,0.5055426000740997,0.5058910455771172,0.5062397312463808,0.5065886572474254,0.5069378237458998,0.5072872309075669,0.507636878898304,0.5079867678841026,0.5083368980310687,0.5086872695054228,0.5090378824734999,0.5093887371017496,0.5097398335567365,0.5100911720051395,0.510442752613753,0.5107945755494858,0.5111466409793622,0.5114989490705214,0.5118514999902176,0.5122042939058207,0.5125573309848157,0.5129106113948031,0.513264135303499,0.5136179028787348,0.5139719142884579,0.5143261697007315,0.5146806692837342,0.5150354132057611,0.5153904016352228,0.515745634740646,0.5161011126906743,0.5164568356540664,0.5168128037996983,0.5171690172965617,0.5175254763137652,0.517882181020534,0.5182391315862094,0.5185963281802498,0.5189537709722307,0.519311460131844,0.5196693958288987,0.5200275782333209,0.5203860075151536,0.5207446838445575,0.52110360739181,0.5214627783273064,0.5218221968215588,0.5221818630451975,0.5225417771689701,0.5229019393637417,0.5232623498004956,0.5236230086503326,0.5239839160844715,0.5243450722742493,0.5247064773911208,0.5250681316066592,0.5254300350925559,0.5257921880206207,0.5261545905627816,0.5265172428910853,0.526880145177697,0.5272432975949006,0.5276067003150989,0.5279703535108132,0.528334257354684,0.5286984120194704,0.5290628176780513,0.5294274745034239,0.5297923826687052,0.5301575423471314,0.530522953712058,0.5308886169369602,0.5312545321954324,0.531620699661189,0.5319871195080639,0.5323537919100111,0.5327207170411041,0.5330878950755368,0.5334553261876228,0.5338230105517962,0.5341909483426109,0.5345591397347415,0.5349275849029828,0.53529628402225,0.5356652372675793,0.5360344448141269,0.5364039068371701,0.5367736235121071,0.5371435950144567,0.537513821519859,0.5378843032040749,0.5382550402429864,0.5386260328125971,0.5389972810890314,0.5393687852485356,0.5397405454674772,0.5401125619223452,0.5404848347897504,0.5408573642464253,0.5412301504692241,0.5416031936351231,0.5419764939212204,0.5423500515047363,0.5427238665630131,0.5430979392735154,0.5434722698138302,0.5438468583616668,0.544221705094857,0.5445968101913553,0.5449721738292387,0.5453477961867069,0.5457236774420825,0.5460998177738111,0.5464762173604613,0.5468528763807246,0.5472297950134156,0.5476069734374724,0.5479844118319566,0.5483621103760525,0.5487400692490687,0.549118288630437,0.5494967686997128,0.5498755096365754,0.550254511620828,0.5506337748323975,0.5510132994513351,0.551393085657816,0.5517731336321394,0.5521534435547291,0.5525340156061329,0.5529148499670233,0.5532959468181974,0.5536773063405765,0.5540589287152071,0.5544408141232601,0.5548229627460315,0.5552053747649421,0.5555880503615379,0.5559709897174899,0.5563541930145945,0.5567376604347731,0.557121392160073,0.5575053883726662,0.5578896492548509,0.5582741749890509,0.5586589657578153,0.5590440217438195,0.5594293431298647,0.5598149300988777,0.5602007828339122,0.560586901518147,0.5609732863348882,0.5613599374675675,0.5617468550997434,0.5621340394151009,0.5625214905974513,0.5629092088307329,0.5632971942990108,0.5636854471864768,0.5640739676774497,0.5644627559563753,0.5648518122078268,0.5652411366165041,0.5656307293672349,0.5660205906449741,0.566410720634804,0.5668011195219347,0.5671917874917036,0.5675827247295763,0.5679739314211457,0.5683654077521331,0.5687571539083875,0.5691491700758862,0.5695414564407345,0.5699340131891661,0.5703268405075432,0.570719938582356,0.5711133076002236,0.5715069477478938,0.5719008592122428,0.5722950421802757,0.5726894968391267,0.5730842233760588,0.5734792219784642,0.5738744928338639,0.5742700361299088,0.5746658520543785,0.5750619407951822,0.575458302540359,0.575854937478077,0.5762518457966346,0.5766490276844595,0.5770464833301094,0.5774442129222723,0.5778422166497658,0.5782404947015377,0.5786390472666663,0.5790378745343601,0.5794369766939579,0.5798363539349292,0.5802360064468738,0.5806359344195225,0.5810361380427368,0.5814366175065089,0.5818373730009619,0.5822384047163505,0.5826397128430597,0.5830412975716064,0.5834431590926383,0.5838452975969352,0.5842477132754076,0.584650406319098,0.5850533769191807,0.5854566252669614,0.585860151553878,0.5862639559715,0.5866680387115293,0.5870723999657997,0.5874770399262773,0.5878819587850606,0.5882871567343801,0.5886926339665995,0.5890983906742144,0.5895044270498535,0.589910743286278,0.5903173395763822,0.5907242161131933,0.5911313730898714,0.5915388106997098,0.5919465291361351,0.5923545285927072,0.5927628092631193,0.5931713713411982,0.5935802150209044,0.5939893404963319,0.5943987479617086,0.5948084376113959,0.59521840963989,0.5956286642418203,0.5960392016119507,0.5964500219451795,0.596861125436539,0.5972725122811963,0.5976841826744526,0.5980961368117439,0.5985083748886412,0.5989208971008496,0.5993337036442099,0.5997467947146974,0.6001601705084224,0.6005738312216308,0.6009877770507032,0.6014020081921561,0.6018165248426411,0.6022313271989456,0.6026464154579922,0.6030617898168398,0.6034774504726826,0.6038933976228512,0.6043096314648119,0.604726152196167,0.6051429600146553,0.6055600551181517,0.6059774377046676,0.6063951079723509,0.6068130661194857,0.6072313123444935,0.6076498468459317,0.6080686698224952,0.6084877814730156,0.6089071819964615,0.609326871591939,0.6097468504586908,0.6101671187960974,0.6105876768036768,0.6110085246810839,0.611429662628112,0.6118510908446916,0.612272809530891,0.6126948188869169,0.6131171191131134,0.6135397104099628,0.613962592978086,0.6143857670182415,0.6148092327313269,0.6152329903183779,0.6156570399805684,0.6160813819192118,0.6165060163357596,0.6169309434318024,0.6173561634090696,0.6177816764694297,0.6182074828148907,0.6186335826475992,0.6190599761698414,0.6194866635840431,0.6199136450927696,0.6203409208987256,0.6207684912047555,0.6211963562138437,0.6216245161291146,0.6220529711538323,0.6224817214914011,0.6229107673453655,0.6233401089194106,0.6237697464173614,0.6241996800431836,0.6246299100009837,0.6250604364950083,0.6254912597296454,0.6259223799094237,0.6263537972390126,0.6267855119232228,0.6272175241670063,0.627649834175456,0.6280824421538065,0.6285153483074335,0.6289485528418546,0.629382055962729,0.6298158578758575,0.6302499587871827,0.6306843589027894,0.6311190584289044,0.6315540575718963,0.6319893565382764,0.632424955534698,0.632860854767957,0.6332970544449917,0.6337335547728834,0.6341703559588556,0.6346074582102751,0.6350448617346512,0.6354825667396367,0.635920573433027,0.6363588820227611,0.6367974927169212,0.6372364057237331,0.6376756212515657,0.638115139508932,0.6385549607044883,0.6389950850470348,0.6394355127455162,0.6398762440090203,0.6403172790467796,0.6407586180681707,0.6412002612827145,0.6416422089000762,0.6420844611300655,0.642527018182637,0.6429698802678898,0.6434130475960679,0.6438565203775599,0.6443002988228999,0.6447443831427667,0.6451887735479847,0.6456334702495231,0.646078473458497,0.6465237833861668,0.6469694002439383,0.6474153242433637,0.6478615555961401,0.6483080945141111,0.6487549412092662,0.649202095893741,0.6496495587798173,0.6500973300799232,0.6505454100066332,0.6509937987726684,0.6514424965908964,0.6518915036743317,0.6523408202361354,0.6527904464896156,0.6532403826482276,0.6536906289255735,0.654141185535403,0.6545920526916128,0.6550432306082471,0.6554947194994979,0.6559465195797043,0.6563986310633537,0.656851054165081,0.6573037890996692,0.6577568360820493,0.6582101953273001,0.6586638670506492,0.6591178514674724,0.6595721487932935,0.6600267592437854,0.6604816830347696,0.6609369203822159,0.6613924715022435,0.66184833661112,0.6623045159252626,0.6627610096612376,0.6632178180357601,0.6636749412656952,0.6641323795680567,0.6645901331600089,0.6650482022588651,0.6655065870820887,0.6659652878472927,0.6664243047722405,0.6668836380748451,0.6673432879731703,0.6678032546854296,0.6682635384299873,0.668724139425358,0.6691850578902071,0.6696462940433505,0.6701078481037551,0.6705697202905386,0.6710319108229699,0.6714944199204687,0.6719572478026061,0.6724203946891049,0.6728838607998386,0.6733476463548332,0.6738117515742653,0.6742761766784642,0.6747409218879103,0.6752059874232366,0.6756713735052277,0.6761370803548206,0.6766031081931044,0.6770694572413211,0.6775361277208645,0.6780031198532813,0.6784704338602712,0.6789380699636861,0.6794060283855312,0.6798743093479648,0.6803429130732981,0.6808118397839955,0.6812810897026749,0.6817506630521076,0.6822205600552185,0.6826907809350857,0.6831613259149419,0.683632195218173,0.6841033890683189,0.6845749076890739,0.6850467513042863,0.6855189201379587,0.6859914144142479,0.6864642343574657,0.6869373801920782,0.6874108521427058,0.6878846504341246,0.688358775291265,0.6888332269392125,0.6893080056032079,0.6897831115086472,0.6902585448810818,0.6907343059462183,0.6912103949299193,0.6916868120582027,0.6921635575572425,0.6926406316533681,0.6931180345730654,0.6935957665429763,0.6940738277898988,0.6945522185407871,0.695030939022752,0.6955099894630611,0.6959893700891381,0.6964690811285638,0.6969491228090756,0.6974294953585684,0.6979101990050934,0.6983912339768598,0.6988726005022334,0.6993542988097379,0.6998363291280542,0.700318691686021,0.7008013867126345,0.701284414437049,0.7017677750885767,0.7022514688966877,0.7027354960910103,0.7032198569013312,0.7037045515575954,0.7041895802899064,0.7046749433285262,0.7051606409038758,0.7056466732465346,0.7061330405872412,0.7066197431568934,0.7071067811865476,0.7075941549074198,0.7080818645508856,0.7085699103484797,0.7090582925318966,0.7095470113329901,0.7100360669837744,0.7105254597164233,0.7110151897632706,0.7115052573568103,0.7119956627296965,0.712486406114744,0.7129774877449278,0.7134689078533835,0.7139606666734074,0.7144527644384567,0.7149452013821495,0.7154379777382646,0.7159310937407424,0.7164245496236843,0.7169183456213531,0.717412481968173,0.7179069588987299,0.7184017766477713,0.7188969354502064,0.7193924355411067,0.7198882771557051,0.7203844605293973,0.7208809858977407,0.7213778534964554,0.7218750635614241,0.7223726163286914,0.7228705120344653,0.7233687509151163,0.7238673332071779,0.7243662591473465,0.7248655289724818,0.7253651429196067,0.7258651012259075,0.7263654041287338,0.7268660518655992,0.7273670446741805,0.7278683827923186,0.7283700664580183,0.7288720959094485,0.7293744713849422,0.7298771931229966,0.7303802613622734,0.7308836763415988,0.7313874382999634,0.7318915474765229,0.7323960041105974,0.7329008084416723,0.7334059607093979,0.7339114611535897,0.7344173100142286,0.7349235075314609,0.735430053945598,0.7359369494971176,0.7364441944266628,0.7369517889750423,0.7374597333832315,0.737968027892371,0.7384766727437684,0.7389856681788972,0.7394950144393974,0.7400047117670755,0.7405147604039047,0.7410251605920253,0.741535912573744,0.7420470165915347,0.7425584728880386,0.7430702817060638,0.7435824432885861,0.7440949578787485,0.7446078257198618,0.7451210470554044,0.7456346221290223,0.7461485511845299,0.7466628344659094,0.7471774722173111,0.7476924646830536,0.7482078121076241,0.748723514735678,0.7492395728120396,0.7497559865817017,0.7502727562898261,0.7507898821817438,0.7513073645029544,0.7518252034991272,0.7523433994161004,0.7528619524998821,0.7533808629966494,0.7539001311527496,0.7544197572146994,0.754939741429186,0.7554600840430657,0.7559807853033659,0.7565018454572835,0.7570232647521863,0.7575450434356125,0.7580671817552705,0.7585896799590401,0.7591125382949715,0.7596357570112859,0.7601593363563758,0.7606832765788046,0.7612075779273074,0.7617322406507905,0.7622572649983316,0.7627826512191804,0.7633083995627584,0.7638345102786587,0.7643609836166466,0.7648878198266598,0.7654150191588077,0.7659425818633726,0.7664705081908092,0.7669987983917447,0.767527452716979,0.768056471417485,0.7685858547444087,0.7691156029490689,0.7696457162829577,0.7701761949977409,0.7707070393452572,0.7712382495775193,0.7717698259467134,0.7723017687051995,0.7728340781055117,0.7733667544003582,0.773899797842621,0.7744332086853567,0.7749669871817965,0.7755011335853456,0.7760356481495844,0.7765705311282677,0.7771057827753254,0.7776414033448623,0.7781773930911586,0.7787137522686696,0.7792504811320256,0.7797875799360331,0.7803250489356737,0.7808628883861051,0.7814010985426605,0.7819396796608495,0.7824786319963575,0.7830179558050462,0.7835576513429537,0.7840977188662946,0.7846381586314601,0.785178970895018,0.785720155913713,0.7862617139444669,0.7868036452443782,0.787345950070723,0.7878886286809548,0.788431681332704,0.7889751082837791,0.7895189097921661,0.7900630861160288,0.790607637513709,0.7911525642437264,0.7916978665647791,0.7922435447357434,0.7927895990156741,0.7933360296638046,0.7938828369395465,0.794430021102491,0.7949775824124076,0.795525521129245,0.7960738375131313,0.7966225318243736,0.7971716043234585,0.7977210552710522,0.7982708849280005,0.7988210935553292,0.7993716814142435,0.7999226487661293,0.8004739958725522,0.8010257229952582,0.8015778303961737,0.8021303183374057,0.8026831870812418,0.8032364368901505,0.8037900680267808,0.8043440807539634,0.8048984753347095,0.8054532520322121,0.8060084111098452,0.8065639528311647,0.8071198774599077,0.8076761852599935,0.8082328764955231,0.8087899514307797,0.8093474103302284,0.8099052534585167,0.8104634810804747,0.8110220934611148,0.8115810908656319,0.8121404735594043,0.8127002418079925,0.8132603958771405,0.8138209360327754,0.8143818625410073,0.81494317566813,0.815504875680621,0.8160669628451409,0.8166294374285347,0.8171922996978309,0.8177555499202424,0.8183191883631659,0.8188832152941826,0.8194476309810582,0.8200124356917429,0.8205776296943715,0.8211432132572637,0.8217091866489242,0.8222755501380425,0.8228423039934937,0.8234094484843377,0.8239769838798205,0.8245449104493732,0.8251132284626126,0.8256819381893415,0.8262510398995487,0.8268205338634091,0.8273904203512836,0.8279606996337197,0.8285313719814511,0.8291024376653984,0.8296738969566687,0.8302457501265561,0.8308179974465416,0.8313906391882935,0.8319636756236671,0.8325371070247052,0.8331109336636381,0.8336851558128836,0.8342597737450476,0.8348347877329236,0.8354101980494932,0.8359860049679261,0.8365622087615805,0.8371388097040027,0.8377158080689278,0.8382932041302794,0.8388709981621699,0.839449190438901,0.8400277812349628,0.8406067708250352,0.8411861594839871,0.8417659474868769,0.8423461351089527,0.8429267226256523,0.8435077103126031,0.8440890984456226,0.8446708873007187,0.8452530771540893,0.8458356682821224,0.8464186609613971,0.8470020554686825,0.847585852080939,0.8481700510753174,0.8487546527291602,0.8493396573200003,0.8499250651255623,0.8505108764237623,0.8510970914927077,0.8516837106106977,0.8522707340562233,0.8528581621079676,0.8534459950448056,0.8540342331458044,0.8546228766902237,0.8552119259575157,0.855801381227325,0.8563912427794891,0.8569815108940383,0.8575721858511959,0.8581632679313784,0.8587547574151956,0.8593466545834506,0.8599389597171402,0.8605316730974548,0.8611247950057784,0.8617183257236894,0.8623122655329599,0.8629066147155564,0.8635013735536397,0.8640965423295648,0.8646921213258819,0.8652881108253354,0.865884511110865,0.866481322465605,0.8670785451728853,0.8676761795162306,0.8682742257793614,0.8688726842461938,0.8694715552008391,0.870070838927605,0.8706705357109947,0.8712706458357079,0.8718711695866401,0.8724721072488836,0.8730734591077268,0.8736752254486552,0.8742774065573504,0.8748800027196917,0.8754830142217547,0.8760864413498127,0.8766902843903362,0.877294543629993,0.8778992193556485,0.8785043118543661,0.8791098214134067,0.8797157483202293,0.8803220928624911,0.8809288553280477,0.8815360360049528,0.8821436351814588,0.8827516531460168,0.8833600901872767,0.8839689465940874,0.8845782226554967,0.8851879186607517,0.8857980348992992,0.886408571660785,0.8870195292350548,0.8876309079121539,0.888242707982328,0.8888549297360221,0.889467573463882,0.8900806394567536,0.8906941280056833,0.8913080394019179,0.8919223739369054,0.8925371319022943,0.8931523135899342,0.8937679192918758,0.8943839493003714,0.8950004039078743,0.8956172834070397,0.8962345880907244,0.896852318251987,0.8974704741840882,0.8980890561804907,0.8987080645348596,0.8993274995410624,0.8999473614931691,0.9005676506854522,0.9011883674123875,0.9018095119686532,0.9024310846491311,0.903053085748906,0.9036755155632661,0.904298374387703,0.9049216625179124,0.9055453802497934,0.9061695278794492,0.9067941057031869,0.9074191140175182,0.908044553119159,0.9086704233050295,0.9092967248722549,0.9099234581181648,0.9105506233402942,0.9111782208363829,0.9118062509043758,0.9124347138424235,0.9130636099488817,0.9136929395223121,0.9143227028614821,0.9149529002653648,0.9155835320331397,0.9162145984641922,0.9168460998581143,0.9174780365147042,0.9181104087339671,0.9187432168161148,0.919376461061566,0.9200101417709464,0.9206442592450891,0.9212788137850344,0.9219138056920302,0.9225492352675317,0.9231851028132025,0.9238214086309137,0.9244581530227443,0.925095336290982,0.9257329587381224,0.9263710206668699,0.9270095223801375,0.9276484641810467,0.9282878463729284,0.928927669259322,0.9295679331439768,0.9302086383308507,0.9308497851241118,0.9314913738281373,0.9321334047475145,0.9327758781870407,0.9334187944517229,0.9340621538467788,0.9347059566776362,0.9353502032499333,0.9359948938695193,0.936640028842454,0.9372856084750081,0.9379316330736635,0.9385781029451132,0.939225018396262,0.9398723797342258,0.9405201872663322,0.9411684413001209,0.9418171421433434,0.9424662901039633,0.9431158854901565,0.9437659286103113,0.9444164197730286,0.945067359287122,0.9457187474616179,0.9463705846057556,0.9470228710289879,0.9476756070409804,0.9483287929516125,0.9489824290709772,0.9496365157093809,0.9502910531773442,0.9509460417856015,0.9516014818451016,0.9522573736670076,0.9529137175626967,0.9535705138437612,0.9542277628220079,0.9548854648094586,0.95554362011835,0.9562022290611344,0.9568612919504789,0.9575208090992666,0.958180780820596,0.9588412074277816,0.9595020892343534,0.9601634265540581,0.9608252197008582,0.9614874689889329,0.9621501747326777,0.962813337246705,0.963476956845844,0.9641410338451407,0.9648055685598584,0.9654705613054778,0.966136012397697,0.9668019221524314,0.9674682908858147,0.9681351189141979,0.9688024065541504,0.9694701541224597,0.9701383619361317,0.9708070303123908,0.9714761595686799,0.9721457500226609,0.9728158019922145,0.9734863157954406,0.9741572917506582,0.9748287301764059,0.9755006313914418,0.9761729957147435,0.9768458234655087,0.9775191149631551,0.9781928705273203,0.9788670904778626,0.9795417751348604,0.9802169248186129,0.9808925398496401,0.9815686205486828,0.9822451672367029,0.9829221802348835,0.9835996598646294,0.9842776064475663,0.9849560203055422,0.9856349017606265,0.9863142511351108,0.9869940687515089,0.9876743549325566,0.9883551100012125,0.9890363342806574,0.9897180280942953,0.9904001917657529,0.9910828256188797,0.991765929977749,0.9924495051666569,0.9931335515101234,0.9938180693328919,0.9945030589599296,0.9951885207164283,0.9958744549278031,0.996560861919694,0.997247742017965,0.9979350955487051,0.9986229228382277,0.9993112242130715,1.0],"x":[-1.0,-0.9990059642147118,-0.9980119284294234,-0.9970178926441352,-0.9960238568588469,-0.9950298210735586,-0.9940357852882704,-0.9930417495029821,-0.9920477137176938,-0.9910536779324056,-0.9900596421471173,-0.989065606361829,-0.9880715705765407,-0.9870775347912525,-0.9860834990059643,-0.9850894632206759,-0.9840954274353877,-0.9831013916500994,-0.9821073558648111,-0.9811133200795229,-0.9801192842942346,-0.9791252485089463,-0.9781312127236581,-0.9771371769383698,-0.9761431411530815,-0.9751491053677932,-0.974155069582505,-0.9731610337972167,-0.9721669980119284,-0.9711729622266402,-0.9701789264413518,-0.9691848906560636,-0.9681908548707754,-0.967196819085487,-0.9662027833001988,-0.9652087475149106,-0.9642147117296223,-0.963220675944334,-0.9622266401590457,-0.9612326043737575,-0.9602385685884692,-0.9592445328031809,-0.9582504970178927,-0.9572564612326043,-0.9562624254473161,-0.9552683896620279,-0.9542743538767395,-0.9532803180914513,-0.952286282306163,-0.9512922465208747,-0.9502982107355865,-0.9493041749502982,-0.94831013916501,-0.9473161033797217,-0.9463220675944334,-0.9453280318091452,-0.9443339960238568,-0.9433399602385686,-0.9423459244532804,-0.941351888667992,-0.9403578528827038,-0.9393638170974155,-0.9383697813121272,-0.937375745526839,-0.9363817097415507,-0.9353876739562624,-0.9343936381709742,-0.9333996023856859,-0.9324055666003976,-0.9314115308151093,-0.9304174950298211,-0.9294234592445328,-0.9284294234592445,-0.9274353876739563,-0.9264413518886679,-0.9254473161033797,-0.9244532803180915,-0.9234592445328031,-0.9224652087475149,-0.9214711729622267,-0.9204771371769384,-0.9194831013916501,-0.9184890656063618,-0.9174950298210736,-0.9165009940357853,-0.915506958250497,-0.9145129224652088,-0.9135188866799204,-0.9125248508946322,-0.911530815109344,-0.9105367793240556,-0.9095427435387674,-0.9085487077534792,-0.9075546719681908,-0.9065606361829026,-0.9055666003976143,-0.904572564612326,-0.9035785288270378,-0.9025844930417495,-0.9015904572564613,-0.9005964214711729,-0.8996023856858847,-0.8986083499005965,-0.8976143141153081,-0.8966202783300199,-0.8956262425447317,-0.8946322067594433,-0.8936381709741551,-0.8926441351888668,-0.8916500994035785,-0.8906560636182903,-0.889662027833002,-0.8886679920477137,-0.8876739562624254,-0.8866799204771372,-0.885685884691849,-0.8846918489065606,-0.8836978131212724,-0.882703777335984,-0.8817097415506958,-0.8807157057654076,-0.8797216699801192,-0.878727634194831,-0.8777335984095428,-0.8767395626242545,-0.8757455268389662,-0.8747514910536779,-0.8737574552683897,-0.8727634194831014,-0.8717693836978131,-0.8707753479125249,-0.8697813121272365,-0.8687872763419483,-0.8677932405566601,-0.8667992047713717,-0.8658051689860835,-0.8648111332007953,-0.8638170974155069,-0.8628230616302187,-0.8618290258449304,-0.8608349900596421,-0.8598409542743539,-0.8588469184890656,-0.8578528827037774,-0.856858846918489,-0.8558648111332008,-0.8548707753479126,-0.8538767395626242,-0.852882703777336,-0.8518886679920478,-0.8508946322067594,-0.8499005964214712,-0.8489065606361829,-0.8479125248508946,-0.8469184890656064,-0.8459244532803181,-0.8449304174950298,-0.8439363817097415,-0.8429423459244533,-0.841948310139165,-0.8409542743538767,-0.8399602385685885,-0.8389662027833003,-0.8379721669980119,-0.8369781312127237,-0.8359840954274353,-0.8349900596421471,-0.8339960238568589,-0.8330019880715706,-0.8320079522862823,-0.831013916500994,-0.8300198807157058,-0.8290258449304175,-0.8280318091451292,-0.827037773359841,-0.8260437375745527,-0.8250497017892644,-0.8240556660039762,-0.8230616302186878,-0.8220675944333996,-0.8210735586481114,-0.820079522862823,-0.8190854870775348,-0.8180914512922465,-0.8170974155069582,-0.81610337972167,-0.8151093439363817,-0.8141153081510935,-0.8131212723658051,-0.8121272365805169,-0.8111332007952287,-0.8101391650099403,-0.8091451292246521,-0.8081510934393639,-0.8071570576540755,-0.8061630218687873,-0.805168986083499,-0.8041749502982107,-0.8031809145129225,-0.8021868787276342,-0.8011928429423459,-0.8001988071570576,-0.7992047713717694,-0.7982107355864811,-0.7972166998011928,-0.7962226640159046,-0.7952286282306164,-0.794234592445328,-0.7932405566600398,-0.7922465208747514,-0.7912524850894632,-0.790258449304175,-0.7892644135188867,-0.7882703777335984,-0.7872763419483101,-0.7862823061630219,-0.7852882703777336,-0.7842942345924453,-0.7833001988071571,-0.7823061630218688,-0.7813121272365805,-0.7803180914512923,-0.7793240556660039,-0.7783300198807157,-0.7773359840954275,-0.7763419483101391,-0.7753479125248509,-0.7743538767395626,-0.7733598409542743,-0.7723658051689861,-0.7713717693836978,-0.7703777335984096,-0.7693836978131213,-0.768389662027833,-0.7673956262425448,-0.7664015904572564,-0.7654075546719682,-0.76441351888668,-0.7634194831013916,-0.7624254473161034,-0.7614314115308151,-0.7604373757455268,-0.7594433399602386,-0.7584493041749503,-0.757455268389662,-0.7564612326043738,-0.7554671968190855,-0.7544731610337972,-0.7534791252485089,-0.7524850894632207,-0.7514910536779325,-0.7504970178926441,-0.7495029821073559,-0.7485089463220675,-0.7475149105367793,-0.7465208747514911,-0.7455268389662028,-0.7445328031809145,-0.7435387673956262,-0.742544731610338,-0.7415506958250497,-0.7405566600397614,-0.7395626242544732,-0.7385685884691849,-0.7375745526838966,-0.7365805168986084,-0.73558648111332,-0.7345924453280318,-0.7335984095427436,-0.7326043737574552,-0.731610337972167,-0.7306163021868787,-0.7296222664015904,-0.7286282306163022,-0.7276341948310139,-0.7266401590457257,-0.7256461232604374,-0.7246520874751491,-0.7236580516898609,-0.7226640159045725,-0.7216699801192843,-0.7206759443339961,-0.7196819085487077,-0.7186878727634195,-0.7176938369781312,-0.7166998011928429,-0.7157057654075547,-0.7147117296222664,-0.7137176938369781,-0.7127236580516899,-0.7117296222664016,-0.7107355864811133,-0.709741550695825,-0.7087475149105368,-0.7077534791252486,-0.7067594433399602,-0.705765407554672,-0.7047713717693836,-0.7037773359840954,-0.7027833001988072,-0.7017892644135189,-0.7007952286282306,-0.6998011928429424,-0.6988071570576541,-0.6978131212723658,-0.6968190854870775,-0.6958250497017893,-0.694831013916501,-0.6938369781312127,-0.6928429423459245,-0.6918489065606361,-0.6908548707753479,-0.6898608349900597,-0.6888667992047713,-0.6878727634194831,-0.6868787276341949,-0.6858846918489065,-0.6848906560636183,-0.68389662027833,-0.6829025844930418,-0.6819085487077535,-0.6809145129224652,-0.679920477137177,-0.6789264413518886,-0.6779324055666004,-0.6769383697813122,-0.6759443339960238,-0.6749502982107356,-0.6739562624254473,-0.672962226640159,-0.6719681908548708,-0.6709741550695825,-0.6699801192842942,-0.668986083499006,-0.6679920477137177,-0.6669980119284294,-0.6660039761431411,-0.6650099403578529,-0.6640159045725647,-0.6630218687872763,-0.6620278330019881,-0.6610337972166997,-0.6600397614314115,-0.6590457256461233,-0.658051689860835,-0.6570576540755467,-0.6560636182902585,-0.6550695825049702,-0.6540755467196819,-0.6530815109343936,-0.6520874751491054,-0.6510934393638171,-0.6500994035785288,-0.6491053677932406,-0.6481113320079522,-0.647117296222664,-0.6461232604373758,-0.6451292246520874,-0.6441351888667992,-0.643141153081511,-0.6421471172962226,-0.6411530815109344,-0.6401590457256461,-0.6391650099403579,-0.6381709741550696,-0.6371769383697813,-0.6361829025844931,-0.6351888667992047,-0.6341948310139165,-0.6332007952286283,-0.6322067594433399,-0.6312127236580517,-0.6302186878727635,-0.6292246520874751,-0.6282306163021869,-0.6272365805168986,-0.6262425447316103,-0.6252485089463221,-0.6242544731610338,-0.6232604373757455,-0.6222664015904572,-0.621272365805169,-0.6202783300198808,-0.6192842942345924,-0.6182902584493042,-0.617296222664016,-0.6163021868787276,-0.6153081510934394,-0.614314115308151,-0.6133200795228628,-0.6123260437375746,-0.6113320079522863,-0.610337972166998,-0.6093439363817097,-0.6083499005964215,-0.6073558648111332,-0.6063618290258449,-0.6053677932405567,-0.6043737574552683,-0.6033797216699801,-0.6023856858846919,-0.6013916500994035,-0.6003976143141153,-0.5994035785288271,-0.5984095427435387,-0.5974155069582505,-0.5964214711729622,-0.595427435387674,-0.5944333996023857,-0.5934393638170974,-0.5924453280318092,-0.5914512922465208,-0.5904572564612326,-0.5894632206759444,-0.588469184890656,-0.5874751491053678,-0.5864811133200796,-0.5854870775347912,-0.584493041749503,-0.5834990059642147,-0.5825049701789264,-0.5815109343936382,-0.5805168986083499,-0.5795228628230616,-0.5785288270377733,-0.5775347912524851,-0.5765407554671969,-0.5755467196819085,-0.5745526838966203,-0.5735586481113321,-0.5725646123260437,-0.5715705765407555,-0.5705765407554672,-0.5695825049701789,-0.5685884691848907,-0.5675944333996024,-0.5666003976143141,-0.5656063618290258,-0.5646123260437376,-0.5636182902584493,-0.562624254473161,-0.5616302186878728,-0.5606361829025845,-0.5596421471172962,-0.558648111332008,-0.5576540755467196,-0.5566600397614314,-0.5556660039761432,-0.5546719681908548,-0.5536779324055666,-0.5526838966202783,-0.55168986083499,-0.5506958250497018,-0.5497017892644135,-0.5487077534791253,-0.547713717693837,-0.5467196819085487,-0.5457256461232605,-0.5447316103379721,-0.5437375745526839,-0.5427435387673957,-0.5417495029821073,-0.5407554671968191,-0.5397614314115308,-0.5387673956262425,-0.5377733598409543,-0.536779324055666,-0.5357852882703777,-0.5347912524850894,-0.5337972166998012,-0.532803180914513,-0.5318091451292246,-0.5308151093439364,-0.5298210735586482,-0.5288270377733598,-0.5278330019880716,-0.5268389662027833,-0.525844930417495,-0.5248508946322068,-0.5238568588469185,-0.5228628230616302,-0.5218687872763419,-0.5208747514910537,-0.5198807157057654,-0.5188866799204771,-0.5178926441351889,-0.5168986083499006,-0.5159045725646123,-0.5149105367793241,-0.5139165009940357,-0.5129224652087475,-0.5119284294234593,-0.510934393638171,-0.5099403578528827,-0.5089463220675944,-0.5079522862823062,-0.5069582504970179,-0.5059642147117296,-0.5049701789264414,-0.5039761431411531,-0.5029821073558648,-0.5019880715705766,-0.5009940357852882,-0.5,-0.4990059642147117,-0.49801192842942343,-0.4970178926441352,-0.4960238568588469,-0.49502982107355864,-0.49403578528827036,-0.49304174950298213,-0.49204771371769385,-0.49105367793240556,-0.49005964214711734,-0.4890656063618291,-0.4880715705765408,-0.48707753479125254,-0.48608349900596426,-0.485089463220676,-0.48409542743538775,-0.48310139165009947,-0.4821073558648112,-0.4811133200795229,-0.48011928429423467,-0.4791252485089464,-0.4781312127236581,-0.4771371769383698,-0.4761431411530816,-0.4751491053677933,-0.47415506958250503,-0.47316103379721675,-0.47216699801192846,-0.47117296222664024,-0.47017892644135195,-0.46918489065606367,-0.4681908548707754,-0.46719681908548716,-0.4662027833001989,-0.4652087475149106,-0.4642147117296223,-0.463220675944334,-0.4622266401590458,-0.4612326043737575,-0.46023856858846923,-0.45924453280318095,-0.4582504970178927,-0.45725646123260444,-0.45626242544731616,-0.4552683896620279,-0.45427435387673964,-0.45328031809145136,-0.4522862823061631,-0.4512922465208748,-0.4502982107355865,-0.4493041749502983,-0.44831013916501,-0.4473161033797217,-0.44632206759443344,-0.4453280318091452,-0.4443339960238569,-0.44333996023856864,-0.44234592445328036,-0.44135188866799213,-0.44035785288270385,-0.43936381709741557,-0.4383697813121273,-0.437375745526839,-0.43638170974155077,-0.4353876739562625,-0.4343936381709742,-0.4333996023856859,-0.4324055666003977,-0.4314115308151094,-0.43041749502982113,-0.42942345924453285,-0.42842942345924456,-0.42743538767395634,-0.42644135188866805,-0.42544731610337977,-0.4244532803180915,-0.42345924453280326,-0.422465208747515,-0.4214711729622267,-0.4204771371769384,-0.4194831013916502,-0.4184890656063619,-0.4174950298210736,-0.41650099403578533,-0.41550695825049705,-0.4145129224652088,-0.41351888667992054,-0.41252485089463226,-0.411530815109344,-0.41053677932405575,-0.40954274353876746,-0.4085487077534792,-0.4075546719681909,-0.40656063618290267,-0.4055666003976144,-0.4045725646123261,-0.4035785288270378,-0.40258449304174954,-0.4015904572564613,-0.400596421471173,-0.39960238568588474,-0.39860834990059646,-0.39761431411530823,-0.39662027833001995,-0.39562624254473167,-0.3946322067594434,-0.3936381709741551,-0.39264413518886687,-0.3916500994035786,-0.3906560636182903,-0.389662027833002,-0.3886679920477138,-0.3876739562624255,-0.38667992047713723,-0.38568588469184895,-0.3846918489065607,-0.38369781312127244,-0.38270377733598415,-0.38170974155069587,-0.3807157057654076,-0.37972166998011936,-0.3787276341948311,-0.3777335984095428,-0.3767395626242545,-0.3757455268389663,-0.374751491053678,-0.3737574552683897,-0.37276341948310143,-0.3717693836978132,-0.3707753479125249,-0.36978131212723664,-0.36878727634194836,-0.3677932405566601,-0.36679920477137185,-0.36580516898608356,-0.3648111332007953,-0.363817097415507,-0.36282306163021877,-0.3618290258449305,-0.3608349900596422,-0.3598409542743539,-0.35884691848906564,-0.3578528827037774,-0.3568588469184891,-0.35586481113320084,-0.35487077534791256,-0.35387673956262433,-0.35288270377733605,-0.35188866799204777,-0.3508946322067595,-0.34990059642147125,-0.34890656063618297,-0.3479125248508947,-0.3469184890656064,-0.3459244532803181,-0.3449304174950299,-0.3439363817097416,-0.34294234592445333,-0.34194831013916505,-0.3409542743538768,-0.33996023856858854,-0.33896620278330025,-0.33797216699801197,-0.33697813121272374,-0.33598409542743546,-0.3349900596421472,-0.3339960238568589,-0.3330019880715706,-0.3320079522862824,-0.3310139165009941,-0.3300198807157058,-0.32902584493041753,-0.3280318091451293,-0.327037773359841,-0.32604373757455274,-0.32504970178926446,-0.3240556660039762,-0.32306163021868795,-0.32206759443339966,-0.3210735586481114,-0.3200795228628231,-0.31908548707753487,-0.3180914512922466,-0.3170974155069583,-0.31610337972167,-0.3151093439363818,-0.3141153081510935,-0.3131212723658052,-0.31212723658051694,-0.31113320079522866,-0.31013916500994043,-0.30914512922465215,-0.30815109343936387,-0.3071570576540756,-0.30616302186878736,-0.30516898608349907,-0.3041749502982108,-0.3031809145129225,-0.3021868787276343,-0.301192842942346,-0.3001988071570577,-0.29920477137176943,-0.29821073558648115,-0.2972166998011929,-0.29622266401590464,-0.29522862823061635,-0.29423459244532807,-0.29324055666003984,-0.29224652087475156,-0.2912524850894633,-0.290258449304175,-0.2892644135188867,-0.2882703777335985,-0.2872763419483102,-0.2862823061630219,-0.28528827037773363,-0.2842942345924454,-0.2833001988071571,-0.28230616302186884,-0.28131212723658056,-0.28031809145129233,-0.27932405566600405,-0.27833001988071576,-0.2773359840954275,-0.2763419483101392,-0.27534791252485097,-0.2743538767395627,-0.2733598409542744,-0.2723658051689861,-0.2713717693836979,-0.2703777335984096,-0.2693836978131213,-0.26838966202783304,-0.2673956262425448,-0.26640159045725653,-0.26540755467196825,-0.26441351888667997,-0.2634194831013917,-0.26242544731610346,-0.26143141153081517,-0.2604373757455269,-0.2594433399602386,-0.2584493041749504,-0.2574552683896621,-0.2564612326043738,-0.25546719681908553,-0.25447316103379725,-0.25347912524850896,-0.2524850894632207,-0.25149105367793245,-0.25049701789264417,-0.2495029821073559,-0.24850894632206763,-0.24751491053677935,-0.2465208747514911,-0.2455268389662028,-0.24453280318091455,-0.24353876739562627,-0.242544731610338,-0.24155069582504973,-0.24055666003976145,-0.2395626242544732,-0.2385685884691849,-0.23757455268389666,-0.2365805168986084,-0.23558648111332015,-0.23459244532803186,-0.2335984095427436,-0.23260437375745532,-0.23161033797216704,-0.23061630218687879,-0.2296222664015905,-0.22862823061630225,-0.22763419483101396,-0.2266401590457257,-0.22564612326043743,-0.22465208747514917,-0.2236580516898609,-0.22266401590457263,-0.22166998011928435,-0.2206759443339961,-0.2196819085487078,-0.21868787276341953,-0.21769383697813127,-0.216699801192843,-0.21570576540755473,-0.21471172962226645,-0.2137176938369782,-0.2127236580516899,-0.21172962226640166,-0.21073558648111337,-0.20974155069582512,-0.20874751491053684,-0.20775347912524855,-0.2067594433399603,-0.20576540755467201,-0.20477137176938376,-0.20377733598409548,-0.20278330019880722,-0.20178926441351894,-0.20079522862823068,-0.1998011928429424,-0.19880715705765414,-0.19781312127236586,-0.19681908548707758,-0.19582504970178932,-0.19483101391650104,-0.19383697813121278,-0.1928429423459245,-0.19184890656063625,-0.19085487077534796,-0.1898608349900597,-0.18886679920477142,-0.18787276341948317,-0.18687872763419489,-0.18588469184890663,-0.18489065606361835,-0.18389662027833006,-0.1829025844930418,-0.18190854870775353,-0.18091451292246527,-0.179920477137177,-0.17892644135188873,-0.17793240556660045,-0.1769383697813122,-0.1759443339960239,-0.17495029821073566,-0.17395626242544737,-0.1729622266401591,-0.17196819085487083,-0.17097415506958255,-0.1699801192842943,-0.168986083499006,-0.16799204771371776,-0.16699801192842947,-0.16600397614314122,-0.16500994035785294,-0.16401590457256468,-0.1630218687872764,-0.16202783300198814,-0.16103379721669986,-0.16003976143141158,-0.15904572564612332,-0.15805168986083504,-0.15705765407554678,-0.1560636182902585,-0.15506958250497024,-0.15407554671968196,-0.1530815109343937,-0.15208747514910542,-0.15109343936381717,-0.15009940357852888,-0.1491053677932406,-0.14811133200795235,-0.14711729622266406,-0.1461232604373758,-0.14512922465208752,-0.14413518886679927,-0.14314115308151099,-0.14214711729622273,-0.14115308151093445,-0.1401590457256462,-0.1391650099403579,-0.13817097415506963,-0.13717693836978137,-0.1361829025844931,-0.13518886679920483,-0.13419483101391655,-0.1332007952286283,-0.13220675944334,-0.13121272365805176,-0.13021868787276347,-0.12922465208747522,-0.12823061630218693,-0.12723658051689868,-0.12624254473161037,-0.1252485089463221,-0.12425447316103384,-0.12326043737574557,-0.1222664015904573,-0.12127236580516902,-0.12027833001988075,-0.11928429423459248,-0.11829025844930421,-0.11729622266401594,-0.11630218687872768,-0.1153081510934394,-0.11431411530815114,-0.11332007952286287,-0.1123260437375746,-0.11133200795228633,-0.11033797216699806,-0.10934393638170979,-0.10834990059642152,-0.10735586481113325,-0.10636182902584498,-0.10536779324055671,-0.10437375745526845,-0.10337972166998018,-0.10238568588469191,-0.10139165009940364,-0.10039761431411537,-0.0994035785288271,-0.09840954274353883,-0.09741550695825055,-0.09642147117296228,-0.09542743538767401,-0.09443339960238574,-0.09343936381709747,-0.0924453280318092,-0.09145129224652093,-0.09045725646123266,-0.0894632206759444,-0.08846918489065612,-0.08747514910536786,-0.08648111332007959,-0.0854870775347913,-0.08449304174950303,-0.08349900596421476,-0.0825049701789265,-0.08151093439363823,-0.08051689860834996,-0.07952286282306169,-0.07852882703777342,-0.07753479125248515,-0.07654075546719688,-0.07554671968190861,-0.07455268389662033,-0.07355864811133206,-0.07256461232604379,-0.07157057654075552,-0.07057654075546725,-0.06958250497017898,-0.06858846918489071,-0.06759443339960244,-0.06660039761431417,-0.0656063618290259,-0.06461232604373764,-0.06361829025844937,-0.06262425447316108,-0.061630218687872815,-0.060636182902584546,-0.05964214711729627,-0.058648111332008,-0.05765407554671973,-0.05666003976143146,-0.05566600397614319,-0.054671968190854923,-0.05367793240556665,-0.05268389662027838,-0.05168986083499011,-0.05069582504970184,-0.04970178926441357,-0.0487077534791253,-0.047713717693837025,-0.046719681908548756,-0.045725646123260494,-0.044731610337972225,-0.043737574552683955,-0.04274353876739568,-0.04174950298210741,-0.04075546719681914,-0.03976143141153087,-0.0387673956262426,-0.03777335984095433,-0.03677932405566606,-0.03578528827037779,-0.03479125248508952,-0.03379721669980125,-0.03280318091451298,-0.03180914512922471,-0.030815109343936435,-0.029821073558648166,-0.028827037773359893,-0.027833001988071624,-0.026838966202783355,-0.025844930417495082,-0.024850894632206813,-0.02385685884691854,-0.02286282306163027,-0.021868787276342002,-0.02087475149105373,-0.01988071570576546,-0.01888667992047719,-0.01789264413518892,-0.01689860834990065,-0.01590457256461238,-0.01491053677932411,-0.01391650099403584,-0.012922465208747569,-0.0119284294234593,-0.010934393638171029,-0.009940357852882758,-0.008946322067594489,-0.007952286282306218,-0.006958250497017948,-0.005964214711729677,-0.0049701789264414075,-0.0039761431411531375,-0.002982107355864866,-0.0019880715705765965,-0.0009940357852883258,-5.551115123125783e-17]}
+},{}],54:[function(require,module,exports){
+module.exports={"expected":[1.0,1.0006892505260019,1.0013789761182914,1.0020691771043082,1.0027598538117175,1.0034510065684108,1.0041426357025052,1.0048347415423442,1.005527324416497,1.0062203846537605,1.006913922583157,1.007607938533936,1.008302432835574,1.008997405817775,1.0096928578104696,1.0103887891438157,1.0110852001481994,1.0117820911542343,1.0124794624927618,1.0131773144948508,1.0138756474917996,1.0145744618151338,1.015273757796608,1.0159735357682051,1.0166737960621375,1.0173745390108457,1.0180757649469998,1.0187774742034992,1.019479667113473,1.020182344010279,1.020885505227506,1.0215891510989716,1.0222932819587245,1.0229978981410428,1.0237029999804352,1.0244085878116416,1.0251146619696316,1.0258212227896064,1.026528270606998,1.0272358057574698,1.027943828576916,1.028652339401463,1.0293613385674685,1.0300708264115221,1.0307808032704455,1.0314912694812923,1.0322022253813485,1.032913671308133,1.0336256075993966,1.0343380345931235,1.0350509526275307,1.035764362041068,1.0364782631724188,1.0371926563604998,1.0379075419444617,1.038622920263688,1.0393387916577974,1.0400551564666418,1.0407720150303073,1.041489367689115,1.04220721478362,1.0429255566546127,1.0436443936431177,1.044363726090395,1.0450835543379402,1.0458038787274835,1.0465246996009914,1.0472460173006652,1.0479678321689432,1.0486901445484986,1.0494129547822415,1.0501362632133184,1.0508600701851118,1.0515843760412413,1.0523091811255632,1.0530344857821705,1.053760290355394,1.0544865951898015,1.0552134006301979,1.0559407070216265,1.056668514709368,1.057396824038941,1.0581256353561026,1.0588549490068477,1.0595847653374104,1.0603150846942628,1.061045907424116,1.0617772338739204,1.0625090643908648,1.063241399322378,1.0639742390161278,1.0647075838200222,1.0654414340822083,1.0661757901510736,1.0669106523752458,1.0676460211035923,1.0683818966852219,1.0691182794694831,1.0698551698059655,1.0705925680445003,1.0713304745351586,1.0720688896282538,1.0728078136743404,1.0735472470242142,1.0742871900289135,1.075027643039718,1.0757686064081498,1.0765100804859729,1.0772520656251943,1.0779945621780629,1.0787375704970714,1.0794810909349544,1.0802251238446905,1.0809696695795008,1.0817147284928506,1.0824603009384484,1.0832063872702462,1.083952987842441,1.0847001030094725,1.0854477331260262,1.086195878547031,1.0869445396276605,1.0876937167233336,1.0884434101897142,1.0891936203827108,1.0899443476584774,1.0906955923734138,1.091447354884165,1.0921996355476224,1.0929524347209227,1.093705752761449,1.0944595900268312,1.0952139468749449,1.0959688236639131,1.096724220752105,1.0974801384981376,1.098236577260874,1.0989935373994255,1.0997510192731508,1.100509023241656,1.101267549664795,1.1020265989026703,1.102786171315632,1.1035462672642788,1.1043068871094581,1.1050680312122658,1.105829699934047,1.106591893636395,1.107354612681153,1.1081178574304142,1.1088816282465204,1.109645925492063,1.1104107495298843,1.1111761007230758,1.11194197943498,1.112708386029189,1.1134753208695465,1.114242784320146,1.1150107767453323,1.115779298509702,1.1165483499781017,1.1173179315156305,1.118088043487639,1.1188586862597294,1.1196298601977557,1.1204015656678243,1.1211738030362943,1.1219465726697766,1.1227198749351353,1.123493710199487,1.1242680788302017,1.1250429811949025,1.1258184176614658,1.1265943885980216,1.1273708943729537,1.1281479353548993,1.1289255119127508,1.1297036244156535,1.1304822732330082,1.1312614587344698,1.1320411812899482,1.1328214412696083,1.1336022390438694,1.1343835749834073,1.1351654494591525,1.1359478628422914,1.1367308155042661,1.137514307816775,1.1382983401517723,1.1390829128814692,1.1398680263783325,1.1406536810150865,1.141439877164712,1.1422266152004474,1.1430138954957876,1.1438017184244855,1.1445900843605514,1.1453789936782535,1.1461684467521178,1.1469584439569285,1.147748985667728,1.1485400722598176,1.149331704108757,1.1501238815903645,1.150916605080718,1.1517098749561543,1.1525036915932694,1.1532980553689192,1.154092966660219,1.1548884258445447,1.1556844332995315,1.1564809894030754,1.1572780945333327,1.1580757490687201,1.1588739533879158,1.1596727078698583,1.1604720128937476,1.161271868839045,1.1620722760854736,1.1628732350130178,1.1636747460019239,1.164476809432701,1.1652794256861194,1.1660825951432128,1.1668863181852769,1.1676905951938703,1.1684954265508152,1.169300812638196,1.1701067538383616,1.170913250533923,1.171720303107756,1.172527911943,1.1733360774230588,1.1741447999315995,1.1749540798525548,1.175763917570121,1.1765743134687605,1.177385267933199,1.1781967813484289,1.179008854099707,1.179821486572556,1.1806346791527647,1.1814484322263867,1.1822627461797428,1.1830776213994196,1.1838930582722702,1.1847090571854144,1.1855256185262386,1.1863427426823965,1.1871604300418088,1.1879786809926638,1.188797495923417,1.189616875222792,1.19043681927978,1.1912573284836405,1.1920784032239016,1.192900043890359,1.1937222508730783,1.1945450245623925,1.1953683653489051,1.196192273623488,1.1970167497772823,1.1978417942016992,1.1986674072884198,1.1994935894293948,1.2003203410168448,1.2011476624432615,1.2019755541014063,1.2028040163843121,1.2036330496852823,1.2044626543978911,1.2052928309159845,1.2061235796336796,1.2069549009453655,1.2077867952457024,1.2086192629296237,1.209452304392334,1.2102859200293106,1.2111201102363034,1.2119548754093352,1.2127902159447017,1.2136261322389716,1.214462624688987,1.2152996936918634,1.2161373396449904,1.2169755629460313,1.2178143639929233,1.218653743183878,1.2194937009173816,1.220334237592195,1.2211753536073535,1.2220170493621678,1.222859325256224,1.2237021816893832,1.2245456190617823,1.2253896377738338,1.2262342382262268,1.2270794208199256,1.227925185956172,1.228771534036483,1.2296184654626539,1.2304659806367557,1.231314079961137,1.2321627638384238,1.2330120326715193,1.2338618868636049,1.2347123268181392,1.2355633529388597,1.2364149656297814,1.2372671652951983,1.2381199523396829,1.2389733271680865,1.2398272901855394,1.2406818417974512,1.241536982409511,1.2423927124276877,1.2432490322582292,1.2441059423076646,1.2449634429828023,1.2458215346907313,1.2466802178388212,1.2475394928347228,1.2483993600863672,1.2492598200019673,1.2501208729900166,1.250982519459291,1.2518447598188474,1.2527075944780253,1.2535710238464457,1.2544350483340125,1.2552996683509121,1.256164884307613,1.257030696614867,1.2578971056837094,1.258764111925458,1.259631715751715,1.2604999175743654,1.261368717805579,1.2622381168578087,1.2631081151437926,1.2639787130765527,1.264849911069396,1.265721709535914,1.2665941088899837,1.2674671095457668,1.2683407119177115,1.2692149164205502,1.2700897234693025,1.2709651334792733,1.271841146866054,1.2727177640455223,1.2735949854338426,1.2744728114474662,1.2753512425031315,1.276230279017864,1.2771099214089765,1.27799017009407,1.2788710254910325,1.2797524880180406,1.2806345580935594,1.2815172361363416,1.282400522565429,1.2832844178001523,1.2841689222601311,1.285054036365274,1.2859397605357796,1.2868260951921358,1.2877130407551198,1.2886005976457997,1.2894887662855334,1.2903775470959693,1.2912669404990462,1.292156946916994,1.2930475667723336,1.293938800487877,1.2948306484867274,1.2957231111922802,1.2966161890282222,1.2975098824185325,1.298404191787482,1.2992991175596347,1.3001946601598464,1.3010908200132665,1.3019875975453368,1.302884993181793,1.3037830073486634,1.3046816404722708,1.3055808929792314,1.3064807652964552,1.3073812578511472,1.308282371070806,1.3091841053832256,1.3100864612164942,1.3109894389989958,1.3118930391594086,1.3127972621267074,1.313702108330162,1.3146075781993385,1.3155136721640985,1.3164203906546001,1.3173277341012986,1.3182357029349447,1.319144297586587,1.320053518487571,1.3209633660695392,1.3218738407644317,1.322784943004487,1.32369667322224,1.3246090318505255,1.3255220193224753,1.3264356360715204,1.3273498825313903,1.3282647591361136,1.3291802663200178,1.3300964045177301,1.3310131741641773,1.3319305756945854,1.332848609544481,1.3337672761496904,1.3346865759463407,1.3356065093708593,1.3365270768599746,1.3374482788507163,1.3383701157804142,1.339292588086701,1.3402156962075102,1.3411394405810773,1.3420638216459397,1.3429888398409373,1.3439144956052123,1.3448407893782097,1.3457677215996775,1.3466952927096665,1.3476235031485309,1.3485523533569284,1.3494818437758207,1.3504119748464731,1.3513427470104553,1.3522741607096411,1.353206216386209,1.3541389144826421,1.355072255441729,1.3560062397065629,1.3569408677205423,1.3578761399273722,1.3588120567710624,1.3597486186959298,1.3606858261465962,1.361623679567991,1.36256217940535,1.3635013261042153,1.364441120110437,1.3653815618701717,1.3663226518298839,1.367264390436346,1.3682067781366378,1.3691498153781478,1.3700935026085725,1.3710378402759174,1.3719828288284959,1.3729284687149317,1.3738747603841563,1.3748217042854118,1.3757693008682492,1.37671755058253,1.3776664538784251,1.3786160112064159,1.3795662230172945,1.3805170897621637,1.3814686118924369,1.3824207898598386,1.3833736241164054,1.384327115114485,1.3852812633067362,1.3862360691461308,1.3871915330859526,1.3881476555797976,1.3891044370815742,1.3900618780455043,1.3910199789261222,1.3919787401782762,1.3929381622571275,1.3938982456181512,1.3948589907171367,1.3958203980101869,1.3967824679537197,1.3977452010044669,1.398708597619476,1.3996726582561085,1.400637383372042,1.401602773425269,1.402568828874098,1.4035355501771534,1.4045029377933753,1.4054709921820205,1.4064397138026623,1.4074091031151907,1.4083791605798128,1.4093498866570524,1.4103212818077515,1.4112933464930693,1.4122660811744825,1.4132394863137867,1.4142135623730951,1.4151883098148397,1.4161637291017712,1.4171398206969594,1.4181165850637931,1.4190940226659803,1.4200721339675488,1.4210509194328467,1.4220303795265412,1.4230105147136205,1.4239913254593932,1.424972812229488,1.4259549754898557,1.4269378157067671,1.4279213333468148,1.4289055288769135,1.429890402764299,1.4308759554765293,1.431862187481485,1.4328490992473686,1.4338366912427063,1.4348249639363462,1.4358139177974598,1.4368035532955425,1.4377938709004128,1.4387848710822133,1.4397765543114103,1.4407689210587946,1.4417619717954815,1.4427557069929111,1.4437501271228481,1.4447452326573829,1.4457410240689306,1.4467375018302326,1.4477346664143558,1.448732518294693,1.4497310579449638,1.4507302858392135,1.451730202451815,1.4527308082574677,1.4537321037311983,1.454734089348361,1.4557367655846372,1.4567401329160368,1.4577441918188971,1.4587489427698843,1.4597543862459934,1.4607605227245468,1.4617673526831976,1.4627748765999269,1.4637830949530457,1.4647920082211947,1.4658016168833445,1.4668119214187958,1.4678229223071795,1.4688346200284572,1.4698470150629217,1.470860107891196,1.4718738989942353,1.4728883888533255,1.4739035779500846,1.474919466766463,1.475936055784742,1.4769533454875368,1.4779713363577944,1.4789900288787947,1.480009423534151,1.4810295208078097,1.4820503211840508,1.4830718251474881,1.4840940331830696,1.4851169457760771,1.4861405634121276,1.4871648865771723,1.4881899157574972,1.4892156514397237,1.4902420941108088,1.4912692442580449,1.49229710236906,1.4933256689318188,1.4943549444346222,1.4953849293661075,1.4964156242152484,1.497447029471356,1.4984791456240791,1.4995119731634035,1.5005455125796523,1.5015797643634878,1.502614729005909,1.5036504069982544,1.504686798832201,1.5057239049997642,1.5067617259932988,1.5078002623054994,1.5088395144293991,1.509879482858372,1.5109201680861315,1.5119615706067318,1.5130036909145672,1.5140465295043728,1.515090086871225,1.516134363510541,1.5171793599180803,1.5182250765899432,1.5192715140225719,1.5203186727127516,1.5213665531576095,1.5224151558546148,1.523464481301581,1.5245145299966634,1.5255653024383609,1.5266167991255168,1.5276690205573173,1.5287219672332935,1.5297756396533195,1.5308300383176154,1.5318851637267454,1.5329410163816184,1.5339975967834893,1.535054905433958,1.53611294283497,1.5371717094888175,1.5382312058981378,1.5392914325659155,1.5403523899954819,1.5414140786905144,1.5424764991550386,1.5435396518934268,1.544603537410399,1.5456681562110235,1.5467335088007164,1.547799595685242,1.5488664173707136,1.549933974363593,1.5510022671706913,1.5520712962991687,1.5531410622565354,1.5542115655506508,1.5552828066897249,1.5563547861823175,1.5574275045373391,1.558500962264051,1.5595751598720662,1.5606500978713473,1.5617257767722101,1.5628021970853212,1.563879359321699,1.5649572639927152,1.5660359116100924,1.5671153026859075,1.5681954377325895,1.5692763172629203,1.5703579417900362,1.571440311827426,1.5725234278889337,1.5736072904887566,1.5746919001414463,1.5757772573619098,1.576863362665408,1.5779502165675583,1.5790378195843324,1.5801261722320576,1.581215275027418,1.582305128487453,1.5833957331295583,1.584487089471487,1.5855791980313483,1.5866720593276091,1.5877656738790933,1.5888600422049821,1.5899551648248154,1.5910510422584903,1.5921476750262626,1.5932450636487472,1.594343208646917,1.5954421105421044,1.5965417698560012,1.5976421871106583,1.598743362828487,1.5998452975322586,1.6009479917451044,1.6020514459905164,1.6031556607923474,1.6042606366748116,1.6053663741624837,1.606472873780301,1.6075801360535618,1.6086881615079267,1.6097969506694192,1.6109065040644244,1.6120168222196904,1.6131279056623293,1.6142397549198153,1.615352370519987,1.6164657529910462,1.6175799028615594,1.6186948206604568,1.6198105069170337,1.6209269621609494,1.6220441869222295,1.623162181731264,1.6242809471188087,1.6254004836159852,1.626520791754281,1.6276418720655508,1.6287637250820146,1.62988635133626,1.631009751361242,1.6321339256902818,1.6332588748570696,1.634384599395662,1.6355110998404847,1.6366383767263317,1.6377664305883652,1.6388952619621167,1.640024871383486,1.641155259388743,1.6422864265145276,1.6434183732978485,1.644551100276085,1.6456846079869873,1.6468188969686757,1.647953967759641,1.6490898208987463,1.6502264569252252,1.651363876378683,1.6525020797990975,1.6536410677268183,1.6547808407025673,1.6559213992674393,1.6570627439629022,1.6582048753307967,1.6593477939133374,1.6604915002531122,1.6616359948930834,1.6627812783765872,1.6639273512473343,1.6650742140494104,1.6662218673272762,1.6673703116257672,1.6685195474900953,1.6696695754658473,1.6708203960989865,1.6719720099358524,1.673124417523161,1.6742776194080053,1.6754316161378555,1.6765864082605588,1.67774199632434,1.678898380877802,1.6800555624699256,1.6812135416500704,1.6823723189679742,1.683531894973754,1.6846922702179055,1.6858534452513045,1.6870154206252062,1.6881781968912453,1.6893417746014376,1.6905061543081785,1.6916713365642448,1.6928373219227941,1.694004110937365,1.695171704161878,1.696340102150635,1.6975093054583204,1.6986793146400005,1.6998501302511246,1.7010217528475247,1.7021941829854155,1.7033674212213954,1.704541468112447,1.7057163242159354,1.7068919900896111,1.7080684662916088,1.7092457533804475,1.7104238519150314,1.7116027624546502,1.7127824855589782,1.7139630217880766,1.7151443717023918,1.7163265358627569,1.7175095148303912,1.7186933091669012,1.7198779194342806,1.7210633461949096,1.7222495900115569,1.7234366514473791,1.72462453106592,1.7258132294311128,1.7270027471072793,1.7281930846591298,1.7293842426517638,1.730576221650671,1.73176902222173,1.73296264493121,1.7341570903457706,1.7353523590324613,1.736548451558723,1.7377453684923876,1.7389431104016784,1.74014167785521,1.7413410714219895,1.7425412916714158,1.7437423391732803,1.7449442144977674,1.7461469182154539,1.7473504508973103,1.7485548131147008,1.7497600054393834,1.7509660284435096,1.7521728826996257,1.7533805687806725,1.754589087259986,1.7557984387112973,1.7570086237087321,1.7582196428268133,1.7594314966404585,1.7606441857249824,1.7618577106560953,1.7630720720099056,1.7642872703629175,1.7655033062920336,1.7667201803745536,1.7679378931881748,1.7691564453109934,1.7703758373215037,1.7715960697985984,1.77281714332157,1.7740390584701096,1.7752618158243079,1.776485415964656,1.7777098594720442,1.778935146927764,1.7801612789135073,1.7813882560113665,1.782616078803836,1.783844747873811,1.7850742638045887,1.7863046271798684,1.7875358385837516,1.788767898600743,1.7900008078157488,1.7912345668140794,1.7924691761814489,1.793704636503974,1.7949409483681764,1.7961781123609815,1.7974161290697193,1.798654999082125,1.7998947229863382,1.8011353013709044,1.802376734824775,1.8036190239373064,1.8048621692982623,1.806106171497812,1.8073510311265322,1.8085967487754062,1.8098433250358248,1.8110907604995867,1.8123390557588983,1.813588211406374,1.8148382280350366,1.816089106238318,1.817340846610059,1.8185934497445098,1.8198469162363298,1.8211012466805885,1.8223564416727658,1.8236125018087517,1.824869427684847,1.8261272198977634,1.8273858790446242,1.8286454057229642,1.8299058005307298,1.8311670640662796,1.8324291969283844,1.8336921997162285,1.8349560730294086,1.8362208174679344,1.8374864336322299,1.838752922123132,1.8400202835418928,1.8412885184901784,1.8425576275700688,1.8438276113840604,1.8450984705350637,1.846370205626405,1.8476428172618273,1.8489163060454887,1.850190672581964,1.851465917476245,1.8527420413337399,1.8540190447602751,1.8552969283620935,1.8565756927458568,1.8578553385186443,1.8591358662879536,1.8604172766617015,1.8616995702482235,1.8629827476562746,1.8642668094950292,1.8655517563740813,1.8668375889034459,1.8681243076935579,1.8694119133552725,1.870700406499867,1.8719897877390388,1.873280057684908,1.8745712169500162,1.875863266147327,1.8771562058902267,1.878450036792524,1.8797447594684515,1.8810403745326645,1.882336882600242,1.8836342842866869,1.8849325802079266,1.8862317709803131,1.8875318572206228,1.8888328395460574,1.890134718574244,1.8914374949232358,1.8927411692115113,1.894045742057976,1.8953512140819608,1.896657585903225,1.8979648581419544,1.8992730314187618,1.9005821063546884,1.9018920835712032,1.9032029636902033,1.9045147473340152,1.9058274351253934,1.9071410276875225,1.9084555256440159,1.9097709296189171,1.9110872402367003,1.9124044581222688,1.913722583900958,1.9150416181985335,1.9163615616411922,1.9176824148555631,1.9190041784687069,1.9203268531081161,1.9216504394017166,1.922974937977866,1.9243003494653554,1.9256266744934103,1.926953913691688,1.9282820676902814,1.9296111371197169,1.9309411226109559,1.9322720247953942,1.933603844304863,1.9349365817716293,1.9362702378283958,1.9376048131083008,1.9389403082449195,1.9402767238722636,1.9416140606247816,1.9429523191373599,1.944291500045322,1.9456316039844292,1.9469726315908813,1.9483145835013165,1.949657460352812,1.9510012627828837,1.9523459914294872,1.9536916469310175,1.9550382299263103,1.9563857410546408,1.9577341809557252,1.9590835502697208,1.960433849637226,1.9617850796992802,1.9631372410973655,1.964490334473406,1.965844360469767,1.967199319729259,1.9685552128951327,1.9699120406110846,1.9712698035212532,1.9726285022702217,1.973988137503018,1.9753487098651132,1.976710220002425,1.9780726685613148,1.9794360561885906,1.9808003835315058,1.9821656512377597,1.983531859955498,1.984899010333314,1.9862671030202468,1.9876361386657837,1.9890061179198595,1.9903770414328565,1.9917489098556063,1.993121723839388,1.99449548403593,1.9958701910974102,1.9972458456764555,1.9986224484261432,2.0],"x":[5.551115123125783e-17,0.0009940357852883258,0.0019880715705765965,0.002982107355864866,0.0039761431411531375,0.0049701789264414075,0.005964214711729677,0.006958250497017948,0.007952286282306218,0.008946322067594489,0.009940357852882758,0.010934393638171029,0.0119284294234593,0.012922465208747569,0.01391650099403584,0.01491053677932411,0.01590457256461238,0.01689860834990065,0.01789264413518892,0.01888667992047719,0.01988071570576546,0.02087475149105373,0.021868787276342002,0.02286282306163027,0.02385685884691854,0.024850894632206813,0.025844930417495082,0.026838966202783355,0.027833001988071624,0.028827037773359893,0.029821073558648166,0.030815109343936435,0.03180914512922471,0.03280318091451298,0.03379721669980125,0.03479125248508952,0.03578528827037779,0.03677932405566606,0.03777335984095433,0.0387673956262426,0.03976143141153087,0.04075546719681914,0.04174950298210741,0.04274353876739568,0.043737574552683955,0.044731610337972225,0.045725646123260494,0.046719681908548756,0.047713717693837025,0.0487077534791253,0.04970178926441357,0.05069582504970184,0.05168986083499011,0.05268389662027838,0.05367793240556665,0.054671968190854923,0.05566600397614319,0.05666003976143146,0.05765407554671973,0.058648111332008,0.05964214711729627,0.060636182902584546,0.061630218687872815,0.06262425447316108,0.06361829025844937,0.06461232604373764,0.0656063618290259,0.06660039761431417,0.06759443339960244,0.06858846918489071,0.06958250497017898,0.07057654075546725,0.07157057654075552,0.07256461232604379,0.07355864811133206,0.07455268389662033,0.07554671968190861,0.07654075546719688,0.07753479125248515,0.07852882703777342,0.07952286282306169,0.08051689860834996,0.08151093439363823,0.0825049701789265,0.08349900596421476,0.08449304174950303,0.0854870775347913,0.08648111332007959,0.08747514910536786,0.08846918489065612,0.0894632206759444,0.09045725646123266,0.09145129224652093,0.0924453280318092,0.09343936381709747,0.09443339960238574,0.09542743538767401,0.09642147117296228,0.09741550695825055,0.09840954274353883,0.0994035785288271,0.10039761431411537,0.10139165009940364,0.10238568588469191,0.10337972166998018,0.10437375745526845,0.10536779324055671,0.10636182902584498,0.10735586481113325,0.10834990059642152,0.10934393638170979,0.11033797216699806,0.11133200795228633,0.1123260437375746,0.11332007952286287,0.11431411530815114,0.1153081510934394,0.11630218687872768,0.11729622266401594,0.11829025844930421,0.11928429423459248,0.12027833001988075,0.12127236580516902,0.1222664015904573,0.12326043737574557,0.12425447316103384,0.1252485089463221,0.12624254473161037,0.12723658051689868,0.12823061630218693,0.12922465208747522,0.13021868787276347,0.13121272365805176,0.13220675944334,0.1332007952286283,0.13419483101391655,0.13518886679920483,0.1361829025844931,0.13717693836978137,0.13817097415506963,0.1391650099403579,0.1401590457256462,0.14115308151093445,0.14214711729622273,0.14314115308151099,0.14413518886679927,0.14512922465208752,0.1461232604373758,0.14711729622266406,0.14811133200795235,0.1491053677932406,0.15009940357852888,0.15109343936381717,0.15208747514910542,0.1530815109343937,0.15407554671968196,0.15506958250497024,0.1560636182902585,0.15705765407554678,0.15805168986083504,0.15904572564612332,0.16003976143141158,0.16103379721669986,0.16202783300198814,0.1630218687872764,0.16401590457256468,0.16500994035785294,0.16600397614314122,0.16699801192842947,0.16799204771371776,0.168986083499006,0.1699801192842943,0.17097415506958255,0.17196819085487083,0.1729622266401591,0.17395626242544737,0.17495029821073566,0.1759443339960239,0.1769383697813122,0.17793240556660045,0.17892644135188873,0.179920477137177,0.18091451292246527,0.18190854870775353,0.1829025844930418,0.18389662027833006,0.18489065606361835,0.18588469184890663,0.18687872763419489,0.18787276341948317,0.18886679920477142,0.1898608349900597,0.19085487077534796,0.19184890656063625,0.1928429423459245,0.19383697813121278,0.19483101391650104,0.19582504970178932,0.19681908548707758,0.19781312127236586,0.19880715705765414,0.1998011928429424,0.20079522862823068,0.20178926441351894,0.20278330019880722,0.20377733598409548,0.20477137176938376,0.20576540755467201,0.2067594433399603,0.20775347912524855,0.20874751491053684,0.20974155069582512,0.21073558648111337,0.21172962226640166,0.2127236580516899,0.2137176938369782,0.21471172962226645,0.21570576540755473,0.216699801192843,0.21769383697813127,0.21868787276341953,0.2196819085487078,0.2206759443339961,0.22166998011928435,0.22266401590457263,0.2236580516898609,0.22465208747514917,0.22564612326043743,0.2266401590457257,0.22763419483101396,0.22862823061630225,0.2296222664015905,0.23061630218687879,0.23161033797216704,0.23260437375745532,0.2335984095427436,0.23459244532803186,0.23558648111332015,0.2365805168986084,0.23757455268389666,0.2385685884691849,0.2395626242544732,0.24055666003976145,0.24155069582504973,0.242544731610338,0.24353876739562627,0.24453280318091455,0.2455268389662028,0.2465208747514911,0.24751491053677935,0.24850894632206763,0.2495029821073559,0.25049701789264417,0.25149105367793245,0.2524850894632207,0.25347912524850896,0.25447316103379725,0.25546719681908553,0.2564612326043738,0.2574552683896621,0.2584493041749504,0.2594433399602386,0.2604373757455269,0.26143141153081517,0.26242544731610346,0.2634194831013917,0.26441351888667997,0.26540755467196825,0.26640159045725653,0.2673956262425448,0.26838966202783304,0.2693836978131213,0.2703777335984096,0.2713717693836979,0.2723658051689861,0.2733598409542744,0.2743538767395627,0.27534791252485097,0.2763419483101392,0.2773359840954275,0.27833001988071576,0.27932405566600405,0.28031809145129233,0.28131212723658056,0.28230616302186884,0.2833001988071571,0.2842942345924454,0.28528827037773363,0.2862823061630219,0.2872763419483102,0.2882703777335985,0.2892644135188867,0.290258449304175,0.2912524850894633,0.29224652087475156,0.29324055666003984,0.29423459244532807,0.29522862823061635,0.29622266401590464,0.2972166998011929,0.29821073558648115,0.29920477137176943,0.3001988071570577,0.301192842942346,0.3021868787276343,0.3031809145129225,0.3041749502982108,0.30516898608349907,0.30616302186878736,0.3071570576540756,0.30815109343936387,0.30914512922465215,0.31013916500994043,0.31113320079522866,0.31212723658051694,0.3131212723658052,0.3141153081510935,0.3151093439363818,0.31610337972167,0.3170974155069583,0.3180914512922466,0.31908548707753487,0.3200795228628231,0.3210735586481114,0.32206759443339966,0.32306163021868795,0.3240556660039762,0.32504970178926446,0.32604373757455274,0.327037773359841,0.3280318091451293,0.32902584493041753,0.3300198807157058,0.3310139165009941,0.3320079522862824,0.3330019880715706,0.3339960238568589,0.3349900596421472,0.33598409542743546,0.33697813121272374,0.33797216699801197,0.33896620278330025,0.33996023856858854,0.3409542743538768,0.34194831013916505,0.34294234592445333,0.3439363817097416,0.3449304174950299,0.3459244532803181,0.3469184890656064,0.3479125248508947,0.34890656063618297,0.34990059642147125,0.3508946322067595,0.35188866799204777,0.35288270377733605,0.35387673956262433,0.35487077534791256,0.35586481113320084,0.3568588469184891,0.3578528827037774,0.35884691848906564,0.3598409542743539,0.3608349900596422,0.3618290258449305,0.36282306163021877,0.363817097415507,0.3648111332007953,0.36580516898608356,0.36679920477137185,0.3677932405566601,0.36878727634194836,0.36978131212723664,0.3707753479125249,0.3717693836978132,0.37276341948310143,0.3737574552683897,0.374751491053678,0.3757455268389663,0.3767395626242545,0.3777335984095428,0.3787276341948311,0.37972166998011936,0.3807157057654076,0.38170974155069587,0.38270377733598415,0.38369781312127244,0.3846918489065607,0.38568588469184895,0.38667992047713723,0.3876739562624255,0.3886679920477138,0.389662027833002,0.3906560636182903,0.3916500994035786,0.39264413518886687,0.3936381709741551,0.3946322067594434,0.39562624254473167,0.39662027833001995,0.39761431411530823,0.39860834990059646,0.39960238568588474,0.400596421471173,0.4015904572564613,0.40258449304174954,0.4035785288270378,0.4045725646123261,0.4055666003976144,0.40656063618290267,0.4075546719681909,0.4085487077534792,0.40954274353876746,0.41053677932405575,0.411530815109344,0.41252485089463226,0.41351888667992054,0.4145129224652088,0.41550695825049705,0.41650099403578533,0.4174950298210736,0.4184890656063619,0.4194831013916502,0.4204771371769384,0.4214711729622267,0.422465208747515,0.42345924453280326,0.4244532803180915,0.42544731610337977,0.42644135188866805,0.42743538767395634,0.42842942345924456,0.42942345924453285,0.43041749502982113,0.4314115308151094,0.4324055666003977,0.4333996023856859,0.4343936381709742,0.4353876739562625,0.43638170974155077,0.437375745526839,0.4383697813121273,0.43936381709741557,0.44035785288270385,0.44135188866799213,0.44234592445328036,0.44333996023856864,0.4443339960238569,0.4453280318091452,0.44632206759443344,0.4473161033797217,0.44831013916501,0.4493041749502983,0.4502982107355865,0.4512922465208748,0.4522862823061631,0.45328031809145136,0.45427435387673964,0.4552683896620279,0.45626242544731616,0.45725646123260444,0.4582504970178927,0.45924453280318095,0.46023856858846923,0.4612326043737575,0.4622266401590458,0.463220675944334,0.4642147117296223,0.4652087475149106,0.4662027833001989,0.46719681908548716,0.4681908548707754,0.46918489065606367,0.47017892644135195,0.47117296222664024,0.47216699801192846,0.47316103379721675,0.47415506958250503,0.4751491053677933,0.4761431411530816,0.4771371769383698,0.4781312127236581,0.4791252485089464,0.48011928429423467,0.4811133200795229,0.4821073558648112,0.48310139165009947,0.48409542743538775,0.485089463220676,0.48608349900596426,0.48707753479125254,0.4880715705765408,0.4890656063618291,0.49005964214711734,0.49105367793240556,0.49204771371769385,0.49304174950298213,0.49403578528827036,0.49502982107355864,0.4960238568588469,0.4970178926441352,0.49801192842942343,0.4990059642147117,0.5,0.5009940357852882,0.5019880715705766,0.5029821073558648,0.5039761431411531,0.5049701789264414,0.5059642147117296,0.5069582504970179,0.5079522862823062,0.5089463220675944,0.5099403578528827,0.510934393638171,0.5119284294234593,0.5129224652087475,0.5139165009940357,0.5149105367793241,0.5159045725646123,0.5168986083499006,0.5178926441351889,0.5188866799204771,0.5198807157057654,0.5208747514910537,0.5218687872763419,0.5228628230616302,0.5238568588469185,0.5248508946322068,0.525844930417495,0.5268389662027833,0.5278330019880716,0.5288270377733598,0.5298210735586482,0.5308151093439364,0.5318091451292246,0.532803180914513,0.5337972166998012,0.5347912524850894,0.5357852882703777,0.536779324055666,0.5377733598409543,0.5387673956262425,0.5397614314115308,0.5407554671968191,0.5417495029821073,0.5427435387673957,0.5437375745526839,0.5447316103379721,0.5457256461232605,0.5467196819085487,0.547713717693837,0.5487077534791253,0.5497017892644135,0.5506958250497018,0.55168986083499,0.5526838966202783,0.5536779324055666,0.5546719681908548,0.5556660039761432,0.5566600397614314,0.5576540755467196,0.558648111332008,0.5596421471172962,0.5606361829025845,0.5616302186878728,0.562624254473161,0.5636182902584493,0.5646123260437376,0.5656063618290258,0.5666003976143141,0.5675944333996024,0.5685884691848907,0.5695825049701789,0.5705765407554672,0.5715705765407555,0.5725646123260437,0.5735586481113321,0.5745526838966203,0.5755467196819085,0.5765407554671969,0.5775347912524851,0.5785288270377733,0.5795228628230616,0.5805168986083499,0.5815109343936382,0.5825049701789264,0.5834990059642147,0.584493041749503,0.5854870775347912,0.5864811133200796,0.5874751491053678,0.588469184890656,0.5894632206759444,0.5904572564612326,0.5914512922465208,0.5924453280318092,0.5934393638170974,0.5944333996023857,0.595427435387674,0.5964214711729622,0.5974155069582505,0.5984095427435387,0.5994035785288271,0.6003976143141153,0.6013916500994035,0.6023856858846919,0.6033797216699801,0.6043737574552683,0.6053677932405567,0.6063618290258449,0.6073558648111332,0.6083499005964215,0.6093439363817097,0.610337972166998,0.6113320079522863,0.6123260437375746,0.6133200795228628,0.614314115308151,0.6153081510934394,0.6163021868787276,0.617296222664016,0.6182902584493042,0.6192842942345924,0.6202783300198808,0.621272365805169,0.6222664015904572,0.6232604373757455,0.6242544731610338,0.6252485089463221,0.6262425447316103,0.6272365805168986,0.6282306163021869,0.6292246520874751,0.6302186878727635,0.6312127236580517,0.6322067594433399,0.6332007952286283,0.6341948310139165,0.6351888667992047,0.6361829025844931,0.6371769383697813,0.6381709741550696,0.6391650099403579,0.6401590457256461,0.6411530815109344,0.6421471172962226,0.643141153081511,0.6441351888667992,0.6451292246520874,0.6461232604373758,0.647117296222664,0.6481113320079522,0.6491053677932406,0.6500994035785288,0.6510934393638171,0.6520874751491054,0.6530815109343936,0.6540755467196819,0.6550695825049702,0.6560636182902585,0.6570576540755467,0.658051689860835,0.6590457256461233,0.6600397614314115,0.6610337972166997,0.6620278330019881,0.6630218687872763,0.6640159045725647,0.6650099403578529,0.6660039761431411,0.6669980119284294,0.6679920477137177,0.668986083499006,0.6699801192842942,0.6709741550695825,0.6719681908548708,0.672962226640159,0.6739562624254473,0.6749502982107356,0.6759443339960238,0.6769383697813122,0.6779324055666004,0.6789264413518886,0.679920477137177,0.6809145129224652,0.6819085487077535,0.6829025844930418,0.68389662027833,0.6848906560636183,0.6858846918489065,0.6868787276341949,0.6878727634194831,0.6888667992047713,0.6898608349900597,0.6908548707753479,0.6918489065606361,0.6928429423459245,0.6938369781312127,0.694831013916501,0.6958250497017893,0.6968190854870775,0.6978131212723658,0.6988071570576541,0.6998011928429424,0.7007952286282306,0.7017892644135189,0.7027833001988072,0.7037773359840954,0.7047713717693836,0.705765407554672,0.7067594433399602,0.7077534791252486,0.7087475149105368,0.709741550695825,0.7107355864811133,0.7117296222664016,0.7127236580516899,0.7137176938369781,0.7147117296222664,0.7157057654075547,0.7166998011928429,0.7176938369781312,0.7186878727634195,0.7196819085487077,0.7206759443339961,0.7216699801192843,0.7226640159045725,0.7236580516898609,0.7246520874751491,0.7256461232604374,0.7266401590457257,0.7276341948310139,0.7286282306163022,0.7296222664015904,0.7306163021868787,0.731610337972167,0.7326043737574552,0.7335984095427436,0.7345924453280318,0.73558648111332,0.7365805168986084,0.7375745526838966,0.7385685884691849,0.7395626242544732,0.7405566600397614,0.7415506958250497,0.742544731610338,0.7435387673956262,0.7445328031809145,0.7455268389662028,0.7465208747514911,0.7475149105367793,0.7485089463220675,0.7495029821073559,0.7504970178926441,0.7514910536779325,0.7524850894632207,0.7534791252485089,0.7544731610337972,0.7554671968190855,0.7564612326043738,0.757455268389662,0.7584493041749503,0.7594433399602386,0.7604373757455268,0.7614314115308151,0.7624254473161034,0.7634194831013916,0.76441351888668,0.7654075546719682,0.7664015904572564,0.7673956262425448,0.768389662027833,0.7693836978131213,0.7703777335984096,0.7713717693836978,0.7723658051689861,0.7733598409542743,0.7743538767395626,0.7753479125248509,0.7763419483101391,0.7773359840954275,0.7783300198807157,0.7793240556660039,0.7803180914512923,0.7813121272365805,0.7823061630218688,0.7833001988071571,0.7842942345924453,0.7852882703777336,0.7862823061630219,0.7872763419483101,0.7882703777335984,0.7892644135188867,0.790258449304175,0.7912524850894632,0.7922465208747514,0.7932405566600398,0.794234592445328,0.7952286282306164,0.7962226640159046,0.7972166998011928,0.7982107355864811,0.7992047713717694,0.8001988071570576,0.8011928429423459,0.8021868787276342,0.8031809145129225,0.8041749502982107,0.805168986083499,0.8061630218687873,0.8071570576540755,0.8081510934393639,0.8091451292246521,0.8101391650099403,0.8111332007952287,0.8121272365805169,0.8131212723658051,0.8141153081510935,0.8151093439363817,0.81610337972167,0.8170974155069582,0.8180914512922465,0.8190854870775348,0.820079522862823,0.8210735586481114,0.8220675944333996,0.8230616302186878,0.8240556660039762,0.8250497017892644,0.8260437375745527,0.827037773359841,0.8280318091451292,0.8290258449304175,0.8300198807157058,0.831013916500994,0.8320079522862823,0.8330019880715706,0.8339960238568589,0.8349900596421471,0.8359840954274353,0.8369781312127237,0.8379721669980119,0.8389662027833003,0.8399602385685885,0.8409542743538767,0.841948310139165,0.8429423459244533,0.8439363817097415,0.8449304174950298,0.8459244532803181,0.8469184890656064,0.8479125248508946,0.8489065606361829,0.8499005964214712,0.8508946322067594,0.8518886679920478,0.852882703777336,0.8538767395626242,0.8548707753479126,0.8558648111332008,0.856858846918489,0.8578528827037774,0.8588469184890656,0.8598409542743539,0.8608349900596421,0.8618290258449304,0.8628230616302187,0.8638170974155069,0.8648111332007953,0.8658051689860835,0.8667992047713717,0.8677932405566601,0.8687872763419483,0.8697813121272365,0.8707753479125249,0.8717693836978131,0.8727634194831014,0.8737574552683897,0.8747514910536779,0.8757455268389662,0.8767395626242545,0.8777335984095428,0.878727634194831,0.8797216699801192,0.8807157057654076,0.8817097415506958,0.882703777335984,0.8836978131212724,0.8846918489065606,0.885685884691849,0.8866799204771372,0.8876739562624254,0.8886679920477137,0.889662027833002,0.8906560636182903,0.8916500994035785,0.8926441351888668,0.8936381709741551,0.8946322067594433,0.8956262425447317,0.8966202783300199,0.8976143141153081,0.8986083499005965,0.8996023856858847,0.9005964214711729,0.9015904572564613,0.9025844930417495,0.9035785288270378,0.904572564612326,0.9055666003976143,0.9065606361829026,0.9075546719681908,0.9085487077534792,0.9095427435387674,0.9105367793240556,0.911530815109344,0.9125248508946322,0.9135188866799204,0.9145129224652088,0.915506958250497,0.9165009940357853,0.9174950298210736,0.9184890656063618,0.9194831013916501,0.9204771371769384,0.9214711729622267,0.9224652087475149,0.9234592445328031,0.9244532803180915,0.9254473161033797,0.9264413518886679,0.9274353876739563,0.9284294234592445,0.9294234592445328,0.9304174950298211,0.9314115308151093,0.9324055666003976,0.9333996023856859,0.9343936381709742,0.9353876739562624,0.9363817097415507,0.937375745526839,0.9383697813121272,0.9393638170974155,0.9403578528827038,0.941351888667992,0.9423459244532804,0.9433399602385686,0.9443339960238568,0.9453280318091452,0.9463220675944334,0.9473161033797217,0.94831013916501,0.9493041749502982,0.9502982107355865,0.9512922465208747,0.952286282306163,0.9532803180914513,0.9542743538767395,0.9552683896620279,0.9562624254473161,0.9572564612326043,0.9582504970178927,0.9592445328031809,0.9602385685884692,0.9612326043737575,0.9622266401590457,0.963220675944334,0.9642147117296223,0.9652087475149106,0.9662027833001988,0.967196819085487,0.9681908548707754,0.9691848906560636,0.9701789264413518,0.9711729622266402,0.9721669980119284,0.9731610337972167,0.974155069582505,0.9751491053677932,0.9761431411530815,0.9771371769383698,0.9781312127236581,0.9791252485089463,0.9801192842942346,0.9811133200795229,0.9821073558648111,0.9831013916500994,0.9840954274353877,0.9850894632206759,0.9860834990059643,0.9870775347912525,0.9880715705765407,0.989065606361829,0.9900596421471173,0.9910536779324056,0.9920477137176938,0.9930417495029821,0.9940357852882704,0.9950298210735586,0.9960238568588469,0.9970178926441352,0.9980119284294234,0.9990059642147118,1.0]}
+},{}],55:[function(require,module,exports){
+module.exports={"expected":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"x":[-5.551115123125783e-17,-5.540079108964499e-17,-5.529043094803215e-17,-5.5180070806419313e-17,-5.506971066480647e-17,-5.495935052319363e-17,-5.484899038158079e-17,-5.473863023996796e-17,-5.462827009835512e-17,-5.451790995674228e-17,-5.440754981512944e-17,-5.4297189673516605e-17,-5.4186829531903765e-17,-5.4076469390290925e-17,-5.3966109248678085e-17,-5.3855749107065245e-17,-5.374538896545241e-17,-5.363502882383957e-17,-5.352466868222673e-17,-5.341430854061389e-17,-5.330394839900106e-17,-5.319358825738822e-17,-5.308322811577538e-17,-5.297286797416254e-17,-5.28625078325497e-17,-5.2752147690936863e-17,-5.2641787549324023e-17,-5.2531427407711183e-17,-5.2421067266098343e-17,-5.231070712448551e-17,-5.220034698287267e-17,-5.208998684125983e-17,-5.197962669964699e-17,-5.1869266558034155e-17,-5.1758906416421315e-17,-5.1648546274808475e-17,-5.1538186133195635e-17,-5.1427825991582795e-17,-5.131746584996996e-17,-5.120710570835712e-17,-5.109674556674428e-17,-5.098638542513144e-17,-5.087602528351861e-17,-5.076566514190577e-17,-5.065530500029293e-17,-5.054494485868009e-17,-5.0434584717067253e-17,-5.0324224575454413e-17,-5.0213864433841573e-17,-5.0103504292228733e-17,-4.9993144150615893e-17,-4.988278400900306e-17,-4.977242386739022e-17,-4.966206372577738e-17,-4.955170358416454e-17,-4.9441343442551705e-17,-4.9330983300938865e-17,-4.9220623159326025e-17,-4.9110263017713185e-17,-4.8999902876100345e-17,-4.888954273448751e-17,-4.877918259287467e-17,-4.866882245126183e-17,-4.855846230964899e-17,-4.844810216803616e-17,-4.833774202642332e-17,-4.822738188481048e-17,-4.811702174319764e-17,-4.8006661601584803e-17,-4.7896301459971963e-17,-4.7785941318359123e-17,-4.7675581176746283e-17,-4.7565221035133443e-17,-4.745486089352061e-17,-4.734450075190777e-17,-4.723414061029493e-17,-4.712378046868209e-17,-4.7013420327069256e-17,-4.6903060185456416e-17,-4.6792700043843575e-17,-4.6682339902230735e-17,-4.65719797606179e-17,-4.646161961900506e-17,-4.635125947739222e-17,-4.624089933577938e-17,-4.613053919416654e-17,-4.602017905255371e-17,-4.590981891094087e-17,-4.579945876932803e-17,-4.568909862771519e-17,-4.5578738486102354e-17,-4.5468378344489514e-17,-4.5358018202876674e-17,-4.5247658061263834e-17,-4.5137297919650993e-17,-4.502693777803816e-17,-4.491657763642532e-17,-4.480621749481248e-17,-4.469585735319964e-17,-4.4585497211586806e-17,-4.4475137069973966e-17,-4.4364776928361126e-17,-4.4254416786748286e-17,-4.414405664513545e-17,-4.403369650352261e-17,-4.392333636190977e-17,-4.381297622029693e-17,-4.370261607868409e-17,-4.359225593707126e-17,-4.348189579545842e-17,-4.337153565384558e-17,-4.326117551223274e-17,-4.3150815370619904e-17,-4.3040455229007064e-17,-4.2930095087394224e-17,-4.2819734945781384e-17,-4.270937480416855e-17,-4.259901466255571e-17,-4.248865452094287e-17,-4.237829437933003e-17,-4.226793423771719e-17,-4.2157574096104356e-17,-4.2047213954491516e-17,-4.1936853812878676e-17,-4.1826493671265836e-17,-4.1716133529653e-17,-4.160577338804016e-17,-4.149541324642732e-17,-4.138505310481448e-17,-4.127469296320164e-17,-4.116433282158881e-17,-4.105397267997597e-17,-4.094361253836313e-17,-4.083325239675029e-17,-4.0722892255137454e-17,-4.0612532113524614e-17,-4.0502171971911774e-17,-4.0391811830298934e-17,-4.02814516886861e-17,-4.017109154707326e-17,-4.006073140546042e-17,-3.995037126384758e-17,-3.984001112223474e-17,-3.9729650980621906e-17,-3.9619290839009066e-17,-3.9508930697396226e-17,-3.9398570555783386e-17,-3.928821041417055e-17,-3.917785027255771e-17,-3.906749013094487e-17,-3.895712998933203e-17,-3.88467698477192e-17,-3.873640970610636e-17,-3.862604956449352e-17,-3.851568942288068e-17,-3.840532928126784e-17,-3.8294969139655004e-17,-3.8184608998042164e-17,-3.8074248856429324e-17,-3.7963888714816484e-17,-3.785352857320365e-17,-3.774316843159081e-17,-3.763280828997797e-17,-3.752244814836513e-17,-3.741208800675229e-17,-3.7301727865139456e-17,-3.7191367723526616e-17,-3.7081007581913776e-17,-3.6970647440300936e-17,-3.68602872986881e-17,-3.674992715707526e-17,-3.663956701546242e-17,-3.652920687384958e-17,-3.641884673223675e-17,-3.630848659062391e-17,-3.619812644901107e-17,-3.608776630739823e-17,-3.597740616578539e-17,-3.5867046024172554e-17,-3.5756685882559714e-17,-3.5646325740946874e-17,-3.5535965599334034e-17,-3.54256054577212e-17,-3.531524531610836e-17,-3.520488517449552e-17,-3.509452503288268e-17,-3.4984164891269846e-17,-3.4873804749657006e-17,-3.4763444608044166e-17,-3.4653084466431326e-17,-3.4542724324818486e-17,-3.443236418320565e-17,-3.432200404159281e-17,-3.421164389997997e-17,-3.410128375836713e-17,-3.39909236167543e-17,-3.388056347514146e-17,-3.377020333352862e-17,-3.365984319191578e-17,-3.354948305030294e-17,-3.3439122908690104e-17,-3.3328762767077264e-17,-3.3218402625464424e-17,-3.3108042483851584e-17,-3.299768234223875e-17,-3.288732220062591e-17,-3.277696205901307e-17,-3.266660191740023e-17,-3.2556241775787396e-17,-3.2445881634174556e-17,-3.2335521492561716e-17,-3.2225161350948876e-17,-3.2114801209336036e-17,-3.20044410677232e-17,-3.189408092611036e-17,-3.178372078449752e-17,-3.167336064288468e-17,-3.156300050127185e-17,-3.145264035965901e-17,-3.134228021804617e-17,-3.123192007643333e-17,-3.1121559934820494e-17,-3.1011199793207654e-17,-3.0900839651594814e-17,-3.0790479509981974e-17,-3.0680119368369134e-17,-3.05697592267563e-17,-3.045939908514346e-17,-3.034903894353062e-17,-3.023867880191778e-17,-3.0128318660304946e-17,-3.0017958518692106e-17,-2.9907598377079266e-17,-2.9797238235466426e-17,-2.9686878093853586e-17,-2.957651795224075e-17,-2.946615781062791e-17,-2.935579766901507e-17,-2.924543752740223e-17,-2.91350773857894e-17,-2.902471724417656e-17,-2.891435710256372e-17,-2.880399696095088e-17,-2.8693636819338045e-17,-2.8583276677725205e-17,-2.8472916536112364e-17,-2.8362556394499524e-17,-2.8252196252886684e-17,-2.814183611127385e-17,-2.803147596966101e-17,-2.792111582804817e-17,-2.781075568643533e-17,-2.7700395544822493e-17,-2.7590035403209657e-17,-2.7479675261596817e-17,-2.736931511998398e-17,-2.725895497837114e-17,-2.7148594836758303e-17,-2.7038234695145463e-17,-2.6927874553532623e-17,-2.6817514411919786e-17,-2.6707154270306946e-17,-2.659679412869411e-17,-2.648643398708127e-17,-2.6376073845468432e-17,-2.6265713703855592e-17,-2.6155353562242755e-17,-2.6044993420629915e-17,-2.5934633279017078e-17,-2.5824273137404238e-17,-2.5713912995791398e-17,-2.560355285417856e-17,-2.549319271256572e-17,-2.5382832570952884e-17,-2.5272472429340044e-17,-2.5162112287727207e-17,-2.5051752146114367e-17,-2.494139200450153e-17,-2.483103186288869e-17,-2.4720671721275853e-17,-2.4610311579663013e-17,-2.4499951438050173e-17,-2.4389591296437336e-17,-2.4279231154824496e-17,-2.416887101321166e-17,-2.405851087159882e-17,-2.3948150729985982e-17,-2.3837790588373142e-17,-2.3727430446760305e-17,-2.3617070305147465e-17,-2.3506710163534628e-17,-2.3396350021921788e-17,-2.328598988030895e-17,-2.317562973869611e-17,-2.306526959708327e-17,-2.2954909455470434e-17,-2.2844549313857594e-17,-2.2734189172244757e-17,-2.2623829030631917e-17,-2.251346888901908e-17,-2.240310874740624e-17,-2.2292748605793403e-17,-2.2182388464180563e-17,-2.2072028322567726e-17,-2.1961668180954886e-17,-2.1851308039342046e-17,-2.174094789772921e-17,-2.163058775611637e-17,-2.1520227614503532e-17,-2.1409867472890692e-17,-2.1299507331277855e-17,-2.1189147189665015e-17,-2.1078787048052178e-17,-2.0968426906439338e-17,-2.08580667648265e-17,-2.074770662321366e-17,-2.063734648160082e-17,-2.0526986339987984e-17,-2.0416626198375144e-17,-2.0306266056762307e-17,-2.0195905915149467e-17,-2.008554577353663e-17,-1.997518563192379e-17,-1.9864825490310953e-17,-1.9754465348698113e-17,-1.9644105207085276e-17,-1.9533745065472436e-17,-1.94233849238596e-17,-1.931302478224676e-17,-1.920266464063392e-17,-1.9092304499021082e-17,-1.8981944357408242e-17,-1.8871584215795405e-17,-1.8761224074182565e-17,-1.8650863932569728e-17,-1.8540503790956888e-17,-1.843014364934405e-17,-1.831978350773121e-17,-1.8209423366118374e-17,-1.8099063224505534e-17,-1.7988703082892694e-17,-1.7878342941279857e-17,-1.7767982799667017e-17,-1.765762265805418e-17,-1.754726251644134e-17,-1.7436902374828503e-17,-1.7326542233215663e-17,-1.7216182091602826e-17,-1.7105821949989986e-17,-1.699546180837715e-17,-1.688510166676431e-17,-1.677474152515147e-17,-1.6664381383538632e-17,-1.6554021241925792e-17,-1.6443661100312955e-17,-1.6333300958700115e-17,-1.6222940817087278e-17,-1.6112580675474438e-17,-1.60022205338616e-17,-1.589186039224876e-17,-1.5781500250635924e-17,-1.5671140109023084e-17,-1.5560779967410247e-17,-1.5450419825797407e-17,-1.5340059684184567e-17,-1.522969954257173e-17,-1.511933940095889e-17,-1.5008979259346053e-17,-1.4898619117733213e-17,-1.4788258976120376e-17,-1.4677898834507536e-17,-1.45675386928947e-17,-1.445717855128186e-17,-1.4346818409669022e-17,-1.4236458268056182e-17,-1.4126098126443342e-17,-1.4015737984830505e-17,-1.3905377843217665e-17,-1.3795017701604828e-17,-1.368465755999199e-17,-1.3574297418379151e-17,-1.3463937276766311e-17,-1.3353577135153473e-17,-1.3243216993540634e-17,-1.3132856851927796e-17,-1.3022496710314957e-17,-1.2912136568702119e-17,-1.280177642708928e-17,-1.2691416285476442e-17,-1.2581056143863603e-17,-1.2470696002250765e-17,-1.2360335860637926e-17,-1.2249975719025086e-17,-1.2139615577412248e-17,-1.202925543579941e-17,-1.1918895294186571e-17,-1.1808535152573732e-17,-1.1698175010960894e-17,-1.1587814869348055e-17,-1.1477454727735217e-17,-1.1367094586122378e-17,-1.125673444450954e-17,-1.1146374302896701e-17,-1.1036014161283863e-17,-1.0925654019671023e-17,-1.0815293878058184e-17,-1.0704933736445346e-17,-1.0594573594832507e-17,-1.0484213453219669e-17,-1.037385331160683e-17,-1.0263493169993992e-17,-1.0153133028381153e-17,-1.0042772886768315e-17,-9.932412745155476e-18,-9.822052603542638e-18,-9.7116924619298e-18,-9.60133232031696e-18,-9.490972178704121e-18,-9.380612037091282e-18,-9.270251895478444e-18,-9.159891753865606e-18,-9.049531612252767e-18,-8.939171470639929e-18,-8.82881132902709e-18,-8.718451187414252e-18,-8.608091045801413e-18,-8.497730904188575e-18,-8.387370762575735e-18,-8.277010620962896e-18,-8.166650479350058e-18,-8.056290337737219e-18,-7.94593019612438e-18,-7.835570054511542e-18,-7.725209912898704e-18,-7.614849771285865e-18,-7.504489629673027e-18,-7.394129488060188e-18,-7.28376934644735e-18,-7.173409204834511e-18,-7.063049063221671e-18,-6.952688921608833e-18,-6.842328779995995e-18,-6.731968638383156e-18,-6.621608496770317e-18,-6.511248355157479e-18,-6.40088821354464e-18,-6.290528071931802e-18,-6.180167930318963e-18,-6.069807788706124e-18,-5.9594476470932854e-18,-5.849087505480447e-18,-5.7387273638676084e-18,-5.62836722225477e-18,-5.5180070806419315e-18,-5.407646939029092e-18,-5.297286797416254e-18,-5.186926655803415e-18,-5.076566514190577e-18,-4.966206372577738e-18,-4.8558462309649e-18,-4.7454860893520605e-18,-4.635125947739222e-18,-4.5247658061263835e-18,-4.414405664513545e-18,-4.3040455229007065e-18,-4.193685381287867e-18,-4.083325239675029e-18,-3.97296509806219e-18,-3.862604956449352e-18,-3.752244814836513e-18,-3.641884673223675e-18,-3.5315245316108356e-18,-3.4211643899979974e-18,-3.3108042483851586e-18,-3.20044410677232e-18,-3.0900839651594816e-18,-2.9797238235466427e-18,-2.8693636819338042e-18,-2.7590035403209657e-18,-2.648643398708127e-18,-2.5382832570952884e-18,-2.42792311548245e-18,-2.317562973869611e-18,-2.2072028322567725e-18,-2.0968426906439336e-18,-1.986482549031095e-18,-1.8761224074182567e-18,-1.7657622658054178e-18,-1.6554021241925793e-18,-1.5450419825797408e-18,-1.4346818409669021e-18,-1.3243216993540634e-18,-1.213961557741225e-18,-1.1036014161283863e-18,-9.932412745155476e-19,-8.828811329027089e-19,-7.725209912898704e-19,-6.621608496770317e-19,-5.518007080641931e-19,-4.414405664513544e-19,-3.3108042483851586e-19,-2.207202832256772e-19,-1.103601416128386e-19,0.0,1.103601416128386e-19,2.207202832256772e-19,3.3108042483851586e-19,4.414405664513544e-19,5.518007080641931e-19,6.621608496770317e-19,7.725209912898704e-19,8.828811329027089e-19,9.932412745155476e-19,1.1036014161283863e-18,1.213961557741225e-18,1.3243216993540634e-18,1.4346818409669021e-18,1.5450419825797408e-18,1.6554021241925793e-18,1.7657622658054178e-18,1.8761224074182567e-18,1.986482549031095e-18,2.0968426906439336e-18,2.2072028322567725e-18,2.317562973869611e-18,2.42792311548245e-18,2.5382832570952884e-18,2.648643398708127e-18,2.7590035403209657e-18,2.8693636819338042e-18,2.9797238235466427e-18,3.0900839651594816e-18,3.20044410677232e-18,3.3108042483851586e-18,3.4211643899979974e-18,3.5315245316108356e-18,3.641884673223675e-18,3.752244814836513e-18,3.862604956449352e-18,3.97296509806219e-18,4.083325239675029e-18,4.193685381287867e-18,4.3040455229007065e-18,4.414405664513545e-18,4.5247658061263835e-18,4.635125947739222e-18,4.7454860893520605e-18,4.8558462309649e-18,4.966206372577738e-18,5.076566514190577e-18,5.186926655803415e-18,5.297286797416254e-18,5.407646939029092e-18,5.5180070806419315e-18,5.62836722225477e-18,5.7387273638676084e-18,5.849087505480447e-18,5.9594476470932854e-18,6.069807788706124e-18,6.180167930318963e-18,6.290528071931802e-18,6.40088821354464e-18,6.511248355157479e-18,6.621608496770317e-18,6.731968638383156e-18,6.842328779995995e-18,6.952688921608833e-18,7.063049063221671e-18,7.173409204834511e-18,7.28376934644735e-18,7.394129488060188e-18,7.504489629673027e-18,7.614849771285865e-18,7.725209912898704e-18,7.835570054511542e-18,7.94593019612438e-18,8.056290337737219e-18,8.166650479350058e-18,8.277010620962896e-18,8.387370762575735e-18,8.497730904188575e-18,8.608091045801413e-18,8.718451187414252e-18,8.82881132902709e-18,8.939171470639929e-18,9.049531612252767e-18,9.159891753865606e-18,9.270251895478444e-18,9.380612037091282e-18,9.490972178704121e-18,9.60133232031696e-18,9.7116924619298e-18,9.822052603542638e-18,9.932412745155476e-18,1.0042772886768315e-17,1.0153133028381153e-17,1.0263493169993992e-17,1.037385331160683e-17,1.0484213453219669e-17,1.0594573594832507e-17,1.0704933736445346e-17,1.0815293878058184e-17,1.0925654019671023e-17,1.1036014161283863e-17,1.1146374302896701e-17,1.125673444450954e-17,1.1367094586122378e-17,1.1477454727735217e-17,1.1587814869348055e-17,1.1698175010960894e-17,1.1808535152573732e-17,1.1918895294186571e-17,1.202925543579941e-17,1.2139615577412248e-17,1.2249975719025086e-17,1.2360335860637926e-17,1.2470696002250765e-17,1.2581056143863603e-17,1.2691416285476442e-17,1.280177642708928e-17,1.2912136568702119e-17,1.3022496710314957e-17,1.3132856851927796e-17,1.3243216993540634e-17,1.3353577135153473e-17,1.3463937276766311e-17,1.3574297418379151e-17,1.368465755999199e-17,1.3795017701604828e-17,1.3905377843217665e-17,1.4015737984830505e-17,1.4126098126443342e-17,1.4236458268056182e-17,1.4346818409669022e-17,1.445717855128186e-17,1.45675386928947e-17,1.4677898834507536e-17,1.4788258976120376e-17,1.4898619117733213e-17,1.5008979259346053e-17,1.511933940095889e-17,1.522969954257173e-17,1.5340059684184567e-17,1.5450419825797407e-17,1.5560779967410247e-17,1.5671140109023084e-17,1.5781500250635924e-17,1.589186039224876e-17,1.60022205338616e-17,1.6112580675474438e-17,1.6222940817087278e-17,1.6333300958700115e-17,1.6443661100312955e-17,1.6554021241925792e-17,1.6664381383538632e-17,1.677474152515147e-17,1.688510166676431e-17,1.699546180837715e-17,1.7105821949989986e-17,1.7216182091602826e-17,1.7326542233215663e-17,1.7436902374828503e-17,1.754726251644134e-17,1.765762265805418e-17,1.7767982799667017e-17,1.7878342941279857e-17,1.7988703082892694e-17,1.8099063224505534e-17,1.8209423366118374e-17,1.831978350773121e-17,1.843014364934405e-17,1.8540503790956888e-17,1.8650863932569728e-17,1.8761224074182565e-17,1.8871584215795405e-17,1.8981944357408242e-17,1.9092304499021082e-17,1.920266464063392e-17,1.931302478224676e-17,1.94233849238596e-17,1.9533745065472436e-17,1.9644105207085276e-17,1.9754465348698113e-17,1.9864825490310953e-17,1.997518563192379e-17,2.008554577353663e-17,2.0195905915149467e-17,2.0306266056762307e-17,2.0416626198375144e-17,2.0526986339987984e-17,2.063734648160082e-17,2.074770662321366e-17,2.08580667648265e-17,2.0968426906439338e-17,2.1078787048052178e-17,2.1189147189665015e-17,2.1299507331277855e-17,2.1409867472890692e-17,2.1520227614503532e-17,2.163058775611637e-17,2.174094789772921e-17,2.1851308039342046e-17,2.1961668180954886e-17,2.2072028322567726e-17,2.2182388464180563e-17,2.2292748605793403e-17,2.240310874740624e-17,2.251346888901908e-17,2.2623829030631917e-17,2.2734189172244757e-17,2.2844549313857594e-17,2.2954909455470434e-17,2.306526959708327e-17,2.317562973869611e-17,2.328598988030895e-17,2.3396350021921788e-17,2.3506710163534628e-17,2.3617070305147465e-17,2.3727430446760305e-17,2.3837790588373142e-17,2.3948150729985982e-17,2.405851087159882e-17,2.416887101321166e-17,2.4279231154824496e-17,2.4389591296437336e-17,2.4499951438050173e-17,2.4610311579663013e-17,2.4720671721275853e-17,2.483103186288869e-17,2.494139200450153e-17,2.5051752146114367e-17,2.5162112287727207e-17,2.5272472429340044e-17,2.5382832570952884e-17,2.549319271256572e-17,2.560355285417856e-17,2.5713912995791398e-17,2.5824273137404238e-17,2.5934633279017078e-17,2.6044993420629915e-17,2.6155353562242755e-17,2.6265713703855592e-17,2.6376073845468432e-17,2.648643398708127e-17,2.659679412869411e-17,2.6707154270306946e-17,2.6817514411919786e-17,2.6927874553532623e-17,2.7038234695145463e-17,2.7148594836758303e-17,2.725895497837114e-17,2.736931511998398e-17,2.7479675261596817e-17,2.7590035403209657e-17,2.7700395544822493e-17,2.781075568643533e-17,2.792111582804817e-17,2.803147596966101e-17,2.814183611127385e-17,2.8252196252886684e-17,2.8362556394499524e-17,2.8472916536112364e-17,2.8583276677725205e-17,2.8693636819338045e-17,2.880399696095088e-17,2.891435710256372e-17,2.902471724417656e-17,2.91350773857894e-17,2.924543752740223e-17,2.935579766901507e-17,2.946615781062791e-17,2.957651795224075e-17,2.9686878093853586e-17,2.9797238235466426e-17,2.9907598377079266e-17,3.0017958518692106e-17,3.0128318660304946e-17,3.023867880191778e-17,3.034903894353062e-17,3.045939908514346e-17,3.05697592267563e-17,3.0680119368369134e-17,3.0790479509981974e-17,3.0900839651594814e-17,3.1011199793207654e-17,3.1121559934820494e-17,3.123192007643333e-17,3.134228021804617e-17,3.145264035965901e-17,3.156300050127185e-17,3.167336064288468e-17,3.178372078449752e-17,3.189408092611036e-17,3.20044410677232e-17,3.2114801209336036e-17,3.2225161350948876e-17,3.2335521492561716e-17,3.2445881634174556e-17,3.2556241775787396e-17,3.266660191740023e-17,3.277696205901307e-17,3.288732220062591e-17,3.299768234223875e-17,3.3108042483851584e-17,3.3218402625464424e-17,3.3328762767077264e-17,3.3439122908690104e-17,3.354948305030294e-17,3.365984319191578e-17,3.377020333352862e-17,3.388056347514146e-17,3.39909236167543e-17,3.410128375836713e-17,3.421164389997997e-17,3.432200404159281e-17,3.443236418320565e-17,3.4542724324818486e-17,3.4653084466431326e-17,3.4763444608044166e-17,3.4873804749657006e-17,3.4984164891269846e-17,3.509452503288268e-17,3.520488517449552e-17,3.531524531610836e-17,3.54256054577212e-17,3.5535965599334034e-17,3.5646325740946874e-17,3.5756685882559714e-17,3.5867046024172554e-17,3.597740616578539e-17,3.608776630739823e-17,3.619812644901107e-17,3.630848659062391e-17,3.641884673223675e-17,3.652920687384958e-17,3.663956701546242e-17,3.674992715707526e-17,3.68602872986881e-17,3.6970647440300936e-17,3.7081007581913776e-17,3.7191367723526616e-17,3.7301727865139456e-17,3.741208800675229e-17,3.752244814836513e-17,3.763280828997797e-17,3.774316843159081e-17,3.785352857320365e-17,3.7963888714816484e-17,3.8074248856429324e-17,3.8184608998042164e-17,3.8294969139655004e-17,3.840532928126784e-17,3.851568942288068e-17,3.862604956449352e-17,3.873640970610636e-17,3.88467698477192e-17,3.895712998933203e-17,3.906749013094487e-17,3.917785027255771e-17,3.928821041417055e-17,3.9398570555783386e-17,3.9508930697396226e-17,3.9619290839009066e-17,3.9729650980621906e-17,3.984001112223474e-17,3.995037126384758e-17,4.006073140546042e-17,4.017109154707326e-17,4.02814516886861e-17,4.0391811830298934e-17,4.0502171971911774e-17,4.0612532113524614e-17,4.0722892255137454e-17,4.083325239675029e-17,4.094361253836313e-17,4.105397267997597e-17,4.116433282158881e-17,4.127469296320164e-17,4.138505310481448e-17,4.149541324642732e-17,4.160577338804016e-17,4.1716133529653e-17,4.1826493671265836e-17,4.1936853812878676e-17,4.2047213954491516e-17,4.2157574096104356e-17,4.226793423771719e-17,4.237829437933003e-17,4.248865452094287e-17,4.259901466255571e-17,4.270937480416855e-17,4.2819734945781384e-17,4.2930095087394224e-17,4.3040455229007064e-17,4.3150815370619904e-17,4.326117551223274e-17,4.337153565384558e-17,4.348189579545842e-17,4.359225593707126e-17,4.370261607868409e-17,4.381297622029693e-17,4.392333636190977e-17,4.403369650352261e-17,4.414405664513545e-17,4.4254416786748286e-17,4.4364776928361126e-17,4.4475137069973966e-17,4.4585497211586806e-17,4.469585735319964e-17,4.480621749481248e-17,4.491657763642532e-17,4.502693777803816e-17,4.5137297919650993e-17,4.5247658061263834e-17,4.5358018202876674e-17,4.5468378344489514e-17,4.5578738486102354e-17,4.568909862771519e-17,4.579945876932803e-17,4.590981891094087e-17,4.602017905255371e-17,4.613053919416654e-17,4.624089933577938e-17,4.635125947739222e-17,4.646161961900506e-17,4.65719797606179e-17,4.6682339902230735e-17,4.6792700043843575e-17,4.6903060185456416e-17,4.7013420327069256e-17,4.712378046868209e-17,4.723414061029493e-17,4.734450075190777e-17,4.745486089352061e-17,4.7565221035133443e-17,4.7675581176746283e-17,4.7785941318359123e-17,4.7896301459971963e-17,4.8006661601584803e-17,4.811702174319764e-17,4.822738188481048e-17,4.833774202642332e-17,4.844810216803616e-17,4.855846230964899e-17,4.866882245126183e-17,4.877918259287467e-17,4.888954273448751e-17,4.8999902876100345e-17,4.9110263017713185e-17,4.9220623159326025e-17,4.9330983300938865e-17,4.9441343442551705e-17,4.955170358416454e-17,4.966206372577738e-17,4.977242386739022e-17,4.988278400900306e-17,4.9993144150615893e-17,5.0103504292228733e-17,5.0213864433841573e-17,5.0324224575454413e-17,5.0434584717067253e-17,5.054494485868009e-17,5.065530500029293e-17,5.076566514190577e-17,5.087602528351861e-17,5.098638542513144e-17,5.109674556674428e-17,5.120710570835712e-17,5.131746584996996e-17,5.1427825991582795e-17,5.1538186133195635e-17,5.1648546274808475e-17,5.1758906416421315e-17,5.1869266558034155e-17,5.197962669964699e-17,5.208998684125983e-17,5.220034698287267e-17,5.231070712448551e-17,5.2421067266098343e-17,5.2531427407711183e-17,5.2641787549324023e-17,5.2752147690936863e-17,5.28625078325497e-17,5.297286797416254e-17,5.308322811577538e-17,5.319358825738822e-17,5.330394839900106e-17,5.341430854061389e-17,5.352466868222673e-17,5.363502882383957e-17,5.374538896545241e-17,5.3855749107065245e-17,5.3966109248678085e-17,5.4076469390290925e-17,5.4186829531903765e-17,5.4297189673516605e-17,5.440754981512944e-17,5.451790995674228e-17,5.462827009835512e-17,5.473863023996796e-17,5.484899038158079e-17,5.495935052319363e-17,5.506971066480647e-17,5.5180070806419313e-17,5.529043094803215e-17,5.540079108964499e-17,5.551115123125783e-17]}
+},{}],56:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -675,9 +1862,9 @@ module.exports={"expected":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,
 var tape = require( 'tape' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var EPS = require( '@stdlib/math/constants/float64-eps' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
+var EPS = require( '@stdlib/constants/math/float64-eps' );
 var exp2 = require( './../lib' );
 
 
@@ -712,8 +1899,8 @@ tape( 'the function accurately computes `2**x` for negative medium numbers', fun
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp2( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -732,8 +1919,8 @@ tape( 'the function accurately computes `2**x` for positive medium numbers', fun
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp2( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -752,8 +1939,8 @@ tape( 'the function accurately computes `2**x` for negative small numbers', func
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp2( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -772,8 +1959,8 @@ tape( 'the function accurately computes `2**x` for positive small numbers', func
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp2( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -792,8 +1979,8 @@ tape( 'the function accurately computes `2**x` for very small `x`', function tes
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp2( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -835,7 +2022,7 @@ tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/special/exp2/test/test.js")
-},{"./../lib":13,"./fixtures/julia/medium_negative.json":14,"./fixtures/julia/medium_positive.json":15,"./fixtures/julia/small_negative.json":16,"./fixtures/julia/small_positive.json":17,"./fixtures/julia/tiny.json":18,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-eps":40,"@stdlib/math/constants/float64-ninf":47,"@stdlib/math/constants/float64-pinf":48,"tape":106}],20:[function(require,module,exports){
+},{"./../lib":48,"./fixtures/julia/medium_negative.json":51,"./fixtures/julia/medium_positive.json":52,"./fixtures/julia/small_negative.json":53,"./fixtures/julia/small_positive.json":54,"./fixtures/julia/tiny.json":55,"@stdlib/constants/math/float64-eps":26,"@stdlib/constants/math/float64-ninf":33,"@stdlib/constants/math/float64-pinf":34,"@stdlib/math/base/assert/is-nan":41,"@stdlib/math/base/special/abs":44,"tape":151}],57:[function(require,module,exports){
 'use strict';
 
 /**
@@ -861,11 +2048,11 @@ tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 * x = ldexp( NaN, -101 );
 * // returns NaN
 *
-* x = ldexp( Number.POSITIVE_INFINITY, 11 );
-* // returns Number.POSITIVE_INFINITY
+* x = ldexp( Infinity, 11 );
+* // returns Infinity
 *
-* x = ldexp( Number.NEGATIVE_INFINITY, -118 );
-* // returns Number.NEGATIVE_INFINITY
+* x = ldexp( -Infinity, -118 );
+* // returns -Infinity
 */
 
 // MODULES //
@@ -877,7 +2064,7 @@ var ldexp = require( './ldexp.js' );
 
 module.exports = ldexp;
 
-},{"./ldexp.js":21}],21:[function(require,module,exports){
+},{"./ldexp.js":58}],58:[function(require,module,exports){
 'use strict';
 
 // NOTES //
@@ -889,19 +2076,19 @@ module.exports = ldexp;
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-var MAX_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent' );
-var MAX_SUBNORMAL_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent-subnormal' );
-var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/math/constants/float64-min-base2-exponent-subnormal' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
+var BIAS = require( '@stdlib/constants/math/float64-exponent-bias' );
+var MAX_EXPONENT = require( '@stdlib/constants/math/float64-max-base2-exponent' );
+var MAX_SUBNORMAL_EXPONENT = require( '@stdlib/constants/math/float64-max-base2-exponent-subnormal' );
+var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/constants/math/float64-min-base2-exponent-subnormal' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 var copysign = require( '@stdlib/math/base/special/copysign' );
-var normalize = require( '@stdlib/math/base/utils/float64-normalize' );
-var floatExp = require( '@stdlib/math/base/utils/float64-exponent' );
-var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
+var normalize = require( '@stdlib/number/float64/base/normalize' );
+var floatExp = require( '@stdlib/number/float64/base/exponent' );
+var toWords = require( '@stdlib/number/float64/base/to-words' );
+var fromWords = require( '@stdlib/number/float64/base/from-words' );
 
 
 // VARIABLES //
@@ -909,8 +2096,14 @@ var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
 // 1/(1<<52) = 1/(2**52) = 1/4503599627370496
 var TWO52_INV = 2.220446049250313e-16;
 
-// Exponent all 0s: 1 00000000000 11111111111111111111
-var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
+// Exponent all 0s: 1 00000000000 11111111111111111111 => 2148532223
+var CLEAR_EXP_MASK = 0x800fffff>>>0; // asm type annotation
+
+// Normalization workspace:
+var FRAC = [ 0.0, 0.0 ]; // WARNING: not thread safe
+
+// High/low words workspace:
+var WORDS = [ 0, 0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -943,17 +2136,15 @@ var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
 * // returns NaN
 *
 * @example
-* var x = ldexp( Number.POSITIVE_INFINITY, 11 );
-* // returns Number.POSITIVE_INFINITY
+* var x = ldexp( Infinity, 11 );
+* // returns Infinity
 *
 * @example
-* var x = ldexp( Number.NEGATIVE_INFINITY, -118 );
-* // returns Number.NEGATIVE_INFINITY
+* var x = ldexp( -Infinity, -118 );
+* // returns -Infinity
 */
 function ldexp( frac, exp ) {
 	var high;
-	var tmp;
-	var w;
 	var m;
 	if (
 		frac === 0.0 || // handles +-0
@@ -963,9 +2154,9 @@ function ldexp( frac, exp ) {
 		return frac;
 	}
 	// Normalize the input fraction:
-	tmp = normalize( frac );
-	frac = tmp[ 0 ];
-	exp += tmp[ 1 ];
+	normalize( FRAC, frac );
+	frac = FRAC[ 0 ];
+	exp += FRAC[ 1 ];
 
 	// Extract the exponent from `frac` and add it to `exp`:
 	exp += floatExp( frac );
@@ -988,8 +2179,8 @@ function ldexp( frac, exp ) {
 		m = 1.0;
 	}
 	// Split the fraction into higher and lower order words:
-	w = toWords( frac );
-	high = w[ 0 ];
+	toWords( WORDS, frac );
+	high = WORDS[ 0 ];
 
 	// Clear the exponent bits within the higher order word:
 	high &= CLEAR_EXP_MASK;
@@ -998,15 +2189,15 @@ function ldexp( frac, exp ) {
 	high |= ((exp+BIAS) << 20);
 
 	// Create a new floating-point number:
-	return m * fromWords( high, w[ 1 ] );
-} // end FUNCTION ldexp()
+	return m * fromWords( high, WORDS[ 1 ] );
+}
 
 
 // EXPORTS //
 
 module.exports = ldexp;
 
-},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/copysign":11,"@stdlib/math/base/utils/float64-exponent":28,"@stdlib/math/base/utils/float64-from-words":30,"@stdlib/math/base/utils/float64-normalize":35,"@stdlib/math/base/utils/float64-to-words":37,"@stdlib/math/constants/float64-exponent-bias":41,"@stdlib/math/constants/float64-max-base2-exponent":44,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":43,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":45,"@stdlib/math/constants/float64-ninf":47,"@stdlib/math/constants/float64-pinf":48}],22:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-exponent-bias":27,"@stdlib/constants/math/float64-max-base2-exponent":30,"@stdlib/constants/math/float64-max-base2-exponent-subnormal":29,"@stdlib/constants/math/float64-min-base2-exponent-subnormal":31,"@stdlib/constants/math/float64-ninf":33,"@stdlib/constants/math/float64-pinf":34,"@stdlib/math/base/assert/is-infinite":39,"@stdlib/math/base/assert/is-nan":41,"@stdlib/math/base/special/copysign":46,"@stdlib/number/float64/base/exponent":61,"@stdlib/number/float64/base/from-words":63,"@stdlib/number/float64/base/normalize":69,"@stdlib/number/float64/base/to-words":72}],59:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -1043,11 +2234,11 @@ module.exports = ldexp;
 * v = round( -0.0 );
 * // returns -0.0
 *
-* v = round( Number.POSITIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
+* v = round( Infinity );
+* // returns Infinity
 *
-* v = round( Number.NEGATIVE_INFINITY );
-* // returns Number.NEGATIVE_INFINITY
+* v = round( -Infinity );
+* // returns -Infinity
 *
 * v = round( NaN );
 * // returns NaN
@@ -1062,7 +2253,7 @@ var round = require( './round.js' );
 
 module.exports = round;
 
-},{"./round.js":23}],23:[function(require,module,exports){
+},{"./round.js":60}],60:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation
@@ -1106,12 +2297,12 @@ module.exports = round;
 * // returns -0.0
 *
 * @example
-* var v = round( Number.POSITIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
+* var v = round( Infinity );
+* // returns Infinity
 *
 * @example
-* var v = round( Number.NEGATIVE_INFINITY );
-* // returns Number.NEGATIVE_INFINITY
+* var v = round( -Infinity );
+* // returns -Infinity
 *
 * @example
 * var v = round( NaN );
@@ -1124,214 +2315,47 @@ var round = Math.round;
 
 module.exports = round;
 
-},{}],24:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* #### Notes
-*
-* * The implementation uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
-*
-*
-* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*
-* @example
-* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*/
-function evalpoly( c, x ) {
-	var p;
-	var i;
-
-	i = c.length;
-	if ( i < 2 || x === 0.0 ) {
-		if ( i === 0 ) {
-			return 0.0;
-		}
-		return c[ 0 ];
-	}
-	i -= 1;
-	p = ( c[ i ] * x ) + c[ i-1 ];
-	i -= 2;
-	while ( i >= 0 ) {
-		p = ( p * x ) + c[ i ];
-		i -= 1;
-	}
-	return p;
-} // end FUNCTION evalpoly()
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],25:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var evalpoly = require( './evalpoly.js' );
-
-
-// MAIN //
-
-/**
-* Generates a function for evaluating a polynomial.
-*
-* #### Notes
-*
-* * The compiled function uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
-*
-*
-* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
-* @returns {Function} function for evaluating a polynomial
-*
-* @example
-* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
-*
-* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*
-* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
-* // returns 38.0
-*/
-function factory( c ) {
-	var f;
-	var n;
-	var m;
-	var i;
-
-	// Avoid exceeding the maximum stack size on V8 :(. Note that the choice of `500` was empirically determined...
-	if ( c.length > 500 ) {
-		return polyval;
-	}
-	// Code generation. Start with the function definition...
-	f = 'return function evalpoly(x){';
-
-	// Create the function body...
-	n = c.length;
-
-	// If no coefficients, the function always returns 0...
-	if ( n === 0 ) {
-		f += 'return 0.0;';
-	}
-	// If only one coefficient, the function always returns that coefficient...
-	else if ( n === 1 ) {
-		f += 'return ' + c[ 0 ] + ';';
-	}
-	// If more than one coefficient, apply Horner's method...
-	else {
-		// If `x == 0`, return the first coefficient...
-		f += 'if(x===0.0){return ' + c[ 0 ] + ';}';
-
-		// Otherwise, evaluate the polynomial...
-		f += 'return ' + c[ 0 ];
-		m = n - 1;
-		for ( i = 1; i < n; i++ ) {
-			f += '+x*';
-			if ( i < m ) {
-				f += '(';
-			}
-			f += c[ i ];
-		}
-		// Close all the parentheses...
-		for ( i = 0; i < m-1; i++ ) {
-			f += ')';
-		}
-		f += ';';
-	}
-	// Close the function:
-	f += '}';
-
-	// Add a source directive for debugging:
-	f += '//# sourceURL=evalpoly.factory.js';
-
-	// Create the function in the global scope:
-	return ( new Function( f ) )(); // eslint-disable-line no-new-func
-
-	/*
-	* returns
-	*    function evalpoly( x ) {
-	*        if ( x === 0.0 ) {
-	*            return c[ 0 ];
-	*        }
-	*        return c[0]+x*(c[1]+x*(c[2]+x*(c[3]+...+x*(c[n-2]+x*c[n-1]))));
-	*    }
-	*/
-
-	/**
-	* Evaluates a polynomial.
-	*
-	* @private
-	* @param {number} x - value at which to evaluate a polynomial
-	* @returns {number} evaluated polynomial
-	*/
-	function polyval( x ) {
-		return evalpoly( c, x );
-	} // end FUNCTON polyval()
-} // end FUNCTION factory()
-
-
-// EXPORTS //
-
-module.exports = factory;
-
-},{"./evalpoly.js":24}],26:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 'use strict';
 
 /**
-* Evaluate a polynomial.
+* Return an integer corresponding to the unbiased exponent of a double-precision floating-point number.
 *
-* @module @stdlib/math/base/tools/evalpoly
-*
-* @example
-* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
-*
-* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
+* @module @stdlib/number/float64/base/exponent
 *
 * @example
-* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
+* var exponent = require( '@stdlib/number/float64/base/exponent );
 *
-* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
+* var exp = exponent( 3.14e-307 ); // => 2**-1019 ~ 1e-307
+* // returns -1019
 *
-* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
+* exp = exponent( -3.14 );
+* // returns 1
 *
-* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
-* // returns 38.0
+* exp = exponent( 0.0 );
+* // returns 0
+*
+* exp = exponent( NaN );
+* // returns 1024
 */
 
 // MODULES //
 
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var evalpoly = require( './evalpoly.js' );
-var factory = require( './factory.js' );
-
-
-// MAIN //
-
-setReadOnly( evalpoly, 'factory', factory );
+var exponent = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = evalpoly;
+module.exports = exponent;
 
-},{"./evalpoly.js":24,"./factory.js":25,"@stdlib/utils/define-read-only-property":51}],27:[function(require,module,exports){
+},{"./main.js":62}],62:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var EXP_MASK = require( '@stdlib/math/constants/float64-high-word-exponent-mask' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
+var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
+var EXP_MASK = require( '@stdlib/constants/math/float64-high-word-exponent-mask' );
+var BIAS = require( '@stdlib/constants/math/float64-exponent-bias' );
 
 
 // MAIN //
@@ -1363,52 +2387,94 @@ function exponent( x ) {
 	high = ( high & EXP_MASK ) >>> 20;
 
 	// Remove the bias and return:
-	return high - BIAS;
-} // end FUNCTION exponent()
+	return (high - BIAS)|0; // asm type annotation
+}
 
 
 // EXPORTS //
 
 module.exports = exponent;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":34,"@stdlib/math/constants/float64-exponent-bias":41,"@stdlib/math/constants/float64-high-word-exponent-mask":42}],28:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-exponent-bias":27,"@stdlib/constants/math/float64-high-word-exponent-mask":28,"@stdlib/number/float64/base/get-high-word":67}],63:[function(require,module,exports){
 'use strict';
 
 /**
-* Return an integer corresponding to the unbiased exponent of a double-precision floating-point number.
+* Create a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* @module @stdlib/math/base/utils/float64-exponent
+* @module @stdlib/number/float64/base/from-words
 *
 * @example
-* var exponent = require( '@stdlib/math/base/utils/float64-exponent );
+* var fromWords = require( '@stdlib/number/float64/base/from-words' );
 *
-* var exp = exponent( 3.14e-307 ); // => 2**-1019 ~ 1e-307
-* // returns -1019
+* var v = fromWords( 1774486211, 2479577218 );
+* // returns 3.14e201
 *
-* exp = exponent( -3.14 );
-* // returns 1
+* v = fromWords( 3221823995, 1413754136 );
+* // returns 3.141592653589793
 *
-* exp = exponent( 0.0 );
-* // returns 0
+* v = fromWords( 0, 0 );
+* // returns 0.0
 *
-* exp = exponent( NaN );
-* // returns 1024
+* v = fromWords( 2147483648, 0 );
+* // returns -0.0
+*
+* v = fromWords( 2146959360, 0 );
+* // returns NaN
+*
+* v = fromWords( 2146435072, 0 );
+* // returns Infinity
+*
+* v = fromWords( 4293918720, 0 );
+* // returns -Infinity
 */
 
 // MODULES //
 
-var exponent = require( './exponent.js' );
+var fromWords = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = exponent;
+module.exports = fromWords;
 
-},{"./exponent.js":27}],29:[function(require,module,exports){
+},{"./main.js":65}],64:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
+var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
+
+
+// MAIN //
+
+var indices;
+var HIGH;
+var LOW;
+
+if ( isLittleEndian === true ) {
+	HIGH = 1; // second index
+	LOW = 0; // first index
+} else {
+	HIGH = 0; // first index
+	LOW = 1; // second index
+}
+indices = {
+	'HIGH': HIGH,
+	'LOW': LOW
+};
+
+
+// EXPORTS //
+
+module.exports = indices;
+
+},{"@stdlib/assert/is-little-endian":18}],65:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float64Array = require( '@stdlib/array/float64' );
 var indices = require( './indices.js' );
 
 
@@ -1426,9 +2492,9 @@ var LOW = indices.LOW;
 /**
 * Creates a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* #### Notes
+* ## Notes
 *
-* ``` text
+* ```text
 * float64 (64 bits)
 * f := fraction (significand/mantissa) (52 bits)
 * e := exponent (11 bits)
@@ -1443,14 +2509,14 @@ var LOW = indices.LOW;
 *
 * If little endian (more significant bits last):
 *
-* ``` text
+* ```text
 *                         <-- lower      higher -->
 * |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
 * ```
 *
 * If big endian (more significant bits first):
 *
-* ``` text
+* ```text
 *                         <-- higher      lower -->
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
@@ -1459,10 +2525,11 @@ var LOW = indices.LOW;
 * In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
 *
 *
-* #### References
+* ## References
 *
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
+* -   [Open Group][1]
 *
+* [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
 * @param {uinteger32} high - higher order word (unsigned 32-bit integer)
 * @param {uinteger32} low - lower order word (unsigned 32-bit integer)
@@ -1485,167 +2552,23 @@ var LOW = indices.LOW;
 * // returns NaN
 * @example
 * var v = fromWords( 2146435072, 0 );
-* // returns Number.POSITIVE_INFINITY
+* // returns Infinity
 * @example
 * var v = fromWords( 4293918720, 0 );
-* // returns Number.NEGATIVE_INFINITY
+* // returns -Infinity
 */
 function fromWords( high, low ) {
 	UINT32_VIEW[ HIGH ] = high;
 	UINT32_VIEW[ LOW ] = low;
 	return FLOAT64_VIEW[ 0 ];
-} // end FUNCTION fromWords()
-
-
-// EXPORTS //
-
-module.exports = fromWords;
-
-},{"./indices.js":31}],30:[function(require,module,exports){
-'use strict';
-
-/**
-* Create a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/math/base/utils/float64-from-words
-*
-* @example
-* var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
-*
-* var v = fromWords( 1774486211, 2479577218 );
-* // returns 3.14e201
-*
-* v = fromWords( 3221823995, 1413754136 );
-* // returns 3.141592653589793
-*
-* v = fromWords( 0, 0 );
-* // returns 0.0
-*
-* v = fromWords( 2147483648, 0 );
-* // returns -0.0
-*
-* v = fromWords( 2146959360, 0 );
-* // returns NaN
-*
-* v = fromWords( 2146435072, 0 );
-* // returns Number.POSITIVE_INFINITY
-*
-* v = fromWords( 4293918720, 0 );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-// MODULES //
-
-var fromWords = require( './from_words.js' );
-
-
-// EXPORTS //
-
-module.exports = fromWords;
-
-},{"./from_words.js":29}],31:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
-
-
-// MAIN //
-
-var HIGH;
-var LOW;
-
-if ( isLittleEndian === true ) {
-	HIGH = 1; // second index
-	LOW = 0; // first index
-} else {
-	HIGH = 0; // first index
-	LOW = 1; // second index
 }
 
 
 // EXPORTS //
 
-module.exports = {
-	'HIGH': HIGH,
-	'LOW': LOW
-};
+module.exports = fromWords;
 
-},{"@stdlib/assert/is-little-endian":2}],32:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var HIGH = require( './high.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Returns an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-* In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
-*
-*
-* #### References
-*
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {number} x - input value
-* @returns {uinteger32} higher order word
-*
-* @example
-* var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
-* // returns 1774486211
-*/
-function getHighWord( x ) {
-	FLOAT64_VIEW[ 0 ] = x;
-	return UINT32_VIEW[ HIGH ];
-} // end FUNCTION getHighWord()
-
-
-// EXPORTS //
-
-module.exports = getHighWord;
-
-},{"./high.js":33}],33:[function(require,module,exports){
+},{"./indices.js":64,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],66:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1667,16 +2590,16 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":2}],34:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":18}],67:[function(require,module,exports){
 'use strict';
 
 /**
 * Return an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
 *
-* @module @stdlib/math/base/utils/float64-get-high-word
+* @module @stdlib/number/float64/base/get-high-word
 *
 * @example
-* var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
+* var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 *
 * var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
 * // returns 1774486211
@@ -1684,23 +2607,99 @@ module.exports = HIGH;
 
 // MODULES //
 
-var getHighWord = require( './get_high_word.js' );
+var getHighWord = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = getHighWord;
 
-},{"./get_high_word.js":32}],35:[function(require,module,exports){
+},{"./main.js":68}],68:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float64Array = require( '@stdlib/array/float64' );
+var HIGH = require( './high.js' );
+
+
+// VARIABLES //
+
+var FLOAT64_VIEW = new Float64Array( 1 );
+var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
+
+
+// MAIN //
+
+/**
+* Returns an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
+*
+* ## Notes
+*
+* ```text
+* float64 (64 bits)
+* f := fraction (significand/mantissa) (52 bits)
+* e := exponent (11 bits)
+* s := sign bit (1 bit)
+*
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* |                                Float64                                |
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* |              Uint32               |               Uint32              |
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* ```
+*
+* If little endian (more significant bits last):
+*
+* ```text
+*                         <-- lower      higher -->
+* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
+* ```
+*
+* If big endian (more significant bits first):
+*
+* ```text
+*                         <-- higher      lower -->
+* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
+* ```
+*
+* In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
+*
+*
+* ## References
+*
+* -   [Open Group][1]
+*
+* [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
+*
+* @param {number} x - input value
+* @returns {uinteger32} higher order word
+*
+* @example
+* var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
+* // returns 1774486211
+*/
+function getHighWord( x ) {
+	FLOAT64_VIEW[ 0 ] = x;
+	return UINT32_VIEW[ HIGH ];
+}
+
+
+// EXPORTS //
+
+module.exports = getHighWord;
+
+},{"./high.js":66,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],69:[function(require,module,exports){
 'use strict';
 
 /**
 * Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
 *
-* @module @stdlib/math/base/utils/float64-normalize
+* @module @stdlib/number/float64/base/normalize
 *
 * @example
-* var normalize = require( '@stdlib/math/base/utils/float64-normalize' );
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
 * var pow = require( '@stdlib/math/base/special/pow' );
 *
 * var out = normalize( 3.14e-319 );
@@ -1711,23 +2710,104 @@ module.exports = getHighWord;
 *
 * var bool = ( y*pow(2.0,exp) === 3.14e-319 );
 * // returns true
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+*
+* var out = new Float64Array( 2 );
+*
+* var v = normalize( out, 3.14e-319 );
+* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
+*
+* var bool = ( v === out );
+* // returns true
 */
 
 // MODULES //
 
-var normalize = require( './normalize.js' );
+var normalize = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = normalize;
 
-},{"./normalize.js":36}],36:[function(require,module,exports){
+},{"./main.js":70}],70:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/math/constants/float64-smallest-normal' );
+var fcn = require( './normalize.js' );
+
+
+// MAIN //
+
+/**
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @param {(Array|TypedArray|Object)} [out] - output array
+* @param {number} x - input value
+* @returns {(Array|TypedArray|Object)} output array
+*
+* @example
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( new Array( 2 ), 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = new Float64Array( 2 );
+*
+* var v = normalize( out, 3.14e-319 );
+* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
+*
+* var bool = ( v === out );
+* // returns true
+*
+* @example
+* var out = normalize( new Array( 2 ), 0.0 );
+* // returns [ 0.0, 0 ];
+*
+* @example
+* var out = normalize( new Array( 2 ), Infinity );
+* // returns [ Infinity, 0 ]
+*
+* @example
+* var out = normalize( new Array( 2 ), -Infinity );
+* // returns [ -Infinity, 0 ]
+*
+* @example
+* var out = normalize( new Array( 2 ), NaN );
+* // returns [ NaN, 0 ]
+*/
+function normalize( out, x ) {
+	if ( arguments.length === 1 ) {
+		return fcn( [ 0.0, 0 ], out );
+	}
+	return fcn( out, x );
+}
+
+
+// EXPORTS //
+
+module.exports = normalize;
+
+},{"./normalize.js":71}],71:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/constants/math/float64-smallest-normal' );
 var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
@@ -1744,13 +2824,15 @@ var SCALAR = 4503599627370496;
 /**
 * Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
 *
+* @private
+* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {NumberArray} a two-element array containing `y` and `exp`
+* @returns {(Array|TypedArray|Object)} output array
 *
 * @example
 * var pow = require( '@stdlib/math/base/special/pow' );
 *
-* var out = normalize( 3.14e-319 );
+* var out = normalize( new Array( 2 ), 3.14e-319 );
 * // returns [ 1.4141234400356668e-303, -52 ]
 *
 * var y = out[ 0 ];
@@ -1760,67 +2842,131 @@ var SCALAR = 4503599627370496;
 * // returns true
 *
 * @example
-* var out = normalize( 0 );
+* var out = normalize( new Array( 2 ), 0.0 );
 * // returns [ 0.0, 0 ];
 *
 * @example
-* var out = normalize( Number.POSITIVE_INFINITY );
-* // returns [ Number.POSITIVE_INFINITY, 0 ]
+* var out = normalize( new Array( 2 ), Infinity );
+* // returns [ Infinity, 0 ]
 *
 * @example
-* var out = normalize( Number.NEGATIVE_INFINITY );
-* // returns [ Number.NEGATIVE_INFINIY, 0 ]
+* var out = normalize( new Array( 2 ), -Infinity );
+* // returns [ -Infinity, 0 ]
 *
 * @example
-* var out = normalize( NaN );
+* var out = normalize( new Array( 2 ), NaN );
 * // returns [ NaN, 0 ]
 */
-function normalize( x ) {
+function normalize( out, x ) {
 	if ( isnan( x ) || isInfinite( x ) ) {
-		return [ x, 0 ];
+		out[ 0 ] = x;
+		out[ 1 ] = 0;
+		return out;
 	}
 	if ( x !== 0.0 && abs( x ) < FLOAT64_SMALLEST_NORMAL ) {
-		return [ x*SCALAR, -52 ];
+		out[ 0 ] = x * SCALAR;
+		out[ 1 ] = -52;
+		return out;
 	}
-	return [ x, 0 ];
-} // end FUNCTION normalize()
+	out[ 0 ] = x;
+	out[ 1 ] = 0;
+	return out;
+}
 
 
 // EXPORTS //
 
 module.exports = normalize;
 
-},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-smallest-normal":49}],37:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-smallest-normal":35,"@stdlib/math/base/assert/is-infinite":39,"@stdlib/math/base/assert/is-nan":41,"@stdlib/math/base/special/abs":44}],72:[function(require,module,exports){
 'use strict';
 
 /**
 * Split a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* @module @stdlib/math/base/utils/float64-to-words
+* @module @stdlib/number/float64/base/to-words
 *
 * @example
-* var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
 *
 * var w = toWords( 3.14e201 );
 * // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords( out, 3.14e201 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
 */
 
 // MODULES //
 
-var toWords = require( './to_words.js' );
+var toWords = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = toWords;
 
-},{"./to_words.js":39}],38:[function(require,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":2,"dup":31}],39:[function(require,module,exports){
+},{"./main.js":74}],73:[function(require,module,exports){
+arguments[4][64][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":18,"dup":64}],74:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
+var fcn = require( './to_words.js' );
+
+
+// MAIN //
+
+/**
+* Splits a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @param {(Array|TypedArray|Object)} [out] - output array
+* @param {number} x - input value
+* @returns {(Array|TypedArray|Object)} output array
+*
+* @example
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords( out, 3.14e201 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
+*/
+function toWords( out, x ) {
+	if ( arguments.length === 1 ) {
+		return fcn( [ 0, 0 ], out );
+	}
+	return fcn( out, x );
+}
+
+
+// EXPORTS //
+
+module.exports = toWords;
+
+},{"./to_words.js":75}],75:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float64Array = require( '@stdlib/array/float64' );
 var indices = require( './indices.js' );
 
 
@@ -1838,9 +2984,9 @@ var LOW = indices.LOW;
 /**
 * Splits a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* #### Notes
+* ## Notes
 *
-* ``` text
+* ```text
 * float64 (64 bits)
 * f := fraction (significand/mantissa) (52 bits)
 * e := exponent (11 bits)
@@ -1855,14 +3001,14 @@ var LOW = indices.LOW;
 *
 * If little endian (more significant bits last):
 *
-* ``` text
+* ```text
 *                         <-- lower      higher -->
 * |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
 * ```
 *
 * If big endian (more significant bits first):
 *
-* ``` text
+* ```text
 *                         <-- higher      lower -->
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
@@ -1870,460 +3016,643 @@ var LOW = indices.LOW;
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
 *
-* #### References
+* ## References
 *
-* [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
+* -   [Open Group][1]
+*
+* [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
 *
+* @private
+* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {NumberArray} two-element array containing a higher order word and a lower order word
+* @returns {(Array|TypedArray|Object)} output array
 *
 * @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords( out, 3.14e201 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
 */
-function toWords( x ) {
+function toWords( out, x ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	return [ UINT32_VIEW[ HIGH ], UINT32_VIEW[ LOW ] ];
-} // end FUNCTION toWords()
+	out[ 0 ] = UINT32_VIEW[ HIGH ];
+	out[ 1 ] = UINT32_VIEW[ LOW ];
+	return out;
+}
 
 
 // EXPORTS //
 
 module.exports = toWords;
 
-},{"./indices.js":38}],40:[function(require,module,exports){
+},{"./indices.js":73,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],76:[function(require,module,exports){
 'use strict';
 
-/**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-eps
-* @type {number}
-*
-* @example
-* var FLOAT64_EPSILON = require( '@stdlib/math/constants/float64-eps' );
-* // returns 2.220446049250313e-16
-*/
+// MODULES //
+
+var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+var GlobalFloat64Array = require( './float64array.js' );
 
 
 // MAIN //
 
 /**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number is
+* Tests for native `Float64Array` support.
 *
-* ``` tex
-* \frac{1}{2^{52}}
-* ```
+* @returns {boolean} boolean indicating if an environment has `Float64Array` support
 *
-* @constant
-* @type {number}
-* @default 2.220446049250313e-16
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
+* @example
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
 */
-var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
+function hasFloat64ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat64Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat64Array( [ 1.0, 3.14, -3.14, NaN ] );
+		bool = (
+			isFloat64Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.14 &&
+			arr[ 2 ] === -3.14 &&
+			arr[ 3 ] !== arr[ 3 ]
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
 
 
 // EXPORTS //
 
-module.exports = FLOAT64_EPSILON;
+module.exports = hasFloat64ArraySupport;
 
-},{}],41:[function(require,module,exports){
+},{"./float64array.js":77,"@stdlib/assert/is-float64array":15}],77:[function(require,module,exports){
 'use strict';
-
-/**
-* The bias of a double-precision floating-point number's exponent.
-*
-* @module @stdlib/math/constants/float64-exponent-bias
-* @type {integer32}
-*
-* @example
-* var FLOAT64_EXPONENT_BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-* // returns 1023
-*/
-
-
-// MAIN //
-
-/**
-* The bias of a double-precision floating-point number's exponent. The bias can be computed via
-*
-* ``` tex
-* \mathrm{bias} = 2^{k-1} - 1
-* ```
-*
-* where \\(k\\) is the number of bits in the exponent; here, \\(k = 11\\).
-*
-* @constant
-* @type {integer32}
-* @default 1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
-
 
 // EXPORTS //
 
-module.exports = FLOAT64_EXPONENT_BIAS;
+module.exports = ( typeof Float64Array === 'function' ) ? Float64Array : null;
 
-},{}],42:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 'use strict';
 
 /**
-* High word mask for the exponent of a double-precision floating-point number.
+* Test for native `Float64Array` support.
 *
-* @module @stdlib/math/constants/float64-high-word-exponent-mask
-* @type {uinteger32}
-*
-* @example
-* var FLOAT64_HIGH_WORD_EXPONENT_MASK = require( '@stdlib/math/constants/float64-high-word-exponent-mask' );
-* // returns 2146435072
-*/
-
-
-// MAIN //
-
-/**
-* The high word mask for the exponent of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2146435072 \\), which corresponds to the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000
-* ```
-*
-* @constant
-* @type {uinteger32}
-* @default 0x7ff00000
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
-
-},{}],43:[function(require,module,exports){
-'use strict';
-
-/**
-* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max-base2-exponent-subnormal
-* @type {integer32}
+* @module @stdlib/utils/detect-float64array-support
 *
 * @example
-* var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/math/constants/float64-max-base2-exponent-subnormal' );
-* // returns -1023
-*/
-
-
-// MAIN //
-
-/**
-* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
+* var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
 *
-* ``` text
-* 00000000000 => 0 - BIAS = -1023
-* ```
-*
-* where `BIAS = 1023`.
-*
-* @constant
-* @type {integer32}
-* @default -1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
-
-},{}],44:[function(require,module,exports){
-'use strict';
-
-/**
-* The maximum biased base 2 exponent for a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max-base2-exponent
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MAX_BASE2_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent' );
-* // returns 1023
-*/
-
-
-// MAIN //
-
-/**
-* The maximum biased base 2 exponent for a double-precision floating-point number.
-*
-* ``` text
-* 11111111110 => 2046 - BIAS = 1023
-* ```
-*
-* where `BIAS = 1023`.
-*
-* @constant
-* @type {integer32}
-* @default 1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_BASE2_EXPONENT;
-
-},{}],45:[function(require,module,exports){
-'use strict';
-
-/**
-* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-min-base2-exponent-subnormal
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/math/constants/float64-min-base2-exponent-subnormal' );
-* // returns -1074
-*/
-
-
-// MAIN //
-
-/**
-* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* ``` text
-* -(BIAS+(52-1)) = -(1023+51) = -1074
-* ```
-*
-* where `BIAS = 1023` and `52` is the number of digits in the significand.
-*
-* @constant
-* @type {integer32}
-* @default -1074
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
-
-},{}],46:[function(require,module,exports){
-'use strict';
-
-/**
-* The minimum biased base 2 exponent for a normal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-min-base2-exponent
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MIN_BASE2_EXPONENT = require( '@stdlib/math/constants/float64-min-base2-exponent' );
-* // returns -1022
-*/
-
-
-// MAIN //
-
-/**
-* The minimum biased base 2 exponent for a normal double-precision floating-point number.
-*
-* ``` text
-* 1 - BIAS = -1022
-* ```
-*
-* where `BIAS = 1023`.
-*
-* @constant
-* @type {integer32}
-* @default -1022
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MIN_BASE2_EXPONENT = -1022|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MIN_BASE2_EXPONENT;
-
-},{}],47:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point negative infinity.
-*
-* @module @stdlib/math/constants/float64-ninf
-* @type {number}
-*
-* @example
-* var FLOAT64_NINF = require( '@stdlib/math/constants/float64-ninf' );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point negative infinity has the bit sequence
-*
-* ``` binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_NINF;
-
-},{}],48:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* @module @stdlib/math/constants/float64-pinf
-* @type {number}
-*
-* @example
-* var FLOAT64_PINF = require( '@stdlib/math/constants/float64-pinf' );
-* // returns Number.POSITIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point positive infinity has the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_PINF = Number.POSITIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_PINF;
-
-},{}],49:[function(require,module,exports){
-'use strict';
-
-/**
-* Smallest positive double-precision floating-point normal number.
-*
-* @module @stdlib/math/constants/float64-smallest-normal
-* @type {number}
-*
-* @example
-* var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/math/constants/float64-smallest-normal' );
-* // returns 2.2250738585072014e-308
-*/
-
-
-// MAIN //
-
-/**
-* The smallest positive double-precision floating-point normal number has the value
-*
-* ``` tex
-* \frac{1}{2^{1023-1}}
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 0 00000000001 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default 2.2250738585072014e-308
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_SMALLEST_NORMAL;
-
-},{}],50:[function(require,module,exports){
-'use strict';
-
-/**
-* Defines a read-only property.
-*
-* @param {Object} obj - object on which to define the property
-* @param {string} prop - property name
-* @param {*} value - value to set
-*
-* @example
-* var obj = {};
-* setReadOnly( obj, 'foo', 'bar' );
-* obj.foo = 'boop'; // => throws
-*/
-function setReadOnly( obj, prop, value ) {
-	Object.defineProperty( obj, prop, {
-		'value': value,
-		'configurable': false,
-		'writable': false,
-		'enumerable': true
-	});
-} // end FUNCTION setReadOnly()
-
-
-// EXPORTS //
-
-module.exports = setReadOnly;
-
-},{}],51:[function(require,module,exports){
-'use strict';
-
-/**
-* Defines a read-only property.
-*
-* @module @stdlib/utils/define-read-only-property
-*
-* @example
-* var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-*
-* var obj = {};
-* setReadOnly( obj, 'foo', 'bar' );
-* obj.foo = 'boop'; // => throws
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
 */
 
 // MODULES //
 
-var setReadOnly = require( './define_read_only_property.js' );
+var hasFloat64ArraySupport = require( './detect_float64array_support.js' );
 
 
 // EXPORTS //
 
-module.exports = setReadOnly;
+module.exports = hasFloat64ArraySupport;
 
-},{"./define_read_only_property.js":50}],52:[function(require,module,exports){
+},{"./detect_float64array_support.js":76}],79:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+/**
+* Tests for native `Symbol` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Symbol` support
+*
+* @example
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+function hasSymbolSupport() {
+	return (
+		typeof Symbol === 'function' &&
+		typeof Symbol( 'foo' ) === 'symbol'
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = hasSymbolSupport;
+
+},{}],80:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Symbol` support.
+*
+* @module @stdlib/utils/detect-symbol-support
+*
+* @example
+* var hasSymbolSupport = require( '@stdlib/utils/detect-symbol-support' );
+*
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasSymbolSupport = require( './detect_symbol_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasSymbolSupport;
+
+},{"./detect_symbol_support.js":79}],81:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
+
+
+// MAIN //
+
+/**
+* Tests for native `toStringTag` support.
+*
+* @returns {boolean} boolean indicating if an environment has `toStringTag` support
+*
+* @example
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
+*/
+function hasToStringTagSupport() {
+	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
+}
+
+
+// EXPORTS //
+
+module.exports = hasToStringTagSupport;
+
+},{"@stdlib/utils/detect-symbol-support":80}],82:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `toStringTag` support.
+*
+* @module @stdlib/utils/detect-tostringtag-support
+*
+* @example
+* var hasToStringTagSupport = require( '@stdlib/utils/detect-tostringtag-support' );
+*
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasToStringTagSupport = require( './has_tostringtag_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasToStringTagSupport;
+
+},{"./has_tostringtag_support.js":81}],83:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+var GlobalUint16Array = require( './uint16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint16Array` support
+*
+* @example
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+function hasUint16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT16_MAX+1, UINT16_MAX+2 ];
+		arr = new GlobalUint16Array( arr );
+		bool = (
+			isUint16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT16_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./uint16array.js":85,"@stdlib/assert/is-uint16array":20,"@stdlib/constants/math/uint16-max":36}],84:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint16Array` support.
+*
+* @module @stdlib/utils/detect-uint16array-support
+*
+* @example
+* var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+*
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( './detect_uint16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./detect_uint16array_support.js":83}],85:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint16Array === 'function' ) ? Uint16Array : null;
+
+},{}],86:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+var GlobalUint32Array = require( './uint32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint32Array` support
+*
+* @example
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+function hasUint32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT32_MAX+1, UINT32_MAX+2 ];
+		arr = new GlobalUint32Array( arr );
+		bool = (
+			isUint32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT32_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./uint32array.js":88,"@stdlib/assert/is-uint32array":22,"@stdlib/constants/math/uint32-max":37}],87:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint32Array` support.
+*
+* @module @stdlib/utils/detect-uint32array-support
+*
+* @example
+* var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+*
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( './detect_uint32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./detect_uint32array_support.js":86}],88:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint32Array === 'function' ) ? Uint32Array : null;
+
+},{}],89:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+var GlobalUint8Array = require( './uint8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8Array` support
+*
+* @example
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT8_MAX+1, UINT8_MAX+2 ];
+		arr = new GlobalUint8Array( arr );
+		bool = (
+			isUint8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&           // truncation
+			arr[ 2 ] === UINT8_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&           // wrap around
+			arr[ 4 ] === 1              // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./uint8array.js":91,"@stdlib/assert/is-uint8array":24,"@stdlib/constants/math/uint8-max":38}],90:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8Array` support.
+*
+* @module @stdlib/utils/detect-uint8array-support
+*
+* @example
+* var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+*
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( './detect_uint8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./detect_uint8array_support.js":89}],91:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8Array === 'function' ) ? Uint8Array : null;
+
+},{}],92:[function(require,module,exports){
+'use strict';
+
+/**
+* Returns a string value indicating a specification defined classification of an object.
+*
+* @module @stdlib/utils/native-class
+*
+* @example
+* var nativeClass = require( '@stdlib/utils/native-class' );
+*
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* function Beep() {
+*     return this;
+* }
+* str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+
+// MODULES //
+
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var nativeClass;
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
+} else {
+	nativeClass = builtin;
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./native_class.js":93,"./polyfill.js":94,"@stdlib/utils/detect-tostringtag-support":82}],93:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var toStr = require( './tostring.js' );
+
+
+// MAIN //
+
+/**
+* Returns a string value indicating a specification defined classification (via the internal property `[[Class]]`) of an object.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+function nativeClass( v ) {
+	return toStr.call( v );
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./tostring.js":95}],94:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var toStringTag = require( './tostringtag.js' );
+var toStr = require( './tostring.js' );
+
+
+// MAIN //
+
+/**
+* Returns a string value indicating a specification defined classification of an object in environments supporting `Symbol.toStringTag`.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+function nativeClass( v ) {
+	var isOwn;
+	var tag;
+	var out;
+
+	if ( v === null || v === void 0 ) {
+		return toStr.call( v );
+	}
+	tag = v[ toStringTag ];
+	isOwn = hasOwnProp( v, toStringTag );
+
+	// Attempt to override the `toStringTag` property. For built-ins having a `Symbol.toStringTag` property (e.g., `JSON`, `Math`, etc), the `Symbol.toStringTag` property is read-only (e.g., , so we need to wrap in a `try/catch`.
+	try {
+		v[ toStringTag ] = void 0;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return toStr.call( v );
+	}
+	out = toStr.call( v );
+
+	if ( isOwn ) {
+		v[ toStringTag ] = tag;
+	} else {
+		delete v[ toStringTag ];
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./tostring.js":95,"./tostringtag.js":96,"@stdlib/assert/has-own-property":14}],95:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
+
+// EXPORTS //
+
+module.exports = toStr;
+
+},{}],96:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
+
+// EXPORTS //
+
+module.exports = toStrTag;
+
+},{}],97:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -2439,11 +3768,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],53:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 
-},{}],54:[function(require,module,exports){
-arguments[4][53][0].apply(exports,arguments)
-},{"dup":53}],55:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
+arguments[4][98][0].apply(exports,arguments)
+},{"dup":98}],100:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2629,11 +3958,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],56:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -4345,7 +5674,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":52,"ieee754":75}],57:[function(require,module,exports){
+},{"base64-js":97,"ieee754":120}],102:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4456,7 +5785,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":77}],58:[function(require,module,exports){
+},{"../../is-buffer/index.js":122}],103:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -4552,7 +5881,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":59,"./lib/keys.js":60}],59:[function(require,module,exports){
+},{"./lib/is_arguments.js":104,"./lib/keys.js":105}],104:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -4574,7 +5903,7 @@ function unsupported(object){
     false;
 };
 
-},{}],60:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -4585,7 +5914,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],61:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -4643,14 +5972,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":71,"object-keys":80}],62:[function(require,module,exports){
+},{"foreach":116,"object-keys":126}],107:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],63:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -4888,28 +6217,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":64,"./helpers/isNaN":65,"./helpers/mod":66,"./helpers/sign":67,"es-to-primitive/es5":68,"has":74,"is-callable":78}],64:[function(require,module,exports){
+},{"./helpers/isFinite":109,"./helpers/isNaN":110,"./helpers/mod":111,"./helpers/sign":112,"es-to-primitive/es5":113,"has":119,"is-callable":123}],109:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],65:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],66:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],67:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],68:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -4948,12 +6277,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":69,"is-callable":78}],69:[function(require,module,exports){
+},{"./helpers/isPrimitive":114,"is-callable":123}],114:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],70:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5257,7 +6586,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],71:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -5281,7 +6610,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],72:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -5335,19 +6664,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],73:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":72}],74:[function(require,module,exports){
+},{"./implementation":117}],119:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":73}],75:[function(require,module,exports){
+},{"function-bind":118}],120:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -5433,7 +6762,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],76:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -5458,11 +6787,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],77:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -5481,7 +6810,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],78:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -5522,7 +6851,14 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],79:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],125:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -5716,7 +7052,7 @@ function inspectString (str) {
     }
 }
 
-},{}],80:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -5858,7 +7194,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":81}],81:[function(require,module,exports){
+},{"./isArguments":127}],127:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -5877,7 +7213,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],82:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6105,7 +7441,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":55}],83:[function(require,module,exports){
+},{"_process":100}],129:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6152,10 +7488,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":55}],84:[function(require,module,exports){
+},{"_process":100}],130:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":85}],85:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":131}],131:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6280,7 +7616,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":87,"./_stream_writable":89,"core-util-is":57,"inherits":76,"process-nextick-args":83}],86:[function(require,module,exports){
+},{"./_stream_readable":133,"./_stream_writable":135,"core-util-is":102,"inherits":121,"process-nextick-args":129}],132:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6328,7 +7664,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":88,"core-util-is":57,"inherits":76}],87:[function(require,module,exports){
+},{"./_stream_transform":134,"core-util-is":102,"inherits":121}],133:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7338,7 +8674,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":85,"./internal/streams/BufferList":90,"./internal/streams/destroy":91,"./internal/streams/stream":92,"_process":55,"core-util-is":57,"events":70,"inherits":76,"isarray":93,"process-nextick-args":83,"safe-buffer":100,"string_decoder/":94,"util":53}],88:[function(require,module,exports){
+},{"./_stream_duplex":131,"./internal/streams/BufferList":136,"./internal/streams/destroy":137,"./internal/streams/stream":138,"_process":100,"core-util-is":102,"events":115,"inherits":121,"isarray":124,"process-nextick-args":129,"safe-buffer":144,"string_decoder/":150,"util":98}],134:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7553,7 +8889,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":85,"core-util-is":57,"inherits":76}],89:[function(require,module,exports){
+},{"./_stream_duplex":131,"core-util-is":102,"inherits":121}],135:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -8220,7 +9556,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":85,"./internal/streams/destroy":91,"./internal/streams/stream":92,"_process":55,"core-util-is":57,"inherits":76,"process-nextick-args":83,"safe-buffer":100,"util-deprecate":112}],90:[function(require,module,exports){
+},{"./_stream_duplex":131,"./internal/streams/destroy":137,"./internal/streams/stream":138,"_process":100,"core-util-is":102,"inherits":121,"process-nextick-args":129,"safe-buffer":144,"util-deprecate":157}],136:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -8295,7 +9631,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":100}],91:[function(require,module,exports){
+},{"safe-buffer":144}],137:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -8368,17 +9704,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":83}],92:[function(require,module,exports){
+},{"process-nextick-args":129}],138:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":70}],93:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":115}],139:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":140}],140:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":131,"./lib/_stream_passthrough.js":132,"./lib/_stream_readable.js":133,"./lib/_stream_transform.js":134,"./lib/_stream_writable.js":135}],141:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":140}],142:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":135}],143:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],94:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":100,"through":156}],144:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":101}],145:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":115,"inherits":121,"readable-stream/duplex.js":130,"readable-stream/passthrough.js":139,"readable-stream/readable.js":140,"readable-stream/transform.js":141,"readable-stream/writable.js":142}],146:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":108,"function-bind":118}],147:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":146,"./polyfill":148,"./shim":149,"define-properties":106,"function-bind":118}],148:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":146}],149:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":148,"define-properties":106}],150:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -8651,312 +10285,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":100}],95:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":96}],96:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":85,"./lib/_stream_passthrough.js":86,"./lib/_stream_readable.js":87,"./lib/_stream_transform.js":88,"./lib/_stream_writable.js":89}],97:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":96}],98:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":89}],99:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":55,"through":111}],100:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":56}],101:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":70,"inherits":76,"readable-stream/duplex.js":84,"readable-stream/passthrough.js":95,"readable-stream/readable.js":96,"readable-stream/transform.js":97,"readable-stream/writable.js":98}],102:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":63,"function-bind":73}],103:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":102,"./polyfill":104,"./shim":105,"define-properties":61,"function-bind":73}],104:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":102}],105:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":104,"define-properties":61}],106:[function(require,module,exports){
+},{"safe-buffer":144}],151:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -9110,7 +10439,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":107,"./lib/results":109,"./lib/test":110,"_process":55,"defined":62,"through":111}],107:[function(require,module,exports){
+},{"./lib/default_stream":152,"./lib/results":154,"./lib/test":155,"_process":100,"defined":107,"through":156}],152:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -9145,7 +10474,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":55,"fs":54,"through":111}],108:[function(require,module,exports){
+},{"_process":100,"fs":99,"through":156}],153:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -9153,7 +10482,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":55}],109:[function(require,module,exports){
+},{"_process":100}],154:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -9344,7 +10673,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":55,"events":70,"function-bind":73,"has":74,"inherits":76,"object-inspect":79,"resumer":99,"through":111}],110:[function(require,module,exports){
+},{"_process":100,"events":115,"function-bind":118,"has":119,"inherits":121,"object-inspect":125,"resumer":143,"through":156}],155:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -9845,7 +11174,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":108,"deep-equal":58,"defined":62,"events":70,"has":74,"inherits":76,"path":82,"string.prototype.trim":103}],111:[function(require,module,exports){
+},{"./next_tick":153,"deep-equal":103,"defined":107,"events":115,"has":119,"inherits":121,"path":128,"string.prototype.trim":147}],156:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -9957,7 +11286,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":55,"stream":101}],112:[function(require,module,exports){
+},{"_process":100,"stream":145}],157:[function(require,module,exports){
 (function (global){
 
 /**
@@ -10028,4 +11357,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[19]);
+},{}]},{},[56]);
