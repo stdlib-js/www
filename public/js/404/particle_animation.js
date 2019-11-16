@@ -1,3 +1,21 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2019 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 (function script() {
 	'use strict';
 
@@ -125,7 +143,7 @@
 	function now() {
 		var d = ( new Date() ).getTime();
 		return ( d/1000 )|0; // asm type annotation
-	} // end FUNCTION now()
+	}
 
 	/**
 	* Returns an array of particles.
@@ -184,7 +202,7 @@
 			out[ i ] = p;
 		}
 		return out;
-	} // end FUNCTION createParticles()
+	}
 
 	/**
 	* Reset a particle.
@@ -211,7 +229,7 @@
 
 		// Generate a new radius:
 		p.radius = RADIUS * ( 1.5-rand() );
-	} // end FUNCTION resetParticle()
+	}
 
 	/**
 	* Event listener invoked upon a "resize" event.
@@ -228,7 +246,7 @@
 
 		XLIMITS = [ 0, WIDTH ];
 		YLIMITS = [ 0, HEIGHT ];
-	} // end FUNCTION resize()
+	}
 
 	/**
 	* Redraws an animation.
@@ -341,7 +359,7 @@
 			// Restore the original state:
 			ctx.restore();
 		}
-	} // end FUNCTION redraw()
+	}
 
 	/**
 	* Returns a "redraw" callback.
@@ -359,8 +377,8 @@
 		*/
 		function wrapper() {
 			redraw( ctx );
-		} // end FUNCTION wrapper()
-	} // end FUNCTION redrawWrapper()
+		}
+	}
 
 
 	// MAIN //
@@ -390,7 +408,7 @@
 			// Perform an initial canvas resize:
 			resize();
 		}
-	} // end FUNCTION main()
+	}
 
 	// Run the animation:
 	main();
