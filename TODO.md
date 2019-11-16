@@ -28,6 +28,7 @@
 
 7. Use URL shortening for click tracking (e.g., Bit.ly)
 
+   - to integrate with GA, for inbound, need to add URL tags (https://www.linkedin.com/pulse/small-biz-guide-how-track-clicks-your-website-blog-jay-lane, https://support.google.com/analytics/answer/1033867?hl=en, and https://support.google.com/analytics/answer/1033863#parameters)
    - should add a privacy policy to the repo describing what data is collected and why and should link to this policy in the docs (footer link)
 
 8. (docs) view which transforms slideout menu into a fullscreen mega menu overlay (maybe with a touch of transparency, so can see the page update underneath)
@@ -57,3 +58,14 @@
 
 23. Background image slideshow? (see https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/)
 24. (docs) on smaller devices, convert top nav to dropdown on right side (use a downarrow as the icon?)
+25. resolve approach for using `stdlib` pkgs in www JS assets (e.g., setting NODE_PATH during browserify or some other approach?)
+26. Use of "Learn More" on www feature buttons (?)
+27. (docs) source view
+
+    - rather than redirect to GitHub for source view, generate syntax highlighted HTML files for each source file
+    - this would allow, e.g., hyperlinking stdlib packages => when click on a `require` statement for a stdlib package, we redirect to the doc page for that package
+    - for relative requires, we simply load the syntax highlighted HTML
+    - if we are really fancy, on hover, we can provide typescript/IDE-like functionality where we provide the type signature of an imported function and its description, all without ever leaving our website docs
+
+28. (docs) JSDoc page (developer docs, with linking to type information)
+29. (docs) README syntax highlighted example URLs (i.e., `require( '@stdlib/foo' )`, where `@stdlib/foo` is a hyperlink)
