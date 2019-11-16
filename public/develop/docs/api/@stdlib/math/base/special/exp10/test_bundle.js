@@ -84,6 +84,429 @@
 ({1:[function(require,module,exports){
 'use strict';
 
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+var builtin = require( './float64array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float64array.js":1,"./polyfill.js":3,"@stdlib/utils/detect-float64array-support":79}],3:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of double-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 16-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint16
+*
+* @example
+* var ctor = require( '@stdlib/array/uint16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint16Array>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+var builtin = require( './uint16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":5,"./uint16array.js":6,"@stdlib/utils/detect-uint16array-support":85}],5:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 16-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 32-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint32
+*
+* @example
+* var ctor = require( '@stdlib/array/uint32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint32Array>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+var builtin = require( './uint32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":8,"./uint32array.js":9,"@stdlib/utils/detect-uint32array-support":88}],8:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 32-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint8
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8Array>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+var builtin = require( './uint8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":11,"./uint8array.js":12,"@stdlib/utils/detect-uint8array-support":91}],11:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],13:[function(require,module,exports){
+'use strict';
+
+// FUNCTIONS //
+
+var has = Object.prototype.hasOwnProperty;
+
+
+// MAIN //
+
+/**
+* Tests if an object has a specified property.
+*
+* @param {*} value - value to test
+* @param {*} property - property to test
+* @returns {boolean} boolean indicating if an object has a specified property
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* @example
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'bap' );
+* // returns false
+*/
+function hasOwnProp( value, property ) {
+	if (
+		value === void 0 ||
+		value === null
+	) {
+		return false;
+	}
+	return has.call( value, property );
+}
+
+
+// EXPORTS //
+
+module.exports = hasOwnProp;
+
+},{}],14:[function(require,module,exports){
+'use strict';
+
+/**
+* Test whether an object has a specified property.
+*
+* @module @stdlib/assert/has-own-property
+*
+* @example
+* var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+*
+* var beep = {
+*     'boop': true
+* };
+*
+* var bool = hasOwnProp( beep, 'boop' );
+* // returns true
+*
+* bool = hasOwnProp( beep, 'bop' );
+* // returns false
+*/
+
+// MODULES //
+
+var hasOwnProp = require( './has_own_property.js' );
+
+
+// EXPORTS //
+
+module.exports = hasOwnProp;
+
+},{"./has_own_property.js":13}],15:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float64Array.
+*
+* @module @stdlib/assert/is-float64array
+*
+* @example
+* var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+*
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* bool = isFloat64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat64Array = require( './is_float64array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"./is_float64array.js":16}],16:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float64Array
+*
+* @example
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat64Array( [] );
+* // returns false
+*/
+function isFloat64Array( value ) {
+	return ( nativeClass( value ) === '[object Float64Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"@stdlib/utils/native-class":93}],17:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+
+
+// MAIN //
+
 var ctors = {
 	'uint16': Uint16Array,
 	'uint8': Uint8Array
@@ -94,7 +517,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{}],2:[function(require,module,exports){
+},{"@stdlib/array/uint16":4,"@stdlib/array/uint8":10}],18:[function(require,module,exports){
 'use strict';
 
 /**
@@ -118,7 +541,7 @@ var IS_LITTLE_ENDIAN = require( './is_little_endian.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./is_little_endian.js":3}],3:[function(require,module,exports){
+},{"./is_little_endian.js":19}],19:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -143,8 +566,10 @@ function isLittleEndian() {
 
 	uint16view = new ctors[ 'uint16' ]( 1 );
 
-	// Set the uint16 view to a value having distinguishable lower and higher order words.
-	// 4660 => 0x1234 => 0x12 0x34 => '00010010 00110100' => (0x12,0x34) == (18,52)
+	/*
+	* Set the uint16 view to a value having distinguishable lower and higher order words.
+	* 4660 => 0x1234 => 0x12 0x34 => '00010010 00110100' => (0x12,0x34) == (18,52)
+	*/
 	uint16view[ 0 ] = 0x1234;
 
 	// Create a uint8 view on top of the uint16 buffer:
@@ -152,14 +577,760 @@ function isLittleEndian() {
 
 	// If little endian, the least significant byte will be first...
 	return ( uint8view[ 0 ] === 0x34 );
-} // end FUNCTION isLittleEndian()
+}
 
 
 // EXPORTS //
 
 module.exports = isLittleEndian();
 
-},{"./ctors.js":1}],4:[function(require,module,exports){
+},{"./ctors.js":17}],20:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint16Array.
+*
+* @module @stdlib/assert/is-uint16array
+*
+* @example
+* var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+*
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* bool = isUint16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint16Array = require( './is_uint16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"./is_uint16array.js":21}],21:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint16Array
+*
+* @example
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint16Array( [] );
+* // returns false
+*/
+function isUint16Array( value ) {
+	return ( nativeClass( value ) === '[object Uint16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"@stdlib/utils/native-class":93}],22:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint32Array.
+*
+* @module @stdlib/assert/is-uint32array
+*
+* @example
+* var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+*
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* bool = isUint32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint32Array = require( './is_uint32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"./is_uint32array.js":23}],23:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint32Array
+*
+* @example
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint32Array( [] );
+* // returns false
+*/
+function isUint32Array( value ) {
+	return ( nativeClass( value ) === '[object Uint32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"@stdlib/utils/native-class":93}],24:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8Array.
+*
+* @module @stdlib/assert/is-uint8array
+*
+* @example
+* var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+*
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* bool = isUint8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8Array = require( './is_uint8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"./is_uint8array.js":25}],25:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8Array
+*
+* @example
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8Array( [] );
+* // returns false
+*/
+function isUint8Array( value ) {
+	return ( nativeClass( value ) === '[object Uint8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"@stdlib/utils/native-class":93}],26:[function(require,module,exports){
+'use strict';
+
+/**
+* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-eps
+* @type {number}
+*
+* @example
+* var FLOAT64_EPSILON = require( '@stdlib/constants/math/float64-eps' );
+* // returns 2.220446049250313e-16
+*/
+
+
+// MAIN //
+
+/**
+* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
+*
+* ## Notes
+*
+* The difference is
+*
+* ```tex
+* \frac{1}{2^{52}}
+* ```
+*
+* @constant
+* @type {number}
+* @default 2.220446049250313e-16
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
+*/
+var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_EPSILON;
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
+/**
+* The bias of a double-precision floating-point number's exponent.
+*
+* @module @stdlib/constants/math/float64-exponent-bias
+* @type {integer32}
+*
+* @example
+* var FLOAT64_EXPONENT_BIAS = require( '@stdlib/constants/math/float64-exponent-bias' );
+* // returns 1023
+*/
+
+
+// MAIN //
+
+/**
+* Bias of a double-precision floating-point number's exponent.
+*
+* ## Notes
+*
+* The bias can be computed via
+*
+* ```tex
+* \mathrm{bias} = 2^{k-1} - 1
+* ```
+*
+* where \\(k\\) is the number of bits in the exponent; here, \\(k = 11\\).
+*
+* @constant
+* @type {integer32}
+* @default 1023
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_EXPONENT_BIAS;
+
+},{}],28:[function(require,module,exports){
+'use strict';
+
+/**
+* High word mask for the exponent of a double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-high-word-exponent-mask
+* @type {uinteger32}
+*
+* @example
+* var FLOAT64_HIGH_WORD_EXPONENT_MASK = require( '@stdlib/constants/math/float64-high-word-exponent-mask' );
+* // returns 2146435072
+*/
+
+
+// MAIN //
+
+/**
+* High word mask for the exponent of a double-precision floating-point number.
+*
+* ## Notes
+*
+* The high word mask for the exponent of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2146435072 \\), which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 0x7ff00000
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
+
+},{}],29:[function(require,module,exports){
+'use strict';
+
+/**
+* The maximum base 10 exponent for a double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-max-base10-exponent
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MAX_BASE10_EXPONENT = require( '@stdlib/constants/math/float64-max-base10-exponent' );
+* // returns 308
+*/
+
+
+// MAIN //
+
+/**
+* The maximum base 10 exponent for a double-precision floating-point number.
+*
+* @constant
+* @type {integer32}
+* @default 308
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX_BASE10_EXPONENT = 308|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX_BASE10_EXPONENT;
+
+},{}],30:[function(require,module,exports){
+'use strict';
+
+/**
+* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-max-base2-exponent-subnormal
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/constants/math/float64-max-base2-exponent-subnormal' );
+* // returns -1023
+*/
+
+
+// MAIN //
+
+/**
+* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* ```text
+* 00000000000 => 0 - BIAS = -1023
+* ```
+*
+* where `BIAS = 1023`.
+*
+* @constant
+* @type {integer32}
+* @default -1023
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
+
+},{}],31:[function(require,module,exports){
+'use strict';
+
+/**
+* The maximum biased base 2 exponent for a double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-max-base2-exponent
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MAX_BASE2_EXPONENT = require( '@stdlib/constants/math/float64-max-base2-exponent' );
+* // returns 1023
+*/
+
+
+// MAIN //
+
+/**
+* The maximum biased base 2 exponent for a double-precision floating-point number.
+*
+* ```text
+* 11111111110 => 2046 - BIAS = 1023
+* ```
+*
+* where `BIAS = 1023`.
+*
+* @constant
+* @type {integer32}
+* @default 1023
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX_BASE2_EXPONENT;
+
+},{}],32:[function(require,module,exports){
+'use strict';
+
+/**
+* The minimum base 10 exponent for a normal double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-min-base10-exponent
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MIN_BASE10_EXPONENT = require( '@stdlib/constants/math/float64-min-base10-exponent' );
+* // returns -308
+*/
+
+
+// MAIN //
+
+/**
+* The minimum base 10 exponent for a normal double-precision floating-point number.
+*
+* ```text
+* 2^-1022 = 2.2250738585072014e-308 => -308
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -308
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MIN_BASE10_EXPONENT = -308|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MIN_BASE10_EXPONENT;
+
+},{}],33:[function(require,module,exports){
+'use strict';
+
+/**
+* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-min-base2-exponent-subnormal
+* @type {integer32}
+*
+* @example
+* var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/constants/math/float64-min-base2-exponent-subnormal' );
+* // returns -1074
+*/
+
+
+// MAIN //
+
+/**
+* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
+*
+* ```text
+* -(BIAS+(52-1)) = -(1023+51) = -1074
+* ```
+*
+* where `BIAS = 1023` and `52` is the number of digits in the significand.
+*
+* @constant
+* @type {integer32}
+* @default -1074
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
+
+},{}],34:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NINF;
+
+},{}],35:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_PINF;
+
+},{}],36:[function(require,module,exports){
+'use strict';
+
+/**
+* Smallest positive double-precision floating-point normal number.
+*
+* @module @stdlib/constants/math/float64-smallest-normal
+* @type {number}
+*
+* @example
+* var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/constants/math/float64-smallest-normal' );
+* // returns 2.2250738585072014e-308
+*/
+
+
+// MAIN //
+
+/**
+* The smallest positive double-precision floating-point normal number.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* \frac{1}{2^{1023-1}}
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 0 00000000001 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default 2.2250738585072014e-308
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_SMALLEST_NORMAL;
+
+},{}],37:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* @module @stdlib/constants/math/uint16-max
+* @type {integer32}
+*
+* @example
+* var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+* // returns 65535
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{16} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 1111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 65535
+*/
+var UINT16_MAX = 65535|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT16_MAX;
+
+},{}],38:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* @module @stdlib/constants/math/uint32-max
+* @type {uinteger32}
+*
+* @example
+* var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+* // returns 4294967295
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var UINT32_MAX = 4294967295;
+
+
+// EXPORTS //
+
+module.exports = UINT32_MAX;
+
+},{}],39:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* @module @stdlib/constants/math/uint8-max
+* @type {integer32}
+*
+* @example
+* var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+* // returns 255
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{8} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 255
+*/
+var UINT8_MAX = 255|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT8_MAX;
+
+},{}],40:[function(require,module,exports){
 'use strict';
 
 /**
@@ -170,10 +1341,10 @@ module.exports = isLittleEndian();
 * @example
 * var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 *
-* var bool = isInfinite( Number.POSITIVE_INFINITY );
+* var bool = isInfinite( Infinity );
 * // returns true
 *
-* bool = isInfinite( Number.NEGATIVE_INFINITY );
+* bool = isInfinite( -Infinity );
 * // returns true
 *
 * bool = isInfinite( 5.0 );
@@ -192,13 +1363,13 @@ var isInfinite = require( './is_infinite.js' );
 
 module.exports = isInfinite;
 
-},{"./is_infinite.js":5}],5:[function(require,module,exports){
+},{"./is_infinite.js":41}],41:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 
 
 // MAIN //
@@ -210,11 +1381,11 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @returns {boolean} boolean indicating whether the value is infinite
 *
 * @example
-* var bool = isInfinite( Number.POSITIVE_INFINITY );
+* var bool = isInfinite( Infinity );
 * // returns true
 *
 * @example
-* var bool = isInfinite( Number.NEGATIVE_INFINITY );
+* var bool = isInfinite( -Infinity );
 * // returns true
 *
 * @example
@@ -227,14 +1398,14 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 */
 function isInfinite( x ) {
 	return (x === PINF || x === NINF);
-} // end FUNCTION isInfinite()
+}
 
 
 // EXPORTS //
 
 module.exports = isInfinite;
 
-},{"@stdlib/math/constants/float64-ninf":48,"@stdlib/math/constants/float64-pinf":49}],6:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-ninf":34,"@stdlib/constants/math/float64-pinf":35}],42:[function(require,module,exports){
 'use strict';
 
 /**
@@ -261,7 +1432,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":7}],7:[function(require,module,exports){
+},{"./is_nan.js":43}],43:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -281,15 +1452,15 @@ module.exports = isnan;
 * // returns false
 */
 function isnan( x ) {
-	return (x !== x);
-} // end FUNCTION isnan()
+	return ( x !== x );
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{}],8:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 /**
@@ -326,14 +1497,14 @@ function abs( x ) {
 		return 0.0; // handle negative zero
 	}
 	return x;
-} // end FUNCTION abs()
+}
 
 
 // EXPORTS //
 
 module.exports = abs;
 
-},{}],9:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 /**
@@ -369,23 +1540,26 @@ var abs = require( './abs.js' );
 
 module.exports = abs;
 
-},{"./abs.js":8}],10:[function(require,module,exports){
+},{"./abs.js":44}],46:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
+var toWords = require( '@stdlib/number/float64/base/to-words' );
+var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
+var fromWords = require( '@stdlib/number/float64/base/from-words' );
 
 
 // VARIABLES //
 
 // 10000000000000000000000000000000 => 2147483648 => 0x80000000
-var SIGN_MASK = 0x80000000;
+var SIGN_MASK = 0x80000000>>>0; // asm type annotation
 
 // 01111111111111111111111111111111 => 2147483647 => 0x7fffffff
-var MAGNITUDE_MASK = 0x7fffffff;
+var MAGNITUDE_MASK = 0x7fffffff|0; // asm type annotation
+
+// High/low words workspace:
+var WORDS = [ 0, 0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -422,8 +1596,8 @@ function copysign( x, y ) {
 	var hy;
 
 	// Split `x` into higher and lower order words:
-	x = toWords( x );
-	hx = x[ 0 ];
+	toWords( WORDS, x );
+	hx = WORDS[ 0 ];
 
 	// Turn off the sign bit of `x`:
 	hx &= MAGNITUDE_MASK;
@@ -438,15 +1612,15 @@ function copysign( x, y ) {
 	hx |= hy;
 
 	// Return a new value having the same magnitude as `x`, but with the sign of `y`:
-	return fromWords( hx, x[ 1 ] );
-} // end FUNCTION copysign()
+	return fromWords( hx, WORDS[ 1 ] );
+}
 
 
 // EXPORTS //
 
 module.exports = copysign;
 
-},{"@stdlib/math/base/utils/float64-from-words":30,"@stdlib/math/base/utils/float64-get-high-word":34,"@stdlib/math/base/utils/float64-to-words":37}],11:[function(require,module,exports){
+},{"@stdlib/number/float64/base/from-words":64,"@stdlib/number/float64/base/get-high-word":68,"@stdlib/number/float64/base/to-words":73}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -482,7 +1656,7 @@ var copysign = require( './copysign.js' );
 
 module.exports = copysign;
 
-},{"./copysign.js":10}],12:[function(require,module,exports){
+},{"./copysign.js":46}],48:[function(require,module,exports){
 'use strict';
 
 /*
@@ -509,66 +1683,46 @@ module.exports = copysign;
 
 // MODULES //
 
-var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
 var floor = require( '@stdlib/math/base/special/floor' );
 var ldexp = require( '@stdlib/math/base/special/ldexp' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var MAXL10 = require( '@stdlib/math/constants/float64-max-base10-exponent' );
-var MINL10 = require( '@stdlib/math/constants/float64-min-base10-exponent' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var MAXL10 = require( '@stdlib/constants/math/float64-max-base10-exponent' );
+var MINL10 = require( '@stdlib/constants/math/float64-min-base10-exponent' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var polyvalP = require( './polyval_p.js' );
+var polyvalQ = require( './polyval_q.js' );
 
 
 // VARIABLES //
 
-var P = [
-	2.39423741207388267439e3,
-	4.06717289936872725516e2,
-	1.17452732554344059015e1,
-	4.09962519798587023075e-2
-];
-var Q = [
-	2.07960819286001865907e3,
-	1.27209271178345121210e3,
-	8.50936160849306532625e1,
-	1.0
-];
 var LOG210 = 3.32192809488736234787e0;
 var LG102A = 3.01025390625000000000e-1;
 var LG102B = 4.60503898119521373889e-6;
 
 
-// FUNCTIONS //
-
-// Compile functions to evaluate polynomials based on the above coefficients...
-var polyvalP = evalpoly( P );
-var polyvalQ = evalpoly( Q );
-
-
 // MAIN //
 
 /**
-* Returns 10 raised to the x power.
+* Returns `10` raised to the `x` power.
 *
-* #### Method
+* ## Method
 *
-* * Range reduction is accomplished by expressing the argument
-*   as \\( 10^x = 2^n 10^f \\), with \\( |f| < 0.5 log_{10}(2) \\).
-*   The Pade' form
+* -   Range reduction is accomplished by expressing the argument as \\( 10^x = 2^n 10^f \\), with \\( |f| < 0.5 log_{10}(2) \\). The Pade' form
 *
-*   ``` tex
-*   1 + 2x \frac{P(x^2)}{Q(x^2) - P(x^2)}
-*   ```
+*     ```tex
+*     1 + 2x \frac{P(x^2)}{Q(x^2) - P(x^2)}
+*     ```
 *
-*   is used to approximate \\( 10**f \\).
+*     is used to approximate \\( 10^f \\).
 *
 *
-* #### Notes
+* ## Notes
 *
-* * Relative error:
+* -   Relative error:
 *
-*   | arithmetic | domain      | # trials | peak    | rms     |
-*   |:----------:|:-----------:|:--------:|:-------:|:-------:|
-*   | IEEE       | -307,+307   |  30000   | 2.2e-16 | 5.5e-17 |
+*     | arithmetic | domain      | # trials | peak    | rms     |
+*     |:----------:|:-----------:|:--------:|:-------:|:-------:|
+*     | IEEE       | -307,+307   |  30000   | 2.2e-16 | 5.5e-17 |
 *
 *
 * @param {number} x - input value
@@ -576,11 +1730,11 @@ var polyvalQ = evalpoly( Q );
 *
 * @example
 * var v = exp10( 3.0 );
-* // returns 1000
+* // returns 1000.0
 *
 * @example
 * var v = exp10( -9.0 );
-* // returns 1e-9
+* // returns 1.0e-9
 *
 * @example
 * var v = exp10( 0.0 );
@@ -605,31 +1759,28 @@ function exp10( x ) {
 		return 0.0;
 	}
 
-	// Express 10**x = 10**g 2**n = 10**g 10**( n log10(2) ) = 10**( g + n log10(2) )
-	px = floor( (LOG210 * x) + 0.5 );
+	// Express 10^x = 10^g 2^n = 10^g 10^( n log10(2) ) = 10^( g + n log10(2) )
+	px = floor( (LOG210*x) + 0.5 );
 	n = px;
 	x -= px * LG102A;
 	x -= px * LG102B;
 
-	// Rational approximation for exponential of the fractional part:
-	// 10**x = 1 + 2x P(x**2)/( Q(x**2) - P(x**2) )
+	// Rational approximation for exponential of the fractional part: 10^x = 1 + 2x P(x^2)/( Q(x^2) - P(x^2) )
 	xx = x * x;
 	px = x * polyvalP( xx );
 	x = px / ( polyvalQ( xx ) - px );
 	x = 1.0 + ldexp( x, 1 );
 
-	// Multiply by power of 2
-	x = ldexp( x, n );
-
-	return x;
-} // end FUNCTION exp10()
+	// Multiply by power of 2:
+	return ldexp( x, n );
+}
 
 
 // EXPORTS //
 
 module.exports = exp10;
 
-},{"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/floor":21,"@stdlib/math/base/special/ldexp":22,"@stdlib/math/base/tools/evalpoly":26,"@stdlib/math/constants/float64-max-base10-exponent":43,"@stdlib/math/constants/float64-min-base10-exponent":46,"@stdlib/math/constants/float64-pinf":49}],13:[function(require,module,exports){
+},{"./polyval_p.js":50,"./polyval_q.js":51,"@stdlib/constants/math/float64-max-base10-exponent":29,"@stdlib/constants/math/float64-min-base10-exponent":32,"@stdlib/constants/math/float64-pinf":35,"@stdlib/math/base/assert/is-nan":42,"@stdlib/math/base/special/floor":59,"@stdlib/math/base/special/ldexp":60}],49:[function(require,module,exports){
 'use strict';
 
 /**
@@ -641,10 +1792,10 @@ module.exports = exp10;
 * var exp10 = require( '@stdlib/math/base/special/exp10' );
 *
 * var v = exp10( 3.0 );
-* // returns 1000
+* // returns 1000.0
 *
 * v = exp10( -9.0 );
-* // returns 1e-9
+* // returns 1.0e-9
 *
 * v = exp10( 0.0 );
 * // returns 1.0
@@ -662,17 +1813,81 @@ var exp10 = require( './exp10.js' );
 
 module.exports = exp10;
 
-},{"./exp10.js":12}],14:[function(require,module,exports){
+},{"./exp10.js":48}],50:[function(require,module,exports){
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 2394.2374120738828;
+	}
+	return 2394.2374120738828 + (x * (406.7172899368727 + (x * (11.745273255434405 + (x * 0.040996251979858706))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],51:[function(require,module,exports){
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function evalpoly( x ) {
+	if ( x === 0.0 ) {
+		return 2079.608192860019;
+	}
+	return 2079.608192860019 + (x * (1272.0927117834513 + (x * (85.09361608493066 + (x * 1.0))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = evalpoly;
+
+},{}],52:[function(require,module,exports){
 module.exports={"expected": [1e-300, 1.4104271176297771e-300, 1.989304654145441e-300, 2.8057692294338553e-300, 3.957333007004713e-300, 5.581529786570837e-300, 7.87234096883785e-300, 1.1103363181676776e-299, 1.5660484528328967e-299, 2.2087972053976743e-299, 3.1153474758377486e-299, 4.3939705607610377e-299, 6.197375232964286e-299, 8.740946086698842e-299, 1.2328467394419929e-298, 1.7388404731904388e-298, 2.4525077566199885e-298, 3.459083446134201e-298, 4.878785094571937e-298, 6.8811707984722175e-298, 9.705389895207363e-298, 1.3688745095370485e-297, 1.9306977288832142e-297, 2.7231084327631084e-297, 3.840745977815411e-297, 5.4170922790383495e-297, 7.64041384905858e-297, 1.0776246882626325e-296, 1.5199110829529518e-296, 2.143723807782885e-296, 3.0235661912055445e-296, 4.2645197480248803e-296, 6.014794296281995e-296, 8.483428982441038e-296, 1.1965258287321227e-295, 1.687612475788228e-295, 2.3802543999020426e-295, 3.3571753524794326e-295, 4.735051155775297e-295, 6.678444553468823e-295, 9.419459301799317e-295, 1.3285460832667803e-294, 1.873817422860295e-294, 2.642882906689303e-294, 3.727593720314801e-294, 5.257499266638462e-294, 7.415319536585552e-294, 1.0458767760290136e-293, 1.4751329666105257e-293, 2.080567538217146e-293, 2.9344888759616904e-293, 4.138882687039292e-293, 5.837592378488614e-293, 8.233498592289252e-293, 1.1612749687531357e-292, 1.6378937069540948e-292, 2.3101297000832148e-292, 3.25826957423931e-292, 4.595551764055151e-292, 6.481690828494745e-292, 9.141952512601205e-292, 1.2894057731856418e-291, 1.8186128681294187e-291, 2.565020905680198e-291, 3.6177750426586416e-291, 5.102608025649304e-291, 7.196856730011117e-291, 1.0150641893704043e-290, 1.4316740588229056e-290, 2.0192719161709146e-290, 2.8480358684357e-290, 4.0169470208239837e-290, 5.665611008252292e-290, 7.990931403980814e-290, 1.1270626347293928e-289, 1.5896397032895998e-289, 2.2420709447806046e-289, 3.1622776601683794e-289, 4.4601621653763235e-289, 6.290733667073113e-289, 8.872621353826528e-289, 1.2514185761897963e-288, 1.7650346953637338e-288, 2.489452797898423e-288, 3.511191734215257e-288, 4.9522800371347226e-288, 6.984830058471413e-288, 9.851593726503663e-288, 1.3894954943732155e-287, 1.9597821250883767e-287, 2.7641298538703967e-287, 3.898603702548841e-287, 5.498696382966738e-287, 7.755510490149058e-287, 1.0938582306368436e-286, 1.542807311332731e-286, 2.17601726918117e-286, 3.0691137648838167e-286, 4.328761281082956e-286, 6.105402296585214e-286, 8.611224963142905e-286, 1.2145505204027231e-285, 1.7130349897073586e-285, 2.416111002931905e-285, 3.407748477738836e-285, 4.806380863064449e-285, 6.779049906922909e-285, 9.561355820489688e-285, 1.3485595530525965e-284, 1.902044963364074e-284, 2.682695795279826e-284, 3.7837468980140477e-284, 5.3366992312065634e-284, 7.527025314327721e-284, 1.0616320618413615e-283, 1.4973546489660728e-283, 2.1119096016110413e-283, 2.978694572094522e-283, 4.201231599618739e-283, 5.925530975545396e-283, 8.357529574264454e-283, 1.1787686347935433e-282, 1.6625672479242445e-282, 2.3449299313554634e-282, 3.3073527641254774e-282, 4.6647800260903734e-282, 6.579332246575601e-282, 9.279668616466272e-282, 1.3088296259282025e-281, 1.8460087967663742e-281, 2.60366086634241e-281, 3.672273891000774e-281, 5.179474679231308e-281, 7.305271542664628e-281, 1.0303553085423307e-280, 1.4532410679618991e-280, 2.0496906107067206e-280, 2.890939220091897e-280, 4.0774590714370907e-280, 5.750958845380403e-280, 8.111308307896292e-280, 1.1440409196914128e-279, 1.6135863368106677e-279, 2.2758459260746608e-279, 3.2099148096829546e-279, 4.527350892858264e-279, 6.385498470312679e-279, 9.006280202112463e-279, 1.270270182603161e-278, 1.7916235122600268e-278, 2.5269543862746473e-278, 3.564084991415273e-278, 5.026882121429393e-278, 7.090050861192318e-278, 1.0000000000000001e-277, 1.410427117629777e-277, 1.9893046541454411e-277, 2.8057692294338553e-277, 3.9573330070047135e-277, 5.581529786570836e-277, 7.87234096883785e-277, 1.1103363181676776e-276, 1.5660484528328967e-276, 2.2087972053976743e-276, 3.115347475837749e-276, 4.393970560761037e-276, 6.197375232964286e-276, 8.740946086698842e-276, 1.2328467394419928e-275, 1.7388404731904388e-275, 2.4525077566199882e-275, 3.459083446134201e-275, 4.878785094571938e-275, 6.881170798472218e-275, 9.705389895207362e-275, 1.3688745095370485e-274, 1.930697728883214e-274, 2.7231084327631086e-274, 3.840745977815411e-274, 5.41709227903835e-274, 7.64041384905858e-274, 1.0776246882626324e-273, 1.5199110829529519e-273, 2.143723807782885e-273, 3.0235661912055448e-273, 4.26451974802488e-273, 6.014794296281995e-273, 8.483428982441038e-273, 1.1965258287321226e-272, 1.687612475788228e-272, 2.3802543999020426e-272, 3.3571753524794325e-272, 4.735051155774678e-272, 6.678444553468823e-272, 9.419459301799317e-272, 1.3285460832667804e-271, 1.873817422860295e-271, 2.642882906689303e-271, 3.7275937203148005e-271, 5.257499266638462e-271, 7.415319536585553e-271, 1.0458767760290137e-270, 1.4751329666105257e-270, 2.080567538217146e-270, 2.9344888759616904e-270, 4.138882687039292e-270, 5.837592378488616e-270, 8.233498592289252e-270, 1.1612749687531357e-269, 1.6378937069540948e-269, 2.3101297000832146e-269, 3.25826957423931e-269, 4.595551764055152e-269, 6.481690828494745e-269, 9.141952512601204e-269, 1.2894057731856417e-268, 1.8186128681294187e-268, 2.5650209056798623e-268, 3.617775042658642e-268, 5.102608025649305e-268, 7.196856730011117e-268, 1.0150641893704042e-267, 1.4316740588229054e-267, 2.0192719161709146e-267, 2.8480358684357003e-267, 4.016947020823983e-267, 5.665611008252291e-267, 7.990931403980814e-267, 1.127062634729393e-266, 1.5896397032896e-266, 2.2420709447806044e-266, 3.1622776601683797e-266, 4.460162165376323e-266, 6.290733667073113e-266, 8.872621353826529e-266, 1.251418576189796e-265, 1.7650346953637339e-265, 2.489452797898423e-265, 3.5111917342152567e-265, 4.952280037134723e-265, 6.984830058471413e-265, 9.851593726503663e-265, 1.3894954943730338e-264, 1.9597821250883767e-264, 2.7641298538703965e-264, 3.8986037025488406e-264, 5.498696382966739e-264, 7.755510490149058e-264, 1.0938582306368436e-263, 1.5428073113327312e-263, 2.17601726918117e-263, 3.069113764883817e-263, 4.3287612810829555e-263, 6.105402296585214e-263, 8.611224963142905e-263, 1.2145505204027232e-262, 1.7130349897073584e-262, 2.4161110029319048e-262, 3.4077484777388367e-262, 4.806380863064448e-262, 6.77904990692291e-262, 9.561355820489689e-262, 1.3485595530525964e-261, 1.9020449633640742e-261, 2.682695795279826e-261, 3.783746898014048e-261, 5.336699231206563e-261, 7.527025314327722e-261, 1.0616320618413616e-260, 1.4973546489660728e-260, 2.111909601611041e-260, 2.978694572094522e-260, 4.201231599618739e-260, 5.925530975545396e-260, 8.357529574264454e-260, 1.1787686347935432e-259, 1.6625672479242444e-259, 2.3449299313554635e-259, 3.307352764125477e-259, 4.664780026090373e-259, 6.579332246575602e-259, 9.279668616466272e-259, 1.3088296259282028e-258, 1.8460087967663743e-258, 2.60366086634241e-258, 3.672273891000774e-258, 5.179474679231307e-258, 7.305271542664629e-258, 1.0303553085423306e-257, 1.4532410679618993e-257, 2.0496906107067204e-257, 2.8909392200918974e-257, 4.0774590714370904e-257, 5.750958845380403e-257, 8.111308307896292e-257, 1.144040919691338e-256, 1.6135863368107733e-256, 2.2758459260748094e-256, 3.2099148096831647e-256, 4.5273508928585607e-256, 6.38549847031268e-256, 9.006280202112464e-256, 1.2702701826031609e-255, 1.791623512260027e-255, 2.5269543862746473e-255, 3.564084991415273e-255, 5.026882121429393e-255, 7.090050861192318e-255, 1e-254, 1.4104271176297772e-254, 1.9893046541454413e-254, 2.8057692294338554e-254, 3.957333007004713e-254, 5.581529786570836e-254, 7.87234096883785e-254, 1.1103363181676776e-253, 1.566048452832794e-253, 2.2087972053975298e-253, 3.115347475837545e-253, 4.39397056076075e-253, 6.19737523296388e-253, 8.740946086699415e-253, 1.2328467394420734e-252, 1.7388404731905526e-252, 2.4525077566201486e-252, 3.459083446134201e-252, 4.878785094571938e-252, 6.881170798472218e-252, 9.705389895207362e-252, 1.3688745095370485e-251, 1.9306977288832142e-251, 2.7231084327631087e-251, 3.8407459778154105e-251, 5.41709227903835e-251, 7.640413849058581e-251, 1.0776246882626324e-250, 1.519911082952952e-250, 2.1437238077828852e-250, 3.023566191205545e-250, 4.26451974802488e-250, 6.014794296281995e-250, 8.483428982440484e-250, 1.1965258287320444e-249, 1.6876124757881177e-249, 2.3802543999018866e-249, 3.3571753524792133e-249, 4.735051155774988e-249, 6.678444553469262e-249, 9.419459301799933e-249, 1.3285460832668673e-248, 1.8738174228604173e-248, 2.642882906689303e-248, 3.727593720314801e-248, 5.257499266638461e-248, 7.415319536585554e-248, 1.0458767760290135e-247, 1.4751329666105256e-247, 2.0805675382171462e-247, 2.93448887596169e-247, 4.1388826870392916e-247, 5.837592378488614e-247, 8.233498592289252e-247, 1.1612749687531358e-246, 1.6378937069540948e-246, 2.310129700083215e-246, 3.25826957423931e-246, 4.595551764055152e-246, 6.48169082849432e-246, 9.141952512600607e-246, 1.2894057731855573e-245, 1.8186128681292997e-245, 2.56502090568003e-245, 3.617775042658405e-245, 5.102608025649639e-245, 7.196856730011587e-245, 1.0150641893704705e-244, 1.4316740588229056e-244, 2.0192719161709145e-244, 2.8480358684357e-244, 4.016947020823983e-244, 5.6656110082522915e-244, 7.990931403980815e-244, 1.1270626347293929e-243, 1.5896397032895998e-243, 2.2420709447806047e-243, 3.162277660168379e-243, 4.460162165376323e-243, 6.290733667073113e-243, 8.872621353826529e-243, 1.2514185761897963e-242, 1.7650346953637339e-242, 2.489452797898423e-242, 3.5111917342152567e-242, 4.9522800371343985e-242, 6.984830058470956e-242, 9.851593726503019e-242, 1.3894954943731247e-241, 1.9597821250882483e-241, 2.7641298538705775e-241, 3.898603702549096e-241, 5.498696382967098e-241, 7.755510490149565e-241, 1.0938582306368435e-240, 1.5428073113327312e-240, 2.1760172691811704e-240, 3.069113764883817e-240, 4.3287612810829553e-240, 6.105402296585214e-240, 8.611224963142905e-240, 1.2145505204027231e-239, 1.7130349897073587e-239, 2.416111002931905e-239, 3.4077484777388364e-239, 4.806380863064448e-239, 6.77904990692291e-239, 9.561355820489688e-239, 1.3485595530525965e-238, 1.9020449633640742e-238, 2.6826957952796504e-238, 3.7837468980138e-238, 5.336699231206214e-238, 7.527025314327228e-238, 1.061632061841292e-237, 1.4973546489661708e-237, 2.1119096016109032e-237, 2.978694572094717e-237, 4.201231599619014e-237, 5.925530975545784e-237, 8.357529574264454e-237, 1.1787686347935433e-236, 1.6625672479242446e-236, 2.3449299313554633e-236, 3.3073527641254773e-236, 4.664780026090373e-236, 6.579332246575601e-236, 9.27966861646627e-236, 1.3088296259282025e-235, 1.846008796766374e-235, 2.60366086634241e-235, 3.672273891000774e-235, 5.179474679231308e-235, 7.305271542664628e-235, 1.0303553085423307e-234, 1.453241067961899e-234, 2.0496906107067204e-234, 2.8909392200917084e-234, 4.077459071436824e-234, 5.750958845380027e-234, 8.111308307896823e-234, 1.1440409196913381e-233, 1.6135863368107732e-233, 2.2758459260748097e-233, 3.209914809682955e-233, 4.527350892858264e-233, 6.38549847031268e-233, 9.006280202112464e-233, 1.2702701826031608e-232, 1.791623512260027e-232, 2.5269543862746474e-232, 3.5640849914152735e-232, 5.026882121429393e-232, 7.090050861192318e-232, 1e-231, 1.410427117629777e-231, 1.989304654145441e-231, 2.805769229433855e-231, 3.957333007004713e-231, 5.581529786570837e-231, 7.87234096883785e-231, 1.1103363181676776e-230, 1.5660484528328968e-230, 2.2087972053975297e-230, 3.115347475837545e-230, 4.39397056076075e-230, 6.197375232963881e-230, 8.740946086699414e-230, 1.2328467394420736e-229, 1.7388404731904386e-229, 2.4525077566199883e-229, 3.459083446134201e-229, 4.878785094571938e-229, 6.881170798472218e-229, 9.705389895207362e-229, 1.3688745095370485e-228, 1.9306977288832143e-228, 2.723108432763108e-228, 3.840745977815411e-228, 5.41709227903835e-228, 7.64041384905858e-228, 1.0776246882626325e-227, 1.5199110829529517e-227, 2.143723807782885e-227, 3.023566191205545e-227, 4.2645197480248805e-227, 6.014794296281996e-227, 8.483428982441038e-227, 1.1965258287320443e-226, 1.6876124757881177e-226, 2.3802543999018868e-226, 3.357175352479213e-226, 4.735051155774987e-226, 6.678444553469261e-226, 9.419459301799933e-226, 1.3285460832667803e-225, 1.8738174228602947e-225, 2.642882906689303e-225, 3.7275937203148004e-225, 5.2574992666384623e-225, 7.415319536585554e-225, 1.0458767760290136e-224, 1.4751329666105256e-224, 2.0805675382171462e-224, 2.9344888759616905e-224, 4.1388826870392918e-224, 5.837592378488615e-224, 8.233498592289252e-224, 1.1612749687531358e-223, 1.6378937069540948e-223, 2.3101297000832147e-223, 3.25826957423931e-223, 4.595551764055151e-223, 6.481690828494745e-223, 9.141952512600607e-223, 1.2894057731855571e-222, 1.8186128681292997e-222, 2.56502090568003e-222, 3.617775042658405e-222, 5.1026080256496383e-222, 7.196856730011588e-222, 1.0150641893704042e-221, 1.4316740588229056e-221, 2.0192719161709144e-221, 2.8480358684357e-221, 4.0169470208239833e-221, 5.665611008252291e-221, 7.990931403980815e-221, 1.1270626347293927e-220, 1.5896397032896e-220, 2.2420709447806045e-220, 3.1622776601683794e-220, 4.460162165376323e-220, 6.290733667073113e-220, 8.872621353826528e-220, 1.2514185761897962e-219, 1.7650346953637338e-219, 2.489452797898423e-219, 3.5111917342152564e-219, 4.952280037134723e-219, 6.984830058470956e-219, 9.851593726503018e-219, 1.3894954943731245e-218, 1.9597821250882484e-218, 2.7641298538705777e-218, 3.898603702549096e-218, 5.498696382966738e-218, 7.755510490149057e-218, 1.0938582306368436e-217, 1.5428073113327314e-217, 2.1760172691811703e-217, 3.069113764883817e-217, 4.328761281082955e-217, 6.105402296585214e-217, 8.611224963142905e-217, 1.2145505204027231e-216, 1.7130349897073586e-216, 2.416111002931905e-216, 3.407748477738836e-216, 4.806380863064448e-216, 6.77904990692291e-216, 9.561355820489689e-216, 1.3485595530525964e-215, 1.902044963364074e-215, 2.682695795279826e-215, 3.7837468980138003e-215, 5.336699231206214e-215, 7.527025314327228e-215, 1.061632061841292e-214, 1.497354648966171e-214, 2.111909601610903e-214, 2.978694572094717e-214, 4.2012315996187386e-214, 5.925530975545396e-214, 8.357529574264453e-214, 1.1787686347935433e-213, 1.6625672479242445e-213, 2.3449299313554633e-213, 3.307352764125477e-213, 4.664780026090374e-213, 6.579332246575602e-213, 9.279668616466273e-213, 1.3088296259282026e-212, 1.8460087967663742e-212, 2.60366086634241e-212, 3.672273891000774e-212, 5.179474679231308e-212, 7.305271542664628e-212, 1.0303553085423307e-211, 1.4532410679618993e-211, 2.0496906107067206e-211, 2.8909392200917084e-211, 4.077459071436824e-211, 5.750958845380028e-211, 8.111308307896823e-211, 1.1440409196913381e-210, 1.6135863368107732e-210, 2.275845926074661e-210, 3.2099148096829546e-210, 4.527350892858264e-210, 6.385498470312679e-210, 9.006280202112463e-210, 1.270270182603161e-209, 1.7916235122600268e-209, 2.5269543862746476e-209, 3.564084991415273e-209, 5.026882121429393e-209, 7.090050861192318e-209, 1e-208, 1.410427117629777e-208, 1.989304654145441e-208, 2.805769229433855e-208, 3.957333007004713e-208, 5.581529786570836e-208, 7.87234096883785e-208, 1.1103363181676775e-207, 1.566048452832794e-207, 2.20879720539753e-207, 3.115347475837545e-207, 4.39397056076075e-207, 6.1973752329638805e-207, 8.740946086699414e-207, 1.2328467394420734e-206, 1.738840473190439e-206, 2.4525077566199883e-206, 3.459083446134201e-206, 4.8787850945719374e-206, 6.881170798472217e-206, 9.705389895207362e-206, 1.3688745095370483e-205, 1.930697728883214e-205, 2.723108432763108e-205, 3.840745977815411e-205, 5.41709227903835e-205, 7.64041384905858e-205, 1.0776246882626325e-204, 1.5199110829529518e-204, 2.143723807782885e-204, 3.023566191205545e-204, 4.26451974802488e-204, 6.014794296281995e-204, 8.483428982441039e-204, 1.1965258287320443e-203, 1.6876124757881175e-203, 2.3802543999018868e-203, 3.3571753524792127e-203, 4.7350511557749875e-203, 6.678444553469261e-203, 9.419459301799934e-203, 1.3285460832667802e-202, 1.8738174228602948e-202, 2.642882906689303e-202, 3.727593720314801e-202, 5.257499266638462e-202, 7.415319536585553e-202, 1.0458767760290136e-201, 1.4751329666105256e-201, 2.080567538217146e-201, 2.9344888759616903e-201, 4.138882687039292e-201, 5.8375923784886146e-201, 8.233498592289252e-201, 1.1612749687531358e-200, 1.6378937069540948e-200, 2.310129700083215e-200, 3.25826957423931e-200, 4.595551764055151e-200, 6.481690828494744e-200, 9.141952512600607e-200, 1.2894057731855572e-199, 1.8186128681292995e-199, 2.56502090568003e-199, 3.6177750426584053e-199, 5.102608025649638e-199, 7.196856730011117e-199, 1.0150641893704043e-198, 1.4316740588229054e-198, 2.0192719161709147e-198, 2.8480358684357e-198, 4.016947020823983e-198, 5.665611008252291e-198, 7.990931403980815e-198, 1.1270626347293928e-197, 1.5896397032895998e-197, 2.2420709447806046e-197, 3.162277660168379e-197, 4.460162165376323e-197, 6.290733667073112e-197, 8.872621353826528e-197, 1.251418576189796e-196, 1.765034695363734e-196, 2.489452797898423e-196, 3.511191734215257e-196, 4.952280037134399e-196, 6.984830058470956e-196, 9.851593726503017e-196, 1.3894954943731247e-195, 1.9597821250882482e-195, 2.7641298538705775e-195, 3.898603702549095e-195, 5.498696382966738e-195, 7.755510490149057e-195, 1.0938582306368435e-194, 1.542807311332731e-194, 2.1760172691811703e-194, 3.0691137648838166e-194, 4.328761281082955e-194, 6.105402296585214e-194, 8.611224963142905e-194, 1.214550520402723e-193, 1.7130349897073586e-193, 2.4161110029319046e-193, 3.407748477738836e-193, 4.806380863064448e-193, 6.77904990692291e-193, 9.561355820489689e-193, 1.3485595530525965e-192, 1.902044963364074e-192, 2.682695795279826e-192, 3.7837468980138e-192, 5.3366992312062144e-192, 7.527025314327229e-192, 1.061632061841292e-191, 1.4973546489661707e-191, 2.111909601610903e-191, 2.978694572094522e-191, 4.201231599618739e-191, 5.925530975545395e-191, 8.357529574264455e-191, 1.1787686347935433e-190, 1.6625672479242445e-190, 2.3449299313554633e-190, 3.3073527641254776e-190, 4.664780026090373e-190, 6.579332246575602e-190, 9.279668616466273e-190, 1.3088296259282026e-189, 1.846008796766374e-189, 2.6036608663424106e-189, 3.672273891000774e-189, 5.179474679231308e-189, 7.305271542664628e-189, 1.0303553085423306e-188, 1.453241067961899e-188, 2.0496906107065863e-188, 2.890939220091708e-188, 4.0774590714368244e-188, 5.750958845380026e-188, 8.111308307896823e-188, 1.1440409196913381e-187, 1.613586336810773e-187, 2.2758459260746606e-187, 3.2099148096829544e-187, 4.527350892858264e-187, 6.385498470312679e-187, 9.006280202112464e-187, 1.270270182603161e-186, 1.7916235122600268e-186, 2.5269543862746475e-186, 3.5640849914152733e-186, 5.0268821214293935e-186, 7.090050861192318e-186, 1e-185, 1.410427117629777e-185, 1.9893046541454412e-185, 2.8057692294338553e-185, 3.957333007004713e-185, 5.581529786570837e-185, 7.87234096883785e-185, 1.1103363181676775e-184, 1.566048452832794e-184, 2.20879720539753e-184, 3.115347475837545e-184, 4.39397056076075e-184, 6.19737523296388e-184, 8.740946086699414e-184, 1.2328467394420734e-183, 1.7388404731904387e-183, 2.452507756619988e-183, 3.459083446134201e-183, 4.878785094571938e-183, 6.881170798472218e-183, 9.705389895207362e-183, 1.3688745095370484e-182, 1.930697728883214e-182, 2.7231084327631086e-182, 3.840745977815411e-182, 5.41709227903835e-182, 7.64041384905858e-182, 1.0776246882626324e-181, 1.5199110829529519e-181, 2.143723807782885e-181, 3.023566191205545e-181, 4.2645197480248804e-181, 6.014794296281995e-181, 8.483428982441038e-181, 1.1965258287320444e-180, 1.6876124757881176e-180, 2.380254399901887e-180, 3.357175352479213e-180, 4.735051155774987e-180, 6.6784445534692606e-180, 9.419459301799317e-180, 1.3285460832667803e-179, 1.8738174228602947e-179, 2.642882906689303e-179, 3.7275937203148005e-179, 5.257499266638462e-179, 7.415319536585553e-179, 1.0458767760290137e-178, 1.4751329666105256e-178, 2.080567538217146e-178, 2.93448887596169e-178, 4.138882687039292e-178, 5.837592378488615e-178, 8.233498592289252e-178, 1.1612749687531357e-177, 1.6378937069540948e-177, 2.3101297000832146e-177, 3.25826957423931e-177, 4.595551764055151e-177, 6.48169082849432e-177, 9.141952512600606e-177, 1.2894057731855572e-176, 1.8186128681292996e-176, 2.56502090568003e-176, 3.617775042658405e-176, 5.102608025649638e-176, 7.196856730011116e-176, 1.0150641893704042e-175, 1.4316740588229056e-175, 2.0192719161709146e-175, 2.8480358684357e-175, 4.0169470208239834e-175, 5.665611008252292e-175, 7.990931403980815e-175, 1.1270626347293928e-174, 1.5896397032896e-174, 2.2420709447806047e-174, 3.1622776601683797e-174, 4.460162165376323e-174, 6.290733667073112e-174, 8.87262135382653e-174, 1.2514185761897962e-173, 1.765034695363734e-173, 2.4894527978984228e-173, 3.511191734215257e-173, 4.9522800371343985e-173, 6.984830058470956e-173, 9.851593726503017e-173, 1.3894954943731248e-172, 1.9597821250882484e-172, 2.7641298538705775e-172, 3.898603702549096e-172, 5.498696382967099e-172, 7.755510490149566e-172, 1.0938582306368435e-171, 1.5428073113327314e-171, 2.17601726918117e-171, 3.0691137648838167e-171, 4.3287612810829555e-171, 6.105402296585215e-171, 8.611224963142906e-171, 1.2145505204027231e-170, 1.7130349897073587e-170, 2.4161110029319048e-170, 3.4077484777388366e-170, 4.806380863064448e-170, 6.779049906922909e-170, 9.561355820489062e-170, 1.3485595530525083e-169, 1.9020449633639494e-169, 2.6826957952796506e-169, 3.7837468980138005e-169, 5.336699231206214e-169, 7.527025314327229e-169, 1.061632061841292e-168, 1.4973546489661709e-168, 2.111909601610903e-168, 2.978694572094717e-168, 4.201231599619014e-168, 5.925530975545784e-168, 8.357529574264454e-168, 1.1787686347935434e-167, 1.6625672479242447e-167, 2.3449299313554636e-167, 3.3073527641254774e-167, 4.664780026090373e-167, 6.5793322465756016e-167, 9.279668616466272e-167, 1.3088296259282025e-166, 1.846008796766374e-166, 2.60366086634241e-166, 3.6722738910007736e-166, 5.179474679231308e-166, 7.30527154266415e-166, 1.0303553085422632e-165, 1.4532410679618043e-165, 2.0496906107065865e-165, 2.8909392200917085e-165, 4.077459071436824e-165, 5.750958845380027e-165, 8.111308307896823e-165, 1.144040919691338e-164, 1.6135863368107733e-164, 2.27584592607481e-164, 3.2099148096831647e-164, 4.52735089285856e-164, 6.38549847031268e-164, 9.006280202112463e-164, 1.2702701826031609e-163, 1.7916235122600268e-163, 2.5269543862746473e-163, 3.564084991415273e-163, 5.026882121429393e-163, 7.090050861192318e-163, 1e-162, 1.410427117629777e-162, 1.989304654145441e-162, 2.805769229433855e-162, 3.9573330070047134e-162, 5.58152978657047e-162, 7.872340968837334e-162, 1.1103363181676049e-161, 1.5660484528327942e-161, 2.2087972053975298e-161, 3.115347475837545e-161, 4.39397056076075e-161, 6.19737523296388e-161, 8.740946086699414e-161, 1.2328467394420735e-160, 1.7388404731905525e-160, 2.452507756620149e-160, 3.459083446134201e-160, 4.878785094571938e-160, 6.881170798472218e-160, 9.705389895207362e-160, 1.3688745095370484e-159, 1.9306977288832142e-159, 2.7231084327631086e-159, 3.840745977815411e-159, 5.41709227903835e-159, 7.64041384905858e-159, 1.0776246882626324e-158, 1.5199110829529518e-158, 2.143723807782885e-158, 3.023566191205347e-158, 4.264519748024601e-158, 6.014794296281602e-158, 8.483428982440482e-158, 1.1965258287320443e-157, 1.6876124757881176e-157, 2.3802543999018866e-157, 3.357175352479213e-157, 4.735051155774988e-157, 6.67844455346926e-157, 9.419459301799933e-157, 1.3285460832668674e-156, 1.8738174228604177e-156, 2.642882906689303e-156, 3.727593720314801e-156, 5.257499266638462e-156, 7.415319536585553e-156, 1.0458767760290136e-155, 1.4751329666105256e-155, 2.080567538217146e-155, 2.9344888759616904e-155, 4.138882687039291e-155, 5.837592378488615e-155, 8.233498592289252e-155, 1.1612749687531359e-154, 1.6378937069540948e-154, 2.3101297000830636e-154, 3.258269574239097e-154, 4.5955517640548504e-154, 6.48169082849432e-154, 9.141952512600606e-154, 1.2894057731855572e-153, 1.8186128681292997e-153, 2.56502090568003e-153, 3.617775042658405e-153, 5.102608025649639e-153, 7.196856730011588e-153, 1.0150641893704706e-152, 1.4316740588229055e-152, 2.0192719161709147e-152, 2.8480358684357e-152, 4.0169470208239835e-152, 5.665611008252292e-152, 7.990931403980815e-152, 1.1270626347293928e-151, 1.5896397032896e-151, 2.2420709447806047e-151, 3.162277660168379e-151, 4.460162165376323e-151, 6.290733667073113e-151, 8.872621353826528e-151, 1.2514185761897141e-150, 1.7650346953636183e-150, 2.48945279789826e-150, 3.5111917342150274e-150, 4.952280037134399e-150, 6.984830058470956e-150, 9.851593726503017e-150, 1.3894954943731247e-149, 1.9597821250882485e-149, 2.7641298538705777e-149, 3.8986037025490956e-149, 5.498696382967098e-149, 7.755510490149565e-149, 1.0938582306368435e-148, 1.5428073113327312e-148, 2.1760172691811703e-148, 3.0691137648838168e-148, 4.328761281082955e-148, 6.105402296585214e-148, 8.611224963142905e-148, 1.2145505204027232e-147, 1.7130349897073588e-147, 2.4161110029319048e-147, 3.4077484777388365e-147, 4.8063808630644477e-147, 6.77904990692291e-147, 9.561355820489062e-147, 1.348559553052508e-146, 1.9020449633639497e-146, 2.6826957952796504e-146, 3.7837468980138e-146, 5.336699231206214e-146, 7.527025314327229e-146, 1.0616320618412921e-145, 1.4973546489661708e-145, 2.111909601610903e-145, 2.978694572094717e-145, 4.201231599619014e-145, 5.9255309755457836e-145, 8.357529574264455e-145, 1.1787686347935433e-144, 1.6625672479242445e-144, 2.3449299313554635e-144, 3.3073527641254775e-144, 4.6647800260903733e-144, 6.579332246575602e-144, 9.279668616466272e-144, 1.3088296259282024e-143, 1.8460087967663742e-143, 2.60366086634241e-143, 3.672273891000774e-143, 5.179474679231308e-143, 7.30527154266415e-143, 1.0303553085422633e-142, 1.4532410679618041e-142, 2.0496906107065864e-142, 2.890939220091708e-142, 4.0774590714368236e-142, 5.750958845380027e-142, 8.111308307896822e-142, 1.144040919691338e-141, 1.6135863368107732e-141, 2.2758459260748097e-141, 3.2099148096831646e-141, 4.5273508928582644e-141, 6.38549847031268e-141, 9.006280202112463e-141, 1.2702701826031608e-140, 1.791623512260027e-140, 2.526954386274647e-140, 3.5640849914152732e-140, 5.026882121429393e-140, 7.090050861192318e-140, 1e-139, 1.410427117629777e-139, 1.989304654145441e-139, 2.8057692294338553e-139, 3.957333007004455e-139, 5.5815297865704716e-139, 7.872340968837334e-139, 1.110336318167605e-138, 1.566048452832794e-138, 2.2087972053975298e-138, 3.115347475837545e-138, 4.39397056076075e-138, 6.19737523296388e-138, 8.740946086699414e-138, 1.2328467394420736e-137, 1.7388404731905525e-137, 2.4525077566201486e-137, 3.459083446134201e-137, 4.878785094571938e-137, 6.881170798472218e-137, 9.705389895207362e-137, 1.3688745095370484e-136, 1.930697728883214e-136, 2.7231084327631087e-136, 3.840745977815411e-136, 5.41709227903835e-136, 7.640413849058581e-136, 1.0776246882626325e-135, 1.5199110829529517e-135, 2.143723807782885e-135, 3.0235661912053467e-135, 4.2645197480246015e-135, 6.014794296281602e-135, 8.483428982440483e-135, 1.1965258287320444e-134, 1.6876124757881176e-134, 2.380254399901887e-134, 3.357175352479213e-134, 4.735051155774988e-134, 6.678444553469261e-134, 9.419459301799934e-134, 1.3285460832668673e-133, 1.873817422860295e-133, 2.642882906689303e-133, 3.727593720314801e-133, 5.257499266638462e-133, 7.415319536585553e-133, 1.0458767760290137e-132, 1.4751329666105256e-132, 2.080567538217146e-132, 2.9344888759616904e-132, 4.1388826870392916e-132, 5.837592378488615e-132, 8.233498592289252e-132, 1.1612749687531358e-131, 1.6378937069539874e-131, 2.3101297000830637e-131, 3.258269574239097e-131, 4.595551764054851e-131, 6.48169082849432e-131, 9.141952512600607e-131, 1.2894057731855572e-130, 1.8186128681292997e-130, 2.56502090568003e-130, 3.617775042658405e-130, 5.102608025649638e-130, 7.196856730011587e-130, 1.0150641893704706e-129, 1.4316740588229056e-129, 2.0192719161709145e-129, 2.8480358684357e-129, 4.0169470208239834e-129, 5.6656110082522915e-129, 7.990931403980814e-129, 1.1270626347293928e-128, 1.5896397032896e-128, 2.2420709447806045e-128, 3.1622776601683794e-128, 4.460162165376323e-128, 6.290733667073112e-128, 8.872621353826528e-128, 1.251418576189714e-127, 1.7650346953636183e-127, 2.48945279789826e-127, 3.511191734215027e-127, 4.952280037134398e-127, 6.984830058470956e-127, 9.851593726503017e-127, 1.3894954943731247e-126, 1.9597821250882484e-126, 2.7641298538705774e-126, 3.898603702549096e-126, 5.4986963829670984e-126, 7.755510490149565e-126, 1.0938582306368435e-125, 1.5428073113327313e-125, 2.1760172691811703e-125, 3.0691137648838165e-125, 4.3287612810829557e-125, 6.105402296585214e-125, 8.611224963142906e-125, 1.214550520402723e-124, 1.7130349897073586e-124, 2.4161110029319048e-124, 3.4077484777388362e-124, 4.806380863064448e-124, 6.77904990692291e-124, 9.561355820489062e-124, 1.3485595530525082e-123, 1.9020449633639495e-123, 2.6826957952796505e-123, 3.7837468980138005e-123, 5.3366992312062145e-123, 7.527025314327229e-123, 1.061632061841292e-122, 1.497354648966171e-122, 2.111909601610903e-122, 2.978694572094717e-122, 4.2012315996190137e-122, 5.925530975545396e-122, 8.357529574264455e-122, 1.1787686347935433e-121, 1.6625672479242446e-121, 2.3449299313554633e-121, 3.3073527641254774e-121, 4.664780026090373e-121, 6.579332246575602e-121, 9.279668616466273e-121, 1.3088296259282026e-120, 1.846008796766374e-120, 2.60366086634241e-120, 3.672273891000774e-120, 5.179474679230969e-120, 7.30527154266415e-120, 1.0303553085422633e-119, 1.453241067961804e-119, 2.0496906107065863e-119, 2.8909392200917083e-119, 4.0774590714368237e-119, 5.750958845380027e-119, 8.111308307896823e-119, 1.144040919691338e-118, 1.6135863368107732e-118, 2.2758459260748096e-118, 3.2099148096831645e-118, 4.527350892858264e-118, 6.38549847031268e-118, 9.006280202112463e-118, 1.2702701826031609e-117, 1.791623512260027e-117, 2.5269543862746474e-117, 3.564084991415273e-117, 5.026882121429393e-117, 7.090050861192318e-117, 1e-116, 1.4104271176297772e-116, 1.9893046541454412e-116, 2.8057692294338555e-116, 3.9573330070044545e-116, 5.581529786570471e-116, 7.872340968837335e-116, 1.110336318167605e-115, 1.5660484528327942e-115, 2.20879720539753e-115, 3.1153474758375446e-115, 4.39397056076075e-115, 6.19737523296388e-115, 8.740946086699415e-115, 1.2328467394420735e-114, 1.7388404731905524e-114, 2.4525077566199884e-114, 3.459083446134201e-114, 4.878785094571937e-114, 6.881170798472218e-114, 9.70538989520736e-114, 1.3688745095370485e-113, 1.930697728883214e-113, 2.7231084327631084e-113, 3.8407459778154113e-113, 5.41709227903835e-113, 7.64041384905858e-113, 1.0776246882626324e-112, 1.519911082952952e-112, 2.143723807782745e-112, 3.023566191205347e-112, 4.264519748024601e-112, 6.014794296281601e-112, 8.483428982440483e-112, 1.1965258287320443e-111, 1.6876124757881176e-111, 2.3802543999018867e-111, 3.357175352479213e-111, 4.7350511557749875e-111, 6.67844455346926e-111, 9.419459301799934e-111, 1.3285460832668673e-110, 1.8738174228602946e-110, 2.642882906689303e-110, 3.727593720314801e-110, 5.257499266638462e-110, 7.415319536585553e-110, 1.0458767760290137e-109, 1.4751329666105255e-109, 2.080567538217146e-109, 2.9344888759616903e-109, 4.1388826870392917e-109, 5.837592378488615e-109, 8.233498592289253e-109, 1.1612749687531356e-108, 1.6378937069539875e-108, 2.3101297000830635e-108, 3.258269574239097e-108, 4.59555176405485e-108, 6.48169082849432e-108, 9.141952512600606e-108, 1.2894057731855573e-107, 1.8186128681292996e-107, 2.56502090568003e-107, 3.6177750426584055e-107, 5.102608025649639e-107, 7.196856730011587e-107, 1.0150641893704706e-106, 1.4316740588229056e-106, 2.0192719161709146e-106, 2.8480358684357003e-106, 4.0169470208239837e-106, 5.665611008252292e-106, 7.990931403980815e-106, 1.127062634729393e-105, 1.5896397032896e-105, 2.2420709447806045e-105, 3.1622776601683793e-105, 4.460162165376323e-105, 6.2907336670731124e-105, 8.872621353826529e-105, 1.2514185761897143e-104, 1.7650346953636183e-104, 2.48945279789826e-104, 3.5111917342150266e-104, 4.952280037134399e-104, 6.984830058470956e-104, 9.851593726503017e-104, 1.3894954943731247e-103, 1.9597821250882484e-103, 2.7641298538705775e-103, 3.898603702549096e-103, 5.498696382967097e-103, 7.755510490149057e-103, 1.0938582306368437e-102, 1.5428073113327313e-102, 2.1760172691811705e-102, 3.069113764883817e-102, 4.328761281082956e-102, 6.105402296585214e-102, 8.611224963142905e-102, 1.2145505204027232e-101, 1.7130349897073587e-101, 2.416111002931905e-101, 3.407748477738837e-101, 4.806380863064448e-101, 6.779049906922467e-101, 9.561355820489064e-101, 1.3485595530525083e-100, 1.9020449633639495e-100, 2.6826957952796504e-100, 3.7837468980138e-100, 5.336699231206215e-100, 7.527025314327229e-100, 1.061632061841292e-99, 1.4973546489661708e-99, 2.111909601610903e-99, 2.978694572094717e-99, 4.201231599619014e-99, 5.925530975545396e-99, 8.357529574264454e-99, 1.1787686347935432e-98, 1.6625672479242445e-98, 2.3449299313554635e-98, 3.3073527641254776e-98, 4.664780026090373e-98, 6.579332246575601e-98, 9.279668616466272e-98, 1.3088296259282025e-97, 1.8460087967663742e-97, 2.6036608663424103e-97, 3.672273891000774e-97, 5.179474679230969e-97, 7.305271542664149e-97, 1.0303553085422632e-96, 1.453241067961804e-96, 2.0496906107065864e-96, 2.8909392200917082e-96, 4.077459071436824e-96, 5.750958845380027e-96, 8.111308307896823e-96, 1.144040919691338e-95, 1.613586336810773e-95, 2.2758459260748097e-95, 3.209914809682954e-95, 4.5273508928582646e-95, 6.385498470312679e-95, 9.006280202112464e-95, 1.270270182603161e-94, 1.791623512260027e-94, 2.5269543862746476e-94, 3.5640849914152733e-94, 5.026882121429393e-94, 7.090050861192318e-94, 1e-93, 1.4104271176297772e-93, 1.989304654145441e-93, 2.805769229433672e-93, 3.957333007004455e-93, 5.581529786570471e-93, 7.872340968837335e-93, 1.110336318167605e-92, 1.5660484528327942e-92, 2.2087972053975296e-92, 3.115347475837545e-92, 4.39397056076075e-92, 6.19737523296388e-92, 8.740946086699414e-92, 1.2328467394420736e-91, 1.7388404731905527e-91, 2.4525077566199882e-91, 3.459083446134201e-91, 4.8787850945719375e-91, 6.881170798472217e-91, 9.705389895207362e-91, 1.3688745095370484e-90, 1.9306977288832142e-90, 2.7231084327631085e-90, 3.840745977815411e-90, 5.41709227903835e-90, 7.64041384905858e-90, 1.0776246882626324e-89, 1.5199110829529517e-89, 2.1437238077827444e-89, 3.023566191205347e-89, 4.2645197480246015e-89, 6.014794296281601e-89, 8.483428982440482e-89, 1.1965258287320444e-88, 1.6876124757881178e-88, 2.3802543999018868e-88, 3.3571753524792135e-88, 4.735051155774988e-88, 6.678444553469261e-88, 9.419459301799933e-88, 1.3285460832668672e-87, 1.8738174228602948e-87, 2.642882906689303e-87, 3.727593720314801e-87, 5.257499266638462e-87, 7.415319536585553e-87, 1.0458767760290135e-86, 1.4751329666105256e-86, 2.080567538217146e-86, 2.9344888759616906e-86, 4.1388826870392914e-86, 5.837592378488615e-86, 8.233498592289252e-86, 1.1612749687531357e-85, 1.6378937069539874e-85, 2.3101297000830635e-85, 3.258269574239097e-85, 4.59555176405485e-85, 6.48169082849432e-85, 9.141952512600606e-85, 1.2894057731855573e-84, 1.8186128681292998e-84, 2.5650209056800303e-84, 3.6177750426584054e-84, 5.102608025649639e-84, 7.1968567300115875e-84, 1.0150641893704043e-83, 1.4316740588229055e-83, 2.0192719161709147e-83, 2.8480358684357e-83, 4.016947020823983e-83, 5.665611008252291e-83, 7.990931403980815e-83, 1.1270626347293928e-82, 1.5896397032896e-82, 2.2420709447806046e-82, 3.1622776601683793e-82, 4.460162165376323e-82, 6.290733667073113e-82, 8.872621353825948e-82, 1.2514185761897143e-81, 1.7650346953636183e-81, 2.48945279789826e-81, 3.511191734215027e-81, 4.952280037134399e-81, 6.984830058470956e-81, 9.851593726503017e-81, 1.3894954943731246e-80, 1.9597821250882482e-80, 2.7641298538705777e-80, 3.8986037025490955e-80, 5.498696382967098e-80, 7.755510490149058e-80, 1.0938582306368435e-79, 1.5428073113327312e-79, 2.1760172691811702e-79, 3.069113764883817e-79, 4.3287612810829554e-79, 6.105402296585214e-79, 8.611224963142906e-79, 1.214550520402723e-78, 1.7130349897073588e-78, 2.4161110029319046e-78, 3.407748477738836e-78, 4.806380863064448e-78, 6.779049906922467e-78, 9.561355820489063e-78, 1.3485595530525081e-77, 1.9020449633639497e-77, 2.6826957952796503e-77, 3.7837468980138e-77, 5.336699231206215e-77, 7.527025314327229e-77, 1.0616320618412921e-76, 1.497354648966171e-76, 2.111909601610903e-76, 2.978694572094717e-76, 4.201231599618739e-76, 5.925530975545396e-76, 8.357529574264455e-76, 1.1787686347935432e-75, 1.6625672479242445e-75, 2.3449299313554635e-75, 3.3073527641254773e-75, 4.664780026090373e-75, 6.579332246575602e-75, 9.27966861646627e-75, 1.3088296259282026e-74, 1.846008796766374e-74, 2.60366086634241e-74, 3.672273891000533e-74, 5.179474679230968e-74, 7.30527154266415e-74, 1.0303553085422633e-73, 1.453241067961804e-73, 2.0496906107065866e-73, 2.890939220091708e-73, 4.077459071436824e-73, 5.750958845380027e-73, 8.111308307896823e-73, 1.144040919691338e-72, 1.6135863368107732e-72, 2.27584592607481e-72, 3.209914809682955e-72, 4.5273508928582644e-72, 6.385498470312679e-72, 9.006280202112464e-72, 1.2702701826031608e-71, 1.7916235122600268e-71, 2.5269543862746474e-71, 3.5640849914152734e-71, 5.026882121429393e-71, 7.090050861192318e-71, 9.999999999999998e-71, 1.4104271176297771e-70, 1.989304654145441e-70, 2.8057692294336715e-70, 3.957333007004455e-70, 5.581529786570471e-70, 7.872340968837335e-70, 1.110336318167605e-69, 1.566048452832794e-69, 2.2087972053975299e-69, 3.115347475837545e-69, 4.39397056076075e-69, 6.197375232963881e-69, 8.740946086699414e-69, 1.2328467394420734e-68, 1.7388404731905525e-68, 2.452507756619988e-68, 3.459083446134201e-68, 4.878785094571937e-68, 6.881170798472218e-68, 9.705389895207362e-68, 1.3688745095370484e-67, 1.930697728883214e-67, 2.7231084327631085e-67, 3.840745977815411e-67, 5.41709227903835e-67, 7.64041384905858e-67, 1.0776246882626325e-66, 1.5199110829529518e-66, 2.1437238077827447e-66, 3.0235661912053467e-66, 4.264519748024601e-66, 6.014794296281601e-66, 8.483428982440482e-66, 1.1965258287320442e-65, 1.6876124757881177e-65, 2.380254399901887e-65, 3.357175352479213e-65, 4.735051155774988e-65, 6.678444553469261e-65, 9.419459301799933e-65, 1.3285460832667804e-64, 1.8738174228602948e-64, 2.642882906689303e-64, 3.7275937203148006e-64, 5.257499266638462e-64, 7.415319536585554e-64, 1.0458767760290138e-63, 1.4751329666105257e-63, 2.0805675382171462e-63, 2.9344888759616904e-63, 4.1388826870392916e-63, 5.837592378488615e-63, 8.233498592289252e-63, 1.1612749687530598e-62, 1.6378937069539876e-62, 2.3101297000830636e-62, 3.258269574239097e-62, 4.59555176405485e-62, 6.4816908284943205e-62, 9.141952512600606e-62, 1.2894057731855572e-61, 1.8186128681292995e-61, 2.56502090568003e-61, 3.617775042658405e-61, 5.102608025649638e-61, 7.196856730011587e-61, 1.0150641893704042e-60, 1.4316740588229055e-60, 2.0192719161709144e-60, 2.8480358684357003e-60, 4.0169470208239836e-60, 5.665611008252292e-60, 7.990931403980815e-60, 1.127062634729393e-59, 1.5896397032895999e-59, 2.2420709447806045e-59, 3.1622776601683796e-59, 4.460162165376323e-59, 6.290733667073112e-59, 8.872621353825948e-59, 1.2514185761897143e-58, 1.7650346953636183e-58, 2.48945279789826e-58, 3.511191734215027e-58, 4.9522800371343984e-58, 6.984830058470956e-58, 9.851593726503018e-58, 1.3894954943731247e-57, 1.9597821250882483e-57, 2.7641298538705774e-57, 3.8986037025490957e-57, 5.498696382966738e-57, 7.755510490149058e-57, 1.0938582306368436e-56, 1.5428073113327313e-56, 2.1760172691811704e-56, 3.0691137648838168e-56, 4.328761281082955e-56, 6.105402296585215e-56, 8.611224963142905e-56, 1.2145505204027231e-55, 1.713034989707359e-55, 2.416111002931905e-55, 3.4077484777388365e-55, 4.8063808630641334e-55, 6.779049906922466e-55, 9.561355820489062e-55, 1.3485595530525082e-54, 1.9020449633639498e-54, 2.682695795279651e-54, 3.7837468980138e-54, 5.336699231206215e-54, 7.527025314327229e-54, 1.061632061841292e-53, 1.497354648966171e-53, 2.111909601610903e-53, 2.978694572094717e-53, 4.201231599618739e-53, 5.925530975545397e-53, 8.357529574264453e-53, 1.1787686347935432e-52, 1.6625672479242446e-52, 2.3449299313554632e-52, 3.3073527641254774e-52, 4.6647800260903735e-52, 6.5793322465756015e-52, 9.279668616466271e-52, 1.3088296259282026e-51, 1.846008796766374e-51, 2.6036608663424102e-51, 3.6722738910005335e-51, 5.179474679230969e-51, 7.30527154266415e-51, 1.0303553085422633e-50, 1.453241067961804e-50, 2.0496906107065863e-50, 2.890939220091708e-50, 4.077459071436824e-50, 5.750958845380026e-50, 8.111308307896822e-50, 1.144040919691338e-49, 1.6135863368107732e-49, 2.2758459260748097e-49, 3.2099148096829547e-49, 4.527350892858264e-49, 6.385498470312679e-49, 9.006280202112464e-49, 1.2702701826031608e-48, 1.791623512260027e-48, 2.5269543862746474e-48, 3.5640849914152735e-48, 5.026882121429393e-48, 7.090050861192317e-48, 1e-47, 1.410427117629777e-47, 1.989304654145441e-47, 2.8057692294336716e-47, 3.957333007004454e-47, 5.581529786570472e-47, 7.872340968837334e-47, 1.110336318167605e-46, 1.5660484528327942e-46, 2.20879720539753e-46, 3.115347475837545e-46, 4.3939705607607494e-46, 6.1973752329638806e-46, 8.740946086699414e-46, 1.2328467394420735e-45, 1.7388404731904388e-45, 2.4525077566199885e-45, 3.459083446134201e-45, 4.8787850945719374e-45, 6.881170798472218e-45, 9.705389895207361e-45, 1.3688745095370485e-44, 1.9306977288832142e-44, 2.7231084327631084e-44, 3.840745977815411e-44, 5.41709227903835e-44, 7.64041384905858e-44, 1.0776246882626325e-43, 1.5199110829529517e-43, 2.143723807782885e-43, 3.023566191205545e-43, 4.26451974802488e-43, 6.014794296281995e-43, 8.483428982441038e-43, 1.196525828731966e-42, 1.687612475788007e-42, 2.380254399901731e-42, 3.357175352478993e-42, 4.735051155774678e-42, 6.678444553468824e-42, 9.419459301799317e-42, 1.3285460832667804e-41, 1.873817422860295e-41, 2.642882906689303e-41, 3.727593720314801e-41, 5.257499266638462e-41, 7.415319536585554e-41, 1.0458767760290136e-40, 1.4751329666105256e-40, 2.080567538217146e-40, 2.9344888759616904e-40, 4.1388826870392915e-40, 5.8375923784886146e-40, 8.233498592289252e-40, 1.1612749687531358e-39, 1.6378937069540947e-39, 2.310129700083215e-39, 3.25826957423931e-39, 4.595551764055151e-39, 6.481690828494744e-39, 9.141952512600009e-39, 1.2894057731854728e-38, 1.8186128681291806e-38, 2.5650209056798624e-38, 3.6177750426581685e-38, 5.102608025649304e-38, 7.196856730011117e-38, 1.0150641893704042e-37, 1.4316740588229054e-37, 2.0192719161709145e-37, 2.8480358684357e-37, 4.016947020823984e-37, 5.6656110082522914e-37, 7.990931403980815e-37, 1.1270626347293928e-36, 1.5896397032896e-36, 2.242070944780605e-36, 3.1622776601683796e-36, 4.460162165376323e-36, 6.290733667073113e-36, 8.872621353826528e-36, 1.2514185761897963e-35, 1.7650346953637338e-35, 2.489452797898423e-35, 3.5111917342152564e-35, 4.952280037134723e-35, 6.984830058470499e-35, 9.851593726502372e-35, 1.3894954943730338e-34, 1.95978212508812e-34, 2.7641298538703964e-34, 3.898603702548841e-34, 5.498696382966739e-34, 7.755510490149059e-34, 1.0938582306368435e-33, 1.5428073113327314e-33, 2.1760172691811703e-33, 3.0691137648838168e-33, 4.328761281082955e-33, 6.105402296585214e-33, 8.611224963142905e-33, 1.2145505204027232e-32, 1.7130349897073587e-32, 2.4161110029319048e-32, 3.4077484777388366e-32, 4.806380863064448e-32, 6.77904990692291e-32, 9.561355820489688e-32, 1.3485595530525964e-31, 1.9020449633640742e-31, 2.682695795279826e-31, 3.7837468980135524e-31, 5.336699231205865e-31, 7.527025314326736e-31, 1.0616320618412225e-30, 1.4973546489660729e-30, 2.1119096016107648e-30, 2.978694572094522e-30, 4.201231599618739e-30, 5.925530975545396e-30, 8.357529574264453e-30, 1.1787686347935432e-29, 1.6625672479242445e-29, 2.3449299313554634e-29, 3.3073527641254774e-29, 4.6647800260903734e-29, 6.579332246575602e-29, 9.279668616466272e-29, 1.3088296259282026e-28, 1.846008796766374e-28, 2.60366086634241e-28, 3.672273891000774e-28, 5.1794746792313075e-28, 7.305271542664628e-28, 1.0303553085423307e-27, 1.453241067961899e-27, 2.0496906107067206e-27, 2.890939220091519e-27, 4.077459071436557e-27, 5.7509588453796504e-27, 8.111308307896291e-27, 1.1440409196912631e-26, 1.6135863368106677e-26, 2.275845926074661e-26, 3.2099148096829544e-26, 4.527350892858264e-26, 6.38549847031268e-26, 9.006280202112464e-26, 1.2702701826031608e-25, 1.7916235122600269e-25, 2.5269543862746472e-25, 3.5640849914152734e-25, 5.026882121429393e-25, 7.090050861192318e-25, 1e-24, 1.410427117629777e-24, 1.9893046541454412e-24, 2.805769229433855e-24, 3.957333007004713e-24, 5.5815297865708365e-24, 7.87234096883785e-24, 1.1103363181676776e-23, 1.5660484528328966e-23, 2.2087972053973852e-23, 3.115347475837341e-23, 4.3939705607604624e-23, 6.197375232963475e-23, 8.740946086698842e-23, 1.2328467394419928e-22, 1.7388404731904387e-22, 2.4525077566199885e-22, 3.4590834461342013e-22, 4.878785094571937e-22, 6.881170798472218e-22, 9.705389895207363e-22, 1.3688745095370484e-21, 1.930697728883214e-21, 2.7231084327631085e-21, 3.840745977815411e-21, 5.41709227903835e-21, 7.64041384905858e-21, 1.0776246882626325e-20, 1.5199110829529518e-20, 2.143723807782885e-20, 3.0235661912055445e-20, 4.26451974802488e-20, 6.014794296281995e-20, 8.483428982441038e-20, 1.196525828731966e-19, 1.6876124757880072e-19, 2.380254399901731e-19, 3.3571753524789934e-19, 4.735051155774678e-19, 6.678444553468823e-19, 9.419459301799316e-19, 1.3285460832667803e-18, 1.873817422860295e-18, 2.642882906689303e-18, 3.727593720314801e-18, 5.257499266638462e-18, 7.415319536585554e-18, 1.0458767760290136e-17, 1.4751329666105257e-17, 2.080567538217146e-17, 2.9344888759616905e-17, 4.138882687039292e-17, 5.837592378488615e-17, 8.233498592289253e-17, 1.1612749687531358e-16, 1.637893706954095e-16, 2.310129700083215e-16, 3.25826957423931e-16, 4.595551764055151e-16, 6.481690828494745e-16, 9.141952512600008e-16, 1.289405773185473e-15, 1.8186128681291805e-15, 2.5650209056798623e-15, 3.617775042658168e-15, 5.102608025649305e-15, 7.196856730011116e-15, 1.0150641893704042e-14, 1.4316740588229055e-14, 2.0192719161709146e-14, 2.8480358684357e-14, 4.016947020823983e-14, 5.665611008252291e-14, 7.990931403980815e-14, 1.1270626347293928e-13, 1.5896397032895999e-13, 2.2420709447806045e-13, 3.162277660168379e-13, 4.4601621653763234e-13, 6.290733667073113e-13, 8.872621353826528e-13, 1.2514185761897962e-12, 1.7650346953637337e-12, 2.489452797898423e-12, 3.511191734215257e-12, 4.952280037134074e-12, 6.9848300584704986e-12, 9.851593726502372e-12, 1.3894954943730337e-11, 1.9597821250881202e-11, 2.7641298538703966e-11, 3.89860370254884e-11, 5.498696382966738e-11, 7.755510490149057e-11, 1.0938582306368436e-10, 1.5428073113327312e-10, 2.1760172691811703e-10, 3.069113764883817e-10, 4.328761281082955e-10, 6.105402296585215e-10, 8.611224963142905e-10, 1.2145505204027232e-09, 1.7130349897073587e-09, 2.416111002931905e-09, 3.4077484777388367e-09, 4.8063808630644475e-09, 6.7790499069229095e-09, 9.561355820489689e-09, 1.3485595530525965e-08, 1.9020449633640743e-08, 2.682695795279826e-08, 3.7837468980135526e-08, 5.336699231205865e-08, 7.527025314326735e-08, 1.0616320618412225e-07, 1.4973546489660727e-07, 2.1119096016107649e-07, 2.978694572094522e-07, 4.201231599618739e-07, 5.925530975545396e-07, 8.357529574264454e-07, 1.1787686347935432e-06, 1.6625672479242445e-06, 2.3449299313554633e-06, 3.3073527641254774e-06, 4.664780026090373e-06, 6.579332246575601e-06, 9.279668616466272e-06, 1.3088296259282025e-05, 1.846008796766374e-05, 2.60366086634241e-05, 3.672273891000774e-05, 5.1794746792313074e-05, 7.305271542664627e-05, 0.00010303553085423307, 0.0001453241067961899, 0.00020496906107064523, 0.0002890939220091519, 0.0004077459071436557, 0.0005750958845379651, 0.0008111308307896291, 0.001144040919691263, 0.0016135863368106677, 0.002275845926074661, 0.0032099148096829547, 0.004527350892858264, 0.006385498470312679, 0.009006280202112464, 0.012702701826031608, 0.01791623512260027, 0.025269543862746473, 0.035640849914152735, 0.05026882121429393, 0.07090050861192318, 0.1], "x": [-300.0, -299.85064935064935, -299.7012987012987, -299.55194805194805, -299.4025974025974, -299.25324675324674, -299.1038961038961, -298.95454545454544, -298.8051948051948, -298.65584415584414, -298.5064935064935, -298.35714285714283, -298.2077922077922, -298.0584415584416, -297.90909090909093, -297.7597402597403, -297.61038961038963, -297.461038961039, -297.31168831168833, -297.1623376623377, -297.012987012987, -296.8636363636364, -296.7142857142857, -296.56493506493507, -296.4155844155844, -296.26623376623377, -296.1168831168831, -295.96753246753246, -295.8181818181818, -295.66883116883116, -295.5194805194805, -295.37012987012986, -295.2207792207792, -295.07142857142856, -294.9220779220779, -294.77272727272725, -294.6233766233766, -294.47402597402595, -294.3246753246753, -294.1753246753247, -294.02597402597405, -293.8766233766234, -293.72727272727275, -293.5779220779221, -293.42857142857144, -293.2792207792208, -293.12987012987014, -292.9805194805195, -292.83116883116884, -292.6818181818182, -292.53246753246754, -292.3831168831169, -292.23376623376623, -292.0844155844156, -291.93506493506493, -291.7857142857143, -291.6363636363636, -291.487012987013, -291.3376623376623, -291.18831168831167, -291.038961038961, -290.88961038961037, -290.7402597402597, -290.59090909090907, -290.4415584415584, -290.2922077922078, -290.14285714285717, -289.9935064935065, -289.84415584415586, -289.6948051948052, -289.54545454545456, -289.3961038961039, -289.24675324675326, -289.0974025974026, -288.94805194805195, -288.7987012987013, -288.64935064935065, -288.5, -288.35064935064935, -288.2012987012987, -288.05194805194805, -287.9025974025974, -287.75324675324674, -287.6038961038961, -287.45454545454544, -287.3051948051948, -287.15584415584414, -287.0064935064935, -286.85714285714283, -286.7077922077922, -286.5584415584416, -286.40909090909093, -286.2597402597403, -286.11038961038963, -285.961038961039, -285.81168831168833, -285.6623376623377, -285.512987012987, -285.3636363636364, -285.2142857142857, -285.06493506493507, -284.9155844155844, -284.76623376623377, -284.6168831168831, -284.46753246753246, -284.3181818181818, -284.16883116883116, -284.0194805194805, -283.87012987012986, -283.7207792207792, -283.57142857142856, -283.4220779220779, -283.27272727272725, -283.1233766233766, -282.97402597402595, -282.82467532467535, -282.67532467532465, -282.52597402597405, -282.3766233766234, -282.22727272727275, -282.0779220779221, -281.92857142857144, -281.7792207792208, -281.62987012987014, -281.4805194805195, -281.33116883116884, -281.1818181818182, -281.03246753246754, -280.8831168831169, -280.73376623376623, -280.5844155844156, -280.43506493506493, -280.2857142857143, -280.1363636363636, -279.987012987013, -279.8376623376623, -279.68831168831167, -279.538961038961, -279.38961038961037, -279.2402597402597, -279.0909090909091, -278.9415584415584, -278.7922077922078, -278.64285714285717, -278.4935064935065, -278.34415584415586, -278.1948051948052, -278.04545454545456, -277.8961038961039, -277.74675324675326, -277.5974025974026, -277.44805194805195, -277.2987012987013, -277.14935064935065, -277.0, -276.85064935064935, -276.7012987012987, -276.55194805194805, -276.4025974025974, -276.25324675324674, -276.1038961038961, -275.95454545454544, -275.8051948051948, -275.65584415584414, -275.5064935064935, -275.35714285714283, -275.2077922077922, -275.0584415584416, -274.90909090909093, -274.7597402597403, -274.61038961038963, -274.461038961039, -274.31168831168833, -274.1623376623377, -274.012987012987, -273.8636363636364, -273.7142857142857, -273.56493506493507, -273.4155844155844, -273.26623376623377, -273.1168831168831, -272.96753246753246, -272.8181818181818, -272.66883116883116, -272.5194805194805, -272.37012987012986, -272.2207792207792, -272.07142857142856, -271.9220779220779, -271.77272727272725, -271.6233766233766, -271.47402597402595, -271.32467532467535, -271.1753246753247, -271.02597402597405, -270.8766233766234, -270.72727272727275, -270.5779220779221, -270.42857142857144, -270.2792207792208, -270.12987012987014, -269.9805194805195, -269.83116883116884, -269.6818181818182, -269.53246753246754, -269.3831168831169, -269.23376623376623, -269.0844155844156, -268.93506493506493, -268.7857142857143, -268.6363636363636, -268.487012987013, -268.3376623376623, -268.18831168831167, -268.038961038961, -267.88961038961037, -267.7402597402597, -267.5909090909091, -267.4415584415584, -267.2922077922078, -267.14285714285717, -266.9935064935065, -266.84415584415586, -266.6948051948052, -266.54545454545456, -266.3961038961039, -266.24675324675326, -266.0974025974026, -265.94805194805195, -265.7987012987013, -265.64935064935065, -265.5, -265.35064935064935, -265.2012987012987, -265.05194805194805, -264.9025974025974, -264.75324675324674, -264.6038961038961, -264.45454545454544, -264.3051948051948, -264.15584415584414, -264.0064935064935, -263.8571428571429, -263.7077922077922, -263.5584415584416, -263.40909090909093, -263.2597402597403, -263.11038961038963, -262.961038961039, -262.81168831168833, -262.6623376623377, -262.512987012987, -262.3636363636364, -262.2142857142857, -262.06493506493507, -261.9155844155844, -261.76623376623377, -261.6168831168831, -261.46753246753246, -261.3181818181818, -261.16883116883116, -261.0194805194805, -260.87012987012986, -260.7207792207792, -260.57142857142856, -260.4220779220779, -260.27272727272725, -260.1233766233766, -259.97402597402595, -259.82467532467535, -259.67532467532465, -259.52597402597405, -259.3766233766234, -259.22727272727275, -259.0779220779221, -258.92857142857144, -258.7792207792208, -258.62987012987014, -258.4805194805195, -258.33116883116884, -258.1818181818182, -258.03246753246754, -257.8831168831169, -257.73376623376623, -257.5844155844156, -257.43506493506493, -257.2857142857143, -257.1363636363636, -256.987012987013, -256.8376623376623, -256.68831168831167, -256.538961038961, -256.38961038961037, -256.2402597402597, -256.0909090909091, -255.94155844155844, -255.7922077922078, -255.64285714285714, -255.4935064935065, -255.34415584415584, -255.1948051948052, -255.04545454545456, -254.8961038961039, -254.74675324675326, -254.5974025974026, -254.44805194805195, -254.2987012987013, -254.14935064935065, -254.0, -253.85064935064935, -253.7012987012987, -253.55194805194805, -253.4025974025974, -253.25324675324674, -253.1038961038961, -252.95454545454544, -252.80519480519482, -252.65584415584416, -252.5064935064935, -252.35714285714286, -252.2077922077922, -252.05844155844156, -251.9090909090909, -251.75974025974025, -251.6103896103896, -251.46103896103898, -251.31168831168833, -251.16233766233768, -251.01298701298703, -250.86363636363637, -250.71428571428572, -250.56493506493507, -250.41558441558442, -250.26623376623377, -250.11688311688312, -249.96753246753246, -249.8181818181818, -249.66883116883116, -249.5194805194805, -249.37012987012986, -249.2207792207792, -249.07142857142858, -248.92207792207793, -248.77272727272728, -248.62337662337663, -248.47402597402598, -248.32467532467533, -248.17532467532467, -248.02597402597402, -247.87662337662337, -247.72727272727272, -247.5779220779221, -247.42857142857144, -247.2792207792208, -247.12987012987014, -246.9805194805195, -246.83116883116884, -246.6818181818182, -246.53246753246754, -246.38311688311688, -246.23376623376623, -246.08441558441558, -245.93506493506493, -245.78571428571428, -245.63636363636363, -245.48701298701297, -245.33766233766232, -245.1883116883117, -245.03896103896105, -244.8896103896104, -244.74025974025975, -244.5909090909091, -244.44155844155844, -244.2922077922078, -244.14285714285714, -243.9935064935065, -243.84415584415586, -243.6948051948052, -243.54545454545456, -243.3961038961039, -243.24675324675326, -243.0974025974026, -242.94805194805195, -242.7987012987013, -242.64935064935065, -242.5, -242.35064935064935, -242.2012987012987, -242.05194805194805, -241.9025974025974, -241.75324675324674, -241.6038961038961, -241.45454545454544, -241.30519480519482, -241.15584415584416, -241.0064935064935, -240.85714285714286, -240.7077922077922, -240.55844155844156, -240.4090909090909, -240.25974025974025, -240.1103896103896, -239.96103896103898, -239.81168831168833, -239.66233766233768, -239.51298701298703, -239.36363636363637, -239.21428571428572, -239.06493506493507, -238.91558441558442, -238.76623376623377, -238.61688311688312, -238.46753246753246, -238.3181818181818, -238.16883116883116, -238.0194805194805, -237.87012987012986, -237.7207792207792, -237.57142857142858, -237.42207792207793, -237.27272727272728, -237.12337662337663, -236.97402597402598, -236.82467532467533, -236.67532467532467, -236.52597402597402, -236.37662337662337, -236.22727272727272, -236.0779220779221, -235.92857142857144, -235.7792207792208, -235.62987012987014, -235.4805194805195, -235.33116883116884, -235.1818181818182, -235.03246753246754, -234.88311688311688, -234.73376623376623, -234.58441558441558, -234.43506493506493, -234.28571428571428, -234.13636363636363, -233.98701298701297, -233.83766233766232, -233.68831168831167, -233.53896103896105, -233.3896103896104, -233.24025974025975, -233.0909090909091, -232.94155844155844, -232.7922077922078, -232.64285714285714, -232.49350649350652, -232.34415584415586, -232.1948051948052, -232.04545454545456, -231.8961038961039, -231.74675324675326, -231.5974025974026, -231.44805194805195, -231.2987012987013, -231.14935064935065, -231.0, -230.85064935064935, -230.7012987012987, -230.55194805194805, -230.4025974025974, -230.25324675324674, -230.1038961038961, -229.95454545454544, -229.8051948051948, -229.65584415584416, -229.5064935064935, -229.35714285714286, -229.2077922077922, -229.05844155844156, -228.9090909090909, -228.75974025974028, -228.61038961038963, -228.46103896103898, -228.31168831168833, -228.16233766233768, -228.01298701298703, -227.86363636363637, -227.71428571428572, -227.56493506493507, -227.41558441558442, -227.26623376623377, -227.11688311688312, -226.96753246753246, -226.8181818181818, -226.66883116883116, -226.5194805194805, -226.37012987012986, -226.2207792207792, -226.07142857142856, -225.92207792207793, -225.77272727272728, -225.62337662337663, -225.47402597402598, -225.32467532467533, -225.17532467532467, -225.02597402597402, -224.8766233766234, -224.72727272727275, -224.5779220779221, -224.42857142857144, -224.2792207792208, -224.12987012987014, -223.9805194805195, -223.83116883116884, -223.6818181818182, -223.53246753246754, -223.38311688311688, -223.23376623376623, -223.08441558441558, -222.93506493506493, -222.78571428571428, -222.63636363636363, -222.48701298701297, -222.33766233766232, -222.18831168831167, -222.03896103896105, -221.8896103896104, -221.74025974025975, -221.5909090909091, -221.44155844155844, -221.2922077922078, -221.14285714285714, -220.99350649350652, -220.84415584415586, -220.6948051948052, -220.54545454545456, -220.3961038961039, -220.24675324675326, -220.0974025974026, -219.94805194805195, -219.7987012987013, -219.64935064935065, -219.5, -219.35064935064935, -219.2012987012987, -219.05194805194805, -218.9025974025974, -218.75324675324674, -218.6038961038961, -218.45454545454544, -218.3051948051948, -218.15584415584416, -218.0064935064935, -217.85714285714286, -217.7077922077922, -217.55844155844156, -217.4090909090909, -217.25974025974028, -217.11038961038963, -216.96103896103898, -216.81168831168833, -216.66233766233768, -216.51298701298703, -216.36363636363637, -216.21428571428572, -216.06493506493507, -215.91558441558442, -215.76623376623377, -215.61688311688312, -215.46753246753246, -215.3181818181818, -215.16883116883116, -215.0194805194805, -214.87012987012986, -214.7207792207792, -214.57142857142856, -214.42207792207793, -214.27272727272728, -214.12337662337663, -213.97402597402598, -213.82467532467533, -213.67532467532467, -213.52597402597402, -213.3766233766234, -213.22727272727275, -213.0779220779221, -212.92857142857144, -212.7792207792208, -212.62987012987014, -212.4805194805195, -212.33116883116884, -212.1818181818182, -212.03246753246754, -211.88311688311688, -211.73376623376623, -211.58441558441558, -211.43506493506493, -211.28571428571428, -211.13636363636363, -210.98701298701297, -210.83766233766232, -210.68831168831167, -210.53896103896105, -210.3896103896104, -210.24025974025975, -210.0909090909091, -209.94155844155844, -209.7922077922078, -209.64285714285717, -209.49350649350652, -209.34415584415586, -209.1948051948052, -209.04545454545456, -208.8961038961039, -208.74675324675326, -208.5974025974026, -208.44805194805195, -208.2987012987013, -208.14935064935065, -208.0, -207.85064935064935, -207.7012987012987, -207.55194805194805, -207.4025974025974, -207.25324675324674, -207.1038961038961, -206.95454545454544, -206.80519480519482, -206.65584415584416, -206.5064935064935, -206.35714285714286, -206.2077922077922, -206.05844155844156, -205.9090909090909, -205.75974025974028, -205.61038961038963, -205.46103896103898, -205.31168831168833, -205.16233766233768, -205.01298701298703, -204.86363636363637, -204.71428571428572, -204.56493506493507, -204.41558441558442, -204.26623376623377, -204.11688311688312, -203.96753246753246, -203.8181818181818, -203.66883116883116, -203.5194805194805, -203.37012987012986, -203.2207792207792, -203.07142857142856, -202.92207792207793, -202.77272727272728, -202.62337662337663, -202.47402597402598, -202.32467532467533, -202.17532467532467, -202.02597402597402, -201.8766233766234, -201.72727272727275, -201.5779220779221, -201.42857142857144, -201.2792207792208, -201.12987012987014, -200.9805194805195, -200.83116883116884, -200.6818181818182, -200.53246753246754, -200.38311688311688, -200.23376623376623, -200.08441558441558, -199.93506493506493, -199.78571428571428, -199.63636363636363, -199.48701298701297, -199.33766233766232, -199.18831168831167, -199.03896103896105, -198.8896103896104, -198.74025974025975, -198.5909090909091, -198.44155844155844, -198.2922077922078, -198.14285714285717, -197.99350649350652, -197.84415584415586, -197.6948051948052, -197.54545454545456, -197.3961038961039, -197.24675324675326, -197.0974025974026, -196.94805194805195, -196.7987012987013, -196.64935064935065, -196.5, -196.35064935064935, -196.2012987012987, -196.05194805194805, -195.9025974025974, -195.75324675324674, -195.6038961038961, -195.45454545454544, -195.30519480519482, -195.15584415584416, -195.0064935064935, -194.85714285714286, -194.7077922077922, -194.55844155844156, -194.4090909090909, -194.25974025974028, -194.11038961038963, -193.96103896103898, -193.81168831168833, -193.66233766233768, -193.51298701298703, -193.36363636363637, -193.21428571428572, -193.06493506493507, -192.91558441558442, -192.76623376623377, -192.61688311688312, -192.46753246753246, -192.3181818181818, -192.16883116883116, -192.0194805194805, -191.87012987012986, -191.7207792207792, -191.57142857142856, -191.42207792207793, -191.27272727272728, -191.12337662337663, -190.97402597402598, -190.82467532467533, -190.67532467532467, -190.52597402597405, -190.3766233766234, -190.22727272727275, -190.0779220779221, -189.92857142857144, -189.7792207792208, -189.62987012987014, -189.4805194805195, -189.33116883116884, -189.1818181818182, -189.03246753246754, -188.88311688311688, -188.73376623376623, -188.58441558441558, -188.43506493506493, -188.28571428571428, -188.13636363636363, -187.98701298701297, -187.83766233766232, -187.6883116883117, -187.53896103896105, -187.3896103896104, -187.24025974025975, -187.0909090909091, -186.94155844155844, -186.7922077922078, -186.64285714285717, -186.49350649350652, -186.34415584415586, -186.1948051948052, -186.04545454545456, -185.8961038961039, -185.74675324675326, -185.5974025974026, -185.44805194805195, -185.2987012987013, -185.14935064935065, -185.0, -184.85064935064935, -184.7012987012987, -184.55194805194805, -184.4025974025974, -184.25324675324674, -184.1038961038961, -183.95454545454544, -183.80519480519482, -183.65584415584416, -183.5064935064935, -183.35714285714286, -183.2077922077922, -183.05844155844156, -182.9090909090909, -182.75974025974028, -182.61038961038963, -182.46103896103898, -182.31168831168833, -182.16233766233768, -182.01298701298703, -181.86363636363637, -181.71428571428572, -181.56493506493507, -181.41558441558442, -181.26623376623377, -181.11688311688312, -180.96753246753246, -180.8181818181818, -180.66883116883116, -180.5194805194805, -180.37012987012986, -180.2207792207792, -180.07142857142856, -179.92207792207793, -179.77272727272728, -179.62337662337663, -179.47402597402598, -179.32467532467533, -179.17532467532467, -179.02597402597405, -178.8766233766234, -178.72727272727275, -178.5779220779221, -178.42857142857144, -178.2792207792208, -178.12987012987014, -177.9805194805195, -177.83116883116884, -177.6818181818182, -177.53246753246754, -177.38311688311688, -177.23376623376623, -177.08441558441558, -176.93506493506493, -176.78571428571428, -176.63636363636363, -176.48701298701297, -176.33766233766232, -176.1883116883117, -176.03896103896105, -175.8896103896104, -175.74025974025975, -175.5909090909091, -175.44155844155844, -175.2922077922078, -175.14285714285717, -174.99350649350652, -174.84415584415586, -174.6948051948052, -174.54545454545456, -174.3961038961039, -174.24675324675326, -174.0974025974026, -173.94805194805195, -173.7987012987013, -173.64935064935065, -173.5, -173.35064935064935, -173.2012987012987, -173.05194805194805, -172.9025974025974, -172.75324675324674, -172.6038961038961, -172.45454545454544, -172.30519480519482, -172.15584415584416, -172.0064935064935, -171.85714285714286, -171.7077922077922, -171.55844155844156, -171.4090909090909, -171.25974025974025, -171.1103896103896, -170.96103896103898, -170.81168831168833, -170.66233766233768, -170.51298701298703, -170.36363636363637, -170.21428571428572, -170.06493506493507, -169.91558441558442, -169.76623376623377, -169.61688311688312, -169.46753246753246, -169.3181818181818, -169.16883116883116, -169.01948051948054, -168.8701298701299, -168.72077922077924, -168.57142857142858, -168.42207792207793, -168.27272727272728, -168.12337662337663, -167.97402597402598, -167.82467532467533, -167.67532467532467, -167.52597402597402, -167.37662337662337, -167.22727272727272, -167.0779220779221, -166.92857142857144, -166.7792207792208, -166.62987012987014, -166.4805194805195, -166.33116883116884, -166.1818181818182, -166.03246753246754, -165.88311688311688, -165.73376623376623, -165.58441558441558, -165.43506493506493, -165.28571428571428, -165.13636363636365, -164.987012987013, -164.83766233766235, -164.6883116883117, -164.53896103896105, -164.3896103896104, -164.24025974025975, -164.0909090909091, -163.94155844155844, -163.7922077922078, -163.64285714285714, -163.4935064935065, -163.34415584415584, -163.1948051948052, -163.04545454545456, -162.8961038961039, -162.74675324675326, -162.5974025974026, -162.44805194805195, -162.2987012987013, -162.14935064935065, -162.0, -161.85064935064935, -161.7012987012987, -161.55194805194805, -161.4025974025974, -161.25324675324677, -161.10389610389612, -160.95454545454547, -160.80519480519482, -160.65584415584416, -160.5064935064935, -160.35714285714286, -160.2077922077922, -160.05844155844156, -159.9090909090909, -159.75974025974025, -159.6103896103896, -159.46103896103898, -159.31168831168833, -159.16233766233768, -159.01298701298703, -158.86363636363637, -158.71428571428572, -158.56493506493507, -158.41558441558442, -158.26623376623377, -158.11688311688312, -157.96753246753246, -157.8181818181818, -157.66883116883116, -157.51948051948054, -157.3701298701299, -157.22077922077924, -157.07142857142858, -156.92207792207793, -156.77272727272728, -156.62337662337663, -156.47402597402598, -156.32467532467533, -156.17532467532467, -156.02597402597402, -155.87662337662337, -155.72727272727272, -155.5779220779221, -155.42857142857144, -155.2792207792208, -155.12987012987014, -154.9805194805195, -154.83116883116884, -154.6818181818182, -154.53246753246754, -154.38311688311688, -154.23376623376623, -154.08441558441558, -153.93506493506493, -153.78571428571428, -153.63636363636365, -153.487012987013, -153.33766233766235, -153.1883116883117, -153.03896103896105, -152.8896103896104, -152.74025974025975, -152.5909090909091, -152.44155844155844, -152.2922077922078, -152.14285714285714, -151.9935064935065, -151.84415584415586, -151.6948051948052, -151.54545454545456, -151.3961038961039, -151.24675324675326, -151.0974025974026, -150.94805194805195, -150.7987012987013, -150.64935064935065, -150.5, -150.35064935064935, -150.2012987012987, -150.05194805194805, -149.90259740259742, -149.75324675324677, -149.60389610389612, -149.45454545454547, -149.30519480519482, -149.15584415584416, -149.0064935064935, -148.85714285714286, -148.7077922077922, -148.55844155844156, -148.4090909090909, -148.25974025974025, -148.1103896103896, -147.96103896103898, -147.81168831168833, -147.66233766233768, -147.51298701298703, -147.36363636363637, -147.21428571428572, -147.06493506493507, -146.91558441558442, -146.76623376623377, -146.61688311688312, -146.46753246753246, -146.3181818181818, -146.16883116883116, -146.01948051948054, -145.8701298701299, -145.72077922077924, -145.57142857142858, -145.42207792207793, -145.27272727272728, -145.12337662337663, -144.97402597402598, -144.82467532467533, -144.67532467532467, -144.52597402597402, -144.37662337662337, -144.22727272727272, -144.0779220779221, -143.92857142857144, -143.7792207792208, -143.62987012987014, -143.4805194805195, -143.33116883116884, -143.1818181818182, -143.03246753246754, -142.88311688311688, -142.73376623376623, -142.58441558441558, -142.43506493506493, -142.28571428571428, -142.13636363636365, -141.987012987013, -141.83766233766235, -141.6883116883117, -141.53896103896105, -141.3896103896104, -141.24025974025975, -141.0909090909091, -140.94155844155844, -140.7922077922078, -140.64285714285714, -140.4935064935065, -140.34415584415586, -140.1948051948052, -140.04545454545456, -139.8961038961039, -139.74675324675326, -139.5974025974026, -139.44805194805195, -139.2987012987013, -139.14935064935065, -139.0, -138.85064935064935, -138.7012987012987, -138.55194805194805, -138.40259740259742, -138.25324675324677, -138.10389610389612, -137.95454545454547, -137.80519480519482, -137.65584415584416, -137.5064935064935, -137.35714285714286, -137.2077922077922, -137.05844155844156, -136.9090909090909, -136.75974025974025, -136.6103896103896, -136.46103896103898, -136.31168831168833, -136.16233766233768, -136.01298701298703, -135.86363636363637, -135.71428571428572, -135.56493506493507, -135.41558441558442, -135.26623376623377, -135.11688311688312, -134.96753246753246, -134.8181818181818, -134.66883116883116, -134.51948051948054, -134.3701298701299, -134.22077922077924, -134.07142857142858, -133.92207792207793, -133.77272727272728, -133.62337662337663, -133.47402597402598, -133.32467532467533, -133.17532467532467, -133.02597402597402, -132.87662337662337, -132.72727272727275, -132.5779220779221, -132.42857142857144, -132.2792207792208, -132.12987012987014, -131.9805194805195, -131.83116883116884, -131.6818181818182, -131.53246753246754, -131.38311688311688, -131.23376623376623, -131.08441558441558, -130.93506493506493, -130.7857142857143, -130.63636363636365, -130.487012987013, -130.33766233766235, -130.1883116883117, -130.03896103896105, -129.8896103896104, -129.74025974025975, -129.5909090909091, -129.44155844155844, -129.2922077922078, -129.14285714285714, -128.9935064935065, -128.84415584415586, -128.6948051948052, -128.54545454545456, -128.3961038961039, -128.24675324675326, -128.0974025974026, -127.94805194805195, -127.7987012987013, -127.64935064935065, -127.5, -127.35064935064935, -127.2012987012987, -127.05194805194805, -126.90259740259742, -126.75324675324677, -126.60389610389612, -126.45454545454547, -126.30519480519482, -126.15584415584416, -126.00649350649351, -125.85714285714286, -125.70779220779221, -125.55844155844156, -125.4090909090909, -125.25974025974025, -125.1103896103896, -124.96103896103898, -124.81168831168833, -124.66233766233768, -124.51298701298703, -124.36363636363637, -124.21428571428572, -124.06493506493507, -123.91558441558442, -123.76623376623377, -123.61688311688312, -123.46753246753246, -123.31818181818181, -123.16883116883116, -123.01948051948054, -122.87012987012989, -122.72077922077924, -122.57142857142858, -122.42207792207793, -122.27272727272728, -122.12337662337663, -121.97402597402598, -121.82467532467533, -121.67532467532467, -121.52597402597402, -121.37662337662337, -121.22727272727275, -121.0779220779221, -120.92857142857144, -120.7792207792208, -120.62987012987014, -120.48051948051949, -120.33116883116884, -120.18181818181819, -120.03246753246754, -119.88311688311688, -119.73376623376623, -119.58441558441558, -119.43506493506493, -119.2857142857143, -119.13636363636365, -118.987012987013, -118.83766233766235, -118.6883116883117, -118.53896103896105, -118.3896103896104, -118.24025974025975, -118.0909090909091, -117.94155844155844, -117.79220779220779, -117.64285714285714, -117.49350649350649, -117.34415584415586, -117.19480519480521, -117.04545454545456, -116.89610389610391, -116.74675324675326, -116.5974025974026, -116.44805194805195, -116.2987012987013, -116.14935064935065, -116.0, -115.85064935064935, -115.7012987012987, -115.55194805194805, -115.40259740259742, -115.25324675324677, -115.10389610389612, -114.95454545454547, -114.80519480519482, -114.65584415584416, -114.50649350649351, -114.35714285714286, -114.20779220779221, -114.05844155844156, -113.9090909090909, -113.75974025974025, -113.61038961038963, -113.46103896103898, -113.31168831168833, -113.16233766233768, -113.01298701298703, -112.86363636363637, -112.71428571428572, -112.56493506493507, -112.41558441558442, -112.26623376623377, -112.11688311688312, -111.96753246753246, -111.81818181818181, -111.66883116883119, -111.51948051948054, -111.37012987012989, -111.22077922077924, -111.07142857142858, -110.92207792207793, -110.77272727272728, -110.62337662337663, -110.47402597402598, -110.32467532467533, -110.17532467532467, -110.02597402597402, -109.87662337662337, -109.72727272727275, -109.5779220779221, -109.42857142857144, -109.2792207792208, -109.12987012987014, -108.98051948051949, -108.83116883116884, -108.68181818181819, -108.53246753246754, -108.38311688311688, -108.23376623376623, -108.08441558441558, -107.93506493506493, -107.7857142857143, -107.63636363636365, -107.487012987013, -107.33766233766235, -107.1883116883117, -107.03896103896105, -106.8896103896104, -106.74025974025975, -106.5909090909091, -106.44155844155844, -106.29220779220779, -106.14285714285714, -105.99350649350649, -105.84415584415586, -105.69480519480521, -105.54545454545456, -105.39610389610391, -105.24675324675326, -105.0974025974026, -104.94805194805195, -104.7987012987013, -104.64935064935065, -104.5, -104.35064935064935, -104.2012987012987, -104.05194805194805, -103.90259740259742, -103.75324675324677, -103.60389610389612, -103.45454545454547, -103.30519480519482, -103.15584415584416, -103.00649350649351, -102.85714285714286, -102.70779220779221, -102.55844155844156, -102.4090909090909, -102.25974025974025, -102.11038961038963, -101.96103896103898, -101.81168831168833, -101.66233766233768, -101.51298701298703, -101.36363636363637, -101.21428571428572, -101.06493506493507, -100.91558441558442, -100.76623376623377, -100.61688311688312, -100.46753246753246, -100.31818181818181, -100.16883116883119, -100.01948051948054, -99.87012987012989, -99.72077922077924, -99.57142857142858, -99.42207792207793, -99.27272727272728, -99.12337662337663, -98.97402597402598, -98.82467532467533, -98.67532467532467, -98.52597402597402, -98.37662337662337, -98.22727272727275, -98.0779220779221, -97.92857142857144, -97.7792207792208, -97.62987012987014, -97.48051948051949, -97.33116883116884, -97.18181818181819, -97.03246753246754, -96.88311688311688, -96.73376623376623, -96.58441558441558, -96.43506493506493, -96.2857142857143, -96.13636363636365, -95.987012987013, -95.83766233766235, -95.6883116883117, -95.53896103896105, -95.3896103896104, -95.24025974025975, -95.0909090909091, -94.94155844155844, -94.79220779220779, -94.64285714285714, -94.49350649350652, -94.34415584415586, -94.19480519480521, -94.04545454545456, -93.89610389610391, -93.74675324675326, -93.5974025974026, -93.44805194805195, -93.2987012987013, -93.14935064935065, -93.0, -92.85064935064935, -92.7012987012987, -92.55194805194807, -92.40259740259742, -92.25324675324677, -92.10389610389612, -91.95454545454547, -91.80519480519482, -91.65584415584416, -91.50649350649351, -91.35714285714286, -91.20779220779221, -91.05844155844156, -90.9090909090909, -90.75974025974025, -90.61038961038963, -90.46103896103898, -90.31168831168833, -90.16233766233768, -90.01298701298703, -89.86363636363637, -89.71428571428572, -89.56493506493507, -89.41558441558442, -89.26623376623377, -89.11688311688312, -88.96753246753246, -88.81818181818181, -88.66883116883119, -88.51948051948054, -88.37012987012989, -88.22077922077924, -88.07142857142858, -87.92207792207793, -87.77272727272728, -87.62337662337663, -87.47402597402598, -87.32467532467533, -87.17532467532467, -87.02597402597402, -86.87662337662337, -86.72727272727275, -86.5779220779221, -86.42857142857144, -86.2792207792208, -86.12987012987014, -85.98051948051949, -85.83116883116884, -85.68181818181819, -85.53246753246754, -85.38311688311688, -85.23376623376623, -85.08441558441558, -84.93506493506493, -84.7857142857143, -84.63636363636365, -84.487012987013, -84.33766233766235, -84.1883116883117, -84.03896103896105, -83.8896103896104, -83.74025974025975, -83.5909090909091, -83.44155844155844, -83.29220779220779, -83.14285714285714, -82.99350649350652, -82.84415584415586, -82.69480519480521, -82.54545454545456, -82.39610389610391, -82.24675324675326, -82.0974025974026, -81.94805194805195, -81.7987012987013, -81.64935064935065, -81.5, -81.35064935064935, -81.2012987012987, -81.05194805194807, -80.90259740259742, -80.75324675324677, -80.60389610389612, -80.45454545454547, -80.30519480519482, -80.15584415584416, -80.00649350649351, -79.85714285714286, -79.70779220779221, -79.55844155844156, -79.4090909090909, -79.25974025974025, -79.11038961038963, -78.96103896103898, -78.81168831168833, -78.66233766233768, -78.51298701298703, -78.36363636363637, -78.21428571428572, -78.06493506493507, -77.91558441558442, -77.76623376623377, -77.61688311688312, -77.46753246753246, -77.31818181818181, -77.16883116883119, -77.01948051948054, -76.87012987012989, -76.72077922077924, -76.57142857142858, -76.42207792207793, -76.27272727272728, -76.12337662337663, -75.97402597402598, -75.82467532467533, -75.67532467532467, -75.52597402597402, -75.3766233766234, -75.22727272727275, -75.0779220779221, -74.92857142857144, -74.7792207792208, -74.62987012987014, -74.48051948051949, -74.33116883116884, -74.18181818181819, -74.03246753246754, -73.88311688311688, -73.73376623376623, -73.58441558441558, -73.43506493506496, -73.2857142857143, -73.13636363636365, -72.987012987013, -72.83766233766235, -72.6883116883117, -72.53896103896105, -72.3896103896104, -72.24025974025975, -72.0909090909091, -71.94155844155844, -71.79220779220779, -71.64285714285714, -71.49350649350652, -71.34415584415586, -71.19480519480521, -71.04545454545456, -70.89610389610391, -70.74675324675326, -70.5974025974026, -70.44805194805195, -70.2987012987013, -70.14935064935065, -70.0, -69.85064935064935, -69.7012987012987, -69.55194805194807, -69.40259740259742, -69.25324675324677, -69.10389610389612, -68.95454545454547, -68.80519480519482, -68.65584415584416, -68.50649350649351, -68.35714285714286, -68.20779220779221, -68.05844155844156, -67.9090909090909, -67.75974025974025, -67.61038961038963, -67.46103896103898, -67.31168831168833, -67.16233766233768, -67.01298701298703, -66.86363636363637, -66.71428571428572, -66.56493506493507, -66.41558441558442, -66.26623376623377, -66.11688311688312, -65.96753246753246, -65.81818181818181, -65.66883116883119, -65.51948051948054, -65.37012987012989, -65.22077922077924, -65.07142857142858, -64.92207792207793, -64.77272727272728, -64.62337662337663, -64.47402597402598, -64.32467532467533, -64.17532467532467, -64.02597402597402, -63.8766233766234, -63.72727272727275, -63.577922077922096, -63.428571428571445, -63.27922077922079, -63.12987012987014, -62.98051948051949, -62.83116883116884, -62.68181818181819, -62.532467532467535, -62.383116883116884, -62.23376623376623, -62.08441558441558, -61.93506493506496, -61.785714285714306, -61.636363636363654, -61.487012987013, -61.33766233766235, -61.1883116883117, -61.03896103896105, -60.8896103896104, -60.740259740259745, -60.59090909090909, -60.44155844155844, -60.29220779220779, -60.14285714285714, -59.993506493506516, -59.844155844155864, -59.69480519480521, -59.54545454545456, -59.39610389610391, -59.24675324675326, -59.097402597402606, -58.948051948051955, -58.7987012987013, -58.64935064935065, -58.5, -58.35064935064935, -58.2012987012987, -58.051948051948074, -57.90259740259742, -57.75324675324677, -57.60389610389612, -57.45454545454547, -57.305194805194816, -57.155844155844164, -57.00649350649351, -56.85714285714286, -56.70779220779221, -56.55844155844156, -56.40909090909091, -56.25974025974028, -56.11038961038963, -55.96103896103898, -55.81168831168833, -55.66233766233768, -55.512987012987026, -55.363636363636374, -55.21428571428572, -55.06493506493507, -54.91558441558442, -54.76623376623377, -54.616883116883116, -54.467532467532465, -54.31818181818184, -54.16883116883119, -54.01948051948054, -53.87012987012989, -53.720779220779235, -53.571428571428584, -53.42207792207793, -53.27272727272728, -53.12337662337663, -52.97402597402598, -52.824675324675326, -52.675324675324674, -52.52597402597402, -52.3766233766234, -52.22727272727275, -52.077922077922096, -51.928571428571445, -51.77922077922079, -51.62987012987014, -51.48051948051949, -51.33116883116884, -51.18181818181819, -51.032467532467535, -50.883116883116884, -50.73376623376623, -50.58441558441558, -50.43506493506496, -50.285714285714306, -50.136363636363654, -49.987012987013, -49.83766233766235, -49.6883116883117, -49.53896103896105, -49.3896103896104, -49.240259740259745, -49.09090909090909, -48.94155844155844, -48.79220779220779, -48.64285714285714, -48.493506493506516, -48.344155844155864, -48.19480519480521, -48.04545454545456, -47.89610389610391, -47.74675324675326, -47.597402597402606, -47.448051948051955, -47.2987012987013, -47.14935064935065, -47.0, -46.85064935064935, -46.7012987012987, -46.551948051948074, -46.40259740259742, -46.25324675324677, -46.10389610389612, -45.95454545454547, -45.805194805194816, -45.655844155844164, -45.50649350649351, -45.35714285714286, -45.20779220779221, -45.05844155844156, -44.90909090909091, -44.75974025974028, -44.61038961038963, -44.46103896103898, -44.31168831168833, -44.16233766233768, -44.012987012987026, -43.863636363636374, -43.71428571428572, -43.56493506493507, -43.41558441558442, -43.26623376623377, -43.116883116883116, -42.967532467532465, -42.81818181818181, -42.66883116883116, -42.51948051948051, -42.37012987012986, -42.22077922077921, -42.071428571428555, -41.92207792207796, -41.77272727272731, -41.62337662337666, -41.474025974026006, -41.324675324675354, -41.1753246753247, -41.02597402597405, -40.8766233766234, -40.72727272727275, -40.577922077922096, -40.428571428571445, -40.27922077922079, -40.12987012987014, -39.98051948051949, -39.83116883116884, -39.68181818181819, -39.532467532467535, -39.383116883116884, -39.23376623376623, -39.08441558441558, -38.93506493506493, -38.78571428571428, -38.636363636363626, -38.487012987012974, -38.33766233766232, -38.18831168831167, -38.03896103896108, -37.889610389610425, -37.74025974025977, -37.59090909090912, -37.44155844155847, -37.29220779220782, -37.14285714285717, -36.993506493506516, -36.844155844155864, -36.69480519480521, -36.54545454545456, -36.39610389610391, -36.24675324675326, -36.097402597402606, -35.948051948051955, -35.7987012987013, -35.64935064935065, -35.5, -35.35064935064935, -35.2012987012987, -35.051948051948045, -34.902597402597394, -34.75324675324674, -34.60389610389609, -34.45454545454544, -34.30519480519479, -34.15584415584419, -34.00649350649354, -33.85714285714289, -33.70779220779224, -33.55844155844159, -33.409090909090935, -33.25974025974028, -33.11038961038963, -32.96103896103898, -32.81168831168833, -32.66233766233768, -32.512987012987026, -32.363636363636374, -32.21428571428572, -32.06493506493507, -31.91558441558442, -31.766233766233768, -31.616883116883116, -31.467532467532465, -31.318181818181813, -31.16883116883116, -31.01948051948051, -30.87012987012986, -30.720779220779207, -30.571428571428555, -30.42207792207796, -30.27272727272731, -30.123376623376657, -29.974025974026006, -29.824675324675354, -29.675324675324703, -29.52597402597405, -29.3766233766234, -29.227272727272748, -29.077922077922096, -28.928571428571445, -28.779220779220793, -28.62987012987014, -28.48051948051949, -28.33116883116884, -28.181818181818187, -28.032467532467535, -27.883116883116884, -27.733766233766232, -27.58441558441558, -27.43506493506493, -27.285714285714278, -27.136363636363626, -26.987012987012974, -26.837662337662323, -26.68831168831167, -26.538961038961077, -26.389610389610425, -26.240259740259773, -26.090909090909122, -25.94155844155847, -25.79220779220782, -25.642857142857167, -25.493506493506516, -25.344155844155864, -25.194805194805213, -25.04545454545456, -24.89610389610391, -24.746753246753258, -24.597402597402606, -24.448051948051955, -24.298701298701303, -24.14935064935065, -24.0, -23.85064935064935, -23.701298701298697, -23.551948051948045, -23.402597402597394, -23.253246753246742, -23.10389610389609, -22.95454545454544, -22.805194805194787, -22.655844155844193, -22.50649350649354, -22.35714285714289, -22.207792207792238, -22.058441558441586, -21.909090909090935, -21.759740259740283, -21.610389610389632, -21.46103896103898, -21.31168831168833, -21.162337662337677, -21.012987012987026, -20.863636363636374, -20.714285714285722, -20.56493506493507, -20.41558441558442, -20.266233766233768, -20.116883116883116, -19.967532467532465, -19.818181818181813, -19.66883116883116, -19.51948051948051, -19.37012987012986, -19.220779220779207, -19.071428571428555, -18.92207792207796, -18.77272727272731, -18.623376623376657, -18.474025974026006, -18.324675324675354, -18.175324675324703, -18.02597402597405, -17.8766233766234, -17.727272727272748, -17.577922077922096, -17.428571428571445, -17.279220779220793, -17.12987012987014, -16.98051948051949, -16.83116883116884, -16.681818181818187, -16.532467532467535, -16.383116883116884, -16.233766233766232, -16.08441558441558, -15.93506493506493, -15.785714285714278, -15.636363636363626, -15.487012987012974, -15.337662337662323, -15.188311688311671, -15.038961038961077, -14.889610389610425, -14.740259740259773, -14.590909090909122, -14.44155844155847, -14.292207792207819, -14.142857142857167, -13.993506493506516, -13.844155844155864, -13.694805194805213, -13.545454545454561, -13.39610389610391, -13.246753246753258, -13.097402597402606, -12.948051948051955, -12.798701298701303, -12.649350649350652, -12.5, -12.350649350649348, -12.201298701298697, -12.051948051948045, -11.902597402597394, -11.753246753246742, -11.60389610389609, -11.454545454545439, -11.305194805194844, -11.155844155844193, -11.006493506493541, -10.85714285714289, -10.707792207792238, -10.558441558441586, -10.409090909090935, -10.259740259740283, -10.110389610389632, -9.96103896103898, -9.811688311688329, -9.662337662337677, -9.512987012987026, -9.363636363636374, -9.214285714285722, -9.06493506493507, -8.91558441558442, -8.766233766233768, -8.616883116883116, -8.467532467532465, -8.318181818181813, -8.168831168831161, -8.01948051948051, -7.870129870129858, -7.720779220779207, -7.571428571428555, -7.4220779220779605, -7.272727272727309, -7.123376623376657, -6.974025974026006, -6.824675324675354, -6.675324675324703, -6.525974025974051, -6.3766233766233995, -6.227272727272748, -6.077922077922096, -5.928571428571445, -5.779220779220793, -5.629870129870142, -5.48051948051949, -5.3311688311688386, -5.181818181818187, -5.032467532467535, -4.883116883116884, -4.733766233766232, -4.584415584415581, -4.435064935064929, -4.285714285714278, -4.136363636363626, -3.9870129870129745, -3.837662337662323, -3.688311688311728, -3.5389610389610766, -3.389610389610425, -3.2402597402597735, -3.090909090909122, -2.9415584415584703, -2.792207792207819, -2.642857142857167, -2.4935064935065157, -2.344155844155864, -2.1948051948052125, -2.045454545454561, -1.8961038961039094, -1.7467532467532578, -1.5974025974026063, -1.4480519480519547, -1.2987012987013031, -1.1493506493506516, -1.0]}
-},{}],15:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 module.exports={"expected": [10.0, 14.104271176297699, 19.893046541454208, 28.057692294338125, 39.573330070046325, 55.81529786570694, 78.72340968837608, 111.03363181676379, 156.60484528328325, 220.87972053975727, 311.53474758375893, 439.397056076079, 619.7375232963906, 874.0946086699405, 1232.8467394420659, 1738.840473190533, 2452.507756620109, 3459.083446134353, 4878.7850945721275, 6881.17079847245, 9705.38989520764, 13688.74509537082, 19306.977288832495, 27231.08432763142, 38407.45977815442, 54170.92279038372, 76404.13849058564, 107762.46882626237, 151991.10829529332, 214372.38077828498, 302356.61912054766, 426451.97480247583, 601479.4296281799, 848342.8982440726, 1196525.8287320712, 1687612.4757881453, 2380254.399901916, 3357175.3524792404, 4735051.155774998, 6678444.553469233, 9419459.301799856, 13285460.83266851, 18738174.22860383, 26428829.06689411, 37275937.20314938, 52574992.66638634, 74153195.3658575, 104587677.6029035, 147513296.66105497, 208056753.82171714, 293448887.59617144, 413888268.7039292, 583759237.8488591, 823349859.2289186, 1161274968.7531168, 1637893706.9540613, 2310129700.083158, 3258269574.239217, 4595551764.055001, 6481690828.494479, 9141952512.600794, 12894057731.855785, 18186128681.293144, 25650209056.800407, 36177750426.58405, 51026080256.49617, 71968567300.11528, 101506418937.04541, 143167405882.297, 201927191617.09973, 284803586843.57935, 401694702082.4098, 566561100825.243, 799093140398.0979, 1127062634729.4114, 1589639703289.613, 2242070944780.614, 3162277660168.3794, 4460162165376.287, 6290733667073.035, 8872621353826.383, 12514185761897.707, 17650346953636.906, 24894527978983.414, 35111917342151.273, 49522800371345.2, 69848300584710.7, 98515937265031.39, 138949549437313.6, 195978212508825.62, 276412985387057.75, 389860370254906.4, 549869638296703.06, 775551049014943.8, 1093858230636888.2, 1542807311332788.0, 2176017269181241.5, 3069113764883904.5, 4328761281083061.5, 6105402296585314.0, 8611224963143011.0, 1.214550520402733e+16, 1.7130349897073586e+16, 2.416111002931905e+16, 3.407748477738809e+16, 4.80638086306437e+16, 6.779049906922799e+16, 9.561355820489453e+16, 1.3485595530525523e+17, 1.9020449633640118e+17, 2.6826957952797165e+17, 3.783746898013893e+17, 5.3366992312063014e+17, 7.527025314327291e+17, 1.0616320618413007e+18, 1.4973546489661706e+18, 2.111909601610903e+18, 2.9786945720946924e+18, 4.201231599618945e+18, 5.925530975545687e+18, 8.357529574264796e+18, 1.1787686347935818e+19, 1.662567247924299e+19, 2.344929931355521e+19, 3.3073527641255313e+19, 4.664780026090449e+19, 6.579332246575655e+19, 9.279668616466348e+19, 1.3088296259282026e+20, 1.846008796766359e+20, 2.6036608663423887e+20, 3.672273891000714e+20, 5.1794746792312236e+20, 7.305271542664449e+20, 1.030355308542297e+21, 1.4532410679618516e+21, 2.0496906107066369e+21, 2.8909392200917556e+21, 4.0774590714368906e+21, 5.750958845380074e+21, 8.111308307896823e+21, 1.144040919691338e+22, 1.61358633681076e+22, 2.275845926074791e+22, 3.209914809683112e+22, 4.527350892858449e+22, 6.385498470312941e+22, 9.006280202112758e+22, 1.2702701826032023e+23, 1.791623512260071e+23, 2.5269543862746886e+23, 3.564084991415332e+23, 5.026882121429434e+23, 7.090050861192318e+23, 1e+24, 1.4104271176297654e+24, 1.9893046541454086e+24, 2.8057692294338093e+24, 3.9573330070046166e+24, 5.581529786570699e+24, 7.872340968837592e+24, 1.110336318167632e+25, 1.5660484528328326e+25, 2.208797205397566e+25, 3.115347475837596e+25, 4.393970560760786e+25, 6.19737523296388e+25, 8.740946086699415e+25, 1.2328467394420634e+26, 1.738840473190524e+26, 2.4525077566201087e+26, 3.459083446134343e+26, 4.878785094572098e+26, 6.881170798472444e+26, 9.7053898952076e+26, 1.368874509537082e+27, 1.9306977288832458e+27, 2.7231084327631306e+27, 3.8407459778154425e+27, 5.41709227903835e+27, 7.64041384905858e+27, 1.0776246882626236e+28, 1.519911082952927e+28, 2.14372380778285e+28, 3.0235661912054706e+28, 4.264519748024741e+28, 6.014794296281798e+28, 8.48342898244069e+28, 1.1965258287320639e+29, 1.687612475788145e+29, 2.3802543999019062e+29, 3.35717535247924e+29, 4.7350511557749876e+29, 6.678444553469206e+29, 9.419459301799856e+29, 1.3285460832668454e+30, 1.873817422860387e+30, 2.642882906689411e+30, 3.7275937203149225e+30, 5.257499266638634e+30, 7.415319536585735e+30, 1.0458767760290308e+31, 1.47513296661055e+31, 2.080567538217163e+31, 2.9344888759616906e+31, 4.138882687039292e+31, 5.8375923784885675e+31, 8.233498592289185e+31, 1.1612749687531169e+32, 1.637893706954041e+32, 2.3101297000831394e+32, 3.2582695742392036e+32, 4.595551764055001e+32, 6.4816908284945326e+32, 9.141952512600755e+32, 1.2894057731855783e+33, 1.8186128681292997e+33, 2.56502090568003e+33, 3.617775042658405e+33, 5.1026080256496386e+33, 7.19685673001147e+33, 1.015064189370454e+34, 1.4316740588229758e+34, 2.0192719161709805e+34, 2.8480358684357934e+34, 4.0169470208241147e+34, 5.665611008252384e+34, 7.990931403980945e+34, 1.1270626347294114e+35, 1.5896397032896e+35, 2.242070944780605e+35, 3.162277660168379e+35, 4.460162165376323e+35, 6.29073366707301e+35, 8.872621353826384e+35, 1.2514185761897757e+36, 1.765034695363676e+36, 2.4894527978983414e+36, 3.511191734215142e+36, 4.95228003713448e+36, 6.98483005847107e+36, 9.851593726503179e+36, 1.3894954943731246e+37, 1.9597821250882485e+37, 2.7641298538705773e+37, 3.8986037025490317e+37, 5.498696382967008e+37, 7.755510490149439e+37, 1.0938582306368793e+38, 1.5428073113327816e+38, 2.1760172691812416e+38, 3.0691137648839175e+38, 4.328761281083026e+38, 6.105402296585314e+38, 8.611224963143045e+38, 1.2145505204027232e+39, 1.7130349897073588e+39, 2.4161110029319047e+39, 3.4077484777387804e+39, 4.8063808630643695e+39, 6.779049906922799e+39, 9.561355820489377e+39, 1.3485595530525523e+40, 1.9020449633640118e+40, 2.682695795279738e+40, 3.783746898013862e+40, 5.336699231206302e+40, 7.527025314327352e+40, 1.061632061841292e+41, 1.4973546489661709e+41, 2.111909601610903e+41, 2.978694572094668e+41, 4.201231599618945e+41, 5.925530975545687e+41, 8.357529574264727e+41, 1.1787686347935818e+42, 1.662567247924299e+42, 2.344929931355502e+42, 3.3073527641255314e+42, 4.66478002609045e+42, 6.579332246575602e+42, 9.279668616466272e+42, 1.3088296259282026e+43, 1.846008796766374e+43, 2.603660866342368e+43, 3.6722738910007136e+43, 5.179474679231223e+43, 7.305271542664389e+43, 1.0303553085422969e+44, 1.4532410679618517e+44, 2.04969061070662e+44, 2.8909392200917555e+44, 4.077459071436891e+44, 5.750958845380027e+44, 8.111308307896823e+44, 1.144040919691338e+45, 1.6135863368107732e+45, 2.2758459260747726e+45, 3.209914809683112e+45, 4.527350892858487e+45, 6.385498470312888e+45, 9.006280202112759e+45, 1.2702701826032024e+46, 1.791623512260056e+46, 2.5269543862746886e+46, 3.564084991415332e+46, 5.026882121429393e+46, 7.090050861192318e+46, 1e+47, 1.4104271176297542e+47, 1.9893046541454084e+47, 2.8057692294338094e+47, 3.957333007004584e+47, 5.581529786570654e+47, 7.872340968837593e+47, 1.1103363181676414e+48, 1.5660484528328198e+48, 2.208797205397566e+48, 3.115347475837596e+48, 4.3939705607607505e+48, 6.19737523296388e+48, 8.740946086699414e+48, 1.2328467394420534e+49, 1.738840473190524e+49, 2.4525077566201084e+49, 3.459083446134314e+49, 4.878785094572097e+49, 6.881170798472443e+49, 9.70538989520768e+49, 1.3688745095370708e+50, 1.9306977288832457e+50, 2.723108432763153e+50, 3.840745977815411e+50, 5.41709227903835e+50, 7.64041384905858e+50, 1.0776246882626149e+51, 1.519911082952927e+51, 2.14372380778285e+51, 3.0235661912054456e+51, 4.26451974802474e+51, 6.014794296281798e+51, 8.483428982440621e+51, 1.1965258287320639e+52, 1.6876124757881451e+52, 2.3802543999018867e+52, 3.357175352479213e+52, 4.7350511557749876e+52, 6.67844455346926e+52, 9.419459301799779e+52, 1.3285460832668455e+53, 1.8738174228603869e+53, 2.6428829066893894e+53, 3.7275937203149226e+53, 5.257499266638634e+53, 7.415319536585674e+53, 1.0458767760290307e+54, 1.4751329666105498e+54, 2.080567538217146e+54, 2.9344888759616905e+54, 4.1388826870392914e+54, 5.837592378488615e+54, 8.233498592289117e+54, 1.1612749687531167e+55, 1.6378937069540678e+55, 2.3101297000831393e+55, 3.258269574239203e+55, 4.5955517640550007e+55, 6.481690828494427e+55, 9.141952512600756e+55, 1.2894057731855783e+56, 1.8186128681292997e+56, 2.5650209056800303e+56, 3.6177750426584054e+56, 5.102608025649555e+56, 7.19685673001147e+56, 1.0150641893704541e+57, 1.4316740588229524e+57, 2.0192719161709807e+57, 2.8480358684357932e+57, 4.016947020824115e+57, 5.6656110082523844e+57, 7.990931403980945e+57, 1.1270626347294113e+58, 1.5896397032896e+58, 2.2420709447806044e+58, 3.1622776601683794e+58, 4.46016216537625e+58, 6.29073366707301e+58, 8.872621353826384e+58, 1.2514185761897553e+59, 1.765034695363676e+59, 2.4894527978983414e+59, 3.5111917342151417e+59, 4.95228003713448e+59, 6.98483005847107e+59, 9.85159372650318e+59, 1.3894954943731246e+60, 1.9597821250882484e+60, 2.7641298538705777e+60, 3.898603702549032e+60, 5.498696382967008e+60, 7.755510490149439e+60, 1.0938582306368793e+61, 1.5428073113327816e+61, 2.1760172691812414e+61, 3.069113764883867e+61, 4.3287612810830265e+61, 6.105402296585314e+61, 8.611224963142906e+61, 1.2145505204027233e+62, 1.7130349897073588e+62, 2.416111002931905e+62, 3.4077484777387805e+62, 4.806380863064369e+62, 6.779049906922799e+62, 9.561355820489376e+62, 1.3485595530525523e+63, 1.9020449633640117e+63, 2.6826957952796946e+63, 3.783746898013862e+63, 5.336699231206302e+63, 7.527025314327229e+63, 1.061632061841292e+64, 1.4973546489661708e+64, 2.1119096016109028e+64, 2.978694572094717e+64, 4.2012315996190136e+64, 5.925530975545783e+64, 8.357529574264727e+64, 1.1787686347935817e+65, 1.662567247924299e+65, 2.34492993135554e+65, 3.3073527641254775e+65, 4.664780026090373e+65, 6.579332246575601e+65, 9.279668616466271e+65, 1.3088296259282025e+66, 1.846008796766374e+66, 2.6036608663424102e+66, 3.672273891000654e+66, 5.1794746792311385e+66, 7.305271542664389e+66, 1.030355308542297e+67, 1.4532410679618516e+67, 2.0496906107066534e+67, 2.890939220091708e+67, 4.0774590714368236e+67, 5.750958845380028e+67, 8.111308307896824e+67, 1.144040919691338e+68, 1.6135863368107733e+68, 2.2758459260748094e+68, 3.2099148096830597e+68, 4.527350892858412e+68, 6.385498470312889e+68, 9.006280202112758e+68, 1.2702701826032023e+69, 1.7916235122600855e+69, 2.5269543862746472e+69, 3.564084991415273e+69, 5.026882121429393e+69, 7.090050861192318e+69, 1e+70, 1.4104271176297772e+70, 1.989304654145441e+70, 2.805769229433763e+70, 3.957333007004584e+70, 5.581529786570653e+70, 7.872340968837593e+70, 1.1103363181676413e+71, 1.5660484528328454e+71, 2.2087972053975297e+71, 3.1153474758375447e+71, 4.39397056076075e+71, 6.19737523296388e+71, 8.740946086699414e+71, 1.2328467394420733e+72, 1.7388404731904957e+72, 2.4525077566200685e+72, 3.4590834461343143e+72, 4.878785094572098e+72, 6.881170798472443e+72, 9.70538989520768e+72, 1.3688745095370932e+73, 1.930697728883214e+73, 2.7231084327631085e+73, 3.840745977815411e+73, 5.41709227903835e+73, 7.640413849058581e+73, 1.0776246882626324e+74, 1.519911082952902e+74, 2.1437238077828147e+74, 3.023566191205446e+74, 4.2645197480247405e+74, 6.014794296281799e+74, 8.48342898244076e+74, 1.1965258287320444e+75, 1.6876124757881177e+75, 2.3802543999018868e+75, 3.3571753524792132e+75, 4.735051155774988e+75, 6.678444553469261e+75, 9.419459301799934e+75, 1.3285460832668238e+76, 1.8738174228603562e+76, 2.6428829066893893e+76, 3.727593720314923e+76, 5.257499266638634e+76, 7.415319536585796e+76, 1.0458767760290136e+77, 1.4751329666105258e+77, 2.080567538217146e+77, 2.9344888759616904e+77, 4.1388826870392917e+77, 5.837592378488615e+77, 8.233498592289253e+77, 1.1612749687530977e+78, 1.6378937069540413e+78, 2.310129700083139e+78, 3.2582695742392035e+78, 4.595551764055001e+78, 6.481690828494532e+78, 9.141952512600606e+78, 1.2894057731855572e+79, 1.8186128681292997e+79, 2.56502090568003e+79, 3.617775042658405e+79, 5.1026080256496383e+79, 7.196856730011588e+79, 1.0150641893704375e+80, 1.4316740588229523e+80, 2.0192719161709806e+80, 2.848035868435793e+80, 4.016947020824115e+80, 5.665611008252477e+80, 7.990931403980815e+80, 1.1270626347293928e+81, 1.5896397032896002e+81, 2.2420709447806046e+81, 3.1622776601683793e+81, 4.460162165376324e+81, 6.2907336670729074e+81, 8.872621353826238e+81, 1.251418576189755e+82, 1.765034695363676e+82, 2.4894527978983412e+82, 3.511191734215142e+82, 4.952280037134561e+82, 6.984830058470956e+82, 9.851593726503018e+82, 1.3894954943731246e+83, 1.9597821250882483e+83, 2.7641298538705777e+83, 3.8986037025490957e+83, 5.498696382966918e+83, 7.755510490149311e+83, 1.0938582306368793e+84, 1.5428073113327818e+84, 2.1760172691812415e+84, 3.0691137648839173e+84, 4.328761281082956e+84, 6.1054022965852145e+84, 8.611224963142905e+84, 1.2145505204027231e+85, 1.7130349897073585e+85, 2.4161110029319047e+85, 3.407748477738836e+85, 4.806380863064291e+85, 6.779049906922689e+85, 9.561355820489375e+85, 1.3485595530525523e+86, 1.9020449633640118e+86, 2.6826957952797383e+86, 3.7837468980138e+86, 5.336699231206215e+86, 7.527025314327228e+86, 1.061632061841292e+87, 1.4973546489661707e+87, 2.111909601610903e+87, 2.978694572094717e+87, 4.201231599618877e+87, 5.92553097554559e+87, 8.357529574264727e+87, 1.1787686347935819e+88, 1.662567247924299e+88, 2.3449299313555403e+88, 3.3073527641254774e+88, 4.664780026090373e+88, 6.579332246575602e+88, 9.279668616466272e+88, 1.3088296259282026e+89, 1.8460087967663741e+89, 2.6036608663424104e+89, 3.672273891000654e+89, 5.179474679231139e+89, 7.305271542664389e+89, 1.030355308542297e+90, 1.4532410679618516e+90, 2.0496906107066534e+90, 2.890939220091708e+90, 4.077459071436824e+90, 5.750958845380027e+90, 8.111308307896823e+90, 1.144040919691338e+91, 1.6135863368107732e+91, 2.2758459260747353e+91, 3.2099148096830598e+91, 4.5273508928584126e+91, 6.3854984703128884e+91, 9.006280202112758e+91, 1.2702701826032024e+92, 1.7916235122600853e+92, 2.5269543862746473e+92, 3.5640849914152737e+92, 5.026882121429393e+92, 7.090050861192318e+92, 1e+93, 1.4104271176297773e+93, 1.989304654145376e+93, 2.805769229433763e+93, 3.957333007004584e+93, 5.581529786570654e+93, 7.872340968837593e+93, 1.1103363181676412e+94, 1.5660484528327942e+94, 2.20879720539753e+94, 3.115347475837545e+94, 4.39397056076075e+94, 6.19737523296388e+94, 8.740946086699414e+94, 1.2328467394420735e+95, 1.7388404731904955e+95, 2.4525077566200685e+95, 3.4590834461343143e+95, 4.8787850945720975e+95, 6.881170798472443e+95, 9.705389895207679e+95, 1.3688745095370484e+96, 1.9306977288832141e+96, 2.7231084327631084e+96, 3.840745977815411e+96, 5.41709227903835e+96, 7.64041384905858e+96, 1.0776246882626323e+97, 1.5199110829529021e+97, 2.143723807782815e+97, 3.023566191205446e+97, 4.2645197480247405e+97, 6.014794296281798e+97, 8.483428982440761e+97, 1.1965258287320443e+98, 1.6876124757881175e+98, 2.380254399901887e+98, 3.357175352479213e+98, 4.735051155774988e+98, 6.67844455346926e+98, 9.419459301799932e+98, 1.3285460832668238e+99, 1.8738174228603563e+99, 2.642882906689389e+99, 3.7275937203149226e+99, 5.257499266638634e+99, 7.415319536585796e+99, 1.0458767760290136e+100, 1.4751329666105257e+100, 2.0805675382171458e+100, 2.9344888759616903e+100, 4.138882687039291e+100, 5.837592378488615e+100, 8.233498592288983e+100, 1.1612749687530978e+101, 1.6378937069540412e+101, 2.310129700083139e+101, 3.2582695742392036e+101, 4.595551764055001e+101, 6.481690828494533e+101, 9.141952512600606e+101, 1.2894057731855572e+102, 1.8186128681292997e+102, 2.56502090568003e+102, 3.6177750426584054e+102, 5.102608025649638e+102, 7.196856730011352e+102, 1.0150641893704374e+103, 1.4316740588229523e+103, 2.0192719161709806e+103, 2.848035868435793e+103, 4.016947020824115e+103, 5.665611008252291e+103, 7.990931403980816e+103, 1.127062634729393e+104, 1.5896397032896e+104, 2.2420709447806045e+104, 3.162277660168379e+104, 4.460162165376323e+104, 6.290733667072907e+104, 8.872621353826237e+104, 1.2514185761897552e+105, 1.765034695363676e+105, 2.4894527978983415e+105, 3.511191734215142e+105, 4.952280037134399e+105, 6.984830058470956e+105, 9.851593726503017e+105, 1.3894954943731248e+106, 1.9597821250882484e+106, 2.7641298538705775e+106, 3.898603702549096e+106, 5.498696382966918e+106, 7.755510490149311e+106, 1.0938582306368795e+107, 1.5428073113327817e+107, 2.1760172691812415e+107, 3.069113764883917e+107, 4.328761281082955e+107, 6.105402296585214e+107, 8.611224963142905e+107, 1.2145505204027233e+108, 1.7130349897073588e+108, 2.416111002931905e+108, 3.407748477738836e+108, 4.80638086306429e+108, 6.779049906922689e+108, 9.561355820489375e+108, 1.3485595530525525e+109, 1.902044963364012e+109, 2.682695795279738e+109, 3.7837468980138e+109, 5.3366992312062146e+109, 7.527025314327229e+109, 1.0616320618412922e+110, 1.4973546489661708e+110, 2.111909601610903e+110, 2.9786945720946193e+110, 4.2012315996188765e+110, 5.9255309755455895e+110, 8.357529574264728e+110, 1.1787686347935817e+111, 1.662567247924299e+111, 2.3449299313555402e+111, 3.307352764125477e+111, 4.664780026090373e+111, 6.579332246575601e+111, 9.279668616466272e+111, 1.3088296259282026e+112, 1.8460087967663742e+112, 2.603660866342325e+112, 3.6722738910006538e+112, 5.1794746792311386e+112, 7.305271542664389e+112, 1.030355308542297e+113, 1.4532410679618515e+113, 2.0496906107065863e+113, 2.890939220091708e+113, 4.077459071436824e+113, 5.750958845380027e+113, 8.111308307896822e+113, 1.1440409196913381e+114, 1.6135863368107733e+114, 2.2758459260747354e+114, 3.20991480968306e+114, 4.527350892858412e+114, 6.385498470312888e+114, 9.006280202112759e+114, 1.2702701826032025e+115, 1.7916235122600268e+115, 2.5269543862746474e+115, 3.564084991415273e+115, 5.026882121429393e+115, 7.090050861192318e+115, 1e+116, 1.4104271176297772e+116, 1.989304654145376e+116, 2.8057692294337633e+116, 3.9573330070045834e+116, 5.581529786570654e+116, 7.872340968837592e+116, 1.1103363181676412e+117, 1.5660484528327943e+117, 2.20879720539753e+117, 3.1153474758375447e+117, 4.3939705607607505e+117, 6.19737523296388e+117, 8.740946086699414e+117, 1.2328467394420734e+118, 1.7388404731904956e+118, 2.4525077566200683e+118, 3.4590834461343143e+118, 4.878785094572097e+118, 6.8811707984724435e+118, 9.70538989520768e+118, 1.3688745095370483e+119, 1.9306977288832142e+119, 2.7231084327631084e+119, 3.840745977815411e+119, 5.41709227903835e+119, 7.64041384905858e+119, 1.0776246882625972e+120, 1.519911082952902e+120, 2.1437238077828148e+120, 3.023566191205446e+120, 4.264519748024741e+120, 6.014794296281798e+120, 8.48342898244076e+120, 1.1965258287320444e+121, 1.6876124757881176e+121, 2.380254399901887e+121, 3.357175352479213e+121, 4.735051155774987e+121, 6.67844455346926e+121, 9.419459301799624e+121, 1.328546083266824e+122, 1.873817422860356e+122, 2.6428829066893896e+122, 3.727593720314923e+122, 5.2574992666386344e+122, 7.415319536585553e+122, 1.0458767760290136e+123, 1.4751329666105256e+123, 2.080567538217146e+123, 2.9344888759616904e+123, 4.138882687039292e+123, 5.837592378488615e+123, 8.233498592288982e+123, 1.1612749687530977e+124, 1.6378937069540412e+124, 2.310129700083139e+124, 3.2582695742392034e+124, 4.595551764055001e+124, 6.481690828494321e+124, 9.141952512600607e+124, 1.2894057731855572e+125, 1.8186128681292996e+125, 2.56502090568003e+125, 3.617775042658405e+125, 5.102608025649638e+125, 7.196856730011351e+125, 1.0150641893704374e+126, 1.4316740588229522e+126, 2.0192719161709806e+126, 2.848035868435793e+126, 4.016947020824115e+126, 5.665611008252291e+126, 7.990931403980816e+126, 1.1270626347293928e+127, 1.5896397032896002e+127, 2.242070944780605e+127, 3.162277660168379e+127, 4.460162165376323e+127, 6.290733667072907e+127, 8.872621353826238e+127, 1.2514185761897961e+128, 1.7650346953637338e+128, 2.489452797898423e+128, 3.5111917342152566e+128, 4.952280037134399e+128, 6.984830058470956e+128, 9.851593726503019e+128, 1.3894954943731247e+129, 1.9597821250882484e+129, 2.7641298538705775e+129, 3.898603702549095e+129, 5.498696382967098e+129, 7.755510490149565e+129, 1.0938582306368436e+130, 1.5428073113327312e+130, 2.1760172691811704e+130, 3.069113764883817e+130, 4.328761281082955e+130, 6.105402296585214e+130, 8.611224963142906e+130, 1.2145505204027231e+131, 1.7130349897073586e+131, 2.4161110029319046e+131, 3.4077484777388367e+131, 4.806380863064448e+131, 6.7790499069229096e+131, 9.561355820489062e+131, 1.3485595530525081e+132, 1.9020449633639494e+132, 2.6826957952796506e+132, 3.7837468980138003e+132, 5.336699231206214e+132, 7.527025314327229e+132, 1.061632061841292e+133, 1.497354648966171e+133, 2.1119096016109031e+133, 2.978694572094717e+133, 4.201231599619014e+133, 5.925530975545784e+133, 8.357529574264454e+133, 1.178768634793543e+134, 1.6625672479242446e+134, 2.3449299313554634e+134, 3.3073527641254775e+134, 4.664780026090373e+134, 6.579332246575601e+134, 9.279668616466272e+134, 1.3088296259282026e+135, 1.846008796766374e+135, 2.6036608663424104e+135, 3.672273891000774e+135, 5.179474679231308e+135, 7.30527154266415e+135, 1.0303553085422633e+136, 1.453241067961804e+136, 2.0496906107065864e+136, 2.8909392200917085e+136, 4.0774590714368236e+136, 5.750958845380027e+136, 8.111308307896823e+136, 1.144040919691338e+137, 1.6135863368107733e+137, 2.2758459260748097e+137, 3.2099148096831647e+137, 4.527350892858561e+137, 6.385498470312679e+137, 9.006280202112464e+137, 1.2702701826031609e+138, 1.7916235122600267e+138, 2.5269543862746473e+138, 3.5640849914152733e+138, 5.026882121429393e+138, 7.090050861192318e+138, 9.999999999999999e+138, 1.410427117629777e+139, 1.9893046541454411e+139, 2.805769229433855e+139, 3.957333007004713e+139, 5.581529786570472e+139, 7.872340968837335e+139, 1.1103363181676049e+140, 1.566048452832794e+140, 2.20879720539753e+140, 3.115347475837545e+140, 4.3939705607607504e+140, 6.19737523296388e+140, 8.740946086699414e+140, 1.2328467394420735e+141, 1.7388404731905526e+141, 2.4525077566201488e+141, 3.459083446134201e+141, 4.878785094571938e+141, 6.881170798472218e+141, 9.705389895207362e+141, 1.3688745095370485e+142, 1.930697728883214e+142, 2.7231084327631083e+142, 3.840745977815411e+142, 5.41709227903835e+142, 7.640413849058581e+142, 1.0776246882626324e+143, 1.5199110829529518e+143, 2.143723807782885e+143, 3.0235661912053467e+143, 4.264519748024601e+143, 6.014794296281602e+143, 8.483428982440483e+143, 1.1965258287320444e+144, 1.6876124757881176e+144, 2.3802543999018867e+144, 3.357175352479213e+144, 4.7350511557749876e+144, 6.678444553469261e+144, 9.419459301799933e+144, 1.3285460832668673e+145, 1.8738174228604177e+145, 2.642882906689303e+145, 3.727593720314801e+145, 5.257499266638462e+145, 7.415319536585553e+145, 1.0458767760290137e+146, 1.4751329666105256e+146, 2.080567538217146e+146, 2.93448887596169e+146, 4.138882687039292e+146, 5.837592378488615e+146, 8.233498592289253e+146, 1.1612749687531358e+147, 1.637893706954095e+147, 2.310129700083064e+147, 3.258269574239097e+147, 4.59555176405485e+147, 6.48169082849432e+147, 9.141952512600607e+147, 1.2894057731855573e+148, 1.8186128681292997e+148, 2.5650209056800303e+148, 3.617775042658405e+148, 5.1026080256496387e+148, 7.196856730011588e+148, 1.0150641893704706e+149, 1.4316740588229056e+149, 2.0192719161709145e+149, 2.8480358684357e+149, 4.0169470208239834e+149, 5.6656110082522915e+149, 7.990931403980815e+149, 1.1270626347293927e+150, 1.5896397032896e+150, 2.2420709447806044e+150, 3.1622776601683793e+150, 4.460162165376323e+150, 6.2907336670731125e+150, 8.87262135382653e+150, 1.2514185761897143e+151, 1.7650346953636184e+151, 2.48945279789826e+151, 3.511191734215027e+151, 4.952280037134399e+151, 6.984830058470956e+151, 9.851593726503018e+151, 1.3894954943731247e+152, 1.9597821250882485e+152, 2.7641298538705777e+152, 3.8986037025490957e+152, 5.498696382967098e+152, 7.7555104901495655e+152, 1.0938582306368435e+153, 1.5428073113327312e+153, 2.17601726918117e+153, 3.069113764883817e+153, 4.3287612810829555e+153, 6.1054022965852145e+153, 8.611224963142904e+153, 1.2145505204027232e+154, 1.7130349897073586e+154, 2.416111002931905e+154, 3.4077484777388367e+154, 4.806380863064448e+154, 6.77904990692291e+154, 9.561355820489063e+154, 1.3485595530525082e+155, 1.9020449633639495e+155, 2.6826957952796503e+155, 3.7837468980138e+155, 5.336699231206214e+155, 7.527025314327229e+155, 1.061632061841292e+156, 1.4973546489661708e+156, 2.111909601610903e+156, 2.9786945720947168e+156, 4.201231599619014e+156, 5.9255309755457835e+156, 8.357529574264454e+156, 1.1787686347935432e+157, 1.6625672479242447e+157, 2.3449299313554635e+157, 3.307352764125477e+157, 4.664780026090373e+157, 6.579332246575602e+157, 9.279668616466273e+157, 1.3088296259282025e+158, 1.846008796766374e+158, 2.6036608663424103e+158, 3.672273891000774e+158, 5.179474679231308e+158, 7.30527154266415e+158, 1.0303553085422634e+159, 1.4532410679618042e+159, 2.0496906107065864e+159, 2.8909392200917084e+159, 4.077459071436824e+159, 5.750958845380027e+159, 8.111308307896823e+159, 1.1440409196913381e+160, 1.6135863368107732e+160, 2.2758459260748097e+160, 3.209914809683165e+160, 4.5273508928582646e+160, 6.385498470312679e+160, 9.006280202112464e+160, 1.2702701826031608e+161, 1.791623512260027e+161, 2.5269543862746473e+161, 3.5640849914152733e+161, 5.026882121429393e+161, 7.090050861192318e+161, 1e+162, 1.4104271176297772e+162, 1.989304654145441e+162, 2.805769229433855e+162, 3.9573330070044546e+162, 5.581529786570471e+162, 7.872340968837335e+162, 1.1103363181676049e+163, 1.566048452832794e+163, 2.20879720539753e+163, 3.115347475837545e+163, 4.3939705607607504e+163, 6.19737523296388e+163, 8.740946086699414e+163, 1.2328467394420734e+164, 1.7388404731905524e+164, 2.452507756620149e+164, 3.459083446134201e+164, 4.878785094571937e+164, 6.881170798472218e+164, 9.705389895207362e+164, 1.3688745095370482e+165, 1.930697728883214e+165, 2.7231084327631086e+165, 3.840745977815411e+165, 5.417092279038351e+165, 7.64041384905858e+165, 1.0776246882626326e+166, 1.519911082952952e+166, 2.143723807782885e+166, 3.0235661912053466e+166, 4.2645197480246007e+166, 6.014794296281602e+166, 8.483428982440483e+166, 1.1965258287320444e+167, 1.6876124757881177e+167, 2.3802543999018866e+167, 3.357175352479213e+167, 4.735051155774987e+167, 6.678444553469261e+167, 9.419459301799933e+167, 1.3285460832668671e+168, 1.873817422860295e+168, 2.642882906689303e+168, 3.727593720314801e+168, 5.257499266638462e+168, 7.4153195365855535e+168, 1.0458767760290135e+169, 1.4751329666105257e+169, 2.080567538217146e+169, 2.9344888759616905e+169, 4.1388826870392914e+169, 5.837592378488615e+169, 8.233498592289253e+169, 1.1612749687531358e+170, 1.6378937069539877e+170, 2.3101297000830635e+170, 3.258269574239097e+170, 4.5955517640548503e+170, 6.48169082849432e+170, 9.141952512600607e+170, 1.2894057731855571e+171, 1.8186128681292996e+171, 2.56502090568003e+171, 3.617775042658405e+171, 5.102608025649639e+171, 7.196856730011588e+171, 1.0150641893704706e+172, 1.4316740588229054e+172, 2.0192719161709146e+172, 2.8480358684357e+172, 4.016947020823983e+172, 5.665611008252292e+172, 7.990931403980814e+172, 1.1270626347293928e+173, 1.5896397032896e+173, 2.2420709447806045e+173, 3.1622776601683794e+173, 4.4601621653763233e+173, 6.290733667073113e+173, 8.872621353826529e+173, 1.2514185761897142e+174, 1.7650346953636183e+174, 2.48945279789826e+174, 3.511191734215027e+174, 4.952280037134399e+174, 6.984830058470956e+174, 9.851593726503018e+174, 1.3894954943731247e+175, 1.9597821250882483e+175, 2.7641298538705777e+175, 3.8986037025490954e+175, 5.498696382967098e+175, 7.755510490149565e+175, 1.0938582306368436e+176, 1.5428073113327312e+176, 2.1760172691811703e+176, 3.0691137648838165e+176, 4.3287612810829557e+176, 6.105402296585214e+176, 8.611224963142906e+176, 1.2145505204027232e+177, 1.7130349897073586e+177, 2.4161110029319048e+177, 3.407748477738836e+177, 4.806380863064448e+177, 6.77904990692291e+177, 9.561355820489063e+177, 1.3485595530525081e+178, 1.90204496336395e+178, 2.6826957952796504e+178, 3.7837468980138e+178, 5.336699231206214e+178, 7.527025314327228e+178, 1.061632061841292e+179, 1.497354648966171e+179, 2.111909601610903e+179, 2.978694572094717e+179, 4.201231599619014e+179, 5.925530975545395e+179, 8.357529574264454e+179, 1.1787686347935434e+180, 1.6625672479242447e+180, 2.3449299313554635e+180, 3.307352764125477e+180, 4.664780026090373e+180, 6.579332246575602e+180, 9.279668616466273e+180, 1.3088296259282026e+181, 1.846008796766374e+181, 2.60366086634241e+181, 3.672273891000774e+181, 5.1794746792309696e+181, 7.30527154266415e+181, 1.0303553085422634e+182, 1.453241067961804e+182, 2.0496906107065864e+182, 2.8909392200917084e+182, 4.077459071436824e+182, 5.750958845380027e+182, 8.111308307896822e+182, 1.144040919691338e+183, 1.613586336810773e+183, 2.2758459260748096e+183, 3.2099148096831646e+183, 4.527350892858265e+183, 6.385498470312679e+183, 9.006280202112463e+183, 1.270270182603161e+184, 1.7916235122600268e+184, 2.526954386274647e+184, 3.5640849914152735e+184, 5.026882121429393e+184, 7.090050861192318e+184, 1e+185, 1.410427117629777e+185, 1.9893046541454412e+185, 2.8057692294338555e+185, 3.957333007004454e+185, 5.58152978657047e+185, 7.872340968837335e+185, 1.110336318167605e+186, 1.5660484528327943e+186, 2.20879720539753e+186, 3.1153474758375447e+186, 4.39397056076075e+186, 6.197375232963881e+186, 8.740946086699414e+186, 1.2328467394420735e+187, 1.7388404731905526e+187, 2.452507756619988e+187, 3.459083446134201e+187, 4.878785094571937e+187, 6.881170798472218e+187, 9.705389895207361e+187, 1.3688745095370484e+188, 1.930697728883214e+188, 2.7231084327631086e+188, 3.840745977815411e+188, 5.41709227903835e+188, 7.64041384905858e+188, 1.0776246882626325e+189, 1.5199110829529517e+189, 2.1437238077827446e+189, 3.023566191205347e+189, 4.264519748024601e+189, 6.014794296281602e+189, 8.483428982440483e+189, 1.1965258287320443e+190, 1.6876124757881177e+190, 2.380254399901887e+190, 3.3571753524792132e+190, 4.735051155774987e+190, 6.678444553469261e+190, 9.419459301799933e+190, 1.3285460832668673e+191, 1.873817422860295e+191, 2.642882906689303e+191, 3.727593720314801e+191, 5.257499266638462e+191, 7.415319536585554e+191, 1.0458767760290136e+192, 1.4751329666105256e+192, 2.0805675382171459e+192, 2.9344888759616903e+192, 4.138882687039292e+192, 5.837592378488615e+192, 8.233498592289253e+192, 1.1612749687531358e+193, 1.6378937069539876e+193, 2.3101297000830636e+193, 3.258269574239097e+193, 4.595551764054851e+193, 6.48169082849432e+193, 9.141952512600606e+193, 1.2894057731855572e+194, 1.8186128681292998e+194, 2.5650209056800302e+194, 3.6177750426584053e+194, 5.1026080256496383e+194, 7.196856730011587e+194, 1.0150641893704707e+195, 1.4316740588229055e+195, 2.0192719161709145e+195, 2.8480358684357e+195, 4.0169470208239834e+195, 5.665611008252291e+195, 7.990931403980815e+195, 1.127062634729393e+196, 1.5896397032896e+196, 2.2420709447806048e+196, 3.1622776601683794e+196, 4.460162165376323e+196, 6.290733667073113e+196, 8.872621353826528e+196, 1.2514185761897143e+197, 1.7650346953636185e+197, 2.48945279789826e+197, 3.511191734215027e+197, 4.952280037134399e+197, 6.984830058470956e+197, 9.851593726503018e+197, 1.3894954943731246e+198, 1.9597821250882484e+198, 2.7641298538705775e+198, 3.898603702549096e+198, 5.498696382967099e+198, 7.755510490149058e+198, 1.0938582306368435e+199, 1.5428073113327312e+199, 2.17601726918117e+199, 3.069113764883817e+199, 4.328761281082955e+199, 6.105402296585214e+199, 8.611224963142905e+199, 1.2145505204027233e+200, 1.7130349897073586e+200, 2.4161110029319048e+200, 3.407748477738836e+200, 4.806380863064448e+200, 6.779049906922466e+200, 9.561355820489063e+200, 1.348559553052508e+201, 1.9020449633639496e+201, 2.6826957952796504e+201, 3.7837468980138e+201, 5.336699231206215e+201, 7.527025314327229e+201, 1.061632061841292e+202, 1.4973546489661708e+202, 2.111909601610903e+202, 2.978694572094717e+202, 4.201231599619014e+202, 5.925530975545396e+202, 8.357529574264454e+202, 1.1787686347935432e+203, 1.6625672479242445e+203, 2.3449299313554632e+203, 3.3073527641254776e+203, 4.664780026090373e+203, 6.579332246575602e+203, 9.279668616466272e+203, 1.3088296259282026e+204, 1.8460087967663742e+204, 2.60366086634241e+204, 3.6722738910007737e+204, 5.179474679230969e+204, 7.30527154266415e+204, 1.0303553085422632e+205, 1.4532410679618043e+205, 2.0496906107065865e+205, 2.890939220091708e+205, 4.0774590714368235e+205, 5.750958845380028e+205, 8.111308307896822e+205, 1.144040919691338e+206, 1.6135863368107734e+206, 2.2758459260748096e+206, 3.2099148096829547e+206, 4.527350892858264e+206, 6.3854984703126795e+206, 9.006280202112464e+206, 1.2702701826031609e+207, 1.791623512260027e+207, 2.5269543862746472e+207, 3.5640849914152733e+207, 5.026882121429393e+207, 7.090050861192318e+207, 1e+208, 1.410427117629777e+208, 1.9893046541454413e+208, 2.8057692294336714e+208, 3.9573330070044543e+208, 5.581529786570472e+208, 7.872340968837335e+208, 1.110336318167605e+209, 1.5660484528327941e+209, 2.20879720539753e+209, 3.115347475837545e+209, 4.39397056076075e+209, 6.1973752329638806e+209, 8.740946086699415e+209, 1.2328467394420735e+210, 1.7388404731905523e+210, 2.4525077566199882e+210, 3.4590834461342006e+210, 4.878785094571938e+210, 6.881170798472218e+210, 9.705389895207362e+210, 1.3688745095370484e+211, 1.930697728883214e+211, 2.7231084327631085e+211, 3.840745977815411e+211, 5.41709227903835e+211, 7.64041384905858e+211, 1.0776246882626324e+212, 1.5199110829529517e+212, 2.1437238077827445e+212, 3.023566191205347e+212, 4.2645197480246014e+212, 6.0147942962816016e+212, 8.483428982440483e+212, 1.1965258287320443e+213, 1.6876124757881177e+213, 2.3802543999018868e+213, 3.357175352479213e+213, 4.735051155774988e+213, 6.67844455346926e+213, 9.419459301799934e+213, 1.3285460832668672e+214, 1.8738174228602948e+214, 2.642882906689303e+214, 3.7275937203148007e+214, 5.257499266638462e+214, 7.415319536585553e+214, 1.0458767760290136e+215, 1.4751329666105257e+215, 2.080567538217146e+215, 2.9344888759616906e+215, 4.1388826870392916e+215, 5.837592378488615e+215, 8.233498592289251e+215, 1.1612749687531357e+216, 1.6378937069539876e+216, 2.3101297000830636e+216, 3.258269574239097e+216, 4.5955517640548505e+216, 6.48169082849432e+216, 9.141952512600606e+216, 1.289405773185557e+217, 1.8186128681292996e+217, 2.56502090568003e+217, 3.617775042658405e+217, 5.102608025649638e+217, 7.196856730011587e+217, 1.0150641893704043e+218, 1.4316740588229055e+218, 2.0192719161709147e+218, 2.8480358684357e+218, 4.016947020823984e+218, 5.6656110082522915e+218, 7.990931403980814e+218, 1.1270626347293929e+219, 1.5896397032895998e+219, 2.2420709447806044e+219, 3.1622776601683793e+219, 4.460162165376323e+219, 6.290733667073112e+219, 8.872621353825948e+219, 1.251418576189714e+220, 1.7650346953636183e+220, 2.48945279789826e+220, 3.511191734215027e+220, 4.952280037134399e+220, 6.984830058470956e+220, 9.851593726503019e+220, 1.3894954943731248e+221, 1.9597821250882485e+221, 2.7641298538705778e+221, 3.898603702549096e+221, 5.498696382967098e+221, 7.755510490149057e+221, 1.0938582306368436e+222, 1.5428073113327313e+222, 2.1760172691811703e+222, 3.069113764883817e+222, 4.3287612810829555e+222, 6.105402296585214e+222, 8.611224963142905e+222, 1.2145505204027233e+223, 1.7130349897073588e+223, 2.4161110029319047e+223, 3.407748477738836e+223, 4.806380863064448e+223, 6.779049906922465e+223, 9.561355820489062e+223, 1.3485595530525083e+224, 1.9020449633639495e+224, 2.6826957952796506e+224, 3.7837468980138e+224, 5.336699231206214e+224, 7.527025314327229e+224, 1.061632061841292e+225, 1.4973546489661708e+225, 2.111909601610903e+225, 2.978694572094717e+225, 4.201231599618739e+225, 5.925530975545396e+225, 8.357529574264453e+225, 1.1787686347935432e+226, 1.6625672479242446e+226, 2.3449299313554634e+226, 3.3073527641254773e+226, 4.664780026090373e+226, 6.579332246575602e+226, 9.279668616466272e+226, 1.3088296259282026e+227, 1.8460087967663742e+227, 2.60366086634241e+227, 3.6722738910005337e+227, 5.179474679230969e+227, 7.30527154266415e+227, 1.0303553085422631e+228, 1.453241067961804e+228, 2.0496906107065863e+228, 2.8909392200917083e+228, 4.077459071436824e+228, 5.750958845380027e+228, 8.111308307896823e+228, 1.144040919691338e+229, 1.6135863368107734e+229, 2.2758459260748097e+229, 3.2099148096829545e+229, 4.527350892858264e+229, 6.38549847031268e+229, 9.006280202112464e+229, 1.2702701826031609e+230, 1.7916235122600268e+230, 2.5269543862746477e+230, 3.5640849914152735e+230, 5.026882121429393e+230, 7.090050861192318e+230, 1e+231, 1.410427117629777e+231, 1.9893046541454413e+231, 2.8057692294336717e+231, 3.957333007004454e+231, 5.581529786570471e+231, 7.872340968837334e+231, 1.1103363181676049e+232, 1.566048452832794e+232, 2.2087972053975297e+232, 3.1153474758375445e+232, 4.39397056076075e+232, 6.19737523296388e+232, 8.740946086699414e+232, 1.2328467394420735e+233, 1.7388404731905526e+233, 2.452507756619988e+233, 3.4590834461342014e+233, 4.878785094571938e+233, 6.881170798472218e+233, 9.705389895207362e+233, 1.3688745095370484e+234, 1.930697728883214e+234, 2.7231084327631085e+234, 3.840745977815411e+234, 5.41709227903835e+234, 7.64041384905858e+234, 1.0776246882626325e+235, 1.5199110829529518e+235, 2.1437238077827445e+235, 3.023566191205347e+235, 4.264519748024601e+235, 6.014794296281601e+235, 8.483428982440483e+235, 1.1965258287320443e+236, 1.6876124757881178e+236, 2.3802543999018867e+236, 3.357175352479213e+236, 4.735051155774988e+236, 6.678444553469261e+236, 9.419459301799933e+236, 1.3285460832667804e+237, 1.873817422860295e+237, 2.642882906689303e+237, 3.727593720314801e+237, 5.257499266638462e+237, 7.415319536585553e+237, 1.0458767760290137e+238, 1.4751329666105256e+238, 2.080567538217146e+238, 2.93448887596169e+238, 4.1388826870392915e+238, 5.837592378488615e+238, 8.233498592289252e+238, 1.1612749687530597e+239, 1.6378937069539876e+239, 2.3101297000830637e+239, 3.258269574239097e+239, 4.5955517640548505e+239, 6.481690828494321e+239, 9.141952512600606e+239, 1.2894057731855572e+240, 1.8186128681292996e+240, 2.5650209056800302e+240, 3.617775042658405e+240, 5.102608025649638e+240, 7.196856730011588e+240, 1.0150641893704043e+241, 1.4316740588229056e+241, 2.0192719161709146e+241, 2.8480358684357e+241, 4.016947020823983e+241, 5.665611008252291e+241, 7.990931403980814e+241, 1.1270626347293928e+242, 1.5896397032895998e+242, 2.2420709447806047e+242, 3.162277660168379e+242, 4.460162165376323e+242, 6.290733667073113e+242, 8.872621353825948e+242, 1.2514185761897143e+243, 1.7650346953636185e+243, 2.48945279789826e+243, 3.511191734215027e+243, 4.952280037134399e+243, 6.984830058470956e+243, 9.85159372650302e+243, 1.3894954943731247e+244, 1.9597821250882482e+244, 2.764129853870578e+244, 3.898603702549096e+244, 5.498696382966738e+244, 7.755510490149058e+244, 1.0938582306368435e+245, 1.5428073113327312e+245, 2.1760172691811703e+245, 3.069113764883817e+245, 4.328761281082955e+245, 6.105402296585214e+245, 8.611224963142905e+245, 1.214550520402723e+246, 1.7130349897073587e+246, 2.416111002931905e+246, 3.4077484777388364e+246, 4.806380863064133e+246, 6.779049906922466e+246, 9.561355820489063e+246, 1.3485595530525082e+247, 1.9020449633639495e+247, 2.6826957952796505e+247, 3.7837468980138004e+247, 5.3366992312062145e+247, 7.527025314327229e+247, 1.061632061841292e+248, 1.4973546489661708e+248, 2.111909601610903e+248, 2.978694572094717e+248, 4.201231599618739e+248, 5.925530975545396e+248, 8.357529574264454e+248, 1.1787686347935431e+249, 1.6625672479242446e+249, 2.344929931355463e+249, 3.3073527641254775e+249, 4.664780026090373e+249, 6.579332246575601e+249, 9.279668616466272e+249, 1.3088296259282026e+250, 1.8460087967663743e+250, 2.60366086634241e+250, 3.672273891000534e+250, 5.179474679230969e+250, 7.30527154266415e+250, 1.0303553085422633e+251, 1.453241067961804e+251, 2.0496906107065864e+251, 2.890939220091708e+251, 4.077459071436824e+251, 5.750958845380027e+251, 8.111308307896822e+251, 1.144040919691338e+252, 1.6135863368107732e+252, 2.2758459260748097e+252, 3.2099148096829544e+252, 4.527350892858264e+252, 6.38549847031268e+252, 9.006280202112463e+252, 1.270270182603161e+253, 1.791623512260027e+253, 2.5269543862746474e+253, 3.5640849914152734e+253, 5.0268821214293926e+253, 7.090050861192318e+253, 1e+254, 1.410427117629777e+254, 1.989304654145441e+254, 2.805769229433672e+254, 3.9573330070044544e+254, 5.581529786570471e+254, 7.872340968837335e+254, 1.1103363181676048e+255, 1.5660484528327942e+255, 2.2087972053975296e+255, 3.115347475837545e+255, 4.39397056076075e+255, 6.19737523296388e+255, 8.740946086699414e+255, 1.232846739442154e+256, 1.738840473190439e+256, 2.4525077566199883e+256, 3.459083446134201e+256, 4.878785094571938e+256, 6.881170798472218e+256, 9.705389895207362e+256, 1.3688745095370484e+257, 1.930697728883214e+257, 2.723108432763109e+257, 3.8407459778154113e+257, 5.41709227903835e+257, 7.64041384905858e+257, 1.0776246882626324e+258, 1.5199110829529517e+258, 2.1437238077828847e+258, 3.0235661912055446e+258, 4.26451974802488e+258, 6.014794296281995e+258, 8.483428982441038e+258, 1.196525828731966e+259, 1.6876124757880073e+259, 2.380254399901731e+259, 3.357175352478993e+259, 4.735051155774678e+259, 6.678444553468824e+259, 9.419459301799317e+259, 1.3285460832667803e+260, 1.873817422860295e+260, 2.642882906689303e+260, 3.7275937203148004e+260, 5.257499266638462e+260, 7.415319536585553e+260, 1.0458767760290137e+261, 1.4751329666105255e+261, 2.080567538217146e+261, 2.9344888759616905e+261, 4.138882687039291e+261, 5.837592378488615e+261, 8.233498592289252e+261, 1.1612749687531359e+262, 1.637893706954095e+262, 2.3101297000832147e+262, 3.25826957423931e+262, 4.5955517640551516e+262, 6.481690828494745e+262, 9.141952512600008e+262, 1.2894057731854727e+263, 1.8186128681291806e+263, 2.5650209056798624e+263, 3.6177750426581687e+263, 5.102608025649305e+263, 7.196856730011117e+263, 1.0150641893704043e+264, 1.4316740588229053e+264, 2.0192719161709144e+264, 2.8480358684357e+264, 4.0169470208239835e+264, 5.665611008252291e+264, 7.990931403980815e+264, 1.127062634729393e+265, 1.5896397032895999e+265, 2.2420709447806045e+265, 3.1622776601683792e+265, 4.4601621653763236e+265, 6.290733667073113e+265, 8.872621353826529e+265, 1.2514185761897962e+266, 1.7650346953637336e+266, 2.4894527978984228e+266, 3.5111917342152565e+266, 4.952280037134723e+266, 6.984830058470499e+266, 9.851593726502373e+266, 1.3894954943730337e+267, 1.9597821250881203e+267, 2.7641298538703967e+267, 3.8986037025488407e+267, 5.498696382966738e+267, 7.755510490149058e+267, 1.0938582306368436e+268, 1.5428073113327312e+268, 2.1760172691811702e+268, 3.069113764883817e+268, 4.328761281082955e+268, 6.1054022965852144e+268, 8.611224963142905e+268, 1.2145505204027232e+269, 1.7130349897073587e+269, 2.4161110029319048e+269, 3.407748477738837e+269, 4.806380863064448e+269, 6.77904990692291e+269, 9.561355820489688e+269, 1.3485595530525963e+270, 1.9020449633640741e+270, 2.682695795279826e+270, 3.7837468980135523e+270, 5.336699231205865e+270, 7.527025314326736e+270, 1.0616320618412226e+271, 1.4973546489660727e+271, 2.1119096016107647e+271, 2.978694572094522e+271, 4.201231599618739e+271, 5.925530975545396e+271, 8.357529574264454e+271, 1.1787686347935432e+272, 1.6625672479242446e+272, 2.3449299313554635e+272, 3.3073527641254777e+272, 4.6647800260903734e+272, 6.579332246575602e+272, 9.279668616466272e+272, 1.3088296259282024e+273, 1.846008796766374e+273, 2.60366086634241e+273, 3.672273891000774e+273, 5.179474679231308e+273, 7.305271542664629e+273, 1.0303553085423308e+274, 1.4532410679618993e+274, 2.0496906107067205e+274, 2.8909392200915192e+274, 4.077459071436557e+274, 5.7509588453796506e+274, 8.111308307896292e+274, 1.1440409196912631e+275, 1.6135863368106678e+275, 2.2758459260746608e+275, 3.209914809682954e+275, 4.5273508928582644e+275, 6.38549847031268e+275, 9.006280202112464e+275, 1.270270182603161e+276, 1.7916235122600267e+276, 2.5269543862746474e+276, 3.5640849914152734e+276, 5.026882121429393e+276, 7.090050861192318e+276, 1e+277, 1.410427117629777e+277, 1.989304654145441e+277, 2.8057692294338553e+277, 3.957333007004713e+277, 5.581529786570836e+277, 7.872340968837849e+277, 1.1103363181676776e+278, 1.5660484528328967e+278, 2.2087972053973853e+278, 3.115347475837341e+278, 4.3939705607604624e+278, 6.197375232963474e+278, 8.740946086698843e+278, 1.2328467394419928e+279, 1.7388404731904388e+279, 2.4525077566199885e+279, 3.459083446134201e+279, 4.878785094571938e+279, 6.881170798472218e+279, 9.705389895207362e+279, 1.3688745095370484e+280, 1.930697728883214e+280, 2.7231084327631086e+280, 3.8407459778154105e+280, 5.4170922790383495e+280, 7.64041384905858e+280, 1.0776246882626324e+281, 1.5199110829529518e+281, 2.143723807782885e+281, 3.023566191205545e+281, 4.2645197480248797e+281, 6.014794296281995e+281, 8.483428982441038e+281, 1.196525828731966e+282, 1.6876124757880073e+282, 2.380254399901731e+282, 3.3571753524789936e+282, 4.735051155774678e+282, 6.678444553468823e+282, 9.419459301799318e+282, 1.3285460832667803e+283, 1.873817422860295e+283, 2.642882906689303e+283, 3.727593720314801e+283, 5.257499266638462e+283, 7.415319536585553e+283, 1.0458767760290137e+284, 1.4751329666105257e+284, 2.0805675382171456e+284, 2.9344888759616905e+284, 4.138882687039291e+284, 5.837592378488615e+284, 8.233498592289253e+284, 1.1612749687531358e+285, 1.6378937069540947e+285, 2.3101297000832148e+285, 3.2582695742393105e+285, 4.5955517640551515e+285, 6.481690828494745e+285, 9.141952512600008e+285, 1.289405773185473e+286, 1.8186128681291806e+286, 2.5650209056798623e+286, 3.6177750426581686e+286, 5.102608025649305e+286, 7.196856730011117e+286, 1.0150641893704041e+287, 1.4316740588229055e+287, 2.0192719161709146e+287, 2.8480358684357e+287, 4.0169470208239835e+287, 5.665611008252291e+287, 7.990931403980814e+287, 1.1270626347293929e+288, 1.5896397032896e+288, 2.2420709447806045e+288, 3.1622776601683793e+288, 4.460162165376323e+288, 6.290733667073113e+288, 8.872621353826529e+288, 1.2514185761897963e+289, 1.7650346953637338e+289, 2.4894527978984227e+289, 3.5111917342152565e+289, 4.952280037134075e+289, 6.984830058470499e+289, 9.851593726502373e+289, 1.3894954943730338e+290, 1.95978212508812e+290, 2.7641298538703966e+290, 3.89860370254884e+290, 5.4986963829667385e+290, 7.755510490149057e+290, 1.0938582306368435e+291, 1.5428073113327312e+291, 2.1760172691811703e+291, 3.069113764883817e+291, 4.3287612810829555e+291, 6.105402296585215e+291, 8.611224963142905e+291, 1.2145505204027233e+292, 1.7130349897073588e+292, 2.4161110029319047e+292, 3.4077484777388367e+292, 4.806380863064448e+292, 6.77904990692291e+292, 9.561355820489688e+292, 1.3485595530525964e+293, 1.902044963364074e+293, 2.682695795279826e+293, 3.783746898013552e+293, 5.336699231205865e+293, 7.527025314326736e+293, 1.0616320618412225e+294, 1.4973546489660727e+294, 2.1119096016107648e+294, 2.978694572094522e+294, 4.201231599618739e+294, 5.925530975545396e+294, 8.357529574264455e+294, 1.1787686347935432e+295, 1.6625672479242445e+295, 2.3449299313554635e+295, 3.3073527641254774e+295, 4.664780026090373e+295, 6.579332246575602e+295, 9.279668616466273e+295, 1.3088296259282026e+296, 1.846008796766374e+296, 2.6036608663424102e+296, 3.672273891000774e+296, 5.1794746792313076e+296, 7.305271542664628e+296, 1.0303553085423307e+297, 1.4532410679618993e+297, 2.0496906107064523e+297, 2.890939220091519e+297, 4.077459071436557e+297, 5.750958845379651e+297, 8.111308307896292e+297, 1.1440409196912631e+298, 1.6135863368106675e+298, 2.2758459260746606e+298, 3.209914809682955e+298, 4.527350892858264e+298, 6.38549847031268e+298, 9.006280202112464e+298, 1.2702701826031608e+299, 1.7916235122600267e+299, 2.5269543862746474e+299, 3.564084991415273e+299, 5.0268821214293925e+299, 7.090050861192318e+299, 1e+300], "x": [1.0, 1.1493506493506493, 1.2987012987012987, 1.448051948051948, 1.5974025974025974, 1.7467532467532467, 1.896103896103896, 2.0454545454545454, 2.1948051948051948, 2.344155844155844, 2.4935064935064934, 2.642857142857143, 2.792207792207792, 2.9415584415584415, 3.090909090909091, 3.24025974025974, 3.3896103896103895, 3.538961038961039, 3.688311688311688, 3.8376623376623376, 3.987012987012987, 4.136363636363637, 4.285714285714286, 4.4350649350649345, 4.584415584415584, 4.733766233766234, 4.883116883116883, 5.032467532467532, 5.181818181818182, 5.3311688311688314, 5.48051948051948, 5.629870129870129, 5.779220779220779, 5.928571428571429, 6.077922077922078, 6.227272727272727, 6.376623376623376, 6.525974025974026, 6.675324675324675, 6.824675324675324, 6.974025974025974, 7.123376623376624, 7.2727272727272725, 7.422077922077921, 7.571428571428571, 7.720779220779221, 7.87012987012987, 8.019480519480519, 8.168831168831169, 8.318181818181818, 8.467532467532468, 8.616883116883116, 8.766233766233766, 8.915584415584416, 9.064935064935064, 9.214285714285714, 9.363636363636363, 9.512987012987013, 9.662337662337663, 9.811688311688311, 9.96103896103896, 10.11038961038961, 10.259740259740258, 10.409090909090908, 10.558441558441558, 10.707792207792208, 10.857142857142858, 11.006493506493506, 11.155844155844155, 11.305194805194805, 11.454545454545453, 11.603896103896103, 11.753246753246753, 11.902597402597403, 12.051948051948052, 12.2012987012987, 12.35064935064935, 12.5, 12.649350649350648, 12.798701298701298, 12.948051948051948, 13.097402597402597, 13.246753246753247, 13.396103896103895, 13.545454545454545, 13.694805194805195, 13.844155844155843, 13.993506493506493, 14.142857142857142, 14.292207792207792, 14.441558441558442, 14.59090909090909, 14.74025974025974, 14.88961038961039, 15.038961038961038, 15.188311688311687, 15.337662337662337, 15.487012987012987, 15.636363636363637, 15.785714285714285, 15.935064935064934, 16.084415584415584, 16.233766233766232, 16.383116883116884, 16.532467532467532, 16.68181818181818, 16.83116883116883, 16.98051948051948, 17.129870129870127, 17.27922077922078, 17.428571428571427, 17.57792207792208, 17.727272727272727, 17.876623376623375, 18.025974025974026, 18.175324675324674, 18.324675324675326, 18.474025974025974, 18.623376623376622, 18.772727272727273, 18.92207792207792, 19.07142857142857, 19.22077922077922, 19.37012987012987, 19.519480519480517, 19.66883116883117, 19.818181818181817, 19.967532467532468, 20.116883116883116, 20.266233766233764, 20.415584415584416, 20.564935064935064, 20.714285714285715, 20.863636363636363, 21.01298701298701, 21.162337662337663, 21.31168831168831, 21.46103896103896, 21.61038961038961, 21.75974025974026, 21.909090909090907, 22.058441558441558, 22.207792207792206, 22.357142857142858, 22.506493506493506, 22.655844155844154, 22.805194805194805, 22.954545454545453, 23.103896103896105, 23.253246753246753, 23.4025974025974, 23.551948051948052, 23.7012987012987, 23.85064935064935, 24.0, 24.149350649350648, 24.298701298701296, 24.448051948051948, 24.597402597402596, 24.746753246753247, 24.896103896103895, 25.045454545454543, 25.194805194805195, 25.344155844155843, 25.493506493506494, 25.642857142857142, 25.79220779220779, 25.941558441558442, 26.09090909090909, 26.240259740259738, 26.38961038961039, 26.538961038961038, 26.688311688311686, 26.837662337662337, 26.987012987012985, 27.136363636363637, 27.285714285714285, 27.435064935064933, 27.584415584415584, 27.733766233766232, 27.883116883116884, 28.032467532467532, 28.18181818181818, 28.33116883116883, 28.48051948051948, 28.629870129870127, 28.77922077922078, 28.928571428571427, 29.077922077922075, 29.227272727272727, 29.376623376623375, 29.525974025974026, 29.675324675324674, 29.824675324675322, 29.974025974025974, 30.123376623376622, 30.272727272727273, 30.42207792207792, 30.57142857142857, 30.72077922077922, 30.87012987012987, 31.019480519480517, 31.16883116883117, 31.318181818181817, 31.467532467532465, 31.616883116883116, 31.766233766233764, 31.915584415584416, 32.064935064935064, 32.21428571428571, 32.36363636363636, 32.51298701298701, 32.66233766233766, 32.811688311688314, 32.96103896103896, 33.11038961038961, 33.259740259740255, 33.40909090909091, 33.55844155844156, 33.70779220779221, 33.857142857142854, 34.006493506493506, 34.15584415584416, 34.3051948051948, 34.45454545454545, 34.603896103896105, 34.75324675324675, 34.9025974025974, 35.05194805194805, 35.2012987012987, 35.35064935064935, 35.5, 35.64935064935065, 35.798701298701296, 35.94805194805195, 36.0974025974026, 36.246753246753244, 36.396103896103895, 36.54545454545455, 36.69480519480519, 36.84415584415584, 36.993506493506494, 37.14285714285714, 37.29220779220779, 37.44155844155844, 37.590909090909086, 37.74025974025974, 37.88961038961039, 38.038961038961034, 38.188311688311686, 38.33766233766234, 38.48701298701299, 38.63636363636363, 38.785714285714285, 38.935064935064936, 39.08441558441558, 39.23376623376623, 39.383116883116884, 39.53246753246753, 39.68181818181818, 39.83116883116883, 39.980519480519476, 40.12987012987013, 40.27922077922078, 40.42857142857143, 40.577922077922075, 40.72727272727273, 40.87662337662338, 41.02597402597402, 41.175324675324674, 41.324675324675326, 41.47402597402597, 41.62337662337662, 41.77272727272727, 41.92207792207792, 42.07142857142857, 42.22077922077922, 42.370129870129865, 42.51948051948052, 42.66883116883117, 42.81818181818181, 42.967532467532465, 43.116883116883116, 43.26623376623377, 43.41558441558441, 43.564935064935064, 43.714285714285715, 43.86363636363636, 44.01298701298701, 44.16233766233766, 44.31168831168831, 44.46103896103896, 44.61038961038961, 44.759740259740255, 44.90909090909091, 45.05844155844156, 45.20779220779221, 45.357142857142854, 45.506493506493506, 45.65584415584416, 45.8051948051948, 45.95454545454545, 46.103896103896105, 46.25324675324675, 46.4025974025974, 46.55194805194805, 46.7012987012987, 46.85064935064935, 47.0, 47.149350649350644, 47.298701298701296, 47.44805194805195, 47.59740259740259, 47.746753246753244, 47.896103896103895, 48.04545454545455, 48.19480519480519, 48.34415584415584, 48.493506493506494, 48.64285714285714, 48.79220779220779, 48.94155844155844, 49.090909090909086, 49.24025974025974, 49.38961038961039, 49.538961038961034, 49.688311688311686, 49.83766233766234, 49.98701298701299, 50.13636363636363, 50.285714285714285, 50.435064935064936, 50.58441558441558, 50.73376623376623, 50.883116883116884, 51.03246753246753, 51.18181818181818, 51.33116883116883, 51.480519480519476, 51.62987012987013, 51.77922077922078, 51.92857142857142, 52.077922077922075, 52.22727272727273, 52.37662337662337, 52.52597402597402, 52.675324675324674, 52.824675324675326, 52.97402597402597, 53.12337662337662, 53.27272727272727, 53.42207792207792, 53.57142857142857, 53.72077922077922, 53.870129870129865, 54.01948051948052, 54.16883116883117, 54.31818181818181, 54.467532467532465, 54.616883116883116, 54.76623376623377, 54.91558441558441, 55.064935064935064, 55.214285714285715, 55.36363636363636, 55.51298701298701, 55.66233766233766, 55.81168831168831, 55.96103896103896, 56.11038961038961, 56.259740259740255, 56.40909090909091, 56.55844155844156, 56.7077922077922, 56.857142857142854, 57.006493506493506, 57.15584415584415, 57.3051948051948, 57.45454545454545, 57.603896103896105, 57.75324675324675, 57.9025974025974, 58.05194805194805, 58.2012987012987, 58.35064935064935, 58.5, 58.649350649350644, 58.798701298701296, 58.94805194805195, 59.09740259740259, 59.246753246753244, 59.396103896103895, 59.54545454545455, 59.69480519480519, 59.84415584415584, 59.993506493506494, 60.14285714285714, 60.29220779220779, 60.44155844155844, 60.590909090909086, 60.74025974025974, 60.88961038961039, 61.038961038961034, 61.188311688311686, 61.33766233766234, 61.48701298701298, 61.63636363636363, 61.785714285714285, 61.93506493506493, 62.08441558441558, 62.23376623376623, 62.383116883116884, 62.53246753246753, 62.68181818181818, 62.83116883116883, 62.980519480519476, 63.12987012987013, 63.27922077922078, 63.42857142857142, 63.577922077922075, 63.72727272727273, 63.87662337662337, 64.02597402597402, 64.17532467532467, 64.32467532467533, 64.47402597402598, 64.62337662337663, 64.77272727272728, 64.92207792207792, 65.07142857142857, 65.22077922077922, 65.37012987012987, 65.51948051948051, 65.66883116883116, 65.81818181818181, 65.96753246753246, 66.11688311688312, 66.26623376623377, 66.41558441558442, 66.56493506493506, 66.71428571428571, 66.86363636363636, 67.01298701298701, 67.16233766233766, 67.31168831168831, 67.46103896103895, 67.6103896103896, 67.75974025974025, 67.9090909090909, 68.05844155844156, 68.20779220779221, 68.35714285714286, 68.5064935064935, 68.65584415584415, 68.8051948051948, 68.95454545454545, 69.1038961038961, 69.25324675324676, 69.4025974025974, 69.55194805194805, 69.7012987012987, 69.85064935064935, 70.0, 70.14935064935065, 70.2987012987013, 70.44805194805194, 70.59740259740259, 70.74675324675324, 70.8961038961039, 71.04545454545455, 71.1948051948052, 71.34415584415584, 71.49350649350649, 71.64285714285714, 71.79220779220779, 71.94155844155844, 72.0909090909091, 72.24025974025973, 72.38961038961038, 72.53896103896103, 72.68831168831169, 72.83766233766234, 72.98701298701299, 73.13636363636364, 73.28571428571428, 73.43506493506493, 73.58441558441558, 73.73376623376623, 73.88311688311688, 74.03246753246754, 74.18181818181817, 74.33116883116882, 74.48051948051948, 74.62987012987013, 74.77922077922078, 74.92857142857143, 75.07792207792207, 75.22727272727272, 75.37662337662337, 75.52597402597402, 75.67532467532467, 75.82467532467533, 75.97402597402598, 76.12337662337661, 76.27272727272727, 76.42207792207792, 76.57142857142857, 76.72077922077922, 76.87012987012987, 77.01948051948051, 77.16883116883116, 77.31818181818181, 77.46753246753246, 77.61688311688312, 77.76623376623377, 77.91558441558442, 78.06493506493506, 78.21428571428571, 78.36363636363636, 78.51298701298701, 78.66233766233766, 78.81168831168831, 78.96103896103895, 79.1103896103896, 79.25974025974025, 79.4090909090909, 79.55844155844156, 79.70779220779221, 79.85714285714286, 80.0064935064935, 80.15584415584415, 80.3051948051948, 80.45454545454545, 80.6038961038961, 80.75324675324676, 80.9025974025974, 81.05194805194805, 81.2012987012987, 81.35064935064935, 81.5, 81.64935064935065, 81.79870129870129, 81.94805194805194, 82.09740259740259, 82.24675324675324, 82.3961038961039, 82.54545454545455, 82.6948051948052, 82.84415584415584, 82.99350649350649, 83.14285714285714, 83.29220779220779, 83.44155844155844, 83.5909090909091, 83.74025974025973, 83.88961038961038, 84.03896103896103, 84.18831168831169, 84.33766233766234, 84.48701298701299, 84.63636363636363, 84.78571428571428, 84.93506493506493, 85.08441558441558, 85.23376623376623, 85.38311688311688, 85.53246753246754, 85.68181818181817, 85.83116883116882, 85.98051948051948, 86.12987012987013, 86.27922077922078, 86.42857142857143, 86.57792207792207, 86.72727272727272, 86.87662337662337, 87.02597402597402, 87.17532467532467, 87.32467532467533, 87.47402597402598, 87.62337662337661, 87.77272727272727, 87.92207792207792, 88.07142857142857, 88.22077922077922, 88.37012987012987, 88.51948051948051, 88.66883116883116, 88.81818181818181, 88.96753246753246, 89.11688311688312, 89.26623376623377, 89.41558441558442, 89.56493506493506, 89.71428571428571, 89.86363636363636, 90.01298701298701, 90.16233766233766, 90.31168831168831, 90.46103896103895, 90.6103896103896, 90.75974025974025, 90.9090909090909, 91.05844155844156, 91.20779220779221, 91.35714285714285, 91.5064935064935, 91.65584415584415, 91.8051948051948, 91.95454545454545, 92.1038961038961, 92.25324675324676, 92.4025974025974, 92.55194805194805, 92.7012987012987, 92.85064935064935, 93.0, 93.14935064935065, 93.29870129870129, 93.44805194805194, 93.59740259740259, 93.74675324675324, 93.8961038961039, 94.04545454545455, 94.19480519480518, 94.34415584415584, 94.49350649350649, 94.64285714285714, 94.79220779220779, 94.94155844155844, 95.0909090909091, 95.24025974025973, 95.38961038961038, 95.53896103896103, 95.68831168831169, 95.83766233766234, 95.98701298701299, 96.13636363636363, 96.28571428571428, 96.43506493506493, 96.58441558441558, 96.73376623376623, 96.88311688311688, 97.03246753246754, 97.18181818181817, 97.33116883116882, 97.48051948051948, 97.62987012987013, 97.77922077922078, 97.92857142857143, 98.07792207792207, 98.22727272727272, 98.37662337662337, 98.52597402597402, 98.67532467532467, 98.82467532467533, 98.97402597402598, 99.12337662337661, 99.27272727272727, 99.42207792207792, 99.57142857142857, 99.72077922077922, 99.87012987012987, 100.01948051948051, 100.16883116883116, 100.31818181818181, 100.46753246753246, 100.61688311688312, 100.76623376623377, 100.9155844155844, 101.06493506493506, 101.21428571428571, 101.36363636363636, 101.51298701298701, 101.66233766233766, 101.81168831168831, 101.96103896103895, 102.1103896103896, 102.25974025974025, 102.4090909090909, 102.55844155844156, 102.70779220779221, 102.85714285714285, 103.0064935064935, 103.15584415584415, 103.3051948051948, 103.45454545454545, 103.6038961038961, 103.75324675324674, 103.9025974025974, 104.05194805194805, 104.2012987012987, 104.35064935064935, 104.5, 104.64935064935065, 104.79870129870129, 104.94805194805194, 105.09740259740259, 105.24675324675324, 105.3961038961039, 105.54545454545455, 105.69480519480518, 105.84415584415584, 105.99350649350649, 106.14285714285714, 106.29220779220779, 106.44155844155844, 106.5909090909091, 106.74025974025973, 106.88961038961038, 107.03896103896103, 107.18831168831169, 107.33766233766234, 107.48701298701299, 107.63636363636363, 107.78571428571428, 107.93506493506493, 108.08441558441558, 108.23376623376623, 108.38311688311688, 108.53246753246754, 108.68181818181817, 108.83116883116882, 108.98051948051948, 109.12987012987013, 109.27922077922078, 109.42857142857143, 109.57792207792207, 109.72727272727272, 109.87662337662337, 110.02597402597402, 110.17532467532467, 110.32467532467533, 110.47402597402596, 110.62337662337661, 110.77272727272727, 110.92207792207792, 111.07142857142857, 111.22077922077922, 111.37012987012987, 111.51948051948051, 111.66883116883116, 111.81818181818181, 111.96753246753246, 112.11688311688312, 112.26623376623377, 112.4155844155844, 112.56493506493506, 112.71428571428571, 112.86363636363636, 113.01298701298701, 113.16233766233766, 113.3116883116883, 113.46103896103895, 113.6103896103896, 113.75974025974025, 113.9090909090909, 114.05844155844156, 114.20779220779221, 114.35714285714285, 114.5064935064935, 114.65584415584415, 114.8051948051948, 114.95454545454545, 115.1038961038961, 115.25324675324674, 115.4025974025974, 115.55194805194805, 115.7012987012987, 115.85064935064935, 116.0, 116.14935064935065, 116.29870129870129, 116.44805194805194, 116.59740259740259, 116.74675324675324, 116.8961038961039, 117.04545454545455, 117.19480519480518, 117.34415584415584, 117.49350649350649, 117.64285714285714, 117.79220779220779, 117.94155844155844, 118.0909090909091, 118.24025974025973, 118.38961038961038, 118.53896103896103, 118.68831168831169, 118.83766233766234, 118.98701298701299, 119.13636363636363, 119.28571428571428, 119.43506493506493, 119.58441558441558, 119.73376623376623, 119.88311688311688, 120.03246753246752, 120.18181818181817, 120.33116883116882, 120.48051948051948, 120.62987012987013, 120.77922077922078, 120.92857142857143, 121.07792207792207, 121.22727272727272, 121.37662337662337, 121.52597402597402, 121.67532467532467, 121.82467532467533, 121.97402597402596, 122.12337662337661, 122.27272727272727, 122.42207792207792, 122.57142857142857, 122.72077922077922, 122.87012987012986, 123.01948051948051, 123.16883116883116, 123.31818181818181, 123.46753246753246, 123.61688311688312, 123.76623376623377, 123.9155844155844, 124.06493506493506, 124.21428571428571, 124.36363636363636, 124.51298701298701, 124.66233766233766, 124.8116883116883, 124.96103896103895, 125.1103896103896, 125.25974025974025, 125.4090909090909, 125.55844155844156, 125.70779220779221, 125.85714285714285, 126.0064935064935, 126.15584415584415, 126.3051948051948, 126.45454545454545, 126.6038961038961, 126.75324675324674, 126.9025974025974, 127.05194805194805, 127.2012987012987, 127.35064935064935, 127.5, 127.64935064935065, 127.79870129870129, 127.94805194805194, 128.0974025974026, 128.24675324675326, 128.3961038961039, 128.54545454545456, 128.69480519480518, 128.84415584415584, 128.9935064935065, 129.14285714285714, 129.2922077922078, 129.44155844155844, 129.5909090909091, 129.74025974025975, 129.8896103896104, 130.03896103896102, 130.18831168831167, 130.33766233766232, 130.48701298701297, 130.63636363636363, 130.78571428571428, 130.93506493506493, 131.08441558441558, 131.23376623376623, 131.38311688311688, 131.53246753246754, 131.6818181818182, 131.83116883116884, 131.98051948051946, 132.1298701298701, 132.27922077922076, 132.42857142857142, 132.57792207792207, 132.72727272727272, 132.87662337662337, 133.02597402597402, 133.17532467532467, 133.32467532467533, 133.47402597402598, 133.62337662337663, 133.77272727272728, 133.9220779220779, 134.07142857142856, 134.2207792207792, 134.37012987012986, 134.5194805194805, 134.66883116883116, 134.8181818181818, 134.96753246753246, 135.11688311688312, 135.26623376623377, 135.41558441558442, 135.56493506493507, 135.71428571428572, 135.86363636363635, 136.012987012987, 136.16233766233765, 136.3116883116883, 136.46103896103895, 136.6103896103896, 136.75974025974025, 136.9090909090909, 137.05844155844156, 137.2077922077922, 137.35714285714286, 137.5064935064935, 137.65584415584416, 137.8051948051948, 137.95454545454544, 138.1038961038961, 138.25324675324674, 138.4025974025974, 138.55194805194805, 138.7012987012987, 138.85064935064935, 139.0, 139.14935064935065, 139.2987012987013, 139.44805194805195, 139.5974025974026, 139.74675324675323, 139.89610389610388, 140.04545454545453, 140.19480519480518, 140.34415584415584, 140.4935064935065, 140.64285714285714, 140.7922077922078, 140.94155844155844, 141.0909090909091, 141.24025974025975, 141.3896103896104, 141.53896103896102, 141.68831168831167, 141.83766233766232, 141.98701298701297, 142.13636363636363, 142.28571428571428, 142.43506493506493, 142.58441558441558, 142.73376623376623, 142.88311688311688, 143.03246753246754, 143.1818181818182, 143.33116883116884, 143.48051948051946, 143.6298701298701, 143.77922077922076, 143.92857142857142, 144.07792207792207, 144.22727272727272, 144.37662337662337, 144.52597402597402, 144.67532467532467, 144.82467532467533, 144.97402597402598, 145.12337662337663, 145.27272727272728, 145.4220779220779, 145.57142857142856, 145.7207792207792, 145.87012987012986, 146.0194805194805, 146.16883116883116, 146.3181818181818, 146.46753246753246, 146.61688311688312, 146.76623376623377, 146.91558441558442, 147.06493506493507, 147.21428571428572, 147.36363636363635, 147.512987012987, 147.66233766233765, 147.8116883116883, 147.96103896103895, 148.1103896103896, 148.25974025974025, 148.4090909090909, 148.55844155844156, 148.7077922077922, 148.85714285714286, 149.0064935064935, 149.15584415584414, 149.3051948051948, 149.45454545454544, 149.6038961038961, 149.75324675324674, 149.9025974025974, 150.05194805194805, 150.2012987012987, 150.35064935064935, 150.5, 150.64935064935065, 150.7987012987013, 150.94805194805195, 151.09740259740258, 151.24675324675323, 151.39610389610388, 151.54545454545453, 151.69480519480518, 151.84415584415584, 151.9935064935065, 152.14285714285714, 152.2922077922078, 152.44155844155844, 152.5909090909091, 152.74025974025975, 152.8896103896104, 153.03896103896102, 153.18831168831167, 153.33766233766232, 153.48701298701297, 153.63636363636363, 153.78571428571428, 153.93506493506493, 154.08441558441558, 154.23376623376623, 154.38311688311688, 154.53246753246754, 154.6818181818182, 154.83116883116884, 154.98051948051946, 155.1298701298701, 155.27922077922076, 155.42857142857142, 155.57792207792207, 155.72727272727272, 155.87662337662337, 156.02597402597402, 156.17532467532467, 156.32467532467533, 156.47402597402598, 156.62337662337663, 156.77272727272728, 156.9220779220779, 157.07142857142856, 157.2207792207792, 157.37012987012986, 157.5194805194805, 157.66883116883116, 157.8181818181818, 157.96753246753246, 158.11688311688312, 158.26623376623377, 158.41558441558442, 158.56493506493507, 158.71428571428572, 158.86363636363635, 159.012987012987, 159.16233766233765, 159.3116883116883, 159.46103896103895, 159.6103896103896, 159.75974025974025, 159.9090909090909, 160.05844155844156, 160.2077922077922, 160.35714285714286, 160.5064935064935, 160.65584415584414, 160.8051948051948, 160.95454545454544, 161.1038961038961, 161.25324675324674, 161.4025974025974, 161.55194805194805, 161.7012987012987, 161.85064935064935, 162.0, 162.14935064935065, 162.2987012987013, 162.44805194805195, 162.59740259740258, 162.74675324675323, 162.89610389610388, 163.04545454545453, 163.19480519480518, 163.34415584415584, 163.4935064935065, 163.64285714285714, 163.7922077922078, 163.94155844155844, 164.0909090909091, 164.24025974025975, 164.3896103896104, 164.53896103896102, 164.68831168831167, 164.83766233766232, 164.98701298701297, 165.13636363636363, 165.28571428571428, 165.43506493506493, 165.58441558441558, 165.73376623376623, 165.88311688311688, 166.03246753246754, 166.1818181818182, 166.33116883116884, 166.48051948051946, 166.6298701298701, 166.77922077922076, 166.92857142857142, 167.07792207792207, 167.22727272727272, 167.37662337662337, 167.52597402597402, 167.67532467532467, 167.82467532467533, 167.97402597402598, 168.12337662337663, 168.27272727272725, 168.4220779220779, 168.57142857142856, 168.7207792207792, 168.87012987012986, 169.0194805194805, 169.16883116883116, 169.3181818181818, 169.46753246753246, 169.61688311688312, 169.76623376623377, 169.91558441558442, 170.06493506493507, 170.2142857142857, 170.36363636363635, 170.512987012987, 170.66233766233765, 170.8116883116883, 170.96103896103895, 171.1103896103896, 171.25974025974025, 171.4090909090909, 171.55844155844156, 171.7077922077922, 171.85714285714286, 172.0064935064935, 172.15584415584414, 172.3051948051948, 172.45454545454544, 172.6038961038961, 172.75324675324674, 172.9025974025974, 173.05194805194805, 173.2012987012987, 173.35064935064935, 173.5, 173.64935064935065, 173.7987012987013, 173.94805194805195, 174.09740259740258, 174.24675324675323, 174.39610389610388, 174.54545454545453, 174.69480519480518, 174.84415584415584, 174.9935064935065, 175.14285714285714, 175.2922077922078, 175.44155844155844, 175.5909090909091, 175.74025974025975, 175.8896103896104, 176.03896103896102, 176.18831168831167, 176.33766233766232, 176.48701298701297, 176.63636363636363, 176.78571428571428, 176.93506493506493, 177.08441558441558, 177.23376623376623, 177.38311688311688, 177.53246753246754, 177.6818181818182, 177.83116883116884, 177.98051948051946, 178.1298701298701, 178.27922077922076, 178.42857142857142, 178.57792207792207, 178.72727272727272, 178.87662337662337, 179.02597402597402, 179.17532467532467, 179.32467532467533, 179.47402597402598, 179.62337662337663, 179.77272727272725, 179.9220779220779, 180.07142857142856, 180.2207792207792, 180.37012987012986, 180.5194805194805, 180.66883116883116, 180.8181818181818, 180.96753246753246, 181.11688311688312, 181.26623376623377, 181.41558441558442, 181.56493506493507, 181.7142857142857, 181.86363636363635, 182.012987012987, 182.16233766233765, 182.3116883116883, 182.46103896103895, 182.6103896103896, 182.75974025974025, 182.9090909090909, 183.05844155844156, 183.2077922077922, 183.35714285714286, 183.5064935064935, 183.65584415584414, 183.8051948051948, 183.95454545454544, 184.1038961038961, 184.25324675324674, 184.4025974025974, 184.55194805194805, 184.7012987012987, 184.85064935064935, 185.0, 185.14935064935065, 185.2987012987013, 185.44805194805195, 185.59740259740258, 185.74675324675323, 185.89610389610388, 186.04545454545453, 186.19480519480518, 186.34415584415584, 186.4935064935065, 186.64285714285714, 186.7922077922078, 186.94155844155844, 187.0909090909091, 187.24025974025975, 187.38961038961037, 187.53896103896102, 187.68831168831167, 187.83766233766232, 187.98701298701297, 188.13636363636363, 188.28571428571428, 188.43506493506493, 188.58441558441558, 188.73376623376623, 188.88311688311688, 189.03246753246754, 189.1818181818182, 189.3311688311688, 189.48051948051946, 189.6298701298701, 189.77922077922076, 189.92857142857142, 190.07792207792207, 190.22727272727272, 190.37662337662337, 190.52597402597402, 190.67532467532467, 190.82467532467533, 190.97402597402598, 191.12337662337663, 191.27272727272725, 191.4220779220779, 191.57142857142856, 191.7207792207792, 191.87012987012986, 192.0194805194805, 192.16883116883116, 192.3181818181818, 192.46753246753246, 192.61688311688312, 192.76623376623377, 192.91558441558442, 193.06493506493507, 193.2142857142857, 193.36363636363635, 193.512987012987, 193.66233766233765, 193.8116883116883, 193.96103896103895, 194.1103896103896, 194.25974025974025, 194.4090909090909, 194.55844155844156, 194.7077922077922, 194.85714285714286, 195.0064935064935, 195.15584415584414, 195.3051948051948, 195.45454545454544, 195.6038961038961, 195.75324675324674, 195.9025974025974, 196.05194805194805, 196.2012987012987, 196.35064935064935, 196.5, 196.64935064935065, 196.7987012987013, 196.94805194805195, 197.09740259740258, 197.24675324675323, 197.39610389610388, 197.54545454545453, 197.69480519480518, 197.84415584415584, 197.9935064935065, 198.14285714285714, 198.2922077922078, 198.44155844155844, 198.5909090909091, 198.74025974025975, 198.88961038961037, 199.03896103896102, 199.18831168831167, 199.33766233766232, 199.48701298701297, 199.63636363636363, 199.78571428571428, 199.93506493506493, 200.08441558441558, 200.23376623376623, 200.38311688311688, 200.53246753246754, 200.6818181818182, 200.8311688311688, 200.98051948051946, 201.1298701298701, 201.27922077922076, 201.42857142857142, 201.57792207792207, 201.72727272727272, 201.87662337662337, 202.02597402597402, 202.17532467532467, 202.32467532467533, 202.47402597402598, 202.62337662337663, 202.77272727272725, 202.9220779220779, 203.07142857142856, 203.2207792207792, 203.37012987012986, 203.5194805194805, 203.66883116883116, 203.8181818181818, 203.96753246753246, 204.11688311688312, 204.26623376623377, 204.41558441558442, 204.56493506493507, 204.7142857142857, 204.86363636363635, 205.012987012987, 205.16233766233765, 205.3116883116883, 205.46103896103895, 205.6103896103896, 205.75974025974025, 205.9090909090909, 206.05844155844156, 206.2077922077922, 206.35714285714286, 206.50649350649348, 206.65584415584414, 206.8051948051948, 206.95454545454544, 207.1038961038961, 207.25324675324674, 207.4025974025974, 207.55194805194805, 207.7012987012987, 207.85064935064935, 208.0, 208.14935064935065, 208.2987012987013, 208.44805194805193, 208.59740259740258, 208.74675324675323, 208.89610389610388, 209.04545454545453, 209.19480519480518, 209.34415584415584, 209.4935064935065, 209.64285714285714, 209.7922077922078, 209.94155844155844, 210.0909090909091, 210.24025974025975, 210.38961038961037, 210.53896103896102, 210.68831168831167, 210.83766233766232, 210.98701298701297, 211.13636363636363, 211.28571428571428, 211.43506493506493, 211.58441558441558, 211.73376623376623, 211.88311688311688, 212.03246753246754, 212.1818181818182, 212.3311688311688, 212.48051948051946, 212.6298701298701, 212.77922077922076, 212.92857142857142, 213.07792207792207, 213.22727272727272, 213.37662337662337, 213.52597402597402, 213.67532467532467, 213.82467532467533, 213.97402597402598, 214.12337662337663, 214.27272727272725, 214.4220779220779, 214.57142857142856, 214.7207792207792, 214.87012987012986, 215.0194805194805, 215.16883116883116, 215.3181818181818, 215.46753246753246, 215.61688311688312, 215.76623376623377, 215.91558441558442, 216.06493506493507, 216.2142857142857, 216.36363636363635, 216.512987012987, 216.66233766233765, 216.8116883116883, 216.96103896103895, 217.1103896103896, 217.25974025974025, 217.4090909090909, 217.55844155844156, 217.7077922077922, 217.85714285714286, 218.00649350649348, 218.15584415584414, 218.3051948051948, 218.45454545454544, 218.6038961038961, 218.75324675324674, 218.9025974025974, 219.05194805194805, 219.2012987012987, 219.35064935064935, 219.5, 219.64935064935065, 219.7987012987013, 219.94805194805193, 220.09740259740258, 220.24675324675323, 220.39610389610388, 220.54545454545453, 220.69480519480518, 220.84415584415584, 220.9935064935065, 221.14285714285714, 221.2922077922078, 221.44155844155844, 221.5909090909091, 221.74025974025975, 221.88961038961037, 222.03896103896102, 222.18831168831167, 222.33766233766232, 222.48701298701297, 222.63636363636363, 222.78571428571428, 222.93506493506493, 223.08441558441558, 223.23376623376623, 223.38311688311688, 223.53246753246754, 223.6818181818182, 223.8311688311688, 223.98051948051946, 224.1298701298701, 224.27922077922076, 224.42857142857142, 224.57792207792207, 224.72727272727272, 224.87662337662337, 225.02597402597402, 225.17532467532467, 225.32467532467533, 225.47402597402598, 225.6233766233766, 225.77272727272725, 225.9220779220779, 226.07142857142856, 226.2207792207792, 226.37012987012986, 226.5194805194805, 226.66883116883116, 226.8181818181818, 226.96753246753246, 227.11688311688312, 227.26623376623377, 227.41558441558442, 227.56493506493504, 227.7142857142857, 227.86363636363635, 228.012987012987, 228.16233766233765, 228.3116883116883, 228.46103896103895, 228.6103896103896, 228.75974025974025, 228.9090909090909, 229.05844155844156, 229.2077922077922, 229.35714285714286, 229.50649350649348, 229.65584415584414, 229.8051948051948, 229.95454545454544, 230.1038961038961, 230.25324675324674, 230.4025974025974, 230.55194805194805, 230.7012987012987, 230.85064935064935, 231.0, 231.14935064935065, 231.2987012987013, 231.44805194805193, 231.59740259740258, 231.74675324675323, 231.89610389610388, 232.04545454545453, 232.19480519480518, 232.34415584415584, 232.4935064935065, 232.64285714285714, 232.7922077922078, 232.94155844155844, 233.0909090909091, 233.24025974025975, 233.38961038961037, 233.53896103896102, 233.68831168831167, 233.83766233766232, 233.98701298701297, 234.13636363636363, 234.28571428571428, 234.43506493506493, 234.58441558441558, 234.73376623376623, 234.88311688311688, 235.03246753246754, 235.1818181818182, 235.3311688311688, 235.48051948051946, 235.6298701298701, 235.77922077922076, 235.92857142857142, 236.07792207792207, 236.22727272727272, 236.37662337662337, 236.52597402597402, 236.67532467532467, 236.82467532467533, 236.97402597402598, 237.1233766233766, 237.27272727272725, 237.4220779220779, 237.57142857142856, 237.7207792207792, 237.87012987012986, 238.0194805194805, 238.16883116883116, 238.3181818181818, 238.46753246753246, 238.61688311688312, 238.76623376623377, 238.91558441558442, 239.06493506493504, 239.2142857142857, 239.36363636363635, 239.512987012987, 239.66233766233765, 239.8116883116883, 239.96103896103895, 240.1103896103896, 240.25974025974025, 240.4090909090909, 240.55844155844156, 240.7077922077922, 240.85714285714286, 241.00649350649348, 241.15584415584414, 241.3051948051948, 241.45454545454544, 241.6038961038961, 241.75324675324674, 241.9025974025974, 242.05194805194805, 242.2012987012987, 242.35064935064935, 242.5, 242.64935064935065, 242.7987012987013, 242.94805194805193, 243.09740259740258, 243.24675324675323, 243.39610389610388, 243.54545454545453, 243.69480519480518, 243.84415584415584, 243.9935064935065, 244.14285714285714, 244.2922077922078, 244.44155844155844, 244.5909090909091, 244.74025974025972, 244.88961038961037, 245.03896103896102, 245.18831168831167, 245.33766233766232, 245.48701298701297, 245.63636363636363, 245.78571428571428, 245.93506493506493, 246.08441558441558, 246.23376623376623, 246.38311688311688, 246.53246753246754, 246.68181818181816, 246.8311688311688, 246.98051948051946, 247.1298701298701, 247.27922077922076, 247.42857142857142, 247.57792207792207, 247.72727272727272, 247.87662337662337, 248.02597402597402, 248.17532467532467, 248.32467532467533, 248.47402597402598, 248.6233766233766, 248.77272727272725, 248.9220779220779, 249.07142857142856, 249.2207792207792, 249.37012987012986, 249.5194805194805, 249.66883116883116, 249.8181818181818, 249.96753246753246, 250.11688311688312, 250.26623376623377, 250.41558441558442, 250.56493506493504, 250.7142857142857, 250.86363636363635, 251.012987012987, 251.16233766233765, 251.3116883116883, 251.46103896103895, 251.6103896103896, 251.75974025974025, 251.9090909090909, 252.05844155844156, 252.2077922077922, 252.35714285714286, 252.50649350649348, 252.65584415584414, 252.8051948051948, 252.95454545454544, 253.1038961038961, 253.25324675324674, 253.4025974025974, 253.55194805194805, 253.7012987012987, 253.85064935064935, 254.0, 254.14935064935065, 254.2987012987013, 254.44805194805193, 254.59740259740258, 254.74675324675323, 254.89610389610388, 255.04545454545453, 255.19480519480518, 255.34415584415584, 255.4935064935065, 255.64285714285714, 255.7922077922078, 255.94155844155844, 256.0909090909091, 256.2402597402597, 256.38961038961037, 256.538961038961, 256.68831168831167, 256.8376623376623, 256.987012987013, 257.1363636363636, 257.2857142857143, 257.43506493506493, 257.5844155844156, 257.73376623376623, 257.8831168831169, 258.03246753246754, 258.1818181818182, 258.33116883116884, 258.4805194805195, 258.62987012987014, 258.7792207792208, 258.92857142857144, 259.07792207792204, 259.2272727272727, 259.37662337662334, 259.525974025974, 259.67532467532465, 259.8246753246753, 259.97402597402595, 260.1233766233766, 260.27272727272725, 260.4220779220779, 260.57142857142856, 260.7207792207792, 260.87012987012986, 261.0194805194805, 261.16883116883116, 261.3181818181818, 261.46753246753246, 261.6168831168831, 261.76623376623377, 261.9155844155844, 262.06493506493507, 262.2142857142857, 262.3636363636364, 262.512987012987, 262.6623376623377, 262.81168831168833, 262.9610389610389, 263.1103896103896, 263.2597402597402, 263.4090909090909, 263.55844155844153, 263.7077922077922, 263.85714285714283, 264.0064935064935, 264.15584415584414, 264.3051948051948, 264.45454545454544, 264.6038961038961, 264.75324675324674, 264.9025974025974, 265.05194805194805, 265.2012987012987, 265.35064935064935, 265.5, 265.64935064935065, 265.7987012987013, 265.94805194805195, 266.0974025974026, 266.24675324675326, 266.3961038961039, 266.54545454545456, 266.6948051948052, 266.8441558441558, 266.99350649350646, 267.1428571428571, 267.29220779220776, 267.4415584415584, 267.59090909090907, 267.7402597402597, 267.88961038961037, 268.038961038961, 268.18831168831167, 268.3376623376623, 268.487012987013, 268.6363636363636, 268.7857142857143, 268.93506493506493, 269.0844155844156, 269.23376623376623, 269.3831168831169, 269.53246753246754, 269.6818181818182, 269.83116883116884, 269.9805194805195, 270.12987012987014, 270.2792207792208, 270.42857142857144, 270.57792207792204, 270.7272727272727, 270.87662337662334, 271.025974025974, 271.17532467532465, 271.3246753246753, 271.47402597402595, 271.6233766233766, 271.77272727272725, 271.9220779220779, 272.07142857142856, 272.2207792207792, 272.37012987012986, 272.5194805194805, 272.66883116883116, 272.8181818181818, 272.96753246753246, 273.1168831168831, 273.26623376623377, 273.4155844155844, 273.56493506493507, 273.7142857142857, 273.8636363636364, 274.012987012987, 274.1623376623377, 274.31168831168833, 274.4610389610389, 274.6103896103896, 274.7597402597402, 274.9090909090909, 275.05844155844153, 275.2077922077922, 275.35714285714283, 275.5064935064935, 275.65584415584414, 275.8051948051948, 275.95454545454544, 276.1038961038961, 276.25324675324674, 276.4025974025974, 276.55194805194805, 276.7012987012987, 276.85064935064935, 277.0, 277.14935064935065, 277.2987012987013, 277.44805194805195, 277.5974025974026, 277.74675324675326, 277.8961038961039, 278.04545454545456, 278.1948051948052, 278.3441558441558, 278.49350649350646, 278.6428571428571, 278.79220779220776, 278.9415584415584, 279.09090909090907, 279.2402597402597, 279.38961038961037, 279.538961038961, 279.68831168831167, 279.8376623376623, 279.987012987013, 280.1363636363636, 280.2857142857143, 280.43506493506493, 280.5844155844156, 280.73376623376623, 280.8831168831169, 281.03246753246754, 281.1818181818182, 281.33116883116884, 281.4805194805195, 281.62987012987014, 281.7792207792208, 281.92857142857144, 282.07792207792204, 282.2272727272727, 282.37662337662334, 282.525974025974, 282.67532467532465, 282.8246753246753, 282.97402597402595, 283.1233766233766, 283.27272727272725, 283.4220779220779, 283.57142857142856, 283.7207792207792, 283.87012987012986, 284.0194805194805, 284.16883116883116, 284.3181818181818, 284.46753246753246, 284.6168831168831, 284.76623376623377, 284.9155844155844, 285.06493506493507, 285.2142857142857, 285.3636363636364, 285.512987012987, 285.6623376623377, 285.81168831168833, 285.9610389610389, 286.1103896103896, 286.2597402597402, 286.4090909090909, 286.55844155844153, 286.7077922077922, 286.85714285714283, 287.0064935064935, 287.15584415584414, 287.3051948051948, 287.45454545454544, 287.6038961038961, 287.75324675324674, 287.9025974025974, 288.05194805194805, 288.2012987012987, 288.35064935064935, 288.5, 288.64935064935065, 288.7987012987013, 288.94805194805195, 289.0974025974026, 289.24675324675326, 289.3961038961039, 289.54545454545456, 289.69480519480516, 289.8441558441558, 289.99350649350646, 290.1428571428571, 290.29220779220776, 290.4415584415584, 290.59090909090907, 290.7402597402597, 290.88961038961037, 291.038961038961, 291.18831168831167, 291.3376623376623, 291.487012987013, 291.6363636363636, 291.7857142857143, 291.93506493506493, 292.0844155844156, 292.23376623376623, 292.3831168831169, 292.53246753246754, 292.6818181818182, 292.83116883116884, 292.9805194805195, 293.12987012987014, 293.2792207792208, 293.42857142857144, 293.57792207792204, 293.7272727272727, 293.87662337662334, 294.025974025974, 294.17532467532465, 294.3246753246753, 294.47402597402595, 294.6233766233766, 294.77272727272725, 294.9220779220779, 295.07142857142856, 295.2207792207792, 295.37012987012986, 295.5194805194805, 295.66883116883116, 295.8181818181818, 295.96753246753246, 296.1168831168831, 296.26623376623377, 296.4155844155844, 296.56493506493507, 296.7142857142857, 296.8636363636364, 297.012987012987, 297.1623376623377, 297.3116883116883, 297.4610389610389, 297.6103896103896, 297.7597402597402, 297.9090909090909, 298.05844155844153, 298.2077922077922, 298.35714285714283, 298.5064935064935, 298.65584415584414, 298.8051948051948, 298.95454545454544, 299.1038961038961, 299.25324675324674, 299.4025974025974, 299.55194805194805, 299.7012987012987, 299.85064935064935, 300.0]}
-},{}],16:[function(require,module,exports){
-module.exports={"expected": [0.1, 0.1002307548283865, 0.10046204213468127, 0.10069386314760276, 0.10092621909870476, 0.10115911122238297, 0.10139254075588151, 0.10162650893929948, 0.10186101701559758, 0.10209606623060467, 0.10233165783302449, 0.10256779307444217, 0.10280447320933092, 0.1030416994950588, 0.10327947319189516, 0.10351779556301763, 0.10375666787451857, 0.10399609139541198, 0.10423606739764016, 0.10447659715608044, 0.10471768194855202, 0.10495932305582274, 0.10520152176161585, 0.1054442793526169, 0.10568759711848043, 0.105931476351837, 0.10617591834829998, 0.10642092440647241, 0.10666649582795393, 0.10691263391734764, 0.10715933998226711, 0.10740661533334331, 0.10765446128423153, 0.10790287915161842, 0.10815187025522885, 0.1084014359178331, 0.1086515774652538, 0.108902296226373, 0.10915359353313916, 0.10940547072057427, 0.10965792912678099, 0.1099109700929497, 0.11016459496336564, 0.11041880508541607, 0.11067360180959737, 0.11092898648952228, 0.11118496048192707, 0.11144152514667878, 0.11169868184678232, 0.11195643194838786, 0.11221477682079803, 0.11247371783647517, 0.11273325637104868, 0.11299339380332223, 0.11325413151528119, 0.1135154708920999, 0.1137774133221491, 0.11403996019700328, 0.11430311291144793, 0.11456687286348718, 0.11483124145435111, 0.1150962200885032, 0.11536181017364783, 0.1156280131207376, 0.1158948303439811, 0.11616226326085019, 0.11643031329208765, 0.11669898186171472, 0.11696827039703853, 0.11723818032865989, 0.11750871309048076, 0.11777987011971189, 0.11805165285688053, 0.11832406274583786, 0.11859710123376697, 0.11887076977119033, 0.1191450698119776, 0.11942000281335322, 0.11969557023590434, 0.11997177354358846, 0.12024861420374122, 0.12052609368708427, 0.12080421346773286, 0.121082975023204, 0.12136237983442408, 0.1216424293857368, 0.12192312516491108, 0.12220446866314884, 0.12248646137509314, 0.12276910479883595, 0.12305240043592616, 0.1233363497913776, 0.12362095437367689, 0.12390621569479163, 0.12419213527017836, 0.12447871461879062, 0.12476595526308698, 0.1250538587290391, 0.12534242654614, 0.12563166024741204, 0.1259215613694151, 0.12621213145225474, 0.12650337203959036, 0.12679528467864346, 0.12708787092020585, 0.12738113231864784, 0.12767507043192658, 0.12796968682159413, 0.12826498305280606, 0.12856096069432954, 0.1288576213185518, 0.1291549665014884, 0.12945299782279157, 0.12975171686575876, 0.13005112521734088, 0.1303512244681509, 0.13065201621247213, 0.13095350204826672, 0.13125568357718434, 0.13155856240457042, 0.13186214013947484, 0.1321664183946605, 0.1324713987866117, 0.13277708293554297, 0.1330834724654075, 0.13339056900390586, 0.13369837418249467, 0.13400688963639504, 0.1343161170046016, 0.134626057929891, 0.13493671405883065, 0.13524808704178753, 0.13556017853293686, 0.135872990190271, 0.13618652367560818, 0.1365007806546014, 0.1368157627967472, 0.13713147177539453, 0.13744790926775374, 0.1377650769549054, 0.13808297652180923, 0.13840160965731316, 0.13872097805416206, 0.13904108340900703, 0.13936192742241424, 0.13968351179887398, 0.14000583824680976, 0.14032890847858728, 0.14065272421052372, 0.14097728716289665, 0.14130259905995335, 0.14162866162991988, 0.14195547660501012, 0.14228304572143527, 0.14261137071941288, 0.1429404533431761, 0.1432702953409831, 0.14360089846512603, 0.1439322644719407, 0.14426439512181577, 0.14459729217920195, 0.14493095741262166, 0.14526539259467808, 0.14560059950206494, 0.14593657991557565, 0.146273335620113, 0.14661086840469845, 0.14694918006248167, 0.14728827239075024, 0.14762814719093897, 0.14796880626863962, 0.14831025143361043, 0.1486524844997857, 0.14899550728528543, 0.14933932161242522, 0.14968392930772556, 0.15002933220192183, 0.1503755321299738, 0.15072253093107563, 0.15107033044866544, 0.1514189325304352, 0.15176833902834053, 0.15211855179861045, 0.15246957270175737, 0.152821403602587, 0.15317404637020798, 0.15352750287804226, 0.1538817750038346, 0.15423686462966282, 0.15459277364194776, 0.15494950393146317, 0.155307057393346, 0.15566543592710616, 0.15602464143663686, 0.1563846758302247, 0.1567455410205595, 0.15710723892474504, 0.15746977146430863, 0.15783314056521175, 0.15819734815786007, 0.1585623961771137, 0.1589282865622978, 0.15929502125721223, 0.15966260221014258, 0.1600310313738701, 0.16040031070568203, 0.16077044216738237, 0.16114142772530193, 0.16151326935030905, 0.16188596901781982, 0.16225952870780874, 0.16263395040481923, 0.16300923609797408, 0.16338538778098613, 0.1637624074521688, 0.1641402971144467, 0.16451905877536624, 0.16489869444710642, 0.16527920614648947, 0.16566059589499144, 0.16604286571875299, 0.16642601764859036, 0.16681005372000587, 0.1671949759731989, 0.16758078645307678, 0.16796748720926535, 0.16835508029612023, 0.16874356777273752, 0.16913295170296477, 0.16952323415541204, 0.16991441720346265, 0.17030650292528443, 0.17069949340384075, 0.17109339072690144, 0.171488196987054, 0.1718839142817146, 0.17228054471313942, 0.17267809038843557, 0.1730765534195725, 0.17347593592339317, 0.1738762400216251, 0.17427746784089193, 0.17467962151272454, 0.17508270317357244, 0.1754867149648151, 0.17589165903277332, 0.17629753752872057, 0.1767043526088946, 0.17711210643450878, 0.1775208011717635, 0.1779304389918578, 0.1783410220710008, 0.1787525525904235, 0.17916503273639006, 0.1795784647002096, 0.1799928506782477, 0.18040819287193827, 0.1808244934877951, 0.18124175473742368, 0.18165997883753277, 0.18207916800994628, 0.18249932448161524, 0.18292045048462935, 0.18334254825622898, 0.18376562003881713, 0.18418966807997114, 0.18461469463245475, 0.18504070195423017, 0.18546769230846985, 0.18589566796356874, 0.186324631193156, 0.18675458427610758, 0.18718552949655787, 0.18761746914391206, 0.18805040551285826, 0.1884843409033796, 0.18891927762076663, 0.18935521797562951, 0.18979216428391005, 0.1902301188668945, 0.19066908405122523, 0.19110906216891377, 0.1915500555573528, 0.19199206655932838, 0.19243509752303312, 0.19287915080207782, 0.1933242287555045, 0.1937703337477989, 0.19421746814890256, 0.19466563433422623, 0.1951148346846617, 0.19556507158659492, 0.19601634743191856, 0.19646866461804458, 0.19692202554791724, 0.19737643263002558, 0.19783188827841644, 0.19828839491270717, 0.19874595495809827, 0.19920457084538704, 0.1996642450109794, 0.2001249798969037, 0.20058677795082341, 0.2010496416260498, 0.20151357338155576, 0.2019785756819879, 0.2024446509976804, 0.2029118018046678, 0.2033800305846981, 0.20384933982524633, 0.2043197320195271, 0.20479120966650854, 0.2052637752709252, 0.20573743134329125, 0.20621218039991435, 0.20668802496290825, 0.2071649675602069, 0.2076430107255775, 0.20812215699863382, 0.20860240892485038, 0.20908376905557505, 0.2095662399480433, 0.21004982416539153, 0.2105345242766705, 0.21102034285685956, 0.21150728248687953, 0.21199534575360712, 0.21248453524988828, 0.21297485357455198, 0.21346630333242445, 0.21395888713434222, 0.21445260759716675, 0.21494746734379805, 0.21544346900318834, 0.21594061521035665, 0.21643890860640208, 0.21693835183851842, 0.217438947560008, 0.21794069843029548, 0.21844360711494273, 0.2189476762856621, 0.21945290862033137, 0.2199593068030075, 0.22046687352394087, 0.22097561147959022, 0.221485523372636, 0.2219966119119955, 0.22250887981283693, 0.22302232979659375, 0.22353696459097955, 0.22405278693000188, 0.2245697995539774, 0.22508800520954617, 0.22560740664968604, 0.22612800663372784, 0.22664980792736933, 0.2271728133026905, 0.227697025538168, 0.22822244741868974, 0.2287490817355703, 0.22927693128656493, 0.2298059988758851, 0.23033628731421313, 0.23086779941871685, 0.2314005380130653, 0.2319345059274428, 0.23246970599856479, 0.23300614106969247, 0.23354381399064789, 0.2340827276178293, 0.2346228848142263, 0.23516428844943485, 0.23570694139967277, 0.23625084654779469, 0.23679600678330776, 0.23734242500238667, 0.23789010410788933, 0.23843904700937205, 0.23898925662310497, 0.23954073587208782, 0.24009348768606525, 0.2406475150015424, 0.2412028207618007, 0.24175940791691303, 0.24231727942375994, 0.2428764382460451, 0.24343688735431104, 0.243998629725955, 0.2445616683452446, 0.24512600620333386, 0.24569164629827908, 0.24625859163505467, 0.24682684522556925, 0.24739641008868135, 0.24796728925021588, 0.2485394857429799, 0.24911300260677885, 0.24968784288843268, 0.25026400964179185, 0.250841505927754, 0.2514203348142797, 0.2520004993764092, 0.25258200269627845, 0.2531648478631355, 0.253749037973357, 0.25433457613046495, 0.2549214654451423, 0.2555097090352507, 0.25609931002584585, 0.25669027154919505, 0.25728259674479337, 0.25787628875938007, 0.2584713507469564, 0.2590677858688008, 0.2596655972934871, 0.2602647881969006, 0.2608653617622548, 0.2614673211801092, 0.26207066964838516, 0.2626754103723837, 0.2632815465648021, 0.263889081445751, 0.26449801824277197, 0.2651083601908538, 0.26572011053245054, 0.2663332725174982, 0.2669478494034321, 0.26756384445520454, 0.2681812609453015, 0.2688001021537606, 0.26942037136818836, 0.27004207188377727, 0.27066520700332414, 0.27128978003724663, 0.27191579430360174, 0.2725432531281029, 0.2731721598441376, 0.27380251779278575, 0.2744343303228365, 0.2750676007908066, 0.2757023325609584, 0.27633852900531697, 0.27697619350368907, 0.27761532944368, 0.2782559402207124, 0.2788980292380441, 0.2795415999067856, 0.28018665564591955, 0.2808331998823172, 0.281481236050758, 0.28213076759394723, 0.2827817979625341, 0.2834343306151309, 0.28408836901833034, 0.2847439166467246, 0.2854009769829239, 0.28605955351757417, 0.28671964974937697, 0.28738126918510654, 0.28804441533962966, 0.28870909173592363, 0.28937530190509503, 0.2900430493863992, 0.29071233772725774, 0.2913831704832787, 0.29205555121827464, 0.29272948350428163, 0.2934049709215787, 0.2940820170587063, 0.2947606255124857, 0.2954407998880382, 0.29612254379880343, 0.29680586086656024, 0.297490754721444, 0.2981772290019672, 0.2988652873550384, 0.29955493343598133, 0.30024617090855493, 0.30093900344497204, 0.3016334347259196, 0.3023294684405778, 0.30302710828663965, 0.30372635797033115, 0.3044272212064302, 0.3051297017182869, 0.3058338032378433, 0.30653952950565266, 0.30724688427090036, 0.3079558712914226, 0.3086664943337273, 0.30937875717301383, 0.31009266359319265, 0.3108082173869064, 0.31152542235554875, 0.31224428230928564, 0.3129648010670752, 0.3136869824566877, 0.3144108303147265, 0.31513634848664784, 0.31586354082678175, 0.31659241119835224, 0.31732296347349775, 0.318055201533292, 0.3187891292677645, 0.31952475057592117, 0.3202620693657652, 0.3210010895543173, 0.32174181506763716, 0.3224842498408441, 0.3232283978181379, 0.3239742629528197, 0.32472184920731295, 0.3254711605531848, 0.3262222009711669, 0.3269749744511766, 0.3277294849923384, 0.32848573660300445, 0.3292437333007769, 0.3300034791125285, 0.33076497807442407, 0.3315282342319425, 0.33229325163989726, 0.33306003436245885, 0.33382858647317604, 0.3345989120549973, 0.33537101520029305, 0.3361449000108766, 0.3369205705980267, 0.33769803108250906, 0.3384772855945981, 0.33925833827409935, 0.34004119327037075, 0.34082585474234517, 0.3416123268585528, 0.3424006137971424, 0.3431907197459044, 0.3439826489022926, 0.34477640547344646, 0.34557199367621383, 0.3463694177371733, 0.34716868189265615, 0.34796979038876924, 0.34877274748141773, 0.3495775574363274, 0.35038422452906737, 0.35119275304507297, 0.35200314727966797, 0.3528154115380883, 0.3536295501355042, 0.35444556739704347, 0.35526346765781414, 0.35608325526292783, 0.356904934567523, 0.3577285099367873, 0.35855398574598163, 0.35938136638046275, 0.3602106562357071, 0.36104185971733377, 0.36187498124112794, 0.3627100252330647, 0.36354699612933195, 0.36438589837635454, 0.3652267364308176, 0.3660695147596902, 0.36691423784024935, 0.36776091016010326, 0.3686095362172159, 0.36946012051993027, 0.37031266758699266, 0.37116718194757664, 0.3720236681413068, 0.37288213071828347, 0.3737425742391064, 0.3746050032748992, 0.3754694224073336, 0.37633583622865346, 0.3772042493416999, 0.3780746663599349, 0.37894709190746667, 0.37982153061907353, 0.3806979871402286, 0.3815764661271249, 0.38245697224669994, 0.38333951017666, 0.384224084605506, 0.3851107002325571, 0.3859993617679768, 0.38689007393279756, 0.3877828414589456, 0.3886776690892667, 0.3895745615775503, 0.3904735236885561, 0.3913745601980384, 0.39227767589277185, 0.39318287557057696, 0.39409016404034497, 0.3949995461220644, 0.39591102664684585, 0.39682461045694806, 0.3977403024058036, 0.3986581073580441, 0.3995780301895271, 0.40050007578736113, 0.4014242490499321, 0.4023505548869292, 0.40327899821937074, 0.4042095839796307, 0.4051423171114647, 0.40607720257003654, 0.4070142453219438, 0.4079534503452451, 0.4088948226294861, 0.40983836717572614, 0.4107840889965647, 0.4117319931161678, 0.4126820845702954, 0.4136343684063275, 0.4145888496832911, 0.4155455334718875, 0.4165044248545184, 0.4174655289253137, 0.4184288507901581, 0.41939439556671865, 0.4203621683844714, 0.4213321743847288, 0.42230441872066743, 0.423278906557355, 0.4242556430717777, 0.4252346334528682, 0.4262158829015324, 0.4271993966306779, 0.42818517986524124, 0.4291732378422157, 0.4301635758106795, 0.43115619903182273, 0.43215111277897644, 0.43314832233764, 0.43414783300550924, 0.435149650092505, 0.4361537789208005, 0.43716022482485045, 0.4381689931514191, 0.4391800892596086, 0.44019351852088745, 0.4412092863191189, 0.4422273980505899, 0.44324785912403974, 0.4442706749606883, 0.44529585099426555, 0.44632339267103965, 0.44735330544984653, 0.4483855948021187, 0.4494202662119142, 0.45045732517594583, 0.4514967772036101, 0.4525386278170169, 0.45358288255101875, 0.45462954695324, 0.4556786265841064, 0.4567301270168746, 0.45778405383766185, 0.4588404126454758, 0.45989920905224385, 0.46096044868284336, 0.4620241371751312, 0.46309028017997395, 0.46415888336127786, 0.46522995239601894, 0.46630349297427315, 0.4673795107992462, 0.46845801158730477, 0.46953900106800595, 0.4706224849841282, 0.4717084690917017, 0.47279695916003894, 0.47388796097176533, 0.4749814803228501, 0.47607752302263695, 0.4771760948938746, 0.4782772017727484, 0.4793808495089109, 0.480487043965513, 0.4815957910192352, 0.4827070965603183, 0.4838209664925956, 0.48493740673352353, 0.4860564232142135, 0.48717802187946324, 0.488302208687788, 0.48942898961145304, 0.4905583706365048, 0.49169035776280273, 0.4928249570040515, 0.4939621743878321, 0.495102015955635, 0.4962444877628916, 0.4973895958790064, 0.4985373463873895, 0.4996877453854884, 0.5008407989848211, 0.5019965133110081, 0.5031548945038052, 0.504315948717136, 0.5054796821191241, 0.5066461008921267, 0.5078152112327673, 0.5089870193519681, 0.5101615314749834, 0.5113387538414326, 0.5125186927053331, 0.5137013543351341, 0.5148867450137493, 0.5160748710385908, 0.5172657387216019, 0.5184593543892911, 0.519655724382766, 0.5208548550577662, 0.5220567527846977, 0.5232614239486661, 0.5244688749495118, 0.5256791122018422, 0.5268921421350673, 0.5281079711934332, 0.5293266058360562, 0.5305480525369572, 0.5317723177850969, 0.5329994080844089, 0.5342293299538353, 0.5354620899273608, 0.5366976945540475, 0.5379361503980701, 0.5391774640387501, 0.5404216420705916, 0.5416686911033152, 0.5429186177618941, 0.5441714286865891, 0.5454271305329833, 0.5466857299720183, 0.5479472336900287, 0.5492116483887788, 0.5504789807854971, 0.5517492376129126, 0.5530224256192902, 0.5542985515684669, 0.5555776222398876, 0.5568596444286411, 0.5581446249454963, 0.5594325706169379, 0.5607234882852032, 0.5620173848083186, 0.5633142670601354, 0.564614141930367, 0.5659170163246243, 0.5672228971644544, 0.5685317913873752, 0.5698437059469139, 0.5711586478126431, 0.572476623970218, 0.5737976414214133, 0.5751217071841612, 0.5764488282925876, 0.5777790117970504, 0.579112264764176, 0.5804485942768978, 0.5817880074344934, 0.5831305113526222, 0.5844761131633635, 0.5858248200152537, 0.5871766390733255, 0.5885315775191449, 0.5898896425508496, 0.5912508413831878, 0.5926151812475554, 0.5939826693920356, 0.5953533130814369, 0.5967271195973314, 0.5981040962380941, 0.599484250318941, 0.6008675891719687, 0.6022541201461926, 0.6036438506075866, 0.6050367879391221, 0.6064329395408063, 0.6078323128297229, 0.609234915240071, 0.610640754223204, 0.6120498372476699, 0.6134621717992508, 0.6148777653810023, 0.6162966255132941, 0.6177187597338492, 0.6191441755977845, 0.6205728806776503, 0.6220048825634712, 0.6234401888627863, 0.6248788072006891, 0.6263207452198689, 0.6277660105806502, 0.6292146109610344, 0.6306665540567404, 0.6321218475812451, 0.6335804992658252, 0.6350425168595963, 0.6365079081295572, 0.6379766808606281, 0.6394488428556941, 0.6409244019356454, 0.6424033659394193, 0.6438857427240419, 0.64537154016467, 0.6468607661546326, 0.6483534286054724, 0.649849535446989, 0.6513490946272803, 0.6528521141127845, 0.6543586018883234, 0.6558685659571432, 0.6573820143409587, 0.658898955079995, 0.6604193962330304, 0.6619433458774393, 0.6634708121092348, 0.665001803043112, 0.6665363268124913, 0.6680743915695613, 0.6696160054853221, 0.6711611767496284, 0.6727099135712338, 0.6742622241778342, 0.6758181168161108, 0.677377599751775, 0.6789406812696108, 0.6805073696735209, 0.6820776732865685, 0.6836516004510237, 0.6852291595284062, 0.6868103588995305, 0.6883952069645498, 0.6899837121430018, 0.6915758828738523, 0.6931717276155406, 0.6947712548460236, 0.6963744730628224, 0.697981390783066, 0.6995920165435372, 0.7012063589007183, 0.702824426430835, 0.7044462277299038, 0.7060717714137773, 0.7077010661181888, 0.7093341204987995, 0.7109709432312434, 0.7126115430111748, 0.7142559285543126, 0.7159041085964887, 0.7175560918936927, 0.7192118872221189, 0.7208715033782137, 0.7225349491787214, 0.7242022334607314, 0.7258733650817252, 0.7275483529196228, 0.7292272058728315, 0.730909932860291, 0.732596542821523, 0.7342870447166764, 0.7359814475265767, 0.7376797602527733, 0.7393819919175866, 0.741088151564157, 0.7427982482564917, 0.7445122910795139, 0.746230289139111, 0.7479522515621821, 0.7496781874966877, 0.7514081061116968, 0.7531420165974372, 0.7548799281653433, 0.7566218500481054, 0.7583677914997191, 0.7601177617955328, 0.7618717702322996, 0.7636298261282244, 0.7653919388230148, 0.7671581176779303, 0.7689283720758312, 0.7707027114212299, 0.7724811451403402, 0.774263682681127, 0.7760503335133571, 0.7778411071286488, 0.7796360130405233, 0.7814350607844545, 0.7832382599179196, 0.785045620020451, 0.786857150693685, 0.7886728615614151, 0.7904927622696423, 0.7923168624866254, 0.794145171902934, 0.7959777002314984, 0.7978144572076624, 0.7996554525892349, 0.8015006961565405, 0.8033501977124735, 0.8052039670825476, 0.8070620141149504, 0.808924348680594, 0.8107909806731687, 0.8126619200091946, 0.8145371766280743, 0.8164167604921468, 0.8183006815867392, 0.8201889499202203, 0.822081575524054, 0.8239785684528518, 0.8258799387844268, 0.8277856966198475, 0.8296958520834907, 0.8316104153230962, 0.8335293965098193, 0.8354528058382866, 0.8373806535266491, 0.8393129498166365, 0.8412497049736118, 0.8431909292866258, 0.8451366330684718, 0.8470868266557404, 0.8490415204088747, 0.8510007247122247, 0.8529644499741023, 0.854932706626838, 0.8569055051268349, 0.8588828559546252, 0.8608647696149245, 0.8628512566366894, 0.8648423275731723, 0.8668379930019776, 0.8688382635251186, 0.8708431497690724, 0.8728526623848377, 0.874866812047991, 0.8768856094587429, 0.8789090653419956, 0.8809371904473992, 0.882969995549409, 0.8850074914473434, 0.8870496889654406, 0.889096598952916, 0.8911482322840202, 0.8932045998580966, 0.8952657125996396, 0.8973315814583522, 0.8994022174092047, 0.9014776314524918, 0.9035578346138927, 0.9056428379445289, 0.9077326525210226, 0.909827289445556, 0.9119267598459299, 0.914031074875623, 0.9161402457138517, 0.9182542835656284, 0.9203731996618223, 0.9224970052592174, 0.924625711640574, 0.9267593301146878, 0.92889787201645, 0.9310413487069078, 0.9331897715733238, 0.9353431520292383, 0.9375015015145285, 0.9396648314954693, 0.9418331534647953, 0.9440064789417604, 0.9461848194722, 0.9483681866285922, 0.9505565920101193, 0.9527500472427293, 0.9549485639791967, 0.9571521538991863, 0.9593608287093142, 0.9615746001432098, 0.9637934799615788, 0.9660174799522646, 0.9682466119303121, 0.9704808877380302, 0.972720319245054, 0.9749649183484089, 0.9772146969725725, 0.9794696670695393, 0.9817298406188836, 0.9839952296278232, 0.9862658461312823, 0.9885417021919574, 0.9908228099003795, 0.9931091813749796, 0.9954008287621524, 0.9976977642363204, 0.9999999999999999], "x": [-1.0, -0.998998998998999, -0.997997997997998, -0.996996996996997, -0.995995995995996, -0.994994994994995, -0.993993993993994, -0.992992992992993, -0.991991991991992, -0.990990990990991, -0.98998998998999, -0.988988988988989, -0.987987987987988, -0.986986986986987, -0.985985985985986, -0.984984984984985, -0.983983983983984, -0.982982982982983, -0.9819819819819819, -0.980980980980981, -0.97997997997998, -0.978978978978979, -0.977977977977978, -0.9769769769769769, -0.975975975975976, -0.974974974974975, -0.973973973973974, -0.972972972972973, -0.9719719719719719, -0.970970970970971, -0.96996996996997, -0.968968968968969, -0.967967967967968, -0.9669669669669669, -0.965965965965966, -0.964964964964965, -0.963963963963964, -0.962962962962963, -0.9619619619619619, -0.960960960960961, -0.95995995995996, -0.958958958958959, -0.957957957957958, -0.9569569569569569, -0.955955955955956, -0.954954954954955, -0.953953953953954, -0.9529529529529529, -0.9519519519519519, -0.950950950950951, -0.94994994994995, -0.948948948948949, -0.9479479479479479, -0.9469469469469469, -0.9459459459459459, -0.944944944944945, -0.943943943943944, -0.9429429429429429, -0.9419419419419419, -0.9409409409409409, -0.93993993993994, -0.938938938938939, -0.9379379379379379, -0.9369369369369369, -0.9359359359359359, -0.934934934934935, -0.933933933933934, -0.9329329329329329, -0.9319319319319319, -0.9309309309309309, -0.92992992992993, -0.928928928928929, -0.9279279279279279, -0.9269269269269269, -0.9259259259259259, -0.924924924924925, -0.9239239239239239, -0.9229229229229229, -0.9219219219219219, -0.9209209209209209, -0.91991991991992, -0.9189189189189189, -0.9179179179179179, -0.9169169169169169, -0.9159159159159159, -0.914914914914915, -0.9139139139139139, -0.9129129129129129, -0.9119119119119119, -0.9109109109109109, -0.9099099099099099, -0.9089089089089089, -0.9079079079079079, -0.9069069069069069, -0.9059059059059059, -0.9049049049049049, -0.9039039039039038, -0.9029029029029029, -0.9019019019019019, -0.9009009009009009, -0.8998998998998999, -0.8988988988988988, -0.8978978978978979, -0.8968968968968969, -0.8958958958958959, -0.8948948948948949, -0.8938938938938938, -0.8928928928928929, -0.8918918918918919, -0.8908908908908909, -0.8898898898898899, -0.8888888888888888, -0.8878878878878879, -0.8868868868868869, -0.8858858858858859, -0.8848848848848849, -0.8838838838838838, -0.8828828828828829, -0.8818818818818819, -0.8808808808808809, -0.8798798798798799, -0.8788788788788788, -0.8778778778778779, -0.8768768768768769, -0.8758758758758759, -0.8748748748748749, -0.8738738738738738, -0.8728728728728729, -0.8718718718718719, -0.8708708708708709, -0.8698698698698699, -0.8688688688688688, -0.8678678678678678, -0.8668668668668669, -0.8658658658658659, -0.8648648648648649, -0.8638638638638638, -0.8628628628628628, -0.8618618618618619, -0.8608608608608609, -0.8598598598598599, -0.8588588588588588, -0.8578578578578578, -0.8568568568568569, -0.8558558558558559, -0.8548548548548549, -0.8538538538538538, -0.8528528528528528, -0.8518518518518519, -0.8508508508508509, -0.8498498498498499, -0.8488488488488488, -0.8478478478478478, -0.8468468468468469, -0.8458458458458459, -0.8448448448448449, -0.8438438438438438, -0.8428428428428428, -0.8418418418418419, -0.8408408408408409, -0.8398398398398399, -0.8388388388388388, -0.8378378378378378, -0.8368368368368369, -0.8358358358358359, -0.8348348348348349, -0.8338338338338338, -0.8328328328328328, -0.8318318318318318, -0.8308308308308309, -0.8298298298298299, -0.8288288288288288, -0.8278278278278278, -0.8268268268268268, -0.8258258258258259, -0.8248248248248249, -0.8238238238238238, -0.8228228228228228, -0.8218218218218218, -0.8208208208208209, -0.8198198198198199, -0.8188188188188188, -0.8178178178178178, -0.8168168168168168, -0.8158158158158157, -0.8148148148148149, -0.8138138138138138, -0.8128128128128128, -0.8118118118118118, -0.8108108108108107, -0.8098098098098099, -0.8088088088088088, -0.8078078078078078, -0.8068068068068068, -0.8058058058058057, -0.8048048048048049, -0.8038038038038038, -0.8028028028028028, -0.8018018018018018, -0.8008008008008007, -0.7997997997997999, -0.7987987987987988, -0.7977977977977978, -0.7967967967967968, -0.7957957957957957, -0.7947947947947948, -0.7937937937937938, -0.7927927927927928, -0.7917917917917918, -0.7907907907907907, -0.7897897897897898, -0.7887887887887888, -0.7877877877877878, -0.7867867867867868, -0.7857857857857857, -0.7847847847847848, -0.7837837837837838, -0.7827827827827828, -0.7817817817817818, -0.7807807807807807, -0.7797797797797797, -0.7787787787787788, -0.7777777777777778, -0.7767767767767768, -0.7757757757757757, -0.7747747747747747, -0.7737737737737738, -0.7727727727727728, -0.7717717717717718, -0.7707707707707707, -0.7697697697697697, -0.7687687687687688, -0.7677677677677678, -0.7667667667667668, -0.7657657657657657, -0.7647647647647647, -0.7637637637637638, -0.7627627627627628, -0.7617617617617618, -0.7607607607607607, -0.7597597597597597, -0.7587587587587588, -0.7577577577577578, -0.7567567567567568, -0.7557557557557557, -0.7547547547547547, -0.7537537537537538, -0.7527527527527528, -0.7517517517517518, -0.7507507507507507, -0.7497497497497497, -0.7487487487487487, -0.7477477477477478, -0.7467467467467468, -0.7457457457457457, -0.7447447447447447, -0.7437437437437437, -0.7427427427427428, -0.7417417417417418, -0.7407407407407407, -0.7397397397397397, -0.7387387387387387, -0.7377377377377378, -0.7367367367367368, -0.7357357357357357, -0.7347347347347347, -0.7337337337337337, -0.7327327327327328, -0.7317317317317318, -0.7307307307307307, -0.7297297297297297, -0.7287287287287287, -0.7277277277277278, -0.7267267267267268, -0.7257257257257257, -0.7247247247247247, -0.7237237237237237, -0.7227227227227226, -0.7217217217217218, -0.7207207207207207, -0.7197197197197197, -0.7187187187187187, -0.7177177177177176, -0.7167167167167168, -0.7157157157157157, -0.7147147147147147, -0.7137137137137137, -0.7127127127127126, -0.7117117117117118, -0.7107107107107107, -0.7097097097097097, -0.7087087087087087, -0.7077077077077076, -0.7067067067067068, -0.7057057057057057, -0.7047047047047047, -0.7037037037037037, -0.7027027027027026, -0.7017017017017018, -0.7007007007007007, -0.6996996996996997, -0.6986986986986987, -0.6976976976976976, -0.6966966966966968, -0.6956956956956957, -0.6946946946946947, -0.6936936936936937, -0.6926926926926926, -0.6916916916916918, -0.6906906906906907, -0.6896896896896897, -0.6886886886886887, -0.6876876876876876, -0.6866866866866868, -0.6856856856856857, -0.6846846846846847, -0.6836836836836837, -0.6826826826826826, -0.6816816816816818, -0.6806806806806807, -0.6796796796796797, -0.6786786786786787, -0.6776776776776776, -0.6766766766766767, -0.6756756756756757, -0.6746746746746747, -0.6736736736736737, -0.6726726726726726, -0.6716716716716717, -0.6706706706706707, -0.6696696696696697, -0.6686686686686687, -0.6676676676676676, -0.6666666666666667, -0.6656656656656657, -0.6646646646646647, -0.6636636636636637, -0.6626626626626626, -0.6616616616616617, -0.6606606606606606, -0.6596596596596597, -0.6586586586586587, -0.6576576576576576, -0.6566566566566567, -0.6556556556556556, -0.6546546546546547, -0.6536536536536537, -0.6526526526526526, -0.6516516516516517, -0.6506506506506506, -0.6496496496496497, -0.6486486486486487, -0.6476476476476476, -0.6466466466466467, -0.6456456456456456, -0.6446446446446447, -0.6436436436436437, -0.6426426426426426, -0.6416416416416417, -0.6406406406406406, -0.6396396396396397, -0.6386386386386387, -0.6376376376376376, -0.6366366366366367, -0.6356356356356356, -0.6346346346346347, -0.6336336336336337, -0.6326326326326326, -0.6316316316316316, -0.6306306306306306, -0.6296296296296297, -0.6286286286286287, -0.6276276276276276, -0.6266266266266266, -0.6256256256256256, -0.6246246246246246, -0.6236236236236237, -0.6226226226226226, -0.6216216216216216, -0.6206206206206206, -0.6196196196196196, -0.6186186186186187, -0.6176176176176176, -0.6166166166166166, -0.6156156156156156, -0.6146146146146146, -0.6136136136136137, -0.6126126126126126, -0.6116116116116116, -0.6106106106106106, -0.6096096096096096, -0.6086086086086087, -0.6076076076076076, -0.6066066066066066, -0.6056056056056056, -0.6046046046046046, -0.6036036036036037, -0.6026026026026026, -0.6016016016016016, -0.6006006006006006, -0.5995995995995996, -0.5985985985985987, -0.5975975975975976, -0.5965965965965966, -0.5955955955955956, -0.5945945945945945, -0.5935935935935936, -0.5925925925925926, -0.5915915915915916, -0.5905905905905906, -0.5895895895895895, -0.5885885885885886, -0.5875875875875876, -0.5865865865865866, -0.5855855855855856, -0.5845845845845845, -0.5835835835835836, -0.5825825825825826, -0.5815815815815816, -0.5805805805805806, -0.5795795795795795, -0.5785785785785786, -0.5775775775775776, -0.5765765765765766, -0.5755755755755756, -0.5745745745745745, -0.5735735735735736, -0.5725725725725725, -0.5715715715715716, -0.5705705705705706, -0.5695695695695695, -0.5685685685685686, -0.5675675675675675, -0.5665665665665666, -0.5655655655655656, -0.5645645645645645, -0.5635635635635636, -0.5625625625625625, -0.5615615615615616, -0.5605605605605606, -0.5595595595595595, -0.5585585585585586, -0.5575575575575575, -0.5565565565565566, -0.5555555555555556, -0.5545545545545545, -0.5535535535535536, -0.5525525525525525, -0.5515515515515516, -0.5505505505505506, -0.5495495495495495, -0.5485485485485486, -0.5475475475475475, -0.5465465465465466, -0.5455455455455456, -0.5445445445445445, -0.5435435435435436, -0.5425425425425425, -0.5415415415415415, -0.5405405405405406, -0.5395395395395395, -0.5385385385385386, -0.5375375375375375, -0.5365365365365365, -0.5355355355355356, -0.5345345345345345, -0.5335335335335336, -0.5325325325325325, -0.5315315315315315, -0.5305305305305306, -0.5295295295295295, -0.5285285285285286, -0.5275275275275275, -0.5265265265265265, -0.5255255255255256, -0.5245245245245245, -0.5235235235235236, -0.5225225225225225, -0.5215215215215215, -0.5205205205205206, -0.5195195195195195, -0.5185185185185186, -0.5175175175175175, -0.5165165165165165, -0.5155155155155156, -0.5145145145145145, -0.5135135135135136, -0.5125125125125125, -0.5115115115115115, -0.5105105105105106, -0.5095095095095095, -0.5085085085085086, -0.5075075075075075, -0.5065065065065065, -0.5055055055055055, -0.5045045045045045, -0.5035035035035035, -0.5025025025025025, -0.5015015015015015, -0.5005005005005005, -0.49949949949949946, -0.4984984984984985, -0.4974974974974975, -0.4964964964964965, -0.49549549549549554, -0.49449449449449445, -0.4934934934934935, -0.4924924924924925, -0.4914914914914915, -0.49049049049049054, -0.48948948948948945, -0.48848848848848847, -0.4874874874874875, -0.4864864864864865, -0.48548548548548554, -0.48448448448448445, -0.48348348348348347, -0.4824824824824825, -0.4814814814814815, -0.48048048048048053, -0.47947947947947944, -0.47847847847847846, -0.4774774774774775, -0.4764764764764765, -0.47547547547547553, -0.47447447447447444, -0.47347347347347346, -0.4724724724724725, -0.4714714714714715, -0.4704704704704705, -0.46946946946946944, -0.46846846846846846, -0.4674674674674675, -0.4664664664664665, -0.4654654654654655, -0.46446446446446443, -0.46346346346346345, -0.4624624624624625, -0.4614614614614615, -0.4604604604604605, -0.45945945945945943, -0.45845845845845845, -0.4574574574574575, -0.4564564564564565, -0.4554554554554555, -0.4544544544544544, -0.45345345345345345, -0.45245245245245247, -0.4514514514514515, -0.4504504504504504, -0.4494494494494494, -0.44844844844844844, -0.44744744744744747, -0.4464464464464465, -0.4454454454454454, -0.4444444444444444, -0.44344344344344344, -0.44244244244244246, -0.4414414414414415, -0.4404404404404404, -0.4394394394394394, -0.43843843843843844, -0.43743743743743746, -0.4364364364364365, -0.4354354354354354, -0.4344344344344344, -0.43343343343343343, -0.43243243243243246, -0.4314314314314315, -0.4304304304304304, -0.4294294294294294, -0.42842842842842843, -0.42742742742742745, -0.4264264264264265, -0.4254254254254254, -0.4244244244244244, -0.42342342342342343, -0.42242242242242245, -0.42142142142142147, -0.4204204204204204, -0.4194194194194194, -0.4184184184184184, -0.41741741741741745, -0.41641641641641647, -0.4154154154154154, -0.4144144144144144, -0.4134134134134134, -0.41241241241241244, -0.41141141141141147, -0.4104104104104104, -0.4094094094094094, -0.4084084084084084, -0.40740740740740744, -0.40640640640640646, -0.4054054054054054, -0.4044044044044044, -0.4034034034034034, -0.40240240240240244, -0.40140140140140146, -0.40040040040040037, -0.3993993993993994, -0.3983983983983984, -0.39739739739739743, -0.39639639639639646, -0.39539539539539537, -0.3943943943943944, -0.3933933933933934, -0.39239239239239243, -0.39139139139139134, -0.39039039039039036, -0.3893893893893894, -0.3883883883883884, -0.3873873873873874, -0.38638638638638634, -0.38538538538538536, -0.3843843843843844, -0.3833833833833834, -0.3823823823823824, -0.38138138138138133, -0.38038038038038036, -0.3793793793793794, -0.3783783783783784, -0.3773773773773774, -0.37637637637637633, -0.37537537537537535, -0.3743743743743744, -0.3733733733733734, -0.3723723723723724, -0.37137137137137133, -0.37037037037037035, -0.36936936936936937, -0.3683683683683684, -0.3673673673673674, -0.3663663663663663, -0.36536536536536535, -0.36436436436436437, -0.3633633633633634, -0.3623623623623624, -0.3613613613613613, -0.36036036036036034, -0.35935935935935936, -0.3583583583583584, -0.3573573573573574, -0.3563563563563563, -0.35535535535535534, -0.35435435435435436, -0.3533533533533534, -0.3523523523523524, -0.3513513513513513, -0.35035035035035034, -0.34934934934934936, -0.3483483483483484, -0.3473473473473474, -0.3463463463463463, -0.34534534534534533, -0.34434434434434436, -0.3433433433433434, -0.3423423423423424, -0.3413413413413413, -0.34034034034034033, -0.33933933933933935, -0.3383383383383384, -0.3373373373373374, -0.3363363363363363, -0.3353353353353353, -0.33433433433433435, -0.33333333333333337, -0.3323323323323324, -0.3313313313313313, -0.3303303303303303, -0.32932932932932935, -0.32832832832832837, -0.3273273273273274, -0.3263263263263263, -0.3253253253253253, -0.32432432432432434, -0.32332332332332336, -0.3223223223223223, -0.3213213213213213, -0.3203203203203203, -0.31931931931931934, -0.31831831831831836, -0.31731731731731727, -0.3163163163163163, -0.3153153153153153, -0.31431431431431434, -0.31331331331331336, -0.31231231231231227, -0.3113113113113113, -0.3103103103103103, -0.30930930930930933, -0.30830830830830835, -0.30730730730730726, -0.3063063063063063, -0.3053053053053053, -0.30430430430430433, -0.30330330330330335, -0.30230230230230226, -0.3013013013013013, -0.3003003003003003, -0.2992992992992993, -0.29829829829829835, -0.29729729729729726, -0.2962962962962963, -0.2952952952952953, -0.2942942942942943, -0.29329329329329334, -0.29229229229229226, -0.2912912912912913, -0.2902902902902903, -0.2892892892892893, -0.28828828828828834, -0.28728728728728725, -0.2862862862862863, -0.2852852852852853, -0.2842842842842843, -0.28328328328328334, -0.28228228228228225, -0.28128128128128127, -0.2802802802802803, -0.2792792792792793, -0.27827827827827833, -0.27727727727727725, -0.27627627627627627, -0.2752752752752753, -0.2742742742742743, -0.27327327327327333, -0.27227227227227224, -0.27127127127127126, -0.2702702702702703, -0.2692692692692693, -0.26826826826826833, -0.26726726726726724, -0.26626626626626626, -0.2652652652652653, -0.2642642642642643, -0.2632632632632632, -0.26226226226226224, -0.26126126126126126, -0.2602602602602603, -0.2592592592592593, -0.2582582582582582, -0.25725725725725723, -0.25625625625625625, -0.2552552552552553, -0.2542542542542543, -0.2532532532532532, -0.25225225225225223, -0.25125125125125125, -0.2502502502502503, -0.2492492492492493, -0.2482482482482482, -0.24724724724724723, -0.24624624624624625, -0.24524524524524527, -0.2442442442442443, -0.2432432432432432, -0.24224224224224222, -0.24124124124124124, -0.24024024024024027, -0.2392392392392393, -0.2382382382382382, -0.23723723723723722, -0.23623623623623624, -0.23523523523523526, -0.23423423423423428, -0.2332332332332332, -0.23223223223223222, -0.23123123123123124, -0.23023023023023026, -0.22922922922922928, -0.2282282282282282, -0.2272272272272272, -0.22622622622622623, -0.22522522522522526, -0.22422422422422428, -0.2232232232232232, -0.2222222222222222, -0.22122122122122123, -0.22022022022022025, -0.21921921921921927, -0.21821821821821819, -0.2172172172172172, -0.21621621621621623, -0.21521521521521525, -0.21421421421421427, -0.21321321321321318, -0.2122122122122122, -0.21121121121121122, -0.21021021021021025, -0.20920920920920927, -0.20820820820820818, -0.2072072072072072, -0.20620620620620622, -0.20520520520520524, -0.20420420420420426, -0.20320320320320318, -0.2022022022022022, -0.20120120120120122, -0.20020020020020024, -0.19919919919919926, -0.19819819819819817, -0.1971971971971972, -0.19619619619619622, -0.19519519519519524, -0.19419419419419415, -0.19319319319319317, -0.1921921921921922, -0.1911911911911912, -0.19019019019019023, -0.18918918918918914, -0.18818818818818817, -0.1871871871871872, -0.1861861861861862, -0.18518518518518523, -0.18418418418418414, -0.18318318318318316, -0.18218218218218218, -0.1811811811811812, -0.18018018018018023, -0.17917917917917914, -0.17817817817817816, -0.17717717717717718, -0.1761761761761762, -0.17517517517517522, -0.17417417417417413, -0.17317317317317316, -0.17217217217217218, -0.1711711711711712, -0.17017017017017022, -0.16916916916916913, -0.16816816816816815, -0.16716716716716717, -0.1661661661661662, -0.16516516516516522, -0.16416416416416413, -0.16316316316316315, -0.16216216216216217, -0.1611611611611612, -0.16016016016016021, -0.15915915915915912, -0.15815815815815815, -0.15715715715715717, -0.1561561561561562, -0.1551551551551552, -0.15415415415415412, -0.15315315315315314, -0.15215215215215216, -0.1511511511511512, -0.1501501501501502, -0.14914914914914912, -0.14814814814814814, -0.14714714714714716, -0.14614614614614618, -0.1451451451451452, -0.14414414414414412, -0.14314314314314314, -0.14214214214214216, -0.14114114114114118, -0.1401401401401402, -0.1391391391391391, -0.13813813813813813, -0.13713713713713716, -0.13613613613613618, -0.1351351351351351, -0.1341341341341341, -0.13313313313313313, -0.13213213213213215, -0.13113113113113117, -0.13013013013013008, -0.1291291291291291, -0.12812812812812813, -0.12712712712712715, -0.12612612612612617, -0.12512512512512508, -0.1241241241241241, -0.12312312312312312, -0.12212212212212215, -0.12112112112112117, -0.12012012012012008, -0.1191191191191191, -0.11811811811811812, -0.11711711711711714, -0.11611611611611616, -0.11511511511511507, -0.1141141141141141, -0.11311311311311312, -0.11211211211211214, -0.11111111111111116, -0.11011011011011007, -0.10910910910910909, -0.10810810810810811, -0.10710710710710714, -0.10610610610610616, -0.10510510510510507, -0.10410410410410409, -0.10310310310310311, -0.10210210210210213, -0.10110110110110115, -0.10010010010010006, -0.09909909909909909, -0.09809809809809811, -0.09709709709709713, -0.09609609609609615, -0.09509509509509506, -0.09409409409409408, -0.0930930930930931, -0.09209209209209213, -0.09109109109109115, -0.09009009009009006, -0.08908908908908908, -0.0880880880880881, -0.08708708708708712, -0.08608608608608614, -0.08508508508508505, -0.08408408408408408, -0.0830830830830831, -0.08208208208208212, -0.08108108108108114, -0.08008008008008005, -0.07907907907907907, -0.0780780780780781, -0.07707707707707712, -0.07607607607607614, -0.07507507507507505, -0.07407407407407407, -0.07307307307307309, -0.07207207207207211, -0.07107107107107113, -0.07007007007007005, -0.06906906906906907, -0.06806806806806809, -0.06706706706706711, -0.06606606606606602, -0.06506506506506504, -0.06406406406406406, -0.06306306306306309, -0.06206206206206211, -0.06106106106106102, -0.06006006006006004, -0.05905905905905906, -0.05805805805805808, -0.0570570570570571, -0.056056056056056014, -0.055055055055055035, -0.05405405405405406, -0.05305305305305308, -0.0520520520520521, -0.05105105105105101, -0.05005005005005003, -0.049049049049049054, -0.048048048048048075, -0.0470470470470471, -0.04604604604604601, -0.04504504504504503, -0.04404404404404405, -0.04304304304304307, -0.042042042042042094, -0.041041041041041004, -0.040040040040040026, -0.03903903903903905, -0.03803803803803807, -0.03703703703703709, -0.036036036036036, -0.03503503503503502, -0.034034034034034044, -0.033033033033033066, -0.03203203203203209, -0.031031031031030998, -0.03003003003003002, -0.02902902902902904, -0.028028028028028062, -0.027027027027027084, -0.026026026026025995, -0.025025025025025016, -0.024024024024024038, -0.02302302302302306, -0.02202202202202208, -0.02102102102102099, -0.020020020020020013, -0.019019019019019034, -0.018018018018018056, -0.017017017017017078, -0.016016016016015988, -0.01501501501501501, -0.014014014014014031, -0.013013013013013053, -0.012012012012012074, -0.011011011011010985, -0.010010010010010006, -0.009009009009009028, -0.00800800800800805, -0.00700700700700696, -0.006006006006005982, -0.005005005005005003, -0.004004004004004025, -0.0030030030030030463, -0.002002002002001957, -0.0010010010010009784, -5.551115123125783e-17]}
-},{}],17:[function(require,module,exports){
-module.exports={"expected": [1.0000000000000002, 1.0023075482838653, 1.0046204213468128, 1.0069386314760276, 1.0092621909870476, 1.01159111222383, 1.0139254075588153, 1.016265089392995, 1.0186101701559758, 1.0209606623060468, 1.0233165783302451, 1.0256779307444217, 1.0280447320933095, 1.0304169949505881, 1.0327947319189519, 1.0351779556301763, 1.0375666787451858, 1.03996091395412, 1.0423606739764018, 1.0447659715608046, 1.0471768194855204, 1.0495932305582276, 1.0520152176161588, 1.054442793526169, 1.0568759711848044, 1.0593147635183702, 1.061759183483, 1.0642092440647244, 1.0666649582795393, 1.0691263391734764, 1.0715933998226712, 1.0740661533334332, 1.0765446128423157, 1.0790287915161842, 1.0815187025522885, 1.084014359178331, 1.0865157746525382, 1.0890229622637302, 1.0915359353313918, 1.0940547072057427, 1.09657929126781, 1.0991097009294972, 1.1016459496336566, 1.1041880508541608, 1.1067360180959738, 1.109289864895223, 1.111849604819271, 1.114415251466788, 1.1169868184678233, 1.1195643194838787, 1.1221477682079803, 1.124737178364752, 1.1273325637104867, 1.1299339380332223, 1.1325413151528119, 1.1351547089209992, 1.1377741332214915, 1.1403996019700329, 1.1430311291144792, 1.145668728634872, 1.1483124145435113, 1.1509622008850322, 1.1536181017364782, 1.156280131207376, 1.1589483034398111, 1.161622632608502, 1.1643031329208768, 1.1669898186171472, 1.1696827039703854, 1.172381803286599, 1.1750871309048079, 1.1777987011971192, 1.1805165285688053, 1.1832406274583787, 1.1859710123376699, 1.1887076977119035, 1.1914506981197759, 1.194200028133532, 1.1969557023590436, 1.1997177354358848, 1.2024861420374124, 1.2052609368708427, 1.2080421346773287, 1.2108297502320402, 1.213623798344241, 1.2164242938573682, 1.2192312516491106, 1.2220446866314885, 1.2248646137509314, 1.2276910479883596, 1.2305240043592618, 1.233363497913776, 1.2362095437367688, 1.2390621569479163, 1.2419213527017838, 1.2447871461879063, 1.2476595526308698, 1.2505385872903911, 1.2534242654614003, 1.2563166024741206, 1.2592156136941512, 1.2621213145225474, 1.2650337203959037, 1.2679528467864347, 1.2708787092020588, 1.2738113231864787, 1.2767507043192659, 1.2796968682159413, 1.2826498305280607, 1.2856096069432956, 1.2885762131855183, 1.2915496650148839, 1.2945299782279158, 1.2975171686575877, 1.300511252173409, 1.3035122446815093, 1.306520162124721, 1.3095350204826675, 1.3125568357718436, 1.3155856240457044, 1.3186214013947488, 1.3216641839466052, 1.3247139878661174, 1.32777082935543, 1.3308347246540753, 1.3339056900390591, 1.3369837418249466, 1.3400688963639504, 1.3431611700460162, 1.3462605792989102, 1.3493671405883068, 1.3524808704178755, 1.3556017853293687, 1.3587299019027101, 1.361865236756082, 1.3650078065460143, 1.3681576279674719, 1.3713147177539453, 1.3744790926775377, 1.377650769549054, 1.3808297652180928, 1.3840160965731316, 1.3872097805416206, 1.3904108340900705, 1.3936192742241427, 1.39683511798874, 1.4000583824680977, 1.4032890847858728, 1.4065272421052373, 1.409772871628967, 1.413025990599534, 1.4162866162991987, 1.4195547660501013, 1.4228304572143529, 1.426113707194129, 1.4294045334317613, 1.432702953409831, 1.4360089846512607, 1.4393226447194074, 1.442643951218158, 1.4459729217920199, 1.4493095741262167, 1.452653925946781, 1.4560059950206494, 1.4593657991557567, 1.4627333562011304, 1.4661086840469846, 1.469491800624817, 1.4728827239075029, 1.4762814719093904, 1.4796880626863969, 1.4831025143361045, 1.4865248449978572, 1.4899550728528546, 1.4933932161242525, 1.4968392930772558, 1.5002933220192185, 1.5037553212997383, 1.5072253093107566, 1.510703304486655, 1.5141893253043524, 1.5176833902834055, 1.5211855179861047, 1.524695727017574, 1.52821403602587, 1.5317404637020802, 1.5352750287804229, 1.5388177500383462, 1.5423686462966284, 1.5459277364194777, 1.549495039314632, 1.5530705739334603, 1.5566543592710618, 1.560246414366369, 1.563846758302247, 1.5674554102055953, 1.5710723892474505, 1.5746977146430865, 1.5783314056521176, 1.5819734815786006, 1.5856239617711374, 1.589282865622978, 1.5929502125721227, 1.5966260221014263, 1.600310313738701, 1.6040031070568204, 1.6077044216738239, 1.6114142772530196, 1.615132693503091, 1.6188596901781984, 1.6225952870780875, 1.6263395040481923, 1.6300923609797409, 1.6338538778098615, 1.6376240745216881, 1.641402971144467, 1.6451905877536626, 1.6489869444710648, 1.652792061464895, 1.6566059589499145, 1.6604286571875302, 1.6642601764859037, 1.668100537200059, 1.6719497597319894, 1.675807864530768, 1.6796748720926535, 1.6835508029612027, 1.6874356777273756, 1.691329517029648, 1.6952323415541206, 1.6991441720346265, 1.7030650292528446, 1.7069949340384079, 1.7109339072690146, 1.71488196987054, 1.7188391428171461, 1.7228054471313943, 1.7267809038843558, 1.7307655341957253, 1.7347593592339317, 1.738762400216251, 1.7427746784089193, 1.7467962151272456, 1.7508270317357246, 1.7548671496481512, 1.758916590327733, 1.762975375287206, 1.7670435260889465, 1.7711210643450883, 1.7752080117176352, 1.779304389918578, 1.7834102207100084, 1.7875255259042353, 1.7916503273639008, 1.795784647002096, 1.799928506782477, 1.804081928719383, 1.8082449348779515, 1.8124175473742372, 1.8165997883753278, 1.8207916800994632, 1.8249932448161525, 1.8292045048462935, 1.8334254825622902, 1.8376562003881713, 1.8418966807997115, 1.846146946324548, 1.850407019542302, 1.854676923084699, 1.8589566796356873, 1.8632463119315605, 1.8675458427610763, 1.8718552949655791, 1.8761746914391209, 1.8805040551285825, 1.8848434090337962, 1.8891927762076666, 1.8935521797562953, 1.897921642839101, 1.902301188668945, 1.9066908405122527, 1.9110906216891381, 1.9155005555735278, 1.9199206655932843, 1.9243509752303312, 1.9287915080207785, 1.9332422875550455, 1.9377033374779888, 1.942174681489026, 1.9466563433422623, 1.951148346846617, 1.9556507158659493, 1.9601634743191856, 1.964686646180446, 1.9692202554791725, 1.9737643263002562, 1.9783188827841645, 1.9828839491270713, 1.9874595495809833, 1.9920457084538703, 1.9966424501097941, 2.001249798969037, 2.005867779508234, 2.010496416260499, 2.0151357338155576, 2.0197857568198794, 2.024446509976804, 2.029118018046678, 2.0338003058469813, 2.0384933982524633, 2.0431973201952713, 2.047912096665086, 2.052637752709252, 2.057374313432913, 2.0621218039991436, 2.066880249629083, 2.0716496756020693, 2.0764301072557747, 2.081221569986339, 2.0860240892485042, 2.090837690555751, 2.095662399480433, 2.1004982416539155, 2.1053452427667056, 2.1102034285685956, 2.1150728248687956, 2.1199534575360715, 2.124845352498883, 2.1297485357455206, 2.1346630333242445, 2.139588871343422, 2.144526075971668, 2.1494746734379806, 2.154434690031884, 2.159406152103567, 2.164389086064021, 2.1693835183851844, 2.17438947560008, 2.1794069843029553, 2.1844360711494275, 2.1894767628566214, 2.194529086203314, 2.1995930680300746, 2.204668735239409, 2.209756114795902, 2.21485523372636, 2.2199661191199556, 2.225088798128369, 2.230223297965938, 2.2353696459097954, 2.240527869300019, 2.2456979955397744, 2.2508800520954617, 2.256074066496861, 2.2612800663372785, 2.2664980792736937, 2.2717281330269055, 2.27697025538168, 2.282224474186898, 2.287490817355703, 2.2927693128656497, 2.2980599887588515, 2.3033628731421314, 2.308677994187169, 2.314005380130653, 2.3193450592744282, 2.3246970599856485, 2.3300614106969246, 2.335438139906479, 2.3408272761782936, 2.346228848142263, 2.3516428844943493, 2.3570694139967276, 2.3625084654779474, 2.367960067833078, 2.373424250023867, 2.378901041078894, 2.3843904700937206, 2.38989256623105, 2.3954073587208784, 2.4009348768606524, 2.406475150015425, 2.4120282076180066, 2.4175940791691306, 2.4231727942376, 2.4287643824604515, 2.434368873543111, 2.43998629725955, 2.445616683452446, 2.451260062033339, 2.456916462982791, 2.4625859163505472, 2.4682684522556926, 2.4739641008868136, 2.479672892502159, 2.4853948574297995, 2.491130026067789, 2.496878428884327, 2.502640096417919, 2.5084150592775405, 2.5142033481427974, 2.520004993764093, 2.5258200269627844, 2.531648478631355, 2.537490379733571, 2.5433457613046495, 2.549214654451424, 2.5550970903525068, 2.560993100258459, 2.566902715491951, 2.5728259674479332, 2.578762887593802, 2.584713507469564, 2.5906778586880086, 2.5966559729348715, 2.6026478819690055, 2.6086536176225485, 2.614673211801092, 2.620706696483852, 2.626754103723837, 2.6328154656480214, 2.638890814457511, 2.64498018242772, 2.6510836019085384, 2.6572011053245057, 2.663332725174982, 2.6694784940343212, 2.675638444552045, 2.681812609453015, 2.6880010215376062, 2.6942037136818833, 2.700420718837773, 2.7066520700332415, 2.712897800372467, 2.7191579430360178, 2.725432531281029, 2.7317215984413767, 2.7380251779278577, 2.744343303228365, 2.7506760079080665, 2.757023325609584, 2.7633852900531704, 2.769761935036891, 2.7761532944368006, 2.782559402207125, 2.788980292380441, 2.795415999067857, 2.8018665564591956, 2.8083319988231725, 2.81481236050758, 2.821307675939472, 2.827817979625342, 2.8343433061513097, 2.8408836901833037, 2.8474391664672467, 2.854009769829239, 2.860595535175743, 2.86719649749377, 2.8738126918510662, 2.8804441533962963, 2.8870909173592363, 2.8937530190509513, 2.9004304938639915, 2.907123377272578, 2.9138317048327878, 2.9205555121827467, 2.927294835042817, 2.9340497092157873, 2.940820170587063, 2.9476062551248576, 2.9544079988803813, 2.961225437988035, 2.9680586086656024, 2.9749075472144404, 2.9817722900196726, 2.988652873550384, 2.995549334359814, 3.0024617090855497, 3.0093900344497206, 3.0163343472591966, 3.0232946844057778, 3.030271082866397, 3.037263579703312, 3.0442722120643024, 3.05129701718287, 3.0583380323784333, 3.0653952950565273, 3.0724688427090037, 3.079558712914226, 3.086664943337274, 3.093787571730138, 3.1009266359319274, 3.1080821738690645, 3.115254223555487, 3.122442823092857, 3.1296480106707523, 3.136869824566878, 3.144108303147265, 3.151363484866479, 3.158635408267818, 3.1659241119835224, 3.173229634734978, 3.18055201533292, 3.1878912926776457, 3.195247505759212, 3.202620693657652, 3.2100108955431734, 3.2174181506763713, 3.2248424984084423, 3.2322839781813792, 3.2397426295281972, 3.2472184920731304, 3.254711605531848, 3.2622220097116696, 3.2697497445117665, 3.2772948499233836, 3.284857366030045, 3.2924373330077685, 3.3000347911252854, 3.307649780744241, 3.3152823423194246, 3.322932516398973, 3.330600343624589, 3.338285864731761, 3.345989120549973, 3.3537101520029307, 3.3614490001087667, 3.369205705980267, 3.3769803108250915, 3.384772855945981, 3.3925833827409937, 3.4004119327037077, 3.408258547423452, 3.4161232685855287, 3.424006137971424, 3.4319071974590445, 3.439826489022926, 3.447764054734464, 3.455719936762139, 3.4636941773717327, 3.4716868189265613, 3.4796979038876934, 3.4877274748141778, 3.4957755743632752, 3.503842245290674, 3.5119275304507296, 3.520031472796681, 3.528154115380883, 3.536295501355043, 3.5444556739704356, 3.5526346765781414, 3.5608325526292797, 3.5690493456752295, 3.5772850993678733, 3.5855398574598167, 3.5938136638046276, 3.602106562357072, 3.6104185971733376, 3.6187498124112802, 3.6271002523306484, 3.6354699612933197, 3.6438589837635464, 3.6522673643081753, 3.6606951475969023, 3.669142378402494, 3.6776091016010324, 3.6860953621721597, 3.6946012051993025, 3.7031266758699273, 3.7116718194757667, 3.720236681413068, 3.7288213071828356, 3.737425742391064, 3.746050032748993, 3.754694224073337, 3.7633583622865348, 3.7720424934169996, 3.7807466635993494, 3.7894709190746676, 3.798215306190736, 3.806979871402286, 3.8157646612712504, 3.824569722466999, 3.8333951017666013, 3.842240846055061, 3.8511070023255707, 3.8599936176797693, 3.8689007393279757, 3.8778284145894575, 3.8867766908926678, 3.8957456157755033, 3.904735236885562, 3.913745601980384, 3.9227767589277196, 3.9318287557057703, 3.9409016404034496, 3.949995461220645, 3.9591102664684588, 3.9682461045694817, 3.9774030240580367, 3.986581073580441, 3.995780301895272, 4.005000757873611, 4.014242490499322, 4.023505548869293, 4.032789982193707, 4.042095839796308, 4.051423171114648, 4.060772025700365, 4.070142453219439, 4.079534503452451, 4.088948226294862, 4.0983836717572615, 4.1078408899656464, 4.1173199311616795, 4.126820845702954, 4.1363436840632755, 4.145888496832911, 4.155455334718876, 4.165044248545185, 4.174655289253137, 4.184288507901583, 4.193943955667186, 4.203621683844713, 4.213321743847289, 4.223044187206674, 4.2327890655735505, 4.242556430717777, 4.252346334528682, 4.262158829015325, 4.271993966306779, 4.281851798652413, 4.291732378422157, 4.301635758106795, 4.3115619903182285, 4.321511127789765, 4.3314832233764005, 4.341478330055092, 4.35149650092505, 4.361537789208006, 4.371602248248505, 4.381689931514193, 4.391800892596086, 4.401935185208875, 4.41209286319119, 4.422273980505899, 4.432478591240399, 4.442706749606883, 4.452958509942656, 4.463233926710397, 4.473533054498465, 4.483855948021189, 4.494202662119142, 4.504573251759458, 4.514967772036102, 4.525386278170169, 4.535828825510189, 4.546295469532399, 4.556786265841064, 4.5673012701687465, 4.577840538376619, 4.588404126454759, 4.598992090522438, 4.609604486828434, 4.620241371751313, 4.630902801799739, 4.641588833612779, 4.652299523960189, 4.663034929742731, 4.673795107992463, 4.684580115873048, 4.69539001068006, 4.7062248498412815, 4.717084690917018, 4.727969591600391, 4.738879609717653, 4.749814803228502, 4.76077523022637, 4.771760948938746, 4.782772017727485, 4.79380849508911, 4.804870439655131, 4.8159579101923535, 4.827070965603183, 4.838209664925957, 4.849374067335235, 4.860564232142136, 4.871780218794633, 4.8830220868778795, 4.894289896114532, 4.905583706365048, 4.9169035776280285, 4.928249570040515, 4.9396217438783205, 4.951020159556351, 4.962444877628916, 4.973895958790065, 4.985373463873896, 4.996877453854884, 5.008407989848212, 5.019965133110082, 5.031548945038054, 5.043159487171361, 5.05479682119124, 5.0664610089212685, 5.078152112327674, 5.089870193519682, 5.101615314749836, 5.113387538414326, 5.125186927053333, 5.137013543351341, 5.1488674501374945, 5.16074871038591, 5.172657387216019, 5.1845935438929125, 5.19655724382766, 5.208548550577662, 5.220567527846978, 5.2326142394866615, 5.244688749495118, 5.256791122018422, 5.268921421350674, 5.281079711934334, 5.293266058360562, 5.305480525369574, 5.317723177850969, 5.329994080844091, 5.342293299538355, 5.354620899273607, 5.366976945540476, 5.3793615039807, 5.391774640387503, 5.404216420705918, 5.416686911033152, 5.429186177618943, 5.44171428686589, 5.454271305329833, 5.466857299720184, 5.479472336900287, 5.49211648388779, 5.50478980785497, 5.517492376129126, 5.530224256192903, 5.542985515684669, 5.555776222398878, 5.5685964442864115, 5.581446249454963, 5.59432570616938, 5.607234882852032, 5.620173848083188, 5.633142670601354, 5.646141419303669, 5.659170163246245, 5.672228971644543, 5.685317913873753, 5.698437059469139, 5.711586478126431, 5.724766239702181, 5.737976414214134, 5.751217071841614, 5.764488282925877, 5.777790117970504, 5.79112264764176, 5.804485942768977, 5.817880074344935, 5.831305113526222, 5.844761131633635, 5.858248200152539, 5.871766390733255, 5.885315775191451, 5.898896425508497, 5.912508413831878, 5.926151812475556, 5.939826693920357, 5.95353313081437, 5.967271195973314, 5.981040962380941, 5.994842503189412, 6.008675891719687, 6.0225412014619275, 6.036438506075867, 6.050367879391221, 6.064329395408065, 6.07832312829723, 6.092349152400712, 6.10640754223204, 6.1204983724767, 6.134621717992509, 6.148777653810023, 6.162966255132942, 6.1771875973384915, 6.191441755977845, 6.205728806776504, 6.220048825634711, 6.234401888627865, 6.248788072006891, 6.263207452198689, 6.277660105806504, 6.292146109610344, 6.306665540567406, 6.3212184758124526, 6.33580499265825, 6.350425168595965, 6.365079081295572, 6.379766808606282, 6.394488428556944, 6.4092440193564535, 6.424033659394194, 6.4388574272404195, 6.453715401646702, 6.4686076615463275, 6.483534286054724, 6.498495354469892, 6.513490946272802, 6.528521141127848, 6.543586018883236, 6.558685659571433, 6.573820143409589, 6.58898955079995, 6.604193962330306, 6.619433458774394, 6.6347081210923475, 6.650018030431122, 6.6653632681249135, 6.680743915695615, 6.696160054853222, 6.711611767496284, 6.72709913571234, 6.742622241778342, 6.75818116816111, 6.773775997517752, 6.789406812696109, 6.80507369673521, 6.820776732865685, 6.836516004510239, 6.852291595284065, 6.868103588995304, 6.8839520696455, 6.899837121430018, 6.915758828738525, 6.931717276155407, 6.9477125484602364, 6.963744730628226, 6.9798139078306605, 6.995920165435375, 7.012063589007184, 7.028244264308349, 7.044462277299041, 7.060717714137772, 7.077010661181889, 7.093341204987997, 7.109709432312435, 7.126115430111749, 7.142559285543126, 7.159041085964889, 7.175560918936928, 7.192118872221189, 7.208715033782139, 7.225349491787214, 7.242022334607316, 7.258733650817254, 7.2754835291962285, 7.292272058728317, 7.309099328602911, 7.3259654282152304, 7.342870447166765, 7.359814475265767, 7.376797602527734, 7.393819919175866, 7.41088151564157, 7.427982482564918, 7.445122910795139, 7.462302891391111, 7.479522515621821, 7.496781874966877, 7.51408106111697, 7.531420165974372, 7.5487992816534355, 7.566218500481055, 7.583677914997191, 7.60117761795533, 7.6187177023229955, 7.636298261282246, 7.653919388230148, 7.671581176779302, 7.689283720758313, 7.707027114212299, 7.724811451403404, 7.742636826811269, 7.760503335133571, 7.77841107128649, 7.796360130405233, 7.814350607844546, 7.832382599179196, 7.850456200204509, 7.868571506936852, 7.886728615614152, 7.904927622696424, 7.923168624866253, 7.94145171902934, 7.959777002314985, 7.978144572076625, 7.996554525892351, 8.015006961565405, 8.033501977124734, 8.052039670825478, 8.070620141149503, 8.089243486805943, 8.107909806731687, 8.126619200091945, 8.145371766280745, 8.164167604921468, 8.183006815867394, 8.201889499202203, 8.22081575524054, 8.23978568452852, 8.258799387844268, 8.277856966198476, 8.296958520834906, 8.316104153230961, 8.335293965098195, 8.354528058382867, 8.373806535266494, 8.393129498166365, 8.412497049736118, 8.43190929286626, 8.451366330684717, 8.470868266557407, 8.490415204088746, 8.510007247122246, 8.529644499741025, 8.549327066268381, 8.569055051268352, 8.588828559546254, 8.608647696149244, 8.628512566366895, 8.648423275731723, 8.668379930019778, 8.68838263525119, 8.708431497690723, 8.72852662384838, 8.748668120479909, 8.76885609458743, 8.789090653419958, 8.809371904473991, 8.829699955494092, 8.850074914473433, 8.870496889654408, 8.890965989529162, 8.911482322840202, 8.932045998580968, 8.952657125996396, 8.973315814583524, 8.994022174092049, 9.014776314524918, 9.03557834613893, 9.05642837944529, 9.077326525210228, 9.098272894455564, 9.119267598459299, 9.140310748756232, 9.161402457138516, 9.182542835656285, 9.203731996618226, 9.224970052592173, 9.246257116405744, 9.267593301146878, 9.288978720164502, 9.31041348706908, 9.33189771573324, 9.353431520292386, 9.375015015145285, 9.396648314954696, 9.418331534647956, 9.440064789417603, 9.461848194722002, 9.483681866285922, 9.505565920101196, 9.527500472427295, 9.549485639791966, 9.571521538991865, 9.593608287093142, 9.6157460014321, 9.63793479961579, 9.660174799522645, 9.682466119303124, 9.704808877380302, 9.727203192450542, 9.749649183484092, 9.772146969725725, 9.794696670695396, 9.817298406188836, 9.83995229627823, 9.862658461312826, 9.885417021919572, 9.908228099003798, 9.931091813749797, 9.954008287621523, 9.976977642363206, 10.0], "x": [5.551115123125783e-17, 0.0010010010010010565, 0.0020020020020020575, 0.0030030030030030585, 0.0040040040040040595, 0.0050050050050050605, 0.0060060060060060615, 0.0070070070070070625, 0.008008008008008063, 0.009009009009009064, 0.010010010010010065, 0.011011011011011066, 0.012012012012012067, 0.013013013013013068, 0.01401401401401407, 0.01501501501501507, 0.01601601601601607, 0.01701701701701707, 0.018018018018018073, 0.019019019019019076, 0.020020020020020075, 0.021021021021021075, 0.022022022022022077, 0.02302302302302308, 0.02402402402402408, 0.02502502502502508, 0.02602602602602608, 0.027027027027027084, 0.028028028028028083, 0.029029029029029083, 0.030030030030030085, 0.031031031031031088, 0.03203203203203209, 0.033033033033033087, 0.034034034034034086, 0.03503503503503509, 0.03603603603603609, 0.03703703703703709, 0.0380380380380381, 0.039039039039039096, 0.040040040040040095, 0.041041041041041094, 0.042042042042042094, 0.0430430430430431, 0.0440440440440441, 0.0450450450450451, 0.046046046046046105, 0.047047047047047104, 0.0480480480480481, 0.0490490490490491, 0.0500500500500501, 0.05105105105105111, 0.05205205205205211, 0.053053053053053106, 0.05405405405405411, 0.05505505505505511, 0.05605605605605611, 0.05705705705705711, 0.05805805805805811, 0.059059059059059116, 0.060060060060060115, 0.061061061061061114, 0.06206206206206212, 0.06306306306306311, 0.06406406406406412, 0.06506506506506513, 0.06606606606606612, 0.06706706706706712, 0.06806806806806812, 0.06906906906906912, 0.07007007007007013, 0.07107107107107112, 0.07207207207207213, 0.07307307307307313, 0.07407407407407413, 0.07507507507507513, 0.07607607607607614, 0.07707707707707713, 0.07807807807807814, 0.07907907907907913, 0.08008008008008013, 0.08108108108108114, 0.08208208208208213, 0.08308308308308314, 0.08408408408408413, 0.08508508508508514, 0.08608608608608614, 0.08708708708708714, 0.08808808808808814, 0.08908908908908915, 0.09009009009009014, 0.09109109109109115, 0.09209209209209215, 0.09309309309309315, 0.09409409409409415, 0.09509509509509514, 0.09609609609609615, 0.09709709709709716, 0.09809809809809815, 0.09909909909909916, 0.10010010010010015, 0.10110110110110115, 0.10210210210210216, 0.10310310310310315, 0.10410410410410416, 0.10510510510510516, 0.10610610610610616, 0.10710710710710716, 0.10810810810810817, 0.10910910910910916, 0.11011011011011017, 0.11111111111111116, 0.11211211211211217, 0.11311311311311317, 0.11411411411411417, 0.11511511511511517, 0.11611611611611616, 0.11711711711711717, 0.11811811811811818, 0.11911911911911917, 0.12012012012012017, 0.12112112112112118, 0.12212212212212217, 0.12312312312312318, 0.12412412412412419, 0.1251251251251252, 0.12612612612612617, 0.12712712712712718, 0.12812812812812818, 0.1291291291291292, 0.1301301301301302, 0.13113113113113117, 0.13213213213213218, 0.13313313313313319, 0.1341341341341342, 0.1351351351351352, 0.13613613613613618, 0.13713713713713718, 0.1381381381381382, 0.1391391391391392, 0.1401401401401402, 0.1411411411411412, 0.14214214214214219, 0.1431431431431432, 0.1441441441441442, 0.1451451451451452, 0.1461461461461462, 0.1471471471471472, 0.1481481481481482, 0.1491491491491492, 0.1501501501501502, 0.15115115115115121, 0.15215215215215222, 0.1531531531531532, 0.1541541541541542, 0.1551551551551552, 0.15615615615615622, 0.15715715715715722, 0.1581581581581582, 0.1591591591591592, 0.16016016016016021, 0.16116116116116122, 0.16216216216216223, 0.1631631631631632, 0.1641641641641642, 0.16516516516516522, 0.16616616616616622, 0.16716716716716723, 0.1681681681681682, 0.16916916916916921, 0.17017017017017022, 0.17117117117117123, 0.17217217217217223, 0.17317317317317324, 0.17417417417417422, 0.17517517517517522, 0.17617617617617623, 0.17717717717717724, 0.17817817817817824, 0.17917917917917922, 0.18018018018018023, 0.18118118118118123, 0.18218218218218224, 0.18318318318318325, 0.18418418418418425, 0.18518518518518523, 0.18618618618618624, 0.18718718718718724, 0.18818818818818825, 0.18918918918918926, 0.19019019019019023, 0.19119119119119124, 0.19219219219219225, 0.19319319319319325, 0.19419419419419426, 0.19519519519519524, 0.19619619619619624, 0.19719719719719725, 0.19819819819819826, 0.19919919919919926, 0.20020020020020024, 0.20120120120120125, 0.20220220220220225, 0.20320320320320326, 0.20420420420420426, 0.20520520520520527, 0.20620620620620625, 0.20720720720720726, 0.20820820820820826, 0.20920920920920927, 0.21021021021021027, 0.21121121121121125, 0.21221221221221226, 0.21321321321321327, 0.21421421421421427, 0.21521521521521528, 0.21621621621621628, 0.21721721721721726, 0.21821821821821827, 0.21921921921921927, 0.22022022022022028, 0.2212212212212213, 0.22222222222222227, 0.22322322322322327, 0.22422422422422428, 0.22522522522522528, 0.2262262262262263, 0.22722722722722727, 0.22822822822822827, 0.22922922922922928, 0.2302302302302303, 0.2312312312312313, 0.23223223223223227, 0.23323323323323328, 0.23423423423423428, 0.2352352352352353, 0.2362362362362363, 0.2372372372372373, 0.23823823823823828, 0.2392392392392393, 0.2402402402402403, 0.2412412412412413, 0.2422422422422423, 0.24324324324324328, 0.2442442442442443, 0.2452452452452453, 0.2462462462462463, 0.2472472472472473, 0.24824824824824832, 0.2492492492492493, 0.25025025025025033, 0.2512512512512513, 0.2522522522522523, 0.2532532532532533, 0.2542542542542543, 0.25525525525525533, 0.2562562562562563, 0.2572572572572573, 0.2582582582582583, 0.2592592592592593, 0.26026026026026033, 0.2612612612612613, 0.2622622622622623, 0.2632632632632633, 0.2642642642642643, 0.26526526526526534, 0.2662662662662663, 0.2672672672672673, 0.26826826826826833, 0.2692692692692693, 0.27027027027027034, 0.2712712712712713, 0.2722722722722723, 0.27327327327327333, 0.2742742742742743, 0.27527527527527534, 0.2762762762762763, 0.27727727727727736, 0.27827827827827833, 0.2792792792792793, 0.28028028028028035, 0.2812812812812813, 0.28228228228228236, 0.28328328328328334, 0.2842842842842843, 0.28528528528528535, 0.28628628628628633, 0.28728728728728736, 0.28828828828828834, 0.2892892892892893, 0.29029029029029035, 0.29129129129129133, 0.29229229229229237, 0.29329329329329334, 0.2942942942942943, 0.29529529529529536, 0.29629629629629634, 0.29729729729729737, 0.29829829829829835, 0.2992992992992993, 0.30030030030030036, 0.30130130130130134, 0.3023023023023024, 0.30330330330330335, 0.3043043043043044, 0.30530530530530536, 0.30630630630630634, 0.3073073073073074, 0.30830830830830835, 0.3093093093093094, 0.31031031031031037, 0.31131131131131135, 0.3123123123123124, 0.31331331331331336, 0.3143143143143144, 0.31531531531531537, 0.31631631631631635, 0.3173173173173174, 0.31831831831831836, 0.3193193193193194, 0.3203203203203204, 0.32132132132132135, 0.3223223223223224, 0.32332332332332336, 0.3243243243243244, 0.3253253253253254, 0.32632632632632635, 0.3273273273273274, 0.32832832832832837, 0.3293293293293294, 0.3303303303303304, 0.33133133133133136, 0.3323323323323324, 0.33333333333333337, 0.3343343343343344, 0.3353353353353354, 0.33633633633633636, 0.3373373373373374, 0.3383383383383384, 0.3393393393393394, 0.3403403403403404, 0.3413413413413414, 0.3423423423423424, 0.3433433433433434, 0.3443443443443444, 0.3453453453453454, 0.3463463463463464, 0.3473473473473474, 0.3483483483483484, 0.3493493493493494, 0.3503503503503504, 0.3513513513513514, 0.3523523523523524, 0.3533533533533534, 0.3543543543543544, 0.3553553553553554, 0.35635635635635643, 0.3573573573573574, 0.3583583583583584, 0.3593593593593594, 0.3603603603603604, 0.36136136136136143, 0.3623623623623624, 0.3633633633633634, 0.3643643643643644, 0.3653653653653654, 0.36636636636636644, 0.3673673673673674, 0.36836836836836845, 0.3693693693693694, 0.3703703703703704, 0.37137137137137144, 0.3723723723723724, 0.37337337337337345, 0.37437437437437443, 0.3753753753753754, 0.37637637637637644, 0.3773773773773774, 0.37837837837837845, 0.37937937937937943, 0.3803803803803804, 0.38138138138138145, 0.3823823823823824, 0.38338338338338346, 0.38438438438438444, 0.3853853853853854, 0.38638638638638645, 0.3873873873873874, 0.38838838838838846, 0.38938938938938944, 0.3903903903903904, 0.39139139139139145, 0.39239239239239243, 0.39339339339339346, 0.39439439439439444, 0.3953953953953954, 0.39639639639639646, 0.39739739739739743, 0.39839839839839847, 0.39939939939939945, 0.4004004004004004, 0.40140140140140146, 0.40240240240240244, 0.40340340340340347, 0.40440440440440445, 0.4054054054054055, 0.40640640640640646, 0.40740740740740744, 0.4084084084084085, 0.40940940940940945, 0.4104104104104105, 0.41141141141141147, 0.41241241241241244, 0.4134134134134135, 0.41441441441441446, 0.4154154154154155, 0.41641641641641647, 0.41741741741741745, 0.4184184184184185, 0.41941941941941946, 0.4204204204204205, 0.42142142142142147, 0.42242242242242245, 0.4234234234234235, 0.42442442442442446, 0.4254254254254255, 0.4264264264264265, 0.42742742742742745, 0.4284284284284285, 0.42942942942942947, 0.4304304304304305, 0.4314314314314315, 0.4324324324324325, 0.4334334334334335, 0.43443443443443447, 0.4354354354354355, 0.4364364364364365, 0.4374374374374375, 0.4384384384384385, 0.43943943943943947, 0.4404404404404405, 0.4414414414414415, 0.4424424424424425, 0.4434434434434435, 0.4444444444444445, 0.4454454454454455, 0.4464464464464465, 0.4474474474474475, 0.4484484484484485, 0.4494494494494495, 0.4504504504504505, 0.4514514514514515, 0.4524524524524525, 0.4534534534534535, 0.4544544544544545, 0.4554554554554555, 0.4564564564564565, 0.45745745745745753, 0.4584584584584585, 0.4594594594594595, 0.4604604604604605, 0.4614614614614615, 0.46246246246246253, 0.4634634634634635, 0.4644644644644645, 0.4654654654654655, 0.4664664664664665, 0.46746746746746753, 0.4684684684684685, 0.46946946946946955, 0.4704704704704705, 0.4714714714714715, 0.47247247247247254, 0.4734734734734735, 0.47447447447447455, 0.47547547547547553, 0.4764764764764765, 0.47747747747747754, 0.4784784784784785, 0.47947947947947955, 0.48048048048048053, 0.4814814814814815, 0.48248248248248254, 0.4834834834834835, 0.48448448448448456, 0.48548548548548554, 0.4864864864864865, 0.48748748748748755, 0.4884884884884885, 0.48948948948948956, 0.49049049049049054, 0.4914914914914915, 0.49249249249249255, 0.49349349349349353, 0.49449449449449456, 0.49549549549549554, 0.4964964964964966, 0.49749749749749755, 0.49849849849849853, 0.49949949949949957, 0.5005005005005005, 0.5015015015015016, 0.5025025025025025, 0.5035035035035036, 0.5045045045045045, 0.5055055055055055, 0.5065065065065066, 0.5075075075075075, 0.5085085085085086, 0.5095095095095095, 0.5105105105105106, 0.5115115115115116, 0.5125125125125125, 0.5135135135135136, 0.5145145145145145, 0.5155155155155156, 0.5165165165165166, 0.5175175175175175, 0.5185185185185186, 0.5195195195195195, 0.5205205205205206, 0.5215215215215216, 0.5225225225225225, 0.5235235235235236, 0.5245245245245245, 0.5255255255255256, 0.5265265265265267, 0.5275275275275275, 0.5285285285285286, 0.5295295295295295, 0.5305305305305306, 0.5315315315315317, 0.5325325325325325, 0.5335335335335336, 0.5345345345345345, 0.5355355355355356, 0.5365365365365367, 0.5375375375375375, 0.5385385385385386, 0.5395395395395395, 0.5405405405405406, 0.5415415415415417, 0.5425425425425425, 0.5435435435435436, 0.5445445445445445, 0.5455455455455456, 0.5465465465465467, 0.5475475475475475, 0.5485485485485486, 0.5495495495495497, 0.5505505505505506, 0.5515515515515517, 0.5525525525525525, 0.5535535535535536, 0.5545545545545547, 0.5555555555555556, 0.5565565565565567, 0.5575575575575575, 0.5585585585585586, 0.5595595595595597, 0.5605605605605606, 0.5615615615615617, 0.5625625625625625, 0.5635635635635636, 0.5645645645645647, 0.5655655655655656, 0.5665665665665667, 0.5675675675675675, 0.5685685685685686, 0.5695695695695697, 0.5705705705705706, 0.5715715715715717, 0.5725725725725725, 0.5735735735735736, 0.5745745745745747, 0.5755755755755756, 0.5765765765765767, 0.5775775775775776, 0.5785785785785786, 0.5795795795795797, 0.5805805805805806, 0.5815815815815817, 0.5825825825825826, 0.5835835835835836, 0.5845845845845847, 0.5855855855855856, 0.5865865865865867, 0.5875875875875876, 0.5885885885885886, 0.5895895895895897, 0.5905905905905906, 0.5915915915915917, 0.5925925925925926, 0.5935935935935936, 0.5945945945945947, 0.5955955955955956, 0.5965965965965967, 0.5975975975975976, 0.5985985985985987, 0.5995995995995997, 0.6006006006006006, 0.6016016016016017, 0.6026026026026026, 0.6036036036036037, 0.6046046046046047, 0.6056056056056056, 0.6066066066066067, 0.6076076076076076, 0.6086086086086087, 0.6096096096096097, 0.6106106106106106, 0.6116116116116117, 0.6126126126126126, 0.6136136136136137, 0.6146146146146148, 0.6156156156156156, 0.6166166166166167, 0.6176176176176176, 0.6186186186186187, 0.6196196196196198, 0.6206206206206206, 0.6216216216216217, 0.6226226226226226, 0.6236236236236237, 0.6246246246246248, 0.6256256256256256, 0.6266266266266267, 0.6276276276276276, 0.6286286286286287, 0.6296296296296298, 0.6306306306306306, 0.6316316316316317, 0.6326326326326326, 0.6336336336336337, 0.6346346346346348, 0.6356356356356356, 0.6366366366366367, 0.6376376376376376, 0.6386386386386387, 0.6396396396396398, 0.6406406406406406, 0.6416416416416417, 0.6426426426426426, 0.6436436436436437, 0.6446446446446448, 0.6456456456456456, 0.6466466466466467, 0.6476476476476476, 0.6486486486486487, 0.6496496496496498, 0.6506506506506506, 0.6516516516516517, 0.6526526526526526, 0.6536536536536537, 0.6546546546546548, 0.6556556556556556, 0.6566566566566567, 0.6576576576576576, 0.6586586586586587, 0.6596596596596598, 0.6606606606606606, 0.6616616616616617, 0.6626626626626626, 0.6636636636636637, 0.6646646646646648, 0.6656656656656657, 0.6666666666666667, 0.6676676676676676, 0.6686686686686687, 0.6696696696696698, 0.6706706706706707, 0.6716716716716717, 0.6726726726726726, 0.6736736736736737, 0.6746746746746748, 0.6756756756756757, 0.6766766766766767, 0.6776776776776778, 0.6786786786786787, 0.6796796796796798, 0.6806806806806807, 0.6816816816816818, 0.6826826826826828, 0.6836836836836837, 0.6846846846846848, 0.6856856856856857, 0.6866866866866868, 0.6876876876876878, 0.6886886886886887, 0.6896896896896898, 0.6906906906906907, 0.6916916916916918, 0.6926926926926928, 0.6936936936936937, 0.6946946946946948, 0.6956956956956957, 0.6966966966966968, 0.6976976976976978, 0.6986986986986987, 0.6996996996996998, 0.7007007007007007, 0.7017017017017018, 0.7027027027027029, 0.7037037037037037, 0.7047047047047048, 0.7057057057057057, 0.7067067067067068, 0.7077077077077079, 0.7087087087087087, 0.7097097097097098, 0.7107107107107107, 0.7117117117117118, 0.7127127127127129, 0.7137137137137137, 0.7147147147147148, 0.7157157157157157, 0.7167167167167168, 0.7177177177177179, 0.7187187187187187, 0.7197197197197198, 0.7207207207207207, 0.7217217217217218, 0.7227227227227229, 0.7237237237237237, 0.7247247247247248, 0.7257257257257257, 0.7267267267267268, 0.7277277277277279, 0.7287287287287287, 0.7297297297297298, 0.7307307307307307, 0.7317317317317318, 0.7327327327327329, 0.7337337337337337, 0.7347347347347348, 0.7357357357357357, 0.7367367367367368, 0.7377377377377379, 0.7387387387387387, 0.7397397397397398, 0.7407407407407407, 0.7417417417417418, 0.7427427427427429, 0.7437437437437437, 0.7447447447447448, 0.7457457457457457, 0.7467467467467468, 0.7477477477477479, 0.7487487487487487, 0.7497497497497498, 0.7507507507507507, 0.7517517517517518, 0.7527527527527529, 0.7537537537537538, 0.7547547547547548, 0.7557557557557557, 0.7567567567567568, 0.7577577577577579, 0.7587587587587588, 0.7597597597597598, 0.7607607607607607, 0.7617617617617618, 0.7627627627627629, 0.7637637637637638, 0.7647647647647648, 0.7657657657657657, 0.7667667667667668, 0.7677677677677679, 0.7687687687687688, 0.7697697697697699, 0.7707707707707707, 0.7717717717717718, 0.7727727727727729, 0.7737737737737738, 0.7747747747747749, 0.7757757757757757, 0.7767767767767768, 0.7777777777777779, 0.7787787787787788, 0.7797797797797799, 0.7807807807807807, 0.7817817817817818, 0.7827827827827829, 0.7837837837837838, 0.7847847847847849, 0.7857857857857857, 0.7867867867867868, 0.7877877877877879, 0.7887887887887888, 0.7897897897897899, 0.7907907907907907, 0.7917917917917918, 0.7927927927927929, 0.7937937937937938, 0.7947947947947949, 0.7957957957957957, 0.7967967967967968, 0.7977977977977979, 0.7987987987987988, 0.7997997997997999, 0.8008008008008007, 0.8018018018018018, 0.8028028028028029, 0.8038038038038038, 0.8048048048048049, 0.805805805805806, 0.8068068068068068, 0.8078078078078079, 0.8088088088088088, 0.8098098098098099, 0.810810810810811, 0.8118118118118118, 0.8128128128128129, 0.8138138138138138, 0.8148148148148149, 0.815815815815816, 0.8168168168168168, 0.8178178178178179, 0.8188188188188188, 0.8198198198198199, 0.820820820820821, 0.8218218218218218, 0.8228228228228229, 0.8238238238238238, 0.8248248248248249, 0.825825825825826, 0.8268268268268268, 0.8278278278278279, 0.8288288288288288, 0.8298298298298299, 0.830830830830831, 0.8318318318318318, 0.8328328328328329, 0.8338338338338338, 0.8348348348348349, 0.835835835835836, 0.8368368368368369, 0.8378378378378379, 0.8388388388388388, 0.8398398398398399, 0.840840840840841, 0.8418418418418419, 0.8428428428428429, 0.8438438438438438, 0.8448448448448449, 0.845845845845846, 0.8468468468468469, 0.847847847847848, 0.8488488488488488, 0.8498498498498499, 0.850850850850851, 0.8518518518518519, 0.852852852852853, 0.8538538538538538, 0.8548548548548549, 0.855855855855856, 0.8568568568568569, 0.857857857857858, 0.8588588588588588, 0.8598598598598599, 0.860860860860861, 0.8618618618618619, 0.862862862862863, 0.8638638638638638, 0.8648648648648649, 0.865865865865866, 0.8668668668668669, 0.867867867867868, 0.8688688688688688, 0.8698698698698699, 0.870870870870871, 0.8718718718718719, 0.872872872872873, 0.8738738738738738, 0.8748748748748749, 0.875875875875876, 0.8768768768768769, 0.877877877877878, 0.8788788788788788, 0.8798798798798799, 0.880880880880881, 0.8818818818818819, 0.882882882882883, 0.8838838838838838, 0.8848848848848849, 0.885885885885886, 0.8868868868868869, 0.887887887887888, 0.8888888888888888, 0.8898898898898899, 0.890890890890891, 0.8918918918918919, 0.892892892892893, 0.8938938938938938, 0.8948948948948949, 0.895895895895896, 0.8968968968968969, 0.897897897897898, 0.8988988988988988, 0.8998998998998999, 0.900900900900901, 0.9019019019019019, 0.902902902902903, 0.9039039039039038, 0.9049049049049049, 0.905905905905906, 0.9069069069069069, 0.907907907907908, 0.9089089089089089, 0.9099099099099099, 0.910910910910911, 0.9119119119119119, 0.912912912912913, 0.9139139139139139, 0.914914914914915, 0.915915915915916, 0.9169169169169169, 0.917917917917918, 0.9189189189189189, 0.91991991991992, 0.920920920920921, 0.9219219219219219, 0.922922922922923, 0.9239239239239239, 0.924924924924925, 0.925925925925926, 0.9269269269269269, 0.927927927927928, 0.9289289289289289, 0.92992992992993, 0.930930930930931, 0.9319319319319319, 0.932932932932933, 0.9339339339339341, 0.934934934934935, 0.935935935935936, 0.9369369369369369, 0.937937937937938, 0.9389389389389391, 0.93993993993994, 0.940940940940941, 0.9419419419419419, 0.942942942942943, 0.9439439439439441, 0.944944944944945, 0.945945945945946, 0.9469469469469469, 0.947947947947948, 0.9489489489489491, 0.94994994994995, 0.9509509509509511, 0.9519519519519519, 0.952952952952953, 0.9539539539539541, 0.954954954954955, 0.9559559559559561, 0.9569569569569569, 0.957957957957958, 0.9589589589589591, 0.95995995995996, 0.9609609609609611, 0.9619619619619619, 0.962962962962963, 0.9639639639639641, 0.964964964964965, 0.9659659659659661, 0.9669669669669669, 0.967967967967968, 0.9689689689689691, 0.96996996996997, 0.9709709709709711, 0.9719719719719719, 0.972972972972973, 0.9739739739739741, 0.974974974974975, 0.9759759759759761, 0.9769769769769769, 0.977977977977978, 0.9789789789789791, 0.97997997997998, 0.9809809809809811, 0.9819819819819819, 0.982982982982983, 0.9839839839839841, 0.984984984984985, 0.9859859859859861, 0.986986986986987, 0.987987987987988, 0.9889889889889891, 0.98998998998999, 0.9909909909909911, 0.991991991991992, 0.992992992992993, 0.9939939939939941, 0.994994994994995, 0.9959959959959961, 0.996996996996997, 0.997997997997998, 0.9989989989989991, 1.0]}
-},{}],18:[function(require,module,exports){
-module.exports={"expected": [0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002], "x": [-5.551115123125783e-17, -5.5400017795359415e-17, -5.5288884359461e-17, -5.5177750923562586e-17, -5.506661748766417e-17, -5.4955484051765757e-17, -5.4844350615867345e-17, -5.473321717996893e-17, -5.4622083744070516e-17, -5.45109503081721e-17, -5.4399816872273687e-17, -5.4288683436375275e-17, -5.417755000047686e-17, -5.4066416564578446e-17, -5.395528312868003e-17, -5.3844149692781617e-17, -5.3733016256883205e-17, -5.362188282098479e-17, -5.3510749385086376e-17, -5.339961594918796e-17, -5.3288482513289546e-17, -5.3177349077391135e-17, -5.306621564149272e-17, -5.2955082205594306e-17, -5.284394876969589e-17, -5.2732815333797476e-17, -5.262168189789906e-17, -5.251054846200065e-17, -5.2399415026102235e-17, -5.228828159020382e-17, -5.2177148154305406e-17, -5.206601471840699e-17, -5.1954881282508577e-17, -5.1843747846610165e-17, -5.173261441071175e-17, -5.1621480974813336e-17, -5.151034753891492e-17, -5.1399214103016507e-17, -5.128808066711809e-17, -5.117694723121968e-17, -5.1065813795321266e-17, -5.095468035942285e-17, -5.0843546923524437e-17, -5.073241348762602e-17, -5.062128005172761e-17, -5.0510146615829196e-17, -5.039901317993078e-17, -5.0287879744032366e-17, -5.017674630813395e-17, -5.006561287223554e-17, -4.9954479436337126e-17, -4.984334600043871e-17, -4.9732212564540296e-17, -4.962107912864188e-17, -4.950994569274347e-17, -4.9398812256845055e-17, -4.928767882094664e-17, -4.9176545385048226e-17, -4.906541194914981e-17, -4.8954278513251397e-17, -4.8843145077352985e-17, -4.873201164145457e-17, -4.8620878205556156e-17, -4.850974476965774e-17, -4.8398611333759327e-17, -4.8287477897860915e-17, -4.81763444619625e-17, -4.8065211026064086e-17, -4.795407759016567e-17, -4.7842944154267257e-17, -4.7731810718368845e-17, -4.762067728247043e-17, -4.7509543846572016e-17, -4.73984104106736e-17, -4.7287276974775186e-17, -4.7176143538876775e-17, -4.706501010297836e-17, -4.6953876667079946e-17, -4.684274323118153e-17, -4.6731609795283116e-17, -4.6620476359384705e-17, -4.650934292348629e-17, -4.6398209487587875e-17, -4.628707605168946e-17, -4.6175942615791046e-17, -4.6064809179892635e-17, -4.5953675743994217e-17, -4.5842542308095805e-17, -4.573140887219739e-17, -4.5620275436298976e-17, -4.5509142000400564e-17, -4.5398008564502147e-17, -4.528687512860373e-17, -4.517574169270532e-17, -4.5064608256806906e-17, -4.4953474820908494e-17, -4.4842341385010077e-17, -4.473120794911166e-17, -4.462007451321325e-17, -4.4508941077314836e-17, -4.4397807641416424e-17, -4.4286674205518006e-17, -4.417554076961959e-17, -4.406440733372118e-17, -4.3953273897822766e-17, -4.384214046192435e-17, -4.3731007026025936e-17, -4.361987359012752e-17, -4.350874015422911e-17, -4.3397606718330695e-17, -4.328647328243228e-17, -4.3175339846533866e-17, -4.306420641063545e-17, -4.2953072974737037e-17, -4.2841939538838625e-17, -4.273080610294021e-17, -4.2619672667041796e-17, -4.250853923114338e-17, -4.2397405795244967e-17, -4.2286272359346555e-17, -4.217513892344814e-17, -4.2064005487549726e-17, -4.195287205165131e-17, -4.1841738615752897e-17, -4.1730605179854485e-17, -4.161947174395607e-17, -4.1508338308057656e-17, -4.139720487215924e-17, -4.1286071436260826e-17, -4.1174938000362415e-17, -4.1063804564464e-17, -4.0952671128565586e-17, -4.084153769266717e-17, -4.0730404256768756e-17, -4.0619270820870345e-17, -4.050813738497193e-17, -4.0397003949073515e-17, -4.02858705131751e-17, -4.0174737077276686e-17, -4.0063603641378275e-17, -3.9952470205479857e-17, -3.984133676958144e-17, -3.973020333368303e-17, -3.9619069897784616e-17, -3.9507936461886204e-17, -3.9396803025987787e-17, -3.928566959008937e-17, -3.917453615419096e-17, -3.9063402718292546e-17, -3.8952269282394134e-17, -3.8841135846495717e-17, -3.87300024105973e-17, -3.861886897469889e-17, -3.8507735538800476e-17, -3.8396602102902064e-17, -3.8285468667003646e-17, -3.817433523110523e-17, -3.806320179520682e-17, -3.7952068359308406e-17, -3.7840934923409994e-17, -3.7729801487511576e-17, -3.761866805161316e-17, -3.750753461571475e-17, -3.7396401179816335e-17, -3.7285267743917924e-17, -3.7174134308019506e-17, -3.706300087212109e-17, -3.6951867436222677e-17, -3.6840734000324265e-17, -3.6729600564425854e-17, -3.6618467128527436e-17, -3.650733369262902e-17, -3.6396200256730607e-17, -3.6285066820832195e-17, -3.6173933384933784e-17, -3.6062799949035366e-17, -3.595166651313695e-17, -3.5840533077238537e-17, -3.5729399641340125e-17, -3.5618266205441713e-17, -3.5507132769543296e-17, -3.539599933364488e-17, -3.5284865897746466e-17, -3.5173732461848055e-17, -3.506259902594964e-17, -3.4951465590051226e-17, -3.484033215415281e-17, -3.4729198718254396e-17, -3.4618065282355985e-17, -3.450693184645757e-17, -3.4395798410559155e-17, -3.428466497466074e-17, -3.4173531538762326e-17, -3.4062398102863915e-17, -3.3951264666965497e-17, -3.3840131231067085e-17, -3.372899779516867e-17, -3.3617864359270256e-17, -3.3506730923371844e-17, -3.3395597487473427e-17, -3.3284464051575015e-17, -3.31733306156766e-17, -3.3062197179778186e-17, -3.2951063743879774e-17, -3.2839930307981357e-17, -3.272879687208294e-17, -3.261766343618453e-17, -3.2506530000286116e-17, -3.2395396564387704e-17, -3.2284263128489286e-17, -3.217312969259087e-17, -3.206199625669246e-17, -3.1950862820794046e-17, -3.1839729384895634e-17, -3.1728595948997216e-17, -3.16174625130988e-17, -3.150632907720039e-17, -3.1395195641301975e-17, -3.1284062205403564e-17, -3.1172928769505146e-17, -3.106179533360673e-17, -3.0950661897708317e-17, -3.0839528461809905e-17, -3.0728395025911494e-17, -3.0617261590013076e-17, -3.050612815411466e-17, -3.0394994718216247e-17, -3.0283861282317835e-17, -3.0172727846419424e-17, -3.0061594410521006e-17, -2.995046097462259e-17, -2.9839327538724177e-17, -2.9728194102825765e-17, -2.9617060666927353e-17, -2.9505927231028936e-17, -2.939479379513052e-17, -2.9283660359232106e-17, -2.9172526923333695e-17, -2.9061393487435283e-17, -2.8950260051536866e-17, -2.883912661563845e-17, -2.8727993179740036e-17, -2.8616859743841625e-17, -2.8505726307943213e-17, -2.8394592872044795e-17, -2.828345943614638e-17, -2.8172326000247966e-17, -2.8061192564349555e-17, -2.7950059128451137e-17, -2.7838925692552725e-17, -2.7727792256654308e-17, -2.7616658820755896e-17, -2.7505525384857484e-17, -2.7394391948959067e-17, -2.7283258513060655e-17, -2.7172125077162237e-17, -2.7060991641263826e-17, -2.6949858205365414e-17, -2.6838724769466997e-17, -2.6727591333568585e-17, -2.6616457897670167e-17, -2.6505324461771756e-17, -2.6394191025873344e-17, -2.6283057589974926e-17, -2.6171924154076515e-17, -2.6060790718178097e-17, -2.5949657282279686e-17, -2.5838523846381274e-17, -2.5727390410482856e-17, -2.5616256974584445e-17, -2.5505123538686027e-17, -2.5393990102787615e-17, -2.5282856666889204e-17, -2.5171723230990786e-17, -2.5060589795092375e-17, -2.4949456359193957e-17, -2.4838322923295545e-17, -2.4727189487397128e-17, -2.4616056051498716e-17, -2.4504922615600304e-17, -2.4393789179701887e-17, -2.4282655743803475e-17, -2.4171522307905057e-17, -2.4060388872006646e-17, -2.3949255436108234e-17, -2.3838122000209817e-17, -2.3726988564311405e-17, -2.3615855128412987e-17, -2.3504721692514576e-17, -2.3393588256616164e-17, -2.3282454820717746e-17, -2.3171321384819335e-17, -2.3060187948920917e-17, -2.2949054513022506e-17, -2.2837921077124094e-17, -2.2726787641225676e-17, -2.2615654205327265e-17, -2.2504520769428847e-17, -2.2393387333530435e-17, -2.2282253897632024e-17, -2.2171120461733606e-17, -2.2059987025835195e-17, -2.1948853589936777e-17, -2.1837720154038365e-17, -2.1726586718139948e-17, -2.1615453282241536e-17, -2.1504319846343124e-17, -2.1393186410444707e-17, -2.1282052974546295e-17, -2.1170919538647877e-17, -2.1059786102749466e-17, -2.0948652666851054e-17, -2.0837519230952637e-17, -2.0726385795054225e-17, -2.0615252359155807e-17, -2.0504118923257396e-17, -2.0392985487358984e-17, -2.0281852051460566e-17, -2.0170718615562155e-17, -2.0059585179663737e-17, -1.9948451743765326e-17, -1.9837318307866914e-17, -1.9726184871968496e-17, -1.9615051436070085e-17, -1.9503918000171667e-17, -1.9392784564273255e-17, -1.9281651128374844e-17, -1.9170517692476426e-17, -1.9059384256578015e-17, -1.8948250820679597e-17, -1.8837117384781185e-17, -1.8725983948882774e-17, -1.8614850512984356e-17, -1.8503717077085944e-17, -1.8392583641187527e-17, -1.8281450205289115e-17, -1.8170316769390704e-17, -1.8059183333492286e-17, -1.7948049897593874e-17, -1.7836916461695457e-17, -1.7725783025797045e-17, -1.7614649589898627e-17, -1.7503516154000216e-17, -1.7392382718101804e-17, -1.7281249282203386e-17, -1.7170115846304975e-17, -1.7058982410406557e-17, -1.6947848974508146e-17, -1.6836715538609734e-17, -1.6725582102711316e-17, -1.6614448666812905e-17, -1.6503315230914487e-17, -1.6392181795016075e-17, -1.6281048359117664e-17, -1.6169914923219246e-17, -1.6058781487320835e-17, -1.5947648051422417e-17, -1.5836514615524005e-17, -1.5725381179625594e-17, -1.5614247743727176e-17, -1.5503114307828764e-17, -1.5391980871930347e-17, -1.5280847436031935e-17, -1.5169714000133524e-17, -1.5058580564235106e-17, -1.4947447128336694e-17, -1.4836313692438277e-17, -1.4725180256539865e-17, -1.4614046820641447e-17, -1.4502913384743036e-17, -1.4391779948844624e-17, -1.4280646512946206e-17, -1.4169513077047795e-17, -1.4058379641149377e-17, -1.3947246205250966e-17, -1.3836112769352554e-17, -1.3724979333454136e-17, -1.3613845897555725e-17, -1.3502712461657307e-17, -1.3391579025758895e-17, -1.3280445589860484e-17, -1.3169312153962066e-17, -1.3058178718063655e-17, -1.2947045282165237e-17, -1.2835911846266825e-17, -1.2724778410368414e-17, -1.2613644974469996e-17, -1.2502511538571584e-17, -1.2391378102673167e-17, -1.2280244666774755e-17, -1.2169111230876344e-17, -1.2057977794977926e-17, -1.1946844359079514e-17, -1.1835710923181097e-17, -1.1724577487282685e-17, -1.1613444051384273e-17, -1.1502310615485856e-17, -1.1391177179587444e-17, -1.1280043743689026e-17, -1.1168910307790615e-17, -1.1057776871892203e-17, -1.0946643435993786e-17, -1.0835510000095374e-17, -1.0724376564196956e-17, -1.0613243128298545e-17, -1.0502109692400127e-17, -1.0390976256501715e-17, -1.0279842820603304e-17, -1.0168709384704886e-17, -1.0057575948806475e-17, -9.946442512908057e-18, -9.835309077009645e-18, -9.724175641111234e-18, -9.613042205212816e-18, -9.501908769314404e-18, -9.390775333415987e-18, -9.279641897517575e-18, -9.168508461619164e-18, -9.057375025720746e-18, -8.946241589822334e-18, -8.835108153923917e-18, -8.723974718025505e-18, -8.612841282127093e-18, -8.501707846228676e-18, -8.390574410330264e-18, -8.279440974431846e-18, -8.168307538533435e-18, -8.057174102635023e-18, -7.946040666736606e-18, -7.834907230838194e-18, -7.723773794939776e-18, -7.612640359041365e-18, -7.501506923142947e-18, -7.390373487244535e-18, -7.279240051346124e-18, -7.168106615447706e-18, -7.056973179549295e-18, -6.945839743650877e-18, -6.834706307752465e-18, -6.723572871854054e-18, -6.612439435955636e-18, -6.501306000057224e-18, -6.390172564158807e-18, -6.279039128260395e-18, -6.1679056923619835e-18, -6.056772256463566e-18, -5.945638820565154e-18, -5.8345053846667365e-18, -5.723371948768325e-18, -5.612238512869913e-18, -5.501105076971496e-18, -5.389971641073084e-18, -5.278838205174666e-18, -5.167704769276255e-18, -5.056571333377843e-18, -4.9454378974794255e-18, -4.834304461581014e-18, -4.723171025682596e-18, -4.612037589784185e-18, -4.500904153885773e-18, -4.389770717987355e-18, -4.278637282088944e-18, -4.167503846190526e-18, -4.0563704102921145e-18, -3.945236974393703e-18, -3.834103538495285e-18, -3.722970102596874e-18, -3.611836666698456e-18, -3.500703230800044e-18, -3.3895697949016266e-18, -3.278436359003215e-18, -3.1673029231048035e-18, -3.0561694872063858e-18, -2.9450360513079742e-18, -2.8339026154095565e-18, -2.722769179511145e-18, -2.6116357436127334e-18, -2.5005023077143156e-18, -2.389368871815904e-18, -2.2782354359174864e-18, -2.1671020000190748e-18, -2.0559685641206632e-18, -1.9448351282222455e-18, -1.833701692323834e-18, -1.7225682564254162e-18, -1.6114348205270046e-18, -1.500301384628593e-18, -1.3891679487301754e-18, -1.2780345128317638e-18, -1.166901076933346e-18, -1.0557676410349345e-18, -9.44634205136523e-19, -8.335007692381052e-19, -7.2236733333969365e-19, -6.112338974412759e-19, -5.001004615428644e-19, -3.8896702564444664e-19, -2.7783358974603507e-19, -1.667001538476235e-19, -5.556671794920578e-20, 5.556671794921194e-20, 1.667001538476235e-19, 2.7783358974603507e-19, 3.8896702564444664e-19, 5.001004615428582e-19, 6.112338974412821e-19, 7.2236733333969365e-19, 8.335007692381052e-19, 9.446342051365168e-19, 1.0557676410349283e-18, 1.1669010769333522e-18, 1.2780345128317638e-18, 1.3891679487301754e-18, 1.500301384628587e-18, 1.6114348205269985e-18, 1.7225682564254224e-18, 1.833701692323834e-18, 1.9448351282222455e-18, 2.055968564120657e-18, 2.1671020000190686e-18, 2.2782354359174925e-18, 2.389368871815904e-18, 2.5005023077143156e-18, 2.6116357436127272e-18, 2.7227691795111388e-18, 2.8339026154095627e-18, 2.9450360513079742e-18, 3.0561694872063858e-18, 3.1673029231047974e-18, 3.278436359003209e-18, 3.3895697949016328e-18, 3.500703230800044e-18, 3.611836666698456e-18, 3.7229701025968675e-18, 3.834103538495279e-18, 3.945236974393703e-18, 4.0563704102921145e-18, 4.167503846190526e-18, 4.278637282088938e-18, 4.389770717987349e-18, 4.500904153885773e-18, 4.612037589784185e-18, 4.723171025682596e-18, 4.834304461581008e-18, 4.945437897479419e-18, 5.056571333377843e-18, 5.167704769276255e-18, 5.278838205174666e-18, 5.389971641073078e-18, 5.501105076971502e-18, 5.612238512869913e-18, 5.723371948768325e-18, 5.8345053846667365e-18, 5.945638820565148e-18, 6.056772256463572e-18, 6.1679056923619835e-18, 6.279039128260395e-18, 6.390172564158807e-18, 6.501306000057218e-18, 6.612439435955642e-18, 6.723572871854054e-18, 6.834706307752465e-18, 6.945839743650877e-18, 7.056973179549288e-18, 7.168106615447712e-18, 7.279240051346124e-18, 7.390373487244535e-18, 7.501506923142947e-18, 7.612640359041358e-18, 7.723773794939782e-18, 7.834907230838194e-18, 7.946040666736606e-18, 8.057174102635017e-18, 8.168307538533429e-18, 8.279440974431853e-18, 8.390574410330264e-18, 8.501707846228676e-18, 8.612841282127087e-18, 8.723974718025499e-18, 8.835108153923923e-18, 8.946241589822334e-18, 9.057375025720746e-18, 9.168508461619157e-18, 9.279641897517569e-18, 9.390775333415993e-18, 9.501908769314404e-18, 9.613042205212816e-18, 9.724175641111228e-18, 9.835309077009639e-18, 9.946442512908063e-18, 1.0057575948806475e-17, 1.0168709384704886e-17, 1.0279842820603298e-17, 1.0390976256501709e-17, 1.0502109692400133e-17, 1.0613243128298545e-17, 1.0724376564196956e-17, 1.0835510000095368e-17, 1.094664343599378e-17, 1.1057776871892203e-17, 1.1168910307790615e-17, 1.1280043743689026e-17, 1.1391177179587438e-17, 1.150231061548585e-17, 1.1613444051384273e-17, 1.1724577487282685e-17, 1.1835710923181097e-17, 1.1946844359079508e-17, 1.2057977794977932e-17, 1.2169111230876344e-17, 1.2280244666774755e-17, 1.2391378102673167e-17, 1.2502511538571578e-17, 1.2613644974470002e-17, 1.2724778410368414e-17, 1.2835911846266825e-17, 1.2947045282165237e-17, 1.3058178718063648e-17, 1.3169312153962072e-17, 1.3280445589860484e-17, 1.3391579025758895e-17, 1.3502712461657307e-17, 1.3613845897555719e-17, 1.3724979333454142e-17, 1.3836112769352554e-17, 1.3947246205250966e-17, 1.4058379641149377e-17, 1.416951307704779e-17, 1.4280646512946213e-17, 1.4391779948844624e-17, 1.4502913384743036e-17, 1.4614046820641447e-17, 1.472518025653986e-17, 1.4836313692438283e-17, 1.4947447128336694e-17, 1.5058580564235106e-17, 1.5169714000133517e-17, 1.528084743603193e-17, 1.5391980871930353e-17, 1.5503114307828764e-17, 1.5614247743727176e-17, 1.5725381179625588e-17, 1.5836514615524e-17, 1.5947648051422423e-17, 1.6058781487320835e-17, 1.6169914923219246e-17, 1.6281048359117658e-17, 1.639218179501607e-17, 1.6503315230914493e-17, 1.6614448666812905e-17, 1.6725582102711316e-17, 1.6836715538609728e-17, 1.694784897450814e-17, 1.7058982410406563e-17, 1.7170115846304975e-17, 1.7281249282203386e-17, 1.7392382718101798e-17, 1.750351615400021e-17, 1.7614649589898633e-17, 1.7725783025797045e-17, 1.7836916461695457e-17, 1.7948049897593868e-17, 1.805918333349228e-17, 1.8170316769390704e-17, 1.8281450205289115e-17, 1.8392583641187527e-17, 1.8503717077085938e-17, 1.861485051298435e-17, 1.8725983948882774e-17, 1.8837117384781185e-17, 1.8948250820679597e-17, 1.9059384256578008e-17, 1.917051769247642e-17, 1.9281651128374844e-17, 1.9392784564273255e-17, 1.9503918000171667e-17, 1.961505143607008e-17, 1.9726184871968502e-17, 1.9837318307866914e-17, 1.9948451743765326e-17, 2.0059585179663737e-17, 2.017071861556215e-17, 2.0281852051460573e-17, 2.0392985487358984e-17, 2.0504118923257396e-17, 2.0615252359155807e-17, 2.072638579505422e-17, 2.0837519230952643e-17, 2.0948652666851054e-17, 2.1059786102749466e-17, 2.1170919538647877e-17, 2.128205297454629e-17, 2.1393186410444713e-17, 2.1504319846343124e-17, 2.1615453282241536e-17, 2.1726586718139948e-17, 2.183772015403836e-17, 2.1948853589936783e-17, 2.2059987025835195e-17, 2.2171120461733606e-17, 2.2282253897632018e-17, 2.239338733353043e-17, 2.2504520769428853e-17, 2.2615654205327265e-17, 2.2726787641225676e-17, 2.2837921077124088e-17, 2.29490545130225e-17, 2.3060187948920923e-17, 2.3171321384819335e-17, 2.3282454820717746e-17, 2.3393588256616158e-17, 2.350472169251457e-17, 2.3615855128412993e-17, 2.3726988564311405e-17, 2.3838122000209817e-17, 2.3949255436108228e-17, 2.406038887200664e-17, 2.4171522307905064e-17, 2.4282655743803475e-17, 2.4393789179701887e-17, 2.4504922615600298e-17, 2.461605605149871e-17, 2.4727189487397134e-17, 2.4838322923295545e-17, 2.4949456359193957e-17, 2.5060589795092368e-17, 2.517172323099078e-17, 2.5282856666889204e-17, 2.5393990102787615e-17, 2.5505123538686027e-17, 2.561625697458444e-17, 2.572739041048285e-17, 2.5838523846381274e-17, 2.5949657282279686e-17, 2.6060790718178097e-17, 2.617192415407651e-17, 2.6283057589974933e-17, 2.6394191025873344e-17, 2.6505324461771756e-17, 2.6616457897670167e-17, 2.672759133356858e-17, 2.6838724769467003e-17, 2.6949858205365414e-17, 2.7060991641263826e-17, 2.7172125077162237e-17, 2.728325851306065e-17, 2.7394391948959073e-17, 2.7505525384857484e-17, 2.7616658820755896e-17, 2.7727792256654308e-17, 2.783892569255272e-17, 2.795005912845114e-17, 2.8061192564349555e-17, 2.8172326000247966e-17, 2.828345943614638e-17, 2.839459287204479e-17, 2.8505726307943213e-17, 2.8616859743841625e-17, 2.8727993179740036e-17, 2.883912661563845e-17, 2.895026005153686e-17, 2.9061393487435283e-17, 2.9172526923333695e-17, 2.9283660359232106e-17, 2.939479379513052e-17, 2.950592723102893e-17, 2.9617060666927353e-17, 2.9728194102825765e-17, 2.9839327538724177e-17, 2.995046097462259e-17, 3.0061594410521e-17, 3.0172727846419424e-17, 3.0283861282317835e-17, 3.0394994718216247e-17, 3.050612815411466e-17, 3.061726159001307e-17, 3.0728395025911494e-17, 3.0839528461809905e-17, 3.0950661897708317e-17, 3.106179533360673e-17, 3.117292876950514e-17, 3.1284062205403564e-17, 3.1395195641301975e-17, 3.150632907720039e-17, 3.16174625130988e-17, 3.172859594899721e-17, 3.1839729384895634e-17, 3.1950862820794046e-17, 3.206199625669246e-17, 3.217312969259087e-17, 3.228426312848928e-17, 3.2395396564387704e-17, 3.2506530000286116e-17, 3.261766343618453e-17, 3.272879687208294e-17, 3.283993030798135e-17, 3.2951063743879774e-17, 3.3062197179778186e-17, 3.31733306156766e-17, 3.328446405157501e-17, 3.339559748747342e-17, 3.3506730923371844e-17, 3.3617864359270256e-17, 3.372899779516867e-17, 3.384013123106708e-17, 3.39512646669655e-17, 3.4062398102863915e-17, 3.4173531538762326e-17, 3.428466497466074e-17, 3.439579841055915e-17, 3.4506931846457573e-17, 3.4618065282355985e-17, 3.4729198718254396e-17, 3.484033215415281e-17, 3.495146559005122e-17, 3.5062599025949643e-17, 3.5173732461848055e-17, 3.5284865897746466e-17, 3.539599933364488e-17, 3.550713276954329e-17, 3.5618266205441713e-17, 3.5729399641340125e-17, 3.5840533077238537e-17, 3.595166651313695e-17, 3.606279994903536e-17, 3.6173933384933784e-17, 3.6285066820832195e-17, 3.6396200256730607e-17, 3.650733369262902e-17, 3.661846712852743e-17, 3.6729600564425854e-17, 3.6840734000324265e-17, 3.6951867436222677e-17, 3.706300087212109e-17, 3.71741343080195e-17, 3.7285267743917924e-17, 3.7396401179816335e-17, 3.750753461571475e-17, 3.761866805161316e-17, 3.772980148751157e-17, 3.7840934923409994e-17, 3.7952068359308406e-17, 3.806320179520682e-17, 3.817433523110523e-17, 3.828546866700364e-17, 3.8396602102902064e-17, 3.8507735538800476e-17, 3.861886897469889e-17, 3.87300024105973e-17, 3.884113584649571e-17, 3.8952269282394134e-17, 3.9063402718292546e-17, 3.917453615419096e-17, 3.928566959008937e-17, 3.939680302598778e-17, 3.9507936461886204e-17, 3.9619069897784616e-17, 3.973020333368303e-17, 3.984133676958144e-17, 3.995247020547985e-17, 4.0063603641378275e-17, 4.0174737077276686e-17, 4.02858705131751e-17, 4.039700394907351e-17, 4.0508137384971933e-17, 4.0619270820870345e-17, 4.0730404256768756e-17, 4.084153769266717e-17, 4.095267112856558e-17, 4.1063804564464003e-17, 4.1174938000362415e-17, 4.1286071436260826e-17, 4.139720487215924e-17, 4.150833830805765e-17, 4.1619471743956073e-17, 4.1730605179854485e-17, 4.1841738615752897e-17, 4.195287205165131e-17, 4.206400548754972e-17, 4.2175138923448144e-17, 4.2286272359346555e-17, 4.2397405795244967e-17, 4.250853923114338e-17, 4.261967266704179e-17, 4.2730806102940214e-17, 4.2841939538838625e-17, 4.2953072974737037e-17, 4.306420641063545e-17, 4.317533984653386e-17, 4.3286473282432284e-17, 4.3397606718330695e-17, 4.350874015422911e-17, 4.361987359012752e-17, 4.373100702602593e-17, 4.3842140461924354e-17, 4.3953273897822766e-17, 4.406440733372118e-17, 4.417554076961959e-17, 4.4286674205518e-17, 4.4397807641416424e-17, 4.4508941077314836e-17, 4.462007451321325e-17, 4.473120794911166e-17, 4.484234138501007e-17, 4.4953474820908494e-17, 4.5064608256806906e-17, 4.517574169270532e-17, 4.528687512860373e-17, 4.539800856450214e-17, 4.5509142000400564e-17, 4.5620275436298976e-17, 4.573140887219739e-17, 4.58425423080958e-17, 4.595367574399421e-17, 4.6064809179892635e-17, 4.6175942615791046e-17, 4.628707605168946e-17, 4.639820948758787e-17, 4.650934292348628e-17, 4.6620476359384705e-17, 4.6731609795283116e-17, 4.684274323118153e-17, 4.695387666707994e-17, 4.706501010297835e-17, 4.7176143538876775e-17, 4.7287276974775186e-17, 4.73984104106736e-17, 4.750954384657201e-17, 4.762067728247042e-17, 4.7731810718368845e-17, 4.7842944154267257e-17, 4.795407759016567e-17, 4.806521102606408e-17, 4.8176344461962504e-17, 4.8287477897860915e-17, 4.8398611333759327e-17, 4.850974476965774e-17, 4.862087820555615e-17, 4.8732011641454574e-17, 4.8843145077352985e-17, 4.8954278513251397e-17, 4.906541194914981e-17, 4.917654538504822e-17, 4.9287678820946644e-17, 4.9398812256845055e-17, 4.950994569274347e-17, 4.962107912864188e-17, 4.973221256454029e-17, 4.9843346000438714e-17, 4.9954479436337126e-17, 5.006561287223554e-17, 5.017674630813395e-17, 5.028787974403236e-17, 5.0399013179930784e-17, 5.0510146615829196e-17, 5.062128005172761e-17, 5.073241348762602e-17, 5.084354692352443e-17, 5.0954680359422854e-17, 5.1065813795321266e-17, 5.117694723121968e-17, 5.128808066711809e-17, 5.13992141030165e-17, 5.1510347538914924e-17, 5.1621480974813336e-17, 5.173261441071175e-17, 5.184374784661016e-17, 5.195488128250857e-17, 5.2066014718406995e-17, 5.2177148154305406e-17, 5.228828159020382e-17, 5.239941502610223e-17, 5.251054846200064e-17, 5.2621681897899065e-17, 5.2732815333797476e-17, 5.284394876969589e-17, 5.29550822055943e-17, 5.306621564149271e-17, 5.3177349077391135e-17, 5.3288482513289546e-17, 5.339961594918796e-17, 5.351074938508637e-17, 5.362188282098478e-17, 5.3733016256883205e-17, 5.3844149692781617e-17, 5.395528312868003e-17, 5.406641656457844e-17, 5.417755000047685e-17, 5.4288683436375275e-17, 5.4399816872273687e-17, 5.45109503081721e-17, 5.462208374407051e-17, 5.4733217179968934e-17, 5.4844350615867345e-17, 5.4955484051765757e-17, 5.506661748766417e-17, 5.517775092356258e-17, 5.5288884359461004e-17, 5.5400017795359415e-17, 5.551115123125783e-17]}
-},{}],19:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
+module.exports={"expected": [0.1, 0.10022914734024366, 0.10045881976552276, 0.10068901847905562, 0.10091974468681786, 0.10115099959754839, 0.10138278442275606, 0.10161510037672578, 0.10184794867652497, 0.10208133054200996, 0.10231524719583235, 0.10254969986344532, 0.10278468977311028, 0.10302021815590306, 0.10325628624572054, 0.10349289527928701, 0.10373004649616066, 0.10396774113874015, 0.10420598045227099, 0.1044447656848522, 0.10468409808744279, 0.10492397891386823, 0.10516440942082718, 0.10540539086789799, 0.1056469245175452, 0.10588901163512641, 0.10613165348889861, 0.10637485135002503, 0.1066186064925818, 0.1068629201935644, 0.10710779373289468, 0.10735322839342729, 0.10759922546095653, 0.10784578622422311, 0.10809291197492078, 0.10834060400770323, 0.10858886362019084, 0.10883769211297732, 0.10908709078963683, 0.10933706095673046, 0.1095876039238134, 0.10983872100344161, 0.11009041351117865, 0.11034268276560279, 0.11059553008831366, 0.11084895680393941, 0.11110296424014351, 0.11135755372763168, 0.11161272660015895, 0.11186848419453667, 0.11212482785063935, 0.1123817589114119, 0.11263927872287645, 0.11289738863413956, 0.11315608999739926, 0.11341538416795204, 0.11367527250420005, 0.11393575636765815, 0.11419683712296115, 0.11445851613787082, 0.11472079478328312, 0.11498367443323543, 0.11524715646491362, 0.11551124225865943, 0.11577593319797758, 0.11604123066954303, 0.11630713606320829, 0.11657365077201075, 0.11684077619217974, 0.11710851372314417, 0.11737686476753967, 0.11764583073121587, 0.11791541302324406, 0.11818561305592415, 0.11845643224479245, 0.11872787200862896, 0.11899993376946463, 0.11927261895258912, 0.11954592898655793, 0.1198198653032002, 0.12009442933762605, 0.12036962252823402, 0.12064544631671884, 0.12092190214807869, 0.12119899147062306, 0.12147671573598016, 0.12175507639910452, 0.12203407491828473, 0.12231371275515093, 0.12259399137468263, 0.1228749122452163, 0.12315647683845295, 0.12343868662946605, 0.12372154309670921, 0.12400504772202374, 0.12428920199064664, 0.12457400739121831, 0.12485946541579022, 0.125145577559833, 0.12543234532224393, 0.1257197702053551, 0.12600785371494114, 0.12629659736022705, 0.12658600265389627, 0.12687607111209845, 0.12716680425445748, 0.12745820360407947, 0.12775027068756056, 0.12804300703499522, 0.12833641417998393, 0.12863049365964144, 0.12892524701460484, 0.12922067578904137, 0.12951678153065688, 0.12981356579070358, 0.13011103012398842, 0.1304091760888812, 0.13070800524732254, 0.13100751916483233, 0.13130771941051778, 0.1316086075570816, 0.13191018518083036, 0.13221245386168276, 0.1325154151831777, 0.1328190707324828, 0.13312342210040265, 0.13342847088138707, 0.13373421867353957, 0.13404066707862564, 0.1343478177020812, 0.13465567215302093, 0.1349642320442468, 0.1352734989922565, 0.1355834746172518, 0.1358941605431472, 0.13620555839757828, 0.13651766981191035, 0.136830496421247, 0.1371440398644385, 0.1374583017840906, 0.13777328382657295, 0.13808898764202787, 0.13840541488437902, 0.13872256721133977, 0.13904044628442233, 0.139359053768946, 0.13967839133404628, 0.13999846065268337, 0.1403192634016511, 0.14064080126158549, 0.14096307591697382, 0.14128608905616322, 0.1416098423713697, 0.14193433755868695, 0.14225957631809516, 0.14258556035347, 0.1429122913725915, 0.14323977108715308, 0.1435680012127704, 0.1438969834689905, 0.14422671957930056, 0.14455721127113721, 0.14488846027589544, 0.14522046832893767, 0.14555323716960283, 0.14588676854121557, 0.14622106419109518, 0.14655612587056505, 0.14689195533496163, 0.14722855434364363, 0.1475659246600013, 0.14790406805146566, 0.14824298628951776, 0.14858268114969797, 0.14892315441161527, 0.14926440785895645, 0.14960644327949574, 0.14994926246510384, 0.1502928672117576, 0.15063725931954933, 0.15098244059269603, 0.15132841283954918, 0.15167517787260396, 0.15202273750850887, 0.15237109356807527, 0.15272024787628669, 0.15307020226230877, 0.15342095855949842, 0.15377251860541385, 0.15412488424182388, 0.15447805731471764, 0.15483203967431444, 0.15518683317507315, 0.1555424396757022, 0.1558988610391692, 0.15625609913271063, 0.15661415582784177, 0.15697303300036633, 0.15733273253038646, 0.1576932563023125, 0.15805460620487294, 0.15841678413112398, 0.15877979197846004, 0.1591436316486231, 0.1595083050477131, 0.15987381408619772, 0.16024016067892233, 0.16060734674512028, 0.16097537420842264, 0.16134424499686853, 0.1617139610429151, 0.1620845242834476, 0.16245593665978977, 0.16282820011771362, 0.16320131660744996, 0.16357528808369862, 0.16395011650563832, 0.16432580383693743, 0.16470235204576378, 0.16507976310479539, 0.16545803899123063, 0.16583718168679834, 0.16621719317776873, 0.16659807545496325, 0.16697983051376544, 0.1673624603541311, 0.167745966980599, 0.16813035240230106, 0.16851561863297326, 0.16890176769096585, 0.16928880159925422, 0.16967672238544934, 0.1700655320818082, 0.17045523272524493, 0.17084582635734097, 0.17123731502435613, 0.17162970077723916, 0.17202298567163835, 0.17241717176791269, 0.1728122611311422, 0.17320825583113914, 0.17360515794245868, 0.17400296954440964, 0.1744016927210657, 0.17480132956127592, 0.17520188215867616, 0.17560335261169963, 0.17600574302358804, 0.17640905550240274, 0.17681329216103547, 0.17721845511721973, 0.17762454649354173, 0.1780315684174516, 0.1784395230212743, 0.178848412442221, 0.17925823882240038, 0.17966900430882957, 0.18008071105344553, 0.18049336121311643, 0.18090695694965267, 0.18132150042981854, 0.18173699382534336, 0.18215343931293299, 0.18257083907428093, 0.18298919529608024, 0.18340851017003446, 0.1838287858928696, 0.18425002466634535, 0.18467222869726663, 0.18509540019749515, 0.18551954138396104, 0.18594465447867464, 0.1863707417087378, 0.1867978053063558, 0.1872258475088489, 0.1876548705586641, 0.18808487670338694, 0.1885158681957533, 0.18894784729366118, 0.1893808162601823, 0.18981477736357424, 0.1902497328772923, 0.1906856850800013, 0.19112263625558756, 0.19156058869317089, 0.19199954468711636, 0.19243950653704683, 0.19288047654785448, 0.19332245702971323, 0.19376545029809053, 0.1942094586737598, 0.19465448448281236, 0.19510053005666972, 0.19554759773209587, 0.19599568985120938, 0.1964448087614957, 0.19689495681581942, 0.19734613637243675, 0.19779834979500782, 0.198251599452609, 0.1987058877197452, 0.19916121697636258, 0.1996175896078608, 0.20007500800510575, 0.20053347456444176, 0.20099299168770443, 0.20145356178223298, 0.2019151872608831, 0.2023778705420394, 0.2028416140496283, 0.2033064202131304, 0.20377229146759337, 0.20423923025364493, 0.20470723901750526, 0.20517632021100018, 0.2056464762915735, 0.2061177097223005, 0.20659002297190032, 0.2070634185147492, 0.20753789883089332, 0.20801346640606197, 0.20849012373168013, 0.208967873304882, 0.20944671762852388, 0.2099266592111973, 0.2104077005672422, 0.21088984421675994, 0.21137309268562662, 0.2118574485055065, 0.21234291421386498, 0.21282949235398196, 0.21331718547496525, 0.21380599613176376, 0.21429592688518118, 0.21478698030188909, 0.2152791589544406, 0.21577246542128367, 0.2162669022867747, 0.2167624721411922, 0.21725917758075014, 0.21775702120761176, 0.21825600562990283, 0.21875613346172584, 0.21925740732317328, 0.21975982984034154, 0.22026340364534466, 0.2207681313763282, 0.22127401567748273, 0.22178105919905802, 0.22228926459737688, 0.22279863453484897, 0.22330917167998482, 0.22382087870740972, 0.22433375829787774, 0.22484781313828597, 0.2253630459216884, 0.2258794593473101, 0.2263970561205613, 0.22691583895305148, 0.227435810562604, 0.22795697367326984, 0.22847933101534212, 0.22900288532537033, 0.22952763934617468, 0.2300535958268605, 0.23058075752283264, 0.23110912719580998, 0.2316387076138395, 0.23216950155131147, 0.23270151178897325, 0.2332347411139445, 0.23376919231973126, 0.23430486820624108, 0.23484177157979716, 0.23537990525315336, 0.235919272045509, 0.2364598747825235, 0.2370017162963312, 0.23754479942555615, 0.23808912701532695, 0.2386347019172919, 0.23918152698963377, 0.23972960509708477, 0.24027893911094142, 0.24082953190907982, 0.24138138637597073, 0.24193450540269457, 0.24248889188695655, 0.24304454873310188, 0.24360147885213101, 0.24415968516171488, 0.24471917058621026, 0.24527993805667497, 0.24584199051088315, 0.24640533089334096, 0.24696996215530165, 0.2475358872547813, 0.24810310915657424, 0.24867163083226834, 0.2492414552602611, 0.24981258542577459, 0.2503850243208717, 0.2509587749444714, 0.2515338403023648, 0.25211022340723044, 0.25268792727865047, 0.25326695494312634, 0.2538473094340946, 0.254428993791943, 0.25501201106402605, 0.25559636430468113, 0.2561820565752448, 0.25676909094406847, 0.2573574704865347, 0.257947198285073, 0.2585382774291763, 0.259130711015417, 0.25972450214746334, 0.2603196539360954, 0.2609161694992215, 0.26151405196189464, 0.2621133044563288, 0.26271393012191524, 0.26331593210523924, 0.2639193135600962, 0.26452407764750857, 0.2651302275357419, 0.26573776640032204, 0.26634669742405126, 0.2669570237970254, 0.26756874871665, 0.2681818753876574, 0.2687964070221238, 0.26941234683948556, 0.2700296980665563, 0.2706484639375439, 0.2712686476940671, 0.27189025258517296, 0.2725132818673537, 0.2731377388045635, 0.2737636266682359, 0.27439094873730074, 0.2750197082982016, 0.27564990864491284, 0.2762815530789568, 0.27691464490942114, 0.2775491874529763, 0.2781851840338927, 0.27882263798405826, 0.27946155264299605, 0.2801019313578811, 0.2807437774835589, 0.28138709438256204, 0.2820318854251286, 0.28267815398921936, 0.2833259034605356, 0.2839751372325368, 0.28462585870645846, 0.28527807129133, 0.2859317784039925, 0.2865869834691167, 0.2872436899192208, 0.28790190119468845, 0.288561620743787, 0.2892228520226854, 0.2898855984954723, 0.2905498636341742, 0.29121565091877344, 0.2918829638372271, 0.29255180588548446, 0.29322218056750593, 0.29389409139528083, 0.2945675418888465, 0.29524253557630586, 0.2959190759938469, 0.2965971666857605, 0.29727681120445903, 0.2979580131104953, 0.2986407759725808, 0.29932510336760504, 0.3000109988806535, 0.30069846610502704, 0.30138750864226027, 0.30207813010214063, 0.30277033410272747, 0.3034641242703707, 0.30415950423973004, 0.3048564776537938, 0.30555504816389795, 0.30625521942974576, 0.3069569951194264, 0.30766037890943454, 0.30836537448468915, 0.30907198553855325, 0.3097802157728531, 0.31049006889789765, 0.311201548632498, 0.31191465870398644, 0.3126294028482368, 0.31334578480968317, 0.3140638083413402, 0.31478347720482236, 0.3155047951703638, 0.31622776601683794, 0.31695239353177745, 0.31767868151139417, 0.31840663376059875, 0.3191362540930205, 0.31986754633102793, 0.3206005143057482, 0.3213351618570873, 0.3220714928337506, 0.32280951109326217, 0.323549220501986, 0.32429062493514543, 0.32503372827684385, 0.32577853442008514, 0.32652504726679354, 0.3272732707278348, 0.32802320872303614, 0.3287748651812069, 0.32952824404015935, 0.3302833492467291, 0.3310401847567956, 0.3317987545353036, 0.3325590625562828, 0.3333211128028698, 0.33408490926732826, 0.33485045595106977, 0.33561775686467554, 0.3363868160279163, 0.3371576374697747, 0.3379302252284651, 0.33870458335145553, 0.3394807158954888, 0.3402586269266035, 0.3410383205201554, 0.3418198007608391, 0.34260307174270876, 0.3433881375692002, 0.3441750023531524, 0.3449636702168282, 0.34575414529193704, 0.34654643171965577, 0.34734053365065065, 0.3481364552450993, 0.3489342006727121, 0.3497337741127541, 0.3505351797540673, 0.35133842179509206, 0.35214350444388964, 0.35295043191816367, 0.35375920844528264, 0.35456983826230215, 0.3553823256159865, 0.3561966747628316, 0.35701288996908703, 0.35783097551077825, 0.3586509356737292, 0.3594727747535845, 0.3602964970558325, 0.3611221068958271, 0.36194960859881076, 0.3627790064999374, 0.36361030494429436, 0.36444350828692607, 0.36527862089285634, 0.36611564713711103, 0.3669545914047417, 0.3677954580908477, 0.3686382516005998, 0.3694829763492634, 0.37032963676222086, 0.37117823727499555, 0.3720287823332746, 0.3728812763929321, 0.3737357239200533, 0.37459212939095643, 0.3754504972922179, 0.3763108321206947, 0.3771731383835481, 0.3780374205982676, 0.3789036832926943, 0.3797719310050448, 0.38064216828393493, 0.38151439968840334, 0.3823886297879359, 0.38326486316248926, 0.3841431044025146, 0.38502335810898247, 0.385905628893406, 0.38678992137786583, 0.3876762401950339, 0.38856458998819743, 0.38945497541128415, 0.3903474011288858, 0.39124187181628284, 0.3921383921594695, 0.39303696685517714, 0.3939376006109001, 0.39484029814491983, 0.39574506418632904, 0.3966519034750577, 0.39756082076189664, 0.3984718208085234, 0.3993849083875267, 0.40030008828243135, 0.4012173652877236, 0.40213674420887613, 0.4030582298623732, 0.40398182707573616, 0.4049075406875479, 0.40583537554747945, 0.4067653365163145, 0.4076974284659748, 0.4086316562795465, 0.4095680248513047, 0.41050653908673995, 0.41144720390258366, 0.4123900242268333, 0.4133350049987794, 0.4142821511690301, 0.41523146769953817, 0.4161829595636265, 0.4171366317460139, 0.41809248924284187, 0.4190505370617005, 0.4200107802216541, 0.4209732237532688, 0.4219378726986374, 0.422904732111407, 0.423873807056805, 0.4248451026116652, 0.4258186238644554, 0.42679437591530295, 0.4277723638760224, 0.4287525928701419, 0.42973506803292955, 0.4307197945114213, 0.43170677746444724, 0.43269602206265867, 0.4336875334885555, 0.43468131693651285, 0.435677377612809, 0.4366757207356522, 0.4376763515352078, 0.43867927525362627, 0.4396844971450702, 0.4406920224757418, 0.4417018565239111, 0.4427140045799425, 0.4437284719463236, 0.44474526393769254, 0.4457643858808655, 0.4467858431148651, 0.447809640990948, 0.4488357848726334, 0.44986428013573093, 0.4508951321683683, 0.45192834637102036, 0.4529639281565367, 0.45400188295017063, 0.45504221618960716, 0.45608493332499145, 0.4571300398189577, 0.4581775411466578, 0.4592274427957892, 0.4602797502666248, 0.46133446907204095, 0.46239160473754676, 0.46345116280131293, 0.46451314881420047, 0.4655775683397904, 0.46664442695441216, 0.46771373024717344, 0.4687854838199894, 0.4698596932876113, 0.47093636427765684, 0.47201550243063944, 0.473097113399997, 0.47418120285212273, 0.4752677764663938, 0.4763568399352017, 0.4774483989639821, 0.478542459271244, 0.4796390265886008, 0.48073810666079914, 0.4818397052457501, 0.48294382811455877, 0.4840504810515542, 0.48515966985432046, 0.4862714003337267, 0.487385678313957, 0.4885025096325421, 0.48962190014038864, 0.4907438557018108, 0.4918683821945608, 0.49299548550985917, 0.49412517155242647, 0.49525744624051327, 0.4963923155059321, 0.497529785294088, 0.4986698615640094, 0.49981255028838006, 0.50095785745357, 0.5021057890596665, 0.5032563511205063, 0.5044095496637062, 0.5055653907306956, 0.5067238803767476, 0.5078850246710105, 0.5090488296965401, 0.5102153015503311, 0.5113844463433499, 0.5125562702005656, 0.5137307792609823, 0.5149079796776719, 0.5160878776178057, 0.517270479262687, 0.5184557908077831, 0.5196438184627584, 0.5208345684515064, 0.5220280470121827, 0.5232242603972371, 0.524423214873447, 0.5256249167219499, 0.5268293722382762, 0.5280365877323827, 0.5292465695286849, 0.5304593239660906, 0.5316748573980336, 0.5328931761925054, 0.5341142867320907, 0.5353381954139986, 0.5365649086500982, 0.5377944328669509, 0.539026774505844, 0.5402619400228255, 0.5414999358887366, 0.5427407685892468, 0.5439844446248872, 0.5452309705110844, 0.5464803527781952, 0.5477325979715407, 0.5489877126514401, 0.5502457033932455, 0.5515065767873761, 0.5527703394393533, 0.5540369979698345, 0.5553065590146482, 0.556579029224829, 0.5578544152666517, 0.5591327238216671, 0.5604139615867365, 0.5616981352740666, 0.5629852516112455, 0.5642753173412768, 0.5655683392226158, 0.5668643240292048, 0.568163278550508, 0.5694652095915477, 0.5707701239729398, 0.5720780285309293, 0.5733889301174264, 0.5747028356000421, 0.5760197518621244, 0.5773396858027948, 0.578662644336983, 0.579988634395465, 0.5813176629248977, 0.5826497368878567, 0.5839848632628721, 0.5853230490444645, 0.586664301243183, 0.588008626885641, 0.5893560330145527, 0.5907065266887712, 0.5920601149833243, 0.5934168049894522, 0.5947766038146446, 0.5961395185826774, 0.5975055564336511, 0.5988747245240269, 0.6002470300266652, 0.6016224801308631, 0.6030010820423909, 0.6043828429835315, 0.6057677701931174, 0.6071558709265683, 0.6085471524559299, 0.6099416220699112, 0.6113392870739235, 0.6127401547901181, 0.6141442325574246, 0.6155515277315899, 0.6169620476852161, 0.6183757998077996, 0.6197927915057698, 0.6212130302025272, 0.6226365233384834, 0.6240632783710992, 0.625493302774924, 0.6269266040416351, 0.6283631896800764, 0.6298030672162985, 0.6312462441935979, 0.6326927281725555, 0.6341425267310781, 0.6355956474644363, 0.6370520979853056, 0.6385118859238055, 0.6399750189275395, 0.6414415046616359, 0.6429113508087871, 0.6443845650692901, 0.6458611551610871, 0.6473411288198058, 0.6488244937987997, 0.6503112578691891, 0.6518014288199014, 0.6532950144577127, 0.654792022607287, 0.6562924611112192, 0.6577963378300753, 0.6593036606424332, 0.6608144374449244, 0.6623286761522758, 0.6638463846973497, 0.6653675710311876, 0.6668922431230494, 0.6684204089604572, 0.669952076549236, 0.6714872539135558, 0.673025949095974, 0.6745681701574772, 0.6761139251775233, 0.6776632222540848, 0.6792160695036895, 0.6807724750614648, 0.6823324470811792, 0.6838959937352852, 0.6854631232149628, 0.6870338437301611, 0.6886081635096425, 0.6901860908010257, 0.691767633870828, 0.6933528010045096, 0.6949416005065164, 0.6965340407003238, 0.6981301299284804, 0.6997298765526512, 0.7013332889536619, 0.7029403755315428, 0.7045511447055721, 0.7061656049143213, 0.7077837646156981, 0.7094056322869915, 0.711031216424916, 0.7126605255456558, 0.7142935681849103, 0.7159303528979376, 0.7175708882596004, 0.7192151828644102, 0.7208632453265724, 0.7225150842800325, 0.7241707083785196, 0.7258301262955927, 0.7274933467246865, 0.7291603783791557, 0.7308312299923221, 0.7325059103175198, 0.7341844281281399, 0.7358667922176789, 0.737553011399782, 0.7392430945082917, 0.7409370503972925, 0.7426348879411577, 0.7443366160345964, 0.7460422435926997, 0.7477517795509864, 0.7494652328654523, 0.7511826125126144, 0.7529039274895599, 0.7546291868139926, 0.7563583995242792, 0.7580915746794987, 0.7598287213594881, 0.7615698486648909, 0.7633149657172043, 0.7650640816588271, 0.7668172056531078, 0.7685743468843929, 0.7703355145580736, 0.772100717900636, 0.7738699661597075, 0.7756432686041069, 0.7774206345238924, 0.7792020732304094, 0.7809875940563404, 0.7827772063557535, 0.7845709195041514, 0.7863687428985207, 0.78817068595738, 0.7899767581208317, 0.7917869688506087, 0.7936013276301258, 0.7954198439645288, 0.7972425273807439, 0.7990693874275282, 0.8009004336755199, 0.8027356757172873, 0.8045751231673807, 0.8064187856623808, 0.8082666728609514, 0.8101187944438885, 0.8119751601141707, 0.8138357795970115, 0.8157006626399095, 0.8175698190126988, 0.8194432585076015, 0.8213209909392776, 0.823203026144878, 0.8250893739840944, 0.826980044339212, 0.8288750471151615, 0.8307743922395692, 0.8326780896628115, 0.8345861493580659, 0.8364985813213619, 0.8384153955716357, 0.8403366021507817, 0.8422622111237041, 0.8441922325783718, 0.8461266766258687, 0.848065553400449, 0.8500088730595889, 0.8519566457840402, 0.8539088817778837, 0.8558655912685821, 0.8578267845070346, 0.8597924717676305, 0.8617626633483013, 0.8637373695705768, 0.8657166007796386, 0.867700367344373, 0.8696886796574272, 0.8716815481352624, 0.8736789832182092, 0.8756809953705218, 0.8776875950804326, 0.8796987928602082, 0.8817145992462029, 0.8837350247989156, 0.8857600801030443, 0.8877897757675405, 0.889824122425667, 0.8918631307350521, 0.8939068113777453, 0.8959551750602746, 0.8980082325137007, 0.9000659944936749, 0.902128471780495, 0.9041956751791609, 0.9062676155194324, 0.9083443036558848, 0.910425750467967, 0.912511966860058, 0.914602963761523, 0.9166987521267722, 0.9187993429353177, 0.9209047471918302, 0.9230149759261982, 0.9251300401935837, 0.9272499510744824, 0.9293747196747805, 0.9315043571258123, 0.9336388745844201, 0.9357782832330112, 0.9379225942796173, 0.9400718189579537, 0.9422259685274761, 0.9443850542734419, 0.9465490875069683, 0.9487180795650911, 0.9508920418108255, 0.9530709856332237, 0.9552549224474363, 0.9574438636947715, 0.9596378208427542, 0.9618368053851878, 0.9640408288422126, 0.9662499027603675, 0.9684640387126501, 0.9706832482985764, 0.9729075431442434, 0.9751369349023886, 0.977371435252451, 0.9796110559006336, 0.9818558085799627, 0.9841057050503516, 0.9863607570986609, 0.9886209765387597, 0.9908863752115894, 0.9931569649852235, 0.9954327577549319, 0.9977137654432416, 0.9999999999999999], "x": [-1.0, -0.9990059642147118, -0.9980119284294234, -0.9970178926441352, -0.9960238568588469, -0.9950298210735586, -0.9940357852882704, -0.9930417495029821, -0.9920477137176938, -0.9910536779324056, -0.9900596421471173, -0.989065606361829, -0.9880715705765407, -0.9870775347912525, -0.9860834990059643, -0.9850894632206759, -0.9840954274353877, -0.9831013916500994, -0.9821073558648111, -0.9811133200795229, -0.9801192842942346, -0.9791252485089463, -0.9781312127236581, -0.9771371769383698, -0.9761431411530815, -0.9751491053677932, -0.974155069582505, -0.9731610337972167, -0.9721669980119284, -0.9711729622266402, -0.9701789264413518, -0.9691848906560636, -0.9681908548707754, -0.967196819085487, -0.9662027833001988, -0.9652087475149106, -0.9642147117296223, -0.963220675944334, -0.9622266401590457, -0.9612326043737575, -0.9602385685884692, -0.9592445328031809, -0.9582504970178927, -0.9572564612326043, -0.9562624254473161, -0.9552683896620279, -0.9542743538767395, -0.9532803180914513, -0.9522862823061631, -0.9512922465208747, -0.9502982107355865, -0.9493041749502982, -0.94831013916501, -0.9473161033797217, -0.9463220675944334, -0.9453280318091452, -0.9443339960238568, -0.9433399602385686, -0.9423459244532804, -0.941351888667992, -0.9403578528827038, -0.9393638170974155, -0.9383697813121272, -0.937375745526839, -0.9363817097415507, -0.9353876739562624, -0.9343936381709742, -0.9333996023856859, -0.9324055666003976, -0.9314115308151094, -0.9304174950298211, -0.9294234592445328, -0.9284294234592445, -0.9274353876739563, -0.926441351888668, -0.9254473161033797, -0.9244532803180915, -0.9234592445328031, -0.9224652087475149, -0.9214711729622267, -0.9204771371769384, -0.9194831013916501, -0.9184890656063618, -0.9174950298210736, -0.9165009940357853, -0.915506958250497, -0.9145129224652088, -0.9135188866799204, -0.9125248508946322, -0.911530815109344, -0.9105367793240556, -0.9095427435387674, -0.9085487077534792, -0.9075546719681908, -0.9065606361829026, -0.9055666003976144, -0.904572564612326, -0.9035785288270378, -0.9025844930417495, -0.9015904572564613, -0.900596421471173, -0.8996023856858847, -0.8986083499005965, -0.8976143141153081, -0.8966202783300199, -0.8956262425447317, -0.8946322067594433, -0.8936381709741551, -0.8926441351888668, -0.8916500994035785, -0.8906560636182903, -0.889662027833002, -0.8886679920477137, -0.8876739562624254, -0.8866799204771372, -0.885685884691849, -0.8846918489065606, -0.8836978131212724, -0.8827037773359842, -0.8817097415506958, -0.8807157057654076, -0.8797216699801194, -0.878727634194831, -0.8777335984095428, -0.8767395626242545, -0.8757455268389662, -0.874751491053678, -0.8737574552683897, -0.8727634194831014, -0.8717693836978131, -0.8707753479125249, -0.8697813121272366, -0.8687872763419483, -0.8677932405566601, -0.8667992047713717, -0.8658051689860835, -0.8648111332007953, -0.8638170974155069, -0.8628230616302187, -0.8618290258449304, -0.8608349900596421, -0.8598409542743539, -0.8588469184890656, -0.8578528827037774, -0.856858846918489, -0.8558648111332008, -0.8548707753479126, -0.8538767395626243, -0.852882703777336, -0.8518886679920478, -0.8508946322067594, -0.8499005964214712, -0.848906560636183, -0.8479125248508946, -0.8469184890656064, -0.8459244532803181, -0.8449304174950298, -0.8439363817097416, -0.8429423459244533, -0.841948310139165, -0.8409542743538767, -0.8399602385685885, -0.8389662027833003, -0.8379721669980119, -0.8369781312127237, -0.8359840954274353, -0.8349900596421471, -0.8339960238568589, -0.8330019880715706, -0.8320079522862823, -0.831013916500994, -0.8300198807157058, -0.8290258449304175, -0.8280318091451293, -0.827037773359841, -0.8260437375745527, -0.8250497017892644, -0.8240556660039762, -0.823061630218688, -0.8220675944333996, -0.8210735586481114, -0.820079522862823, -0.8190854870775348, -0.8180914512922466, -0.8170974155069582, -0.81610337972167, -0.8151093439363817, -0.8141153081510935, -0.8131212723658052, -0.8121272365805169, -0.8111332007952287, -0.8101391650099403, -0.8091451292246521, -0.8081510934393639, -0.8071570576540755, -0.8061630218687873, -0.805168986083499, -0.8041749502982107, -0.8031809145129225, -0.8021868787276343, -0.8011928429423459, -0.8001988071570577, -0.7992047713717694, -0.7982107355864811, -0.7972166998011929, -0.7962226640159046, -0.7952286282306164, -0.794234592445328, -0.7932405566600398, -0.7922465208747516, -0.7912524850894632, -0.790258449304175, -0.7892644135188867, -0.7882703777335984, -0.7872763419483102, -0.7862823061630219, -0.7852882703777336, -0.7842942345924453, -0.7833001988071571, -0.7823061630218688, -0.7813121272365805, -0.7803180914512923, -0.7793240556660039, -0.7783300198807157, -0.7773359840954275, -0.7763419483101393, -0.7753479125248509, -0.7743538767395627, -0.7733598409542743, -0.7723658051689861, -0.7713717693836979, -0.7703777335984096, -0.7693836978131213, -0.768389662027833, -0.7673956262425448, -0.7664015904572565, -0.7654075546719682, -0.76441351888668, -0.7634194831013916, -0.7624254473161034, -0.7614314115308152, -0.7604373757455268, -0.7594433399602386, -0.7584493041749503, -0.757455268389662, -0.7564612326043738, -0.7554671968190855, -0.7544731610337972, -0.7534791252485089, -0.7524850894632207, -0.7514910536779325, -0.7504970178926442, -0.7495029821073559, -0.7485089463220675, -0.7475149105367793, -0.7465208747514911, -0.7455268389662029, -0.7445328031809145, -0.7435387673956262, -0.742544731610338, -0.7415506958250497, -0.7405566600397615, -0.7395626242544732, -0.7385685884691849, -0.7375745526838966, -0.7365805168986084, -0.7355864811133201, -0.7345924453280319, -0.7335984095427436, -0.7326043737574552, -0.731610337972167, -0.7306163021868788, -0.7296222664015906, -0.7286282306163022, -0.7276341948310139, -0.7266401590457257, -0.7256461232604374, -0.7246520874751492, -0.7236580516898609, -0.7226640159045725, -0.7216699801192843, -0.7206759443339961, -0.7196819085487078, -0.7186878727634195, -0.7176938369781312, -0.7166998011928429, -0.7157057654075547, -0.7147117296222665, -0.7137176938369781, -0.7127236580516899, -0.7117296222664016, -0.7107355864811133, -0.7097415506958251, -0.7087475149105369, -0.7077534791252486, -0.7067594433399602, -0.705765407554672, -0.7047713717693838, -0.7037773359840955, -0.7027833001988072, -0.7017892644135189, -0.7007952286282306, -0.6998011928429424, -0.6988071570576542, -0.6978131212723658, -0.6968190854870775, -0.6958250497017893, -0.694831013916501, -0.6938369781312128, -0.6928429423459245, -0.6918489065606361, -0.6908548707753479, -0.6898608349900597, -0.6888667992047715, -0.6878727634194831, -0.6868787276341949, -0.6858846918489065, -0.6848906560636183, -0.6838966202783301, -0.6829025844930419, -0.6819085487077535, -0.6809145129224652, -0.679920477137177, -0.6789264413518887, -0.6779324055666005, -0.6769383697813122, -0.6759443339960238, -0.6749502982107356, -0.6739562624254474, -0.6729622266401591, -0.6719681908548708, -0.6709741550695825, -0.6699801192842942, -0.668986083499006, -0.6679920477137178, -0.6669980119284294, -0.6660039761431411, -0.6650099403578529, -0.6640159045725647, -0.6630218687872764, -0.6620278330019881, -0.6610337972166999, -0.6600397614314115, -0.6590457256461233, -0.6580516898608351, -0.6570576540755468, -0.6560636182902585, -0.6550695825049702, -0.6540755467196819, -0.6530815109343937, -0.6520874751491055, -0.6510934393638171, -0.6500994035785288, -0.6491053677932406, -0.6481113320079523, -0.6471172962226641, -0.6461232604373758, -0.6451292246520874, -0.6441351888667992, -0.643141153081511, -0.6421471172962228, -0.6411530815109344, -0.6401590457256461, -0.6391650099403579, -0.6381709741550696, -0.6371769383697814, -0.6361829025844931, -0.6351888667992048, -0.6341948310139165, -0.6332007952286283, -0.63220675944334, -0.6312127236580518, -0.6302186878727635, -0.6292246520874751, -0.6282306163021869, -0.6272365805168987, -0.6262425447316105, -0.6252485089463221, -0.6242544731610338, -0.6232604373757455, -0.6222664015904573, -0.6212723658051691, -0.6202783300198808, -0.6192842942345924, -0.6182902584493042, -0.617296222664016, -0.6163021868787277, -0.6153081510934394, -0.614314115308151, -0.6133200795228628, -0.6123260437375746, -0.6113320079522864, -0.610337972166998, -0.6093439363817098, -0.6083499005964215, -0.6073558648111332, -0.606361829025845, -0.6053677932405567, -0.6043737574552684, -0.6033797216699801, -0.6023856858846919, -0.6013916500994037, -0.6003976143141154, -0.5994035785288271, -0.5984095427435387, -0.5974155069582505, -0.5964214711729623, -0.5954274353876741, -0.5944333996023857, -0.5934393638170974, -0.5924453280318092, -0.5914512922465209, -0.5904572564612327, -0.5894632206759444, -0.588469184890656, -0.5874751491053678, -0.5864811133200796, -0.5854870775347913, -0.584493041749503, -0.5834990059642148, -0.5825049701789264, -0.5815109343936382, -0.58051689860835, -0.5795228628230616, -0.5785288270377734, -0.5775347912524851, -0.5765407554671969, -0.5755467196819086, -0.5745526838966204, -0.5735586481113321, -0.5725646123260437, -0.5715705765407555, -0.5705765407554673, -0.569582504970179, -0.5685884691848907, -0.5675944333996024, -0.5666003976143141, -0.5656063618290259, -0.5646123260437377, -0.5636182902584493, -0.562624254473161, -0.5616302186878728, -0.5606361829025845, -0.5596421471172963, -0.558648111332008, -0.5576540755467198, -0.5566600397614314, -0.5556660039761432, -0.554671968190855, -0.5536779324055666, -0.5526838966202784, -0.55168986083499, -0.5506958250497018, -0.5497017892644136, -0.5487077534791254, -0.547713717693837, -0.5467196819085487, -0.5457256461232605, -0.5447316103379722, -0.543737574552684, -0.5427435387673957, -0.5417495029821073, -0.5407554671968191, -0.5397614314115309, -0.5387673956262427, -0.5377733598409543, -0.536779324055666, -0.5357852882703777, -0.5347912524850895, -0.5337972166998013, -0.532803180914513, -0.5318091451292247, -0.5308151093439364, -0.5298210735586482, -0.5288270377733599, -0.5278330019880716, -0.5268389662027834, -0.525844930417495, -0.5248508946322068, -0.5238568588469186, -0.5228628230616303, -0.521868787276342, -0.5208747514910537, -0.5198807157057654, -0.5188866799204772, -0.517892644135189, -0.5168986083499006, -0.5159045725646123, -0.5149105367793241, -0.5139165009940359, -0.5129224652087476, -0.5119284294234593, -0.510934393638171, -0.5099403578528827, -0.5089463220675945, -0.5079522862823063, -0.5069582504970179, -0.5059642147117297, -0.5049701789264414, -0.5039761431411531, -0.5029821073558649, -0.5019880715705766, -0.5009940357852883, -0.5, -0.4990059642147118, -0.49801192842942354, -0.4970178926441352, -0.496023856858847, -0.49502982107355875, -0.4940357852882704, -0.4930417495029822, -0.49204771371769385, -0.4910536779324056, -0.4900596421471174, -0.48906560636182905, -0.4880715705765408, -0.4870775347912525, -0.48608349900596426, -0.48508946322067603, -0.4840954274353877, -0.48310139165009947, -0.48210735586481124, -0.4811133200795229, -0.48011928429423467, -0.47912524850894633, -0.4781312127236581, -0.4771371769383699, -0.47614314115308154, -0.4751491053677933, -0.474155069582505, -0.47316103379721675, -0.4721669980119285, -0.4711729622266402, -0.47017892644135195, -0.4691848906560637, -0.4681908548707754, -0.46719681908548716, -0.4662027833001988, -0.4652087475149106, -0.46421471172962236, -0.463220675944334, -0.4622266401590458, -0.46123260437375746, -0.46023856858846923, -0.459244532803181, -0.45825049701789267, -0.45725646123260444, -0.4562624254473162, -0.4552683896620279, -0.45427435387673964, -0.4532803180914513, -0.4522862823061631, -0.45129224652087485, -0.4502982107355865, -0.4493041749502983, -0.44831013916500995, -0.4473161033797217, -0.4463220675944335, -0.44532803180914515, -0.4443339960238569, -0.4433399602385687, -0.44234592445328036, -0.44135188866799213, -0.4403578528827038, -0.43936381709741557, -0.43836978131212734, -0.437375745526839, -0.43638170974155077, -0.43538767395626243, -0.4343936381709742, -0.433399602385686, -0.43240556660039764, -0.4314115308151094, -0.4304174950298212, -0.42942345924453285, -0.4284294234592446, -0.4274353876739563, -0.42644135188866805, -0.4254473161033798, -0.4244532803180915, -0.42345924453280326, -0.4224652087475149, -0.4214711729622267, -0.42047713717693846, -0.4194831013916501, -0.4184890656063619, -0.41749502982107367, -0.41650099403578533, -0.4155069582504971, -0.41451292246520877, -0.41351888667992054, -0.4125248508946323, -0.411530815109344, -0.41053677932405575, -0.4095427435387674, -0.4085487077534792, -0.40755467196819095, -0.4065606361829026, -0.4055666003976144, -0.40457256461232616, -0.4035785288270378, -0.4025844930417496, -0.40159045725646125, -0.400596421471173, -0.3996023856858848, -0.39860834990059646, -0.39761431411530823, -0.3966202783300199, -0.39562624254473167, -0.39463220675944344, -0.3936381709741551, -0.39264413518886687, -0.39165009940357864, -0.3906560636182903, -0.3896620278330021, -0.38866799204771374, -0.3876739562624255, -0.3866799204771373, -0.38568588469184895, -0.3846918489065607, -0.3836978131212724, -0.38270377733598415, -0.3817097415506959, -0.3807157057654076, -0.37972166998011936, -0.37872763419483113, -0.3777335984095428, -0.37673956262425456, -0.3757455268389662, -0.374751491053678, -0.37375745526838977, -0.37276341948310143, -0.3717693836978132, -0.37077534791252487, -0.36978131212723664, -0.3687872763419484, -0.3677932405566601, -0.36679920477137185, -0.3658051689860836, -0.3648111332007953, -0.36381709741550705, -0.3628230616302187, -0.3618290258449305, -0.36083499005964226, -0.3598409542743539, -0.3588469184890657, -0.35785288270377735, -0.3568588469184891, -0.3558648111332009, -0.35487077534791256, -0.35387673956262433, -0.3528827037773361, -0.35188866799204777, -0.35089463220675954, -0.3499005964214712, -0.34890656063618297, -0.34791252485089474, -0.3469184890656064, -0.3459244532803182, -0.34493041749502984, -0.3439363817097416, -0.3429423459244534, -0.34194831013916505, -0.3409542743538768, -0.3399602385685886, -0.33896620278330025, -0.337972166998012, -0.3369781312127237, -0.33598409542743546, -0.33499005964214723, -0.3339960238568589, -0.33300198807157066, -0.3320079522862823, -0.3310139165009941, -0.33001988071570587, -0.32902584493041753, -0.3280318091451293, -0.3270377733598411, -0.32604373757455274, -0.3250497017892645, -0.3240556660039762, -0.32306163021868795, -0.3220675944333997, -0.3210735586481114, -0.32007952286282315, -0.3190854870775348, -0.3180914512922466, -0.31709741550695836, -0.31610337972167, -0.3151093439363818, -0.31411530815109356, -0.3131212723658052, -0.312127236580517, -0.31113320079522866, -0.31013916500994043, -0.3091451292246522, -0.30815109343936387, -0.30715705765407564, -0.3061630218687873, -0.30516898608349907, -0.30417495029821084, -0.3031809145129225, -0.3021868787276343, -0.30119284294234605, -0.3001988071570577, -0.2992047713717695, -0.29821073558648115, -0.2972166998011929, -0.2962226640159047, -0.29522862823061635, -0.2942345924453281, -0.2932405566600398, -0.29224652087475156, -0.29125248508946333, -0.290258449304175, -0.28926441351888676, -0.28827037773359854, -0.2872763419483102, -0.28628230616302197, -0.28528827037773363, -0.2842942345924454, -0.2833001988071572, -0.28230616302186884, -0.2813121272365806, -0.2803180914512923, -0.27932405566600405, -0.2783300198807158, -0.2773359840954275, -0.27634194831013925, -0.275347912524851, -0.2743538767395627, -0.27335984095427446, -0.2723658051689861, -0.2713717693836979, -0.27037773359840966, -0.2693836978131213, -0.2683896620278331, -0.26739562624254476, -0.26640159045725653, -0.2654075546719683, -0.26441351888667997, -0.26341948310139174, -0.2624254473161035, -0.26143141153081517, -0.26043737574552694, -0.2594433399602386, -0.2584493041749504, -0.25745526838966215, -0.2564612326043738, -0.2554671968190856, -0.25447316103379725, -0.253479125248509, -0.2524850894632208, -0.25149105367793245, -0.2504970178926442, -0.249502982107356, -0.24850894632206766, -0.24751491053677943, -0.2465208747514911, -0.24552683896620286, -0.24453280318091464, -0.2435387673956263, -0.24254473161033807, -0.24155069582504973, -0.2405566600397615, -0.23956262425447328, -0.23856858846918494, -0.2375745526838967, -0.23658051689860837, -0.23558648111332015, -0.23459244532803192, -0.23359840954274358, -0.23260437375745535, -0.23161033797216712, -0.23061630218687879, -0.22962226640159056, -0.22862823061630222, -0.227634194831014, -0.22664015904572576, -0.22564612326043743, -0.2246520874751492, -0.22365805168986086, -0.22266401590457263, -0.2216699801192844, -0.22067594433399607, -0.21968190854870784, -0.2186878727634196, -0.21769383697813127, -0.21669980119284304, -0.2157057654075547, -0.21471172962226648, -0.21371769383697825, -0.2127236580516899, -0.21172962226640168, -0.21073558648111335, -0.20974155069582512, -0.2087475149105369, -0.20775347912524855, -0.20675944333996032, -0.2057654075546721, -0.20477137176938376, -0.20377733598409553, -0.2027833001988072, -0.20178926441351897, -0.20079522862823074, -0.1998011928429424, -0.19880715705765417, -0.19781312127236583, -0.1968190854870776, -0.19582504970178938, -0.19483101391650104, -0.1938369781312128, -0.19284294234592458, -0.19184890656063625, -0.19085487077534802, -0.18986083499005968, -0.18886679920477145, -0.18787276341948322, -0.18687872763419489, -0.18588469184890666, -0.18489065606361832, -0.1838966202783301, -0.18290258449304186, -0.18190854870775353, -0.1809145129224653, -0.17992047713717707, -0.17892644135188873, -0.1779324055666005, -0.17693836978131217, -0.17594433399602394, -0.1749502982107357, -0.17395626242544737, -0.17296222664015914, -0.1719681908548708, -0.17097415506958258, -0.16998011928429435, -0.168986083499006, -0.16799204771371778, -0.16699801192842956, -0.16600397614314122, -0.165009940357853, -0.16401590457256465, -0.16302186878727642, -0.1620278330019882, -0.16103379721669986, -0.16003976143141163, -0.1590457256461233, -0.15805168986083507, -0.15705765407554684, -0.1560636182902585, -0.15506958250497027, -0.15407554671968204, -0.1530815109343937, -0.15208747514910548, -0.15109343936381714, -0.1500994035785289, -0.14910536779324068, -0.14811133200795235, -0.14711729622266412, -0.14612326043737578, -0.14512922465208755, -0.14413518886679932, -0.14314115308151099, -0.14214711729622276, -0.14115308151093453, -0.1401590457256462, -0.13916500994035796, -0.13817097415506963, -0.1371769383697814, -0.13618290258449317, -0.13518886679920483, -0.1341948310139166, -0.13320079522862827, -0.13220675944334004, -0.1312127236580518, -0.13021868787276347, -0.12922465208747524, -0.12823061630218702, -0.12723658051689868, -0.12624254473161045, -0.1252485089463221, -0.12425447316103388, -0.12326043737574566, -0.12226640159045732, -0.12127236580516909, -0.12027833001988075, -0.11928429423459253, -0.1182902584493043, -0.11729622266401596, -0.11630218687872773, -0.1153081510934395, -0.11431411530815117, -0.11332007952286294, -0.1123260437375746, -0.11133200795228637, -0.11033797216699814, -0.1093439363817098, -0.10834990059642158, -0.10735586481113324, -0.10636182902584501, -0.10536779324055678, -0.10437375745526845, -0.10337972166998022, -0.10238568588469199, -0.10139165009940365, -0.10039761431411542, -0.09940357852882709, -0.09840954274353886, -0.09741550695825063, -0.09642147117296229, -0.09542743538767406, -0.09443339960238573, -0.0934393638170975, -0.09244532803180927, -0.09145129224652093, -0.0904572564612327, -0.08946322067594448, -0.08846918489065614, -0.08747514910536791, -0.08648111332007957, -0.08548707753479134, -0.08449304174950312, -0.08349900596421478, -0.08250497017892655, -0.08151093439363821, -0.08051689860834998, -0.07952286282306176, -0.07852882703777342, -0.07753479125248519, -0.07654075546719696, -0.07554671968190863, -0.0745526838966204, -0.07355864811133206, -0.07256461232604383, -0.0715705765407556, -0.07057654075546727, -0.06958250497017904, -0.0685884691848907, -0.06759443339960247, -0.06660039761431424, -0.0656063618290259, -0.06461232604373768, -0.06361829025844945, -0.06262425447316111, -0.061630218687872884, -0.060636182902584546, -0.05964214711729632, -0.05864811133200809, -0.05765407554671975, -0.056660039761431524, -0.055666003976143186, -0.05467196819085496, -0.05367793240556673, -0.05268389662027839, -0.051689860834990164, -0.05069582504970194, -0.0497017892644136, -0.04870775347912537, -0.04771371769383703, -0.046719681908548805, -0.04572564612326058, -0.04473161033797224, -0.04373757455268401, -0.04274353876739567, -0.041749502982107445, -0.04075546719681922, -0.03976143141153088, -0.03876739562624265, -0.037773359840954424, -0.036779324055666085, -0.03578528827037786, -0.03479125248508952, -0.03379721669980129, -0.032803180914513064, -0.031809145129224725, -0.030815109343936498, -0.02982107355864816, -0.02882703777335993, -0.027833001988071704, -0.026838966202783365, -0.025844930417495138, -0.02485089463220691, -0.02385685884691857, -0.022862823061630344, -0.021868787276342005, -0.020874751491053778, -0.01988071570576555, -0.018886679920477212, -0.017892644135188984, -0.016898608349900646, -0.015904572564612418, -0.01491053677932419, -0.013916500994035852, -0.012922465208747624, -0.011928429423459397, -0.010934393638171058, -0.00994035785288283, -0.008946322067594492, -0.007952286282306265, -0.006958250497018037, -0.005964214711729698, -0.004970178926441471, -0.003976143141153132, -0.0029821073558649047, -0.001988071570576677, -0.0009940357852883386, -5.551115123125783e-17]}
+},{}],55:[function(require,module,exports){
+module.exports={"expected": [1.0000000000000002, 1.0022914734024368, 1.0045881976552276, 1.0068901847905565, 1.0091974468681786, 1.011509995975484, 1.0138278442275608, 1.0161510037672579, 1.01847948676525, 1.0208133054200998, 1.0231524719583236, 1.0254969986344533, 1.027846897731103, 1.0302021815590308, 1.0325628624572056, 1.0349289527928702, 1.0373004649616069, 1.0396774113874014, 1.04205980452271, 1.0444476568485221, 1.046840980874428, 1.0492397891386824, 1.051644094208272, 1.05405390867898, 1.0564692451754523, 1.0588901163512643, 1.0613165348889861, 1.0637485135002507, 1.0661860649258181, 1.0686292019356443, 1.071077937328947, 1.073532283934273, 1.0759922546095655, 1.0784578622422312, 1.080929119749208, 1.0834060400770327, 1.0858886362019085, 1.0883769211297734, 1.0908709078963683, 1.0933706095673048, 1.0958760392381341, 1.098387210034416, 1.1009041351117868, 1.103426827656028, 1.1059553008831369, 1.1084895680393945, 1.1110296424014352, 1.1135755372763168, 1.1161272660015897, 1.1186848419453668, 1.1212482785063937, 1.123817589114119, 1.1263927872287645, 1.1289738863413958, 1.1315608999739928, 1.1341538416795205, 1.1367527250420006, 1.1393575636765818, 1.1419683712296118, 1.1445851613787084, 1.1472079478328314, 1.1498367443323543, 1.1524715646491364, 1.1551124225865945, 1.1577593319797759, 1.1604123066954304, 1.1630713606320833, 1.1657365077201074, 1.1684077619217976, 1.171085137231442, 1.1737686476753968, 1.176458307312159, 1.1791541302324406, 1.1818561305592417, 1.1845643224479248, 1.1872787200862898, 1.1899993376946465, 1.1927261895258912, 1.1954592898655794, 1.1981986530320021, 1.2009442933762606, 1.2036962252823404, 1.2064544631671883, 1.209219021480787, 1.2119899147062307, 1.2147671573598018, 1.2175507639910452, 1.2203407491828473, 1.2231371275515095, 1.2259399137468265, 1.228749122452163, 1.2315647683845297, 1.2343868662946609, 1.2372154309670922, 1.2400504772202376, 1.2428920199064666, 1.2457400739121833, 1.2485946541579025, 1.25145577559833, 1.2543234532224394, 1.2571977020535512, 1.2600785371494114, 1.2629659736022707, 1.2658600265389628, 1.2687607111209847, 1.271668042544575, 1.274582036040795, 1.277502706875606, 1.2804300703499523, 1.2833641417998394, 1.2863049365964148, 1.2892524701460484, 1.292206757890414, 1.2951678153065687, 1.2981356579070358, 1.3011103012398844, 1.304091760888812, 1.3070800524732256, 1.3100751916483235, 1.313077194105178, 1.3160860755708161, 1.319101851808304, 1.3221245386168279, 1.325154151831777, 1.3281907073248282, 1.3312342210040267, 1.334284708813871, 1.3373421867353958, 1.3404066707862565, 1.343478177020812, 1.3465567215302094, 1.3496423204424681, 1.3527349899225651, 1.3558347461725182, 1.358941605431472, 1.3620555839757829, 1.3651766981191038, 1.36830496421247, 1.371440398644385, 1.374583017840906, 1.3777328382657295, 1.3808898764202793, 1.3840541488437903, 1.387225672113398, 1.3904044628442231, 1.39359053768946, 1.396783913340463, 1.399984606526834, 1.403192634016511, 1.406408012615855, 1.4096307591697381, 1.4128608905616322, 1.4160984237136973, 1.4193433755868698, 1.4225957631809516, 1.4258556035347003, 1.4291229137259152, 1.432397710871531, 1.4356800121277042, 1.438969834689905, 1.4422671957930056, 1.4455721127113723, 1.4488846027589546, 1.4522046832893767, 1.4555323716960284, 1.4588676854121556, 1.462210641910952, 1.4655612587056508, 1.4689195533496164, 1.4722855434364364, 1.4756592466000131, 1.4790406805146568, 1.482429862895178, 1.4858268114969801, 1.4892315441161528, 1.4926440785895647, 1.4960644327949573, 1.4994926246510385, 1.5029286721175765, 1.5063725931954934, 1.5098244059269605, 1.5132841283954919, 1.5167517787260398, 1.5202273750850892, 1.5237109356807528, 1.527202478762867, 1.5307020226230876, 1.5342095855949847, 1.5377251860541388, 1.541248842418239, 1.5447805731471766, 1.5483203967431445, 1.5518683317507316, 1.5554243967570223, 1.5589886103916921, 1.5625609913271066, 1.5661415582784177, 1.5697303300036634, 1.573327325303865, 1.5769325630231257, 1.5805460620487297, 1.5841678413112403, 1.5877979197846006, 1.5914363164862313, 1.5950830504771314, 1.5987381408619774, 1.6024016067892237, 1.606073467451203, 1.6097537420842267, 1.6134424499686857, 1.617139610429151, 1.6208452428344766, 1.6245593665978977, 1.6282820011771364, 1.6320131660745, 1.6357528808369863, 1.6395011650563835, 1.6432580383693742, 1.647023520457638, 1.6507976310479542, 1.6545803899123062, 1.6583718168679837, 1.6621719317776873, 1.6659807545496328, 1.6697983051376546, 1.6736246035413114, 1.67745966980599, 1.6813035240230105, 1.6851561863297326, 1.6890176769096588, 1.6928880159925428, 1.6967672238544935, 1.7006553208180826, 1.7045523272524497, 1.70845826357341, 1.7123731502435617, 1.7162970077723916, 1.7202298567163838, 1.724171717679127, 1.7281226113114223, 1.732082558311392, 1.736051579424587, 1.7400296954440966, 1.744016927210657, 1.7480132956127594, 1.7520188215867618, 1.7560335261169964, 1.7600574302358807, 1.7640905550240273, 1.7681329216103545, 1.7721845511721974, 1.7762454649354178, 1.780315684174516, 1.784395230212743, 1.7884841244222103, 1.7925823882240042, 1.796690043088296, 1.8008071105344556, 1.8049336121311643, 1.8090695694965269, 1.8132150042981858, 1.8173699382534343, 1.82153439312933, 1.8257083907428093, 1.8298919529608022, 1.8340851017003448, 1.8382878589286966, 1.842500246663454, 1.8467222869726663, 1.8509540019749513, 1.8551954138396107, 1.859446544786747, 1.8637074170873784, 1.8679780530635581, 1.872258475088489, 1.876548705586641, 1.8808487670338696, 1.8851586819575337, 1.889478472936612, 1.893808162601823, 1.8981477736357424, 1.9024973287729232, 1.9068568508000134, 1.9112263625558759, 1.9156058869317085, 1.9199954468711635, 1.9243950653704684, 1.9288047654785454, 1.9332245702971327, 1.9376545029809056, 1.942094586737598, 1.9465448448281237, 1.9510053005666976, 1.9554759773209591, 1.959956898512094, 1.9644480876149568, 1.9689495681581943, 1.973461363724368, 1.9779834979500788, 1.9825159945260902, 1.9870588771974522, 1.991612169763626, 1.9961758960786082, 2.000750080051058, 2.0053347456444177, 2.009929916877044, 2.0145356178223297, 2.019151872608831, 2.0237787054203946, 2.028416140496283, 2.0330642021313037, 2.0377229146759337, 2.0423923025364497, 2.047072390175053, 2.051763202110002, 2.056464762915735, 2.061177097223005, 2.0659002297190034, 2.0706341851474925, 2.075378988308934, 2.08013466406062, 2.084901237316801, 2.0896787330488205, 2.0944671762852396, 2.0992665921119738, 2.1040770056724223, 2.1088984421675994, 2.1137309268562667, 2.118574485055065, 2.12342914213865, 2.12829492353982, 2.1331718547496523, 2.1380599613176376, 2.142959268851812, 2.1478698030188914, 2.152791589544406, 2.1577246542128363, 2.162669022867747, 2.167624721411922, 2.172591775807502, 2.177570212076118, 2.1825600562990286, 2.1875613346172584, 2.192574073231733, 2.197598298403416, 2.202634036453447, 2.207681313763282, 2.2127401567748275, 2.2178105919905806, 2.2228926459737695, 2.2279863453484903, 2.2330917167998487, 2.238208787074097, 2.2433375829787776, 2.24847813138286, 2.2536304592168843, 2.2587945934731013, 2.2639705612056127, 2.269158389530515, 2.2743581056260402, 2.279569736732699, 2.2847933101534217, 2.290028853253703, 2.2952763934617466, 2.3005359582686054, 2.305807575228327, 2.3110912719581, 2.3163870761383953, 2.3216950155131144, 2.327015117889733, 2.3323474111394455, 2.3376919231973132, 2.343048682062411, 2.3484177157979715, 2.3537990525315338, 2.3591927204550904, 2.3645987478252355, 2.3700171629633124, 2.3754479942555613, 2.3808912701532696, 2.3863470191729195, 2.3918152698963384, 2.397296050970848, 2.402789391109414, 2.4082953190907985, 2.413813863759708, 2.4193450540269463, 2.424888918869566, 2.430445487331019, 2.43601478852131, 2.4415968516171493, 2.447191705862103, 2.45279938056675, 2.4584199051088316, 2.46405330893341, 2.4696996215530165, 2.4753588725478135, 2.4810310915657428, 2.4867163083226838, 2.492414552602611, 2.4981258542577462, 2.503850243208717, 2.5095877494447145, 2.515338403023648, 2.5211022340723046, 2.526879272786505, 2.532669549431264, 2.538473094340947, 2.5442899379194306, 2.5501201106402602, 2.5559636430468116, 2.561820565752448, 2.5676909094406852, 2.5735747048653472, 2.57947198285073, 2.585382774291763, 2.5913071101541707, 2.597245021474634, 2.6031965393609546, 2.609161694992215, 2.6151405196189463, 2.621133044563288, 2.627139301219153, 2.6331593210523927, 2.639193135600962, 2.6452407764750854, 2.6513022753574194, 2.6573776640032207, 2.6634669742405133, 2.6695702379702544, 2.6756874871665, 2.6818187538765743, 2.6879640702212386, 2.694123468394856, 2.7002969806655632, 2.706484639375439, 2.712686476940671, 2.71890252585173, 2.7251328186735373, 2.7313773880456353, 2.737636266682359, 2.7439094873730077, 2.750197082982017, 2.756499086449129, 2.762815530789568, 2.7691464490942113, 2.775491874529763, 2.781851840338927, 2.7882263798405837, 2.794615526429961, 2.801019313578811, 2.8074377748355888, 2.813870943825621, 2.820318854251287, 2.826781539892194, 2.8332590346053563, 2.839751372325368, 2.846258587064585, 2.8527807129133, 2.8593177840399253, 2.8658698346911673, 2.8724368991922082, 2.879019011946885, 2.88561620743787, 2.8922285202268547, 2.8988559849547233, 2.9054986363417417, 2.9121565091877346, 2.918829638372271, 2.9255180588548453, 2.9322218056750597, 2.938940913952808, 2.945675418888465, 2.9524253557630593, 2.95919075993847, 2.9659716668576053, 2.9727681120445903, 2.9795801311049526, 2.9864077597258087, 2.993251033676051, 3.0001099888065355, 3.0069846610502706, 3.0138750864226025, 3.0207813010214064, 3.027703341027275, 3.034641242703708, 3.041595042397301, 3.048564776537938, 3.05555048163898, 3.0625521942974583, 3.069569951194265, 3.076603789094346, 3.0836537448468917, 3.090719855385532, 3.0978021577285313, 3.104900688978977, 3.1120154863249803, 3.1191465870398645, 3.1262940284823677, 3.133457848096832, 3.1406380834134024, 3.1478347720482245, 3.155047951703638, 3.162277660168379, 3.1695239353177747, 3.1767868151139416, 3.184066337605988, 3.191362540930206, 3.19867546331028, 3.206005143057482, 3.213351618570873, 3.2207149283375065, 3.228095110932623, 3.2354922050198605, 3.242906249351454, 3.250337282768439, 3.2577853442008524, 3.2652504726679363, 3.2727327072783483, 3.2802320872303614, 3.287748651812069, 3.295282440401593, 3.3028334924672915, 3.310401847567957, 3.317987545353036, 3.3255906255628283, 3.3332111280286982, 3.3408490926732832, 3.3485045595106984, 3.356177568646755, 3.3638681602791634, 3.3715763746977467, 3.379302252284652, 3.387045833514556, 3.3948071589548885, 3.402586269266035, 3.410383205201554, 3.4181980076083915, 3.4260307174270883, 3.4338813756920032, 3.441750023531524, 3.449636702168282, 3.4575414529193713, 3.4654643171965582, 3.4734053365065076, 3.4813645524509935, 3.4893420067271204, 3.4973377411275406, 3.5053517975406736, 3.5133842179509216, 3.521435044438897, 3.5295043191816364, 3.5375920844528266, 3.5456983826230224, 3.5538232561598653, 3.5619667476283166, 3.57012889969087, 3.578309755107782, 3.586509356737293, 3.5947277475358463, 3.6029649705583258, 3.611221068958271, 3.6194960859881076, 3.627790064999375, 3.6361030494429443, 3.6444350828692618, 3.652786208928563, 3.66115647137111, 3.6695459140474176, 3.6779545809084775, 3.6863825160059993, 3.6948297634926344, 3.7032963676222086, 3.7117823727499553, 3.7202878233327468, 3.7288127639293225, 3.7373572392005325, 3.7459212939095643, 3.754504972922179, 3.763108321206948, 3.771731383835482, 3.7803742059826764, 3.7890368329269433, 3.797719310050448, 3.8064216828393502, 3.815143996884035, 3.82388629787936, 3.8326486316248927, 3.841431044025146, 3.850233581089826, 3.8590562889340614, 3.8678992137786596, 3.8767624019503386, 3.8856458998819745, 3.894549754112843, 3.9034740112888584, 3.9124187181628294, 3.9213839215946944, 3.9303696685517715, 3.9393760061090015, 3.948402981449199, 3.9574506418632915, 3.9665190347505765, 3.9756082076189663, 3.984718208085234, 3.993849083875268, 4.003000882824314, 4.0121736528772365, 4.021367442088762, 4.030582298623732, 4.039818270757363, 4.04907540687548, 4.058353755474796, 4.067653365163145, 4.076974284659748, 4.086316562795466, 4.095680248513048, 4.1050653908674, 4.114472039025836, 4.123900242268333, 4.133350049987795, 4.142821511690302, 4.152314676995383, 4.161829595636265, 4.171366317460139, 4.180924892428418, 4.1905053706170055, 4.200107802216542, 4.2097322375326875, 4.219378726986374, 4.22904732111407, 4.238738070568051, 4.248451026116653, 4.258186238644554, 4.26794375915303, 4.277723638760224, 4.287525928701419, 4.297350680329297, 4.307197945114214, 4.317067774644473, 4.326960220626587, 4.336875334885556, 4.34681316936513, 4.356773776128091, 4.366757207356522, 4.376763515352078, 4.386792752536264, 4.396844971450703, 4.406920224757419, 4.41701856523911, 4.427140045799424, 4.437284719463236, 4.447452639376927, 4.457643858808655, 4.467858431148651, 4.4780964099094795, 4.488357848726334, 4.4986428013573105, 4.508951321683684, 4.519283463710203, 4.529639281565367, 4.540018829501706, 4.550422161896073, 4.560849333249916, 4.571300398189579, 4.581775411466578, 4.592274427957892, 4.602797502666249, 4.61334469072041, 4.623916047375468, 4.634511628013129, 4.645131488142004, 4.655775683397905, 4.666444269544122, 4.677137302471736, 4.687854838199894, 4.698596932876113, 4.709363642776569, 4.720155024306395, 4.730971133999971, 4.7418120285212275, 4.752677764663938, 4.763568399352017, 4.774483989639823, 4.785424592712441, 4.796390265886008, 4.8073810666079915, 4.8183970524575015, 4.829438281145588, 4.840504810515543, 4.851596698543206, 4.862714003337267, 4.873856783139571, 4.885025096325422, 4.896219001403887, 4.907438557018109, 4.918683821945608, 4.929954855098591, 4.941251715524266, 4.952574462405134, 4.963923155059322, 4.97529785294088, 4.986698615640094, 4.9981255028838, 5.009578574535702, 5.0210578905966665, 5.032563511205063, 5.044095496637063, 5.055653907306957, 5.067238803767478, 5.078850246710106, 5.0904882969654, 5.102153015503312, 5.113844463433499, 5.125562702005658, 5.137307792609825, 5.149079796776721, 5.160878776178058, 5.172704792626869, 5.184557908077833, 5.196438184627586, 5.2083456845150655, 5.2202804701218275, 5.232242603972371, 5.244232148734472, 5.2562491672195, 5.268293722382762, 5.280365877323827, 5.2924656952868485, 5.304593239660907, 5.3167485739803375, 5.328931761925055, 5.341142867320907, 5.353381954139986, 5.365649086500983, 5.3779443286695106, 5.390267745058441, 5.402619400228255, 5.414999358887366, 5.427407685892468, 5.439844446248873, 5.452309705110845, 5.464803527781953, 5.477325979715408, 5.489877126514401, 5.502457033932456, 5.515065767873763, 5.527703394393534, 5.540369979698345, 5.553065590146482, 5.565790292248291, 5.5785441526665185, 5.591327238216673, 5.604139615867365, 5.616981352740666, 5.629852516112454, 5.642753173412769, 5.655683392226159, 5.668643240292049, 5.68163278550508, 5.694652095915476, 5.707701239729399, 5.720780285309294, 5.733889301174264, 5.7470283560004205, 5.760197518621244, 5.773396858027949, 5.786626443369832, 5.79988634395465, 5.813176629248977, 5.826497368878567, 5.839848632628723, 5.8532304904446475, 5.866643012431831, 5.8800862688564095, 5.893560330145528, 5.907065266887715, 5.920601149833245, 5.934168049894524, 5.947766038146446, 5.961395185826774, 5.975055564336513, 5.988747245240271, 6.002470300266655, 6.016224801308631, 6.030010820423909, 6.043828429835315, 6.057677701931176, 6.071558709265685, 6.0854715245593, 6.099416220699113, 6.1133928707392355, 6.127401547901183, 6.141442325574247, 6.155515277315899, 6.169620476852161, 6.183757998077996, 6.1979279150577, 6.212130302025273, 6.2263652333848345, 6.240632783710992, 6.25493302774924, 6.269266040416353, 6.283631896800766, 6.298030672162987, 6.3124624419359785, 6.326927281725555, 6.3414252673107825, 6.3559564746443655, 6.370520979853057, 6.385118859238055, 6.399750189275395, 6.414415046616359, 6.429113508087872, 6.443845650692902, 6.458611551610872, 6.473411288198058, 6.4882449379879965, 6.503112578691893, 6.518014288199017, 6.532950144577127, 6.54792022607287, 6.562924611112192, 6.577963378300756, 6.5930366064243335, 6.608144374449246, 6.623286761522758, 6.638463846973497, 6.653675710311878, 6.668922431230496, 6.684204089604574, 6.699520765492361, 6.714872539135558, 6.730259490959742, 6.745681701574774, 6.761139251775235, 6.776632222540848, 6.792160695036896, 6.807724750614648, 6.823324470811794, 6.838959937352854, 6.854631232149628, 6.87033843730161, 6.886081635096425, 6.901860908010259, 6.917676338708282, 6.933528010045096, 6.949416005065164, 6.965340407003238, 6.981301299284807, 6.997298765526514, 7.0133328895366205, 7.029403755315427, 7.045511447055721, 7.061656049143215, 7.077837646156983, 7.094056322869916, 7.11031216424916, 7.126605255456558, 7.142935681849105, 7.159303528979378, 7.1757088825960045, 7.192151828644102, 7.208632453265725, 7.225150842800325, 7.241707083785198, 7.2583012629559285, 7.274933467246864, 7.291603783791556, 7.308312299923221, 7.325059103175199, 7.341844281281402, 7.358667922176789, 7.37553011399782, 7.392430945082917, 7.409370503972927, 7.42634887941158, 7.443366160345966, 7.460422435926995, 7.477517795509864, 7.494652328654525, 7.511826125126146, 7.529039274895601, 7.546291868139925, 7.563583995242792, 7.5809157467949895, 7.598287213594883, 7.61569848664891, 7.6331496571720425, 7.650640816588271, 7.668172056531079, 7.685743468843931, 7.703355145580738, 7.721007179006359, 7.7386996615970745, 7.7564326860410695, 7.774206345238927, 7.7920207323040955, 7.809875940563405, 7.827772063557536, 7.845709195041514, 7.863687428985208, 7.881706859573803, 7.899767581208319, 7.917869688506088, 7.936013276301259, 7.954198439645291, 7.972425273807441, 7.990693874275284, 8.009004336755199, 8.027356757172873, 8.045751231673808, 8.06418785662381, 8.082666728609517, 8.101187944438884, 8.119751601141706, 8.138357795970114, 8.157006626399097, 8.17569819012699, 8.194432585076015, 8.213209909392777, 8.232030261448779, 8.250893739840945, 8.269800443392123, 8.288750471151614, 8.30774392239569, 8.326780896628115, 8.34586149358066, 8.36498581321362, 8.384153955716359, 8.403366021507816, 8.422622111237041, 8.44192232578372, 8.461266766258689, 8.480655534004493, 8.50008873059589, 8.519566457840401, 8.539088817778838, 8.558655912685822, 8.578267845070348, 8.597924717676305, 8.617626633483013, 8.637373695705769, 8.657166007796388, 8.677003673443732, 8.696886796574272, 8.716815481352626, 8.736789832182092, 8.75680995370522, 8.776875950804328, 8.796987928602082, 8.817145992462029, 8.837350247989157, 8.857600801030445, 8.877897757675408, 8.898241224256672, 8.918631307350521, 8.939068113777454, 8.959551750602749, 8.980082325137008, 9.000659944936752, 9.021284717804951, 9.04195675179161, 9.062676155194326, 9.08344303655885, 9.104257504679673, 9.125119668600579, 9.146029637615229, 9.166987521267721, 9.18799342935318, 9.209047471918305, 9.230149759261982, 9.251300401935836, 9.272499510744824, 9.293747196747807, 9.315043571258125, 9.3363887458442, 9.35778283233011, 9.379225942796173, 9.400718189579539, 9.422259685274764, 9.44385054273442, 9.465490875069683, 9.48718079565091, 9.508920418108259, 9.53070985633224, 9.552549224474365, 9.574438636947715, 9.596378208427542, 9.618368053851881, 9.640408288422128, 9.662499027603678, 9.6846403871265, 9.706832482985766, 9.729075431442435, 9.75136934902389, 9.773714352524513, 9.796110559006335, 9.818558085799628, 9.841057050503515, 9.863607570986611, 9.8862097653876, 9.908863752115893, 9.931569649852236, 9.954327577549318, 9.977137654432418, 10.0], "x": [5.551115123125783e-17, 0.0009940357852883258, 0.001988071570576596, 0.0029821073558648666, 0.003976143141153137, 0.004970178926441407, 0.005964214711729678, 0.006958250497017948, 0.007952286282306218, 0.008946322067594489, 0.009940357852882758, 0.010934393638171029, 0.0119284294234593, 0.012922465208747569, 0.01391650099403584, 0.014910536779324109, 0.01590457256461238, 0.01689860834990065, 0.017892644135188922, 0.01888667992047719, 0.01988071570576546, 0.020874751491053733, 0.021868787276342002, 0.02286282306163027, 0.023856858846918544, 0.024850894632206813, 0.025844930417495082, 0.02683896620278335, 0.027833001988071624, 0.028827037773359893, 0.029821073558648162, 0.030815109343936435, 0.031809145129224704, 0.032803180914512974, 0.03379721669980124, 0.03479125248508951, 0.03578528827037779, 0.03677932405566606, 0.037773359840954326, 0.038767395626242596, 0.039761431411530865, 0.040755467196819134, 0.04174950298210741, 0.04274353876739568, 0.04373757455268395, 0.04473161033797222, 0.04572564612326049, 0.046719681908548756, 0.04771371769383703, 0.0487077534791253, 0.04970178926441357, 0.05069582504970184, 0.05168986083499011, 0.05268389662027838, 0.05367793240556665, 0.054671968190854923, 0.05566600397614319, 0.05666003976143146, 0.05765407554671973, 0.058648111332008, 0.05964214711729627, 0.060636182902584546, 0.061630218687872815, 0.06262425447316108, 0.06361829025844935, 0.06461232604373762, 0.06560636182902589, 0.06660039761431416, 0.06759443339960243, 0.0685884691848907, 0.06958250497017897, 0.07057654075546725, 0.07157057654075552, 0.07256461232604379, 0.07355864811133206, 0.07455268389662033, 0.0755467196819086, 0.07654075546719687, 0.07753479125248514, 0.0785288270377734, 0.07952286282306167, 0.08051689860834994, 0.08151093439363821, 0.08250497017892648, 0.08349900596421476, 0.08449304174950303, 0.0854870775347913, 0.08648111332007957, 0.08747514910536784, 0.08846918489065611, 0.08946322067594438, 0.09045725646123265, 0.09145129224652092, 0.09244532803180919, 0.09343936381709746, 0.09443339960238573, 0.09542743538767401, 0.09642147117296228, 0.09741550695825055, 0.09840954274353882, 0.09940357852882709, 0.10039761431411535, 0.10139165009940362, 0.1023856858846919, 0.10337972166998016, 0.10437375745526843, 0.1053677932405567, 0.10636182902584497, 0.10735586481113324, 0.10834990059642152, 0.10934393638170979, 0.11033797216699806, 0.11133200795228633, 0.1123260437375746, 0.11332007952286287, 0.11431411530815114, 0.1153081510934394, 0.11630218687872768, 0.11729622266401594, 0.11829025844930421, 0.11928429423459248, 0.12027833001988075, 0.12127236580516904, 0.1222664015904573, 0.12326043737574557, 0.12425447316103384, 0.1252485089463221, 0.12624254473161037, 0.12723658051689865, 0.12823061630218693, 0.1292246520874752, 0.13021868787276347, 0.13121272365805173, 0.13220675944334, 0.13320079522862827, 0.13419483101391655, 0.1351888667992048, 0.1361829025844931, 0.13717693836978134, 0.13817097415506963, 0.13916500994035788, 0.14015904572564616, 0.14115308151093445, 0.1421471172962227, 0.14314115308151099, 0.14413518886679924, 0.14512922465208752, 0.14612326043737578, 0.14711729622266406, 0.14811133200795232, 0.1491053677932406, 0.15009940357852886, 0.15109343936381714, 0.1520874751491054, 0.15308151093439368, 0.15407554671968196, 0.15506958250497022, 0.1560636182902585, 0.15705765407554675, 0.15805168986083504, 0.1590457256461233, 0.16003976143141158, 0.16103379721669983, 0.16202783300198811, 0.16302186878727637, 0.16401590457256465, 0.1650099403578529, 0.1660039761431412, 0.16699801192842947, 0.16799204771371773, 0.168986083499006, 0.16998011928429427, 0.17097415506958255, 0.1719681908548708, 0.1729622266401591, 0.17395626242544734, 0.17495029821073563, 0.17594433399602388, 0.17693836978131217, 0.17793240556660042, 0.1789264413518887, 0.179920477137177, 0.18091451292246524, 0.18190854870775353, 0.18290258449304178, 0.18389662027833006, 0.18489065606361832, 0.1858846918489066, 0.18687872763419486, 0.18787276341948314, 0.1888667992047714, 0.18986083499005968, 0.19085487077534796, 0.19184890656063622, 0.1928429423459245, 0.19383697813121276, 0.19483101391650104, 0.1958250497017893, 0.19681908548707758, 0.19781312127236583, 0.19880715705765412, 0.19980119284294237, 0.20079522862823065, 0.2017892644135189, 0.2027833001988072, 0.20377733598409548, 0.20477137176938373, 0.20576540755467201, 0.20675944333996027, 0.20775347912524855, 0.2087475149105368, 0.2097415506958251, 0.21073558648111335, 0.21172962226640163, 0.21272365805168988, 0.21371769383697817, 0.21471172962226642, 0.2157057654075547, 0.216699801192843, 0.21769383697813124, 0.21868787276341953, 0.21968190854870778, 0.22067594433399607, 0.22166998011928432, 0.2226640159045726, 0.22365805168986086, 0.22465208747514914, 0.2256461232604374, 0.22664015904572568, 0.22763419483101394, 0.22862823061630222, 0.2296222664015905, 0.23061630218687876, 0.23161033797216704, 0.2326043737574553, 0.23359840954274358, 0.23459244532803183, 0.23558648111332012, 0.23658051689860837, 0.23757455268389666, 0.2385685884691849, 0.2395626242544732, 0.24055666003976145, 0.24155069582504973, 0.24254473161033802, 0.24353876739562627, 0.24453280318091455, 0.2455268389662028, 0.2465208747514911, 0.24751491053677935, 0.24850894632206763, 0.2495029821073559, 0.25049701789264417, 0.25149105367793245, 0.2524850894632207, 0.25347912524850896, 0.25447316103379725, 0.25546719681908553, 0.2564612326043738, 0.25745526838966204, 0.2584493041749503, 0.2594433399602386, 0.2604373757455269, 0.2614314115308151, 0.2624254473161034, 0.2634194831013917, 0.26441351888667997, 0.2654075546719682, 0.2664015904572565, 0.26739562624254476, 0.26838966202783304, 0.2693836978131213, 0.27037773359840955, 0.27137176938369784, 0.2723658051689861, 0.2733598409542744, 0.27435387673956263, 0.2753479125248509, 0.2763419483101392, 0.2773359840954275, 0.2783300198807157, 0.279324055666004, 0.2803180914512923, 0.28131212723658056, 0.28230616302186884, 0.28330019880715707, 0.28429423459244535, 0.28528827037773363, 0.2862823061630219, 0.28727634194831014, 0.2882703777335984, 0.2892644135188867, 0.290258449304175, 0.2912524850894632, 0.2922465208747515, 0.2932405566600398, 0.29423459244532807, 0.29522862823061635, 0.2962226640159046, 0.29721669980119286, 0.29821073558648115, 0.29920477137176943, 0.30019880715705766, 0.30119284294234594, 0.3021868787276342, 0.3031809145129225, 0.30417495029821073, 0.305168986083499, 0.3061630218687873, 0.3071570576540756, 0.30815109343936387, 0.3091451292246521, 0.3101391650099404, 0.31113320079522866, 0.31212723658051694, 0.31312127236580517, 0.31411530815109345, 0.31510934393638174, 0.31610337972167, 0.31709741550695825, 0.31809145129224653, 0.3190854870775348, 0.3200795228628231, 0.3210735586481114, 0.3220675944333996, 0.3230616302186879, 0.3240556660039762, 0.32504970178926446, 0.3260437375745527, 0.32703777335984097, 0.32803180914512925, 0.32902584493041753, 0.33001988071570576, 0.33101391650099404, 0.3320079522862823, 0.3330019880715706, 0.3339960238568589, 0.3349900596421471, 0.3359840954274354, 0.3369781312127237, 0.33797216699801197, 0.3389662027833002, 0.3399602385685885, 0.34095427435387676, 0.34194831013916505, 0.3429423459244533, 0.34393638170974156, 0.34493041749502984, 0.3459244532803181, 0.3469184890656064, 0.34791252485089463, 0.3489065606361829, 0.3499005964214712, 0.3508946322067595, 0.3518886679920477, 0.352882703777336, 0.3538767395626243, 0.35487077534791256, 0.3558648111332008, 0.35685884691848907, 0.35785288270377735, 0.35884691848906564, 0.3598409542743539, 0.36083499005964215, 0.36182902584493043, 0.3628230616302187, 0.363817097415507, 0.3648111332007952, 0.3658051689860835, 0.3667992047713718, 0.3677932405566601, 0.3687872763419483, 0.3697813121272366, 0.37077534791252487, 0.37176938369781315, 0.37276341948310143, 0.37375745526838966, 0.37475149105367794, 0.3757455268389662, 0.3767395626242545, 0.37773359840954274, 0.378727634194831, 0.3797216699801193, 0.3807157057654076, 0.38170974155069587, 0.3827037773359841, 0.3836978131212724, 0.38469184890656066, 0.38568588469184895, 0.3866799204771372, 0.38767395626242546, 0.38866799204771374, 0.389662027833002, 0.39065606361829025, 0.39165009940357853, 0.3926441351888668, 0.3936381709741551, 0.3946322067594434, 0.3956262425447316, 0.3966202783300199, 0.3976143141153082, 0.39860834990059646, 0.3996023856858847, 0.40059642147117297, 0.40159045725646125, 0.40258449304174954, 0.40357852882703776, 0.40457256461232605, 0.40556660039761433, 0.4065606361829026, 0.4075546719681909, 0.4085487077534791, 0.4095427435387674, 0.4105367793240557, 0.411530815109344, 0.4125248508946322, 0.4135188866799205, 0.41451292246520877, 0.41550695825049705, 0.4165009940357853, 0.41749502982107356, 0.41848906560636184, 0.4194831013916501, 0.4204771371769384, 0.42147117296222664, 0.4224652087475149, 0.4234592445328032, 0.4244532803180915, 0.4254473161033797, 0.426441351888668, 0.4274353876739563, 0.42842942345924456, 0.4294234592445328, 0.4304174950298211, 0.43141153081510936, 0.43240556660039764, 0.4333996023856859, 0.43439363817097415, 0.43538767395626243, 0.4363817097415507, 0.437375745526839, 0.4383697813121272, 0.4393638170974155, 0.4403578528827038, 0.4413518886679921, 0.4423459244532803, 0.4433399602385686, 0.44433399602385687, 0.44532803180914515, 0.44632206759443344, 0.44731610337972166, 0.44831013916500995, 0.44930417495029823, 0.4502982107355865, 0.45129224652087474, 0.452286282306163, 0.4532803180914513, 0.4542743538767396, 0.4552683896620278, 0.4562624254473161, 0.4572564612326044, 0.45825049701789267, 0.45924453280318095, 0.4602385685884692, 0.46123260437375746, 0.46222664015904574, 0.463220675944334, 0.46421471172962225, 0.46520874751491054, 0.4662027833001988, 0.4671968190854871, 0.46819085487077533, 0.4691848906560636, 0.4701789264413519, 0.4711729622266402, 0.47216699801192846, 0.4731610337972167, 0.474155069582505, 0.47514910536779326, 0.47614314115308154, 0.47713717693836977, 0.47813121272365805, 0.47912524850894633, 0.4801192842942346, 0.48111332007952284, 0.4821073558648111, 0.4831013916500994, 0.4840954274353877, 0.485089463220676, 0.4860834990059642, 0.4870775347912525, 0.48807157057654077, 0.48906560636182905, 0.4900596421471173, 0.49105367793240556, 0.49204771371769385, 0.49304174950298213, 0.49403578528827036, 0.49502982107355864, 0.4960238568588469, 0.4970178926441352, 0.4980119284294235, 0.4990059642147117, 0.5, 0.5009940357852882, 0.5019880715705765, 0.5029821073558649, 0.5039761431411531, 0.5049701789264414, 0.5059642147117296, 0.5069582504970178, 0.5079522862823063, 0.5089463220675945, 0.5099403578528827, 0.510934393638171, 0.5119284294234592, 0.5129224652087476, 0.5139165009940359, 0.5149105367793241, 0.5159045725646123, 0.5168986083499005, 0.5178926441351888, 0.5188866799204772, 0.5198807157057654, 0.5208747514910537, 0.5218687872763419, 0.5228628230616301, 0.5238568588469186, 0.5248508946322068, 0.525844930417495, 0.5268389662027833, 0.5278330019880715, 0.5288270377733599, 0.5298210735586482, 0.5308151093439364, 0.5318091451292246, 0.5328031809145128, 0.5337972166998013, 0.5347912524850895, 0.5357852882703777, 0.536779324055666, 0.5377733598409542, 0.5387673956262427, 0.5397614314115309, 0.5407554671968191, 0.5417495029821073, 0.5427435387673956, 0.5437375745526838, 0.5447316103379722, 0.5457256461232605, 0.5467196819085487, 0.5477137176938369, 0.5487077534791251, 0.5497017892644136, 0.5506958250497018, 0.55168986083499, 0.5526838966202783, 0.5536779324055665, 0.554671968190855, 0.5556660039761432, 0.5566600397614314, 0.5576540755467196, 0.5586481113320079, 0.5596421471172963, 0.5606361829025845, 0.5616302186878728, 0.562624254473161, 0.5636182902584492, 0.5646123260437377, 0.5656063618290259, 0.5666003976143141, 0.5675944333996024, 0.5685884691848906, 0.5695825049701788, 0.5705765407554673, 0.5715705765407555, 0.5725646123260437, 0.573558648111332, 0.5745526838966202, 0.5755467196819086, 0.5765407554671969, 0.5775347912524851, 0.5785288270377733, 0.5795228628230615, 0.58051689860835, 0.5815109343936382, 0.5825049701789264, 0.5834990059642147, 0.5844930417495029, 0.5854870775347913, 0.5864811133200796, 0.5874751491053678, 0.588469184890656, 0.5894632206759443, 0.5904572564612327, 0.5914512922465209, 0.5924453280318092, 0.5934393638170974, 0.5944333996023856, 0.5954274353876738, 0.5964214711729623, 0.5974155069582505, 0.5984095427435387, 0.599403578528827, 0.6003976143141152, 0.6013916500994037, 0.6023856858846919, 0.6033797216699801, 0.6043737574552683, 0.6053677932405566, 0.606361829025845, 0.6073558648111332, 0.6083499005964215, 0.6093439363817097, 0.6103379721669979, 0.6113320079522864, 0.6123260437375746, 0.6133200795228628, 0.614314115308151, 0.6153081510934393, 0.6163021868787277, 0.617296222664016, 0.6182902584493042, 0.6192842942345924, 0.6202783300198806, 0.6212723658051689, 0.6222664015904573, 0.6232604373757455, 0.6242544731610338, 0.625248508946322, 0.6262425447316102, 0.6272365805168987, 0.6282306163021869, 0.6292246520874751, 0.6302186878727634, 0.6312127236580516, 0.63220675944334, 0.6332007952286283, 0.6341948310139165, 0.6351888667992047, 0.636182902584493, 0.6371769383697814, 0.6381709741550696, 0.6391650099403579, 0.6401590457256461, 0.6411530815109343, 0.6421471172962228, 0.643141153081511, 0.6441351888667992, 0.6451292246520874, 0.6461232604373757, 0.6471172962226639, 0.6481113320079523, 0.6491053677932406, 0.6500994035785288, 0.651093439363817, 0.6520874751491053, 0.6530815109343937, 0.6540755467196819, 0.6550695825049702, 0.6560636182902584, 0.6570576540755466, 0.6580516898608351, 0.6590457256461233, 0.6600397614314115, 0.6610337972166997, 0.662027833001988, 0.6630218687872764, 0.6640159045725647, 0.6650099403578529, 0.6660039761431411, 0.6669980119284293, 0.6679920477137178, 0.668986083499006, 0.6699801192842942, 0.6709741550695825, 0.6719681908548707, 0.6729622266401589, 0.6739562624254474, 0.6749502982107356, 0.6759443339960238, 0.676938369781312, 0.6779324055666003, 0.6789264413518887, 0.679920477137177, 0.6809145129224652, 0.6819085487077534, 0.6829025844930416, 0.6838966202783301, 0.6848906560636183, 0.6858846918489065, 0.6868787276341948, 0.687872763419483, 0.6888667992047715, 0.6898608349900597, 0.6908548707753479, 0.6918489065606361, 0.6928429423459244, 0.6938369781312128, 0.694831013916501, 0.6958250497017893, 0.6968190854870775, 0.6978131212723657, 0.698807157057654, 0.6998011928429424, 0.7007952286282306, 0.7017892644135189, 0.7027833001988071, 0.7037773359840953, 0.7047713717693838, 0.705765407554672, 0.7067594433399602, 0.7077534791252484, 0.7087475149105367, 0.7097415506958251, 0.7107355864811133, 0.7117296222664016, 0.7127236580516898, 0.713717693836978, 0.7147117296222665, 0.7157057654075547, 0.7166998011928429, 0.7176938369781312, 0.7186878727634194, 0.7196819085487078, 0.7206759443339961, 0.7216699801192843, 0.7226640159045725, 0.7236580516898607, 0.724652087475149, 0.7256461232604374, 0.7266401590457257, 0.7276341948310139, 0.7286282306163021, 0.7296222664015903, 0.7306163021868788, 0.731610337972167, 0.7326043737574552, 0.7335984095427435, 0.7345924453280317, 0.7355864811133201, 0.7365805168986084, 0.7375745526838966, 0.7385685884691848, 0.7395626242544731, 0.7405566600397615, 0.7415506958250497, 0.742544731610338, 0.7435387673956262, 0.7445328031809144, 0.7455268389662029, 0.7465208747514911, 0.7475149105367793, 0.7485089463220675, 0.7495029821073558, 0.750497017892644, 0.7514910536779325, 0.7524850894632207, 0.7534791252485089, 0.7544731610337971, 0.7554671968190854, 0.7564612326043738, 0.757455268389662, 0.7584493041749503, 0.7594433399602385, 0.7604373757455267, 0.7614314115308152, 0.7624254473161034, 0.7634194831013916, 0.7644135188866799, 0.7654075546719681, 0.7664015904572565, 0.7673956262425448, 0.768389662027833, 0.7693836978131212, 0.7703777335984094, 0.7713717693836979, 0.7723658051689861, 0.7733598409542743, 0.7743538767395626, 0.7753479125248508, 0.7763419483101393, 0.7773359840954275, 0.7783300198807157, 0.7793240556660039, 0.7803180914512922, 0.7813121272365804, 0.7823061630218688, 0.7833001988071571, 0.7842942345924453, 0.7852882703777335, 0.7862823061630217, 0.7872763419483102, 0.7882703777335984, 0.7892644135188867, 0.7902584493041749, 0.7912524850894631, 0.7922465208747516, 0.7932405566600398, 0.794234592445328, 0.7952286282306162, 0.7962226640159045, 0.7972166998011929, 0.7982107355864811, 0.7992047713717694, 0.8001988071570576, 0.8011928429423458, 0.8021868787276343, 0.8031809145129225, 0.8041749502982107, 0.805168986083499, 0.8061630218687872, 0.8071570576540754, 0.8081510934393639, 0.8091451292246521, 0.8101391650099403, 0.8111332007952285, 0.8121272365805168, 0.8131212723658052, 0.8141153081510935, 0.8151093439363817, 0.8161033797216699, 0.8170974155069581, 0.8180914512922466, 0.8190854870775348, 0.820079522862823, 0.8210735586481113, 0.8220675944333995, 0.823061630218688, 0.8240556660039762, 0.8250497017892644, 0.8260437375745526, 0.8270377733598409, 0.8280318091451293, 0.8290258449304175, 0.8300198807157058, 0.831013916500994, 0.8320079522862822, 0.8330019880715704, 0.8339960238568589, 0.8349900596421471, 0.8359840954274353, 0.8369781312127236, 0.8379721669980118, 0.8389662027833003, 0.8399602385685885, 0.8409542743538767, 0.8419483101391649, 0.8429423459244532, 0.8439363817097416, 0.8449304174950298, 0.8459244532803181, 0.8469184890656063, 0.8479125248508945, 0.848906560636183, 0.8499005964214712, 0.8508946322067594, 0.8518886679920477, 0.8528827037773359, 0.8538767395626243, 0.8548707753479126, 0.8558648111332008, 0.856858846918489, 0.8578528827037772, 0.8588469184890655, 0.8598409542743539, 0.8608349900596421, 0.8618290258449304, 0.8628230616302186, 0.8638170974155068, 0.8648111332007953, 0.8658051689860835, 0.8667992047713717, 0.86779324055666, 0.8687872763419482, 0.8697813121272366, 0.8707753479125249, 0.8717693836978131, 0.8727634194831013, 0.8737574552683895, 0.874751491053678, 0.8757455268389662, 0.8767395626242545, 0.8777335984095427, 0.8787276341948309, 0.8797216699801194, 0.8807157057654076, 0.8817097415506958, 0.882703777335984, 0.8836978131212723, 0.8846918489065605, 0.885685884691849, 0.8866799204771372, 0.8876739562624254, 0.8886679920477136, 0.8896620278330019, 0.8906560636182903, 0.8916500994035785, 0.8926441351888668, 0.893638170974155, 0.8946322067594432, 0.8956262425447317, 0.8966202783300199, 0.8976143141153081, 0.8986083499005963, 0.8996023856858846, 0.900596421471173, 0.9015904572564613, 0.9025844930417495, 0.9035785288270377, 0.9045725646123259, 0.9055666003976144, 0.9065606361829026, 0.9075546719681908, 0.9085487077534791, 0.9095427435387673, 0.9105367793240555, 0.911530815109344, 0.9125248508946322, 0.9135188866799204, 0.9145129224652087, 0.9155069582504969, 0.9165009940357853, 0.9174950298210736, 0.9184890656063618, 0.91948310139165, 0.9204771371769382, 0.9214711729622267, 0.9224652087475149, 0.9234592445328031, 0.9244532803180914, 0.9254473161033796, 0.926441351888668, 0.9274353876739563, 0.9284294234592445, 0.9294234592445327, 0.930417495029821, 0.9314115308151094, 0.9324055666003976, 0.9333996023856859, 0.9343936381709741, 0.9353876739562623, 0.9363817097415505, 0.937375745526839, 0.9383697813121272, 0.9393638170974155, 0.9403578528827037, 0.9413518886679919, 0.9423459244532804, 0.9433399602385686, 0.9443339960238568, 0.945328031809145, 0.9463220675944333, 0.9473161033797217, 0.94831013916501, 0.9493041749502982, 0.9502982107355864, 0.9512922465208746, 0.9522862823061631, 0.9532803180914513, 0.9542743538767395, 0.9552683896620278, 0.956262425447316, 0.9572564612326044, 0.9582504970178927, 0.9592445328031809, 0.9602385685884691, 0.9612326043737573, 0.9622266401590456, 0.963220675944334, 0.9642147117296223, 0.9652087475149105, 0.9662027833001987, 0.9671968190854869, 0.9681908548707754, 0.9691848906560636, 0.9701789264413518, 0.9711729622266401, 0.9721669980119283, 0.9731610337972167, 0.974155069582505, 0.9751491053677932, 0.9761431411530814, 0.9771371769383697, 0.9781312127236581, 0.9791252485089463, 0.9801192842942346, 0.9811133200795228, 0.982107355864811, 0.9831013916500995, 0.9840954274353877, 0.9850894632206759, 0.9860834990059641, 0.9870775347912524, 0.9880715705765406, 0.989065606361829, 0.9900596421471173, 0.9910536779324055, 0.9920477137176937, 0.993041749502982, 0.9940357852882704, 0.9950298210735586, 0.9960238568588469, 0.9970178926441351, 0.9980119284294233, 0.9990059642147118, 1.0]}
+},{}],56:[function(require,module,exports){
+module.exports={"expected": [0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 0.9999999999999999, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002, 1.0000000000000002], "x": [-5.551115123125783e-17, -5.540079108964499e-17, -5.529043094803215e-17, -5.5180070806419313e-17, -5.506971066480647e-17, -5.495935052319363e-17, -5.484899038158079e-17, -5.473863023996796e-17, -5.462827009835512e-17, -5.451790995674228e-17, -5.440754981512944e-17, -5.4297189673516605e-17, -5.4186829531903765e-17, -5.4076469390290925e-17, -5.3966109248678085e-17, -5.3855749107065245e-17, -5.374538896545241e-17, -5.363502882383957e-17, -5.352466868222673e-17, -5.341430854061389e-17, -5.330394839900106e-17, -5.319358825738822e-17, -5.308322811577538e-17, -5.297286797416254e-17, -5.2862507832549703e-17, -5.2752147690936863e-17, -5.2641787549324023e-17, -5.2531427407711183e-17, -5.2421067266098343e-17, -5.231070712448551e-17, -5.220034698287267e-17, -5.208998684125983e-17, -5.197962669964699e-17, -5.1869266558034155e-17, -5.1758906416421315e-17, -5.1648546274808475e-17, -5.1538186133195635e-17, -5.14278259915828e-17, -5.131746584996996e-17, -5.120710570835712e-17, -5.109674556674428e-17, -5.098638542513144e-17, -5.087602528351861e-17, -5.076566514190577e-17, -5.065530500029293e-17, -5.054494485868009e-17, -5.0434584717067253e-17, -5.0324224575454413e-17, -5.0213864433841573e-17, -5.0103504292228733e-17, -4.99931441506159e-17, -4.988278400900306e-17, -4.977242386739022e-17, -4.966206372577738e-17, -4.955170358416454e-17, -4.9441343442551705e-17, -4.9330983300938865e-17, -4.9220623159326025e-17, -4.9110263017713185e-17, -4.899990287610035e-17, -4.888954273448751e-17, -4.877918259287467e-17, -4.866882245126183e-17, -4.8558462309649e-17, -4.844810216803616e-17, -4.833774202642332e-17, -4.822738188481048e-17, -4.811702174319764e-17, -4.8006661601584803e-17, -4.7896301459971963e-17, -4.7785941318359123e-17, -4.7675581176746283e-17, -4.7565221035133443e-17, -4.745486089352061e-17, -4.734450075190777e-17, -4.723414061029493e-17, -4.7123780468682096e-17, -4.7013420327069256e-17, -4.6903060185456416e-17, -4.6792700043843575e-17, -4.6682339902230735e-17, -4.65719797606179e-17, -4.646161961900506e-17, -4.635125947739222e-17, -4.624089933577938e-17, -4.613053919416654e-17, -4.602017905255371e-17, -4.590981891094087e-17, -4.579945876932803e-17, -4.5689098627715194e-17, -4.5578738486102354e-17, -4.5468378344489514e-17, -4.5358018202876674e-17, -4.5247658061263834e-17, -4.5137297919651e-17, -4.502693777803816e-17, -4.491657763642532e-17, -4.480621749481248e-17, -4.469585735319964e-17, -4.4585497211586806e-17, -4.4475137069973966e-17, -4.4364776928361126e-17, -4.425441678674829e-17, -4.414405664513545e-17, -4.403369650352261e-17, -4.392333636190977e-17, -4.381297622029693e-17, -4.37026160786841e-17, -4.359225593707126e-17, -4.348189579545842e-17, -4.337153565384558e-17, -4.326117551223274e-17, -4.3150815370619904e-17, -4.3040455229007064e-17, -4.2930095087394224e-17, -4.281973494578139e-17, -4.270937480416855e-17, -4.259901466255571e-17, -4.248865452094287e-17, -4.237829437933003e-17, -4.2267934237717196e-17, -4.2157574096104356e-17, -4.2047213954491516e-17, -4.1936853812878676e-17, -4.1826493671265836e-17, -4.1716133529653e-17, -4.160577338804016e-17, -4.149541324642732e-17, -4.138505310481449e-17, -4.127469296320164e-17, -4.116433282158881e-17, -4.105397267997597e-17, -4.094361253836313e-17, -4.0833252396750294e-17, -4.0722892255137454e-17, -4.0612532113524614e-17, -4.050217197191178e-17, -4.0391811830298934e-17, -4.02814516886861e-17, -4.017109154707326e-17, -4.006073140546042e-17, -3.9950371263847586e-17, -3.984001112223474e-17, -3.9729650980621906e-17, -3.9619290839009066e-17, -3.9508930697396226e-17, -3.939857055578339e-17, -3.928821041417055e-17, -3.917785027255771e-17, -3.906749013094488e-17, -3.895712998933203e-17, -3.88467698477192e-17, -3.873640970610636e-17, -3.862604956449352e-17, -3.8515689422880684e-17, -3.840532928126784e-17, -3.8294969139655004e-17, -3.8184608998042164e-17, -3.8074248856429324e-17, -3.796388871481649e-17, -3.785352857320365e-17, -3.774316843159081e-17, -3.7632808289977976e-17, -3.752244814836513e-17, -3.7412088006752296e-17, -3.7301727865139456e-17, -3.7191367723526616e-17, -3.708100758191378e-17, -3.6970647440300936e-17, -3.68602872986881e-17, -3.674992715707526e-17, -3.663956701546242e-17, -3.652920687384959e-17, -3.641884673223675e-17, -3.630848659062391e-17, -3.6198126449011074e-17, -3.608776630739823e-17, -3.5977406165785394e-17, -3.5867046024172554e-17, -3.5756685882559714e-17, -3.564632574094688e-17, -3.5535965599334034e-17, -3.54256054577212e-17, -3.531524531610836e-17, -3.520488517449552e-17, -3.5094525032882686e-17, -3.4984164891269846e-17, -3.4873804749657006e-17, -3.476344460804417e-17, -3.4653084466431326e-17, -3.454272432481849e-17, -3.443236418320565e-17, -3.432200404159281e-17, -3.421164389997998e-17, -3.410128375836713e-17, -3.39909236167543e-17, -3.388056347514146e-17, -3.377020333352862e-17, -3.3659843191915784e-17, -3.3549483050302944e-17, -3.3439122908690104e-17, -3.332876276707727e-17, -3.3218402625464424e-17, -3.310804248385159e-17, -3.299768234223875e-17, -3.288732220062591e-17, -3.2776962059013076e-17, -3.266660191740023e-17, -3.2556241775787396e-17, -3.2445881634174556e-17, -3.2335521492561716e-17, -3.222516135094888e-17, -3.211480120933604e-17, -3.20044410677232e-17, -3.189408092611037e-17, -3.178372078449752e-17, -3.167336064288469e-17, -3.156300050127185e-17, -3.145264035965901e-17, -3.1342280218046174e-17, -3.123192007643333e-17, -3.1121559934820494e-17, -3.1011199793207654e-17, -3.0900839651594814e-17, -3.079047950998198e-17, -3.068011936836914e-17, -3.05697592267563e-17, -3.0459399085143467e-17, -3.034903894353062e-17, -3.0238678801917786e-17, -3.0128318660304946e-17, -3.0017958518692106e-17, -2.990759837707927e-17, -2.9797238235466426e-17, -2.968687809385359e-17, -2.957651795224075e-17, -2.946615781062791e-17, -2.935579766901508e-17, -2.924543752740224e-17, -2.91350773857894e-17, -2.9024717244176565e-17, -2.891435710256372e-17, -2.8803996960950885e-17, -2.8693636819338045e-17, -2.8583276677725205e-17, -2.847291653611237e-17, -2.8362556394499524e-17, -2.825219625288669e-17, -2.814183611127385e-17, -2.803147596966101e-17, -2.7921115828048177e-17, -2.7810755686435337e-17, -2.7700395544822497e-17, -2.7590035403209657e-17, -2.7479675261596823e-17, -2.7369315119983983e-17, -2.7258954978371143e-17, -2.7148594836758303e-17, -2.7038234695145463e-17, -2.692787455353263e-17, -2.681751441191979e-17, -2.670715427030695e-17, -2.659679412869411e-17, -2.6486433987081275e-17, -2.6376073845468435e-17, -2.6265713703855595e-17, -2.6155353562242755e-17, -2.604499342062992e-17, -2.593463327901708e-17, -2.582427313740424e-17, -2.57139129957914e-17, -2.560355285417856e-17, -2.5493192712565727e-17, -2.5382832570952887e-17, -2.5272472429340047e-17, -2.5162112287727207e-17, -2.5051752146114373e-17, -2.4941392004501533e-17, -2.4831031862888693e-17, -2.4720671721275853e-17, -2.461031157966302e-17, -2.449995143805018e-17, -2.438959129643734e-17, -2.42792311548245e-17, -2.416887101321166e-17, -2.4058510871598825e-17, -2.3948150729985985e-17, -2.3837790588373145e-17, -2.3727430446760305e-17, -2.361707030514747e-17, -2.350671016353463e-17, -2.339635002192179e-17, -2.328598988030895e-17, -2.3175629738696117e-17, -2.3065269597083277e-17, -2.2954909455470437e-17, -2.2844549313857597e-17, -2.2734189172244757e-17, -2.2623829030631923e-17, -2.2513468889019083e-17, -2.2403108747406243e-17, -2.2292748605793403e-17, -2.218238846418057e-17, -2.207202832256773e-17, -2.196166818095489e-17, -2.185130803934205e-17, -2.1740947897729215e-17, -2.1630587756116375e-17, -2.1520227614503535e-17, -2.1409867472890695e-17, -2.1299507331277855e-17, -2.118914718966502e-17, -2.107878704805218e-17, -2.096842690643934e-17, -2.08580667648265e-17, -2.0747706623213667e-17, -2.0637346481600827e-17, -2.0526986339987987e-17, -2.0416626198375147e-17, -2.0306266056762313e-17, -2.0195905915149473e-17, -2.0085545773536633e-17, -1.9975185631923793e-17, -1.9864825490310953e-17, -1.975446534869812e-17, -1.964410520708528e-17, -1.953374506547244e-17, -1.94233849238596e-17, -1.9313024782246765e-17, -1.9202664640633925e-17, -1.9092304499021085e-17, -1.8981944357408245e-17, -1.887158421579541e-17, -1.876122407418257e-17, -1.865086393256973e-17, -1.854050379095689e-17, -1.843014364934405e-17, -1.8319783507731217e-17, -1.8209423366118377e-17, -1.8099063224505537e-17, -1.7988703082892697e-17, -1.7878342941279863e-17, -1.7767982799667023e-17, -1.7657622658054183e-17, -1.7547262516441343e-17, -1.743690237482851e-17, -1.732654223321567e-17, -1.721618209160283e-17, -1.710582194998999e-17, -1.699546180837715e-17, -1.6885101666764315e-17, -1.6774741525151475e-17, -1.6664381383538635e-17, -1.6554021241925795e-17, -1.644366110031296e-17, -1.633330095870012e-17, -1.622294081708728e-17, -1.611258067547444e-17, -1.6002220533861607e-17, -1.5891860392248767e-17, -1.5781500250635927e-17, -1.5671140109023087e-17, -1.5560779967410247e-17, -1.5450419825797413e-17, -1.5340059684184573e-17, -1.5229699542571733e-17, -1.5119339400958893e-17, -1.500897925934606e-17, -1.489861911773322e-17, -1.478825897612038e-17, -1.467789883450754e-17, -1.4567538692894705e-17, -1.4457178551281865e-17, -1.4346818409669025e-17, -1.4236458268056185e-17, -1.4126098126443345e-17, -1.401573798483051e-17, -1.390537784321767e-17, -1.3795017701604831e-17, -1.3684657559991991e-17, -1.3574297418379157e-17, -1.3463937276766317e-17, -1.3353577135153477e-17, -1.3243216993540637e-17, -1.3132856851927797e-17, -1.3022496710314963e-17, -1.2912136568702123e-17, -1.2801776427089283e-17, -1.2691416285476443e-17, -1.258105614386361e-17, -1.247069600225077e-17, -1.236033586063793e-17, -1.224997571902509e-17, -1.2139615577412256e-17, -1.2029255435799416e-17, -1.1918895294186575e-17, -1.1808535152573735e-17, -1.1698175010960895e-17, -1.1587814869348062e-17, -1.1477454727735222e-17, -1.1367094586122381e-17, -1.1256734444509541e-17, -1.1146374302896708e-17, -1.1036014161283868e-17, -1.0925654019671028e-17, -1.0815293878058187e-17, -1.0704933736445354e-17, -1.0594573594832514e-17, -1.0484213453219674e-17, -1.0373853311606834e-17, -1.0263493169993993e-17, -1.015313302838116e-17, -1.004277288676832e-17, -9.93241274515548e-18, -9.82205260354264e-18, -9.711692461929806e-18, -9.601332320316966e-18, -9.490972178704126e-18, -9.380612037091286e-18, -9.270251895478452e-18, -9.159891753865612e-18, -9.049531612252772e-18, -8.939171470639932e-18, -8.828811329027092e-18, -8.718451187414258e-18, -8.608091045801418e-18, -8.497730904188578e-18, -8.387370762575738e-18, -8.277010620962904e-18, -8.166650479350064e-18, -8.056290337737224e-18, -7.945930196124384e-18, -7.83557005451155e-18, -7.72520991289871e-18, -7.61484977128587e-18, -7.50448962967303e-18, -7.39412948806019e-18, -7.283769346447356e-18, -7.173409204834516e-18, -7.063049063221676e-18, -6.952688921608836e-18, -6.842328779996002e-18, -6.731968638383162e-18, -6.621608496770322e-18, -6.511248355157482e-18, -6.400888213544648e-18, -6.290528071931808e-18, -6.180167930318968e-18, -6.069807788706128e-18, -5.959447647093288e-18, -5.849087505480454e-18, -5.738727363867614e-18, -5.628367222254774e-18, -5.518007080641934e-18, -5.4076469390291e-18, -5.29728679741626e-18, -5.18692665580342e-18, -5.07656651419058e-18, -4.966206372577746e-18, -4.855846230964906e-18, -4.745486089352066e-18, -4.635125947739226e-18, -4.524765806126386e-18, -4.414405664513552e-18, -4.304045522900712e-18, -4.193685381287872e-18, -4.083325239675032e-18, -3.972965098062198e-18, -3.862604956449358e-18, -3.752244814836518e-18, -3.641884673223678e-18, -3.531524531610844e-18, -3.421164389998004e-18, -3.310804248385164e-18, -3.200444106772324e-18, -3.090083965159484e-18, -2.97972382354665e-18, -2.86936368193381e-18, -2.75900354032097e-18, -2.64864339870813e-18, -2.538283257095296e-18, -2.427923115482456e-18, -2.317562973869616e-18, -2.207202832256776e-18, -2.096842690643942e-18, -1.986482549031102e-18, -1.876122407418262e-18, -1.765762265805422e-18, -1.655402124192582e-18, -1.5450419825797481e-18, -1.434681840966908e-18, -1.324321699354068e-18, -1.213961557741228e-18, -1.1036014161283942e-18, -9.932412745155541e-19, -8.82881132902714e-19, -7.725209912898741e-19, -6.621608496770402e-19, -5.518007080642002e-19, -4.414405664513601e-19, -3.310804248385201e-19, -2.2072028322568006e-19, -1.103601416128462e-19, -6.162975822039155e-33, 1.1036014161283387e-19, 2.2072028322566774e-19, 3.3108042483851393e-19, 4.414405664513478e-19, 5.518007080641817e-19, 6.621608496770279e-19, 7.725209912898617e-19, 8.82881132902708e-19, 9.932412745155418e-19, 1.1036014161283757e-18, 1.2139615577412219e-18, 1.3243216993540557e-18, 1.434681840966902e-18, 1.5450419825797358e-18, 1.6554021241925697e-18, 1.765762265805416e-18, 1.8761224074182497e-18, 1.9864825490310836e-18, 2.0968426906439298e-18, 2.2072028322567636e-18, 2.31756297386961e-18, 2.4279231154824437e-18, 2.5382832570952776e-18, 2.6486433987081238e-18, 2.7590035403209576e-18, 2.869363681933804e-18, 2.9797238235466377e-18, 3.0900839651594716e-18, 3.2004441067723178e-18, 3.3108042483851516e-18, 3.4211643899979855e-18, 3.531524531610832e-18, 3.6418846732236656e-18, 3.752244814836512e-18, 3.862604956449346e-18, 3.9729650980621795e-18, 4.083325239675026e-18, 4.1936853812878596e-18, 4.304045522900706e-18, 4.41440566451354e-18, 4.5247658061263735e-18, 4.63512594773922e-18, 4.7454860893520536e-18, 4.8558462309648874e-18, 4.966206372577734e-18, 5.0765665141905675e-18, 5.186926655803414e-18, 5.2972867974162475e-18, 5.4076469390290814e-18, 5.5180070806419276e-18, 5.6283672222547615e-18, 5.738727363867608e-18, 5.8490875054804415e-18, 5.9594476470932754e-18, 6.0698077887061216e-18, 6.1801679303189555e-18, 6.290528071931789e-18, 6.4008882135446355e-18, 6.5112483551574694e-18, 6.6216084967703156e-18, 6.7319686383831495e-18, 6.842328779995983e-18, 6.95268892160883e-18, 7.063049063221663e-18, 7.17340920483451e-18, 7.283769346447343e-18, 7.394129488060177e-18, 7.504489629673024e-18, 7.614849771285857e-18, 7.725209912898691e-18, 7.835570054511537e-18, 7.945930196124371e-18, 8.056290337737218e-18, 8.166650479350051e-18, 8.277010620962885e-18, 8.387370762575731e-18, 8.497730904188565e-18, 8.608091045801412e-18, 8.718451187414245e-18, 8.82881132902708e-18, 8.939171470639925e-18, 9.04953161225276e-18, 9.159891753865593e-18, 9.27025189547844e-18, 9.380612037091273e-18, 9.49097217870412e-18, 9.601332320316953e-18, 9.711692461929787e-18, 9.822052603542633e-18, 9.932412745155467e-18, 1.0042772886768313e-17, 1.0153133028381147e-17, 1.0263493169993981e-17, 1.0373853311606827e-17, 1.0484213453219661e-17, 1.0594573594832495e-17, 1.0704933736445341e-17, 1.0815293878058175e-17, 1.0925654019671021e-17, 1.1036014161283855e-17, 1.1146374302896689e-17, 1.1256734444509535e-17, 1.1367094586122369e-17, 1.1477454727735215e-17, 1.1587814869348049e-17, 1.1698175010960883e-17, 1.180853515257373e-17, 1.1918895294186563e-17, 1.2029255435799397e-17, 1.2139615577412243e-17, 1.2249975719025077e-17, 1.2360335860637923e-17, 1.2470696002250757e-17, 1.2581056143863591e-17, 1.2691416285476437e-17, 1.2801776427089271e-17, 1.2912136568702117e-17, 1.3022496710314951e-17, 1.3132856851927785e-17, 1.3243216993540631e-17, 1.3353577135153465e-17, 1.3463937276766299e-17, 1.3574297418379145e-17, 1.3684657559991979e-17, 1.3795017701604825e-17, 1.390537784321766e-17, 1.4015737984830493e-17, 1.412609812644334e-17, 1.4236458268056173e-17, 1.434681840966902e-17, 1.4457178551281853e-17, 1.4567538692894687e-17, 1.4677898834507533e-17, 1.4788258976120367e-17, 1.48986191177332e-17, 1.5008979259346047e-17, 1.511933940095888e-17, 1.5229699542571727e-17, 1.534005968418456e-17, 1.5450419825797395e-17, 1.556077996741024e-17, 1.5671140109023075e-17, 1.578150025063592e-17, 1.5891860392248755e-17, 1.600222053386159e-17, 1.6112580675474435e-17, 1.622294081708727e-17, 1.6333300958700103e-17, 1.644366110031295e-17, 1.6554021241925783e-17, 1.666438138353863e-17, 1.6774741525151463e-17, 1.6885101666764297e-17, 1.6995461808377143e-17, 1.7105821949989977e-17, 1.7216182091602823e-17, 1.7326542233215657e-17, 1.743690237482849e-17, 1.7547262516441337e-17, 1.765762265805417e-17, 1.7767982799667005e-17, 1.787834294127985e-17, 1.7988703082892685e-17, 1.809906322450553e-17, 1.8209423366118365e-17, 1.83197835077312e-17, 1.8430143649344045e-17, 1.854050379095688e-17, 1.8650863932569725e-17, 1.876122407418256e-17, 1.8871584215795393e-17, 1.898194435740824e-17, 1.9092304499021073e-17, 1.9202664640633907e-17, 1.9313024782246753e-17, 1.9423384923859587e-17, 1.9533745065472433e-17, 1.9644105207085267e-17, 1.97544653486981e-17, 1.9864825490310947e-17, 1.997518563192378e-17, 2.0085545773536627e-17, 2.019590591514946e-17, 2.0306266056762295e-17, 2.041662619837514e-17, 2.0526986339987975e-17, 2.063734648160081e-17, 2.0747706623213655e-17, 2.085806676482649e-17, 2.0968426906439335e-17, 2.107878704805217e-17, 2.1189147189665003e-17, 2.129950733127785e-17, 2.1409867472890683e-17, 2.152022761450353e-17, 2.1630587756116363e-17, 2.1740947897729197e-17, 2.1851308039342043e-17, 2.1961668180954877e-17, 2.207202832256771e-17, 2.2182388464180557e-17, 2.229274860579339e-17, 2.2403108747406237e-17, 2.251346888901907e-17, 2.2623829030631904e-17, 2.273418917224475e-17, 2.2844549313857585e-17, 2.295490945547043e-17, 2.3065269597083265e-17, 2.3175629738696098e-17, 2.3285989880308945e-17, 2.339635002192178e-17, 2.3506710163534612e-17, 2.361707030514746e-17, 2.3727430446760292e-17, 2.383779058837314e-17, 2.3948150729985972e-17, 2.4058510871598806e-17, 2.4168871013211653e-17, 2.4279231154824486e-17, 2.4389591296437333e-17, 2.4499951438050166e-17, 2.4610311579663e-17, 2.4720671721275847e-17, 2.483103186288868e-17, 2.4941392004501514e-17, 2.505175214611436e-17, 2.5162112287727194e-17, 2.527247242934004e-17, 2.5382832570952874e-17, 2.5493192712565708e-17, 2.5603552854178554e-17, 2.5713912995791388e-17, 2.5824273137404235e-17, 2.5934633279017068e-17, 2.6044993420629902e-17, 2.615535356224275e-17, 2.6265713703855582e-17, 2.6376073845468416e-17, 2.6486433987081262e-17, 2.6596794128694096e-17, 2.6707154270306942e-17, 2.6817514411919776e-17, 2.692787455353261e-17, 2.7038234695145456e-17, 2.714859483675829e-17, 2.7258954978371136e-17, 2.736931511998397e-17, 2.7479675261596804e-17, 2.759003540320965e-17, 2.7700395544822484e-17, 2.781075568643532e-17, 2.7921115828048164e-17, 2.8031475969661e-17, 2.8141836111273844e-17, 2.825219625288668e-17, 2.836255639449951e-17, 2.847291653611236e-17, 2.858327667772519e-17, 2.869363681933804e-17, 2.880399696095087e-17, 2.8914357102563706e-17, 2.902471724417655e-17, 2.9135077385789386e-17, 2.924543752740223e-17, 2.9355797669015066e-17, 2.94661578106279e-17, 2.9576517952240746e-17, 2.968687809385358e-17, 2.9797238235466414e-17, 2.990759837707926e-17, 3.0017958518692094e-17, 3.012831866030494e-17, 3.0238678801917774e-17, 3.034903894353061e-17, 3.0459399085143454e-17, 3.056975922675629e-17, 3.0680119368369134e-17, 3.079047950998197e-17, 3.09008396515948e-17, 3.101119979320765e-17, 3.112155993482048e-17, 3.1231920076433316e-17, 3.134228021804616e-17, 3.1452640359658996e-17, 3.156300050127184e-17, 3.1673360642884676e-17, 3.178372078449751e-17, 3.1894080926110356e-17, 3.200444106772319e-17, 3.2114801209336036e-17, 3.222516135094887e-17, 3.2335521492561704e-17, 3.244588163417455e-17, 3.2556241775787384e-17, 3.266660191740022e-17, 3.2776962059013064e-17, 3.28873222006259e-17, 3.2997682342238744e-17, 3.310804248385158e-17, 3.321840262546441e-17, 3.332876276707726e-17, 3.343912290869009e-17, 3.354948305030294e-17, 3.365984319191577e-17, 3.3770203333528606e-17, 3.388056347514145e-17, 3.3990923616754286e-17, 3.410128375836712e-17, 3.4211643899979966e-17, 3.43220040415928e-17, 3.4432364183205646e-17, 3.454272432481848e-17, 3.4653084466431314e-17, 3.476344460804416e-17, 3.4873804749656994e-17, 3.498416489126984e-17, 3.5094525032882674e-17, 3.520488517449551e-17, 3.5315245316108354e-17, 3.542560545772119e-17, 3.553596559933402e-17, 3.564632574094687e-17, 3.57566858825597e-17, 3.586704602417255e-17, 3.597740616578538e-17, 3.6087766307398216e-17, 3.619812644901106e-17, 3.6308486590623896e-17, 3.641884673223674e-17, 3.6529206873849576e-17, 3.663956701546241e-17, 3.6749927157075256e-17, 3.686028729868809e-17, 3.6970647440300924e-17, 3.708100758191377e-17, 3.7191367723526604e-17, 3.730172786513945e-17, 3.7412088006752284e-17, 3.752244814836512e-17, 3.7632808289977964e-17, 3.77431684315908e-17, 3.7853528573203644e-17, 3.796388871481648e-17, 3.807424885642931e-17, 3.818460899804216e-17, 3.829496913965499e-17, 3.8405329281267826e-17, 3.851568942288067e-17, 3.8626049564493506e-17, 3.873640970610635e-17, 3.8846769847719186e-17, 3.895712998933202e-17, 3.9067490130944866e-17, 3.91778502725577e-17, 3.9288210414170546e-17, 3.939857055578338e-17, 3.9508930697396214e-17, 3.961929083900906e-17, 3.9729650980621894e-17, 3.984001112223473e-17, 3.9950371263847574e-17, 4.006073140546041e-17, 4.0171091547073254e-17, 4.028145168868609e-17, 4.039181183029892e-17, 4.050217197191177e-17, 4.06125321135246e-17, 4.072289225513745e-17, 4.083325239675028e-17, 4.0943612538363115e-17, 4.105397267997596e-17, 4.1164332821588796e-17, 4.127469296320163e-17, 4.1385053104814476e-17, 4.149541324642731e-17, 4.1605773388040156e-17, 4.171613352965299e-17, 4.1826493671265823e-17, 4.193685381287867e-17, 4.2047213954491503e-17, 4.215757409610435e-17, 4.2267934237717183e-17, 4.237829437933002e-17, 4.2488654520942864e-17, 4.25990146625557e-17, 4.270937480416853e-17, 4.281973494578138e-17, 4.293009508739421e-17, 4.304045522900706e-17, 4.315081537061989e-17, 4.3261175512232725e-17, 4.337153565384557e-17, 4.3481895795458405e-17, 4.359225593707125e-17, 4.3702616078684085e-17, 4.381297622029692e-17, 4.3923336361909765e-17, 4.40336965035226e-17, 4.4144056645135433e-17, 4.425441678674828e-17, 4.4364776928361113e-17, 4.447513706997396e-17, 4.4585497211586793e-17, 4.469585735319963e-17, 4.4806217494812473e-17, 4.491657763642531e-17, 4.5026937778038153e-17, 4.513729791965099e-17, 4.524765806126382e-17, 4.535801820287667e-17, 4.54683783444895e-17, 4.5578738486102335e-17, 4.568909862771518e-17, 4.5799458769328015e-17, 4.590981891094086e-17, 4.6020179052553695e-17, 4.613053919416653e-17, 4.6240899335779375e-17, 4.635125947739221e-17, 4.6461619619005055e-17, 4.657197976061789e-17, 4.6682339902230723e-17, 4.679270004384357e-17, 4.6903060185456403e-17, 4.701342032706924e-17, 4.7123780468682083e-17, 4.723414061029492e-17, 4.7344500751907763e-17, 4.74548608935206e-17, 4.756522103513343e-17, 4.767558117674628e-17, 4.778594131835911e-17, 4.789630145997196e-17, 4.800666160158479e-17, 4.8117021743197625e-17, 4.822738188481047e-17, 4.8337742026423305e-17, 4.844810216803614e-17, 4.8558462309648985e-17, 4.866882245126182e-17, 4.8779182592874665e-17, 4.88895427344875e-17, 4.899990287610033e-17, 4.911026301771318e-17, 4.922062315932601e-17, 4.933098330093886e-17, 4.9441343442551693e-17, 4.955170358416453e-17, 4.9662063725777373e-17, 4.977242386739021e-17, 4.988278400900304e-17, 4.999314415061589e-17, 5.010350429222872e-17, 5.021386443384157e-17, 5.03242245754544e-17, 5.0434584717067235e-17, 5.054494485868008e-17, 5.0655305000292915e-17, 5.076566514190576e-17, 5.0876025283518595e-17, 5.098638542513143e-17, 5.1096745566744275e-17, 5.120710570835711e-17, 5.131746584996994e-17, 5.142782599158279e-17, 5.153818613319562e-17, 5.164854627480847e-17, 5.17589064164213e-17, 5.1869266558034137e-17, 5.197962669964698e-17, 5.2089986841259817e-17, 5.220034698287266e-17, 5.23107071244855e-17, 5.242106726609833e-17, 5.253142740771118e-17, 5.264178754932401e-17, 5.2752147690936845e-17, 5.286250783254969e-17, 5.2972867974162525e-17, 5.308322811577537e-17, 5.3193588257388205e-17, 5.330394839900104e-17, 5.3414308540613885e-17, 5.352466868222672e-17, 5.3635028823839565e-17, 5.37453889654524e-17, 5.385574910706523e-17, 5.396610924867808e-17, 5.407646939029091e-17, 5.4186829531903747e-17, 5.429718967351659e-17, 5.4407549815129427e-17, 5.451790995674227e-17, 5.4628270098355107e-17, 5.473863023996794e-17, 5.4848990381580787e-17, 5.495935052319362e-17, 5.5069710664806467e-17, 5.51800708064193e-17, 5.5290430948032135e-17, 5.540079108964498e-17, 5.551115123125783e-17]}
+},{}],57:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -681,9 +1896,9 @@ module.exports={"expected": [0.9999999999999999, 0.9999999999999999, 0.999999999
 var tape = require( 'tape' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var EPS = require( '@stdlib/math/constants/float64-eps' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
+var EPS = require( '@stdlib/constants/math/float64-eps' );
 var exp10 = require( './../lib' );
 
 
@@ -718,8 +1933,8 @@ tape( 'the function accurately computes `10**x` for negative medium numbers', fu
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp10( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -738,8 +1953,8 @@ tape( 'the function accurately computes `10**x` for positive medium numbers', fu
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp10( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -758,8 +1973,8 @@ tape( 'the function accurately computes `10**x` for negative small numbers', fun
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp10( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -778,8 +1993,8 @@ tape( 'the function accurately computes `10**x` for positive small numbers', fun
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp10( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -798,8 +2013,8 @@ tape( 'the function accurately computes `10**x` for very small `x`', function te
 	for ( i = 0; i < x.length; i++ ) {
 		v = exp10( x[ i ] );
 		delta = abs( v - expected[ i ] );
-		tol = EPS * Math.max( 1.0, abs( v ), abs( expected[ i ] ) );
-		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Tolerance: ' + tol + '.' );
+		tol = EPS * abs( expected[ i ] );
+		t.ok( delta <= tol, 'within tolerance. x: ' + x[ i ] + '. Value: ' + v + '. Expected: ' + expected[ i ] + '. Delta: ' + delta + '. Tolerance: ' + tol + '.' );
 	}
 	t.end();
 });
@@ -841,7 +2056,7 @@ tape( 'the function returns `NaN` if provided `NaN`', function test( t ) {
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/special/exp10/test/test.js")
-},{"./../lib":13,"./fixtures/python/medium_negative.json":14,"./fixtures/python/medium_positive.json":15,"./fixtures/python/small_negative.json":16,"./fixtures/python/small_positive.json":17,"./fixtures/python/tiny.json":18,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-eps":40,"@stdlib/math/constants/float64-ninf":48,"@stdlib/math/constants/float64-pinf":49,"tape":107}],20:[function(require,module,exports){
+},{"./../lib":49,"./fixtures/python/medium_negative.json":52,"./fixtures/python/medium_positive.json":53,"./fixtures/python/small_negative.json":54,"./fixtures/python/small_positive.json":55,"./fixtures/python/tiny.json":56,"@stdlib/constants/math/float64-eps":26,"@stdlib/constants/math/float64-ninf":34,"@stdlib/constants/math/float64-pinf":35,"@stdlib/math/base/assert/is-nan":42,"@stdlib/math/base/special/abs":45,"tape":152}],58:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -875,7 +2090,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],21:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 'use strict';
 
 /**
@@ -908,7 +2123,7 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":20}],22:[function(require,module,exports){
+},{"./floor.js":58}],60:[function(require,module,exports){
 'use strict';
 
 /**
@@ -934,11 +2149,11 @@ module.exports = floor;
 * x = ldexp( NaN, -101 );
 * // returns NaN
 *
-* x = ldexp( Number.POSITIVE_INFINITY, 11 );
-* // returns Number.POSITIVE_INFINITY
+* x = ldexp( Infinity, 11 );
+* // returns Infinity
 *
-* x = ldexp( Number.NEGATIVE_INFINITY, -118 );
-* // returns Number.NEGATIVE_INFINITY
+* x = ldexp( -Infinity, -118 );
+* // returns -Infinity
 */
 
 // MODULES //
@@ -950,7 +2165,7 @@ var ldexp = require( './ldexp.js' );
 
 module.exports = ldexp;
 
-},{"./ldexp.js":23}],23:[function(require,module,exports){
+},{"./ldexp.js":61}],61:[function(require,module,exports){
 'use strict';
 
 // NOTES //
@@ -962,19 +2177,19 @@ module.exports = ldexp;
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-var MAX_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent' );
-var MAX_SUBNORMAL_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent-subnormal' );
-var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/math/constants/float64-min-base2-exponent-subnormal' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
+var BIAS = require( '@stdlib/constants/math/float64-exponent-bias' );
+var MAX_EXPONENT = require( '@stdlib/constants/math/float64-max-base2-exponent' );
+var MAX_SUBNORMAL_EXPONENT = require( '@stdlib/constants/math/float64-max-base2-exponent-subnormal' );
+var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/constants/math/float64-min-base2-exponent-subnormal' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 var copysign = require( '@stdlib/math/base/special/copysign' );
-var normalize = require( '@stdlib/math/base/utils/float64-normalize' );
-var floatExp = require( '@stdlib/math/base/utils/float64-exponent' );
-var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
+var normalize = require( '@stdlib/number/float64/base/normalize' );
+var floatExp = require( '@stdlib/number/float64/base/exponent' );
+var toWords = require( '@stdlib/number/float64/base/to-words' );
+var fromWords = require( '@stdlib/number/float64/base/from-words' );
 
 
 // VARIABLES //
@@ -982,8 +2197,14 @@ var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
 // 1/(1<<52) = 1/(2**52) = 1/4503599627370496
 var TWO52_INV = 2.220446049250313e-16;
 
-// Exponent all 0s: 1 00000000000 11111111111111111111
-var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
+// Exponent all 0s: 1 00000000000 11111111111111111111 => 2148532223
+var CLEAR_EXP_MASK = 0x800fffff>>>0; // asm type annotation
+
+// Normalization workspace:
+var FRAC = [ 0.0, 0.0 ]; // WARNING: not thread safe
+
+// High/low words workspace:
+var WORDS = [ 0, 0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -1016,17 +2237,15 @@ var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
 * // returns NaN
 *
 * @example
-* var x = ldexp( Number.POSITIVE_INFINITY, 11 );
-* // returns Number.POSITIVE_INFINITY
+* var x = ldexp( Infinity, 11 );
+* // returns Infinity
 *
 * @example
-* var x = ldexp( Number.NEGATIVE_INFINITY, -118 );
-* // returns Number.NEGATIVE_INFINITY
+* var x = ldexp( -Infinity, -118 );
+* // returns -Infinity
 */
 function ldexp( frac, exp ) {
 	var high;
-	var tmp;
-	var w;
 	var m;
 	if (
 		frac === 0.0 || // handles +-0
@@ -1036,9 +2255,9 @@ function ldexp( frac, exp ) {
 		return frac;
 	}
 	// Normalize the input fraction:
-	tmp = normalize( frac );
-	frac = tmp[ 0 ];
-	exp += tmp[ 1 ];
+	normalize( FRAC, frac );
+	frac = FRAC[ 0 ];
+	exp += FRAC[ 1 ];
 
 	// Extract the exponent from `frac` and add it to `exp`:
 	exp += floatExp( frac );
@@ -1061,8 +2280,8 @@ function ldexp( frac, exp ) {
 		m = 1.0;
 	}
 	// Split the fraction into higher and lower order words:
-	w = toWords( frac );
-	high = w[ 0 ];
+	toWords( WORDS, frac );
+	high = WORDS[ 0 ];
 
 	// Clear the exponent bits within the higher order word:
 	high &= CLEAR_EXP_MASK;
@@ -1071,222 +2290,55 @@ function ldexp( frac, exp ) {
 	high |= ((exp+BIAS) << 20);
 
 	// Create a new floating-point number:
-	return m * fromWords( high, w[ 1 ] );
-} // end FUNCTION ldexp()
+	return m * fromWords( high, WORDS[ 1 ] );
+}
 
 
 // EXPORTS //
 
 module.exports = ldexp;
 
-},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/copysign":11,"@stdlib/math/base/utils/float64-exponent":28,"@stdlib/math/base/utils/float64-from-words":30,"@stdlib/math/base/utils/float64-normalize":35,"@stdlib/math/base/utils/float64-to-words":37,"@stdlib/math/constants/float64-exponent-bias":41,"@stdlib/math/constants/float64-max-base2-exponent":45,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":44,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":47,"@stdlib/math/constants/float64-ninf":48,"@stdlib/math/constants/float64-pinf":49}],24:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* #### Notes
-*
-* * The implementation uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
-*
-*
-* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*
-* @example
-* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*/
-function evalpoly( c, x ) {
-	var p;
-	var i;
-
-	i = c.length;
-	if ( i < 2 || x === 0.0 ) {
-		if ( i === 0 ) {
-			return 0.0;
-		}
-		return c[ 0 ];
-	}
-	i -= 1;
-	p = ( c[ i ] * x ) + c[ i-1 ];
-	i -= 2;
-	while ( i >= 0 ) {
-		p = ( p * x ) + c[ i ];
-		i -= 1;
-	}
-	return p;
-} // end FUNCTION evalpoly()
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],25:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var evalpoly = require( './evalpoly.js' );
-
-
-// MAIN //
-
-/**
-* Generates a function for evaluating a polynomial.
-*
-* #### Notes
-*
-* * The compiled function uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
-*
-*
-* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
-* @returns {Function} function for evaluating a polynomial
-*
-* @example
-* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
-*
-* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*
-* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
-* // returns 38.0
-*/
-function factory( c ) {
-	var f;
-	var n;
-	var m;
-	var i;
-
-	// Avoid exceeding the maximum stack size on V8 :(. Note that the choice of `500` was empirically determined...
-	if ( c.length > 500 ) {
-		return polyval;
-	}
-	// Code generation. Start with the function definition...
-	f = 'return function evalpoly(x){';
-
-	// Create the function body...
-	n = c.length;
-
-	// If no coefficients, the function always returns 0...
-	if ( n === 0 ) {
-		f += 'return 0.0;';
-	}
-	// If only one coefficient, the function always returns that coefficient...
-	else if ( n === 1 ) {
-		f += 'return ' + c[ 0 ] + ';';
-	}
-	// If more than one coefficient, apply Horner's method...
-	else {
-		// If `x == 0`, return the first coefficient...
-		f += 'if(x===0.0){return ' + c[ 0 ] + ';}';
-
-		// Otherwise, evaluate the polynomial...
-		f += 'return ' + c[ 0 ];
-		m = n - 1;
-		for ( i = 1; i < n; i++ ) {
-			f += '+x*';
-			if ( i < m ) {
-				f += '(';
-			}
-			f += c[ i ];
-		}
-		// Close all the parentheses...
-		for ( i = 0; i < m-1; i++ ) {
-			f += ')';
-		}
-		f += ';';
-	}
-	// Close the function:
-	f += '}';
-
-	// Add a source directive for debugging:
-	f += '//# sourceURL=evalpoly.factory.js';
-
-	// Create the function in the global scope:
-	return ( new Function( f ) )(); // eslint-disable-line no-new-func
-
-	/*
-	* returns
-	*    function evalpoly( x ) {
-	*        if ( x === 0.0 ) {
-	*            return c[ 0 ];
-	*        }
-	*        return c[0]+x*(c[1]+x*(c[2]+x*(c[3]+...+x*(c[n-2]+x*c[n-1]))));
-	*    }
-	*/
-
-	/**
-	* Evaluates a polynomial.
-	*
-	* @private
-	* @param {number} x - value at which to evaluate a polynomial
-	* @returns {number} evaluated polynomial
-	*/
-	function polyval( x ) {
-		return evalpoly( c, x );
-	} // end FUNCTON polyval()
-} // end FUNCTION factory()
-
-
-// EXPORTS //
-
-module.exports = factory;
-
-},{"./evalpoly.js":24}],26:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-exponent-bias":27,"@stdlib/constants/math/float64-max-base2-exponent":31,"@stdlib/constants/math/float64-max-base2-exponent-subnormal":30,"@stdlib/constants/math/float64-min-base2-exponent-subnormal":33,"@stdlib/constants/math/float64-ninf":34,"@stdlib/constants/math/float64-pinf":35,"@stdlib/math/base/assert/is-infinite":40,"@stdlib/math/base/assert/is-nan":42,"@stdlib/math/base/special/copysign":47,"@stdlib/number/float64/base/exponent":62,"@stdlib/number/float64/base/from-words":64,"@stdlib/number/float64/base/normalize":70,"@stdlib/number/float64/base/to-words":73}],62:[function(require,module,exports){
 'use strict';
 
 /**
-* Evaluate a polynomial.
+* Return an integer corresponding to the unbiased exponent of a double-precision floating-point number.
 *
-* @module @stdlib/math/base/tools/evalpoly
-*
-* @example
-* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
-*
-* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
+* @module @stdlib/number/float64/base/exponent
 *
 * @example
-* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
+* var exponent = require( '@stdlib/number/float64/base/exponent );
 *
-* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
+* var exp = exponent( 3.14e-307 ); // => 2**-1019 ~ 1e-307
+* // returns -1019
 *
-* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
+* exp = exponent( -3.14 );
+* // returns 1
 *
-* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
-* // returns 38.0
+* exp = exponent( 0.0 );
+* // returns 0
+*
+* exp = exponent( NaN );
+* // returns 1024
 */
 
 // MODULES //
 
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var evalpoly = require( './evalpoly.js' );
-var factory = require( './factory.js' );
-
-
-// MAIN //
-
-setReadOnly( evalpoly, 'factory', factory );
+var exponent = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = evalpoly;
+module.exports = exponent;
 
-},{"./evalpoly.js":24,"./factory.js":25,"@stdlib/utils/define-read-only-property":52}],27:[function(require,module,exports){
+},{"./main.js":63}],63:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var EXP_MASK = require( '@stdlib/math/constants/float64-high-word-exponent-mask' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
+var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
+var EXP_MASK = require( '@stdlib/constants/math/float64-high-word-exponent-mask' );
+var BIAS = require( '@stdlib/constants/math/float64-exponent-bias' );
 
 
 // MAIN //
@@ -1318,52 +2370,94 @@ function exponent( x ) {
 	high = ( high & EXP_MASK ) >>> 20;
 
 	// Remove the bias and return:
-	return high - BIAS;
-} // end FUNCTION exponent()
+	return (high - BIAS)|0; // asm type annotation
+}
 
 
 // EXPORTS //
 
 module.exports = exponent;
 
-},{"@stdlib/math/base/utils/float64-get-high-word":34,"@stdlib/math/constants/float64-exponent-bias":41,"@stdlib/math/constants/float64-high-word-exponent-mask":42}],28:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-exponent-bias":27,"@stdlib/constants/math/float64-high-word-exponent-mask":28,"@stdlib/number/float64/base/get-high-word":68}],64:[function(require,module,exports){
 'use strict';
 
 /**
-* Return an integer corresponding to the unbiased exponent of a double-precision floating-point number.
+* Create a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* @module @stdlib/math/base/utils/float64-exponent
+* @module @stdlib/number/float64/base/from-words
 *
 * @example
-* var exponent = require( '@stdlib/math/base/utils/float64-exponent );
+* var fromWords = require( '@stdlib/number/float64/base/from-words' );
 *
-* var exp = exponent( 3.14e-307 ); // => 2**-1019 ~ 1e-307
-* // returns -1019
+* var v = fromWords( 1774486211, 2479577218 );
+* // returns 3.14e201
 *
-* exp = exponent( -3.14 );
-* // returns 1
+* v = fromWords( 3221823995, 1413754136 );
+* // returns 3.141592653589793
 *
-* exp = exponent( 0.0 );
-* // returns 0
+* v = fromWords( 0, 0 );
+* // returns 0.0
 *
-* exp = exponent( NaN );
-* // returns 1024
+* v = fromWords( 2147483648, 0 );
+* // returns -0.0
+*
+* v = fromWords( 2146959360, 0 );
+* // returns NaN
+*
+* v = fromWords( 2146435072, 0 );
+* // returns Infinity
+*
+* v = fromWords( 4293918720, 0 );
+* // returns -Infinity
 */
 
 // MODULES //
 
-var exponent = require( './exponent.js' );
+var fromWords = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = exponent;
+module.exports = fromWords;
 
-},{"./exponent.js":27}],29:[function(require,module,exports){
+},{"./main.js":66}],65:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
+var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
+
+
+// MAIN //
+
+var indices;
+var HIGH;
+var LOW;
+
+if ( isLittleEndian === true ) {
+	HIGH = 1; // second index
+	LOW = 0; // first index
+} else {
+	HIGH = 0; // first index
+	LOW = 1; // second index
+}
+indices = {
+	'HIGH': HIGH,
+	'LOW': LOW
+};
+
+
+// EXPORTS //
+
+module.exports = indices;
+
+},{"@stdlib/assert/is-little-endian":18}],66:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float64Array = require( '@stdlib/array/float64' );
 var indices = require( './indices.js' );
 
 
@@ -1381,9 +2475,9 @@ var LOW = indices.LOW;
 /**
 * Creates a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* #### Notes
+* ## Notes
 *
-* ``` text
+* ```text
 * float64 (64 bits)
 * f := fraction (significand/mantissa) (52 bits)
 * e := exponent (11 bits)
@@ -1398,14 +2492,14 @@ var LOW = indices.LOW;
 *
 * If little endian (more significant bits last):
 *
-* ``` text
+* ```text
 *                         <-- lower      higher -->
 * |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
 * ```
 *
 * If big endian (more significant bits first):
 *
-* ``` text
+* ```text
 *                         <-- higher      lower -->
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
@@ -1414,10 +2508,11 @@ var LOW = indices.LOW;
 * In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
 *
 *
-* #### References
+* ## References
 *
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
+* -   [Open Group][1]
 *
+* [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
 * @param {uinteger32} high - higher order word (unsigned 32-bit integer)
 * @param {uinteger32} low - lower order word (unsigned 32-bit integer)
@@ -1440,167 +2535,23 @@ var LOW = indices.LOW;
 * // returns NaN
 * @example
 * var v = fromWords( 2146435072, 0 );
-* // returns Number.POSITIVE_INFINITY
+* // returns Infinity
 * @example
 * var v = fromWords( 4293918720, 0 );
-* // returns Number.NEGATIVE_INFINITY
+* // returns -Infinity
 */
 function fromWords( high, low ) {
 	UINT32_VIEW[ HIGH ] = high;
 	UINT32_VIEW[ LOW ] = low;
 	return FLOAT64_VIEW[ 0 ];
-} // end FUNCTION fromWords()
-
-
-// EXPORTS //
-
-module.exports = fromWords;
-
-},{"./indices.js":31}],30:[function(require,module,exports){
-'use strict';
-
-/**
-* Create a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/math/base/utils/float64-from-words
-*
-* @example
-* var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
-*
-* var v = fromWords( 1774486211, 2479577218 );
-* // returns 3.14e201
-*
-* v = fromWords( 3221823995, 1413754136 );
-* // returns 3.141592653589793
-*
-* v = fromWords( 0, 0 );
-* // returns 0.0
-*
-* v = fromWords( 2147483648, 0 );
-* // returns -0.0
-*
-* v = fromWords( 2146959360, 0 );
-* // returns NaN
-*
-* v = fromWords( 2146435072, 0 );
-* // returns Number.POSITIVE_INFINITY
-*
-* v = fromWords( 4293918720, 0 );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-// MODULES //
-
-var fromWords = require( './from_words.js' );
-
-
-// EXPORTS //
-
-module.exports = fromWords;
-
-},{"./from_words.js":29}],31:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
-
-
-// MAIN //
-
-var HIGH;
-var LOW;
-
-if ( isLittleEndian === true ) {
-	HIGH = 1; // second index
-	LOW = 0; // first index
-} else {
-	HIGH = 0; // first index
-	LOW = 1; // second index
 }
 
 
 // EXPORTS //
 
-module.exports = {
-	'HIGH': HIGH,
-	'LOW': LOW
-};
+module.exports = fromWords;
 
-},{"@stdlib/assert/is-little-endian":2}],32:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var HIGH = require( './high.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Returns an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-* In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
-*
-*
-* #### References
-*
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {number} x - input value
-* @returns {uinteger32} higher order word
-*
-* @example
-* var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
-* // returns 1774486211
-*/
-function getHighWord( x ) {
-	FLOAT64_VIEW[ 0 ] = x;
-	return UINT32_VIEW[ HIGH ];
-} // end FUNCTION getHighWord()
-
-
-// EXPORTS //
-
-module.exports = getHighWord;
-
-},{"./high.js":33}],33:[function(require,module,exports){
+},{"./indices.js":65,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],67:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1622,16 +2573,16 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":2}],34:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":18}],68:[function(require,module,exports){
 'use strict';
 
 /**
 * Return an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
 *
-* @module @stdlib/math/base/utils/float64-get-high-word
+* @module @stdlib/number/float64/base/get-high-word
 *
 * @example
-* var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
+* var getHighWord = require( '@stdlib/number/float64/base/get-high-word' );
 *
 * var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
 * // returns 1774486211
@@ -1639,23 +2590,99 @@ module.exports = HIGH;
 
 // MODULES //
 
-var getHighWord = require( './get_high_word.js' );
+var getHighWord = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = getHighWord;
 
-},{"./get_high_word.js":32}],35:[function(require,module,exports){
+},{"./main.js":69}],69:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float64Array = require( '@stdlib/array/float64' );
+var HIGH = require( './high.js' );
+
+
+// VARIABLES //
+
+var FLOAT64_VIEW = new Float64Array( 1 );
+var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
+
+
+// MAIN //
+
+/**
+* Returns an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
+*
+* ## Notes
+*
+* ```text
+* float64 (64 bits)
+* f := fraction (significand/mantissa) (52 bits)
+* e := exponent (11 bits)
+* s := sign bit (1 bit)
+*
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* |                                Float64                                |
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* |              Uint32               |               Uint32              |
+* |-------- -------- -------- -------- -------- -------- -------- --------|
+* ```
+*
+* If little endian (more significant bits last):
+*
+* ```text
+*                         <-- lower      higher -->
+* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
+* ```
+*
+* If big endian (more significant bits first):
+*
+* ```text
+*                         <-- higher      lower -->
+* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
+* ```
+*
+* In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
+*
+*
+* ## References
+*
+* -   [Open Group][1]
+*
+* [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
+*
+* @param {number} x - input value
+* @returns {uinteger32} higher order word
+*
+* @example
+* var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
+* // returns 1774486211
+*/
+function getHighWord( x ) {
+	FLOAT64_VIEW[ 0 ] = x;
+	return UINT32_VIEW[ HIGH ];
+}
+
+
+// EXPORTS //
+
+module.exports = getHighWord;
+
+},{"./high.js":67,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],70:[function(require,module,exports){
 'use strict';
 
 /**
 * Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
 *
-* @module @stdlib/math/base/utils/float64-normalize
+* @module @stdlib/number/float64/base/normalize
 *
 * @example
-* var normalize = require( '@stdlib/math/base/utils/float64-normalize' );
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
 * var pow = require( '@stdlib/math/base/special/pow' );
 *
 * var out = normalize( 3.14e-319 );
@@ -1666,23 +2693,104 @@ module.exports = getHighWord;
 *
 * var bool = ( y*pow(2.0,exp) === 3.14e-319 );
 * // returns true
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var normalize = require( '@stdlib/number/float64/base/normalize' );
+*
+* var out = new Float64Array( 2 );
+*
+* var v = normalize( out, 3.14e-319 );
+* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
+*
+* var bool = ( v === out );
+* // returns true
 */
 
 // MODULES //
 
-var normalize = require( './normalize.js' );
+var normalize = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = normalize;
 
-},{"./normalize.js":36}],36:[function(require,module,exports){
+},{"./main.js":71}],71:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/math/constants/float64-smallest-normal' );
+var fcn = require( './normalize.js' );
+
+
+// MAIN //
+
+/**
+* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
+*
+* @param {(Array|TypedArray|Object)} [out] - output array
+* @param {number} x - input value
+* @returns {(Array|TypedArray|Object)} output array
+*
+* @example
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = normalize( new Array( 2 ), 3.14e-319 );
+* // returns [ 1.4141234400356668e-303, -52 ]
+*
+* var y = out[ 0 ];
+* var exp = out[ 1 ];
+*
+* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
+* // returns true
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var pow = require( '@stdlib/math/base/special/pow' );
+*
+* var out = new Float64Array( 2 );
+*
+* var v = normalize( out, 3.14e-319 );
+* // returns <Float64Array>[ 1.4141234400356668e-303, -52 ]
+*
+* var bool = ( v === out );
+* // returns true
+*
+* @example
+* var out = normalize( new Array( 2 ), 0.0 );
+* // returns [ 0.0, 0 ];
+*
+* @example
+* var out = normalize( new Array( 2 ), Infinity );
+* // returns [ Infinity, 0 ]
+*
+* @example
+* var out = normalize( new Array( 2 ), -Infinity );
+* // returns [ -Infinity, 0 ]
+*
+* @example
+* var out = normalize( new Array( 2 ), NaN );
+* // returns [ NaN, 0 ]
+*/
+function normalize( out, x ) {
+	if ( arguments.length === 1 ) {
+		return fcn( [ 0.0, 0 ], out );
+	}
+	return fcn( out, x );
+}
+
+
+// EXPORTS //
+
+module.exports = normalize;
+
+},{"./normalize.js":72}],72:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/constants/math/float64-smallest-normal' );
 var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
@@ -1699,13 +2807,15 @@ var SCALAR = 4503599627370496;
 /**
 * Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
 *
+* @private
+* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {NumberArray} a two-element array containing `y` and `exp`
+* @returns {(Array|TypedArray|Object)} output array
 *
 * @example
 * var pow = require( '@stdlib/math/base/special/pow' );
 *
-* var out = normalize( 3.14e-319 );
+* var out = normalize( new Array( 2 ), 3.14e-319 );
 * // returns [ 1.4141234400356668e-303, -52 ]
 *
 * var y = out[ 0 ];
@@ -1715,67 +2825,131 @@ var SCALAR = 4503599627370496;
 * // returns true
 *
 * @example
-* var out = normalize( 0 );
+* var out = normalize( new Array( 2 ), 0.0 );
 * // returns [ 0.0, 0 ];
 *
 * @example
-* var out = normalize( Number.POSITIVE_INFINITY );
-* // returns [ Number.POSITIVE_INFINITY, 0 ]
+* var out = normalize( new Array( 2 ), Infinity );
+* // returns [ Infinity, 0 ]
 *
 * @example
-* var out = normalize( Number.NEGATIVE_INFINITY );
-* // returns [ Number.NEGATIVE_INFINIY, 0 ]
+* var out = normalize( new Array( 2 ), -Infinity );
+* // returns [ -Infinity, 0 ]
 *
 * @example
-* var out = normalize( NaN );
+* var out = normalize( new Array( 2 ), NaN );
 * // returns [ NaN, 0 ]
 */
-function normalize( x ) {
+function normalize( out, x ) {
 	if ( isnan( x ) || isInfinite( x ) ) {
-		return [ x, 0 ];
+		out[ 0 ] = x;
+		out[ 1 ] = 0;
+		return out;
 	}
 	if ( x !== 0.0 && abs( x ) < FLOAT64_SMALLEST_NORMAL ) {
-		return [ x*SCALAR, -52 ];
+		out[ 0 ] = x * SCALAR;
+		out[ 1 ] = -52;
+		return out;
 	}
-	return [ x, 0 ];
-} // end FUNCTION normalize()
+	out[ 0 ] = x;
+	out[ 1 ] = 0;
+	return out;
+}
 
 
 // EXPORTS //
 
 module.exports = normalize;
 
-},{"@stdlib/math/base/assert/is-infinite":4,"@stdlib/math/base/assert/is-nan":6,"@stdlib/math/base/special/abs":9,"@stdlib/math/constants/float64-smallest-normal":50}],37:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-smallest-normal":36,"@stdlib/math/base/assert/is-infinite":40,"@stdlib/math/base/assert/is-nan":42,"@stdlib/math/base/special/abs":45}],73:[function(require,module,exports){
 'use strict';
 
 /**
 * Split a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* @module @stdlib/math/base/utils/float64-to-words
+* @module @stdlib/number/float64/base/to-words
 *
 * @example
-* var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
 *
 * var w = toWords( 3.14e201 );
 * // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+* var toWords = require( '@stdlib/number/float64/base/to-words' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords( out, 3.14e201 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
 */
 
 // MODULES //
 
-var toWords = require( './to_words.js' );
+var toWords = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = toWords;
 
-},{"./to_words.js":39}],38:[function(require,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":2,"dup":31}],39:[function(require,module,exports){
+},{"./main.js":75}],74:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":18,"dup":65}],75:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
+var fcn = require( './to_words.js' );
+
+
+// MAIN //
+
+/**
+* Splits a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
+*
+* @param {(Array|TypedArray|Object)} [out] - output array
+* @param {number} x - input value
+* @returns {(Array|TypedArray|Object)} output array
+*
+* @example
+* var w = toWords( 3.14e201 );
+* // returns [ 1774486211, 2479577218 ]
+*
+* @example
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords( out, 3.14e201 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
+*/
+function toWords( out, x ) {
+	if ( arguments.length === 1 ) {
+		return fcn( [ 0, 0 ], out );
+	}
+	return fcn( out, x );
+}
+
+
+// EXPORTS //
+
+module.exports = toWords;
+
+},{"./to_words.js":76}],76:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float64Array = require( '@stdlib/array/float64' );
 var indices = require( './indices.js' );
 
 
@@ -1793,9 +2967,9 @@ var LOW = indices.LOW;
 /**
 * Splits a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
 *
-* #### Notes
+* ## Notes
 *
-* ``` text
+* ```text
 * float64 (64 bits)
 * f := fraction (significand/mantissa) (52 bits)
 * e := exponent (11 bits)
@@ -1810,14 +2984,14 @@ var LOW = indices.LOW;
 *
 * If little endian (more significant bits last):
 *
-* ``` text
+* ```text
 *                         <-- lower      higher -->
 * |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
 * ```
 *
 * If big endian (more significant bits first):
 *
-* ``` text
+* ```text
 *                         <-- higher      lower -->
 * |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
 * ```
@@ -1825,490 +2999,643 @@ var LOW = indices.LOW;
 * In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
 *
 *
-* #### References
+* ## References
 *
-* [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
+* -   [Open Group][1]
+*
+* [1]: http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm
 *
 *
+* @private
+* @param {(Array|TypedArray|Object)} out - output array
 * @param {number} x - input value
-* @returns {NumberArray} two-element array containing a higher order word and a lower order word
+* @returns {(Array|TypedArray|Object)} output array
 *
 * @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
+* var Uint32Array = require( '@stdlib/array/uint32' );
+*
+* var out = new Uint32Array( 2 );
+*
+* var w = toWords( out, 3.14e201 );
+* // returns <Uint32Array>[ 1774486211, 2479577218 ]
+*
+* var bool = ( w === out );
+* // returns true
 */
-function toWords( x ) {
+function toWords( out, x ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	return [ UINT32_VIEW[ HIGH ], UINT32_VIEW[ LOW ] ];
-} // end FUNCTION toWords()
+	out[ 0 ] = UINT32_VIEW[ HIGH ];
+	out[ 1 ] = UINT32_VIEW[ LOW ];
+	return out;
+}
 
 
 // EXPORTS //
 
 module.exports = toWords;
 
-},{"./indices.js":38}],40:[function(require,module,exports){
+},{"./indices.js":74,"@stdlib/array/float64":2,"@stdlib/array/uint32":7}],77:[function(require,module,exports){
 'use strict';
 
-/**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-eps
-* @type {number}
-*
-* @example
-* var FLOAT64_EPSILON = require( '@stdlib/math/constants/float64-eps' );
-* // returns 2.220446049250313e-16
-*/
+// MODULES //
+
+var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+var GlobalFloat64Array = require( './float64array.js' );
 
 
 // MAIN //
 
 /**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number is
+* Tests for native `Float64Array` support.
 *
-* ``` tex
-* \frac{1}{2^{52}}
-* ```
+* @returns {boolean} boolean indicating if an environment has `Float64Array` support
 *
-* @constant
-* @type {number}
-* @default 2.220446049250313e-16
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
+* @example
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
 */
-var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
+function hasFloat64ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat64Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat64Array( [ 1.0, 3.14, -3.14, NaN ] );
+		bool = (
+			isFloat64Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.14 &&
+			arr[ 2 ] === -3.14 &&
+			arr[ 3 ] !== arr[ 3 ]
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
 
 
 // EXPORTS //
 
-module.exports = FLOAT64_EPSILON;
+module.exports = hasFloat64ArraySupport;
 
-},{}],41:[function(require,module,exports){
+},{"./float64array.js":78,"@stdlib/assert/is-float64array":15}],78:[function(require,module,exports){
 'use strict';
-
-/**
-* The bias of a double-precision floating-point number's exponent.
-*
-* @module @stdlib/math/constants/float64-exponent-bias
-* @type {integer32}
-*
-* @example
-* var FLOAT64_EXPONENT_BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-* // returns 1023
-*/
-
-
-// MAIN //
-
-/**
-* The bias of a double-precision floating-point number's exponent. The bias can be computed via
-*
-* ``` tex
-* \mathrm{bias} = 2^{k-1} - 1
-* ```
-*
-* where \\(k\\) is the number of bits in the exponent; here, \\(k = 11\\).
-*
-* @constant
-* @type {integer32}
-* @default 1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
-
 
 // EXPORTS //
 
-module.exports = FLOAT64_EXPONENT_BIAS;
+module.exports = ( typeof Float64Array === 'function' ) ? Float64Array : null;
 
-},{}],42:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 'use strict';
 
 /**
-* High word mask for the exponent of a double-precision floating-point number.
+* Test for native `Float64Array` support.
 *
-* @module @stdlib/math/constants/float64-high-word-exponent-mask
-* @type {uinteger32}
-*
-* @example
-* var FLOAT64_HIGH_WORD_EXPONENT_MASK = require( '@stdlib/math/constants/float64-high-word-exponent-mask' );
-* // returns 2146435072
-*/
-
-
-// MAIN //
-
-/**
-* The high word mask for the exponent of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2146435072 \\), which corresponds to the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000
-* ```
-*
-* @constant
-* @type {uinteger32}
-* @default 0x7ff00000
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
-
-},{}],43:[function(require,module,exports){
-'use strict';
-
-/**
-* The maximum base 10 exponent for a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max-base10-exponent
-* @type {integer32}
+* @module @stdlib/utils/detect-float64array-support
 *
 * @example
-* var FLOAT64_MAX_BASE10_EXPONENT = require( '@stdlib/math/constants/float64-max-base10-exponent' );
-* // returns 308
-*/
-
-
-// MAIN //
-
-/**
-* The maximum base 10 exponent for a double-precision floating-point number.
+* var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
 *
-* @constant
-* @type {integer32}
-* @default 308
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_BASE10_EXPONENT = 308|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_BASE10_EXPONENT;
-
-},{}],44:[function(require,module,exports){
-'use strict';
-
-/**
-* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max-base2-exponent-subnormal
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/math/constants/float64-max-base2-exponent-subnormal' );
-* // returns -1023
-*/
-
-
-// MAIN //
-
-/**
-* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* ``` text
-* 00000000000 => 0 - BIAS = -1023
-* ```
-*
-* where `BIAS = 1023`.
-*
-* @constant
-* @type {integer32}
-* @default -1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
-
-},{}],45:[function(require,module,exports){
-'use strict';
-
-/**
-* The maximum biased base 2 exponent for a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max-base2-exponent
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MAX_BASE2_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent' );
-* // returns 1023
-*/
-
-
-// MAIN //
-
-/**
-* The maximum biased base 2 exponent for a double-precision floating-point number.
-*
-* ``` text
-* 11111111110 => 2046 - BIAS = 1023
-* ```
-*
-* where `BIAS = 1023`.
-*
-* @constant
-* @type {integer32}
-* @default 1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_BASE2_EXPONENT;
-
-},{}],46:[function(require,module,exports){
-'use strict';
-
-/**
-* The minimum base 10 exponent for a normal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-min-base10-exponent
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MIN_BASE10_EXPONENT = require( '@stdlib/math/constants/float64-min-base10-exponent' );
-* // returns -308
-*/
-
-
-// MAIN //
-
-/**
-* The minimum base 10 exponent for a normal double-precision floating-point number.
-*
-* ``` text
-* 2^-1022 = 2.2250738585072014e-308 => -308
-* ```
-*
-* @constant
-* @type {integer32}
-* @default -308
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MIN_BASE10_EXPONENT = -308|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MIN_BASE10_EXPONENT;
-
-},{}],47:[function(require,module,exports){
-'use strict';
-
-/**
-* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-min-base2-exponent-subnormal
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/math/constants/float64-min-base2-exponent-subnormal' );
-* // returns -1074
-*/
-
-
-// MAIN //
-
-/**
-* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* ``` text
-* -(BIAS+(52-1)) = -(1023+51) = -1074
-* ```
-*
-* where `BIAS = 1023` and `52` is the number of digits in the significand.
-*
-* @constant
-* @type {integer32}
-* @default -1074
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
-
-},{}],48:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point negative infinity.
-*
-* @module @stdlib/math/constants/float64-ninf
-* @type {number}
-*
-* @example
-* var FLOAT64_NINF = require( '@stdlib/math/constants/float64-ninf' );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point negative infinity has the bit sequence
-*
-* ``` binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_NINF;
-
-},{}],49:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* @module @stdlib/math/constants/float64-pinf
-* @type {number}
-*
-* @example
-* var FLOAT64_PINF = require( '@stdlib/math/constants/float64-pinf' );
-* // returns Number.POSITIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point positive infinity has the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_PINF = Number.POSITIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_PINF;
-
-},{}],50:[function(require,module,exports){
-'use strict';
-
-/**
-* Smallest positive double-precision floating-point normal number.
-*
-* @module @stdlib/math/constants/float64-smallest-normal
-* @type {number}
-*
-* @example
-* var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/math/constants/float64-smallest-normal' );
-* // returns 2.2250738585072014e-308
-*/
-
-
-// MAIN //
-
-/**
-* The smallest positive double-precision floating-point normal number has the value
-*
-* ``` tex
-* \frac{1}{2^{1023-1}}
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 0 00000000001 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default 2.2250738585072014e-308
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_SMALLEST_NORMAL;
-
-},{}],51:[function(require,module,exports){
-'use strict';
-
-/**
-* Defines a read-only property.
-*
-* @param {Object} obj - object on which to define the property
-* @param {string} prop - property name
-* @param {*} value - value to set
-*
-* @example
-* var obj = {};
-* setReadOnly( obj, 'foo', 'bar' );
-* obj.foo = 'boop'; // => throws
-*/
-function setReadOnly( obj, prop, value ) {
-	Object.defineProperty( obj, prop, {
-		'value': value,
-		'configurable': false,
-		'writable': false,
-		'enumerable': true
-	});
-} // end FUNCTION setReadOnly()
-
-
-// EXPORTS //
-
-module.exports = setReadOnly;
-
-},{}],52:[function(require,module,exports){
-'use strict';
-
-/**
-* Defines a read-only property.
-*
-* @module @stdlib/utils/define-read-only-property
-*
-* @example
-* var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-*
-* var obj = {};
-* setReadOnly( obj, 'foo', 'bar' );
-* obj.foo = 'boop'; // => throws
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
 */
 
 // MODULES //
 
-var setReadOnly = require( './define_read_only_property.js' );
+var hasFloat64ArraySupport = require( './detect_float64array_support.js' );
 
 
 // EXPORTS //
 
-module.exports = setReadOnly;
+module.exports = hasFloat64ArraySupport;
 
-},{"./define_read_only_property.js":51}],53:[function(require,module,exports){
+},{"./detect_float64array_support.js":77}],80:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+/**
+* Tests for native `Symbol` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Symbol` support
+*
+* @example
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+function hasSymbolSupport() {
+	return (
+		typeof Symbol === 'function' &&
+		typeof Symbol( 'foo' ) === 'symbol'
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = hasSymbolSupport;
+
+},{}],81:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Symbol` support.
+*
+* @module @stdlib/utils/detect-symbol-support
+*
+* @example
+* var hasSymbolSupport = require( '@stdlib/utils/detect-symbol-support' );
+*
+* var bool = hasSymbolSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasSymbolSupport = require( './detect_symbol_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasSymbolSupport;
+
+},{"./detect_symbol_support.js":80}],82:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
+
+
+// MAIN //
+
+/**
+* Tests for native `toStringTag` support.
+*
+* @returns {boolean} boolean indicating if an environment has `toStringTag` support
+*
+* @example
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
+*/
+function hasToStringTagSupport() {
+	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
+}
+
+
+// EXPORTS //
+
+module.exports = hasToStringTagSupport;
+
+},{"@stdlib/utils/detect-symbol-support":81}],83:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `toStringTag` support.
+*
+* @module @stdlib/utils/detect-tostringtag-support
+*
+* @example
+* var hasToStringTagSupport = require( '@stdlib/utils/detect-tostringtag-support' );
+*
+* var bool = hasToStringTagSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasToStringTagSupport = require( './has_tostringtag_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasToStringTagSupport;
+
+},{"./has_tostringtag_support.js":82}],84:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+var GlobalUint16Array = require( './uint16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint16Array` support
+*
+* @example
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+function hasUint16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT16_MAX+1, UINT16_MAX+2 ];
+		arr = new GlobalUint16Array( arr );
+		bool = (
+			isUint16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT16_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./uint16array.js":86,"@stdlib/assert/is-uint16array":20,"@stdlib/constants/math/uint16-max":37}],85:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint16Array` support.
+*
+* @module @stdlib/utils/detect-uint16array-support
+*
+* @example
+* var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+*
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( './detect_uint16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./detect_uint16array_support.js":84}],86:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint16Array === 'function' ) ? Uint16Array : null;
+
+},{}],87:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+var GlobalUint32Array = require( './uint32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint32Array` support
+*
+* @example
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+function hasUint32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT32_MAX+1, UINT32_MAX+2 ];
+		arr = new GlobalUint32Array( arr );
+		bool = (
+			isUint32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT32_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./uint32array.js":89,"@stdlib/assert/is-uint32array":22,"@stdlib/constants/math/uint32-max":38}],88:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint32Array` support.
+*
+* @module @stdlib/utils/detect-uint32array-support
+*
+* @example
+* var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+*
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( './detect_uint32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./detect_uint32array_support.js":87}],89:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint32Array === 'function' ) ? Uint32Array : null;
+
+},{}],90:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+var GlobalUint8Array = require( './uint8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8Array` support
+*
+* @example
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT8_MAX+1, UINT8_MAX+2 ];
+		arr = new GlobalUint8Array( arr );
+		bool = (
+			isUint8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&           // truncation
+			arr[ 2 ] === UINT8_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&           // wrap around
+			arr[ 4 ] === 1              // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./uint8array.js":92,"@stdlib/assert/is-uint8array":24,"@stdlib/constants/math/uint8-max":39}],91:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8Array` support.
+*
+* @module @stdlib/utils/detect-uint8array-support
+*
+* @example
+* var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+*
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( './detect_uint8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./detect_uint8array_support.js":90}],92:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8Array === 'function' ) ? Uint8Array : null;
+
+},{}],93:[function(require,module,exports){
+'use strict';
+
+/**
+* Returns a string value indicating a specification defined classification of an object.
+*
+* @module @stdlib/utils/native-class
+*
+* @example
+* var nativeClass = require( '@stdlib/utils/native-class' );
+*
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* function Beep() {
+*     return this;
+* }
+* str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+
+// MODULES //
+
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var nativeClass;
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
+} else {
+	nativeClass = builtin;
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./native_class.js":94,"./polyfill.js":95,"@stdlib/utils/detect-tostringtag-support":83}],94:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var toStr = require( './tostring.js' );
+
+
+// MAIN //
+
+/**
+* Returns a string value indicating a specification defined classification (via the internal property `[[Class]]`) of an object.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+function nativeClass( v ) {
+	return toStr.call( v );
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./tostring.js":96}],95:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var toStringTag = require( './tostringtag.js' );
+var toStr = require( './tostring.js' );
+
+
+// MAIN //
+
+/**
+* Returns a string value indicating a specification defined classification of an object in environments supporting `Symbol.toStringTag`.
+*
+* @param {*} v - input value
+* @returns {string} string value indicating a specification defined classification of the input value
+*
+* @example
+* var str = nativeClass( 'a' );
+* // returns '[object String]'
+*
+* @example
+* var str = nativeClass( 5 );
+* // returns '[object Number]'
+*
+* @example
+* function Beep() {
+*     return this;
+* }
+* var str = nativeClass( new Beep() );
+* // returns '[object Object]'
+*/
+function nativeClass( v ) {
+	var isOwn;
+	var tag;
+	var out;
+
+	if ( v === null || v === void 0 ) {
+		return toStr.call( v );
+	}
+	tag = v[ toStringTag ];
+	isOwn = hasOwnProp( v, toStringTag );
+
+	// Attempt to override the `toStringTag` property. For built-ins having a `Symbol.toStringTag` property (e.g., `JSON`, `Math`, etc), the `Symbol.toStringTag` property is read-only (e.g., , so we need to wrap in a `try/catch`.
+	try {
+		v[ toStringTag ] = void 0;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return toStr.call( v );
+	}
+	out = toStr.call( v );
+
+	if ( isOwn ) {
+		v[ toStringTag ] = tag;
+	} else {
+		delete v[ toStringTag ];
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = nativeClass;
+
+},{"./tostring.js":96,"./tostringtag.js":97,"@stdlib/assert/has-own-property":14}],96:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
+
+// EXPORTS //
+
+module.exports = toStr;
+
+},{}],97:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
+
+// EXPORTS //
+
+module.exports = toStrTag;
+
+},{}],98:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -2424,11 +3751,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],54:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 
-},{}],55:[function(require,module,exports){
-arguments[4][54][0].apply(exports,arguments)
-},{"dup":54}],56:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
+arguments[4][99][0].apply(exports,arguments)
+},{"dup":99}],101:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2614,11 +3941,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],57:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -4330,7 +5657,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":53,"ieee754":76}],58:[function(require,module,exports){
+},{"base64-js":98,"ieee754":121}],103:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4441,7 +5768,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":78}],59:[function(require,module,exports){
+},{"../../is-buffer/index.js":123}],104:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -4537,7 +5864,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":60,"./lib/keys.js":61}],60:[function(require,module,exports){
+},{"./lib/is_arguments.js":105,"./lib/keys.js":106}],105:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -4559,7 +5886,7 @@ function unsupported(object){
     false;
 };
 
-},{}],61:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -4570,7 +5897,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],62:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -4628,14 +5955,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":72,"object-keys":81}],63:[function(require,module,exports){
+},{"foreach":117,"object-keys":127}],108:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],64:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -4873,28 +6200,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":65,"./helpers/isNaN":66,"./helpers/mod":67,"./helpers/sign":68,"es-to-primitive/es5":69,"has":75,"is-callable":79}],65:[function(require,module,exports){
+},{"./helpers/isFinite":110,"./helpers/isNaN":111,"./helpers/mod":112,"./helpers/sign":113,"es-to-primitive/es5":114,"has":120,"is-callable":124}],110:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],66:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],67:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],68:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],69:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -4933,12 +6260,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":70,"is-callable":79}],70:[function(require,module,exports){
+},{"./helpers/isPrimitive":115,"is-callable":124}],115:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],71:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5242,7 +6569,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],72:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -5266,7 +6593,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],73:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -5320,19 +6647,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],74:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":73}],75:[function(require,module,exports){
+},{"./implementation":118}],120:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":74}],76:[function(require,module,exports){
+},{"function-bind":119}],121:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -5418,7 +6745,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],77:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -5443,11 +6770,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],78:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -5466,7 +6793,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],79:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -5507,7 +6834,14 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],80:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],126:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -5701,7 +7035,7 @@ function inspectString (str) {
     }
 }
 
-},{}],81:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -5843,7 +7177,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":82}],82:[function(require,module,exports){
+},{"./isArguments":128}],128:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -5862,7 +7196,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],83:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -6090,7 +7424,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":56}],84:[function(require,module,exports){
+},{"_process":101}],130:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6137,10 +7471,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":56}],85:[function(require,module,exports){
+},{"_process":101}],131:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":86}],86:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":132}],132:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6265,7 +7599,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":88,"./_stream_writable":90,"core-util-is":58,"inherits":77,"process-nextick-args":84}],87:[function(require,module,exports){
+},{"./_stream_readable":134,"./_stream_writable":136,"core-util-is":103,"inherits":122,"process-nextick-args":130}],133:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6313,7 +7647,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":89,"core-util-is":58,"inherits":77}],88:[function(require,module,exports){
+},{"./_stream_transform":135,"core-util-is":103,"inherits":122}],134:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7323,7 +8657,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":86,"./internal/streams/BufferList":91,"./internal/streams/destroy":92,"./internal/streams/stream":93,"_process":56,"core-util-is":58,"events":71,"inherits":77,"isarray":94,"process-nextick-args":84,"safe-buffer":101,"string_decoder/":95,"util":54}],89:[function(require,module,exports){
+},{"./_stream_duplex":132,"./internal/streams/BufferList":137,"./internal/streams/destroy":138,"./internal/streams/stream":139,"_process":101,"core-util-is":103,"events":116,"inherits":122,"isarray":125,"process-nextick-args":130,"safe-buffer":145,"string_decoder/":151,"util":99}],135:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7538,7 +8872,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":86,"core-util-is":58,"inherits":77}],90:[function(require,module,exports){
+},{"./_stream_duplex":132,"core-util-is":103,"inherits":122}],136:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -8205,7 +9539,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":86,"./internal/streams/destroy":92,"./internal/streams/stream":93,"_process":56,"core-util-is":58,"inherits":77,"process-nextick-args":84,"safe-buffer":101,"util-deprecate":113}],91:[function(require,module,exports){
+},{"./_stream_duplex":132,"./internal/streams/destroy":138,"./internal/streams/stream":139,"_process":101,"core-util-is":103,"inherits":122,"process-nextick-args":130,"safe-buffer":145,"util-deprecate":158}],137:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -8280,7 +9614,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":101}],92:[function(require,module,exports){
+},{"safe-buffer":145}],138:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -8353,17 +9687,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":84}],93:[function(require,module,exports){
+},{"process-nextick-args":130}],139:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":71}],94:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":116}],140:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":141}],141:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":132,"./lib/_stream_passthrough.js":133,"./lib/_stream_readable.js":134,"./lib/_stream_transform.js":135,"./lib/_stream_writable.js":136}],142:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":141}],143:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":136}],144:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],95:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":101,"through":157}],145:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":102}],146:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":116,"inherits":122,"readable-stream/duplex.js":131,"readable-stream/passthrough.js":140,"readable-stream/readable.js":141,"readable-stream/transform.js":142,"readable-stream/writable.js":143}],147:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":109,"function-bind":119}],148:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":147,"./polyfill":149,"./shim":150,"define-properties":107,"function-bind":119}],149:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":147}],150:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":149,"define-properties":107}],151:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -8636,312 +10268,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":101}],96:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":97}],97:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":86,"./lib/_stream_passthrough.js":87,"./lib/_stream_readable.js":88,"./lib/_stream_transform.js":89,"./lib/_stream_writable.js":90}],98:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":97}],99:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":90}],100:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":56,"through":112}],101:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":57}],102:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":71,"inherits":77,"readable-stream/duplex.js":85,"readable-stream/passthrough.js":96,"readable-stream/readable.js":97,"readable-stream/transform.js":98,"readable-stream/writable.js":99}],103:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":64,"function-bind":74}],104:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":103,"./polyfill":105,"./shim":106,"define-properties":62,"function-bind":74}],105:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":103}],106:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":105,"define-properties":62}],107:[function(require,module,exports){
+},{"safe-buffer":145}],152:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -9095,7 +10422,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":108,"./lib/results":110,"./lib/test":111,"_process":56,"defined":63,"through":112}],108:[function(require,module,exports){
+},{"./lib/default_stream":153,"./lib/results":155,"./lib/test":156,"_process":101,"defined":108,"through":157}],153:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -9130,7 +10457,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":56,"fs":55,"through":112}],109:[function(require,module,exports){
+},{"_process":101,"fs":100,"through":157}],154:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -9138,7 +10465,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":56}],110:[function(require,module,exports){
+},{"_process":101}],155:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -9329,7 +10656,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":56,"events":71,"function-bind":74,"has":75,"inherits":77,"object-inspect":80,"resumer":100,"through":112}],111:[function(require,module,exports){
+},{"_process":101,"events":116,"function-bind":119,"has":120,"inherits":122,"object-inspect":126,"resumer":144,"through":157}],156:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -9830,7 +11157,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":109,"deep-equal":59,"defined":63,"events":71,"has":75,"inherits":77,"path":83,"string.prototype.trim":104}],112:[function(require,module,exports){
+},{"./next_tick":154,"deep-equal":104,"defined":108,"events":116,"has":120,"inherits":122,"path":129,"string.prototype.trim":148}],157:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -9942,7 +11269,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":56,"stream":102}],113:[function(require,module,exports){
+},{"_process":101,"stream":146}],158:[function(require,module,exports){
 (function (global){
 
 /**
@@ -10013,4 +11340,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[19]);
+},{}]},{},[57]);

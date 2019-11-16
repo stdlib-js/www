@@ -84,6 +84,627 @@
 ({1:[function(require,module,exports){
 'use strict';
 
+// MAIN //
+
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/utils/detect-float32array-support' );
+var builtin = require( './float32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/utils/detect-float32array-support":132}],3:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of single-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+var builtin = require( './float64array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/utils/detect-float64array-support":135}],6:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of double-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int16
+*
+* @example
+* var ctor = require( '@stdlib/array/int16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int16Array>
+*/
+
+// MODULES //
+
+var hasInt16ArraySupport = require( '@stdlib/utils/detect-int16array-support' );
+var builtin = require( './int16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/utils/detect-int16array-support":137}],8:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int16Array === 'function' ) ? Int16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int32
+*
+* @example
+* var ctor = require( '@stdlib/array/int32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int32Array>
+*/
+
+// MODULES //
+
+var hasInt32ArraySupport = require( '@stdlib/utils/detect-int32array-support' );
+var builtin = require( './int32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/utils/detect-int32array-support":140}],11:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int32Array === 'function' ) ? Int32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],13:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int8
+*
+* @example
+* var ctor = require( '@stdlib/array/int8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int8Array>
+*/
+
+// MODULES //
+
+var hasInt8ArraySupport = require( '@stdlib/utils/detect-int8array-support' );
+var builtin = require( './int8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/utils/detect-int8array-support":143}],14:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int8Array === 'function' ) ? Int8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],15:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],16:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 16-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint16
+*
+* @example
+* var ctor = require( '@stdlib/array/uint16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint16Array>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+var builtin = require( './uint16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/utils/detect-uint16array-support":153}],17:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 16-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],18:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],19:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 32-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint32
+*
+* @example
+* var ctor = require( '@stdlib/array/uint32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint32Array>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+var builtin = require( './uint32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/utils/detect-uint32array-support":156}],20:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 32-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],21:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],22:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint8
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8Array>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+var builtin = require( './uint8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/utils/detect-uint8array-support":159}],23:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],24:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],25:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @module @stdlib/array/uint8c
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8c' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8ClampedArray>
+*/
+
+// MODULES //
+
+var hasUint8ClampedArraySupport = require( '@stdlib/utils/detect-uint8clampedarray-support' ); // eslint-disable-line id-length
+var builtin = require( './uint8clampedarray.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ClampedArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/utils/detect-uint8clampedarray-support":162}],26:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],28:[function(require,module,exports){
+'use strict';
+
 // FUNCTIONS //
 
 var has = Object.prototype.hasOwnProperty;
@@ -122,14 +743,14 @@ function hasOwnProp( value, property ) {
 		return false;
 	}
 	return has.call( value, property );
-} // end FUNCTION hasOwnProp()
+}
 
 
 // EXPORTS //
 
 module.exports = hasOwnProp;
 
-},{}],2:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 /**
@@ -160,7 +781,7 @@ var hasOwnProp = require( './has_own_property.js' );
 
 module.exports = hasOwnProp;
 
-},{"./has_own_property.js":1}],3:[function(require,module,exports){
+},{"./has_own_property.js":28}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -190,13 +811,13 @@ var isArrayLike = require( './is_array_like.js' );
 
 module.exports = isArrayLike;
 
-},{"./is_array_like.js":4}],4:[function(require,module,exports){
+},{"./is_array_like.js":31}],31:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
-var MAX_LENGTH = require( '@stdlib/math/constants/uint32-max' );
+var MAX_LENGTH = require( '@stdlib/constants/array/max-array-length' );
 
 
 // MAIN //
@@ -225,14 +846,14 @@ function isArrayLike( value ) {
 		value.length >= 0 &&
 		value.length <= MAX_LENGTH
 	);
-} // end FUNCTION isArrayLike()
+}
 
 
 // EXPORTS //
 
 module.exports = isArrayLike;
 
-},{"@stdlib/math/base/assert/is-integer":46,"@stdlib/math/constants/uint32-max":54}],5:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":98,"@stdlib/math/base/assert/is-integer":110}],32:[function(require,module,exports){
 'use strict';
 
 /**
@@ -259,7 +880,7 @@ var isArray = require( './is_array.js' );
 
 module.exports = isArray;
 
-},{"./is_array.js":6}],6:[function(require,module,exports){
+},{"./is_array.js":33}],33:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -285,14 +906,14 @@ var nativeClass = require( '@stdlib/utils/native-class' );
 */
 function isArray( value ) {
 	return ( nativeClass( value ) === '[object Array]' );
-} // end FUNCTION isArray()
+}
 
 
 // EXPORTS //
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":81}],7:[function(require,module,exports){
+},{"@stdlib/utils/native-class":172}],34:[function(require,module,exports){
 'use strict';
 
 /**
@@ -319,7 +940,7 @@ var isBuffer = require( './is_buffer.js' );
 
 module.exports = isBuffer;
 
-},{"./is_buffer.js":8}],8:[function(require,module,exports){
+},{"./is_buffer.js":35}],35:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -359,20 +980,21 @@ function isBuffer( value ) {
 			value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
 			(
 				value.constructor &&
+
 				// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
 				typeof value.constructor.isBuffer === 'function' &&
 				value.constructor.isBuffer( value )
 			)
 		)
 	);
-} // end FUNCTION isBuffer()
+}
 
 
 // EXPORTS //
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":32}],9:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":69}],36:[function(require,module,exports){
 'use strict';
 
 /**
@@ -399,7 +1021,7 @@ var isError = require( './is_error.js' );
 
 module.exports = isError;
 
-},{"./is_error.js":10}],10:[function(require,module,exports){
+},{"./is_error.js":37}],37:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -440,14 +1062,134 @@ function isError( value ) {
 		value = getPrototypeOf( value );
 	}
 	return false;
-} // end FUNCTION isError()
+}
 
 
 // EXPORTS //
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":75,"@stdlib/utils/native-class":81}],11:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":166,"@stdlib/utils/native-class":172}],38:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float32Array.
+*
+* @module @stdlib/assert/is-float32array
+*
+* @example
+* var isFloat32Array = require( '@stdlib/assert/is-float32array' );
+*
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* bool = isFloat32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat32Array = require( './is_float32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat32Array;
+
+},{"./is_float32array.js":39}],39:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float32Array
+*
+* @example
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat32Array( [] );
+* // returns false
+*/
+function isFloat32Array( value ) {
+	return ( nativeClass( value ) === '[object Float32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat32Array;
+
+},{"@stdlib/utils/native-class":172}],40:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float64Array.
+*
+* @module @stdlib/assert/is-float64array
+*
+* @example
+* var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+*
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* bool = isFloat64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat64Array = require( './is_float64array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"./is_float64array.js":41}],41:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float64Array
+*
+* @example
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat64Array( [] );
+* // returns false
+*/
+function isFloat64Array( value ) {
+	return ( nativeClass( value ) === '[object Float64Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"@stdlib/utils/native-class":172}],42:[function(require,module,exports){
 'use strict';
 
 /**
@@ -475,7 +1217,7 @@ var isFunction = require( './is_function.js' );
 
 module.exports = isFunction;
 
-},{"./is_function.js":12}],12:[function(require,module,exports){
+},{"./is_function.js":43}],43:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -502,14 +1244,194 @@ var typeOf = require( '@stdlib/utils/type-of' );
 function isFunction( value ) {
 	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
 	return ( typeOf( value ) === 'function' );
-} // end FUNCTION isFunction()
+}
 
 
 // EXPORTS //
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":92}],13:[function(require,module,exports){
+},{"@stdlib/utils/type-of":183}],44:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int16Array.
+*
+* @module @stdlib/assert/is-int16array
+*
+* @example
+* var isInt16Array = require( '@stdlib/assert/is-int16array' );
+*
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* bool = isInt16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt16Array = require( './is_int16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt16Array;
+
+},{"./is_int16array.js":45}],45:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int16Array
+*
+* @example
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt16Array( [] );
+* // returns false
+*/
+function isInt16Array( value ) {
+	return ( nativeClass( value ) === '[object Int16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt16Array;
+
+},{"@stdlib/utils/native-class":172}],46:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int32Array.
+*
+* @module @stdlib/assert/is-int32array
+*
+* @example
+* var isInt32Array = require( '@stdlib/assert/is-int32array' );
+*
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* bool = isInt32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt32Array = require( './is_int32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt32Array;
+
+},{"./is_int32array.js":47}],47:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int32Array
+*
+* @example
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt32Array( [] );
+* // returns false
+*/
+function isInt32Array( value ) {
+	return ( nativeClass( value ) === '[object Int32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt32Array;
+
+},{"@stdlib/utils/native-class":172}],48:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int8Array.
+*
+* @module @stdlib/assert/is-int8array
+*
+* @example
+* var isInt8Array = require( '@stdlib/assert/is-int8array' );
+*
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* bool = isInt8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt8Array = require( './is_int8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt8Array;
+
+},{"./is_int8array.js":49}],49:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int8Array
+*
+* @example
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt8Array( [] );
+* // returns false
+*/
+function isInt8Array( value ) {
+	return ( nativeClass( value ) === '[object Int8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt8Array;
+
+},{"@stdlib/utils/native-class":172}],50:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -544,14 +1466,14 @@ var isObject = require( './object.js' );
 */
 function isInteger( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./object.js":16,"./primitive.js":17}],14:[function(require,module,exports){
+},{"./object.js":53,"./primitive.js":54}],51:[function(require,module,exports){
 'use strict';
 
 /**
@@ -613,13 +1535,13 @@ setReadOnly( isInteger, 'isObject', isObject );
 
 module.exports = isInteger;
 
-},{"./generic.js":13,"./object.js":16,"./primitive.js":17,"@stdlib/utils/define-read-only-property":68}],15:[function(require,module,exports){
+},{"./generic.js":50,"./object.js":53,"./primitive.js":54,"@stdlib/utils/define-read-only-property":129}],52:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 var isInt = require( '@stdlib/math/base/assert/is-integer' );
 
 
@@ -638,14 +1560,14 @@ function isInteger( value ) {
 		value > NINF &&
 		isInt( value )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/assert/is-integer":46,"@stdlib/math/constants/float64-ninf":52,"@stdlib/math/constants/float64-pinf":53}],16:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-ninf":99,"@stdlib/constants/math/float64-pinf":100,"@stdlib/math/base/assert/is-integer":110}],53:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -675,14 +1597,14 @@ function isInteger( value ) {
 		isNumber( value ) &&
 		isInt( value.valueOf() )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./integer.js":15,"@stdlib/assert/is-number":27}],17:[function(require,module,exports){
+},{"./integer.js":52,"@stdlib/assert/is-number":64}],54:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -712,14 +1634,14 @@ function isInteger( value ) {
 		isNumber( value ) &&
 		isInt( value )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./integer.js":15,"@stdlib/assert/is-number":27}],18:[function(require,module,exports){
+},{"./integer.js":52,"@stdlib/assert/is-number":64}],55:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -754,14 +1676,14 @@ var isObject = require( './object.js' );
 */
 function isnan( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"./object.js":20,"./primitive.js":21}],19:[function(require,module,exports){
+},{"./object.js":57,"./primitive.js":58}],56:[function(require,module,exports){
 'use strict';
 
 /**
@@ -826,7 +1748,7 @@ setReadOnly( isnan, 'isObject', isObject );
 
 module.exports = isnan;
 
-},{"./generic.js":18,"./object.js":20,"./primitive.js":21,"@stdlib/utils/define-read-only-property":68}],20:[function(require,module,exports){
+},{"./generic.js":55,"./object.js":57,"./primitive.js":58,"@stdlib/utils/define-read-only-property":129}],57:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -856,14 +1778,14 @@ function isnan( value ) {
 		isNumber( value ) &&
 		isNan( value.valueOf() )
 	);
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":27,"@stdlib/math/base/assert/is-nan":48}],21:[function(require,module,exports){
+},{"@stdlib/assert/is-number":64,"@stdlib/math/base/assert/is-nan":112}],58:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -897,14 +1819,14 @@ function isnan( value ) {
 		isNumber( value ) &&
 		isNan( value )
 	);
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":27,"@stdlib/math/base/assert/is-nan":48}],22:[function(require,module,exports){
+},{"@stdlib/assert/is-number":64,"@stdlib/math/base/assert/is-nan":112}],59:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -943,14 +1865,14 @@ var isObject = require( './object.js' );
 */
 function isNonNegativeInteger( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":24,"./primitive.js":25}],23:[function(require,module,exports){
+},{"./object.js":61,"./primitive.js":62}],60:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1015,7 +1937,7 @@ setReadOnly( isNonNegativeInteger, 'isObject', isObject );
 
 module.exports = isNonNegativeInteger;
 
-},{"./generic.js":22,"./object.js":24,"./primitive.js":25,"@stdlib/utils/define-read-only-property":68}],24:[function(require,module,exports){
+},{"./generic.js":59,"./object.js":61,"./primitive.js":62,"@stdlib/utils/define-read-only-property":129}],61:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1044,14 +1966,14 @@ function isNonNegativeInteger( value ) {
 		isInteger( value ) &&
 		value.valueOf() >= 0
 	);
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":14}],25:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":51}],62:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1080,14 +2002,14 @@ function isNonNegativeInteger( value ) {
 		isInteger( value ) &&
 		value >= 0
 	);
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":14}],26:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":51}],63:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1122,14 +2044,14 @@ var isObject = require( './object.js' );
 */
 function isNumber( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{"./object.js":28,"./primitive.js":29}],27:[function(require,module,exports){
+},{"./object.js":65,"./primitive.js":66}],64:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1194,7 +2116,7 @@ setReadOnly( isNumber, 'isObject', isObject );
 
 module.exports = isNumber;
 
-},{"./generic.js":26,"./object.js":28,"./primitive.js":29,"@stdlib/utils/define-read-only-property":68}],28:[function(require,module,exports){
+},{"./generic.js":63,"./object.js":65,"./primitive.js":66,"@stdlib/utils/define-read-only-property":129}],65:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1228,14 +2150,14 @@ function isNumber( value ) {
 		return ( nativeClass( value ) === '[object Number]' );
 	}
 	return false;
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":31,"@stdlib/utils/detect-tostringtag-support":72,"@stdlib/utils/native-class":81}],29:[function(require,module,exports){
+},{"./try2serialize.js":68,"@stdlib/utils/detect-tostringtag-support":151,"@stdlib/utils/native-class":172}],66:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1258,17 +2180,17 @@ module.exports = isNumber;
 */
 function isNumber( value ) {
 	return ( typeof value === 'number' );
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{}],30:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var toString = Number.prototype.toString; // non-generic
 
 
@@ -1276,12 +2198,12 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],31:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
+var toString = require( './tostring.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -1300,14 +2222,14 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./tostring.js":30}],32:[function(require,module,exports){
+},{"./tostring.js":67}],69:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1353,7 +2275,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":33,"@stdlib/assert/tools/array-function":45,"@stdlib/utils/define-read-only-property":68}],33:[function(require,module,exports){
+},{"./is_object_like.js":70,"@stdlib/assert/tools/array-function":90,"@stdlib/utils/define-read-only-property":129}],70:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1379,14 +2301,14 @@ function isObjectLike( value ) {
 		value !== null &&
 		typeof value === 'object'
 	);
-} // end FUNCTION isObjectLike()
+}
 
 
 // EXPORTS //
 
 module.exports = isObjectLike;
 
-},{}],34:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1413,7 +2335,7 @@ var isObject = require( './is_object.js' );
 
 module.exports = isObject;
 
-},{"./is_object.js":35}],35:[function(require,module,exports){
+},{"./is_object.js":72}],72:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1443,14 +2365,14 @@ function isObject( value ) {
 		value !== null &&
 		!isArray( value )
 	);
-} // end FUNCTION isObject()
+}
 
 
 // EXPORTS //
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":5}],36:[function(require,module,exports){
+},{"@stdlib/assert/is-array":32}],73:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1477,7 +2399,7 @@ var isPlainObject = require( './is_plain_object.js' );
 
 module.exports = isPlainObject;
 
-},{"./is_plain_object.js":37}],37:[function(require,module,exports){
+},{"./is_plain_object.js":74}],74:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1513,7 +2435,7 @@ function ownProps( obj ) {
 		}
 	}
 	return true;
-} // end FUNCTION ownProps()
+}
 
 
 // MAIN //
@@ -1566,14 +2488,14 @@ function isPlainObject( value ) {
 			ownProps( value )
 		)
 	);
-} // end FUNCTION isPlainObject()
+}
 
 
 // EXPORTS //
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":11,"@stdlib/assert/is-object":34,"@stdlib/utils/get-prototype-of":75,"@stdlib/utils/native-class":81}],38:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-function":42,"@stdlib/assert/is-object":71,"@stdlib/utils/get-prototype-of":166,"@stdlib/utils/native-class":172}],75:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1600,14 +2522,14 @@ var isObject = require( './object.js' );
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./object.js":40,"./primitive.js":41}],39:[function(require,module,exports){
+},{"./object.js":77,"./primitive.js":78}],76:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1664,7 +2586,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":38,"./object.js":40,"./primitive.js":41,"@stdlib/utils/define-read-only-property":68}],40:[function(require,module,exports){
+},{"./generic.js":75,"./object.js":77,"./primitive.js":78,"@stdlib/utils/define-read-only-property":129}],77:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1698,14 +2620,14 @@ function isString( value ) {
 		return ( nativeClass( value ) === '[object String]' );
 	}
 	return false;
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./try2valueof.js":42,"@stdlib/utils/detect-tostringtag-support":72,"@stdlib/utils/native-class":81}],41:[function(require,module,exports){
+},{"./try2valueof.js":79,"@stdlib/utils/detect-tostringtag-support":151,"@stdlib/utils/native-class":172}],78:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1724,19 +2646,19 @@ module.exports = isString;
 */
 function isString( value ) {
 	return ( typeof value === 'string' );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{}],42:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
+var valueOf = require( './valueof.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -1755,17 +2677,17 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./valueof.js":43}],43:[function(require,module,exports){
+},{"./valueof.js":80}],80:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var valueOf = String.prototype.valueOf; // non-generic
 
 
@@ -1773,7 +2695,247 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],44:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint16Array.
+*
+* @module @stdlib/assert/is-uint16array
+*
+* @example
+* var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+*
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* bool = isUint16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint16Array = require( './is_uint16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"./is_uint16array.js":82}],82:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint16Array
+*
+* @example
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint16Array( [] );
+* // returns false
+*/
+function isUint16Array( value ) {
+	return ( nativeClass( value ) === '[object Uint16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"@stdlib/utils/native-class":172}],83:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint32Array.
+*
+* @module @stdlib/assert/is-uint32array
+*
+* @example
+* var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+*
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* bool = isUint32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint32Array = require( './is_uint32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"./is_uint32array.js":84}],84:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint32Array
+*
+* @example
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint32Array( [] );
+* // returns false
+*/
+function isUint32Array( value ) {
+	return ( nativeClass( value ) === '[object Uint32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"@stdlib/utils/native-class":172}],85:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8Array.
+*
+* @module @stdlib/assert/is-uint8array
+*
+* @example
+* var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+*
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* bool = isUint8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8Array = require( './is_uint8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"./is_uint8array.js":86}],86:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8Array
+*
+* @example
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8Array( [] );
+* // returns false
+*/
+function isUint8Array( value ) {
+	return ( nativeClass( value ) === '[object Uint8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"@stdlib/utils/native-class":172}],87:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8ClampedArray.
+*
+* @module @stdlib/assert/is-uint8clampedarray
+*
+* @example
+* var isUint8ClampedArray = require( '@stdlib/assert/is-uint8clampedarray' );
+*
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8ClampedArray = require( './is_uint8array_clamped.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8ClampedArray;
+
+},{"./is_uint8array_clamped.js":88}],88:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8ClampedArray.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8ClampedArray
+*
+* @example
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+function isUint8ClampedArray( value ) {
+	return ( nativeClass( value ) === '[object Uint8ClampedArray]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8ClampedArray;
+
+},{"@stdlib/utils/native-class":172}],89:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1809,6 +2971,7 @@ function arrayfcn( predicate ) {
 		throw new TypeError( 'invalid input argument. Must provide a function. Value: `' + predicate + '`.' );
 	}
 	return every;
+
 	/**
 	* Tests if every element in an array passes a test condition.
 	*
@@ -1832,15 +2995,15 @@ function arrayfcn( predicate ) {
 			}
 		}
 		return true;
-	} // end FUNCTION every()
-} // end FUNCTION arrayfcn()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":5}],45:[function(require,module,exports){
+},{"@stdlib/assert/is-array":32}],90:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1873,7 +3036,730 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":44}],46:[function(require,module,exports){
+},{"./arrayfcn.js":89}],91:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer;
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":190}],92:[function(require,module,exports){
+'use strict';
+
+/**
+* Buffer constructor.
+*
+* @module @stdlib/buffer/ctor
+*
+* @example
+* var ctor = require( '@stdlib/buffer/ctor' );
+*
+* var b = new ctor( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*/
+
+// MODULES //
+
+var hasNodeBufferSupport = require( '@stdlib/utils/detect-node-buffer-support' );
+var main = require( './buffer.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasNodeBufferSupport() ) {
+	ctor = main;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./buffer.js":91,"./polyfill.js":93,"@stdlib/utils/detect-node-buffer-support":146}],93:[function(require,module,exports){
+'use strict';
+
+// TODO: write (browser) polyfill
+
+// MAIN //
+
+/**
+* Buffer constructor.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],94:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+var bool = isFunction( Buffer.from );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{"@stdlib/assert/is-function":42,"@stdlib/buffer/ctor":92}],95:[function(require,module,exports){
+'use strict';
+
+/**
+* Copy buffer data to a new `Buffer` instance.
+*
+* @module @stdlib/buffer/from-buffer
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+* var copyBuffer = require( '@stdlib/buffer/from-buffer' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = copyBuffer( b1 );
+* // returns <Buffer>
+*/
+
+// MODULES //
+
+var hasFrom = require( './has_from.js' );
+var main = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var copyBuffer;
+if ( hasFrom ) {
+	copyBuffer = main;
+} else {
+	copyBuffer = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = copyBuffer;
+
+},{"./has_from.js":94,"./main.js":96,"./polyfill.js":97}],96:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+/**
+* Copies buffer data to a new `Buffer` instance.
+*
+* @param {Buffer} buffer - buffer from which to copy
+* @throws {TypeError} must provide a `Buffer` instance
+* @returns {Buffer} new `Buffer` instance
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = fromBuffer( b1 );
+* // returns <Buffer>
+*/
+function fromBuffer( buffer ) {
+	if ( !isBuffer( buffer ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a Buffer. Value: `' + buffer + '`' );
+	}
+	return Buffer.from( buffer );
+}
+
+
+// EXPORTS //
+
+module.exports = fromBuffer;
+
+},{"@stdlib/assert/is-buffer":34,"@stdlib/buffer/ctor":92}],97:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+/**
+* Copies buffer data to a new `Buffer` instance.
+*
+* @param {Buffer} buffer - buffer from which to copy
+* @throws {TypeError} must provide a `Buffer` instance
+* @returns {Buffer} new `Buffer` instance
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = fromBuffer( b1 );
+* // returns <Buffer>
+*/
+function fromBuffer( buffer ) {
+	if ( !isBuffer( buffer ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a Buffer. Value: `' + buffer + '`' );
+	}
+	return new Buffer( buffer ); // eslint-disable-line no-buffer-constructor
+}
+
+
+// EXPORTS //
+
+module.exports = fromBuffer;
+
+},{"@stdlib/assert/is-buffer":34,"@stdlib/buffer/ctor":92}],98:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum length of a generic array.
+*
+* @module @stdlib/constants/array/max-array-length
+*
+* @example
+* var MAX_ARRAY_LENGTH = require( '@stdlib/constants/array/max-array-length' );
+* // returns 4294967295
+*/
+
+// MAIN //
+
+/**
+* Maximum length of a generic array.
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = MAX_ARRAY_LENGTH;
+
+},{}],99:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NINF;
+
+},{}],100:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_PINF;
+
+},{}],101:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-max
+* @type {integer32}
+*
+* @example
+* var INT16_MAX = require( '@stdlib/constants/math/int16-max' );
+* // returns 32767
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{15} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 0111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 32767
+*/
+var INT16_MAX = 32767|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT16_MAX;
+
+},{}],102:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-min
+* @type {integer32}
+*
+* @example
+* var INT16_MIN = require( '@stdlib/constants/math/int16-min' );
+* // returns -32768
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{15})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 1000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -32768
+*/
+var INT16_MIN = -32768|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT16_MIN;
+
+},{}],103:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-max
+* @type {integer32}
+*
+* @example
+* var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+* // returns 2147483647
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{31} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 2147483647
+*/
+var INT32_MAX = 2147483647|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT32_MAX;
+
+},{}],104:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-min
+* @type {integer32}
+*
+* @example
+* var INT32_MIN = require( '@stdlib/constants/math/int32-min' );
+* // returns -2147483648
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{31})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -2147483648
+*/
+var INT32_MIN = -2147483648|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT32_MIN;
+
+},{}],105:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-max
+* @type {integer32}
+*
+* @example
+* var INT8_MAX = require( '@stdlib/constants/math/int8-max' );
+* // returns 127
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* 2^{7} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 127
+*/
+var INT8_MAX = 127|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT8_MAX;
+
+},{}],106:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-min
+* @type {integer32}
+*
+* @example
+* var INT8_MIN = require( '@stdlib/constants/math/int8-min' );
+* // returns -128
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* -(2^{7})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -128
+*/
+var INT8_MIN = -128|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT8_MIN;
+
+},{}],107:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* @module @stdlib/constants/math/uint16-max
+* @type {integer32}
+*
+* @example
+* var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+* // returns 65535
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{16} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 1111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 65535
+*/
+var UINT16_MAX = 65535|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT16_MAX;
+
+},{}],108:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* @module @stdlib/constants/math/uint32-max
+* @type {uinteger32}
+*
+* @example
+* var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+* // returns 4294967295
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var UINT32_MAX = 4294967295;
+
+
+// EXPORTS //
+
+module.exports = UINT32_MAX;
+
+},{}],109:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* @module @stdlib/constants/math/uint8-max
+* @type {integer32}
+*
+* @example
+* var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+* // returns 255
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{8} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 255
+*/
+var UINT8_MAX = 255|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT8_MAX;
+
+},{}],110:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1900,7 +3786,7 @@ var isInteger = require( './is_integer.js' );
 
 module.exports = isInteger;
 
-},{"./is_integer.js":47}],47:[function(require,module,exports){
+},{"./is_integer.js":111}],111:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1926,14 +3812,14 @@ var floor = require( '@stdlib/math/base/special/floor' );
 */
 function isInteger( x ) {
 	return (floor(x) === x);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":51}],48:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":115}],112:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1960,7 +3846,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":49}],49:[function(require,module,exports){
+},{"./is_nan.js":113}],113:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -1980,15 +3866,15 @@ module.exports = isnan;
 * // returns false
 */
 function isnan( x ) {
-	return (x !== x);
-} // end FUNCTION isnan()
+	return ( x !== x );
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{}],50:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -2022,7 +3908,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],51:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2055,120 +3941,7 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":50}],52:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point negative infinity.
-*
-* @module @stdlib/math/constants/float64-ninf
-* @type {number}
-*
-* @example
-* var FLOAT64_NINF = require( '@stdlib/math/constants/float64-ninf' );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point negative infinity has the bit sequence
-*
-* ``` binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_NINF;
-
-},{}],53:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* @module @stdlib/math/constants/float64-pinf
-* @type {number}
-*
-* @example
-* var FLOAT64_PINF = require( '@stdlib/math/constants/float64-pinf' );
-* // returns Number.POSITIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point positive infinity has the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_PINF = Number.POSITIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_PINF;
-
-},{}],54:[function(require,module,exports){
-'use strict';
-
-/**
-* Maximum unsigned 32-bit integer.
-*
-* @module @stdlib/math/constants/uint32-max
-* @type {uinteger32}
-*
-* @example
-* var UINT32_MAX = require( '@stdlib/math/constants/uint32-max' );
-* // returns 4294967295
-*/
-
-
-// MAIN //
-
-/**
-* The maximum unsigned 32-bit integer is given by
-*
-* ``` tex
-* 2^{32} - 1
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 11111111111111111111111111111111
-* ```
-*
-* @constant
-* @type {uinteger32}
-* @default 4294967295
-*/
-var UINT32_MAX = 4294967295;
-
-
-// EXPORTS //
-
-module.exports = UINT32_MAX;
-
-},{}],55:[function(require,module,exports){
+},{"./floor.js":114}],116:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2205,18 +3978,23 @@ module.exports = UINT32_MAX;
 *
 * Regular expression: `/^\s*function\s*([^(]*)/i`
 *
-* * `/^\s*`
-*   - Match zero or more spaces at beginning
-* * `function`
-*   - Match the word `function`
-* * `\s*`
-*   - Match zero or more spaces after the word `function`
-* * `()`
-*   - Capture
-* * `[^(]*`
-*   - Match anything except a left parenthesis `(` zero or more times
-* * `/i`
-*   - ignore case
+* -   `/^\s*`
+*     -   Match zero or more spaces at beginning
+*
+* -   `function`
+*     -   Match the word `function`
+*
+* -   `\s*`
+*     -   Match zero or more spaces after the word `function`
+*
+* -   `()`
+*     -   Capture
+*
+* -   `[^(]*`
+*     -   Match anything except a left parenthesis `(` zero or more times
+*
+* -   `/i`
+*     -   ignore case
 *
 * @constant
 * @type {RegExp}
@@ -2229,7 +4007,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],56:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2262,24 +4040,32 @@ module.exports = RE_FUNCTION_NAME;
 *
 * Regular expression: `/^\/((?:\\\/|[^\/])+)\/([imgy]*)$/`
 *
-* * `/^\/`
-*   - match a string that begins with a `/`
-* * `()`
-*   - capture
-* * `(?:)+`
-*   - capture, but do not remember, a group of characters which occur one or more times
-* * `\\\/`
-*   - match the literal `\/`
-* * `|`
-*   - OR
-* * `[^\/]`
-*   - anything which is not the literal `\/`
-* * `\/`
-*   - match the literal `/`
-* * `([imgy]*)`
-*   - capture any characters matching `imgy` occurring zero or more times
-* * `$/`
-*   - string end
+* -   `/^\/`
+*     -   match a string that begins with a `/`
+*
+* -   `()`
+*     -   capture
+*
+* -   `(?:)+`
+*     -   capture, but do not remember, a group of characters which occur one or more times
+*
+* -   `\\\/`
+*     -   match the literal `\/`
+*
+* -   `|`
+*     -   OR
+*
+* -   `[^\/]`
+*     -   anything which is not the literal `\/`
+*
+* -   `\/`
+*     -   match the literal `/`
+*
+* -   `([imgy]*)`
+*     -   capture any characters matching `imgy` occurring zero or more times
+*
+* -   `$/`
+*     -   string end
 *
 *
 * @constant
@@ -2293,23 +4079,35 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 module.exports = RE_REGEXP;
 
-},{}],57:[function(require,module,exports){
-// This file is generated by scripts/build.js.
-'use strict';
-
+},{}],118:[function(require,module,exports){
 /* eslint-disable quotes, max-lines */
 
-module.exports = {
+/*
+* This file is generated by scripts/build.js.
+*/
+'use strict';
+
+var db = {
 	"AFINN_111": "list = AFINN_111()\n",
 	"AFINN_96": "list = AFINN_96()\n",
+	"allocUnsafe": "buf = allocUnsafe( 100 )\n",
+	"ANSCOMBES_QUARTET": "d = ANSCOMBES_QUARTET()\n",
 	"any": "arr = [ 0, 0, 0, 0, 1 ];\nbool = any( arr )\n",
 	"anyBy": "function negative( v ) { return ( v < 0 ); };\narr = [ 1, 2, 3, 4, -1 ];\nbool = anyBy( arr, negative )\n",
 	"anyByAsync": "\n// Basic usage:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\narr = [ 3000, 2500, 1000 ];\nanyByAsync( arr, predicate, done )\n\n// Limit number of concurrent invocations:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\nopts = { 'limit': 2 };\narr = [ 3000, 2500, 1000 ];\nanyByAsync( arr, opts, predicate, done )\n\n// Process sequentially:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\nopts = { 'series': true };\narr = [ 3000, 2500, 1000 ];\nanyByAsync( arr, opts, predicate, done )\n",
 	"anyByRight": "function negative( v ) { return ( v < 0 ); };\narr = [ -1, 1, 2, 3, 4 ];\nbool = anyByRight( arr, negative )\n",
 	"anyByRightAsync": "\n// Basic usage:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\narr = [ 1000, 2500, 3000 ];\nanyByRightAsync( arr, predicate, done )\n\n// Limit number of concurrent invocations:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\nopts = { 'limit': 2 };\narr = [ 1000, 2500, 3000 ];\nanyByRightAsync( arr, opts, predicate, done )\n\n// Process sequentially:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\nopts = { 'series': true };\narr = [ 1000, 2500, 3000 ];\nanyByRightAsync( arr, opts, predicate, done )\n",
+	"APERY": "APERY\n",
 	"append": "\n// Arrays:\narr = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\narr = append( arr, [ 6.0, 7.0 ] )\n\n// Typed arrays:\narr = new Float64Array( [ 1.0, 2.0 ] );\narr = append( arr, [ 3.0, 4.0 ] )\n\n// Array-like object:\narr = { 'length': 0 };\narr = append( arr, [ 1.0, 2.0 ] )\n",
+	"ARCH": "ARCH\n",
 	"argumentFunction": "argn = argumentFunction( 1 );\nv = argn( 3.14, -3.14, 0.0 )\nv = argn( -1.0, -0.0, 1.0 )\nv = argn( 'beep', 'boop', 'bop' )\nv = argn( 'beep' )\n",
 	"ARGV": "execPath = ARGV[ 0 ]\n",
+	"ArrayBuffer": "buf = new ArrayBuffer( 5 )\n",
+	"arraybuffer2buffer": "ab = new ArrayBuffer( 10 )\nbuf = arraybuffer2buffer( ab )\nlen = buf.length\nbuf = arraybuffer2buffer( ab, 2, 6 )\nlen = buf.length\n",
+	"arrayCtors": "ctor = arrayCtors( 'float64' )\nctor = arrayCtors( 'float' )\n",
+	"arrayDataType": "arr = new Float64Array( 10 );\ndt = arrayDataType( arr )\ndt = arrayDataType( 'beep' )\n",
+	"arrayDataTypes": "out = arrayDataTypes()\n",
+	"array2buffer": "buf = array2buffer( [ 1, 2, 3, 4 ] )\n",
 	"base.abs": "y = base.abs( -1.0 )\ny = base.abs( 2.0 )\ny = base.abs( 0.0 )\ny = base.abs( -0.0 )\ny = base.abs( NaN )\n",
 	"base.abs2": "y = base.abs2( -1.0 )\ny = base.abs2( 2.0 )\ny = base.abs2( 0.0 )\ny = base.abs2( -0.0 )\ny = base.abs2( NaN )\n",
 	"base.absdiff": "d = base.absdiff( 2.0, 5.0 )\nd = base.absdiff( -1.0, 3.14 )\nd = base.absdiff( 10.1, -2.05 )\nd = base.absdiff( -0.0, 0.0 )\nd = base.absdiff( NaN, 5.0 )\nd = base.absdiff( PINF, NINF )\nd = base.absdiff( PINF, PINF )\n",
@@ -2322,14 +4120,16 @@ module.exports = {
 	"base.ahaversin": "y = base.ahaversin( 0.5 )\ny = base.ahaversin( 0.0 )\n",
 	"base.asin": "y = base.asin( 0.0 )\ny = base.asin( PI/2.0 )\ny = base.asin( -PI/6.0 )\ny = base.asin( NaN )\n",
 	"base.asinh": "y = base.asinh( 0.0 )\ny = base.asinh( 2.0 )\ny = base.asinh( -2.0 )\ny = base.asinh( NaN )\ny = base.asinh( NINF )\ny = base.asinh( PINF )\n",
-	"base.asum": "\n// Standard usage:\nx = [ -2.0, 1.0, 3.0, -5.0, 4.0, 0.0, -1.0, -3.0 ];\nsum = base.asum( x.length, x, 1 )\n\n// Sum every other value:\nN = base.floor( x.length / 2 );\nstride = 2;\nsum = base.asum( N, x, stride )\n\n// Use view offset; e.g., starting at 2nd element:\nx0 = new Float64Array( [ 1.0, -2.0, 3.0, -4.0, 5.0, -6.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\nN = base.floor( x0.length / 2 );\nsum = base.asum( N, x1, stride )\n",
 	"base.atan": "y = base.atan( 0.0 )\ny = base.atan( -PI/4.0 )\ny = base.atan( PI/4.0 )\ny = base.atan( NaN )\n",
 	"base.atan2": "v = base.atan2( 2.0, 2.0 )\nv = base.atan2( 6.0, 2.0 )\nv = base.atan2( -1.0, -1.0 )\nv = base.atan2( 3.0, 0.0 )\nv = base.atan2( -2.0, 0.0 )\nv = base.atan2( 0.0, 0.0 )\nv = base.atan2( 3.0, NaN )\nv = base.atan2( NaN, 2.0 )\n",
 	"base.atanh": "y = base.atanh( 0.0 )\ny = base.atanh( 0.9 )\ny = base.atanh( 1.0 )\ny = base.atanh( -1.0 )\ny = base.atanh( NaN )\n",
 	"base.avercos": "y = base.avercos( -1.5 )\ny = base.avercos( -0.0 )\n",
 	"base.aversin": "y = base.aversin( 1.5 )\ny = base.aversin( 0.0 )\n",
-	"base.axpy": "\n// Standard usage:\nx = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\ny = [ 1.0, 1.0, 1.0, 1.0, 1.0 ];\nalpha = 5.0;\nbase.axpy( x.length, alpha, x, 1, y, 1 )\n\n// Using `N` and `stride` parameters:\nN = base.floor( x.length / 2 );\nbase.axpy( N, alpha, x, 2, y, -1 )\n\n// Using view offsets:\nx0 = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny0 = new Float64Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\ny1 = new Float64Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 );\nN = base.floor( x0.length / 2 );\nbase.axpy( N, 5.0, x1, -2, y1, 1 )\ny0\n",
+	"base.bernoulli": "y = base.bernoulli( 0 )\ny = base.bernoulli( 1 )\ny = base.bernoulli( 2 )\ny = base.bernoulli( 3 )\ny = base.bernoulli( 4 )\ny = base.bernoulli( 5 )\ny = base.bernoulli( 20 )\ny = base.bernoulli( 260 )\ny = base.bernoulli( 262 )\ny = base.bernoulli( NaN )\n",
 	"base.besselj0": "y = base.besselj0( 0.0 )\ny = base.besselj0( 1.0 )\ny = base.besselj0( PINF )\ny = base.besselj0( NINF )\ny = base.besselj0( NaN )\n",
+	"base.besselj1": "y = base.besselj1( 0.0 )\ny = base.besselj1( 1.0 )\ny = base.besselj1( PINF )\ny = base.besselj1( NINF )\ny = base.besselj1( NaN )\n",
+	"base.bessely0": "y = base.bessely0( 0.0 )\ny = base.bessely0( 1.0 )\ny = base.bessely0( -1.0 )\ny = base.bessely0( PINF )\ny = base.bessely0( NINF )\ny = base.bessely0( NaN )\n",
+	"base.bessely1": "y = base.bessely1( 0.0 )\ny = base.bessely1( 1.0 )\ny = base.bessely1( -1.0 )\ny = base.bessely1( PINF )\ny = base.bessely1( NINF )\ny = base.bessely1( NaN )\n",
 	"base.beta": "v = base.beta( 0.0, 0.0 )\nv = base.beta( 1.0, 1.0 )\nv = base.beta( -1.0, 2.0 )\nv = base.beta( 5.0, 0.2 )\nv = base.beta( 4.0, 1.0 )\nv = base.beta( NaN, 2.0 )\n",
 	"base.betainc": "y = base.betainc( 0.5, 2.0, 2.0 )\ny = base.betainc( 0.5, 2.0, 2.0, false )\ny = base.betainc( 0.2, 1.0, 2.0 )\ny = base.betainc( 0.2, 1.0, 2.0, true, true )\ny = base.betainc( NaN, 1.0, 1.0 )\ny = base.betainc( 0.8, NaN, 1.0 )\ny = base.betainc( 0.8, 1.0, NaN )\ny = base.betainc( 1.5, 1.0, 1.0 )\ny = base.betainc( -0.5, 1.0, 1.0 )\ny = base.betainc( 0.5, -2.0, 2.0 )\ny = base.betainc( 0.5, 2.0, -2.0 )\n",
 	"base.betaincinv": "y = base.betaincinv( 0.2, 3.0, 3.0 )\ny = base.betaincinv( 0.4, 3.0, 3.0 )\ny = base.betaincinv( 0.4, 3.0, 3.0, true )\ny = base.betaincinv( 0.4, 1.0, 6.0 )\ny = base.betaincinv( 0.8, 1.0, 6.0 )\ny = base.betaincinv( NaN, 1.0, 1.0 )\ny = base.betaincinv( 0.5, NaN, 1.0 )\ny = base.betaincinv( 0.5, 1.0, NaN )\ny = base.betaincinv( 1.2, 1.0, 1.0 )\ny = base.betaincinv( -0.5, 1.0, 1.0 )\ny = base.betaincinv( 0.5, -2.0, 2.0 )\ny = base.betaincinv( 0.5, 0.0, 2.0 )\ny = base.betaincinv( 0.5, 2.0, -2.0 )\ny = base.betaincinv( 0.5, 2.0, 0.0 )\n",
@@ -2342,6 +4142,7 @@ module.exports = {
 	"base.cadd": "y = base.cadd( 5.0, 3.0, -2.0, 1.0 )\n\n// Provide an output array:\nout = new Float32Array( 2 );\ny = base.cadd( out, 5.0, 3.0, -2.0, 1.0 )\nbool = ( y === out )\n",
 	"base.cbrt": "y = base.cbrt( 64.0 )\ny = base.cbrt( 27.0 )\ny = base.cbrt( 0.0 )\ny = base.cbrt( -0.0 )\ny = base.cbrt( -9.0 )\ny = base.cbrt( NaN )\n",
 	"base.cceil": "out = base.cceil( 5.5, 3.3 )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nv = base.cceil( out, 5.5, 3.3 )\nbool = ( v === out )\n",
+	"base.ccis": "y = base.ccis( 0.0, 0.0 )\ny = base.ccis( 1.0, 0.0 )\nout = new Float64Array( 2 );\nv = base.ccis( out, 1.0, 0.0 )\nbool = ( v === out )\n",
 	"base.cdiv": "y = base.cdiv( -13.0, -1.0, -2.0, 1.0 )\nout = new Float64Array( 2 );\nv = base.cdiv( out, -13.0, -1.0, -2.0, 1.0 )\nbool = ( v === out )\n",
 	"base.ceil": "y = base.ceil( 3.14 )\ny = base.ceil( -4.2 )\ny = base.ceil( -4.6 )\ny = base.ceil( 9.5 )\ny = base.ceil( -0.0 )\n",
 	"base.ceil10": "y = base.ceil10( 3.14 )\ny = base.ceil10( -4.2 )\ny = base.ceil10( -4.6 )\ny = base.ceil10( 9.5 )\ny = base.ceil10( 13.0 )\ny = base.ceil10( -13.0 )\ny = base.ceil10( -0.0 )\n",
@@ -2349,11 +4150,11 @@ module.exports = {
 	"base.ceilb": "\n// Round to 4 decimal places:\ny = base.ceilb( 3.14159, -4, 10 )\n\n// If `n = 0` or `b = 1`, standard round behavior:\ny = base.ceilb( 3.14159, 0, 2 )\n\n// Round to nearest multiple of two toward positive infinity:\ny = base.ceilb( 5.0, 1, 2 )\n",
 	"base.ceiln": "\n// Round to 2 decimal places:\ny = base.ceiln( 3.14159, -2 )\n\n// If `n = 0`, standard round toward positive infinity behavior:\ny = base.ceiln( 3.14159, 0 )\n\n// Round to nearest thousand:\ny = base.ceiln( 12368.0, 3 )\n",
 	"base.ceilsd": "y = base.ceilsd( 3.14159, 5 )\ny = base.ceilsd( 3.14159, 1 )\ny = base.ceilsd( 12368.0, 2 )\ny = base.ceilsd( 0.0313, 2, 2 )\n",
-	"base.cfloor": "out = base.cfloor( 5.5, 3.3 )\n",
+	"base.cfloor": "out = base.cfloor( 5.5, 3.3 )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nv = base.cfloor( out, 5.5, 3.3 )\nbool = ( v === out )\n",
+	"base.clamp": "y = base.clamp( 3.14, 0.0, 5.0 )\ny = base.clamp( -3.14, 0.0, 5.0 )\ny = base.clamp( 3.14, 0.0, 3.0 )\ny = base.clamp( -0.0, 0.0, 5.0 )\ny = base.clamp( 0.0, -3.14, -0.0 )\ny = base.clamp( NaN, 0.0, 5.0 )\n",
 	"base.cinv": "y = base.cinv( 2.0, 4.0 )\nout = new Float64Array( 2 );\nv = base.cinv( out, 2.0, 4.0 )\nbool = ( v === out )\n",
-	"base.cmul": "y = base.cmul( 5.0, 3.0, -2.0, 1.0 )\n",
+	"base.cmul": "out = base.cmul( 5.0, 3.0, -2.0, 1.0 )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nv = base.cmul( out, 5.0, 3.0, -2.0, 1.0 )\nbool = ( v === out )\n",
 	"base.continuedFraction": "\n// Continued fraction for (e-1)^(-1):\nfunction closure() {\ni = 0;\nreturn function() {\ni++;\nreturn [ i, i ];\n};\n}\ngen = closure()\nout = base.continuedFraction( gen )\n\n// Using an ES6 generator:\nfunction* generator() {\ni = 0;\nwhile ( true ) {\ni++;\nyield [ i, i ];\n}\n}\ngen = generator();\nout = base.continuedFraction( gen )\n\n// Set options:\nout = base.continuedFraction( generator(), { 'keep': true } )\nout = base.continuedFraction( generator(), { 'maxIter': 10 } )\nout = base.continuedFraction( generator(), { 'tolerance': 1e-1 } )\n",
-	"base.copy": "\n// Standard usage:\nx = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\ny = [ 6.0, 7.0, 8.0, 9.0, 10.0 ];\nbase.copy( x.length, x, 1, y, 1 )\n\n// Advanced indexing:\nx = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ];\ny = [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ];\nN = base.floor( x.length / 2 );\nbase.copy( N, x, -2, y, 1 )\n\n// Using typed array views:\nx0 = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny0 = new Float64Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\ny1 = new Float64Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 );\nN = base.floor( x0.length / 2 );\nbase.copy( N, x1, -2, y1, 1 )\ny0\n",
 	"base.copysign": "z = base.copysign( -3.14, 10.0 )\nz = base.copysign( 3.14, -1.0 )\nz = base.copysign( 1.0, -0.0 )\nz = base.copysign( -3.14, -0.0 )\nz = base.copysign( -0.0, 1.0 )\n",
 	"base.cos": "y = base.cos( 0.0 )\ny = base.cos( PI/4.0 )\ny = base.cos( -PI/6.0 )\ny = base.cos( NaN )\n",
 	"base.cosh": "y = base.cosh( 0.0 )\ny = base.cosh( 2.0 )\ny = base.cosh( -2.0 )\ny = base.cosh( NaN )\n",
@@ -2362,408 +4163,447 @@ module.exports = {
 	"base.covercos": "y = base.covercos( 3.14 )\ny = base.covercos( -4.2 )\ny = base.covercos( -4.6 )\ny = base.covercos( 9.5 )\ny = base.covercos( -0.0 )\n",
 	"base.coversin": "y = base.coversin( 3.14 )\ny = base.coversin( -4.2 )\ny = base.coversin( -4.6 )\ny = base.coversin( 9.5 )\ny = base.coversin( -0.0 )\n",
 	"base.cphase": "phi = base.cphase( 5.0, 3.0 )\n",
-	"base.cpolar": "out = base.cpolar( 5.0, 3.0 )\n",
-	"base.cround": "out = base.cround( 5.5, 3.3 )\n",
-	"base.csub": "y = base.csub( 5.0, 3.0, -2.0, 1.0 )\n",
+	"base.cpolar": "out = base.cpolar( 5.0, 3.0 )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nv = base.cpolar( out, 5.0, 3.0 )\nbool = ( v === out )\n",
+	"base.cround": "out = base.cround( 5.5, 3.3 )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nv = base.cround( out, 5.5, 3.3 )\nbool = ( v === out )\n",
+	"base.csub": "out = base.csub( 5.0, 3.0, -2.0, 1.0 )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nv = base.csub( out, 5.0, 3.0, -2.0, 1.0 )\nbool = ( v === out )\n",
 	"base.dasum": "\n// Standard usage:\nx = new Float64Array( [ -2.0, 1.0, 3.0, -5.0, 4.0, 0.0, -1.0, -3.0 ] );\nsum = base.dasum( x.length, x, 1 )\n\n// Sum every other value:\nN = base.floor( x.length / 2 );\nstride = 2;\nsum = base.dasum( N, x, stride )\n\n// Use view offset; e.g., starting at 2nd element:\nx0 = new Float64Array( [ 1.0, -2.0, 3.0, -4.0, 5.0, -6.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\nN = base.floor( x0.length / 2 );\nsum = base.dasum( N, x1, stride )\n",
 	"base.daxpy": "\n// Standard usage:\nx = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );\ny = new Float64Array( [ 1.0, 1.0, 1.0, 1.0, 1.0 ] );\nalpha = 5.0;\nbase.daxpy( x.length, alpha, x, 1, y, 1 )\n\n// Using `N` and `stride` parameters:\nN = base.floor( x.length / 2 );\nbase.daxpy( N, alpha, x, 2, y, -1 )\n\n// Using view offsets:\nx0 = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny0 = new Float64Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\ny1 = new Float64Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 );\nN = base.floor( x0.length / 2 );\nbase.daxpy( N, 5.0, x1, -2, y1, 1 )\ny0\n",
 	"base.dcopy": "\n// Standard usage:\nx = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );\ny = new Float64Array( [ 6.0, 7.0, 8.0, 9.0, 10.0 ] );\nbase.dcopy( x.length, x, 1, y, 1 )\n\n// Advanced indexing:\nx = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny = new Float64Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nN = base.floor( x.length / 2 );\nbase.dcopy( N, x, -2, y, 1 )\n\n// Using typed array views:\nx0 = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny0 = new Float64Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\ny1 = new Float64Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 );\nN = base.floor( x0.length / 2 );\nbase.dcopy( N, x1, -2, y1, 1 )\ny0\n",
 	"base.deg2rad": "r = base.deg2rad( 90.0 )\nr = base.deg2rad( -45.0 )\nr = base.deg2rad( NaN )\n",
 	"base.digamma": "y = base.digamma( -2.5 )\ny = base.digamma( 1.0 )\ny = base.digamma( 10.0 )\ny = base.digamma( NaN )\ny = base.digamma( -1.0 )\n",
 	"base.diracDelta": "y = base.diracDelta( 3.14 )\ny = base.diracDelta( 0.0 )\n",
-	"base.dist.arcsine.Arcsine": "arcsine = base.dist.arcsine.Arcsine( 0.0, 1.0 );\narcsine.a\narcsine.b\narcsine.entropy\narcsine.kurtosis\narcsine.mean\narcsine.median\narcsine.mode\narcsine.skewness\narcsine.stdev\narcsine.variance\narcsine.cdf( 0.8 )\narcsine.logpdf( 1.0 )\narcsine.pdf( 0.8 )\narcsine.quantile( 0.8 )\n",
-	"base.dist.arcsine.cdf": "y = base.dist.arcsine.cdf( 9.0, 0.0, 10.0 )\ny = base.dist.arcsine.cdf( 0.5, 0.0, 2.0 )\ny = base.dist.arcsine.cdf( PINF, 2.0, 4.0 )\ny = base.dist.arcsine.cdf( NINF, 2.0, 4.0 )\ny = base.dist.arcsine.cdf( NaN, 0.0, 1.0 )\ny = base.dist.arcsine.cdf( 0.0, NaN, 1.0 )\ny = base.dist.arcsine.cdf( 0.0, 0.0, NaN )\ny = base.dist.arcsine.cdf( 2.0, 1.0, 0.0 )\n",
-	"base.dist.arcsine.entropy": "v = base.dist.arcsine.entropy( 0.0, 1.0 )\nv = base.dist.arcsine.entropy( 4.0, 12.0 )\nv = base.dist.arcsine.entropy( 2.0, 8.0 )\n",
-	"base.dist.arcsine.kurtosis": "v = base.dist.arcsine.kurtosis( 0.0, 1.0 )\nv = base.dist.arcsine.kurtosis( 4.0, 12.0 )\nv = base.dist.arcsine.kurtosis( 2.0, 8.0 )\n",
-	"base.dist.arcsine.logpdf": "y = base.dist.arcsine.logpdf( 2.0, 0.0, 4.0 )\ny = base.dist.arcsine.logpdf( 5.0, 0.0, 4.0 )\ny = base.dist.arcsine.logpdf( 0.25, 0.0, 1.0 )\ny = base.dist.arcsine.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.arcsine.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.arcsine.logpdf( 0.0, 0.0, NaN )\ny = base.dist.arcsine.logpdf( 2.0, 3.0, 1.0 )\n",
-	"base.dist.arcsine.mean": "v = base.dist.arcsine.mean( 0.0, 1.0 )\nv = base.dist.arcsine.mean( 4.0, 12.0 )\nv = base.dist.arcsine.mean( 2.0, 8.0 )\n",
-	"base.dist.arcsine.median": "v = base.dist.arcsine.median( 0.0, 1.0 )\nv = base.dist.arcsine.median( 4.0, 12.0 )\nv = base.dist.arcsine.median( 2.0, 8.0 )\n",
-	"base.dist.arcsine.mode": "v = base.dist.arcsine.mode( 0.0, 1.0 )\nv = base.dist.arcsine.mode( 4.0, 12.0 )\nv = base.dist.arcsine.mode( 2.0, 8.0 )\n",
-	"base.dist.arcsine.pdf": "y = base.dist.arcsine.pdf( 2.0, 0.0, 4.0 )\ny = base.dist.arcsine.pdf( 5.0, 0.0, 4.0 )\ny = base.dist.arcsine.pdf( 0.25, 0.0, 1.0 )\ny = base.dist.arcsine.pdf( NaN, 0.0, 1.0 )\ny = base.dist.arcsine.pdf( 0.0, NaN, 1.0 )\ny = base.dist.arcsine.pdf( 0.0, 0.0, NaN )\ny = base.dist.arcsine.pdf( 2.0, 3.0, 1.0 )\n",
-	"base.dist.arcsine.quantile": "y = base.dist.arcsine.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.arcsine.quantile( 0.5, 0.0, 10.0 )\ny = base.dist.arcsine.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.arcsine.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.arcsine.quantile( NaN, 0.0, 1.0 )\ny = base.dist.arcsine.quantile( 0.0, NaN, 1.0 )\ny = base.dist.arcsine.quantile( 0.0, 0.0, NaN )\ny = base.dist.arcsine.quantile( 0.5, 2.0, 1.0 )\n",
-	"base.dist.arcsine.skewness": "v = base.dist.arcsine.skewness( 0.0, 1.0 )\nv = base.dist.arcsine.skewness( 4.0, 12.0 )\nv = base.dist.arcsine.skewness( 2.0, 8.0 )\n",
-	"base.dist.arcsine.stdev": "v = base.dist.arcsine.stdev( 0.0, 1.0 )\nv = base.dist.arcsine.stdev( 4.0, 12.0 )\nv = base.dist.arcsine.stdev( 2.0, 8.0 )\n",
-	"base.dist.arcsine.variance": "v = base.dist.arcsine.variance( 0.0, 1.0 )\nv = base.dist.arcsine.variance( 4.0, 12.0 )\nv = base.dist.arcsine.variance( 2.0, 8.0 )\n",
-	"base.dist.beta.Beta": "beta = base.dist.beta.Beta( 1.0, 1.0 );\nbeta.alpha\nbeta.beta\nbeta.entropy\nbeta.kurtosis\nbeta.mean\nbeta.median\nbeta.mode\nbeta.skewness\nbeta.stdev\nbeta.variance\nbeta.cdf( 0.8 )\nbeta.logpdf( 1.0 )\nbeta.mgf( 3.14 )\nbeta.pdf( 1.0 )\nbeta.quantile( 0.8 )\n",
-	"base.dist.beta.cdf": "y = base.dist.beta.cdf( 0.5, 1.0, 1.0 )\ny = base.dist.beta.cdf( 0.5, 2.0, 4.0 )\ny = base.dist.beta.cdf( 0.2, 2.0, 2.0 )\ny = base.dist.beta.cdf( 0.8, 4.0, 4.0 )\ny = base.dist.beta.cdf( -0.5, 4.0, 2.0 )\ny = base.dist.beta.cdf( 1.5, 4.0, 2.0 )\ny = base.dist.beta.cdf( 2.0, -1.0, 0.5 )\ny = base.dist.beta.cdf( 2.0, 0.5, -1.0 )\ny = base.dist.beta.cdf( NaN, 1.0, 1.0 )\ny = base.dist.beta.cdf( 0.0, NaN, 1.0 )\ny = base.dist.beta.cdf( 0.0, 1.0, NaN )\n",
-	"base.dist.beta.entropy": "v = base.dist.beta.entropy( 1.0, 1.0 )\nv = base.dist.beta.entropy( 4.0, 12.0 )\nv = base.dist.beta.entropy( 8.0, 2.0 )\nv = base.dist.beta.entropy( 1.0, -0.1 )\nv = base.dist.beta.entropy( -0.1, 1.0 )\nv = base.dist.beta.entropy( 2.0, NaN )\nv = base.dist.beta.entropy( NaN, 2.0 )\n",
-	"base.dist.beta.kurtosis": "v = base.dist.beta.kurtosis( 1.0, 1.0 )\nv = base.dist.beta.kurtosis( 4.0, 12.0 )\nv = base.dist.beta.kurtosis( 8.0, 2.0 )\nv = base.dist.beta.kurtosis( 1.0, -0.1 )\nv = base.dist.beta.kurtosis( -0.1, 1.0 )\nv = base.dist.beta.kurtosis( 2.0, NaN )\nv = base.dist.beta.kurtosis( NaN, 2.0 )\n",
-	"base.dist.beta.logpdf": "y = base.dist.beta.logpdf( 0.5, 1.0, 1.0 )\ny = base.dist.beta.logpdf( 0.5, 2.0, 4.0 )\ny = base.dist.beta.logpdf( 0.2, 2.0, 2.0 )\ny = base.dist.beta.logpdf( 0.8, 4.0, 4.0 )\ny = base.dist.beta.logpdf( -0.5, 4.0, 2.0 )\ny = base.dist.beta.logpdf( 1.5, 4.0, 2.0 )\ny = base.dist.beta.logpdf( 0.5, -1.0, 0.5 )\ny = base.dist.beta.logpdf( 0.5, 0.5, -1.0 )\ny = base.dist.beta.logpdf( NaN, 1.0, 1.0 )\ny = base.dist.beta.logpdf( 0.5, NaN, 1.0 )\ny = base.dist.beta.logpdf( 0.5, 1.0, NaN )\n",
-	"base.dist.beta.mean": "v = base.dist.beta.mean( 1.0, 1.0 )\nv = base.dist.beta.mean( 4.0, 12.0 )\nv = base.dist.beta.mean( 8.0, 2.0 )\n",
-	"base.dist.beta.median": "v = base.dist.beta.median( 1.0, 1.0 )\nv = base.dist.beta.median( 4.0, 12.0 )\nv = base.dist.beta.median( 8.0, 2.0 )\nv = base.dist.beta.median( 1.0, -0.1 )\nv = base.dist.beta.median( -0.1, 1.0 )\nv = base.dist.beta.median( 2.0, NaN )\nv = base.dist.beta.median( NaN, 2.0 )\n",
-	"base.dist.beta.mgf": "y = base.dist.beta.mgf( 0.5, 1.0, 1.0 )\ny = base.dist.beta.mgf( 0.5, 2.0, 4.0 )\ny = base.dist.beta.mgf( 3.0, 2.0, 2.0 )\ny = base.dist.beta.mgf( -0.8, 4.0, 4.0 )\ny = base.dist.beta.mgf( NaN, 1.0, 1.0 )\ny = base.dist.beta.mgf( 0.0, NaN, 1.0 )\ny = base.dist.beta.mgf( 0.0, 1.0, NaN )\ny = base.dist.beta.mgf( 2.0, -1.0, 0.5 )\ny = base.dist.beta.mgf( 2.0, 0.0, 0.5 )\ny = base.dist.beta.mgf( 2.0, 0.5, -1.0 )\ny = base.dist.beta.mgf( 2.0, 0.5, 0.0 )\n",
-	"base.dist.beta.mode": "v = base.dist.beta.mode( 4.0, 12.0 )\nv = base.dist.beta.mode( 8.0, 2.0 )\nv = base.dist.beta.mode( 1.0, 1.0 )\n",
-	"base.dist.beta.pdf": "y = base.dist.beta.pdf( 0.5, 1.0, 1.0 )\ny = base.dist.beta.pdf( 0.5, 2.0, 4.0 )\ny = base.dist.beta.pdf( 0.2, 2.0, 2.0 )\ny = base.dist.beta.pdf( 0.8, 4.0, 4.0 )\ny = base.dist.beta.pdf( -0.5, 4.0, 2.0 )\ny = base.dist.beta.pdf( 1.5, 4.0, 2.0 )\ny = base.dist.beta.pdf( 0.5, -1.0, 0.5 )\ny = base.dist.beta.pdf( 0.5, 0.5, -1.0 )\ny = base.dist.beta.pdf( NaN, 1.0, 1.0 )\ny = base.dist.beta.pdf( 0.5, NaN, 1.0 )\ny = base.dist.beta.pdf( 0.5, 1.0, NaN )\n",
-	"base.dist.beta.quantile": "y = base.dist.beta.quantile( 0.8, 2.0, 1.0 )\ny = base.dist.beta.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.beta.quantile( 1.1, 1.0, 1.0 )\ny = base.dist.beta.quantile( -0.2, 1.0, 1.0 )\ny = base.dist.beta.quantile( NaN, 1.0, 1.0 )\ny = base.dist.beta.quantile( 0.5, NaN, 1.0 )\ny = base.dist.beta.quantile( 0.5, 1.0, NaN )\ny = base.dist.beta.quantile( 0.5, -1.0, 1.0 )\ny = base.dist.beta.quantile( 0.5, 1.0, -1.0 )\n",
-	"base.dist.beta.skewness": "v = base.dist.beta.skewness( 1.0, 1.0 )\nv = base.dist.beta.skewness( 4.0, 12.0 )\nv = base.dist.beta.skewness( 8.0, 2.0 )\nv = base.dist.beta.skewness( 1.0, -0.1 )\nv = base.dist.beta.skewness( -0.1, 1.0 )\nv = base.dist.beta.skewness( 2.0, NaN )\nv = base.dist.beta.skewness( NaN, 2.0 )\n",
-	"base.dist.beta.stdev": "v = base.dist.beta.stdev( 1.0, 1.0 )\nv = base.dist.beta.stdev( 4.0, 12.0 )\nv = base.dist.beta.stdev( 8.0, 2.0 )\nv = base.dist.beta.stdev( 1.0, -0.1 )\nv = base.dist.beta.stdev( -0.1, 1.0 )\nv = base.dist.beta.stdev( 2.0, NaN )\nv = base.dist.beta.stdev( NaN, 2.0 )\n",
-	"base.dist.beta.variance": "v = base.dist.beta.variance( 1.0, 1.0 )\nv = base.dist.beta.variance( 4.0, 12.0 )\nv = base.dist.beta.variance( 8.0, 2.0 )\nv = base.dist.beta.variance( 1.0, -0.1 )\nv = base.dist.beta.variance( -0.1, 1.0 )\nv = base.dist.beta.variance( 2.0, NaN )\nv = base.dist.beta.variance( NaN, 2.0 )\n",
-	"base.dist.betaprime.BetaPrime": "betaprime = base.dist.betaprime.BetaPrime( 6.0, 5.0 );\nbetaprime.alpha\nbetaprime.beta\nbetaprime.kurtosis\nbetaprime.mean\nbetaprime.mode\nbetaprime.skewness\nbetaprime.stdev\nbetaprime.variance\nbetaprime.cdf( 0.8 )\nbetaprime.logpdf( 1.0 )\nbetaprime.pdf( 1.0 )\nbetaprime.quantile( 0.8 )\n",
-	"base.dist.betaprime.cdf": "y = base.dist.betaprime.cdf( 0.5, 1.0, 1.0 )\ny = base.dist.betaprime.cdf( 0.5, 2.0, 4.0 )\ny = base.dist.betaprime.cdf( 0.2, 2.0, 2.0 )\ny = base.dist.betaprime.cdf( 0.8, 4.0, 4.0 )\ny = base.dist.betaprime.cdf( -0.5, 4.0, 2.0 )\ny = base.dist.betaprime.cdf( 2.0, -1.0, 0.5 )\ny = base.dist.betaprime.cdf( 2.0, 0.5, -1.0 )\ny = base.dist.betaprime.cdf( NaN, 1.0, 1.0 )\ny = base.dist.betaprime.cdf( 0.0, NaN, 1.0 )\ny = base.dist.betaprime.cdf( 0.0, 1.0, NaN )\n",
-	"base.dist.betaprime.kurtosis": "v = base.dist.betaprime.kurtosis( 2.0, 6.0 )\nv = base.dist.betaprime.kurtosis( 4.0, 12.0 )\nv = base.dist.betaprime.kurtosis( 8.0, 6.0 )\nv = base.dist.betaprime.kurtosis( 1.0, 2.8 )\nv = base.dist.betaprime.kurtosis( 1.0, -0.1 )\nv = base.dist.betaprime.kurtosis( -0.1, 5.0 )\nv = base.dist.betaprime.kurtosis( 2.0, NaN )\nv = base.dist.betaprime.kurtosis( NaN, 6.0 )\n",
-	"base.dist.betaprime.logpdf": "y = base.dist.betaprime.logpdf( 0.5, 1.0, 1.0 )\ny = base.dist.betaprime.logpdf( 0.5, 2.0, 4.0 )\ny = base.dist.betaprime.logpdf( 0.2, 2.0, 2.0 )\ny = base.dist.betaprime.logpdf( 0.8, 4.0, 4.0 )\ny = base.dist.betaprime.logpdf( -0.5, 4.0, 2.0 )\ny = base.dist.betaprime.logpdf( 0.5, -1.0, 0.5 )\ny = base.dist.betaprime.logpdf( 0.5, 0.5, -1.0 )\ny = base.dist.betaprime.logpdf( NaN, 1.0, 1.0 )\ny = base.dist.betaprime.logpdf( 0.5, NaN, 1.0 )\ny = base.dist.betaprime.logpdf( 0.5, 1.0, NaN )\n",
-	"base.dist.betaprime.mean": "v = base.dist.betaprime.mean( 1.0, 2.0 )\nv = base.dist.betaprime.mean( 4.0, 12.0 )\nv = base.dist.betaprime.mean( 8.0, 2.0 )\n",
-	"base.dist.betaprime.mode": "v = base.dist.betaprime.mode( 1.0, 2.0 )\nv = base.dist.betaprime.mode( 4.0, 12.0 )\nv = base.dist.betaprime.mode( 8.0, 2.0 )\n",
-	"base.dist.betaprime.pdf": "y = base.dist.betaprime.pdf( 0.5, 1.0, 1.0 )\ny = base.dist.betaprime.pdf( 0.5, 2.0, 4.0 )\ny = base.dist.betaprime.pdf( 0.2, 2.0, 2.0 )\ny = base.dist.betaprime.pdf( 0.8, 4.0, 4.0 )\ny = base.dist.betaprime.pdf( -0.5, 4.0, 2.0 )\ny = base.dist.betaprime.pdf( 0.5, -1.0, 0.5 )\ny = base.dist.betaprime.pdf( 0.5, 0.5, -1.0 )\ny = base.dist.betaprime.pdf( NaN, 1.0, 1.0 )\ny = base.dist.betaprime.pdf( 0.5, NaN, 1.0 )\ny = base.dist.betaprime.pdf( 0.5, 1.0, NaN )\n",
-	"base.dist.betaprime.quantile": "y = base.dist.betaprime.quantile( 0.8, 2.0, 1.0 )\ny = base.dist.betaprime.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.betaprime.quantile( 1.1, 1.0, 1.0 )\ny = base.dist.betaprime.quantile( -0.2, 1.0, 1.0 )\ny = base.dist.betaprime.quantile( NaN, 1.0, 1.0 )\ny = base.dist.betaprime.quantile( 0.5, NaN, 1.0 )\ny = base.dist.betaprime.quantile( 0.5, 1.0, NaN )\ny = base.dist.betaprime.quantile( 0.5, -1.0, 1.0 )\ny = base.dist.betaprime.quantile( 0.5, 1.0, -1.0 )\n",
-	"base.dist.betaprime.skewness": "v = base.dist.betaprime.skewness( 2.0, 4.0 )\nv = base.dist.betaprime.skewness( 4.0, 12.0 )\nv = base.dist.betaprime.skewness( 8.0, 4.0 )\nv = base.dist.betaprime.skewness( 1.0, 2.8 )\nv = base.dist.betaprime.skewness( 1.0, -0.1 )\nv = base.dist.betaprime.skewness( -0.1, 4.0 )\nv = base.dist.betaprime.skewness( 2.0, NaN )\nv = base.dist.betaprime.skewness( NaN, 4.0 )\n",
-	"base.dist.betaprime.stdev": "v = base.dist.betaprime.stdev( 1.0, 2.5 )\nv = base.dist.betaprime.stdev( 4.0, 12.0 )\nv = base.dist.betaprime.stdev( 8.0, 2.5 )\nv = base.dist.betaprime.stdev( 8.0, 1.0 )\nv = base.dist.betaprime.stdev( 1.0, -0.1 )\nv = base.dist.betaprime.stdev( -0.1, 3.0 )\nv = base.dist.betaprime.stdev( 2.0, NaN )\nv = base.dist.betaprime.stdev( NaN, 3.0 )\n",
-	"base.dist.betaprime.variance": "v = base.dist.betaprime.variance( 1.0, 2.5 )\nv = base.dist.betaprime.variance( 4.0, 12.0 )\nv = base.dist.betaprime.variance( 8.0, 2.5 )\nv = base.dist.betaprime.variance( 8.0, 1.0 )\nv = base.dist.betaprime.variance( 1.0, -0.1 )\nv = base.dist.betaprime.variance( -0.1, 3.0 )\nv = base.dist.betaprime.variance( 2.0, NaN )\nv = base.dist.betaprime.variance( NaN, 3.0 )\n",
-	"base.dist.binomial.Binomial": "binomial = base.dist.binomial.Binomial( 8, 0.5 );\nbinomial.n\nbinomial.p\nbinomial.kurtosis\nbinomial.mean\nbinomial.median\nbinomial.mode\nbinomial.skewness\nbinomial.stdev\nbinomial.variance\nbinomial.cdf( 2.9 )\nbinomial.mgf( 0.2 )\nbinomial.pmf( 3.0 )\nbinomial.quantile( 0.8 )\n",
-	"base.dist.binomial.cdf": "y = base.dist.binomial.cdf( 3.0, 20, 0.2 )\ny = base.dist.binomial.cdf( 21.0, 20, 0.2 )\ny = base.dist.binomial.cdf( 5.0, 10, 0.4 )\ny = base.dist.binomial.cdf( 0.0, 10, 0.4 )\ny = base.dist.binomial.cdf( NaN, 20, 0.5 )\ny = base.dist.binomial.cdf( 0.0, NaN, 0.5 )\ny = base.dist.binomial.cdf( 0.0, 20, NaN )\ny = base.dist.binomial.cdf( 2.0, 1.5, 0.5 )\ny = base.dist.binomial.cdf( 2.0, -2.0, 0.5 )\ny = base.dist.binomial.cdf( 2.0, 20, -1.0 )\ny = base.dist.binomial.cdf( 2.0, 20, 1.5 )\n",
-	"base.dist.binomial.entropy": "v = base.dist.binomial.entropy( 100, 0.1 )\nv = base.dist.binomial.entropy( 20, 0.5 )\nv = base.dist.binomial.entropy( 10.3, 0.5 )\nv = base.dist.binomial.entropy( 20, 1.1 )\nv = base.dist.binomial.entropy( 20, NaN )\n",
-	"base.dist.binomial.kurtosis": "v = base.dist.binomial.kurtosis( 100, 0.1 )\nv = base.dist.binomial.kurtosis( 20, 0.5 )\nv = base.dist.binomial.kurtosis( 10.3, 0.5 )\nv = base.dist.binomial.kurtosis( 20, 1.1 )\nv = base.dist.binomial.kurtosis( 20, NaN )\n",
-	"base.dist.binomial.mean": "v = base.dist.binomial.mean( 100, 0.1 )\nv = base.dist.binomial.mean( 20, 0.5 )\nv = base.dist.binomial.mean( 10.3, 0.5 )\nv = base.dist.binomial.mean( 20, 1.1 )\nv = base.dist.binomial.mean( 20, NaN )\n",
-	"base.dist.binomial.median": "v = base.dist.binomial.median( 100, 0.1 )\nv = base.dist.binomial.median( 20, 0.5 )\nv = base.dist.binomial.median( 10.3, 0.5 )\nv = base.dist.binomial.median( 20, 1.1 )\nv = base.dist.binomial.median( 20, NaN )\n",
-	"base.dist.binomial.mgf": "y = base.dist.binomial.mgf( 0.5, 20, 0.2 )\ny = base.dist.binomial.mgf( 5.0, 20, 0.2 )\ny = base.dist.binomial.mgf( 0.9, 10, 0.4 )\ny = base.dist.binomial.mgf( 0.0, 10, 0.4 )\ny = base.dist.binomial.mgf( NaN, 20, 0.5 )\ny = base.dist.binomial.mgf( 0.0, NaN, 0.5 )\ny = base.dist.binomial.mgf( 0.0, 20, NaN )\ny = base.dist.binomial.mgf( 2.0, 1.5, 0.5 )\ny = base.dist.binomial.mgf( 2.0, -2.0, 0.5 )\ny = base.dist.binomial.mgf( 2.0, 20, -1.0 )\ny = base.dist.binomial.mgf( 2.0, 20, 1.5 )\n",
-	"base.dist.binomial.mode": "v = base.dist.binomial.mode( 100, 0.1 )\nv = base.dist.binomial.mode( 20, 0.5 )\nv = base.dist.binomial.mode( 10.3, 0.5 )\nv = base.dist.binomial.mode( 20, 1.1 )\nv = base.dist.binomial.mode( 20, NaN )\n",
-	"base.dist.binomial.pmf": "y = base.dist.binomial.pmf( 3.0, 20, 0.2 )\ny = base.dist.binomial.pmf( 21.0, 20, 0.2 )\ny = base.dist.binomial.pmf( 5.0, 10, 0.4 )\ny = base.dist.binomial.pmf( 0.0, 10, 0.4 )\ny = base.dist.binomial.pmf( NaN, 20, 0.5 )\ny = base.dist.binomial.pmf( 0.0, NaN, 0.5 )\ny = base.dist.binomial.pmf( 0.0, 20, NaN )\ny = base.dist.binomial.pmf( 2.0, 1.5, 0.5 )\ny = base.dist.binomial.pmf( 2.0, -2.0, 0.5 )\ny = base.dist.binomial.pmf( 2.0, 20, -1.0 )\ny = base.dist.binomial.pmf( 2.0, 20, 1.5 )\n",
-	"base.dist.binomial.quantile": "y = base.dist.binomial.quantile( 0.4, 20, 0.2 )\ny = base.dist.binomial.quantile( 0.8, 20, 0.2 )\ny = base.dist.binomial.quantile( 0.5, 10, 0.4 )\ny = base.dist.binomial.quantile( 0.0, 10, 0.4 )\ny = base.dist.binomial.quantile( 1.0, 10, 0.4 )\ny = base.dist.binomial.quantile( NaN, 20, 0.5 )\ny = base.dist.binomial.quantile( 0.2, NaN, 0.5 )\ny = base.dist.binomial.quantile( 0.2, 20, NaN )\ny = base.dist.binomial.quantile( 0.5, 1.5, 0.5 )\ny = base.dist.binomial.quantile( 0.5, -2.0, 0.5 )\ny = base.dist.binomial.quantile( 0.5, 20, -1.0 )\ny = base.dist.binomial.quantile( 0.5, 20, 1.5 )\n",
-	"base.dist.binomial.skewness": "v = base.dist.binomial.skewness( 100, 0.1 )\nv = base.dist.binomial.skewness( 20, 0.5 )\nv = base.dist.binomial.skewness( 10.3, 0.5 )\nv = base.dist.binomial.skewness( 20, 1.1 )\nv = base.dist.binomial.skewness( 20, NaN )\n",
-	"base.dist.binomial.stdev": "v = base.dist.binomial.stdev( 100, 0.1 )\nv = base.dist.binomial.stdev( 20, 0.5 )\nv = base.dist.binomial.stdev( 10.3, 0.5 )\nv = base.dist.binomial.stdev( 20, 1.1 )\nv = base.dist.binomial.stdev( 20, NaN )\n",
-	"base.dist.binomial.variance": "v = base.dist.binomial.variance( 100, 0.1 )\nv = base.dist.binomial.variance( 20, 0.5 )\nv = base.dist.binomial.variance( 10.3, 0.5 )\nv = base.dist.binomial.variance( 20, 1.1 )\nv = base.dist.binomial.variance( 20, NaN )\n",
-	"base.dist.cauchy.Cauchy": "cauchy = base.dist.cauchy.Cauchy( 0.0, 1.0 );\ncauchy.x0\ncauchy.gamma\ncauchy.entropy\ncauchy.median\ncauchy.mode\ncauchy.cdf( 0.8 )\ncauchy.logcdf( 1.0 )\ncauchy.logpdf( 1.0 )\ncauchy.pdf( 1.0 )\ncauchy.quantile( 0.8 )\n",
-	"base.dist.cauchy.cdf": "y = base.dist.cauchy.cdf( 4.0, 0.0, 2.0 )\ny = base.dist.cauchy.cdf( 1.0, 0.0, 2.0 )\ny = base.dist.cauchy.cdf( 1.0, 3.0, 2.0 )\ny = base.dist.cauchy.cdf( NaN, 0.0, 2.0 )\ny = base.dist.cauchy.cdf( 1.0, 2.0, NaN )\ny = base.dist.cauchy.cdf( 1.0, NaN, 3.0 )\n",
-	"base.dist.cauchy.entropy": "v = base.dist.cauchy.entropy( 10.0, 7.0 )\nv = base.dist.cauchy.entropy( 22.0, 0.5 )\nv = base.dist.cauchy.entropy( 10.3, -0.5 )\n",
-	"base.dist.cauchy.logcdf": "y = base.dist.cauchy.logcdf( 4.0, 0.0, 2.0 )\ny = base.dist.cauchy.logcdf( 1.0, 0.0, 2.0 )\ny = base.dist.cauchy.logcdf( 1.0, 3.0, 2.0 )\ny = base.dist.cauchy.logcdf( NaN, 0.0, 2.0 )\ny = base.dist.cauchy.logcdf( 1.0, 2.0, NaN )\ny = base.dist.cauchy.logcdf( 1.0, NaN, 3.0 )\n",
-	"base.dist.cauchy.logpdf": "y = base.dist.cauchy.logpdf( 2.0, 1.0, 1.0 )\ny = base.dist.cauchy.logpdf( 4.0, 3.0, 0.1 )\ny = base.dist.cauchy.logpdf( 4.0, 3.0, 3.0 )\ny = base.dist.cauchy.logpdf( NaN, 1.0, 1.0 )\ny = base.dist.cauchy.logpdf( 2.0, NaN, 1.0 )\ny = base.dist.cauchy.logpdf( 2.0, 1.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.cauchy.logpdf( 2.0, 1.0, -2.0 )\n",
-	"base.dist.cauchy.median": "v = base.dist.cauchy.median( 10.0, 5.0 )\nv = base.dist.cauchy.median( 7.0, 0.5 )\nv = base.dist.cauchy.median( 10.3, -0.5 )\n",
-	"base.dist.cauchy.mode": "v = base.dist.cauchy.mode( 10.0, 5.0 )\nv = base.dist.cauchy.mode( 7.0, 0.5 )\nv = base.dist.cauchy.mode( 10.3, -0.5 )\n",
-	"base.dist.cauchy.pdf": "y = base.dist.cauchy.pdf( 2.0, 1.0, 1.0 )\ny = base.dist.cauchy.pdf( 4.0, 3.0, 0.1 )\ny = base.dist.cauchy.pdf( 4.0, 3.0, 3.0 )\ny = base.dist.cauchy.pdf( NaN, 1.0, 1.0 )\ny = base.dist.cauchy.pdf( 2.0, NaN, 1.0 )\ny = base.dist.cauchy.pdf( 2.0, 1.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.cauchy.pdf( 2.0, 1.0, -2.0 )\n",
-	"base.dist.cauchy.quantile": "y = base.dist.cauchy.quantile( 0.3, 2.0, 2.0 )\ny = base.dist.cauchy.quantile( 0.8, 10, 2.0 )\ny = base.dist.cauchy.quantile( 0.1, 10.0, 2.0 )\ny = base.dist.cauchy.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.cauchy.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.cauchy.quantile( NaN, 0.0, 1.0 )\ny = base.dist.cauchy.quantile( 0.0, NaN, 1.0 )\ny = base.dist.cauchy.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.cauchy.quantile( 0.5, 0.0, -1.0 )\n",
-	"base.dist.chi.cdf": "y = base.dist.chi.cdf( 2.0, 3.0 )\ny = base.dist.chi.cdf( 1.0, 0.5 )\ny = base.dist.chi.cdf( -1.0, 4.0 )\ny = base.dist.chi.cdf( NaN, 1.0 )\ny = base.dist.chi.cdf( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dist.chi.cdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dist.chi.cdf( 2.0, 0.0 )\ny = base.dist.chi.cdf( -2.0, 0.0 )\ny = base.dist.chi.cdf( 0.0, 0.0 )\n",
-	"base.dist.chi.Chi": "chi = base.dist.chi.Chi( 6.0 );\nchi.k\nchi.entropy\nchi.kurtosis\nchi.mean\nchi.mode\nchi.skewness\nchi.stdev\nchi.variance\nchi.cdf( 1.0 )\nchi.pdf( 1.5 )\nchi.quantile( 0.5 )\n",
-	"base.dist.chi.entropy": "v = base.dist.chi.entropy( 11.0 )\nv = base.dist.chi.entropy( 1.5 )\n",
-	"base.dist.chi.kurtosis": "v = base.dist.chi.kurtosis( 9.0 )\nv = base.dist.chi.kurtosis( 1.5 )\n",
-	"base.dist.chi.mean": "v = base.dist.chi.mean( 11.0 )\nv = base.dist.chi.mean( 4.5 )\n",
-	"base.dist.chi.mode": "v = base.dist.chi.mode( 11.0 )\nv = base.dist.chi.mode( 1.5 )\n",
-	"base.dist.chi.pdf": "y = base.dist.chi.pdf( 0.3, 4.0 )\ny = base.dist.chi.pdf( 0.7, 0.7 )\ny = base.dist.chi.pdf( -1.0, 0.5 )\ny = base.dist.chi.pdf( 0.0, NaN )\ny = base.dist.chi.pdf( NaN, 2.0 )\n\n// Negative degrees of freedom:\ny = base.dist.chi.pdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dist.chi.pdf( 2.0, 0.0, 2.0 )\ny = base.dist.chi.pdf( 0.0, 0.0, 2.0 )\n",
-	"base.dist.chi.quantile": "y = base.dist.chi.quantile( 0.8, 1.0 )\ny = base.dist.chi.quantile( 0.5, 4.0 )\ny = base.dist.chi.quantile( 0.8, 0.1 )\ny = base.dist.chi.quantile( -0.2, 0.5 )\ny = base.dist.chi.quantile( 1.1, 0.5 )\ny = base.dist.chi.quantile( NaN, 1.0 )\ny = base.dist.chi.quantile( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dist.chi.quantile( 0.5, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dist.chi.quantile( 0.3, 0.0 )\ny = base.dist.chi.quantile( 0.9, 0.0 )\n",
-	"base.dist.chi.skewness": "v = base.dist.chi.skewness( 11.0 )\nv = base.dist.chi.skewness( 1.5 )\n",
-	"base.dist.chi.stdev": "v = base.dist.chi.stdev( 11.0 )\nv = base.dist.chi.stdev( 1.5 )\n",
-	"base.dist.chi.variance": "v = base.dist.chi.variance( 11.0 )\nv = base.dist.chi.variance( 1.5 )\n",
-	"base.dist.chisquare.cdf": "y = base.dist.chisquare.cdf( 2.0, 3.0 )\ny = base.dist.chisquare.cdf( 1.0, 0.5 )\ny = base.dist.chisquare.cdf( -1.0, 4.0 )\ny = base.dist.chisquare.cdf( NaN, 1.0 )\ny = base.dist.chisquare.cdf( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dist.chisquare.cdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dist.chisquare.cdf( 2.0, 0.0 )\ny = base.dist.chisquare.cdf( -2.0, 0.0 )\ny = base.dist.chisquare.cdf( 0.0, 0.0 )\n",
-	"base.dist.chisquare.ChiSquare": "chisquare = base.dist.chisquare.ChiSquare( 6.0 );\nchisquare.k\nchisquare.entropy\nchisquare.kurtosis\nchisquare.mean\nchisquare.mode\nchisquare.skewness\nchisquare.stdev\nchisquare.variance\nchisquare.cdf( 3.0 )\nchisquare.mgf( 0.2 )\nchisquare.pdf( 1.5 )\nchisquare.quantile( 0.5 )\n",
-	"base.dist.chisquare.entropy": "v = base.dist.chisquare.entropy( 11.0 )\nv = base.dist.chisquare.entropy( 1.5 )\n",
-	"base.dist.chisquare.kurtosis": "v = base.dist.chisquare.kurtosis( 9.0 )\nv = base.dist.chisquare.kurtosis( 1.5 )\n",
-	"base.dist.chisquare.mean": "v = base.dist.chisquare.mean( 11.0 )\nv = base.dist.chisquare.mean( 4.5 )\n",
-	"base.dist.chisquare.mode": "v = base.dist.chisquare.mode( 11.0 )\nv = base.dist.chisquare.mode( 1.5 )\n",
-	"base.dist.chisquare.pdf": "y = base.dist.chisquare.pdf( 0.3, 4.0 )\ny = base.dist.chisquare.pdf( 0.7, 0.7 )\ny = base.dist.chisquare.pdf( -1.0, 0.5 )\ny = base.dist.chisquare.pdf( 0.0, NaN )\ny = base.dist.chisquare.pdf( NaN, 2.0 )\n\n// Negative degrees of freedom:\ny = base.dist.chisquare.pdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dist.chisquare.pdf( 2.0, 0.0, 2.0 )\ny = base.dist.chisquare.pdf( 0.0, 0.0, 2.0 )\n",
-	"base.dist.chisquare.quantile": "y = base.dist.chisquare.quantile( 0.8, 1.0 )\ny = base.dist.chisquare.quantile( 0.5, 4.0 )\ny = base.dist.chisquare.quantile( 0.8, 0.1 )\ny = base.dist.chisquare.quantile( -0.2, 0.5 )\ny = base.dist.chisquare.quantile( 1.1, 0.5 )\ny = base.dist.chisquare.quantile( NaN, 1.0 )\ny = base.dist.chisquare.quantile( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dist.chisquare.quantile( 0.5, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dist.chisquare.quantile( 0.3, 0.0 )\ny = base.dist.chisquare.quantile( 0.9, 0.0 )\n",
-	"base.dist.chisquare.skewness": "v = base.dist.chisquare.skewness( 11.0 )\nv = base.dist.chisquare.skewness( 1.5 )\n",
-	"base.dist.chisquare.stdev": "v = base.dist.chisquare.stdev( 11.0 )\nv = base.dist.chisquare.stdev( 1.5 )\n",
-	"base.dist.chisquare.variance": "v = base.dist.chisquare.variance( 11.0 )\nv = base.dist.chisquare.variance( 1.5 )\n",
-	"base.dist.cosine.cdf": "y = base.dist.cosine.cdf( 2.0, 0.0, 3.0 )\ny = base.dist.cosine.cdf( 9.0, 10.0, 3.0 )\ny = base.dist.cosine.cdf( 2.0, 0.0, NaN )\ny = base.dist.cosine.cdf( 2.0, NaN, 1.0 )\ny = base.dist.cosine.cdf( NaN, 0.0, 1.0 )\n\n// Degenerate distribution centered at `μ` when `s = 0.0`:\ny = base.dist.cosine.cdf( 2.0, 8.0, 0.0 )\ny = base.dist.cosine.cdf( 8.0, 8.0, 0.0 )\ny = base.dist.cosine.cdf( 10.0, 8.0, 0.0 )\n",
-	"base.dist.cosine.Cosine": "cosine = base.dist.cosine.Cosine( -2.0, 3.0 );\ncosine.mu\ncosine.s\ncosine.kurtosis\ncosine.mean\ncosine.median\ncosine.mode\ncosine.skewness\ncosine.stdev\ncosine.variance\ncosine.cdf( 0.5 )\ncosine.logpdf( -1.0 )\ncosine.mgf( 0.2 )\ncosine.pdf( -2.0 )\ncosine.quantile( 0.9 )\n",
-	"base.dist.cosine.kurtosis": "y = base.dist.cosine.kurtosis( 0.0, 1.0 )\ny = base.dist.cosine.kurtosis( 4.0, 2.0 )\ny = base.dist.cosine.kurtosis( NaN, 1.0 )\ny = base.dist.cosine.kurtosis( 0.0, NaN )\ny = base.dist.cosine.kurtosis( 0.0, 0.0 )\n",
-	"base.dist.cosine.logpdf": "y = base.dist.cosine.logpdf( 2.0, 0.0, 3.0 )\ny = base.dist.cosine.logpdf( -1.0, 2.0, 4.0 )\ny = base.dist.cosine.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.cosine.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.cosine.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.cosine.logpdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution at `s = 0.0`:\ny = base.dist.cosine.logpdf( 2.0, 8.0, 0.0 )\ny = base.dist.cosine.logpdf( 8.0, 8.0, 0.0 )\n",
-	"base.dist.cosine.mean": "y = base.dist.cosine.mean( 0.0, 1.0 )\ny = base.dist.cosine.mean( 4.0, 2.0 )\ny = base.dist.cosine.mean( NaN, 1.0 )\ny = base.dist.cosine.mean( 0.0, NaN )\ny = base.dist.cosine.mean( 0.0, 0.0 )\n",
-	"base.dist.cosine.median": "y = base.dist.cosine.median( 0.0, 1.0 )\ny = base.dist.cosine.median( 4.0, 2.0 )\ny = base.dist.cosine.median( NaN, 1.0 )\ny = base.dist.cosine.median( 0.0, NaN )\ny = base.dist.cosine.median( 0.0, 0.0 )\n",
-	"base.dist.cosine.mgf": "y = base.dist.cosine.mgf( 2.0, 0.0, 3.0 )\ny = base.dist.cosine.mgf( 9.0, 10.0, 3.0 )\ny = base.dist.cosine.mgf( 0.5, 0.0, NaN )\ny = base.dist.cosine.mgf( 0.5, NaN, 1.0 )\ny = base.dist.cosine.mgf( NaN, 0.0, 1.0 )\n",
-	"base.dist.cosine.mode": "y = base.dist.cosine.mode( 0.0, 1.0 )\ny = base.dist.cosine.mode( 4.0, 2.0 )\ny = base.dist.cosine.mode( NaN, 1.0 )\ny = base.dist.cosine.mode( 0.0, NaN )\ny = base.dist.cosine.mode( 0.0, 0.0 )\n",
-	"base.dist.cosine.pdf": "y = base.dist.cosine.pdf( 2.0, 0.0, 3.0 )\ny = base.dist.cosine.pdf( 2.4, 4.0, 2.0 )\ny = base.dist.cosine.pdf( NaN, 0.0, 1.0 )\ny = base.dist.cosine.pdf( 0.0, NaN, 1.0 )\ny = base.dist.cosine.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.cosine.pdf( 2.0, 0.0, -1.0 )\ny = base.dist.cosine.pdf( 2.0, 8.0, 0.0 )\ny = base.dist.cosine.pdf( 8.0, 8.0, 0.0 )\n",
-	"base.dist.cosine.quantile": "y = base.dist.cosine.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.cosine.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.cosine.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.cosine.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.cosine.quantile( NaN, 0.0, 1.0 )\ny = base.dist.cosine.quantile( 0.0, NaN, 1.0 )\ny = base.dist.cosine.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.cosine.quantile( 0.5, 0.0, -1.0 )\n",
-	"base.dist.cosine.skewness": "y = base.dist.cosine.skewness( 0.0, 1.0 )\ny = base.dist.cosine.skewness( 4.0, 2.0 )\ny = base.dist.cosine.skewness( NaN, 1.0 )\ny = base.dist.cosine.skewness( 0.0, NaN )\ny = base.dist.cosine.skewness( 0.0, 0.0 )\n",
-	"base.dist.cosine.stdev": "y = base.dist.cosine.stdev( 0.0, 1.0 )\ny = base.dist.cosine.stdev( 4.0, 2.0 )\ny = base.dist.cosine.stdev( NaN, 1.0 )\ny = base.dist.cosine.stdev( 0.0, NaN )\ny = base.dist.cosine.stdev( 0.0, 0.0 )\n",
-	"base.dist.cosine.variance": "y = base.dist.cosine.variance( 0.0, 1.0 )\ny = base.dist.cosine.variance( 4.0, 2.0 )\ny = base.dist.cosine.variance( NaN, 1.0 )\ny = base.dist.cosine.variance( 0.0, NaN )\ny = base.dist.cosine.variance( 0.0, 0.0 )\n",
-	"base.dist.degenerate.cdf": "y = base.dist.degenerate.cdf( 2.0, 3.0 )\ny = base.dist.degenerate.cdf( 4.0, 3.0 )\ny = base.dist.degenerate.cdf( 3.0, 3.0 )\ny = base.dist.degenerate.cdf( NaN, 0.0 )\ny = base.dist.degenerate.cdf( 0.0, NaN )\n",
-	"base.dist.degenerate.logcdf": "y = base.dist.degenerate.logcdf( 2.0, 3.0 )\ny = base.dist.degenerate.logcdf( 4.0, 3.0 )\ny = base.dist.degenerate.logcdf( 3.0, 3.0 )\ny = base.dist.degenerate.logcdf( NaN, 0.0 )\ny = base.dist.degenerate.logcdf( 0.0, NaN )\n",
-	"base.dist.degenerate.logpdf": "y = base.dist.degenerate.logpdf( 2.0, 3.0 )\ny = base.dist.degenerate.logpdf( 3.0, 3.0 )\ny = base.dist.degenerate.logpdf( NaN, 0.0 )\ny = base.dist.degenerate.logpdf( 0.0, NaN )\n",
-	"base.dist.degenerate.mgf": "y = base.dist.degenerate.mgf( 1.0, 1.0 )\ny = base.dist.degenerate.mgf( 2.0, 3.0 )\ny = base.dist.degenerate.mgf( NaN, 0.0 )\ny = base.dist.degenerate.mgf( 0.0, NaN )\n",
-	"base.dist.degenerate.pdf": "y = base.dist.degenerate.pdf( 2.0, 3.0 )\ny = base.dist.degenerate.pdf( 3.0, 3.0 )\ny = base.dist.degenerate.pdf( NaN, 0.0 )\ny = base.dist.degenerate.pdf( 0.0, NaN )\n",
-	"base.dist.degenerate.pmf": "y = base.dist.degenerate.pmf( 2.0, 3.0 )\ny = base.dist.degenerate.pmf( 3.0, 3.0 )\ny = base.dist.degenerate.pmf( NaN, 0.0 )\ny = base.dist.degenerate.pmf( 0.0, NaN )\n",
-	"base.dist.degenerate.quantile": "y = base.dist.degenerate.quantile( 0.5, 2.0 )\ny = base.dist.degenerate.quantile( 0.9, 4.0 )\ny = base.dist.degenerate.quantile( 1.1, 0.0 )\ny = base.dist.degenerate.quantile( -0.2, 0.0 )\ny = base.dist.degenerate.quantile( NaN, 0.0 )\ny = base.dist.degenerate.quantile( 0.0, NaN )\n",
-	"base.dist.erlang.cdf": "y = base.dist.erlang.cdf( 2.0, 1, 1.0 );\ny = base.dist.erlang.cdf( 2.0, 3, 1.0 )\ny = base.dist.erlang.cdf( 2.0, 2.5, 1.0 )\ny = base.dist.erlang.cdf( -1.0, 2, 2.0 )\ny = base.dist.erlang.cdf( PINF, 4, 2.0 )\ny = base.dist.erlang.cdf( NINF, 4, 2.0 )\ny = base.dist.erlang.cdf( NaN, 0, 1.0 )\ny = base.dist.erlang.cdf( 0.0, NaN, 1.0 )\ny = base.dist.erlang.cdf( 0.0, 0, NaN )\ny = base.dist.erlang.cdf( 2.0, -1, 1.0 )\ny = base.dist.erlang.cdf( 2.0, 1, -1.0 )\n",
-	"base.dist.erlang.entropy": "v = base.dist.erlang.entropy( 1, 1.0 )\nv = base.dist.erlang.entropy( 4, 12.0 )\nv = base.dist.erlang.entropy( 8, 2.0 )\n",
-	"base.dist.erlang.Erlang": "erlang = base.dist.erlang.Erlang( 6, 5.0 );\nerlang.k\nerlang.lambda\nerlang.entropy\nerlang.kurtosis\nerlang.mean\nerlang.mode\nerlang.skewness\nerlang.stdev\nerlang.variance\nerlang.cdf( 3.0 )\nerlang.mgf( -0.5 )\nerlang.pdf( 3.0 )\nerlang.quantile( 0.8 )\n",
-	"base.dist.erlang.kurtosis": "v = base.dist.erlang.kurtosis( 1, 1.0 )\nv = base.dist.erlang.kurtosis( 4, 12.0 )\nv = base.dist.erlang.kurtosis( 8, 2.0 )\n",
-	"base.dist.erlang.mean": "v = base.dist.erlang.mean( 1, 1.0 )\nv = base.dist.erlang.mean( 4, 12.0 )\nv = base.dist.erlang.mean( 8, 2.0 )\n",
-	"base.dist.erlang.mgf": "y = base.dist.erlang.mgf( 0.3, 1, 1.0 )\ny = base.dist.erlang.mgf( 2.0, 2, 3.0 )\ny = base.dist.erlang.mgf( -1.0, 2, 2.0 )\ny = base.dist.erlang.mgf( NaN, 1, 1.0 )\ny = base.dist.erlang.mgf( 0.0, NaN, 1.0 )\ny = base.dist.erlang.mgf( 0.0, 1, NaN )\ny = base.dist.erlang.mgf( 0.2, -2, 0.5 )\ny = base.dist.erlang.mgf( 0.2, 0.5, 0.5 )\ny = base.dist.erlang.mgf( 0.2, 1, 0.0 )\ny = base.dist.erlang.mgf( 0.2, 1, -5.0 )\n",
-	"base.dist.erlang.mode": "v = base.dist.erlang.mode( 1, 1.0 )\nv = base.dist.erlang.mode( 4, 12.0 )\nv = base.dist.erlang.mode( 8, 2.0 )\n",
-	"base.dist.erlang.pdf": "y = base.dist.erlang.pdf( 0.1, 1, 1.0 )\ny = base.dist.erlang.pdf( 0.5, 2, 2.5 )\ny = base.dist.erlang.pdf( -1.0, 4, 2.0 )\ny = base.dist.erlang.pdf( NaN, 1, 1.0 )\ny = base.dist.erlang.pdf( 0.0, NaN, 1.0 )\ny = base.dist.erlang.pdf( 0.0, 1, NaN )\ny = base.dist.erlang.pdf( 2.0, -2, 0.5 )\ny = base.dist.erlang.pdf( 2.0, 0.5, 0.5 )\ny = base.dist.erlang.pdf( 2.0, 0.0, 2.0 )\ny = base.dist.erlang.pdf( 0.0, 0.0, 2.0 )\ny = base.dist.erlang.pdf( 2.0, 1, 0.0 )\ny = base.dist.erlang.pdf( 2.0, 1, -1.0 )\n",
-	"base.dist.erlang.quantile": "y = base.dist.erlang.quantile( 0.8, 2, 1.0 )\ny = base.dist.erlang.quantile( 0.5, 4, 2.0 )\ny = base.dist.erlang.quantile( 1.1, 1, 1.0 )\ny = base.dist.erlang.quantile( -0.2, 1, 1.0 )\ny = base.dist.erlang.quantile( NaN, 1, 1.0 )\ny = base.dist.erlang.quantile( 0.0, NaN, 1.0 )\ny = base.dist.erlang.quantile( 0.0, 1, NaN )\n\n// Non-integer shape parameter:\ny = base.dist.erlang.quantile( 0.5, 0.5, 1.0 )\n\n// Non-positive shape parameter:\ny = base.dist.erlang.quantile( 0.5, -1, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dist.erlang.quantile( 0.5, 1, -1.0 )\n",
-	"base.dist.erlang.skewness": "v = base.dist.erlang.skewness( 1, 1.0 )\nv = base.dist.erlang.skewness( 4, 12.0 )\nv = base.dist.erlang.skewness( 8, 2.0 )\n",
-	"base.dist.erlang.stdev": "v = base.dist.erlang.stdev( 1, 1.0 )\nv = base.dist.erlang.stdev( 4, 12.0 )\nv = base.dist.erlang.stdev( 8, 2.0 )\n",
-	"base.dist.erlang.variance": "v = base.dist.erlang.variance( 1, 1.0 )\nv = base.dist.erlang.variance( 4, 12.0 )\nv = base.dist.erlang.variance( 8, 2.0 )\n",
-	"base.dist.exponential.cdf": "y = base.dist.exponential.cdf( 2.0, 0.1 )\ny = base.dist.exponential.cdf( 1.0, 2.0 )\ny = base.dist.exponential.cdf( -1.0, 4.0 )\ny = base.dist.exponential.cdf( NaN, 1.0 )\ny = base.dist.exponential.cdf( 0.0, NaN )\n\n// Negative rate parameter:\ny = base.dist.exponential.cdf( 2.0, -1.0 )\n",
-	"base.dist.exponential.entropy": "v = base.dist.exponential.entropy( 11.0 )\nv = base.dist.exponential.entropy( 4.5 )\n",
-	"base.dist.exponential.Exponential": "exponential = base.dist.exponential.Exponential( 6.0 );\nexponential.lambda\nexponential.entropy\nexponential.kurtosis\nexponential.mean\nexponential.median\nexponential.mode\nexponential.skewness\nexponential.stdev\nexponential.variance\nexponential.cdf( 1.0 )\nexponential.mgf( -0.5 )\nexponential.pdf( 1.5 )\nexponential.quantile( 0.5 )\n",
-	"base.dist.exponential.kurtosis": "v = base.dist.exponential.kurtosis( 11.0 )\nv = base.dist.exponential.kurtosis( 4.5 )\n",
-	"base.dist.exponential.mean": "v = base.dist.exponential.mean( 11.0 )\nv = base.dist.exponential.mean( 4.5 )\n",
-	"base.dist.exponential.median": "v = base.dist.exponential.median( 11.0 )\nv = base.dist.exponential.median( 4.5 )\n",
-	"base.dist.exponential.mode": "v = base.dist.exponential.mode( 11.0 )\nv = base.dist.exponential.mode( 4.5 )\n",
-	"base.dist.exponential.pdf": "y = base.dist.exponential.pdf( 0.3, 4.0 )\ny = base.dist.exponential.pdf( 2.0, 0.7 )\ny = base.dist.exponential.pdf( -1.0, 0.5 )\ny = base.dist.exponential.pdf( 0, NaN )\ny = base.dist.exponential.pdf( NaN, 2.0 )\n\n// Negative rate:\ny = base.dist.exponential.pdf( 2.0, -1.0 )\n",
-	"base.dist.exponential.quantile": "y = base.dist.exponential.quantile( 0.8, 1.0 )\ny = base.dist.exponential.quantile( 0.5, 4.0 )\ny = base.dist.exponential.quantile( 0.5, 0.1 )\ny = base.dist.exponential.quantile( -0.2, 0.1 )\ny = base.dist.exponential.quantile( NaN, 1.0 )\ny = base.dist.exponential.quantile( 0.0, NaN )\n\n// Negative rate parameter:\ny = base.dist.exponential.quantile( 0.5, -1.0 )\n",
-	"base.dist.exponential.skewness": "v = base.dist.exponential.skewness( 11.0 )\nv = base.dist.exponential.skewness( 4.5 )\n",
-	"base.dist.exponential.stdev": "v = base.dist.exponential.stdev( 9.0 )\nv = base.dist.exponential.stdev( 1.0 )\n",
-	"base.dist.exponential.variance": "v = base.dist.exponential.variance( 9.0 )\nv = base.dist.exponential.variance( 1.0 )\n",
-	"base.dist.f.cdf": "y = base.dist.f.cdf( 2.0, 1.0, 1.0 )\ny = base.dist.f.cdf( 2.0, 8.0, 4.0 )\ny = base.dist.f.cdf( -1.0, 2.0, 2.0 )\ny = base.dist.f.cdf( PINF, 4.0, 2.0 )\ny = base.dist.f.cdf( NINF, 4.0, 2.0 )\ny = base.dist.f.cdf( NaN, 1.0, 1.0 )\ny = base.dist.f.cdf( 0.0, NaN, 1.0 )\ny = base.dist.f.cdf( 0.0, 1.0, NaN )\ny = base.dist.f.cdf( 2.0, 1.0, -1.0 )\ny = base.dist.f.cdf( 2.0, -1.0, 1.0 )\n",
-	"base.dist.f.entropy": "v = base.dist.f.entropy( 3.0, 7.0 )\nv = base.dist.f.entropy( 4.0, 12.0 )\nv = base.dist.f.entropy( 8.0, 2.0 )\n",
-	"base.dist.f.F": "f = base.dist.f.F( 6.0, 9.0 );\nf.d1\nf.d2\nf.entropy\nf.kurtosis\nf.mean\nf.mode\nf.skewness\nf.stdev\nf.variance\nf.cdf( 3.0 )\nf.pdf( 2.5 )\nf.quantile( 0.8 )\n",
-	"base.dist.f.kurtosis": "v = base.dist.f.kurtosis( 3.0, 9.0 )\nv = base.dist.f.kurtosis( 4.0, 12.0 )\nv = base.dist.f.kurtosis( 8.0, 9.0 )\n",
-	"base.dist.f.mean": "v = base.dist.f.mean( 3.0, 5.0 )\nv = base.dist.f.mean( 4.0, 12.0 )\nv = base.dist.f.mean( 8.0, 4.0 )\n",
-	"base.dist.f.mode": "v = base.dist.f.mode( 3.0, 5.0 )\nv = base.dist.f.mode( 4.0, 12.0 )\nv = base.dist.f.mode( 8.0, 4.0 )\n",
-	"base.dist.f.pdf": "y = base.dist.f.pdf( 2.0, 0.5, 1.0 )\ny = base.dist.f.pdf( 0.1, 1.0, 1.0 )\ny = base.dist.f.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.f.pdf( NaN, 1.0, 1.0 )\ny = base.dist.f.pdf( 0.0, NaN, 1.0 )\ny = base.dist.f.pdf( 0.0, 1.0, NaN )\ny = base.dist.f.pdf( 2.0, 1.0, -1.0 )\ny = base.dist.f.pdf( 2.0, -1.0, 1.0 )\n",
-	"base.dist.f.quantile": "y = base.dist.f.quantile( 0.8, 1.0, 1.0 )\ny = base.dist.f.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.f.quantile( 1.1, 1.0, 1.0 )\ny = base.dist.f.quantile( -0.2, 1.0, 1.0 )\ny = base.dist.f.quantile( NaN, 1.0, 1.0 )\ny = base.dist.f.quantile( 0.5, NaN, 1.0 )\ny = base.dist.f.quantile( 0.5, 1.0, NaN )\ny = base.dist.f.quantile( 0.5, -1.0, 1.0 )\ny = base.dist.f.quantile( 0.5, 1.0, -1.0 )\n",
-	"base.dist.f.skewness": "v = base.dist.f.skewness( 3.0, 7.0 )\nv = base.dist.f.skewness( 4.0, 12.0 )\nv = base.dist.f.skewness( 8.0, 7.0 )\n",
-	"base.dist.f.stdev": "v = base.dist.f.stdev( 3.0, 5.0 )\nv = base.dist.f.stdev( 4.0, 12.0 )\nv = base.dist.f.stdev( 8.0, 5.0 )\n",
-	"base.dist.f.variance": "v = base.dist.f.variance( 3.0, 5.0 )\nv = base.dist.f.variance( 4.0, 12.0 )\nv = base.dist.f.variance( 8.0, 5.0 )\n",
-	"base.dist.frechet.cdf": "y = base.dist.frechet.cdf( 10.0, 2.0, 3.0, 0.0 )\ny = base.dist.frechet.cdf( -1.0, 2.0, 3.0, -3.0 )\ny = base.dist.frechet.cdf( 2.5, 2.0, 1.0, 2.0 )\ny = base.dist.frechet.cdf( NaN, 1.0, 1.0, 0.0 )\ny = base.dist.frechet.cdf( 0.0, NaN, 1.0, 0.0 )\ny = base.dist.frechet.cdf( 0.0, 1.0, NaN, 0.0 )\ny = base.dist.frechet.cdf( 0.0, 1.0, 1.0, NaN )\ny = base.dist.frechet.cdf( 0.0, -1.0, 1.0, 0.0 )\ny = base.dist.frechet.cdf( 0.0, 1.0, -1.0, 0.0 )\n",
-	"base.dist.frechet.entropy": "y = base.dist.frechet.entropy( 1.0, 1.0, 1.0 )\ny = base.dist.frechet.entropy( 4.0, 2.0, 1.0 )\ny = base.dist.frechet.entropy( NaN, 1.0, 0.0 )\ny = base.dist.frechet.entropy( 1.0, NaN, 0.0 )\ny = base.dist.frechet.entropy( 1.0, 1.0, NaN )\n",
-	"base.dist.frechet.Frechet": "frechet = base.dist.frechet.Frechet( 1.0, 1.0, 0.0 );\nfrechet.alpha\nfrechet.s\nfrechet.m\nfrechet.entropy\nfrechet.kurtosis\nfrechet.mean\nfrechet.median\nfrechet.mode\nfrechet.skewness\nfrechet.stdev\nfrechet.variance\nfrechet.cdf( 0.8 )\nfrechet.logpdf( 0.8 )\nfrechet.pdf( 0.8 )\nfrechet.quantile( 0.8 )\n",
-	"base.dist.frechet.kurtosis": "y = base.dist.frechet.kurtosis( 5.0, 2.0, 1.0 )\ny = base.dist.frechet.kurtosis( 5.0, 10.0, -3.0 )\ny = base.dist.frechet.kurtosis( 3.5, 2.0, 1.0 )\ny = base.dist.frechet.kurtosis( NaN, 1.0, 0.0 )\ny = base.dist.frechet.kurtosis( 1.0, NaN, 0.0 )\ny = base.dist.frechet.kurtosis( 1.0, 1.0, NaN )\n",
-	"base.dist.frechet.logpdf": "y = base.dist.frechet.logpdf( 10.0, 1.0, 3.0, 5.0 )\ny = base.dist.frechet.logpdf( -2.0, 1.0, 3.0, -3.0 )\ny = base.dist.frechet.logpdf( 0.0, 2.0, 1.0, -1.0 )\ny = base.dist.frechet.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.frechet.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.frechet.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.frechet.logpdf( 0.0, 0.0, -1.0 )\n",
-	"base.dist.frechet.mean": "y = base.dist.frechet.mean( 4.0, 2.0, 1.0 )\ny = base.dist.frechet.mean( 0.5, 2.0, 1.0 )\ny = base.dist.frechet.mean( NaN, 1.0, 0.0 )\ny = base.dist.frechet.mean( 1.0, NaN, 0.0 )\ny = base.dist.frechet.mean( 1.0, 1.0, NaN )\n",
-	"base.dist.frechet.median": "y = base.dist.frechet.median( 4.0, 2.0, 1.0 )\ny = base.dist.frechet.median( 4.0, 2.0, -3.0 )\ny = base.dist.frechet.median( 0.5, 2.0, 1.0 )\ny = base.dist.frechet.median( NaN, 1.0, 0.0 )\ny = base.dist.frechet.median( 1.0, NaN, 0.0 )\ny = base.dist.frechet.median( 1.0, 1.0, NaN )\n",
-	"base.dist.frechet.mode": "y = base.dist.frechet.mode( 4.0, 2.0, 1.0 )\ny = base.dist.frechet.mode( 4.0, 2.0, -3.0 )\ny = base.dist.frechet.mode( 0.5, 2.0, 1.0 )\ny = base.dist.frechet.mode( NaN, 1.0, 0.0 )\ny = base.dist.frechet.mode( 1.0, NaN, 0.0 )\ny = base.dist.frechet.mode( 1.0, 1.0, NaN )\n",
-	"base.dist.frechet.pdf": "y = base.dist.frechet.pdf( 10.0, 0.0, 3.0 )\ny = base.dist.frechet.pdf( -2.0, 0.0, 3.0 )\ny = base.dist.frechet.pdf( 0.0, 0.0, 1.0 )\ny = base.dist.frechet.pdf( NaN, 0.0, 1.0 )\ny = base.dist.frechet.pdf( 0.0, NaN, 1.0 )\ny = base.dist.frechet.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.frechet.pdf( 0.0, 0.0, -1.0 )\n",
-	"base.dist.frechet.quantile": "y = base.dist.frechet.quantile( 0.3, 10.0, 2.0, 3.0 )\ny = base.dist.frechet.quantile( 0.2, 3.0, 3.0, 3.0 )\ny = base.dist.frechet.quantile( 0.9, 1.0, 1.0, -3.0 )\ny = base.dist.frechet.quantile( NaN, 1.0, 1.0, 0.0 )\ny = base.dist.frechet.quantile( 0.0, NaN, 1.0, 0.0)\ny = base.dist.frechet.quantile( 0.0, 1.0, NaN, 0.0 )\ny = base.dist.frechet.quantile( 0.0, 1.0, 1.0, NaN )\ny = base.dist.frechet.quantile( 0.0, -1.0, 1.0, 0.0 )\ny = base.dist.frechet.quantile( 0.0, 1.0, -1.0, 0.0 )\n",
-	"base.dist.frechet.skewness": "y = base.dist.frechet.skewness( 4.0, 2.0, 1.0 )\ny = base.dist.frechet.skewness( 4.0, 2.0, -3.0 )\ny = base.dist.frechet.skewness( 0.5, 2.0, 1.0 )\ny = base.dist.frechet.skewness( NaN, 1.0, 0.0 )\ny = base.dist.frechet.skewness( 1.0, NaN, 0.0 )\ny = base.dist.frechet.skewness( 1.0, 1.0, NaN )\n",
-	"base.dist.frechet.stdev": "y = base.dist.frechet.stdev( 4.0, 2.0, 1.0 )\ny = base.dist.frechet.stdev( 4.0, 2.0, -3.0 )\ny = base.dist.frechet.stdev( 0.5, 2.0, 1.0 )\ny = base.dist.frechet.stdev( NaN, 1.0, 0.0 )\ny = base.dist.frechet.stdev( 1.0, NaN, 0.0 )\ny = base.dist.frechet.stdev( 1.0, 1.0, NaN )\n",
-	"base.dist.frechet.variance": "y = base.dist.frechet.variance( 4.0, 2.0, 1.0 )\ny = base.dist.frechet.variance( 4.0, 2.0, -3.0 )\ny = base.dist.frechet.variance( 0.5, 2.0, 1.0 )\ny = base.dist.frechet.variance( NaN, 1.0, 0.0 )\ny = base.dist.frechet.variance( 1.0, NaN, 0.0 )\ny = base.dist.frechet.variance( 1.0, 1.0, NaN )\n",
-	"base.dist.gamma.cdf": "y = base.dist.gamma.cdf( 2.0, 1.0, 1.0 )\ny = base.dist.gamma.cdf( 2.0, 3.0, 1.0 )\ny = base.dist.gamma.cdf( -1.0, 2.0, 2.0 )\ny = base.dist.gamma.cdf( PINF, 4.0, 2.0 )\ny = base.dist.gamma.cdf( NINF, 4.0, 2.0 )\ny = base.dist.gamma.cdf( NaN, 0.0, 1.0 )\ny = base.dist.gamma.cdf( 0.0, NaN, 1.0 )\ny = base.dist.gamma.cdf( 0.0, 0.0, NaN )\ny = base.dist.gamma.cdf( 2.0, -1.0, 1.0 )\ny = base.dist.gamma.cdf( 2.0, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0` when `α = 0.0`:\ny = base.dist.gamma.cdf( 2.0, 0.0, 2.0 )\ny = base.dist.gamma.cdf( -2.0, 0.0, 2.0 )\ny = base.dist.gamma.cdf( 0.0, 0.0, 2.0 )\n",
-	"base.dist.gamma.entropy": "v = base.dist.gamma.entropy( 1.0, 1.0 )\nv = base.dist.gamma.entropy( 4.0, 12.0 )\nv = base.dist.gamma.entropy( 8.0, 2.0 )\n",
-	"base.dist.gamma.Gamma": "gamma = base.dist.gamma.Gamma( 6.0, 5.0 );\ngamma.alpha\ngamma.beta\ngamma.entropy\ngamma.kurtosis\ngamma.mean\ngamma.mode\ngamma.skewness\ngamma.stdev\ngamma.variance\ngamma.cdf( 0.8 )\ngamma.logpdf( 1.0 )\ngamma.mgf( -0.5 )\ngamma.pdf( 1.0 )\ngamma.quantile( 0.8 )\n",
-	"base.dist.gamma.kurtosis": "v = base.dist.gamma.kurtosis( 1.0, 1.0 )\nv = base.dist.gamma.kurtosis( 4.0, 12.0 )\nv = base.dist.gamma.kurtosis( 8.0, 2.0 )\n",
-	"base.dist.gamma.logpdf": "y = base.dist.gamma.logpdf( 2.0, 0.5, 1.0 )\ny = base.dist.gamma.logpdf( 0.1, 1.0, 1.0 )\ny = base.dist.gamma.logpdf( -1.0, 4.0, 2.0 )\ny = base.dist.gamma.logpdf( NaN, 0.6, 1.0 )\ny = base.dist.gamma.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.gamma.logpdf( 0.0, 1.0, NaN )\n\n// Negative shape parameter:\ny = base.dist.gamma.logpdf( 2.0, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dist.gamma.logpdf( 2.0, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0.0` when `α = 0.0`:\ny = base.dist.gamma.logpdf( 2.0, 0.0, 2.0 )\ny = base.dist.gamma.logpdf( 0.0, 0.0, 2.0 )\n",
-	"base.dist.gamma.mean": "v = base.dist.gamma.mean( 1.0, 1.0 )\nv = base.dist.gamma.mean( 4.0, 12.0 )\nv = base.dist.gamma.mean( 8.0, 2.0 )\n",
-	"base.dist.gamma.mgf": "y = base.dist.gamma.mgf( 0.5, 0.5, 1.0 )\ny = base.dist.gamma.mgf( 0.1, 1.0, 1.0 )\ny = base.dist.gamma.mgf( -1.0, 4.0, 2.0 )\ny = base.dist.gamma.mgf( NaN, 1.0, 1.0 )\ny = base.dist.gamma.mgf( 0.0, NaN, 1.0 )\ny = base.dist.gamma.mgf( 0.0, 1.0, NaN )\ny = base.dist.gamma.mgf( 2.0, 4.0, 1.0 )\ny = base.dist.gamma.mgf( 2.0, -0.5, 1.0 )\ny = base.dist.gamma.mgf( 2.0, 1.0, 0.0 )\ny = base.dist.gamma.mgf( 2.0, 1.0, -1.0 )\n",
-	"base.dist.gamma.mode": "v = base.dist.gamma.mode( 1.0, 1.0 )\nv = base.dist.gamma.mode( 4.0, 12.0 )\nv = base.dist.gamma.mode( 8.0, 2.0 )\n",
-	"base.dist.gamma.pdf": "y = base.dist.gamma.pdf( 2.0, 0.5, 1.0 )\ny = base.dist.gamma.pdf( 0.1, 1.0, 1.0 )\ny = base.dist.gamma.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.gamma.pdf( NaN, 0.6, 1.0 )\ny = base.dist.gamma.pdf( 0.0, NaN, 1.0 )\ny = base.dist.gamma.pdf( 0.0, 1.0, NaN )\n\n// Negative shape parameter:\ny = base.dist.gamma.pdf( 2.0, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dist.gamma.pdf( 2.0, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0.0` when `α = 0.0`:\ny = base.dist.gamma.pdf( 2.0, 0.0, 2.0 )\ny = base.dist.gamma.pdf( 0.0, 0.0, 2.0 )\n",
-	"base.dist.gamma.quantile": "y = base.dist.gamma.quantile( 0.8, 2.0, 1.0 )\ny = base.dist.gamma.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.gamma.quantile( 1.1, 1.0, 1.0 )\ny = base.dist.gamma.quantile( -0.2, 1.0, 1.0 )\ny = base.dist.gamma.quantile( NaN, 1.0, 1.0 )\ny = base.dist.gamma.quantile( 0.0, NaN, 1.0 )\ny = base.dist.gamma.quantile( 0.0, 1.0, NaN )\n\n// Non-positive shape parameter:\ny = base.dist.gamma.quantile( 0.5, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dist.gamma.quantile( 0.5, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0.0` when `α = 0.0`:\ny = base.dist.gamma.quantile( 0.3, 0.0, 2.0 );\ny = base.dist.gamma.quantile( 0.9, 0.0, 2.0 );\n",
-	"base.dist.gamma.skewness": "v = base.dist.gamma.skewness( 1.0, 1.0 )\nv = base.dist.gamma.skewness( 4.0, 12.0 )\nv = base.dist.gamma.skewness( 8.0, 2.0 )\n",
-	"base.dist.gamma.stdev": "v = base.dist.gamma.stdev( 1.0, 1.0 )\nv = base.dist.gamma.stdev( 4.0, 12.0 )\nv = base.dist.gamma.stdev( 8.0, 2.0 )\n",
-	"base.dist.gamma.variance": "v = base.dist.gamma.variance( 1.0, 1.0 )\nv = base.dist.gamma.variance( 4.0, 12.0 )\nv = base.dist.gamma.variance( 8.0, 2.0 )\n",
-	"base.dist.geometric.cdf": "y = base.dist.geometric.cdf( 2.0, 0.5 )\ny = base.dist.geometric.cdf( 2.0, 0.1 )\ny = base.dist.geometric.cdf( -1.0, 4.0 )\ny = base.dist.geometric.cdf( NaN, 0.5 )\ny = base.dist.geometric.cdf( 0.0, NaN )\n\n// Invalid probability\ny = base.dist.geometric.cdf( 2.0, 1.4 )\n",
-	"base.dist.geometric.entropy": "v = base.dist.geometric.entropy( 0.1 )\nv = base.dist.geometric.entropy( 0.5 )\n",
-	"base.dist.geometric.Geometric": "geometric = base.dist.geometric.Geometric( 0.6 );\ngeometric.p\ngeometric.entropy\ngeometric.kurtosis\ngeometric.mean\ngeometric.median\ngeometric.mode\ngeometric.skewness\ngeometric.stdev\ngeometric.variance\ngeometric.cdf( 3.0 )\ngeometric.logcdf( 3.0 )\ngeometric.logpmf( 4.0 )\ngeometric.mgf( 0.5 )\ngeometric.pmf( 2.0 )\ngeometric.quantile( 0.7 )\n",
-	"base.dist.geometric.kurtosis": "v = base.dist.geometric.kurtosis( 0.1 )\nv = base.dist.geometric.kurtosis( 0.5 )\n",
-	"base.dist.geometric.logcdf": "y = base.dist.geometric.logcdf( 2.0, 0.5 )\ny = base.dist.geometric.logcdf( 2.0, 0.1 )\ny = base.dist.geometric.logcdf( -1.0, 4.0 )\ny = base.dist.geometric.logcdf( NaN, 0.5 )\ny = base.dist.geometric.logcdf( 0.0, NaN )\n\n// Invalid probability\ny = base.dist.geometric.logcdf( 2.0, 1.4 )\n",
-	"base.dist.geometric.logpmf": "y = base.dist.geometric.logpmf( 4.0, 0.3 )\ny = base.dist.geometric.logpmf( 2.0, 0.7 )\ny = base.dist.geometric.logpmf( -1.0, 0.5 )\ny = base.dist.geometric.logpmf( 0.0, NaN )\ny = base.dist.geometric.logpmf( NaN, 0.5 )\n\n// Invalid success probability:\ny = base.dist.geometric.logpmf( 2.0, 1.5 )\n",
-	"base.dist.geometric.mean": "v = base.dist.geometric.mean( 0.1 )\nv = base.dist.geometric.mean( 0.5 )\n",
-	"base.dist.geometric.median": "v = base.dist.geometric.median( 0.1 )\nv = base.dist.geometric.median( 0.5 )\n",
-	"base.dist.geometric.mgf": "y = base.dist.geometric.mgf( 0.2, 0.5 )\ny = base.dist.geometric.mgf( 0.4, 0.5 )\n\n// Case: t >= -ln(1-p)\ny = base.dist.geometric.mgf( 0.8, 0.5 )\ny = base.dist.geometric.mgf( NaN, 0.0 )\ny = base.dist.geometric.mgf( 0.0, NaN )\ny = base.dist.geometric.mgf( -2.0, -1.0 )\ny = base.dist.geometric.mgf( 0.2, 2.0 )\n",
-	"base.dist.geometric.mode": "v = base.dist.geometric.mode( 0.1 )\nv = base.dist.geometric.mode( 0.5 )\n",
-	"base.dist.geometric.pmf": "y = base.dist.geometric.pmf( 4.0, 0.3 )\ny = base.dist.geometric.pmf( 2.0, 0.7 )\ny = base.dist.geometric.pmf( -1.0, 0.5 )\ny = base.dist.geometric.pmf( 0.0, NaN )\ny = base.dist.geometric.pmf( NaN, 0.5 )\n\n// Invalid success probability:\ny = base.dist.geometric.pmf( 2.0, 1.5 )\n",
-	"base.dist.geometric.quantile": "y = base.dist.geometric.quantile( 0.8, 0.4 )\ny = base.dist.geometric.quantile( 0.5, 0.4 )\ny = base.dist.geometric.quantile( 0.9, 0.1 )\ny = base.dist.geometric.quantile( -0.2, 0.1 )\ny = base.dist.geometric.quantile( NaN, 0.8 )\ny = base.dist.geometric.quantile( 0.4, NaN )\ny = base.dist.geometric.quantile( 0.5, -1.0 )\ny = base.dist.geometric.quantile( 0.5, 1.5 )\n",
-	"base.dist.geometric.skewness": "v = base.dist.geometric.skewness( 0.1 )\nv = base.dist.geometric.skewness( 0.5 )\n",
-	"base.dist.geometric.stdev": "v = base.dist.geometric.stdev( 0.1 )\nv = base.dist.geometric.stdev( 0.5 )\n",
-	"base.dist.geometric.variance": "v = base.dist.geometric.variance( 0.1 )\nv = base.dist.geometric.variance( 0.5 )\n",
-	"base.dist.gumbel.cdf": "y = base.dist.gumbel.cdf( 10.0, 0.0, 3.0 )\ny = base.dist.gumbel.cdf( -2.0, 0.0, 3.0 )\ny = base.dist.gumbel.cdf( 0.0, 0.0, 1.0 )\ny = base.dist.gumbel.cdf( NaN, 0.0, 1.0 )\ny = base.dist.gumbel.cdf( 0.0, NaN, 1.0 )\ny = base.dist.gumbel.cdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.gumbel.cdf( 0.0, 0.0, -1.0 )\n",
-	"base.dist.gumbel.entropy": "y = base.dist.gumbel.entropy( 0.0, 1.0 )\ny = base.dist.gumbel.entropy( 4.0, 2.0 )\ny = base.dist.gumbel.entropy( NaN, 1.0 )\ny = base.dist.gumbel.entropy( 0.0, NaN )\ny = base.dist.gumbel.entropy( 0.0, 0.0 )\n",
-	"base.dist.gumbel.Gumbel": "gumbel = base.dist.gumbel.Gumbel( -2.0, 3.0 );\ngumbel.mu\ngumbel.beta\ngumbel.entropy\ngumbel.kurtosis\ngumbel.mean\ngumbel.median\ngumbel.mode\ngumbel.skewness\ngumbel.stdev\ngumbel.variance\ngumbel.cdf( 0.8 )\ngumbel.logcdf( 0.8 )\ngumbel.logpdf( 1.0 )\ngumbel.mgf( 0.2 )\ngumbel.pdf( 1.0 )\ngumbel.quantile( 0.8 )\n",
-	"base.dist.gumbel.kurtosis": "y = base.dist.gumbel.kurtosis( 0.0, 1.0 )\ny = base.dist.gumbel.kurtosis( 4.0, 2.0 )\ny = base.dist.gumbel.kurtosis( NaN, 1.0 )\ny = base.dist.gumbel.kurtosis( 0.0, NaN )\ny = base.dist.gumbel.kurtosis( 0.0, 0.0 )\n",
-	"base.dist.gumbel.logcdf": "y = base.dist.gumbel.logcdf( 10.0, 0.0, 3.0 )\ny = base.dist.gumbel.logcdf( -2.0, 0.0, 3.0 )\ny = base.dist.gumbel.logcdf( 0.0, 0.0, 1.0 )\ny = base.dist.gumbel.logcdf( NaN, 0.0, 1.0 )\ny = base.dist.gumbel.logcdf( 0.0, NaN, 1.0 )\ny = base.dist.gumbel.logcdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.gumbel.logcdf( 0.0, 0.0, -1.0 )\n",
-	"base.dist.gumbel.logpdf": "y = base.dist.gumbel.logpdf( 0.0, 0.0, 2.0 )\ny = base.dist.gumbel.logpdf( 0.0, 0.0, 1.0 )\ny = base.dist.gumbel.logpdf( 1.0, 3.0, 2.0 )\ny = base.dist.gumbel.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.gumbel.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.gumbel.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.gumbel.logpdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.gumbel.mean": "y = base.dist.gumbel.mean( 0.0, 1.0 )\ny = base.dist.gumbel.mean( 4.0, 2.0 )\ny = base.dist.gumbel.mean( NaN, 1.0 )\ny = base.dist.gumbel.mean( 0.0, NaN )\ny = base.dist.gumbel.mean( 0.0, 0.0 )\n",
-	"base.dist.gumbel.median": "y = base.dist.gumbel.median( 0.0, 1.0 )\ny = base.dist.gumbel.median( 4.0, 2.0 )\ny = base.dist.gumbel.median( NaN, 1.0 )\ny = base.dist.gumbel.median( 0.0, NaN )\ny = base.dist.gumbel.median( 0.0, 0.0 )\n",
-	"base.dist.gumbel.mgf": "y = base.dist.gumbel.mgf( -1.0, 0.0, 3.0 )\ny = base.dist.gumbel.mgf( 0.0, 0.0, 1.0 )\ny = base.dist.gumbel.mgf( 0.1, 0.0, 3.0 )\ny = base.dist.gumbel.mgf( NaN, 0.0, 1.0 )\ny = base.dist.gumbel.mgf( 0.0, NaN, 1.0 )\ny = base.dist.gumbel.mgf( 0.0, 0.0, NaN )\n\n// Case: `t >= 1/beta`\ny = base.dist.gumbel.mgf( 0.8, 0.0, 2.0 )\n\n// Non-positive scale parameter:\ny = base.dist.gumbel.mgf( 0.0, 0.0, -1.0 )\n",
-	"base.dist.gumbel.mode": "y = base.dist.gumbel.mode( 0.0, 1.0 )\ny = base.dist.gumbel.mode( 4.0, 2.0 )\ny = base.dist.gumbel.mode( NaN, 1.0 )\ny = base.dist.gumbel.mode( 0.0, NaN )\ny = base.dist.gumbel.mode( 0.0, 0.0 )\n",
-	"base.dist.gumbel.pdf": "y = base.dist.gumbel.pdf( 0.0, 0.0, 2.0 )\ny = base.dist.gumbel.pdf( 0.0, 0.0, 1.0 )\ny = base.dist.gumbel.pdf( 1.0, 3.0, 2.0 )\ny = base.dist.gumbel.pdf( NaN, 0.0, 1.0 )\ny = base.dist.gumbel.pdf( 0.0, NaN, 1.0 )\ny = base.dist.gumbel.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.gumbel.pdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.gumbel.quantile": "y = base.dist.gumbel.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.gumbel.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.gumbel.quantile( 0.5, 4.0, 4.0 )\ny = base.dist.gumbel.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.gumbel.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.gumbel.quantile( NaN, 0.0, 1.0 )\ny = base.dist.gumbel.quantile( 0.0, NaN, 1.0 )\ny = base.dist.gumbel.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.gumbel.quantile( 0.5, 0.0, -1.0 )\n",
-	"base.dist.gumbel.skewness": "y = base.dist.gumbel.skewness( 0.0, 1.0 )\ny = base.dist.gumbel.skewness( 4.0, 2.0 )\ny = base.dist.gumbel.skewness( NaN, 1.0 )\ny = base.dist.gumbel.skewness( 0.0, NaN )\ny = base.dist.gumbel.skewness( 0.0, 0.0 )\n",
-	"base.dist.gumbel.stdev": "y = base.dist.gumbel.stdev( 0.0, 1.0 )\ny = base.dist.gumbel.stdev( 4.0, 2.0 )\ny = base.dist.gumbel.stdev( NaN, 1.0 )\ny = base.dist.gumbel.stdev( 0.0, NaN )\ny = base.dist.gumbel.stdev( 0.0, 0.0 )\n",
-	"base.dist.gumbel.variance": "y = base.dist.gumbel.variance( 0.0, 1.0 )\ny = base.dist.gumbel.variance( 4.0, 2.0 )\ny = base.dist.gumbel.variance( NaN, 1.0 )\ny = base.dist.gumbel.variance( 0.0, NaN )\ny = base.dist.gumbel.variance( 0.0, 0.0 )\n",
-	"base.dist.hypergeometric.cdf": "y = base.dist.hypergeometric.cdf( 1.0, 8, 4, 2 )\ny = base.dist.hypergeometric.cdf( 1.5, 8, 4, 2 )\ny = base.dist.hypergeometric.cdf( 2.0, 8, 4, 2 )\ny = base.dist.hypergeometric.cdf( 0, 8, 4, 2)\ny = base.dist.hypergeometric.cdf( NaN, 10, 5, 2 )\ny = base.dist.hypergeometric.cdf( 0.0, NaN, 5, 2 )\ny = base.dist.hypergeometric.cdf( 0.0, 10, NaN, 2 )\ny = base.dist.hypergeometric.cdf( 0.0, 10, 5, NaN )\ny = base.dist.hypergeometric.cdf( 2.0, 10.5, 5, 2 )\ny = base.dist.hypergeometric.cdf( 2.0, 10, 1.5, 2 )\ny = base.dist.hypergeometric.cdf( 2.0, 10, 5, -2.0 )\ny = base.dist.hypergeometric.cdf( 2.0, 10, 5, 12 )\ny = base.dist.hypergeometric.cdf( 2.0, 8, 3, 9 )\n",
-	"base.dist.hypergeometric.Hypergeometric": "hypergeometric = base.dist.hypergeometric.Hypergeometric( 100, 70, 20 );\nhypergeometric.N\nhypergeometric.K\nhypergeometric.n\nhypergeometric.kurtosis\nhypergeometric.mean\nhypergeometric.mode\nhypergeometric.skewness\nhypergeometric.stdev\nhypergeometric.variance\nhypergeometric.cdf( 2.9 )\nhypergeometric.pmf( 10 )\nhypergeometric.quantile( 0.8 )\n",
-	"base.dist.hypergeometric.kurtosis": "v = base.dist.hypergeometric.kurtosis( 16, 11, 4 )\nv = base.dist.hypergeometric.kurtosis( 4, 2, 2 )\nv = base.dist.hypergeometric.kurtosis( 10, 5, 12 )\nv = base.dist.hypergeometric.kurtosis( 10.3, 10, 4 )\nv = base.dist.hypergeometric.kurtosis( 10, 5.5, 4 )\nv = base.dist.hypergeometric.kurtosis( 10, 5, 4.5 )\nv = base.dist.hypergeometric.kurtosis( NaN, 10, 4 )\nv = base.dist.hypergeometric.kurtosis( 20, NaN, 4 )\nv = base.dist.hypergeometric.kurtosis( 20, 10, NaN )\n",
-	"base.dist.hypergeometric.mean": "v = base.dist.hypergeometric.mean( 16, 11, 4 )\nv = base.dist.hypergeometric.mean( 2, 1, 1 )\nv = base.dist.hypergeometric.mean( 10, 5, 12 )\nv = base.dist.hypergeometric.mean( 10.3, 10, 4 )\nv = base.dist.hypergeometric.mean( 10, 5.5, 4 )\nv = base.dist.hypergeometric.mean( 10, 5, 4.5 )\nv = base.dist.hypergeometric.mean( NaN, 10, 4 )\nv = base.dist.hypergeometric.mean( 20, NaN, 4 )\nv = base.dist.hypergeometric.mean( 20, 10, NaN )\n",
-	"base.dist.hypergeometric.mode": "v = base.dist.hypergeometric.mode( 16, 11, 4 )\nv = base.dist.hypergeometric.mode( 2, 1, 1 )\nv = base.dist.hypergeometric.mode( 10, 5, 12 )\nv = base.dist.hypergeometric.mode( 10.3, 10, 4 )\nv = base.dist.hypergeometric.mode( 10, 5.5, 4 )\nv = base.dist.hypergeometric.mode( 10, 5, 4.5 )\nv = base.dist.hypergeometric.mode( NaN, 10, 4 )\nv = base.dist.hypergeometric.mode( 20, NaN, 4 )\nv = base.dist.hypergeometric.mode( 20, 10, NaN )\n",
-	"base.dist.hypergeometric.pmf": "y = base.dist.hypergeometric.pmf( 1.0, 8, 4, 2 )\ny = base.dist.hypergeometric.pmf( 2.0, 8, 4, 2 )\ny = base.dist.hypergeometric.pmf( 0.0, 8, 4, 2 )\ny = base.dist.hypergeometric.pmf( 1.5, 8, 4, 2 )\ny = base.dist.hypergeometric.pmf( NaN, 10, 5, 2 )\ny = base.dist.hypergeometric.pmf( 0.0, NaN, 5, 2 )\ny = base.dist.hypergeometric.pmf( 0.0, 10, NaN, 2 )\ny = base.dist.hypergeometric.pmf( 0.0, 10, 5, NaN )\ny = base.dist.hypergeometric.pmf( 2.0, 10.5, 5, 2 )\ny = base.dist.hypergeometric.pmf( 2.0, 5, 1.5, 2 )\ny = base.dist.hypergeometric.pmf( 2.0, 10, 5, -2.0 )\ny = base.dist.hypergeometric.pmf( 2.0, 10, 5, 12 )\ny = base.dist.hypergeometric.pmf( 2.0, 8, 3, 9 )\n",
-	"base.dist.hypergeometric.quantile": "y = base.dist.hypergeometric.quantile( 0.4, 40, 20, 10 )\ny = base.dist.hypergeometric.quantile( 0.8, 60, 40, 20 )\ny = base.dist.hypergeometric.quantile( 0.5, 100, 10, 10 )\ny = base.dist.hypergeometric.quantile( 0.0, 100, 40, 20 )\ny = base.dist.hypergeometric.quantile( 1.0, 100, 40, 20 )\ny = base.dist.hypergeometric.quantile( NaN, 40, 20, 10 )\ny = base.dist.hypergeometric.quantile( 0.2, NaN, 20, 10 )\ny = base.dist.hypergeometric.quantile( 0.2, 40, NaN, 10 )\ny = base.dist.hypergeometric.quantile( 0.2, 40, 20, NaN )\n",
-	"base.dist.hypergeometric.skewness": "v = base.dist.hypergeometric.skewness( 16, 11, 4 )\nv = base.dist.hypergeometric.skewness( 4, 2, 2 )\nv = base.dist.hypergeometric.skewness( 10, 5, 12 )\nv = base.dist.hypergeometric.skewness( 10.3, 10, 4 )\nv = base.dist.hypergeometric.skewness( 10, 5.5, 4 )\nv = base.dist.hypergeometric.skewness( 10, 5, 4.5 )\nv = base.dist.hypergeometric.skewness( NaN, 10, 4 )\nv = base.dist.hypergeometric.skewness( 20, NaN, 4 )\nv = base.dist.hypergeometric.skewness( 20, 10, NaN )\n",
-	"base.dist.hypergeometric.stdev": "v = base.dist.hypergeometric.stdev( 16, 11, 4 )\nv = base.dist.hypergeometric.stdev( 2, 1, 1 )\nv = base.dist.hypergeometric.stdev( 10, 5, 12 )\nv = base.dist.hypergeometric.stdev( 10.3, 10, 4 )\nv = base.dist.hypergeometric.stdev( 10, 5.5, 4 )\nv = base.dist.hypergeometric.stdev( 10, 5, 4.5 )\nv = base.dist.hypergeometric.stdev( NaN, 10, 4 )\nv = base.dist.hypergeometric.stdev( 20, NaN, 4 )\nv = base.dist.hypergeometric.stdev( 20, 10, NaN )\n",
-	"base.dist.hypergeometric.variance": "v = base.dist.hypergeometric.variance( 16, 11, 4 )\nv = base.dist.hypergeometric.variance( 2, 1, 1 )\nv = base.dist.hypergeometric.variance( 10, 5, 12 )\nv = base.dist.hypergeometric.variance( 10.3, 10, 4 )\nv = base.dist.hypergeometric.variance( 10, 5.5, 4 )\nv = base.dist.hypergeometric.variance( 10, 5, 4.5 )\nv = base.dist.hypergeometric.variance( NaN, 10, 4 )\nv = base.dist.hypergeometric.variance( 20, NaN, 4 )\nv = base.dist.hypergeometric.variance( 20, 10, NaN )\n",
-	"base.dist.invgamma.cdf": "y = base.dist.invgamma.cdf( 2.0, 1.0, 1.0 )\ny = base.dist.invgamma.cdf( 2.0, 3.0, 1.0 )\ny = base.dist.invgamma.cdf( -1.0, 2.0, 2.0 )\ny = base.dist.invgamma.cdf( PINF, 4.0, 2.0 )\ny = base.dist.invgamma.cdf( NINF, 4.0, 2.0 )\ny = base.dist.invgamma.cdf( NaN, 0.0, 1.0 )\ny = base.dist.invgamma.cdf( 0.0, NaN, 1.0 )\ny = base.dist.invgamma.cdf( 0.0, 0.0, NaN )\ny = base.dist.invgamma.cdf( 2.0, -1.0, 1.0 )\ny = base.dist.invgamma.cdf( 2.0, 1.0, -1.0 )\n",
-	"base.dist.invgamma.entropy": "v = base.dist.invgamma.entropy( 1.0, 1.0 )\nv = base.dist.invgamma.entropy( 4.0, 12.0 )\nv = base.dist.invgamma.entropy( 8.0, 2.0 )\n",
-	"base.dist.invgamma.InvGamma": "invgamma = base.dist.invgamma.InvGamma( 6.0, 5.0 );\ninvgamma.alpha\ninvgamma.beta\ninvgamma.entropy\ninvgamma.kurtosis\ninvgamma.mean\ninvgamma.mode\ninvgamma.skewness\ninvgamma.stdev\ninvgamma.variance\ninvgamma.cdf( 0.8 )\ninvgamma.pdf( 1.0 )\ninvgamma.quantile( 0.8 )\n",
-	"base.dist.invgamma.kurtosis": "v = base.dist.invgamma.kurtosis( 7.0, 5.0 )\nv = base.dist.invgamma.kurtosis( 6.0, 12.0 )\nv = base.dist.invgamma.kurtosis( 8.0, 2.0 )\n",
-	"base.dist.invgamma.mean": "v = base.dist.invgamma.mean( 4.0, 12.0 )\nv = base.dist.invgamma.mean( 8.0, 2.0 )\n",
-	"base.dist.invgamma.mode": "v = base.dist.invgamma.mode( 1.0, 1.0 )\nv = base.dist.invgamma.mode( 4.0, 12.0 )\nv = base.dist.invgamma.mode( 8.0, 2.0 )\n",
-	"base.dist.invgamma.pdf": "y = base.dist.invgamma.pdf( 2.0, 0.5, 1.0 )\ny = base.dist.invgamma.pdf( 0.2, 1.0, 1.0 )\ny = base.dist.invgamma.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.invgamma.pdf( NaN, 1.0, 1.0 )\ny = base.dist.invgamma.pdf( 0.0, NaN, 1.0 )\ny = base.dist.invgamma.pdf( 0.0, 1.0, NaN )\n\n// Negative shape parameter:\ny = base.dist.invgamma.pdf( 2.0, -1.0, 1.0 )\n\n// Negative scale parameter:\ny = base.dist.invgamma.pdf( 2.0, 1.0, -1.0 )\n",
-	"base.dist.invgamma.quantile": "y = base.dist.invgamma.quantile( 0.8, 2.0, 1.0 )\ny = base.dist.invgamma.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.invgamma.quantile( 1.1, 1.0, 1.0 )\ny = base.dist.invgamma.quantile( -0.2, 1.0, 1.0 )\ny = base.dist.invgamma.quantile( NaN, 1.0, 1.0 )\ny = base.dist.invgamma.quantile( 0.0, NaN, 1.0 )\ny = base.dist.invgamma.quantile( 0.0, 1.0, NaN )\n\n// Non-positive shape parameter:\ny = base.dist.invgamma.quantile( 0.5, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dist.invgamma.quantile( 0.5, 1.0, -1.0 )\n",
-	"base.dist.invgamma.skewness": "v = base.dist.invgamma.skewness( 4.0, 12.0 )\nv = base.dist.invgamma.skewness( 8.0, 2.0 )\n",
-	"base.dist.invgamma.stdev": "v = base.dist.invgamma.stdev( 5.0, 7.0 )\nv = base.dist.invgamma.stdev( 4.0, 12.0 )\nv = base.dist.invgamma.stdev( 8.0, 2.0 )\n",
-	"base.dist.invgamma.variance": "v = base.dist.invgamma.variance( 5.0, 7.0 )\nv = base.dist.invgamma.variance( 4.0, 12.0 )\nv = base.dist.invgamma.variance( 8.0, 2.0 )\n",
-	"base.dist.kumaraswamy.cdf": "y = base.dist.kumaraswamy.cdf( 0.5, 1.0, 1.0 )\ny = base.dist.kumaraswamy.cdf( 0.5, 2.0, 4.0 )\ny = base.dist.kumaraswamy.cdf( 0.2, 2.0, 2.0 )\ny = base.dist.kumaraswamy.cdf( 0.8, 4.0, 4.0 )\ny = base.dist.kumaraswamy.cdf( -0.5, 4.0, 2.0 )\ny = base.dist.kumaraswamy.cdf( 1.5, 4.0, 2.0 )\ny = base.dist.kumaraswamy.cdf( 2.0, -1.0, 0.5 )\ny = base.dist.kumaraswamy.cdf( 2.0, 0.5, -1.0 )\ny = base.dist.kumaraswamy.cdf( NaN, 1.0, 1.0 )\ny = base.dist.kumaraswamy.cdf( 0.0, NaN, 1.0 )\ny = base.dist.kumaraswamy.cdf( 0.0, 1.0, NaN )\n",
-	"base.dist.kumaraswamy.Kumaraswamy": "kumaraswamy = base.dist.kumaraswamy.Kumaraswamy( 6.0, 5.0 );\nkumaraswamy.a\nkumaraswamy.b\nkumaraswamy.kurtosis\nkumaraswamy.mean\nkumaraswamy.mode\nkumaraswamy.skewness\nkumaraswamy.stdev\nkumaraswamy.variance\nkumaraswamy.cdf( 0.8 )\nkumaraswamy.pdf( 1.0 )\nkumaraswamy.quantile( 0.8 )\n",
-	"base.dist.kumaraswamy.kurtosis": "v = base.dist.kumaraswamy.kurtosis( 1.0, 1.0 )\nv = base.dist.kumaraswamy.kurtosis( 4.0, 12.0 )\nv = base.dist.kumaraswamy.kurtosis( 16.0, 8.0 )\n",
-	"base.dist.kumaraswamy.mean": "v = base.dist.kumaraswamy.mean( 1.5, 1.5 )\nv = base.dist.kumaraswamy.mean( 4.0, 12.0 )\nv = base.dist.kumaraswamy.mean( 16.0, 8.0 )\n",
-	"base.dist.kumaraswamy.median": "v = base.dist.kumaraswamy.median( 1.0, 1.0 )\nv = base.dist.kumaraswamy.median( 4.0, 12.0 )\nv = base.dist.kumaraswamy.median( 16.0, 8.0 )\n",
-	"base.dist.kumaraswamy.mode": "v = base.dist.kumaraswamy.mode( 1.5, 1.5 )\nv = base.dist.kumaraswamy.mode( 4.0, 12.0 )\nv = base.dist.kumaraswamy.mode( 16.0, 8.0 )\n",
-	"base.dist.kumaraswamy.pdf": "y = base.dist.kumaraswamy.pdf( 0.5, 1.0, 1.0 )\ny = base.dist.kumaraswamy.pdf( 0.5, 2.0, 4.0 )\ny = base.dist.kumaraswamy.pdf( 0.2, 2.0, 2.0 )\ny = base.dist.kumaraswamy.pdf( 0.8, 4.0, 4.0 )\ny = base.dist.kumaraswamy.pdf( -0.5, 4.0, 2.0 )\ny = base.dist.kumaraswamy.pdf( 1.5, 4.0, 2.0 )\ny = base.dist.kumaraswamy.pdf( 2.0, -1.0, 0.5 )\ny = base.dist.kumaraswamy.pdf( 2.0, 0.5, -1.0 )\ny = base.dist.kumaraswamy.pdf( NaN, 1.0, 1.0 )\ny = base.dist.kumaraswamy.pdf( 0.0, NaN, 1.0 )\ny = base.dist.kumaraswamy.pdf( 0.0, 1.0, NaN )\n",
-	"base.dist.kumaraswamy.skewness": "v = base.dist.kumaraswamy.skewness( 1.0, 1.0 )\nv = base.dist.kumaraswamy.skewness( 4.0, 12.0 )\nv = base.dist.kumaraswamy.skewness( 16.0, 8.0 )\n",
-	"base.dist.kumaraswamy.stdev": "v = base.dist.kumaraswamy.stdev( 1.0, 1.0 )\nv = base.dist.kumaraswamy.stdev( 4.0, 12.0 )\nv = base.dist.kumaraswamy.stdev( 16.0, 8.0 )\n",
-	"base.dist.kumaraswamy.variance": "v = base.dist.kumaraswamy.variance( 1.0, 1.0 )\nv = base.dist.kumaraswamy.variance( 4.0, 12.0 )\nv = base.dist.kumaraswamy.variance( 16.0, 8.0 )\n",
-	"base.dist.laplace.cdf": "y = base.dist.laplace.cdf( 2.0, 0.0, 1.0 )\ny = base.dist.laplace.cdf( 5.0, 10.0, 3.0 )\ny = base.dist.laplace.cdf( NaN, 0.0, 1.0 )\ny = base.dist.laplace.cdf( 2, NaN, 1.0 )\ny = base.dist.laplace.cdf( 2.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.laplace.cdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.laplace.entropy": "y = base.dist.laplace.entropy( 0.0, 1.0 )\ny = base.dist.laplace.entropy( 4.0, 2.0 )\ny = base.dist.laplace.entropy( NaN, 1.0 )\ny = base.dist.laplace.entropy( 0.0, NaN )\ny = base.dist.laplace.entropy( 0.0, 0.0 )\n",
-	"base.dist.laplace.kurtosis": "y = base.dist.laplace.kurtosis( 0.0, 1.0 )\ny = base.dist.laplace.kurtosis( 4.0, 2.0 )\ny = base.dist.laplace.kurtosis( NaN, 1.0 )\ny = base.dist.laplace.kurtosis( 0.0, NaN )\ny = base.dist.laplace.kurtosis( 0.0, 0.0 )\n",
-	"base.dist.laplace.Laplace": "laplace = base.dist.laplace.Laplace( -2.0, 3.0 );\nlaplace.mu\nlaplace.b\nlaplace.entropy\nlaplace.kurtosis\nlaplace.mean\nlaplace.median\nlaplace.mode\nlaplace.skewness\nlaplace.stdev\nlaplace.variance\nlaplace.cdf( 0.8 )\nlaplace.logcdf( 0.8 )\nlaplace.logpdf( 1.0 )\nlaplace.mgf( 0.2 )\nlaplace.pdf( 2.0 )\nlaplace.quantile( 0.9 )\n",
-	"base.dist.laplace.logcdf": "y = base.dist.laplace.logcdf( 2.0, 0.0, 1.0 )\ny = base.dist.laplace.logcdf( 5.0, 10.0, 3.0 )\ny = base.dist.laplace.logcdf( NaN, 0.0, 1.0 )\ny = base.dist.laplace.logcdf( 2, NaN, 1.0 )\ny = base.dist.laplace.logcdf( 2.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.laplace.logcdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.laplace.logpdf": "y = base.dist.laplace.logpdf( 2.0, 0.0, 1.0 )\ny = base.dist.laplace.logpdf( -1.0, 2.0, 3.0 )\ny = base.dist.laplace.logpdf( 2.5, 2.0, 3.0 )\ny = base.dist.laplace.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.laplace.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.laplace.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.laplace.logpdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.laplace.mean": "y = base.dist.laplace.mean( 0.0, 1.0 )\ny = base.dist.laplace.mean( 4.0, 2.0 )\ny = base.dist.laplace.mean( NaN, 1.0 )\ny = base.dist.laplace.mean( 0.0, NaN )\ny = base.dist.laplace.mean( 0.0, 0.0 )\n",
-	"base.dist.laplace.median": "y = base.dist.laplace.median( 0.0, 1.0 )\ny = base.dist.laplace.median( 4.0, 2.0 )\ny = base.dist.laplace.median( NaN, 1.0 )\ny = base.dist.laplace.median( 0.0, NaN )\ny = base.dist.laplace.median( 0.0, 0.0 )\n",
-	"base.dist.laplace.mgf": "y = base.dist.laplace.mgf( 0.5, 0.0, 1.0 )\ny = base.dist.laplace.mgf( 0.0, 0.0, 1.0 )\ny = base.dist.laplace.mgf( -1.0, 4.0, 0.2 )\ny = base.dist.laplace.mgf( NaN, 0.0, 1.0 )\ny = base.dist.laplace.mgf( 0.0, NaN, 1.0 )\ny = base.dist.laplace.mgf( 0.0, 0.0, NaN )\ny = base.dist.laplace.mgf( 1.0, 0.0, 2.0 )\ny = base.dist.laplace.mgf( -0.5, 0.0, 4.0 )\ny = base.dist.laplace.mgf( 2.0, 0.0, 0.0 )\ny = base.dist.laplace.mgf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.laplace.mode": "y = base.dist.laplace.mode( 0.0, 1.0 )\ny = base.dist.laplace.mode( 4.0, 2.0 )\ny = base.dist.laplace.mode( NaN, 1.0 )\ny = base.dist.laplace.mode( 0.0, NaN )\ny = base.dist.laplace.mode( 0.0, 0.0 )\n",
-	"base.dist.laplace.pdf": "y = base.dist.laplace.pdf( 2.0, 0.0, 1.0 )\ny = base.dist.laplace.pdf( -1.0, 2.0, 3.0 )\ny = base.dist.laplace.pdf( 2.5, 2.0, 3.0 )\ny = base.dist.laplace.pdf( NaN, 0.0, 1.0 )\ny = base.dist.laplace.pdf( 0.0, NaN, 1.0 )\ny = base.dist.laplace.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.laplace.pdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.laplace.quantile": "y = base.dist.laplace.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.laplace.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.laplace.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.laplace.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.laplace.quantile( NaN, 0.0, 1.0 )\ny = base.dist.laplace.quantile( 0.0, NaN, 1.0 )\ny = base.dist.laplace.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.laplace.quantile( 0.5, 0.0, -1.0 )\n",
-	"base.dist.laplace.skewness": "y = base.dist.laplace.skewness( 0.0, 1.0 )\ny = base.dist.laplace.skewness( 4.0, 2.0 )\ny = base.dist.laplace.skewness( NaN, 1.0 )\ny = base.dist.laplace.skewness( 0.0, NaN )\ny = base.dist.laplace.skewness( 0.0, 0.0 )\n",
-	"base.dist.laplace.stdev": "y = base.dist.laplace.stdev( 0.0, 1.0 )\ny = base.dist.laplace.stdev( 4.0, 2.0 )\ny = base.dist.laplace.stdev( NaN, 1.0 )\ny = base.dist.laplace.stdev( 0.0, NaN )\ny = base.dist.laplace.stdev( 0.0, 0.0 )\n",
-	"base.dist.laplace.variance": "y = base.dist.laplace.variance( 0.0, 1.0 )\ny = base.dist.laplace.variance( 4.0, 2.0 )\ny = base.dist.laplace.variance( NaN, 1.0 )\ny = base.dist.laplace.variance( 0.0, NaN )\ny = base.dist.laplace.variance( 0.0, 0.0 )\n",
-	"base.dist.levy.cdf": "y = base.dist.levy.cdf( 2.0, 0.0, 1.0 )\ny = base.dist.levy.cdf( 12.0, 10.0, 3.0 )\ny = base.dist.levy.cdf( 9.0, 10.0, 3.0 )\ny = base.dist.levy.cdf( NaN, 0.0, 1.0 )\ny = base.dist.levy.cdf( 2, NaN, 1.0 )\ny = base.dist.levy.cdf( 2.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.levy.cdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.levy.entropy": "y = base.dist.levy.entropy( 0.0, 1.0 )\ny = base.dist.levy.entropy( 4.0, 2.0 )\ny = base.dist.levy.entropy( NaN, 1.0 )\ny = base.dist.levy.entropy( 0.0, NaN )\ny = base.dist.levy.entropy( 0.0, 0.0 )\n",
-	"base.dist.levy.Levy": "levy = base.dist.levy.Levy( -2.0, 3.0 );\nlevy.mu\nlevy.c\nlevy.entropy\nlevy.mean\nlevy.median\nlevy.mode\nlevy.stdev\nlevy.variance\nlevy.cdf( 0.8 )\nlevy.logpdf( 1.0 )\nlevy.pdf( 1.0 )\nlevy.quantile( 0.8 )\n",
-	"base.dist.levy.logpdf": "y = base.dist.levy.logpdf( 2.0, 0.0, 1.0 )\ny = base.dist.levy.logpdf( -1.0, 4.0, 2.0 )\ny = base.dist.levy.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.levy.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.levy.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.levy.logpdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.levy.mean": "y = base.dist.levy.mean( 0.0, 1.0 )\ny = base.dist.levy.mean( 4.0, 3.0 )\ny = base.dist.levy.mean( NaN, 1.0 )\ny = base.dist.levy.mean( 0.0, NaN )\ny = base.dist.levy.mean( 0.0, 0.0 )\n",
-	"base.dist.levy.median": "y = base.dist.levy.median( 0.0, 1.0 )\ny = base.dist.levy.median( 4.0, 3.0 )\ny = base.dist.levy.median( NaN, 1.0 )\ny = base.dist.levy.median( 0.0, NaN )\ny = base.dist.levy.median( 0.0, 0.0 )\n",
-	"base.dist.levy.mode": "y = base.dist.levy.mode( 0.0, 1.0 )\ny = base.dist.levy.mode( 4.0, 3.0 )\ny = base.dist.levy.mode( NaN, 1.0 )\ny = base.dist.levy.mode( 0.0, NaN )\ny = base.dist.levy.mode( 0.0, 0.0 )\n",
-	"base.dist.levy.pdf": "y = base.dist.levy.pdf( 2.0, 0.0, 1.0 )\ny = base.dist.levy.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.levy.pdf( NaN, 0.0, 1.0 )\ny = base.dist.levy.pdf( 0.0, NaN, 1.0 )\ny = base.dist.levy.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.levy.pdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.levy.quantile": "y = base.dist.levy.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.levy.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.levy.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.levy.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.levy.quantile( NaN, 0.0, 1.0 )\ny = base.dist.levy.quantile( 0.0, NaN, 1.0 )\ny = base.dist.levy.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.levy.quantile( 0.5, 0.0, -1.0 )\n",
-	"base.dist.levy.stdev": "y = base.dist.levy.stdev( 0.0, 1.0 )\ny = base.dist.levy.stdev( 4.0, 3.0 )\ny = base.dist.levy.stdev( NaN, 1.0 )\ny = base.dist.levy.stdev( 0.0, NaN )\ny = base.dist.levy.stdev( 0.0, 0.0 )\n",
-	"base.dist.levy.variance": "y = base.dist.levy.variance( 0.0, 1.0 )\ny = base.dist.levy.variance( 4.0, 3.0 )\ny = base.dist.levy.variance( NaN, 1.0 )\ny = base.dist.levy.variance( 0.0, NaN )\ny = base.dist.levy.variance( 0.0, 0.0 )\n",
-	"base.dist.logistic.cdf": "y = base.dist.logistic.cdf( 2.0, 0.0, 1.0 )\ny = base.dist.logistic.cdf( 5.0, 10.0, 3.0 )\ny = base.dist.logistic.cdf( 2.0, 0.0, NaN )\ny = base.dist.logistic.cdf( 2.0, NaN, 1.0 )\ny = base.dist.logistic.cdf( NaN, 0.0, 1.0 )\n\n// Degenerate distribution centered at `μ` when `s = 0.0`:\ny = base.dist.logistic.cdf( 2.0, 8.0, 0.0 )\ny = base.dist.logistic.cdf( 8.0, 8.0, 0.0 )\ny = base.dist.logistic.cdf( 10.0, 8.0, 0.0 )\n",
-	"base.dist.logistic.entropy": "y = base.dist.logistic.entropy( 0.0, 1.0 )\ny = base.dist.logistic.entropy( 4.0, 2.0 )\ny = base.dist.logistic.entropy( NaN, 1.0 )\ny = base.dist.logistic.entropy( 0.0, NaN )\ny = base.dist.logistic.entropy( 0.0, 0.0 )\n",
-	"base.dist.logistic.kurtosis": "y = base.dist.logistic.kurtosis( 0.0, 1.0 )\ny = base.dist.logistic.kurtosis( 4.0, 2.0 )\ny = base.dist.logistic.kurtosis( NaN, 1.0 )\ny = base.dist.logistic.kurtosis( 0.0, NaN )\ny = base.dist.logistic.kurtosis( 0.0, 0.0 )\n",
-	"base.dist.logistic.logcdf": "y = base.dist.logistic.logcdf( 2.0, 0.0, 1.0 )\ny = base.dist.logistic.logcdf( 5.0, 10.0, 3.0 )\ny = base.dist.logistic.logcdf( 2.0, 0.0, NaN )\ny = base.dist.logistic.logcdf( 2, NaN, 1.0 )\ny = base.dist.logistic.logcdf( NaN, 0.0, 1.0 )\n",
-	"base.dist.logistic.Logistic": "logistic = base.dist.logistic.Logistic( -2.0, 3.0 );\nlogistic.mu\nlogistic.s\nlogistic.entropy\nlogistic.kurtosis\nlogistic.mean\nlogistic.median\nlogistic.mode\nlogistic.skewness\nlogistic.stdev\nlogistic.variance\nlogistic.cdf( 0.8 )\nlogistic.logcdf( 0.8 )\nlogistic.logpdf( 2.0 )\nlogistic.mgf( 0.2 )\nlogistic.pdf( 2.0 )\nlogistic.quantile( 0.9 )\n",
-	"base.dist.logistic.logpdf": "y = base.dist.logistic.logpdf( 2.0, 0.0, 1.0 )\ny = base.dist.logistic.logpdf( -1.0, 4.0, 2.0 )\ny = base.dist.logistic.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.logistic.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.logistic.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.logistic.logpdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution at `s = 0.0`:\ny = base.dist.logistic.logpdf( 2.0, 8.0, 0.0 )\ny = base.dist.logistic.logpdf( 8.0, 8.0, 0.0 )\n",
-	"base.dist.logistic.mean": "y = base.dist.logistic.mean( 0.0, 1.0 )\ny = base.dist.logistic.mean( 4.0, 2.0 )\ny = base.dist.logistic.mean( NaN, 1.0 )\ny = base.dist.logistic.mean( 0.0, NaN )\ny = base.dist.logistic.mean( 0.0, 0.0 )\n",
-	"base.dist.logistic.median": "y = base.dist.logistic.median( 0.0, 1.0 )\ny = base.dist.logistic.median( 4.0, 2.0 )\ny = base.dist.logistic.median( NaN, 1.0 )\ny = base.dist.logistic.median( 0.0, NaN )\ny = base.dist.logistic.median( 0.0, 0.0 )\n",
-	"base.dist.logistic.mgf": "y = base.dist.logistic.mgf( 0.9, 0.0, 1.0 )\ny = base.dist.logistic.mgf( 0.1, 4.0, 4.0 )\ny = base.dist.logistic.mgf( -0.2, 4.0, 4.0 )\ny = base.dist.logistic.mgf( 0.5, 0.0, -1.0 )\ny = base.dist.logistic.mgf( 0.5, 0.0, 4.0 )\ny = base.dist.logistic.mgf( NaN, 0.0, 1.0 )\ny = base.dist.logistic.mgf( 0.0, NaN, 1.0 )\ny = base.dist.logistic.mgf( 0.0, 0.0, NaN )\n",
-	"base.dist.logistic.mode": "y = base.dist.logistic.mode( 0.0, 1.0 )\ny = base.dist.logistic.mode( 4.0, 2.0 )\ny = base.dist.logistic.mode( NaN, 1.0 )\ny = base.dist.logistic.mode( 0.0, NaN )\ny = base.dist.logistic.mode( 0.0, 0.0 )\n",
-	"base.dist.logistic.pdf": "y = base.dist.logistic.pdf( 2.0, 0.0, 1.0 )\ny = base.dist.logistic.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.logistic.pdf( NaN, 0.0, 1.0 )\ny = base.dist.logistic.pdf( 0.0, NaN, 1.0 )\ny = base.dist.logistic.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.logistic.pdf( 2.0, 0.0, -1.0 )\ny = base.dist.logistic.pdf( 2.0, 8.0, 0.0 )\ny = base.dist.logistic.pdf( 8.0, 8.0, 0.0 )\n",
-	"base.dist.logistic.quantile": "y = base.dist.logistic.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.logistic.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.logistic.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.logistic.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.logistic.quantile( NaN, 0.0, 1.0 )\ny = base.dist.logistic.quantile( 0.0, NaN, 1.0 )\ny = base.dist.logistic.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.logistic.quantile( 0.5, 0.0, -1.0 )\n",
-	"base.dist.logistic.skewness": "y = base.dist.logistic.skewness( 0.0, 1.0 )\ny = base.dist.logistic.skewness( 4.0, 2.0 )\ny = base.dist.logistic.skewness( NaN, 1.0 )\ny = base.dist.logistic.skewness( 0.0, NaN )\ny = base.dist.logistic.skewness( 0.0, 0.0 )\n",
-	"base.dist.logistic.stdev": "y = base.dist.logistic.stdev( 0.0, 1.0 )\ny = base.dist.logistic.stdev( 4.0, 2.0 )\ny = base.dist.logistic.stdev( NaN, 1.0 )\ny = base.dist.logistic.stdev( 0.0, NaN )\ny = base.dist.logistic.stdev( 0.0, 0.0 )\n",
-	"base.dist.logistic.variance": "y = base.dist.logistic.variance( 0.0, 1.0 )\ny = base.dist.logistic.variance( 4.0, 2.0 )\ny = base.dist.logistic.variance( NaN, 1.0 )\ny = base.dist.logistic.variance( 0.0, NaN )\ny = base.dist.logistic.variance( 0.0, 0.0 )\n",
-	"base.dist.lognormal.cdf": "y = base.dist.lognormal.cdf( 2.0, 0.0, 1.0 )\ny = base.dist.lognormal.cdf( 5.0, 10.0, 3.0 )\ny = base.dist.lognormal.cdf( 2.0, 0.0, NaN )\ny = base.dist.lognormal.cdf( 2.0, NaN, 1.0 )\ny = base.dist.lognormal.cdf( NaN, 0.0, 1.0 )\n\n// Non-positive scale parameter `σ`:\ny = base.dist.lognormal.cdf( 2.0, 0.0, -1.0 )\ny = base.dist.lognormal.cdf( 2.0, 0.0, 0.0 )\n",
-	"base.dist.lognormal.entropy": "y = base.dist.lognormal.entropy( 0.0, 1.0 )\ny = base.dist.lognormal.entropy( 5.0, 2.0 )\ny = base.dist.lognormal.entropy( NaN, 1.0 )\ny = base.dist.lognormal.entropy( 0.0, NaN )\ny = base.dist.lognormal.entropy( 0.0, 0.0 )\n",
-	"base.dist.lognormal.kurtosis": "y = base.dist.lognormal.kurtosis( 0.0, 1.0 )\ny = base.dist.lognormal.kurtosis( 5.0, 2.0 )\ny = base.dist.lognormal.kurtosis( NaN, 1.0 )\ny = base.dist.lognormal.kurtosis( 0.0, NaN )\ny = base.dist.lognormal.kurtosis( 0.0, 0.0 )\n",
-	"base.dist.lognormal.LogNormal": "lognormal = base.dist.lognormal.LogNormal( -2.0, 3.0 );\nlognormal.mu\nlognormal.sigma\nlognormal.entropy\nlognormal.kurtosis\nlognormal.mean\nlognormal.median\nlognormal.mode\nlognormal.skewness\nlognormal.stdev\nlognormal.variance\nlognormal.cdf( 0.8 )\nlognormal.pdf( 2.0 )\nlognormal.quantile( 0.9 )\n",
-	"base.dist.lognormal.mean": "y = base.dist.lognormal.mean( 0.0, 1.0 )\ny = base.dist.lognormal.mean( 4.0, 2.0 )\ny = base.dist.lognormal.mean( NaN, 1.0 )\ny = base.dist.lognormal.mean( 0.0, NaN )\ny = base.dist.lognormal.mean( 0.0, 0.0 )\n",
-	"base.dist.lognormal.median": "y = base.dist.lognormal.median( 0.0, 1.0 )\ny = base.dist.lognormal.median( 5.0, 2.0 )\ny = base.dist.lognormal.median( NaN, 1.0 )\ny = base.dist.lognormal.median( 0.0, NaN )\ny = base.dist.lognormal.median( 0.0, 0.0 )\n",
-	"base.dist.lognormal.mode": "y = base.dist.lognormal.mode( 0.0, 1.0 )\ny = base.dist.lognormal.mode( 5.0, 2.0 )\ny = base.dist.lognormal.mode( NaN, 1.0 )\ny = base.dist.lognormal.mode( 0.0, NaN )\ny = base.dist.lognormal.mode( 0.0, 0.0 )\n",
-	"base.dist.lognormal.pdf": "y = base.dist.lognormal.pdf( 2.0, 0.0, 1.0 )\ny = base.dist.lognormal.pdf( 1.0, 0.0, 1.0 )\ny = base.dist.lognormal.pdf( 1.0, 3.0, 1.0 )\ny = base.dist.lognormal.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.lognormal.pdf( NaN, 0.0, 1.0 )\ny = base.dist.lognormal.pdf( 0.0, NaN, 1.0 )\ny = base.dist.lognormal.pdf( 0.0, 0.0, NaN )\n\n// Non-positive scale parameter `σ`:\ny = base.dist.lognormal.pdf( 2.0, 0.0, -1.0 )\ny = base.dist.lognormal.pdf( 2.0, 0.0, 0.0 )\n",
-	"base.dist.lognormal.quantile": "y = base.dist.lognormal.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.lognormal.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.lognormal.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.lognormal.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.lognormal.quantile( NaN, 0.0, 1.0 )\ny = base.dist.lognormal.quantile( 0.0, NaN, 1.0 )\ny = base.dist.lognormal.quantile( 0.0, 0.0, NaN )\n\n// Non-positive scale parameter `σ`:\ny = base.dist.lognormal.quantile( 0.5, 0.0, -1.0 )\ny = base.dist.lognormal.quantile( 0.5, 0.0, 0.0 )\n",
-	"base.dist.lognormal.skewness": "y = base.dist.lognormal.skewness( 0.0, 1.0 )\ny = base.dist.lognormal.skewness( 5.0, 2.0 )\ny = base.dist.lognormal.skewness( NaN, 1.0 )\ny = base.dist.lognormal.skewness( 0.0, NaN )\ny = base.dist.lognormal.skewness( 0.0, 0.0 )\n",
-	"base.dist.lognormal.stdev": "y = base.dist.lognormal.stdev( 0.0, 1.0 )\ny = base.dist.lognormal.stdev( 4.0, 2.0 )\ny = base.dist.lognormal.stdev( NaN, 1.0 )\ny = base.dist.lognormal.stdev( 0.0, NaN )\ny = base.dist.lognormal.stdev( 0.0, 0.0 )\n",
-	"base.dist.lognormal.variance": "y = base.dist.lognormal.variance( 0.0, 1.0 )\ny = base.dist.lognormal.variance( 4.0, 2.0 )\ny = base.dist.lognormal.variance( NaN, 1.0 )\ny = base.dist.lognormal.variance( 0.0, NaN )\ny = base.dist.lognormal.variance( 0.0, 0.0 )\n",
-	"base.dist.negativeBinomial.cdf": "y = base.dist.negativeBinomial.cdf( 5.0, 20.0, 0.8 )\ny = base.dist.negativeBinomial.cdf( 21.0, 20.0, 0.5 )\ny = base.dist.negativeBinomial.cdf( 5.0, 10.0, 0.4 )\ny = base.dist.negativeBinomial.cdf( 0.0, 10.0, 0.9 )\ny = base.dist.negativeBinomial.cdf( 21.0, 15.5, 0.5 )\ny = base.dist.negativeBinomial.cdf( 5.0, 7.4, 0.4 )\ny = base.dist.negativeBinomial.cdf( 2.0, 0.0, 0.5 )\ny = base.dist.negativeBinomial.cdf( 2.0, -2.0, 0.5 )\ny = base.dist.negativeBinomial.cdf( NaN, 20.0, 0.5 )\ny = base.dist.negativeBinomial.cdf( 0.0, NaN, 0.5 )\ny = base.dist.negativeBinomial.cdf( 0.0, 20.0, NaN )\ny = base.dist.negativeBinomial.cdf( 2.0, 20, -1.0 )\ny = base.dist.negativeBinomial.cdf( 2.0, 20, 1.5 )\n",
-	"base.dist.negativeBinomial.kurtosis": "v = base.dist.negativeBinomial.kurtosis( 100, 0.2 )\nv = base.dist.negativeBinomial.kurtosis( 20, 0.5 )\n",
-	"base.dist.negativeBinomial.mean": "v = base.dist.negativeBinomial.mean( 100, 0.2 )\nv = base.dist.negativeBinomial.mean( 20, 0.5 )\n",
-	"base.dist.negativeBinomial.mgf": "y = base.dist.negativeBinomial.mgf( 0.05, 20.0, 0.8 )\ny = base.dist.negativeBinomial.mgf( 0.1, 20.0, 0.1 )\ny = base.dist.negativeBinomial.mgf( 0.5, 10.0, 0.4 )\ny = base.dist.negativeBinomial.mgf( 0.1, 0.0, 0.5 )\ny = base.dist.negativeBinomial.mgf( 0.1, -2.0, 0.5 )\ny = base.dist.negativeBinomial.mgf( NaN, 20.0, 0.5 )\ny = base.dist.negativeBinomial.mgf( 0.0, NaN, 0.5 )\ny = base.dist.negativeBinomial.mgf( 0.0, 20.0, NaN )\ny = base.dist.negativeBinomial.mgf( 0.2, 20, -1.0 )\ny = base.dist.negativeBinomial.mgf( 0.2, 20, 1.5 )\n",
-	"base.dist.negativeBinomial.mode": "v = base.dist.negativeBinomial.mode( 100, 0.2 )\nv = base.dist.negativeBinomial.mode( 20, 0.5 )\n",
-	"base.dist.negativeBinomial.NegativeBinomial": "nbinomial = base.dist.negativeBinomial.NegativeBinomial( 8.0, 0.5 );\nnbinomial.r\nnbinomial.p\nnbinomial.kurtosis\nnbinomial.mean\nnbinomial.mode\nnbinomial.skewness\nnbinomial.stdev\nnbinomial.variance\nnbinomial.cdf( 2.9 )\nnbinomial.mgf( 0.2 )\nnbinomial.pmf( 3.0 )\nnbinomial.quantile( 0.8 )\n",
-	"base.dist.negativeBinomial.pmf": "y = base.dist.negativeBinomial.pmf( 5.0, 20.0, 0.8 )\ny = base.dist.negativeBinomial.pmf( 21.0, 20.0, 0.5 )\ny = base.dist.negativeBinomial.pmf( 5.0, 10.0, 0.4 )\ny = base.dist.negativeBinomial.pmf( 0.0, 10.0, 0.9 )\ny = base.dist.negativeBinomial.pmf( 21.0, 15.5, 0.5 )\ny = base.dist.negativeBinomial.pmf( 5.0, 7.4, 0.4 )\ny = base.dist.negativeBinomial.pmf( 2.0, 0.0, 0.5 )\ny = base.dist.negativeBinomial.pmf( 2.0, -2.0, 0.5 )\ny = base.dist.negativeBinomial.pmf( 2.0, 20, -1.0 )\ny = base.dist.negativeBinomial.pmf( 2.0, 20, 1.5 )\ny = base.dist.negativeBinomial.pmf( NaN, 20.0, 0.5 )\ny = base.dist.negativeBinomial.pmf( 0.0, NaN, 0.5 )\ny = base.dist.negativeBinomial.pmf( 0.0, 20.0, NaN )\n",
-	"base.dist.negativeBinomial.quantile": "y = base.dist.negativeBinomial.quantile( 0.9, 20.0, 0.2 )\ny = base.dist.negativeBinomial.quantile( 0.9, 20.0, 0.8 )\ny = base.dist.negativeBinomial.quantile( 0.5, 10.0, 0.4 )\ny = base.dist.negativeBinomial.quantile( 0.0, 10.0, 0.9 )\ny = base.dist.negativeBinomial.quantile( 1.1, 20.0, 0.5 )\ny = base.dist.negativeBinomial.quantile( -0.1, 20.0, 0.5 )\ny = base.dist.negativeBinomial.quantile( 21.0, 15.5, 0.5 )\ny = base.dist.negativeBinomial.quantile( 5.0, 7.4, 0.4 )\ny = base.dist.negativeBinomial.quantile( 0.5, 0.0, 0.5 )\ny = base.dist.negativeBinomial.quantile( 0.5, -2.0, 0.5 )\ny = base.dist.negativeBinomial.quantile( 0.3, 20.0, -1.0 )\ny = base.dist.negativeBinomial.quantile( 0.3, 20.0, 1.5 )\ny = base.dist.negativeBinomial.quantile( NaN, 20.0, 0.5 )\ny = base.dist.negativeBinomial.quantile( 0.3, NaN, 0.5 )\ny = base.dist.negativeBinomial.quantile( 0.3, 20.0, NaN )\n",
-	"base.dist.negativeBinomial.skewness": "v = base.dist.negativeBinomial.skewness( 100, 0.2 )\nv = base.dist.negativeBinomial.skewness( 20, 0.5 )\n",
-	"base.dist.negativeBinomial.stdev": "v = base.dist.negativeBinomial.stdev( 100, 0.2 )\nv = base.dist.negativeBinomial.stdev( 20, 0.5 )\n",
-	"base.dist.negativeBinomial.variance": "v = base.dist.negativeBinomial.variance( 100, 0.2 )\nv = base.dist.negativeBinomial.variance( 20, 0.5 )\n",
-	"base.dist.normal.cdf": "y = base.dist.normal.cdf( 2.0, 0.0, 1.0 )\ny = base.dist.normal.cdf( -1.0, -1.0, 2.0 )\ny = base.dist.normal.cdf( -1.0, 4.0, 2.0 )\ny = base.dist.normal.cdf( NaN, 0.0, 1.0 )\ny = base.dist.normal.cdf( 0.0, NaN, 1.0 )\ny = base.dist.normal.cdf( 0.0, 0.0, NaN )\n\n// Negative standard deviation:\ny = base.dist.normal.cdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution centered at `μ` when `σ = 0.0`:\ny = base.dist.normal.cdf( 2.0, 8.0, 0.0 )\ny = base.dist.normal.cdf( 8.0, 8.0, 0.0 )\ny = base.dist.normal.cdf( 10.0, 8.0, 0.0 )\n",
-	"base.dist.normal.entropy": "y = base.dist.normal.entropy( 0.0, 1.0 )\ny = base.dist.normal.entropy( 4.0, 3.0 )\ny = base.dist.normal.entropy( NaN, 1.0 )\ny = base.dist.normal.entropy( 0.0, NaN )\ny = base.dist.normal.entropy( 0.0, 0.0 )\n",
-	"base.dist.normal.kurtosis": "y = base.dist.normal.kurtosis( 0.0, 1.0 )\ny = base.dist.normal.kurtosis( 4.0, 3.0 )\ny = base.dist.normal.kurtosis( NaN, 1.0 )\ny = base.dist.normal.kurtosis( 0.0, NaN )\ny = base.dist.normal.kurtosis( 0.0, 0.0 )\n",
-	"base.dist.normal.mean": "y = base.dist.normal.mean( 0.0, 1.0 )\ny = base.dist.normal.mean( 4.0, 2.0 )\ny = base.dist.normal.mean( NaN, 1.0 )\ny = base.dist.normal.mean( 0.0, NaN )\ny = base.dist.normal.mean( 0.0, 0.0 )\n",
-	"base.dist.normal.median": "y = base.dist.normal.median( 0.0, 1.0 )\ny = base.dist.normal.median( 4.0, 2.0 )\ny = base.dist.normal.median( NaN, 1.0 )\ny = base.dist.normal.median( 0.0, NaN )\ny = base.dist.normal.median( 0.0, 0.0 )\n",
-	"base.dist.normal.mgf": "y = base.dist.normal.mgf( 2.0, 0.0, 1.0 )\ny = base.dist.normal.mgf( 0.0, 0.0, 1.0 )\ny = base.dist.normal.mgf( -1.0, 4.0, 2.0 )\ny = base.dist.normal.mgf( NaN, 0.0, 1.0 )\ny = base.dist.normal.mgf( 0.0, NaN, 1.0 )\ny = base.dist.normal.mgf( 0.0, 0.0, NaN )\ny = base.dist.normal.mgf( 2.0, 0.0, 0.0 )\n",
-	"base.dist.normal.mode": "y = base.dist.normal.mode( 0.0, 1.0 )\ny = base.dist.normal.mode( 4.0, 2.0 )\ny = base.dist.normal.mode( NaN, 1.0 )\ny = base.dist.normal.mode( 0.0, NaN )\ny = base.dist.normal.mode( 0.0, 0.0 )\n",
-	"base.dist.normal.Normal": "normal = base.dist.normal.Normal( -2.0, 3.0 );\nnormal.mu\nnormal.sigma\nnormal.entropy\nnormal.kurtosis\nnormal.mean\nnormal.median\nnormal.mode\nnormal.skewness\nnormal.stdev\nnormal.variance\nnormal.cdf( 0.8 )\nnormal.mgf( 0.2 )\nnormal.pdf( 2.0 )\nnormal.quantile( 0.9 )\n",
-	"base.dist.normal.pdf": "y = base.dist.normal.pdf( 2.0, 0.0, 1.0 )\ny = base.dist.normal.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.normal.pdf( NaN, 0.0, 1.0 )\ny = base.dist.normal.pdf( 0.0, NaN, 1.0 )\ny = base.dist.normal.pdf( 0.0, 0.0, NaN )\n\n// Negative standard deviation:\ny = base.dist.normal.pdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution centered at `μ` when `σ = 0.0`:\ny = base.dist.normal.pdf( 2.0, 8.0, 0.0 )\ny = base.dist.normal.pdf( 8.0, 8.0, 0.0 )\n",
-	"base.dist.normal.quantile": "y = base.dist.normal.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.normal.quantile( 0.5, 4.0, 2.0 )\ny = base.dist.normal.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.normal.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.normal.quantile( NaN, 0.0, 1.0 )\ny = base.dist.normal.quantile( 0.0, NaN, 1.0 )\ny = base.dist.normal.quantile( 0.0, 0.0, NaN )\n\n// Negative standard deviation:\ny = base.dist.normal.quantile( 0.5, 0.0, -1.0 )\n\n// Degenerate distribution centered at `μ` when `σ = 0.0`:\ny = base.dist.normal.quantile( 0.3, 8.0, 0.0 );\ny = base.dist.normal.quantile( 0.9, 8.0, 0.0 );\n",
-	"base.dist.normal.skewness": "y = base.dist.normal.skewness( 0.0, 1.0 )\ny = base.dist.normal.skewness( 4.0, 3.0 )\ny = base.dist.normal.skewness( NaN, 1.0 )\ny = base.dist.normal.skewness( 0.0, NaN )\ny = base.dist.normal.skewness( 0.0, 0.0 )\n",
-	"base.dist.normal.stdev": "y = base.dist.normal.stdev( 0.0, 1.0 )\ny = base.dist.normal.stdev( 4.0, 3.0 )\ny = base.dist.normal.stdev( NaN, 1.0 )\ny = base.dist.normal.stdev( 0.0, NaN )\ny = base.dist.normal.stdev( 0.0, 0.0 )\n",
-	"base.dist.normal.variance": "y = base.dist.normal.variance( 0.0, 1.0 )\ny = base.dist.normal.variance( 4.0, 3.0 )\ny = base.dist.normal.variance( NaN, 1.0 )\ny = base.dist.normal.variance( 0.0, NaN )\ny = base.dist.normal.variance( 0.0, 0.0 )\n",
-	"base.dist.pareto1.cdf": "y = base.dist.pareto1.cdf( 2.0, 1.0, 1.0 )\ny = base.dist.pareto1.cdf( 5.0, 2.0, 4.0 )\ny = base.dist.pareto1.cdf( 4.0, 2.0, 2.0 )\ny = base.dist.pareto1.cdf( 1.9, 2.0, 2.0 )\ny = base.dist.pareto1.cdf( PINF, 4.0, 2.0 )\ny = base.dist.pareto1.cdf( 2.0, -1.0, 0.5 )\ny = base.dist.pareto1.cdf( 2.0, 0.5, -1.0 )\ny = base.dist.pareto1.cdf( NaN, 1.0, 1.0 )\ny = base.dist.pareto1.cdf( 0.0, NaN, 1.0 )\ny = base.dist.pareto1.cdf( 0.0, 1.0, NaN )\n",
-	"base.dist.pareto1.entropy": "v = base.dist.pareto1.entropy( 0.8, 1.0 )\nv = base.dist.pareto1.entropy( 4.0, 12.0 )\nv = base.dist.pareto1.entropy( 8.0, 2.0 )\n",
-	"base.dist.pareto1.kurtosis": "v = base.dist.pareto1.kurtosis( 5.0, 1.0 )\nv = base.dist.pareto1.kurtosis( 4.5, 12.0 )\nv = base.dist.pareto1.kurtosis( 8.0, 2.0 )\n",
-	"base.dist.pareto1.mean": "v = base.dist.pareto1.mean( 0.8, 1.0 )\nv = base.dist.pareto1.mean( 4.0, 12.0 )\nv = base.dist.pareto1.mean( 8.0, 2.0 )\n",
-	"base.dist.pareto1.median": "v = base.dist.pareto1.median( 0.8, 1.0 )\nv = base.dist.pareto1.median( 4.0, 12.0 )\nv = base.dist.pareto1.median( 8.0, 2.0 )\n",
-	"base.dist.pareto1.mode": "v = base.dist.pareto1.mode( 0.8, 1.0 )\nv = base.dist.pareto1.mode( 4.0, 12.0 )\nv = base.dist.pareto1.mode( 8.0, 2.0 )\n",
-	"base.dist.pareto1.Pareto1": "pareto1 = base.dist.pareto1.Pareto1( 6.0, 5.0 );\npareto1.alpha\npareto1.beta\npareto1.entropy\npareto1.kurtosis\npareto1.mean\npareto1.median\npareto1.mode\npareto1.skewness\npareto1.variance\npareto1.cdf( 7.0 )\npareto1.pdf( 5.0 )\npareto1.quantile( 0.8 )\n",
-	"base.dist.pareto1.pdf": "y = base.dist.pareto1.pdf( 4.0, 1.0, 1.0 )\ny = base.dist.pareto1.pdf( 20.0, 1.0, 10.0 )\ny = base.dist.pareto1.pdf( 7.0, 2.0, 6.0 )\ny = base.dist.pareto1.pdf( 7.0, 6.0, 3.0 )\ny = base.dist.pareto1.pdf( 1.0, 4.0, 2.0 )\ny = base.dist.pareto1.pdf( 1.5, 4.0, 2.0 )\ny = base.dist.pareto1.pdf( 0.5, -1.0, 0.5 )\ny = base.dist.pareto1.pdf( 0.5, 0.5, -1.0 )\ny = base.dist.pareto1.pdf( NaN, 1.0, 1.0 )\ny = base.dist.pareto1.pdf( 0.5, NaN, 1.0 )\ny = base.dist.pareto1.pdf( 0.5, 1.0, NaN )\n",
-	"base.dist.pareto1.quantile": "y = base.dist.pareto1.quantile( 0.8, 2.0, 1.0 )\ny = base.dist.pareto1.quantile( 0.8, 1.0, 10.0 )\ny = base.dist.pareto1.quantile( 0.1, 1.0, 10.0 )\ny = base.dist.pareto1.quantile( 1.1, 1.0, 1.0 )\ny = base.dist.pareto1.quantile( -0.2, 1.0, 1.0 )\ny = base.dist.pareto1.quantile( NaN, 1.0, 1.0 )\ny = base.dist.pareto1.quantile( 0.5, NaN, 1.0 )\ny = base.dist.pareto1.quantile( 0.5, 1.0, NaN )\ny = base.dist.pareto1.quantile( 0.5, -1.0, 1.0 )\ny = base.dist.pareto1.quantile( 0.5, 1.0, -1.0 )\n",
-	"base.dist.pareto1.skewness": "v = base.dist.pareto1.skewness( 3.5, 1.0 )\nv = base.dist.pareto1.skewness( 4.0, 12.0 )\nv = base.dist.pareto1.skewness( 8.0, 2.0 )\n",
-	"base.dist.pareto1.variance": "v = base.dist.pareto1.variance( 0.8, 1.0 )\nv = base.dist.pareto1.variance( 4.0, 12.0 )\nv = base.dist.pareto1.variance( 8.0, 2.0 )\n",
-	"base.dist.poisson.cdf": "y = base.dist.poisson.cdf( 2.0, 0.5 )\ny = base.dist.poisson.cdf( 2.0, 10.0 )\ny = base.dist.poisson.cdf( -1.0, 4.0 )\ny = base.dist.poisson.cdf( NaN, 1.0 )\ny = base.dist.poisson.cdf( 0.0, NaN )\n\n// Negative mean parameter:\ny = base.dist.poisson.cdf( 2.0, -1.0 )\n\n// Degenerate distribution at `λ = 0`:\ny = base.dist.poisson.cdf( -2.0, 0.0 );\ny = base.dist.poisson.cdf( 0.0, 0.0 );\ny = base.dist.poisson.cdf( 10.0, 0.0 );\n",
-	"base.dist.poisson.entropy": "v = base.dist.poisson.entropy( 11.0 )\nv = base.dist.poisson.entropy( 4.5 )\n",
-	"base.dist.poisson.kurtosis": "v = base.dist.poisson.kurtosis( 11.0 )\nv = base.dist.poisson.kurtosis( 4.5 )\n",
-	"base.dist.poisson.mean": "v = base.dist.poisson.mean( 11.0 )\nv = base.dist.poisson.mean( 4.5 )\n",
-	"base.dist.poisson.median": "v = base.dist.poisson.median( 11.0 )\nv = base.dist.poisson.median( 4.5 )\n",
-	"base.dist.poisson.mode": "v = base.dist.poisson.mode( 11.0 )\nv = base.dist.poisson.mode( 4.5 )\n",
-	"base.dist.poisson.pmf": "y = base.dist.poisson.pmf( 4.0, 3.0 )\ny = base.dist.poisson.pmf( 1.0, 3.0 )\ny = base.dist.poisson.pmf( -1.0, 2.0 )\ny = base.dist.poisson.pmf( 0.0, NaN )\ny = base.dist.poisson.pmf( NaN, 0.5 )\n\n// Negative mean parameter:\ny = base.dist.poisson.pmf( 2.0, -0.5 )\n\n// Degenerate distribution at `λ = 0`:\ny = base.dist.poisson.pmf( 2.0, 0.0 )\ny = base.dist.poisson.pmf( 0.0, 0.0 )\n",
-	"base.dist.poisson.Poisson": "poisson = base.dist.poisson.Poisson( 6.0 );\npoisson.lambda\npoisson.entropy\npoisson.kurtosis\npoisson.mean\npoisson.median\npoisson.mode\npoisson.skewness\npoisson.stdev\npoisson.variance\npoisson.cdf( 4.0 )\npoisson.mgf( 0.5 )\npoisson.pmf( 2.0 )\npoisson.quantile( 0.5 )\n",
-	"base.dist.poisson.quantile": "y = base.dist.poisson.quantile( 0.5, 2.0 )\ny = base.dist.poisson.quantile( 0.9, 4.0 )\ny = base.dist.poisson.quantile( 0.1, 200.0 )\ny = base.dist.poisson.quantile( 1.1, 0.0 )\ny = base.dist.poisson.quantile( -0.2, 0.0 )\ny = base.dist.poisson.quantile( NaN, 0.5 )\ny = base.dist.poisson.quantile( 0.0, NaN )\n\n// Negative mean parameter:\ny = base.dist.poisson.quantile( 2.0, -1.0 )\n\n// Degenerate distribution at `λ = 0`:\ny = base.dist.poisson.quantile( 0.1, 0.0 );\ny = base.dist.poisson.quantile( 0.9, 0.0 );\n",
-	"base.dist.poisson.skewness": "v = base.dist.poisson.skewness( 11.0 )\nv = base.dist.poisson.skewness( 4.5 )\n",
-	"base.dist.poisson.stdev": "v = base.dist.poisson.stdev( 11.0 )\nv = base.dist.poisson.stdev( 4.5 )\n",
-	"base.dist.poisson.variance": "v = base.dist.poisson.variance( 11.0 )\nv = base.dist.poisson.variance( 4.5 )\n",
-	"base.dist.rayleigh.cdf": "y = base.dist.rayleigh.cdf( 2.0, 3.0 )\ny = base.dist.rayleigh.cdf( 1.0, 2.0 )\ny = base.dist.rayleigh.cdf( -1.0, 4.0 )\ny = base.dist.rayleigh.cdf( NaN, 1.0 )\ny = base.dist.rayleigh.cdf( 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.rayleigh.cdf( 2.0, -1.0 )\n\n// Degenerate distribution when `sigma = 0.0`:\ny = base.dist.rayleigh.cdf( -2.0, 0.0 );\ny = base.dist.rayleigh.cdf( 0.0, 0.0 );\ny = base.dist.rayleigh.cdf( 2.0, 0.0 );\n",
-	"base.dist.rayleigh.entropy": "v = base.dist.rayleigh.entropy( 11.0 )\nv = base.dist.rayleigh.entropy( 4.5 )\n",
-	"base.dist.rayleigh.kurtosis": "v = base.dist.rayleigh.kurtosis( 11.0 )\nv = base.dist.rayleigh.kurtosis( 4.5 )\n",
-	"base.dist.rayleigh.logcdf": "y = base.dist.rayleigh.logcdf( 2.0, 3.0 )\ny = base.dist.rayleigh.logcdf( 1.0, 2.0 )\ny = base.dist.rayleigh.logcdf( -1.0, 4.0 )\ny = base.dist.rayleigh.logcdf( NaN, 1.0 )\ny = base.dist.rayleigh.logcdf( 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.rayleigh.logcdf( 2.0, -1.0 )\n",
-	"base.dist.rayleigh.logpdf": "y = base.dist.rayleigh.logpdf( 0.3, 1.0 )\ny = base.dist.rayleigh.logpdf( 2.0, 0.8 )\ny = base.dist.rayleigh.logpdf( -1.0, 0.5 )\ny = base.dist.rayleigh.logpdf( 0.0, NaN )\ny = base.dist.rayleigh.logpdf( NaN, 2.0 )\n\n// Negative scale parameter:\ny = base.dist.rayleigh.logpdf( 2.0, -1.0 )\n",
-	"base.dist.rayleigh.mean": "v = base.dist.rayleigh.mean( 11.0 )\nv = base.dist.rayleigh.mean( 4.5 )\n",
-	"base.dist.rayleigh.median": "v = base.dist.rayleigh.median( 11.0 )\nv = base.dist.rayleigh.median( 4.5 )\n",
-	"base.dist.rayleigh.mgf": "y = base.dist.rayleigh.mgf( 1.0, 3.0 )\ny = base.dist.rayleigh.mgf( 1.0, 2.0 )\ny = base.dist.rayleigh.mgf( -1.0, 4.0 )\ny = base.dist.rayleigh.mgf( NaN, 1.0 )\ny = base.dist.rayleigh.mgf( 0.0, NaN )\ny = base.dist.rayleigh.mgf( 0.5, -1.0 )\n",
-	"base.dist.rayleigh.mode": "v = base.dist.rayleigh.mode( 11.0 )\nv = base.dist.rayleigh.mode( 4.5 )\n",
-	"base.dist.rayleigh.pdf": "y = base.dist.rayleigh.pdf( 0.3, 1.0 )\ny = base.dist.rayleigh.pdf( 2.0, 0.8 )\ny = base.dist.rayleigh.pdf( -1.0, 0.5 )\ny = base.dist.rayleigh.pdf( 0.0, NaN )\ny = base.dist.rayleigh.pdf( NaN, 2.0 )\n\n// Negative scale parameter:\ny = base.dist.rayleigh.pdf( 2.0, -1.0 )\n\n// Degenerate distribution when `sigma = 0.0`:\ny = base.dist.rayleigh.pdf( -2.0, 0.0 )\ny = base.dist.rayleigh.pdf( 0.0, 0.0 )\ny = base.dist.rayleigh.pdf( 2.0, 0.0 )\n",
-	"base.dist.rayleigh.Rayleigh": "rayleigh = base.dist.rayleigh.Rayleigh( 6.0 );\nrayleigh.sigma\nrayleigh.entropy\nrayleigh.kurtosis\nrayleigh.mean\nrayleigh.median\nrayleigh.mode\nrayleigh.skewness\nrayleigh.stdev\nrayleigh.variance\nrayleigh.cdf( 1.0 )\nrayleigh.mgf( -0.5 )\nrayleigh.pdf( 1.5 )\nrayleigh.quantile( 0.5 )\n",
-	"base.dist.rayleigh.quantile": "y = base.dist.rayleigh.quantile( 0.8, 1.0 )\ny = base.dist.rayleigh.quantile( 0.5, 4.0 )\ny = base.dist.rayleigh.quantile( 1.1, 1.0 )\ny = base.dist.rayleigh.quantile( -0.2, 1.0 )\ny = base.dist.rayleigh.quantile( NaN, 1.0 )\ny = base.dist.rayleigh.quantile( 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dist.rayleigh.quantile( 0.5, -1.0 )\n",
-	"base.dist.rayleigh.skewness": "v = base.dist.rayleigh.skewness( 11.0 )\nv = base.dist.rayleigh.skewness( 4.5 )\n",
-	"base.dist.rayleigh.stdev": "v = base.dist.rayleigh.stdev( 9.0 )\nv = base.dist.rayleigh.stdev( 4.5 )\n",
-	"base.dist.rayleigh.variance": "v = base.dist.rayleigh.variance( 9.0 )\nv = base.dist.rayleigh.variance( 4.5 )\n",
-	"base.dist.t.cdf": "y = base.dist.t.cdf( 2.0, 0.1 )\ny = base.dist.t.cdf( 1.0, 2.0 )\ny = base.dist.t.cdf( -1.0, 4.0 )\ny = base.dist.t.cdf( NaN, 1.0 )\ny = base.dist.t.cdf( 0.0, NaN )\ny = base.dist.t.cdf( 2.0, -1.0 )\n",
-	"base.dist.t.entropy": "v = base.dist.t.entropy( 11.0 )\nv = base.dist.t.entropy( 4.5 )\n",
-	"base.dist.t.kurtosis": "v = base.dist.t.kurtosis( 11.0 )\nv = base.dist.t.kurtosis( 4.5 )\n",
-	"base.dist.t.mean": "v = base.dist.t.mean( 11.0 )\nv = base.dist.t.mean( 4.5 )\n",
-	"base.dist.t.median": "v = base.dist.t.median( 11.0 )\nv = base.dist.t.median( 4.5 )\n",
-	"base.dist.t.mode": "v = base.dist.t.mode( 11.0 )\nv = base.dist.t.mode( 4.5 )\n",
-	"base.dist.t.pdf": "y = base.dist.t.pdf( 0.3, 4.0 )\ny = base.dist.t.pdf( 2.0, 0.7 )\ny = base.dist.t.pdf( -1.0, 0.5 )\ny = base.dist.t.pdf( 0.0, NaN )\ny = base.dist.t.pdf( NaN, 2.0 )\ny = base.dist.t.pdf( 2.0, -1.0 )\n",
-	"base.dist.t.T": "t = base.dist.t.T( 6.0 );\nt.v\nt.entropy\nt.kurtosis\nt.mean\nt.median\nt.mode\nt.skewness\nt.stdev\nt.variance\nt.cdf( 1.0 )\nt.pdf( 1.5 )\nt.quantile( 0.8 )\n",
-	"base.dist.t.quantile": "y = base.dist.t.quantile( 0.8, 1.0 )\ny = base.dist.t.quantile( 0.1, 1.0 )\ny = base.dist.t.quantile( 0.5, 0.1 )\ny = base.dist.t.quantile( -0.2, 0.1 )\ny = base.dist.t.quantile( NaN, 1.0 )\ny = base.dist.t.quantile( 0.0, NaN )\ny = base.dist.t.quantile( 0.5, -1.0 )\n",
-	"base.dist.t.skewness": "v = base.dist.t.skewness( 11.0 )\nv = base.dist.t.skewness( 4.5 )\n",
-	"base.dist.t.stdev": "v = base.dist.t.stdev( 9.0 )\nv = base.dist.t.stdev( 4.5 )\n",
-	"base.dist.t.variance": "v = base.dist.t.variance( 9.0 )\nv = base.dist.t.variance( 4.5 )\n",
-	"base.dist.triangular.cdf": "y = base.dist.triangular.cdf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.cdf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dist.triangular.cdf( -10.0, -20.0, 0.0, -2.0 )\ny = base.dist.triangular.cdf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.cdf( NaN, 0.0, 1.0, 0.5 )\ny = base.dist.triangular.cdf( 0.0, NaN, 1.0, 0.5 )\ny = base.dist.triangular.cdf( 0.0, 0.0, NaN, 0.5 )\ny = base.dist.triangular.cdf( 2.0, 1.0, 0.0, NaN )\ny = base.dist.triangular.cdf( 2.0, 1.0, 0.0, 1.5 )\n",
-	"base.dist.triangular.entropy": "v = base.dist.triangular.entropy( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.entropy( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.entropy( 2.0, 8.0, 5.0 )\n",
-	"base.dist.triangular.kurtosis": "v = base.dist.triangular.kurtosis( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.kurtosis( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.kurtosis( 2.0, 8.0, 5.0 )\n",
-	"base.dist.triangular.mean": "v = base.dist.triangular.mean( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.mean( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.mean( 2.0, 8.0, 5.0 )\n",
-	"base.dist.triangular.median": "v = base.dist.triangular.median( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.median( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.median( 2.0, 8.0, 5.0 )\n",
-	"base.dist.triangular.mgf": "y = base.dist.triangular.mgf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.mgf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dist.triangular.mgf( -0.3, -20.0, 0.0, -2.0 )\ny = base.dist.triangular.mgf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.mgf( NaN, 0.0, 1.0, 0.5 )\ny = base.dist.triangular.mgf( 0.0, NaN, 1.0, 0.5 )\ny = base.dist.triangular.mgf( 0.0, 0.0, NaN, 0.5 )\ny = base.dist.triangular.mgf( 0.5, 1.0, 0.0, NaN )\ny = base.dist.triangular.mgf( 0.5, 1.0, 0.0, 1.5 )\n",
-	"base.dist.triangular.mode": "v = base.dist.triangular.mode( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.mode( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.mode( 2.0, 8.0, 5.0 )\n",
-	"base.dist.triangular.pdf": "y = base.dist.triangular.pdf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.pdf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dist.triangular.pdf( -10.0, -20.0, 0.0, -2.0 )\ny = base.dist.triangular.pdf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.pdf( NaN, 0.0, 1.0, 0.5 )\ny = base.dist.triangular.pdf( 0.0, NaN, 1.0, 0.5 )\ny = base.dist.triangular.pdf( 0.0, 0.0, NaN, 0.5 )\ny = base.dist.triangular.pdf( 2.0, 1.0, 0.0, NaN )\ny = base.dist.triangular.pdf( 2.0, 1.0, 0.0, 1.5 )\n",
-	"base.dist.triangular.quantile": "y = base.dist.triangular.quantile( 0.9, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.quantile( 0.1, -1.0, 1.0, 0.5 )\ny = base.dist.triangular.quantile( 0.1, -20.0, 0.0, -2.0 )\ny = base.dist.triangular.quantile( 0.8, 0.0, 20.0, 0.0 )\ny = base.dist.triangular.quantile( 1.1, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.quantile( -0.1, -1.0, 1.0, 0.0 )\ny = base.dist.triangular.quantile( NaN, 0.0, 1.0, 0.5 )\ny = base.dist.triangular.quantile( 0.3, NaN, 1.0, 0.5 )\ny = base.dist.triangular.quantile( 0.3, 0.0, NaN, 0.5 )\ny = base.dist.triangular.quantile( 0.3, 1.0, 0.0, NaN )\ny = base.dist.triangular.quantile( 0.3, 1.0, 0.0, 1.5 )\n",
-	"base.dist.triangular.skewness": "v = base.dist.triangular.skewness( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.skewness( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.skewness( 2.0, 8.0, 5.0 )\n",
-	"base.dist.triangular.stdev": "v = base.dist.triangular.stdev( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.stdev( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.stdev( 2.0, 8.0, 5.0 )\n",
-	"base.dist.triangular.Triangular": "triangular = base.dist.triangular.Triangular( 0.0, 1.0, 0.5 );\ntriangular.a\ntriangular.b\ntriangular.c\ntriangular.entropy\ntriangular.kurtosis\ntriangular.mean\ntriangular.median\ntriangular.mode\ntriangular.skewness\ntriangular.stdev\ntriangular.variance\ntriangular.cdf( 0.8 )\ntriangular.mgf( 0.8 )\ntriangular.pdf( 0.8 )\ntriangular.quantile( 0.8 )\n",
-	"base.dist.triangular.variance": "v = base.dist.triangular.variance( 0.0, 1.0, 0.8 )\nv = base.dist.triangular.variance( 4.0, 12.0, 5.0 )\nv = base.dist.triangular.variance( 2.0, 8.0, 5.0 )\n",
-	"base.dist.uniform.cdf": "y = base.dist.uniform.cdf( 9.0, 0.0, 10.0 )\ny = base.dist.uniform.cdf( 0.5, 0.0, 2.0 )\ny = base.dist.uniform.cdf( PINF, 2.0, 4.0 )\ny = base.dist.uniform.cdf( NINF, 2.0, 4.0 )\ny = base.dist.uniform.cdf( NaN, 0.0, 1.0 )\ny = base.dist.uniform.cdf( 0.0, NaN, 1.0 )\ny = base.dist.uniform.cdf( 0.0, 0.0, NaN )\ny = base.dist.uniform.cdf( 2.0, 1.0, 0.0 )\n",
-	"base.dist.uniform.entropy": "v = base.dist.uniform.entropy( 0.0, 1.0 )\nv = base.dist.uniform.entropy( 4.0, 12.0 )\nv = base.dist.uniform.entropy( 2.0, 8.0 )\n",
-	"base.dist.uniform.kurtosis": "v = base.dist.uniform.kurtosis( 0.0, 1.0 )\nv = base.dist.uniform.kurtosis( 4.0, 12.0 )\nv = base.dist.uniform.kurtosis( 2.0, 8.0 )\n",
-	"base.dist.uniform.logcdf": "y = base.dist.uniform.logcdf( 9.0, 0.0, 10.0 )\ny = base.dist.uniform.logcdf( 0.5, 0.0, 2.0 )\ny = base.dist.uniform.logcdf( PINF, 2.0, 4.0 )\ny = base.dist.uniform.logcdf( NINF, 2.0, 4.0 )\ny = base.dist.uniform.logcdf( NaN, 0.0, 1.0 )\ny = base.dist.uniform.logcdf( 0.0, NaN, 1.0 )\ny = base.dist.uniform.logcdf( 0.0, 0.0, NaN )\ny = base.dist.uniform.logcdf( 2.0, 1.0, 0.0 )\n",
-	"base.dist.uniform.logpdf": "y = base.dist.uniform.logpdf( 2.0, 0.0, 4.0 )\ny = base.dist.uniform.logpdf( 5.0, 0.0, 4.0 )\ny = base.dist.uniform.logpdf( 0.25, 0.0, 1.0 )\ny = base.dist.uniform.logpdf( NaN, 0.0, 1.0 )\ny = base.dist.uniform.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.uniform.logpdf( 0.0, 0.0, NaN )\ny = base.dist.uniform.logpdf( 2.0, 3.0, 1.0 )\n",
-	"base.dist.uniform.mean": "v = base.dist.uniform.mean( 0.0, 1.0 )\nv = base.dist.uniform.mean( 4.0, 12.0 )\nv = base.dist.uniform.mean( 2.0, 8.0 )\n",
-	"base.dist.uniform.median": "v = base.dist.uniform.median( 0.0, 1.0 )\nv = base.dist.uniform.median( 4.0, 12.0 )\nv = base.dist.uniform.median( 2.0, 8.0 )\n",
-	"base.dist.uniform.mgf": "y = base.dist.uniform.mgf( 2.0, 0.0, 4.0 )\ny = base.dist.uniform.mgf( -0.2, 0.0, 4.0 )\ny = base.dist.uniform.mgf( 2.0, 0.0, 1.0 )\ny = base.dist.uniform.mgf( 0.5, 3.0, 2.0 )\ny = base.dist.uniform.mgf( 0.5, 3.0, 3.0 )\ny = base.dist.uniform.mgf( NaN, 0.0, 1.0 )\ny = base.dist.uniform.mgf( 0.0, NaN, 1.0 )\ny = base.dist.uniform.mgf( 0.0, 0.0, NaN )\n",
-	"base.dist.uniform.pdf": "y = base.dist.uniform.pdf( 2.0, 0.0, 4.0 )\ny = base.dist.uniform.pdf( 5.0, 0.0, 4.0 )\ny = base.dist.uniform.pdf( 0.25, 0.0, 1.0 )\ny = base.dist.uniform.pdf( NaN, 0.0, 1.0 )\ny = base.dist.uniform.pdf( 0.0, NaN, 1.0 )\ny = base.dist.uniform.pdf( 0.0, 0.0, NaN )\ny = base.dist.uniform.pdf( 2.0, 3.0, 1.0 )\n",
-	"base.dist.uniform.quantile": "y = base.dist.uniform.quantile( 0.8, 0.0, 1.0 )\ny = base.dist.uniform.quantile( 0.5, 0.0, 10.0 )\ny = base.dist.uniform.quantile( 1.1, 0.0, 1.0 )\ny = base.dist.uniform.quantile( -0.2, 0.0, 1.0 )\ny = base.dist.uniform.quantile( NaN, 0.0, 1.0 )\ny = base.dist.uniform.quantile( 0.0, NaN, 1.0 )\ny = base.dist.uniform.quantile( 0.0, 0.0, NaN )\ny = base.dist.uniform.quantile( 0.5, 2.0, 1.0 )\n",
-	"base.dist.uniform.skewness": "v = base.dist.uniform.skewness( 0.0, 1.0 )\nv = base.dist.uniform.skewness( 4.0, 12.0 )\nv = base.dist.uniform.skewness( 2.0, 8.0 )\n",
-	"base.dist.uniform.stdev": "v = base.dist.uniform.stdev( 0.0, 1.0 )\nv = base.dist.uniform.stdev( 4.0, 12.0 )\nv = base.dist.uniform.stdev( 2.0, 8.0 )\n",
-	"base.dist.uniform.Uniform": "uniform = base.dist.uniform.Uniform( 0.0, 1.0 );\nuniform.a\nuniform.b\nuniform.entropy\nuniform.kurtosis\nuniform.mean\nuniform.median\nuniform.skewness\nuniform.stdev\nuniform.variance\nuniform.cdf( 0.8 )\nuniform.logcdf( 0.5 )\nuniform.logpdf( 1.0 )\nuniform.mgf( 0.8 )\nuniform.pdf( 0.8 )\nuniform.quantile( 0.8 )\n",
-	"base.dist.uniform.variance": "v = base.dist.uniform.variance( 0.0, 1.0 )\nv = base.dist.uniform.variance( 4.0, 12.0 )\nv = base.dist.uniform.variance( 2.0, 8.0 )\n",
-	"base.dist.weibull.cdf": "y = base.dist.weibull.cdf( 2.0, 1.0, 1.0 )\ny = base.dist.weibull.cdf( -1.0, 2.0, 2.0 )\ny = base.dist.weibull.cdf( PINF, 4.0, 2.0 )\ny = base.dist.weibull.cdf( NINF, 4.0, 2.0 )\ny = base.dist.weibull.cdf( NaN, 0.0, 1.0 )\ny = base.dist.weibull.cdf( 0.0, NaN, 1.0 )\ny = base.dist.weibull.cdf( 0.0, 0.0, NaN )\ny = base.dist.weibull.cdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.weibull.entropy": "v = base.dist.weibull.entropy( 1.0, 1.0 )\nv = base.dist.weibull.entropy( 4.0, 12.0 )\nv = base.dist.weibull.entropy( 8.0, 2.0 )\n",
-	"base.dist.weibull.kurtosis": "v = base.dist.weibull.kurtosis( 1.0, 1.0 )\nv = base.dist.weibull.kurtosis( 4.0, 12.0 )\nv = base.dist.weibull.kurtosis( 8.0, 2.0 )\n",
-	"base.dist.weibull.logcdf": "y = cdf( 2.0, 1.0, 1.0 )\ny = base.dist.weibull.logcdf( -1.0, 2.0, 2.0 )\ny = base.dist.weibull.logcdf( PINF, 4.0, 2.0 )\ny = base.dist.weibull.logcdf( NINF, 4.0, 2.0 )\ny = base.dist.weibull.logcdf( NaN, 0.0, 1.0 )\ny = base.dist.weibull.logcdf( 0.0, NaN, 1.0 )\ny = base.dist.weibull.logcdf( 0.0, 0.0, NaN )\ny = base.dist.weibull.logcdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.weibull.logpdf": "y = base.dist.weibull.logpdf( 2.0, 1.0, 0.5 )\ny = base.dist.weibull.logpdf( 0.1, 1.0, 1.0 )\ny = base.dist.weibull.logpdf( -1.0, 4.0, 2.0 )\ny = base.dist.weibull.logpdf( NaN, 0.6, 1.0 )\ny = base.dist.weibull.logpdf( 0.0, NaN, 1.0 )\ny = base.dist.weibull.logpdf( 0.0, 0.0, NaN )\ny = base.dist.weibull.logpdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.weibull.mean": "v = base.dist.weibull.mean( 1.0, 1.0 )\nv = base.dist.weibull.mean( 4.0, 12.0 )\nv = base.dist.weibull.mean( 8.0, 2.0 )\n",
-	"base.dist.weibull.median": "v = base.dist.weibull.median( 1.0, 1.0 )\nv = base.dist.weibull.median( 4.0, 12.0 )\nv = base.dist.weibull.median( 8.0, 2.0 )\n",
-	"base.dist.weibull.mgf": "y = base.dist.weibull.mgf( 1.0, 1.0, 0.5 )\ny = base.dist.weibull.mgf( -1.0, 4.0, 4.0 )\ny = base.dist.weibull.mgf( NaN, 1.0, 1.0 )\ny = base.dist.weibull.mgf( 0.0, NaN, 1.0 )\ny = base.dist.weibull.mgf( 0.0, 1.0, NaN )\ny = base.dist.weibull.mgf( 0.2, -1.0, 0.5 )\ny = base.dist.weibull.mgf( 0.2, 0.0, 0.5 )\ny = base.dist.weibull.mgf( 0.2, 0.5, -1.0 )\ny = base.dist.weibull.mgf( 0.2, 0.5, 0.0 )\n",
-	"base.dist.weibull.mode": "v = base.dist.weibull.mode( 1.0, 1.0 )\nv = base.dist.weibull.mode( 4.0, 12.0 )\nv = base.dist.weibull.mode( 8.0, 2.0 )\n",
-	"base.dist.weibull.pdf": "y = base.dist.weibull.pdf( 2.0, 1.0, 0.5 )\ny = base.dist.weibull.pdf( 0.1, 1.0, 1.0 )\ny = base.dist.weibull.pdf( -1.0, 4.0, 2.0 )\ny = base.dist.weibull.pdf( NaN, 0.6, 1.0 )\ny = base.dist.weibull.pdf( 0.0, NaN, 1.0 )\ny = base.dist.weibull.pdf( 0.0, 0.0, NaN )\ny = base.dist.weibull.pdf( 2.0, 0.0, -1.0 )\n",
-	"base.dist.weibull.quantile": "y = base.dist.weibull.quantile( 0.8, 1.0, 1.0 )\ny = base.dist.weibull.quantile( 0.5, 2.0, 4.0 )\ny = base.dist.weibull.quantile( 1.1, 1.0, 1.0 )\ny = base.dist.weibull.quantile( -0.2, 1.0, 1.0 )\ny = base.dist.weibull.quantile( NaN, 0.0, 1.0 )\ny = base.dist.weibull.quantile( 0.0, NaN, 1.0 )\ny = base.dist.weibull.quantile( 0.0, 0.0, NaN )\ny = base.dist.weibull.quantile( 0.5, 1.0, -1.0 )\n",
-	"base.dist.weibull.skewness": "v = base.dist.weibull.skewness( 1.0, 1.0 )\nv = base.dist.weibull.skewness( 4.0, 12.0 )\nv = base.dist.weibull.skewness( 8.0, 2.0 )\n",
-	"base.dist.weibull.stdev": "v = base.dist.weibull.stdev( 1.0, 1.0 )\nv = base.dist.weibull.stdev( 4.0, 12.0 )\nv = base.dist.weibull.stdev( 8.0, 2.0 )\n",
-	"base.dist.weibull.variance": "v = base.dist.weibull.variance( 1.0, 1.0 )\nv = base.dist.weibull.variance( 4.0, 12.0 )\nv = base.dist.weibull.variance( 8.0, 2.0 )\n",
-	"base.dist.weibull.Weibull": "weibull = base.dist.weibull.Weibull( 6.0, 5.0 );\nweibull.k\nweibull.lambda\nweibull.entropy\nweibull.kurtosis\nweibull.mean\nweibull.median\nweibull.mode\nweibull.skewness\nweibull.stdev\nweibull.variance\nweibull.cdf( 3.0 )\nweibull.logcdf( 3.0 )\nweibull.logpdf( 1.0 )\nweibull.mgf( -0.5 )\nweibull.pdf( 3.0 )\nweibull.quantile( 0.8 )\n",
+	"base.dists.arcsine.Arcsine": "arcsine = base.dists.arcsine.Arcsine( 0.0, 1.0 );\narcsine.a\narcsine.b\narcsine.entropy\narcsine.kurtosis\narcsine.mean\narcsine.median\narcsine.mode\narcsine.skewness\narcsine.stdev\narcsine.variance\narcsine.cdf( 0.8 )\narcsine.logcdf( 0.8 )\narcsine.logpdf( 1.0 )\narcsine.pdf( 0.8 )\narcsine.quantile( 0.8 )\n",
+	"base.dists.arcsine.cdf": "y = base.dists.arcsine.cdf( 9.0, 0.0, 10.0 )\ny = base.dists.arcsine.cdf( 0.5, 0.0, 2.0 )\ny = base.dists.arcsine.cdf( PINF, 2.0, 4.0 )\ny = base.dists.arcsine.cdf( NINF, 2.0, 4.0 )\ny = base.dists.arcsine.cdf( NaN, 0.0, 1.0 )\ny = base.dists.arcsine.cdf( 0.0, NaN, 1.0 )\ny = base.dists.arcsine.cdf( 0.0, 0.0, NaN )\ny = base.dists.arcsine.cdf( 2.0, 1.0, 0.0 )\n",
+	"base.dists.arcsine.entropy": "v = base.dists.arcsine.entropy( 0.0, 1.0 )\nv = base.dists.arcsine.entropy( 4.0, 12.0 )\nv = base.dists.arcsine.entropy( 2.0, 8.0 )\n",
+	"base.dists.arcsine.kurtosis": "v = base.dists.arcsine.kurtosis( 0.0, 1.0 )\nv = base.dists.arcsine.kurtosis( 4.0, 12.0 )\nv = base.dists.arcsine.kurtosis( 2.0, 8.0 )\n",
+	"base.dists.arcsine.logcdf": "y = base.dists.arcsine.logcdf( 9.0, 0.0, 10.0 )\ny = base.dists.arcsine.logcdf( 0.5, 0.0, 2.0 )\ny = base.dists.arcsine.logcdf( PINF, 2.0, 4.0 )\ny = base.dists.arcsine.logcdf( NINF, 2.0, 4.0 )\ny = base.dists.arcsine.logcdf( NaN, 0.0, 1.0 )\ny = base.dists.arcsine.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.arcsine.logcdf( 0.0, 0.0, NaN )\ny = base.dists.arcsine.logcdf( 2.0, 1.0, 0.0 )\n",
+	"base.dists.arcsine.logpdf": "y = base.dists.arcsine.logpdf( 2.0, 0.0, 4.0 )\ny = base.dists.arcsine.logpdf( 5.0, 0.0, 4.0 )\ny = base.dists.arcsine.logpdf( 0.25, 0.0, 1.0 )\ny = base.dists.arcsine.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.arcsine.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.arcsine.logpdf( 0.0, 0.0, NaN )\ny = base.dists.arcsine.logpdf( 2.0, 3.0, 1.0 )\n",
+	"base.dists.arcsine.mean": "v = base.dists.arcsine.mean( 0.0, 1.0 )\nv = base.dists.arcsine.mean( 4.0, 12.0 )\nv = base.dists.arcsine.mean( 2.0, 8.0 )\n",
+	"base.dists.arcsine.median": "v = base.dists.arcsine.median( 0.0, 1.0 )\nv = base.dists.arcsine.median( 4.0, 12.0 )\nv = base.dists.arcsine.median( 2.0, 8.0 )\n",
+	"base.dists.arcsine.mode": "v = base.dists.arcsine.mode( 0.0, 1.0 )\nv = base.dists.arcsine.mode( 4.0, 12.0 )\nv = base.dists.arcsine.mode( 2.0, 8.0 )\n",
+	"base.dists.arcsine.pdf": "y = base.dists.arcsine.pdf( 2.0, 0.0, 4.0 )\ny = base.dists.arcsine.pdf( 5.0, 0.0, 4.0 )\ny = base.dists.arcsine.pdf( 0.25, 0.0, 1.0 )\ny = base.dists.arcsine.pdf( NaN, 0.0, 1.0 )\ny = base.dists.arcsine.pdf( 0.0, NaN, 1.0 )\ny = base.dists.arcsine.pdf( 0.0, 0.0, NaN )\ny = base.dists.arcsine.pdf( 2.0, 3.0, 1.0 )\n",
+	"base.dists.arcsine.quantile": "y = base.dists.arcsine.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.arcsine.quantile( 0.5, 0.0, 10.0 )\ny = base.dists.arcsine.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.arcsine.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.arcsine.quantile( NaN, 0.0, 1.0 )\ny = base.dists.arcsine.quantile( 0.0, NaN, 1.0 )\ny = base.dists.arcsine.quantile( 0.0, 0.0, NaN )\ny = base.dists.arcsine.quantile( 0.5, 2.0, 1.0 )\n",
+	"base.dists.arcsine.skewness": "v = base.dists.arcsine.skewness( 0.0, 1.0 )\nv = base.dists.arcsine.skewness( 4.0, 12.0 )\nv = base.dists.arcsine.skewness( 2.0, 8.0 )\n",
+	"base.dists.arcsine.stdev": "v = base.dists.arcsine.stdev( 0.0, 1.0 )\nv = base.dists.arcsine.stdev( 4.0, 12.0 )\nv = base.dists.arcsine.stdev( 2.0, 8.0 )\n",
+	"base.dists.arcsine.variance": "v = base.dists.arcsine.variance( 0.0, 1.0 )\nv = base.dists.arcsine.variance( 4.0, 12.0 )\nv = base.dists.arcsine.variance( 2.0, 8.0 )\n",
+	"base.dists.beta.Beta": "beta = base.dists.beta.Beta( 1.0, 1.0 );\nbeta.alpha\nbeta.beta\nbeta.entropy\nbeta.kurtosis\nbeta.mean\nbeta.median\nbeta.mode\nbeta.skewness\nbeta.stdev\nbeta.variance\nbeta.cdf( 0.8 )\nbeta.logcdf( 0.8 )\nbeta.logpdf( 1.0 )\nbeta.mgf( 3.14 )\nbeta.pdf( 1.0 )\nbeta.quantile( 0.8 )\n",
+	"base.dists.beta.cdf": "y = base.dists.beta.cdf( 0.5, 1.0, 1.0 )\ny = base.dists.beta.cdf( 0.5, 2.0, 4.0 )\ny = base.dists.beta.cdf( 0.2, 2.0, 2.0 )\ny = base.dists.beta.cdf( 0.8, 4.0, 4.0 )\ny = base.dists.beta.cdf( -0.5, 4.0, 2.0 )\ny = base.dists.beta.cdf( 1.5, 4.0, 2.0 )\ny = base.dists.beta.cdf( 2.0, -1.0, 0.5 )\ny = base.dists.beta.cdf( 2.0, 0.5, -1.0 )\ny = base.dists.beta.cdf( NaN, 1.0, 1.0 )\ny = base.dists.beta.cdf( 0.0, NaN, 1.0 )\ny = base.dists.beta.cdf( 0.0, 1.0, NaN )\n",
+	"base.dists.beta.entropy": "v = base.dists.beta.entropy( 1.0, 1.0 )\nv = base.dists.beta.entropy( 4.0, 12.0 )\nv = base.dists.beta.entropy( 8.0, 2.0 )\nv = base.dists.beta.entropy( 1.0, -0.1 )\nv = base.dists.beta.entropy( -0.1, 1.0 )\nv = base.dists.beta.entropy( 2.0, NaN )\nv = base.dists.beta.entropy( NaN, 2.0 )\n",
+	"base.dists.beta.kurtosis": "v = base.dists.beta.kurtosis( 1.0, 1.0 )\nv = base.dists.beta.kurtosis( 4.0, 12.0 )\nv = base.dists.beta.kurtosis( 8.0, 2.0 )\nv = base.dists.beta.kurtosis( 1.0, -0.1 )\nv = base.dists.beta.kurtosis( -0.1, 1.0 )\nv = base.dists.beta.kurtosis( 2.0, NaN )\nv = base.dists.beta.kurtosis( NaN, 2.0 )\n",
+	"base.dists.beta.logcdf": "y = base.dists.beta.logcdf( 0.5, 1.0, 1.0 )\ny = base.dists.beta.logcdf( 0.5, 2.0, 4.0 )\ny = base.dists.beta.logcdf( 0.2, 2.0, 2.0 )\ny = base.dists.beta.logcdf( 0.8, 4.0, 4.0 )\ny = base.dists.beta.logcdf( -0.5, 4.0, 2.0 )\ny = base.dists.beta.logcdf( 1.5, 4.0, 2.0 )\ny = base.dists.beta.logcdf( 2.0, -1.0, 0.5 )\ny = base.dists.beta.logcdf( 2.0, 0.5, -1.0 )\ny = base.dists.beta.logcdf( NaN, 1.0, 1.0 )\ny = base.dists.beta.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.beta.logcdf( 0.0, 1.0, NaN )\n",
+	"base.dists.beta.logpdf": "y = base.dists.beta.logpdf( 0.5, 1.0, 1.0 )\ny = base.dists.beta.logpdf( 0.5, 2.0, 4.0 )\ny = base.dists.beta.logpdf( 0.2, 2.0, 2.0 )\ny = base.dists.beta.logpdf( 0.8, 4.0, 4.0 )\ny = base.dists.beta.logpdf( -0.5, 4.0, 2.0 )\ny = base.dists.beta.logpdf( 1.5, 4.0, 2.0 )\ny = base.dists.beta.logpdf( 0.5, -1.0, 0.5 )\ny = base.dists.beta.logpdf( 0.5, 0.5, -1.0 )\ny = base.dists.beta.logpdf( NaN, 1.0, 1.0 )\ny = base.dists.beta.logpdf( 0.5, NaN, 1.0 )\ny = base.dists.beta.logpdf( 0.5, 1.0, NaN )\n",
+	"base.dists.beta.mean": "v = base.dists.beta.mean( 1.0, 1.0 )\nv = base.dists.beta.mean( 4.0, 12.0 )\nv = base.dists.beta.mean( 8.0, 2.0 )\n",
+	"base.dists.beta.median": "v = base.dists.beta.median( 1.0, 1.0 )\nv = base.dists.beta.median( 4.0, 12.0 )\nv = base.dists.beta.median( 8.0, 2.0 )\nv = base.dists.beta.median( 1.0, -0.1 )\nv = base.dists.beta.median( -0.1, 1.0 )\nv = base.dists.beta.median( 2.0, NaN )\nv = base.dists.beta.median( NaN, 2.0 )\n",
+	"base.dists.beta.mgf": "y = base.dists.beta.mgf( 0.5, 1.0, 1.0 )\ny = base.dists.beta.mgf( 0.5, 2.0, 4.0 )\ny = base.dists.beta.mgf( 3.0, 2.0, 2.0 )\ny = base.dists.beta.mgf( -0.8, 4.0, 4.0 )\ny = base.dists.beta.mgf( NaN, 1.0, 1.0 )\ny = base.dists.beta.mgf( 0.0, NaN, 1.0 )\ny = base.dists.beta.mgf( 0.0, 1.0, NaN )\ny = base.dists.beta.mgf( 2.0, -1.0, 0.5 )\ny = base.dists.beta.mgf( 2.0, 0.0, 0.5 )\ny = base.dists.beta.mgf( 2.0, 0.5, -1.0 )\ny = base.dists.beta.mgf( 2.0, 0.5, 0.0 )\n",
+	"base.dists.beta.mode": "v = base.dists.beta.mode( 4.0, 12.0 )\nv = base.dists.beta.mode( 8.0, 2.0 )\nv = base.dists.beta.mode( 1.0, 1.0 )\n",
+	"base.dists.beta.pdf": "y = base.dists.beta.pdf( 0.5, 1.0, 1.0 )\ny = base.dists.beta.pdf( 0.5, 2.0, 4.0 )\ny = base.dists.beta.pdf( 0.2, 2.0, 2.0 )\ny = base.dists.beta.pdf( 0.8, 4.0, 4.0 )\ny = base.dists.beta.pdf( -0.5, 4.0, 2.0 )\ny = base.dists.beta.pdf( 1.5, 4.0, 2.0 )\ny = base.dists.beta.pdf( 0.5, -1.0, 0.5 )\ny = base.dists.beta.pdf( 0.5, 0.5, -1.0 )\ny = base.dists.beta.pdf( NaN, 1.0, 1.0 )\ny = base.dists.beta.pdf( 0.5, NaN, 1.0 )\ny = base.dists.beta.pdf( 0.5, 1.0, NaN )\n",
+	"base.dists.beta.quantile": "y = base.dists.beta.quantile( 0.8, 2.0, 1.0 )\ny = base.dists.beta.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.beta.quantile( 1.1, 1.0, 1.0 )\ny = base.dists.beta.quantile( -0.2, 1.0, 1.0 )\ny = base.dists.beta.quantile( NaN, 1.0, 1.0 )\ny = base.dists.beta.quantile( 0.5, NaN, 1.0 )\ny = base.dists.beta.quantile( 0.5, 1.0, NaN )\ny = base.dists.beta.quantile( 0.5, -1.0, 1.0 )\ny = base.dists.beta.quantile( 0.5, 1.0, -1.0 )\n",
+	"base.dists.beta.skewness": "v = base.dists.beta.skewness( 1.0, 1.0 )\nv = base.dists.beta.skewness( 4.0, 12.0 )\nv = base.dists.beta.skewness( 8.0, 2.0 )\nv = base.dists.beta.skewness( 1.0, -0.1 )\nv = base.dists.beta.skewness( -0.1, 1.0 )\nv = base.dists.beta.skewness( 2.0, NaN )\nv = base.dists.beta.skewness( NaN, 2.0 )\n",
+	"base.dists.beta.stdev": "v = base.dists.beta.stdev( 1.0, 1.0 )\nv = base.dists.beta.stdev( 4.0, 12.0 )\nv = base.dists.beta.stdev( 8.0, 2.0 )\nv = base.dists.beta.stdev( 1.0, -0.1 )\nv = base.dists.beta.stdev( -0.1, 1.0 )\nv = base.dists.beta.stdev( 2.0, NaN )\nv = base.dists.beta.stdev( NaN, 2.0 )\n",
+	"base.dists.beta.variance": "v = base.dists.beta.variance( 1.0, 1.0 )\nv = base.dists.beta.variance( 4.0, 12.0 )\nv = base.dists.beta.variance( 8.0, 2.0 )\nv = base.dists.beta.variance( 1.0, -0.1 )\nv = base.dists.beta.variance( -0.1, 1.0 )\nv = base.dists.beta.variance( 2.0, NaN )\nv = base.dists.beta.variance( NaN, 2.0 )\n",
+	"base.dists.betaprime.BetaPrime": "betaprime = base.dists.betaprime.BetaPrime( 6.0, 5.0 );\nbetaprime.alpha\nbetaprime.beta\nbetaprime.kurtosis\nbetaprime.mean\nbetaprime.mode\nbetaprime.skewness\nbetaprime.stdev\nbetaprime.variance\nbetaprime.cdf( 0.8 )\nbetaprime.logcdf( 0.8 )\nbetaprime.logpdf( 1.0 )\nbetaprime.pdf( 1.0 )\nbetaprime.quantile( 0.8 )\n",
+	"base.dists.betaprime.cdf": "y = base.dists.betaprime.cdf( 0.5, 1.0, 1.0 )\ny = base.dists.betaprime.cdf( 0.5, 2.0, 4.0 )\ny = base.dists.betaprime.cdf( 0.2, 2.0, 2.0 )\ny = base.dists.betaprime.cdf( 0.8, 4.0, 4.0 )\ny = base.dists.betaprime.cdf( -0.5, 4.0, 2.0 )\ny = base.dists.betaprime.cdf( 2.0, -1.0, 0.5 )\ny = base.dists.betaprime.cdf( 2.0, 0.5, -1.0 )\ny = base.dists.betaprime.cdf( NaN, 1.0, 1.0 )\ny = base.dists.betaprime.cdf( 0.0, NaN, 1.0 )\ny = base.dists.betaprime.cdf( 0.0, 1.0, NaN )\n",
+	"base.dists.betaprime.kurtosis": "v = base.dists.betaprime.kurtosis( 2.0, 6.0 )\nv = base.dists.betaprime.kurtosis( 4.0, 12.0 )\nv = base.dists.betaprime.kurtosis( 8.0, 6.0 )\nv = base.dists.betaprime.kurtosis( 1.0, 2.8 )\nv = base.dists.betaprime.kurtosis( 1.0, -0.1 )\nv = base.dists.betaprime.kurtosis( -0.1, 5.0 )\nv = base.dists.betaprime.kurtosis( 2.0, NaN )\nv = base.dists.betaprime.kurtosis( NaN, 6.0 )\n",
+	"base.dists.betaprime.logcdf": "y = base.dists.betaprime.logcdf( 0.5, 1.0, 1.0 )\ny = base.dists.betaprime.logcdf( 0.5, 2.0, 4.0 )\ny = base.dists.betaprime.logcdf( 0.2, 2.0, 2.0 )\ny = base.dists.betaprime.logcdf( 0.8, 4.0, 4.0 )\ny = base.dists.betaprime.logcdf( -0.5, 4.0, 2.0 )\ny = base.dists.betaprime.logcdf( 2.0, -1.0, 0.5 )\ny = base.dists.betaprime.logcdf( 2.0, 0.5, -1.0 )\ny = base.dists.betaprime.logcdf( NaN, 1.0, 1.0 )\ny = base.dists.betaprime.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.betaprime.logcdf( 0.0, 1.0, NaN )\n",
+	"base.dists.betaprime.logpdf": "y = base.dists.betaprime.logpdf( 0.5, 1.0, 1.0 )\ny = base.dists.betaprime.logpdf( 0.5, 2.0, 4.0 )\ny = base.dists.betaprime.logpdf( 0.2, 2.0, 2.0 )\ny = base.dists.betaprime.logpdf( 0.8, 4.0, 4.0 )\ny = base.dists.betaprime.logpdf( -0.5, 4.0, 2.0 )\ny = base.dists.betaprime.logpdf( 0.5, -1.0, 0.5 )\ny = base.dists.betaprime.logpdf( 0.5, 0.5, -1.0 )\ny = base.dists.betaprime.logpdf( NaN, 1.0, 1.0 )\ny = base.dists.betaprime.logpdf( 0.5, NaN, 1.0 )\ny = base.dists.betaprime.logpdf( 0.5, 1.0, NaN )\n",
+	"base.dists.betaprime.mean": "v = base.dists.betaprime.mean( 1.0, 2.0 )\nv = base.dists.betaprime.mean( 4.0, 12.0 )\nv = base.dists.betaprime.mean( 8.0, 2.0 )\n",
+	"base.dists.betaprime.mode": "v = base.dists.betaprime.mode( 1.0, 2.0 )\nv = base.dists.betaprime.mode( 4.0, 12.0 )\nv = base.dists.betaprime.mode( 8.0, 2.0 )\n",
+	"base.dists.betaprime.pdf": "y = base.dists.betaprime.pdf( 0.5, 1.0, 1.0 )\ny = base.dists.betaprime.pdf( 0.5, 2.0, 4.0 )\ny = base.dists.betaprime.pdf( 0.2, 2.0, 2.0 )\ny = base.dists.betaprime.pdf( 0.8, 4.0, 4.0 )\ny = base.dists.betaprime.pdf( -0.5, 4.0, 2.0 )\ny = base.dists.betaprime.pdf( 0.5, -1.0, 0.5 )\ny = base.dists.betaprime.pdf( 0.5, 0.5, -1.0 )\ny = base.dists.betaprime.pdf( NaN, 1.0, 1.0 )\ny = base.dists.betaprime.pdf( 0.5, NaN, 1.0 )\ny = base.dists.betaprime.pdf( 0.5, 1.0, NaN )\n",
+	"base.dists.betaprime.quantile": "y = base.dists.betaprime.quantile( 0.8, 2.0, 1.0 )\ny = base.dists.betaprime.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.betaprime.quantile( 1.1, 1.0, 1.0 )\ny = base.dists.betaprime.quantile( -0.2, 1.0, 1.0 )\ny = base.dists.betaprime.quantile( NaN, 1.0, 1.0 )\ny = base.dists.betaprime.quantile( 0.5, NaN, 1.0 )\ny = base.dists.betaprime.quantile( 0.5, 1.0, NaN )\ny = base.dists.betaprime.quantile( 0.5, -1.0, 1.0 )\ny = base.dists.betaprime.quantile( 0.5, 1.0, -1.0 )\n",
+	"base.dists.betaprime.skewness": "v = base.dists.betaprime.skewness( 2.0, 4.0 )\nv = base.dists.betaprime.skewness( 4.0, 12.0 )\nv = base.dists.betaprime.skewness( 8.0, 4.0 )\nv = base.dists.betaprime.skewness( 1.0, 2.8 )\nv = base.dists.betaprime.skewness( 1.0, -0.1 )\nv = base.dists.betaprime.skewness( -0.1, 4.0 )\nv = base.dists.betaprime.skewness( 2.0, NaN )\nv = base.dists.betaprime.skewness( NaN, 4.0 )\n",
+	"base.dists.betaprime.stdev": "v = base.dists.betaprime.stdev( 1.0, 2.5 )\nv = base.dists.betaprime.stdev( 4.0, 12.0 )\nv = base.dists.betaprime.stdev( 8.0, 2.5 )\nv = base.dists.betaprime.stdev( 8.0, 1.0 )\nv = base.dists.betaprime.stdev( 1.0, -0.1 )\nv = base.dists.betaprime.stdev( -0.1, 3.0 )\nv = base.dists.betaprime.stdev( 2.0, NaN )\nv = base.dists.betaprime.stdev( NaN, 3.0 )\n",
+	"base.dists.betaprime.variance": "v = base.dists.betaprime.variance( 1.0, 2.5 )\nv = base.dists.betaprime.variance( 4.0, 12.0 )\nv = base.dists.betaprime.variance( 8.0, 2.5 )\nv = base.dists.betaprime.variance( 8.0, 1.0 )\nv = base.dists.betaprime.variance( 1.0, -0.1 )\nv = base.dists.betaprime.variance( -0.1, 3.0 )\nv = base.dists.betaprime.variance( 2.0, NaN )\nv = base.dists.betaprime.variance( NaN, 3.0 )\n",
+	"base.dists.binomial.Binomial": "binomial = base.dists.binomial.Binomial( 8, 0.5 );\nbinomial.n\nbinomial.p\nbinomial.kurtosis\nbinomial.mean\nbinomial.median\nbinomial.mode\nbinomial.skewness\nbinomial.stdev\nbinomial.variance\nbinomial.cdf( 2.9 )\nbinomial.logpmf( 3.0 )\nbinomial.mgf( 0.2 )\nbinomial.pmf( 3.0 )\nbinomial.quantile( 0.8 )\n",
+	"base.dists.binomial.cdf": "y = base.dists.binomial.cdf( 3.0, 20, 0.2 )\ny = base.dists.binomial.cdf( 21.0, 20, 0.2 )\ny = base.dists.binomial.cdf( 5.0, 10, 0.4 )\ny = base.dists.binomial.cdf( 0.0, 10, 0.4 )\ny = base.dists.binomial.cdf( NaN, 20, 0.5 )\ny = base.dists.binomial.cdf( 0.0, NaN, 0.5 )\ny = base.dists.binomial.cdf( 0.0, 20, NaN )\ny = base.dists.binomial.cdf( 2.0, 1.5, 0.5 )\ny = base.dists.binomial.cdf( 2.0, -2.0, 0.5 )\ny = base.dists.binomial.cdf( 2.0, 20, -1.0 )\ny = base.dists.binomial.cdf( 2.0, 20, 1.5 )\n",
+	"base.dists.binomial.entropy": "v = base.dists.binomial.entropy( 100, 0.1 )\nv = base.dists.binomial.entropy( 20, 0.5 )\nv = base.dists.binomial.entropy( 10.3, 0.5 )\nv = base.dists.binomial.entropy( 20, 1.1 )\nv = base.dists.binomial.entropy( 20, NaN )\n",
+	"base.dists.binomial.kurtosis": "v = base.dists.binomial.kurtosis( 100, 0.1 )\nv = base.dists.binomial.kurtosis( 20, 0.5 )\nv = base.dists.binomial.kurtosis( 10.3, 0.5 )\nv = base.dists.binomial.kurtosis( 20, 1.1 )\nv = base.dists.binomial.kurtosis( 20, NaN )\n",
+	"base.dists.binomial.logpmf": "y = base.dists.binomial.logpmf( 3.0, 20, 0.2 )\ny = base.dists.binomial.logpmf( 21.0, 20, 0.2 )\ny = base.dists.binomial.logpmf( 5.0, 10, 0.4 )\ny = base.dists.binomial.logpmf( 0.0, 10, 0.4 )\ny = base.dists.binomial.logpmf( NaN, 20, 0.5 )\ny = base.dists.binomial.logpmf( 0.0, NaN, 0.5 )\ny = base.dists.binomial.logpmf( 0.0, 20, NaN )\ny = base.dists.binomial.logpmf( 2.0, 1.5, 0.5 )\ny = base.dists.binomial.logpmf( 2.0, -2.0, 0.5 )\ny = base.dists.binomial.logpmf( 2.0, 20, -1.0 )\ny = base.dists.binomial.logpmf( 2.0, 20, 1.5 )\n",
+	"base.dists.binomial.mean": "v = base.dists.binomial.mean( 100, 0.1 )\nv = base.dists.binomial.mean( 20, 0.5 )\nv = base.dists.binomial.mean( 10.3, 0.5 )\nv = base.dists.binomial.mean( 20, 1.1 )\nv = base.dists.binomial.mean( 20, NaN )\n",
+	"base.dists.binomial.median": "v = base.dists.binomial.median( 100, 0.1 )\nv = base.dists.binomial.median( 20, 0.5 )\nv = base.dists.binomial.median( 10.3, 0.5 )\nv = base.dists.binomial.median( 20, 1.1 )\nv = base.dists.binomial.median( 20, NaN )\n",
+	"base.dists.binomial.mgf": "y = base.dists.binomial.mgf( 0.5, 20, 0.2 )\ny = base.dists.binomial.mgf( 5.0, 20, 0.2 )\ny = base.dists.binomial.mgf( 0.9, 10, 0.4 )\ny = base.dists.binomial.mgf( 0.0, 10, 0.4 )\ny = base.dists.binomial.mgf( NaN, 20, 0.5 )\ny = base.dists.binomial.mgf( 0.0, NaN, 0.5 )\ny = base.dists.binomial.mgf( 0.0, 20, NaN )\ny = base.dists.binomial.mgf( 2.0, 1.5, 0.5 )\ny = base.dists.binomial.mgf( 2.0, -2.0, 0.5 )\ny = base.dists.binomial.mgf( 2.0, 20, -1.0 )\ny = base.dists.binomial.mgf( 2.0, 20, 1.5 )\n",
+	"base.dists.binomial.mode": "v = base.dists.binomial.mode( 100, 0.1 )\nv = base.dists.binomial.mode( 20, 0.5 )\nv = base.dists.binomial.mode( 10.3, 0.5 )\nv = base.dists.binomial.mode( 20, 1.1 )\nv = base.dists.binomial.mode( 20, NaN )\n",
+	"base.dists.binomial.pmf": "y = base.dists.binomial.pmf( 3.0, 20, 0.2 )\ny = base.dists.binomial.pmf( 21.0, 20, 0.2 )\ny = base.dists.binomial.pmf( 5.0, 10, 0.4 )\ny = base.dists.binomial.pmf( 0.0, 10, 0.4 )\ny = base.dists.binomial.pmf( NaN, 20, 0.5 )\ny = base.dists.binomial.pmf( 0.0, NaN, 0.5 )\ny = base.dists.binomial.pmf( 0.0, 20, NaN )\ny = base.dists.binomial.pmf( 2.0, 1.5, 0.5 )\ny = base.dists.binomial.pmf( 2.0, -2.0, 0.5 )\ny = base.dists.binomial.pmf( 2.0, 20, -1.0 )\ny = base.dists.binomial.pmf( 2.0, 20, 1.5 )\n",
+	"base.dists.binomial.quantile": "y = base.dists.binomial.quantile( 0.4, 20, 0.2 )\ny = base.dists.binomial.quantile( 0.8, 20, 0.2 )\ny = base.dists.binomial.quantile( 0.5, 10, 0.4 )\ny = base.dists.binomial.quantile( 0.0, 10, 0.4 )\ny = base.dists.binomial.quantile( 1.0, 10, 0.4 )\ny = base.dists.binomial.quantile( NaN, 20, 0.5 )\ny = base.dists.binomial.quantile( 0.2, NaN, 0.5 )\ny = base.dists.binomial.quantile( 0.2, 20, NaN )\ny = base.dists.binomial.quantile( 0.5, 1.5, 0.5 )\ny = base.dists.binomial.quantile( 0.5, -2.0, 0.5 )\ny = base.dists.binomial.quantile( 0.5, 20, -1.0 )\ny = base.dists.binomial.quantile( 0.5, 20, 1.5 )\n",
+	"base.dists.binomial.skewness": "v = base.dists.binomial.skewness( 100, 0.1 )\nv = base.dists.binomial.skewness( 20, 0.5 )\nv = base.dists.binomial.skewness( 10.3, 0.5 )\nv = base.dists.binomial.skewness( 20, 1.1 )\nv = base.dists.binomial.skewness( 20, NaN )\n",
+	"base.dists.binomial.stdev": "v = base.dists.binomial.stdev( 100, 0.1 )\nv = base.dists.binomial.stdev( 20, 0.5 )\nv = base.dists.binomial.stdev( 10.3, 0.5 )\nv = base.dists.binomial.stdev( 20, 1.1 )\nv = base.dists.binomial.stdev( 20, NaN )\n",
+	"base.dists.binomial.variance": "v = base.dists.binomial.variance( 100, 0.1 )\nv = base.dists.binomial.variance( 20, 0.5 )\nv = base.dists.binomial.variance( 10.3, 0.5 )\nv = base.dists.binomial.variance( 20, 1.1 )\nv = base.dists.binomial.variance( 20, NaN )\n",
+	"base.dists.cauchy.Cauchy": "cauchy = base.dists.cauchy.Cauchy( 0.0, 1.0 );\ncauchy.x0\ncauchy.gamma\ncauchy.entropy\ncauchy.median\ncauchy.mode\ncauchy.cdf( 0.8 )\ncauchy.logcdf( 1.0 )\ncauchy.logpdf( 1.0 )\ncauchy.pdf( 1.0 )\ncauchy.quantile( 0.8 )\n",
+	"base.dists.cauchy.cdf": "y = base.dists.cauchy.cdf( 4.0, 0.0, 2.0 )\ny = base.dists.cauchy.cdf( 1.0, 0.0, 2.0 )\ny = base.dists.cauchy.cdf( 1.0, 3.0, 2.0 )\ny = base.dists.cauchy.cdf( NaN, 0.0, 2.0 )\ny = base.dists.cauchy.cdf( 1.0, 2.0, NaN )\ny = base.dists.cauchy.cdf( 1.0, NaN, 3.0 )\n",
+	"base.dists.cauchy.entropy": "v = base.dists.cauchy.entropy( 10.0, 7.0 )\nv = base.dists.cauchy.entropy( 22.0, 0.5 )\nv = base.dists.cauchy.entropy( 10.3, -0.5 )\n",
+	"base.dists.cauchy.logcdf": "y = base.dists.cauchy.logcdf( 4.0, 0.0, 2.0 )\ny = base.dists.cauchy.logcdf( 1.0, 0.0, 2.0 )\ny = base.dists.cauchy.logcdf( 1.0, 3.0, 2.0 )\ny = base.dists.cauchy.logcdf( NaN, 0.0, 2.0 )\ny = base.dists.cauchy.logcdf( 1.0, 2.0, NaN )\ny = base.dists.cauchy.logcdf( 1.0, NaN, 3.0 )\n",
+	"base.dists.cauchy.logpdf": "y = base.dists.cauchy.logpdf( 2.0, 1.0, 1.0 )\ny = base.dists.cauchy.logpdf( 4.0, 3.0, 0.1 )\ny = base.dists.cauchy.logpdf( 4.0, 3.0, 3.0 )\ny = base.dists.cauchy.logpdf( NaN, 1.0, 1.0 )\ny = base.dists.cauchy.logpdf( 2.0, NaN, 1.0 )\ny = base.dists.cauchy.logpdf( 2.0, 1.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.cauchy.logpdf( 2.0, 1.0, -2.0 )\n",
+	"base.dists.cauchy.median": "v = base.dists.cauchy.median( 10.0, 5.0 )\nv = base.dists.cauchy.median( 7.0, 0.5 )\nv = base.dists.cauchy.median( 10.3, -0.5 )\n",
+	"base.dists.cauchy.mode": "v = base.dists.cauchy.mode( 10.0, 5.0 )\nv = base.dists.cauchy.mode( 7.0, 0.5 )\nv = base.dists.cauchy.mode( 10.3, -0.5 )\n",
+	"base.dists.cauchy.pdf": "y = base.dists.cauchy.pdf( 2.0, 1.0, 1.0 )\ny = base.dists.cauchy.pdf( 4.0, 3.0, 0.1 )\ny = base.dists.cauchy.pdf( 4.0, 3.0, 3.0 )\ny = base.dists.cauchy.pdf( NaN, 1.0, 1.0 )\ny = base.dists.cauchy.pdf( 2.0, NaN, 1.0 )\ny = base.dists.cauchy.pdf( 2.0, 1.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.cauchy.pdf( 2.0, 1.0, -2.0 )\n",
+	"base.dists.cauchy.quantile": "y = base.dists.cauchy.quantile( 0.3, 2.0, 2.0 )\ny = base.dists.cauchy.quantile( 0.8, 10, 2.0 )\ny = base.dists.cauchy.quantile( 0.1, 10.0, 2.0 )\ny = base.dists.cauchy.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.cauchy.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.cauchy.quantile( NaN, 0.0, 1.0 )\ny = base.dists.cauchy.quantile( 0.0, NaN, 1.0 )\ny = base.dists.cauchy.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.cauchy.quantile( 0.5, 0.0, -1.0 )\n",
+	"base.dists.chi.cdf": "y = base.dists.chi.cdf( 2.0, 3.0 )\ny = base.dists.chi.cdf( 1.0, 0.5 )\ny = base.dists.chi.cdf( -1.0, 4.0 )\ny = base.dists.chi.cdf( NaN, 1.0 )\ny = base.dists.chi.cdf( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dists.chi.cdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chi.cdf( 2.0, 0.0 )\ny = base.dists.chi.cdf( -2.0, 0.0 )\ny = base.dists.chi.cdf( 0.0, 0.0 )\n",
+	"base.dists.chi.Chi": "chi = base.dists.chi.Chi( 6.0 );\nchi.k\nchi.entropy\nchi.kurtosis\nchi.mean\nchi.mode\nchi.skewness\nchi.stdev\nchi.variance\nchi.cdf( 1.0 )\nchi.logpdf( 1.5 )\nchi.pdf( 1.5 )\nchi.quantile( 0.5 )\n",
+	"base.dists.chi.entropy": "v = base.dists.chi.entropy( 11.0 )\nv = base.dists.chi.entropy( 1.5 )\n",
+	"base.dists.chi.kurtosis": "v = base.dists.chi.kurtosis( 9.0 )\nv = base.dists.chi.kurtosis( 1.5 )\n",
+	"base.dists.chi.logpdf": "y = base.dists.chi.logpdf( 0.3, 4.0 )\ny = base.dists.chi.logpdf( 0.7, 0.7 )\ny = base.dists.chi.logpdf( -1.0, 0.5 )\ny = base.dists.chi.logpdf( 0.0, NaN )\ny = base.dists.chi.logpdf( NaN, 2.0 )\n\n// Negative degrees of freedom:\ny = base.dists.chi.logpdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chi.logpdf( 2.0, 0.0, 2.0 )\ny = base.dists.chi.logpdf( 0.0, 0.0, 2.0 )\n",
+	"base.dists.chi.mean": "v = base.dists.chi.mean( 11.0 )\nv = base.dists.chi.mean( 4.5 )\n",
+	"base.dists.chi.mode": "v = base.dists.chi.mode( 11.0 )\nv = base.dists.chi.mode( 1.5 )\n",
+	"base.dists.chi.pdf": "y = base.dists.chi.pdf( 0.3, 4.0 )\ny = base.dists.chi.pdf( 0.7, 0.7 )\ny = base.dists.chi.pdf( -1.0, 0.5 )\ny = base.dists.chi.pdf( 0.0, NaN )\ny = base.dists.chi.pdf( NaN, 2.0 )\n\n// Negative degrees of freedom:\ny = base.dists.chi.pdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chi.pdf( 2.0, 0.0, 2.0 )\ny = base.dists.chi.pdf( 0.0, 0.0, 2.0 )\n",
+	"base.dists.chi.quantile": "y = base.dists.chi.quantile( 0.8, 1.0 )\ny = base.dists.chi.quantile( 0.5, 4.0 )\ny = base.dists.chi.quantile( 0.8, 0.1 )\ny = base.dists.chi.quantile( -0.2, 0.5 )\ny = base.dists.chi.quantile( 1.1, 0.5 )\ny = base.dists.chi.quantile( NaN, 1.0 )\ny = base.dists.chi.quantile( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dists.chi.quantile( 0.5, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chi.quantile( 0.3, 0.0 )\ny = base.dists.chi.quantile( 0.9, 0.0 )\n",
+	"base.dists.chi.skewness": "v = base.dists.chi.skewness( 11.0 )\nv = base.dists.chi.skewness( 1.5 )\n",
+	"base.dists.chi.stdev": "v = base.dists.chi.stdev( 11.0 )\nv = base.dists.chi.stdev( 1.5 )\n",
+	"base.dists.chi.variance": "v = base.dists.chi.variance( 11.0 )\nv = base.dists.chi.variance( 1.5 )\n",
+	"base.dists.chisquare.cdf": "y = base.dists.chisquare.cdf( 2.0, 3.0 )\ny = base.dists.chisquare.cdf( 1.0, 0.5 )\ny = base.dists.chisquare.cdf( -1.0, 4.0 )\ny = base.dists.chisquare.cdf( NaN, 1.0 )\ny = base.dists.chisquare.cdf( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dists.chisquare.cdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chisquare.cdf( 2.0, 0.0 )\ny = base.dists.chisquare.cdf( -2.0, 0.0 )\ny = base.dists.chisquare.cdf( 0.0, 0.0 )\n",
+	"base.dists.chisquare.ChiSquare": "chisquare = base.dists.chisquare.ChiSquare( 6.0 );\nchisquare.k\nchisquare.entropy\nchisquare.kurtosis\nchisquare.mean\nchisquare.mode\nchisquare.skewness\nchisquare.stdev\nchisquare.variance\nchisquare.cdf( 3.0 )\nchisquare.mgf( 0.2 )\nchisquare.pdf( 1.5 )\nchisquare.quantile( 0.5 )\n",
+	"base.dists.chisquare.entropy": "v = base.dists.chisquare.entropy( 11.0 )\nv = base.dists.chisquare.entropy( 1.5 )\n",
+	"base.dists.chisquare.kurtosis": "v = base.dists.chisquare.kurtosis( 9.0 )\nv = base.dists.chisquare.kurtosis( 1.5 )\n",
+	"base.dists.chisquare.logpdf": "y = base.dists.chisquare.logpdf( 0.3, 4.0 )\ny = base.dists.chisquare.logpdf( 0.7, 0.7 )\ny = base.dists.chisquare.logpdf( -1.0, 0.5 )\ny = base.dists.chisquare.logpdf( 0.0, NaN )\ny = base.dists.chisquare.logpdf( NaN, 2.0 )\n\n// Negative degrees of freedom:\ny = base.dists.chisquare.logpdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chisquare.logpdf( 2.0, 0.0, 2.0 )\ny = base.dists.chisquare.logpdf( 0.0, 0.0, 2.0 )\n",
+	"base.dists.chisquare.mean": "v = base.dists.chisquare.mean( 11.0 )\nv = base.dists.chisquare.mean( 4.5 )\n",
+	"base.dists.chisquare.mode": "v = base.dists.chisquare.mode( 11.0 )\nv = base.dists.chisquare.mode( 1.5 )\n",
+	"base.dists.chisquare.pdf": "y = base.dists.chisquare.pdf( 0.3, 4.0 )\ny = base.dists.chisquare.pdf( 0.7, 0.7 )\ny = base.dists.chisquare.pdf( -1.0, 0.5 )\ny = base.dists.chisquare.pdf( 0.0, NaN )\ny = base.dists.chisquare.pdf( NaN, 2.0 )\n\n// Negative degrees of freedom:\ny = base.dists.chisquare.pdf( 2.0, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chisquare.pdf( 2.0, 0.0, 2.0 )\ny = base.dists.chisquare.pdf( 0.0, 0.0, 2.0 )\n",
+	"base.dists.chisquare.quantile": "y = base.dists.chisquare.quantile( 0.8, 1.0 )\ny = base.dists.chisquare.quantile( 0.5, 4.0 )\ny = base.dists.chisquare.quantile( 0.8, 0.1 )\ny = base.dists.chisquare.quantile( -0.2, 0.5 )\ny = base.dists.chisquare.quantile( 1.1, 0.5 )\ny = base.dists.chisquare.quantile( NaN, 1.0 )\ny = base.dists.chisquare.quantile( 0.0, NaN )\n\n// Negative degrees of freedom:\ny = base.dists.chisquare.quantile( 0.5, -1.0 )\n\n// Degenerate distribution when `k = 0`:\ny = base.dists.chisquare.quantile( 0.3, 0.0 )\ny = base.dists.chisquare.quantile( 0.9, 0.0 )\n",
+	"base.dists.chisquare.skewness": "v = base.dists.chisquare.skewness( 11.0 )\nv = base.dists.chisquare.skewness( 1.5 )\n",
+	"base.dists.chisquare.stdev": "v = base.dists.chisquare.stdev( 11.0 )\nv = base.dists.chisquare.stdev( 1.5 )\n",
+	"base.dists.chisquare.variance": "v = base.dists.chisquare.variance( 11.0 )\nv = base.dists.chisquare.variance( 1.5 )\n",
+	"base.dists.cosine.cdf": "y = base.dists.cosine.cdf( 2.0, 0.0, 3.0 )\ny = base.dists.cosine.cdf( 9.0, 10.0, 3.0 )\ny = base.dists.cosine.cdf( 2.0, 0.0, NaN )\ny = base.dists.cosine.cdf( 2.0, NaN, 1.0 )\ny = base.dists.cosine.cdf( NaN, 0.0, 1.0 )\n\n// Degenerate distribution centered at `μ` when `s = 0.0`:\ny = base.dists.cosine.cdf( 2.0, 8.0, 0.0 )\ny = base.dists.cosine.cdf( 8.0, 8.0, 0.0 )\ny = base.dists.cosine.cdf( 10.0, 8.0, 0.0 )\n",
+	"base.dists.cosine.Cosine": "cosine = base.dists.cosine.Cosine( -2.0, 3.0 );\ncosine.mu\ncosine.s\ncosine.kurtosis\ncosine.mean\ncosine.median\ncosine.mode\ncosine.skewness\ncosine.stdev\ncosine.variance\ncosine.cdf( 0.5 )\ncosine.logcdf( 0.5 )\ncosine.logpdf( -1.0 )\ncosine.mgf( 0.2 )\ncosine.pdf( -2.0 )\ncosine.quantile( 0.9 )\n",
+	"base.dists.cosine.kurtosis": "y = base.dists.cosine.kurtosis( 0.0, 1.0 )\ny = base.dists.cosine.kurtosis( 4.0, 2.0 )\ny = base.dists.cosine.kurtosis( NaN, 1.0 )\ny = base.dists.cosine.kurtosis( 0.0, NaN )\ny = base.dists.cosine.kurtosis( 0.0, 0.0 )\n",
+	"base.dists.cosine.logcdf": "y = base.dists.cosine.logcdf( 2.0, 0.0, 3.0 )\ny = base.dists.cosine.logcdf( 9.0, 10.0, 3.0 )\ny = base.dists.cosine.logcdf( 2.0, 0.0, NaN )\ny = base.dists.cosine.logcdf( 2.0, NaN, 1.0 )\ny = base.dists.cosine.logcdf( NaN, 0.0, 1.0 )\n\n// Degenerate distribution centered at `μ` when `s = 0.0`:\ny = base.dists.cosine.logcdf( 2.0, 8.0, 0.0 )\ny = base.dists.cosine.logcdf( 8.0, 8.0, 0.0 )\ny = base.dists.cosine.logcdf( 10.0, 8.0, 0.0 )\n",
+	"base.dists.cosine.logpdf": "y = base.dists.cosine.logpdf( 2.0, 0.0, 3.0 )\ny = base.dists.cosine.logpdf( -1.0, 2.0, 4.0 )\ny = base.dists.cosine.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.cosine.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.cosine.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.cosine.logpdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution at `s = 0.0`:\ny = base.dists.cosine.logpdf( 2.0, 8.0, 0.0 )\ny = base.dists.cosine.logpdf( 8.0, 8.0, 0.0 )\n",
+	"base.dists.cosine.mean": "y = base.dists.cosine.mean( 0.0, 1.0 )\ny = base.dists.cosine.mean( 4.0, 2.0 )\ny = base.dists.cosine.mean( NaN, 1.0 )\ny = base.dists.cosine.mean( 0.0, NaN )\ny = base.dists.cosine.mean( 0.0, 0.0 )\n",
+	"base.dists.cosine.median": "y = base.dists.cosine.median( 0.0, 1.0 )\ny = base.dists.cosine.median( 4.0, 2.0 )\ny = base.dists.cosine.median( NaN, 1.0 )\ny = base.dists.cosine.median( 0.0, NaN )\ny = base.dists.cosine.median( 0.0, 0.0 )\n",
+	"base.dists.cosine.mgf": "y = base.dists.cosine.mgf( 2.0, 0.0, 3.0 )\ny = base.dists.cosine.mgf( 9.0, 10.0, 3.0 )\ny = base.dists.cosine.mgf( 0.5, 0.0, NaN )\ny = base.dists.cosine.mgf( 0.5, NaN, 1.0 )\ny = base.dists.cosine.mgf( NaN, 0.0, 1.0 )\n",
+	"base.dists.cosine.mode": "y = base.dists.cosine.mode( 0.0, 1.0 )\ny = base.dists.cosine.mode( 4.0, 2.0 )\ny = base.dists.cosine.mode( NaN, 1.0 )\ny = base.dists.cosine.mode( 0.0, NaN )\ny = base.dists.cosine.mode( 0.0, 0.0 )\n",
+	"base.dists.cosine.pdf": "y = base.dists.cosine.pdf( 2.0, 0.0, 3.0 )\ny = base.dists.cosine.pdf( 2.4, 4.0, 2.0 )\ny = base.dists.cosine.pdf( NaN, 0.0, 1.0 )\ny = base.dists.cosine.pdf( 0.0, NaN, 1.0 )\ny = base.dists.cosine.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.cosine.pdf( 2.0, 0.0, -1.0 )\ny = base.dists.cosine.pdf( 2.0, 8.0, 0.0 )\ny = base.dists.cosine.pdf( 8.0, 8.0, 0.0 )\n",
+	"base.dists.cosine.quantile": "y = base.dists.cosine.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.cosine.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.cosine.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.cosine.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.cosine.quantile( NaN, 0.0, 1.0 )\ny = base.dists.cosine.quantile( 0.0, NaN, 1.0 )\ny = base.dists.cosine.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.cosine.quantile( 0.5, 0.0, -1.0 )\n",
+	"base.dists.cosine.skewness": "y = base.dists.cosine.skewness( 0.0, 1.0 )\ny = base.dists.cosine.skewness( 4.0, 2.0 )\ny = base.dists.cosine.skewness( NaN, 1.0 )\ny = base.dists.cosine.skewness( 0.0, NaN )\ny = base.dists.cosine.skewness( 0.0, 0.0 )\n",
+	"base.dists.cosine.stdev": "y = base.dists.cosine.stdev( 0.0, 1.0 )\ny = base.dists.cosine.stdev( 4.0, 2.0 )\ny = base.dists.cosine.stdev( NaN, 1.0 )\ny = base.dists.cosine.stdev( 0.0, NaN )\ny = base.dists.cosine.stdev( 0.0, 0.0 )\n",
+	"base.dists.cosine.variance": "y = base.dists.cosine.variance( 0.0, 1.0 )\ny = base.dists.cosine.variance( 4.0, 2.0 )\ny = base.dists.cosine.variance( NaN, 1.0 )\ny = base.dists.cosine.variance( 0.0, NaN )\ny = base.dists.cosine.variance( 0.0, 0.0 )\n",
+	"base.dists.degenerate.cdf": "y = base.dists.degenerate.cdf( 2.0, 3.0 )\ny = base.dists.degenerate.cdf( 4.0, 3.0 )\ny = base.dists.degenerate.cdf( 3.0, 3.0 )\ny = base.dists.degenerate.cdf( NaN, 0.0 )\ny = base.dists.degenerate.cdf( 0.0, NaN )\n",
+	"base.dists.degenerate.logcdf": "y = base.dists.degenerate.logcdf( 2.0, 3.0 )\ny = base.dists.degenerate.logcdf( 4.0, 3.0 )\ny = base.dists.degenerate.logcdf( 3.0, 3.0 )\ny = base.dists.degenerate.logcdf( NaN, 0.0 )\ny = base.dists.degenerate.logcdf( 0.0, NaN )\n",
+	"base.dists.degenerate.logpdf": "y = base.dists.degenerate.logpdf( 2.0, 3.0 )\ny = base.dists.degenerate.logpdf( 3.0, 3.0 )\ny = base.dists.degenerate.logpdf( NaN, 0.0 )\ny = base.dists.degenerate.logpdf( 0.0, NaN )\n",
+	"base.dists.degenerate.logpmf": "y = base.dists.degenerate.logpmf( 2.0, 3.0 )\ny = base.dists.degenerate.logpmf( 3.0, 3.0 )\ny = base.dists.degenerate.logpmf( NaN, 0.0 )\ny = base.dists.degenerate.logpmf( 0.0, NaN )\n",
+	"base.dists.degenerate.mgf": "y = base.dists.degenerate.mgf( 1.0, 1.0 )\ny = base.dists.degenerate.mgf( 2.0, 3.0 )\ny = base.dists.degenerate.mgf( NaN, 0.0 )\ny = base.dists.degenerate.mgf( 0.0, NaN )\n",
+	"base.dists.degenerate.pdf": "y = base.dists.degenerate.pdf( 2.0, 3.0 )\ny = base.dists.degenerate.pdf( 3.0, 3.0 )\ny = base.dists.degenerate.pdf( NaN, 0.0 )\ny = base.dists.degenerate.pdf( 0.0, NaN )\n",
+	"base.dists.degenerate.pmf": "y = base.dists.degenerate.pmf( 2.0, 3.0 )\ny = base.dists.degenerate.pmf( 3.0, 3.0 )\ny = base.dists.degenerate.pmf( NaN, 0.0 )\ny = base.dists.degenerate.pmf( 0.0, NaN )\n",
+	"base.dists.degenerate.quantile": "y = base.dists.degenerate.quantile( 0.5, 2.0 )\ny = base.dists.degenerate.quantile( 0.9, 4.0 )\ny = base.dists.degenerate.quantile( 1.1, 0.0 )\ny = base.dists.degenerate.quantile( -0.2, 0.0 )\ny = base.dists.degenerate.quantile( NaN, 0.0 )\ny = base.dists.degenerate.quantile( 0.0, NaN )\n",
+	"base.dists.discreteUniform.cdf": "y = base.dists.discreteUniform.cdf( 9.0, 0, 10 )\ny = base.dists.discreteUniform.cdf( 0.5, 0, 2 )\ny = base.dists.discreteUniform.cdf( PINF, 2, 4 )\ny = base.dists.discreteUniform.cdf( NINF, 2, 4 )\ny = base.dists.discreteUniform.cdf( NaN, 0, 1 )\ny = base.dists.discreteUniform.cdf( 0.0, NaN, 1 )\ny = base.dists.discreteUniform.cdf( 0.0, 0, NaN )\ny = base.dists.discreteUniform.cdf( 2.0, 1, 0 )\n",
+	"base.dists.discreteUniform.DiscreteUniform": "discreteUniform = base.dists.discreteUniform.DiscreteUniform( -2, 2 );\ndiscreteUniform.a\ndiscreteUniform.b\ndiscreteUniform.entropy\ndiscreteUniform.kurtosis\ndiscreteUniform.mean\ndiscreteUniform.median\ndiscreteUniform.skewness\ndiscreteUniform.stdev\ndiscreteUniform.variance\ndiscreteUniform.cdf( 0.8 )\ndiscreteUniform.logcdf( 0.5 )\ndiscreteUniform.logpmf( 1.0 )\ndiscreteUniform.mgf( 0.8 )\ndiscreteUniform.pmf( 0.0 )\ndiscreteUniform.quantile( 0.8 )\n",
+	"base.dists.discreteUniform.kurtosis": "v = base.dists.discreteUniform.kurtosis( 0, 1 )\nv = base.dists.discreteUniform.kurtosis( 4, 12 )\nv = base.dists.discreteUniform.kurtosis( -4, 8 )\n",
+	"base.dists.discreteUniform.logcdf": "y = base.dists.discreteUniform.logcdf( 9.0, 0, 10 )\ny = base.dists.discreteUniform.logcdf( 0.5, 0, 2 )\ny = base.dists.discreteUniform.logcdf( PINF, 2, 4 )\ny = base.dists.discreteUniform.logcdf( NINF, 2, 4 )\ny = base.dists.discreteUniform.logcdf( NaN, 0, 1 )\ny = base.dists.discreteUniform.logcdf( 0.0, NaN, 1 )\ny = base.dists.discreteUniform.logcdf( 0.0, 0, NaN )\ny = base.dists.discreteUniform.logcdf( 2.0, 1, 0 )\n",
+	"base.dists.discreteUniform.logpmf": "y = base.dists.discreteUniform.logpmf( 2.0, 0, 4 )\ny = base.dists.discreteUniform.logpmf( 5.0, 0, 4 )\ny = base.dists.discreteUniform.logpmf( 3.0, -4, 4 )\ny = base.dists.discreteUniform.logpmf( NaN, 0, 1 )\ny = base.dists.discreteUniform.logpmf( 0.0, NaN, 1 )\ny = base.dists.discreteUniform.logpmf( 0.0, 0, NaN )\ny = base.dists.discreteUniform.logpmf( 2.0, 3, 1 )\ny = base.dists.discreteUniform.logpmf( 2.0, 1, 2.4 )\n",
+	"base.dists.discreteUniform.mean": "v = base.dists.discreteUniform.mean( -2, 2 )\nv = base.dists.discreteUniform.mean( 4, 12 )\nv = base.dists.discreteUniform.mean( 2, 8 )\n",
+	"base.dists.discreteUniform.median": "v = base.dists.discreteUniform.median( -2, 2 )\nv = base.dists.discreteUniform.median( 4, 12 )\nv = base.dists.discreteUniform.median( 2, 8 )\n",
+	"base.dists.discreteUniform.mgf": "y = base.dists.discreteUniform.mgf( 2.0, 0, 4 )\ny = base.dists.discreteUniform.mgf( -0.2, 0, 4 )\ny = base.dists.discreteUniform.mgf( 2.0, 0, 1 )\ny = base.dists.discreteUniform.mgf( 0.5, 3, 2 )\ny = base.dists.discreteUniform.mgf( NaN, 0, 1  )\ny = base.dists.discreteUniform.mgf( 0.0, NaN, 1 )\ny = base.dists.discreteUniform.mgf( 0.0, 0, NaN )\n",
+	"base.dists.discreteUniform.pmf": "y = base.dists.discreteUniform.pmf( 2.0, 0, 4 )\ny = base.dists.discreteUniform.pmf( 5.0, 0, 4 )\ny = base.dists.discreteUniform.pmf( 3.0, -4, 4 )\ny = base.dists.discreteUniform.pmf( NaN, 0, 1 )\ny = base.dists.discreteUniform.pmf( 0.0, NaN, 1 )\ny = base.dists.discreteUniform.pmf( 0.0, 0, NaN )\ny = base.dists.discreteUniform.pmf( 2.0, 3, 1 )\ny = base.dists.discreteUniform.pmf( 2.0, 1, 2.4 )\n",
+	"base.dists.discreteUniform.quantile": "y = base.dists.discreteUniform.quantile( 0.8, 0, 1 )\ny = base.dists.discreteUniform.quantile( 0.5, 0.0, 10.0 )\ny = base.dists.discreteUniform.quantile( 1.1, 0, 4 )\ny = base.dists.discreteUniform.quantile( -0.2, 0, 4 )\ny = base.dists.discreteUniform.quantile( NaN, -2, 2 )\ny = base.dists.discreteUniform.quantile( 0.1, NaN, 2 )\ny = base.dists.discreteUniform.quantile( 0.1, -2, NaN )\ny = base.dists.discreteUniform.quantile( 0.5, 2, 1 )\n",
+	"base.dists.discreteUniform.skewness": "v = base.dists.discreteUniform.skewness( -2, 2 )\nv = base.dists.discreteUniform.skewness( 4, 12 )\nv = base.dists.discreteUniform.skewness( 2, 8 )\n",
+	"base.dists.discreteUniform.stdev": "v = base.dists.discreteUniform.stdev( 0, 1 )\nv = base.dists.discreteUniform.stdev( 4, 12 )\nv = base.dists.discreteUniform.stdev( 2, 8 )\n",
+	"base.dists.discreteUniform.variance": "v = base.dists.discreteUniform.variance( 0, 1 )\nv = base.dists.discreteUniform.variance( 4, 12 )\nv = base.dists.discreteUniform.variance( 2, 8 )\n",
+	"base.dists.erlang.cdf": "y = base.dists.erlang.cdf( 2.0, 1, 1.0 );\ny = base.dists.erlang.cdf( 2.0, 3, 1.0 )\ny = base.dists.erlang.cdf( 2.0, 2.5, 1.0 )\ny = base.dists.erlang.cdf( -1.0, 2, 2.0 )\ny = base.dists.erlang.cdf( PINF, 4, 2.0 )\ny = base.dists.erlang.cdf( NINF, 4, 2.0 )\ny = base.dists.erlang.cdf( NaN, 0, 1.0 )\ny = base.dists.erlang.cdf( 0.0, NaN, 1.0 )\ny = base.dists.erlang.cdf( 0.0, 0, NaN )\ny = base.dists.erlang.cdf( 2.0, -1, 1.0 )\ny = base.dists.erlang.cdf( 2.0, 1, -1.0 )\n",
+	"base.dists.erlang.entropy": "v = base.dists.erlang.entropy( 1, 1.0 )\nv = base.dists.erlang.entropy( 4, 12.0 )\nv = base.dists.erlang.entropy( 8, 2.0 )\n",
+	"base.dists.erlang.Erlang": "erlang = base.dists.erlang.Erlang( 6, 5.0 );\nerlang.k\nerlang.lambda\nerlang.entropy\nerlang.kurtosis\nerlang.mean\nerlang.mode\nerlang.skewness\nerlang.stdev\nerlang.variance\nerlang.cdf( 3.0 )\nerlang.logpdf( 3.0 )\nerlang.mgf( -0.5 )\nerlang.pdf( 3.0 )\nerlang.quantile( 0.8 )\n",
+	"base.dists.erlang.kurtosis": "v = base.dists.erlang.kurtosis( 1, 1.0 )\nv = base.dists.erlang.kurtosis( 4, 12.0 )\nv = base.dists.erlang.kurtosis( 8, 2.0 )\n",
+	"base.dists.erlang.logpdf": "y = base.dists.erlang.logpdf( 0.1, 1, 1.0 )\ny = base.dists.erlang.logpdf( 0.5, 2, 2.5 )\ny = base.dists.erlang.logpdf( -1.0, 4, 2.0 )\ny = base.dists.erlang.logpdf( NaN, 1, 1.0 )\ny = base.dists.erlang.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.erlang.logpdf( 0.0, 1, NaN )\ny = base.dists.erlang.logpdf( 2.0, -2, 0.5 )\ny = base.dists.erlang.logpdf( 2.0, 0.5, 0.5 )\ny = base.dists.erlang.logpdf( 2.0, 0.0, 2.0 )\ny = base.dists.erlang.logpdf( 0.0, 0.0, 2.0 )\ny = base.dists.erlang.logpdf( 2.0, 1, 0.0 )\ny = base.dists.erlang.logpdf( 2.0, 1, -1.0 )\n",
+	"base.dists.erlang.mean": "v = base.dists.erlang.mean( 1, 1.0 )\nv = base.dists.erlang.mean( 4, 12.0 )\nv = base.dists.erlang.mean( 8, 2.0 )\n",
+	"base.dists.erlang.mgf": "y = base.dists.erlang.mgf( 0.3, 1, 1.0 )\ny = base.dists.erlang.mgf( 2.0, 2, 3.0 )\ny = base.dists.erlang.mgf( -1.0, 2, 2.0 )\ny = base.dists.erlang.mgf( NaN, 1, 1.0 )\ny = base.dists.erlang.mgf( 0.0, NaN, 1.0 )\ny = base.dists.erlang.mgf( 0.0, 1, NaN )\ny = base.dists.erlang.mgf( 0.2, -2, 0.5 )\ny = base.dists.erlang.mgf( 0.2, 0.5, 0.5 )\ny = base.dists.erlang.mgf( 0.2, 1, 0.0 )\ny = base.dists.erlang.mgf( 0.2, 1, -5.0 )\n",
+	"base.dists.erlang.mode": "v = base.dists.erlang.mode( 1, 1.0 )\nv = base.dists.erlang.mode( 4, 12.0 )\nv = base.dists.erlang.mode( 8, 2.0 )\n",
+	"base.dists.erlang.pdf": "y = base.dists.erlang.pdf( 0.1, 1, 1.0 )\ny = base.dists.erlang.pdf( 0.5, 2, 2.5 )\ny = base.dists.erlang.pdf( -1.0, 4, 2.0 )\ny = base.dists.erlang.pdf( NaN, 1, 1.0 )\ny = base.dists.erlang.pdf( 0.0, NaN, 1.0 )\ny = base.dists.erlang.pdf( 0.0, 1, NaN )\ny = base.dists.erlang.pdf( 2.0, -2, 0.5 )\ny = base.dists.erlang.pdf( 2.0, 0.5, 0.5 )\ny = base.dists.erlang.pdf( 2.0, 0.0, 2.0 )\ny = base.dists.erlang.pdf( 0.0, 0.0, 2.0 )\ny = base.dists.erlang.pdf( 2.0, 1, 0.0 )\ny = base.dists.erlang.pdf( 2.0, 1, -1.0 )\n",
+	"base.dists.erlang.quantile": "y = base.dists.erlang.quantile( 0.8, 2, 1.0 )\ny = base.dists.erlang.quantile( 0.5, 4, 2.0 )\ny = base.dists.erlang.quantile( 1.1, 1, 1.0 )\ny = base.dists.erlang.quantile( -0.2, 1, 1.0 )\ny = base.dists.erlang.quantile( NaN, 1, 1.0 )\ny = base.dists.erlang.quantile( 0.0, NaN, 1.0 )\ny = base.dists.erlang.quantile( 0.0, 1, NaN )\n\n// Non-integer shape parameter:\ny = base.dists.erlang.quantile( 0.5, 0.5, 1.0 )\n\n// Non-positive shape parameter:\ny = base.dists.erlang.quantile( 0.5, -1, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dists.erlang.quantile( 0.5, 1, -1.0 )\n",
+	"base.dists.erlang.skewness": "v = base.dists.erlang.skewness( 1, 1.0 )\nv = base.dists.erlang.skewness( 4, 12.0 )\nv = base.dists.erlang.skewness( 8, 2.0 )\n",
+	"base.dists.erlang.stdev": "v = base.dists.erlang.stdev( 1, 1.0 )\nv = base.dists.erlang.stdev( 4, 12.0 )\nv = base.dists.erlang.stdev( 8, 2.0 )\n",
+	"base.dists.erlang.variance": "v = base.dists.erlang.variance( 1, 1.0 )\nv = base.dists.erlang.variance( 4, 12.0 )\nv = base.dists.erlang.variance( 8, 2.0 )\n",
+	"base.dists.exponential.cdf": "y = base.dists.exponential.cdf( 2.0, 0.1 )\ny = base.dists.exponential.cdf( 1.0, 2.0 )\ny = base.dists.exponential.cdf( -1.0, 4.0 )\ny = base.dists.exponential.cdf( NaN, 1.0 )\ny = base.dists.exponential.cdf( 0.0, NaN )\n\n// Negative rate parameter:\ny = base.dists.exponential.cdf( 2.0, -1.0 )\n",
+	"base.dists.exponential.entropy": "v = base.dists.exponential.entropy( 11.0 )\nv = base.dists.exponential.entropy( 4.5 )\n",
+	"base.dists.exponential.Exponential": "exponential = base.dists.exponential.Exponential( 6.0 );\nexponential.lambda\nexponential.entropy\nexponential.kurtosis\nexponential.mean\nexponential.median\nexponential.mode\nexponential.skewness\nexponential.stdev\nexponential.variance\nexponential.cdf( 1.0 )\nexponential.logcdf( 1.0 )\nexponential.logpdf( 1.5 )\nexponential.mgf( -0.5 )\nexponential.pdf( 1.5 )\nexponential.quantile( 0.5 )\n",
+	"base.dists.exponential.kurtosis": "v = base.dists.exponential.kurtosis( 11.0 )\nv = base.dists.exponential.kurtosis( 4.5 )\n",
+	"base.dists.exponential.logcdf": "y = base.dists.exponential.logcdf( 2.0, 0.1 )\ny = base.dists.exponential.logcdf( 1.0, 2.0 )\ny = base.dists.exponential.logcdf( -1.0, 4.0 )\ny = base.dists.exponential.logcdf( NaN, 1.0 )\ny = base.dists.exponential.logcdf( 0.0, NaN )\n\n// Negative rate parameter:\ny = base.dists.exponential.logcdf( 2.0, -1.0 )\n",
+	"base.dists.exponential.logpdf": "y = base.dists.exponential.logpdf( 0.3, 4.0 )\ny = base.dists.exponential.logpdf( 2.0, 0.7 )\ny = base.dists.exponential.logpdf( -1.0, 0.5 )\ny = base.dists.exponential.logpdf( 0, NaN )\ny = base.dists.exponential.logpdf( NaN, 2.0 )\n\n// Negative rate:\ny = base.dists.exponential.logpdf( 2.0, -1.0 )\n",
+	"base.dists.exponential.mean": "v = base.dists.exponential.mean( 11.0 )\nv = base.dists.exponential.mean( 4.5 )\n",
+	"base.dists.exponential.median": "v = base.dists.exponential.median( 11.0 )\nv = base.dists.exponential.median( 4.5 )\n",
+	"base.dists.exponential.mode": "v = base.dists.exponential.mode( 11.0 )\nv = base.dists.exponential.mode( 4.5 )\n",
+	"base.dists.exponential.pdf": "y = base.dists.exponential.pdf( 0.3, 4.0 )\ny = base.dists.exponential.pdf( 2.0, 0.7 )\ny = base.dists.exponential.pdf( -1.0, 0.5 )\ny = base.dists.exponential.pdf( 0, NaN )\ny = base.dists.exponential.pdf( NaN, 2.0 )\n\n// Negative rate:\ny = base.dists.exponential.pdf( 2.0, -1.0 )\n",
+	"base.dists.exponential.quantile": "y = base.dists.exponential.quantile( 0.8, 1.0 )\ny = base.dists.exponential.quantile( 0.5, 4.0 )\ny = base.dists.exponential.quantile( 0.5, 0.1 )\ny = base.dists.exponential.quantile( -0.2, 0.1 )\ny = base.dists.exponential.quantile( NaN, 1.0 )\ny = base.dists.exponential.quantile( 0.0, NaN )\n\n// Negative rate parameter:\ny = base.dists.exponential.quantile( 0.5, -1.0 )\n",
+	"base.dists.exponential.skewness": "v = base.dists.exponential.skewness( 11.0 )\nv = base.dists.exponential.skewness( 4.5 )\n",
+	"base.dists.exponential.stdev": "v = base.dists.exponential.stdev( 9.0 )\nv = base.dists.exponential.stdev( 1.0 )\n",
+	"base.dists.exponential.variance": "v = base.dists.exponential.variance( 9.0 )\nv = base.dists.exponential.variance( 1.0 )\n",
+	"base.dists.f.cdf": "y = base.dists.f.cdf( 2.0, 1.0, 1.0 )\ny = base.dists.f.cdf( 2.0, 8.0, 4.0 )\ny = base.dists.f.cdf( -1.0, 2.0, 2.0 )\ny = base.dists.f.cdf( PINF, 4.0, 2.0 )\ny = base.dists.f.cdf( NINF, 4.0, 2.0 )\ny = base.dists.f.cdf( NaN, 1.0, 1.0 )\ny = base.dists.f.cdf( 0.0, NaN, 1.0 )\ny = base.dists.f.cdf( 0.0, 1.0, NaN )\ny = base.dists.f.cdf( 2.0, 1.0, -1.0 )\ny = base.dists.f.cdf( 2.0, -1.0, 1.0 )\n",
+	"base.dists.f.entropy": "v = base.dists.f.entropy( 3.0, 7.0 )\nv = base.dists.f.entropy( 4.0, 12.0 )\nv = base.dists.f.entropy( 8.0, 2.0 )\n",
+	"base.dists.f.F": "f = base.dists.f.F( 6.0, 9.0 );\nf.d1\nf.d2\nf.entropy\nf.kurtosis\nf.mean\nf.mode\nf.skewness\nf.stdev\nf.variance\nf.cdf( 3.0 )\nf.pdf( 2.5 )\nf.quantile( 0.8 )\n",
+	"base.dists.f.kurtosis": "v = base.dists.f.kurtosis( 3.0, 9.0 )\nv = base.dists.f.kurtosis( 4.0, 12.0 )\nv = base.dists.f.kurtosis( 8.0, 9.0 )\n",
+	"base.dists.f.mean": "v = base.dists.f.mean( 3.0, 5.0 )\nv = base.dists.f.mean( 4.0, 12.0 )\nv = base.dists.f.mean( 8.0, 4.0 )\n",
+	"base.dists.f.mode": "v = base.dists.f.mode( 3.0, 5.0 )\nv = base.dists.f.mode( 4.0, 12.0 )\nv = base.dists.f.mode( 8.0, 4.0 )\n",
+	"base.dists.f.pdf": "y = base.dists.f.pdf( 2.0, 0.5, 1.0 )\ny = base.dists.f.pdf( 0.1, 1.0, 1.0 )\ny = base.dists.f.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.f.pdf( NaN, 1.0, 1.0 )\ny = base.dists.f.pdf( 0.0, NaN, 1.0 )\ny = base.dists.f.pdf( 0.0, 1.0, NaN )\ny = base.dists.f.pdf( 2.0, 1.0, -1.0 )\ny = base.dists.f.pdf( 2.0, -1.0, 1.0 )\n",
+	"base.dists.f.quantile": "y = base.dists.f.quantile( 0.8, 1.0, 1.0 )\ny = base.dists.f.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.f.quantile( 1.1, 1.0, 1.0 )\ny = base.dists.f.quantile( -0.2, 1.0, 1.0 )\ny = base.dists.f.quantile( NaN, 1.0, 1.0 )\ny = base.dists.f.quantile( 0.5, NaN, 1.0 )\ny = base.dists.f.quantile( 0.5, 1.0, NaN )\ny = base.dists.f.quantile( 0.5, -1.0, 1.0 )\ny = base.dists.f.quantile( 0.5, 1.0, -1.0 )\n",
+	"base.dists.f.skewness": "v = base.dists.f.skewness( 3.0, 7.0 )\nv = base.dists.f.skewness( 4.0, 12.0 )\nv = base.dists.f.skewness( 8.0, 7.0 )\n",
+	"base.dists.f.stdev": "v = base.dists.f.stdev( 3.0, 5.0 )\nv = base.dists.f.stdev( 4.0, 12.0 )\nv = base.dists.f.stdev( 8.0, 5.0 )\n",
+	"base.dists.f.variance": "v = base.dists.f.variance( 3.0, 5.0 )\nv = base.dists.f.variance( 4.0, 12.0 )\nv = base.dists.f.variance( 8.0, 5.0 )\n",
+	"base.dists.frechet.cdf": "y = base.dists.frechet.cdf( 10.0, 2.0, 3.0, 0.0 )\ny = base.dists.frechet.cdf( -1.0, 2.0, 3.0, -3.0 )\ny = base.dists.frechet.cdf( 2.5, 2.0, 1.0, 2.0 )\ny = base.dists.frechet.cdf( NaN, 1.0, 1.0, 0.0 )\ny = base.dists.frechet.cdf( 0.0, NaN, 1.0, 0.0 )\ny = base.dists.frechet.cdf( 0.0, 1.0, NaN, 0.0 )\ny = base.dists.frechet.cdf( 0.0, 1.0, 1.0, NaN )\ny = base.dists.frechet.cdf( 0.0, -1.0, 1.0, 0.0 )\ny = base.dists.frechet.cdf( 0.0, 1.0, -1.0, 0.0 )\n",
+	"base.dists.frechet.entropy": "y = base.dists.frechet.entropy( 1.0, 1.0, 1.0 )\ny = base.dists.frechet.entropy( 4.0, 2.0, 1.0 )\ny = base.dists.frechet.entropy( NaN, 1.0, 0.0 )\ny = base.dists.frechet.entropy( 1.0, NaN, 0.0 )\ny = base.dists.frechet.entropy( 1.0, 1.0, NaN )\n",
+	"base.dists.frechet.Frechet": "frechet = base.dists.frechet.Frechet( 1.0, 1.0, 0.0 );\nfrechet.alpha\nfrechet.s\nfrechet.m\nfrechet.entropy\nfrechet.kurtosis\nfrechet.mean\nfrechet.median\nfrechet.mode\nfrechet.skewness\nfrechet.stdev\nfrechet.variance\nfrechet.cdf( 0.8 )\nfrechet.logcdf( 0.8 )\nfrechet.logpdf( 0.8 )\nfrechet.pdf( 0.8 )\nfrechet.quantile( 0.8 )\n",
+	"base.dists.frechet.kurtosis": "y = base.dists.frechet.kurtosis( 5.0, 2.0, 1.0 )\ny = base.dists.frechet.kurtosis( 5.0, 10.0, -3.0 )\ny = base.dists.frechet.kurtosis( 3.5, 2.0, 1.0 )\ny = base.dists.frechet.kurtosis( NaN, 1.0, 0.0 )\ny = base.dists.frechet.kurtosis( 1.0, NaN, 0.0 )\ny = base.dists.frechet.kurtosis( 1.0, 1.0, NaN )\n",
+	"base.dists.frechet.logcdf": "y = base.dists.frechet.logcdf( 10.0, 2.0, 3.0, 0.0 )\ny = base.dists.frechet.logcdf( -1.0, 2.0, 3.0, -3.0 )\ny = base.dists.frechet.logcdf( 2.5, 2.0, 1.0, 2.0 )\ny = base.dists.frechet.logcdf( NaN, 1.0, 1.0, 0.0 )\ny = base.dists.frechet.logcdf( 0.0, NaN, 1.0, 0.0 )\ny = base.dists.frechet.logcdf( 0.0, 1.0, NaN, 0.0 )\ny = base.dists.frechet.logcdf( 0.0, 1.0, 1.0, NaN )\ny = base.dists.frechet.logcdf( 0.0, -1.0, 1.0, 0.0 )\ny = base.dists.frechet.logcdf( 0.0, 1.0, -1.0, 0.0 )\n",
+	"base.dists.frechet.logpdf": "y = base.dists.frechet.logpdf( 10.0, 1.0, 3.0, 5.0 )\ny = base.dists.frechet.logpdf( -2.0, 1.0, 3.0, -3.0 )\ny = base.dists.frechet.logpdf( 0.0, 2.0, 1.0, -1.0 )\ny = base.dists.frechet.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.frechet.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.frechet.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.frechet.logpdf( 0.0, 0.0, -1.0 )\n",
+	"base.dists.frechet.mean": "y = base.dists.frechet.mean( 4.0, 2.0, 1.0 )\ny = base.dists.frechet.mean( 0.5, 2.0, 1.0 )\ny = base.dists.frechet.mean( NaN, 1.0, 0.0 )\ny = base.dists.frechet.mean( 1.0, NaN, 0.0 )\ny = base.dists.frechet.mean( 1.0, 1.0, NaN )\n",
+	"base.dists.frechet.median": "y = base.dists.frechet.median( 4.0, 2.0, 1.0 )\ny = base.dists.frechet.median( 4.0, 2.0, -3.0 )\ny = base.dists.frechet.median( 0.5, 2.0, 1.0 )\ny = base.dists.frechet.median( NaN, 1.0, 0.0 )\ny = base.dists.frechet.median( 1.0, NaN, 0.0 )\ny = base.dists.frechet.median( 1.0, 1.0, NaN )\n",
+	"base.dists.frechet.mode": "y = base.dists.frechet.mode( 4.0, 2.0, 1.0 )\ny = base.dists.frechet.mode( 4.0, 2.0, -3.0 )\ny = base.dists.frechet.mode( 0.5, 2.0, 1.0 )\ny = base.dists.frechet.mode( NaN, 1.0, 0.0 )\ny = base.dists.frechet.mode( 1.0, NaN, 0.0 )\ny = base.dists.frechet.mode( 1.0, 1.0, NaN )\n",
+	"base.dists.frechet.pdf": "y = base.dists.frechet.pdf( 10.0, 0.0, 3.0 )\ny = base.dists.frechet.pdf( -2.0, 0.0, 3.0 )\ny = base.dists.frechet.pdf( 0.0, 0.0, 1.0 )\ny = base.dists.frechet.pdf( NaN, 0.0, 1.0 )\ny = base.dists.frechet.pdf( 0.0, NaN, 1.0 )\ny = base.dists.frechet.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.frechet.pdf( 0.0, 0.0, -1.0 )\n",
+	"base.dists.frechet.quantile": "y = base.dists.frechet.quantile( 0.3, 10.0, 2.0, 3.0 )\ny = base.dists.frechet.quantile( 0.2, 3.0, 3.0, 3.0 )\ny = base.dists.frechet.quantile( 0.9, 1.0, 1.0, -3.0 )\ny = base.dists.frechet.quantile( NaN, 1.0, 1.0, 0.0 )\ny = base.dists.frechet.quantile( 0.0, NaN, 1.0, 0.0)\ny = base.dists.frechet.quantile( 0.0, 1.0, NaN, 0.0 )\ny = base.dists.frechet.quantile( 0.0, 1.0, 1.0, NaN )\ny = base.dists.frechet.quantile( 0.0, -1.0, 1.0, 0.0 )\ny = base.dists.frechet.quantile( 0.0, 1.0, -1.0, 0.0 )\n",
+	"base.dists.frechet.skewness": "y = base.dists.frechet.skewness( 4.0, 2.0, 1.0 )\ny = base.dists.frechet.skewness( 4.0, 2.0, -3.0 )\ny = base.dists.frechet.skewness( 0.5, 2.0, 1.0 )\ny = base.dists.frechet.skewness( NaN, 1.0, 0.0 )\ny = base.dists.frechet.skewness( 1.0, NaN, 0.0 )\ny = base.dists.frechet.skewness( 1.0, 1.0, NaN )\n",
+	"base.dists.frechet.stdev": "y = base.dists.frechet.stdev( 4.0, 2.0, 1.0 )\ny = base.dists.frechet.stdev( 4.0, 2.0, -3.0 )\ny = base.dists.frechet.stdev( 0.5, 2.0, 1.0 )\ny = base.dists.frechet.stdev( NaN, 1.0, 0.0 )\ny = base.dists.frechet.stdev( 1.0, NaN, 0.0 )\ny = base.dists.frechet.stdev( 1.0, 1.0, NaN )\n",
+	"base.dists.frechet.variance": "y = base.dists.frechet.variance( 4.0, 2.0, 1.0 )\ny = base.dists.frechet.variance( 4.0, 2.0, -3.0 )\ny = base.dists.frechet.variance( 0.5, 2.0, 1.0 )\ny = base.dists.frechet.variance( NaN, 1.0, 0.0 )\ny = base.dists.frechet.variance( 1.0, NaN, 0.0 )\ny = base.dists.frechet.variance( 1.0, 1.0, NaN )\n",
+	"base.dists.gamma.cdf": "y = base.dists.gamma.cdf( 2.0, 1.0, 1.0 )\ny = base.dists.gamma.cdf( 2.0, 3.0, 1.0 )\ny = base.dists.gamma.cdf( -1.0, 2.0, 2.0 )\ny = base.dists.gamma.cdf( PINF, 4.0, 2.0 )\ny = base.dists.gamma.cdf( NINF, 4.0, 2.0 )\ny = base.dists.gamma.cdf( NaN, 0.0, 1.0 )\ny = base.dists.gamma.cdf( 0.0, NaN, 1.0 )\ny = base.dists.gamma.cdf( 0.0, 0.0, NaN )\ny = base.dists.gamma.cdf( 2.0, -1.0, 1.0 )\ny = base.dists.gamma.cdf( 2.0, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0` when `α = 0.0`:\ny = base.dists.gamma.cdf( 2.0, 0.0, 2.0 )\ny = base.dists.gamma.cdf( -2.0, 0.0, 2.0 )\ny = base.dists.gamma.cdf( 0.0, 0.0, 2.0 )\n",
+	"base.dists.gamma.entropy": "v = base.dists.gamma.entropy( 1.0, 1.0 )\nv = base.dists.gamma.entropy( 4.0, 12.0 )\nv = base.dists.gamma.entropy( 8.0, 2.0 )\n",
+	"base.dists.gamma.Gamma": "gamma = base.dists.gamma.Gamma( 6.0, 5.0 );\ngamma.alpha\ngamma.beta\ngamma.entropy\ngamma.kurtosis\ngamma.mean\ngamma.mode\ngamma.skewness\ngamma.stdev\ngamma.variance\ngamma.cdf( 0.8 )\ngamma.logpdf( 1.0 )\ngamma.mgf( -0.5 )\ngamma.pdf( 1.0 )\ngamma.quantile( 0.8 )\n",
+	"base.dists.gamma.kurtosis": "v = base.dists.gamma.kurtosis( 1.0, 1.0 )\nv = base.dists.gamma.kurtosis( 4.0, 12.0 )\nv = base.dists.gamma.kurtosis( 8.0, 2.0 )\n",
+	"base.dists.gamma.logpdf": "y = base.dists.gamma.logpdf( 2.0, 0.5, 1.0 )\ny = base.dists.gamma.logpdf( 0.1, 1.0, 1.0 )\ny = base.dists.gamma.logpdf( -1.0, 4.0, 2.0 )\ny = base.dists.gamma.logpdf( NaN, 0.6, 1.0 )\ny = base.dists.gamma.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.gamma.logpdf( 0.0, 1.0, NaN )\n\n// Negative shape parameter:\ny = base.dists.gamma.logpdf( 2.0, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dists.gamma.logpdf( 2.0, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0.0` when `α = 0.0`:\ny = base.dists.gamma.logpdf( 2.0, 0.0, 2.0 )\ny = base.dists.gamma.logpdf( 0.0, 0.0, 2.0 )\n",
+	"base.dists.gamma.mean": "v = base.dists.gamma.mean( 1.0, 1.0 )\nv = base.dists.gamma.mean( 4.0, 12.0 )\nv = base.dists.gamma.mean( 8.0, 2.0 )\n",
+	"base.dists.gamma.mgf": "y = base.dists.gamma.mgf( 0.5, 0.5, 1.0 )\ny = base.dists.gamma.mgf( 0.1, 1.0, 1.0 )\ny = base.dists.gamma.mgf( -1.0, 4.0, 2.0 )\ny = base.dists.gamma.mgf( NaN, 1.0, 1.0 )\ny = base.dists.gamma.mgf( 0.0, NaN, 1.0 )\ny = base.dists.gamma.mgf( 0.0, 1.0, NaN )\ny = base.dists.gamma.mgf( 2.0, 4.0, 1.0 )\ny = base.dists.gamma.mgf( 2.0, -0.5, 1.0 )\ny = base.dists.gamma.mgf( 2.0, 1.0, 0.0 )\ny = base.dists.gamma.mgf( 2.0, 1.0, -1.0 )\n",
+	"base.dists.gamma.mode": "v = base.dists.gamma.mode( 1.0, 1.0 )\nv = base.dists.gamma.mode( 4.0, 12.0 )\nv = base.dists.gamma.mode( 8.0, 2.0 )\n",
+	"base.dists.gamma.pdf": "y = base.dists.gamma.pdf( 2.0, 0.5, 1.0 )\ny = base.dists.gamma.pdf( 0.1, 1.0, 1.0 )\ny = base.dists.gamma.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.gamma.pdf( NaN, 0.6, 1.0 )\ny = base.dists.gamma.pdf( 0.0, NaN, 1.0 )\ny = base.dists.gamma.pdf( 0.0, 1.0, NaN )\n\n// Negative shape parameter:\ny = base.dists.gamma.pdf( 2.0, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dists.gamma.pdf( 2.0, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0.0` when `α = 0.0`:\ny = base.dists.gamma.pdf( 2.0, 0.0, 2.0 )\ny = base.dists.gamma.pdf( 0.0, 0.0, 2.0 )\n",
+	"base.dists.gamma.quantile": "y = base.dists.gamma.quantile( 0.8, 2.0, 1.0 )\ny = base.dists.gamma.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.gamma.quantile( 1.1, 1.0, 1.0 )\ny = base.dists.gamma.quantile( -0.2, 1.0, 1.0 )\ny = base.dists.gamma.quantile( NaN, 1.0, 1.0 )\ny = base.dists.gamma.quantile( 0.0, NaN, 1.0 )\ny = base.dists.gamma.quantile( 0.0, 1.0, NaN )\n\n// Non-positive shape parameter:\ny = base.dists.gamma.quantile( 0.5, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dists.gamma.quantile( 0.5, 1.0, -1.0 )\n\n// Degenerate distribution centered at `0.0` when `α = 0.0`:\ny = base.dists.gamma.quantile( 0.3, 0.0, 2.0 );\ny = base.dists.gamma.quantile( 0.9, 0.0, 2.0 );\n",
+	"base.dists.gamma.skewness": "v = base.dists.gamma.skewness( 1.0, 1.0 )\nv = base.dists.gamma.skewness( 4.0, 12.0 )\nv = base.dists.gamma.skewness( 8.0, 2.0 )\n",
+	"base.dists.gamma.stdev": "v = base.dists.gamma.stdev( 1.0, 1.0 )\nv = base.dists.gamma.stdev( 4.0, 12.0 )\nv = base.dists.gamma.stdev( 8.0, 2.0 )\n",
+	"base.dists.gamma.variance": "v = base.dists.gamma.variance( 1.0, 1.0 )\nv = base.dists.gamma.variance( 4.0, 12.0 )\nv = base.dists.gamma.variance( 8.0, 2.0 )\n",
+	"base.dists.geometric.cdf": "y = base.dists.geometric.cdf( 2.0, 0.5 )\ny = base.dists.geometric.cdf( 2.0, 0.1 )\ny = base.dists.geometric.cdf( -1.0, 4.0 )\ny = base.dists.geometric.cdf( NaN, 0.5 )\ny = base.dists.geometric.cdf( 0.0, NaN )\n\n// Invalid probability\ny = base.dists.geometric.cdf( 2.0, 1.4 )\n",
+	"base.dists.geometric.entropy": "v = base.dists.geometric.entropy( 0.1 )\nv = base.dists.geometric.entropy( 0.5 )\n",
+	"base.dists.geometric.Geometric": "geometric = base.dists.geometric.Geometric( 0.6 );\ngeometric.p\ngeometric.entropy\ngeometric.kurtosis\ngeometric.mean\ngeometric.median\ngeometric.mode\ngeometric.skewness\ngeometric.stdev\ngeometric.variance\ngeometric.cdf( 3.0 )\ngeometric.logcdf( 3.0 )\ngeometric.logpmf( 4.0 )\ngeometric.mgf( 0.5 )\ngeometric.pmf( 2.0 )\ngeometric.quantile( 0.7 )\n",
+	"base.dists.geometric.kurtosis": "v = base.dists.geometric.kurtosis( 0.1 )\nv = base.dists.geometric.kurtosis( 0.5 )\n",
+	"base.dists.geometric.logcdf": "y = base.dists.geometric.logcdf( 2.0, 0.5 )\ny = base.dists.geometric.logcdf( 2.0, 0.1 )\ny = base.dists.geometric.logcdf( -1.0, 4.0 )\ny = base.dists.geometric.logcdf( NaN, 0.5 )\ny = base.dists.geometric.logcdf( 0.0, NaN )\n\n// Invalid probability\ny = base.dists.geometric.logcdf( 2.0, 1.4 )\n",
+	"base.dists.geometric.logpmf": "y = base.dists.geometric.logpmf( 4.0, 0.3 )\ny = base.dists.geometric.logpmf( 2.0, 0.7 )\ny = base.dists.geometric.logpmf( -1.0, 0.5 )\ny = base.dists.geometric.logpmf( 0.0, NaN )\ny = base.dists.geometric.logpmf( NaN, 0.5 )\n\n// Invalid success probability:\ny = base.dists.geometric.logpmf( 2.0, 1.5 )\n",
+	"base.dists.geometric.mean": "v = base.dists.geometric.mean( 0.1 )\nv = base.dists.geometric.mean( 0.5 )\n",
+	"base.dists.geometric.median": "v = base.dists.geometric.median( 0.1 )\nv = base.dists.geometric.median( 0.5 )\n",
+	"base.dists.geometric.mgf": "y = base.dists.geometric.mgf( 0.2, 0.5 )\ny = base.dists.geometric.mgf( 0.4, 0.5 )\n\n// Case: t >= -ln(1-p)\ny = base.dists.geometric.mgf( 0.8, 0.5 )\ny = base.dists.geometric.mgf( NaN, 0.0 )\ny = base.dists.geometric.mgf( 0.0, NaN )\ny = base.dists.geometric.mgf( -2.0, -1.0 )\ny = base.dists.geometric.mgf( 0.2, 2.0 )\n",
+	"base.dists.geometric.mode": "v = base.dists.geometric.mode( 0.1 )\nv = base.dists.geometric.mode( 0.5 )\n",
+	"base.dists.geometric.pmf": "y = base.dists.geometric.pmf( 4.0, 0.3 )\ny = base.dists.geometric.pmf( 2.0, 0.7 )\ny = base.dists.geometric.pmf( -1.0, 0.5 )\ny = base.dists.geometric.pmf( 0.0, NaN )\ny = base.dists.geometric.pmf( NaN, 0.5 )\n\n// Invalid success probability:\ny = base.dists.geometric.pmf( 2.0, 1.5 )\n",
+	"base.dists.geometric.quantile": "y = base.dists.geometric.quantile( 0.8, 0.4 )\ny = base.dists.geometric.quantile( 0.5, 0.4 )\ny = base.dists.geometric.quantile( 0.9, 0.1 )\ny = base.dists.geometric.quantile( -0.2, 0.1 )\ny = base.dists.geometric.quantile( NaN, 0.8 )\ny = base.dists.geometric.quantile( 0.4, NaN )\ny = base.dists.geometric.quantile( 0.5, -1.0 )\ny = base.dists.geometric.quantile( 0.5, 1.5 )\n",
+	"base.dists.geometric.skewness": "v = base.dists.geometric.skewness( 0.1 )\nv = base.dists.geometric.skewness( 0.5 )\n",
+	"base.dists.geometric.stdev": "v = base.dists.geometric.stdev( 0.1 )\nv = base.dists.geometric.stdev( 0.5 )\n",
+	"base.dists.geometric.variance": "v = base.dists.geometric.variance( 0.1 )\nv = base.dists.geometric.variance( 0.5 )\n",
+	"base.dists.gumbel.cdf": "y = base.dists.gumbel.cdf( 10.0, 0.0, 3.0 )\ny = base.dists.gumbel.cdf( -2.0, 0.0, 3.0 )\ny = base.dists.gumbel.cdf( 0.0, 0.0, 1.0 )\ny = base.dists.gumbel.cdf( NaN, 0.0, 1.0 )\ny = base.dists.gumbel.cdf( 0.0, NaN, 1.0 )\ny = base.dists.gumbel.cdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.gumbel.cdf( 0.0, 0.0, -1.0 )\n",
+	"base.dists.gumbel.entropy": "y = base.dists.gumbel.entropy( 0.0, 1.0 )\ny = base.dists.gumbel.entropy( 4.0, 2.0 )\ny = base.dists.gumbel.entropy( NaN, 1.0 )\ny = base.dists.gumbel.entropy( 0.0, NaN )\ny = base.dists.gumbel.entropy( 0.0, 0.0 )\n",
+	"base.dists.gumbel.Gumbel": "gumbel = base.dists.gumbel.Gumbel( -2.0, 3.0 );\ngumbel.mu\ngumbel.beta\ngumbel.entropy\ngumbel.kurtosis\ngumbel.mean\ngumbel.median\ngumbel.mode\ngumbel.skewness\ngumbel.stdev\ngumbel.variance\ngumbel.cdf( 0.8 )\ngumbel.logcdf( 0.8 )\ngumbel.logpdf( 1.0 )\ngumbel.mgf( 0.2 )\ngumbel.pdf( 1.0 )\ngumbel.quantile( 0.8 )\n",
+	"base.dists.gumbel.kurtosis": "y = base.dists.gumbel.kurtosis( 0.0, 1.0 )\ny = base.dists.gumbel.kurtosis( 4.0, 2.0 )\ny = base.dists.gumbel.kurtosis( NaN, 1.0 )\ny = base.dists.gumbel.kurtosis( 0.0, NaN )\ny = base.dists.gumbel.kurtosis( 0.0, 0.0 )\n",
+	"base.dists.gumbel.logcdf": "y = base.dists.gumbel.logcdf( 10.0, 0.0, 3.0 )\ny = base.dists.gumbel.logcdf( -2.0, 0.0, 3.0 )\ny = base.dists.gumbel.logcdf( 0.0, 0.0, 1.0 )\ny = base.dists.gumbel.logcdf( NaN, 0.0, 1.0 )\ny = base.dists.gumbel.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.gumbel.logcdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.gumbel.logcdf( 0.0, 0.0, -1.0 )\n",
+	"base.dists.gumbel.logpdf": "y = base.dists.gumbel.logpdf( 0.0, 0.0, 2.0 )\ny = base.dists.gumbel.logpdf( 0.0, 0.0, 1.0 )\ny = base.dists.gumbel.logpdf( 1.0, 3.0, 2.0 )\ny = base.dists.gumbel.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.gumbel.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.gumbel.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.gumbel.logpdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.gumbel.mean": "y = base.dists.gumbel.mean( 0.0, 1.0 )\ny = base.dists.gumbel.mean( 4.0, 2.0 )\ny = base.dists.gumbel.mean( NaN, 1.0 )\ny = base.dists.gumbel.mean( 0.0, NaN )\ny = base.dists.gumbel.mean( 0.0, 0.0 )\n",
+	"base.dists.gumbel.median": "y = base.dists.gumbel.median( 0.0, 1.0 )\ny = base.dists.gumbel.median( 4.0, 2.0 )\ny = base.dists.gumbel.median( NaN, 1.0 )\ny = base.dists.gumbel.median( 0.0, NaN )\ny = base.dists.gumbel.median( 0.0, 0.0 )\n",
+	"base.dists.gumbel.mgf": "y = base.dists.gumbel.mgf( -1.0, 0.0, 3.0 )\ny = base.dists.gumbel.mgf( 0.0, 0.0, 1.0 )\ny = base.dists.gumbel.mgf( 0.1, 0.0, 3.0 )\ny = base.dists.gumbel.mgf( NaN, 0.0, 1.0 )\ny = base.dists.gumbel.mgf( 0.0, NaN, 1.0 )\ny = base.dists.gumbel.mgf( 0.0, 0.0, NaN )\n\n// Case: `t >= 1/beta`\ny = base.dists.gumbel.mgf( 0.8, 0.0, 2.0 )\n\n// Non-positive scale parameter:\ny = base.dists.gumbel.mgf( 0.0, 0.0, -1.0 )\n",
+	"base.dists.gumbel.mode": "y = base.dists.gumbel.mode( 0.0, 1.0 )\ny = base.dists.gumbel.mode( 4.0, 2.0 )\ny = base.dists.gumbel.mode( NaN, 1.0 )\ny = base.dists.gumbel.mode( 0.0, NaN )\ny = base.dists.gumbel.mode( 0.0, 0.0 )\n",
+	"base.dists.gumbel.pdf": "y = base.dists.gumbel.pdf( 0.0, 0.0, 2.0 )\ny = base.dists.gumbel.pdf( 0.0, 0.0, 1.0 )\ny = base.dists.gumbel.pdf( 1.0, 3.0, 2.0 )\ny = base.dists.gumbel.pdf( NaN, 0.0, 1.0 )\ny = base.dists.gumbel.pdf( 0.0, NaN, 1.0 )\ny = base.dists.gumbel.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.gumbel.pdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.gumbel.quantile": "y = base.dists.gumbel.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.gumbel.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.gumbel.quantile( 0.5, 4.0, 4.0 )\ny = base.dists.gumbel.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.gumbel.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.gumbel.quantile( NaN, 0.0, 1.0 )\ny = base.dists.gumbel.quantile( 0.0, NaN, 1.0 )\ny = base.dists.gumbel.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.gumbel.quantile( 0.5, 0.0, -1.0 )\n",
+	"base.dists.gumbel.skewness": "y = base.dists.gumbel.skewness( 0.0, 1.0 )\ny = base.dists.gumbel.skewness( 4.0, 2.0 )\ny = base.dists.gumbel.skewness( NaN, 1.0 )\ny = base.dists.gumbel.skewness( 0.0, NaN )\ny = base.dists.gumbel.skewness( 0.0, 0.0 )\n",
+	"base.dists.gumbel.stdev": "y = base.dists.gumbel.stdev( 0.0, 1.0 )\ny = base.dists.gumbel.stdev( 4.0, 2.0 )\ny = base.dists.gumbel.stdev( NaN, 1.0 )\ny = base.dists.gumbel.stdev( 0.0, NaN )\ny = base.dists.gumbel.stdev( 0.0, 0.0 )\n",
+	"base.dists.gumbel.variance": "y = base.dists.gumbel.variance( 0.0, 1.0 )\ny = base.dists.gumbel.variance( 4.0, 2.0 )\ny = base.dists.gumbel.variance( NaN, 1.0 )\ny = base.dists.gumbel.variance( 0.0, NaN )\ny = base.dists.gumbel.variance( 0.0, 0.0 )\n",
+	"base.dists.hypergeometric.cdf": "y = base.dists.hypergeometric.cdf( 1.0, 8, 4, 2 )\ny = base.dists.hypergeometric.cdf( 1.5, 8, 4, 2 )\ny = base.dists.hypergeometric.cdf( 2.0, 8, 4, 2 )\ny = base.dists.hypergeometric.cdf( 0, 8, 4, 2)\ny = base.dists.hypergeometric.cdf( NaN, 10, 5, 2 )\ny = base.dists.hypergeometric.cdf( 0.0, NaN, 5, 2 )\ny = base.dists.hypergeometric.cdf( 0.0, 10, NaN, 2 )\ny = base.dists.hypergeometric.cdf( 0.0, 10, 5, NaN )\ny = base.dists.hypergeometric.cdf( 2.0, 10.5, 5, 2 )\ny = base.dists.hypergeometric.cdf( 2.0, 10, 1.5, 2 )\ny = base.dists.hypergeometric.cdf( 2.0, 10, 5, -2.0 )\ny = base.dists.hypergeometric.cdf( 2.0, 10, 5, 12 )\ny = base.dists.hypergeometric.cdf( 2.0, 8, 3, 9 )\n",
+	"base.dists.hypergeometric.Hypergeometric": "hypergeometric = base.dists.hypergeometric.Hypergeometric( 100, 70, 20 );\nhypergeometric.N\nhypergeometric.K\nhypergeometric.n\nhypergeometric.kurtosis\nhypergeometric.mean\nhypergeometric.mode\nhypergeometric.skewness\nhypergeometric.stdev\nhypergeometric.variance\nhypergeometric.cdf( 2.9 )\nhypergeometric.logpmf( 10 )\nhypergeometric.pmf( 10 )\nhypergeometric.quantile( 0.8 )\n",
+	"base.dists.hypergeometric.kurtosis": "v = base.dists.hypergeometric.kurtosis( 16, 11, 4 )\nv = base.dists.hypergeometric.kurtosis( 4, 2, 2 )\nv = base.dists.hypergeometric.kurtosis( 10, 5, 12 )\nv = base.dists.hypergeometric.kurtosis( 10.3, 10, 4 )\nv = base.dists.hypergeometric.kurtosis( 10, 5.5, 4 )\nv = base.dists.hypergeometric.kurtosis( 10, 5, 4.5 )\nv = base.dists.hypergeometric.kurtosis( NaN, 10, 4 )\nv = base.dists.hypergeometric.kurtosis( 20, NaN, 4 )\nv = base.dists.hypergeometric.kurtosis( 20, 10, NaN )\n",
+	"base.dists.hypergeometric.logpmf": "y = base.dists.hypergeometric.logpmf( 1.0, 8, 4, 2 )\ny = base.dists.hypergeometric.logpmf( 2.0, 8, 4, 2 )\ny = base.dists.hypergeometric.logpmf( 0.0, 8, 4, 2 )\ny = base.dists.hypergeometric.logpmf( 1.5, 8, 4, 2 )\ny = base.dists.hypergeometric.logpmf( NaN, 10, 5, 2 )\ny = base.dists.hypergeometric.logpmf( 0.0, NaN, 5, 2 )\ny = base.dists.hypergeometric.logpmf( 0.0, 10, NaN, 2 )\ny = base.dists.hypergeometric.logpmf( 0.0, 10, 5, NaN )\ny = base.dists.hypergeometric.logpmf( 2.0, 10.5, 5, 2 )\ny = base.dists.hypergeometric.logpmf( 2.0, 5, 1.5, 2 )\ny = base.dists.hypergeometric.logpmf( 2.0, 10, 5, -2.0 )\ny = base.dists.hypergeometric.logpmf( 2.0, 10, 5, 12 )\ny = base.dists.hypergeometric.logpmf( 2.0, 8, 3, 9 )\n",
+	"base.dists.hypergeometric.mean": "v = base.dists.hypergeometric.mean( 16, 11, 4 )\nv = base.dists.hypergeometric.mean( 2, 1, 1 )\nv = base.dists.hypergeometric.mean( 10, 5, 12 )\nv = base.dists.hypergeometric.mean( 10.3, 10, 4 )\nv = base.dists.hypergeometric.mean( 10, 5.5, 4 )\nv = base.dists.hypergeometric.mean( 10, 5, 4.5 )\nv = base.dists.hypergeometric.mean( NaN, 10, 4 )\nv = base.dists.hypergeometric.mean( 20, NaN, 4 )\nv = base.dists.hypergeometric.mean( 20, 10, NaN )\n",
+	"base.dists.hypergeometric.mode": "v = base.dists.hypergeometric.mode( 16, 11, 4 )\nv = base.dists.hypergeometric.mode( 2, 1, 1 )\nv = base.dists.hypergeometric.mode( 10, 5, 12 )\nv = base.dists.hypergeometric.mode( 10.3, 10, 4 )\nv = base.dists.hypergeometric.mode( 10, 5.5, 4 )\nv = base.dists.hypergeometric.mode( 10, 5, 4.5 )\nv = base.dists.hypergeometric.mode( NaN, 10, 4 )\nv = base.dists.hypergeometric.mode( 20, NaN, 4 )\nv = base.dists.hypergeometric.mode( 20, 10, NaN )\n",
+	"base.dists.hypergeometric.pmf": "y = base.dists.hypergeometric.pmf( 1.0, 8, 4, 2 )\ny = base.dists.hypergeometric.pmf( 2.0, 8, 4, 2 )\ny = base.dists.hypergeometric.pmf( 0.0, 8, 4, 2 )\ny = base.dists.hypergeometric.pmf( 1.5, 8, 4, 2 )\ny = base.dists.hypergeometric.pmf( NaN, 10, 5, 2 )\ny = base.dists.hypergeometric.pmf( 0.0, NaN, 5, 2 )\ny = base.dists.hypergeometric.pmf( 0.0, 10, NaN, 2 )\ny = base.dists.hypergeometric.pmf( 0.0, 10, 5, NaN )\ny = base.dists.hypergeometric.pmf( 2.0, 10.5, 5, 2 )\ny = base.dists.hypergeometric.pmf( 2.0, 5, 1.5, 2 )\ny = base.dists.hypergeometric.pmf( 2.0, 10, 5, -2.0 )\ny = base.dists.hypergeometric.pmf( 2.0, 10, 5, 12 )\ny = base.dists.hypergeometric.pmf( 2.0, 8, 3, 9 )\n",
+	"base.dists.hypergeometric.quantile": "y = base.dists.hypergeometric.quantile( 0.4, 40, 20, 10 )\ny = base.dists.hypergeometric.quantile( 0.8, 60, 40, 20 )\ny = base.dists.hypergeometric.quantile( 0.5, 100, 10, 10 )\ny = base.dists.hypergeometric.quantile( 0.0, 100, 40, 20 )\ny = base.dists.hypergeometric.quantile( 1.0, 100, 40, 20 )\ny = base.dists.hypergeometric.quantile( NaN, 40, 20, 10 )\ny = base.dists.hypergeometric.quantile( 0.2, NaN, 20, 10 )\ny = base.dists.hypergeometric.quantile( 0.2, 40, NaN, 10 )\ny = base.dists.hypergeometric.quantile( 0.2, 40, 20, NaN )\n",
+	"base.dists.hypergeometric.skewness": "v = base.dists.hypergeometric.skewness( 16, 11, 4 )\nv = base.dists.hypergeometric.skewness( 4, 2, 2 )\nv = base.dists.hypergeometric.skewness( 10, 5, 12 )\nv = base.dists.hypergeometric.skewness( 10.3, 10, 4 )\nv = base.dists.hypergeometric.skewness( 10, 5.5, 4 )\nv = base.dists.hypergeometric.skewness( 10, 5, 4.5 )\nv = base.dists.hypergeometric.skewness( NaN, 10, 4 )\nv = base.dists.hypergeometric.skewness( 20, NaN, 4 )\nv = base.dists.hypergeometric.skewness( 20, 10, NaN )\n",
+	"base.dists.hypergeometric.stdev": "v = base.dists.hypergeometric.stdev( 16, 11, 4 )\nv = base.dists.hypergeometric.stdev( 2, 1, 1 )\nv = base.dists.hypergeometric.stdev( 10, 5, 12 )\nv = base.dists.hypergeometric.stdev( 10.3, 10, 4 )\nv = base.dists.hypergeometric.stdev( 10, 5.5, 4 )\nv = base.dists.hypergeometric.stdev( 10, 5, 4.5 )\nv = base.dists.hypergeometric.stdev( NaN, 10, 4 )\nv = base.dists.hypergeometric.stdev( 20, NaN, 4 )\nv = base.dists.hypergeometric.stdev( 20, 10, NaN )\n",
+	"base.dists.hypergeometric.variance": "v = base.dists.hypergeometric.variance( 16, 11, 4 )\nv = base.dists.hypergeometric.variance( 2, 1, 1 )\nv = base.dists.hypergeometric.variance( 10, 5, 12 )\nv = base.dists.hypergeometric.variance( 10.3, 10, 4 )\nv = base.dists.hypergeometric.variance( 10, 5.5, 4 )\nv = base.dists.hypergeometric.variance( 10, 5, 4.5 )\nv = base.dists.hypergeometric.variance( NaN, 10, 4 )\nv = base.dists.hypergeometric.variance( 20, NaN, 4 )\nv = base.dists.hypergeometric.variance( 20, 10, NaN )\n",
+	"base.dists.invgamma.cdf": "y = base.dists.invgamma.cdf( 2.0, 1.0, 1.0 )\ny = base.dists.invgamma.cdf( 2.0, 3.0, 1.0 )\ny = base.dists.invgamma.cdf( -1.0, 2.0, 2.0 )\ny = base.dists.invgamma.cdf( PINF, 4.0, 2.0 )\ny = base.dists.invgamma.cdf( NINF, 4.0, 2.0 )\ny = base.dists.invgamma.cdf( NaN, 0.0, 1.0 )\ny = base.dists.invgamma.cdf( 0.0, NaN, 1.0 )\ny = base.dists.invgamma.cdf( 0.0, 0.0, NaN )\ny = base.dists.invgamma.cdf( 2.0, -1.0, 1.0 )\ny = base.dists.invgamma.cdf( 2.0, 1.0, -1.0 )\n",
+	"base.dists.invgamma.entropy": "v = base.dists.invgamma.entropy( 1.0, 1.0 )\nv = base.dists.invgamma.entropy( 4.0, 12.0 )\nv = base.dists.invgamma.entropy( 8.0, 2.0 )\n",
+	"base.dists.invgamma.InvGamma": "invgamma = base.dists.invgamma.InvGamma( 6.0, 5.0 );\ninvgamma.alpha\ninvgamma.beta\ninvgamma.entropy\ninvgamma.kurtosis\ninvgamma.mean\ninvgamma.mode\ninvgamma.skewness\ninvgamma.stdev\ninvgamma.variance\ninvgamma.cdf( 0.8 )\ninvgamma.pdf( 1.0 )\ninvgamma.logpdf( 1.0 )\ninvgamma.quantile( 0.8 )\n",
+	"base.dists.invgamma.kurtosis": "v = base.dists.invgamma.kurtosis( 7.0, 5.0 )\nv = base.dists.invgamma.kurtosis( 6.0, 12.0 )\nv = base.dists.invgamma.kurtosis( 8.0, 2.0 )\n",
+	"base.dists.invgamma.logpdf": "y = base.dists.invgamma.logpdf( 2.0, 0.5, 1.0 )\ny = base.dists.invgamma.logpdf( 0.2, 1.0, 1.0 )\ny = base.dists.invgamma.logpdf( -1.0, 4.0, 2.0 )\ny = base.dists.invgamma.logpdf( NaN, 1.0, 1.0 )\ny = base.dists.invgamma.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.invgamma.logpdf( 0.0, 1.0, NaN )\n\n// Negative shape parameter:\ny = base.dists.invgamma.logpdf( 2.0, -1.0, 1.0 )\n\n// Negative scale parameter:\ny = base.dists.invgamma.logpdf( 2.0, 1.0, -1.0 )\n",
+	"base.dists.invgamma.mean": "v = base.dists.invgamma.mean( 4.0, 12.0 )\nv = base.dists.invgamma.mean( 8.0, 2.0 )\n",
+	"base.dists.invgamma.mode": "v = base.dists.invgamma.mode( 1.0, 1.0 )\nv = base.dists.invgamma.mode( 4.0, 12.0 )\nv = base.dists.invgamma.mode( 8.0, 2.0 )\n",
+	"base.dists.invgamma.pdf": "y = base.dists.invgamma.pdf( 2.0, 0.5, 1.0 )\ny = base.dists.invgamma.pdf( 0.2, 1.0, 1.0 )\ny = base.dists.invgamma.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.invgamma.pdf( NaN, 1.0, 1.0 )\ny = base.dists.invgamma.pdf( 0.0, NaN, 1.0 )\ny = base.dists.invgamma.pdf( 0.0, 1.0, NaN )\n\n// Negative shape parameter:\ny = base.dists.invgamma.pdf( 2.0, -1.0, 1.0 )\n\n// Negative scale parameter:\ny = base.dists.invgamma.pdf( 2.0, 1.0, -1.0 )\n",
+	"base.dists.invgamma.quantile": "y = base.dists.invgamma.quantile( 0.8, 2.0, 1.0 )\ny = base.dists.invgamma.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.invgamma.quantile( 1.1, 1.0, 1.0 )\ny = base.dists.invgamma.quantile( -0.2, 1.0, 1.0 )\ny = base.dists.invgamma.quantile( NaN, 1.0, 1.0 )\ny = base.dists.invgamma.quantile( 0.0, NaN, 1.0 )\ny = base.dists.invgamma.quantile( 0.0, 1.0, NaN )\n\n// Non-positive shape parameter:\ny = base.dists.invgamma.quantile( 0.5, -1.0, 1.0 )\n\n// Non-positive rate parameter:\ny = base.dists.invgamma.quantile( 0.5, 1.0, -1.0 )\n",
+	"base.dists.invgamma.skewness": "v = base.dists.invgamma.skewness( 4.0, 12.0 )\nv = base.dists.invgamma.skewness( 8.0, 2.0 )\n",
+	"base.dists.invgamma.stdev": "v = base.dists.invgamma.stdev( 5.0, 7.0 )\nv = base.dists.invgamma.stdev( 4.0, 12.0 )\nv = base.dists.invgamma.stdev( 8.0, 2.0 )\n",
+	"base.dists.invgamma.variance": "v = base.dists.invgamma.variance( 5.0, 7.0 )\nv = base.dists.invgamma.variance( 4.0, 12.0 )\nv = base.dists.invgamma.variance( 8.0, 2.0 )\n",
+	"base.dists.kumaraswamy.cdf": "y = base.dists.kumaraswamy.cdf( 0.5, 1.0, 1.0 )\ny = base.dists.kumaraswamy.cdf( 0.5, 2.0, 4.0 )\ny = base.dists.kumaraswamy.cdf( 0.2, 2.0, 2.0 )\ny = base.dists.kumaraswamy.cdf( 0.8, 4.0, 4.0 )\ny = base.dists.kumaraswamy.cdf( -0.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.cdf( 1.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.cdf( 2.0, -1.0, 0.5 )\ny = base.dists.kumaraswamy.cdf( 2.0, 0.5, -1.0 )\ny = base.dists.kumaraswamy.cdf( NaN, 1.0, 1.0 )\ny = base.dists.kumaraswamy.cdf( 0.0, NaN, 1.0 )\ny = base.dists.kumaraswamy.cdf( 0.0, 1.0, NaN )\n",
+	"base.dists.kumaraswamy.Kumaraswamy": "kumaraswamy = base.dists.kumaraswamy.Kumaraswamy( 6.0, 5.0 );\nkumaraswamy.a\nkumaraswamy.b\nkumaraswamy.kurtosis\nkumaraswamy.mean\nkumaraswamy.mode\nkumaraswamy.skewness\nkumaraswamy.stdev\nkumaraswamy.variance\nkumaraswamy.cdf( 0.8 )\nkumaraswamy.pdf( 1.0 )\nkumaraswamy.quantile( 0.8 )\n",
+	"base.dists.kumaraswamy.kurtosis": "v = base.dists.kumaraswamy.kurtosis( 1.0, 1.0 )\nv = base.dists.kumaraswamy.kurtosis( 4.0, 12.0 )\nv = base.dists.kumaraswamy.kurtosis( 16.0, 8.0 )\n",
+	"base.dists.kumaraswamy.logcdf": "y = base.dists.kumaraswamy.logcdf( 0.5, 1.0, 1.0 )\ny = base.dists.kumaraswamy.logcdf( 0.5, 2.0, 4.0 )\ny = base.dists.kumaraswamy.logcdf( 0.2, 2.0, 2.0 )\ny = base.dists.kumaraswamy.logcdf( 0.8, 4.0, 4.0 )\ny = base.dists.kumaraswamy.logcdf( -0.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.logcdf( 1.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.logcdf( 2.0, -1.0, 0.5 )\ny = base.dists.kumaraswamy.logcdf( 2.0, 0.5, -1.0 )\ny = base.dists.kumaraswamy.logcdf( NaN, 1.0, 1.0 )\ny = base.dists.kumaraswamy.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.kumaraswamy.logcdf( 0.0, 1.0, NaN )\n",
+	"base.dists.kumaraswamy.logpdf": "y = base.dists.kumaraswamy.logpdf( 0.5, 1.0, 1.0 )\ny = base.dists.kumaraswamy.logpdf( 0.5, 2.0, 4.0 )\ny = base.dists.kumaraswamy.logpdf( 0.2, 2.0, 2.0 )\ny = base.dists.kumaraswamy.logpdf( 0.8, 4.0, 4.0 )\ny = base.dists.kumaraswamy.logpdf( -0.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.logpdf( 1.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.logpdf( 2.0, -1.0, 0.5 )\ny = base.dists.kumaraswamy.logpdf( 2.0, 0.5, -1.0 )\ny = base.dists.kumaraswamy.logpdf( NaN, 1.0, 1.0 )\ny = base.dists.kumaraswamy.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.kumaraswamy.logpdf( 0.0, 1.0, NaN )\n",
+	"base.dists.kumaraswamy.mean": "v = base.dists.kumaraswamy.mean( 1.5, 1.5 )\nv = base.dists.kumaraswamy.mean( 4.0, 12.0 )\nv = base.dists.kumaraswamy.mean( 16.0, 8.0 )\n",
+	"base.dists.kumaraswamy.median": "v = base.dists.kumaraswamy.median( 1.0, 1.0 )\nv = base.dists.kumaraswamy.median( 4.0, 12.0 )\nv = base.dists.kumaraswamy.median( 16.0, 8.0 )\n",
+	"base.dists.kumaraswamy.mode": "v = base.dists.kumaraswamy.mode( 1.5, 1.5 )\nv = base.dists.kumaraswamy.mode( 4.0, 12.0 )\nv = base.dists.kumaraswamy.mode( 16.0, 8.0 )\n",
+	"base.dists.kumaraswamy.pdf": "y = base.dists.kumaraswamy.pdf( 0.5, 1.0, 1.0 )\ny = base.dists.kumaraswamy.pdf( 0.5, 2.0, 4.0 )\ny = base.dists.kumaraswamy.pdf( 0.2, 2.0, 2.0 )\ny = base.dists.kumaraswamy.pdf( 0.8, 4.0, 4.0 )\ny = base.dists.kumaraswamy.pdf( -0.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.pdf( 1.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.pdf( 2.0, -1.0, 0.5 )\ny = base.dists.kumaraswamy.pdf( 2.0, 0.5, -1.0 )\ny = base.dists.kumaraswamy.pdf( NaN, 1.0, 1.0 )\ny = base.dists.kumaraswamy.pdf( 0.0, NaN, 1.0 )\ny = base.dists.kumaraswamy.pdf( 0.0, 1.0, NaN )\n",
+	"base.dists.kumaraswamy.quantile": "y = base.dists.kumaraswamy.quantile( 0.5, 1.0, 1.0 )\ny = base.dists.kumaraswamy.quantile( 0.5, 2.0, 4.0 )\ny = base.dists.kumaraswamy.quantile( 0.2, 2.0, 2.0 )\ny = base.dists.kumaraswamy.quantile( 0.8, 4.0, 4.0 )\ny = base.dists.kumaraswamy.quantile( -0.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.quantile( 1.5, 4.0, 2.0 )\ny = base.dists.kumaraswamy.quantile( 2.0, -1.0, 0.5 )\ny = base.dists.kumaraswamy.quantile( 2.0, 0.5, -1.0 )\ny = base.dists.kumaraswamy.quantile( NaN, 1.0, 1.0 )\ny = base.dists.kumaraswamy.quantile( 0.0, NaN, 1.0 )\ny = base.dists.kumaraswamy.quantile( 0.0, 1.0, NaN )\n",
+	"base.dists.kumaraswamy.skewness": "v = base.dists.kumaraswamy.skewness( 1.0, 1.0 )\nv = base.dists.kumaraswamy.skewness( 4.0, 12.0 )\nv = base.dists.kumaraswamy.skewness( 16.0, 8.0 )\n",
+	"base.dists.kumaraswamy.stdev": "v = base.dists.kumaraswamy.stdev( 1.0, 1.0 )\nv = base.dists.kumaraswamy.stdev( 4.0, 12.0 )\nv = base.dists.kumaraswamy.stdev( 16.0, 8.0 )\n",
+	"base.dists.kumaraswamy.variance": "v = base.dists.kumaraswamy.variance( 1.0, 1.0 )\nv = base.dists.kumaraswamy.variance( 4.0, 12.0 )\nv = base.dists.kumaraswamy.variance( 16.0, 8.0 )\n",
+	"base.dists.laplace.cdf": "y = base.dists.laplace.cdf( 2.0, 0.0, 1.0 )\ny = base.dists.laplace.cdf( 5.0, 10.0, 3.0 )\ny = base.dists.laplace.cdf( NaN, 0.0, 1.0 )\ny = base.dists.laplace.cdf( 2, NaN, 1.0 )\ny = base.dists.laplace.cdf( 2.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.laplace.cdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.laplace.entropy": "y = base.dists.laplace.entropy( 0.0, 1.0 )\ny = base.dists.laplace.entropy( 4.0, 2.0 )\ny = base.dists.laplace.entropy( NaN, 1.0 )\ny = base.dists.laplace.entropy( 0.0, NaN )\ny = base.dists.laplace.entropy( 0.0, 0.0 )\n",
+	"base.dists.laplace.kurtosis": "y = base.dists.laplace.kurtosis( 0.0, 1.0 )\ny = base.dists.laplace.kurtosis( 4.0, 2.0 )\ny = base.dists.laplace.kurtosis( NaN, 1.0 )\ny = base.dists.laplace.kurtosis( 0.0, NaN )\ny = base.dists.laplace.kurtosis( 0.0, 0.0 )\n",
+	"base.dists.laplace.Laplace": "laplace = base.dists.laplace.Laplace( -2.0, 3.0 );\nlaplace.mu\nlaplace.b\nlaplace.entropy\nlaplace.kurtosis\nlaplace.mean\nlaplace.median\nlaplace.mode\nlaplace.skewness\nlaplace.stdev\nlaplace.variance\nlaplace.cdf( 0.8 )\nlaplace.logcdf( 0.8 )\nlaplace.logpdf( 1.0 )\nlaplace.mgf( 0.2 )\nlaplace.pdf( 2.0 )\nlaplace.quantile( 0.9 )\n",
+	"base.dists.laplace.logcdf": "y = base.dists.laplace.logcdf( 2.0, 0.0, 1.0 )\ny = base.dists.laplace.logcdf( 5.0, 10.0, 3.0 )\ny = base.dists.laplace.logcdf( NaN, 0.0, 1.0 )\ny = base.dists.laplace.logcdf( 2, NaN, 1.0 )\ny = base.dists.laplace.logcdf( 2.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.laplace.logcdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.laplace.logpdf": "y = base.dists.laplace.logpdf( 2.0, 0.0, 1.0 )\ny = base.dists.laplace.logpdf( -1.0, 2.0, 3.0 )\ny = base.dists.laplace.logpdf( 2.5, 2.0, 3.0 )\ny = base.dists.laplace.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.laplace.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.laplace.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.laplace.logpdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.laplace.mean": "y = base.dists.laplace.mean( 0.0, 1.0 )\ny = base.dists.laplace.mean( 4.0, 2.0 )\ny = base.dists.laplace.mean( NaN, 1.0 )\ny = base.dists.laplace.mean( 0.0, NaN )\ny = base.dists.laplace.mean( 0.0, 0.0 )\n",
+	"base.dists.laplace.median": "y = base.dists.laplace.median( 0.0, 1.0 )\ny = base.dists.laplace.median( 4.0, 2.0 )\ny = base.dists.laplace.median( NaN, 1.0 )\ny = base.dists.laplace.median( 0.0, NaN )\ny = base.dists.laplace.median( 0.0, 0.0 )\n",
+	"base.dists.laplace.mgf": "y = base.dists.laplace.mgf( 0.5, 0.0, 1.0 )\ny = base.dists.laplace.mgf( 0.0, 0.0, 1.0 )\ny = base.dists.laplace.mgf( -1.0, 4.0, 0.2 )\ny = base.dists.laplace.mgf( NaN, 0.0, 1.0 )\ny = base.dists.laplace.mgf( 0.0, NaN, 1.0 )\ny = base.dists.laplace.mgf( 0.0, 0.0, NaN )\ny = base.dists.laplace.mgf( 1.0, 0.0, 2.0 )\ny = base.dists.laplace.mgf( -0.5, 0.0, 4.0 )\ny = base.dists.laplace.mgf( 2.0, 0.0, 0.0 )\ny = base.dists.laplace.mgf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.laplace.mode": "y = base.dists.laplace.mode( 0.0, 1.0 )\ny = base.dists.laplace.mode( 4.0, 2.0 )\ny = base.dists.laplace.mode( NaN, 1.0 )\ny = base.dists.laplace.mode( 0.0, NaN )\ny = base.dists.laplace.mode( 0.0, 0.0 )\n",
+	"base.dists.laplace.pdf": "y = base.dists.laplace.pdf( 2.0, 0.0, 1.0 )\ny = base.dists.laplace.pdf( -1.0, 2.0, 3.0 )\ny = base.dists.laplace.pdf( 2.5, 2.0, 3.0 )\ny = base.dists.laplace.pdf( NaN, 0.0, 1.0 )\ny = base.dists.laplace.pdf( 0.0, NaN, 1.0 )\ny = base.dists.laplace.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.laplace.pdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.laplace.quantile": "y = base.dists.laplace.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.laplace.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.laplace.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.laplace.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.laplace.quantile( NaN, 0.0, 1.0 )\ny = base.dists.laplace.quantile( 0.0, NaN, 1.0 )\ny = base.dists.laplace.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.laplace.quantile( 0.5, 0.0, -1.0 )\n",
+	"base.dists.laplace.skewness": "y = base.dists.laplace.skewness( 0.0, 1.0 )\ny = base.dists.laplace.skewness( 4.0, 2.0 )\ny = base.dists.laplace.skewness( NaN, 1.0 )\ny = base.dists.laplace.skewness( 0.0, NaN )\ny = base.dists.laplace.skewness( 0.0, 0.0 )\n",
+	"base.dists.laplace.stdev": "y = base.dists.laplace.stdev( 0.0, 1.0 )\ny = base.dists.laplace.stdev( 4.0, 2.0 )\ny = base.dists.laplace.stdev( NaN, 1.0 )\ny = base.dists.laplace.stdev( 0.0, NaN )\ny = base.dists.laplace.stdev( 0.0, 0.0 )\n",
+	"base.dists.laplace.variance": "y = base.dists.laplace.variance( 0.0, 1.0 )\ny = base.dists.laplace.variance( 4.0, 2.0 )\ny = base.dists.laplace.variance( NaN, 1.0 )\ny = base.dists.laplace.variance( 0.0, NaN )\ny = base.dists.laplace.variance( 0.0, 0.0 )\n",
+	"base.dists.levy.cdf": "y = base.dists.levy.cdf( 2.0, 0.0, 1.0 )\ny = base.dists.levy.cdf( 12.0, 10.0, 3.0 )\ny = base.dists.levy.cdf( 9.0, 10.0, 3.0 )\ny = base.dists.levy.cdf( NaN, 0.0, 1.0 )\ny = base.dists.levy.cdf( 2, NaN, 1.0 )\ny = base.dists.levy.cdf( 2.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.levy.cdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.levy.entropy": "y = base.dists.levy.entropy( 0.0, 1.0 )\ny = base.dists.levy.entropy( 4.0, 2.0 )\ny = base.dists.levy.entropy( NaN, 1.0 )\ny = base.dists.levy.entropy( 0.0, NaN )\ny = base.dists.levy.entropy( 0.0, 0.0 )\n",
+	"base.dists.levy.Levy": "levy = base.dists.levy.Levy( -2.0, 3.0 );\nlevy.mu\nlevy.c\nlevy.entropy\nlevy.mean\nlevy.median\nlevy.mode\nlevy.stdev\nlevy.variance\nlevy.cdf( 0.8 )\nlevy.logcdf( 0.8 )\nlevy.logpdf( 1.0 )\nlevy.pdf( 1.0 )\nlevy.quantile( 0.8 )\n",
+	"base.dists.levy.logcdf": "y = base.dists.levy.logcdf( 2.0, 0.0, 1.0 )\ny = base.dists.levy.logcdf( 12.0, 10.0, 3.0 )\ny = base.dists.levy.logcdf( 9.0, 10.0, 3.0 )\ny = base.dists.levy.logcdf( NaN, 0.0, 1.0 )\ny = base.dists.levy.logcdf( 2, NaN, 1.0 )\ny = base.dists.levy.logcdf( 2.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.levy.logcdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.levy.logpdf": "y = base.dists.levy.logpdf( 2.0, 0.0, 1.0 )\ny = base.dists.levy.logpdf( -1.0, 4.0, 2.0 )\ny = base.dists.levy.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.levy.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.levy.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.levy.logpdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.levy.mean": "y = base.dists.levy.mean( 0.0, 1.0 )\ny = base.dists.levy.mean( 4.0, 3.0 )\ny = base.dists.levy.mean( NaN, 1.0 )\ny = base.dists.levy.mean( 0.0, NaN )\ny = base.dists.levy.mean( 0.0, 0.0 )\n",
+	"base.dists.levy.median": "y = base.dists.levy.median( 0.0, 1.0 )\ny = base.dists.levy.median( 4.0, 3.0 )\ny = base.dists.levy.median( NaN, 1.0 )\ny = base.dists.levy.median( 0.0, NaN )\ny = base.dists.levy.median( 0.0, 0.0 )\n",
+	"base.dists.levy.mode": "y = base.dists.levy.mode( 0.0, 1.0 )\ny = base.dists.levy.mode( 4.0, 3.0 )\ny = base.dists.levy.mode( NaN, 1.0 )\ny = base.dists.levy.mode( 0.0, NaN )\ny = base.dists.levy.mode( 0.0, 0.0 )\n",
+	"base.dists.levy.pdf": "y = base.dists.levy.pdf( 2.0, 0.0, 1.0 )\ny = base.dists.levy.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.levy.pdf( NaN, 0.0, 1.0 )\ny = base.dists.levy.pdf( 0.0, NaN, 1.0 )\ny = base.dists.levy.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.levy.pdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.levy.quantile": "y = base.dists.levy.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.levy.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.levy.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.levy.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.levy.quantile( NaN, 0.0, 1.0 )\ny = base.dists.levy.quantile( 0.0, NaN, 1.0 )\ny = base.dists.levy.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.levy.quantile( 0.5, 0.0, -1.0 )\n",
+	"base.dists.levy.stdev": "y = base.dists.levy.stdev( 0.0, 1.0 )\ny = base.dists.levy.stdev( 4.0, 3.0 )\ny = base.dists.levy.stdev( NaN, 1.0 )\ny = base.dists.levy.stdev( 0.0, NaN )\ny = base.dists.levy.stdev( 0.0, 0.0 )\n",
+	"base.dists.levy.variance": "y = base.dists.levy.variance( 0.0, 1.0 )\ny = base.dists.levy.variance( 4.0, 3.0 )\ny = base.dists.levy.variance( NaN, 1.0 )\ny = base.dists.levy.variance( 0.0, NaN )\ny = base.dists.levy.variance( 0.0, 0.0 )\n",
+	"base.dists.logistic.cdf": "y = base.dists.logistic.cdf( 2.0, 0.0, 1.0 )\ny = base.dists.logistic.cdf( 5.0, 10.0, 3.0 )\ny = base.dists.logistic.cdf( 2.0, 0.0, NaN )\ny = base.dists.logistic.cdf( 2.0, NaN, 1.0 )\ny = base.dists.logistic.cdf( NaN, 0.0, 1.0 )\n\n// Degenerate distribution centered at `μ` when `s = 0.0`:\ny = base.dists.logistic.cdf( 2.0, 8.0, 0.0 )\ny = base.dists.logistic.cdf( 8.0, 8.0, 0.0 )\ny = base.dists.logistic.cdf( 10.0, 8.0, 0.0 )\n",
+	"base.dists.logistic.entropy": "y = base.dists.logistic.entropy( 0.0, 1.0 )\ny = base.dists.logistic.entropy( 4.0, 2.0 )\ny = base.dists.logistic.entropy( NaN, 1.0 )\ny = base.dists.logistic.entropy( 0.0, NaN )\ny = base.dists.logistic.entropy( 0.0, 0.0 )\n",
+	"base.dists.logistic.kurtosis": "y = base.dists.logistic.kurtosis( 0.0, 1.0 )\ny = base.dists.logistic.kurtosis( 4.0, 2.0 )\ny = base.dists.logistic.kurtosis( NaN, 1.0 )\ny = base.dists.logistic.kurtosis( 0.0, NaN )\ny = base.dists.logistic.kurtosis( 0.0, 0.0 )\n",
+	"base.dists.logistic.logcdf": "y = base.dists.logistic.logcdf( 2.0, 0.0, 1.0 )\ny = base.dists.logistic.logcdf( 5.0, 10.0, 3.0 )\ny = base.dists.logistic.logcdf( 2.0, 0.0, NaN )\ny = base.dists.logistic.logcdf( 2, NaN, 1.0 )\ny = base.dists.logistic.logcdf( NaN, 0.0, 1.0 )\n",
+	"base.dists.logistic.Logistic": "logistic = base.dists.logistic.Logistic( -2.0, 3.0 );\nlogistic.mu\nlogistic.s\nlogistic.entropy\nlogistic.kurtosis\nlogistic.mean\nlogistic.median\nlogistic.mode\nlogistic.skewness\nlogistic.stdev\nlogistic.variance\nlogistic.cdf( 0.8 )\nlogistic.logcdf( 0.8 )\nlogistic.logpdf( 2.0 )\nlogistic.mgf( 0.2 )\nlogistic.pdf( 2.0 )\nlogistic.quantile( 0.9 )\n",
+	"base.dists.logistic.logpdf": "y = base.dists.logistic.logpdf( 2.0, 0.0, 1.0 )\ny = base.dists.logistic.logpdf( -1.0, 4.0, 2.0 )\ny = base.dists.logistic.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.logistic.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.logistic.logpdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.logistic.logpdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution at `s = 0.0`:\ny = base.dists.logistic.logpdf( 2.0, 8.0, 0.0 )\ny = base.dists.logistic.logpdf( 8.0, 8.0, 0.0 )\n",
+	"base.dists.logistic.mean": "y = base.dists.logistic.mean( 0.0, 1.0 )\ny = base.dists.logistic.mean( 4.0, 2.0 )\ny = base.dists.logistic.mean( NaN, 1.0 )\ny = base.dists.logistic.mean( 0.0, NaN )\ny = base.dists.logistic.mean( 0.0, 0.0 )\n",
+	"base.dists.logistic.median": "y = base.dists.logistic.median( 0.0, 1.0 )\ny = base.dists.logistic.median( 4.0, 2.0 )\ny = base.dists.logistic.median( NaN, 1.0 )\ny = base.dists.logistic.median( 0.0, NaN )\ny = base.dists.logistic.median( 0.0, 0.0 )\n",
+	"base.dists.logistic.mgf": "y = base.dists.logistic.mgf( 0.9, 0.0, 1.0 )\ny = base.dists.logistic.mgf( 0.1, 4.0, 4.0 )\ny = base.dists.logistic.mgf( -0.2, 4.0, 4.0 )\ny = base.dists.logistic.mgf( 0.5, 0.0, -1.0 )\ny = base.dists.logistic.mgf( 0.5, 0.0, 4.0 )\ny = base.dists.logistic.mgf( NaN, 0.0, 1.0 )\ny = base.dists.logistic.mgf( 0.0, NaN, 1.0 )\ny = base.dists.logistic.mgf( 0.0, 0.0, NaN )\n",
+	"base.dists.logistic.mode": "y = base.dists.logistic.mode( 0.0, 1.0 )\ny = base.dists.logistic.mode( 4.0, 2.0 )\ny = base.dists.logistic.mode( NaN, 1.0 )\ny = base.dists.logistic.mode( 0.0, NaN )\ny = base.dists.logistic.mode( 0.0, 0.0 )\n",
+	"base.dists.logistic.pdf": "y = base.dists.logistic.pdf( 2.0, 0.0, 1.0 )\ny = base.dists.logistic.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.logistic.pdf( NaN, 0.0, 1.0 )\ny = base.dists.logistic.pdf( 0.0, NaN, 1.0 )\ny = base.dists.logistic.pdf( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.logistic.pdf( 2.0, 0.0, -1.0 )\ny = base.dists.logistic.pdf( 2.0, 8.0, 0.0 )\ny = base.dists.logistic.pdf( 8.0, 8.0, 0.0 )\n",
+	"base.dists.logistic.quantile": "y = base.dists.logistic.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.logistic.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.logistic.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.logistic.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.logistic.quantile( NaN, 0.0, 1.0 )\ny = base.dists.logistic.quantile( 0.0, NaN, 1.0 )\ny = base.dists.logistic.quantile( 0.0, 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.logistic.quantile( 0.5, 0.0, -1.0 )\n",
+	"base.dists.logistic.skewness": "y = base.dists.logistic.skewness( 0.0, 1.0 )\ny = base.dists.logistic.skewness( 4.0, 2.0 )\ny = base.dists.logistic.skewness( NaN, 1.0 )\ny = base.dists.logistic.skewness( 0.0, NaN )\ny = base.dists.logistic.skewness( 0.0, 0.0 )\n",
+	"base.dists.logistic.stdev": "y = base.dists.logistic.stdev( 0.0, 1.0 )\ny = base.dists.logistic.stdev( 4.0, 2.0 )\ny = base.dists.logistic.stdev( NaN, 1.0 )\ny = base.dists.logistic.stdev( 0.0, NaN )\ny = base.dists.logistic.stdev( 0.0, 0.0 )\n",
+	"base.dists.logistic.variance": "y = base.dists.logistic.variance( 0.0, 1.0 )\ny = base.dists.logistic.variance( 4.0, 2.0 )\ny = base.dists.logistic.variance( NaN, 1.0 )\ny = base.dists.logistic.variance( 0.0, NaN )\ny = base.dists.logistic.variance( 0.0, 0.0 )\n",
+	"base.dists.lognormal.cdf": "y = base.dists.lognormal.cdf( 2.0, 0.0, 1.0 )\ny = base.dists.lognormal.cdf( 5.0, 10.0, 3.0 )\ny = base.dists.lognormal.cdf( 2.0, 0.0, NaN )\ny = base.dists.lognormal.cdf( 2.0, NaN, 1.0 )\ny = base.dists.lognormal.cdf( NaN, 0.0, 1.0 )\n\n// Non-positive scale parameter `σ`:\ny = base.dists.lognormal.cdf( 2.0, 0.0, -1.0 )\ny = base.dists.lognormal.cdf( 2.0, 0.0, 0.0 )\n",
+	"base.dists.lognormal.entropy": "y = base.dists.lognormal.entropy( 0.0, 1.0 )\ny = base.dists.lognormal.entropy( 5.0, 2.0 )\ny = base.dists.lognormal.entropy( NaN, 1.0 )\ny = base.dists.lognormal.entropy( 0.0, NaN )\ny = base.dists.lognormal.entropy( 0.0, 0.0 )\n",
+	"base.dists.lognormal.kurtosis": "y = base.dists.lognormal.kurtosis( 0.0, 1.0 )\ny = base.dists.lognormal.kurtosis( 5.0, 2.0 )\ny = base.dists.lognormal.kurtosis( NaN, 1.0 )\ny = base.dists.lognormal.kurtosis( 0.0, NaN )\ny = base.dists.lognormal.kurtosis( 0.0, 0.0 )\n",
+	"base.dists.lognormal.LogNormal": "lognormal = base.dists.lognormal.LogNormal( -2.0, 3.0 );\nlognormal.mu\nlognormal.sigma\nlognormal.entropy\nlognormal.kurtosis\nlognormal.mean\nlognormal.median\nlognormal.mode\nlognormal.skewness\nlognormal.stdev\nlognormal.variance\nlognormal.cdf( 0.8 )\nlognormal.logpdf( 2.0 )\nlognormal.pdf( 2.0 )\nlognormal.quantile( 0.9 )\n",
+	"base.dists.lognormal.logpdf": "y = base.dists.lognormal.logpdf( 2.0, 0.0, 1.0 )\ny = base.dists.lognormal.logpdf( 1.0, 0.0, 1.0 )\ny = base.dists.lognormal.logpdf( 1.0, 3.0, 1.0 )\ny = base.dists.lognormal.logpdf( -1.0, 4.0, 2.0 )\ny = base.dists.lognormal.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.lognormal.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.lognormal.logpdf( 0.0, 0.0, NaN )\n\n// Non-positive scale parameter `σ`:\ny = base.dists.lognormal.logpdf( 2.0, 0.0, -1.0 )\ny = base.dists.lognormal.logpdf( 2.0, 0.0, 0.0 )\n",
+	"base.dists.lognormal.mean": "y = base.dists.lognormal.mean( 0.0, 1.0 )\ny = base.dists.lognormal.mean( 4.0, 2.0 )\ny = base.dists.lognormal.mean( NaN, 1.0 )\ny = base.dists.lognormal.mean( 0.0, NaN )\ny = base.dists.lognormal.mean( 0.0, 0.0 )\n",
+	"base.dists.lognormal.median": "y = base.dists.lognormal.median( 0.0, 1.0 )\ny = base.dists.lognormal.median( 5.0, 2.0 )\ny = base.dists.lognormal.median( NaN, 1.0 )\ny = base.dists.lognormal.median( 0.0, NaN )\ny = base.dists.lognormal.median( 0.0, 0.0 )\n",
+	"base.dists.lognormal.mode": "y = base.dists.lognormal.mode( 0.0, 1.0 )\ny = base.dists.lognormal.mode( 5.0, 2.0 )\ny = base.dists.lognormal.mode( NaN, 1.0 )\ny = base.dists.lognormal.mode( 0.0, NaN )\ny = base.dists.lognormal.mode( 0.0, 0.0 )\n",
+	"base.dists.lognormal.pdf": "y = base.dists.lognormal.pdf( 2.0, 0.0, 1.0 )\ny = base.dists.lognormal.pdf( 1.0, 0.0, 1.0 )\ny = base.dists.lognormal.pdf( 1.0, 3.0, 1.0 )\ny = base.dists.lognormal.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.lognormal.pdf( NaN, 0.0, 1.0 )\ny = base.dists.lognormal.pdf( 0.0, NaN, 1.0 )\ny = base.dists.lognormal.pdf( 0.0, 0.0, NaN )\n\n// Non-positive scale parameter `σ`:\ny = base.dists.lognormal.pdf( 2.0, 0.0, -1.0 )\ny = base.dists.lognormal.pdf( 2.0, 0.0, 0.0 )\n",
+	"base.dists.lognormal.quantile": "y = base.dists.lognormal.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.lognormal.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.lognormal.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.lognormal.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.lognormal.quantile( NaN, 0.0, 1.0 )\ny = base.dists.lognormal.quantile( 0.0, NaN, 1.0 )\ny = base.dists.lognormal.quantile( 0.0, 0.0, NaN )\n\n// Non-positive scale parameter `σ`:\ny = base.dists.lognormal.quantile( 0.5, 0.0, -1.0 )\ny = base.dists.lognormal.quantile( 0.5, 0.0, 0.0 )\n",
+	"base.dists.lognormal.skewness": "y = base.dists.lognormal.skewness( 0.0, 1.0 )\ny = base.dists.lognormal.skewness( 5.0, 2.0 )\ny = base.dists.lognormal.skewness( NaN, 1.0 )\ny = base.dists.lognormal.skewness( 0.0, NaN )\ny = base.dists.lognormal.skewness( 0.0, 0.0 )\n",
+	"base.dists.lognormal.stdev": "y = base.dists.lognormal.stdev( 0.0, 1.0 )\ny = base.dists.lognormal.stdev( 4.0, 2.0 )\ny = base.dists.lognormal.stdev( NaN, 1.0 )\ny = base.dists.lognormal.stdev( 0.0, NaN )\ny = base.dists.lognormal.stdev( 0.0, 0.0 )\n",
+	"base.dists.lognormal.variance": "y = base.dists.lognormal.variance( 0.0, 1.0 )\ny = base.dists.lognormal.variance( 4.0, 2.0 )\ny = base.dists.lognormal.variance( NaN, 1.0 )\ny = base.dists.lognormal.variance( 0.0, NaN )\ny = base.dists.lognormal.variance( 0.0, 0.0 )\n",
+	"base.dists.negativeBinomial.cdf": "y = base.dists.negativeBinomial.cdf( 5.0, 20.0, 0.8 )\ny = base.dists.negativeBinomial.cdf( 21.0, 20.0, 0.5 )\ny = base.dists.negativeBinomial.cdf( 5.0, 10.0, 0.4 )\ny = base.dists.negativeBinomial.cdf( 0.0, 10.0, 0.9 )\ny = base.dists.negativeBinomial.cdf( 21.0, 15.5, 0.5 )\ny = base.dists.negativeBinomial.cdf( 5.0, 7.4, 0.4 )\ny = base.dists.negativeBinomial.cdf( 2.0, 0.0, 0.5 )\ny = base.dists.negativeBinomial.cdf( 2.0, -2.0, 0.5 )\ny = base.dists.negativeBinomial.cdf( NaN, 20.0, 0.5 )\ny = base.dists.negativeBinomial.cdf( 0.0, NaN, 0.5 )\ny = base.dists.negativeBinomial.cdf( 0.0, 20.0, NaN )\ny = base.dists.negativeBinomial.cdf( 2.0, 20, -1.0 )\ny = base.dists.negativeBinomial.cdf( 2.0, 20, 1.5 )\n",
+	"base.dists.negativeBinomial.kurtosis": "v = base.dists.negativeBinomial.kurtosis( 100, 0.2 )\nv = base.dists.negativeBinomial.kurtosis( 20, 0.5 )\n",
+	"base.dists.negativeBinomial.logpmf": "y = base.dists.negativeBinomial.logpmf( 5.0, 20.0, 0.8 )\ny = base.dists.negativeBinomial.logpmf( 21.0, 20.0, 0.5 )\ny = base.dists.negativeBinomial.logpmf( 5.0, 10.0, 0.4 )\ny = base.dists.negativeBinomial.logpmf( 0.0, 10.0, 0.9 )\ny = base.dists.negativeBinomial.logpmf( 21.0, 15.5, 0.5 )\ny = base.dists.negativeBinomial.logpmf( 5.0, 7.4, 0.4 )\ny = base.dists.negativeBinomial.logpmf( 2.0, 0.0, 0.5 )\ny = base.dists.negativeBinomial.logpmf( 2.0, -2.0, 0.5 )\ny = base.dists.negativeBinomial.logpmf( 2.0, 20, -1.0 )\ny = base.dists.negativeBinomial.logpmf( 2.0, 20, 1.5 )\ny = base.dists.negativeBinomial.logpmf( NaN, 20.0, 0.5 )\ny = base.dists.negativeBinomial.logpmf( 0.0, NaN, 0.5 )\ny = base.dists.negativeBinomial.logpmf( 0.0, 20.0, NaN )\n",
+	"base.dists.negativeBinomial.mean": "v = base.dists.negativeBinomial.mean( 100, 0.2 )\nv = base.dists.negativeBinomial.mean( 20, 0.5 )\n",
+	"base.dists.negativeBinomial.mgf": "y = base.dists.negativeBinomial.mgf( 0.05, 20.0, 0.8 )\ny = base.dists.negativeBinomial.mgf( 0.1, 20.0, 0.1 )\ny = base.dists.negativeBinomial.mgf( 0.5, 10.0, 0.4 )\ny = base.dists.negativeBinomial.mgf( 0.1, 0.0, 0.5 )\ny = base.dists.negativeBinomial.mgf( 0.1, -2.0, 0.5 )\ny = base.dists.negativeBinomial.mgf( NaN, 20.0, 0.5 )\ny = base.dists.negativeBinomial.mgf( 0.0, NaN, 0.5 )\ny = base.dists.negativeBinomial.mgf( 0.0, 20.0, NaN )\ny = base.dists.negativeBinomial.mgf( 0.2, 20, -1.0 )\ny = base.dists.negativeBinomial.mgf( 0.2, 20, 1.5 )\n",
+	"base.dists.negativeBinomial.mode": "v = base.dists.negativeBinomial.mode( 100, 0.2 )\nv = base.dists.negativeBinomial.mode( 20, 0.5 )\n",
+	"base.dists.negativeBinomial.NegativeBinomial": "nbinomial = base.dists.negativeBinomial.NegativeBinomial( 8.0, 0.5 );\nnbinomial.r\nnbinomial.p\nnbinomial.kurtosis\nnbinomial.mean\nnbinomial.mode\nnbinomial.skewness\nnbinomial.stdev\nnbinomial.variance\nnbinomial.cdf( 2.9 )\nnbinomial.logpmf( 3.0 )\nnbinomial.mgf( 0.2 )\nnbinomial.pmf( 3.0 )\nnbinomial.quantile( 0.8 )\n",
+	"base.dists.negativeBinomial.pmf": "y = base.dists.negativeBinomial.pmf( 5.0, 20.0, 0.8 )\ny = base.dists.negativeBinomial.pmf( 21.0, 20.0, 0.5 )\ny = base.dists.negativeBinomial.pmf( 5.0, 10.0, 0.4 )\ny = base.dists.negativeBinomial.pmf( 0.0, 10.0, 0.9 )\ny = base.dists.negativeBinomial.pmf( 21.0, 15.5, 0.5 )\ny = base.dists.negativeBinomial.pmf( 5.0, 7.4, 0.4 )\ny = base.dists.negativeBinomial.pmf( 2.0, 0.0, 0.5 )\ny = base.dists.negativeBinomial.pmf( 2.0, -2.0, 0.5 )\ny = base.dists.negativeBinomial.pmf( 2.0, 20, -1.0 )\ny = base.dists.negativeBinomial.pmf( 2.0, 20, 1.5 )\ny = base.dists.negativeBinomial.pmf( NaN, 20.0, 0.5 )\ny = base.dists.negativeBinomial.pmf( 0.0, NaN, 0.5 )\ny = base.dists.negativeBinomial.pmf( 0.0, 20.0, NaN )\n",
+	"base.dists.negativeBinomial.quantile": "y = base.dists.negativeBinomial.quantile( 0.9, 20.0, 0.2 )\ny = base.dists.negativeBinomial.quantile( 0.9, 20.0, 0.8 )\ny = base.dists.negativeBinomial.quantile( 0.5, 10.0, 0.4 )\ny = base.dists.negativeBinomial.quantile( 0.0, 10.0, 0.9 )\ny = base.dists.negativeBinomial.quantile( 1.1, 20.0, 0.5 )\ny = base.dists.negativeBinomial.quantile( -0.1, 20.0, 0.5 )\ny = base.dists.negativeBinomial.quantile( 21.0, 15.5, 0.5 )\ny = base.dists.negativeBinomial.quantile( 5.0, 7.4, 0.4 )\ny = base.dists.negativeBinomial.quantile( 0.5, 0.0, 0.5 )\ny = base.dists.negativeBinomial.quantile( 0.5, -2.0, 0.5 )\ny = base.dists.negativeBinomial.quantile( 0.3, 20.0, -1.0 )\ny = base.dists.negativeBinomial.quantile( 0.3, 20.0, 1.5 )\ny = base.dists.negativeBinomial.quantile( NaN, 20.0, 0.5 )\ny = base.dists.negativeBinomial.quantile( 0.3, NaN, 0.5 )\ny = base.dists.negativeBinomial.quantile( 0.3, 20.0, NaN )\n",
+	"base.dists.negativeBinomial.skewness": "v = base.dists.negativeBinomial.skewness( 100, 0.2 )\nv = base.dists.negativeBinomial.skewness( 20, 0.5 )\n",
+	"base.dists.negativeBinomial.stdev": "v = base.dists.negativeBinomial.stdev( 100, 0.2 )\nv = base.dists.negativeBinomial.stdev( 20, 0.5 )\n",
+	"base.dists.negativeBinomial.variance": "v = base.dists.negativeBinomial.variance( 100, 0.2 )\nv = base.dists.negativeBinomial.variance( 20, 0.5 )\n",
+	"base.dists.normal.cdf": "y = base.dists.normal.cdf( 2.0, 0.0, 1.0 )\ny = base.dists.normal.cdf( -1.0, -1.0, 2.0 )\ny = base.dists.normal.cdf( -1.0, 4.0, 2.0 )\ny = base.dists.normal.cdf( NaN, 0.0, 1.0 )\ny = base.dists.normal.cdf( 0.0, NaN, 1.0 )\ny = base.dists.normal.cdf( 0.0, 0.0, NaN )\n\n// Negative standard deviation:\ny = base.dists.normal.cdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution centered at `μ` when `σ = 0.0`:\ny = base.dists.normal.cdf( 2.0, 8.0, 0.0 )\ny = base.dists.normal.cdf( 8.0, 8.0, 0.0 )\ny = base.dists.normal.cdf( 10.0, 8.0, 0.0 )\n",
+	"base.dists.normal.entropy": "y = base.dists.normal.entropy( 0.0, 1.0 )\ny = base.dists.normal.entropy( 4.0, 3.0 )\ny = base.dists.normal.entropy( NaN, 1.0 )\ny = base.dists.normal.entropy( 0.0, NaN )\ny = base.dists.normal.entropy( 0.0, 0.0 )\n",
+	"base.dists.normal.kurtosis": "y = base.dists.normal.kurtosis( 0.0, 1.0 )\ny = base.dists.normal.kurtosis( 4.0, 3.0 )\ny = base.dists.normal.kurtosis( NaN, 1.0 )\ny = base.dists.normal.kurtosis( 0.0, NaN )\ny = base.dists.normal.kurtosis( 0.0, 0.0 )\n",
+	"base.dists.normal.logpdf": "y = base.dists.normal.logpdf( 2.0, 0.0, 1.0 )\ny = base.dists.normal.logpdf( -1.0, 4.0, 2.0 )\ny = base.dists.normal.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.normal.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.normal.logpdf( 0.0, 0.0, NaN )\n\n// Negative standard deviation:\ny = base.dists.normal.logpdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution centered at `μ` when `σ = 0.0`:\ny = base.dists.normal.logpdf( 2.0, 8.0, 0.0 )\ny = base.dists.normal.logpdf( 8.0, 8.0, 0.0 )\n",
+	"base.dists.normal.mean": "y = base.dists.normal.mean( 0.0, 1.0 )\ny = base.dists.normal.mean( 4.0, 2.0 )\ny = base.dists.normal.mean( NaN, 1.0 )\ny = base.dists.normal.mean( 0.0, NaN )\ny = base.dists.normal.mean( 0.0, 0.0 )\n",
+	"base.dists.normal.median": "y = base.dists.normal.median( 0.0, 1.0 )\ny = base.dists.normal.median( 4.0, 2.0 )\ny = base.dists.normal.median( NaN, 1.0 )\ny = base.dists.normal.median( 0.0, NaN )\ny = base.dists.normal.median( 0.0, 0.0 )\n",
+	"base.dists.normal.mgf": "y = base.dists.normal.mgf( 2.0, 0.0, 1.0 )\ny = base.dists.normal.mgf( 0.0, 0.0, 1.0 )\ny = base.dists.normal.mgf( -1.0, 4.0, 2.0 )\ny = base.dists.normal.mgf( NaN, 0.0, 1.0 )\ny = base.dists.normal.mgf( 0.0, NaN, 1.0 )\ny = base.dists.normal.mgf( 0.0, 0.0, NaN )\ny = base.dists.normal.mgf( 2.0, 0.0, 0.0 )\n",
+	"base.dists.normal.mode": "y = base.dists.normal.mode( 0.0, 1.0 )\ny = base.dists.normal.mode( 4.0, 2.0 )\ny = base.dists.normal.mode( NaN, 1.0 )\ny = base.dists.normal.mode( 0.0, NaN )\ny = base.dists.normal.mode( 0.0, 0.0 )\n",
+	"base.dists.normal.Normal": "normal = base.dists.normal.Normal( -2.0, 3.0 );\nnormal.mu\nnormal.sigma\nnormal.entropy\nnormal.kurtosis\nnormal.mean\nnormal.median\nnormal.mode\nnormal.skewness\nnormal.stdev\nnormal.variance\nnormal.cdf( 0.8 )\nnormal.logpdf( 2.0 )\nnormal.mgf( 0.2 )\nnormal.pdf( 2.0 )\nnormal.quantile( 0.9 )\n",
+	"base.dists.normal.pdf": "y = base.dists.normal.pdf( 2.0, 0.0, 1.0 )\ny = base.dists.normal.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.normal.pdf( NaN, 0.0, 1.0 )\ny = base.dists.normal.pdf( 0.0, NaN, 1.0 )\ny = base.dists.normal.pdf( 0.0, 0.0, NaN )\n\n// Negative standard deviation:\ny = base.dists.normal.pdf( 2.0, 0.0, -1.0 )\n\n// Degenerate distribution centered at `μ` when `σ = 0.0`:\ny = base.dists.normal.pdf( 2.0, 8.0, 0.0 )\ny = base.dists.normal.pdf( 8.0, 8.0, 0.0 )\n",
+	"base.dists.normal.quantile": "y = base.dists.normal.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.normal.quantile( 0.5, 4.0, 2.0 )\ny = base.dists.normal.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.normal.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.normal.quantile( NaN, 0.0, 1.0 )\ny = base.dists.normal.quantile( 0.0, NaN, 1.0 )\ny = base.dists.normal.quantile( 0.0, 0.0, NaN )\n\n// Negative standard deviation:\ny = base.dists.normal.quantile( 0.5, 0.0, -1.0 )\n\n// Degenerate distribution centered at `μ` when `σ = 0.0`:\ny = base.dists.normal.quantile( 0.3, 8.0, 0.0 );\ny = base.dists.normal.quantile( 0.9, 8.0, 0.0 );\n",
+	"base.dists.normal.skewness": "y = base.dists.normal.skewness( 0.0, 1.0 )\ny = base.dists.normal.skewness( 4.0, 3.0 )\ny = base.dists.normal.skewness( NaN, 1.0 )\ny = base.dists.normal.skewness( 0.0, NaN )\ny = base.dists.normal.skewness( 0.0, 0.0 )\n",
+	"base.dists.normal.stdev": "y = base.dists.normal.stdev( 0.0, 1.0 )\ny = base.dists.normal.stdev( 4.0, 3.0 )\ny = base.dists.normal.stdev( NaN, 1.0 )\ny = base.dists.normal.stdev( 0.0, NaN )\ny = base.dists.normal.stdev( 0.0, 0.0 )\n",
+	"base.dists.normal.variance": "y = base.dists.normal.variance( 0.0, 1.0 )\ny = base.dists.normal.variance( 4.0, 3.0 )\ny = base.dists.normal.variance( NaN, 1.0 )\ny = base.dists.normal.variance( 0.0, NaN )\ny = base.dists.normal.variance( 0.0, 0.0 )\n",
+	"base.dists.pareto1.cdf": "y = base.dists.pareto1.cdf( 2.0, 1.0, 1.0 )\ny = base.dists.pareto1.cdf( 5.0, 2.0, 4.0 )\ny = base.dists.pareto1.cdf( 4.0, 2.0, 2.0 )\ny = base.dists.pareto1.cdf( 1.9, 2.0, 2.0 )\ny = base.dists.pareto1.cdf( PINF, 4.0, 2.0 )\ny = base.dists.pareto1.cdf( 2.0, -1.0, 0.5 )\ny = base.dists.pareto1.cdf( 2.0, 0.5, -1.0 )\ny = base.dists.pareto1.cdf( NaN, 1.0, 1.0 )\ny = base.dists.pareto1.cdf( 0.0, NaN, 1.0 )\ny = base.dists.pareto1.cdf( 0.0, 1.0, NaN )\n",
+	"base.dists.pareto1.entropy": "v = base.dists.pareto1.entropy( 0.8, 1.0 )\nv = base.dists.pareto1.entropy( 4.0, 12.0 )\nv = base.dists.pareto1.entropy( 8.0, 2.0 )\n",
+	"base.dists.pareto1.kurtosis": "v = base.dists.pareto1.kurtosis( 5.0, 1.0 )\nv = base.dists.pareto1.kurtosis( 4.5, 12.0 )\nv = base.dists.pareto1.kurtosis( 8.0, 2.0 )\n",
+	"base.dists.pareto1.logcdf": "y = base.dists.pareto1.logcdf( 2.0, 1.0, 1.0 )\ny = base.dists.pareto1.logcdf( 5.0, 2.0, 4.0 )\ny = base.dists.pareto1.logcdf( 4.0, 2.0, 2.0 )\ny = base.dists.pareto1.logcdf( 1.9, 2.0, 2.0 )\ny = base.dists.pareto1.logcdf( PINF, 4.0, 2.0 )\ny = base.dists.pareto1.logcdf( 2.0, -1.0, 0.5 )\ny = base.dists.pareto1.logcdf( 2.0, 0.5, -1.0 )\ny = base.dists.pareto1.logcdf( NaN, 1.0, 1.0 )\ny = base.dists.pareto1.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.pareto1.logcdf( 0.0, 1.0, NaN )\n",
+	"base.dists.pareto1.logpdf": "y = base.dists.pareto1.logpdf( 4.0, 1.0, 1.0 )\ny = base.dists.pareto1.logpdf( 20.0, 1.0, 10.0 )\ny = base.dists.pareto1.logpdf( 7.0, 2.0, 6.0 )\ny = base.dists.pareto1.logpdf( 7.0, 6.0, 3.0 )\ny = base.dists.pareto1.logpdf( 1.0, 4.0, 2.0 )\ny = base.dists.pareto1.logpdf( 1.5, 4.0, 2.0 )\ny = base.dists.pareto1.logpdf( 0.5, -1.0, 0.5 )\ny = base.dists.pareto1.logpdf( 0.5, 0.5, -1.0 )\ny = base.dists.pareto1.logpdf( NaN, 1.0, 1.0 )\ny = base.dists.pareto1.logpdf( 0.5, NaN, 1.0 )\ny = base.dists.pareto1.logpdf( 0.5, 1.0, NaN )\n",
+	"base.dists.pareto1.mean": "v = base.dists.pareto1.mean( 0.8, 1.0 )\nv = base.dists.pareto1.mean( 4.0, 12.0 )\nv = base.dists.pareto1.mean( 8.0, 2.0 )\n",
+	"base.dists.pareto1.median": "v = base.dists.pareto1.median( 0.8, 1.0 )\nv = base.dists.pareto1.median( 4.0, 12.0 )\nv = base.dists.pareto1.median( 8.0, 2.0 )\n",
+	"base.dists.pareto1.mode": "v = base.dists.pareto1.mode( 0.8, 1.0 )\nv = base.dists.pareto1.mode( 4.0, 12.0 )\nv = base.dists.pareto1.mode( 8.0, 2.0 )\n",
+	"base.dists.pareto1.Pareto1": "pareto1 = base.dists.pareto1.Pareto1( 6.0, 5.0 );\npareto1.alpha\npareto1.beta\npareto1.entropy\npareto1.kurtosis\npareto1.mean\npareto1.median\npareto1.mode\npareto1.skewness\npareto1.variance\npareto1.cdf( 7.0 )\npareto1.logcdf( 7.0 )\npareto1.logpdf( 5.0 )\npareto1.pdf( 5.0 )\npareto1.quantile( 0.8 )\n",
+	"base.dists.pareto1.pdf": "y = base.dists.pareto1.pdf( 4.0, 1.0, 1.0 )\ny = base.dists.pareto1.pdf( 20.0, 1.0, 10.0 )\ny = base.dists.pareto1.pdf( 7.0, 2.0, 6.0 )\ny = base.dists.pareto1.pdf( 7.0, 6.0, 3.0 )\ny = base.dists.pareto1.pdf( 1.0, 4.0, 2.0 )\ny = base.dists.pareto1.pdf( 1.5, 4.0, 2.0 )\ny = base.dists.pareto1.pdf( 0.5, -1.0, 0.5 )\ny = base.dists.pareto1.pdf( 0.5, 0.5, -1.0 )\ny = base.dists.pareto1.pdf( NaN, 1.0, 1.0 )\ny = base.dists.pareto1.pdf( 0.5, NaN, 1.0 )\ny = base.dists.pareto1.pdf( 0.5, 1.0, NaN )\n",
+	"base.dists.pareto1.quantile": "y = base.dists.pareto1.quantile( 0.8, 2.0, 1.0 )\ny = base.dists.pareto1.quantile( 0.8, 1.0, 10.0 )\ny = base.dists.pareto1.quantile( 0.1, 1.0, 10.0 )\ny = base.dists.pareto1.quantile( 1.1, 1.0, 1.0 )\ny = base.dists.pareto1.quantile( -0.2, 1.0, 1.0 )\ny = base.dists.pareto1.quantile( NaN, 1.0, 1.0 )\ny = base.dists.pareto1.quantile( 0.5, NaN, 1.0 )\ny = base.dists.pareto1.quantile( 0.5, 1.0, NaN )\ny = base.dists.pareto1.quantile( 0.5, -1.0, 1.0 )\ny = base.dists.pareto1.quantile( 0.5, 1.0, -1.0 )\n",
+	"base.dists.pareto1.skewness": "v = base.dists.pareto1.skewness( 3.5, 1.0 )\nv = base.dists.pareto1.skewness( 4.0, 12.0 )\nv = base.dists.pareto1.skewness( 8.0, 2.0 )\n",
+	"base.dists.pareto1.variance": "v = base.dists.pareto1.variance( 0.8, 1.0 )\nv = base.dists.pareto1.variance( 4.0, 12.0 )\nv = base.dists.pareto1.variance( 8.0, 2.0 )\n",
+	"base.dists.poisson.cdf": "y = base.dists.poisson.cdf( 2.0, 0.5 )\ny = base.dists.poisson.cdf( 2.0, 10.0 )\ny = base.dists.poisson.cdf( -1.0, 4.0 )\ny = base.dists.poisson.cdf( NaN, 1.0 )\ny = base.dists.poisson.cdf( 0.0, NaN )\n\n// Negative mean parameter:\ny = base.dists.poisson.cdf( 2.0, -1.0 )\n\n// Degenerate distribution at `λ = 0`:\ny = base.dists.poisson.cdf( -2.0, 0.0 );\ny = base.dists.poisson.cdf( 0.0, 0.0 );\ny = base.dists.poisson.cdf( 10.0, 0.0 );\n",
+	"base.dists.poisson.entropy": "v = base.dists.poisson.entropy( 11.0 )\nv = base.dists.poisson.entropy( 4.5 )\n",
+	"base.dists.poisson.kurtosis": "v = base.dists.poisson.kurtosis( 11.0 )\nv = base.dists.poisson.kurtosis( 4.5 )\n",
+	"base.dists.poisson.logpmf": "y = base.dists.poisson.logpmf( 4.0, 3.0 )\ny = base.dists.poisson.logpmf( 1.0, 3.0 )\ny = base.dists.poisson.logpmf( -1.0, 2.0 )\ny = base.dists.poisson.logpmf( 0.0, NaN )\ny = base.dists.poisson.logpmf( NaN, 0.5 )\n\n// Negative mean parameter:\ny = base.dists.poisson.logpmf( 2.0, -0.5 )\n\n// Degenerate distribution at `λ = 0`:\ny = base.dists.poisson.logpmf( 2.0, 0.0 )\ny = base.dists.poisson.logpmf( 0.0, 0.0 )\n",
+	"base.dists.poisson.mean": "v = base.dists.poisson.mean( 11.0 )\nv = base.dists.poisson.mean( 4.5 )\n",
+	"base.dists.poisson.median": "v = base.dists.poisson.median( 11.0 )\nv = base.dists.poisson.median( 4.5 )\n",
+	"base.dists.poisson.mode": "v = base.dists.poisson.mode( 11.0 )\nv = base.dists.poisson.mode( 4.5 )\n",
+	"base.dists.poisson.pmf": "y = base.dists.poisson.pmf( 4.0, 3.0 )\ny = base.dists.poisson.pmf( 1.0, 3.0 )\ny = base.dists.poisson.pmf( -1.0, 2.0 )\ny = base.dists.poisson.pmf( 0.0, NaN )\ny = base.dists.poisson.pmf( NaN, 0.5 )\n\n// Negative mean parameter:\ny = base.dists.poisson.pmf( 2.0, -0.5 )\n\n// Degenerate distribution at `λ = 0`:\ny = base.dists.poisson.pmf( 2.0, 0.0 )\ny = base.dists.poisson.pmf( 0.0, 0.0 )\n",
+	"base.dists.poisson.Poisson": "poisson = base.dists.poisson.Poisson( 6.0 );\npoisson.lambda\npoisson.entropy\npoisson.kurtosis\npoisson.mean\npoisson.median\npoisson.mode\npoisson.skewness\npoisson.stdev\npoisson.variance\npoisson.cdf( 4.0 )\npoisson.logpmf( 2.0 )\npoisson.mgf( 0.5 )\npoisson.pmf( 2.0 )\npoisson.quantile( 0.5 )\n",
+	"base.dists.poisson.quantile": "y = base.dists.poisson.quantile( 0.5, 2.0 )\ny = base.dists.poisson.quantile( 0.9, 4.0 )\ny = base.dists.poisson.quantile( 0.1, 200.0 )\ny = base.dists.poisson.quantile( 1.1, 0.0 )\ny = base.dists.poisson.quantile( -0.2, 0.0 )\ny = base.dists.poisson.quantile( NaN, 0.5 )\ny = base.dists.poisson.quantile( 0.0, NaN )\n\n// Negative mean parameter:\ny = base.dists.poisson.quantile( 2.0, -1.0 )\n\n// Degenerate distribution at `λ = 0`:\ny = base.dists.poisson.quantile( 0.1, 0.0 );\ny = base.dists.poisson.quantile( 0.9, 0.0 );\n",
+	"base.dists.poisson.skewness": "v = base.dists.poisson.skewness( 11.0 )\nv = base.dists.poisson.skewness( 4.5 )\n",
+	"base.dists.poisson.stdev": "v = base.dists.poisson.stdev( 11.0 )\nv = base.dists.poisson.stdev( 4.5 )\n",
+	"base.dists.poisson.variance": "v = base.dists.poisson.variance( 11.0 )\nv = base.dists.poisson.variance( 4.5 )\n",
+	"base.dists.rayleigh.cdf": "y = base.dists.rayleigh.cdf( 2.0, 3.0 )\ny = base.dists.rayleigh.cdf( 1.0, 2.0 )\ny = base.dists.rayleigh.cdf( -1.0, 4.0 )\ny = base.dists.rayleigh.cdf( NaN, 1.0 )\ny = base.dists.rayleigh.cdf( 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.rayleigh.cdf( 2.0, -1.0 )\n\n// Degenerate distribution when `sigma = 0.0`:\ny = base.dists.rayleigh.cdf( -2.0, 0.0 );\ny = base.dists.rayleigh.cdf( 0.0, 0.0 );\ny = base.dists.rayleigh.cdf( 2.0, 0.0 );\n",
+	"base.dists.rayleigh.entropy": "v = base.dists.rayleigh.entropy( 11.0 )\nv = base.dists.rayleigh.entropy( 4.5 )\n",
+	"base.dists.rayleigh.kurtosis": "v = base.dists.rayleigh.kurtosis( 11.0 )\nv = base.dists.rayleigh.kurtosis( 4.5 )\n",
+	"base.dists.rayleigh.logcdf": "y = base.dists.rayleigh.logcdf( 2.0, 3.0 )\ny = base.dists.rayleigh.logcdf( 1.0, 2.0 )\ny = base.dists.rayleigh.logcdf( -1.0, 4.0 )\ny = base.dists.rayleigh.logcdf( NaN, 1.0 )\ny = base.dists.rayleigh.logcdf( 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.rayleigh.logcdf( 2.0, -1.0 )\n",
+	"base.dists.rayleigh.logpdf": "y = base.dists.rayleigh.logpdf( 0.3, 1.0 )\ny = base.dists.rayleigh.logpdf( 2.0, 0.8 )\ny = base.dists.rayleigh.logpdf( -1.0, 0.5 )\ny = base.dists.rayleigh.logpdf( 0.0, NaN )\ny = base.dists.rayleigh.logpdf( NaN, 2.0 )\n\n// Negative scale parameter:\ny = base.dists.rayleigh.logpdf( 2.0, -1.0 )\n",
+	"base.dists.rayleigh.mean": "v = base.dists.rayleigh.mean( 11.0 )\nv = base.dists.rayleigh.mean( 4.5 )\n",
+	"base.dists.rayleigh.median": "v = base.dists.rayleigh.median( 11.0 )\nv = base.dists.rayleigh.median( 4.5 )\n",
+	"base.dists.rayleigh.mgf": "y = base.dists.rayleigh.mgf( 1.0, 3.0 )\ny = base.dists.rayleigh.mgf( 1.0, 2.0 )\ny = base.dists.rayleigh.mgf( -1.0, 4.0 )\ny = base.dists.rayleigh.mgf( NaN, 1.0 )\ny = base.dists.rayleigh.mgf( 0.0, NaN )\ny = base.dists.rayleigh.mgf( 0.5, -1.0 )\n",
+	"base.dists.rayleigh.mode": "v = base.dists.rayleigh.mode( 11.0 )\nv = base.dists.rayleigh.mode( 4.5 )\n",
+	"base.dists.rayleigh.pdf": "y = base.dists.rayleigh.pdf( 0.3, 1.0 )\ny = base.dists.rayleigh.pdf( 2.0, 0.8 )\ny = base.dists.rayleigh.pdf( -1.0, 0.5 )\ny = base.dists.rayleigh.pdf( 0.0, NaN )\ny = base.dists.rayleigh.pdf( NaN, 2.0 )\n\n// Negative scale parameter:\ny = base.dists.rayleigh.pdf( 2.0, -1.0 )\n\n// Degenerate distribution when `sigma = 0.0`:\ny = base.dists.rayleigh.pdf( -2.0, 0.0 )\ny = base.dists.rayleigh.pdf( 0.0, 0.0 )\ny = base.dists.rayleigh.pdf( 2.0, 0.0 )\n",
+	"base.dists.rayleigh.Rayleigh": "rayleigh = base.dists.rayleigh.Rayleigh( 6.0 );\nrayleigh.sigma\nrayleigh.entropy\nrayleigh.kurtosis\nrayleigh.mean\nrayleigh.median\nrayleigh.mode\nrayleigh.skewness\nrayleigh.stdev\nrayleigh.variance\nrayleigh.cdf( 1.0 )\nrayleigh.logcdf( 1.0 )\nrayleigh.logpdf( 1.5 )\nrayleigh.mgf( -0.5 )\nrayleigh.pdf( 1.5 )\nrayleigh.quantile( 0.5 )\n",
+	"base.dists.rayleigh.quantile": "y = base.dists.rayleigh.quantile( 0.8, 1.0 )\ny = base.dists.rayleigh.quantile( 0.5, 4.0 )\ny = base.dists.rayleigh.quantile( 1.1, 1.0 )\ny = base.dists.rayleigh.quantile( -0.2, 1.0 )\ny = base.dists.rayleigh.quantile( NaN, 1.0 )\ny = base.dists.rayleigh.quantile( 0.0, NaN )\n\n// Negative scale parameter:\ny = base.dists.rayleigh.quantile( 0.5, -1.0 )\n",
+	"base.dists.rayleigh.skewness": "v = base.dists.rayleigh.skewness( 11.0 )\nv = base.dists.rayleigh.skewness( 4.5 )\n",
+	"base.dists.rayleigh.stdev": "v = base.dists.rayleigh.stdev( 9.0 )\nv = base.dists.rayleigh.stdev( 4.5 )\n",
+	"base.dists.rayleigh.variance": "v = base.dists.rayleigh.variance( 9.0 )\nv = base.dists.rayleigh.variance( 4.5 )\n",
+	"base.dists.t.cdf": "y = base.dists.t.cdf( 2.0, 0.1 )\ny = base.dists.t.cdf( 1.0, 2.0 )\ny = base.dists.t.cdf( -1.0, 4.0 )\ny = base.dists.t.cdf( NaN, 1.0 )\ny = base.dists.t.cdf( 0.0, NaN )\ny = base.dists.t.cdf( 2.0, -1.0 )\n",
+	"base.dists.t.entropy": "v = base.dists.t.entropy( 11.0 )\nv = base.dists.t.entropy( 4.5 )\n",
+	"base.dists.t.kurtosis": "v = base.dists.t.kurtosis( 11.0 )\nv = base.dists.t.kurtosis( 4.5 )\n",
+	"base.dists.t.mean": "v = base.dists.t.mean( 11.0 )\nv = base.dists.t.mean( 4.5 )\n",
+	"base.dists.t.median": "v = base.dists.t.median( 11.0 )\nv = base.dists.t.median( 4.5 )\n",
+	"base.dists.t.mode": "v = base.dists.t.mode( 11.0 )\nv = base.dists.t.mode( 4.5 )\n",
+	"base.dists.t.pdf": "y = base.dists.t.pdf( 0.3, 4.0 )\ny = base.dists.t.pdf( 2.0, 0.7 )\ny = base.dists.t.pdf( -1.0, 0.5 )\ny = base.dists.t.pdf( 0.0, NaN )\ny = base.dists.t.pdf( NaN, 2.0 )\ny = base.dists.t.pdf( 2.0, -1.0 )\n",
+	"base.dists.t.T": "t = base.dists.t.T( 6.0 );\nt.v\nt.entropy\nt.kurtosis\nt.mean\nt.median\nt.mode\nt.skewness\nt.stdev\nt.variance\nt.cdf( 1.0 )\nt.logcdf( 1.0 )\nt.logpdf( 1.5 )\nt.pdf( 1.5 )\nt.quantile( 0.8 )\n",
+	"base.dists.t.quantile": "y = base.dists.t.quantile( 0.8, 1.0 )\ny = base.dists.t.quantile( 0.1, 1.0 )\ny = base.dists.t.quantile( 0.5, 0.1 )\ny = base.dists.t.quantile( -0.2, 0.1 )\ny = base.dists.t.quantile( NaN, 1.0 )\ny = base.dists.t.quantile( 0.0, NaN )\ny = base.dists.t.quantile( 0.5, -1.0 )\n",
+	"base.dists.t.skewness": "v = base.dists.t.skewness( 11.0 )\nv = base.dists.t.skewness( 4.5 )\n",
+	"base.dists.t.stdev": "v = base.dists.t.stdev( 9.0 )\nv = base.dists.t.stdev( 4.5 )\n",
+	"base.dists.t.variance": "v = base.dists.t.variance( 9.0 )\nv = base.dists.t.variance( 4.5 )\n",
+	"base.dists.triangular.cdf": "y = base.dists.triangular.cdf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.cdf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dists.triangular.cdf( -10.0, -20.0, 0.0, -2.0 )\ny = base.dists.triangular.cdf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.cdf( NaN, 0.0, 1.0, 0.5 )\ny = base.dists.triangular.cdf( 0.0, NaN, 1.0, 0.5 )\ny = base.dists.triangular.cdf( 0.0, 0.0, NaN, 0.5 )\ny = base.dists.triangular.cdf( 2.0, 1.0, 0.0, NaN )\ny = base.dists.triangular.cdf( 2.0, 1.0, 0.0, 1.5 )\n",
+	"base.dists.triangular.entropy": "v = base.dists.triangular.entropy( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.entropy( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.entropy( 2.0, 8.0, 5.0 )\n",
+	"base.dists.triangular.kurtosis": "v = base.dists.triangular.kurtosis( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.kurtosis( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.kurtosis( 2.0, 8.0, 5.0 )\n",
+	"base.dists.triangular.logcdf": "y = base.dists.triangular.logcdf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.logcdf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dists.triangular.logcdf( -10.0, -20.0, 0.0, -2.0 )\ny = base.dists.triangular.logcdf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.logcdf( NaN, 0.0, 1.0, 0.5 )\ny = base.dists.triangular.logcdf( 0.0, NaN, 1.0, 0.5 )\ny = base.dists.triangular.logcdf( 0.0, 0.0, NaN, 0.5 )\ny = base.dists.triangular.logcdf( 2.0, 1.0, 0.0, NaN )\ny = base.dists.triangular.logcdf( 2.0, 1.0, 0.0, 1.5 )\n",
+	"base.dists.triangular.logpdf": "y = base.dists.triangular.logpdf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.logpdf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dists.triangular.logpdf( -10.0, -20.0, 0.0, -2.0 )\ny = base.dists.triangular.logpdf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.logpdf( NaN, 0.0, 1.0, 0.5 )\ny = base.dists.triangular.logpdf( 0.0, NaN, 1.0, 0.5 )\ny = base.dists.triangular.logpdf( 0.0, 0.0, NaN, 0.5 )\ny = base.dists.triangular.logpdf( 2.0, 1.0, 0.0, NaN )\ny = base.dists.triangular.logpdf( 2.0, 1.0, 0.0, 1.5 )\n",
+	"base.dists.triangular.mean": "v = base.dists.triangular.mean( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.mean( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.mean( 2.0, 8.0, 5.0 )\n",
+	"base.dists.triangular.median": "v = base.dists.triangular.median( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.median( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.median( 2.0, 8.0, 5.0 )\n",
+	"base.dists.triangular.mgf": "y = base.dists.triangular.mgf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.mgf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dists.triangular.mgf( -0.3, -20.0, 0.0, -2.0 )\ny = base.dists.triangular.mgf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.mgf( NaN, 0.0, 1.0, 0.5 )\ny = base.dists.triangular.mgf( 0.0, NaN, 1.0, 0.5 )\ny = base.dists.triangular.mgf( 0.0, 0.0, NaN, 0.5 )\ny = base.dists.triangular.mgf( 0.5, 1.0, 0.0, NaN )\ny = base.dists.triangular.mgf( 0.5, 1.0, 0.0, 1.5 )\n",
+	"base.dists.triangular.mode": "v = base.dists.triangular.mode( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.mode( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.mode( 2.0, 8.0, 5.0 )\n",
+	"base.dists.triangular.pdf": "y = base.dists.triangular.pdf( 0.5, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.pdf( 0.5, -1.0, 1.0, 0.5 )\ny = base.dists.triangular.pdf( -10.0, -20.0, 0.0, -2.0 )\ny = base.dists.triangular.pdf( -2.0, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.pdf( NaN, 0.0, 1.0, 0.5 )\ny = base.dists.triangular.pdf( 0.0, NaN, 1.0, 0.5 )\ny = base.dists.triangular.pdf( 0.0, 0.0, NaN, 0.5 )\ny = base.dists.triangular.pdf( 2.0, 1.0, 0.0, NaN )\ny = base.dists.triangular.pdf( 2.0, 1.0, 0.0, 1.5 )\n",
+	"base.dists.triangular.quantile": "y = base.dists.triangular.quantile( 0.9, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.quantile( 0.1, -1.0, 1.0, 0.5 )\ny = base.dists.triangular.quantile( 0.1, -20.0, 0.0, -2.0 )\ny = base.dists.triangular.quantile( 0.8, 0.0, 20.0, 0.0 )\ny = base.dists.triangular.quantile( 1.1, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.quantile( -0.1, -1.0, 1.0, 0.0 )\ny = base.dists.triangular.quantile( NaN, 0.0, 1.0, 0.5 )\ny = base.dists.triangular.quantile( 0.3, NaN, 1.0, 0.5 )\ny = base.dists.triangular.quantile( 0.3, 0.0, NaN, 0.5 )\ny = base.dists.triangular.quantile( 0.3, 1.0, 0.0, NaN )\ny = base.dists.triangular.quantile( 0.3, 1.0, 0.0, 1.5 )\n",
+	"base.dists.triangular.skewness": "v = base.dists.triangular.skewness( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.skewness( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.skewness( 2.0, 8.0, 5.0 )\n",
+	"base.dists.triangular.stdev": "v = base.dists.triangular.stdev( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.stdev( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.stdev( 2.0, 8.0, 5.0 )\n",
+	"base.dists.triangular.Triangular": "triangular = base.dists.triangular.Triangular( 0.0, 1.0, 0.5 );\ntriangular.a\ntriangular.b\ntriangular.c\ntriangular.entropy\ntriangular.kurtosis\ntriangular.mean\ntriangular.median\ntriangular.mode\ntriangular.skewness\ntriangular.stdev\ntriangular.variance\ntriangular.cdf( 0.8 )\ntriangular.logcdf( 0.8 )\ntriangular.logpdf( 0.8 )\ntriangular.mgf( 0.8 )\ntriangular.pdf( 0.8 )\ntriangular.quantile( 0.8 )\n",
+	"base.dists.triangular.variance": "v = base.dists.triangular.variance( 0.0, 1.0, 0.8 )\nv = base.dists.triangular.variance( 4.0, 12.0, 5.0 )\nv = base.dists.triangular.variance( 2.0, 8.0, 5.0 )\n",
+	"base.dists.uniform.cdf": "y = base.dists.uniform.cdf( 9.0, 0.0, 10.0 )\ny = base.dists.uniform.cdf( 0.5, 0.0, 2.0 )\ny = base.dists.uniform.cdf( PINF, 2.0, 4.0 )\ny = base.dists.uniform.cdf( NINF, 2.0, 4.0 )\ny = base.dists.uniform.cdf( NaN, 0.0, 1.0 )\ny = base.dists.uniform.cdf( 0.0, NaN, 1.0 )\ny = base.dists.uniform.cdf( 0.0, 0.0, NaN )\ny = base.dists.uniform.cdf( 2.0, 1.0, 0.0 )\n",
+	"base.dists.uniform.entropy": "v = base.dists.uniform.entropy( 0.0, 1.0 )\nv = base.dists.uniform.entropy( 4.0, 12.0 )\nv = base.dists.uniform.entropy( 2.0, 8.0 )\n",
+	"base.dists.uniform.kurtosis": "v = base.dists.uniform.kurtosis( 0.0, 1.0 )\nv = base.dists.uniform.kurtosis( 4.0, 12.0 )\nv = base.dists.uniform.kurtosis( 2.0, 8.0 )\n",
+	"base.dists.uniform.logcdf": "y = base.dists.uniform.logcdf( 9.0, 0.0, 10.0 )\ny = base.dists.uniform.logcdf( 0.5, 0.0, 2.0 )\ny = base.dists.uniform.logcdf( PINF, 2.0, 4.0 )\ny = base.dists.uniform.logcdf( NINF, 2.0, 4.0 )\ny = base.dists.uniform.logcdf( NaN, 0.0, 1.0 )\ny = base.dists.uniform.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.uniform.logcdf( 0.0, 0.0, NaN )\ny = base.dists.uniform.logcdf( 2.0, 1.0, 0.0 )\n",
+	"base.dists.uniform.logpdf": "y = base.dists.uniform.logpdf( 2.0, 0.0, 4.0 )\ny = base.dists.uniform.logpdf( 5.0, 0.0, 4.0 )\ny = base.dists.uniform.logpdf( 0.25, 0.0, 1.0 )\ny = base.dists.uniform.logpdf( NaN, 0.0, 1.0 )\ny = base.dists.uniform.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.uniform.logpdf( 0.0, 0.0, NaN )\ny = base.dists.uniform.logpdf( 2.0, 3.0, 1.0 )\n",
+	"base.dists.uniform.mean": "v = base.dists.uniform.mean( 0.0, 1.0 )\nv = base.dists.uniform.mean( 4.0, 12.0 )\nv = base.dists.uniform.mean( 2.0, 8.0 )\n",
+	"base.dists.uniform.median": "v = base.dists.uniform.median( 0.0, 1.0 )\nv = base.dists.uniform.median( 4.0, 12.0 )\nv = base.dists.uniform.median( 2.0, 8.0 )\n",
+	"base.dists.uniform.mgf": "y = base.dists.uniform.mgf( 2.0, 0.0, 4.0 )\ny = base.dists.uniform.mgf( -0.2, 0.0, 4.0 )\ny = base.dists.uniform.mgf( 2.0, 0.0, 1.0 )\ny = base.dists.uniform.mgf( 0.5, 3.0, 2.0 )\ny = base.dists.uniform.mgf( 0.5, 3.0, 3.0 )\ny = base.dists.uniform.mgf( NaN, 0.0, 1.0 )\ny = base.dists.uniform.mgf( 0.0, NaN, 1.0 )\ny = base.dists.uniform.mgf( 0.0, 0.0, NaN )\n",
+	"base.dists.uniform.pdf": "y = base.dists.uniform.pdf( 2.0, 0.0, 4.0 )\ny = base.dists.uniform.pdf( 5.0, 0.0, 4.0 )\ny = base.dists.uniform.pdf( 0.25, 0.0, 1.0 )\ny = base.dists.uniform.pdf( NaN, 0.0, 1.0 )\ny = base.dists.uniform.pdf( 0.0, NaN, 1.0 )\ny = base.dists.uniform.pdf( 0.0, 0.0, NaN )\ny = base.dists.uniform.pdf( 2.0, 3.0, 1.0 )\n",
+	"base.dists.uniform.quantile": "y = base.dists.uniform.quantile( 0.8, 0.0, 1.0 )\ny = base.dists.uniform.quantile( 0.5, 0.0, 10.0 )\ny = base.dists.uniform.quantile( 1.1, 0.0, 1.0 )\ny = base.dists.uniform.quantile( -0.2, 0.0, 1.0 )\ny = base.dists.uniform.quantile( NaN, 0.0, 1.0 )\ny = base.dists.uniform.quantile( 0.0, NaN, 1.0 )\ny = base.dists.uniform.quantile( 0.0, 0.0, NaN )\ny = base.dists.uniform.quantile( 0.5, 2.0, 1.0 )\n",
+	"base.dists.uniform.skewness": "v = base.dists.uniform.skewness( 0.0, 1.0 )\nv = base.dists.uniform.skewness( 4.0, 12.0 )\nv = base.dists.uniform.skewness( 2.0, 8.0 )\n",
+	"base.dists.uniform.stdev": "v = base.dists.uniform.stdev( 0.0, 1.0 )\nv = base.dists.uniform.stdev( 4.0, 12.0 )\nv = base.dists.uniform.stdev( 2.0, 8.0 )\n",
+	"base.dists.uniform.Uniform": "uniform = base.dists.uniform.Uniform( 0.0, 1.0 );\nuniform.a\nuniform.b\nuniform.entropy\nuniform.kurtosis\nuniform.mean\nuniform.median\nuniform.skewness\nuniform.stdev\nuniform.variance\nuniform.cdf( 0.8 )\nuniform.logcdf( 0.5 )\nuniform.logpdf( 1.0 )\nuniform.mgf( 0.8 )\nuniform.pdf( 0.8 )\nuniform.quantile( 0.8 )\n",
+	"base.dists.uniform.variance": "v = base.dists.uniform.variance( 0.0, 1.0 )\nv = base.dists.uniform.variance( 4.0, 12.0 )\nv = base.dists.uniform.variance( 2.0, 8.0 )\n",
+	"base.dists.weibull.cdf": "y = base.dists.weibull.cdf( 2.0, 1.0, 1.0 )\ny = base.dists.weibull.cdf( -1.0, 2.0, 2.0 )\ny = base.dists.weibull.cdf( PINF, 4.0, 2.0 )\ny = base.dists.weibull.cdf( NINF, 4.0, 2.0 )\ny = base.dists.weibull.cdf( NaN, 0.0, 1.0 )\ny = base.dists.weibull.cdf( 0.0, NaN, 1.0 )\ny = base.dists.weibull.cdf( 0.0, 0.0, NaN )\ny = base.dists.weibull.cdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.weibull.entropy": "v = base.dists.weibull.entropy( 1.0, 1.0 )\nv = base.dists.weibull.entropy( 4.0, 12.0 )\nv = base.dists.weibull.entropy( 8.0, 2.0 )\n",
+	"base.dists.weibull.kurtosis": "v = base.dists.weibull.kurtosis( 1.0, 1.0 )\nv = base.dists.weibull.kurtosis( 4.0, 12.0 )\nv = base.dists.weibull.kurtosis( 8.0, 2.0 )\n",
+	"base.dists.weibull.logcdf": "y = cdf( 2.0, 1.0, 1.0 )\ny = base.dists.weibull.logcdf( -1.0, 2.0, 2.0 )\ny = base.dists.weibull.logcdf( PINF, 4.0, 2.0 )\ny = base.dists.weibull.logcdf( NINF, 4.0, 2.0 )\ny = base.dists.weibull.logcdf( NaN, 0.0, 1.0 )\ny = base.dists.weibull.logcdf( 0.0, NaN, 1.0 )\ny = base.dists.weibull.logcdf( 0.0, 0.0, NaN )\ny = base.dists.weibull.logcdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.weibull.logpdf": "y = base.dists.weibull.logpdf( 2.0, 1.0, 0.5 )\ny = base.dists.weibull.logpdf( 0.1, 1.0, 1.0 )\ny = base.dists.weibull.logpdf( -1.0, 4.0, 2.0 )\ny = base.dists.weibull.logpdf( NaN, 0.6, 1.0 )\ny = base.dists.weibull.logpdf( 0.0, NaN, 1.0 )\ny = base.dists.weibull.logpdf( 0.0, 0.0, NaN )\ny = base.dists.weibull.logpdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.weibull.mean": "v = base.dists.weibull.mean( 1.0, 1.0 )\nv = base.dists.weibull.mean( 4.0, 12.0 )\nv = base.dists.weibull.mean( 8.0, 2.0 )\n",
+	"base.dists.weibull.median": "v = base.dists.weibull.median( 1.0, 1.0 )\nv = base.dists.weibull.median( 4.0, 12.0 )\nv = base.dists.weibull.median( 8.0, 2.0 )\n",
+	"base.dists.weibull.mgf": "y = base.dists.weibull.mgf( 1.0, 1.0, 0.5 )\ny = base.dists.weibull.mgf( -1.0, 4.0, 4.0 )\ny = base.dists.weibull.mgf( NaN, 1.0, 1.0 )\ny = base.dists.weibull.mgf( 0.0, NaN, 1.0 )\ny = base.dists.weibull.mgf( 0.0, 1.0, NaN )\ny = base.dists.weibull.mgf( 0.2, -1.0, 0.5 )\ny = base.dists.weibull.mgf( 0.2, 0.0, 0.5 )\ny = base.dists.weibull.mgf( 0.2, 0.5, -1.0 )\ny = base.dists.weibull.mgf( 0.2, 0.5, 0.0 )\n",
+	"base.dists.weibull.mode": "v = base.dists.weibull.mode( 1.0, 1.0 )\nv = base.dists.weibull.mode( 4.0, 12.0 )\nv = base.dists.weibull.mode( 8.0, 2.0 )\n",
+	"base.dists.weibull.pdf": "y = base.dists.weibull.pdf( 2.0, 1.0, 0.5 )\ny = base.dists.weibull.pdf( 0.1, 1.0, 1.0 )\ny = base.dists.weibull.pdf( -1.0, 4.0, 2.0 )\ny = base.dists.weibull.pdf( NaN, 0.6, 1.0 )\ny = base.dists.weibull.pdf( 0.0, NaN, 1.0 )\ny = base.dists.weibull.pdf( 0.0, 0.0, NaN )\ny = base.dists.weibull.pdf( 2.0, 0.0, -1.0 )\n",
+	"base.dists.weibull.quantile": "y = base.dists.weibull.quantile( 0.8, 1.0, 1.0 )\ny = base.dists.weibull.quantile( 0.5, 2.0, 4.0 )\ny = base.dists.weibull.quantile( 1.1, 1.0, 1.0 )\ny = base.dists.weibull.quantile( -0.2, 1.0, 1.0 )\ny = base.dists.weibull.quantile( NaN, 0.0, 1.0 )\ny = base.dists.weibull.quantile( 0.0, NaN, 1.0 )\ny = base.dists.weibull.quantile( 0.0, 0.0, NaN )\ny = base.dists.weibull.quantile( 0.5, 1.0, -1.0 )\n",
+	"base.dists.weibull.skewness": "v = base.dists.weibull.skewness( 1.0, 1.0 )\nv = base.dists.weibull.skewness( 4.0, 12.0 )\nv = base.dists.weibull.skewness( 8.0, 2.0 )\n",
+	"base.dists.weibull.stdev": "v = base.dists.weibull.stdev( 1.0, 1.0 )\nv = base.dists.weibull.stdev( 4.0, 12.0 )\nv = base.dists.weibull.stdev( 8.0, 2.0 )\n",
+	"base.dists.weibull.variance": "v = base.dists.weibull.variance( 1.0, 1.0 )\nv = base.dists.weibull.variance( 4.0, 12.0 )\nv = base.dists.weibull.variance( 8.0, 2.0 )\n",
+	"base.dists.weibull.Weibull": "weibull = base.dists.weibull.Weibull( 6.0, 5.0 );\nweibull.k\nweibull.lambda\nweibull.entropy\nweibull.kurtosis\nweibull.mean\nweibull.median\nweibull.mode\nweibull.skewness\nweibull.stdev\nweibull.variance\nweibull.cdf( 3.0 )\nweibull.logcdf( 3.0 )\nweibull.logpdf( 1.0 )\nweibull.mgf( -0.5 )\nweibull.pdf( 3.0 )\nweibull.quantile( 0.8 )\n",
 	"base.epsdiff": "d = base.epsdiff( 12.15, 12.149999999999999 )\nd = base.epsdiff( 2.4341309458983933, 2.4341309458633909, 'mean-abs' )\n\n// Custom scale function:\nfunction scale( x, y ) { return ( x > y ) ? y : x; };\nd = base.epsdiff( 1.0000000000000002, 1.0000000000000100, scale )\n",
 	"base.eta": "y = base.eta( 0.0 )\ny = base.eta( -1.0 )\ny = base.eta( 1.0 )\ny = base.eta( 3.14 )\ny = base.eta( NaN )\n",
 	"base.erf": "y = base.erf( 2.0 )\ny = base.erf( -1.0 )\ny = base.erf( -0.0 )\ny = base.erf( NaN )\n",
@@ -2796,7 +4636,10 @@ module.exports = {
 	"base.float64ToFloat32": "y = base.float64ToFloat32( 1.337 )\n",
 	"base.float64ToInt32": "y = base.float64ToInt32( 4294967295.0 )\ny = base.float64ToInt32( 3.14 )\ny = base.float64ToInt32( -3.14 )\ny = base.float64ToInt32( NaN )\ny = base.float64ToInt32( PINF )\ny = base.float64ToInt32( NINF )\n",
 	"base.float64ToUint32": "y = base.float64ToUint32( 4294967297.0 )\ny = base.float64ToUint32( 3.14 )\ny = base.float64ToUint32( -3.14 )\ny = base.float64ToUint32( NaN )\ny = base.float64ToUint32( PINF )\ny = base.float64ToUint32( NINF )\n",
-	"base.frexp": "out = base.frexp( 4.0 )\nout = base.frexp( 0.0 )\nout = base.frexp( -0.0 )\nout = base.frexp( NaN )\nout = base.frexp( PINF )\nout = base.frexp( NINF )\n",
+	"base.fresnel": "y = base.fresnel( 0.0 )\ny = base.fresnel( 1.0 )\ny = base.fresnel( PINF )\ny = base.fresnel( NINF )\ny = base.fresnel( NaN )\nout = new Float64Array( 2 );\nv = base.fresnel( out, 0.0 )\nbool = ( v === out )\n",
+	"base.fresnelc": "y = base.fresnelc( 0.0 )\ny = base.fresnelc( 1.0 )\ny = base.fresnelc( PINF )\ny = base.fresnelc( NINF )\ny = base.fresnelc( NaN )\n",
+	"base.fresnels": "y = base.fresnels( 0.0 )\ny = base.fresnels( 1.0 )\ny = base.fresnels( PINF )\ny = base.fresnels( NINF )\ny = base.fresnels( NaN )\n",
+	"base.frexp": "out = base.frexp( 4.0 )\nout = base.frexp( 0.0 )\nout = base.frexp( -0.0 )\nout = base.frexp( NaN )\nout = base.frexp( PINF )\nout = base.frexp( NINF )\n\n// Provide an output array:\nout = new Float64Array( 2 );\ny = base.frexp( 4.0 )\nbool = ( y === out )\n",
 	"base.fromBinaryString": "bstr;\nbstr = '0100000000010000000000000000000000000000000000000000000000000000';\nval = base.fromBinaryString( bstr )\nbstr = '0100000000001001001000011111101101010100010001000010110100011000';\nval = base.fromBinaryString( bstr )\nbstr = '1111111111100001110011001111001110000101111010111100100010100000';\nval = base.fromBinaryString( bstr )\n\n// The function handles subnormals:\nbstr = '1000000000000000000000000000000000000000000000000001100011010011';\nval = base.fromBinaryString( bstr )\nbstr = '0000000000000000000000000000000000000000000000000000000000000001';\nval = base.fromBinaryString( bstr )\n\n// The function handles special values:\nbstr = '0000000000000000000000000000000000000000000000000000000000000000';\nval = base.fromBinaryString( bstr )\nbstr = '1000000000000000000000000000000000000000000000000000000000000000';\nval = base.fromBinaryString( bstr )\nbstr = '0111111111111000000000000000000000000000000000000000000000000000';\nval = base.fromBinaryString( bstr )\nbstr = '0111111111110000000000000000000000000000000000000000000000000000';\nval = base.fromBinaryString( bstr )\nbstr = '1111111111110000000000000000000000000000000000000000000000000000';\nval = base.fromBinaryString( bstr )\n",
 	"base.fromBinaryStringf": "bstr = '01000000100000000000000000000000';\nval = base.fromBinaryStringf( bstr )\nbstr = '01000000010010010000111111011011';\nval = base.fromBinaryStringf( bstr )\nbstr = '11111111011011000011101000110011';\nval = base.fromBinaryStringf( bstr )\n\n// The function handles subnormals:\nbstr = '10000000000000000000000000010110';\nval = base.fromBinaryStringf( bstr )\nbstr = '00000000000000000000000000000001';\nval = base.fromBinaryStringf( bstr )\n\n// The function handles special values:\nbstr = '00000000000000000000000000000000';\nval = base.fromBinaryStringf( bstr )\nbstr = '10000000000000000000000000000000';\nval = base.fromBinaryStringf( bstr )\nbstr = '01111111110000000000000000000000';\nval = base.fromBinaryStringf( bstr )\nbstr = '01111111100000000000000000000000';\nval = base.fromBinaryStringf( bstr )\nbstr = '11111111100000000000000000000000';\nval = base.fromBinaryStringf( bstr )\n",
 	"base.fromBinaryStringUint16": "bstr = '0101010101010101';\nval = base.fromBinaryStringUint16( bstr )\nbstr = '0000000000000000';\nval = base.fromBinaryStringUint16( bstr )\nbstr = '0000000000000010';\nval = base.fromBinaryStringUint16( bstr )\nbstr = '1111111111111111';\nval = base.fromBinaryStringUint16( bstr )\n",
@@ -2812,7 +4655,10 @@ module.exports = {
 	"base.gammaLanczosSum": "y = base.gammaLanczosSum( 4.0 )\ny = base.gammaLanczosSum( -1.5 )\ny = base.gammaLanczosSum( -0.5 )\ny = base.gammaLanczosSum( 0.5 )\ny = base.gammaLanczosSum( 0.0 )\ny = base.gammaLanczosSum( NaN )\n",
 	"base.gammaLanczosSumExpGScaled": "y = base.gammaLanczosSumExpGScaled( 4.0 )\ny = base.gammaLanczosSumExpGScaled( -1.5 )\ny = base.gammaLanczosSumExpGScaled( -0.5 )\ny = base.gammaLanczosSumExpGScaled( 0.5 )\ny = base.gammaLanczosSumExpGScaled( 0.0 )\ny = base.gammaLanczosSumExpGScaled( NaN )\n",
 	"base.gammaln": "y = base.gammaln( 1.0 )\ny = base.gammaln( 2.0 )\ny = base.gammaln( 4.0 )\ny = base.gammaln( -0.5 )\ny = base.gammaln( 0.5 )\ny = base.gammaln( 0.0 )\ny = base.gammaln( NaN )\n",
+	"base.gasum": "\n// Standard usage:\nx = [ -2.0, 1.0, 3.0, -5.0, 4.0, 0.0, -1.0, -3.0 ];\nsum = base.gasum( x.length, x, 1 )\n\n// Sum every other value:\nN = base.floor( x.length / 2 );\nstride = 2;\nsum = base.gasum( N, x, stride )\n\n// Use view offset; e.g., starting at 2nd element:\nx0 = new Float64Array( [ 1.0, -2.0, 3.0, -4.0, 5.0, -6.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\nN = base.floor( x0.length / 2 );\nsum = base.gasum( N, x1, stride )\n",
+	"base.gaxpy": "\n// Standard usage:\nx = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\ny = [ 1.0, 1.0, 1.0, 1.0, 1.0 ];\nalpha = 5.0;\nbase.gaxpy( x.length, alpha, x, 1, y, 1 )\n\n// Using `N` and `stride` parameters:\nN = base.floor( x.length / 2 );\nbase.gaxpy( N, alpha, x, 2, y, -1 )\n\n// Using view offsets:\nx0 = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny0 = new Float64Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\ny1 = new Float64Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 );\nN = base.floor( x0.length / 2 );\nbase.gaxpy( N, 5.0, x1, -2, y1, 1 )\ny0\n",
 	"base.gcd": "v = base.gcd( 48, 18 )\n",
+	"base.gcopy": "\n// Standard usage:\nx = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\ny = [ 6.0, 7.0, 8.0, 9.0, 10.0 ];\nbase.gcopy( x.length, x, 1, y, 1 )\n\n// Advanced indexing:\nx = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ];\ny = [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ];\nN = base.floor( x.length / 2 );\nbase.gcopy( N, x, -2, y, 1 )\n\n// Using typed array views:\nx0 = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny0 = new Float64Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nx1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\ny1 = new Float64Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 );\nN = base.floor( x0.length / 2 );\nbase.gcopy( N, x1, -2, y1, 1 )\ny0\n",
 	"base.getHighWord": "w = base.getHighWord( 3.14e201 )\n",
 	"base.getLowWord": "w = base.getLowWord( 3.14e201 )\n",
 	"base.hacovercos": "y = base.hacovercos( 3.14 )\ny = base.hacovercos( -4.2 )\ny = base.hacovercos( -4.6 )\ny = base.hacovercos( 9.5 )\ny = base.hacovercos( -0.0 )\n",
@@ -2840,6 +4686,8 @@ module.exports = {
 	"base.isPow2Uint32": "bool = base.isPow2Uint32( 2 )\nbool = base.isPow2Uint32( 5 )\n",
 	"base.isProbability": "bool = base.isProbability( 0.5 )\nbool = base.isProbability( 3.14 )\nbool = base.isProbability( NaN )\n",
 	"base.isSafeInteger": "bool = base.isSafeInteger( 1.0 )\nbool = base.isSafeInteger( 2.0e200 )\nbool = base.isSafeInteger( 3.14 )\n",
+	"base.kernelBetainc": "out = base.kernelBetainc( 2.0, 2.0, false, false )\nout = base.kernelBetainc( 0.2, 1.0, 2.0, true, false )\nout = new Array( 2 );\nv = base.kernelBetainc( out, 0.2, 1.0, 2.0, true, true )\nbool = ( v === out )\n",
+	"base.kernelBetaincinv": "y = base.kernelBetaincinv( 3.0, 3.0, 0.2, 0.8 )\ny = base.kernelBetaincinv( 3.0, 3.0, 0.4, 0.6 )\ny = base.kernelBetaincinv( 1.0, 6.0, 0.4, 0.6 )\ny = base.kernelBetaincinv( 1.0, 6.0, 0.8, 0.2 )\n",
 	"base.kernelCos": "out = base.kernelCos( 0.0, 0.0 )\nout = base.kernelCos( PI/6.0, 0.0 )\nout = base.kernelCos( 0.785, -1.144e-17 )\nout = base.kernelCos( NaN )\n",
 	"base.kernelSin": "y = base.kernelSin( 0.0, 0.0 )\ny = base.kernelSin( PI/6.0, 0.0 )\ny = base.kernelSin( 0.619, 9.279e-18 )\ny = base.kernelSin( NaN, 0.0 )\ny = base.kernelSin( 2.0, NaN )\ny = base.kernelSin( NaN, NaN )\n",
 	"base.kernelTan": "out = base.kernelTan( PI/4.0, 0.0, 1 )\nout = base.kernelTan( PI/4.0, 0.0, -1 )\nout = base.kernelTan( PI/6.0, 0.0, 1 )\nout = base.kernelTan( 0.664, 5.288e-17, 1 )\nout = base.kernelTan( NaN, 0.0, 1 )\nout = base.kernelTan( 3.0, NaN, 1 )\nout = base.kernelTan( 3.0, 0.0, NaN )\n",
@@ -2858,13 +4706,15 @@ module.exports = {
 	"base.maxabs": "v = base.maxabs( 3.14, -4.2 )\nv = base.maxabs( 5.9, 3.14, 4.2 )\nv = base.maxabs( 3.14, NaN )\nv = base.maxabs( +0.0, -0.0 )\n",
 	"base.min": "v = base.min( 3.14, 4.2 )\nv = base.min( 5.9, 3.14, 4.2 )\nv = base.min( 3.14, NaN )\nv = base.min( +0.0, -0.0 )\n",
 	"base.minabs": "v = base.minabs( 3.14, -4.2 )\nv = base.minabs( 5.9, 3.14, 4.2 )\nv = base.minabs( 3.14, NaN )\nv = base.minabs( +0.0, -0.0 )\n",
-	"base.modf": "parts = base.modf( 3.14 )\nparts = base.modf( 3.14 )\nparts = base.modf( +0.0 )\nparts = base.modf( -0.0 )\nparts = base.modf( PINF )\nparts = base.modf( NINF )\nparts = base.modf( NaN )\n",
+	"base.minmax": "v = base.minmax( 3.14, 4.2 )\nv = base.minmax( 5.9, 3.14, 4.2 )\nv = base.minmax( 3.14, NaN )\nv = base.minmax( +0.0, -0.0 )\nv = base.minmax( 3.14 )\nout = new Array( 2 );\nv = base.minmax( out, 3.14 )\nbool = ( v === out )\n",
+	"base.modf": "parts = base.modf( 3.14 )\nparts = base.modf( 3.14 )\nparts = base.modf( +0.0 )\nparts = base.modf( -0.0 )\nparts = base.modf( PINF )\nparts = base.modf( NINF )\nparts = base.modf( NaN )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nparts = base.modf( out, 3.14 )\nbool = ( parts === out )\n",
 	"base.negafibonacci": "y = base.negafibonacci( 0 )\ny = base.negafibonacci( -1 )\ny = base.negafibonacci( -2 )\ny = base.negafibonacci( -3 )\ny = base.negafibonacci( -4 )\ny = base.negafibonacci( -79 )\ny = base.negafibonacci( -80 )\ny = base.negafibonacci( NaN )\n",
 	"base.negalucas": "y = base.negalucas( 0 )\ny = base.negalucas( -1 )\ny = base.negalucas( -2 )\ny = base.negalucas( -3 )\ny = base.negalucas( -4 )\ny = base.negalucas( -77 )\ny = base.negalucas( -78 )\ny = base.negalucas( NaN )\n",
 	"base.nonfibonacci": "v = base.nonfibonacci( 1 )\nv = base.nonfibonacci( 2 )\nv = base.nonfibonacci( 3 )\nv = base.nonfibonacci( NaN )\n",
-	"base.normalize": "out = base.normalize( 3.14e-319 );\ny = out[ 0 ];\nexponent = out[ 1 ];\nbool = ( y*base.pow(2.0, exponent) === 3.14e-319 )\n\n// Special cases:\nout = base.normalize( 0.0 )\nout = base.normalize( PINF )\nout = base.normalize( NINF )\nout = base.normalize( NaN )\n",
-	"base.normalizef": "out = base.normalizef( base.float64ToFloat32( 1.401e-45 ) )\ny = out[ 0 ];\nexp = out[ 1 ];\nbool = ( y*base.pow(2,exp) === base.float64ToFloat32(1.401e-45) )\n\n// Special cases:\nout = base.normalizef( FLOAT32_PINF )\nout = base.normalizef( FLOAT32_NINF )\nout = base.normalizef( NaN )\n",
+	"base.normalize": "out = base.normalize( 3.14e-319 );\ny = out[ 0 ];\nexponent = out[ 1 ];\nbool = ( y*base.pow(2.0, exponent) === 3.14e-319 )\n\n// Special cases:\nout = base.normalize( 0.0 )\nout = base.normalize( PINF )\nout = base.normalize( NINF )\nout = base.normalize( NaN )\n\n// Provide an output array:\nout = new Float64Array( 2 );\nv = base.normalize( out, 3.14e-319 )\nbool = ( v === out )\n",
+	"base.normalizef": "out = base.normalizef( base.float64ToFloat32( 1.401e-45 ) )\ny = out[ 0 ];\nexp = out[ 1 ];\nbool = ( y*base.pow(2,exp) === base.float64ToFloat32(1.401e-45) )\n\n// Special cases:\nout = base.normalizef( FLOAT32_PINF )\nout = base.normalizef( FLOAT32_NINF )\nout = base.normalizef( NaN )\n\n// Provide an output array:\nout = new Float32Array( 2 );\nv = base.normalizef( out, base.float64ToFloat32( 1.401e-45 ) )\nbool = ( v === out )\n",
 	"base.pdiff": "v = base.pdiff( 5.9, 3.14 )\nv = base.pdiff( 3.14, 4.2 )\nv = base.pdiff( 3.14, NaN )\nv = base.pdiff( -0.0, +0.0 )\n",
+	"base.polygamma": "v = base.polygamma( 3, 1.2 )\nv = base.polygamma( 5, 1.2 )\nv = base.polygamma( 3, -4.9 )\nv = base.polygamma( -1, 5.3 )\nv = base.polygamma( 2, -1.0 )\n",
 	"base.pow": "y = base.pow( 2.0, 3.0 )\ny = base.pow( 4.0, 0.5 )\ny = base.pow( 100.0, 0.0 )\ny = base.pow( PI, 5.0 )\ny = base.pow( PI, -0.2 )\ny = base.pow( NaN, 3.0 )\ny = base.pow( 5.0, NaN )\ny = base.pow( NaN, NaN )\n",
 	"base.powm1": "y = base.powm1( 2.0, 3.0 )\ny = base.powm1( 4.0, 0.5 )\ny = base.powm1( 0.0, 100.0 )\ny = base.powm1( 100.0, 0.0 )\ny = base.powm1( 0.0, 0.0 )\ny = base.powm1( PI, 5.0 )\ny = base.powm1( NaN, 3.0 )\ny = base.powm1( 5.0, NaN )\n",
 	"base.rad2deg": "d = base.rad2deg( PI/2.0 )\nd = base.rad2deg( -PI/4.0 )\nd = base.rad2deg( NaN )\n\n// Due to finite precision, canonical values may not be returned:\nd = base.rad2deg( PI/6.0 )\n",
@@ -2878,6 +4728,7 @@ module.exports = {
 	"base.random.chi": "r = base.random.chi( 2 );\n",
 	"base.random.chisquare": "r = base.random.chisquare( 2 );\n",
 	"base.random.cosine": "r = base.random.cosine( 2.0, 5.0 );\n",
+	"base.random.discreteUniform": "r = base.random.discreteUniform( 2, 50 );\n",
 	"base.random.erlang": "r = base.random.erlang( 2, 5.0 );\n",
 	"base.random.exponential": "r = base.random.exponential( 7.9 );\n",
 	"base.random.f": "r = base.random.f( 2.0, 5.0 );\n",
@@ -2899,6 +4750,7 @@ module.exports = {
 	"base.random.normal": "r = base.random.normal( 2.0, 5.0 );\n",
 	"base.random.pareto1": "r = base.random.pareto1( 2.0, 5.0 );\n",
 	"base.random.poisson": "r = base.random.poisson( 7.9 );\n",
+	"base.random.randi": "r = base.random.randi();\n",
 	"base.random.randn": "r = base.random.randn();\n",
 	"base.random.randu": "r = base.random.randu();\n",
 	"base.random.rayleigh": "r = base.random.rayleigh( 2.5 );\n",
@@ -2922,7 +4774,7 @@ module.exports = {
 	"base.scopy": "\n// Standard usage:\nx = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );\ny = new Float32Array( [ 6.0, 7.0, 8.0, 9.0, 10.0 ] );\nbase.scopy( x.length, x, 1, y, 1 )\n\n// Advanced indexing:\nx = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny = new Float32Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nN = base.floor( x.length / 2 );\nbase.scopy( N, x, -2, y, 1 )\n\n// Using typed array views:\nx0 = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );\ny0 = new Float32Array( [ 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );\nx1 = new Float32Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 );\ny1 = new Float32Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 );\nN = base.floor( x0.length / 2 );\nbase.scopy( N, x1, -2, y1, 1 )\ny0\n",
 	"base.setHighWord": "\n// Set the higher order bits of `+infinity` to return `1`:\nhigh = 1072693248 >>> 0;\ny = base.setHighWord( PINF, high )\n",
 	"base.setLowWord": "low = 5 >>> 0;\nx = 3.14e201;\ny = base.setLowWord( x, low )\n\n// Special cases:\nlow = 12345678;\ny = base.setLowWord( PINF, low )\ny = base.setLowWord( NINF, low )\ny = base.setLowWord( NaN, low )\n",
-	"base.sici": "y = base.sici( 3.0 )\ny = base.sici( 0.0 )\ny = base.sici( -9.0 )\ny = base.sici( NaN )\n",
+	"base.sici": "y = base.sici( 3.0 )\ny = base.sici( 0.0 )\ny = base.sici( -9.0 )\ny = base.sici( NaN )\n\n// Provide an output array:\nout = new Float64Array( 2 );\ny = base.sici( 3.0 )\nbool = ( y === out )\n",
 	"base.signbit": "bool = base.signbit( 4.0 )\nbool = base.signbit( -9.14e-34 )\nbool = base.signbit( 0.0 )\nbool = base.signbit( -0.0 )\n",
 	"base.signbitf": "bool = base.signbitf( base.float64ToFloat32( 4.0 ) )\nbool = base.signbitf( base.float64ToFloat32( -9.14e-34 ) )\nbool = base.signbitf( 0.0 )\nbool = base.signbitf( -0.0 )\n",
 	"base.significandf": "s = base.significandf( base.float64ToFloat32( 3.14e34 ) )\ns = base.significandf( base.float64ToFloat32( 3.14e-34 ) )\ns = base.significandf( base.float64ToFloat32( -3.14 ) )\ns = base.significandf( 0.0 )\ns = base.significandf( NaN )\n",
@@ -2945,7 +4797,7 @@ module.exports = {
 	"base.toBinaryStringUint32": "a = new Uint32Array( [ 1, 4, 9 ] );\nstr = base.toBinaryStringUint32( a[ 0 ] )\nstr = base.toBinaryStringUint32( a[ 1 ] )\nstr = base.toBinaryStringUint32( a[ 2 ] )\n",
 	"base.toBinaryStringUint8": "a = new Uint8Array( [ 1, 4, 9 ] );\nstr = base.toBinaryStringUint8( a[ 0 ] )\nstr = base.toBinaryStringUint8( a[ 1 ] )\nstr = base.toBinaryStringUint8( a[ 2 ] )\n",
 	"base.toWordf": "f32 = base.float64ToFloat32( 1.337 )\nw = base.toWordf( f32 )\n",
-	"base.toWords": "w = base.toWords( 3.14e201 )\n",
+	"base.toWords": "w = base.toWords( 3.14e201 )\n\n// Provide an output array:\nout = new Uint32Array( 2 );\nw = base.toWords( out, 3.14e201 )\nbool = ( w === out )\n",
 	"base.trigamma": "y = base.trigamma( -2.5 )\ny = base.trigamma( 1.0 )\ny = base.trigamma( 10.0 )\ny = base.trigamma( NaN )\ny = base.trigamma( -1.0 )\n",
 	"base.trunc": "y = base.trunc( 3.14 )\ny = base.trunc( -4.2 )\ny = base.trunc( -4.6 )\ny = base.trunc( 9.5 )\ny = base.trunc( -0.0 )\n",
 	"base.trunc10": "y = base.trunc10( 3.14 )\ny = base.trunc10( -4.2 )\ny = base.trunc10( -4.6 )\ny = base.trunc10( 9.5 )\ny = base.trunc10( 13.0 )\ny = base.trunc10( -13.0 )\ny = base.trunc10( -0.0 )\n",
@@ -2956,6 +4808,7 @@ module.exports = {
 	"base.uint32ToInt32": "y = base.uint32ToInt32( base.float64ToUint32( 4294967295 ) )\ny = base.uint32ToInt32( base.float64ToUint32( 3 ) )\n",
 	"base.vercos": "y = base.vercos( 3.14 )\ny = base.vercos( -4.2 )\ny = base.vercos( -4.6 )\ny = base.vercos( 9.5 )\ny = base.vercos( -0.0 )\n",
 	"base.versin": "y = base.versin( 3.14 )\ny = base.versin( -4.2 )\ny = base.versin( -4.6 )\ny = base.versin( 9.5 )\ny = base.versin( -0.0 )\n",
+	"base.wrap": "y = base.wrap( 3.14, 0.0, 5.0 )\ny = base.wrap( -3.14, 0.0, 5.0 )\ny = base.wrap( 3.14, 0.0, 3.0 )\ny = base.wrap( -0.0, 0.0, 5.0 )\ny = base.wrap( 0.0, -3.14, -0.0 )\ny = base.wrap( NaN, 0.0, 5.0 )\n",
 	"base.xlogy": "out = base.xlogy( 3.0, 2.0 )\nout = base.xlogy( 1.5, 5.9 )\nout = base.xlogy( 0.9, 1.0 )\nout = base.xlogy( 0.0, -2.0 )\nout = base.xlogy( 1.5, NaN )\nout = base.xlogy( 0.0, NaN )\nout = base.xlogy( NaN, 2.3 )\n",
 	"base.xlog1py": "out = base.xlog1py( 3.0, 2.0 )\nout = base.xlog1py( 1.5, 5.9 )\nout = base.xlog1py( 0.9, 1.0 )\nout = base.xlog1py( 1.0, 0.0 )\nout = base.xlog1py( 0.0, -2.0 )\nout = base.xlog1py( 1.5, NaN )\nout = base.xlog1py( 0.0, NaN )\nout = base.xlog1py( NaN, 2.3 )\n",
 	"base.zeta": "y = base.zeta( 1.1 )\ny = base.zeta( -4.0 )\ny = base.zeta( 70.0 )\ny = base.zeta( 0.5 )\ny = base.zeta( NaN )\n\n// Evaluate at a pole:\ny = base.zeta( 1.0 )\n",
@@ -2964,9 +4817,13 @@ module.exports = {
 	"bifurcateByAsync": "\n// Basic usage:\nfunction predicate( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\narr = [ 3000, 2500, 1000 ];\nbifurcateByAsync( arr, predicate, done )\n\n// Output group results as indices:\nopts = { 'returns': 'indices' };\nbifurcateByAsync( arr, opts, predicate, done )\n\n// Output group results as index-value pairs:\nopts = { 'returns': '*' };\nbifurcateByAsync( arr, opts, predicate done )\n\n// Limit number of concurrent invocations:\nfunction predicate( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nopts = { 'limit': 2 };\narr = [ 3000, 2500, 1000 ];\nbifurcateByAsync( arr, opts, predicate, done )\n\n// Process sequentially:\nfunction predicate( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nopts = { 'series': true };\narr = [ 3000, 2500, 1000 ];\nbifurcateByAsync( arr, opts, predicate, done )\n",
 	"bifurcateIn": "function Foo() { this.a = 'beep'; this.b = 'boop'; return this; };\nFoo.prototype = Object.create( null );\nFoo.prototype.c = 'foo';\nFoo.prototype.d = 'bar';\nobj = new Foo();\nfunction predicate( v ) { v[ 0 ] === 'b' };\nout = bifurcateIn( obj, predicate )\n\n// Output group results as keys:\nopts = { 'returns': 'keys' };\nout = bifurcateIn( obj, opts, predicate )\n\n// Output group results as key-value pairs:\nopts = { 'returns': '*' };\nout = bifurcateIn( obj, opts, predicate )\n",
 	"bifurcateOwn": "function predicate( v ) { v[ 0 ] === 'b' };\nobj = { 'a': 'beep', 'b': 'boop', 'c': 'foo', 'd': 'bar' };\nout = bifurcateOwn( obj, predicate )\n\n// Output group results as keys:\nopts = { 'returns': 'keys' };\nout = bifurcateOwn( obj, opts, predicate )\n\n// Output group results as key-value pairs:\nopts = { 'returns': '*' };\nout = bifurcateOwn( obj, opts, predicate )\n",
+	"Buffer": "b = new Buffer( 4 )\n",
+	"buffer2json": "buf = new allocUnsafe( 2 );\nbuf[ 0 ] = 1;\nbuf[ 1 ] = 2;\njson = buffer2json( buf )\n",
 	"capitalize": "out = capitalize( 'beep' )\nout = capitalize( 'Boop' )\n",
 	"capitalizeKeys": "obj = { 'aa': 1, 'bb': 2 };\nout = capitalizeKeys( obj )\n",
 	"CATALAN": "CATALAN\n",
+	"CBRT_EPS": "CBRT_EPS\n",
+	"chdir": "err = chdir( '/path/to/current/working/directory' )\n",
 	"chi2gof": "\n// Use probabilities for `y`:\nx = [ 89, 37, 30, 28, 2 ];\np = [ 0.40, 0.20, 0.20, 0.15, 0.05 ];\nout = chi2gof( x, p )\ntable = out.print()\n\n// Set significance level:\nout = chi2gof( x, p, { 'alpha': 0.01 });\ntable = out.print()\n\n// Calculate the p-value via Monte Carlo simulation:\nx = [ 89, 37, 30, 28, 2 ];\np = [ 0.40, 0.20, 0.20, 0.15, 0.05 ];\nout = chi2gof( x, p, { 'simulate': true, 'iterations': 1000 })\n\n// Verify that data comes from Poisson distribution:\nlambda = 3.0;\nrpois = base.random.poisson.factory( lambda );\nlen = 400;\nx = new Array( len );\nfor ( var i = 0; i < len; i++ ) { x[ i ] = rpois(); }\n\n// Generate frequency table:\nfreqs = [];\nfor ( i = 0; i < len; i++ ) {\n  val = x[ i ];\n  freqs[ val ] === void 0 ? freqs[ val ] = 1 : freqs[ val ] += 1;\n}\n\n// Fill holes in array:\nfor ( i = 0; i < freqs.length; i++ ) {\n  if ( freqs[ i ] === void 0 ) { freqs[ i ] = 0; }\n}\nout = chi2gof( freqs, 'poisson', lambda );\n",
 	"complex": "z = complex( 5.0, 3.0, 'float64' )\nz = complex( 5.0, 3.0, 'float32' )\n",
 	"Complex128": "z = Complex128( 5.0, 3.0 )\nz.re\nz.im\n",
@@ -2975,12 +4832,16 @@ module.exports = {
 	"COMPLEX64_NUM_BYTES": "COMPLEX64_NUM_BYTES\n",
 	"compose": "function a( x ) {\n   return 2 * x;\n}\nfunction b( x ) {\n   return x + 3;\n}\nfunction c( x ) {\n   return x / 5;\n}\nf = compose( c, b, a );\nz = f( 6 )\n",
 	"composeAsync": "function a( x, next ) {\n   setTimeout( onTimeout, 0 );\n   function onTimeout() {\n     next( null, 2*x );\n   }\n};\nfunction b( x, next ) {\n   setTimeout( onTimeout, 0 );\n   function onTimeout() {\n     next( null, x+3 );\n   }\n};\nfunction c( x, next ) {\n   setTimeout( onTimeout, 0 );\n   function onTimeout() {\n     next( null, x/5 );\n   }\n};\nf = composeAsync( c, b, a );\nfunction done( error, result ) {\n   if ( error ) {\n     throw error;\n   }\n   console.log( result );\n};\nf( 6, done )\n",
+	"configdir": "dir = configdir()\ndir = configdir( 'appname/config' )\n",
 	"conj": "z = new Complex128( 5.0, 3.0 );\nz.toString()\nv = conj( z );\nv.toString()\n",
 	"constantFunction": "fcn = constantFunction( 3.14 );\nv = fcn()\nv = fcn()\nv = fcn()\n",
 	"constructorName": "v = constructorName( 'a' )\nv = constructorName( {} )\nv = constructorName( true )\n",
 	"contains": "bool = contains( 'Hello World', 'World' )\nbool = contains( 'Hello World', 'world' )\nbool = contains( [ 1, 2, 3, 4 ], 2 )\nbool = contains( [ NaN, 2, 3, 4 ], NaN )\n\n// Supply a position:\nbool = contains( 'Hello World', 'Hello', 6 )\nbool = contains( [ true, NaN, false ], true, 1 )\n",
+	"convertArray": "arr = [ 1.0, 2.0, 3.0, 4.0 ];\nout = convertArray( arr, 'float32' )\n",
+	"convertArraySame": "x = [ 1.0, 2.0, 3.0, 4.0 ];\ny = Float32Array( 0 );\nout = convertArraySame( x, y )\n",
 	"convertPath": "out = convertPath( '/c/foo/bar/beep.c', 'win32' )\nout = convertPath( '/c/foo/bar/beep.c', 'mixed' )\nout = convertPath( '/c/foo/bar/beep.c', 'posix' )\nout = convertPath( 'C:\\\\\\\\foo\\\\bar\\\\beep.c', 'win32' )\nout = convertPath( 'C:\\\\\\\\foo\\\\bar\\\\beep.c', 'mixed' )\nout = convertPath( 'C:\\\\\\\\foo\\\\bar\\\\beep.c', 'posix' )\n",
 	"copy": "value = [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ];\nout = copy( value )\nbool = ( value[ 0 ].c === out[ 0 ].c )\n\n// Set the `level` option to limit the copy depth:\nvalue = [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ];\nout = copy( value, 1 );\nbool = ( value[ 0 ] === out[ 0 ] )\nbool = ( value[ 0 ].c === out[ 0 ].c )\n",
+	"copyBuffer": "b1 = array2buffer( [ 1, 2, 3, 4 ] );\nb2 = copyBuffer( b1 )\n",
 	"countBy": "function indicator( v ) {\n  if ( v[ 0 ] === 'b' ) {\n      return 'b';\n  }\n  return 'other';\n};\ncollection = [ 'beep', 'boop', 'foo', 'bar' ];\nout = countBy( collection, indicator )\n",
 	"countByAsync": "\n// Basic usage:\nfunction indicator( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) ? 'even': 'odd' );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\narr = [ 3000, 2500, 1000 ];\ncountByAsync( arr, indicator, done )\n\n// Limit number of concurrent invocations:\nfunction indicator( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) ? 'even' : 'odd' );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nopts = { 'limit': 2 };\narr = [ 3000, 2500, 1000 ];\ncountByAsync( arr, opts, indicator, done )\n\n// Process sequentially:\nfunction indicator( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) ? 'even' : 'odd' );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nopts = { 'series': true };\narr = [ 3000, 2500, 1000 ];\ncountByAsync( arr, opts, indicator, done )\n",
 	"curry": "function add( x, y ) { return x + y; };\nf = curry( add );\nsum = f( 2 )( 3 )\n\n// Supply arity:\nfunction add() { return arguments[ 0 ] + arguments[ 1 ]; };\nf = curry( add, 2 );\nsum = f( 2 )( 3 )\n\n// Provide function context:\nobj = {\n  'name': 'Ada',\n  'greet': function greet( word1, word2 ) {\n     return word1 + ' ' + word2 + ', ' + this.name + '!'\n  }\n};\nf = curry( obj.greet, obj );\nstr = f( 'Hello' )( 'there' )\n",
@@ -2993,6 +4854,8 @@ module.exports = {
 	"daysInMonth": "num = daysInMonth()\nnum = daysInMonth( 2 )\nnum = daysInMonth( 2, 2016 )\nnum = daysInMonth( 2, 2017 )\n\n// Other ways to supply month:\nnum = daysInMonth( 'feb', 2016 )\nnum = daysInMonth( 'february', 2016 )\n",
 	"daysInYear": "num = daysInYear()\nnum = daysInYear( 2016 )\nnum = daysInYear( 2017 )\n",
 	"deepGet": "obj = { 'a': { 'b': { 'c': 'd' } } };\nval = deepGet( obj, 'a.b.c' )\n\n// Specify a custom separator via the `sep` option:\nobj = { 'a': { 'b': { 'c': 'd' } } };\nval = deepGet( obj, 'a/b/c', { 'sep': '/' } )\n",
+	"deepHasOwnProp": "obj = { 'a': { 'b': { 'c': 'd' } } };\nbool = deepHasOwnProp( obj, 'a.b.c' )\n\n// Specify a custom separator via the `sep` option:\nobj = { 'a': { 'b': { 'c': 'd' } } };\nbool = deepHasOwnProp( obj, 'a/b/c', { 'sep': '/' } )\n",
+	"deepHasProp": "function Foo() { return this; };\nFoo.prototype.b = { 'c': 'd' };\nobj = { 'a': new Foo() };\nbool = deepHasProp( obj, 'a.b.c' )\n\n// Specify a custom separator via the `sep` option:\nbool = deepHasProp( obj, 'a/b/c', { 'sep': '/' } )\n",
 	"deepPluck": "arr = [\n  { 'a': { 'b': { 'c': 1 } } },\n  { 'a': { 'b': { 'c': 2 } } }\n];\nout = deepPluck( arr, 'a.b.c' )\narr = [\n  { 'a': [ 0, 1, 2 ] },\n  { 'a': [ 3, 4, 5 ] }\n];\nout = deepPluck( arr, [ 'a', 1 ] )\n",
 	"deepSet": "obj = { 'a': { 'b': { 'c': 'd' } } };\nbool = deepSet( obj, 'a.b.c', 'beep' )\n\n// Specify an alternative separator via the sep option:\nobj = { 'a': { 'b': { 'c': 'd' } } };\nbool = deepSet( obj, 'a/b/c', 'beep', { 'sep': '/' } );\nobj\n\n// To create a key path which does not exist, set the create option to true:\nbool = deepSet( obj, 'a.e.c', 'boop', { 'create': true } );\nobj\n",
 	"dirname": "dir = dirname( './foo/bar/index.js' )\n",
@@ -3009,7 +4872,7 @@ module.exports = {
 	"ENV": "user = ENV.USER\n",
 	"EPS": "EPS\n",
 	"EULERGAMMA": "EULERGAMMA\n",
-	"err2json": "err = new Error( 'beep' );\njson = err2json( err )\n",
+	"error2json": "err = new Error( 'beep' );\njson = error2json( err )\n",
 	"evil": "v = evil( '5*4*3*2*1' );\n",
 	"every": "arr = [ 1, 1, 1, 1, 1 ];\nbool = every( arr )\n",
 	"everyBy": "function positive( v ) { return ( v > 0 ); };\narr = [ 1, 2, 3, 4 ];\nbool = everyBy( arr, positive )\n",
@@ -3019,21 +4882,22 @@ module.exports = {
 	"exists": "function done( error, bool ) { console.log( bool ); };\nexists( './beep/boop', done );\n",
 	"expandContractions": "str = 'I won\\'t be able to get y\\'all out of this one.';\nout = expandContractions( str )\nstr = 'It oughtn't to be my fault, because, you know, I didn't know';\nout = expandContractions( str )\n",
 	"extname": "ext = extname( 'index.js' )\n",
-	"fast.abs": "v = fast.abs( -1.0 )\nv = fast.abs( 2.0 )\nv = fast.abs( 0.0 )\nv = fast.abs( -0.0 )\nv = fast.abs( NaN )\n",
-	"fast.acosh": "v = fast.acosh( 1.0 )\nv = fast.acosh( 2.0 )\nv = fast.acosh( NaN )\n\n// The function overflows for large `x`:\nv = fast.acosh( 1.0e308 )\n",
-	"fast.ampbm": "h = fast.ampbm( 5.0, 12.0 )\n",
-	"fast.asinh": "v = fast.asinh( 0.0 )\nv = fast.asinh( 2.0 )\nv = fast.asinh( -2.0 )\nv = fast.asinh( NaN )\n\n// The function overflows for large `x`:\nv = fast.asinh( 1.0e200 )\n\n// The function underflows for small `x`:\nv = fast.asinh( 1.0e-50 )\n",
-	"fast.atanh": "v = fast.atanh( 0.0 )\nv = fast.atanh( 0.9 )\nv = fast.atanh( 1.0 )\nv = fast.atanh( -1.0 )\nv = fast.atanh( NaN )\n\n// The function underflows for small `x`:\nv = fast.atanh( 1.0e-17 )\n",
-	"fast.hypot": "h = fast.hypot( -5.0, 12.0 )\n\n// For a sufficiently large `x` and/or `y`, the function overflows:\nh = fast.hypot( 1.0e154, 1.0e154 )\n\n// For sufficiently small `x` and/or `y`, the function underflows:\nh = fast.hypot( 1e-200, 1.0e-200 )\n",
-	"fast.log2Uint32": "v = fast.log2Uint32( 4 >>> 0 )\nv = fast.log2Uint32( 8 >>> 0 )\nv = fast.log2Uint32( 9 >>> 0 )\n",
-	"fast.max": "v = fast.max( 3.14, 4.2 )\nv = fast.max( 3.14, NaN )\nv = fast.max( NaN, 3.14 )\nv = fast.max( -0.0, +0.0 )\nv = fast.max( +0.0, -0.0 )\n",
-	"fast.min": "v = fast.min( 3.14, 4.2 )\nv = fast.min( 3.14, NaN )\nv = fast.min( NaN, 3.14 )\nv = fast.min( -0.0, +0.0 )\nv = fast.min( +0.0, -0.0 )\n",
-	"fast.pow": "v = fast.pow( 2.0, 3 )\nv = fast.pow( 3.14, 0 )\nv = fast.pow( 2.0, -2 )\nv = fast.pow( 0.0, 0 )\nv = fast.pow( -3.14, 1 )\nv = fast.pow( NaN, 0 )\n",
-	"fast.sqrtUint32": "v = fast.sqrtUint32( 9 >>> 0 )\nv = fast.sqrtUint32( 2 >>> 0 )\nv = fast.sqrtUint32( 3 >>> 0 )\nv = fast.sqrtUint32( 0 >>> 0 )\n",
+	"fastmath.abs": "v = fastmath.abs( -1.0 )\nv = fastmath.abs( 2.0 )\nv = fastmath.abs( 0.0 )\nv = fastmath.abs( -0.0 )\nv = fastmath.abs( NaN )\n",
+	"fastmath.acosh": "v = fastmath.acosh( 1.0 )\nv = fastmath.acosh( 2.0 )\nv = fastmath.acosh( NaN )\n\n// The function overflows for large `x`:\nv = fastmath.acosh( 1.0e308 )\n",
+	"fastmath.ampbm": "h = fastmath.ampbm( 5.0, 12.0 )\n",
+	"fastmath.asinh": "v = fastmath.asinh( 0.0 )\nv = fastmath.asinh( 2.0 )\nv = fastmath.asinh( -2.0 )\nv = fastmath.asinh( NaN )\n\n// The function overflows for large `x`:\nv = fastmath.asinh( 1.0e200 )\n\n// The function underflows for small `x`:\nv = fastmath.asinh( 1.0e-50 )\n",
+	"fastmath.atanh": "v = fastmath.atanh( 0.0 )\nv = fastmath.atanh( 0.9 )\nv = fastmath.atanh( 1.0 )\nv = fastmath.atanh( -1.0 )\nv = fastmath.atanh( NaN )\n\n// The function underflows for small `x`:\nv = fastmath.atanh( 1.0e-17 )\n",
+	"fastmath.hypot": "h = fastmath.hypot( -5.0, 12.0 )\n\n// For a sufficiently large `x` and/or `y`, the function overflows:\nh = fastmath.hypot( 1.0e154, 1.0e154 )\n\n// For sufficiently small `x` and/or `y`, the function underflows:\nh = fastmath.hypot( 1e-200, 1.0e-200 )\n",
+	"fastmath.log2Uint32": "v = fastmath.log2Uint32( 4 >>> 0 )\nv = fastmath.log2Uint32( 8 >>> 0 )\nv = fastmath.log2Uint32( 9 >>> 0 )\n",
+	"fastmath.max": "v = fastmath.max( 3.14, 4.2 )\nv = fastmath.max( 3.14, NaN )\nv = fastmath.max( NaN, 3.14 )\nv = fastmath.max( -0.0, +0.0 )\nv = fastmath.max( +0.0, -0.0 )\n",
+	"fastmath.min": "v = fastmath.min( 3.14, 4.2 )\nv = fastmath.min( 3.14, NaN )\nv = fastmath.min( NaN, 3.14 )\nv = fastmath.min( -0.0, +0.0 )\nv = fastmath.min( +0.0, -0.0 )\n",
+	"fastmath.powint": "v = fastmath.powint( 2.0, 3 )\nv = fastmath.powint( 3.14, 0 )\nv = fastmath.powint( 2.0, -2 )\nv = fastmath.powint( 0.0, 0 )\nv = fastmath.powint( -3.14, 1 )\nv = fastmath.powint( NaN, 0 )\n",
+	"fastmath.sqrtUint32": "v = fastmath.sqrtUint32( 9 >>> 0 )\nv = fastmath.sqrtUint32( 2 >>> 0 )\nv = fastmath.sqrtUint32( 3 >>> 0 )\nv = fastmath.sqrtUint32( 0 >>> 0 )\n",
 	"FEMALE_FIRST_NAMES_EN": "list = FEMALE_FIRST_NAMES_EN()\n",
 	"find": "data = [ 30, 20, 50, 60, 10 ];\nfunction condition( val ) { return val > 20; };\nvals = find( data, condition )\n\n// Limit number of results:\ndata = [ 30, 20, 50, 60, 10 ];\nopts = { 'k': 2, 'returns': 'values' };\nvals = find( data, opts, condition )\n\n// Return both indices and values as index-value pairs:\ndata = [ 30, 20, 50, 60, 10 ];\nopts = { 'k': -2, 'returns': '*' };\nvals = find( data, opts, condition )\n",
 	"flattenArray": "arr = [ 1, [ 2, [ 3, [ 4, [ 5 ], 6 ], 7 ], 8 ], 9 ];\nout = flattenArray( arr )\n\n// Set the maximum depth:\narr = [ 1, [ 2, [ 3, [ 4, [ 5 ], 6 ], 7 ], 8 ], 9 ];\nout = flattenArray( arr, { 'depth': 2 } )\nbool = ( arr[ 1 ][ 1 ][ 1 ] === out[ 3 ] )\n\n// Deep copy:\narr = [ 1, [ 2, [ 3, [ 4, [ 5 ], 6 ], 7 ], 8 ], 9 ];\nout = flattenArray( arr, { 'depth': 2, 'copy': true } )\nbool = ( arr[ 1 ][ 1 ][ 1 ] === out[ 3 ] )\n",
 	"flattenObject": "obj = { 'a': { 'b': { 'c': 'd' } } };\nout = flattenObject( obj )\n\n// Set the `depth` option to flatten to a specified depth:\nobj = { 'a': { 'b': { 'c': 'd' } } };\nout = flattenObject( obj, { 'depth': 1 } )\nbool = ( obj.a.b === out[ 'a.b' ] )\n\n// Set the `delimiter` option:\nobj = { 'a': { 'b': { 'c': 'd' } } };\nout = flattenObject( obj, { 'delimiter': '-|-' } )\n\n// Flatten arrays:\nobj = { 'a': { 'b': [ 1, 2, 3 ] } };\nout = flattenObject( obj, { 'flattenArrays': true } )\n",
+	"FLOAT16_CBRT_EPS": "FLOAT16_CBRT_EPS\n",
 	"FLOAT16_EPS": "FLOAT16_EPS\n",
 	"FLOAT16_EXPONENT_BIAS": "FLOAT16_EXPONENT_BIAS\n",
 	"FLOAT16_MAX": "FLOAT16_MAX\n",
@@ -3047,6 +4911,7 @@ module.exports = {
 	"FLOAT16_SMALLEST_SUBNORMAL": "FLOAT16_SMALLEST_SUBNORMAL\n",
 	"FLOAT16_SQRT_EPS": "FLOAT16_SQRT_EPS\n",
 	"Float32Array": "arr = new Float32Array()\n",
+	"FLOAT32_CBRT_EPS": "FLOAT32_CBRT_EPS\n",
 	"FLOAT32_EPS": "FLOAT32_EPS\n",
 	"FLOAT32_EXPONENT_BIAS": "FLOAT32_EXPONENT_BIAS\n",
 	"FLOAT32_MAX": "FLOAT32_MAX\n",
@@ -3108,6 +4973,8 @@ module.exports = {
 	"groupOwn": "function indicator( v ) {\n  if ( v[ 0 ] === 'b' ) {\n      return 'b';\n  }\n  return 'other';\n};\nobj = { 'a': 'beep', 'b': 'boop', 'c': 'foo', 'd': 'bar' };\nout = groupOwn( obj, indicator )\n\n// Output group results as keys:\nopts = { 'returns': 'keys' };\nout = groupOwn( obj, opts, indicator )\n\n// Output group results as key-value pairs:\nopts = { 'returns': '*' };\nout = groupOwn( obj, opts, indicator )\n",
 	"HALF_LN2": "HALF_LN2\n",
 	"HALF_PI": "HALF_PI\n",
+	"hasArrayBufferSupport": "bool = hasArrayBufferSupport()\n",
+	"hasAsyncAwaitSupport": "bool = hasAsyncAwaitSupport()\n",
 	"hasClassSupport": "bool = hasClassSupport()\n",
 	"hasFloat32ArraySupport": "bool = hasFloat32ArraySupport()\n",
 	"hasFloat64ArraySupport": "bool = hasFloat64ArraySupport()\n",
@@ -3117,11 +4984,13 @@ module.exports = {
 	"hasInt32ArraySupport": "bool = hasInt32ArraySupport()\n",
 	"hasInt8ArraySupport": "bool = hasInt8ArraySupport()\n",
 	"hasMapSupport": "bool = hasMapSupport()\n",
+	"hasNodeBufferSupport": "bool = hasNodeBufferSupport()\n",
 	"hasOwnProp": "beep = { 'boop': true };\nbool = hasOwnProp( beep, 'boop' )\nbool = hasOwnProp( beep, 'bop' )\n",
 	"hasProp": "beep = { 'boop': true };\nbool = hasProp( beep, 'boop' )\nbool = hasProp( beep, 'toString' )\nbool = hasProp( beep, 'bop' )\n",
 	"hasPrototype": "function Foo() { return this; };\nfunction Bar() { return this; };\ninherit( Bar, Foo );\nbar = new Bar();\nbool = hasPrototype( bar, Foo.prototype )\n",
 	"hasProxySupport": "bool = hasProxySupport()\n",
 	"hasSetSupport": "bool = hasSetSupport()\n",
+	"hasSharedArrayBufferSupport": "bool = hasSharedArrayBufferSupport()\n",
 	"hasSymbolSupport": "bool = hasSymbolSupport()\n",
 	"hasToStringTagSupport": "bool = hasToStringTagSupport()\n",
 	"hasUint16ArraySupport": "bool = hasUint16ArraySupport()\n",
@@ -3131,6 +5000,7 @@ module.exports = {
 	"hasWeakMapSupport": "bool = hasWeakMapSupport()\n",
 	"hasWeakSetSupport": "bool = hasWeakSetSupport()\n",
 	"hasWebAssemblySupport": "bool = hasWebAssemblySupport()\n",
+	"homedir": "home = homedir()\n",
 	"HOURS_IN_DAY": "days = 3.14;\nhrs = days * HOURS_IN_DAY\n",
 	"HOURS_IN_WEEK": "wkrs = 3.14;\nhrs = wks * HOURS_IN_WEEK\n",
 	"hoursInMonth": "num = hoursInMonth()\nnum = hoursInMonth( 2 )\nnum = hoursInMonth( 2, 2016 )\nnum = hoursInMonth( 2, 2017 )\n\n// Other ways to supply month:\nnum = hoursInMonth( 'feb', 2016 )\nnum = hoursInMonth( 'february', 2016 )\n",
@@ -3191,6 +5061,9 @@ module.exports = {
 	"isBuffer": "bool = isBuffer( new Buffer( 'beep' ) )\nbool = isBuffer( new Buffer( [ 1, 2, 3, 4 ] ) )\nbool = isBuffer( {} )\nbool = isBuffer( [] )\n",
 	"isCapitalized": "bool = isCapitalized( 'Hello' )\nbool = isCapitalized( 'world' )\n",
 	"isCollection": "bool = isCollection( [] )\nbool = isCollection( { 'length': 0 } )\nbool = isCollection( {} )\n",
+	"isComplex": "bool = isComplex( Complex64( 2.0, 2.0 ) )\nbool = isComplex( Complex128( 3.0, 1.0 ) )\nbool = isComplex( 3.14 )\nbool = isComplex( {} )\n",
+	"isComplex64": "bool = isComplex64( Complex64( 2.0, 2.0 ) )\nbool = isComplex64( Complex128( 3.0, 1.0 ) )\nbool = isComplex64( 3.14 )\nbool = isComplex64( {} )\n",
+	"isComplex128": "bool = isComplex128( Complex128( 3.0, 1.0 ) )\nbool = isComplex128( Complex64( 2.0, 2.0 ) )\nbool = isComplex128( 3.14 )\nbool = isComplex128( {} )\n",
 	"isDateObject": "bool = isDateObject( new Date() )\nbool = isDateObject( '2017-01-01' )\n",
 	"isDigitString": "bool = isDigitString( '0123456789' )\nbool = isDigitString( 'abcdef' )\nbool = isDigitString( '0xff' )\nbool = isDigitString( '' )\n",
 	"isEmailAddress": "bool = isEmailAddress( 'beep@boop.com' )\nbool = isEmailAddress( 'beep' )\nbool = isEmailAddress( null )\n",
@@ -3270,6 +5143,7 @@ module.exports = {
 	"isSafeInteger": "bool = isSafeInteger( 5.0 )\nbool = isSafeInteger( new Number( 5.0 ) )\nbool = isSafeInteger( 2.0e200 )\nbool = isSafeInteger( -3.14 )\nbool = isSafeInteger( null )\n",
 	"isSafeIntegerArray": "arr = [ -3.0, new Number(0.0), 2.0 ];\nbool = isSafeIntegerArray( arr )\narr = [ -3.0, '3.0' ];\nbool = isSafeIntegerArray( arr )\n",
 	"isSameValue": "bool = isSameValue( true, true )\nbool = isSameValue( {}, {} )\nbool = isSameValue( -0.0, -0.0 )\nbool = isSameValue( -0.0, 0.0 )\nbool = isSameValue( NaN, NaN )\n",
+	"isSharedArrayBuffer": "\n// Assuming an environment supports SharedArrayBuffer...\nbool = isSharedArrayBuffer( new SharedArrayBuffer( 10 ) )\nbool = isSharedArrayBuffer( [] )\n",
 	"isStrictEqual": "bool = isStrictEqual( true, true )\nbool = isStrictEqual( {}, {} )\nbool = isStrictEqual( -0.0, -0.0 )\nbool = isStrictEqual( -0.0, 0.0 )\nbool = isStrictEqual( NaN, NaN )\n",
 	"isString": "bool = isString( 'beep' )\nbool = isString( new String( 'beep' ) )\nbool = isString( 5 )\n",
 	"isStringArray": "bool = isStringArray( [ 'abc', 'def' ] )\nbool = isStringArray( [ 'abc', 123 ] )\n",
@@ -3280,6 +5154,7 @@ module.exports = {
 	"isTruthyArray": "bool = isTruthyArray( [ {}, [] ] )\nbool = isTruthyArray( [ null, '' ] )\nbool = isTruthyArray( [] )\n",
 	"isTypeError": "bool = isTypeError( new TypeError( 'beep' ) )\nbool = isTypeError( {} )\n",
 	"isTypedArray": "bool = isTypedArray( new Int8Array( 10 ) );\n",
+	"isTypedArrayLength": "bool = isTypedArrayLength( 5 )\nbool = isTypedArrayLength( 2.0e200 )\nbool = isTypedArrayLength( -3.14 )\nbool = isTypedArrayLength( null )\n",
 	"isTypedArrayLike": "bool = isTypedArrayLike( new Int16Array() )\nbool = isTypedArrayLike({\n'length': 10,\n'byteOffset': 0,\n'byteLength': 10,\n'BYTES_PER_ELEMENT': 4\n})\n",
 	"isUint16Array": "bool = isUint16Array( new Uint16Array( 10 ) )\nbool = isUint16Array( [] )\n",
 	"isUint32Array": "bool = isUint32Array( new Uint32Array( 10 ) )\nbool = isUint32Array( [] )\n",
@@ -3306,15 +5181,18 @@ module.exports = {
 	"keyBy": "function toKey( v ) { return v.a; };\narr = [ { 'a': 1 }, { 'a': 2 } ];\nkeyBy( arr, toKey )\n",
 	"keyByRight": "function toKey( v ) { return v.a; };\narr = [ { 'a': 1 }, { 'a': 2 } ];\nkeyByRight( arr, toKey )\n",
 	"kstest": "\n// Verify that data is drawn from a normal distribution:\nrnorm = base.random.normal.factory({ 'seed': 4839 });\nx = new Array( 100 );\nfor ( var i = 0; i < 100; i++ ) { x[ i ] = rnorm( 3.0, 1.0 ); }\n\n// Test against N(0,1)\nout = kstest( x, 'normal', 0.0, 1.0 );\n\n// Test against N(3,1)\nout = kstest( x, 'normal', 3.0, 1.0 )\n\n// Verify that data is drawn from a uniform distribution:\nrunif = base.random.uniform.factory( 0.0, 1.0, { 'seed': 8798 })\nx = new Array( 100 );\nfor ( i = 0; i < x.length; i++ ) { x[ i ] = runif(); }\nout = kstest( x, 'uniform', 0.0, 1.0 )\n\n// Print output:\nout.print()\n\n// Set custom significance level:\nout = kstest( x, 'uniform', 0.0, 1.0, { 'alpha': 0.1 })\n\n// Carry out one-sided hypothesis tests:\nrunif = base.random.uniform.factory( 0.0, 1.0, { 'seed': 8798 });\nx = new Array( 100 );\nfor ( i = 0; i < x.length; i++ ) { x[ i ] = runif(); }\nout = kstest( x, 'uniform', 0.0, 1.0, { 'alternative': 'less' });\nout = kstest( x, 'uniform', 0.0, 1.0, { 'alternative': 'greater' });\n\n// Set `sorted` option to true when data is in increasing order:\n",
+	"linspace": "arr = linspace( 0, 100, 6 )\n",
 	"LIU_NEGATIVE_OPINION_WORDS_EN": "list = LIU_NEGATIVE_OPINION_WORDS_EN()\n",
 	"LIU_POSITIVE_OPINION_WORDS_EN": "list = LIU_POSITIVE_OPINION_WORDS_EN()\n",
 	"LN_HALF": "LN_HALF\n",
 	"LN_PI": "LN_PI\n",
 	"LN_SQRT_TWO_PI": "LN_SQRT_TWO_PI\n",
 	"LN_TWO_PI": "LN_TWO_PI\n",
+	"LN10": "LN10\n",
 	"LN2": "LN2\n",
-	"linspace": "arr = linspace( 0, 100, 6 )\n",
 	"logspace": "arr = logspace( 0, 2, 6 )\n",
+	"LOG10E": "LOG10E\n",
+	"LOG2E": "LOG2E\n",
 	"lowercase": "out = lowercase( 'bEEp' )\n",
 	"lowercaseKeys": "obj = { 'A': 1, 'B': 2 };\nout = lowercaseKeys( obj )\n",
 	"lpad": "out = lpad( 'a', 5 )\nout = lpad( 'beep', 10, 'b' )\nout = lpad( 'boop', 12, 'beep' )\n",
@@ -3326,6 +5204,8 @@ module.exports = {
 	"mapKeysAsync": "\n// Basic usage:\nfunction transform( key, value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      next( null, key+':'+value );\n  }\n};\nfunction done( error, out ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( out );\n};\nobj = { 'a': 1, 'b': 2 };\nmapKeysAsync( obj, transform, done )\n\n// Limit number of concurrent invocations:\nfunction transform( key, value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      next( null, key+':'+value );\n  }\n};\nfunction done( error, out ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( out );\n};\nopts = { 'limit': 2 };\nobj = { 'a': 1, 'b': 2, 'c': 3 };\nmapKeysAsync( obj, opts, transform, done )\n\n// Process sequentially:\nfunction transform( key, value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      next( null, key+':'+value );\n  }\n};\nfunction done( error, out ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( out );\n};\nopts = { 'series': true };\nobj = { 'a': 1, 'b': 2, 'c': 3 };\nmapKeysAsync( obj, opts, transform, done )\n",
 	"mapValues": "function transform( value, key ) { return key + value; };\nobj = { 'a': 1, 'b': 2 };\nout = mapValues( obj, transform )\n",
 	"mapValuesAsync": "\n// Basic usage:\nfunction transform( value, key, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      next( null, key+':'+value );\n  }\n};\nfunction done( error, out ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( out );\n};\nobj = { 'a': 1, 'b': 2 };\nmapValuesAsync( obj, transform, done )\n\n// Limit number of concurrent invocations:\nfunction transform( value, key, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      next( null, key+':'+value );\n  }\n};\nfunction done( error, out ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( out );\n};\nopts = { 'limit': 2 };\nobj = { 'a': 1, 'b': 2, 'c': 3 };\nmapValuesAsync( obj, opts, transform, done )\n\n// Process sequentially:\nfunction transform( value, key, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      next( null, key+':'+value );\n  }\n};\nfunction done( error, out ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( out );\n};\nopts = { 'series': true };\nobj = { 'a': 1, 'b': 2, 'c': 3 };\nmapValuesAsync( obj, opts, transform, done )\n",
+	"MAX_ARRAY_LENGTH": "MAX_ARRAY_LENGTH\n",
+	"MAX_TYPED_ARRAY_LENGTH": "MAX_TYPED_ARRAY_LENGTH\n",
 	"memoize": "function factorial( n ) {\n  var prod;\n  var i;\n  prod = 1;\n  for ( i = n; i > 1; i-- ) {\n      prod *= i;\n  }\n  return prod;\n};\nmemoized = memoize( factorial );\nv = memoized( 5 )\nv = memoized( 5 )\n",
 	"merge": "target = { 'a': 'beep' };\nsource = { 'a': 'boop', 'b': 'bap' };\nout = merge( target, source )\nbool = ( out === target )\n",
 	"MILLISECONDS_IN_DAY": "days = 3.14;\nms = days * MILLISECONDS_IN_DAY\n",
@@ -3354,6 +5234,7 @@ module.exports = {
 	"noneByRightAsync": "\n// Basic usage:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\narr = [ 1000, 2500, 3000 ];\nnoneByRightAsync( arr, predicate, done )\n\n// Limit number of concurrent invocations:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\nopts = { 'limit': 2 };\narr = [ 1000, 2500, 3000 ];\nnoneByRightAsync( arr, opts, predicate, done )\n\n// Process sequentially:\nfunction predicate( value, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, false );\n  }\n};\nfunction done( error, bool ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( bool );\n};\nopts = { 'series': true };\narr = [ 1000, 2500, 3000 ];\nnoneByRightAsync( arr, opts, predicate, done )\n",
 	"noop": "noop();\n",
 	"now": "ts = now()\n",
+	"Number": "v = new Number( 5 )\n",
 	"NUM_CPUS": "NUM_CPUS\n",
 	"objectEntries": "obj = { 'beep': 'boop', 'foo': 'bar' };\nentries = objectEntries( obj )\n",
 	"objectEntriesIn": "function Foo() { this.beep = 'boop'; return this; };\nFoo.prototype.foo = 'bar';\nobj = new Foo();\nentries = objectEntriesIn( obj )\n",
@@ -3385,6 +5266,8 @@ module.exports = {
 	"pickBy": "function predicate( key, value ) {\n  return ( value > 1 );\n};\nobj1 = { 'a': 1, 'b': 2 };\nobj2 = pickBy( obj1, predicate )\n",
 	"PINF": "PINF\n",
 	"PLATFORM": "PLATFORM\n",
+	"plot": "plot = plot()\n\n// Provide plot data at instantiation:\nx = [[0.10, 0.20, 0.30]];\ny = [[0.52, 0.79, 0.64]];\nplot = plot( x, y )\n",
+	"Plot": "plot = Plot()\n\n// Provide plot data at instantiation:\nx = [[0.10, 0.20, 0.30]];\ny = [[0.52, 0.79, 0.64]];\nplot = Plot( x, y )\n",
 	"pluck": "arr = [\n  { 'a': 1, 'b': 2 },\n  { 'a': 0.5, 'b': 3 }\n];\nout = pluck( arr, 'a' )\narr = [\n  { 'a': 1, 'b': 2 },\n  { 'a': 0.5, 'b': 3 }\n];\nout = pluck( arr, 'a', { 'copy': false } )\nbool = ( arr[ 0 ] === out[ 0 ] )\n",
 	"pop": "\n// Arrays:\narr = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\nout = pop( arr )\n\n// Typed arrays:\narr = new Float64Array( [ 1.0, 2.0 ] );\nout = pop( arr )\n\n// Array-like object:\narr = { 'length': 2, '0': 1.0, '1': 2.0 };\nout = pop( arr )\n",
 	"prepend": "\n// Arrays:\narr = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\narr = prepend( arr, [ 6.0, 7.0 ] )\n\n// Typed arrays:\narr = new Float64Array( [ 1.0, 2.0 ] );\narr = prepend( arr, [ 3.0, 4.0 ] )\n\n// Array-like object:\narr = { 'length': 1, '0': 1.0 };\narr = prepend( arr, [ 2.0, 3.0 ] )\n",
@@ -3409,6 +5292,7 @@ module.exports = {
 	"removePunctuation": "str = 'Sun Tzu said: \"A leader leads by example not by force.\"';\nout = {{alias }}( str )\nstr = 'This function removes these characters: `{}[]:,!/<>().;~|?\\'\"';\nout = removePunctuation( str )\n",
 	"removeUTF8BOM": "out = removeUTF8BOM( '\\ufeffbeep' )\n",
 	"removeWords": "out = removeWords( 'beep boop Foo bar', [ 'boop', 'foo' ] )\n\n// Case-insensitive:\nout = removeWords( 'beep boop Foo bar', [ 'boop', 'foo' ], true )\n",
+	"rename": "function done( error ) {\n  if ( error ) {\n      console.error( error.message );\n  }\n};\nrename( './beep/boop.txt', './beep/foo.txt', done );\n",
 	"reorderArguments": "function foo( a, b, c ) { return [ a, b, c ]; };\nbar = reorderArguments( foo, [ 2, 0, 1 ] );\nout = bar( 1, 2, 3 )\n",
 	"repeat": "out = repeat( 'a', 5 )\nout = repeat( '', 100 )\nout = repeat( 'beep', 0 )\n",
 	"replace": "\n// Standard usage:\nout = replace( 'beep', 'e', 'o' )\n\n// Replacer function:\nfunction replacer( match, p1 ) { return '/'+p1+'/'; };\nstr = 'Oranges and lemons';\nout = replace( str, /([^\\s]+)/gi, replacer )\n\n// Replace only first match:\nout = replace( 'beep', /e/, 'o' )\n",
@@ -3416,6 +5300,7 @@ module.exports = {
 	"resolveParentPath": "function onPath( error, path ) {\n  if ( error ) {\n      console.error( error.message );\n  } else {\n      console.log( path );\n  }\n};\nresolveParentPath( 'package.json', onPath );\n",
 	"reverseArguments": "function foo( a, b, c ) { return [ a, b, c ]; };\nbar = reverseArguments( foo );\nout = bar( 1, 2, 3 )\n",
 	"reverseString": "out = reverseString( 'foo' )\nout = reverseString( 'abcdef' )\n",
+	"reviveBuffer": "str = '{\"type\":\"Buffer\",\"data\":[5,3]}';\nbuf = parseJSON( str, reviveBuffer )\n",
 	"reviveComplex": "str = '{\"type\":\"Complex128\",\"re\":5,\"im\":3}';\nz = parseJSON( str, reviveComplex )\n",
 	"reviveComplex128": "str = '{\"type\":\"Complex128\",\"re\":5,\"im\":3}';\nz = parseJSON( str, reviveComplex128 )\n",
 	"reviveComplex64": "str = '{\"type\":\"Complex64\",\"re\":5,\"im\":3}';\nz = parseJSON( str, reviveComplex64 )\n",
@@ -3463,6 +5348,7 @@ module.exports = {
 	"secondsInMonth": "num = secondsInMonth()\nnum = secondsInMonth( 2 )\nnum = secondsInMonth( 2, 2016 )\nnum = secondsInMonth( 2, 2017 )\n\n// Other ways to supply month:\nnum = secondsInMonth( 'feb', 2016 )\nnum = secondsInMonth( 'february', 2016 )\n",
 	"secondsInYear": "num = secondsInYear()\nnum = secondsInYear( 2016 )\nnum = secondsInYear( 2017 )\n",
 	"setReadOnly": "obj = {};\nsetReadOnly( obj, 'foo', 'bar' );\nobj.foo = 'boop';\nobj\n",
+	"SharedArrayBuffer": "\n// Assuming an environment supports SharedArrayBuffers...\nbuf = new SharedArrayBuffer( 5 )\n",
 	"shift": "\n// Arrays:\narr = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\nout = shift( arr )\n\n// Typed arrays:\narr = new Float64Array( [ 1.0, 2.0 ] );\nout = shift( arr )\n\n// Array-like object:\narr = { 'length': 2, '0': 1.0, '1': 2.0 };\nout = shift( arr )\n",
 	"sizeOf": "s = sizeOf( 'int8' )\ns = sizeOf( 'uint32' )\n",
 	"some": "arr = [ 0, 0, 1, 2, 3 ];\nbool = some( arr, 3 )\n",
@@ -3484,6 +5370,7 @@ module.exports = {
 	"startcase": "out = startcase( 'beep boop' )\n",
 	"startsWith": "bool = startsWith( 'Beep', 'Be' )\nbool = startsWith( 'Beep', 'ep' )\nbool = startsWith( 'Beep', 'ee', 1 )\nbool = startsWith( 'Beep', 'ee', -3 )\nbool = startsWith( 'Beep', '' )\n",
 	"STOPWORDS_EN": "list = STOPWORDS_EN()\n",
+	"string2buffer": "b = string2buffer( 'beep boop' )\nb = string2buffer( '7468697320697320612074c3a97374', 'hex' );\nb.toString()\n",
 	"tabulate": "collection = [ 'beep', 'boop', 'foo', 'beep' ];\nout = tabulate( collection )\n",
 	"tabulateBy": "function indicator( value ) { return value[ 0 ]; };\ncollection = [ 'beep', 'boop', 'foo', 'beep' ];\nout = tabulateBy( collection, indicator )\n",
 	"tabulateByAsync": "\n// Basic usage:\nfunction indicator( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) ? 'even': 'odd' );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\narr = [ 3000, 2500, 1000, 750 ];\ntabulateByAsync( arr, indicator, done )\n\n// Limit number of concurrent invocations:\nfunction indicator( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) ? 'even' : 'odd' );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nopts = { 'limit': 2 };\narr = [ 3000, 2500, 1000, 750 ];\ntabulateByAsync( arr, opts, indicator, done )\n\n// Process sequentially:\nfunction indicator( value, index, next ) {\n  setTimeout( onTimeout, value );\n  function onTimeout() {\n      console.log( value );\n      next( null, ( index%2 === 0 ) ? 'even' : 'odd' );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nopts = { 'series': true };\narr = [ 3000, 2500, 1000, 750 ];\ntabulateByAsync( arr, opts, indicator, done )\n",
@@ -3504,6 +5391,8 @@ module.exports = {
 	"TWO_PI": "TWO_PI\n",
 	"typedarray2json": "arr = new Float64Array( 2 );\narr[ 0 ] = 5.0;\narr[ 1 ] = 3.0;\njson = typedarray2json( arr )\n",
 	"typedarray": "arr = typedarray()\narr = typedarray( 'float32' )\n",
+	"typedarrayCtors": "ctor = typedarrayCtors( 'float64' )\nctor = typedarrayCtors( 'float' )\n",
+	"typedarrayDataTypes": "out = typedarrayDataTypes()\n",
 	"typemax": "m = typemax( 'int8' )\nm = typemax( 'uint32' )\n",
 	"typemin": "m = typemin( 'int8' )\nm = typemin( 'uint32' )\n",
 	"typeOf": "\n// Built-ins:\nt = typeOf( 'a' )\nt = typeOf( 5 )\nt = typeOf( NaN )\nt = typeOf( true )\nt = typeOf( false )\nt = typeOf( null )\nt = typeOf( undefined )\nt = typeOf( [] )\nt = typeOf( {} )\nt = typeOf( function noop() {} )\nt = typeOf( new Symbol( 'beep' ) )\nt = typeOf( /.+/ )\nt = typeOf( new String( 'beep' ) )\nt = typeOf( new Number( 5 ) )\nt = typeOf( new Boolean( false ) )\nt = typeOf( new Array() )\nt = typeOf( new Object() )\nt = typeOf( new Int8Array( 10 ) )\nt = typeOf( new Uint8Array( 10 ) )\nt = typeOf( new Uint8ClampedArray( 10 ) )\nt = typeOf( new Int16Array( 10 ) )\nt = typeOf( new Uint16Array( 10 ) )\nt = typeOf( new Int32Array( 10 ) )\nt = typeOf( new Uint32Array( 10 ) )\nt = typeOf( new Float32Array( 10 ) )\nt = typeOf( new Float64Array( 10 ) )\nt = typeOf( new ArrayBuffer( 10 ) )\nt = typeOf( new Date() )\nt = typeOf( new RegExp( '.+ )') )\nt = typeOf( new Map() )\nt = typeOf( new Set() )\nt = typeOf( new WeakMap() )\nt = typeOf( new WeakSet() )\nt = typeOf( new Error( 'beep' ) )\nt = typeOf( new TypeError( 'beep' ) )\nt = typeOf( new SyntaxError( 'beep' ) )\nt = typeOf( new ReferenceError( 'beep' ) )\nt = typeOf( new URIError( 'beep' ) )\nt = typeOf( new RangeError( 'beep' ) )\nt = typeOf( new EvalError( 'beep' ) )\nt = typeOf( Math )\nt = typeOf( JSON )\n\n// Arguments object:\nfunction beep() { return arguments; };\nt = typeOf( beep() )\n\n// Node.js Buffer object:\nt = typeOf( new Buffer( 10 ) )\n\n// Custom constructor:\nfunction Person() { return this };\nt = typeOf( new Person() )\n\n// Anonymous constructor:\nFoo = function () { return this; };\nt = typeOf new Foo() )\n",
@@ -3523,6 +5412,7 @@ module.exports = {
 	"uncurryRight": "function addX( x ) {\n  return function addY( y ) {\n      return x + y;\n  };\n};\nfcn = uncurryRight( addX );\nsum = fcn( 3, 2 )\n\n// To enforce a fixed number of parameters, provide an `arity` argument:\nfunction add( y ) {\n  return function add( x ) {\n      return x + y;\n  };\n};\nfcn = uncurryRight( add, 2 );\nsum = fcn( 9 )\n\n// To specify an execution context, provide a `thisArg` argument:\nfunction addY( y ) {\n  this.y = y;\n  return addX;\n};\nfunction addX( x ) {\n  return x + this.y;\n};\nfcn = uncurryRight( addY, {} );\nsum = fcn( 3, 2 )\n",
 	"UNICODE_MAX": "UNICODE_MAX\n",
 	"UNICODE_MAX_BMP": "UNICODE_MAX_BMP\n",
+	"unlink": "function done( error ) {\n  if ( error ) {\n      console.error( error.message );\n  }\n};\nunlink( './beep/boop.txt', done );\n",
 	"unshift": "\n// Arrays:\narr = [ 1.0, 2.0, 3.0, 4.0, 5.0 ];\narr = unshift( arr, 6.0, 7.0 )\n\n// Typed arrays:\narr = new Float64Array( [ 1.0, 2.0 ] );\narr = unshift( arr, 3.0, 4.0 )\n\n// Array-like object:\narr = { 'length': 1, '0': 1.0 };\narr = unshift( arr, 2.0, 3.0 )\n",
 	"until": "function predicate( i ) { return ( i >= 5 ); };\nfunction beep( i ) { console.log( 'boop: %d', i ); };\nuntil( predicate, beep )\n",
 	"untilAsync": "function predicate( i, clbk ) { clbk( null, i >= 5 ); };\nfunction fcn( i, next ) {\n  setTimeout( onTimeout, i );\n  function onTimeout() {\n      next( null, 'boop'+i );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nuntilAsync( predicate, fcn, done )\n",
@@ -3542,12 +5432,15 @@ module.exports = {
 	"whileAsync": "function predicate( i, clbk ) { clbk( null, i < 5 ); };\nfunction fcn( i, next ) {\n  setTimeout( onTimeout, i );\n  function onTimeout() {\n      next( null, 'boop'+i );\n  }\n};\nfunction done( error, result ) {\n  if ( error ) {\n      throw error;\n  }\n  console.log( result );\n};\nwhileAsync( predicate, fcn, done )\n",
 	"whileEach": "function predicate( v ) { return v === v; };\nfunction logger( v, i ) { console.log( '%s: %d', i, v ); };\narr = [ 1, 2, 3, 4, NaN, 5 ];\nwhileEach( arr, predicate, logger )\n",
 	"whileEachRight": "function predicate( v ) { return v === v; };\nfunction logger( v, i ) { console.log( '%s: %d', i, v ); };\narr = [ 1, NaN, 2, 3, 4, 5 ];\nwhileEachRight( arr, predicate, logger )\n",
+	"writeFile": "function onWrite( error ) {\n  if ( error ) {\n      console.error( error.message );\n  }\n};\nwriteFile( './beep/boop.txt', 'beep boop', onWrite );\n",
 	"zip": "\n// Basic usage:\nout = zip( [ 1, 2 ], [ 'a', 'b' ] )\n\n// Turn off truncation:\nopts = { 'trunc': false };\nout = zip( [ 1, 2, 3 ], [ 'a', 'b' ], opts )\n",
 	"ztest": "\n// One-sample z-test:\nrnorm = base.random.normal.factory( 0.0, 2.0, { 'seed': 212 });\nx = new Array( 100 );\nfor ( var i = 0; i < x.length; i++ ) {\n  x[ i ] = rnorm();\n}\nout = ztest( x, 2.0 )\n\n// Choose custom significance level and print output:\narr = [ 2, 4, 3, 1, 0 ];\nout = ztest( arr, 2.0, { 'alpha': 0.01 });\ntable = out.print()\n\n// Test for a mean equal to five:\narr = [ 4, 4, 6, 6, 5 ];\nout = ztest( arr, 1.0, { 'mu': 5 })\n\n// Perform one-sided tests:\narr = [ 4, 4, 6, 6, 5 ];\nout = ztest( arr, 1.0, { 'alternative': 'less' });\nout = ztest( arr, 1.0, { 'alternative': 'greater' });\n",
 	"ztest2": "\n// Drawn from Normal(0,2):\nx = [ -0.21, 0.14, 1.65, 2.11, -1.86, -0.29, 1.48, 0.81, 0.86, 1.04 ];\n\n// Drawn from Normal(1,2):\ny = [ -1.53, -2.93, 2.34, -1.15, 2.7, -0.12, 4.22, 1.66, 3.43, 4.66 ];\nout = ztest2( x, y, 2.0, 2.0 )\n\n// Print table output:\ntable = out.print();\n\n// Choose a different significance level than `0.05`:\nout = ztest2( x, y, 2.0, 2.0, { 'alpha': 0.4 });\ntable = out.print();\n\n// Perform one-sided tests:\nout = ztest2( x, y, 2.0, 2.0, { 'alternative': 'less' });\ntable = out.print()\nout = ztest2( x, y, 2.0, 2.0, { 'alternative': 'greater' });\ntable = out.print()\n\n// Test for a difference in means besides zero:\nrnorm = base.random.normal.factory({ 'seed': 372 });\nx = new Array( 100 );\nfor ( i = 0; i < x.length; i++ ) {\n  x[ i ] = rnorm( 2.0, 1.0 );\n}\ny = new Array( 100 );\nfor ( i = 0; i < x.length; i++ ) {\n  y[ i ] = rnorm( 0.0, 2.0 );\n}\nout = ztest2( x, y, 1.0, 2.0, { 'difference': 2.0 })\n"
 };
 
-},{}],58:[function(require,module,exports){
+module.exports = db;
+
+},{}],119:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3569,14 +5462,14 @@ var EXAMPLES = require( './db.js' );
 */
 function examples() {
 	return copy( EXAMPLES );
-} // end FUNCTION examples()
+}
 
 
 // EXPORTS //
 
 module.exports = examples;
 
-},{"./db.js":57,"@stdlib/utils/copy":65}],59:[function(require,module,exports){
+},{"./db.js":118,"@stdlib/utils/copy":126}],120:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3600,7 +5493,7 @@ var examples = require( './examples.js' );
 
 module.exports = examples;
 
-},{"./examples.js":58}],60:[function(require,module,exports){
+},{"./examples.js":119}],121:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -3635,7 +5528,7 @@ tape( 'the function returns REPL examples', function test( t ) {
 
 
 }).call(this,"/lib/node_modules/@stdlib/repl/code-blocks/test/test.js")
-},{"./../lib":59,"@stdlib/assert/is-plain-object":36,"tape":153}],61:[function(require,module,exports){
+},{"./../lib":120,"@stdlib/assert/is-plain-object":73,"tape":244}],122:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3656,17 +5549,21 @@ var isBuffer = require( '@stdlib/assert/is-buffer' );
 * @example
 * var v = constructorName( 'a' );
 * // returns 'String'
+*
 * @example
 * var v = constructorName( 5 );
 * // returns 'Number'
+*
 * @example
 * var v = constructorName( null );
 * // returns 'Null'
+*
 * @example
 * var v = constructorName( undefined );
 * // returns 'Undefined'
+*
 * @example
-* var v = constructorName( function noop(){} );
+* var v = constructorName( function noop() {} );
 * // returns 'Function'
 */
 function constructorName( v ) {
@@ -3684,14 +5581,14 @@ function constructorName( v ) {
 		return 'Buffer';
 	}
 	return name;
-} // end FUNCTION constructorName()
+}
 
 
 // EXPORTS //
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":7,"@stdlib/regexp/function-name":55,"@stdlib/utils/native-class":81}],62:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":34,"@stdlib/regexp/function-name":116,"@stdlib/utils/native-class":172}],123:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3721,14 +5618,14 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":61}],63:[function(require,module,exports){
+},{"./constructor_name.js":122}],124:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isArray = require( '@stdlib/assert/is-array' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
 var deepCopy = require( './deep_copy.js' );
 
 
@@ -3771,17 +5668,16 @@ function copy( value, level ) {
 	} else {
 		level = PINF;
 	}
-	out = ( isArray(value) ) ? [] : {};
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
 	return deepCopy( value, out, [value], [out], level );
-} // end FUNCTION copy()
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./deep_copy.js":64,"@stdlib/assert/is-array":5,"@stdlib/assert/is-nonnegative-integer":23,"@stdlib/math/constants/float64-pinf":53}],64:[function(require,module,exports){
-(function (Buffer){
+},{"./deep_copy.js":125,"@stdlib/assert/is-array":32,"@stdlib/assert/is-nonnegative-integer":60,"@stdlib/constants/math/float64-pinf":100}],125:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -3794,6 +5690,7 @@ var isError = require( '@stdlib/assert/is-error' );
 var typeOf = require( '@stdlib/utils/type-of' );
 var regexp = require( '@stdlib/utils/regexp-from-string' );
 var indexOf = require( '@stdlib/utils/index-of' );
+var copyBuffer = require( '@stdlib/buffer/from-buffer' );
 var typedArrays = require( './typed_arrays.js' );
 
 
@@ -3802,10 +5699,10 @@ var typedArrays = require( './typed_arrays.js' );
 /**
 * Clones a class instance.
 *
-* #### Notes
+* ## Notes
 *
-* * This should __only__ be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered __fragile__.
-* * The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
+* -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
+* -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
 *
 *
 * @private
@@ -3846,7 +5743,7 @@ function cloneInstance( val ) {
 		Object.freeze( ref );
 	}
 	return ref;
-} // end FUNCTION cloneInstance()
+}
 
 /**
 * Copies an error object.
@@ -3862,7 +5759,6 @@ function cloneInstance( val ) {
 * // returns <TypeError>
 */
 function copyError( error ) {
-	/* jshint newcap:false */ // TODO: eslint
 	var cache = [];
 	var refs = [];
 	var keys;
@@ -3904,7 +5800,7 @@ function copyError( error ) {
 		Object.defineProperty( err, key, desc );
 	}
 	return err;
-} // end FUNCTION copyError()
+}
 
 
 // MAIN //
@@ -3942,7 +5838,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 		return val;
 	}
 	if ( isBuffer( val ) ) {
-		return new Buffer( val );
+		return copyBuffer( val );
 	}
 	if ( isError( val ) ) {
 		return copyError( val );
@@ -4022,7 +5918,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 				continue;
 			}
 			// Plain array or object...
-			ref = ( isArray(x) ) ? [] : {};
+			ref = ( isArray( x ) ) ? new Array( x.length ) : {};
 			cache.push( x );
 			refs.push( ref );
 			if ( parent === 'array' ) {
@@ -4057,15 +5953,14 @@ function deepCopy( val, copy, cache, refs, level ) {
 		Object.freeze( copy );
 	}
 	return copy;
-} // end FUNCTION deepCopy()
+}
 
 
 // EXPORTS //
 
 module.exports = deepCopy;
 
-}).call(this,require("buffer").Buffer)
-},{"./typed_arrays.js":66,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":5,"@stdlib/assert/is-buffer":7,"@stdlib/assert/is-error":9,"@stdlib/utils/index-of":79,"@stdlib/utils/regexp-from-string":87,"@stdlib/utils/type-of":92,"buffer":99,"object-keys":123}],65:[function(require,module,exports){
+},{"./typed_arrays.js":127,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-array":32,"@stdlib/assert/is-buffer":34,"@stdlib/assert/is-error":36,"@stdlib/buffer/from-buffer":95,"@stdlib/utils/index-of":170,"@stdlib/utils/regexp-from-string":178,"@stdlib/utils/type-of":183,"object-keys":215}],126:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4105,47 +6000,154 @@ var copy = require( './copy.js' );
 
 module.exports = copy;
 
-},{"./copy.js":63}],66:[function(require,module,exports){
+},{"./copy.js":124}],127:[function(require,module,exports){
 /* eslint-disable no-new-func */
 'use strict';
 
-// MAIN //
+// MODULES //
 
-var ctors = [
-	'Int8Array',
-	'Uint8Array',
-	'Uint8ClampedArray',
-	'Int16Array',
-	'Uint16Array',
-	'Int32Array',
-	'Uint32Array',
-	'Float32Array',
-	'Float64Array'
-];
+var Int8Array = require( '@stdlib/array/int8' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+var Int16Array = require( '@stdlib/array/int16' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+var Int32Array = require( '@stdlib/array/int32' );
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float32Array = require( '@stdlib/array/float32' );
+var Float64Array = require( '@stdlib/array/float64' );
+
+
+// FUNCTIONS //
 
 /**
-* Create functions for copying typed arrays.
+* Copies an `Int8Array`.
 *
 * @private
-* @returns {Object} typed array functions
+* @param {Int8Array} arr - array to copy
+* @returns {Int8Array} new array
 */
-function createTypedArrayFcns() {
-	var typedArrays = {};
-	var ctor;
-	var i;
-	for ( i = 0; i < ctors.length; i++ ) {
-		ctor = ctors[ i ];
-		typedArrays[ ctor.toLowerCase() ] = new Function( 'arr', 'return new '+ctor+'( arr );' );
-	}
-	return typedArrays;
-} // end FUNCTION createTypedArrayFcns()
+function int8array( arr ) {
+	return new Int8Array( arr );
+}
+
+/**
+* Copies a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - array to copy
+* @returns {Uint8Array} new array
+*/
+function uint8array( arr ) {
+	return new Uint8Array( arr );
+}
+
+/**
+* Copies a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - array to copy
+* @returns {Uint8ClampedArray} new array
+*/
+function uint8clampedarray( arr ) {
+	return new Uint8ClampedArray( arr );
+}
+
+/**
+* Copies an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - array to copy
+* @returns {Int16Array} new array
+*/
+function int16array( arr ) {
+	return new Int16Array( arr );
+}
+
+/**
+* Copies a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - array to copy
+* @returns {Uint16Array} new array
+*/
+function uint16array( arr ) {
+	return new Uint16Array( arr );
+}
+
+/**
+* Copies an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - array to copy
+* @returns {Int32Array} new array
+*/
+function int32array( arr ) {
+	return new Int32Array( arr );
+}
+
+/**
+* Copies a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - array to copy
+* @returns {Uint32Array} new array
+*/
+function uint32array( arr ) {
+	return new Uint32Array( arr );
+}
+
+/**
+* Copies a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - array to copy
+* @returns {Float32Array} new array
+*/
+function float32array( arr ) {
+	return new Float32Array( arr );
+}
+
+/**
+* Copies a `Float64Array`.
+*
+* @private
+* @param {Float64Array} arr - array to copy
+* @returns {Float64Array} new array
+*/
+function float64array( arr ) {
+	return new Float64Array( arr );
+}
+
+
+// MAIN //
+
+/**
+* Returns a hash of functions for copying typed arrays.
+*
+* @private
+* @returns {Object} function hash
+*/
+function typedarrays() {
+	var out = {
+		'int8array': int8array,
+		'uint8array': uint8array,
+		'uint8clampedarray': uint8clampedarray,
+		'int16array': int16array,
+		'uint16array': uint16array,
+		'int32array': int32array,
+		'uint32array': uint32array,
+		'float32array': float32array,
+		'float64array': float64array
+	};
+	return out;
+}
 
 
 // EXPORTS //
 
-module.exports = createTypedArrayFcns();
+module.exports = typedarrays();
 
-},{}],67:[function(require,module,exports){
+},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],128:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4167,14 +6169,14 @@ function setReadOnly( obj, prop, value ) {
 		'writable': false,
 		'enumerable': true
 	});
-} // end FUNCTION setReadOnly()
+}
 
 
 // EXPORTS //
 
 module.exports = setReadOnly;
 
-},{}],68:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4199,7 +6201,493 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":67}],69:[function(require,module,exports){
+},{"./define_read_only_property.js":128}],130:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFloat32Array = require( '@stdlib/assert/is-float32array' );
+var GlobalFloat32Array = require( './float32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Float32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float32Array` support
+*
+* @example
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+function hasFloat32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat32Array( [ 1.0, 3.14, -3.14, 5.0e40 ] );
+		bool = (
+			isFloat32Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.140000104904175 &&
+			arr[ 2 ] === -3.140000104904175 &&
+			arr[ 3 ] === Number.POSITIVE_INFINITY
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasFloat32ArraySupport;
+
+},{"./float32array.js":131,"@stdlib/assert/is-float32array":38}],131:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Float32Array === 'function' ) ? Float32Array : null;
+
+},{}],132:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Float32Array` support.
+*
+* @module @stdlib/utils/detect-float32array-support
+*
+* @example
+* var hasFloat32ArraySupport = require( '@stdlib/utils/detect-float32array-support' );
+*
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( './detect_float32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasFloat32ArraySupport;
+
+},{"./detect_float32array_support.js":130}],133:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+var GlobalFloat64Array = require( './float64array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Float64Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float64Array` support
+*
+* @example
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+function hasFloat64ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat64Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat64Array( [ 1.0, 3.14, -3.14, NaN ] );
+		bool = (
+			isFloat64Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.14 &&
+			arr[ 2 ] === -3.14 &&
+			arr[ 3 ] !== arr[ 3 ]
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasFloat64ArraySupport;
+
+},{"./float64array.js":134,"@stdlib/assert/is-float64array":40}],134:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Float64Array === 'function' ) ? Float64Array : null;
+
+},{}],135:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Float64Array` support.
+*
+* @module @stdlib/utils/detect-float64array-support
+*
+* @example
+* var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+*
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( './detect_float64array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasFloat64ArraySupport;
+
+},{"./detect_float64array_support.js":133}],136:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt16Array = require( '@stdlib/assert/is-int16array' );
+var INT16_MAX = require( '@stdlib/constants/math/int16-max' );
+var INT16_MIN = require( '@stdlib/constants/math/int16-min' );
+var GlobalInt16Array = require( './int16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int16Array` support
+*
+* @example
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+function hasInt16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt16Array( [ 1, 3.14, -3.14, INT16_MAX+1 ] );
+		bool = (
+			isInt16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&      // truncation
+			arr[ 2 ] === -3 &&     // truncation
+			arr[ 3 ] === INT16_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt16ArraySupport;
+
+},{"./int16array.js":138,"@stdlib/assert/is-int16array":44,"@stdlib/constants/math/int16-max":101,"@stdlib/constants/math/int16-min":102}],137:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int16Array` support.
+*
+* @module @stdlib/utils/detect-int16array-support
+*
+* @example
+* var hasInt16ArraySupport = require( '@stdlib/utils/detect-int16array-support' );
+*
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt16ArraySupport = require( './detect_int16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt16ArraySupport;
+
+},{"./detect_int16array_support.js":136}],138:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int16Array === 'function' ) ? Int16Array : null;
+
+},{}],139:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt32Array = require( '@stdlib/assert/is-int32array' );
+var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+var INT32_MIN = require( '@stdlib/constants/math/int32-min' );
+var GlobalInt32Array = require( './int32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int32Array` support
+*
+* @example
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+function hasInt32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt32Array( [ 1, 3.14, -3.14, INT32_MAX+1 ] );
+		bool = (
+			isInt32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&      // truncation
+			arr[ 2 ] === -3 &&     // truncation
+			arr[ 3 ] === INT32_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt32ArraySupport;
+
+},{"./int32array.js":141,"@stdlib/assert/is-int32array":46,"@stdlib/constants/math/int32-max":103,"@stdlib/constants/math/int32-min":104}],140:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int32Array` support.
+*
+* @module @stdlib/utils/detect-int32array-support
+*
+* @example
+* var hasInt32ArraySupport = require( '@stdlib/utils/detect-int32array-support' );
+*
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt32ArraySupport = require( './detect_int32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt32ArraySupport;
+
+},{"./detect_int32array_support.js":139}],141:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int32Array === 'function' ) ? Int32Array : null;
+
+},{}],142:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt8Array = require( '@stdlib/assert/is-int8array' );
+var INT8_MAX = require( '@stdlib/constants/math/int8-max' );
+var INT8_MIN = require( '@stdlib/constants/math/int8-min' );
+var GlobalInt8Array = require( './int8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int8Array` support
+*
+* @example
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+function hasInt8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt8Array( [ 1, 3.14, -3.14, INT8_MAX+1 ] );
+		bool = (
+			isInt8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&     // truncation
+			arr[ 2 ] === -3 &&    // truncation
+			arr[ 3 ] === INT8_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt8ArraySupport;
+
+},{"./int8array.js":144,"@stdlib/assert/is-int8array":48,"@stdlib/constants/math/int8-max":105,"@stdlib/constants/math/int8-min":106}],143:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int8Array` support.
+*
+* @module @stdlib/utils/detect-int8array-support
+*
+* @example
+* var hasInt8ArraySupport = require( '@stdlib/utils/detect-int8array-support' );
+*
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt8ArraySupport = require( './detect_int8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt8ArraySupport;
+
+},{"./detect_int8array_support.js":142}],144:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int8Array === 'function' ) ? Int8Array : null;
+
+},{}],145:[function(require,module,exports){
+(function (Buffer){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Buffer === 'function' ) ? Buffer : null;
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":190}],146:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Buffer` support.
+*
+* @module @stdlib/utils/detect-node-buffer-support
+*
+* @example
+* var hasNodeBufferSupport = require( '@stdlib/utils/detect-node-buffer-support' );
+*
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasNodeBufferSupport = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = hasNodeBufferSupport;
+
+},{"./main.js":147}],147:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var GlobalBuffer = require( './buffer.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Buffer` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Buffer` support
+*
+* @example
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+function hasNodeBufferSupport() {
+	var bool;
+	var b;
+
+	if ( typeof GlobalBuffer !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		if ( typeof GlobalBuffer.from === 'function' ) {
+			b = GlobalBuffer.from( [ 1, 2, 3, 4 ] );
+		} else {
+			b = new GlobalBuffer( [ 1, 2, 3, 4 ] ); // Note: this is deprecated behavior starting in Node v6 (see https://nodejs.org/api/buffer.html#buffer_new_buffer_array)
+		}
+		bool = (
+			isBuffer( b ) &&
+			b[ 0 ] === 1 &&
+			b[ 1 ] === 2 &&
+			b[ 2 ] === 3 &&
+			b[ 3 ] === 4
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasNodeBufferSupport;
+
+},{"./buffer.js":145,"@stdlib/assert/is-buffer":34}],148:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -4218,18 +6706,18 @@ function hasSymbolSupport() {
 		typeof Symbol === 'function' &&
 		typeof Symbol( 'foo' ) === 'symbol'
 	);
-} // end FUNCTION hasSymbolSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasSymbolSupport;
 
-},{}],70:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `Symbol` support.
+* Test for native `Symbol` support.
 *
 * @module @stdlib/utils/detect-symbol-support
 *
@@ -4249,7 +6737,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":69}],71:[function(require,module,exports){
+},{"./detect_symbol_support.js":148}],150:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4270,18 +6758,18 @@ var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
 */
 function hasToStringTagSupport() {
 	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
-} // end FUNCTION hasToStringTagSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":70}],72:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":149}],151:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `toStringTag` support.
+* Test for native `toStringTag` support.
 *
 * @module @stdlib/utils/detect-tostringtag-support
 *
@@ -4301,21 +6789,351 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":71}],73:[function(require,module,exports){
+},{"./has_tostringtag_support.js":150}],152:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+var GlobalUint16Array = require( './uint16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint16Array` support
+*
+* @example
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+function hasUint16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT16_MAX+1, UINT16_MAX+2 ];
+		arr = new GlobalUint16Array( arr );
+		bool = (
+			isUint16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT16_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./uint16array.js":154,"@stdlib/assert/is-uint16array":81,"@stdlib/constants/math/uint16-max":107}],153:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint16Array` support.
+*
+* @module @stdlib/utils/detect-uint16array-support
+*
+* @example
+* var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+*
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( './detect_uint16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./detect_uint16array_support.js":152}],154:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint16Array === 'function' ) ? Uint16Array : null;
+
+},{}],155:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+var GlobalUint32Array = require( './uint32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint32Array` support
+*
+* @example
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+function hasUint32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT32_MAX+1, UINT32_MAX+2 ];
+		arr = new GlobalUint32Array( arr );
+		bool = (
+			isUint32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT32_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./uint32array.js":157,"@stdlib/assert/is-uint32array":83,"@stdlib/constants/math/uint32-max":108}],156:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint32Array` support.
+*
+* @module @stdlib/utils/detect-uint32array-support
+*
+* @example
+* var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+*
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( './detect_uint32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./detect_uint32array_support.js":155}],157:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint32Array === 'function' ) ? Uint32Array : null;
+
+},{}],158:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+var GlobalUint8Array = require( './uint8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8Array` support
+*
+* @example
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT8_MAX+1, UINT8_MAX+2 ];
+		arr = new GlobalUint8Array( arr );
+		bool = (
+			isUint8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&           // truncation
+			arr[ 2 ] === UINT8_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&           // wrap around
+			arr[ 4 ] === 1              // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./uint8array.js":160,"@stdlib/assert/is-uint8array":85,"@stdlib/constants/math/uint8-max":109}],159:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8Array` support.
+*
+* @module @stdlib/utils/detect-uint8array-support
+*
+* @example
+* var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+*
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( './detect_uint8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./detect_uint8array_support.js":158}],160:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8Array === 'function' ) ? Uint8Array : null;
+
+},{}],161:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8ClampedArray = require( '@stdlib/assert/is-uint8clampedarray' );
+var GlobalUint8ClampedArray = require( './uint8clampedarray.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8ClampedArray` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8ClampedArray` support
+*
+* @example
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ClampedArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8ClampedArray !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalUint8ClampedArray( [ -1, 0, 1, 3.14, 4.99, 255, 256 ] );
+		bool = (
+			isUint8ClampedArray( arr ) &&
+			arr[ 0 ] === 0 &&   // clamped
+			arr[ 1 ] === 0 &&
+			arr[ 2 ] === 1 &&
+			arr[ 3 ] === 3 &&   // round to nearest
+			arr[ 4 ] === 5 &&   // round to nearest
+			arr[ 5 ] === 255 &&
+			arr[ 6 ] === 255    // clamped
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ClampedArraySupport;
+
+},{"./uint8clampedarray.js":163,"@stdlib/assert/is-uint8clampedarray":87}],162:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8ClampedArray` support.
+*
+* @module @stdlib/utils/detect-uint8clamped-support
+*
+* @example
+* var hasUint8ClampedArraySupport = require( '@stdlib/utils/detect-uint8clampedarray-support' );
+*
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ClampedArraySupport = require( './detect_uint8clampedarray_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ClampedArraySupport;
+
+},{"./detect_uint8clampedarray_support.js":161}],163:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : null;
+
+},{}],164:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isFunction = require( '@stdlib/assert/is-function' );
+var builtin = require( './native.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var getProto;
 if ( isFunction( Object.getPrototypeOf ) ) {
-	getProto = require( './native.js' );
+	getProto = builtin;
 } else {
-	getProto = require( './polyfill.js' );
+	getProto = polyfill;
 }
 
 
@@ -4323,7 +7141,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":76,"./polyfill.js":77,"@stdlib/assert/is-function":11}],74:[function(require,module,exports){
+},{"./native.js":167,"./polyfill.js":168,"@stdlib/assert/is-function":42}],165:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4354,14 +7172,14 @@ function getPrototypeOf( value ) {
 	value = Object( value );
 
 	return getProto( value );
-} // end FUNCTION getPrototypeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":73}],75:[function(require,module,exports){
+},{"./detect.js":164}],166:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4385,14 +7203,19 @@ var getPrototype = require( './get_prototype_of.js' );
 
 module.exports = getPrototype;
 
-},{"./get_prototype_of.js":74}],76:[function(require,module,exports){
+},{"./get_prototype_of.js":165}],167:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var getProto = Object.getPrototypeOf;
+
 
 // EXPORTS //
 
-module.exports = Object.getPrototypeOf;
+module.exports = getProto;
 
-},{}],77:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4424,14 +7247,14 @@ function getPrototypeOf( obj ) {
 	}
 	// Return `null` for objects created via `Object.create( null )`. Also return `null` for cross-realm objects on browsers that lack `__proto__` support, such as IE < 11.
 	return null;
-} // end FUNCTION getPrototypeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":78,"@stdlib/utils/native-class":81}],78:[function(require,module,exports){
+},{"./proto.js":169,"@stdlib/utils/native-class":172}],169:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4444,14 +7267,14 @@ module.exports = getPrototypeOf;
 function getProto( obj ) {
 	// eslint-disable-next-line no-proto
 	return obj.__proto__;
-} // end FUNCTION getProto()
+}
 
 
 // EXPORTS //
 
 module.exports = getProto;
 
-},{}],79:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4508,7 +7331,7 @@ var indexOf = require( './index_of.js' );
 
 module.exports = indexOf;
 
-},{"./index_of.js":80}],80:[function(require,module,exports){
+},{"./index_of.js":171}],171:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4616,14 +7439,14 @@ function indexOf( arr, searchElement, fromIndex ) {
 		}
 	}
 	return -1;
-} // end FUNCTION indexOf()
+}
 
 
 // EXPORTS //
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-array-like":3,"@stdlib/assert/is-integer":14,"@stdlib/assert/is-nan":19}],81:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":30,"@stdlib/assert/is-integer":51,"@stdlib/assert/is-nan":56}],172:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4649,16 +7472,18 @@ module.exports = indexOf;
 
 // MODULES //
 
-var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var nativeClass;
-if ( hasToStringTag ) {
-	nativeClass = require( './polyfill.js' );
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
 } else {
-	nativeClass = require( './native_class.js' );
+	nativeClass = builtin;
 }
 
 
@@ -4666,7 +7491,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":82,"./polyfill.js":83,"@stdlib/utils/detect-tostringtag-support":72}],82:[function(require,module,exports){
+},{"./native_class.js":173,"./polyfill.js":174,"@stdlib/utils/detect-tostringtag-support":151}],173:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4699,14 +7524,14 @@ var toStr = require( './tostring.js' );
 */
 function nativeClass( v ) {
 	return toStr.call( v );
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":84}],83:[function(require,module,exports){
+},{"./tostring.js":175}],174:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4764,28 +7589,38 @@ function nativeClass( v ) {
 		delete v[ toStringTag ];
 	}
 	return out;
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":84,"./tostringtag.js":85,"@stdlib/assert/has-own-property":2}],84:[function(require,module,exports){
+},{"./tostring.js":175,"./tostringtag.js":176,"@stdlib/assert/has-own-property":29}],175:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
 
 // EXPORTS //
 
-module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
+module.exports = toStr;
 
-},{}],85:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
 
 // EXPORTS //
 
-module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+module.exports = toStrTag;
 
-},{}],86:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4815,14 +7650,14 @@ function reFromString( str ) {
 
 	// Create a new regular expression:
 	return ( str ) ? new RegExp( str[1], str[2] ) : null;
-} // end FUNCTION reFromString()
+}
 
 
 // EXPORTS //
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":39,"@stdlib/regexp/regexp":56}],87:[function(require,module,exports){
+},{"@stdlib/assert/is-string":76,"@stdlib/regexp/regexp":117}],178:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4846,7 +7681,7 @@ var reFromString = require( './from_string.js' );
 
 module.exports = reFromString;
 
-},{"./from_string.js":86}],88:[function(require,module,exports){
+},{"./from_string.js":177}],179:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4868,27 +7703,29 @@ function check() {
 	if (
 		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
 		typeof RE === 'function' ||
+
 		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
 		typeof typedarray === 'object' ||
+
 		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
 		typeof nodeList === 'function'
 	) {
 		return true;
 	}
 	return false;
-} // end FUNCTION check()
+}
 
 
 // EXPORTS //
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":89,"./fixtures/re.js":90,"./fixtures/typedarray.js":91}],89:[function(require,module,exports){
+},{"./fixtures/nodelist.js":180,"./fixtures/re.js":181,"./fixtures/typedarray.js":182}],180:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var root = require( 'system.global' )(); // eslint-disable-line no-redeclare
+var root = require( 'system.global' )(); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -4900,7 +7737,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":150}],90:[function(require,module,exports){
+},{"system.global":241}],181:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -4910,7 +7747,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],91:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -4920,7 +7757,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],92:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4949,7 +7786,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":88,"./polyfill.js":93,"./typeof.js":94}],93:[function(require,module,exports){
+},{"./check.js":179,"./polyfill.js":184,"./typeof.js":185}],184:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4967,14 +7804,14 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 */
 function typeOf( v ) {
 	return ctorName( v ).toLowerCase();
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":62}],94:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":123}],185:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4987,7 +7824,7 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 /*
 * Built-in `typeof` operator behavior:
 *
-* ``` text
+* ```text
 * typeof null => 'object'
 * typeof undefined => 'undefined'
 * typeof 'a' => 'string'
@@ -5027,14 +7864,14 @@ function typeOf( v ) {
 		return ctorName( v ).toLowerCase();
 	}
 	return type;
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":62}],95:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":123}],186:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -5150,11 +7987,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],96:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 
-},{}],97:[function(require,module,exports){
-arguments[4][96][0].apply(exports,arguments)
-},{"dup":96}],98:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
+arguments[4][187][0].apply(exports,arguments)
+},{"dup":187}],189:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -5340,11 +8177,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],99:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -7056,7 +9893,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":95,"ieee754":118}],100:[function(require,module,exports){
+},{"base64-js":186,"ieee754":209}],191:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -7167,7 +10004,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":120}],101:[function(require,module,exports){
+},{"../../is-buffer/index.js":211}],192:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -7263,7 +10100,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":102,"./lib/keys.js":103}],102:[function(require,module,exports){
+},{"./lib/is_arguments.js":193,"./lib/keys.js":194}],193:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -7285,7 +10122,7 @@ function unsupported(object){
     false;
 };
 
-},{}],103:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -7296,7 +10133,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],104:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -7354,14 +10191,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":114,"object-keys":123}],105:[function(require,module,exports){
+},{"foreach":205,"object-keys":215}],196:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],106:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -7599,28 +10436,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":107,"./helpers/isNaN":108,"./helpers/mod":109,"./helpers/sign":110,"es-to-primitive/es5":111,"has":117,"is-callable":121}],107:[function(require,module,exports){
+},{"./helpers/isFinite":198,"./helpers/isNaN":199,"./helpers/mod":200,"./helpers/sign":201,"es-to-primitive/es5":202,"has":208,"is-callable":212}],198:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],108:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],109:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],110:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],111:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -7659,12 +10496,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":112,"is-callable":121}],112:[function(require,module,exports){
+},{"./helpers/isPrimitive":203,"is-callable":212}],203:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],113:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7968,7 +10805,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],114:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -7992,7 +10829,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],115:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -8046,19 +10883,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],116:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":115}],117:[function(require,module,exports){
+},{"./implementation":206}],208:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":116}],118:[function(require,module,exports){
+},{"function-bind":207}],209:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -8144,7 +10981,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],119:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -8169,11 +11006,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],120:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -8192,7 +11029,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],121:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -8233,7 +11070,14 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],122:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],214:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -8427,7 +11271,7 @@ function inspectString (str) {
     }
 }
 
-},{}],123:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -8569,7 +11413,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":124}],124:[function(require,module,exports){
+},{"./isArguments":216}],216:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -8588,7 +11432,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],125:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -8816,7 +11660,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":98}],126:[function(require,module,exports){
+},{"_process":189}],218:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8863,10 +11707,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":98}],127:[function(require,module,exports){
+},{"_process":189}],219:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":128}],128:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":220}],220:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8991,7 +11835,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":130,"./_stream_writable":132,"core-util-is":100,"inherits":119,"process-nextick-args":126}],129:[function(require,module,exports){
+},{"./_stream_readable":222,"./_stream_writable":224,"core-util-is":191,"inherits":210,"process-nextick-args":218}],221:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9039,7 +11883,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":131,"core-util-is":100,"inherits":119}],130:[function(require,module,exports){
+},{"./_stream_transform":223,"core-util-is":191,"inherits":210}],222:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -10049,7 +12893,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":128,"./internal/streams/BufferList":133,"./internal/streams/destroy":134,"./internal/streams/stream":135,"_process":98,"core-util-is":100,"events":113,"inherits":119,"isarray":136,"process-nextick-args":126,"safe-buffer":143,"string_decoder/":137,"util":96}],131:[function(require,module,exports){
+},{"./_stream_duplex":220,"./internal/streams/BufferList":225,"./internal/streams/destroy":226,"./internal/streams/stream":227,"_process":189,"core-util-is":191,"events":204,"inherits":210,"isarray":213,"process-nextick-args":218,"safe-buffer":233,"string_decoder/":239,"util":187}],223:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -10264,7 +13108,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":128,"core-util-is":100,"inherits":119}],132:[function(require,module,exports){
+},{"./_stream_duplex":220,"core-util-is":191,"inherits":210}],224:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -10931,7 +13775,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":128,"./internal/streams/destroy":134,"./internal/streams/stream":135,"_process":98,"core-util-is":100,"inherits":119,"process-nextick-args":126,"safe-buffer":143,"util-deprecate":159}],133:[function(require,module,exports){
+},{"./_stream_duplex":220,"./internal/streams/destroy":226,"./internal/streams/stream":227,"_process":189,"core-util-is":191,"inherits":210,"process-nextick-args":218,"safe-buffer":233,"util-deprecate":250}],225:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -11006,7 +13850,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":143}],134:[function(require,module,exports){
+},{"safe-buffer":233}],226:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -11079,17 +13923,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":126}],135:[function(require,module,exports){
+},{"process-nextick-args":218}],227:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":113}],136:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":204}],228:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":229}],229:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":220,"./lib/_stream_passthrough.js":221,"./lib/_stream_readable.js":222,"./lib/_stream_transform.js":223,"./lib/_stream_writable.js":224}],230:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":229}],231:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":224}],232:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],137:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":189,"through":249}],233:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":190}],234:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":204,"inherits":210,"readable-stream/duplex.js":219,"readable-stream/passthrough.js":228,"readable-stream/readable.js":229,"readable-stream/transform.js":230,"readable-stream/writable.js":231}],235:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":197,"function-bind":207}],236:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":235,"./polyfill":237,"./shim":238,"define-properties":195,"function-bind":207}],237:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":235}],238:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":237,"define-properties":195}],239:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -11362,312 +14504,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":143}],138:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":139}],139:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":128,"./lib/_stream_passthrough.js":129,"./lib/_stream_readable.js":130,"./lib/_stream_transform.js":131,"./lib/_stream_writable.js":132}],140:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":139}],141:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":132}],142:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":98,"through":158}],143:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":99}],144:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":113,"inherits":119,"readable-stream/duplex.js":127,"readable-stream/passthrough.js":138,"readable-stream/readable.js":139,"readable-stream/transform.js":140,"readable-stream/writable.js":141}],145:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":106,"function-bind":116}],146:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":145,"./polyfill":147,"./shim":148,"define-properties":104,"function-bind":116}],147:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":145}],148:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":147,"define-properties":104}],149:[function(require,module,exports){
+},{"safe-buffer":233}],240:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -11685,7 +14522,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],150:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -11706,7 +14543,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":149,"./polyfill":151,"./shim":152,"define-properties":104}],151:[function(require,module,exports){
+},{"./implementation":240,"./polyfill":242,"./shim":243,"define-properties":195}],242:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -11720,7 +14557,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":149}],152:[function(require,module,exports){
+},{"./implementation":240}],243:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -11746,7 +14583,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":151,"define-properties":104}],153:[function(require,module,exports){
+},{"./polyfill":242,"define-properties":195}],244:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -11900,7 +14737,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":154,"./lib/results":156,"./lib/test":157,"_process":98,"defined":105,"through":158}],154:[function(require,module,exports){
+},{"./lib/default_stream":245,"./lib/results":247,"./lib/test":248,"_process":189,"defined":196,"through":249}],245:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -11935,7 +14772,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":98,"fs":97,"through":158}],155:[function(require,module,exports){
+},{"_process":189,"fs":188,"through":249}],246:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -11943,7 +14780,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":98}],156:[function(require,module,exports){
+},{"_process":189}],247:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -12134,7 +14971,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":98,"events":113,"function-bind":116,"has":117,"inherits":119,"object-inspect":122,"resumer":142,"through":158}],157:[function(require,module,exports){
+},{"_process":189,"events":204,"function-bind":207,"has":208,"inherits":210,"object-inspect":214,"resumer":232,"through":249}],248:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -12635,7 +15472,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":155,"deep-equal":101,"defined":105,"events":113,"has":117,"inherits":119,"path":125,"string.prototype.trim":146}],158:[function(require,module,exports){
+},{"./next_tick":246,"deep-equal":192,"defined":196,"events":204,"has":208,"inherits":210,"path":217,"string.prototype.trim":236}],249:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -12747,7 +15584,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":98,"stream":144}],159:[function(require,module,exports){
+},{"_process":189,"stream":234}],250:[function(require,module,exports){
 (function (global){
 
 /**
@@ -12818,4 +15655,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[60]);
+},{}]},{},[121]);

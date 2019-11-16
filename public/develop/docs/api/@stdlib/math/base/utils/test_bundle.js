@@ -122,7 +122,7 @@ function hasOwnProp( value, property ) {
 		return false;
 	}
 	return has.call( value, property );
-} // end FUNCTION hasOwnProp()
+}
 
 
 // EXPORTS //
@@ -213,14 +213,14 @@ var nativeClass = require( '@stdlib/utils/native-class' );
 */
 function isArray( value ) {
 	return ( nativeClass( value ) === '[object Array]' );
-} // end FUNCTION isArray()
+}
 
 
 // EXPORTS //
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":202}],5:[function(require,module,exports){
+},{"@stdlib/utils/native-class":49}],5:[function(require,module,exports){
 'use strict';
 
 /**
@@ -287,20 +287,21 @@ function isBuffer( value ) {
 			value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
 			(
 				value.constructor &&
+
 				// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
 				typeof value.constructor.isBuffer === 'function' &&
 				value.constructor.isBuffer( value )
 			)
 		)
 	);
-} // end FUNCTION isBuffer()
+}
 
 
 // EXPORTS //
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":27}],7:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":9}],7:[function(require,module,exports){
 'use strict';
 
 /**
@@ -355,705 +356,14 @@ var typeOf = require( '@stdlib/utils/type-of' );
 function isFunction( value ) {
 	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
 	return ( typeOf( value ) === 'function' );
-} // end FUNCTION isFunction()
+}
 
 
 // EXPORTS //
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":211}],9:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is an integer.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is an integer
-*
-* @example
-* var bool = isInteger( 5.0 );
-* // returns true
-*
-* @example
-* var bool = isInteger( new Number( 5.0 ) );
-* // returns true
-*
-* @example
-* var bool = isInteger( -3.14 );
-* // returns false
-*
-* @example
-* var bool = isInteger( null );
-* // returns false
-*/
-function isInteger( value ) {
-	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isInteger()
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./object.js":12,"./primitive.js":13}],10:[function(require,module,exports){
-'use strict';
-
-/**
-* Test if a value is an integer.
-*
-* @module @stdlib/assert/is-integer
-*
-* @example
-* var isInteger = require( '@stdlib/assert/is-integer' );
-*
-* var bool = isInteger( 5.0 );
-* // returns true
-*
-* bool = isInteger( new Number( 5.0 ) );
-* // returns true
-*
-* bool = isInteger( -3.14 );
-* // returns false
-*
-* bool = isInteger( null );
-* // returns false
-*
-* @example
-* // Use interface to check for integer primitives...
-* var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
-*
-* var bool = isInteger( -3.0 );
-* // returns true
-*
-* bool = isInteger( new Number( -3.0 ) );
-* // returns false
-*
-* @example
-* // Use interface to check for integer objects...
-* var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
-*
-* var bool = isInteger( 3.0 );
-* // returns false
-*
-* bool = isInteger( new Number( 3.0 ) );
-* // returns true
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var isInteger = require( './generic.js' );
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-setReadOnly( isInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isInteger, 'isObject', isObject );
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./generic.js":9,"./object.js":12,"./primitive.js":13,"@stdlib/utils/define-read-only-property":197}],11:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var isInt = require( '@stdlib/math/base/assert/is-integer' );
-
-
-// MAIN //
-
-/**
-* Tests if a number primitive is an integer value.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a number primitive is an integer value
-*/
-function isInteger( value ) {
-	return (
-		value < PINF &&
-		value > NINF &&
-		isInt( value )
-	);
-} // end FUNCTION isInteger()
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"@stdlib/math/base/assert/is-integer":41,"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185}],12:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isObject;
-var isInt = require( './integer.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number object having an integer value.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number object having an integer value
-*
-* @example
-* var bool = isInteger( 3.0 );
-* // returns false
-*
-* @example
-* var bool = isInteger( new Number( 3.0 ) );
-* // returns true
-*/
-function isInteger( value ) {
-	return (
-		isNumber( value ) &&
-		isInt( value.valueOf() )
-	);
-} // end FUNCTION isInteger()
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./integer.js":11,"@stdlib/assert/is-number":22}],13:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-var isInt = require( './integer.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number primitive having an integer value.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number primitive having an integer value
-*
-* @example
-* var bool = isInteger( -3.0 );
-* // returns true
-*
-* @example
-* var bool = isInteger( new Number( -3.0 ) );
-* // returns false
-*/
-function isInteger( value ) {
-	return (
-		isNumber( value ) &&
-		isInt( value )
-	);
-} // end FUNCTION isInteger()
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./integer.js":11,"@stdlib/assert/is-number":22}],14:[function(require,module,exports){
-'use strict';
-
-var ctors = {
-	'uint16': Uint16Array,
-	'uint8': Uint8Array
-};
-
-
-// EXPORTS //
-
-module.exports = ctors;
-
-},{}],15:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns a boolean indicating if an environment is little endian.
-*
-* @module @stdlib/assert/is-little-endian
-*
-* @example
-* var IS_LITTLE_ENDIAN = require( '@stdlib/assert/is-little-endian' );
-*
-* var bool = IS_LITTLE_ENDIAN;
-* // returns <boolean>
-*/
-
-// MODULES //
-
-var IS_LITTLE_ENDIAN = require( './is_little_endian.js' );
-
-
-// EXPORTS //
-
-module.exports = IS_LITTLE_ENDIAN;
-
-},{"./is_little_endian.js":16}],16:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var ctors = require( './ctors.js' );
-
-
-// MAIN //
-
-/**
-* Returns a boolean indicating if an environment is little endian.
-*
-* @returns {boolean} boolean indicating if an environment is little endian
-*
-* @example
-* var bool = isLittleEndian();
-* // returns <boolean>
-*/
-function isLittleEndian() {
-	var uint16view;
-	var uint8view;
-
-	uint16view = new ctors[ 'uint16' ]( 1 );
-
-	// Set the uint16 view to a value having distinguishable lower and higher order words.
-	// 4660 => 0x1234 => 0x12 0x34 => '00010010 00110100' => (0x12,0x34) == (18,52)
-	uint16view[ 0 ] = 0x1234;
-
-	// Create a uint8 view on top of the uint16 buffer:
-	uint8view = new ctors[ 'uint8' ]( uint16view.buffer );
-
-	// If little endian, the least significant byte will be first...
-	return ( uint8view[ 0 ] === 0x34 );
-} // end FUNCTION isLittleEndian()
-
-
-// EXPORTS //
-
-module.exports = isLittleEndian();
-
-},{"./ctors.js":14}],17:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a nonnegative integer.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a nonnegative integer
-*
-* @example
-* var bool = isNonNegativeInteger( 5.0 );
-* // returns true
-*
-* @example
-* var bool = isNonNegativeInteger( new Number( 5.0 ) );
-* // returns true
-*
-* @example
-* var bool = isNonNegativeInteger( -5.0 );
-* // returns false
-*
-* @example
-* var bool = isNonNegativeInteger( 3.14 );
-* // returns false
-*
-* @example
-* var bool = isNonNegativeInteger( null );
-* // returns false
-*/
-function isNonNegativeInteger( value ) {
-	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNonNegativeInteger()
-
-
-// EXPORTS //
-
-module.exports = isNonNegativeInteger;
-
-},{"./object.js":19,"./primitive.js":20}],18:[function(require,module,exports){
-'use strict';
-
-/**
-* Tests if a value is a nonnegative integer.
-*
-* @module @stdlib/assert/is-nonnegative-integer
-*
-* @example
-* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' );
-*
-* var bool = isNonNegativeInteger( 5.0 );
-* // returns true
-*
-* bool = isNonNegativeInteger( new Number( 5.0 ) );
-* // returns true
-*
-* bool = isNonNegativeInteger( -5.0 );
-* // returns false
-*
-* bool = isNonNegativeInteger( 3.14 );
-* // returns false
-*
-* bool = isNonNegativeInteger( null );
-* // returns false
-*
-* @example
-* // Use interface to check for nonnegative integer primitives...
-* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-*
-* var bool = isNonNegativeInteger( 3.0 );
-* // returns true
-*
-* bool = isNonNegativeInteger( new Number( 3.0 ) );
-* // returns false
-*
-* @example
-* // Use interface to check for nonnegative integer objects...
-* var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isObject;
-*
-* var bool = isNonNegativeInteger( 3.0 );
-* // returns false
-*
-* bool = isNonNegativeInteger( new Number( 3.0 ) );
-* // returns true
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var isNonNegativeInteger = require( './generic.js' );
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-setReadOnly( isNonNegativeInteger, 'isPrimitive', isPrimitive );
-setReadOnly( isNonNegativeInteger, 'isObject', isObject );
-
-
-// EXPORTS //
-
-module.exports = isNonNegativeInteger;
-
-},{"./generic.js":17,"./object.js":19,"./primitive.js":20,"@stdlib/utils/define-read-only-property":197}],19:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isInteger = require( '@stdlib/assert/is-integer' ).isObject;
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number object having a nonnegative integer value.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number object having a nonnegative integer value
-*
-* @example
-* var bool = isNonNegativeInteger( 3.0 );
-* // returns false
-*
-* @example
-* var bool = isNonNegativeInteger( new Number( 3.0 ) );
-* // returns true
-*/
-function isNonNegativeInteger( value ) {
-	return (
-		isInteger( value ) &&
-		value.valueOf() >= 0
-	);
-} // end FUNCTION isNonNegativeInteger()
-
-
-// EXPORTS //
-
-module.exports = isNonNegativeInteger;
-
-},{"@stdlib/assert/is-integer":10}],20:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number primitive having a nonnegative integer value.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number primitive having a nonnegative integer value
-*
-* @example
-* var bool = isNonNegativeInteger( 3.0 );
-* // returns true
-*
-* @example
-* var bool = isNonNegativeInteger( new Number( 3.0 ) );
-* // returns false
-*/
-function isNonNegativeInteger( value ) {
-	return (
-		isInteger( value ) &&
-		value >= 0
-	);
-} // end FUNCTION isNonNegativeInteger()
-
-
-// EXPORTS //
-
-module.exports = isNonNegativeInteger;
-
-},{"@stdlib/assert/is-integer":10}],21:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a number
-*
-* @example
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* @example
-* bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*
-* @example
-* bool = isNumber( NaN );
-* // returns true
-*
-* @example
-* bool = isNumber( null );
-* // returns false
-*/
-function isNumber( value ) {
-	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNumber()
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{"./object.js":23,"./primitive.js":24}],22:[function(require,module,exports){
-'use strict';
-
-/**
-* Test if a value is a number.
-*
-* @module @stdlib/assert/is-number
-*
-* @example
-* var isNumber = require( '@stdlib/assert/is-number' );
-*
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*
-* bool = isNumber( NaN );
-* // returns true
-*
-* bool = isNumber( null );
-* // returns false
-*
-* @example
-* // Use interface to check for number primitives...
-* var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
-*
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* bool = isNumber( NaN );
-* // returns true
-*
-* bool = isNumber( new Number( 3.14 ) );
-* // returns false
-*
-* @example
-* // Use interface to check for number objects...
-* var isNumber = require( '@stdlib/assert/is-number' ).isObject;
-*
-* var bool = isNumber( 3.14 );
-* // returns false
-*
-* bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var isNumber = require( './generic.js' );
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-setReadOnly( isNumber, 'isPrimitive', isPrimitive );
-setReadOnly( isNumber, 'isObject', isObject );
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{"./generic.js":21,"./object.js":23,"./primitive.js":24,"@stdlib/utils/define-read-only-property":197}],23:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
-var nativeClass = require( '@stdlib/utils/native-class' );
-var test = require( './try2serialize.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a number object.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number object
-*
-* @example
-* var bool = isNumber( 3.14 );
-* // returns false
-*
-* @example
-* var bool = isNumber( new Number( 3.14 ) );
-* // returns true
-*/
-function isNumber( value ) {
-	if ( typeof value === 'object' ) {
-		if ( hasToStringTag ) {
-			return test( value );
-		}
-		return ( nativeClass( value ) === '[object Number]' );
-	}
-	return false;
-} // end FUNCTION isNumber()
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{"./try2serialize.js":26,"@stdlib/utils/detect-tostringtag-support":201,"@stdlib/utils/native-class":202}],24:[function(require,module,exports){
-'use strict';
-
-/**
-* Tests if a value is a number primitive.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a number primitive
-*
-* @example
-* var bool = isNumber( 3.14 );
-* // returns true
-*
-* @example
-* var bool = isNumber( NaN );
-* // returns true
-*
-* @example
-* var bool = isNumber( new Number( 3.14 ) );
-* // returns false
-*/
-function isNumber( value ) {
-	return ( typeof value === 'number' );
-} // end FUNCTION isNumber()
-
-
-// EXPORTS //
-
-module.exports = isNumber;
-
-},{}],25:[function(require,module,exports){
-'use strict';
-
-// eslint-disable-next-line no-redeclare
-var toString = Number.prototype.toString; // non-generic
-
-
-// EXPORTS //
-
-module.exports = toString;
-
-},{}],26:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
-
-
-// MAIN //
-
-/**
-* Attempts to serialize a value to a string.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value can be serialized
-*/
-function test( value ) {
-	try {
-		toString.call( value );
-		return true;
-	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return false;
-	}
-} // end FUNCTION test()
-
-
-// EXPORTS //
-
-module.exports = test;
-
-},{"./tostring.js":25}],27:[function(require,module,exports){
+},{"@stdlib/utils/type-of":58}],9:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1099,7 +409,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":28,"@stdlib/assert/tools/array-function":36,"@stdlib/utils/define-read-only-property":197}],28:[function(require,module,exports){
+},{"./is_object_like.js":10,"@stdlib/assert/tools/array-function":12,"@stdlib/utils/define-read-only-property":44}],10:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1125,214 +435,14 @@ function isObjectLike( value ) {
 		value !== null &&
 		typeof value === 'object'
 	);
-} // end FUNCTION isObjectLike()
+}
 
 
 // EXPORTS //
 
 module.exports = isObjectLike;
 
-},{}],29:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a string.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating whether value is a string
-*
-* @example
-* var bool = isString( new String( 'beep' ) );
-* // returns true
-*
-* @example
-* var bool = isString( 'beep' );
-* // returns true
-*/
-function isString( value ) {
-	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isString()
-
-
-// EXPORTS //
-
-module.exports = isString;
-
-},{"./object.js":31,"./primitive.js":32}],30:[function(require,module,exports){
-'use strict';
-
-/**
-* Test if a value is a string.
-*
-* @module @stdlib/assert/is-string
-*
-* @example
-* var isString = require( '@stdlib/assert/is-string' );
-*
-* var bool = isString( 'beep' );
-* // returns true
-*
-* bool = isString( new String( 'beep' ) );
-* // returns true
-*
-* bool = isString( 5 );
-* // returns false
-*
-* @example
-* var isString = require( '@stdlib/assert/is-string' ).isObject;
-*
-* var bool = isString( new String( 'beep' ) );
-* // returns true
-*
-* bool = isString( 'beep' );
-* // returns false
-*
-* @example
-* var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-*
-* var bool = isString( 'beep' );
-* // returns true
-*
-* bool = isString( new String( 'beep' ) );
-* // returns false
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var isString = require( './generic.js' );
-var isPrimitive = require( './primitive.js' );
-var isObject = require( './object.js' );
-
-
-// MAIN //
-
-setReadOnly( isString, 'isPrimitive', isPrimitive );
-setReadOnly( isString, 'isObject', isObject );
-
-
-// EXPORTS //
-
-module.exports = isString;
-
-},{"./generic.js":29,"./object.js":31,"./primitive.js":32,"@stdlib/utils/define-read-only-property":197}],31:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
-var nativeClass = require( '@stdlib/utils/native-class' );
-var test = require( './try2valueof.js' );
-
-
-// MAIN //
-
-/**
-* Tests if a value is a string object.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a string object
-*
-* @example
-* var bool = isString( new String( 'beep' ) );
-* // returns true
-*
-* @example
-* var bool = isString( 'beep' );
-* // returns false
-*/
-function isString( value ) {
-	if ( typeof value === 'object' ) {
-		if ( hasToStringTag ) {
-			return test( value );
-		}
-		return ( nativeClass( value ) === '[object String]' );
-	}
-	return false;
-} // end FUNCTION isString()
-
-
-// EXPORTS //
-
-module.exports = isString;
-
-},{"./try2valueof.js":33,"@stdlib/utils/detect-tostringtag-support":201,"@stdlib/utils/native-class":202}],32:[function(require,module,exports){
-'use strict';
-
-/**
-* Tests if a value is a string primitive.
-*
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a value is a string primitive
-*
-* @example
-* var bool = isString( 'beep' );
-* // returns true
-*
-* @example
-* var bool = isString( new String( 'beep' ) );
-* // returns false
-*/
-function isString( value ) {
-	return ( typeof value === 'string' );
-} // end FUNCTION isString()
-
-
-// EXPORTS //
-
-module.exports = isString;
-
-},{}],33:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
-
-
-// MAIN //
-
-/**
-* Attempts to extract a string value.
-*
-* @private
-* @param {*} value - value to test
-* @returns {boolean} boolean indicating if a string can be extracted
-*/
-function test( value ) {
-	try {
-		valueOf.call( value );
-		return true;
-	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return false;
-	}
-} // end FUNCTION test()
-
-
-// EXPORTS //
-
-module.exports = test;
-
-},{"./valueof.js":34}],34:[function(require,module,exports){
-'use strict';
-
-// eslint-disable-next-line no-redeclare
-var valueOf = String.prototype.valueOf; // non-generic
-
-
-// EXPORTS //
-
-module.exports = valueOf;
-
-},{}],35:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1368,6 +478,7 @@ function arrayfcn( predicate ) {
 		throw new TypeError( 'invalid input argument. Must provide a function. Value: `' + predicate + '`.' );
 	}
 	return every;
+
 	/**
 	* Tests if every element in an array passes a test condition.
 	*
@@ -1391,15 +502,15 @@ function arrayfcn( predicate ) {
 			}
 		}
 		return true;
-	} // end FUNCTION every()
-} // end FUNCTION arrayfcn()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":3}],36:[function(require,module,exports){
+},{"@stdlib/assert/is-array":3}],12:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1432,81 +543,168 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":35}],37:[function(require,module,exports){
+},{"./arrayfcn.js":11}],13:[function(require,module,exports){
 'use strict';
 
 /**
-* Test if a finite numeric value is an even number.
+* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
 *
-* @module @stdlib/math/base/assert/is-even
+* @module @stdlib/constants/math/float64-eps
+* @type {number}
 *
 * @example
-* var isEven = require( '@stdlib/math/base/assert/is-even' );
-*
-* var bool = isEven( 5.0 );
-* // returns false
-*
-* bool = isEven( -2.0 );
-* // returns true
-*
-* bool = isEven( 0.0 );
-* // returns true
-*
-* bool = isEven( NaN );
-* // returns false
+* var FLOAT64_EPSILON = require( '@stdlib/constants/math/float64-eps' );
+* // returns 2.220446049250313e-16
 */
-
-// MODULES //
-
-var isEven = require( './is_even.js' );
-
-
-// EXPORTS //
-
-module.exports = isEven;
-
-},{"./is_even.js":38}],38:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isInteger = require( '@stdlib/math/base/assert/is-integer' );
 
 
 // MAIN //
 
 /**
-* Tests if a finite numeric value is an even number.
+* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
 *
-* @param {number} x - value to test
-* @returns {boolean} boolean indicating whether the value is an even number
+* ## Notes
 *
-* @example
-* var bool = isEven( 5.0 );
-* // returns false
+* The difference is
 *
-* @example
-* var bool = isEven( -2.0 );
-* // returns true
+* ```tex
+* \frac{1}{2^{52}}
+* ```
 *
-* @example
-* var bool = isEven( 0.0 );
-* // returns true
-*
-* @example
-* var bool = isEven( NaN );
-* // returns false
+* @constant
+* @type {number}
+* @default 2.220446049250313e-16
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
 */
-function isEven( x ) {
-	return isInteger( x/2.0 );
-} // end FUNCTION isEven()
+var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
 
 
 // EXPORTS //
 
-module.exports = isEven;
+module.exports = FLOAT64_EPSILON;
 
-},{"@stdlib/math/base/assert/is-integer":41}],39:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum double-precision floating-point number.
+*
+* @module @stdlib/constants/math/float64-max
+* @type {number}
+*
+* @example
+* var FLOAT64_MAX = require( '@stdlib/constants/math/float64-max' );
+* // returns 1.7976931348623157e+308
+*/
+
+
+// MAIN //
+
+/**
+* Maximum double-precision floating-point number.
+*
+* ## Notes
+*
+* The maximum is given by
+*
+* ```tex
+* 2^{1023} (2 - 2^{-52})
+* ```
+*
+* @constant
+* @type {number}
+* @default 1.7976931348623157e+308
+* @see [IEEE 754]{@link http://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_MAX = 1.7976931348623157e+308;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_MAX;
+
+},{}],15:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NINF;
+
+},{}],16:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_PINF;
+
+},{}],17:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1517,10 +715,10 @@ module.exports = isEven;
 * @example
 * var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 *
-* var bool = isInfinite( Number.POSITIVE_INFINITY );
+* var bool = isInfinite( Infinity );
 * // returns true
 *
-* bool = isInfinite( Number.NEGATIVE_INFINITY );
+* bool = isInfinite( -Infinity );
 * // returns true
 *
 * bool = isInfinite( 5.0 );
@@ -1539,13 +737,13 @@ var isInfinite = require( './is_infinite.js' );
 
 module.exports = isInfinite;
 
-},{"./is_infinite.js":40}],40:[function(require,module,exports){
+},{"./is_infinite.js":18}],18:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 
 
 // MAIN //
@@ -1557,11 +755,11 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 * @returns {boolean} boolean indicating whether the value is infinite
 *
 * @example
-* var bool = isInfinite( Number.POSITIVE_INFINITY );
+* var bool = isInfinite( Infinity );
 * // returns true
 *
 * @example
-* var bool = isInfinite( Number.NEGATIVE_INFINITY );
+* var bool = isInfinite( -Infinity );
 * // returns true
 *
 * @example
@@ -1574,74 +772,14 @@ var NINF = require( '@stdlib/math/constants/float64-ninf' );
 */
 function isInfinite( x ) {
 	return (x === PINF || x === NINF);
-} // end FUNCTION isInfinite()
+}
 
 
 // EXPORTS //
 
 module.exports = isInfinite;
 
-},{"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185}],41:[function(require,module,exports){
-'use strict';
-
-/**
-* Test if a finite double-precision floating-point number is an integer.
-*
-* @module @stdlib/math/base/assert/is-integer
-*
-* @example
-* var isInteger = require( '@stdlib/math/base/assert/is-integer' );
-*
-* var bool = isInteger( 1.0 );
-* // returns true
-*
-* bool = isInteger( 3.14 );
-* // returns false
-*/
-
-// MODULES //
-
-var isInteger = require( './is_integer.js' );
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"./is_integer.js":42}],42:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// MAIN //
-
-/**
-* Tests if a finite double-precision floating-point number is an integer.
-*
-* @param {number} x - value to test
-* @returns {boolean} boolean indicating whether the value is an integer
-*
-* @example
-* var bool = isInteger( 1.0 );
-* // returns true
-*
-* @example
-* var bool = isInteger( 3.14 );
-* // returns false
-*/
-function isInteger( x ) {
-	return (floor(x) === x);
-} // end FUNCTION isInteger()
-
-
-// EXPORTS //
-
-module.exports = isInteger;
-
-},{"@stdlib/math/base/special/floor":56}],43:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-ninf":15,"@stdlib/constants/math/float64-pinf":16}],19:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1668,7 +806,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":44}],44:[function(require,module,exports){
+},{"./is_nan.js":20}],20:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -1688,153 +826,15 @@ module.exports = isnan;
 * // returns false
 */
 function isnan( x ) {
-	return (x !== x);
-} // end FUNCTION isnan()
+	return ( x !== x );
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{}],45:[function(require,module,exports){
-'use strict';
-
-/**
-* Test if a numeric value is negative zero.
-*
-* @module @stdlib/math/base/assert/is-negative-zero
-*
-* @example
-* var isNegativeZero = require( '@stdlib/math/base/assert/is-negative-zero' );
-*
-* var bool = isNegativeZero( -0.0 );
-* // returns true
-*
-* bool = isNegativeZero( 0.0 );
-* // returns false
-*/
-
-// MODULES //
-
-var isNegativeZero = require( './is_negative_zero.js' );
-
-
-// EXPORTS //
-
-module.exports = isNegativeZero;
-
-},{"./is_negative_zero.js":46}],46:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-
-
-// MAIN //
-
-/**
-* Tests if a numeric value is negative zero.
-*
-* @param {number} x - value to test
-* @returns {boolean} boolean indicating whether the value is negative zero
-*
-* @example
-* var bool = isNegativeZero( -0.0 );
-* // returns true
-*
-* @example
-* var bool = isNegativeZero( 0.0 );
-* // returns false
-*/
-function isNegativeZero( x ) {
-	return (x === 0.0 && 1.0/x === NINF);
-} // end FUNCTION isNegativeZero()
-
-
-// EXPORTS //
-
-module.exports = isNegativeZero;
-
-},{"@stdlib/math/constants/float64-ninf":184}],47:[function(require,module,exports){
-'use strict';
-
-/**
-* Test if a finite numeric value is an odd number.
-*
-* @module @stdlib/math/base/assert/is-odd
-*
-* @example
-* var isOdd = require( '@stdlib/math/base/assert/is-odd' );
-*
-* var bool = isOdd( 5.0 );
-* // returns true
-*
-* bool = isOdd( -2.0 );
-* // returns false
-*
-* bool = isOdd( 0.0 );
-* // returns false
-*
-* bool = isOdd( NaN );
-* // returns false
-*/
-
-// MODULES //
-
-var isOdd = require( './is_odd.js' );
-
-
-// EXPORTS //
-
-module.exports = isOdd;
-
-},{"./is_odd.js":48}],48:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isEven = require( '@stdlib/math/base/assert/is-even' );
-
-
-// MAIN //
-
-/**
-* Tests if a finite numeric value is an odd number.
-*
-* @param {number} x - value to test
-* @returns {boolean} boolean indicating whether the value is an odd number
-*
-* @example
-* var bool = isOdd( 5.0 );
-* // returns true
-*
-* @example
-* var bool = isOdd( -2.0 );
-* // returns false
-*
-* @example
-* var bool = isOdd( 0.0 );
-* // returns false
-*
-* @example
-* var bool = isOdd( NaN );
-* // returns false
-*/
-function isOdd( x ) {
-	// Check sign to prevent overflow...
-	if ( x > 0.0 ) {
-		return isEven( x-1.0 );
-	}
-	return isEven( x+1.0 );
-} // end FUNCTION isOdd()
-
-
-// EXPORTS //
-
-module.exports = isOdd;
-
-},{"@stdlib/math/base/assert/is-even":37}],49:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1871,14 +871,14 @@ function abs( x ) {
 		return 0.0; // handle negative zero
 	}
 	return x;
-} // end FUNCTION abs()
+}
 
 
 // EXPORTS //
 
 module.exports = abs;
 
-},{}],50:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1914,1739 +914,7 @@ var abs = require( './abs.js' );
 
 module.exports = abs;
 
-},{"./abs.js":49}],51:[function(require,module,exports){
-'use strict';
-
-// TODO: implementation (?)
-
-/**
-* Rounds a numeric value toward positive infinity.
-*
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = ceil( -4.2 );
-* // returns -4.0
-*
-* @example
-* var v = ceil( 9.99999 );
-* // returns 10.0
-*
-* @example
-* var v = ceil( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = ceil( NaN );
-* // returns NaN
-*/
-var ceil = Math.ceil;
-
-
-// EXPORTS //
-
-module.exports = ceil;
-
-},{}],52:[function(require,module,exports){
-'use strict';
-
-/**
-* Round a numeric value toward positive infinity.
-*
-* @module @stdlib/math/base/special/ceil
-*
-* @example
-* var ceil = require( '@stdlib/math/base/special/ceil' );
-*
-* var v = ceil( -4.2 );
-* // returns -4.0
-*
-* v = ceil( 9.99999 );
-* // returns 10.0
-*
-* v = ceil( 0.0 );
-* // returns 0.0
-*
-* v = ceil( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var ceil = require( './ceil.js' );
-
-
-// EXPORTS //
-
-module.exports = ceil;
-
-},{"./ceil.js":51}],53:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
-
-
-// VARIABLES //
-
-// 10000000000000000000000000000000 => 2147483648 => 0x80000000
-var SIGN_MASK = 0x80000000;
-
-// 01111111111111111111111111111111 => 2147483647 => 0x7fffffff
-var MAGNITUDE_MASK = 0x7fffffff;
-
-
-// MAIN //
-
-/**
-* Returns a double-precision floating-point number with the magnitude of `x` and the sign of `y`.
-*
-* @param {number} x - number from which to derive a magnitude
-* @param {number} y - number from which to derive a sign
-* @returns {number} a double-precision floating-point number
-*
-* @example
-* var z = copysign( -3.14, 10.0 );
-* // returns 3.14
-*
-* @example
-* var z = copysign( 3.14, -1.0 );
-* // returns -3.14
-*
-* @example
-* var z = copysign( 1.0, -0.0 );
-* // returns -1.0
-*
-* @example
-* var z = copysign( -3.14, -0.0 );
-* // returns -3.14
-*
-* @example
-* var z = copysign( -0.0, 1.0 );
-* // returns 0.0
-*/
-function copysign( x, y ) {
-	var hx;
-	var hy;
-
-	// Split `x` into higher and lower order words:
-	x = toWords( x );
-	hx = x[ 0 ];
-
-	// Turn off the sign bit of `x`:
-	hx &= MAGNITUDE_MASK;
-
-	// Extract the higher order word from `y`:
-	hy = getHighWord( y );
-
-	// Leave only the sign bit of `y` turned on:
-	hy &= SIGN_MASK;
-
-	// Copy the sign bit of `y` to `x`:
-	hx |= hy;
-
-	// Return a new value having the same magnitude as `x`, but with the sign of `y`:
-	return fromWords( hx, x[ 1 ] );
-} // end FUNCTION copysign()
-
-
-// EXPORTS //
-
-module.exports = copysign;
-
-},{"@stdlib/math/base/utils/float64-from-words":104,"@stdlib/math/base/utils/float64-get-high-word":108,"@stdlib/math/base/utils/float64-to-words":132}],54:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a double-precision floating-point number with the magnitude of `x` and the sign of `y`.
-*
-* @module @stdlib/math/base/special/copysign
-*
-* @example
-* var copysign = require( '@stdlib/math/base/special/copysign' );
-*
-* var z = copysign( -3.14, 10.0 );
-* // returns 3.14
-*
-* z = copysign( 3.14, -1.0 );
-* // returns -3.14
-*
-* z = copysign( 1.0, -0.0 );
-* // returns -1.0
-*
-* z = copysign( -3.14, -0.0 );
-* // returns -3.14
-*
-* z = copysign( -0.0, 1.0 );
-* // returns 0.0
-*/
-
-// MODULES //
-
-var copysign = require( './copysign.js' );
-
-
-// EXPORTS //
-
-module.exports = copysign;
-
-},{"./copysign.js":53}],55:[function(require,module,exports){
-'use strict';
-
-// TODO: implementation (?)
-
-/**
-* Rounds a numeric value toward negative infinity.
-*
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* @example
-* var v = floor( 9.99999 );
-* // returns 9.0
-*
-* @example
-* var v = floor( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = floor( NaN );
-* // returns NaN
-*/
-var floor = Math.floor;
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{}],56:[function(require,module,exports){
-'use strict';
-
-/**
-* Round a numeric value toward negative infinity.
-*
-* @module @stdlib/math/base/special/floor
-*
-* @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* v = floor( 9.99999 );
-* // returns 9.0
-*
-* v = floor( 0.0 );
-* // returns 0.0
-*
-* v = floor( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var floor = require( './floor.js' );
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{"./floor.js":55}],57:[function(require,module,exports){
-'use strict';
-
-/**
-* Multiply a double-precision floating-point number by an integer power of two.
-*
-* @module @stdlib/math/base/special/ldexp
-*
-* @example
-* var ldexp = require( '@stdlib/math/base/special/ldexp' );
-*
-* var x = ldexp( 0.5, 3 ); // => 0.5 * 2^3 = 0.5 * 8
-* // returns 4.0
-*
-* x = ldexp( 4.0, -2 ); // => 4 * 2^(-2) = 4 * (1/4)
-* // returns 1.0
-*
-* x = ldexp( 0.0, 20 );
-* // returns 0.0
-*
-* x = ldexp( -0.0, 39 );
-* // returns -0.0
-*
-* x = ldexp( NaN, -101 );
-* // returns NaN
-*
-* x = ldexp( Number.POSITIVE_INFINITY, 11 );
-* // returns Number.POSITIVE_INFINITY
-*
-* x = ldexp( Number.NEGATIVE_INFINITY, -118 );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-// MODULES //
-
-var ldexp = require( './ldexp.js' );
-
-
-// EXPORTS //
-
-module.exports = ldexp;
-
-},{"./ldexp.js":58}],58:[function(require,module,exports){
-'use strict';
-
-// NOTES //
-
-/*
-* => ldexp: load exponent (see [The Open Group]{@link http://pubs.opengroup.org/onlinepubs/9699919799/functions/ldexp.html} and [cppreference]{@link http://en.cppreference.com/w/c/numeric/math/ldexp}).
-*/
-
-
-// MODULES //
-
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-var MAX_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent' );
-var MAX_SUBNORMAL_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent-subnormal' );
-var MIN_SUBNORMAL_EXPONENT = require( '@stdlib/math/constants/float64-min-base2-exponent-subnormal' );
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
-var copysign = require( '@stdlib/math/base/special/copysign' );
-var normalize = require( '@stdlib/math/base/utils/float64-normalize' );
-var floatExp = require( '@stdlib/math/base/utils/float64-exponent' );
-var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
-
-
-// VARIABLES //
-
-// 1/(1<<52) = 1/(2**52) = 1/4503599627370496
-var TWO52_INV = 2.220446049250313e-16;
-
-// Exponent all 0s: 1 00000000000 11111111111111111111
-var CLEAR_EXP_MASK = 0x800fffff; // 2148532223
-
-
-// MAIN //
-
-/**
-* Multiplies a double-precision floating-point number by an integer power of two.
-*
-* @param {number} frac - fraction
-* @param {integer} exp - exponent
-* @returns {number} double-precision floating-point number
-*
-* @example
-* var x = ldexp( 0.5, 3 ); // => 0.5 * 2^3 = 0.5 * 8
-* // returns 4.0
-*
-* @example
-* var x = ldexp( 4.0, -2 ); // => 4 * 2^(-2) = 4 * (1/4)
-* // returns 1.0
-*
-* @example
-* var x = ldexp( 0.0, 20 );
-* // returns 0.0
-*
-* @example
-* var x = ldexp( -0.0, 39 );
-* // returns -0.0
-*
-* @example
-* var x = ldexp( NaN, -101 );
-* // returns NaN
-*
-* @example
-* var x = ldexp( Number.POSITIVE_INFINITY, 11 );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var x = ldexp( Number.NEGATIVE_INFINITY, -118 );
-* // returns Number.NEGATIVE_INFINITY
-*/
-function ldexp( frac, exp ) {
-	var high;
-	var tmp;
-	var w;
-	var m;
-	if (
-		frac === 0.0 || // handles +-0
-		isnan( frac ) ||
-		isInfinite( frac )
-	) {
-		return frac;
-	}
-	// Normalize the input fraction:
-	tmp = normalize( frac );
-	frac = tmp[ 0 ];
-	exp += tmp[ 1 ];
-
-	// Extract the exponent from `frac` and add it to `exp`:
-	exp += floatExp( frac );
-
-	// Check for underflow/overflow...
-	if ( exp < MIN_SUBNORMAL_EXPONENT ) {
-		return copysign( 0.0, frac );
-	}
-	if ( exp > MAX_EXPONENT ) {
-		if ( frac < 0.0 ) {
-			return NINF;
-		}
-		return PINF;
-	}
-	// Check for a subnormal and scale accordingly to retain precision...
-	if ( exp <= MAX_SUBNORMAL_EXPONENT ) {
-		exp += 52;
-		m = TWO52_INV;
-	} else {
-		m = 1.0;
-	}
-	// Split the fraction into higher and lower order words:
-	w = toWords( frac );
-	high = w[ 0 ];
-
-	// Clear the exponent bits within the higher order word:
-	high &= CLEAR_EXP_MASK;
-
-	// Set the exponent bits to the new exponent:
-	high |= ((exp+BIAS) << 20);
-
-	// Create a new floating-point number:
-	return m * fromWords( high, w[ 1 ] );
-} // end FUNCTION ldexp()
-
-
-// EXPORTS //
-
-module.exports = ldexp;
-
-},{"@stdlib/math/base/assert/is-infinite":39,"@stdlib/math/base/assert/is-nan":43,"@stdlib/math/base/special/copysign":54,"@stdlib/math/base/utils/float64-exponent":99,"@stdlib/math/base/utils/float64-from-words":104,"@stdlib/math/base/utils/float64-normalize":112,"@stdlib/math/base/utils/float64-to-words":132,"@stdlib/math/constants/float64-exponent-bias":176,"@stdlib/math/constants/float64-max-base2-exponent":180,"@stdlib/math/constants/float64-max-base2-exponent-subnormal":179,"@stdlib/math/constants/float64-min-base2-exponent-subnormal":183,"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185}],59:[function(require,module,exports){
-'use strict';
-
-/**
-* Evaluate the exponential function.
-*
-* @module @stdlib/math/base/special/pow
-*
-* @example
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var v = pow( 2.0, 3.0 );
-* // returns 8.0
-*
-* v = pow( 4.0, 0.5 );
-* // returns 2.0
-*
-* v = pow( 100.0, 0.0 );
-* // returns 1.0
-*
-* v = pow( Math.PI, 5.0 );
-* // returns ~306.0197
-*
-* v = pow( Math.PI, -0.2 );
-* // returns ~0.7954
-*
-* v = pow( NaN, 3.0 );
-* // returns NaN
-*
-* v = pow( 5.0, NaN );
-* // returns NaN
-*
-* v = pow( NaN, NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var pow = require( './pow.js' );
-
-
-// EXPORTS //
-
-module.exports = pow;
-
-},{"./pow.js":62}],60:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var setLowWord = require( '@stdlib/math/base/utils/float64-set-low-word' );
-var setHighWord = require( '@stdlib/math/base/utils/float64-set-high-word' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-
-
-// VARIABLES //
-
-// 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
-var HIGH_SIGNIFICAND_MASK = 0x000fffff;
-
-// 0x00100000 = 1048576 => 0 00000000001 00000000000000000000 => biased exponent: 1 = -1022+1023 => 2^-1022
-var HIGH_MIN_NORMAL_EXP = 0x00100000;
-
-// 0x3ff00000 = 1072693248 => 0 01111111111 00000000000000000000 => biased exponent: 1023 = 0+1023 => 2^0 = 1
-var HIGH_BIASED_EXP_0 = 0x3ff00000;
-
-// 0x20000000 = 536870912 => 0 01000000000 00000000000000000000 => biased exponent: 512 = -511+1023
-var HIGH_BIASED_EXP_NEG_512 = 0x20000000;
-
-// 0x00080000 = 524288 => 0 00000000000 10000000000000000000
-var HIGH_SIGNIFICAND_HALF = 0x00080000;
-
-// TODO: consider making an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20;
-
-var TWO53 = 9007199254740992.0;	// 0x43400000, 0x00000000
-
-// 2/(3*LN2)
-var CP = 9.61796693925975554329e-01; // 0x3FEEC709, 0xDC3A03FD
-
-// (float)CP
-var CP_HI = 9.61796700954437255859e-01; // 0x3FEEC709, 0xE0000000
-
-// Low: CP_HI
-var CP_LO = -7.02846165095275826516e-09; // 0xBE3E2FE0, 0x145B01F5
-
-var BP = [
-	1.0,
-	1.5
-];
-var DP_HI = [
-	0.0,
-	5.84962487220764160156e-01 // 0x3FE2B803, 0x40000000
-];
-var DP_LO = [
-	0.0,
-	1.35003920212974897128e-08 // 0x3E4CFDEB, 0x43CFD006
-];
-
-// Polynomial coefficients...
-var L = [
-	5.99999999999994648725e-01, // 0x3FE33333, 0x33333303
-	4.28571428578550184252e-01, // 0x3FDB6DB6, 0xDB6FABFF
-	3.33333329818377432918e-01, // 0x3FD55555, 0x518F264D
-	2.72728123808534006489e-01, // 0x3FD17460, 0xA91D4101
-	2.30660745775561754067e-01, // 0x3FCD864A, 0x93C9DB65
-	2.06975017800338417784e-01  // 0x3FCA7E28, 0x4A454EEF
-];
-
-
-// FUNCTIONS //
-
-// Compile a function for evaluating a polynomial based on the above coefficients...
-var polyvalL = evalpoly( L );
-
-
-// MAIN //
-
-/**
-* Computes \\(\operatorname{log2}(ax)\\).
-*
-* @private
-* @param {number} ax - absolute value of `x`
-* @param {number} ahx - high word of `ax`
-* @returns {NumberArray} tuple comprised of high and low parts
-*
-* @example
-* var t = log2ax( 9.0, 1075970048 ); // => [ t1, t2 ]
-* // returns [ 3.169923782348633, 0.0000012190936795504075 ]
-*/
-function log2ax( ax, ahx ) {
-	var tmp;
-	var ss;  // `hs + ls`
-	var s2;  // `ss` squared
-	var hs;
-	var ls;
-	var ht;
-	var lt;
-	var bp;  // `BP` constant
-	var dp;  // `DP` constant
-	var hp;
-	var lp;
-	var hz;
-	var lz;
-	var t1;
-	var t2;
-	var t;
-	var r;
-	var u;
-	var v;
-	var n;
-	var j;
-	var k;
-
-	n = 0;
-
-	// Check if `x` is subnormal...
-	if ( ahx < HIGH_MIN_NORMAL_EXP ) {
-		ax *= TWO53;
-		n -= 53;
-		ahx = getHighWord( ax );
-	}
-	// Extract the unbiased exponent of `x`:
-	n += (ahx >> HIGH_NUM_SIGNIFICAND_BITS) - BIAS;
-
-	// Isolate the significand bits of `x`:
-	j = (ahx & HIGH_SIGNIFICAND_MASK);
-
-	// Normalize `ahx` by setting the (biased) exponent to `1023`:
-	ahx = (j | HIGH_BIASED_EXP_0);
-
-	// Determine the interval of `|x|` by comparing significand bits...
-
-	// |x| < sqrt(3/2)
-	if ( j <= 0x3988E ) { // 0 00000000000 00111001100010001110
-		k = 0;
-	}
-	// |x| < sqrt(3)
-	else if ( j < 0xBB67A ) { // 0 00000000000 10111011011001111010
-		k = 1;
-	}
-	// |x| >= sqrt(3)
-	else {
-		k = 0;
-		n += 1;
-		ahx -= HIGH_MIN_NORMAL_EXP;
-	}
-	// Load the normalized high word into `|x|`:
-	ax = setHighWord( ax, ahx );
-
-	// Compute `ss = hs + ls = (x-1)/(x+1)` or `(x-1.5)/(x+1.5)`:
-	bp = BP[ k ]; // BP[0] = 1.0, BP[1] = 1.5
-	u = ax - bp; // (x-1) || (x-1.5)
-	v = 1.0 / (ax + bp); // 1/(x+1) || 1/(x+1.5)
-	ss = u * v;
-	hs = setLowWord( ss, 0 ); // set all low word (less significant significand) bits to 0s
-
-	// Compute `ht = ax + bp` (via manipulation, i.e., bit flipping, of the high word):
-	tmp = ((ahx>>1) | HIGH_BIASED_EXP_NEG_512) + HIGH_SIGNIFICAND_HALF;
-	tmp += (k << 18); // `(k<<18)` can be considered the word equivalent of `1.0` or `1.5`
-	ht = setHighWord( 0.0, tmp );
-	lt = ax - (ht - bp);
-	ls = v * ( ( u - (hs*ht) ) - ( hs*lt ) );
-
-	// Compute `log(ax)`...
-
-	s2 = ss * ss;
-	r = s2 * s2 * polyvalL( s2 );
-	r += ls * (hs + ss);
-	s2 = hs * hs;
-	ht = 3.0 + s2 + r;
-	ht = setLowWord( ht, 0 );
-	lt = r - ((ht-3.0) - s2);
-
-	// u+v = ss*(1+...):
-	u = hs * ht;
-	v = ( ls*ht ) + ( lt*ss );
-
-	// 2/(3LN2) * (ss+...):
-	hp = u + v;
-	hp = setLowWord( hp, 0 );
-	lp = v - (hp - u);
-	hz = CP_HI * hp; // CP_HI+CP_LO = 2/(3*LN2)
-	lz = ( CP_LO*hp ) + ( lp*CP ) + DP_LO[ k ];
-
-	// log2(ax) = (ss+...)*2/(3*LN2) = n + dp + hz + lz
-	dp = DP_HI[ k ];
-	t = n;
-	t1 = ((hz+lz) + dp) + t; // log2(ax)
-	t1 = setLowWord( t1, 0 );
-	t2 = lz - (((t1-t) - dp) - hz);
-	return [ t1, t2 ];
-} // FUNCTION log2ax()
-
-
-// EXPORTS //
-
-module.exports = log2ax;
-
-},{"@stdlib/math/base/tools/evalpoly":70,"@stdlib/math/base/utils/float64-get-high-word":108,"@stdlib/math/base/utils/float64-set-high-word":115,"@stdlib/math/base/utils/float64-set-low-word":117,"@stdlib/math/constants/float64-exponent-bias":176}],61:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
-var setLowWord = require( '@stdlib/math/base/utils/float64-set-low-word' );
-
-
-// VARIABLES //
-
-// 1/LN2
-var INV_LN2 = 1.44269504088896338700e+00; // 0x3FF71547, 0x652B82FE
-
-// High (24 bits): 1/LN2
-var INV_LN2_HI = 1.44269502162933349609e+00; // 0x3FF71547, 0x60000000
-
-// Low: 1/LN2
-var INV_LN2_LO = 1.92596299112661746887e-08; // 0x3E54AE0B, 0xF85DDF44
-
-// Polynomial coefficients for `x - x^2/2 + x^3/3 - x^4/4`...
-var W = [
-	0.5,
-	-0.3333333333333333333333,
-	0.25
-];
-
-
-// FUNCTIONS //
-
-// Compile a function for evaluating a polynomial based on the above coefficients...
-var polyvalW = evalpoly( W );
-
-
-// MAIN //
-
-/**
-* Computes \\(\operatorname{log}(x)\\) assuming \\(|1-x|\\) is small and using the approximation \\(x - x^2/2 + x^3/3 - x^4/4\\).
-*
-* @private
-* @param {number} ax - absolute value of `x`
-* @returns {NumberArray} tuple comprised of high and low parts
-*
-* @example
-* var t = logx( 9.0 ); // => [ t1, t2 ]
-* // returns [ -1265.7236328125, -0.0008163940840404393 ]
-*/
-function logx( ax ) {
-	var t2;
-	var t1;
-	var t;
-	var w;
-	var u;
-	var v;
-
-	t = ax - 1.0; // `t` has `20` trailing zeros
-	w = t * t * polyvalW( t );
-	u = INV_LN2_HI * t; // `INV_LN2_HI` has `21` significant bits
-	v = ( t*INV_LN2_LO ) - ( w*INV_LN2 );
-	t1 = u + v;
-	t1 = setLowWord( t1, 0 );
-	t2 = v - (t1 - u);
-	return [ t1, t2 ];
-} // end FUNCTION logx()
-
-
-// EXPORTS //
-
-module.exports = logx;
-
-},{"@stdlib/math/base/tools/evalpoly":70,"@stdlib/math/base/utils/float64-set-low-word":117}],62:[function(require,module,exports){
-'use strict';
-
-/*
-* The following copyright, license, and long comment were part of the original implementation available as part of [FreeBSD]{@link https://svnweb.freebsd.org/base/release/9.3.0/lib/msun/src/s_pow.c?view=markup}.
-*
-* The implementation follows the original, but has been modified for JavaScript.
-*/
-
-/*
-* ====================================================
-* Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
-*
-* Developed at SunPro, a Sun Microsystems, Inc. business.
-* Permission to use, copy, modify, and distribute this
-* software is freely granted, provided that this notice
-* is preserved.
-* ====================================================
-*/
-
-// MODULES //
-
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var isOdd = require( '@stdlib/math/base/assert/is-odd' );
-var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
-var isInteger = require( '@stdlib/math/base/assert/is-integer' );
-var sqrt = require( '@stdlib/math/base/special/sqrt' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var getLowWord = require( '@stdlib/math/base/utils/float64-get-low-word' );
-var setLowWord = require( '@stdlib/math/base/utils/float64-set-low-word' );
-var uint32ToInt32 = require( '@stdlib/math/base/utils/uint32-to-int32' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var xIsZero = require( './x_is_zero.js' );
-var yIsHuge = require( './y_is_huge.js' );
-var yIsInfinite = require( './y_is_infinite.js' );
-var log2ax = require( './log2ax.js' );
-var logx = require( './logx.js' );
-var pow2 = require( './pow2.js' );
-
-
-// VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff;
-
-// 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
-var HIGH_MAX_NEAR_UNITY = 0x3fefffff;
-
-// 0x41e00000 = 1105199104 => 0 10000011110 00000000000000000000 => biased exponent: 1054 = 31+1023 => 2^31
-var HIGH_BIASED_EXP_31 = 0x41e00000;
-
-// 0x43f00000 = 1139802112 => 0 10000111111 00000000000000000000 => biased exponent: 1087 = 64+1023 => 2^64
-var HIGH_BIASED_EXP_64 = 0x43f00000;
-
-// 0x40900000 = 1083179008 => 0 10000001001 00000000000000000000 => biased exponent: 1033 = 10+1023 => 2^10 = 1024
-var HIGH_BIASED_EXP_10 = 0x40900000;
-
-// 0x3ff00000 = 1072693248 => 0 01111111111 00000000000000000000 => biased exponent: 1023 = 0+1023 => 2^0 = 1
-var HIGH_BIASED_EXP_0 = 0x3ff00000;
-
-// 0x4090cc00 = 1083231232 => 0 10000001001 00001100110000000000
-var HIGH_1075 = 0x4090cc00;
-
-// 0xc090cc00 = 3230714880 => 1 10000001001 00001100110000000000
-var HIGH_NEG_1075 = 0xc090cc00;
-
-var HIGH_NUM_NONSIGN_BITS = 31;
-
-var HUGE = 1.0e300;
-var TINY = 1.0e-300;
-
-// -(1024-log2(ovfl+.5ulp))
-var OVT = 8.0085662595372944372e-17;
-
-
-// MAIN //
-
-/**
-* Evaluates the exponential function.
-*
-* #### Method
-*
-* 1. Let \\(x = 2^n (1+f)\\).
-*
-* 2. Compute \\(\operatorname{log2}(x)\\) as
-*
-*   ``` tex
-*   \operatorname{log2}(x) = w_1 + w_2
-*   ```
-*
-*   where \\(w_1\\) has \\(53 - 24 = 29\\) bit trailing zeros.
-*
-* 3. Compute
-*
-*   ``` tex
-*   y \cdot \operatorname{log2}(x) = n + y^\prime
-*   ```
-*
-*   by simulating multi-precision arithmetic, where \\(|y^\prime| \leq 0.5\\).
-*
-* 4. Return
-*
-*   ``` tex
-*   x^y = 2^n e^{y^\prime \cdot \mathrm{log2}}
-*   ```
-*
-* #### Special Cases
-*
-* ``` tex
-* \begin{align*}
-* x^{\mathrm{NaN}} &= \mathrm{NaN} & \\
-* (\mathrm{NaN})^y &= \mathrm{NaN} & \\
-* 1^y &= 1 & \\
-* x^0 &= 1 & \\
-* x^1 &= x & \\
-* (\pm 0)^\infty &= +0 & \\
-* (\pm 0)^{-\infty} &= +\infty & \\
-* (+0)^y &= +0 & \mathrm{if}\ y > 0 \\
-* (+0)^y &= +\infty & \mathrm{if}\ y < 0 \\
-* (-0)^y &= -\infty & \mathrm{if}\ y\ \mathrm{is\ an\ odd\ integer\ and}\ y < 0 \\
-* (-0)^y &= +\infty & \mathrm{if}\ y\ \mathrm{is\ not\ an\ odd\ integer\ and}\ y < 0 \\
-* (-0)^y &= -0 & \mathrm{if}\ y\ \mathrm{is\ an\ odd\ integer\ and}\ y > 0 \\
-* (-0)^y &= +0 & \mathrm{if}\ y\ \mathrm{is\ not\ an\ odd\ integer\ and}\ y > 0 \\
-* (-1)^{\pm\infty} &= \mathrm{NaN} & \\
-* x^{\infty} &= +\infty & |x| > 1 \\
-* x^{\infty} &= +0 & |x| < 1 \\
-* x^{-\infty} &= +0 & |x| > 1 \\
-* x^{-\infty} &= +\infty & |x| < 1 \\
-* (-\infty)^y &= (-0)^y & \\
-* \infty^y &= +0 & y < 0 \\
-* \infty^y &= +\infty & y > 0 \\
-* x^y &= \mathrm{NaN} & \mathrm{if}\ y\ \mathrm{is\ not\ a\ finite\ integer\ and}\ x < 0
-* \end{align*}
-* ```
-*
-*
-* #### Notes
-*
-* - \\(\operatorname{pow}(x,y)\\) returns \\(x^y\\) nearly rounded. In particular, \\(\operatorname{pow}(<\mathrm{integer}>,<\mathrm{integer}>)\\) __always__ returns the correct integer, provided the value is representable.
-* - The hexadecimal values shown in the source code are the intended values for used constants. Decimal values may be used, provided the compiler will accurately convert decimal to binary in order to produce the hexadecimal values.
-*
-*
-* @param {number} x - base
-* @param {number} y - exponent
-* @returns {number} function value
-*
-* @example
-* var v = pow( 2.0, 3.0 );
-* // returns 8.0
-*
-* @example
-* var v = pow( 4.0, 0.5 );
-* // returns 2.0
-*
-* @example
-* var v = pow( 100.0, 0.0 );
-* // returns 1.0
-*
-* @example
-* var v = pow( Math.PI, 5.0 );
-* // returns ~306.0197
-*
-* @example
-* var v = pow( Math.PI, -0.2 );
-* // returns ~0.7954
-*
-* @example
-* var v = pow( NaN, 3.0 );
-* // returns NaN
-*
-* @example
-* var v = pow( 5.0, NaN );
-* // returns NaN
-*
-* @example
-* var v = pow( NaN, NaN );
-* // returns NaN
-*/
-function pow( x, y ) {
-	var ahx; // absolute value high word `x`
-	var ahy; // absolute value high word `y`
-	var ax;  // absolute value `x`
-	var hx;  // high word `x`
-	var lx;  // low word `x`
-	var hy;  // high word `y`
-	var ly;  // low word `y`
-	var sx;  // sign `x`
-	var sy;  // sign `y`
-	var y1;
-	var hp;
-	var lp;
-	var w;
-	var t;
-	var z;   // y prime
-	var j;
-	var i;
-	if ( isnan( x ) || isnan( y ) ) {
-		return NaN;
-	}
-	// Split `y` into high and low words:
-	hy = getHighWord( y );
-	ly = getLowWord( y );
-
-	// Special cases `y`...
-	if ( ly === 0 ) {
-		if ( y === 0.0 ) {
-			return 1.0;
-		}
-		if ( y === 1.0 ) {
-			return x;
-		}
-		if ( y === -1.0 ) {
-			return 1.0 / x;
-		}
-		if ( y === 0.5 ) {
-			return sqrt( x );
-		}
-		if ( y === -0.5 ) {
-			return 1.0 / sqrt( x );
-		}
-		if ( y === 2.0 ) {
-			return x * x;
-		}
-		if ( y === 3.0 ) {
-			return x * x * x;
-		}
-		if ( y === 4.0 ) {
-			x *= x;
-			return x * x;
-		}
-		if ( isInfinite( y ) ) {
-			return yIsInfinite( x, y );
-		}
-	}
-	// Split `x` into high and low words:
-	hx = getHighWord( x );
-	lx = getLowWord( x );
-
-	// Special cases `x`...
-	if ( lx === 0 ) {
-		if ( hx === 0 ) {
-			return xIsZero( x, y );
-		}
-		if ( x === 1.0 ) {
-			return 1.0;
-		}
-		if (
-			x === -1.0 &&
-			isOdd( y )
-		) {
-			return -1.0;
-		}
-		if ( isInfinite( x ) ) {
-			if ( x === NINF ) {
-				// pow( 1/x, -y )
-				return pow( -0.0, -y );
-			}
-			if ( y < 0.0 ) {
-				return 0.0;
-			}
-			return PINF;
-		}
-	}
-	if (
-		x < 0.0 &&
-		isInteger( y ) === false
-	) {
-		// signal NaN...
-		return (x-x)/(x-x);
-	}
-	ax = abs( x );
-
-	// Remove the sign bits (i.e., get absolute values):
-	ahx = (hx & ABS_MASK);
-	ahy = (hy & ABS_MASK);
-
-	// Extract the sign bits:
-	sx = (hx >>> HIGH_NUM_NONSIGN_BITS);
-	sy = (hy >>> HIGH_NUM_NONSIGN_BITS);
-
-	// Determine the sign of the result...
-	if ( sx && isOdd( y ) ) {
-		sx = -1.0;
-	} else {
-		sx = 1.0;
-	}
-	// Case 1: `|y|` is huge...
-
-	// |y| > 2^31
-	if ( ahy > HIGH_BIASED_EXP_31 ) {
-		// `|y| > 2^64`, then must over- or underflow...
-		if ( ahy > HIGH_BIASED_EXP_64 ) {
-			return yIsHuge( x, y );
-		}
-		// Over- or underflow if `x` is not close to unity...
-
-		if ( ahx < HIGH_MAX_NEAR_UNITY ) {
-			// y < 0
-			if ( sy === 1 ) {
-				// signal overflow...
-				return sx * HUGE * HUGE;
-			}
-			// signal underflow...
-			return sx * TINY * TINY;
-		}
-		if ( ahx > HIGH_BIASED_EXP_0 ) {
-			// y > 0
-			if ( sy === 0 ) {
-				// signal overflow...
-				return sx * HUGE * HUGE;
-			}
-			// signal underflow...
-			return sx * TINY * TINY;
-		}
-		// At this point, `|1-x|` is tiny (`<= 2^-20`). Suffice to compute `log(x)` by `x - x^2/2 + x^3/3 - x^4/4`.
-		t = logx( ax );
-	}
-	// Case 2: `|y|` is not huge...
-	else {
-		t = log2ax( ax, ahx );
-	}
-	// Split `y` into `y1 + y2` and compute `(y1+y2) * (t1+t2)`...
-	y1 = setLowWord( y, 0 );
-	lp = ( (y-y1)*t[0] ) + ( y*t[1] );
-	hp = y1 * t[0];
-	z = lp + hp;
-
-	// Note: *can* be more performant to use `getHighWord` and `getLowWord` directly, but using `toWords` looks cleaner.
-	w = toWords( z );
-	j = uint32ToInt32( w[0] );
-	i = uint32ToInt32( w[1] );
-
-	// z >= 1024
-	if ( j >= HIGH_BIASED_EXP_10 ) {
-		// z > 1024
-		if ( ((j-HIGH_BIASED_EXP_10)|i) !== 0 ) {
-			// signal overflow...
-			return sx * HUGE * HUGE;
-		}
-		else if ( (lp+OVT) > (z-hp) ) {
-			// signal overflow...
-			return sx * HUGE * HUGE;
-		}
-	}
-	// z <= -1075
-	else if ( (j&ABS_MASK) >= HIGH_1075 ) {
-		// z < -1075
-		if ( ((j-HIGH_NEG_1075)|i) !== 0 ) {
-			// signal underflow...
-			return sx * TINY * TINY;
-		}
-		else if ( lp <= (z-hp) ) {
-			// signal underflow...
-			return sx * TINY * TINY;
-		}
-	}
-	// Compute `2^(hp+lp)`...
-	z = pow2( j, hp, lp );
-
-	return sx * z;
-} // end FUNCTION pow()
-
-
-// EXPORTS //
-
-module.exports = pow;
-
-},{"./log2ax.js":60,"./logx.js":61,"./pow2.js":63,"./x_is_zero.js":64,"./y_is_huge.js":65,"./y_is_infinite.js":66,"@stdlib/math/base/assert/is-infinite":39,"@stdlib/math/base/assert/is-integer":41,"@stdlib/math/base/assert/is-nan":43,"@stdlib/math/base/assert/is-odd":47,"@stdlib/math/base/special/abs":50,"@stdlib/math/base/special/sqrt":67,"@stdlib/math/base/utils/float64-get-high-word":108,"@stdlib/math/base/utils/float64-get-low-word":110,"@stdlib/math/base/utils/float64-set-low-word":117,"@stdlib/math/base/utils/float64-to-words":132,"@stdlib/math/base/utils/uint32-to-int32":164,"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185}],63:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var evalpoly = require( '@stdlib/math/base/tools/evalpoly' ).factory;
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var setHighWord = require( '@stdlib/math/base/utils/float64-set-high-word' );
-var setLowWord = require( '@stdlib/math/base/utils/float64-set-low-word' );
-var uint32ToInt32 = require( '@stdlib/math/base/utils/uint32-to-int32' );
-var ldexp = require( '@stdlib/math/base/special/ldexp' );
-var LN2 = require( '@stdlib/math/constants/float64-ln-two' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-
-
-// VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff;
-
-// 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
-var HIGH_SIGNIFICAND_MASK = 0x000fffff;
-
-// 0x00100000 = 1048576 => 0 00000000001 00000000000000000000 => biased exponent: 1 = -1022+1023 => 2^-1022
-var HIGH_MIN_NORMAL_EXP = 0x00100000;
-
-// 0x3fe00000 = 1071644672 => 0 01111111110 00000000000000000000 => biased exponent: 1022 = -1+1023 => 2^-1
-var HIGH_BIASED_EXP_NEG_1 = 0x3fe00000;
-
-// TODO: consider making into an external constant
-var HIGH_NUM_SIGNIFICAND_BITS = 20;
-
-// High: LN2
-var LN2_HI = 6.93147182464599609375e-01; // 0x3FE62E43, 0x00000000
-
-// Low: LN2
-var LN2_LO = -1.90465429995776804525e-09; // 0xBE205C61, 0x0CA86C39
-
-// Polynomial coefficients...
-var P = [
-	1.66666666666666019037e-01,  // 0x3FC55555, 0x5555553E
-	-2.77777777770155933842e-03, // 0xBF66C16C, 0x16BEBD93
-	6.61375632143793436117e-05,  // 0x3F11566A, 0xAF25DE2C
-	-1.65339022054652515390e-06, // 0xBEBBBD41, 0xC5D26BF1
-	4.13813679705723846039e-08   // 0x3E663769, 0x72BEA4D0
-];
-
-
-// FUNCTIONS //
-
-// Compile a function for evaluating a polynomial based on the above coefficients...
-var polyvalP = evalpoly( P );
-
-
-// MAIN //
-
-/**
-* Computes \\(2^{\mathrm{hp} + \mathrm{lp}\\).
-*
-* @private
-* @param {number} j - high word of `hp + lp`
-* @param {number} hp - first power summand
-* @param {number} lp - second power summand
-* @returns {number} function value
-*
-* @example
-* var z = pow2( 1065961648, -0.3398475646972656, -0.000002438187359100815 );
-* // returns 0.012345679012345678
-*/
-function pow2( j, hp, lp ) {
-	var tmp;
-	var t1;
-	var t;
-	var r;
-	var u;
-	var v;
-	var w;
-	var z;
-	var n;
-	var i;
-	var k;
-
-	i = (j & ABS_MASK);
-	k = (i>>HIGH_NUM_SIGNIFICAND_BITS) - BIAS;
-	n = 0;
-
-	// `|z| > 0.5`, set `n = z+0.5`
-	if ( i > HIGH_BIASED_EXP_NEG_1 ) {
-		n = j + (HIGH_MIN_NORMAL_EXP>>(k+1));
-		k = ((n & ABS_MASK)>>HIGH_NUM_SIGNIFICAND_BITS) - BIAS; // new k for n
-		tmp = ((n & ~(HIGH_SIGNIFICAND_MASK >> k)));
-		t = setHighWord( 0.0, tmp );
-		n = ((n & HIGH_SIGNIFICAND_MASK)|HIGH_MIN_NORMAL_EXP) >>
-			(HIGH_NUM_SIGNIFICAND_BITS-k);
-		if ( j < 0 ) {
-			n = -n;
-		}
-		hp -= t;
-	}
-	t = lp + hp;
-	t = setLowWord( t, 0 );
-	u = t * LN2_HI;
-	v = ( (lp - (t-hp))*LN2 ) + ( t*LN2_LO );
-	z = u + v;
-	w = v - (z - u);
-	t = z * z;
-	t1 = z - ( t*polyvalP( t ) );
-	r = ( (z*t1) / (t1-2.0) ) - ( w + (z*w) );
-	z = 1.0 - (r - z);
-	j = getHighWord( z );
-	j = uint32ToInt32( j );
-	j += (n << HIGH_NUM_SIGNIFICAND_BITS);
-
-	// Check for subnormal output...
-	if ( (j>>HIGH_NUM_SIGNIFICAND_BITS) <= 0 ) {
-		z = ldexp( z, n );
-	} else {
-		z = setHighWord( z, j );
-	}
-	return z;
-} // end FUNCTION pow2()
-
-
-// EXPORTS //
-
-module.exports = pow2;
-
-},{"@stdlib/math/base/special/ldexp":57,"@stdlib/math/base/tools/evalpoly":70,"@stdlib/math/base/utils/float64-get-high-word":108,"@stdlib/math/base/utils/float64-set-high-word":115,"@stdlib/math/base/utils/float64-set-low-word":117,"@stdlib/math/base/utils/uint32-to-int32":164,"@stdlib/math/constants/float64-exponent-bias":176,"@stdlib/math/constants/float64-ln-two":178}],64:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isOdd = require( '@stdlib/math/base/assert/is-odd' );
-var copysign = require( '@stdlib/math/base/special/copysign' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-
-
-// MAIN //
-
-/**
-* Evaluates the exponential function when  \\(|x| = 0\\).
-*
-* @private
-* @param {number} x - base
-* @param {number} y - exponent
-* @returns {number} function value
-*
-* @example
-* var v = pow( 0.0, 2 );
-* // returns 0.0
-*
-* @example
-* var v = pow( -0.0, -9 );
-* // returns Number.NEGATIVE_INFINITY
-*
-* @example
-* var v = pow( 0.0, -9 );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var v = pow( -0.0, 9 );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var v = pow( 0.0, Number.NEGATIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var v = pow( 0.0, Number.POSITIVE_INFINITY );
-* // returns 0.0
-*/
-function pow( x, y ) {
-	if ( y === NINF ) {
-		return PINF;
-	}
-	if ( y === PINF ) {
-		return 0.0;
-	}
-	if ( y > 0.0 ) {
-		if ( isOdd( y ) ) {
-			return x; // handles +-0
-		}
-		return 0.0;
-	}
-	// y < 0.0
-	if ( isOdd( y ) ) {
-		return copysign( PINF, x ); // handles +-0
-	}
-	return PINF;
-} // end FUNCTION pow()
-
-
-// EXPORTS //
-
-module.exports = pow;
-
-},{"@stdlib/math/base/assert/is-odd":47,"@stdlib/math/base/special/copysign":54,"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185}],65:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-
-
-// VARIABLES //
-
-// 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var ABS_MASK = 0x7fffffff;
-
-// 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
-var HIGH_MAX_NEAR_UNITY = 0x3fefffff;
-
-var HUGE = 1.0e300;
-var TINY = 1.0e-300;
-
-
-// MAIN //
-
-/**
-* Evaluates the exponential function when \\(|y| > 2^64\\).
-*
-* @private
-* @param {number} x - base
-* @param {number} y - exponent
-* @returns {number} overflow or underflow result
-*
-* @example
-* var v = pow( 9.0, 3.6893488147419103e19 );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var v = pow( -3.14, -3.6893488147419103e19 );
-* // returns 0.0
-*/
-function pow( x, y ) {
-	var ahx;
-	var hx;
-
-	hx = getHighWord( x );
-	ahx = (hx & ABS_MASK);
-
-	if ( ahx <= HIGH_MAX_NEAR_UNITY ) {
-		if ( y < 0 ) {
-			// signal overflow...
-			return HUGE * HUGE;
-		}
-		// signal underflow...
-		return TINY * TINY;
-	}
-	// `x` has a biased exponent greater than or equal to `0`...
-
-	if ( y > 0 ) {
-		// signal overflow...
-		return HUGE * HUGE;
-	}
-	// signal underflow...
-	return TINY * TINY;
-} // end FUNCTION pow()
-
-
-// EXPORTS //
-
-module.exports = pow;
-
-},{"@stdlib/math/base/utils/float64-get-high-word":108}],66:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var abs = require( '@stdlib/math/base/special/abs' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-
-
-// MAIN //
-
-/**
-* Evaluates the exponential function when \\( y = \pm \infty\\).
-*
-* @private
-* @param {number} x - base
-* @param {number} y - exponent
-* @returns {number} function value
-*
-* @example
-* var v = pow( -1.0, Number.POSITIVE_INFINITY );
-* // returns NaN
-*
-* @example
-* var v = pow( -1.0, Number.NEGATIVE_INFINITY );
-* // returns NaN
-*
-* @example
-* var v = pow( 1.0, Number.POSITIVE_INFINITY );
-* // returns 1.0
-*
-* @example
-* var v = pow( 1.0, Number.NEGATIVE_INFINITY );
-* // returns 1.0
-*
-* @example
-* var v = pow( 0.5, Number.POSITIVE_INFINITY );
-* // returns 0.0
-*
-* @example
-* var v = pow( 0.5, Number.NEGATIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var v = pow( 1.5, Number.NEGATIVE_INFINITY );
-* // returns 0.0
-*
-* @example
-* var v = pow( 1.5, Number.POSITIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
-*/
-function pow( x, y ) {
-	if ( x === -1.0 ) {
-		// Julia (0.4.2) and Python (2.7.9) return `1.0` (WTF???). JavaScript (`Math.pow`), R, and libm return `NaN`. We choose `NaN`, as the value is indeterminate; i.e., we cannot determine whether `y` is odd, even, or somewhere in between.
-		return (x-x)/(x-x); // signal NaN
-	}
-	if ( x === 1.0 ) {
-		return 1.0;
-	}
-	// (|x| > 1 && y === NINF) || (|x| < 1 && y === PINF)
-	if ( (abs(x) < 1.0) === (y === PINF) ) {
-		return 0.0;
-	}
-	// (|x| > 1 && y === PINF) || (|x| < 1 && y === NINF)
-	return PINF;
-} // end FUNCTION pow()
-
-
-// EXPORTS //
-
-module.exports = pow;
-
-},{"@stdlib/math/base/special/abs":50,"@stdlib/math/constants/float64-pinf":185}],67:[function(require,module,exports){
-'use strict';
-
-/**
-* Compute the principal square root.
-*
-* @module @stdlib/math/base/special/sqrt
-*
-* @example
-* var sqrt = require( '@stdlib/math/base/special/sqrt' );
-*
-* var v = sqrt( 4.0 );
-* // returns 2.0
-*
-* v = sqrt( 9.0 );
-* // returns 3.0
-*
-* v = sqrt( 0.0 );
-* // returns 0.0
-*
-* v = sqrt( -4.0 );
-* // returns NaN
-*
-* v = sqrt( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var sqrt = Math.sqrt;
-
-
-// EXPORTS //
-
-module.exports = sqrt;
-
-},{}],68:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* #### Notes
-*
-* * The implementation uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
-*
-*
-* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*
-* @example
-* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*/
-function evalpoly( c, x ) {
-	var p;
-	var i;
-
-	i = c.length;
-	if ( i < 2 || x === 0.0 ) {
-		if ( i === 0 ) {
-			return 0.0;
-		}
-		return c[ 0 ];
-	}
-	i -= 1;
-	p = ( c[ i ] * x ) + c[ i-1 ];
-	i -= 2;
-	while ( i >= 0 ) {
-		p = ( p * x ) + c[ i ];
-		i -= 1;
-	}
-	return p;
-} // end FUNCTION evalpoly()
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{}],69:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var evalpoly = require( './evalpoly.js' );
-
-
-// MAIN //
-
-/**
-* Generates a function for evaluating a polynomial.
-*
-* #### Notes
-*
-* * The compiled function uses [Horner's rule]{@link http://en.wikipedia.org/wiki/Horner's_method} for efficient computation.
-*
-*
-* @param {NumericArray} c - polynomial coefficients sorted in ascending degree
-* @returns {Function} function for evaluating a polynomial
-*
-* @example
-* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
-*
-* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*
-* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
-* // returns 38.0
-*/
-function factory( c ) {
-	var f;
-	var n;
-	var m;
-	var i;
-
-	// Avoid exceeding the maximum stack size on V8 :(. Note that the choice of `500` was empirically determined...
-	if ( c.length > 500 ) {
-		return polyval;
-	}
-	// Code generation. Start with the function definition...
-	f = 'return function evalpoly(x){';
-
-	// Create the function body...
-	n = c.length;
-
-	// If no coefficients, the function always returns 0...
-	if ( n === 0 ) {
-		f += 'return 0.0;';
-	}
-	// If only one coefficient, the function always returns that coefficient...
-	else if ( n === 1 ) {
-		f += 'return ' + c[ 0 ] + ';';
-	}
-	// If more than one coefficient, apply Horner's method...
-	else {
-		// If `x == 0`, return the first coefficient...
-		f += 'if(x===0.0){return ' + c[ 0 ] + ';}';
-
-		// Otherwise, evaluate the polynomial...
-		f += 'return ' + c[ 0 ];
-		m = n - 1;
-		for ( i = 1; i < n; i++ ) {
-			f += '+x*';
-			if ( i < m ) {
-				f += '(';
-			}
-			f += c[ i ];
-		}
-		// Close all the parentheses...
-		for ( i = 0; i < m-1; i++ ) {
-			f += ')';
-		}
-		f += ';';
-	}
-	// Close the function:
-	f += '}';
-
-	// Add a source directive for debugging:
-	f += '//# sourceURL=evalpoly.factory.js';
-
-	// Create the function in the global scope:
-	return ( new Function( f ) )(); // eslint-disable-line no-new-func
-
-	/*
-	* returns
-	*    function evalpoly( x ) {
-	*        if ( x === 0.0 ) {
-	*            return c[ 0 ];
-	*        }
-	*        return c[0]+x*(c[1]+x*(c[2]+x*(c[3]+...+x*(c[n-2]+x*c[n-1]))));
-	*    }
-	*/
-
-	/**
-	* Evaluates a polynomial.
-	*
-	* @private
-	* @param {number} x - value at which to evaluate a polynomial
-	* @returns {number} evaluated polynomial
-	*/
-	function polyval( x ) {
-		return evalpoly( c, x );
-	} // end FUNCTON polyval()
-} // end FUNCTION factory()
-
-
-// EXPORTS //
-
-module.exports = factory;
-
-},{"./evalpoly.js":68}],70:[function(require,module,exports){
-'use strict';
-
-/**
-* Evaluate a polynomial.
-*
-* @module @stdlib/math/base/tools/evalpoly
-*
-* @example
-* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
-*
-* var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*
-* @example
-* var evalpoly = require( '@stdlib/math/base/tools/evalpoly' );
-*
-* var polyval = evalpoly.factory( [3.0,2.0,1.0] );
-*
-* var v = polyval( 10.0 ); // => 3*10^0 + 2*10^1 + 1*10^2
-* // returns 123.0
-*
-* v = polyval( 5.0 ); // => 3*5^0 + 2*5^1 + 1*5^2
-* // returns 38.0
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var evalpoly = require( './evalpoly.js' );
-var factory = require( './factory.js' );
-
-
-// MAIN //
-
-setReadOnly( evalpoly, 'factory', factory );
-
-
-// EXPORTS //
-
-module.exports = evalpoly;
-
-},{"./evalpoly.js":68,"./factory.js":69,"@stdlib/utils/define-read-only-property":197}],71:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
-
-
-// MAIN //
-
-/**
-* Computes the absolute difference.
-*
-* @param {number} x - first number
-* @param {number} y - second number
-* @returns {number} absolute difference
-*
-* @example
-* var d = absoluteDifference( 2.0, 5.0 );
-* // returns 3.0
-* @example
-* var d = absoluteDifference( -1.0, 3.14 );
-* // returns ~4.14
-* @example
-* var d = absoluteDifference( 10.1, -2.05 );
-* // returns ~12.15
-* @example
-* var d = absoluteDifference( -0.0, 0.0 );
-* // returns +0.0
-* @example
-* var d = absoluteDifference( NaN, 5.0 );
-* // returns NaN
-* @example
-* var d = absoluteDifference( Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
-* @example
-* var d = absoluteDifference( Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY );
-* // returns NaN
-*/
-function absoluteDifference( x, y ) {
-	if ( isnan( x ) || isnan( y ) ) {
-		return NaN;
-	}
-	if ( isInfinite( x ) || isInfinite( y ) ) {
-		if ( x === y ) {
-			return NaN;
-		}
-		return PINF;
-	}
-	return abs( x - y );
-} // end FUNCTION absoluteDifference()
-
-
-// EXPORTS //
-
-module.exports = absoluteDifference;
-
-},{"@stdlib/math/base/assert/is-infinite":39,"@stdlib/math/base/assert/is-nan":43,"@stdlib/math/base/special/abs":50,"@stdlib/math/constants/float64-pinf":185}],72:[function(require,module,exports){
+},{"./abs.js":21}],23:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3672,1197 +940,133 @@ module.exports = absoluteDifference;
 * d = diff( NaN, 5.0 );
 * // returns NaN
 *
-* d = diff( Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY );
-* // returns Number.POSITIVE_INFINITY
+* d = diff( Infinity, -Infinity  );
+* // returns Infinity
 *
-* d = diff( Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY );
+* d = diff( Infinity, Infinity  );
 * // returns NaN
 */
 
 // MODULES //
 
-var absoluteDifference = require( './absolute_difference.js' );
+var absoluteDifference = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = absoluteDifference;
 
-},{"./absolute_difference.js":71}],73:[function(require,module,exports){
+},{"./main.js":24}],24:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var getWord = require( '@stdlib/math/base/utils/float32-to-word' );
-var BIAS = require( '@stdlib/math/constants/float32-exponent-bias' );
-
-
-// VARIABLES //
-
-// Exponent mask: 0 11111111 00000000000000000000000
-var EXP_MASK = 0x7f800000; // TODO: consider making an external constant
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
 
 
 // MAIN //
 
 /**
-* Returns an integer corresponding to the unbiased exponent of a single-precision floating-point number.
+* Computes the absolute difference.
 *
-* @param {number} x - single-precision floating-point number
-* @returns {integer8} unbiased exponent
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} absolute difference
 *
 * @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var exp = exponentf( toFloat32( 3.14e34 ) ); // => 2**114 ~ 2.08e34
-* // returns 114
+* var d = absoluteDifference( 2.0, 5.0 );
+* // returns 3.0
+*
 * @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var exp = exponentf( toFloat32( 3.14e-34 ) ); // => 2**-112 ~ 1.93e-34
-* // returns -112
+* var d = absoluteDifference( -1.0, 3.14 );
+* // returns ~4.14
+*
 * @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var exp = exponentf( toFloat32( -3.14 ) );
-* // returns 1
+* var d = absoluteDifference( 10.1, -2.05 );
+* // returns ~12.15
+*
 * @example
-* var exp = exponentf( 0.0 );
-* // returns 0
+* var d = absoluteDifference( -0.0, 0.0 );
+* // returns +0.0
+*
 * @example
-* var exp = exponentf( NaN );
-* // returns 128
+* var d = absoluteDifference( NaN, 5.0 );
+* // returns NaN
+*
+* @example
+* var d = absoluteDifference( Infinity, -Infinity  );
+* // returns Infinity
+*
+* @example
+* var d = absoluteDifference( Infinity, Infinity  );
+* // returns NaN
 */
-function exponentf( x ) {
-	// Convert `x` to an unsigned 32-bit integer corresponding to the IEEE 754 binary representation:
-	var w = getWord( x );
-
-	// Apply a mask to isolate only the exponent bits and then shift off all bits which are part of the fraction:
-	w = ( w & EXP_MASK ) >>> 23;
-
-	// Remove the bias and return:
-	return w - BIAS;
-} // end FUNCTION exponentf()
-
-
-// EXPORTS //
-
-module.exports = exponentf;
-
-},{"@stdlib/math/base/utils/float32-to-word":94,"@stdlib/math/constants/float32-exponent-bias":171}],74:[function(require,module,exports){
-'use strict';
-
-/**
-* Return an integer corresponding to the unbiased exponent of a single-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float32-exponent
-*
-* @example
-* var exponent = require( '@stdlib/math/base/utils/float32-exponent );
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var exp = exponent( toFloat32( 3.14e34 ) );
-* // returns 114 => 2**114 ~ 2.08e34
-*
-* exp = exponent( toFloat32( 3.14e-34 ) );
-* // returns -112 => 2**-112 ~ 1.93e-34
-*
-* exp = exponent( toFloat32( -3.14 ) );
-* // returns 1
-*
-* exp = exponent( 0 );
-* // returns 0
-*
-* exp = exponent( NaN );
-* // returns 128
-*/
-
-// MODULES //
-
-var exponent = require( './exponent.js' );
-
-
-// EXPORTS //
-
-module.exports = exponent;
-
-},{"./exponent.js":73}],75:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var PINF = require( '@stdlib/math/constants/float32-pinf' );
-var NINF = require( '@stdlib/math/constants/float32-ninf' );
-var BIAS = require( '@stdlib/math/constants/float32-exponent-bias' );
-var pow = require( '@stdlib/math/base/special/pow' );
-var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-var toFrac = require( './tofrac.js' );
-
-
-// MAIN //
-
-/**
-* Creates a single-precision floating-point number from an IEEE 754 literal bit representation.
-*
-* @param {BinaryString} bstr - string which is a literal bit representation
-* @throws {Error} must provide a string with a length equal to `32`
-* @returns {number} single-precision floating-point number
-*
-* @example
-* var bstr = '01000000100000000000000000000000';
-* var v = fromBinaryStringf( bstr );
-* // returns 4.0
-*
-* @example
-* var bstr = '01000000010010010000111111011011';
-* var v = fromBinaryStringf( bstr );
-* // returns ~3.14
-*
-* @example
-* var bstr = '11111111011011000011101000110011';
-* var v = fromBinaryStringf( bstr );
-* // returns ~-3.14e+38
-*
-* @example
-* var bstr = '00000000000000000000000000000000';
-* var v =  fromBinaryStringf( bstr );
-* // returns 0.0
-*
-* @example
-* var bstr = '10000000000000000000000000000000';
-* var v = fromBinaryStringf( bstr );
-* // returns -0.0
-*/
-function fromBinaryStringf( bstr ) {
-	var sign;
-	var frac;
-	var exp;
-
-	if ( bstr.length !== 32 ) {
-		throw new Error( 'invalid input argument. Input string must have a length equal to 32. Value: `'+bstr+'`.' );
-	}
-	// Sign bit:
-	sign = ( bstr[0] === '1' ) ? -1.0 : 1.0;
-
-	// Exponent bits:
-	exp = parseInt( bstr.substring(1, 9), 2 ) - BIAS;
-
-	// Fraction bits:
-	frac = toFrac( bstr.substring( 9 ) );
-
-	// Detect `0` (all 0s) and subnormals (exponent bits are all 0, but fraction bits are not all 0s)...
-	if ( exp === -BIAS ) {
-		if ( frac === 0.0 ) {
-			return ( sign === 1.0 ) ? 0.0 : -0.0;
-		}
-		exp = -(BIAS-1); // subnormals are special in that their exponent is constant
-	}
-	// Detect `+-inf` (exponent bits are all 1 and fraction is 0) and `NaN` (exponent bits are all 1 and fraction is not 0)...
-	else if ( exp === BIAS+1 ) {
-		if ( frac === 0.0 ) {
-			return ( sign === 1.0 ) ? PINF : NINF;
-		}
+function absoluteDifference( x, y ) {
+	if ( isnan( x ) || isnan( y ) ) {
 		return NaN;
 	}
-	// Normal numbers...
-	else {
-		// Account for hidden/implicit bit (2^0):
-		frac += 1.0;
-	}
-	return toFloat32( sign*frac*pow(2, exp) );
-} // end FUNCTION fromBinaryStringf()
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringf;
-
-},{"./tofrac.js":77,"@stdlib/math/base/special/pow":59,"@stdlib/math/base/utils/float64-to-float32":127,"@stdlib/math/constants/float32-exponent-bias":171,"@stdlib/math/constants/float32-ninf":172,"@stdlib/math/constants/float32-pinf":173}],76:[function(require,module,exports){
-'use strict';
-
-/**
-* Create a single-precision floating-point number from an IEEE 754 literal bit representation.
-*
-* @module @stdlib/math/base/utils/float32-from-binary-string
-*
-* @example
-* var fromBinaryStringf = require( '@stdlib/math/base/utils/float32-from-binary-string' );
-*
-* var bstr = '01000000100000000000000000000000';
-* var val = fromBinaryStringf( bstr );
-* // returns 4.0
-*
-* bstr = '01000000010010010000111111011011';
-* val = fromBinaryStringf( bstr );
-* // returns ~3.14
-*
-* bstr = '11111111011011000011101000110011';
-* val = fromBinaryStringf( bstr );
-* // returns ~-3.14e+38
-*/
-
-// MODULES //
-
-var fromBinaryStringf = require( './from_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringf;
-
-},{"./from_binary_string.js":75}],77:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var pow = require( '@stdlib/math/base/special/pow' );
-
-
-// MAIN //
-
-/**
-* Converts a float's fraction bit sequence to a numeric value.
-*
-* @private
-* @param {BinaryString} frac - literal bit representation of a float's fraction bit sequence
-* @returns {number} fraction value
-*
-* @example
-* var v = toFrac( '10001100010111110011000' );
-* // returns ~0.548
-* @example
-* var v = toFrac( '11110101000101011111111' );
-* // returns ~0.957
-*/
-function toFrac( frac ) {
-	var sum = 0;
-	var i;
-	for ( i = 0; i < frac.length; i++ ) {
-		if ( frac[ i ] === '1' ) {
-			sum += pow( 2.0, -(i+1) );
+	if ( isInfinite( x ) || isInfinite( y ) ) {
+		if ( x === y ) {
+			return NaN;
 		}
+		return PINF;
 	}
-	return sum;
-} // end FUNCTION toFrac()
+	return abs( x - y );
+}
 
 
 // EXPORTS //
 
-module.exports = toFrac;
+module.exports = absoluteDifference;
 
-},{"@stdlib/math/base/special/pow":59}],78:[function(require,module,exports){
-'use strict';
-
-// VARIABLES //
-
-var UINT32_VIEW = new Uint32Array( 1 );
-var FLOAT32_VIEW = new Float32Array( UINT32_VIEW.buffer );
-
-
-// FLOAT32-FROM-WORD //
-
-/**
-* Creates a single-precision floating-point number from an unsigned integer corresponding to an IEEE 754 binary representation.
-*
-* @param {uinteger32} x - unsigned integer
-* @returns {number} single-precision floating-point number
-*
-* @example
-* var word = 1068180177; // => 0 01111111 01010110010001011010001
-*
-* var f32 = fromWordf( word ); // when printed, implicitly promoted to float64
-* // returns 1.3370000123977661
-*/
-function fromWordf( x ) {
-	UINT32_VIEW[ 0 ] = x;
-	return FLOAT32_VIEW[ 0 ];
-} // end FUNCTION fromWordf()
-
-
-// EXPORTS //
-
-module.exports = fromWordf;
-
-},{}],79:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-pinf":16,"@stdlib/math/base/assert/is-infinite":17,"@stdlib/math/base/assert/is-nan":19,"@stdlib/math/base/special/abs":22}],25:[function(require,module,exports){
 'use strict';
 
 /**
-* Create a single-precision floating-point number from an unsigned integer corresponding to an IEEE 754 binary representation.
+* Compute the relative difference in units of double-precision floating-point epsilon.
 *
-* @module @stdlib/math/base/utils/float32-from-word
+* @module @stdlib/math/base/utils/float64-epsilon-difference
 *
 * @example
-* var fromWord = require( '@stdlib/math/base/utils/float32-from-word' );
+* var epsdiff = require( '@stdlib/math/base/utils/float64-epsilon-difference' );
 *
-* var word = 1068180177; // => 0 01111111 01010110010001011010001
+* var d = epsdiff( 12.15, 12.149999999999999 ); // => ~0.658ε
+* // returns ~0.658
 *
-* var f32 = fromWord( word ); // when printed, implicitly promoted to float64
-* // returns 1.3370000123977661
+* d = epsdiff( 2.4341309458983933, 2.4341309458633909, 'mean-abs' ); // => ~64761.5ε => ~1.438e-11
+* // returns ~64761.5
+*
+* function scale( x, y ) {
+*      // Return the minimum value:
+*      return ( x > y ) ? y : x;
+* }
+*
+* d = epsdiff( 1.0000000000000002, 1.0000000000000100, scale ); // => ~44ε
+* // returns ~44
 */
 
 // MODULES //
 
-var fromWordf = require( './from_word.js' );
+var epsdiff = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = fromWordf;
+module.exports = epsdiff;
 
-},{"./from_word.js":78}],80:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @module @stdlib/math/base/utils/float32-normalize
-*
-* @example
-* var normalizef = require( '@stdlib/math/base/utils/float32-normalize' );
-*
-* var pow = require( '@stdlib/math/base/special/pow' );
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var out = normalizef( toFloat32( 1.401e-45 ) );
-* // returns [ 1.1754943508222875e-38, -23 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2,exp) === toFloat32(1.401e-45) );
-* // returns true
-*/
-
-// MODULES //
-
-var normalizef = require( './normalize.js' );
-
-
-// EXPORTS //
-
-module.exports = normalizef;
-
-},{"./normalize.js":81}],81:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var FLOAT32_SMALLEST_NORMAL = require( '@stdlib/math/constants/float32-smallest-normal' );
-var PINF = require( '@stdlib/math/constants/float32-pinf' );
-var NINF = require( '@stdlib/math/constants/float32-ninf' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-
-
-// VARIABLES //
-
-// (1<<32)
-var SCALAR = 8388608;
-
-
-// MAIN //
-
-/**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @param {number} x - single-precision floating-point number
-* @returns {NumberArray} a two-element array containing `y` and `exp`
-*
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var v = normalizef( toFloat32( 1.401e-45 ) );
-* // returns [ 1.1754943508222875e-38, -23 ]
-* @example
-* var v = normalizef( 0.0 );
-* // returns [ 0.0, 0 ];
-* @example
-* var PINF = require( '@stdlib/math/constants/float32-pinf' );
-* var v = normalizef( PINF );
-* // returns [ PINF, 0 ]
-* @example
-* var NINF = require( '@stdlib/math/constants/float32-ninf' );
-* var v = normalizef( NINF );
-* // returns [ NINF, 0 ]
-* @example
-* var v = normalizef( NaN );
-* // returns [ NaN, 0 ]
-*/
-function normalizef( x ) {
-	if (
-		x !== x ||
-		x === PINF ||
-		x === NINF
-	) {
-		return [ x, 0 ];
-	}
-	if ( x !== 0.0 && abs( x ) < FLOAT32_SMALLEST_NORMAL ) {
-		x = toFloat32( x*SCALAR );
-		return [ x, -23 ];
-	}
-	return [ x, 0 ];
-} // end FUNCTION normalizef()
-
-
-// EXPORTS //
-
-module.exports = normalizef;
-
-},{"@stdlib/math/base/special/abs":50,"@stdlib/math/base/utils/float64-to-float32":127,"@stdlib/math/constants/float32-ninf":172,"@stdlib/math/constants/float32-pinf":173,"@stdlib/math/constants/float32-smallest-normal":174}],82:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a boolean indicating if the sign bit is on (true) or off (false).
-*
-* @module @stdlib/math/base/utils/float32-signbit
-*
-* @example
-* var signbitf = require( '@stdlib/math/base/utils/float32-signbit' );
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var bool = signbitf( toFloat32( 4.0 ) );
-* // returns false
-*
-* bool = signbitf( toFloat32( -9.14e-34 ) );
-* // returns true
-*
-* bool = signbitf( 0.0 );
-* // returns false
-*
-* bool = signbitf( -0.0 );
-* // returns true
-*/
-
-// MODULES //
-
-var signbitf = require( './signbit.js' );
-
-
-// EXPORTS //
-
-module.exports = signbitf;
-
-},{"./signbit.js":83}],83:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var toWord = require( '@stdlib/math/base/utils/float32-to-word' );
-
-
-// MAIN //
-
-/**
-* Returns a boolean indicating if the sign bit is on (true) or off (false).
-*
-* @param {number} x - single-precision floating-point number
-* @returns {boolean} boolean indicating if sign bit is on or off
-*
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var bool = signbitf( toFloat32( 4.0 ) );
-* // returns false
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var bool = signbitf( toFloat32( -9.14e-34 ) );
-* // returns true
-* @example
-* var bool = signbitf( 0.0 );
-* // returns false
-* @example
-* var bool = signbitf( -0.0 );
-* // returns true
-*/
-function signbitf( x ) {
-	// Convert `x` to an unsigned 32-bit integer corresponding to the value's IEEE 754 binary representation:
-	var w = toWord( x );
-
-	// Shift off all bits which are not the sign bit and check if the sign bit is on:
-	return ( w >>> 31 ) ? true : false; // eslint-disable-line no-unneeded-ternary
-} // end FUNCTION signbitf()
-
-
-// EXPORTS //
-
-module.exports = signbitf;
-
-},{"@stdlib/math/base/utils/float32-to-word":94}],84:[function(require,module,exports){
-'use strict';
-
-/**
-* Return an integer corresponding to the significand of a single-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float32-significand
-*
-* @example
-* var significandf = require( '@stdlib/math/base/utils/float32-significand' );
-*
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var s = significandf( toFloat32( 3.14e34 ) ); // => 10000011000010001110111
-* // returns 4293751
-*
-* s = significandf( toFloat32( 3.14e-34 ) ); // => 10100001011000001010101
-* // returns 5288021
-*
-* s = significandf( toFloat32( -3.14 ) ); //  => 10010001111010111000011
-* // returns 4781507
-*
-* s = significandf( 0.0 ); // => 00000000000000000000000
-* // returns 0
-*
-* s = significandf( NaN ); // => 10000000000000000000000
-* // returns 4194304
-*/
-
-// MODULES //
-
-var significandf = require( './significand.js' );
-
-
-// EXPORTS //
-
-module.exports = significandf;
-
-},{"./significand.js":85}],85:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var getWord = require( '@stdlib/math/base/utils/float32-to-word' );
-
-
-// VARIABLES //
-
-// Significand mask: 0 00000000 11111111111111111111111
-var MASK = 0x007fffff; // TODO: consider making an external constant
-
-
-// MAIN //
-
-/**
-* Returns an integer corresponding to the significand of a single-precision floating-point number.
-*
-* @param {number} x - single-precision floating-point number
-* @returns {uinteger32} significand
-*
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var s = significandf( toFloat32( 3.14e34 ) ); // => 10000011000010001110111
-* // returns 4293751
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var s = significandf( toFloat32( 3.14e-34 ) ); // => 10100001011000001010101
-* // returns 5288021
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var s = significandf( toFloat32( -3.14 ) ); // => 10010001111010111000011
-* // returns 4781507
-* @example
-* var s = significandf( 0.0 ); // => 00000000000000000000000
-* // returns 0
-* @example
-* var s = significandf( NaN ); // => 10000000000000000000000
-* // returns 4194304
-*/
-function significandf( x ) {
-	// Convert `x` to an unsigned 32-bit integer corresponding to the IEEE 754 binary representation:
-	var w = getWord( x );
-
-	// Apply a mask to isolate only the significand bits:
-	return w & MASK;
-} // end FUNCTION significandf()
-
-
-// EXPORTS //
-
-module.exports = significandf;
-
-},{"@stdlib/math/base/utils/float32-to-word":94}],86:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// MAIN //
-
-/**
-* Converts a nonnegative integer to a literal bit representation using the divide-by-2 algorithm.
-*
-* @private
-* @param {NonNegativeInteger} x - nonnegative integer
-* @returns {BinaryString} bit representation
-*
-* @example
-* var v = div2( 3 );
-* // returns '11'
-* @example
-* var v = div2( 0 );
-* // returns ''
-* @example
-* var v = div2( 12 );
-* // returns '1100'
-* @example
-* var v = div2( 188 );
-* // returns '10111100'
-*/
-function div2( x ) {
-	var str = '';
-	var y;
-
-	// We repeatedly divide by 2 and check for a remainder. If a remainder exists, the number is odd and we add a '1' bit...
-	while ( x > 0 ) {
-		y = x / 2.0;
-		x = floor( y );
-		if ( y === x ) {
-			str = '0' + str;
-		} else {
-			str = '1' + str;
-		}
-	}
-	return str;
-} // end FUNCTION div2()
-
-
-// EXPORTS //
-
-module.exports = div2;
-
-},{"@stdlib/math/base/special/floor":56}],87:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a string giving the literal bit representation of a single-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float32-to-binary-string
-*
-* @example
-* var toBinaryStringf = require( '@stdlib/math/base/utils/float32-to-binary-string' );
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var str = toBinaryStringf( toFloat32( 4.0 ) );
-* // returns '01000000100000000000000000000000'
-*
-* str = toBinaryStringf( toFloat32( Math.PI ) );
-* // returns '01000000010010010000111111011011'
-*
-* str = toBinaryStringf( toFloat32( -1.0e38 ) );
-* // returns '11111110100101100111011010011001'
-*
-* str = toBinaryStringf( toFloat32( -3.14e-39 ) );
-* // returns '10000000001000100011000100001011'
-*
-* str = toBinaryStringf( toFloat32( 1.4e-45 ) );
-* // returns '00000000000000000000000000000001'
-*
-* str = toBinaryStringf( 0.0 );
-* // returns '00000000000000000000000000000000'
-*
-* str = toBinaryStringf( -0.0 );
-* // returns '10000000000000000000000000000000'
-*
-* str = toBinaryStringf( NaN );
-* // returns '01111111110000000000000000000000'
-*
-* var PINF = require( '@stdlib/math/constants/float32-pinf' );
-* str = toBinaryStringf( PINF );
-* // returns '01111111100000000000000000000000'
-*
-* var NINF = require( '@stdlib/math/constants/float32-ninf' );
-* str = toBinaryStringf( NINF );
-* // returns '11111111100000000000000000000000'
-*/
-
-// MODULES //
-
-var totoBinaryStringf = require( './to_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = totoBinaryStringf;
-
-},{"./to_binary_string.js":89}],88:[function(require,module,exports){
-'use strict';
-
-// VARIABLES //
-
-var MAX_ITER = 149; // 127+22 (subnormals) => BIAS+NUM_SIGNFICAND_BITS-1
-var MAX_BITS = 24; // only 23 bits for fraction
-
-
-// MAIN //
-
-/**
-* Converts a fraction to a literal bit representation using the multiply-by-2 algorithm.
-*
-* @private
-* @param {number} x - number less than 1
-* @returns {BinaryString} bit representation
-*
-* @example
-* var v = mult2( 0.234375 );
-* // returns '001111'
-* @example
-* var v = mult2( 0.0 );
-* // returns ''
-*/
-function mult2( x ) {
-	var str;
-	var y;
-	var i;
-	var j;
-
-	str = '';
-	if ( x === 0.0 ) {
-		return str;
-	}
-	j = MAX_ITER;
-
-	// Each time we multiply by 2 and find a ones digit, add a '1'; otherwise, add a '0'..
-	for ( i = 0; i < MAX_ITER; i++ ) {
-		y = x * 2.0;
-		if ( y >= 1.0 ) {
-			x = y - 1.0;
-			str += '1';
-			if ( j === MAX_ITER ) {
-				j = i; // first '1'
-			}
-		} else {
-			x = y;
-			str += '0';
-		}
-		// Stop when we have no more decimals to process or in the event we found a fraction which cannot be represented in a finite number of bits...
-		if ( y === 1.0 || i-j > MAX_BITS ) {
-			break;
-		}
-	}
-
-	return str;
-} // end FUNCTION mult2()
-
-
-// EXPORTS //
-
-module.exports = mult2;
-
-},{}],89:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var PINF = require( '@stdlib/math/constants/float32-pinf' );
-var NINF = require( '@stdlib/math/constants/float32-ninf' );
-var BIAS = require( '@stdlib/math/constants/float32-exponent-bias' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var floor = require( '@stdlib/math/base/special/floor' );
-var rpad = require( '@stdlib/string/right-pad' );
-var lpad = require( '@stdlib/string/left-pad' );
-var repeat = require( '@stdlib/string/repeat' );
-var div2 = require( './div2.js' );
-var mult2 = require( './mult2.js' );
-
-
-// VARIABLES //
-
-// TODO: consider placing in external modules
-var NUM_SIGNIFICAND_BITS = 23;
-var NUM_EXPONENT_BITS = 8;
-
-
-// MAIN //
-
-/**
-* Returns a string giving the literal bit representation of a single-precision floating-point number.
-*
-* @param {number} x - input value
-* @returns {BinaryString} bit representation
-*
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var str = totoBinaryStringf( toFloat32( 4.0 ) );
-* // returns '01000000100000000000000000000000'
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var str = totoBinaryStringf( toFloat32( Math.PI ) );
-* // returns '01000000010010010000111111011011'
-* @example
-* var str = totoBinaryStringf( toFloat32( -1e38 ) );
-* // returns '11111110100101100111011010011001'
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var str = toBinaryStringf( toFloat32( -3.14e-39 ) );
-* // returns '10000000001000100011000100001011'
-* @example
-* var toFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var str = toBinaryStringf( toFloat32( 1.4e-45 ) );
-* // returns '00000000000000000000000000000001'
-* @example
-* var str = totoBinaryStringf( 0.0 );
-* // returns '00000000000000000000000000000000'
-* @example
-* var str = totoBinaryStringf( -0.0 );
-* // returns '10000000000000000000000000000000'
-* @example
-* var str = totoBinaryStringf( NaN );
-* // returns '01111111110000000000000000000000'
-* @example
-* var PINF = require( '@stdlib/math/constants/float32-pinf' );
-* var str = toBinaryStringf( PINF );
-* // returns '01111111100000000000000000000000'
-* @example
-* var NINF = require( '@stdlib/math/constants/float32-ninf' );
-* var str = toBinaryStringf( NINF );
-* // returns '11111111100000000000000000000000'
-*/
-function toBinaryStringf( x ) {
-	var nbits;
-	var sign;
-	var str;
-	var exp;
-	var n;
-	var f;
-	var i;
-
-	// Check for a negative value or negative zero...
-	if ( x < 0.0 || 1.0/x === NINF ) {
-		sign = '1';
-	} else {
-		sign = '0';
-	}
-	// Special case: +-infinity
-	if ( x === PINF || x === NINF ) {
-		// Based on IEEE 754-2008...
-		exp = repeat( '1', NUM_EXPONENT_BITS ); // all 1s
-		str = repeat( '0', NUM_SIGNIFICAND_BITS ); // all 0s
-		return sign + exp + str;
-	}
-	// Special case: NaN
-	if ( x !== x ) {
-		// Based on IEEE 754-2008...
-		exp = repeat( '1', NUM_EXPONENT_BITS ); // all 1s
-		str = '1' + repeat( '0', NUM_SIGNIFICAND_BITS-1 ); // can't be all 0s
-		return sign + exp + str;
-	}
-	// Special case: +-0
-	if ( x === 0.0 ) {
-		// Based on IEEE 754-2008...
-		exp = repeat( '0', NUM_EXPONENT_BITS ); // all 0s
-		str = repeat( '0', NUM_SIGNIFICAND_BITS ); // all 0s
-		return sign + exp + str;
-	}
-	x = abs( x );
-
-	// Isolate the integer part (digits before the decimal):
-	n = floor( x );
-
-	// Isolate the fractional part (digits after the decimal):
-	f = x - n;
-
-	// Convert the integer and fractional parts to bit strings:
-	n = div2( n );
-	f = mult2( f );
-
-	// Determine the exponent needed to normalize the integer+fractional parts...
-	if ( n ) {
-		// Move the decimal `d` digits to the left:
-		exp = n.length - 1;
-	} else {
-		// Find the first '1' bit...
-		for ( i = 0; i < f.length; i++ ) {
-			if ( f[ i ] === '1' ) {
-				nbits = i + 1;
-				break;
-			}
-		}
-		// Move the decimal `d` digits to the right:
-		exp = -nbits;
-	}
-	// Normalize the combined integer+fractional string...
-	str = n + f;
-	if ( exp < 0 ) {
-		// Handle subnormals...
-		if ( exp <= -BIAS ) {
-			// Cap the number of bits removed:
-			nbits = BIAS - 1;
-		}
-		// Remove all leading zeros and the first '1' for normal values, and, for subnormals, remove at most BIAS-1 leading bits:
-		str = str.substring( nbits );
-	} else {
-		// Remove the leading '1' (implicit/hidden bit):
-		str = str.substring( 1 );
-	}
-	// Convert the exponent to a bit string:
-	exp = div2( exp + BIAS );
-	exp = lpad( exp, NUM_EXPONENT_BITS, '0' );
-
-	// Fill in any trailing zeros and ensure we have only 23 fraction bits:
-	str = rpad( str, NUM_SIGNIFICAND_BITS, '0' ).substring( 0, NUM_SIGNIFICAND_BITS );
-
-	// Return a bit representation:
-	return sign + exp + str;
-} // end FUNCTION toBinaryStringf()
-
-
-// EXPORTS //
-
-module.exports = toBinaryStringf;
-
-},{"./div2.js":86,"./mult2.js":88,"@stdlib/math/base/special/abs":50,"@stdlib/math/base/special/floor":56,"@stdlib/math/constants/float32-exponent-bias":171,"@stdlib/math/constants/float32-ninf":172,"@stdlib/math/constants/float32-pinf":173,"@stdlib/string/left-pad":188,"@stdlib/string/repeat":190,"@stdlib/string/right-pad":192}],90:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Converts a single-precision floating-point number to a signed 32-bit integer.
-*
-* @param {number} x - single-precision floating-point number
-* @returns {integer32} signed 32-bit integer
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToInt32( float64ToFloat32( 4294967295.0 ) );
-* // returns -1
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToInt32( float64ToFloat32( 3.14 ) );
-* // returns 3
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToInt32( float64ToFloat32( -3.14 ) );
-* // returns -3
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToInt32( float64ToFloat32( NaN ) );
-* // returns 0
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToInt32( float64ToFloat32( Number.POSITIVE_INFINITY ) );
-* // returns 0
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToInt32( float64ToFloat32( Number.NEGATIVE_INFINITY ) );
-* // returns 0
-*/
-function float32ToInt32( x ) {
-	// NOTE: we could also use typed-arrays to achieve the same end.
-	return x|0; // asm type annotation
-} // end FUNCTION float32ToInt32()
-
-
-// EXPORTS //
-
-module.exports = float32ToInt32;
-
-},{}],91:[function(require,module,exports){
-'use strict';
-
-/**
-* Convert a single-precision floating-point number to a signed 32-bit integer.
-*
-* @module @stdlib/math/base/utils/float32-to-int32
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var float32ToInt32 = require( '@stdlib/math/base/utils/float32-to-int32' );
-*
-* var y = float32ToInt32( float64ToFloat32( 4294967295.0 ) );
-* // returns -1
-*
-* y = float32ToInt32( float64ToFloat32( 3.14 ) );
-* // returns 3
-*
-* y = float32ToInt32( float64ToFloat32( -3.14 ) );
-* // returns -3
-*
-* y = float32ToInt32( float64ToFloat32( NaN ) );
-* // returns 0
-*
-* y = float32ToInt32( float64ToFloat32( Number.POSITIVE_INFINITY ) );
-* // returns 0
-*
-* y = float32ToInt32( float64ToFloat32( Number.NEGATIVE_INFINITY ) );
-* // returns 0
-*/
-
-// MODULES //
-
-var float32ToInt32 = require( './float32_to_int32.js' );
-
-
-// EXPORTS //
-
-module.exports = float32ToInt32;
-
-},{"./float32_to_int32.js":90}],92:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Converts a single-precision floating-point number to an unsigned 32-bit integer.
-*
-* @param {number} x - single-precision floating-point number
-* @returns {uinteger32} unsigned 32-bit integer
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToUint32( float64ToFloat32( 4294967297.0 ) );
-* // returns 1
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToUint32( float64ToFloat32( 3.14 ) );
-* // returns 3
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToUint32( float64ToFloat32( -3.14 ) );
-* // returns 4294967293
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToUint32( float64ToFloat32( NaN ) );
-* // returns 0
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToUint32( float64ToFloat32( Number.POSITIVE_INFINITY ) );
-* // returns 0
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var y = float32ToUint32( float64ToFloat32( Number.NEGATIVE_INFINITY ) );
-* // returns 0
-*/
-function float32ToUint32( x ) {
-	// NOTE: we could also use typed-arrays to achieve the same end.
-	return x >>> 0;
-} // end FUNCTION float32ToUint32()
-
-
-// EXPORTS //
-
-module.exports = float32ToUint32;
-
-},{}],93:[function(require,module,exports){
-'use strict';
-
-/**
-* Convert a single-precision floating-point number to an unsigned 32-bit integer.
-*
-* @module @stdlib/math/base/utils/float32-to-uint32
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-* var float32ToUint32 = require( '@stdlib/math/base/utils/float32-to-uint32' );
-*
-* var y = float32ToUint32( float64ToFloat32( 4294967297.0 ) );
-* // returns 1
-*
-* y = float32ToUint32( float64ToFloat32( 3.14 ) );
-* // returns 3
-*
-* y = float32ToUint32( float64ToFloat32( -3.14 ) );
-* // returns 4294967293
-*
-* y = float32ToUint32( float64ToFloat32( NaN ) );
-* // returns 0
-*
-* y = float32ToUint32( float64ToFloat32( Number.POSITIVE_INFINITY ) );
-* // returns 0
-*
-* y = float32ToUint32( float64ToFloat32( Number.NEGATIVE_INFINITY ) );
-* // returns 0
-*/
-
-// MODULES //
-
-var float32ToUint32 = require( './float32_to_uint32.js' );
-
-
-// EXPORTS //
-
-module.exports = float32ToUint32;
-
-},{"./float32_to_uint32.js":92}],94:[function(require,module,exports){
-'use strict';
-
-/**
-* Return an unsigned 32-bit integer corresponding to the IEEE 754 binary representation of a single-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float32-to-word
-*
-* @example
-* var toWordf = require( '@stdlib/math/base/utils/float32-to-word' );
-*
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var f32 = float64ToFloat32( 1.337 );
-* // returns 1.3370000123977661
-*
-* var w = toWordf( f32 ); // => 0 01111111 01010110010001011010001
-* // returns 1068180177
-*/
-
-// MODULES //
-
-var toWordf = require( './to_word.js' );
-
-
-// EXPORTS //
-
-module.exports = toWordf;
-
-},{"./to_word.js":95}],95:[function(require,module,exports){
-'use strict';
-
-// VARIABLES //
-
-var FLOAT32_VIEW = new Float32Array( 1.0 );
-var UINT32_VIEW = new Uint32Array( FLOAT32_VIEW.buffer );
-
-
-// FLOAT32-TO-WORD //
-
-/**
-* Returns an unsigned 32-bit integer corresponding to the IEEE 754 binary representation of a single-precision floating-point number.
-*
-* @param {number} x - single-precision floating-point number
-* @returns {unsigned32} unsigned 32-bit integer
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var f32 = float64ToFloat32( 1.337 );
-* // returns 1.3370000123977661
-*
-* var w = toWordf( f32 ); // => 0 01111111 01010110010001011010001
-* // returns 1068180177
-*/
-function toWordf( x ) {
-	FLOAT32_VIEW[ 0 ] = x;
-	return UINT32_VIEW[ 0 ];
-} // end FUNCTION toWordf()
-
-
-// EXPORTS //
-
-module.exports = toWordf;
-
-},{}],96:[function(require,module,exports){
+},{"./main.js":26}],26:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var reldiff = require( '@stdlib/math/base/utils/relative-difference' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var MAX_FLOAT64 = require( '@stdlib/math/constants/float64-max' );
-var EPS = require( '@stdlib/math/constants/float64-eps' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var MAX_FLOAT64 = require( '@stdlib/constants/math/float64-max' );
+var EPS = require( '@stdlib/constants/math/float64-eps' );
 
 
 // VARIABLES //
@@ -4910,1879 +1114,14 @@ function epsilonDifference( x, y, scale ) {
 	}
 	// Return the answer to the question: how many EPS increments is the relative difference?
 	return d / EPS;
-} // end FUNCTION epsilonDifference()
+}
 
 
 // EXPORTS //
 
 module.exports = epsilonDifference;
 
-},{"@stdlib/math/base/assert/is-nan":43,"@stdlib/math/base/utils/relative-difference":138,"@stdlib/math/constants/float64-eps":175,"@stdlib/math/constants/float64-max":182,"@stdlib/math/constants/float64-pinf":185}],97:[function(require,module,exports){
-'use strict';
-
-/**
-* Compute the relative difference in units of double-precision floating-point epsilon.
-*
-* @module @stdlib/math/base/utils/float64-epsilon-difference
-*
-* @example
-* var epsdiff = require( '@stdlib/math/base/utils/float64-epsilon-difference' );
-*
-* var d = epsdiff( 12.15, 12.149999999999999 ); // => ~0.658ε
-* // returns ~0.658
-*
-* d = epsdiff( 2.4341309458983933, 2.4341309458633909, 'mean-abs' ); // => ~64761.5ε => ~1.438e-11
-* // returns ~64761.5
-*
-* function scale( x, y ) {
-*      // Return the minimum value:
-*      return ( x > y ) ? y : x;
-* }
-*
-* d = epsdiff( 1.0000000000000002, 1.0000000000000100, scale ); // => ~44ε
-* // returns ~44
-*/
-
-// MODULES //
-
-var epsdiff = require( './epsilon_difference.js' );
-
-
-// EXPORTS //
-
-module.exports = epsdiff;
-
-},{"./epsilon_difference.js":96}],98:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-var EXP_MASK = require( '@stdlib/math/constants/float64-high-word-exponent-mask' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-
-
-// MAIN //
-
-/**
-* Returns an integer corresponding to the unbiased exponent of a double-precision floating-point number.
-*
-* @param {number} x - input value
-* @returns {integer32} unbiased exponent
-*
-* @example
-* var exp = exponent( 3.14e-307 ); // => 2**-1019 ~ 1e-307
-* // returns -1019
-* @example
-* var exp = exponent( -3.14 );
-* // returns 1
-* @example
-* var exp = exponent( 0.0 );
-* // returns 0
-* @example
-* var exp = exponent( NaN );
-* // returns 1024
-*/
-function exponent( x ) {
-	// Extract from the input value a higher order word (unsigned 32-bit integer) which contains the exponent:
-	var high = getHighWord( x );
-
-	// Apply a mask to isolate only the exponent bits and then shift off all bits which are part of the fraction:
-	high = ( high & EXP_MASK ) >>> 20;
-
-	// Remove the bias and return:
-	return high - BIAS;
-} // end FUNCTION exponent()
-
-
-// EXPORTS //
-
-module.exports = exponent;
-
-},{"@stdlib/math/base/utils/float64-get-high-word":108,"@stdlib/math/constants/float64-exponent-bias":176,"@stdlib/math/constants/float64-high-word-exponent-mask":177}],99:[function(require,module,exports){
-'use strict';
-
-/**
-* Return an integer corresponding to the unbiased exponent of a double-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float64-exponent
-*
-* @example
-* var exponent = require( '@stdlib/math/base/utils/float64-exponent );
-*
-* var exp = exponent( 3.14e-307 ); // => 2**-1019 ~ 1e-307
-* // returns -1019
-*
-* exp = exponent( -3.14 );
-* // returns 1
-*
-* exp = exponent( 0.0 );
-* // returns 0
-*
-* exp = exponent( NaN );
-* // returns 1024
-*/
-
-// MODULES //
-
-var exponent = require( './exponent.js' );
-
-
-// EXPORTS //
-
-module.exports = exponent;
-
-},{"./exponent.js":98}],100:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-var pow = require( '@stdlib/math/base/special/pow' );
-var toDouble = require( './todouble.js' );
-
-
-// MAIN //
-
-/**
-* Creates a double-precision floating-point number from a literal bit representation.
-*
-* @param {BinaryString} bstr - string which is a literal bit representation
-* @throws {Error} must provide a string with a length equal to `64`
-* @returns {number} double
-*
-* @example
-* var bstr = '0100000000010000000000000000000000000000000000000000000000000000';
-* var val = fromBinaryString( bstr );
-* // returns 4.0
-*
-* @example
-* var bstr = '0100000000001001001000011111101101010100010001000010110100011000';
-* var val = fromBinaryString( bstr );
-* // returns 3.141592653589793
-*
-* @example
-* var bstr = '1111111111100001110011001111001110000101111010111100100010100000';
-* var val = fromBinaryString( bstr );
-* // returns -1.0e308
-*
-* @example
-* var bstr = '1000000000000000000000000000000000000000000000000001100011010011';
-* var val = fromBinaryString( bstr );
-* // returns -3.14e-320
-*
-* @example
-* var bstr = '0000000000000000000000000000000000000000000000000000000000000001';
-* var val = fromBinaryString( bstr );
-* // returns 5.0e-324
-*
-* @example
-* var bstr = '0000000000000000000000000000000000000000000000000000000000000000';
-* var val = fromBinaryString( bstr );
-* // returns 0.0
-*
-* @example
-* var bstr = '1000000000000000000000000000000000000000000000000000000000000000';
-* var val = fromBinaryString( bstr );
-* // returns -0.0
-*
-* @example
-* var bstr = '0111111111111000000000000000000000000000000000000000000000000000';
-* var val = fromBinaryString( bstr );
-* // returns NaN
-*
-* @example
-* var bstr = '0111111111110000000000000000000000000000000000000000000000000000';
-* var val = fromBinaryString( bstr );
-* // returns Number.POSITIVE_INFINITY
-*
-* @example
-* var bstr = '1111111111110000000000000000000000000000000000000000000000000000';
-* var val = fromBinaryString( bstr );
-* // returns Number.NEGATIVE_INFINITY
-*/
-function fromBinaryString( bstr ) {
-	var sign;
-	var frac;
-	var exp;
-
-	if ( bstr.length !== 64 ) {
-		throw new Error( 'invalid input argument. Input string must have a length equal to 64. Value: `'+bstr+'`.' );
-	}
-	// Sign bit:
-	sign = ( bstr[0] === '1' ) ? -1.0 : 1.0;
-
-	// Exponent bits:
-	exp = parseInt( bstr.substring(1, 12), 2 ) - BIAS;
-
-	// Fraction bits:
-	frac = toDouble( bstr.substring( 12 ) );
-
-	// Detect `0` (all 0s) and subnormals (exponent bits are all 0, but fraction bits are not all 0s)...
-	if ( exp === -BIAS ) {
-		if ( frac === 0.0 ) {
-			return ( sign === 1.0 ) ? 0.0 : -0.0;
-		}
-		exp = -1022; // (1-BIAS); subnormals are special
-	}
-	// Detect `+-inf` (exponent bits are all 1 and fraction is 0) and `NaN` (exponent bits are all 1 and fraction is not 0)...
-	else if ( exp === BIAS+1 ) {
-		if ( frac === 0.0 ) {
-			return ( sign === 1.0 ) ? PINF : NINF;
-		}
-		return NaN;
-	}
-	// Normal numbers...
-	else {
-		// Account for hidden/implicit bit (2^0):
-		frac += 1.0;
-	}
-	return sign * frac * pow( 2.0, exp );
-} // end FUNCTION fromBinaryString()
-
-
-// EXPORTS //
-
-module.exports = fromBinaryString;
-
-},{"./todouble.js":102,"@stdlib/math/base/special/pow":59,"@stdlib/math/constants/float64-exponent-bias":176,"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185}],101:[function(require,module,exports){
-'use strict';
-
-/**
-* Create a double-precision floating-point number from a literal bit representation.
-*
-* @module @stdlib/math/base/utils/float64-from-binary-string
-*
-* @example
-* var fromBinaryString = require( '@stdlib/math/base/utils/float64-from-binary-string' );
-*
-* var bstr = '0100000000010000000000000000000000000000000000000000000000000000';
-* var val = fromBinaryString( bstr );
-* // returns 4.0
-*
-* bstr = '0100000000001001001000011111101101010100010001000010110100011000';
-* val = fromBinaryString( bstr );
-* // returns 3.141592653589793
-*
-* bstr = '1111111111100001110011001111001110000101111010111100100010100000';
-* val = fromBinaryString( bstr );
-* // returns -1.0e308
-*
-* bstr = '1000000000000000000000000000000000000000000000000001100011010011';
-* val = fromBinaryString( bstr );
-* // returns -3.14e-320
-*
-* bstr = '0000000000000000000000000000000000000000000000000000000000000001';
-* val = fromBinaryString( bstr );
-* // returns 5.0e-324
-*
-* bstr = '0000000000000000000000000000000000000000000000000000000000000000';
-* val = fromBinaryString( bstr );
-* // returns 0.0
-*
-* bstr = '1000000000000000000000000000000000000000000000000000000000000000';
-* val = fromBinaryString( bstr );
-* // returns -0.0
-*
-* bstr = '0111111111111000000000000000000000000000000000000000000000000000';
-* val = fromBinaryString( bstr );
-* // returns NaN
-*
-* bstr = '0111111111110000000000000000000000000000000000000000000000000000';
-* val = fromBinaryString( bstr );
-* // returns Number.POSITIVE_INFINITY
-*
-* bstr = '1111111111110000000000000000000000000000000000000000000000000000';
-* val = fromBinaryString( bstr );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-// MODULES //
-
-var fromBinaryString = require( './from_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = fromBinaryString;
-
-},{"./from_binary_string.js":100}],102:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var pow = require( '@stdlib/math/base/special/pow' );
-
-
-// MAIN //
-
-/**
-* Converts a double's fraction bit sequence to a numeric value.
-*
-* @private
-* @param {string} frac - literal bit representation of a double's fraction bit sequence
-* @returns {number} fraction)
-*/
-function toDouble( frac ) {
-	var sum = 0;
-	var i;
-	for ( i = 0; i < frac.length; i++ ) {
-		if ( frac[ i ] === '1' ) {
-			sum += pow( 2.0, -(i+1) );
-		}
-	}
-	return sum;
-} // end FUNCTION toDouble()
-
-
-// EXPORTS //
-
-module.exports = toDouble;
-
-},{"@stdlib/math/base/special/pow":59}],103:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var indices = require( './indices.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-var HIGH = indices.HIGH;
-var LOW = indices.LOW;
-
-
-// MAIN //
-
-/**
-* Creates a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-*
-* In which Uint32 should we place the higher order bits? If little endian, the second; if big endian, the first.
-*
-*
-* #### References
-*
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {uinteger32} high - higher order word (unsigned 32-bit integer)
-* @param {uinteger32} low - lower order word (unsigned 32-bit integer)
-* @returns {number} floating-point number
-*
-* @example
-* var v = fromWords( 1774486211, 2479577218 );
-* // returns 3.14e201
-* @example
-* var v = fromWords( 3221823995, 1413754136 );
-* // returns 3.141592653589793
-* @example
-* var v = fromWords( 0, 0 );
-* // returns 0.0
-* @example
-* var v = fromWords( 2147483648, 0 );
-* // returns -0.0
-* @example
-* var v = fromWords( 2146959360, 0 );
-* // returns NaN
-* @example
-* var v = fromWords( 2146435072, 0 );
-* // returns Number.POSITIVE_INFINITY
-* @example
-* var v = fromWords( 4293918720, 0 );
-* // returns Number.NEGATIVE_INFINITY
-*/
-function fromWords( high, low ) {
-	UINT32_VIEW[ HIGH ] = high;
-	UINT32_VIEW[ LOW ] = low;
-	return FLOAT64_VIEW[ 0 ];
-} // end FUNCTION fromWords()
-
-
-// EXPORTS //
-
-module.exports = fromWords;
-
-},{"./indices.js":105}],104:[function(require,module,exports){
-'use strict';
-
-/**
-* Create a double-precision floating-point number from a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/math/base/utils/float64-from-words
-*
-* @example
-* var fromWords = require( '@stdlib/math/base/utils/float64-from-words' );
-*
-* var v = fromWords( 1774486211, 2479577218 );
-* // returns 3.14e201
-*
-* v = fromWords( 3221823995, 1413754136 );
-* // returns 3.141592653589793
-*
-* v = fromWords( 0, 0 );
-* // returns 0.0
-*
-* v = fromWords( 2147483648, 0 );
-* // returns -0.0
-*
-* v = fromWords( 2146959360, 0 );
-* // returns NaN
-*
-* v = fromWords( 2146435072, 0 );
-* // returns Number.POSITIVE_INFINITY
-*
-* v = fromWords( 4293918720, 0 );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-// MODULES //
-
-var fromWords = require( './from_words.js' );
-
-
-// EXPORTS //
-
-module.exports = fromWords;
-
-},{"./from_words.js":103}],105:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
-
-
-// MAIN //
-
-var HIGH;
-var LOW;
-
-if ( isLittleEndian === true ) {
-	HIGH = 1; // second index
-	LOW = 0; // first index
-} else {
-	HIGH = 0; // first index
-	LOW = 1; // second index
-}
-
-
-// EXPORTS //
-
-module.exports = {
-	'HIGH': HIGH,
-	'LOW': LOW
-};
-
-},{"@stdlib/assert/is-little-endian":15}],106:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var HIGH = require( './high.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Returns an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-* In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
-*
-*
-* #### References
-*
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {number} x - input value
-* @returns {uinteger32} higher order word
-*
-* @example
-* var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
-* // returns 1774486211
-*/
-function getHighWord( x ) {
-	FLOAT64_VIEW[ 0 ] = x;
-	return UINT32_VIEW[ HIGH ];
-} // end FUNCTION getHighWord()
-
-
-// EXPORTS //
-
-module.exports = getHighWord;
-
-},{"./high.js":107}],107:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
-
-
-// MAIN //
-
-var HIGH;
-if ( isLittleEndian === true ) {
-	HIGH = 1; // second index
-} else {
-	HIGH = 0; // first index
-}
-
-
-// EXPORTS //
-
-module.exports = HIGH;
-
-},{"@stdlib/assert/is-little-endian":15}],108:[function(require,module,exports){
-'use strict';
-
-/**
-* Return an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float64-get-high-word
-*
-* @example
-* var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-*
-* var w = getHighWord( 3.14e201 ); // => 01101001110001001000001011000011
-* // returns 1774486211
-*/
-
-// MODULES //
-
-var getHighWord = require( './get_high_word.js' );
-
-
-// EXPORTS //
-
-module.exports = getHighWord;
-
-},{"./get_high_word.js":106}],109:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var LOW = require( './low.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Returns a 32-bit unsigned integer corresponding to the less significant 32 bits of a double-precision floating-point number.
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-* In which Uint32 can we find the lower order bits? If little endian, the first; if big endian, the second.
-*
-*
-* #### References
-*
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {number} x - input value
-* @returns {uinteger32} lower order word
-*
-* @example
-* var w = getLowWord( 3.14e201 ); // => 10010011110010110101100010000010
-* // returns 2479577218
-*/
-function getLowWord( x ) {
-	FLOAT64_VIEW[ 0 ] = x;
-	return UINT32_VIEW[ LOW ];
-} // end FUNCTION getLowWord()
-
-
-// EXPORTS //
-
-module.exports = getLowWord;
-
-},{"./low.js":111}],110:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns an unsigned 32-bit integer corresponding to the less significant 32 bits of a double-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float64-get-low-word
-*
-* @example
-* var getLowWord = require( '@stdlib/math/base/utils/float64-get-low-word' );
-*
-* var w = getLowWord( 3.14e201 ); // => 10010011110010110101100010000010
-* // returns 2479577218
-*/
-
-// MODULES //
-
-var getLowWord = require( './get_low_word.js' );
-
-
-// EXPORTS //
-
-module.exports = getLowWord;
-
-},{"./get_low_word.js":109}],111:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isLittleEndian = require( '@stdlib/assert/is-little-endian' );
-
-
-// MAIN //
-
-var LOW;
-if ( isLittleEndian === true ) {
-	LOW = 0; // first index
-} else {
-	LOW = 1; // second index
-}
-
-
-// EXPORTS //
-
-module.exports = LOW;
-
-},{"@stdlib/assert/is-little-endian":15}],112:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @module @stdlib/math/base/utils/float64-normalize
-*
-* @example
-* var normalize = require( '@stdlib/math/base/utils/float64-normalize' );
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*/
-
-// MODULES //
-
-var normalize = require( './normalize.js' );
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"./normalize.js":113}],113:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/math/constants/float64-smallest-normal' );
-var isInfinite = require( '@stdlib/math/base/assert/is-infinite' );
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var abs = require( '@stdlib/math/base/special/abs' );
-
-
-// VARIABLES //
-
-// (1<<52)
-var SCALAR = 4503599627370496;
-
-
-// MAIN //
-
-/**
-* Returns a normal number `y` and exponent `exp` satisfying \\(x = y \cdot 2^\mathrm{exp}\\).
-*
-* @param {number} x - input value
-* @returns {NumberArray} a two-element array containing `y` and `exp`
-*
-* @example
-* var pow = require( '@stdlib/math/base/special/pow' );
-*
-* var out = normalize( 3.14e-319 );
-* // returns [ 1.4141234400356668e-303, -52 ]
-*
-* var y = out[ 0 ];
-* var exp = out[ 1 ];
-*
-* var bool = ( y*pow(2.0,exp) === 3.14e-319 );
-* // returns true
-*
-* @example
-* var out = normalize( 0 );
-* // returns [ 0.0, 0 ];
-*
-* @example
-* var out = normalize( Number.POSITIVE_INFINITY );
-* // returns [ Number.POSITIVE_INFINITY, 0 ]
-*
-* @example
-* var out = normalize( Number.NEGATIVE_INFINITY );
-* // returns [ Number.NEGATIVE_INFINIY, 0 ]
-*
-* @example
-* var out = normalize( NaN );
-* // returns [ NaN, 0 ]
-*/
-function normalize( x ) {
-	if ( isnan( x ) || isInfinite( x ) ) {
-		return [ x, 0 ];
-	}
-	if ( x !== 0.0 && abs( x ) < FLOAT64_SMALLEST_NORMAL ) {
-		return [ x*SCALAR, -52 ];
-	}
-	return [ x, 0 ];
-} // end FUNCTION normalize()
-
-
-// EXPORTS //
-
-module.exports = normalize;
-
-},{"@stdlib/math/base/assert/is-infinite":39,"@stdlib/math/base/assert/is-nan":43,"@stdlib/math/base/special/abs":50,"@stdlib/math/constants/float64-smallest-normal":186}],114:[function(require,module,exports){
-arguments[4][107][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":15,"dup":107}],115:[function(require,module,exports){
-'use strict';
-
-/**
-* Set the more significant 32 bits of a double-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float64-set-high-word
-*
-* @example
-* var setHighWord = require( '@stdlib/math/base/utils/float64-set-high-word' );
-*
-* var high = 5 >>> 0; // => 0 00000000000 00000000000000000101
-*
-* var y = setHighWord( 3.14e201, high ); // => 0 00000000000 0000000000000000010110010011110010110101100010000010
-* // returns 1.18350528745e-313
-*
-* @example
-* var setHighWord = require( '@stdlib/math/base/utils/float64-set-high-word' );
-* var PINF = require( '@stdlib/math/constants/float64-pinf' ); //  => 0 11111111111 00000000000000000000 00000000000000000000000000000000
-*
-* var high = 1072693248 >>> 0; // => 0 01111111111 00000000000000000000
-*
-* // Set the higher order bits of `+infinity` to return `1`:
-* var y = setHighWord( PINF, high ); => 0 01111111111 0000000000000000000000000000000000000000000000000000
-* // returns 1.0
-*/
-
-// MODULES //
-
-var setHighWord = require( './set_high_word.js' );
-
-
-// EXPORTS //
-
-module.exports = setHighWord;
-
-},{"./set_high_word.js":116}],116:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var HIGH = require( './high.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Sets the more significant 32 bits of a double-precision floating-point number.
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-* In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
-*
-*
-* #### References
-*
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {number} x - double
-* @param {uinteger32} high - unsigned 32-bit integer to replace the higher order word of `x`
-* @returns {number} double having the same lower order word as `x`
-*
-* @example
-* var high = 5 >>> 0; // => 0 00000000000 00000000000000000101
-*
-* var y = setHighWord( 3.14e201, high ); //  => 0 00000000000 0000000000000000010110010011110010110101100010000010
-* // returns 1.18350528745e-313
-*
-* @example
-* var PINF = require( '@stdlib/math/constants/float64-pinf' ); // => 0 11111111111 00000000000000000000 00000000000000000000000000000000
-*
-* var high = 1072693248 >>> 0; // => 0 01111111111 00000000000000000000
-*
-* // Set the higher order bits of `+infinity` to return `1`:
-* var y = setHighWord( PINF, high ); => 0 01111111111 0000000000000000000000000000000000000000000000000000
-* // returns 1.0
-*/
-function setHighWord( x, high ) {
-	FLOAT64_VIEW[ 0 ] = x;
-	UINT32_VIEW[ HIGH ] = ( high >>> 0 ); // identity bit shift to ensure integer
-	return FLOAT64_VIEW[ 0 ];
-} // end FUNCTION setHighWord()
-
-
-// EXPORTS //
-
-module.exports = setHighWord;
-
-},{"./high.js":114}],117:[function(require,module,exports){
-'use strict';
-
-/**
-* Set the less significant 32 bits of a double-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float64-set-low-word
-*
-* @example
-* var setLowWord = require( '@stdlib/math/base/utils/float64-set-low-word' );
-*
-* var low = 5 >>> 0; // => 00000000000000000000000000000101
-*
-* var x = 3.14e201; // => 0 11010011100 01001000001011000011 10010011110010110101100010000010
-*
-* var y = setLowWord( x, low ); // => 0 11010011100 01001000001011000011 00000000000000000000000000000101
-* // returns 3.139998651394392e+201
-*
-* @example
-* var setLowWord = require( '@stdlib/math/base/utils/float64-set-low-word' );
-* var PINF = require( '@stdlib/math/constants/float64-pinf' );
-* var NINF = require( '@stdlib/math/constants/float64-ninf' );
-*
-* var low = 12345678;
-*
-* var y = setLowWord( PINF, low );
-* // returns NaN
-*
-* y = setLowWord( NINF, low );
-* // returns NaN
-*
-* y = setLowWord( NaN, low );
-* // returns NaN
-*/
-
-// MODULES //
-
-var setLowWord = require( './set_low_word.js' );
-
-
-// EXPORTS //
-
-module.exports = setLowWord;
-
-},{"./set_low_word.js":119}],118:[function(require,module,exports){
-arguments[4][111][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":15,"dup":111}],119:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var LOW = require( './low.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Sets the less significant 32 bits of a double-precision floating-point number.
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-* In which Uint32 can we find the lower order bits? If little endian, the first; if big endian, the second.
-*
-*
-* #### References
-*
-* * [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {number} x - double
-* @param {uinteger32} low - unsigned 32-bit integer to replace the lower order word of `x`
-* @returns {number} double having the same higher order word as `x`
-*
-* @example
-* var low = 5 >>> 0; // => 00000000000000000000000000000101
-*
-* var x = 3.14e201; // => 0 11010011100 01001000001011000011 10010011110010110101100010000010
-*
-* var y = setLowWord( x, low ); // => 0 11010011100 01001000001011000011 00000000000000000000000000000101
-* // returns 3.139998651394392e+201
-*
-* @example
-* var PINF = require( '@stdlib/math/constants/float64-pinf' );
-* var NINF = require( '@stdlib/math/constants/float64-ninf' );
-*
-* var low = 12345678;
-*
-* var y = setLowWord( PINF, low );
-* // returns NaN
-*
-* y = setLowWord( NINF, low );
-* // returns NaN
-*
-* y = setLowWord( NaN, low );
-* // returns NaN
-*/
-function setLowWord( x, low ) {
-	FLOAT64_VIEW[ 0 ] = x;
-	UINT32_VIEW[ LOW ] = ( low >>> 0 ); // identity bit shift to ensure integer
-	return FLOAT64_VIEW[ 0 ];
-} // end FUNCTION setLowWord()
-
-
-// EXPORTS //
-
-module.exports = setLowWord;
-
-},{"./low.js":118}],120:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a boolean indicating if the sign bit is on (true) or off (false).
-*
-* @module @stdlib/math/base/utils/float64-signbit
-*
-* @example
-* var signbit = require( '@stdlib/math/base/utils/float64-signbit' );
-*
-* var bool = signbit( 4.0 );
-* // returns false
-*
-* bool = signbit( -9.14e-307 );
-* // returns true
-*
-* bool = signbit( 0.0 );
-* // returns false
-*
-* bool = signbit( -0.0 );
-* // returns true
-*/
-
-// MODULES //
-
-var signbit = require( './signbit.js' );
-
-
-// EXPORTS //
-
-module.exports = signbit;
-
-},{"./signbit.js":121}],121:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var getHighWord = require( '@stdlib/math/base/utils/float64-get-high-word' );
-
-
-// MAIN //
-
-/**
-* Returns a boolean indicating if the sign bit is on (true) or off (false).
-*
-* @param {number} x - input value
-* @returns {boolean} boolean indicating if sign bit is on or off
-*
-* @example
-* var bool = signbit( 4.0 );
-* // returns false
-* @example
-* var bool = signbit( -9.14e-307 );
-* // returns true
-* @example
-* var bool = signbit( 0.0 );
-* // returns false
-* @example
-* var bool = signbit( -0.0 );
-* // returns true
-*/
-function signbit( x ) {
-	// Extract from the input value a higher order word (unsigned 32-bit integer) containing the exponent and sign:
-	var high = getHighWord( x );
-
-	// Shift off all bits which are not the sign bit and check if the sign bit is on:
-	return ( high >>> 31 ) ? true : false; // eslint-disable-line no-unneeded-ternary
-} // end FUNCTION signbit()
-
-
-// EXPORTS //
-
-module.exports = signbit;
-
-},{"@stdlib/math/base/utils/float64-get-high-word":108}],122:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// MAIN //
-
-/**
-* Converts a nonnegative integer to a literal bit representation using the divide-by-2 algorithm.
-*
-* @private
-* @param {number} x - nonnegative integer
-* @returns {BinaryString} bit representation
-*
-* @example
-* var v = div2( 3 );
-* // returns '11'
-* @example
-* var v = div2( 0 );
-* // returns ''
-* @example
-* var v = div2( 12 );
-* // returns '1100'
-* @example
-* var v = div2( 188 );
-* // returns '10111100'
-*/
-function div2( x ) {
-	var str = '';
-	var y;
-
-	// We repeatedly divide by 2 and check for a remainder. If a remainder exists, the number is odd and we add a '1' bit...
-	while ( x > 0 ) {
-		y = x / 2;
-		x = floor( y );
-		if ( y === x ) {
-			str = '0' + str;
-		} else {
-			str = '1' + str;
-		}
-	}
-	return str;
-} // end FUNCTION div2()
-
-
-// EXPORTS //
-
-module.exports = div2;
-
-},{"@stdlib/math/base/special/floor":56}],123:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a string giving the literal bit representation of a double-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float64-to-binary-string
-*
-* @example
-* var toBinaryString = require( '@stdlib/math/base/utils/float64-to-binary-string' );
-*
-* var str = toBinaryString( 4.0 );
-* // returns '0100000000010000000000000000000000000000000000000000000000000000'
-*
-* str = toBinaryString( Math.PI );
-* // returns '0100000000001001001000011111101101010100010001000010110100011000'
-*
-* str = toBinaryString( -1.0e308 );
-* // returns '1111111111100001110011001111001110000101111010111100100010100000'
-*
-* str = toBinaryString( -3.14e-320 );
-* // returns '1000000000000000000000000000000000000000000000000001100011010011'
-*
-* str = toBinaryString( 5.0e-324 );
-* // returns '0000000000000000000000000000000000000000000000000000000000000001'
-*
-* str = toBinaryString( 0.0 );
-* // returns '0000000000000000000000000000000000000000000000000000000000000000'
-*
-* str = toBinaryString( -0.0 );
-* // returns '1000000000000000000000000000000000000000000000000000000000000000'
-*
-* str = toBinaryString( NaN );
-* // returns '0111111111111000000000000000000000000000000000000000000000000000'
-*
-* str = toBinaryString( Number.POSITIVE_INFINITY );
-* // returns '0111111111110000000000000000000000000000000000000000000000000000'
-*
-* str = toBinaryString( Number.NEGATIVE_INFINITY );
-* // returns '1111111111110000000000000000000000000000000000000000000000000000'
-*/
-
-// MODULES //
-
-var toBinaryString = require( './to_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./to_binary_string.js":125}],124:[function(require,module,exports){
-'use strict';
-
-// VARIABLES //
-
-var MAX_ITER = 1075; // 1023+52 (subnormals) => BIAS+NUM_SIGNFICAND_BITS-1
-var MAX_BITS = 54; // only 53 bits for fraction
-
-
-// MAIN //
-
-/**
-* Converts a fraction to a literal bit representation using the multiply-by-2 algorithm.
-*
-* @private
-* @param {number} x - number less than 1
-* @returns {BinaryString} bit representation
-*
-* @example
-* var v = mult2( 0.234375 );
-* // returns '001111'
-* @example
-* var v = mult2( 0.0 );
-* // returns ''
-*/
-function mult2( x ) {
-	var str;
-	var y;
-	var i;
-	var j;
-
-	str = '';
-	if ( x === 0.0 ) {
-		return str;
-	}
-	j = MAX_ITER;
-
-	// Each time we multiply by 2 and find a ones digit, add a '1'; otherwise, add a '0'..
-	for ( i = 0; i < MAX_ITER; i++ ) {
-		y = x * 2.0;
-		if ( y >= 1.0 ) {
-			x = y - 1.0;
-			str += '1';
-			if ( j === MAX_ITER ) {
-				j = i; // first '1'
-			}
-		} else {
-			x = y;
-			str += '0';
-		}
-		// Stop when we have no more decimals to process or in the event we found a fraction which cannot be represented in a finite number of bits...
-		if ( y === 1.0 || i-j > MAX_BITS ) {
-			break;
-		}
-	}
-	return str;
-} // end FUNCTION mult2()
-
-
-// EXPORTS //
-
-module.exports = mult2;
-
-},{}],125:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
-var BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var isNegativeZero = require( '@stdlib/math/base/assert/is-negative-zero' );
-var abs = require( '@stdlib/math/base/special/abs' );
-var floor = require( '@stdlib/math/base/special/floor' );
-var rpad = require( '@stdlib/string/right-pad' );
-var lpad = require( '@stdlib/string/left-pad' );
-var repeat = require( '@stdlib/string/repeat' );
-var div2 = require( './div2.js' );
-var mult2 = require( './mult2.js' );
-
-
-// VARIABLES //
-
-// TODO: consider moving to external constants
-var NUM_EXPONENT_BITS = 11;
-var NUM_SIGNIFICAND_BITS = 52;
-
-
-// MAIN //
-
-/**
-* Returns a string giving the literal bit representation of a double-precision floating-point number.
-*
-* @param {number} x - input value
-* @returns {BinaryString} bit representation
-*
-* @example
-* var str = toBinaryString( 4.0 );
-* // returns '0100000000010000000000000000000000000000000000000000000000000000'
-* @example
-* var str = toBinaryString( Math.PI );
-* // returns '0100000000001001001000011111101101010100010001000010110100011000'
-* @example
-* var str = toBinaryString( -1.0e308 );
-* // returns '1111111111100001110011001111001110000101111010111100100010100000'
-* @example
-* var str = toBinaryString( -3.14e-320 );
-* // returns '1000000000000000000000000000000000000000000000000001100011010011'
-* @example
-* var str = toBinaryString( 5.0e-324 );
-* // returns '0000000000000000000000000000000000000000000000000000000000000001'
-* @example
-* var str = toBinaryString( 0.0 );
-* // returns '0000000000000000000000000000000000000000000000000000000000000000'
-* @example
-* var str = toBinaryString( -0.0 );
-* // returns '1000000000000000000000000000000000000000000000000000000000000000'
-* @example
-* var str = toBinaryString( NaN );
-* // returns '0111111111111000000000000000000000000000000000000000000000000000'
-* @example
-* var str = toBinaryString( Number.POSITIVE_INFINITY );
-* // returns '0111111111110000000000000000000000000000000000000000000000000000'
-* @example
-* var str = toBinaryString( Number.NEGATIVE_INFINITY );
-* // returns '1111111111110000000000000000000000000000000000000000000000000000'
-*/
-function toBinaryString( x ) {
-	var nbits;
-	var sign;
-	var str;
-	var exp;
-	var n;
-	var f;
-	var i;
-
-	// Check for a negative value or negative zero...
-	if ( x < 0.0 || isNegativeZero( x ) ) {
-		sign = '1';
-	} else {
-		sign = '0';
-	}
-	// Special case: +-infinity
-	if ( x === PINF || x === NINF ) {
-		// Based on IEEE 754-1985...
-		exp = repeat( '1', NUM_EXPONENT_BITS ); // all 1s
-		str = repeat( '0', NUM_SIGNIFICAND_BITS ); // all 0s
-		return sign + exp + str;
-	}
-	// Special case: NaN
-	if ( isnan( x ) ) {
-		// Based on IEEE 754-1985...
-		exp = repeat( '1', NUM_EXPONENT_BITS ); // all 1s
-		str = '1' + repeat( '0', NUM_SIGNIFICAND_BITS-1 ); // can't be all 0s
-		return sign + exp + str;
-	}
-	// Special case: +-0
-	if ( x === 0 ) {
-		// Based on IEEE 754-1985...
-		exp = repeat( '0', NUM_EXPONENT_BITS ); // all 0s
-		str = repeat( '0', NUM_SIGNIFICAND_BITS ); // all 0s
-		return sign + exp + str;
-	}
-	x = abs( x );
-
-	// Isolate the integer part (digits before the decimal):
-	n = floor( x );
-
-	// Isolate the fractional part (digits after the decimal):
-	f = x - n;
-
-	// Convert the integer and fractional parts to bit strings:
-	n = div2( n );
-	f = mult2( f );
-
-	// Determine the exponent needed to normalize the integer+fractional parts...
-	if ( n ) {
-		// Move the decimal `d` digits to the left:
-		exp = n.length - 1;
-	} else {
-		// Find the first '1' bit...
-		for ( i = 0; i < f.length; i++ ) {
-			if ( f[ i ] === '1' ) {
-				nbits = i + 1;
-				break;
-			}
-		}
-		// Move the decimal `d` digits to the right:
-		exp = -nbits;
-	}
-	// Normalize the combined integer+fractional string...
-	str = n + f;
-	if ( exp < 0 ) {
-		// Handle subnormals...
-		if ( exp <= -BIAS ) {
-			// Cap the number of bits removed:
-			nbits = BIAS - 1;
-		}
-		// Remove all leading zeros and the first '1' for normal values, and, for subnormals, remove at most BIAS-1 leading bits:
-		str = str.substring( nbits );
-	} else {
-		// Remove the leading '1' (implicit/hidden bit):
-		str = str.substring( 1 );
-	}
-	// Convert the exponent to a bit string:
-	exp = div2( exp + BIAS );
-	exp = lpad( exp, NUM_EXPONENT_BITS, '0' );
-
-	// Fill in any trailing zeros and ensure we have only 52 fraction bits:
-	str = rpad( str, NUM_SIGNIFICAND_BITS, '0' ).substring( 0, NUM_SIGNIFICAND_BITS );
-
-	// Return a bit representation:
-	return sign + exp + str;
-} // end FUNCTION toBinaryString()
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./div2.js":122,"./mult2.js":124,"@stdlib/math/base/assert/is-nan":43,"@stdlib/math/base/assert/is-negative-zero":45,"@stdlib/math/base/special/abs":50,"@stdlib/math/base/special/floor":56,"@stdlib/math/constants/float64-exponent-bias":176,"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185,"@stdlib/string/left-pad":188,"@stdlib/string/repeat":190,"@stdlib/string/right-pad":192}],126:[function(require,module,exports){
-'use strict';
-
-// VARIABLES //
-
-var FLOAT32_VIEW = new Float32Array( 1 );
-
-
-// MAIN //
-
-/**
-* Converts a double-precision floating-point number to the nearest single-precision floating-point number.
-*
-* @param {number} x - double-precision floating-point number
-* @returns {number} nearest single-precision floating-point number
-*
-* @example
-* var y = float64ToFloat32( 1.337 );
-* // returns 1.3370000123977661
-*/
-function float64ToFloat32( x ) {
-	FLOAT32_VIEW[ 0 ] = x;
-	return FLOAT32_VIEW[ 0 ];
-} // end FUNCTION float64ToFloat32()
-
-
-// EXPORTS //
-
-module.exports = float64ToFloat32;
-
-},{}],127:[function(require,module,exports){
-'use strict';
-
-/**
-* Convert a double-precision floating-point number to the nearest single-precision floating-point number.
-*
-* @module @stdlib/math/base/utils/float64-to-float32
-*
-* @example
-* var float64ToFloat32 = require( '@stdlib/math/base/utils/float64-to-float32' );
-*
-* var y = float64ToFloat32( 1.337 );
-* // returns 1.3370000123977661
-*/
-
-// MODULES //
-
-var float64ToFloat32 = require( './float64_to_float32.js' );
-
-
-// EXPORTS //
-
-module.exports = float64ToFloat32;
-
-},{"./float64_to_float32.js":126}],128:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Converts a double-precision floating-point number to a signed 32-bit integer.
-*
-* @param {number} x - double-precision floating-point number
-* @returns {integer32} signed 32-bit integer
-*
-* @example
-* var y = float64ToInt32( 4294967295.0 );
-* // returns -1
-* @example
-* var y = float64ToInt32( 3.14 );
-* // returns 3
-* @example
-* var y = float64ToInt32( -3.14 );
-* // returns -3
-* @example
-* var y = float64ToInt32( NaN );
-* // returns 0
-* @example
-* var y = float64ToInt32( Number.POSITIVE_INFINITY );
-* // returns 0
-* @example
-* var y = float64ToInt32( Number.NEGATIVE_INFINITY );
-* // returns 0
-*/
-function float64ToInt32( x ) {
-	// NOTE: we could also use typed-arrays to achieve the same end.
-	return x|0; // asm type annotation
-} // end FUNCTION float64ToInt32()
-
-
-// EXPORTS //
-
-module.exports = float64ToInt32;
-
-},{}],129:[function(require,module,exports){
-'use strict';
-
-/**
-* Convert a double-precision floating-point number to a signed 32-bit integer.
-*
-* @module @stdlib/math/base/utils/float64-to-int32
-*
-* @example
-* var float64ToInt32 = require( '@stdlib/math/base/utils/float64-to-int32' );
-*
-* var y = float64ToInt32( 4294967295.0 );
-* // returns -1
-*
-* y = float64ToInt32( 3.14 );
-* // returns 3
-*
-* y = float64ToInt32( -3.14 );
-* // returns -3
-*
-* y = float64ToInt32( NaN );
-* // returns 0
-*
-* y = float64ToInt32( Number.POSITIVE_INFINITY );
-* // returns 0
-*
-* y = float64ToInt32( Number.NEGATIVE_INFINITY );
-* // returns 0
-*/
-
-// MODULES //
-
-var float64ToInt32 = require( './float64_to_int32.js' );
-
-
-// EXPORTS //
-
-module.exports = float64ToInt32;
-
-},{"./float64_to_int32.js":128}],130:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Converts a double-precision floating-point number to an unsigned 32-bit integer.
-*
-* @param {number} x - double-precision floating-point number
-* @returns {uinteger32} unsigned 32-bit integer
-*
-* @example
-* var y = float64ToUint32( 4294967297.0 );
-* // returns 1
-* @example
-* var y = float64ToUint32( 3.14 );
-* // returns 3
-* @example
-* var y = float64ToUint32( -3.14 );
-* // returns 4294967293
-* @example
-* var y = float64ToUint32( NaN );
-* // returns 0
-* @example
-* var y = float64ToUint32( Number.POSITIVE_INFINITY );
-* // returns 0
-* @example
-* var y = float64ToUint32( Number.NEGATIVE_INFINITY );
-* // returns 0
-*/
-function float64ToUint32( x ) {
-	// NOTE: we could also use typed-arrays to achieve the same end.
-	return x >>> 0;
-} // end FUNCTION float64ToUint32()
-
-
-// EXPORTS //
-
-module.exports = float64ToUint32;
-
-},{}],131:[function(require,module,exports){
-'use strict';
-
-/**
-* Convert a double-precision floating-point number to an unsigned 32-bit integer.
-*
-* @module @stdlib/math/base/utils/float64-to-uint32
-*
-* @example
-* var float64ToUint32 = require( '@stdlib/math/base/utils/float64-to-uint32' );
-*
-* var y = float64ToUint32( 4294967297.0 );
-* // returns 1
-*
-* y = float64ToUint32( 3.14 );
-* // returns 3
-*
-* y = float64ToUint32( -3.14 );
-* // returns 4294967293
-*
-* y = float64ToUint32( NaN );
-* // returns 0
-*
-* y = float64ToUint32( Number.POSITIVE_INFINITY );
-* // returns 0
-*
-* y = float64ToUint32( Number.NEGATIVE_INFINITY );
-* // returns 0
-*/
-
-// MODULES //
-
-var float64ToUint32 = require( './float64_to_uint32.js' );
-
-
-// EXPORTS //
-
-module.exports = float64ToUint32;
-
-},{"./float64_to_uint32.js":130}],132:[function(require,module,exports){
-'use strict';
-
-/**
-* Split a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* @module @stdlib/math/base/utils/float64-to-words
-*
-* @example
-* var toWords = require( '@stdlib/math/base/utils/float64-to-words' );
-*
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*/
-
-// MODULES //
-
-var toWords = require( './to_words.js' );
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./to_words.js":134}],133:[function(require,module,exports){
-arguments[4][105][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":15,"dup":105}],134:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var indices = require( './indices.js' );
-
-
-// VARIABLES //
-
-var FLOAT64_VIEW = new Float64Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT64_VIEW.buffer );
-
-var HIGH = indices.HIGH;
-var LOW = indices.LOW;
-
-
-// MAIN //
-
-/**
-* Splits a floating-point number into a higher order word (unsigned 32-bit integer) and a lower order word (unsigned 32-bit integer).
-*
-* #### Notes
-*
-* ``` text
-* float64 (64 bits)
-* f := fraction (significand/mantissa) (52 bits)
-* e := exponent (11 bits)
-* s := sign bit (1 bit)
-*
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |                                Float64                                |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* |              Uint32               |               Uint32              |
-* |-------- -------- -------- -------- -------- -------- -------- --------|
-* ```
-*
-* If little endian (more significant bits last):
-*
-* ``` text
-*                         <-- lower      higher -->
-* |   f7       f6       f5       f4       f3       f2    e2 | f1 |s|  e1  |
-* ```
-*
-* If big endian (more significant bits first):
-*
-* ``` text
-*                         <-- higher      lower -->
-* |s| e1    e2 | f1     f2       f3       f4       f5        f6      f7   |
-* ```
-*
-* In which Uint32 can we find the higher order bits? If little endian, the second; if big endian, the first.
-*
-*
-* #### References
-*
-* [Open Group]{@link http://pubs.opengroup.org/onlinepubs/9629399/chap14.htm}
-*
-*
-* @param {number} x - input value
-* @returns {NumberArray} two-element array containing a higher order word and a lower order word
-*
-* @example
-* var w = toWords( 3.14e201 );
-* // returns [ 1774486211, 2479577218 ]
-*/
-function toWords( x ) {
-	FLOAT64_VIEW[ 0 ] = x;
-	return [ UINT32_VIEW[ HIGH ], UINT32_VIEW[ LOW ] ];
-} // end FUNCTION toWords()
-
-
-// EXPORTS //
-
-module.exports = toWords;
-
-},{"./indices.js":133}],135:[function(require,module,exports){
-'use strict';
-
-/**
-* Convert a signed 32-bit integer to an unsigned 32-bit integer.
-*
-* @module @stdlib/math/base/utils/int32-to-uint32
-*
-* @example
-* var float64ToInt32 = require( '@stdlib/math/base/utils/float64-to-int32' );
-* var int32ToUint32 = require( '@stdlib/math/base/utils/int32-to-uint32' );
-*
-* var y = int32ToUint32( float64ToInt32( -32 ) );
-* // returns 4294967264
-*
-* y = int32ToUint32( float64ToInt32( 3 ) );
-* // returns 3
-*/
-
-// MODULES //
-
-var int32ToUint32 = require( './int32_to_uint32.js' );
-
-
-// EXPORTS //
-
-module.exports = int32ToUint32;
-
-},{"./int32_to_uint32.js":136}],136:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Converts a signed 32-bit integer to an unsigned 32-bit integer.
-*
-* @param {integer32} x - signed 32-bit integer
-* @returns {uinteger32} unsigned 32-bit integer
-*
-* @example
-* var float64ToInt32 = require( '@stdlib/math/base/utils/float64-to-int32' );
-* var y = int32ToUint32( float64ToInt32( -1.0 ) );
-* // returns 4294967295
-*
-* @example
-* var float64ToInt32 = require( '@stdlib/math/base/utils/float64-to-int32' );
-* var y = int32ToUint32( float64ToInt32( 3 ) );
-* // returns 3
-*/
-function int32ToUint32( x ) {
-	// NOTE: we could also use typed-arrays to achieve the same end.
-	return x >>> 0;
-} // end FUNCTION int32ToUint32()
-
-
-// EXPORTS //
-
-module.exports = int32ToUint32;
-
-},{}],137:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-eps":13,"@stdlib/constants/math/float64-max":14,"@stdlib/constants/math/float64-pinf":16,"@stdlib/math/base/assert/is-nan":19,"@stdlib/math/base/utils/relative-difference":28}],27:[function(require,module,exports){
 'use strict';
 
 /*
@@ -6799,349 +1138,43 @@ var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 /**
 * Top-level namespace.
 *
-* @namespace utils
+* @namespace ns
 */
-var utils = {};
+var ns = {};
 
 /**
 * @name absdiff
-* @memberof utils
+* @memberof ns
 * @readonly
 * @type {Function}
 * @see {@link module:@stdlib/math/base/utils/absolute-difference}
 */
-setReadOnly( utils, 'absdiff', require( '@stdlib/math/base/utils/absolute-difference' ) );
-
-/**
-* @name exponentf
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-exponent}
-*/
-setReadOnly( utils, 'exponentf', require( '@stdlib/math/base/utils/float32-exponent' ) );
-
-/**
-* @name fromBinaryStringf
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-from-binary-string}
-*/
-setReadOnly( utils, 'fromBinaryStringf', require( '@stdlib/math/base/utils/float32-from-binary-string' ) );
-
-/**
-* @name fromWordf
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-from-word}
-*/
-setReadOnly( utils, 'fromWordf', require( '@stdlib/math/base/utils/float32-from-word' ) );
-
-/**
-* @name normalizef
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-normalize}
-*/
-setReadOnly( utils, 'normalizef', require( '@stdlib/math/base/utils/float32-normalize' ) );
-
-/**
-* @name signbitf
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-signbit}
-*/
-setReadOnly( utils, 'signbitf', require( '@stdlib/math/base/utils/float32-signbit' ) );
-
-/**
-* @name significandf
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-significand}
-*/
-setReadOnly( utils, 'significandf', require( '@stdlib/math/base/utils/float32-significand' ) );
-
-/**
-* @name toBinaryStringf
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-to-binary-string}
-*/
-setReadOnly( utils, 'toBinaryStringf', require( '@stdlib/math/base/utils/float32-to-binary-string' ) );
-
-/**
-* @name float32ToInt32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-to-int32}
-*/
-setReadOnly( utils, 'float32ToInt32', require( '@stdlib/math/base/utils/float32-to-int32' ) );
-
-/**
-* @name float32ToUint32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-to-uint32}
-*/
-setReadOnly( utils, 'float32ToUint32', require( '@stdlib/math/base/utils/float32-to-uint32' ) );
-
-/**
-* @name toWordf
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float32-to-word}
-*/
-setReadOnly( utils, 'toWordf', require( '@stdlib/math/base/utils/float32-to-word' ) );
+setReadOnly( ns, 'absdiff', require( '@stdlib/math/base/utils/absolute-difference' ) );
 
 /**
 * @name epsdiff
-* @memberof utils
+* @memberof ns
 * @readonly
 * @type {Function}
 * @see {@link module:@stdlib/math/base/utils/float64-epsilon-difference}
 */
-setReadOnly( utils, 'epsdiff', require( '@stdlib/math/base/utils/float64-epsilon-difference' ) );
-
-/**
-* @name exponent
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-exponent}
-*/
-setReadOnly( utils, 'exponent', require( '@stdlib/math/base/utils/float64-exponent' ) );
-
-/**
-* @name fromBinaryString
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-from-binary-string}
-*/
-setReadOnly( utils, 'fromBinaryString', require( '@stdlib/math/base/utils/float64-from-binary-string' ) );
-
-/**
-* @name fromWords
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-from-words}
-*/
-setReadOnly( utils, 'fromWords', require( '@stdlib/math/base/utils/float64-from-words' ) );
-
-/**
-* @name getHighWord
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-get-high-word}
-*/
-setReadOnly( utils, 'getHighWord', require( '@stdlib/math/base/utils/float64-get-high-word' ) );
-
-/**
-* @name getLowWord
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-get-low-word}
-*/
-setReadOnly( utils, 'getLowWord', require( '@stdlib/math/base/utils/float64-get-low-word' ) );
-
-/**
-* @name normalize
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-normalize}
-*/
-setReadOnly( utils, 'normalize', require( '@stdlib/math/base/utils/float64-normalize' ) );
-
-/**
-* @name setHighWord
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-set-high-word}
-*/
-setReadOnly( utils, 'setHighWord', require( '@stdlib/math/base/utils/float64-set-high-word' ) );
-
-/**
-* @name setLowWord
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-set-low-word}
-*/
-setReadOnly( utils, 'setLowWord', require( '@stdlib/math/base/utils/float64-set-low-word' ) );
-
-/**
-* @name signbit
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-signbit}
-*/
-setReadOnly( utils, 'signbit', require( '@stdlib/math/base/utils/float64-signbit' ) );
-
-/**
-* @name toBinaryString
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-to-binary-string}
-*/
-setReadOnly( utils, 'toBinaryString', require( '@stdlib/math/base/utils/float64-to-binary-string' ) );
-
-/**
-* @name float64ToFloat32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-to-float32}
-*/
-setReadOnly( utils, 'float64ToFloat32', require( '@stdlib/math/base/utils/float64-to-float32' ) );
-
-/**
-* @name float64ToInt32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-to-int32}
-*/
-setReadOnly( utils, 'float64ToInt32', require( '@stdlib/math/base/utils/float64-to-int32' ) );
-
-/**
-* @name float64ToUint32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-to-uint32}
-*/
-setReadOnly( utils, 'float64ToUint32', require( '@stdlib/math/base/utils/float64-to-uint32' ) );
-
-/**
-* @name toWords
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/float64-to-words}
-*/
-setReadOnly( utils, 'toWords', require( '@stdlib/math/base/utils/float64-to-words' ) );
-
-/**
-* @name int32ToUint32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/int32-to-uint32}
-*/
-setReadOnly( utils, 'int32ToUint32', require( '@stdlib/math/base/utils/int32-to-uint32' ) );
+setReadOnly( ns, 'epsdiff', require( '@stdlib/math/base/utils/float64-epsilon-difference' ) );
 
 /**
 * @name reldiff
-* @memberof utils
+* @memberof ns
 * @readonly
 * @type {Function}
 * @see {@link module:@stdlib/math/base/utils/relative-difference}
 */
-setReadOnly( utils, 'reldiff', require( '@stdlib/math/base/utils/relative-difference' ) );
-
-/**
-* @name fromBinaryStringUint16
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint16-from-binary-string}
-*/
-setReadOnly( utils, 'fromBinaryStringUint16', require( '@stdlib/math/base/utils/uint16-from-binary-string' ) );
-
-/**
-* @name toBinaryStringUint16
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint16-to-binary-string}
-*/
-setReadOnly( utils, 'toBinaryStringUint16', require( '@stdlib/math/base/utils/uint16-to-binary-string' ) );
-
-/**
-* @name fromBinaryStringUint32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint32-from-binary-string}
-*/
-setReadOnly( utils, 'fromBinaryStringUint32', require( '@stdlib/math/base/utils/uint32-from-binary-string' ) );
-
-/**
-* @name rotl32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint32-rotl}
-*/
-setReadOnly( utils, 'rotl32', require( '@stdlib/math/base/utils/uint32-rotl' ) );
-
-/**
-* @name rotr32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint32-rotr}
-*/
-setReadOnly( utils, 'rotr32', require( '@stdlib/math/base/utils/uint32-rotr' ) );
-
-/**
-* @name toBinaryStringUint32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint32-to-binary-string}
-*/
-setReadOnly( utils, 'toBinaryStringUint32', require( '@stdlib/math/base/utils/uint32-to-binary-string' ) );
-
-/**
-* @name uint32ToInt32
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint32-to-int32}
-*/
-setReadOnly( utils, 'uint32ToInt32', require( '@stdlib/math/base/utils/uint32-to-int32' ) );
-
-/**
-* @name fromBinaryStringUint8
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint8-from-binary-string}
-*/
-setReadOnly( utils, 'fromBinaryStringUint8', require( '@stdlib/math/base/utils/uint8-from-binary-string' ) );
-
-/**
-* @name toBinaryStringUint8
-* @memberof utils
-* @readonly
-* @type {Function}
-* @see {@link module:@stdlib/math/base/utils/uint8-to-binary-string}
-*/
-setReadOnly( utils, 'toBinaryStringUint8', require( '@stdlib/math/base/utils/uint8-to-binary-string' ) );
+setReadOnly( ns, 'reldiff', require( '@stdlib/math/base/utils/relative-difference' ) );
 
 
 // EXPORTS //
 
-module.exports = utils;
+module.exports = ns;
 
-},{"@stdlib/math/base/utils/absolute-difference":72,"@stdlib/math/base/utils/float32-exponent":74,"@stdlib/math/base/utils/float32-from-binary-string":76,"@stdlib/math/base/utils/float32-from-word":79,"@stdlib/math/base/utils/float32-normalize":80,"@stdlib/math/base/utils/float32-signbit":82,"@stdlib/math/base/utils/float32-significand":84,"@stdlib/math/base/utils/float32-to-binary-string":87,"@stdlib/math/base/utils/float32-to-int32":91,"@stdlib/math/base/utils/float32-to-uint32":93,"@stdlib/math/base/utils/float32-to-word":94,"@stdlib/math/base/utils/float64-epsilon-difference":97,"@stdlib/math/base/utils/float64-exponent":99,"@stdlib/math/base/utils/float64-from-binary-string":101,"@stdlib/math/base/utils/float64-from-words":104,"@stdlib/math/base/utils/float64-get-high-word":108,"@stdlib/math/base/utils/float64-get-low-word":110,"@stdlib/math/base/utils/float64-normalize":112,"@stdlib/math/base/utils/float64-set-high-word":115,"@stdlib/math/base/utils/float64-set-low-word":117,"@stdlib/math/base/utils/float64-signbit":120,"@stdlib/math/base/utils/float64-to-binary-string":123,"@stdlib/math/base/utils/float64-to-float32":127,"@stdlib/math/base/utils/float64-to-int32":129,"@stdlib/math/base/utils/float64-to-uint32":131,"@stdlib/math/base/utils/float64-to-words":132,"@stdlib/math/base/utils/int32-to-uint32":135,"@stdlib/math/base/utils/relative-difference":138,"@stdlib/math/base/utils/uint16-from-binary-string":151,"@stdlib/math/base/utils/uint16-to-binary-string":153,"@stdlib/math/base/utils/uint32-from-binary-string":156,"@stdlib/math/base/utils/uint32-rotl":157,"@stdlib/math/base/utils/uint32-rotr":159,"@stdlib/math/base/utils/uint32-to-binary-string":162,"@stdlib/math/base/utils/uint32-to-int32":164,"@stdlib/math/base/utils/uint8-from-binary-string":167,"@stdlib/math/base/utils/uint8-to-binary-string":169,"@stdlib/utils/define-read-only-property":197}],138:[function(require,module,exports){
+},{"@stdlib/math/base/utils/absolute-difference":23,"@stdlib/math/base/utils/float64-epsilon-difference":25,"@stdlib/math/base/utils/relative-difference":28,"@stdlib/utils/define-read-only-property":44}],28:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7191,193 +1224,22 @@ module.exports = utils;
 
 // MODULES //
 
-var reldiff = require( './relative_difference.js' );
+var reldiff = require( './main.js' );
 
 
 // EXPORTS //
 
 module.exports = reldiff;
 
-},{"./relative_difference.js":145}],139:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns the maximum value of `x` and `y`.
-*
-* @private
-* @param {number} x - first number
-* @param {number} y - second number
-* @returns {number} maximum value
-*
-* @example
-* var z = max( 3.14, -1.0 );
-* // returns 3.14
-*/
-function max( x, y ) {
-	return ( x < y ) ? y : x; // doesn't account for +-0
-} // end FUNCTION max()
-
-
-// EXPORTS //
-
-module.exports = max;
-
-},{}],140:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var abs = require( '@stdlib/math/base/special/abs' );
-
-
-// MAIN //
-
-/**
-* Returns the maximum value of `|x|` and `|y|`.
-*
-* @private
-* @param {number} x - first number
-* @param {number} y - second number
-* @returns {number} maximum absolute value
-*
-* @example
-* var z = maxabs( 5.0, -11.11 );
-* // returns 11.11
-*/
-function maxabs( x, y ) {
-	x = abs( x );
-	y = abs( y );
-	return ( x < y ) ? y : x;
-} // end FUNCTION maxabs()
-
-
-// EXPORTS //
-
-module.exports = maxabs;
-
-},{"@stdlib/math/base/special/abs":50}],141:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns the arithmetic mean of `x` and `y`.
-*
-* @private
-* @param {number} x - first number
-* @param {number} y - second number
-* @returns {number} arithmetic mean
-*
-* @example
-* var z = mean( 3.5, 7.5 );
-* // returns 5.5
-*/
-function mean( x, y ) {
-	return x + ((y-x)/2.0);
-} // end FUNCTION mean()
-
-
-// EXPORTS //
-
-module.exports = mean;
-
-},{}],142:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var abs = require( '@stdlib/math/base/special/abs' );
-
-
-// MAIN //
-
-/**
-* Returns the arithmetic mean of `|x|` and `|y|`.
-*
-* @private
-* @param {number} x - first number
-* @param {number} y - second number
-* @returns {number} arithmetic mean
-*
-* @example
-* var z = meanabs( -3.5, -7.5 );
-* // returns 5.5
-*/
-function meanabs( x, y ) {
-	x = abs( x );
-	y = abs( y );
-	return x + ((y-x)/2.0);
-} // end FUNCTION meanabs()
-
-
-// EXPORTS //
-
-module.exports = meanabs;
-
-},{"@stdlib/math/base/special/abs":50}],143:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns the minimum value of `x` and `y`.
-*
-* @private
-* @param {number} x - first number
-* @param {number} y - second number
-* @returns {number} minimum value
-*
-* @example
-* var z = min( 10.0, 3.14 );
-* // returns 3.14
-*/
-function min( x, y ) {
-	return ( x > y ) ? y : x; // doesn't account for +-0
-} // end FUNCTION min()
-
-
-// EXPORTS //
-
-module.exports = min;
-
-},{}],144:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var abs = require( '@stdlib/math/base/special/abs' );
-
-
-// MAIN //
-
-/**
-* Returns the minimum value of `|x|` and `|y|`.
-*
-* @private
-* @param {number} x - first number
-* @param {number} y - second number
-* @returns {number} minimum absolute value value
-*
-* @example
-* var z = minabs( -3.14, -11.0 );
-* // returns 3.14
-*/
-function minabs( x, y ) {
-	x = abs( x );
-	y = abs( y );
-	return ( x > y ) ? y : x;
-} // end FUNCTION minabs()
-
-
-// EXPORTS //
-
-module.exports = minabs;
-
-},{"@stdlib/math/base/special/abs":50}],145:[function(require,module,exports){
+},{"./main.js":29}],29:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isFunction = require( '@stdlib/assert/is-function' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 var abs = require( '@stdlib/math/base/special/abs' );
 var SCALE = require( './scale.js' );
 
@@ -7479,14 +1341,185 @@ function relativeDifference( x, y, scale ) {
 		return NaN;
 	}
 	return abs( (x - y) / s );
-} // end FUNCTION relativeDifference()
+}
 
 
 // EXPORTS //
 
 module.exports = relativeDifference;
 
-},{"./scale.js":146,"@stdlib/assert/is-function":7,"@stdlib/math/base/assert/is-nan":43,"@stdlib/math/base/special/abs":50,"@stdlib/math/constants/float64-ninf":184,"@stdlib/math/constants/float64-pinf":185}],146:[function(require,module,exports){
+},{"./scale.js":36,"@stdlib/assert/is-function":7,"@stdlib/constants/math/float64-ninf":15,"@stdlib/constants/math/float64-pinf":16,"@stdlib/math/base/assert/is-nan":19,"@stdlib/math/base/special/abs":22}],30:[function(require,module,exports){
+'use strict';
+
+/**
+* Returns the maximum value of `x` and `y`.
+*
+* @private
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} maximum value
+*
+* @example
+* var z = max( 3.14, -1.0 );
+* // returns 3.14
+*/
+function max( x, y ) {
+	return ( x < y ) ? y : x; // doesn't account for +-0
+}
+
+
+// EXPORTS //
+
+module.exports = max;
+
+},{}],31:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var abs = require( '@stdlib/math/base/special/abs' );
+
+
+// MAIN //
+
+/**
+* Returns the maximum value of `|x|` and `|y|`.
+*
+* @private
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} maximum absolute value
+*
+* @example
+* var z = maxabs( 5.0, -11.11 );
+* // returns 11.11
+*/
+function maxabs( x, y ) {
+	x = abs( x );
+	y = abs( y );
+	return ( x < y ) ? y : x;
+}
+
+
+// EXPORTS //
+
+module.exports = maxabs;
+
+},{"@stdlib/math/base/special/abs":22}],32:[function(require,module,exports){
+'use strict';
+
+/**
+* Returns the arithmetic mean of `x` and `y`.
+*
+* @private
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} arithmetic mean
+*
+* @example
+* var z = mean( 3.5, 7.5 );
+* // returns 5.5
+*/
+function mean( x, y ) {
+	return x + ((y-x)/2.0);
+}
+
+
+// EXPORTS //
+
+module.exports = mean;
+
+},{}],33:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var abs = require( '@stdlib/math/base/special/abs' );
+
+
+// MAIN //
+
+/**
+* Returns the arithmetic mean of `|x|` and `|y|`.
+*
+* @private
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} arithmetic mean
+*
+* @example
+* var z = meanabs( -3.5, -7.5 );
+* // returns 5.5
+*/
+function meanabs( x, y ) {
+	x = abs( x );
+	y = abs( y );
+	return x + ((y-x)/2.0);
+}
+
+
+// EXPORTS //
+
+module.exports = meanabs;
+
+},{"@stdlib/math/base/special/abs":22}],34:[function(require,module,exports){
+'use strict';
+
+/**
+* Returns the minimum value of `x` and `y`.
+*
+* @private
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} minimum value
+*
+* @example
+* var z = min( 10.0, 3.14 );
+* // returns 3.14
+*/
+function min( x, y ) {
+	return ( x > y ) ? y : x; // doesn't account for +-0
+}
+
+
+// EXPORTS //
+
+module.exports = min;
+
+},{}],35:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var abs = require( '@stdlib/math/base/special/abs' );
+
+
+// MAIN //
+
+/**
+* Returns the minimum value of `|x|` and `|y|`.
+*
+* @private
+* @param {number} x - first number
+* @param {number} y - second number
+* @returns {number} minimum absolute value value
+*
+* @example
+* var z = minabs( -3.14, -11.0 );
+* // returns 3.14
+*/
+function minabs( x, y ) {
+	x = abs( x );
+	y = abs( y );
+	return ( x > y ) ? y : x;
+}
+
+
+// EXPORTS //
+
+module.exports = minabs;
+
+},{"@stdlib/math/base/special/abs":22}],36:[function(require,module,exports){
 'use strict';
 
 var SCALES = {
@@ -7505,7 +1538,7 @@ var SCALES = {
 
 module.exports = SCALES;
 
-},{"./max.js":139,"./maxabs.js":140,"./mean.js":141,"./meanabs.js":142,"./min.js":143,"./minabs.js":144,"./x.js":147,"./y.js":148}],147:[function(require,module,exports){
+},{"./max.js":30,"./maxabs.js":31,"./mean.js":32,"./meanabs.js":33,"./min.js":34,"./minabs.js":35,"./x.js":37,"./y.js":38}],37:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7522,14 +1555,14 @@ module.exports = SCALES;
 */
 function f( x ) {
 	return x;
-} // end FUNCTION f()
+}
 
 
 // EXPORTS //
 
 module.exports = f;
 
-},{}],148:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7546,14 +1579,14 @@ module.exports = f;
 */
 function f( x, y ) {
 	return y;
-} // end FUNCTION f()
+}
 
 
 // EXPORTS //
 
 module.exports = f;
 
-},{}],149:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -7579,1582 +1612,7 @@ tape( 'the exported object contains base math utilities', function test( t ) {
 });
 
 }).call(this,"/lib/node_modules/@stdlib/math/base/utils/test/test.js")
-},{"./../lib":137,"object-keys":242,"tape":272}],150:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var pow = require( '@stdlib/math/base/special/pow' );
-
-
-// VARIABLES //
-
-var NBITS = 16;
-
-
-// MAIN //
-
-/**
-* Creates an unsigned 16-bit integer from a literal bit representation.
-*
-* @param {BinaryString} bstr - string which is a literal bit representation
-* @throws {Error} must provide a string with a length equal to `16`
-* @returns {uinteger} unsigned 16-bit integer
-*
-* @example
-* var bstr = '0101010101010101';
-* var val = fromBinaryStringUint16( bstr );
-* // returns 21845
-*
-* @example
-* var bstr = '0000000000000000';
-* var val = fromBinaryStringUint16( bstr );
-* // returns 0
-*
-* @example
-* var bstr = '0000000000000010';
-* var val = fromBinaryStringUint16( bstr );
-* // returns 2
-*
-* @example
-* var bstr = '1111111111111111';
-* var val = fromBinaryStringUint16( bstr );
-* // returns 65535
-*/
-function fromBinaryStringUint16( bstr ) {
-	var sum;
-	var i;
-	if ( bstr.length !== NBITS ) {
-		throw new Error( 'invalid input argument. Input string must have a length equal to '+NBITS+'. Value: `'+bstr+'`.' );
-	}
-	sum = 0;
-	for ( i = 0; i < bstr.length; i++ ) {
-		if ( bstr[ i ] === '1' ) {
-			sum += pow( 2, (NBITS-i-1) );
-		}
-	}
-	return sum;
-} // end FUNCTION fromBinaryStringUint16()
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringUint16;
-
-},{"@stdlib/math/base/special/pow":59}],151:[function(require,module,exports){
-'use strict';
-
-/**
-* Create an unsigned 16-bit integer from a literal bit representation.
-*
-* @module @stdlib/math/base/utils/uint16-from-binary-string
-*
-* @example
-* var fromBinaryStringUint16 = require( '@stdlib/math/base/utils/uint16-from-binary-string' );
-*
-* var bstr = '0101010101010101';
-* var val = fromBinaryStringUint16( bstr );
-* // returns 21845
-*
-* bstr = '0000000000000000';
-* val = fromBinaryStringUint16( bstr );
-* // returns 0
-*
-* bstr = '0000000000000010';
-* val = fromBinaryStringUint16( bstr );
-* // returns 2
-*
-* bstr = '1111111111111111';
-* val = fromBinaryStringUint16( bstr );
-* // returns 65535
-*/
-
-// MODULES //
-
-var fromBinaryStringUint16 = require( './from_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringUint16;
-
-},{"./from_binary_string.js":150}],152:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// VARIABLES //
-
-var NBITS = 16;
-
-
-// MAIN //
-
-/**
-* Converts a nonnegative integer to a literal bit representation using the divide-by-2 algorithm.
-*
-* @private
-* @param {NonNegativeInteger} x - nonnegative integer
-* @returns {BinaryString} bit representation
-*
-* @example
-* var v = div2( 3 );
-* // returns '11'
-* @example
-* var v = div2( 0 );
-* // returns ''
-* @example
-* var v = div2( 12 );
-* // returns '1100'
-* @example
-* var v = div2( 188 );
-* // returns '10111100'
-*/
-function div2( x ) {
-	var str = '';
-	var i;
-	var y;
-
-	// We repeatedly divide by 2 and check for a remainder. If a remainder exists, the number is odd and we add a '1' bit...
-	i = NBITS;
-	while ( x > 0 && i ) {
-		y = x / 2;
-		x = floor( y );
-		if ( y === x ) {
-			str = '0' + str;
-		} else {
-			str = '1' + str;
-		}
-		i -= 1;
-	}
-	return str;
-} // end FUNCTION div2()
-
-
-// EXPORTS //
-
-module.exports = div2;
-
-},{"@stdlib/math/base/special/floor":56}],153:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a string giving the literal bit representation of an unsigned 16-bit integer.
-*
-* @module @stdlib/math/base/utils/uint16-to-binary-string
-*
-* @example
-* var toBinaryString = require( '@stdlib/math/base/utils/uint16-to-binary-string' );
-* var a = new Uint16Array( [ 1, 4, 9 ] );
-*
-* var str = toBinaryString( a[0] );
-* // returns '0000000000000001'
-*
-* str = toBinaryString( a[1] );
-* // returns '0000000000000100'
-*
-* str = toBinaryString( a[2] );
-* // returns '0000000000001001'
-*/
-
-// MODULES //
-
-var toBinaryString = require( './to_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./to_binary_string.js":154}],154:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var lpad = require( '@stdlib/string/left-pad' );
-var div2 = require( './div2.js' );
-
-
-// VARIABLES //
-
-var NBITS = 16;
-
-
-// MAIN //
-
-/**
-* Returns a string giving the literal bit representation of an unsigned 16-bit integer.
-*
-* @param {uinteger16} x - input value
-* @returns {BinaryString} bit representation
-*
-* @example
-* var a = new Uint16Array( [ 1 ] );
-* var str = toBinaryString( a[0] );
-* // returns '0000000000000001'
-* @example
-* var a = new Uint16Array( [ 4 ] );
-* var str = toBinaryString( a[0] );
-* // returns '0000000000000100'
-* @example
-* var a = new Uint16Array( [ 9 ] );
-* var str = toBinaryString( a[0] );
-* // returns '0000000000001001'
-*/
-function toBinaryString( x ) {
-	var b;
-
-	// Convert the input value to a bit string:
-	b = div2( x );
-
-	// Left pad the bit string to ensure 16 bits are represented:
-	b = lpad( b, NBITS, '0' );
-
-	return b;
-} // end FUNCTION toBinaryString()
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./div2.js":152,"@stdlib/string/left-pad":188}],155:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var pow = require( '@stdlib/math/base/special/pow' );
-var toUint32 = require( '@stdlib/math/base/utils/float64-to-uint32' );
-
-
-// VARIABLES //
-
-var NBITS = 32;
-
-
-// MAIN //
-
-/**
-* Creates an unsigned 32-bit integer from a literal bit representation.
-*
-* @param {BinaryString} bstr - string which is a literal bit representation
-* @throws {Error} must provide a string with a length equal to `32`
-* @returns {uinteger} unsigned 32-bit integer
-*
-* @example
-* var bstr = '01010101010101010101010101010101';
-* var val = fromBinaryStringUint32( bstr );
-* // returns 1431655765
-*
-* @example
-* var bstr = '00000000000000000000000000000000';
-* var val = fromBinaryStringUint32( bstr );
-* // returns 0
-*
-* @example
-* var bstr = '00000000000000000000000000000010';
-* var val = fromBinaryStringUint32( bstr );
-* // returns 2
-*
-* @example
-* var bstr = '11111111111111111111111111111111';
-* var val = fromBinaryStringUint32( bstr );
-* // returns 4294967295
-*/
-function fromBinaryStringUint32( bstr ) {
-	var sum;
-	var i;
-	if ( bstr.length !== NBITS ) {
-		throw new Error( 'invalid input argument. Input string must have a length equal to '+NBITS+'. Value: `'+bstr+'`.' );
-	}
-	sum = 0;
-	for ( i = 0; i < bstr.length; i++ ) {
-		if ( bstr[ i ] === '1' ) {
-			sum += pow( 2, (NBITS-i-1) );
-		}
-	}
-	return toUint32( sum );
-} // end FUNCTION fromBinaryStringUint32()
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringUint32;
-
-},{"@stdlib/math/base/special/pow":59,"@stdlib/math/base/utils/float64-to-uint32":131}],156:[function(require,module,exports){
-'use strict';
-
-/**
-* Create an unsigned 32-bit integer from a literal bit representation.
-*
-* @module @stdlib/math/base/utils/uint32-from-binary-string
-*
-* @example
-* var fromBinaryStringUint32 = require( '@stdlib/math/base/utils/uint32-from-binary-string' );
-*
-* var bstr = '01010101010101010101010101010101';
-* var val = fromBinaryStringUint32( bstr );
-* // returns 1431655765
-*
-* bstr = '00000000000000000000000000000000';
-* val = fromBinaryStringUint32( bstr );
-* // returns 0
-*
-* bstr = '00000000000000000000000000000010';
-* val = fromBinaryStringUint32( bstr );
-* // returns 2
-*
-* bstr = '11111111111111111111111111111111';
-* val = fromBinaryStringUint32( bstr );
-* // returns 4294967295
-*/
-
-// MODULES //
-
-var fromBinaryStringUint32 = require( './from_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringUint32;
-
-},{"./from_binary_string.js":155}],157:[function(require,module,exports){
-'use strict';
-
-/**
-* Bitwise rotation to the left.
-*
-* @module @stdlib/math/base/utils/uint32-rotl
-*
-* @example
-* var toBinaryStringUint32 = require( '@stdlib/math/base/utils/uint32-to-binary-string' );
-* var rotl32 = require( '@stdlib/math/base/utils/uint32-rotl' );
-*
-* var bstr = toBinaryStringUint32( 2147483649 );
-* // returns '10000000000000000000000000000001'
-*
-* var x = rotl32( 2147483649, 10 );
-* // returns 1536
-*
-* bstr = toBinaryStringUint32( x );
-* // returns '00000000000000000000011000000000'
-*/
-
-// MODULES //
-
-var rotl32 = require( './rotl32.js' );
-
-
-// EXPORTS //
-
-module.exports = rotl32;
-
-},{"./rotl32.js":158}],158:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var toUint32 = require( '@stdlib/math/base/utils/int32-to-uint32' );
-
-
-// VARIABLES //
-
-// Shift mask: 00000000000000000000000000011111
-var MAX_SHIFT = toUint32( 31 );
-
-
-// MAIN //
-
-/**
-* Performs a bitwise rotation to the left.
-*
-* ## References
-*
-* * [Safe, Efficient, and Portable Rotate in C/C++](http://blog.regehr.org/archives/1063)
-* * [Best practices for rotates in C/C++](https://stackoverflow.com/a/776523/224132)
-* * [Near constant time rotate that does not violate the standards](https://stackoverflow.com/a/31488147/224132)
-*
-*
-* @param {uinteger32} x - unsigned integer
-* @param {uinteger32} shift - number of bits to shift
-* @returns {uinteger32} shifted integer
-*
-* @example
-* var toBinaryStringUint32 = require( '@stdlib/math/base/utils/uint32-to-binary-string' );
-*
-* var bstr = toBinaryStringUint32( 2147483649 );
-* // returns '10000000000000000000000000000001'
-*
-* var x = rotl32( 2147483649, 10 );
-* // returns 1536
-*
-* bstr = toBinaryStringUint32( x );
-* // returns '00000000000000000000011000000000'
-*/
-function rotl32( x, shift ) {
-	shift &= MAX_SHIFT;
-	return toUint32( ( x << shift ) | (x >>> ((-shift) & MAX_SHIFT)) );
-} // end FUNCTION rotl32()
-
-
-// EXPORTS //
-
-module.exports = rotl32;
-
-},{"@stdlib/math/base/utils/int32-to-uint32":135}],159:[function(require,module,exports){
-'use strict';
-
-/**
-* Bitwise rotation to the right.
-*
-* @module @stdlib/math/base/utils/uint32-rotr
-*
-* @example
-* var toBinaryStringUint32 = require( '@stdlib/math/base/utils/uint32-to-binary-string' );
-* var rotr32 = require( '@stdlib/math/base/utils/uint32-rotr' );
-*
-* var bstr = toBinaryStringUint32( 2147483649 );
-* // returns '10000000000000000000000000000001'
-*
-* var x = rotr32( 2147483649, 10 );
-* // returns 6291456
-*
-* bstr = toBinaryStringUint32( x );
-* // returns '00000000011000000000000000000000'
-*/
-
-// MODULES //
-
-var rotr32 = require( './rotr32.js' );
-
-
-// EXPORTS //
-
-module.exports = rotr32;
-
-},{"./rotr32.js":160}],160:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var toUint32 = require( '@stdlib/math/base/utils/int32-to-uint32' );
-
-
-// VARIABLES //
-
-// Shift mask: 00000000000000000000000000011111
-var MAX_SHIFT = toUint32( 31 );
-
-
-// MAIN //
-
-/**
-* Performs a bitwise rotation to the right.
-*
-* ## References
-*
-* * [Safe, Efficient, and Portable Rotate in C/C++](http://blog.regehr.org/archives/1063)
-* * [Best practices for rotates in C/C++](https://stackoverflow.com/a/776523/224132)
-* * [Near constant time rotate that does not violate the standards](https://stackoverflow.com/a/31488147/224132)
-*
-*
-* @param {uinteger32} x - unsigned integer
-* @param {uinteger32} shift - number of bits to shift
-* @returns {uinteger32} shifted integer
-*
-* @example
-* var toBinaryStringUint32 = require( '@stdlib/math/base/utils/uint32-to-binary-string' );
-*
-* var bstr = toBinaryStringUint32( 2147483649 );
-* // returns '10000000000000000000000000000001'
-*
-* var x = rotr32( 2147483649, 10 );
-* // returns 6291456
-*
-* bstr = toBinaryStringUint32( x );
-* // returns '00000000011000000000000000000000'
-*/
-function rotr32( x, shift ) {
-	shift &= MAX_SHIFT;
-	return toUint32( ( x >>> shift ) | (x << ((-shift) & MAX_SHIFT)) );
-} // end FUNCTION rotr32()
-
-
-// EXPORTS //
-
-module.exports = rotr32;
-
-},{"@stdlib/math/base/utils/int32-to-uint32":135}],161:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// VARIABLES //
-
-var NBITS = 32;
-
-
-// MAIN //
-
-/**
-* Converts a nonnegative integer to a literal bit representation using the divide-by-2 algorithm.
-*
-* @private
-* @param {NonNegativeInteger} x - nonnegative integer
-* @returns {BinaryString} bit representation
-*
-* @example
-* var v = div2( 3 );
-* // returns '11'
-* @example
-* var v = div2( 0 );
-* // returns ''
-* @example
-* var v = div2( 12 );
-* // returns '1100'
-* @example
-* var v = div2( 188 );
-* // returns '10111100'
-*/
-function div2( x ) {
-	var str = '';
-	var i;
-	var y;
-
-	// We repeatedly divide by 2 and check for a remainder. If a remainder exists, the number is odd and we add a '1' bit...
-	i = NBITS;
-	while ( x > 0 && i ) {
-		y = x / 2;
-		x = floor( y );
-		if ( y === x ) {
-			str = '0' + str;
-		} else {
-			str = '1' + str;
-		}
-		i -= 1;
-	}
-	return str;
-} // end FUNCTION div2()
-
-
-// EXPORTS //
-
-module.exports = div2;
-
-},{"@stdlib/math/base/special/floor":56}],162:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a string giving the literal bit representation of an unsigned 32-bit integer.
-*
-* @module @stdlib/math/base/utils/uint32-to-binary-string
-*
-* @example
-* var toBinaryString = require( '@stdlib/math/base/utils/uint32-to-binary-string' );
-* var a = new Uint32Array( [ 1, 4, 9 ] );
-*
-* var str = toBinaryString( a[0] );
-* // returns '00000000000000000000000000000001'
-*
-* str = toBinaryString( a[1] );
-* // returns '00000000000000000000000000000100'
-*
-* str = toBinaryString( a[2] );
-* // returns '00000000000000000000000000001001'
-*/
-
-// MODULES //
-
-var toBinaryString = require( './to_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./to_binary_string.js":163}],163:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var lpad = require( '@stdlib/string/left-pad' );
-var div2 = require( './div2.js' );
-
-
-// VARIABLES //
-
-var NBITS = 32;
-
-
-// MAIN //
-
-/**
-* Returns a string giving the literal bit representation of an unsigned 32-bit integer.
-*
-* @param {uinteger32} x - input value
-* @returns {BinaryString} bit representation
-*
-* @example
-* var a = new Uint32Array( [ 1 ] );
-* var str = toBinaryString( a[0] );
-* // returns '00000000000000000000000000000001'
-* @example
-* var a = new Uint32Array( [ 4 ] );
-* var str = toBinaryString( a[0] );
-* // returns '00000000000000000000000000000100'
-* @example
-* var a = new Uint32Array( [ 9 ] );
-* var str = toBinaryString( a[0] );
-* // returns '00000000000000000000000000001001'
-*/
-function toBinaryString( x ) {
-	var b;
-
-	// Convert the input value to a bit string:
-	b = div2( x );
-
-	// Left pad the bit string to ensure 32 bits are represented:
-	b = lpad( b, NBITS, '0' );
-
-	return b;
-} // end FUNCTION toBinaryString()
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./div2.js":161,"@stdlib/string/left-pad":188}],164:[function(require,module,exports){
-'use strict';
-
-/**
-* Convert an unsigned 32-bit integer to a signed 32-bit integer.
-*
-* @module @stdlib/math/base/utils/uint32-to-int32
-*
-* @example
-* var float64ToUint32 = require( '@stdlib/math/base/utils/float64-to-uint32' );
-* var uint32ToInt32 = require( '@stdlib/math/base/utils/uint32-to-int32' );
-*
-* var y = uint32ToInt32( float64ToUint32( 4294967295 ) );
-* // returns -1
-*
-* y = uint32ToInt32( float64ToUint32( 3 ) );
-* // returns 3
-*/
-
-// MODULES //
-
-var uint32ToInt32 = require( './uint32_to_int32.js' );
-
-
-// EXPORTS //
-
-module.exports = uint32ToInt32;
-
-},{"./uint32_to_int32.js":165}],165:[function(require,module,exports){
-'use strict';
-
-// MAIN //
-
-/**
-* Converts an unsigned 32-bit integer to a signed 32-bit integer.
-*
-* @param {uinteger32} x - unsigned 32-bit integer
-* @returns {integer32} signed 32-bit integer
-*
-* @example
-* var float64ToUint32 = require( '@stdlib/math/base/utils/float64-to-uint32' );
-* var y = uint32ToInt32( float64ToUint32( 4294967295 ) );
-* // returns -1
-*
-* @example
-* var float64ToUint32 = require( '@stdlib/math/base/utils/float64-to-uint32' );
-* var y = uint32ToInt32( float64ToUint32( 3 ) );
-* // returns 3
-*/
-function uint32ToInt32( x ) {
-	// NOTE: we could also use typed-arrays to achieve the same end.
-	return x|0; // asm type annotation
-} // end FUNCTION uint32ToInt32()
-
-
-// EXPORTS //
-
-module.exports = uint32ToInt32;
-
-},{}],166:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var pow = require( '@stdlib/math/base/special/pow' );
-
-
-// VARIABLES //
-
-var NBITS = 8;
-
-
-// MAIN //
-
-/**
-* Creates an unsigned 8-bit integer from a literal bit representation.
-*
-* @param {BinaryString} bstr - string which is a literal bit representation
-* @throws {Error} must provide a string with a length equal to `8`
-* @returns {uinteger} unsigned 8-bit integer
-*
-* @example
-* var bstr = '01010101';
-* var val = fromBinaryStringUint8( bstr );
-* // returns 85
-*
-* @example
-* var bstr = '00000000';
-* var val = fromBinaryStringUint8( bstr );
-* // returns 0
-*
-* @example
-* var bstr = '00000010';
-* var val = fromBinaryStringUint8( bstr );
-* // returns 2
-*
-* @example
-* var bstr = '11111111';
-* var val = fromBinaryStringUint8( bstr );
-* // returns 255
-*/
-function fromBinaryStringUint8( bstr ) {
-	var sum;
-	var i;
-	if ( bstr.length !== NBITS ) {
-		throw new Error( 'invalid input argument. Input string must have a length equal to '+NBITS+'. Value: `'+bstr+'`.' );
-	}
-	sum = 0;
-	for ( i = 0; i < bstr.length; i++ ) {
-		if ( bstr[ i ] === '1' ) {
-			sum += pow( 2, (NBITS-i-1) );
-		}
-	}
-	return sum;
-} // end FUNCTION fromBinaryStringUint8()
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringUint8;
-
-},{"@stdlib/math/base/special/pow":59}],167:[function(require,module,exports){
-'use strict';
-
-/**
-* Create an unsigned 8-bit integer from a literal bit representation.
-*
-* @module @stdlib/math/base/utils/uint8-from-binary-string
-*
-* @example
-* var fromBinaryStringUint8 = require( '@stdlib/math/base/utils/uint8-from-binary-string' );
-*
-* var bstr = '01010101';
-* var val = fromBinaryStringUint8( bstr );
-* // returns 85
-*
-* bstr = '00000000';
-* val = fromBinaryStringUint8( bstr );
-* // returns 0
-*
-* bstr = '00000010';
-* val = fromBinaryStringUint8( bstr );
-* // returns 2
-*
-* bstr = '11111111';
-* val = fromBinaryStringUint8( bstr );
-* // returns 255
-*/
-
-// MODULES //
-
-var fromBinaryStringUint8 = require( './from_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = fromBinaryStringUint8;
-
-},{"./from_binary_string.js":166}],168:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// VARIABLES //
-
-var NBITS = 8;
-
-
-// MAIN //
-
-/**
-* Converts a nonnegative integer to a literal bit representation using the divide-by-2 algorithm.
-*
-* @private
-* @param {NonNegativeInteger} x - nonnegative integer
-* @returns {BinaryString} bit representation
-*
-* @example
-* var v = div2( 3 );
-* // returns '11'
-* @example
-* var v = div2( 0 );
-* // returns ''
-* @example
-* var v = div2( 12 );
-* // returns '1100'
-* @example
-* var v = div2( 188 );
-* // returns '10111100'
-*/
-function div2( x ) {
-	var str = '';
-	var i;
-	var y;
-
-	// We repeatedly divide by 2 and check for a remainder. If a remainder exists, the number is odd and we add a '1' bit...
-	i = NBITS;
-	while ( x > 0 && i ) {
-		y = x / 2;
-		x = floor( y );
-		if ( y === x ) {
-			str = '0' + str;
-		} else {
-			str = '1' + str;
-		}
-		i -= 1;
-	}
-	return str;
-} // end FUNCTION div2()
-
-
-// EXPORTS //
-
-module.exports = div2;
-
-},{"@stdlib/math/base/special/floor":56}],169:[function(require,module,exports){
-'use strict';
-
-/**
-* Return a string giving the literal bit representation of an unsigned 8-bit integer.
-*
-* @module @stdlib/math/base/utils/uint8-to-binary-string
-*
-* @example
-* var toBinaryString = require( '@stdlib/math/base/utils/uint8-to-binary-string' );
-*
-* var a = new Uint8Array( [ 1, 4, 9 ] );
-*
-* var str = toBinaryString( a[0] );
-* // returns '00000001'
-*
-* str = toBinaryString( a[1] );
-* // returns '00000100'
-*
-* str = toBinaryString( a[2] );
-* // returns '00001001'
-*/
-
-// MODULES //
-
-var toBinaryString = require( './to_binary_string.js' );
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./to_binary_string.js":170}],170:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var lpad = require( '@stdlib/string/left-pad' );
-var div2 = require( './div2.js' );
-
-
-// VARIABLES //
-
-var NBITS = 8;
-
-
-// MAIN //
-
-/**
-* Returns a string giving the literal bit representation of an unsigned 8-bit integer.
-*
-* @param {uinteger8} x - input value
-* @returns {BinaryString} bit representation
-*
-* @example
-* var a = new Uint8Array( [ 1 ] );
-* var str = toBinaryString( a[0] );
-* // returns '00000001'
-* @example
-* var a = new Uint8Array( [ 4 ] );
-* var str = toBinaryString( a[0] );
-* // returns '00000100'
-* @example
-* var a = new Uint8Array( [ 9 ] );
-* var str = toBinaryString( a[0] );
-* // returns '00001001'
-*/
-function toBinaryString( x ) {
-	var b;
-
-	// Convert the input value to a bit string:
-	b = div2( x );
-
-	// Left pad the bit string to ensure 8 bits are represented:
-	b = lpad( b, NBITS, '0' );
-
-	return b;
-} // end FUNCTION toBinaryString()
-
-
-// EXPORTS //
-
-module.exports = toBinaryString;
-
-},{"./div2.js":168,"@stdlib/string/left-pad":188}],171:[function(require,module,exports){
-'use strict';
-
-/**
-* The bias of a single-precision floating-point number's exponent.
-*
-* @module @stdlib/math/constants/float32-exponent-bias
-* @type {integer32}
-*
-* @example
-* var FLOAT32_EXPONENT_BIAS = require( '@stdlib/math/constants/float32-exponent-bias' );
-* // returns 127
-*/
-
-
-// MAIN //
-
-/**
-* The bias of a single-precision floating-point number's exponent. The bias can be computed via
-*
-* ``` tex
-* \mathrm{bias} = 2^{k-1} - 1
-* ```
-*
-* where \\(k\\) is the number of bits in the exponent; here, \\(k = 8\\).
-*
-* @constant
-* @type {integer32}
-* @default 127
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT32_EXPONENT_BIAS = 127|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT32_EXPONENT_BIAS;
-
-},{}],172:[function(require,module,exports){
-'use strict';
-
-/**
-* Single-precision floating-point negative infinity.
-*
-* @module @stdlib/math/constants/float32-ninf
-* @type {number}
-*
-* @example
-* var FLOAT32_NINF = require( '@stdlib/math/constants/float32-ninf' );
-* // returns -infinity
-*/
-
-
-// VARIABLES //
-
-var FLOAT32_VIEW = new Float32Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT32_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Single-precision floating-point negative infinity has the bit sequence
-*
-* ``` binarystring
-* 1 11111111 00000000000000000000000
-* ```
-*
-* This bit sequence corresponds to the unsigned 32-bit integer `4286578688` and to the HEX value `0xff800000`.
-*
-* @constant
-* @type {number}
-* @default 0xff800000
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT32_NINF = 0xff800000;
-
-// Set the ArrayBuffer bit sequence:
-UINT32_VIEW[ 0 ] = FLOAT32_NINF;
-
-
-// EXPORTS //
-
-module.exports = FLOAT32_VIEW[ 0 ];
-
-},{}],173:[function(require,module,exports){
-'use strict';
-
-/**
-* Single-precision floating-point positive infinity.
-*
-* @module @stdlib/math/constants/float32-pinf
-* @type {number}
-*
-* @example
-* var FLOAT32_PINF = require( '@stdlib/math/constants/float32-pinf' );
-* // returns +infinity
-*/
-
-
-// VARIABLES //
-
-var FLOAT32_VIEW = new Float32Array( 1 );
-var UINT32_VIEW = new Uint32Array( FLOAT32_VIEW.buffer );
-
-
-// MAIN //
-
-/**
-* Single-precision floating-point positive infinity has the bit sequence
-*
-* ``` binarystring
-* 0 11111111 00000000000000000000000
-* ```
-*
-* This bit sequence corresponds to the unsigned 32-bit integer `2139095040` and to the HEX value `0x7f800000`.
-*
-* @constant
-* @type {number}
-* @default 0x7f800000
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT32_PINF = 0x7f800000;
-
-// Set the ArrayBuffer bit sequence:
-UINT32_VIEW[ 0 ] = FLOAT32_PINF;
-
-
-// EXPORTS //
-
-module.exports = FLOAT32_VIEW[ 0 ];
-
-},{}],174:[function(require,module,exports){
-'use strict';
-
-/**
-* Smallest positive single-precision floating-point normal number.
-*
-* @module @stdlib/math/constants/float32-smallest-normal
-* @type {number}
-*
-* @example
-* var FLOAT32_SMALLEST_NORMAL = require( '@stdlib/math/constants/float32-smallest-normal' );
-* // returns 1.1754943508222875e-38
-*/
-
-
-// MAIN //
-
-/**
-* The smallest positive single-precision floating-point normal number has the value
-*
-* ``` tex
-* \frac{1}{2^{127-1}}
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 0 00000001 00000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default 1.1754943508222875e-38
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT32_SMALLEST_NORMAL = 1.1754943508222875e-38;
-
-
-// EXPORTS //
-
-module.exports = FLOAT32_SMALLEST_NORMAL;
-
-
-},{}],175:[function(require,module,exports){
-'use strict';
-
-/**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-eps
-* @type {number}
-*
-* @example
-* var FLOAT64_EPSILON = require( '@stdlib/math/constants/float64-eps' );
-* // returns 2.220446049250313e-16
-*/
-
-
-// MAIN //
-
-/**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number is
-*
-* ``` tex
-* \frac{1}{2^{52}}
-* ```
-*
-* @constant
-* @type {number}
-* @default 2.220446049250313e-16
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
-*/
-var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_EPSILON;
-
-},{}],176:[function(require,module,exports){
-'use strict';
-
-/**
-* The bias of a double-precision floating-point number's exponent.
-*
-* @module @stdlib/math/constants/float64-exponent-bias
-* @type {integer32}
-*
-* @example
-* var FLOAT64_EXPONENT_BIAS = require( '@stdlib/math/constants/float64-exponent-bias' );
-* // returns 1023
-*/
-
-
-// MAIN //
-
-/**
-* The bias of a double-precision floating-point number's exponent. The bias can be computed via
-*
-* ``` tex
-* \mathrm{bias} = 2^{k-1} - 1
-* ```
-*
-* where \\(k\\) is the number of bits in the exponent; here, \\(k = 11\\).
-*
-* @constant
-* @type {integer32}
-* @default 1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_EXPONENT_BIAS;
-
-},{}],177:[function(require,module,exports){
-'use strict';
-
-/**
-* High word mask for the exponent of a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-high-word-exponent-mask
-* @type {uinteger32}
-*
-* @example
-* var FLOAT64_HIGH_WORD_EXPONENT_MASK = require( '@stdlib/math/constants/float64-high-word-exponent-mask' );
-* // returns 2146435072
-*/
-
-
-// MAIN //
-
-/**
-* The high word mask for the exponent of a double-precision floating-point number is an unsigned 32-bit integer with the value \\( 2146435072 \\), which corresponds to the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000
-* ```
-*
-* @constant
-* @type {uinteger32}
-* @default 0x7ff00000
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
-
-},{}],178:[function(require,module,exports){
-'use strict';
-
-/**
-* Natural logarithm of `2`.
-*
-* @module @stdlib/math/constants/float64-ln-two
-* @type {number}
-*
-* @example
-* var LN2 = require( '@stdlib/math/constants/float64-ln-two' );
-* // returns 0.6931471805599453
-*/
-
-
-// MAIN //
-
-/**
-* Natural logarithm of `2`.
-*
-* ``` tex
-* \ln 2
-* ```
-*
-* @constant
-* @type {number}
-* @default 0.6931471805599453
-*/
-var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393621969694715605863326996418687542001481021e-01; // eslint-disable-line max-len
-
-
-// EXPORTS //
-
-module.exports = LN2;
-
-},{}],179:[function(require,module,exports){
-'use strict';
-
-/**
-* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max-base2-exponent-subnormal
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/math/constants/float64-max-base2-exponent-subnormal' );
-* // returns -1023
-*/
-
-
-// MAIN //
-
-/**
-* The maximum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* ``` text
-* 00000000000 => 0 - BIAS = -1023
-* ```
-*
-* where `BIAS = 1023`.
-*
-* @constant
-* @type {integer32}
-* @default -1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
-
-},{}],180:[function(require,module,exports){
-'use strict';
-
-/**
-* The maximum biased base 2 exponent for a double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max-base2-exponent
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MAX_BASE2_EXPONENT = require( '@stdlib/math/constants/float64-max-base2-exponent' );
-* // returns 1023
-*/
-
-
-// MAIN //
-
-/**
-* The maximum biased base 2 exponent for a double-precision floating-point number.
-*
-* ``` text
-* 11111111110 => 2046 - BIAS = 1023
-* ```
-*
-* where `BIAS = 1023`.
-*
-* @constant
-* @type {integer32}
-* @default 1023
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_BASE2_EXPONENT;
-
-},{}],181:[function(require,module,exports){
-'use strict';
-
-/**
-* Maximum safe double-precision floating-point integer.
-*
-* @module @stdlib/math/constants/float64-max-safe-integer
-* @type {number}
-*
-* @example
-* var FLOAT64_MAX_SAFE_INTEGER = require( '@stdlib/math/constants/float64-max-safe-integer' );
-* // returns 9007199254740991
-*/
-
-
-// MAIN //
-
-/**
-* The maximum safe double-precision floating-point integer is given by
-*
-* ``` tex
-* 2^{53} - 1
-* ```
-*
-* @constant
-* @type {number}
-* @default 9007199254740991
-* @see [Safe Integers]{@link http://www.2ality.com/2013/10/safe-integers.html}
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX_SAFE_INTEGER = 9007199254740991;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX_SAFE_INTEGER;
-
-},{}],182:[function(require,module,exports){
-'use strict';
-
-/**
-* Maximum double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-max
-* @type {number}
-*
-* @example
-* var FLOAT64_MAX = require( '@stdlib/math/constants/float64-max' );
-* // returns 1.7976931348623157e+308
-*/
-
-
-// MAIN //
-
-/**
-* The maximum double-precision floating-point number is given by
-*
-* ``` tex
-* 2^{1023} (2 - 2^{-52})
-* ```
-*
-* @constant
-* @type {number}
-* @default 1.7976931348623157e+308
-* @see [IEEE 754]{@link http://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MAX = 1.7976931348623157e+308;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MAX;
-
-},{}],183:[function(require,module,exports){
-'use strict';
-
-/**
-* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* @module @stdlib/math/constants/float64-min-base2-exponent-subnormal
-* @type {integer32}
-*
-* @example
-* var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = require( '@stdlib/math/constants/float64-min-base2-exponent-subnormal' );
-* // returns -1074
-*/
-
-
-// MAIN //
-
-/**
-* The minimum biased base 2 exponent for a subnormal double-precision floating-point number.
-*
-* ``` text
-* -(BIAS+(52-1)) = -(1023+51) = -1074
-* ```
-*
-* where `BIAS = 1023` and `52` is the number of digits in the significand.
-*
-* @constant
-* @type {integer32}
-* @default -1074
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
-
-},{}],184:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point negative infinity.
-*
-* @module @stdlib/math/constants/float64-ninf
-* @type {number}
-*
-* @example
-* var FLOAT64_NINF = require( '@stdlib/math/constants/float64-ninf' );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point negative infinity has the bit sequence
-*
-* ``` binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_NINF;
-
-},{}],185:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* @module @stdlib/math/constants/float64-pinf
-* @type {number}
-*
-* @example
-* var FLOAT64_PINF = require( '@stdlib/math/constants/float64-pinf' );
-* // returns Number.POSITIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point positive infinity has the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_PINF = Number.POSITIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_PINF;
-
-},{}],186:[function(require,module,exports){
-'use strict';
-
-/**
-* Smallest positive double-precision floating-point normal number.
-*
-* @module @stdlib/math/constants/float64-smallest-normal
-* @type {number}
-*
-* @example
-* var FLOAT64_SMALLEST_NORMAL = require( '@stdlib/math/constants/float64-smallest-normal' );
-* // returns 2.2250738585072014e-308
-*/
-
-
-// MAIN //
-
-/**
-* The smallest positive double-precision floating-point normal number has the value
-*
-* ``` tex
-* \frac{1}{2^{1023-1}}
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 0 00000000001 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default 2.2250738585072014e-308
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_SMALLEST_NORMAL;
-
-},{}],187:[function(require,module,exports){
+},{"./../lib":27,"object-keys":90,"tape":119}],40:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9191,18 +1649,23 @@ module.exports = FLOAT64_SMALLEST_NORMAL;
 *
 * Regular expression: `/^\s*function\s*([^(]*)/i`
 *
-* * `/^\s*`
-*   - Match zero or more spaces at beginning
-* * `function`
-*   - Match the word `function`
-* * `\s*`
-*   - Match zero or more spaces after the word `function`
-* * `()`
-*   - Capture
-* * `[^(]*`
-*   - Match anything except a left parenthesis `(` zero or more times
-* * `/i`
-*   - ignore case
+* -   `/^\s*`
+*     -   Match zero or more spaces at beginning
+*
+* -   `function`
+*     -   Match the word `function`
+*
+* -   `\s*`
+*     -   Match zero or more spaces after the word `function`
+*
+* -   `()`
+*     -   Capture
+*
+* -   `[^(]*`
+*     -   Match anything except a left parenthesis `(` zero or more times
+*
+* -   `/i`
+*     -   ignore case
 *
 * @constant
 * @type {RegExp}
@@ -9215,349 +1678,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],188:[function(require,module,exports){
-'use strict';
-
-/**
-* Left pad a string such that the padded string has a length of at least `len`.
-*
-* @module @stdlib/string/left-pad
-*
-* @example
-* var lpad = require( '@stdlib/string/left-pad' );
-*
-* var str = lpad( 'a', 5 );
-* // returns '    a'
-*
-* str = lpad( 'beep', 10, 'b' );
-* // returns 'bbbbbbbeep'
-*
-* str = lpad( 'boop', 12, 'beep' );
-* // returns 'beepbeepboop'
-*/
-
-// MODULES //
-
-var lpad = require( './left_pad.js' );
-
-
-// EXPORTS //
-
-module.exports = lpad;
-
-},{"./left_pad.js":189}],189:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var repeat = require( '@stdlib/string/repeat' );
-var ceil = require( '@stdlib/math/base/special/ceil' );
-var MAX_SAFE_INTEGER = require( '@stdlib/math/constants/float64-max-safe-integer' );
-
-
-// MAIN //
-
-/**
-* Left pads a string such that the padded string has a length of at least `len`.
-*
-* @param {string} str - string to pad
-* @param {NonNegativeInteger} len - minimum string length
-* @param {string} [pad=' '] - string used to pad
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} second argument must be a nonnegative integer
-* @throws {TypeError} third argument must be a string
-* @throws {RangeError} padding must have a length greater than `0`
-* @returns {string} padded string
-*
-* @example
-* var str = lpad( 'a', 5 );
-* // returns '    a'
-*
-* @example
-* var str = lpad( 'beep', 10, 'b' );
-* // returns 'bbbbbbbeep'
-*
-* @example
-* var str = lpad( 'boop', 12, 'beep' );
-* // returns 'beepbeepboop'
-*/
-function lpad( str, len, pad ) {
-	var n;
-	var p;
-	if ( !isString( str ) ) {
-		throw new TypeError( 'invalid input argument. First argument must be a string. Value: `' + str + '`.' );
-	}
-	if ( !isNonNegativeInteger( len ) ) {
-		throw new TypeError( 'invalid input argument. Second argument must be a nonnegative integer. Value: `' + len + '`.' );
-	}
-	if ( arguments.length > 2 ) {
-		p = pad;
-		if ( !isString( p ) ) {
-			throw new TypeError( 'invalid input argument. Third argument must be a string. Value: `' + p + '`.' );
-		}
-		if ( p.length === 0 ) {
-			throw new RangeError( 'invalid input argument. Third argument must not be an empty string.' );
-		}
-	} else {
-		p = ' ';
-	}
-	if ( len > MAX_SAFE_INTEGER ) {
-		throw new RangeError( 'invalid input argument. Output string length exceeds maximum allowed string length.' );
-	}
-	n = ( len - str.length ) / p.length;
-	if ( n <= 0 ) {
-		return str;
-	}
-	n = ceil( n );
-	return repeat( p, n ) + str;
-} // end FUNCTION lpad()
-
-
-// EXPORTS //
-
-module.exports = lpad;
-
-},{"@stdlib/assert/is-nonnegative-integer":18,"@stdlib/assert/is-string":30,"@stdlib/math/base/special/ceil":52,"@stdlib/math/constants/float64-max-safe-integer":181,"@stdlib/string/repeat":190}],190:[function(require,module,exports){
-'use strict';
-
-/**
-* Repeat a string a specified number of times and return the concatenated result.
-*
-* @module @stdlib/string/repeat
-*
-* @example
-* var replace = require( '@stdlib/string/repeat' );
-*
-* var str = repeat( 'a', 5 );
-* // returns 'aaaaa'
-*
-* str = repeat( '', 100 );
-* // returns ''
-*
-* str = repeat( 'beep', 0 );
-* // returns ''
-*/
-
-// MODULES //
-
-var repeat = require( './repeat.js' );
-
-
-// EXPORTS //
-
-module.exports = repeat;
-
-},{"./repeat.js":191}],191:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var MAX_SAFE_INTEGER = require( '@stdlib/math/constants/float64-max-safe-integer' );
-
-
-// MAIN //
-
-/**
-* Repeats a string a specified number of times and returns the concatenated result.
-*
-* #### Implementation
-*
-* The algorithmic trick used in the implementation is to treat string concatenation the same as binary addition (i.e., any natural number (nonnegative integer) can be expressed as a sum of powers of two).
-*
-* For example,
-*
-* ``` text
-* n = 10 => 1010 => 2^3 + 2^0 + 2^1 + 2^0
-* ```
-*
-* We can produce a 10-repeat string by "adding" the results of a 8-repeat string and a 2-repeat string.
-*
-* The implementation is then as follows:
-*
-*   1. Let `s` be the string to be repeated and `o` be an output string.
-*   2. Initialize an output string `o`.
-*   3. Check the least significant bit to determine if the current `s` string should be "added" to the output "total".
-*      - if the bit is a one, add
-*      - otherwise, move on
-*   4. Double the string `s` by adding `s` to `s`.
-*   5. Right-shift the bits of `n`.
-*   6. Check if we have shifted off all bits.
-*      - if yes, done.
-*      - otherwise, move on
-*   7. Repeat 3-6.
-*
-* The result is that, as the string is repeated, we continually check to see if the doubled string is one which we want to add to our "total".
-*
-* The algorithm runs in `O(log_2(n))` compared to `O(n)`.
-*
-*
-* @param {string} str - string to repeat
-* @param {NonNegativeInteger} n - number of times to repeat the string
-* @throws {TypeError} first argument must be a string primitive
-* @throws {TypeError} second argument must be a nonnegative integer
-* @throws {RangeError} output string length must not exceed maximum allowed string length
-* @returns {string} repeated string
-*
-* @example
-* var str = repeat( 'a', 5 );
-* // returns 'aaaaa'
-*
-* @example
-* var str = repeat( '', 100 );
-* // returns ''
-*
-* @example
-* var str = repeat( 'beep', 0 );
-* // returns ''
-*/
-function repeat( str, n ) {
-	var rpt;
-	var cnt;
-	if ( !isString( str ) ) {
-		throw new TypeError( 'invalid input argument. First argument must be a string. Value: `' + str + '`.' );
-	}
-	if ( !isNonNegativeInteger( n ) ) {
-		throw new TypeError( 'invalid input argument. Second argument must be a nonnegative integer. Value: `' + n + '`.' );
-	}
-	if ( str.length === 0 || n === 0 ) {
-		return '';
-	}
-	// Check that output string will not exceed the maximum string length:
-	if ( str.length * n > MAX_SAFE_INTEGER ) {
-		throw new RangeError( 'invalid input argument. Output string length exceeds maximum allowed string length.' );
-	}
-	rpt = '';
-	cnt = n;
-	for ( ; ; ) {
-		// If the count is odd, append the current concatenated string:
-		if ( (cnt&1) === 1 ) {
-			rpt += str;
-		}
-		// Right-shift the bits:
-		cnt >>>= 1;
-		if ( cnt === 0 ) {
-			break;
-		}
-		// Double the string:
-		str += str;
-	}
-	return rpt;
-} // end FUNCTION repeat()
-
-
-// EXPORTS //
-
-module.exports = repeat;
-
-},{"@stdlib/assert/is-nonnegative-integer":18,"@stdlib/assert/is-string":30,"@stdlib/math/constants/float64-max-safe-integer":181}],192:[function(require,module,exports){
-'use strict';
-
-/**
-* Right pad a string such that the padded string has a length of at least `len`.
-*
-* @module @stdlib/string/right-pad
-*
-* @example
-* var rpad = require( '@stdlib/string/right-pad' );
-*
-* var str = rpad( 'a', 5 );
-* // returns 'a    '
-*
-* str = rpad( 'beep', 10, 'p' );
-* // returns 'beeppppppp'
-*
-* str = rpad( 'beep', 12, 'boop' );
-* // returns 'beepboopboop'
-*/
-
-// MODULES //
-
-var rpad = require( './right_pad.js' );
-
-
-// EXPORTS //
-
-module.exports = rpad;
-
-},{"./right_pad.js":193}],193:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var repeat = require( '@stdlib/string/repeat' );
-var ceil = require( '@stdlib/math/base/special/ceil' );
-var MAX_SAFE_INTEGER = require( '@stdlib/math/constants/float64-max-safe-integer' );
-
-
-// MAIN //
-
-/**
-* Right pads a string such that the padded string has a length of at least `len`.
-*
-* @param {string} str - string to pad
-* @param {NonNegativeInteger} len - minimum string length
-* @param {string} [pad=' '] - string used to pad
-* @throws {TypeError} first argument must be a string
-* @throws {TypeError} second argument must be a nonnegative integer
-* @throws {TypeError} third argument must be a string
-* @throws {RangeError} padding must have a length greater than `0`
-* @returns {string} padded string
-*
-* @example
-* var str = rpad( 'a', 5 );
-* // returns 'a    '
-*
-* @example
-* var str = rpad( 'beep', 10, 'p' );
-* // returns 'beeppppppp'
-*
-* @example
-* var str = rpad( 'beep', 12, 'boop' );
-* // returns 'beepboopboop'
-*/
-function rpad( str, len, pad ) {
-	var n;
-	var p;
-	if ( !isString( str ) ) {
-		throw new TypeError( 'invalid input argument. First argument must be a string. Value: `' + str + '`.' );
-	}
-	if ( !isNonNegativeInteger( len ) ) {
-		throw new TypeError( 'invalid input argument. Second argument must be a nonnegative integer. Value: `' + len + '`.' );
-	}
-	if ( arguments.length > 2 ) {
-		p = pad;
-		if ( !isString( p ) ) {
-			throw new TypeError( 'invalid input argument. Third argument must be a string. Value: `' + p + '`.' );
-		}
-		if ( p.length === 0 ) {
-			throw new RangeError( 'invalid input argument. Pad string must not be an empty string.' );
-		}
-	} else {
-		p = ' ';
-	}
-	if ( len > MAX_SAFE_INTEGER ) {
-		throw new RangeError( 'invalid input argument. Output string length exceeds maximum allowed string length.' );
-	}
-	n = ( len - str.length ) / p.length;
-	if ( n <= 0 ) {
-		return str;
-	}
-	n = ceil( n );
-	return str + repeat( p, n );
-} // end FUNCTION rpad()
-
-
-// EXPORTS //
-
-module.exports = rpad;
-
-},{"@stdlib/assert/is-nonnegative-integer":18,"@stdlib/assert/is-string":30,"@stdlib/math/base/special/ceil":52,"@stdlib/math/constants/float64-max-safe-integer":181,"@stdlib/string/repeat":190}],194:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9578,17 +1699,21 @@ var isBuffer = require( '@stdlib/assert/is-buffer' );
 * @example
 * var v = constructorName( 'a' );
 * // returns 'String'
+*
 * @example
 * var v = constructorName( 5 );
 * // returns 'Number'
+*
 * @example
 * var v = constructorName( null );
 * // returns 'Null'
+*
 * @example
 * var v = constructorName( undefined );
 * // returns 'Undefined'
+*
 * @example
-* var v = constructorName( function noop(){} );
+* var v = constructorName( function noop() {} );
 * // returns 'Function'
 */
 function constructorName( v ) {
@@ -9606,14 +1731,14 @@ function constructorName( v ) {
 		return 'Buffer';
 	}
 	return name;
-} // end FUNCTION constructorName()
+}
 
 
 // EXPORTS //
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":5,"@stdlib/regexp/function-name":187,"@stdlib/utils/native-class":202}],195:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":5,"@stdlib/regexp/function-name":40,"@stdlib/utils/native-class":49}],42:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9643,7 +1768,7 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":194}],196:[function(require,module,exports){
+},{"./constructor_name.js":41}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9665,14 +1790,14 @@ function setReadOnly( obj, prop, value ) {
 		'writable': false,
 		'enumerable': true
 	});
-} // end FUNCTION setReadOnly()
+}
 
 
 // EXPORTS //
 
 module.exports = setReadOnly;
 
-},{}],197:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9697,7 +1822,7 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":196}],198:[function(require,module,exports){
+},{"./define_read_only_property.js":43}],45:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -9716,18 +1841,18 @@ function hasSymbolSupport() {
 		typeof Symbol === 'function' &&
 		typeof Symbol( 'foo' ) === 'symbol'
 	);
-} // end FUNCTION hasSymbolSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasSymbolSupport;
 
-},{}],199:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `Symbol` support.
+* Test for native `Symbol` support.
 *
 * @module @stdlib/utils/detect-symbol-support
 *
@@ -9747,7 +1872,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":198}],200:[function(require,module,exports){
+},{"./detect_symbol_support.js":45}],47:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9768,18 +1893,18 @@ var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
 */
 function hasToStringTagSupport() {
 	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
-} // end FUNCTION hasToStringTagSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":199}],201:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":46}],48:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `toStringTag` support.
+* Test for native `toStringTag` support.
 *
 * @module @stdlib/utils/detect-tostringtag-support
 *
@@ -9799,7 +1924,7 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":200}],202:[function(require,module,exports){
+},{"./has_tostringtag_support.js":47}],49:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9825,16 +1950,18 @@ module.exports = hasToStringTagSupport;
 
 // MODULES //
 
-var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var nativeClass;
-if ( hasToStringTag ) {
-	nativeClass = require( './polyfill.js' );
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
 } else {
-	nativeClass = require( './native_class.js' );
+	nativeClass = builtin;
 }
 
 
@@ -9842,7 +1969,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":203,"./polyfill.js":204,"@stdlib/utils/detect-tostringtag-support":201}],203:[function(require,module,exports){
+},{"./native_class.js":50,"./polyfill.js":51,"@stdlib/utils/detect-tostringtag-support":48}],50:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9875,14 +2002,14 @@ var toStr = require( './tostring.js' );
 */
 function nativeClass( v ) {
 	return toStr.call( v );
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":205}],204:[function(require,module,exports){
+},{"./tostring.js":52}],51:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9940,28 +2067,38 @@ function nativeClass( v ) {
 		delete v[ toStringTag ];
 	}
 	return out;
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":205,"./tostringtag.js":206,"@stdlib/assert/has-own-property":2}],205:[function(require,module,exports){
+},{"./tostring.js":52,"./tostringtag.js":53,"@stdlib/assert/has-own-property":2}],52:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
 
 // EXPORTS //
 
-module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
+module.exports = toStr;
 
-},{}],206:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
 
 // EXPORTS //
 
-module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+module.exports = toStrTag;
 
-},{}],207:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9983,27 +2120,29 @@ function check() {
 	if (
 		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
 		typeof RE === 'function' ||
+
 		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
 		typeof typedarray === 'object' ||
+
 		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
 		typeof nodeList === 'function'
 	) {
 		return true;
 	}
 	return false;
-} // end FUNCTION check()
+}
 
 
 // EXPORTS //
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":208,"./fixtures/re.js":209,"./fixtures/typedarray.js":210}],208:[function(require,module,exports){
+},{"./fixtures/nodelist.js":55,"./fixtures/re.js":56,"./fixtures/typedarray.js":57}],55:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var root = require( 'system.global' )(); // eslint-disable-line no-redeclare
+var root = require( 'system.global' )(); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -10015,7 +2154,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":269}],209:[function(require,module,exports){
+},{"system.global":116}],56:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -10025,7 +2164,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],210:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -10035,7 +2174,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],211:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10064,7 +2203,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":207,"./polyfill.js":212,"./typeof.js":213}],212:[function(require,module,exports){
+},{"./check.js":54,"./polyfill.js":59,"./typeof.js":60}],59:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -10082,14 +2221,14 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 */
 function typeOf( v ) {
 	return ctorName( v ).toLowerCase();
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":195}],213:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":42}],60:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -10102,7 +2241,7 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 /*
 * Built-in `typeof` operator behavior:
 *
-* ``` text
+* ```text
 * typeof null => 'object'
 * typeof undefined => 'undefined'
 * typeof 'a' => 'string'
@@ -10142,14 +2281,14 @@ function typeOf( v ) {
 		return ctorName( v ).toLowerCase();
 	}
 	return type;
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":195}],214:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":42}],61:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -10265,11 +2404,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],215:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 
-},{}],216:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"dup":215}],217:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
+arguments[4][62][0].apply(exports,arguments)
+},{"dup":62}],64:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -10455,11 +2594,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],218:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -12171,7 +4310,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":214,"ieee754":237}],219:[function(require,module,exports){
+},{"base64-js":61,"ieee754":84}],66:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -12282,7 +4421,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":239}],220:[function(require,module,exports){
+},{"../../is-buffer/index.js":86}],67:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -12378,7 +4517,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":221,"./lib/keys.js":222}],221:[function(require,module,exports){
+},{"./lib/is_arguments.js":68,"./lib/keys.js":69}],68:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -12400,7 +4539,7 @@ function unsupported(object){
     false;
 };
 
-},{}],222:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -12411,7 +4550,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],223:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -12469,14 +4608,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":233,"object-keys":242}],224:[function(require,module,exports){
+},{"foreach":80,"object-keys":90}],71:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],225:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -12714,28 +4853,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":226,"./helpers/isNaN":227,"./helpers/mod":228,"./helpers/sign":229,"es-to-primitive/es5":230,"has":236,"is-callable":240}],226:[function(require,module,exports){
+},{"./helpers/isFinite":73,"./helpers/isNaN":74,"./helpers/mod":75,"./helpers/sign":76,"es-to-primitive/es5":77,"has":83,"is-callable":87}],73:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],227:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],228:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],229:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],230:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -12774,12 +4913,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":231,"is-callable":240}],231:[function(require,module,exports){
+},{"./helpers/isPrimitive":78,"is-callable":87}],78:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],232:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13083,7 +5222,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],233:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -13107,7 +5246,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],234:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -13161,19 +5300,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],235:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":234}],236:[function(require,module,exports){
+},{"./implementation":81}],83:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":235}],237:[function(require,module,exports){
+},{"function-bind":82}],84:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -13259,7 +5398,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],238:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -13284,11 +5423,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],239:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -13307,7 +5446,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],240:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -13348,7 +5487,14 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],241:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],89:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -13542,7 +5688,7 @@ function inspectString (str) {
     }
 }
 
-},{}],242:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -13684,7 +5830,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":243}],243:[function(require,module,exports){
+},{"./isArguments":91}],91:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -13703,7 +5849,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],244:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -13931,7 +6077,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":217}],245:[function(require,module,exports){
+},{"_process":64}],93:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -13978,10 +6124,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":217}],246:[function(require,module,exports){
+},{"_process":64}],94:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":247}],247:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":95}],95:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14106,7 +6252,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":249,"./_stream_writable":251,"core-util-is":219,"inherits":238,"process-nextick-args":245}],248:[function(require,module,exports){
+},{"./_stream_readable":97,"./_stream_writable":99,"core-util-is":66,"inherits":85,"process-nextick-args":93}],96:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -14154,7 +6300,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":250,"core-util-is":219,"inherits":238}],249:[function(require,module,exports){
+},{"./_stream_transform":98,"core-util-is":66,"inherits":85}],97:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -15164,7 +7310,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":247,"./internal/streams/BufferList":252,"./internal/streams/destroy":253,"./internal/streams/stream":254,"_process":217,"core-util-is":219,"events":232,"inherits":238,"isarray":255,"process-nextick-args":245,"safe-buffer":262,"string_decoder/":256,"util":215}],250:[function(require,module,exports){
+},{"./_stream_duplex":95,"./internal/streams/BufferList":100,"./internal/streams/destroy":101,"./internal/streams/stream":102,"_process":64,"core-util-is":66,"events":79,"inherits":85,"isarray":88,"process-nextick-args":93,"safe-buffer":108,"string_decoder/":114,"util":62}],98:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15379,7 +7525,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":247,"core-util-is":219,"inherits":238}],251:[function(require,module,exports){
+},{"./_stream_duplex":95,"core-util-is":66,"inherits":85}],99:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -16046,7 +8192,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":247,"./internal/streams/destroy":253,"./internal/streams/stream":254,"_process":217,"core-util-is":219,"inherits":238,"process-nextick-args":245,"safe-buffer":262,"util-deprecate":278}],252:[function(require,module,exports){
+},{"./_stream_duplex":95,"./internal/streams/destroy":101,"./internal/streams/stream":102,"_process":64,"core-util-is":66,"inherits":85,"process-nextick-args":93,"safe-buffer":108,"util-deprecate":125}],100:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -16121,7 +8267,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":262}],253:[function(require,module,exports){
+},{"safe-buffer":108}],101:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -16194,17 +8340,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":245}],254:[function(require,module,exports){
+},{"process-nextick-args":93}],102:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":232}],255:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":79}],103:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":104}],104:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":95,"./lib/_stream_passthrough.js":96,"./lib/_stream_readable.js":97,"./lib/_stream_transform.js":98,"./lib/_stream_writable.js":99}],105:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":104}],106:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":99}],107:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],256:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":64,"through":124}],108:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":65}],109:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":79,"inherits":85,"readable-stream/duplex.js":94,"readable-stream/passthrough.js":103,"readable-stream/readable.js":104,"readable-stream/transform.js":105,"readable-stream/writable.js":106}],110:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":72,"function-bind":82}],111:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":110,"./polyfill":112,"./shim":113,"define-properties":70,"function-bind":82}],112:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":110}],113:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":112,"define-properties":70}],114:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -16477,312 +8921,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":262}],257:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":258}],258:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":247,"./lib/_stream_passthrough.js":248,"./lib/_stream_readable.js":249,"./lib/_stream_transform.js":250,"./lib/_stream_writable.js":251}],259:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":258}],260:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":251}],261:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":217,"through":277}],262:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":218}],263:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":232,"inherits":238,"readable-stream/duplex.js":246,"readable-stream/passthrough.js":257,"readable-stream/readable.js":258,"readable-stream/transform.js":259,"readable-stream/writable.js":260}],264:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":225,"function-bind":235}],265:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":264,"./polyfill":266,"./shim":267,"define-properties":223,"function-bind":235}],266:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":264}],267:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":266,"define-properties":223}],268:[function(require,module,exports){
+},{"safe-buffer":108}],115:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -16800,7 +8939,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],269:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -16821,7 +8960,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":268,"./polyfill":270,"./shim":271,"define-properties":223}],270:[function(require,module,exports){
+},{"./implementation":115,"./polyfill":117,"./shim":118,"define-properties":70}],117:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -16835,7 +8974,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":268}],271:[function(require,module,exports){
+},{"./implementation":115}],118:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -16861,7 +9000,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":270,"define-properties":223}],272:[function(require,module,exports){
+},{"./polyfill":117,"define-properties":70}],119:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -17015,7 +9154,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":273,"./lib/results":275,"./lib/test":276,"_process":217,"defined":224,"through":277}],273:[function(require,module,exports){
+},{"./lib/default_stream":120,"./lib/results":122,"./lib/test":123,"_process":64,"defined":71,"through":124}],120:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -17050,7 +9189,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":217,"fs":216,"through":277}],274:[function(require,module,exports){
+},{"_process":64,"fs":63,"through":124}],121:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -17058,7 +9197,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":217}],275:[function(require,module,exports){
+},{"_process":64}],122:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -17249,7 +9388,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":217,"events":232,"function-bind":235,"has":236,"inherits":238,"object-inspect":241,"resumer":261,"through":277}],276:[function(require,module,exports){
+},{"_process":64,"events":79,"function-bind":82,"has":83,"inherits":85,"object-inspect":89,"resumer":107,"through":124}],123:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -17750,7 +9889,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":274,"deep-equal":220,"defined":224,"events":232,"has":236,"inherits":238,"path":244,"string.prototype.trim":265}],277:[function(require,module,exports){
+},{"./next_tick":121,"deep-equal":67,"defined":71,"events":79,"has":83,"inherits":85,"path":92,"string.prototype.trim":111}],124:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -17862,7 +10001,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":217,"stream":263}],278:[function(require,module,exports){
+},{"_process":64,"stream":109}],125:[function(require,module,exports){
 (function (global){
 
 /**
@@ -17933,4 +10072,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[149]);
+},{}]},{},[39]);

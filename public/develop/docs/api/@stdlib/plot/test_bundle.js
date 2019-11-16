@@ -84,6 +84,627 @@
 ({1:[function(require,module,exports){
 'use strict';
 
+// MAIN //
+
+var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float32
+*
+* @example
+* var ctor = require( '@stdlib/array/float32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( '@stdlib/utils/detect-float32array-support' );
+var builtin = require( './float32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float32array.js":1,"./polyfill.js":3,"@stdlib/utils/detect-float32array-support":556}],3:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of single-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.
+*
+* @module @stdlib/array/float64
+*
+* @example
+* var ctor = require( '@stdlib/array/float64' );
+*
+* var arr = new ctor( 10 );
+* // returns <Float64Array>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+var builtin = require( './float64array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasFloat64ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./float64array.js":4,"./polyfill.js":6,"@stdlib/utils/detect-float64array-support":559}],6:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of double-precision floating-point numbers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int16
+*
+* @example
+* var ctor = require( '@stdlib/array/int16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int16Array>
+*/
+
+// MODULES //
+
+var hasInt16ArraySupport = require( '@stdlib/utils/detect-int16array-support' );
+var builtin = require( './int16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int16array.js":8,"./polyfill.js":9,"@stdlib/utils/detect-int16array-support":561}],8:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int16Array === 'function' ) ? Int16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 16-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],10:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int32
+*
+* @example
+* var ctor = require( '@stdlib/array/int32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int32Array>
+*/
+
+// MODULES //
+
+var hasInt32ArraySupport = require( '@stdlib/utils/detect-int32array-support' );
+var builtin = require( './int32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int32array.js":11,"./polyfill.js":12,"@stdlib/utils/detect-int32array-support":564}],11:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int32Array === 'function' ) ? Int32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 32-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],13:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @module @stdlib/array/int8
+*
+* @example
+* var ctor = require( '@stdlib/array/int8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Int8Array>
+*/
+
+// MODULES //
+
+var hasInt8ArraySupport = require( '@stdlib/utils/detect-int8array-support' );
+var builtin = require( './int8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasInt8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./int8array.js":14,"./polyfill.js":15,"@stdlib/utils/detect-int8array-support":567}],14:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Int8Array === 'function' ) ? Int8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],15:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of twos-complement 8-bit signed integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],16:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 16-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint16
+*
+* @example
+* var ctor = require( '@stdlib/array/uint16' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint16Array>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+var builtin = require( './uint16array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint16ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":17,"./uint16array.js":18,"@stdlib/utils/detect-uint16array-support":577}],17:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 16-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],18:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],19:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 32-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint32
+*
+* @example
+* var ctor = require( '@stdlib/array/uint32' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint32Array>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+var builtin = require( './uint32array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint32ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":20,"./uint32array.js":21,"@stdlib/utils/detect-uint32array-support":580}],20:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 32-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],21:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],22:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order.
+*
+* @module @stdlib/array/uint8
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8Array>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+var builtin = require( './uint8array.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":23,"./uint8array.js":24,"@stdlib/utils/detect-uint8array-support":583}],23:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],24:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],25:[function(require,module,exports){
+'use strict';
+
+/**
+* Typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @module @stdlib/array/uint8c
+*
+* @example
+* var ctor = require( '@stdlib/array/uint8c' );
+*
+* var arr = new ctor( 10 );
+* // returns <Uint8ClampedArray>
+*/
+
+// MODULES //
+
+var hasUint8ClampedArraySupport = require( '@stdlib/utils/detect-uint8clampedarray-support' ); // eslint-disable-line id-length
+var builtin = require( './uint8clampedarray.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasUint8ClampedArraySupport() ) {
+	ctor = builtin;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./polyfill.js":26,"./uint8clampedarray.js":27,"@stdlib/utils/detect-uint8clampedarray-support":586}],26:[function(require,module,exports){
+'use strict';
+
+// TODO: write polyfill
+
+// MAIN //
+
+/**
+* Typed array which represents an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : null; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{}],28:[function(require,module,exports){
+'use strict';
+
 // FUNCTIONS //
 
 var has = Object.prototype.hasOwnProperty;
@@ -122,14 +743,14 @@ function hasOwnProp( value, property ) {
 		return false;
 	}
 	return has.call( value, property );
-} // end FUNCTION hasOwnProp()
+}
 
 
 // EXPORTS //
 
 module.exports = hasOwnProp;
 
-},{}],2:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 /**
@@ -160,7 +781,7 @@ var hasOwnProp = require( './has_own_property.js' );
 
 module.exports = hasOwnProp;
 
-},{"./has_own_property.js":1}],3:[function(require,module,exports){
+},{"./has_own_property.js":28}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -196,7 +817,7 @@ var instanceOf = require( './instance_of.js' );
 
 module.exports = instanceOf;
 
-},{"./instance_of.js":4}],4:[function(require,module,exports){
+},{"./instance_of.js":31}],31:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -235,14 +856,14 @@ function instanceOf( value, constructor ) {
 		throw new TypeError( 'invalid input argument. `constructor` argument must be callable. Value: `'+constructor+'`.' );
 	}
 	return ( value instanceof constructor );
-} // end FUNCTION instanceOf()
+}
 
 
 // EXPORTS //
 
 module.exports = instanceOf;
 
-},{}],5:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 /**
@@ -272,13 +893,13 @@ var isArrayLike = require( './is_array_like.js' );
 
 module.exports = isArrayLike;
 
-},{"./is_array_like.js":6}],6:[function(require,module,exports){
+},{"./is_array_like.js":33}],33:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isInteger = require( '@stdlib/math/base/assert/is-integer' );
-var MAX_LENGTH = require( '@stdlib/math/constants/uint32-max' );
+var MAX_LENGTH = require( '@stdlib/constants/array/max-array-length' );
 
 
 // MAIN //
@@ -307,14 +928,14 @@ function isArrayLike( value ) {
 		value.length >= 0 &&
 		value.length <= MAX_LENGTH
 	);
-} // end FUNCTION isArrayLike()
+}
 
 
 // EXPORTS //
 
 module.exports = isArrayLike;
 
-},{"@stdlib/math/base/assert/is-integer":71,"@stdlib/math/constants/uint32-max":84}],7:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":125,"@stdlib/math/base/assert/is-integer":137}],34:[function(require,module,exports){
 'use strict';
 
 /**
@@ -341,7 +962,7 @@ var isArray = require( './is_array.js' );
 
 module.exports = isArray;
 
-},{"./is_array.js":8}],8:[function(require,module,exports){
+},{"./is_array.js":35}],35:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -367,14 +988,70 @@ var nativeClass = require( '@stdlib/utils/native-class' );
 */
 function isArray( value ) {
 	return ( nativeClass( value ) === '[object Array]' );
-} // end FUNCTION isArray()
+}
 
 
 // EXPORTS //
 
 module.exports = Array.isArray || isArray;
 
-},{"@stdlib/utils/native-class":519}],9:[function(require,module,exports){
+},{"@stdlib/utils/native-class":611}],36:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an array-like object of booleans.
+*
+* @module @stdlib/assert/is-boolean-array
+*
+* @example
+* var isBooleanArray = require( '@stdlib/assert/is-boolean-array' );
+*
+* var bool = isBooleanArray( [ true, false, true ] );
+* // returns true
+*
+* bool = isBooleanArray( [ true, 'abc', false ] );
+* // returns false
+*
+* @example
+* // Use interface to check for primitives...
+* var isBooleanArray = require( '@stdlib/assert/is-boolean-array' ).primitives;
+*
+* var bool = isBooleanArray( [ true, false ] );
+* // returns true
+*
+* bool = isBooleanArray( [ false, new Boolean( true ) ] );
+* // returns false
+*
+* @example
+* // Use interface to check for objects...
+* var isBooleanArray = require( '@stdlib/assert/is-boolean-array' ).objects;
+*
+* var bool = isBooleanArray( [ new Boolean( false ), new Boolean( true ) ] );
+* // returns true
+*
+* bool = isBooleanArray( [ new Boolean( false ), true ] );
+* // returns false
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
+var isBoolean = require( '@stdlib/assert/is-boolean' );
+
+
+// MAIN //
+
+var isBooleanArray = arrayfun( isBoolean );
+setReadOnly( isBooleanArray, 'primitives', arrayfun( isBoolean.isPrimitive ) );
+setReadOnly( isBooleanArray, 'objects', arrayfun( isBoolean.isObject ) );
+
+
+// EXPORTS //
+
+module.exports = isBooleanArray;
+
+},{"@stdlib/assert/is-boolean":38,"@stdlib/assert/tools/array-like-function":117,"@stdlib/utils/define-read-only-property":553}],37:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -409,14 +1086,14 @@ var isObject = require( './object.js' );
 */
 function isBoolean( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isBoolean()
+}
 
 
 // EXPORTS //
 
 module.exports = isBoolean;
 
-},{"./object.js":11,"./primitive.js":12}],10:[function(require,module,exports){
+},{"./object.js":39,"./primitive.js":40}],38:[function(require,module,exports){
 'use strict';
 
 /**
@@ -472,7 +1149,7 @@ setReadOnly( isBoolean, 'isObject', isObject );
 
 module.exports = isBoolean;
 
-},{"./generic.js":9,"./object.js":11,"./primitive.js":12,"@stdlib/utils/define-read-only-property":491}],11:[function(require,module,exports){
+},{"./generic.js":37,"./object.js":39,"./primitive.js":40,"@stdlib/utils/define-read-only-property":553}],39:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -506,14 +1183,14 @@ function isBoolean( value ) {
 		return ( nativeClass( value ) === '[object Boolean]' );
 	}
 	return false;
-} // end FUNCTION isBoolean()
+}
 
 
 // EXPORTS //
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":14,"@stdlib/utils/detect-tostringtag-support":495,"@stdlib/utils/native-class":519}],12:[function(require,module,exports){
+},{"./try2serialize.js":42,"@stdlib/utils/detect-tostringtag-support":575,"@stdlib/utils/native-class":611}],40:[function(require,module,exports){
 'use strict';
 
 /**
@@ -536,17 +1213,17 @@ module.exports = isBoolean;
 */
 function isBoolean( value ) {
 	return ( typeof value === 'boolean' );
-} // end FUNCTION isBoolean()
+}
 
 
 // EXPORTS //
 
 module.exports = isBoolean;
 
-},{}],13:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var toString = Boolean.prototype.toString; // non-generic
 
 
@@ -554,12 +1231,12 @@ var toString = Boolean.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],14:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
+var toString = require( './tostring.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -577,14 +1254,14 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./tostring.js":13}],15:[function(require,module,exports){
+},{"./tostring.js":41}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -611,7 +1288,7 @@ var isBuffer = require( './is_buffer.js' );
 
 module.exports = isBuffer;
 
-},{"./is_buffer.js":16}],16:[function(require,module,exports){
+},{"./is_buffer.js":44}],44:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -651,20 +1328,21 @@ function isBuffer( value ) {
 			value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
 			(
 				value.constructor &&
+
 				// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
 				typeof value.constructor.isBuffer === 'function' &&
 				value.constructor.isBuffer( value )
 			)
 		)
 	);
-} // end FUNCTION isBuffer()
+}
 
 
 // EXPORTS //
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":46}],17:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":85}],45:[function(require,module,exports){
 'use strict';
 
 /**
@@ -694,7 +1372,7 @@ var isEmptyArray = require( './is_empty_array.js' );
 
 module.exports = isEmptyArray;
 
-},{"./is_empty_array.js":18}],18:[function(require,module,exports){
+},{"./is_empty_array.js":46}],46:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -727,14 +1405,14 @@ function isEmptyArray( value ) {
 		isArray( value ) &&
 		value.length === 0
 	);
-} // end FUNCTION isEmptyArray()
+}
 
 
 // EXPORTS //
 
 module.exports = isEmptyArray;
 
-},{"@stdlib/assert/is-array":7}],19:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -761,7 +1439,7 @@ var isError = require( './is_error.js' );
 
 module.exports = isError;
 
-},{"./is_error.js":20}],20:[function(require,module,exports){
+},{"./is_error.js":48}],48:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -802,14 +1480,134 @@ function isError( value ) {
 		value = getPrototypeOf( value );
 	}
 	return false;
-} // end FUNCTION isError()
+}
 
 
 // EXPORTS //
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":498,"@stdlib/utils/native-class":519}],21:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":590,"@stdlib/utils/native-class":611}],49:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float32Array.
+*
+* @module @stdlib/assert/is-float32array
+*
+* @example
+* var isFloat32Array = require( '@stdlib/assert/is-float32array' );
+*
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* bool = isFloat32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat32Array = require( './is_float32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat32Array;
+
+},{"./is_float32array.js":50}],50:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float32Array
+*
+* @example
+* var bool = isFloat32Array( new Float32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat32Array( [] );
+* // returns false
+*/
+function isFloat32Array( value ) {
+	return ( nativeClass( value ) === '[object Float32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat32Array;
+
+},{"@stdlib/utils/native-class":611}],51:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Float64Array.
+*
+* @module @stdlib/assert/is-float64array
+*
+* @example
+* var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+*
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* bool = isFloat64Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isFloat64Array = require( './is_float64array.js' );
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"./is_float64array.js":52}],52:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Float64Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Float64Array
+*
+* @example
+* var bool = isFloat64Array( new Float64Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isFloat64Array( [] );
+* // returns false
+*/
+function isFloat64Array( value ) {
+	return ( nativeClass( value ) === '[object Float64Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFloat64Array;
+
+},{"@stdlib/utils/native-class":611}],53:[function(require,module,exports){
 'use strict';
 
 /**
@@ -837,7 +1635,7 @@ var isFunction = require( './is_function.js' );
 
 module.exports = isFunction;
 
-},{"./is_function.js":22}],22:[function(require,module,exports){
+},{"./is_function.js":54}],54:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -864,14 +1662,194 @@ var typeOf = require( '@stdlib/utils/type-of' );
 function isFunction( value ) {
 	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
 	return ( typeOf( value ) === 'function' );
-} // end FUNCTION isFunction()
+}
 
 
 // EXPORTS //
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":530}],23:[function(require,module,exports){
+},{"@stdlib/utils/type-of":622}],55:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int16Array.
+*
+* @module @stdlib/assert/is-int16array
+*
+* @example
+* var isInt16Array = require( '@stdlib/assert/is-int16array' );
+*
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* bool = isInt16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt16Array = require( './is_int16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt16Array;
+
+},{"./is_int16array.js":56}],56:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int16Array
+*
+* @example
+* var bool = isInt16Array( new Int16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt16Array( [] );
+* // returns false
+*/
+function isInt16Array( value ) {
+	return ( nativeClass( value ) === '[object Int16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt16Array;
+
+},{"@stdlib/utils/native-class":611}],57:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int32Array.
+*
+* @module @stdlib/assert/is-int32array
+*
+* @example
+* var isInt32Array = require( '@stdlib/assert/is-int32array' );
+*
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* bool = isInt32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt32Array = require( './is_int32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt32Array;
+
+},{"./is_int32array.js":58}],58:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int32Array
+*
+* @example
+* var bool = isInt32Array( new Int32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt32Array( [] );
+* // returns false
+*/
+function isInt32Array( value ) {
+	return ( nativeClass( value ) === '[object Int32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt32Array;
+
+},{"@stdlib/utils/native-class":611}],59:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an Int8Array.
+*
+* @module @stdlib/assert/is-int8array
+*
+* @example
+* var isInt8Array = require( '@stdlib/assert/is-int8array' );
+*
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* bool = isInt8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isInt8Array = require( './is_int8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isInt8Array;
+
+},{"./is_int8array.js":60}],60:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an Int8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an Int8Array
+*
+* @example
+* var bool = isInt8Array( new Int8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isInt8Array( [] );
+* // returns false
+*/
+function isInt8Array( value ) {
+	return ( nativeClass( value ) === '[object Int8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isInt8Array;
+
+},{"@stdlib/utils/native-class":611}],61:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -906,14 +1884,14 @@ var isObject = require( './object.js' );
 */
 function isInteger( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./object.js":26,"./primitive.js":27}],24:[function(require,module,exports){
+},{"./object.js":64,"./primitive.js":65}],62:[function(require,module,exports){
 'use strict';
 
 /**
@@ -975,13 +1953,13 @@ setReadOnly( isInteger, 'isObject', isObject );
 
 module.exports = isInteger;
 
-},{"./generic.js":23,"./object.js":26,"./primitive.js":27,"@stdlib/utils/define-read-only-property":491}],25:[function(require,module,exports){
+},{"./generic.js":61,"./object.js":64,"./primitive.js":65,"@stdlib/utils/define-read-only-property":553}],63:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
-var NINF = require( '@stdlib/math/constants/float64-ninf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
+var NINF = require( '@stdlib/constants/math/float64-ninf' );
 var isInt = require( '@stdlib/math/base/assert/is-integer' );
 
 
@@ -1000,14 +1978,14 @@ function isInteger( value ) {
 		value > NINF &&
 		isInt( value )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/assert/is-integer":71,"@stdlib/math/constants/float64-ninf":81,"@stdlib/math/constants/float64-pinf":82}],26:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-ninf":126,"@stdlib/constants/math/float64-pinf":127,"@stdlib/math/base/assert/is-integer":137}],64:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1037,14 +2015,14 @@ function isInteger( value ) {
 		isNumber( value ) &&
 		isInt( value.valueOf() )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./integer.js":25,"@stdlib/assert/is-number":41}],27:[function(require,module,exports){
+},{"./integer.js":63,"@stdlib/assert/is-number":80}],65:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1074,14 +2052,14 @@ function isInteger( value ) {
 		isNumber( value ) &&
 		isInt( value )
 	);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"./integer.js":25,"@stdlib/assert/is-number":41}],28:[function(require,module,exports){
+},{"./integer.js":63,"@stdlib/assert/is-number":80}],66:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1116,14 +2094,14 @@ var isObject = require( './object.js' );
 */
 function isnan( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"./object.js":30,"./primitive.js":31}],29:[function(require,module,exports){
+},{"./object.js":68,"./primitive.js":69}],67:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1188,7 +2166,7 @@ setReadOnly( isnan, 'isObject', isObject );
 
 module.exports = isnan;
 
-},{"./generic.js":28,"./object.js":30,"./primitive.js":31,"@stdlib/utils/define-read-only-property":491}],30:[function(require,module,exports){
+},{"./generic.js":66,"./object.js":68,"./primitive.js":69,"@stdlib/utils/define-read-only-property":553}],68:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1218,14 +2196,14 @@ function isnan( value ) {
 		isNumber( value ) &&
 		isNan( value.valueOf() )
 	);
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":41,"@stdlib/math/base/assert/is-nan":73}],31:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"@stdlib/math/base/assert/is-nan":139}],69:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1259,14 +2237,14 @@ function isnan( value ) {
 		isNumber( value ) &&
 		isNan( value )
 	);
-} // end FUNCTION isnan()
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":41,"@stdlib/math/base/assert/is-nan":73}],32:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"@stdlib/math/base/assert/is-nan":139}],70:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1274,11 +2252,72 @@ module.exports = isnan;
 var constantFcn = require( '@stdlib/utils/constant-function' );
 
 
+// MAIN //
+
+var f = constantFcn( false );
+
+
 // EXPORTS //
 
-module.exports = constantFcn( false );
+module.exports = f;
 
-},{"@stdlib/utils/constant-function":483}],33:[function(require,module,exports){
+},{"@stdlib/utils/constant-function":545}],71:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is an array-like object containing only nonnegative integers.
+*
+* @module @stdlib/assert/is-nonnegative-integer-array
+*
+* @example
+* var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' );
+*
+* var bool = isNonNegativeIntegerArray( [ 3.0, new Number(3.0) ] );
+* // returns true
+*
+* bool = isNonNegativeIntegerArray( [ 3.0, '3.0' ] );
+* // returns false
+*
+* @example
+* // Use interface to check for primitives...
+* var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' ).primitives;
+*
+* var bool = isNonNegativeIntegerArray( [ 1.0, 0.0, 10.0 ] );
+* // returns true
+*
+* bool = isNonNegativeIntegerArray( [ 3.0, new Number(1.0) ] );
+* // returns false
+*
+* @example
+* // Use interface to check for objects...
+* var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' ).objects;
+*
+* var bool = isNonNegativeIntegerArray( [ new Number(3.0), new Number(1.0) ] );
+* // returns true
+*
+* bool = isNonNegativeIntegerArray( [ 1.0, 0.0, 10.0 ] );
+* // returns false
+*/
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' );
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var arrayfun = require( '@stdlib/assert/tools/array-like-function' );
+
+
+// MAIN //
+
+var isNonNegativeIntegerArray = arrayfun( isNonNegativeInteger );
+setReadOnly( isNonNegativeIntegerArray, 'primitives', arrayfun( isNonNegativeInteger.isPrimitive ) );
+setReadOnly( isNonNegativeIntegerArray, 'objects', arrayfun( isNonNegativeInteger.isObject ) );
+
+
+// EXPORTS //
+
+module.exports = isNonNegativeIntegerArray;
+
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/tools/array-like-function":117,"@stdlib/utils/define-read-only-property":553}],72:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1317,14 +2356,14 @@ var isObject = require( './object.js' );
 */
 function isNonNegativeInteger( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":35,"./primitive.js":36}],34:[function(require,module,exports){
+},{"./object.js":74,"./primitive.js":75}],73:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1389,7 +2428,7 @@ setReadOnly( isNonNegativeInteger, 'isObject', isObject );
 
 module.exports = isNonNegativeInteger;
 
-},{"./generic.js":33,"./object.js":35,"./primitive.js":36,"@stdlib/utils/define-read-only-property":491}],35:[function(require,module,exports){
+},{"./generic.js":72,"./object.js":74,"./primitive.js":75,"@stdlib/utils/define-read-only-property":553}],74:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1418,14 +2457,14 @@ function isNonNegativeInteger( value ) {
 		isInteger( value ) &&
 		value.valueOf() >= 0
 	);
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":24}],36:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":62}],75:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1454,14 +2493,14 @@ function isNonNegativeInteger( value ) {
 		isInteger( value ) &&
 		value >= 0
 	);
-} // end FUNCTION isNonNegativeInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":24}],37:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":62}],76:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1487,7 +2526,7 @@ var isNull = require( './is_null.js' );
 
 module.exports = isNull;
 
-},{"./is_null.js":38}],38:[function(require,module,exports){
+},{"./is_null.js":77}],77:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1505,14 +2544,14 @@ module.exports = isNull;
 */
 function isNull( value ) {
 	return value === null;
-} // end FUNCTION isNull()
+}
 
 
 // EXPORTS //
 
 module.exports = isNull;
 
-},{}],39:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1568,7 +2607,7 @@ setReadOnly( isNumberArray, 'objects', arrayfun( isNumber.isObject ) );
 
 module.exports = isNumberArray;
 
-},{"@stdlib/assert/is-number":41,"@stdlib/assert/tools/array-like-function":70,"@stdlib/utils/define-read-only-property":491}],40:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"@stdlib/assert/tools/array-like-function":117,"@stdlib/utils/define-read-only-property":553}],79:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1603,14 +2642,14 @@ var isObject = require( './object.js' );
 */
 function isNumber( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{"./object.js":42,"./primitive.js":43}],41:[function(require,module,exports){
+},{"./object.js":81,"./primitive.js":82}],80:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1675,7 +2714,7 @@ setReadOnly( isNumber, 'isObject', isObject );
 
 module.exports = isNumber;
 
-},{"./generic.js":40,"./object.js":42,"./primitive.js":43,"@stdlib/utils/define-read-only-property":491}],42:[function(require,module,exports){
+},{"./generic.js":79,"./object.js":81,"./primitive.js":82,"@stdlib/utils/define-read-only-property":553}],81:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1709,14 +2748,14 @@ function isNumber( value ) {
 		return ( nativeClass( value ) === '[object Number]' );
 	}
 	return false;
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":45,"@stdlib/utils/detect-tostringtag-support":495,"@stdlib/utils/native-class":519}],43:[function(require,module,exports){
+},{"./try2serialize.js":84,"@stdlib/utils/detect-tostringtag-support":575,"@stdlib/utils/native-class":611}],82:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1739,17 +2778,17 @@ module.exports = isNumber;
 */
 function isNumber( value ) {
 	return ( typeof value === 'number' );
-} // end FUNCTION isNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isNumber;
 
-},{}],44:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var toString = Number.prototype.toString; // non-generic
 
 
@@ -1757,12 +2796,12 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],45:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var toString = require( './tostring.js' ); // eslint-disable-line no-redeclare
+var toString = require( './tostring.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -1781,14 +2820,14 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./tostring.js":44}],46:[function(require,module,exports){
+},{"./tostring.js":83}],85:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1834,7 +2873,7 @@ setReadOnly( isObjectLike, 'isObjectLikeArray', arrayfun( isObjectLike ) );
 
 module.exports = isObjectLike;
 
-},{"./is_object_like.js":47,"@stdlib/assert/tools/array-function":68,"@stdlib/utils/define-read-only-property":491}],47:[function(require,module,exports){
+},{"./is_object_like.js":86,"@stdlib/assert/tools/array-function":115,"@stdlib/utils/define-read-only-property":553}],86:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1860,14 +2899,14 @@ function isObjectLike( value ) {
 		value !== null &&
 		typeof value === 'object'
 	);
-} // end FUNCTION isObjectLike()
+}
 
 
 // EXPORTS //
 
 module.exports = isObjectLike;
 
-},{}],48:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1894,7 +2933,7 @@ var isObject = require( './is_object.js' );
 
 module.exports = isObject;
 
-},{"./is_object.js":49}],49:[function(require,module,exports){
+},{"./is_object.js":88}],88:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1924,14 +2963,14 @@ function isObject( value ) {
 		value !== null &&
 		!isArray( value )
 	);
-} // end FUNCTION isObject()
+}
 
 
 // EXPORTS //
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":7}],50:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34}],89:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1958,7 +2997,7 @@ var isPlainObject = require( './is_plain_object.js' );
 
 module.exports = isPlainObject;
 
-},{"./is_plain_object.js":51}],51:[function(require,module,exports){
+},{"./is_plain_object.js":90}],90:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -1994,7 +3033,7 @@ function ownProps( obj ) {
 		}
 	}
 	return true;
-} // end FUNCTION ownProps()
+}
 
 
 // MAIN //
@@ -2047,14 +3086,14 @@ function isPlainObject( value ) {
 			ownProps( value )
 		)
 	);
-} // end FUNCTION isPlainObject()
+}
 
 
 // EXPORTS //
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-function":21,"@stdlib/assert/is-object":48,"@stdlib/utils/get-prototype-of":498,"@stdlib/utils/native-class":519}],52:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-function":53,"@stdlib/assert/is-object":87,"@stdlib/utils/get-prototype-of":590,"@stdlib/utils/native-class":611}],91:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2097,14 +3136,14 @@ var isObject = require( './object.js' );
 */
 function isPositiveInteger( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isPositiveInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isPositiveInteger;
 
-},{"./object.js":54,"./primitive.js":55}],53:[function(require,module,exports){
+},{"./object.js":93,"./primitive.js":94}],92:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2169,7 +3208,7 @@ setReadOnly( isPositiveInteger, 'isObject', isObject );
 
 module.exports = isPositiveInteger;
 
-},{"./generic.js":52,"./object.js":54,"./primitive.js":55,"@stdlib/utils/define-read-only-property":491}],54:[function(require,module,exports){
+},{"./generic.js":91,"./object.js":93,"./primitive.js":94,"@stdlib/utils/define-read-only-property":553}],93:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2198,14 +3237,14 @@ function isPositiveInteger( value ) {
 		isInteger( value ) &&
 		value.valueOf() > 0.0
 	);
-} // end FUNCTION isPositiveInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":24}],55:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":62}],94:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2234,14 +3273,14 @@ function isPositiveInteger( value ) {
 		isInteger( value ) &&
 		value > 0.0
 	);
-} // end FUNCTION isPositiveInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":24}],56:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":62}],95:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2280,14 +3319,14 @@ var isObject = require( './object.js' );
 */
 function isPositiveNumber( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isPositiveNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isPositiveNumber;
 
-},{"./object.js":58,"./primitive.js":59}],57:[function(require,module,exports){
+},{"./object.js":97,"./primitive.js":98}],96:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2352,7 +3391,7 @@ setReadOnly( isPositiveNumber, 'isObject', isObject );
 
 module.exports = isPositiveNumber;
 
-},{"./generic.js":56,"./object.js":58,"./primitive.js":59,"@stdlib/utils/define-read-only-property":491}],58:[function(require,module,exports){
+},{"./generic.js":95,"./object.js":97,"./primitive.js":98,"@stdlib/utils/define-read-only-property":553}],97:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2381,14 +3420,14 @@ function isPositiveNumber( value ) {
 		isNumber( value ) &&
 		value.valueOf() > 0.0
 	);
-} // end FUNCTION isPositiveNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isPositiveNumber;
 
-},{"@stdlib/assert/is-number":41}],59:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80}],98:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2417,14 +3456,14 @@ function isPositiveNumber( value ) {
 		isNumber( value ) &&
 		value > 0.0
 	);
-} // end FUNCTION isPositiveNumber()
+}
 
 
 // EXPORTS //
 
 module.exports = isPositiveNumber;
 
-},{"@stdlib/assert/is-number":41}],60:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80}],99:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2480,7 +3519,7 @@ setReadOnly( isStringArray, 'objects', arrayfun( isString.isObject ) );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":62,"@stdlib/assert/tools/array-function":68,"@stdlib/utils/define-read-only-property":491}],61:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"@stdlib/assert/tools/array-function":115,"@stdlib/utils/define-read-only-property":553}],100:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2507,14 +3546,14 @@ var isObject = require( './object.js' );
 */
 function isString( value ) {
 	return ( isPrimitive( value ) || isObject( value ) );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./object.js":63,"./primitive.js":64}],62:[function(require,module,exports){
+},{"./object.js":102,"./primitive.js":103}],101:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2571,7 +3610,7 @@ setReadOnly( isString, 'isObject', isObject );
 
 module.exports = isString;
 
-},{"./generic.js":61,"./object.js":63,"./primitive.js":64,"@stdlib/utils/define-read-only-property":491}],63:[function(require,module,exports){
+},{"./generic.js":100,"./object.js":102,"./primitive.js":103,"@stdlib/utils/define-read-only-property":553}],102:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2605,14 +3644,14 @@ function isString( value ) {
 		return ( nativeClass( value ) === '[object String]' );
 	}
 	return false;
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{"./try2valueof.js":65,"@stdlib/utils/detect-tostringtag-support":495,"@stdlib/utils/native-class":519}],64:[function(require,module,exports){
+},{"./try2valueof.js":104,"@stdlib/utils/detect-tostringtag-support":575,"@stdlib/utils/native-class":611}],103:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2631,19 +3670,19 @@ module.exports = isString;
 */
 function isString( value ) {
 	return ( typeof value === 'string' );
-} // end FUNCTION isString()
+}
 
 
 // EXPORTS //
 
 module.exports = isString;
 
-},{}],65:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var valueOf = require( './valueof.js' ); // eslint-disable-line no-redeclare
+var valueOf = require( './valueof.js' ); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -2662,17 +3701,17 @@ function test( value ) {
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./valueof.js":66}],66:[function(require,module,exports){
+},{"./valueof.js":105}],105:[function(require,module,exports){
 'use strict';
 
-// eslint-disable-next-line no-redeclare
+// eslint-disable-next-line stdlib/no-redeclare
 var valueOf = String.prototype.valueOf; // non-generic
 
 
@@ -2680,7 +3719,247 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],67:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint16Array.
+*
+* @module @stdlib/assert/is-uint16array
+*
+* @example
+* var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+*
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* bool = isUint16Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint16Array = require( './is_uint16array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"./is_uint16array.js":107}],107:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint16Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint16Array
+*
+* @example
+* var bool = isUint16Array( new Uint16Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint16Array( [] );
+* // returns false
+*/
+function isUint16Array( value ) {
+	return ( nativeClass( value ) === '[object Uint16Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint16Array;
+
+},{"@stdlib/utils/native-class":611}],108:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint32Array.
+*
+* @module @stdlib/assert/is-uint32array
+*
+* @example
+* var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+*
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* bool = isUint32Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint32Array = require( './is_uint32array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"./is_uint32array.js":109}],109:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint32Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint32Array
+*
+* @example
+* var bool = isUint32Array( new Uint32Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint32Array( [] );
+* // returns false
+*/
+function isUint32Array( value ) {
+	return ( nativeClass( value ) === '[object Uint32Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint32Array;
+
+},{"@stdlib/utils/native-class":611}],110:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8Array.
+*
+* @module @stdlib/assert/is-uint8array
+*
+* @example
+* var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+*
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* bool = isUint8Array( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8Array = require( './is_uint8array.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"./is_uint8array.js":111}],111:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8Array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8Array
+*
+* @example
+* var bool = isUint8Array( new Uint8Array( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8Array( [] );
+* // returns false
+*/
+function isUint8Array( value ) {
+	return ( nativeClass( value ) === '[object Uint8Array]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8Array;
+
+},{"@stdlib/utils/native-class":611}],112:[function(require,module,exports){
+'use strict';
+
+/**
+* Test if a value is a Uint8ClampedArray.
+*
+* @module @stdlib/assert/is-uint8clampedarray
+*
+* @example
+* var isUint8ClampedArray = require( '@stdlib/assert/is-uint8clampedarray' );
+*
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+
+// MODULES //
+
+var isUint8ClampedArray = require( './is_uint8array_clamped.js' );
+
+
+// EXPORTS //
+
+module.exports = isUint8ClampedArray;
+
+},{"./is_uint8array_clamped.js":113}],113:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Uint8ClampedArray.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a Uint8ClampedArray
+*
+* @example
+* var bool = isUint8ClampedArray( new Uint8ClampedArray( 10 ) );
+* // returns true
+*
+* @example
+* var bool = isUint8ClampedArray( [] );
+* // returns false
+*/
+function isUint8ClampedArray( value ) {
+	return ( nativeClass( value ) === '[object Uint8ClampedArray]' );
+}
+
+
+// EXPORTS //
+
+module.exports = isUint8ClampedArray;
+
+},{"@stdlib/utils/native-class":611}],114:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2716,6 +3995,7 @@ function arrayfcn( predicate ) {
 		throw new TypeError( 'invalid input argument. Must provide a function. Value: `' + predicate + '`.' );
 	}
 	return every;
+
 	/**
 	* Tests if every element in an array passes a test condition.
 	*
@@ -2739,15 +4019,15 @@ function arrayfcn( predicate ) {
 			}
 		}
 		return true;
-	} // end FUNCTION every()
-} // end FUNCTION arrayfcn()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":7}],68:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34}],115:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2780,7 +4060,7 @@ var arrayfcn = require( './arrayfcn.js' );
 
 module.exports = arrayfcn;
 
-},{"./arrayfcn.js":67}],69:[function(require,module,exports){
+},{"./arrayfcn.js":114}],116:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2816,6 +4096,7 @@ function arraylikefcn( predicate ) {
 		throw new TypeError( 'invalid input argument. Must provide a function. Value: `' + predicate + '`.' );
 	}
 	return every;
+
 	/**
 	* Tests if every element in an array-like object passes a test condition.
 	*
@@ -2839,15 +4120,15 @@ function arraylikefcn( predicate ) {
 			}
 		}
 		return true;
-	} // end FUNCTION every()
-} // end FUNCTION arraylikefcn()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":5}],70:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32}],117:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2880,7 +4161,730 @@ var arraylikefcn = require( './arraylikefcn.js' );
 
 module.exports = arraylikefcn;
 
-},{"./arraylikefcn.js":69}],71:[function(require,module,exports){
+},{"./arraylikefcn.js":116}],118:[function(require,module,exports){
+'use strict';
+
+// MAIN //
+
+var ctor = require( 'buffer' ).Buffer;
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"buffer":630}],119:[function(require,module,exports){
+'use strict';
+
+/**
+* Buffer constructor.
+*
+* @module @stdlib/buffer/ctor
+*
+* @example
+* var ctor = require( '@stdlib/buffer/ctor' );
+*
+* var b = new ctor( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*/
+
+// MODULES //
+
+var hasNodeBufferSupport = require( '@stdlib/utils/detect-node-buffer-support' );
+var main = require( './buffer.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var ctor;
+if ( hasNodeBufferSupport() ) {
+	ctor = main;
+} else {
+	ctor = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = ctor;
+
+},{"./buffer.js":118,"./polyfill.js":120,"@stdlib/utils/detect-node-buffer-support":570}],120:[function(require,module,exports){
+'use strict';
+
+// TODO: write (browser) polyfill
+
+// MAIN //
+
+/**
+* Buffer constructor.
+*
+* @throws {Error} not implemented
+*/
+function polyfill() {
+	throw new Error( 'not implemented' );
+}
+
+
+// EXPORTS //
+
+module.exports = polyfill;
+
+},{}],121:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+var bool = isFunction( Buffer.from );
+
+
+// EXPORTS //
+
+module.exports = bool;
+
+},{"@stdlib/assert/is-function":53,"@stdlib/buffer/ctor":119}],122:[function(require,module,exports){
+'use strict';
+
+/**
+* Copy buffer data to a new `Buffer` instance.
+*
+* @module @stdlib/buffer/from-buffer
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+* var copyBuffer = require( '@stdlib/buffer/from-buffer' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = copyBuffer( b1 );
+* // returns <Buffer>
+*/
+
+// MODULES //
+
+var hasFrom = require( './has_from.js' );
+var main = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var copyBuffer;
+if ( hasFrom ) {
+	copyBuffer = main;
+} else {
+	copyBuffer = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = copyBuffer;
+
+},{"./has_from.js":121,"./main.js":123,"./polyfill.js":124}],123:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+/**
+* Copies buffer data to a new `Buffer` instance.
+*
+* @param {Buffer} buffer - buffer from which to copy
+* @throws {TypeError} must provide a `Buffer` instance
+* @returns {Buffer} new `Buffer` instance
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = fromBuffer( b1 );
+* // returns <Buffer>
+*/
+function fromBuffer( buffer ) {
+	if ( !isBuffer( buffer ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a Buffer. Value: `' + buffer + '`' );
+	}
+	return Buffer.from( buffer );
+}
+
+
+// EXPORTS //
+
+module.exports = fromBuffer;
+
+},{"@stdlib/assert/is-buffer":43,"@stdlib/buffer/ctor":119}],124:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var Buffer = require( '@stdlib/buffer/ctor' );
+
+
+// MAIN //
+
+/**
+* Copies buffer data to a new `Buffer` instance.
+*
+* @param {Buffer} buffer - buffer from which to copy
+* @throws {TypeError} must provide a `Buffer` instance
+* @returns {Buffer} new `Buffer` instance
+*
+* @example
+* var fromArray = require( '@stdlib/type/buffer/from-array' );
+*
+* var b1 = fromArray( [ 1, 2, 3, 4 ] );
+* // returns <Buffer>
+*
+* var b2 = fromBuffer( b1 );
+* // returns <Buffer>
+*/
+function fromBuffer( buffer ) {
+	if ( !isBuffer( buffer ) ) {
+		throw new TypeError( 'invalid input argument. Must provide a Buffer. Value: `' + buffer + '`' );
+	}
+	return new Buffer( buffer ); // eslint-disable-line no-buffer-constructor
+}
+
+
+// EXPORTS //
+
+module.exports = fromBuffer;
+
+},{"@stdlib/assert/is-buffer":43,"@stdlib/buffer/ctor":119}],125:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum length of a generic array.
+*
+* @module @stdlib/constants/array/max-array-length
+*
+* @example
+* var MAX_ARRAY_LENGTH = require( '@stdlib/constants/array/max-array-length' );
+* // returns 4294967295
+*/
+
+// MAIN //
+
+/**
+* Maximum length of a generic array.
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = MAX_ARRAY_LENGTH;
+
+},{}],126:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* @module @stdlib/constants/math/float64-ninf
+* @type {number}
+*
+* @example
+* var FLOAT64_NINF = require( '@stdlib/constants/math/float64-ninf' );
+* // returns -Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point negative infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point negative infinity has the bit sequence
+*
+* ```binarystring
+* 1 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.NEGATIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_NINF;
+
+},{}],127:[function(require,module,exports){
+'use strict';
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* @module @stdlib/constants/math/float64-pinf
+* @type {number}
+*
+* @example
+* var FLOAT64_PINF = require( '@stdlib/constants/math/float64-pinf' );
+* // returns Infinity
+*/
+
+
+// MAIN //
+
+/**
+* Double-precision floating-point positive infinity.
+*
+* ## Notes
+*
+* Double-precision floating-point positive infinity has the bit sequence
+*
+* ```binarystring
+* 0 11111111111 00000000000000000000 00000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {number}
+* @default Number.POSITIVE_INFINITY
+* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
+*/
+var FLOAT64_PINF = Number.POSITIVE_INFINITY;
+
+
+// EXPORTS //
+
+module.exports = FLOAT64_PINF;
+
+},{}],128:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-max
+* @type {integer32}
+*
+* @example
+* var INT16_MAX = require( '@stdlib/constants/math/int16-max' );
+* // returns 32767
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{15} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 0111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 32767
+*/
+var INT16_MAX = 32767|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT16_MAX;
+
+},{}],129:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 16-bit integer.
+*
+* @module @stdlib/constants/math/int16-min
+* @type {integer32}
+*
+* @example
+* var INT16_MIN = require( '@stdlib/constants/math/int16-min' );
+* // returns -32768
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{15})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 1000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -32768
+*/
+var INT16_MIN = -32768|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT16_MIN;
+
+},{}],130:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-max
+* @type {integer32}
+*
+* @example
+* var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+* // returns 2147483647
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{31} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 2147483647
+*/
+var INT32_MAX = 2147483647|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT32_MAX;
+
+},{}],131:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 32-bit integer.
+*
+* @module @stdlib/constants/math/int32-min
+* @type {integer32}
+*
+* @example
+* var INT32_MIN = require( '@stdlib/constants/math/int32-min' );
+* // returns -2147483648
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* -(2^{31})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000000000000000000000000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -2147483648
+*/
+var INT32_MIN = -2147483648|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT32_MIN;
+
+},{}],132:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-max
+* @type {integer32}
+*
+* @example
+* var INT8_MAX = require( '@stdlib/constants/math/int8-max' );
+* // returns 127
+*/
+
+
+// MAIN //
+
+/**
+* Maximum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* 2^{7} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 01111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 127
+*/
+var INT8_MAX = 127|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT8_MAX;
+
+},{}],133:[function(require,module,exports){
+'use strict';
+
+/**
+* Minimum signed 8-bit integer.
+*
+* @module @stdlib/constants/math/int8-min
+* @type {integer32}
+*
+* @example
+* var INT8_MIN = require( '@stdlib/constants/math/int8-min' );
+* // returns -128
+*/
+
+
+// MAIN //
+
+/**
+* Minimum signed 8-bit integer.
+*
+* ## Notes
+*
+* The number is given by
+*
+* ```tex
+* -(2^{7})
+* ```
+*
+* which corresponds to the two's complement bit sequence
+*
+* ```binarystring
+* 10000000
+* ```
+*
+* @constant
+* @type {integer32}
+* @default -128
+*/
+var INT8_MIN = -128|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = INT8_MIN;
+
+},{}],134:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* @module @stdlib/constants/math/uint16-max
+* @type {integer32}
+*
+* @example
+* var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+* // returns 65535
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 16-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{16} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 1111111111111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 65535
+*/
+var UINT16_MAX = 65535|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT16_MAX;
+
+},{}],135:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* @module @stdlib/constants/math/uint32-max
+* @type {uinteger32}
+*
+* @example
+* var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+* // returns 4294967295
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 32-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{32} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111111111111111111111111111
+* ```
+*
+* @constant
+* @type {uinteger32}
+* @default 4294967295
+*/
+var UINT32_MAX = 4294967295;
+
+
+// EXPORTS //
+
+module.exports = UINT32_MAX;
+
+},{}],136:[function(require,module,exports){
+'use strict';
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* @module @stdlib/constants/math/uint8-max
+* @type {integer32}
+*
+* @example
+* var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+* // returns 255
+*/
+
+
+// MAIN //
+
+/**
+* Maximum unsigned 8-bit integer.
+*
+* ## Notes
+*
+* The number has the value
+*
+* ```tex
+* 2^{8} - 1
+* ```
+*
+* which corresponds to the bit sequence
+*
+* ```binarystring
+* 11111111
+* ```
+*
+* @constant
+* @type {integer32}
+* @default 255
+*/
+var UINT8_MAX = 255|0; // asm type annotation
+
+
+// EXPORTS //
+
+module.exports = UINT8_MAX;
+
+},{}],137:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2907,7 +4911,7 @@ var isInteger = require( './is_integer.js' );
 
 module.exports = isInteger;
 
-},{"./is_integer.js":72}],72:[function(require,module,exports){
+},{"./is_integer.js":138}],138:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -2933,14 +4937,14 @@ var floor = require( '@stdlib/math/base/special/floor' );
 */
 function isInteger( x ) {
 	return (floor(x) === x);
-} // end FUNCTION isInteger()
+}
 
 
 // EXPORTS //
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":80}],73:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":142}],139:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2967,7 +4971,7 @@ var isnan = require( './is_nan.js' );
 
 module.exports = isnan;
 
-},{"./is_nan.js":74}],74:[function(require,module,exports){
+},{"./is_nan.js":140}],140:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -2987,279 +4991,15 @@ module.exports = isnan;
 * // returns false
 */
 function isnan( x ) {
-	return (x !== x);
-} // end FUNCTION isnan()
+	return ( x !== x );
+}
 
 
 // EXPORTS //
 
 module.exports = isnan;
 
-},{}],75:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' ).isPrimitive;
-var INT32_MAX = require( '@stdlib/math/constants/int32-max' );
-var randint32 = require( './rand_int32.js' );
-
-
-// VARIABLES //
-
-var NORMALIZATION_CONSTANT = INT32_MAX - 1;
-var MAX_SEED = INT32_MAX - 1;
-var A = 16807|0; // asm type annotation
-
-
-// MAIN //
-
-/**
-* Returns a linear congruential pseudorandom number generator (LCG) based on Park and Miller.
-*
-* @param {PositiveInteger} [seed] - pseudorandom number generator seed
-* @throws {TypeError} must provide a positive integer
-* @throws {RangeError} must provide a positive integer less than the maximum signed 32-bit integer
-* @returns {Function} LCG
-*
-* @example
-* var minstd = factory();
-*
-* var v = minstd();
-* // returns <number>
-*
-* @example
-* // Return a seeded LCG:
-* var minstd = factory( 1234 );
-*
-* var v = minstd();
-* // returns 20739838
-*/
-function factory( seed ) {
-	var state;
-	if ( arguments.length ) {
-		if ( !isPositiveInteger( seed ) ) {
-			throw new TypeError( 'invalid input argument. Must provide a positive integer. Value: `' + seed + '`.' );
-		}
-		if ( seed > MAX_SEED ) {
-			throw new RangeError( 'invalid input argument. Must provide a positive integer less than the maximum signed 32-bit integer. Value: `' + seed + '`.' );
-		}
-		state = seed|0; // asm type annotation
-	} else {
-		state = randint32();
-	}
-	setReadOnly( minstd, 'NAME', 'minstd' );
-	setReadOnly( minstd, 'SEED', state );
-	setReadOnly( minstd, 'MIN', 1 );
-	setReadOnly( minstd, 'MAX', INT32_MAX-1 );
-	setReadOnly( minstd, 'normalized', normalized );
-
-	setReadOnly( normalized, 'NAME', minstd.NAME );
-	setReadOnly( normalized, 'SEED', minstd.SEED );
-	setReadOnly( normalized, 'MIN', (minstd.MIN-1.0) / NORMALIZATION_CONSTANT );
-	setReadOnly( normalized, 'MAX', (minstd.MAX-1.0) / NORMALIZATION_CONSTANT );
-
-	return minstd;
-
-	/**
-	* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
-	*
-	* @private
-	* @returns {PositiveInteger} pseudorandom integer
-	*
-	* @example
-	* var v = minstd();
-	* // returns <number>
-	*/
-	function minstd() {
-		state = ( A * state ) % INT32_MAX;
-		return state|0; // asm type annotation
-	} // end FUNCTION minstd()
-
-	/**
-	* Generates a pseudorandom number on the interval \\( [0,1) \\).
-	*
-	* @private
-	* @returns {number} pseudorandom number
-	*
-	* @example
-	* var v = normalized()
-	* // returns <number>
-	*/
-	function normalized() {
-		return (minstd()-1) / NORMALIZATION_CONSTANT;
-	} // end FUNCTION normalized()
-} // end FUNCTION factory()
-
-
-// EXPORTS //
-
-module.exports = factory;
-
-},{"./rand_int32.js":78,"@stdlib/assert/is-positive-integer":53,"@stdlib/math/constants/int32-max":83,"@stdlib/utils/define-read-only-property":491}],76:[function(require,module,exports){
-'use strict';
-
-/**
-* A linear congruential pseudorandom number generator (LCG) based on Park and Miller.
-*
-* @module @stdlib/math/base/random/minstd
-*
-* @example
-* var minstd = require( '@stdlib/math/base/random/minstd' );
-*
-* var v = minstd();
-* // returns <number>
-*
-* @example
-* var factory = require( '@stdlib/math/base/random/minstd' ).factory;
-*
-* var minstd = factory( 1234 );
-*
-* var v = minstd();
-* // returns 20739838
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var minstd = require( './minstd.js' );
-var factory = require( './factory.js' );
-
-
-// MAIN //
-
-setReadOnly( minstd, 'factory', factory );
-
-
-// EXPORTS //
-
-module.exports = minstd;
-
-},{"./factory.js":75,"./minstd.js":77,"@stdlib/utils/define-read-only-property":491}],77:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var factory = require( './factory.js' );
-var randint32 = require( './rand_int32.js' );
-
-
-// MAIN //
-
-/**
-* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
-*
-* #### Method
-*
-* Linear congruential generators (LCGs) use the recurrence relation
-*
-* ``` tex
-* X_{n+1} = ( a \cdot X_n + c ) \operatorname{mod}(m)
-* ```
-*
-* where the modulus \\( m \\) is a prime number or power of a prime number and \\( a \\) is a primitive root modulo \\( m \\).
-*
-* <!-- <note> -->
-*
-* For an LCG to be a Lehmer RNG, the seed \\( X_0 \\) must be coprime to \\( m \\).
-*
-* <!-- </note> -->
-*
-* In this implementation, the constants \\( a \\), \\( c \\), and \\( m \\) have the values
-*
-* ``` tex
-* \begin{align*}
-* a &= 7^5 = 16807 \\
-* c &= 0 \\
-* m &= 2^{31} - 1 = 2147483647
-* \end{align*}
-* ```
-*
-* <!-- <note> -->
-*
-* The constant \\( m \\) is a Mersenne prime (modulo \\(31\\)).
-*
-* <!-- </note> -->
-*
-* <!-- <note> -->
-*
-* The constant \\( a \\) is a primitive root (modulo \\(31\\)).
-*
-* <!-- </note> -->
-*
-* Accordingly, the maximum possible product is
-*
-* ``` tex
-* 16807 \cdot (m - 1) \approx 2^{46}
-* ```
-*
-* The values for \\( a \\), \\( c \\), and \\( m \\) are taken from Park and Miller, "Random Number Generators: Good Ones Are Hard To Find". Park's and Miller's article is also the basis for a recipe in the second edition of *Numerical Recipes in C*.
-*
-*
-* #### Notes
-*
-* * The generator has a period of approximately \\(2.1\mbox{e}9\\) (see [Numerical Recipes in C, 2nd Edition](#references), p. 279).
-*
-*
-* #### References
-*
-* * Park, S. K., and K. W. Miller. 1988. "Random Number Generators: Good Ones Are Hard to Find." *Communications of the ACM* 31 (10). New York, NY, USA: ACM: 1192–1201. doi:[10.1145/63039.63042](http://dx.doi.org/10.1145/63039.63042).
-* * Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. *Numerical Recipes in C: The Art of Scientific Computing, Second Edition*. Cambridge University Press.
-*
-*
-* @function minstd
-* @type {Function}
-* @returns {PositiveInteger} pseudorandom integer
-*
-* @example
-* var v = minstd();
-* // returns <number>
-*/
-var minstd = factory( randint32() );
-
-
-// EXPORTS //
-
-module.exports = minstd;
-
-},{"./factory.js":75,"./rand_int32.js":78}],78:[function(require,module,exports){
-'use strict';
-
-// MODULES //
-
-var INT32_MAX = require( '@stdlib/math/constants/int32-max' );
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// VARIABLES //
-
-var MAX = INT32_MAX - 1;
-
-
-// MAIN //
-
-/**
-* Returns a pseudorandom integer on the interval \\([1, 2^{31}-1)\\).
-*
-* @private
-* @returns {PositiveInteger} pseudorandom integer
-*
-* @example
-* var v = randint();
-* // returns <number>
-*/
-function randint32() {
-	var v = floor( 1.0 + (MAX*Math.random()) );
-	return v|0; // asm type annotation
-} // end FUNCTION randint32()
-
-
-// EXPORTS //
-
-module.exports = randint32;
-
-},{"@stdlib/math/base/special/floor":80,"@stdlib/math/constants/int32-max":83}],79:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 'use strict';
 
 // TODO: implementation (?)
@@ -3293,7 +5033,7 @@ var floor = Math.floor;
 
 module.exports = floor;
 
-},{}],80:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3326,170 +5066,21 @@ var floor = require( './floor.js' );
 
 module.exports = floor;
 
-},{"./floor.js":79}],81:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point negative infinity.
-*
-* @module @stdlib/math/constants/float64-ninf
-* @type {number}
-*
-* @example
-* var FLOAT64_NINF = require( '@stdlib/math/constants/float64-ninf' );
-* // returns Number.NEGATIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point negative infinity has the bit sequence
-*
-* ``` binarystring
-* 1 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.NEGATIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_NINF;
-
-},{}],82:[function(require,module,exports){
-'use strict';
-
-/**
-* Double-precision floating-point positive infinity.
-*
-* @module @stdlib/math/constants/float64-pinf
-* @type {number}
-*
-* @example
-* var FLOAT64_PINF = require( '@stdlib/math/constants/float64-pinf' );
-* // returns Number.POSITIVE_INFINITY
-*/
-
-
-// MAIN //
-
-/**
-* Double-precision floating-point positive infinity has the bit sequence
-*
-* ``` binarystring
-* 0 11111111111 00000000000000000000 00000000000000000000000000000000
-* ```
-*
-* @constant
-* @type {number}
-* @default Number.POSITIVE_INFINITY
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-*/
-var FLOAT64_PINF = Number.POSITIVE_INFINITY;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_PINF;
-
-},{}],83:[function(require,module,exports){
-'use strict';
-
-/**
-* Maximum signed 32-bit integer.
-*
-* @module @stdlib/math/constants/int32-max
-* @type {integer32}
-*
-* @example
-* var INT32_MAX = require( '@stdlib/math/constants/int32-max' );
-* // returns 2147483647
-*/
-
-
-// MAIN //
-
-/**
-* The maximum signed 32-bit integer is given by
-*
-* ``` tex
-* 2^{31} - 1
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 01111111111111111111111111111111
-* ```
-*
-* @constant
-* @type {integer32}
-* @default 2147483647
-*/
-var INT32_MAX = 2147483647|0; // asm type annotation
-
-
-// EXPORTS //
-
-module.exports = INT32_MAX;
-
-},{}],84:[function(require,module,exports){
-'use strict';
-
-/**
-* Maximum unsigned 32-bit integer.
-*
-* @module @stdlib/math/constants/uint32-max
-* @type {uinteger32}
-*
-* @example
-* var UINT32_MAX = require( '@stdlib/math/constants/uint32-max' );
-* // returns 4294967295
-*/
-
-
-// MAIN //
-
-/**
-* The maximum unsigned 32-bit integer is given by
-*
-* ``` tex
-* 2^{32} - 1
-* ```
-*
-* which corresponds to the bit sequence
-*
-* ``` binarystring
-* 11111111111111111111111111111111
-* ```
-*
-* @constant
-* @type {uinteger32}
-* @default 4294967295
-*/
-var UINT32_MAX = 4294967295;
-
-
-// EXPORTS //
-
-module.exports = UINT32_MAX;
-
-},{}],85:[function(require,module,exports){
+},{"./floor.js":141}],143:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'annotations:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var inherit = require( '@stdlib/utils/inherit' );
 var instanceOf = require( '@stdlib/assert/instance-of' );
+
+
+// VARIABLES //
+
+var debug = logger( 'annotations:main' );
 
 
 // MAIN //
@@ -3541,7 +5132,7 @@ function Annotations() {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Annotations()
+}
 
 /*
 * Inherit from the `EventEmitter` prototype.
@@ -3551,8 +5142,8 @@ inherit( Annotations, EventEmitter );
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Annotations.prototype
 * @name render
+* @memberof Annotations.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -3569,7 +5160,7 @@ setReadOnly( Annotations.prototype, 'render', require( './render' ) );
 
 module.exports = Annotations;
 
-},{"./render":87,"@stdlib/assert/instance-of":3,"@stdlib/utils/define-read-only-property":491,"@stdlib/utils/inherit":507,"debug":550,"events":565}],86:[function(require,module,exports){
+},{"./render":145,"@stdlib/assert/instance-of":30,"@stdlib/utils/define-read-only-property":553,"@stdlib/utils/inherit":599,"debug":642,"events":657}],144:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3592,17 +5183,18 @@ var Annotations = require( './ctor.js' );
 
 module.exports = Annotations;
 
-},{"./ctor.js":85}],87:[function(require,module,exports){
+},{"./ctor.js":143}],145:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'annotations:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'annotations:render' );
 var ELEMENT = 'g';
 
 
@@ -3637,27 +5229,32 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],88:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],146:[function(require,module,exports){
 'use strict';
 
 // TODO: improve JSDoc examples
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var linear = require( 'd3-scale' ).scaleLinear; // TODO: remove
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var copy = require( '@stdlib/utils/copy' );
 var defaults = require( './defaults.json' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:main' );
 
 
 // MAIN //
@@ -3781,7 +5378,7 @@ function Axis( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -3802,7 +5399,7 @@ function Axis( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Axis()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -3817,8 +5414,8 @@ Axis.prototype.constructor = Axis;
 /**
 * Scale function.
 *
-* @memberof Axis.prototype
 * @name scale
+* @memberof Axis.prototype
 * @type {Function}
 * @throws {TypeError} must be a function
 *
@@ -3840,11 +5437,11 @@ Object.defineProperty( Axis.prototype, 'scale', {
 /**
 * Axis orientation.
 *
-* @memberof Axis.prototype
 * @name orientation
+* @memberof Axis.prototype
 * @type {string}
-* @default 'bottom'
 * @throws {TypeError} must be a string primitive
+* @default 'bottom'
 *
 * @example
 * var axis = new Axis({
@@ -3865,8 +5462,8 @@ Object.defineProperty( Axis.prototype, 'orientation', {
 /**
 * Axis label.
 *
-* @memberof Axis.prototype
 * @name label
+* @memberof Axis.prototype
 * @type {string}
 * @throws {TypeError} must be a string primitive
 *
@@ -3889,11 +5486,11 @@ Object.defineProperty( Axis.prototype, 'label', {
 /**
 * Axis tick values. When set to `null`, the retrieved values are the computed tick values.
 *
-* @memberof Axis.prototype
 * @name ticks
+* @memberof Axis.prototype
 * @type {(Array|null)}
-* @default null
 * @throws {TypeError} must be an array or null
+* @default null
 *
 * @example
 * var axis = new Axis({
@@ -3915,11 +5512,11 @@ Object.defineProperty( Axis.prototype, 'ticks', {
 /**
 * Number of axis ticks.
 *
-* @memberof Axis.prototype
 * @name numTicks
+* @memberof Axis.prototype
 * @type {(NonNegativeInteger|null)}
-* @default null
 * @throws {TypeError} must be a nonnegative integer or null
+* @default null
 *
 * @example
 * var axis = new Axis({
@@ -3941,11 +5538,11 @@ Object.defineProperty( Axis.prototype, 'numTicks', {
 /**
 * Tick format. When retrieved, the returned value is a formatting function.
 *
-* @memberof Axis.prototype
 * @name tickFormat
+* @memberof Axis.prototype
 * @type {(null|string|Function)}
-* @default null
 * @throws {TypeError} must be either null, a string, or a function
+* @default null
 *
 * @example
 * var axis = new Axis({
@@ -3967,11 +5564,11 @@ Object.defineProperty( Axis.prototype, 'tickFormat', {
 /**
 * Axis tick size.
 *
-* @memberof Axis.prototype
 * @name tickSize
+* @memberof Axis.prototype
 * @type {NonNegativeInteger}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer
+* @default 6
 *
 * @example
 * var axis = new Axis({
@@ -3993,11 +5590,11 @@ Object.defineProperty( Axis.prototype, 'tickSize', {
 /**
 * Axis inner tick size.
 *
-* @memberof Axis.prototype
 * @name innerTickSize
+* @memberof Axis.prototype
 * @type {NonNegativeInteger}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer
+* @default 6
 *
 * @example
 * var axis = new Axis({
@@ -4019,11 +5616,11 @@ Object.defineProperty( Axis.prototype, 'innerTickSize', {
 /**
 * Axis outer tick size.
 *
-* @memberof Axis.prototype
 * @name outerTickSize
+* @memberof Axis.prototype
 * @type {NonNegativeInteger}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer
+* @default 6
 *
 * @example
 * var axis = new Axis({
@@ -4045,11 +5642,11 @@ Object.defineProperty( Axis.prototype, 'outerTickSize', {
 /**
 * Axis tick padding.
 *
-* @memberof Axis.prototype
 * @name tickPadding
+* @memberof Axis.prototype
 * @type {NonNegativeInteger}
-* @default 3
 * @throws {TypeError} must be a nonnegative integer
+* @default 3
 *
 * @example
 * var axis = new Axis({
@@ -4071,9 +5668,9 @@ Object.defineProperty( Axis.prototype, 'tickPadding', {
 /**
 * Tick spacing.
 *
+* @name tickSpacing
 * @memberof Axis.prototype
 * @type {number}
-* @name tickSpacing
 *
 * @example
 * var axis = new Axis();
@@ -4089,9 +5686,9 @@ Object.defineProperty( Axis.prototype, 'tickSpacing', {
 /**
 * Tick direction.
 *
+* @name tickDir
 * @memberof Axis.prototype
 * @type {number}
-* @name tickDir
 *
 * @example
 * var axis = new Axis();
@@ -4107,9 +5704,9 @@ Object.defineProperty( Axis.prototype, 'tickDir', {
 /**
 * Function for computing tick positions.
 *
+* @name tickPos
 * @memberof Axis.prototype
 * @type {Function}
-* @name tickPos
 *
 * @example
 * var axis = new Axis();
@@ -4125,11 +5722,11 @@ Object.defineProperty( Axis.prototype, 'tickPos', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Axis.prototype
 * @name autoRender
+* @memberof Axis.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var axis = new Axis({
@@ -4149,8 +5746,8 @@ Object.defineProperty( Axis.prototype, 'autoRender', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Axis.prototype
 * @name render
+* @memberof Axis.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -4166,7 +5763,7 @@ setReadOnly( Axis.prototype, 'render', require( './methods/render.js' ) );
 
 module.exports = Axis;
 
-},{"./defaults.json":96,"./methods/render.js":101,"./props/auto-render/get.js":102,"./props/auto-render/set.js":103,"./props/inner-tick-size/get.js":104,"./props/inner-tick-size/set.js":105,"./props/label/get.js":106,"./props/label/set.js":107,"./props/num-ticks/get.js":108,"./props/num-ticks/set.js":109,"./props/orientation/get.js":110,"./props/orientation/set.js":111,"./props/outer-tick-size/get.js":112,"./props/outer-tick-size/set.js":113,"./props/scale/get.js":114,"./props/scale/set.js":115,"./props/tick-dir/get.js":116,"./props/tick-format/get.js":117,"./props/tick-format/set.js":118,"./props/tick-padding/get.js":119,"./props/tick-padding/set.js":120,"./props/tick-pos/get.js":122,"./props/tick-size/get.js":123,"./props/tick-size/set.js":124,"./props/tick-spacing/get.js":125,"./props/ticks/get.js":126,"./props/ticks/set.js":127,"./validate.js":138,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"d3-scale":546,"debug":550,"events":565}],89:[function(require,module,exports){
+},{"./defaults.json":154,"./methods/render.js":159,"./props/auto-render/get.js":160,"./props/auto-render/set.js":161,"./props/inner-tick-size/get.js":162,"./props/inner-tick-size/set.js":163,"./props/label/get.js":164,"./props/label/set.js":165,"./props/num-ticks/get.js":166,"./props/num-ticks/set.js":167,"./props/orientation/get.js":168,"./props/orientation/set.js":169,"./props/outer-tick-size/get.js":170,"./props/outer-tick-size/set.js":171,"./props/scale/get.js":172,"./props/scale/set.js":173,"./props/tick-dir/get.js":174,"./props/tick-format/get.js":175,"./props/tick-format/set.js":176,"./props/tick-padding/get.js":177,"./props/tick-padding/set.js":178,"./props/tick-pos/get.js":180,"./props/tick-size/get.js":181,"./props/tick-size/set.js":182,"./props/tick-spacing/get.js":183,"./props/ticks/get.js":184,"./props/ticks/set.js":185,"./validate.js":196,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"d3-scale":638,"debug":642,"events":657}],147:[function(require,module,exports){
 'use strict';
 
 /*
@@ -4175,12 +5772,13 @@ module.exports = Axis;
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:components:domain' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:components:domain' );
 var ELEMENT = 'path';
 
 
@@ -4194,6 +5792,7 @@ var ELEMENT = 'path';
 * @returns {VTree} virtual tree
 */
 function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
 	var orient;
 	var stroke;
 	var range0;
@@ -4244,19 +5843,19 @@ function render( ctx ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, [] );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],90:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],148:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:components:main' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var textAnchor = require( './../utils/text_anchor.js' );
 var domain = require( './domain.js' );
@@ -4266,6 +5865,7 @@ var label = require( './label.js' );
 
 // VARIABLES //
 
+var debug = logger( 'axis:components:main' );
 var ELEMENT = 'g';
 
 
@@ -4290,7 +5890,7 @@ function render( ctx ) {
 			'fill': 'none',
 			'font-size': 10, // TODO: option
 			'font-family': 'sans-serif', // TODO: option
-			'text-anchor': textAnchor( ctx._orientation )
+			'text-anchor': textAnchor( ctx._orientation ) // eslint-disable-line no-underscore-dangle
 		}
 	};
 
@@ -4306,19 +5906,19 @@ function render( ctx ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, children );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../utils/text_anchor.js":131,"./domain.js":89,"./label.js":91,"./ticks.js":95,"debug":550,"virtual-dom/h":615}],91:[function(require,module,exports){
+},{"./../utils/text_anchor.js":189,"./domain.js":147,"./label.js":149,"./ticks.js":153,"debug":642,"virtual-dom/h":707}],149:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:components:label' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var labelTransform = require( './../utils/label_transform.js' );
 var labelXPos = require( './../utils/label_x_pos.js' );
@@ -4327,6 +5927,7 @@ var labelYPos = require( './../utils/label_y_pos.js' );
 
 // VARIABLES //
 
+var debug = logger( 'axis:components:label' );
 var ELEMENT = 'text';
 
 
@@ -4340,6 +5941,7 @@ var ELEMENT = 'text';
 * @returns {VTree} virtual tree
 */
 function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
 	var orient;
 	var props;
 
@@ -4365,19 +5967,19 @@ function render( ctx ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, ctx._label );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../utils/label_transform.js":128,"./../utils/label_x_pos.js":129,"./../utils/label_y_pos.js":130,"debug":550,"virtual-dom/h":615}],92:[function(require,module,exports){
+},{"./../utils/label_transform.js":186,"./../utils/label_x_pos.js":187,"./../utils/label_y_pos.js":188,"debug":642,"virtual-dom/h":707}],150:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:components:line' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var xAttr = require( './../utils/x_attr.js' );
 var yAttr = require( './../utils/y_attr.js' );
@@ -4385,6 +5987,7 @@ var yAttr = require( './../utils/y_attr.js' );
 
 // VARIABLES //
 
+var debug = logger( 'axis:components:line' );
 var ELEMENT = 'line';
 
 
@@ -4398,6 +6001,7 @@ var ELEMENT = 'line';
 * @returns {VTree} virtual tree
 */
 function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
 	var props;
 	var x;
 	var y;
@@ -4420,19 +6024,19 @@ function render( ctx ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, [] );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../utils/x_attr.js":136,"./../utils/y_attr.js":137,"debug":550,"virtual-dom/h":615}],93:[function(require,module,exports){
+},{"./../utils/x_attr.js":194,"./../utils/y_attr.js":195,"debug":642,"virtual-dom/h":707}],151:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:components:text' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var dy = require( './../utils/text_dy.js' );
 var xAttr = require( './../utils/x_attr.js' );
@@ -4441,6 +6045,7 @@ var yAttr = require( './../utils/y_attr.js' );
 
 // VARIABLES //
 
+var debug = logger( 'axis:components:text' );
 var ELEMENT = 'text';
 
 
@@ -4455,6 +6060,7 @@ var ELEMENT = 'text';
 * @returns {VTree} virtual tree
 */
 function render( ctx, d ) {
+	/* eslint-disable no-underscore-dangle */
 	var orient;
 	var props;
 	var txt;
@@ -4484,19 +6090,19 @@ function render( ctx, d ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, txt );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../utils/text_dy.js":132,"./../utils/x_attr.js":136,"./../utils/y_attr.js":137,"debug":550,"virtual-dom/h":615}],94:[function(require,module,exports){
+},{"./../utils/text_dy.js":190,"./../utils/x_attr.js":194,"./../utils/y_attr.js":195,"debug":642,"virtual-dom/h":707}],152:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:components:tick' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var line = require( './line.js' );
 var text = require( './text.js' );
@@ -4504,6 +6110,7 @@ var text = require( './text.js' );
 
 // VARIABLES //
 
+var debug = logger( 'axis:components:tick' );
 var ELEMENT = 'g';
 
 
@@ -4519,6 +6126,7 @@ var ELEMENT = 'g';
 * @returns {VTree} virtual tree
 */
 function render( ctx, d, transform ) {
+	/* eslint-disable no-underscore-dangle */
 	var children;
 	var props;
 
@@ -4542,21 +6150,26 @@ function render( ctx, d, transform ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, children );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./line.js":92,"./text.js":93,"debug":550,"virtual-dom/h":615}],95:[function(require,module,exports){
+},{"./line.js":150,"./text.js":151,"debug":642,"virtual-dom/h":707}],153:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:components:ticks' );
+var logger = require( 'debug' );
 var tickTransform = require( './../utils/tick_transform.js' );
 var tick = require( './tick.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:components:ticks' );
 
 
 // MAIN //
@@ -4569,6 +6182,7 @@ var tick = require( './tick.js' );
 * @returns {Array<VTree>} array of virtual DOM trees
 */
 function render( ctx ) {
+	/* eslint-disable no-underscore-dangle */
 	var transform;
 	var values;
 	var out;
@@ -4588,14 +6202,14 @@ function render( ctx ) {
 	}
 	debug( 'Finished rendering ticks.' );
 	return out;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../utils/tick_transform.js":133,"./tick.js":94,"debug":550}],96:[function(require,module,exports){
+},{"./../utils/tick_transform.js":191,"./tick.js":152,"debug":642}],154:[function(require,module,exports){
 module.exports={
 	"scale": null,
 	"label": "",
@@ -4610,7 +6224,7 @@ module.exports={
 	"autoRender": true
 }
 
-},{}],97:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports=[
 	"left",
 	"right",
@@ -4618,7 +6232,7 @@ module.exports=[
 	"bottom"
 ]
 
-},{}],98:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports={
 	"label": "change",
 	"numTicks": "change",
@@ -4633,7 +6247,7 @@ module.exports={
 	"autoRender": "change"
 }
 
-},{}],99:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -4652,14 +6266,14 @@ var EVENTS = require( './events.json' );
 */
 function get( prop ) {
 	return EVENTS[ prop ];
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"./events.json":98}],100:[function(require,module,exports){
+},{"./events.json":156}],158:[function(require,module,exports){
 'use strict';
 
 // TODO: remove d3-scale
@@ -4688,13 +6302,18 @@ var Axis = require( './axis.js' );
 
 module.exports = Axis;
 
-},{"./axis.js":88}],101:[function(require,module,exports){
+},{"./axis.js":146}],159:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:render' );
+var logger = require( 'debug' );
 var components = require( './../components' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:render' );
 
 
 // MAIN //
@@ -4706,7 +6325,7 @@ var components = require( './../components' );
 * @returns {VTree} virtual tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var vtree;
 
 	debug( 'Rendering...' );
@@ -4716,14 +6335,14 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../components":90,"debug":550}],102:[function(require,module,exports){
+},{"./../components":148,"debug":642}],160:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4733,27 +6352,28 @@ module.exports = render;
 * @returns {boolean} rendering mode
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._autoRender;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],103:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:auto-render' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/auto_render.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:auto-render' );
 var CHANGE_EVENT = events( 'autoRender' );
 
 
@@ -4767,7 +6387,7 @@ var CHANGE_EVENT = events( 'autoRender' );
 * @throws {TypeError} must be a positive number
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( bool );
 	if ( err ) {
 		throw err;
@@ -4778,14 +6398,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/auto_render.js":139,"debug":550}],104:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/auto_render.js":197,"debug":642}],162:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4795,27 +6415,28 @@ module.exports = set;
 * @returns {NonNegativeInteger} tick size
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._innerTickSize;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],105:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:ticksize-inner' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/inner_tick_size.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:ticksize-inner' );
 var CHANGE_EVENT = events( 'innerTickSize' );
 
 
@@ -4829,7 +6450,7 @@ var CHANGE_EVENT = events( 'innerTickSize' );
 * @throws {TypeError} must be a nonnegative integer
 */
 function set( size ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( size );
 	if ( err ) {
 		throw err;
@@ -4840,14 +6461,14 @@ function set( size ) {
 	debug( 'New Value: %s.', this._innerTickSize );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/inner_tick_size.js":141,"debug":550}],106:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/inner_tick_size.js":199,"debug":642}],164:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4857,27 +6478,28 @@ module.exports = set;
 * @returns {string} label
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._label;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],107:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:xlabel' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/label.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:xlabel' );
 var CHANGE_EVENT = events( 'label' );
 
 
@@ -4891,7 +6513,7 @@ var CHANGE_EVENT = events( 'label' );
 * @throws {TypeError} must be a string primitive
 */
 function set( label ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( label );
 	if ( err ) {
 		throw err;
@@ -4902,14 +6524,14 @@ function set( label ) {
 	debug( 'New value: %s.', this._label );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/label.js":142,"debug":550}],108:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/label.js":200,"debug":642}],166:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4919,27 +6541,28 @@ module.exports = set;
 * @returns {(NonNegativeInteger|null)} number of ticks
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._numTicks;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],109:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:numticks' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/num_ticks.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:numticks' );
 var CHANGE_EVENT = events( 'numTicks' );
 
 
@@ -4953,7 +6576,7 @@ var CHANGE_EVENT = events( 'numTicks' );
 * @throws {TypeError} must be a nonnegative integer or null
 */
 function set( num ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( num );
 	if ( err ) {
 		throw err;
@@ -4964,14 +6587,14 @@ function set( num ) {
 	debug( 'New Value: %s.', this._numTicks );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/num_ticks.js":143,"debug":550}],110:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/num_ticks.js":201,"debug":642}],168:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4981,27 +6604,28 @@ module.exports = set;
 * @returns {string} orientation
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._orientation;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],111:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:orientation' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/orientation.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:orientation' );
 var CHANGE_EVENT = events( 'orientation' );
 
 
@@ -5015,7 +6639,7 @@ var CHANGE_EVENT = events( 'orientation' );
 * @throws {TypeError} must be a string
 */
 function set( orient ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( orient );
 	if ( err ) {
 		throw err;
@@ -5026,14 +6650,14 @@ function set( orient ) {
 	debug( 'New Value: %s.', this._orientation );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/orientation.js":144,"debug":550}],112:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/orientation.js":202,"debug":642}],170:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5043,27 +6667,28 @@ module.exports = set;
 * @returns {NonNegativeInteger} tick size
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._outerTickSize;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],113:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:ticksize-outer' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/outer_tick_size.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:ticksize-outer' );
 var CHANGE_EVENT = events( 'outerTickSize' );
 
 
@@ -5077,7 +6702,7 @@ var CHANGE_EVENT = events( 'outerTickSize' );
 * @throws {TypeError} must be a nonnegative integer
 */
 function set( size ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( size );
 	if ( err ) {
 		throw err;
@@ -5088,14 +6713,14 @@ function set( size ) {
 	debug( 'New Value: %s.', this._outerTickSize );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/outer_tick_size.js":145,"debug":550}],114:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/outer_tick_size.js":203,"debug":642}],172:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5105,27 +6730,28 @@ module.exports = set;
 * @returns {Function} scale function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._scale;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],115:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:scale' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/scale.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:scale' );
 var CHANGE_EVENT = events( 'scale' );
 
 
@@ -5139,7 +6765,7 @@ var CHANGE_EVENT = events( 'scale' );
 * @throws {TypeError} must be a function
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( fcn );
 	if ( err ) {
 		throw err;
@@ -5150,14 +6776,14 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._scale );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/scale.js":146,"debug":550}],116:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/scale.js":204,"debug":642}],174:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5167,7 +6793,7 @@ module.exports = set;
 * @returns {number} tick direction
 */
 function get() {
-	/* jshint validthis:true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		this._orientation === 'top' ||
 		this._orientation === 'left'
@@ -5175,14 +6801,14 @@ function get() {
 		return -1;
 	}
 	return 1;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],117:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5202,7 +6828,7 @@ var identity = require( '@stdlib/utils/identity-function' );
 * @returns {Function} format function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( isString( this._tickFormat ) ) {
 		return format( this._tickFormat );
 	}
@@ -5213,25 +6839,26 @@ function get() {
 		return identity;
 	}
 	return this._tickFormat;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":37,"@stdlib/assert/is-string":62,"@stdlib/utils/identity-function":503,"d3-format":543}],118:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"@stdlib/assert/is-string":101,"@stdlib/utils/identity-function":595,"d3-format":635}],176:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:tickformat' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/tick_format.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:tickformat' );
 var CHANGE_EVENT = events( 'tickFormat' );
 
 
@@ -5245,7 +6872,7 @@ var CHANGE_EVENT = events( 'tickFormat' );
 * @throws {TypeError} must be either null, a string, or a function
 */
 function set( fmt ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( fmt );
 	if ( err ) {
 		throw err;
@@ -5256,14 +6883,14 @@ function set( fmt ) {
 	debug( 'New Value: %s.', this._tickFormat );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/tick_format.js":147,"debug":550}],119:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/tick_format.js":205,"debug":642}],177:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5273,27 +6900,28 @@ module.exports = set;
 * @returns {NonNegativeInteger} padding
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._tickPadding;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],120:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:tickpadding' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/tick_padding.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:tickpadding' );
 var CHANGE_EVENT = events( 'tickPadding' );
 
 
@@ -5307,7 +6935,7 @@ var CHANGE_EVENT = events( 'tickPadding' );
 * @throws {TypeError} must be a nonnegative integer
 */
 function set( padding ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( padding );
 	if ( err ) {
 		throw err;
@@ -5318,19 +6946,24 @@ function set( padding ) {
 	debug( 'New Value: %s.', this._tickPadding );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/tick_padding.js":148,"debug":550}],121:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/tick_padding.js":206,"debug":642}],179:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:center' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:center' );
 
 
 // MAIN //
@@ -5342,8 +6975,9 @@ var debug = require( 'debug' )( 'axis:center' );
 * @returns {Function} function to center a tick
 */
 function center() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var width = this._scale.bandwidth() / 2;
+	return center;
 
 	/**
 	* Returns a centered tick position.
@@ -5352,19 +6986,19 @@ function center() {
 	* @param {*} d - datum
 	* @returns {number} tick position
 	*/
-	return function center( d ) {
+	function center( d ) {
 		var pos = this._scale( d ) + width;
 		debug( 'Value: %s => Coordinate: %d', d, pos );
 		return pos;
-	};
-} // end FUNCTION center()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = center;
 
-},{"debug":550}],122:[function(require,module,exports){
+},{"debug":642}],180:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5381,20 +7015,20 @@ var center = require( './center.js' );
 * @returns {Function} position function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale = this._scale.copy();
 	if ( scale.bandwidth ) {
 		return center( scale );
 	}
 	return scale;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"./center.js":121}],123:[function(require,module,exports){
+},{"./center.js":179}],181:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5404,27 +7038,28 @@ module.exports = get;
 * @returns {NonNegativeInteger} tick size
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._tickSize;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],124:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:ticksize' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/tick_size.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:ticksize' );
 var CHANGE_EVENT = events( 'tickSize' );
 
 
@@ -5438,7 +7073,7 @@ var CHANGE_EVENT = events( 'tickSize' );
 * @throws {TypeError} must be a nonnegative integer
 */
 function set( size ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( size );
 	if ( err ) {
 		throw err;
@@ -5449,14 +7084,14 @@ function set( size ) {
 	debug( 'New Value: %s.', this._tickSize );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/tick_size.js":149,"debug":550}],125:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/tick_size.js":207,"debug":642}],183:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5466,16 +7101,16 @@ module.exports = set;
 * @returns {number} tick spacing
 */
 function get() {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._innerTickSize + this._tickPadding;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],126:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5492,7 +7127,7 @@ var isNull = require( '@stdlib/assert/is-null' );
 * @returns {Array} ticks
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( isNull( this._ticks ) ) {
 		if ( this._scale.ticks ) {
 			return this._scale.ticks( this._numTicks, this._tickFormat );
@@ -5500,19 +7135,19 @@ function get() {
 		return this._scale.domain();
 	}
 	return this._ticks.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":37}],127:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76}],185:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:set:ticks' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/ticks.js' );
@@ -5520,6 +7155,7 @@ var isValid = require( './../../validators/ticks.js' );
 
 // VARIABLES //
 
+var debug = logger( 'axis:set:ticks' );
 var CHANGE_EVENT = events( 'ticks' );
 
 
@@ -5533,7 +7169,7 @@ var CHANGE_EVENT = events( 'ticks' );
 * @throws {TypeError} must be an array or null
 */
 function set( ticks ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( ticks );
 	if ( err ) {
 		throw err;
@@ -5541,21 +7177,21 @@ function set( ticks ) {
 	debug( 'Current value: %s.', JSON.stringify( this._ticks ) );
 
 	if ( isNull( ticks ) ) {
-		this._ticks =  ticks;
+		this._ticks = ticks;
 	} else {
 		this._ticks = ticks.slice();
 	}
 	debug( 'New Value: %s.', JSON.stringify( this._ticks ) );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":99,"./../../validators/ticks.js":150,"@stdlib/assert/is-null":37,"debug":550}],128:[function(require,module,exports){
+},{"./../../events":157,"./../../validators/ticks.js":208,"@stdlib/assert/is-null":76,"debug":642}],186:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5574,14 +7210,14 @@ function labelTransform( orient ) {
 	}
 	// orient === 'right'
 	return 'rotate(90)';
-} // end FUNCTION labelTransform()
+}
 
 
 // EXPORTS //
 
 module.exports = labelTransform;
 
-},{}],129:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5597,14 +7233,14 @@ function labelXPos( orient, range ) {
 		return -range[0] / 2;
 	}
 	return range[1] / 2;
-} // end FUNCTION labelXPos()
+}
 
 
 // EXPORTS //
 
 module.exports = labelXPos;
 
-},{}],130:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5626,14 +7262,14 @@ function labelYPos( orient ) {
 	}
 	// orient === 'top'
 	return -45;
-} // end FUNCTION labelYPos()
+}
 
 
 // EXPORTS //
 
 module.exports = labelYPos;
 
-},{}],131:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5651,14 +7287,14 @@ function textAnchor( orient ) {
 		return 'start';
 	}
 	return 'middle';
-} // end FUNCTION textAnchor()
+}
 
 
 // EXPORTS //
 
 module.exports = textAnchor;
 
-},{}],132:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5676,14 +7312,14 @@ function dy( orient ) {
 		return '.71em';
 	}
 	return '.32em';
-} // end FUNCTION dy()
+}
 
 
 // EXPORTS //
 
 module.exports = dy;
 
-},{}],133:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5707,19 +7343,24 @@ function tickTransform( orient, scale ) {
 		return translateX( scale );
 	}
 	return translateY( scale );
-} // end FUNCTION tickTransform()
+}
 
 
 // EXPORTS //
 
 module.exports = tickTransform;
 
-},{"./translate_x.js":134,"./translate_y.js":135}],134:[function(require,module,exports){
+},{"./translate_x.js":192,"./translate_y.js":193}],192:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:engine:translate-x' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:engine:translate-x' );
 
 
 // MAIN //
@@ -5732,6 +7373,8 @@ var debug = require( 'debug' )( 'axis:engine:translate-x' );
 * @returns {Function} function to translate a tick
 */
 function translateX( scale ) {
+	return translateX;
+
 	/**
 	* Horizontally translates a tick.
 	*
@@ -5739,24 +7382,29 @@ function translateX( scale ) {
 	* @param {*} d - datum
 	* @returns {string} transform
 	*/
-	return function translateX( d ) {
+	function translateX( d ) {
 		var t = 'translate('+scale( d )+',0)';
 		debug( 'Value: %s => Transform: %s.', d, t );
 		return t;
-	}; // end FUNCTION translateX()
-} // end FUNCTION translateX()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = translateX;
 
-},{"debug":550}],135:[function(require,module,exports){
+},{"debug":642}],193:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'axis:engine:translate-y' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'axis:engine:translate-y' );
 
 
 // MAIN //
@@ -5769,6 +7417,8 @@ var debug = require( 'debug' )( 'axis:engine:translate-y' );
 * @returns {Function} function to translate a tick
 */
 function translateY( scale ) {
+	return translateY;
+
 	/**
 	* Vertically translates a tick.
 	*
@@ -5776,19 +7426,19 @@ function translateY( scale ) {
 	* @param {*} d - datum
 	* @returns {string} transform
 	*/
-	return function translateY( d ) {
+	function translateY( d ) {
 		var t = 'translate(0,'+scale( d )+')';
 		debug( 'Value: %s => Transform: %s.', d, t );
 		return t;
-	}; // end FUNCTION translateY()
-} // end FUNCTION translateY()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = translateY;
 
-},{"debug":550}],136:[function(require,module,exports){
+},{"debug":642}],194:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5803,14 +7453,14 @@ function xAttr( orient ) {
 		return 'x';
 	}
 	return 'y';
-} // end FUNCTION xAttr()
+}
 
 
 // EXPORTS //
 
 module.exports = xAttr;
 
-},{}],137:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5825,14 +7475,14 @@ function yAttr( orient ) {
 		return 'y';
 	}
 	return 'x';
-} // end FUNCTION yAttr()
+}
 
 
 // EXPORTS //
 
 module.exports = yAttr;
 
-},{}],138:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5900,14 +7550,14 @@ function validate( opts, options ) {
 		}
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{"./validators":140,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":50,"object-keys":578}],139:[function(require,module,exports){
+},{"./validators":198,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-plain-object":89,"object-keys":671}],197:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5927,14 +7577,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `autoRender` must be a boolean primitive. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-boolean":10}],140:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38}],198:[function(require,module,exports){
 'use strict';
 
 var validators = {
@@ -5956,7 +7606,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":139,"./inner_tick_size.js":141,"./label.js":142,"./num_ticks.js":143,"./orientation.js":144,"./outer_tick_size.js":145,"./scale.js":146,"./tick_format.js":147,"./tick_padding.js":148,"./tick_size.js":149,"./ticks.js":150}],141:[function(require,module,exports){
+},{"./auto_render.js":197,"./inner_tick_size.js":199,"./label.js":200,"./num_ticks.js":201,"./orientation.js":202,"./outer_tick_size.js":203,"./scale.js":204,"./tick_format.js":205,"./tick_padding.js":206,"./tick_size.js":207,"./ticks.js":208}],199:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -5976,14 +7626,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `innerTickSize` must be a nonnegative integer. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":34}],142:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73}],200:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6003,14 +7653,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `label` must be a string. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":62}],143:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],201:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6034,14 +7684,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `numTicks` must be a nonnegative integer or null. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"@stdlib/assert/is-null":37}],144:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/is-null":76}],202:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6062,14 +7712,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `orientation` must be one of `[' + ORIENTATIONS.join(',') + ']`. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"./../etc/orientations.json":97,"@stdlib/utils/index-of":504}],145:[function(require,module,exports){
+},{"./../etc/orientations.json":155,"@stdlib/utils/index-of":596}],203:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6089,14 +7739,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `outerTickSize` must be a nonnegative integer. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":34}],146:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73}],204:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6116,14 +7766,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `scale` must be a function. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-function":21}],147:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53}],205:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6149,14 +7799,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `tickFormat` must be a string, function, or null. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-null":37,"@stdlib/assert/is-string":62}],148:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-null":76,"@stdlib/assert/is-string":101}],206:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6176,14 +7826,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `tickPadding` must be a nonnegative integer. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":34}],149:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73}],207:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6203,14 +7853,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `tickSize` must be a nonnegative integer. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":34}],150:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73}],208:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6234,24 +7884,29 @@ function test( v ) {
 		return new TypeError( 'invalid value. `ticks` must be either null or an array. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-array":7,"@stdlib/assert/is-null":37}],151:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34,"@stdlib/assert/is-null":76}],209:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'background:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var copy = require( '@stdlib/utils/copy' );
 var defaults = require( './defaults.json' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'background:main' );
 
 
 // MAIN //
@@ -6320,7 +7975,7 @@ function Background( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -6341,7 +7996,7 @@ function Background( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Background()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -6356,11 +8011,11 @@ Background.prototype.constructor = Background;
 /**
 * Width.
 *
-* @memberof Background.prototype
 * @name width
+* @memberof Background.prototype
 * @type {PositiveNumber}
-* @default 400
 * @throws {TypeError} must be a positive number
+* @default 400
 *
 * @example
 * var bkgd = new Background({
@@ -6380,11 +8035,11 @@ Object.defineProperty( Background.prototype, 'width', {
 /**
 * Height.
 *
-* @memberof Background.prototype
 * @name height
+* @memberof Background.prototype
 * @type {PositiveNumber}
-* @default 400
 * @throws {TypeError} must be a positive number
+* @default 400
 *
 * @example
 * var bkgd = new Background({
@@ -6404,11 +8059,11 @@ Object.defineProperty( Background.prototype, 'height', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Background.prototype
 * @name autoRender
+* @memberof Background.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var bkgd = new Background({
@@ -6428,8 +8083,8 @@ Object.defineProperty( Background.prototype, 'autoRender', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Background.prototype
 * @name render
+* @memberof Background.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -6445,23 +8100,23 @@ setReadOnly( Background.prototype, 'render', require( './methods/render.js' ) );
 
 module.exports = Background;
 
-},{"./defaults.json":152,"./methods/render.js":156,"./props/auto-render/get.js":157,"./props/auto-render/set.js":158,"./props/height/get.js":159,"./props/height/set.js":160,"./props/width/get.js":161,"./props/width/set.js":162,"./validate.js":163,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"debug":550,"events":565}],152:[function(require,module,exports){
+},{"./defaults.json":210,"./methods/render.js":214,"./props/auto-render/get.js":215,"./props/auto-render/set.js":216,"./props/height/get.js":217,"./props/height/set.js":218,"./props/width/get.js":219,"./props/width/set.js":220,"./validate.js":221,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"debug":642,"events":657}],210:[function(require,module,exports){
 module.exports={
 	"width": 400,
 	"height": 400,
 	"autoRender": true
 }
 
-},{}],153:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 module.exports={
 	"width": "change",
 	"height": "change",
 	"autoRender": "change"
 }
 
-},{}],154:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"./events.json":153,"dup":99}],155:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"./events.json":211,"dup":157}],213:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6487,17 +8142,18 @@ var Background = require( './background.js' );
 
 module.exports = Background;
 
-},{"./background.js":151}],156:[function(require,module,exports){
+},{"./background.js":209}],214:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'background:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'background:render' );
 var ELEMENT = 'rect';
 
 
@@ -6510,7 +8166,7 @@ var ELEMENT = 'rect';
 * @returns {VTree} virtual DOM tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var props;
 	var vtree;
 
@@ -6535,27 +8191,28 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],157:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],158:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],215:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],216:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'background:set:auto-render' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/auto_render.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'background:set:auto-render' );
 var CHANGE_EVENT = events( 'autoRender' );
 
 
@@ -6569,7 +8226,7 @@ var CHANGE_EVENT = events( 'autoRender' );
 * @throws {TypeError} must be a positive number
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( bool );
 	if ( err ) {
 		throw err;
@@ -6580,14 +8237,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":154,"./../../validators/auto_render.js":164,"debug":550}],159:[function(require,module,exports){
+},{"./../../events":212,"./../../validators/auto_render.js":222,"debug":642}],217:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6597,27 +8254,28 @@ module.exports = set;
 * @returns {number} height
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._height;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],160:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'background:set:height' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/height.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'background:set:height' );
 var CHANGE_EVENT = events( 'height' );
 
 
@@ -6631,7 +8289,7 @@ var CHANGE_EVENT = events( 'height' );
 * @throws {TypeError} must be a positive number
 */
 function set( height ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( height );
 	if ( err ) {
 		throw err;
@@ -6642,14 +8300,14 @@ function set( height ) {
 	debug( 'New Value: %d.', this._height );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":154,"./../../validators/height.js":165,"debug":550}],161:[function(require,module,exports){
+},{"./../../events":212,"./../../validators/height.js":223,"debug":642}],219:[function(require,module,exports){
 'use strict';
 
 /**
@@ -6659,27 +8317,28 @@ module.exports = set;
 * @returns {number} width
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._width;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],162:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'background:set:width' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/width.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'background:set:width' );
 var CHANGE_EVENT = events( 'width' );
 
 
@@ -6693,7 +8352,7 @@ var CHANGE_EVENT = events( 'width' );
 * @throws {TypeError} must be a positive number
 */
 function set( width ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( width );
 	if ( err ) {
 		throw err;
@@ -6704,14 +8363,14 @@ function set( width ) {
 	debug( 'New value: %d.', this._width );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":154,"./../../validators/width.js":167,"debug":550}],163:[function(require,module,exports){
+},{"./../../events":212,"./../../validators/width.js":225,"debug":642}],221:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6771,16 +8430,16 @@ function validate( opts, options ) {
 		}
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{"./validators":166,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":50,"object-keys":578}],164:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":10,"dup":139}],165:[function(require,module,exports){
+},{"./validators":224,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-plain-object":89,"object-keys":671}],222:[function(require,module,exports){
+arguments[4][197][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":38,"dup":197}],223:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6800,14 +8459,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `height` must be a positive number. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-positive-number":57}],166:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":96}],224:[function(require,module,exports){
 'use strict';
 
 var validators = {
@@ -6821,7 +8480,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":164,"./height.js":165,"./width.js":167}],167:[function(require,module,exports){
+},{"./auto_render.js":222,"./height.js":223,"./width.js":225}],225:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -6841,24 +8500,29 @@ function test( v ) {
 		return new TypeError( 'invalid value. `width` must be a positive number. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-positive-number":57}],168:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":96}],226:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'canvas:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var copy = require( '@stdlib/utils/copy' );
 var defaults = require( './defaults.json' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'canvas:main' );
 
 
 // MAIN //
@@ -6927,7 +8591,7 @@ function Canvas( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -6948,7 +8612,7 @@ function Canvas( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Canvas()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -6963,11 +8627,11 @@ Canvas.prototype.constructor = Canvas;
 /**
 * Width.
 *
-* @memberof Canvas.prototype
 * @name width
+* @memberof Canvas.prototype
 * @type {PositiveNumber}
-* @default 400
 * @throws {TypeError} must be a positive number
+* @default 400
 *
 * @example
 * var canvas = new Canvas({
@@ -6987,11 +8651,11 @@ Object.defineProperty( Canvas.prototype, 'width', {
 /**
 * Height.
 *
-* @memberof Canvas.prototype
 * @name height
+* @memberof Canvas.prototype
 * @type {PositiveNumber}
-* @default 400
 * @throws {TypeError} must be a positive number
+* @default 400
 *
 * @example
 * var canvas = new Canvas({
@@ -7011,11 +8675,11 @@ Object.defineProperty( Canvas.prototype, 'height', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Canvas.prototype
 * @name autoRender
+* @memberof Canvas.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var canvas = new Canvas({
@@ -7035,8 +8699,8 @@ Object.defineProperty( Canvas.prototype, 'autoRender', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Canvas.prototype
 * @name render
+* @memberof Canvas.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -7052,13 +8716,13 @@ setReadOnly( Canvas.prototype, 'render', require( './methods/render.js' ) );
 
 module.exports = Canvas;
 
-},{"./defaults.json":169,"./methods/render.js":173,"./props/auto-render/get.js":174,"./props/auto-render/set.js":175,"./props/height/get.js":176,"./props/height/set.js":177,"./props/width/get.js":178,"./props/width/set.js":179,"./validate.js":180,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"debug":550,"events":565}],169:[function(require,module,exports){
-arguments[4][152][0].apply(exports,arguments)
-},{"dup":152}],170:[function(require,module,exports){
-arguments[4][153][0].apply(exports,arguments)
-},{"dup":153}],171:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"./events.json":170,"dup":99}],172:[function(require,module,exports){
+},{"./defaults.json":227,"./methods/render.js":231,"./props/auto-render/get.js":232,"./props/auto-render/set.js":233,"./props/height/get.js":234,"./props/height/set.js":235,"./props/width/get.js":236,"./props/width/set.js":237,"./validate.js":238,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"debug":642,"events":657}],227:[function(require,module,exports){
+arguments[4][210][0].apply(exports,arguments)
+},{"dup":210}],228:[function(require,module,exports){
+arguments[4][211][0].apply(exports,arguments)
+},{"dup":211}],229:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"./events.json":228,"dup":157}],230:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7084,17 +8748,18 @@ var Canvas = require( './canvas.js' );
 
 module.exports = Canvas;
 
-},{"./canvas.js":168}],173:[function(require,module,exports){
+},{"./canvas.js":226}],231:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'canvas:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'canvas:render' );
 var ELEMENT = 'svg';
 
 
@@ -7107,7 +8772,7 @@ var ELEMENT = 'svg';
 * @returns {VTree} virtual DOM tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var props;
 	var vtree;
 
@@ -7129,27 +8794,28 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],174:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],175:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],232:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],233:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'canvas:set:auto-render' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/auto_render.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'canvas:set:auto-render' );
 var CHANGE_EVENT = events( 'autoRender' );
 
 
@@ -7163,7 +8829,7 @@ var CHANGE_EVENT = events( 'autoRender' );
 * @throws {TypeError} must be a positive number
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( bool );
 	if ( err ) {
 		throw err;
@@ -7174,27 +8840,28 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":171,"./../../validators/auto_render.js":181,"debug":550}],176:[function(require,module,exports){
-arguments[4][159][0].apply(exports,arguments)
-},{"dup":159}],177:[function(require,module,exports){
+},{"./../../events":229,"./../../validators/auto_render.js":239,"debug":642}],234:[function(require,module,exports){
+arguments[4][217][0].apply(exports,arguments)
+},{"dup":217}],235:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'canvas:set:height' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/height.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'canvas:set:height' );
 var CHANGE_EVENT = events( 'height' );
 
 
@@ -7208,7 +8875,7 @@ var CHANGE_EVENT = events( 'height' );
 * @throws {TypeError} must be a positive number
 */
 function set( height ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( height );
 	if ( err ) {
 		throw err;
@@ -7219,27 +8886,28 @@ function set( height ) {
 	debug( 'New Value: %d.', this._height );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":171,"./../../validators/height.js":182,"debug":550}],178:[function(require,module,exports){
-arguments[4][161][0].apply(exports,arguments)
-},{"dup":161}],179:[function(require,module,exports){
+},{"./../../events":229,"./../../validators/height.js":240,"debug":642}],236:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],237:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'canvas:set:width' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/width.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'canvas:set:width' );
 var CHANGE_EVENT = events( 'width' );
 
 
@@ -7253,7 +8921,7 @@ var CHANGE_EVENT = events( 'width' );
 * @throws {TypeError} must be a positive number
 */
 function set( width ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( width );
 	if ( err ) {
 		throw err;
@@ -7264,35 +8932,40 @@ function set( width ) {
 	debug( 'New value: %d.', this._width );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":171,"./../../validators/width.js":184,"debug":550}],180:[function(require,module,exports){
-arguments[4][163][0].apply(exports,arguments)
-},{"./validators":183,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":50,"dup":163,"object-keys":578}],181:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":10,"dup":139}],182:[function(require,module,exports){
-arguments[4][165][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":57,"dup":165}],183:[function(require,module,exports){
-arguments[4][166][0].apply(exports,arguments)
-},{"./auto_render.js":181,"./height.js":182,"./width.js":184,"dup":166}],184:[function(require,module,exports){
-arguments[4][167][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":57,"dup":167}],185:[function(require,module,exports){
+},{"./../../events":229,"./../../validators/width.js":242,"debug":642}],238:[function(require,module,exports){
+arguments[4][221][0].apply(exports,arguments)
+},{"./validators":241,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-plain-object":89,"dup":221,"object-keys":671}],239:[function(require,module,exports){
+arguments[4][197][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":38,"dup":197}],240:[function(require,module,exports){
+arguments[4][223][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":96,"dup":223}],241:[function(require,module,exports){
+arguments[4][224][0].apply(exports,arguments)
+},{"./auto_render.js":239,"./height.js":240,"./width.js":242,"dup":224}],242:[function(require,module,exports){
+arguments[4][225][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":96,"dup":225}],243:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clippath:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
-var minstd = require( '@stdlib/math/base/random/minstd' );
+var minstd = require( '@stdlib/random/base/minstd' );
 var copy = require( '@stdlib/utils/copy' );
 var defaults = require( './defaults.json' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'clippath:main' );
 
 
 // MAIN //
@@ -7368,7 +9041,7 @@ function ClipPath( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -7389,7 +9062,7 @@ function ClipPath( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION ClipPath()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -7404,11 +9077,11 @@ ClipPath.prototype.constructor = ClipPath;
 /**
 * Width.
 *
-* @memberof ClipPath.prototype
 * @name width
+* @memberof ClipPath.prototype
 * @type {PositiveNumber}
-* @default 400
 * @throws {TypeError} must be a positive number
+* @default 400
 *
 * @example
 * var clipPath = new ClipPath({
@@ -7428,11 +9101,11 @@ Object.defineProperty( ClipPath.prototype, 'width', {
 /**
 * Height.
 *
-* @memberof ClipPath.prototype
 * @name height
+* @memberof ClipPath.prototype
 * @type {PositiveNumber}
-* @default 400
 * @throws {TypeError} must be a positive number
+* @default 400
 *
 * @example
 * var clipPath = new ClipPath({
@@ -7452,8 +9125,8 @@ Object.defineProperty( ClipPath.prototype, 'height', {
 /**
 * Clipping path id.
 *
-* @memberof ClipPath.prototype
 * @name id
+* @memberof ClipPath.prototype
 * @type {string}
 * @throws {TypeError} must be a primitive string
 *
@@ -7475,11 +9148,11 @@ Object.defineProperty( ClipPath.prototype, 'id', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof ClipPath.prototype
 * @name autoRender
+* @memberof ClipPath.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var clipPath = new ClipPath({
@@ -7499,8 +9172,8 @@ Object.defineProperty( ClipPath.prototype, 'autoRender', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof ClipPath.prototype
 * @name render
+* @memberof ClipPath.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -7516,18 +9189,19 @@ setReadOnly( ClipPath.prototype, 'render', require( './methods/render.js' ) );
 
 module.exports = ClipPath;
 
-},{"./defaults.json":188,"./methods/render.js":192,"./props/auto-render/get.js":193,"./props/auto-render/set.js":194,"./props/height/get.js":195,"./props/height/set.js":196,"./props/id/get.js":197,"./props/id/set.js":198,"./props/width/get.js":199,"./props/width/set.js":200,"./validate.js":201,"@stdlib/math/base/random/minstd":76,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"debug":550,"events":565}],186:[function(require,module,exports){
+},{"./defaults.json":246,"./methods/render.js":250,"./props/auto-render/get.js":251,"./props/auto-render/set.js":252,"./props/height/get.js":253,"./props/height/set.js":254,"./props/id/get.js":255,"./props/id/set.js":256,"./props/width/get.js":257,"./props/width/set.js":258,"./validate.js":259,"@stdlib/random/base/minstd":539,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"debug":642,"events":657}],244:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clippath:components:main' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var rect = require( './rect.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'clippath:components:main' );
 var ELEMENT = 'clipPath';
 
 
@@ -7557,24 +9231,25 @@ function render( ctx ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, children );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./rect.js":187,"debug":550,"virtual-dom/h":615}],187:[function(require,module,exports){
+},{"./rect.js":245,"debug":642,"virtual-dom/h":707}],245:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clippath:components:rect' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'clippath:components:rect' );
 var ELEMENT = 'rect';
 
 
@@ -7600,14 +9275,14 @@ function render( ctx ) {
 	debug( 'Generating a virtual DOM tree (%s) with properties: %s.', ELEMENT, JSON.stringify( props ) );
 
 	return h( ELEMENT, props, [] );
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],188:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],246:[function(require,module,exports){
 module.exports={
 	"width": 400,
 	"height": 400,
@@ -7615,7 +9290,7 @@ module.exports={
 	"autoRender": true
 }
 
-},{}],189:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 module.exports={
 	"width": "change",
 	"height": "change",
@@ -7623,9 +9298,9 @@ module.exports={
 	"autoRender": "change"
 }
 
-},{}],190:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"./events.json":189,"dup":99}],191:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"./events.json":247,"dup":157}],249:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7651,13 +9326,18 @@ var ClipPath = require( './clippath.js' );
 
 module.exports = ClipPath;
 
-},{"./clippath.js":185}],192:[function(require,module,exports){
+},{"./clippath.js":243}],250:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clippath:render' );
+var logger = require( 'debug' );
 var components = require( './../components' );
+
+
+// VARIABLES //
+
+var debug = logger( 'clippath:render' );
 
 
 // MAIN //
@@ -7669,7 +9349,7 @@ var components = require( './../components' );
 * @returns {VTree} virtual tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var vtree;
 
 	debug( 'Rendering...' );
@@ -7679,27 +9359,28 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../components":186,"debug":550}],193:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],194:[function(require,module,exports){
+},{"./../components":244,"debug":642}],251:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],252:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clip-path:set:auto-render' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/auto_render.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'clip-path:set:auto-render' );
 var CHANGE_EVENT = events( 'autoRender' );
 
 
@@ -7713,7 +9394,7 @@ var CHANGE_EVENT = events( 'autoRender' );
 * @throws {TypeError} must be a positive number
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( bool );
 	if ( err ) {
 		throw err;
@@ -7724,27 +9405,28 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":190,"./../../validators/auto_render.js":202,"debug":550}],195:[function(require,module,exports){
-arguments[4][159][0].apply(exports,arguments)
-},{"dup":159}],196:[function(require,module,exports){
+},{"./../../events":248,"./../../validators/auto_render.js":260,"debug":642}],253:[function(require,module,exports){
+arguments[4][217][0].apply(exports,arguments)
+},{"dup":217}],254:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clippath:set:height' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/height.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'clippath:set:height' );
 var CHANGE_EVENT = events( 'height' );
 
 
@@ -7758,7 +9440,7 @@ var CHANGE_EVENT = events( 'height' );
 * @throws {TypeError} must be a positive number
 */
 function set( height ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( height );
 	if ( err ) {
 		throw err;
@@ -7769,14 +9451,14 @@ function set( height ) {
 	debug( 'New Value: %d.', this._height );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":190,"./../../validators/height.js":203,"debug":550}],197:[function(require,module,exports){
+},{"./../../events":248,"./../../validators/height.js":261,"debug":642}],255:[function(require,module,exports){
 'use strict';
 
 /**
@@ -7786,27 +9468,28 @@ module.exports = set;
 * @returns {string} id
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._id;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],198:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clippath:set:id' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/id.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'clippath:set:id' );
 var CHANGE_EVENT = events( 'id' );
 
 
@@ -7820,7 +9503,7 @@ var CHANGE_EVENT = events( 'id' );
 * @throws {TypeError} must be a string primitive
 */
 function set( id ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( id );
 	if ( err ) {
 		throw err;
@@ -7831,27 +9514,28 @@ function set( id ) {
 	debug( 'New value: %s.', this._id );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":190,"./../../validators/id.js":204,"debug":550}],199:[function(require,module,exports){
-arguments[4][161][0].apply(exports,arguments)
-},{"dup":161}],200:[function(require,module,exports){
+},{"./../../events":248,"./../../validators/id.js":262,"debug":642}],257:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],258:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'clippath:set:width' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/width.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'clippath:set:width' );
 var CHANGE_EVENT = events( 'width' );
 
 
@@ -7865,7 +9549,7 @@ var CHANGE_EVENT = events( 'width' );
 * @throws {TypeError} must be a positive number
 */
 function set( width ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( width );
 	if ( err ) {
 		throw err;
@@ -7876,14 +9560,14 @@ function set( width ) {
 	debug( 'New value: %d.', this._width );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":190,"./../../validators/width.js":206,"debug":550}],201:[function(require,module,exports){
+},{"./../../events":248,"./../../validators/width.js":264,"debug":642}],259:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7944,18 +9628,18 @@ function validate( opts, options ) {
 		}
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{"./validators":205,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":50,"object-keys":578}],202:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":10,"dup":139}],203:[function(require,module,exports){
-arguments[4][165][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":57,"dup":165}],204:[function(require,module,exports){
+},{"./validators":263,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-plain-object":89,"object-keys":671}],260:[function(require,module,exports){
+arguments[4][197][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":38,"dup":197}],261:[function(require,module,exports){
+arguments[4][223][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":96,"dup":223}],262:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -7975,14 +9659,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `id` must be a string. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":62}],205:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],263:[function(require,module,exports){
 'use strict';
 
 var validators = {
@@ -7997,18 +9681,23 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":202,"./height.js":203,"./id.js":204,"./width.js":206}],206:[function(require,module,exports){
-arguments[4][167][0].apply(exports,arguments)
-},{"@stdlib/assert/is-positive-number":57,"dup":167}],207:[function(require,module,exports){
+},{"./auto_render.js":260,"./height.js":261,"./id.js":262,"./width.js":264}],264:[function(require,module,exports){
+arguments[4][225][0].apply(exports,arguments)
+},{"@stdlib/assert/is-positive-number":96,"dup":225}],265:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'defs:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var inherit = require( '@stdlib/utils/inherit' );
 var instanceOf = require( '@stdlib/assert/instance-of' );
+
+
+// VARIABLES //
+
+var debug = logger( 'defs:main' );
 
 
 // MAIN //
@@ -8061,7 +9750,7 @@ function Defs() {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Defs()
+}
 
 /*
 * Inherit from the `EventEmitter` prototype.
@@ -8071,8 +9760,8 @@ inherit( Defs, EventEmitter );
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Defs.prototype
 * @name render
+* @memberof Defs.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -8089,7 +9778,7 @@ setReadOnly( Defs.prototype, 'render', require( './render' ) );
 
 module.exports = Defs;
 
-},{"./render":209,"@stdlib/assert/instance-of":3,"@stdlib/utils/define-read-only-property":491,"@stdlib/utils/inherit":507,"debug":550,"events":565}],208:[function(require,module,exports){
+},{"./render":267,"@stdlib/assert/instance-of":30,"@stdlib/utils/define-read-only-property":553,"@stdlib/utils/inherit":599,"debug":642,"events":657}],266:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8113,17 +9802,18 @@ var Defs = require( './ctor.js' );
 
 module.exports = Defs;
 
-},{"./ctor.js":207}],209:[function(require,module,exports){
+},{"./ctor.js":265}],267:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'defs:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'defs:render' );
 var ELEMENT = 'defs';
 
 
@@ -8153,40 +9843,45 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],210:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],268:[function(require,module,exports){
 module.exports={
 	"translateX": 0,
 	"translateY": 0,
 	"autoRender": true
 }
 
-},{}],211:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 module.exports={
 	"translateX": "change",
 	"translateY": "change",
 	"autoRender": "change"
 }
 
-},{}],212:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"./events.json":211,"dup":99}],213:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"./events.json":269,"dup":157}],271:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'graph:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var copy = require( '@stdlib/utils/copy' );
 var defaults = require( './defaults.json' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'graph:main' );
 
 
 // MAIN //
@@ -8255,7 +9950,7 @@ function Graph( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -8276,7 +9971,7 @@ function Graph( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Graph()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -8291,11 +9986,11 @@ Graph.prototype.constructor = Graph;
 /**
 * Horizontal translation.
 *
-* @memberof Graph.prototype
 * @name translateX
+* @memberof Graph.prototype
 * @type {NonNegativeInteger}
-* @default 0
 * @throws {TypeError} must be a nonnegative integer
+* @default 0
 *
 * @example
 * var graph = new Graph({
@@ -8315,11 +10010,11 @@ Object.defineProperty( Graph.prototype, 'translateX', {
 /**
 * Vertical translation.
 *
-* @memberof Graph.prototype
 * @name translateY
+* @memberof Graph.prototype
 * @type {NonNegativeInteger}
-* @default 0
 * @throws {TypeError} must be a nonnegative integer
+* @default 0
 *
 * @example
 * var graph = new Graph({
@@ -8339,11 +10034,11 @@ Object.defineProperty( Graph.prototype, 'translateY', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Graph.prototype
 * @name autoRender
+* @memberof Graph.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var graph = new Graph({
@@ -8363,8 +10058,8 @@ Object.defineProperty( Graph.prototype, 'autoRender', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Graph.prototype
 * @name render
+* @memberof Graph.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -8380,7 +10075,7 @@ setReadOnly( Graph.prototype, 'render', require( './methods/render.js' ) );
 
 module.exports = Graph;
 
-},{"./defaults.json":210,"./methods/render.js":215,"./props/auto-render/get.js":216,"./props/auto-render/set.js":217,"./props/translate-x/get.js":218,"./props/translate-x/set.js":219,"./props/translate-y/get.js":220,"./props/translate-y/set.js":221,"./validate.js":222,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"debug":550,"events":565}],214:[function(require,module,exports){
+},{"./defaults.json":268,"./methods/render.js":273,"./props/auto-render/get.js":274,"./props/auto-render/set.js":275,"./props/translate-x/get.js":276,"./props/translate-x/set.js":277,"./props/translate-y/get.js":278,"./props/translate-y/set.js":279,"./validate.js":280,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"debug":642,"events":657}],272:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8406,17 +10101,18 @@ var Graph = require( './graph.js' );
 
 module.exports = Graph;
 
-},{"./graph.js":213}],215:[function(require,module,exports){
+},{"./graph.js":271}],273:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'graph:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'graph:render' );
 var ELEMENT = 'g';
 
 
@@ -8429,7 +10125,7 @@ var ELEMENT = 'g';
 * @returns {VTree} virtual DOM tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var props;
 	var vtree;
 
@@ -8450,18 +10146,18 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],216:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],217:[function(require,module,exports){
-arguments[4][175][0].apply(exports,arguments)
-},{"./../../events":212,"./../../validators/auto_render.js":223,"debug":550,"dup":175}],218:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],274:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],275:[function(require,module,exports){
+arguments[4][233][0].apply(exports,arguments)
+},{"./../../events":270,"./../../validators/auto_render.js":281,"debug":642,"dup":233}],276:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8471,27 +10167,28 @@ arguments[4][175][0].apply(exports,arguments)
 * @returns {NonNegativeInteger} translation
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._translateX;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],219:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'graph:set:translate-x' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/translate_x.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'graph:set:translate-x' );
 var CHANGE_EVENT = events( 'translateX' );
 
 
@@ -8505,7 +10202,7 @@ var CHANGE_EVENT = events( 'translateX' );
 * @throws {TypeError} must be a nonnegative integer
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( v );
 	if ( err ) {
 		throw err;
@@ -8516,14 +10213,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._translateX );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":212,"./../../validators/translate_x.js":225,"debug":550}],220:[function(require,module,exports){
+},{"./../../events":270,"./../../validators/translate_x.js":283,"debug":642}],278:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8533,27 +10230,28 @@ module.exports = set;
 * @returns {NonNegativeInteger} translation
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._translateY;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],221:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'graph:set:translate-y' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/translate_y.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'graph:set:translate-y' );
 var CHANGE_EVENT = events( 'translateY' );
 
 
@@ -8567,7 +10265,7 @@ var CHANGE_EVENT = events( 'translateY' );
 * @throws {TypeError} must be a nonnegative integer
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( v );
 	if ( err ) {
 		throw err;
@@ -8578,14 +10276,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._translateY );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":212,"./../../validators/translate_y.js":226,"debug":550}],222:[function(require,module,exports){
+},{"./../../events":270,"./../../validators/translate_y.js":284,"debug":642}],280:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8645,16 +10343,16 @@ function validate( opts, options ) {
 		}
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{"./validators":224,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":50,"object-keys":578}],223:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":10,"dup":139}],224:[function(require,module,exports){
+},{"./validators":282,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-plain-object":89,"object-keys":671}],281:[function(require,module,exports){
+arguments[4][197][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":38,"dup":197}],282:[function(require,module,exports){
 'use strict';
 
 var validators = {
@@ -8668,7 +10366,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":223,"./translate_x.js":225,"./translate_y.js":226}],225:[function(require,module,exports){
+},{"./auto_render.js":281,"./translate_x.js":283,"./translate_y.js":284}],283:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8688,14 +10386,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `translateX` must be a nonnegative integer. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":34}],226:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73}],284:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -8715,28 +10413,28 @@ function test( v ) {
 		return new TypeError( 'invalid value. `translateY` must be a nonnegative integer. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-nonnegative-integer":34}],227:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73}],285:[function(require,module,exports){
 module.exports={
 	"clipPathId": "",
 	"autoRender": true
 }
 
-},{}],228:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 module.exports={
 	"clipPathId": "change",
 	"autoRender": "change"
 }
 
-},{}],229:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"./events.json":228,"dup":99}],230:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"./events.json":286,"dup":157}],288:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8761,17 +10459,22 @@ var Marks = require( './marks.js' );
 
 module.exports = Marks;
 
-},{"./marks.js":231}],231:[function(require,module,exports){
+},{"./marks.js":289}],289:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'marks:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var copy = require( '@stdlib/utils/copy' );
 var defaults = require( './defaults.json' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'marks:main' );
 
 
 // MAIN //
@@ -8832,7 +10535,7 @@ function Marks( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -8853,7 +10556,7 @@ function Marks( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Marks()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -8868,8 +10571,8 @@ Marks.prototype.constructor = Marks;
 /**
 * Clipping path id.
 *
-* @memberof Marks.prototype
 * @name clipPathId
+* @memberof Marks.prototype
 * @type {string}
 * @throws {TypeError} must be a primitive string
 *
@@ -8891,11 +10594,11 @@ Object.defineProperty( Marks.prototype, 'clipPathId', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Marks.prototype
 * @name autoRender
+* @memberof Marks.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var marks = new Marks({
@@ -8915,8 +10618,8 @@ Object.defineProperty( Marks.prototype, 'autoRender', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Marks.prototype
 * @name render
+* @memberof Marks.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -8932,17 +10635,18 @@ setReadOnly( Marks.prototype, 'render', require( './methods/render.js' ) );
 
 module.exports = Marks;
 
-},{"./defaults.json":227,"./methods/render.js":232,"./props/auto-render/get.js":233,"./props/auto-render/set.js":234,"./props/clip-path-id/get.js":235,"./props/clip-path-id/set.js":236,"./validate.js":237,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"debug":550,"events":565}],232:[function(require,module,exports){
+},{"./defaults.json":285,"./methods/render.js":290,"./props/auto-render/get.js":291,"./props/auto-render/set.js":292,"./props/clip-path-id/get.js":293,"./props/clip-path-id/set.js":294,"./validate.js":295,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"debug":642,"events":657}],290:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'marks:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'marks:render' );
 var ELEMENT = 'g';
 
 
@@ -8955,7 +10659,7 @@ var ELEMENT = 'g';
 * @returns {VTree} virtual DOM tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var props;
 	var vtree;
 
@@ -8977,27 +10681,28 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],233:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],234:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],291:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],292:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'marks:set:auto-render' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/auto_render.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'marks:set:auto-render' );
 var CHANGE_EVENT = events( 'autoRender' );
 
 
@@ -9011,7 +10716,7 @@ var CHANGE_EVENT = events( 'autoRender' );
 * @throws {TypeError} must be a positive number
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( bool );
 	if ( err ) {
 		throw err;
@@ -9022,14 +10727,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":229,"./../../validators/auto_render.js":238,"debug":550}],235:[function(require,module,exports){
+},{"./../../events":287,"./../../validators/auto_render.js":296,"debug":642}],293:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9039,27 +10744,28 @@ module.exports = set;
 * @returns {string} id
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._clipPathId;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],236:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'marks:set:clip-path-id' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/clip_path_id.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'marks:set:clip-path-id' );
 var CHANGE_EVENT = events( 'clipPathId' );
 
 
@@ -9073,7 +10779,7 @@ var CHANGE_EVENT = events( 'clipPathId' );
 * @throws {TypeError} must be a string primitive
 */
 function set( id ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( id );
 	if ( err ) {
 		throw err;
@@ -9084,14 +10790,14 @@ function set( id ) {
 	debug( 'New Value: %d.', this._clipPathId );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":229,"./../../validators/clip_path_id.js":239,"debug":550}],237:[function(require,module,exports){
+},{"./../../events":287,"./../../validators/clip_path_id.js":297,"debug":642}],295:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9149,16 +10855,16 @@ function validate( opts, options ) {
 		}
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{"./validators":240,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":50,"object-keys":578}],238:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":10,"dup":139}],239:[function(require,module,exports){
+},{"./validators":298,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-plain-object":89,"object-keys":671}],296:[function(require,module,exports){
+arguments[4][197][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":38,"dup":197}],297:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9178,14 +10884,14 @@ function test( v ) {
 		return new TypeError( 'invalid value. `clipPathId` must be a string primitive. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":62}],240:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],298:[function(require,module,exports){
 'use strict';
 
 var validators = {
@@ -9198,13 +10904,18 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":238,"./clip_path_id.js":239}],241:[function(require,module,exports){
+},{"./auto_render.js":296,"./clip_path_id.js":297}],299:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:accessor:is-defined' );
+var logger = require( 'debug' );
 var isnan = require( '@stdlib/assert/is-nan' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'path:accessor:is-defined' );
 
 
 // MAIN //
@@ -9220,14 +10931,14 @@ function isDefined( d ) {
 	var bool = !isnan( d );
 	debug( 'Datum: %s. Defined: %s.', JSON.stringify( d ), bool );
 	return bool;
-} // end FUNCTION isDefined()
+}
 
 
 // EXPORTS //
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":29,"debug":550}],242:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":67,"debug":642}],300:[function(require,module,exports){
 module.exports={
 	"autoRender": true,
 	"color": "#000",
@@ -9242,7 +10953,7 @@ module.exports={
 	"yScale": null
 }
 
-},{}],243:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9268,14 +10979,14 @@ var Path = require( './path.js' );
 
 module.exports = Path;
 
-},{"./path.js":244}],244:[function(require,module,exports){
+},{"./path.js":302}],302:[function(require,module,exports){
 'use strict';
 
 // TODO: improve JSDoc examples
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var getKeys = require( 'object-keys' ).shim();
 var linear = require( 'd3-scale' ).scaleLinear; // TODO: remove
@@ -9289,6 +11000,7 @@ var defaults = require( './defaults.json' );
 
 // VARIABLES //
 
+var debug = logger( 'path:main' );
 var PRIVATE_PROPS = [
 	'_autoRender',
 	'_color',
@@ -9386,7 +11098,7 @@ function Path( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -9407,7 +11119,7 @@ function Path( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Path()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -9764,15 +11476,20 @@ setReadOnly( Path.prototype, 'render', require( './render' ) );
 
 module.exports = Path;
 
-},{"./accessors/is_defined.js":241,"./defaults.json":242,"./props/auto-render/get.js":245,"./props/auto-render/set.js":246,"./props/color/get.js":247,"./props/color/set.js":248,"./props/is-defined/get.js":249,"./props/is-defined/set.js":250,"./props/label/get.js":251,"./props/label/set.js":252,"./props/line/get.js":253,"./props/opacity/get.js":254,"./props/opacity/set.js":255,"./props/style/get.js":256,"./props/style/set.js":257,"./props/width/get.js":258,"./props/width/set.js":259,"./props/x-pos/get.js":260,"./props/x-scale/get.js":261,"./props/x-scale/set.js":262,"./props/x/get.js":263,"./props/x/set.js":264,"./props/y-pos/get.js":265,"./props/y-scale/get.js":266,"./props/y-scale/set.js":267,"./props/y/get.js":268,"./props/y/set.js":269,"./render":270,"@stdlib/assert/is-plain-object":50,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"@stdlib/utils/merge":515,"d3-scale":546,"debug":550,"events":565,"object-keys":578}],245:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],246:[function(require,module,exports){
+},{"./accessors/is_defined.js":299,"./defaults.json":300,"./props/auto-render/get.js":303,"./props/auto-render/set.js":304,"./props/color/get.js":305,"./props/color/set.js":306,"./props/is-defined/get.js":307,"./props/is-defined/set.js":308,"./props/label/get.js":309,"./props/label/set.js":310,"./props/line/get.js":311,"./props/opacity/get.js":312,"./props/opacity/set.js":313,"./props/style/get.js":314,"./props/style/set.js":315,"./props/width/get.js":316,"./props/width/set.js":317,"./props/x-pos/get.js":318,"./props/x-scale/get.js":319,"./props/x-scale/set.js":320,"./props/x/get.js":321,"./props/x/set.js":322,"./props/y-pos/get.js":323,"./props/y-scale/get.js":324,"./props/y-scale/set.js":325,"./props/y/get.js":326,"./props/y/set.js":327,"./render":328,"@stdlib/assert/is-plain-object":89,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"@stdlib/utils/merge":607,"d3-scale":638,"debug":642,"events":657,"object-keys":671}],303:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],304:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:auto-render' );
+var logger = require( 'debug' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:auto-render' );
 
 
 // MAIN //
@@ -9785,7 +11502,7 @@ var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 * @throws {TypeError} must be a positive number
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isBoolean( bool ) ) {
 		throw new TypeError( 'invalid value. `autoRender` must be a boolean primitive. Value: `' + bool + '.`' );
 	}
@@ -9795,14 +11512,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":10,"debug":550}],247:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38,"debug":642}],305:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9812,22 +11529,27 @@ module.exports = set;
 * @returns {string} color
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._color;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],248:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:color' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:color' );
 
 
 // MAIN //
@@ -9840,7 +11562,7 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @throws {TypeError} must be a string primitive
 */
 function set( color ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( color ) ) {
 		throw new TypeError( 'invalid value. `color` must be a string primitive. Value: `' + color + '.`' );
 	}
@@ -9850,14 +11572,14 @@ function set( color ) {
 	debug( 'New Value: %d.', this._color );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],249:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],307:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9867,22 +11589,27 @@ module.exports = set;
 * @returns {Function} accessor
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._isDefined;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],250:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:is-defined' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:is-defined' );
 
 
 // MAIN //
@@ -9895,7 +11622,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a function
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isFunction( fcn ) ) {
 		throw new TypeError( 'invalid value. `isDefined` must be a function. Value: `' + fcn + '.`' );
 	}
@@ -9905,14 +11632,14 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._isDefined );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],251:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],309:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9922,22 +11649,27 @@ module.exports = set;
 * @returns {string} label
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._label;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],252:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:label' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:label' );
 
 
 // MAIN //
@@ -9950,7 +11682,7 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @throws {TypeError} must be a string primitive
 */
 function set( label ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( label ) ) {
 		throw new TypeError( 'invalid value. `label` must be a string primitive. Value: `' + label + '.`' );
 	}
@@ -9960,14 +11692,14 @@ function set( label ) {
 	debug( 'New Value: %d.', this._label );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],253:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],311:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -9984,7 +11716,7 @@ var line = require( 'd3-shape' ).line; // TODO: remove
 * @returns {Function} function to generate a line as an SVG path
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this, stdlib/empty-line-before-comment */
 	var f = line()
 		.x( this.xPos )
 		.y( this.yPos )
@@ -9993,14 +11725,14 @@ function get() {
 		// TODO: tension
 
 	return f;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"d3-shape":547}],254:[function(require,module,exports){
+},{"d3-shape":639}],312:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10010,22 +11742,27 @@ module.exports = get;
 * @returns {number} opacity
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._opacity;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],255:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:opacity' );
+var logger = require( 'debug' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:opacity' );
 
 
 // MAIN //
@@ -10039,7 +11776,7 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * @throws {RangeError} must be a number on the interval `[0,1]`
 */
 function set( opacity ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isNumber( opacity ) ) {
 		throw new TypeError( 'invalid value. `opacity` must be a number. Value: `' + opacity + '.`' );
 	}
@@ -10055,14 +11792,14 @@ function set( opacity ) {
 	debug( 'New Value: %d.', this._opacity );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":41,"debug":550}],256:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"debug":642}],314:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10072,22 +11809,27 @@ module.exports = set;
 * @returns {string} style
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._style;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],257:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:style' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:style' );
 
 
 // MAIN //
@@ -10100,7 +11842,7 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @throws {TypeError} must be a string primitive
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( v ) ) {
 		throw new TypeError( 'invalid value. `style` must be a string primitive. Value: `' + v + '.`' );
 	}
@@ -10110,14 +11852,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._style );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],258:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],316:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10127,22 +11869,27 @@ module.exports = set;
 * @returns {NonNegativeInteger} width
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._width;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],259:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:width' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:width' );
 
 
 // MAIN //
@@ -10151,11 +11898,11 @@ var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).is
 * Sets the width.
 *
 * @private
-* @param {NonNegativeInteger} width - width
+* @param {NonNegativeInteger} v - width
 * @throws {TypeError} must be a nonnegative integer
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isNonNegativeInteger( v ) ) {
 		throw new TypeError( 'invalid value. `width` must be a nonnegative integer. Value: `' + v + '.`' );
 	}
@@ -10165,19 +11912,24 @@ function set( v ) {
 	debug( 'New Value: %d.', this._width );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],260:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"debug":642}],318:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:xpos' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'path:xpos' );
 
 
 // MAIN //
@@ -10189,8 +11941,10 @@ var debug = require( 'debug' )( 'path:xpos' );
 * @returns {Function} map function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale = this.xScale;
+	return xPos;
+
 	/**
 	* Maps a value to a x coordinate value.
 	*
@@ -10198,19 +11952,19 @@ function get() {
 	* @param {Array} d - datum
 	* @returns {number} pixel value
 	*/
-	return function xPos( d ) {
+	function xPos( d ) {
 		var px = scale( d[0] );
 		debug( 'Value: %d => Pixel: %d.', d[0], px );
 		return px;
-	}; // end FUNCTION xPos()
-} // end FUNCTION get()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"debug":550}],261:[function(require,module,exports){
+},{"debug":642}],319:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10220,22 +11974,27 @@ module.exports = get;
 * @returns {Function} scale function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xScale;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],262:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:xscale' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:xscale' );
 
 
 // MAIN //
@@ -10248,7 +12007,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a function
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isFunction( fcn ) ) {
 		throw new TypeError( 'invalid value. `xScale` must be a function. Value: `' + fcn + '.`' );
 	}
@@ -10258,14 +12017,14 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._xScale );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],263:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],321:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10275,22 +12034,27 @@ module.exports = set;
 * @returns {ArrayLike} x values
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xData;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],264:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:x' );
+var logger = require( 'debug' );
 var isArrayLike = require( '@stdlib/assert/is-array-like' );
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:x' );
 
 
 // MAIN //
@@ -10303,7 +12067,7 @@ var isArrayLike = require( '@stdlib/assert/is-array-like' );
 * @throws {TypeError} must be array-like
 */
 function set( x ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isArrayLike( x ) ) {
 		throw new TypeError( 'invalid value. `x` must be array-like. Value: `' + x + '.`' );
 	}
@@ -10313,19 +12077,24 @@ function set( x ) {
 	debug( 'New Value: %s.', JSON.stringify( this._xData ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":5,"debug":550}],265:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32,"debug":642}],323:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:ypos' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'path:ypos' );
 
 
 // MAIN //
@@ -10337,8 +12106,10 @@ var debug = require( 'debug' )( 'path:ypos' );
 * @returns {Function} map function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale = this.yScale;
+	return yPos;
+
 	/**
 	* Maps a value to a y coordinate value.
 	*
@@ -10346,19 +12117,19 @@ function get() {
 	* @param {Array} d - datum
 	* @returns {number} pixel value
 	*/
-	return function yPos( d ) {
+	function yPos( d ) {
 		var px = scale( d[1] );
 		debug( 'Value: %d => Pixel: %d.', d[1], px );
 		return px;
-	}; // end FUNCTION yPos()
-} // end FUNCTION get()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"debug":550}],266:[function(require,module,exports){
+},{"debug":642}],324:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10368,22 +12139,27 @@ module.exports = get;
 * @returns {Function} scale function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yScale;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],267:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:yscale' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:yscale' );
 
 
 // MAIN //
@@ -10396,7 +12172,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a function
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isFunction( fcn ) ) {
 		throw new TypeError( 'invalid value. `yScale` must be a function. Value: `' + fcn + '.`' );
 	}
@@ -10406,14 +12182,14 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._yScale );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],268:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],326:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10423,22 +12199,27 @@ module.exports = set;
 * @returns {ArrayLike} y values
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yData;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],269:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:set:y' );
+var logger = require( 'debug' );
 var isArrayLike = require( '@stdlib/assert/is-array-like' );
+
+
+// VARIABLES //
+
+var debug = logger( 'path:set:y' );
 
 
 // MAIN //
@@ -10451,7 +12232,7 @@ var isArrayLike = require( '@stdlib/assert/is-array-like' );
 * @throws {TypeError} must be array-like
 */
 function set( y ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isArrayLike( y ) ) {
 		throw new TypeError( 'invalid value. `y` must be array-like. Value: `' + y + '.`' );
 	}
@@ -10461,19 +12242,19 @@ function set( y ) {
 	debug( 'New Value: %s.', JSON.stringify( this._yData ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":5,"debug":550}],270:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32,"debug":642}],328:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'path:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var zip = require( './utils/zip.js' );
 var style = require( './utils/style.js' );
@@ -10481,6 +12262,7 @@ var style = require( './utils/style.js' );
 
 // VARIABLES //
 
+var debug = logger( 'path:render' );
 var ELEMENT = 'path';
 
 
@@ -10493,7 +12275,7 @@ var ELEMENT = 'path';
 * @returns {VTree} virtual DOM tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var props;
 	var vtree;
 
@@ -10521,14 +12303,14 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./utils/style.js":271,"./utils/zip.js":272,"debug":550,"virtual-dom/h":615}],271:[function(require,module,exports){
+},{"./utils/style.js":329,"./utils/zip.js":330,"debug":642,"virtual-dom/h":707}],329:[function(require,module,exports){
 'use strict';
 
 // VARIABLES //
@@ -10563,14 +12345,14 @@ function style( v ) {
 		return s;
 	}
 	return v;
-} // end FUNCTION style()
+}
 
 
 // EXPORTS //
 
 module.exports = style;
 
-},{}],272:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 'use strict';
 
 /**
@@ -10593,20 +12375,25 @@ function zip( x, y ) {
 		out[ i ] = [ x[i], y[i] ];
 	}
 	return out;
-} // end FUNCTION zip()
+}
 
 
 // EXPORTS //
 
 module.exports = zip;
 
-},{}],273:[function(require,module,exports){
+},{}],331:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:accessor:is-defined' );
+var logger = require( 'debug' );
 var isnan = require( '@stdlib/assert/is-nan' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:accessor:is-defined' );
 
 
 // MAIN //
@@ -10623,19 +12410,19 @@ function isDefined( d ) {
 	var bool = !isnan( d );
 	debug( 'Datum: %s. Defined: %s.', JSON.stringify( d ), bool );
 	return bool;
-} // end FUNCTION isDefined()
+}
 
 
 // EXPORTS //
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":29,"debug":550}],274:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":67,"debug":642}],332:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var getKeys = require( 'object-keys' ).shim();
 var linear = require( 'd3-scale' ).scaleLinear; // TODO: remove
@@ -10651,6 +12438,7 @@ var defaults = require( './defaults.json' );
 
 // VARIABLES //
 
+var debug = logger( 'rug:main' );
 var PRIVATE_PROPS = [
 	'_autoRender',
 	'_color',
@@ -10765,7 +12553,7 @@ function Rug( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Rug()
+}
 
 /*
 * Inherit from the `EventEmitter` prototype.
@@ -10775,11 +12563,11 @@ inherit( Rug, EventEmitter );
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Rug.prototype
 * @name autoRender
+* @memberof Rug.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var node = new Rug({
@@ -10799,8 +12587,8 @@ Object.defineProperty( Rug.prototype, 'autoRender', {
 /**
 * Tick color. When retrieved, the returned value is a color accessor.
 *
-* @memberof Rug.prototype
 * @name color
+* @memberof Rug.prototype
 * @type {(string|Function)}
 * @throws {TypeError} must be a primitive string or function
 *
@@ -10822,11 +12610,11 @@ Object.defineProperty( Rug.prototype, 'color', {
 /**
 * Data.
 *
-* @memberof Rug.prototype
 * @name data
+* @memberof Rug.prototype
 * @type {ArrayLike}
-* @default []
 * @throws {TypeError} must be array-like
+* @default []
 *
 * @example
 * var node = new Rug({
@@ -10846,8 +12634,8 @@ Object.defineProperty( Rug.prototype, 'data', {
 /**
 * Predicate function which defines whether a datum is defined. This accessor is used to define how missing values are encoded. The default behavior is to ignore values which are `NaN`.
 *
-* @memberof Rug.prototype
 * @name isDefined
+* @memberof Rug.prototype
 * @type {Function}
 * @throws {TypeError} must be a function
 *
@@ -10881,8 +12669,8 @@ Object.defineProperty( Rug.prototype, 'isDefined', {
 /**
 * Tick label. When retrieved, the returned value is a label accessor.
 *
-* @memberof Rug.prototype
 * @name label
+* @memberof Rug.prototype
 * @type {(string|Function)}
 * @throws {TypeError} must be a primitive string or function
 *
@@ -10904,12 +12692,12 @@ Object.defineProperty( Rug.prototype, 'label', {
 /**
 * Tick opacity. When retrieved, the returned value is an opacity accessor.
 *
-* @memberof Rug.prototype
 * @name opacity
+* @memberof Rug.prototype
 * @type {number}
-* @default 0.9
 * @throws {TypeError} must be a number
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @default 0.9
 *
 * @example
 * var node = new Rug({
@@ -10929,8 +12717,8 @@ Object.defineProperty( Rug.prototype, 'opacity', {
 /**
 * Rug orientation.
 *
-* @memberof Rug.prototype
 * @name orientation
+* @memberof Rug.prototype
 * @type {string}
 * @throws {TypeError} must be a supported orientation
 *
@@ -10952,8 +12740,8 @@ Object.defineProperty( Rug.prototype, 'orientation', {
 /**
 * Function to map values to x coordinate values.
 *
-* @memberof Rug.prototype
 * @name pos
+* @memberof Rug.prototype
 * @type {Function}
 *
 * @example
@@ -10971,8 +12759,8 @@ Object.defineProperty( Rug.prototype, 'pos', {
 /**
 * Scale function.
 *
-* @memberof Rug.prototype
 * @name scale
+* @memberof Rug.prototype
 * @type {Function}
 * @throws {TypeError} must be a function
 *
@@ -10994,11 +12782,11 @@ Object.defineProperty( Rug.prototype, 'scale', {
 /**
 * Tick (tassel) size.
 *
-* @memberof Rug.prototype
 * @name size
+* @memberof Rug.prototype
 * @type {NonNegativeInteger}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer
+* @default 6
 *
 * @example
 * var node = new Rug({
@@ -11018,8 +12806,8 @@ Object.defineProperty( Rug.prototype, 'size', {
 /**
 * Renders a Virtual DOM tree.
 *
-* @memberof Rug.prototype
 * @name render
+* @memberof Rug.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -11036,7 +12824,7 @@ setReadOnly( Rug.prototype, 'render', require( './render' ) );
 
 module.exports = Rug;
 
-},{"./accessors/is_defined.js":273,"./defaults.json":275,"./props/auto-render/get.js":277,"./props/auto-render/set.js":278,"./props/color/get.js":279,"./props/color/set.js":280,"./props/data/get.js":281,"./props/data/set.js":282,"./props/is-defined/get.js":283,"./props/is-defined/set.js":284,"./props/label/get.js":285,"./props/label/set.js":286,"./props/opacity/get.js":287,"./props/opacity/set.js":288,"./props/orientation/get.js":289,"./props/orientation/set.js":291,"./props/pos/get.js":292,"./props/scale/get.js":293,"./props/scale/set.js":294,"./props/size/get.js":295,"./props/size/set.js":296,"./render":297,"@stdlib/assert/instance-of":3,"@stdlib/assert/is-plain-object":50,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"@stdlib/utils/inherit":507,"@stdlib/utils/merge":515,"d3-scale":546,"debug":550,"events":565,"object-keys":578}],275:[function(require,module,exports){
+},{"./accessors/is_defined.js":331,"./defaults.json":333,"./props/auto-render/get.js":335,"./props/auto-render/set.js":336,"./props/color/get.js":337,"./props/color/set.js":338,"./props/data/get.js":339,"./props/data/set.js":340,"./props/is-defined/get.js":341,"./props/is-defined/set.js":342,"./props/label/get.js":343,"./props/label/set.js":344,"./props/opacity/get.js":345,"./props/opacity/set.js":346,"./props/orientation/get.js":347,"./props/orientation/set.js":349,"./props/pos/get.js":350,"./props/scale/get.js":351,"./props/scale/set.js":352,"./props/size/get.js":353,"./props/size/set.js":354,"./render":355,"@stdlib/assert/instance-of":30,"@stdlib/assert/is-plain-object":89,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"@stdlib/utils/inherit":599,"@stdlib/utils/merge":607,"d3-scale":638,"debug":642,"events":657,"object-keys":671}],333:[function(require,module,exports){
 module.exports={
 	"autoRender": true,
 	"color": "#aaa",
@@ -11049,7 +12837,7 @@ module.exports={
 	"size": 6
 }
 
-},{}],276:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11075,32 +12863,20 @@ var Rug = require( './ctor.js' );
 
 module.exports = Rug;
 
-},{"./ctor.js":274}],277:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns the rendering mode.
-*
-* @private
-* @returns {boolean} rendering mode
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	return this._autoRender;
-} // end FUNCTION get()
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{}],278:[function(require,module,exports){
+},{"./ctor.js":332}],335:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],336:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:auto-render' );
+var logger = require( 'debug' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:auto-render' );
 
 
 // MAIN //
@@ -11125,14 +12901,14 @@ function set( bool ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":10,"debug":550}],279:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38,"debug":642}],337:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11165,21 +12941,26 @@ function get() {
 	function color() {
 		return self._color; // eslint-disable-line no-underscore-dangle
 	}
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-string":62}],280:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],338:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:color' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:color' );
 
 
 // MAIN //
@@ -11204,14 +12985,14 @@ function set( color ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-string":62,"debug":550}],281:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-string":101,"debug":642}],339:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11223,20 +13004,25 @@ module.exports = set;
 function get() {
 	/* eslint-disable no-invalid-this */
 	return this._data;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],282:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:data' );
+var logger = require( 'debug' );
 var isArrayLike = require( '@stdlib/assert/is-array-like' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:data' );
 
 
 // MAIN //
@@ -11246,7 +13032,7 @@ var isArrayLike = require( '@stdlib/assert/is-array-like' );
 *
 * ## Notes
 *
-* * We always fire a `change` event when set, even if the provided reference is the same, to allow signaling that data values have changed (e.g., a data array has mutated).
+* -   We always fire a `change` event when set, even if the provided reference is the same, to allow signaling that data values have changed (e.g., a data array has mutated).
 *
 * @private
 * @param {ArrayLike} data - data values
@@ -11263,14 +13049,14 @@ function set( data ) {
 	debug( 'New Value: %s.', JSON.stringify( this._data ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":5,"debug":550}],283:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32,"debug":642}],341:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11282,20 +13068,25 @@ module.exports = set;
 function get() {
 	/* eslint-disable no-invalid-this */
 	return this._isDefined;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],284:[function(require,module,exports){
+},{}],342:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:is-defined' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:is-defined' );
 
 
 // MAIN //
@@ -11320,14 +13111,14 @@ function set( fcn ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],285:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],343:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11360,21 +13151,26 @@ function get() {
 	function label() {
 		return self._label; // eslint-disable-line no-underscore-dangle
 	}
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-string":62}],286:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],344:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:label' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:label' );
 
 
 // MAIN //
@@ -11399,14 +13195,14 @@ function set( label ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-string":62,"debug":550}],287:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-string":101,"debug":642}],345:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -11439,21 +13235,26 @@ function get() {
 	function opacity() {
 		return self._opacity; // eslint-disable-line no-underscore-dangle
 	}
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-number":41}],288:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80}],346:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:opacity' );
+var logger = require( 'debug' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:opacity' );
 
 
 // MAIN //
@@ -11483,14 +13284,14 @@ function set( opacity ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-number":41,"debug":550}],289:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-number":80,"debug":642}],347:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11502,14 +13303,14 @@ module.exports = set;
 function get() {
 	/* eslint-disable no-invalid-this */
 	return this._orientation;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],290:[function(require,module,exports){
+},{}],348:[function(require,module,exports){
 module.exports=[
 	"bottom",
 	"left",
@@ -11517,14 +13318,19 @@ module.exports=[
 	"top"
 ]
 
-},{}],291:[function(require,module,exports){
+},{}],349:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:orientation' );
+var logger = require( 'debug' );
 var indexOf = require( '@stdlib/utils/index-of' );
 var ORIENTATIONS = require( './orientations.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:orientation' );
 
 
 // MAIN //
@@ -11549,19 +13355,24 @@ function set( orient ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./orientations.json":290,"@stdlib/utils/index-of":504,"debug":550}],292:[function(require,module,exports){
+},{"./orientations.json":348,"@stdlib/utils/index-of":596,"debug":642}],350:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:pos' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:pos' );
 
 
 // MAIN //
@@ -11588,40 +13399,28 @@ function get() {
 		var p = scale( d );
 		debug( 'Value: %d => Pixel: %d.', d, p );
 		return p;
-	} // end FUNCTION pos()
-} // end FUNCTION get()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"debug":550}],293:[function(require,module,exports){
-'use strict';
-
-/**
-* Returns the scale function.
-*
-* @private
-* @returns {Function} scale function
-*/
-function get() {
-	/* eslint-disable no-invalid-this */
-	return this._scale;
-} // end FUNCTION get()
-
-
-// EXPORTS //
-
-module.exports = get;
-
-},{}],294:[function(require,module,exports){
+},{"debug":642}],351:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],352:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:scale' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:scale' );
 
 
 // MAIN //
@@ -11646,14 +13445,14 @@ function set( fcn ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],295:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],353:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -11667,20 +13466,25 @@ module.exports = set;
 function get() {
 	/* eslint-disable no-invalid-this */
 	return this._size;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],296:[function(require,module,exports){
+},{}],354:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:set:size' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'rug:set:size' );
 
 
 // MAIN //
@@ -11705,25 +13509,26 @@ function set( size ) {
 
 		this.emit( 'change' );
 	}
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],297:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"debug":642}],355:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var ticks = require( './ticks.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'rug:render' );
 var ELEMENT = 'g';
 
 
@@ -11758,19 +13563,19 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./ticks.js":298,"debug":550,"virtual-dom/h":615}],298:[function(require,module,exports){
+},{"./ticks.js":356,"debug":642,"virtual-dom/h":707}],356:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'rug:render:ticks' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var xAttr = require( './utils/x_attr.js' );
 var yAttr = require( './utils/y_attr.js' );
@@ -11779,6 +13584,7 @@ var tickDir = require( './utils/tick_dir.js' );
 
 // VARIABLES //
 
+var debug = logger( 'rug:render:ticks' );
 var ELEMENT = 'line';
 
 
@@ -11844,14 +13650,14 @@ function render( ctx ) {
 	}
 	debug( 'Finished rendering ticks.' );
 	return out;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./utils/tick_dir.js":299,"./utils/x_attr.js":300,"./utils/y_attr.js":301,"debug":550,"virtual-dom/h":615}],299:[function(require,module,exports){
+},{"./utils/tick_dir.js":357,"./utils/x_attr.js":358,"./utils/y_attr.js":359,"debug":642,"virtual-dom/h":707}],357:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11866,14 +13672,14 @@ function tickDir( orient ) {
 		return -1;
 	}
 	return 1;
-} // end FUNCTION tickDir()
+}
 
 
 // EXPORTS //
 
 module.exports = tickDir;
 
-},{}],300:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11888,14 +13694,14 @@ function xAttr( orient ) {
 		return 'x';
 	}
 	return 'y';
-} // end FUNCTION xAttr()
+}
 
 
 // EXPORTS //
 
 module.exports = xAttr;
 
-},{}],301:[function(require,module,exports){
+},{}],359:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11910,20 +13716,25 @@ function yAttr( orient ) {
 		return 'y';
 	}
 	return 'x';
-} // end FUNCTION yAttr()
+}
 
 
 // EXPORTS //
 
 module.exports = yAttr;
 
-},{}],302:[function(require,module,exports){
+},{}],360:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:accessor:is-defined' );
+var logger = require( 'debug' );
 var isnan = require( '@stdlib/assert/is-nan' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:accessor:is-defined' );
 
 
 // MAIN //
@@ -11939,14 +13750,14 @@ function isDefined( d ) {
 	var bool = !isnan( d );
 	debug( 'Datum: %s. Defined: %s.', JSON.stringify( d ), bool );
 	return bool;
-} // end FUNCTION isDefined()
+}
 
 
 // EXPORTS //
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":29,"debug":550}],303:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":67,"debug":642}],361:[function(require,module,exports){
 module.exports={
 	"autoRender": true,
 	"color": "#000",
@@ -11961,7 +13772,7 @@ module.exports={
 	"yScale": null
 }
 
-},{}],304:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 'use strict';
 
 /**
@@ -11987,15 +13798,20 @@ var Symbols = require( './symbols.js' );
 
 module.exports = Symbols;
 
-},{"./symbols.js":333}],305:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],306:[function(require,module,exports){
+},{"./symbols.js":391}],363:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],364:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:auto-render' );
+var logger = require( 'debug' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:auto-render' );
 
 
 // MAIN //
@@ -12008,7 +13824,7 @@ var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 * @throws {TypeError} must be a boolean primitive
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isBoolean( bool ) ) {
 		throw new TypeError( 'invalid value. `autoRender` must be a boolean primitive. Value: `' + bool + '.`' );
 	}
@@ -12018,14 +13834,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":10,"debug":550}],307:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38,"debug":642}],365:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12042,7 +13858,7 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @returns {Function} color accessor
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var self = this;
 	if ( isString( this._color ) ) {
 		return color;
@@ -12052,21 +13868,26 @@ function get() {
 	function color() {
 		return self._color;
 	}
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-string":62}],308:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],366:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:color' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:color' );
 
 
 // MAIN //
@@ -12079,7 +13900,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a string primitive or function
 */
 function set( color ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isString( color ) &&
 		!isFunction( color )
@@ -12092,22 +13913,27 @@ function set( color ) {
 	debug( 'New Value: %d.', this._color );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-string":62,"debug":550}],309:[function(require,module,exports){
-arguments[4][249][0].apply(exports,arguments)
-},{"dup":249}],310:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-string":101,"debug":642}],367:[function(require,module,exports){
+arguments[4][307][0].apply(exports,arguments)
+},{"dup":307}],368:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:is-defined' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:is-defined' );
 
 
 // MAIN //
@@ -12120,7 +13946,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a function
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isFunction( fcn ) ) {
 		throw new TypeError( 'invalid value. `isDefined` must be a function. Value: `' + fcn + '.`' );
 	}
@@ -12130,14 +13956,14 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._isDefined );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],311:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],369:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12154,7 +13980,7 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @returns {Function} label accessor
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var self = this;
 	if ( isString( this._label ) ) {
 		return label;
@@ -12164,21 +13990,26 @@ function get() {
 	function label() {
 		return self._label;
 	}
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-string":62}],312:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],370:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:label' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:label' );
 
 
 // MAIN //
@@ -12191,7 +14022,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a string primitive or a function
 */
 function set( label ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isString( label ) &&
 		!isFunction( label )
@@ -12204,14 +14035,14 @@ function set( label ) {
 	debug( 'New Value: %d.', this._label );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-string":62,"debug":550}],313:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-string":101,"debug":642}],371:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12228,7 +14059,7 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * @returns {Function} opacity accessor
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var self = this;
 	if ( isNumber( this._opacity ) ) {
 		return opacity;
@@ -12238,21 +14069,26 @@ function get() {
 	function opacity() {
 		return self._opacity;
 	}
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-number":41}],314:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80}],372:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:opacity' );
+var logger = require( 'debug' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:opacity' );
 
 
 // MAIN //
@@ -12266,7 +14102,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {RangeError} must be a number on the interval `[0,1]`
 */
 function set( opacity ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isNum = isNumber( opacity );
 	if (
 		!isNum &&
@@ -12286,14 +14122,14 @@ function set( opacity ) {
 	debug( 'New Value: %d.', this._opacity );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-number":41,"debug":550}],315:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-number":80,"debug":642}],373:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -12310,7 +14146,7 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * @returns {Function} size accessor
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var self = this;
 	if ( isNumber( this._size ) ) {
 		return size;
@@ -12320,21 +14156,26 @@ function get() {
 	function size() {
 		return self._size;
 	}
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-number":41}],316:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80}],374:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:size' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:size' );
 
 
 // MAIN //
@@ -12347,7 +14188,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a nonnegative integer or a function
 */
 function set( size ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isNonNegativeInteger( size ) &&
 		!isFunction( size )
@@ -12360,14 +14201,14 @@ function set( size ) {
 	debug( 'New Value: %d.', this._size );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],317:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"@stdlib/assert/is-nonnegative-integer":73,"debug":642}],375:[function(require,module,exports){
 'use strict';
 
 /**
@@ -12377,23 +14218,28 @@ module.exports = set;
 * @returns {string} symbol
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._symbol;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],318:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:symbol' );
+var logger = require( 'debug' );
 var indexOf = require( '@stdlib/utils/index-of' );
 var SYMBOLS = require( './symbols.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:symbol' );
 
 
 // MAIN //
@@ -12406,7 +14252,7 @@ var SYMBOLS = require( './symbols.json' );
 * @throws {TypeError} must be a supported symbol
 */
 function set( symbol ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( indexOf( SYMBOLS, symbol ) === -1 ) {
 		throw new TypeError( 'invalid value. `symbol` must be a supported symbol. Symbols: ['+SYMBOLS.join(',')+']. Value: `'+symbol+'`.' );
 	}
@@ -12416,25 +14262,30 @@ function set( symbol ) {
 	debug( 'New Value: %d.', this._symbol );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./symbols.json":319,"@stdlib/utils/index-of":504,"debug":550}],319:[function(require,module,exports){
+},{"./symbols.json":377,"@stdlib/utils/index-of":596,"debug":642}],377:[function(require,module,exports){
 module.exports=[
 	"closed-circle",
 	"open-circle"
 ]
 
-},{}],320:[function(require,module,exports){
+},{}],378:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:xpos' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:xpos' );
 
 
 // MAIN //
@@ -12446,8 +14297,10 @@ var debug = require( 'debug' )( 'symbols:xpos' );
 * @returns {Function} map function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale = this.xScale;
+
+	return xPos;
 	/**
 	* Maps a value to a x coordinate value.
 	*
@@ -12455,27 +14308,32 @@ function get() {
 	* @param {*} d - datum
 	* @returns {number} pixel value
 	*/
-	return function xPos( d ) {
+	function xPos( d ) {
 		var px = scale( d );
 		debug( 'Value: %d => Pixel: %d.', d, px );
 		return px;
-	}; // end FUNCTION xPos()
-} // end FUNCTION get()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"debug":550}],321:[function(require,module,exports){
-arguments[4][261][0].apply(exports,arguments)
-},{"dup":261}],322:[function(require,module,exports){
+},{"debug":642}],379:[function(require,module,exports){
+arguments[4][319][0].apply(exports,arguments)
+},{"dup":319}],380:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:xscale' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:xscale' );
 
 
 // MAIN //
@@ -12488,7 +14346,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a function
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isFunction( fcn ) ) {
 		throw new TypeError( 'invalid value. `xScale` must be a function. Value: `' + fcn + '.`' );
 	}
@@ -12498,22 +14356,27 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._xScale );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],323:[function(require,module,exports){
-arguments[4][263][0].apply(exports,arguments)
-},{"dup":263}],324:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],381:[function(require,module,exports){
+arguments[4][321][0].apply(exports,arguments)
+},{"dup":321}],382:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:x' );
+var logger = require( 'debug' );
 var isArrayLike = require( '@stdlib/assert/is-array-like' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:x' );
 
 
 // MAIN //
@@ -12526,7 +14389,7 @@ var isArrayLike = require( '@stdlib/assert/is-array-like' );
 * @throws {TypeError} must be array-like
 */
 function set( x ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isArrayLike( x ) ) {
 		throw new TypeError( 'invalid value. `x` must be array-like. Value: `' + x + '.`' );
 	}
@@ -12536,19 +14399,24 @@ function set( x ) {
 	debug( 'New Value: %s.', JSON.stringify( this._xData ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":5,"debug":550}],325:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32,"debug":642}],383:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:ypos' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:ypos' );
 
 
 // MAIN //
@@ -12560,8 +14428,10 @@ var debug = require( 'debug' )( 'symbols:ypos' );
 * @returns {Function} map function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale = this.yScale;
+	return yPos;
+
 	/**
 	* Maps a value to a y coordinate value.
 	*
@@ -12569,27 +14439,32 @@ function get() {
 	* @param {*} d - datum
 	* @returns {number} pixel value
 	*/
-	return function yPos( d ) {
+	function yPos( d ) {
 		var px = scale( d );
 		debug( 'Value: %d => Pixel: %d.', d, px );
 		return px;
-	}; // end FUNCTION yPos()
-} // end FUNCTION get()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"debug":550}],326:[function(require,module,exports){
-arguments[4][266][0].apply(exports,arguments)
-},{"dup":266}],327:[function(require,module,exports){
+},{"debug":642}],384:[function(require,module,exports){
+arguments[4][324][0].apply(exports,arguments)
+},{"dup":324}],385:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:yscale' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:yscale' );
 
 
 // MAIN //
@@ -12602,7 +14477,7 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @throws {TypeError} must be a function
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isFunction( fcn ) ) {
 		throw new TypeError( 'invalid value. `yScale` must be a function. Value: `' + fcn + '.`' );
 	}
@@ -12612,22 +14487,27 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._yScale );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],328:[function(require,module,exports){
-arguments[4][268][0].apply(exports,arguments)
-},{"dup":268}],329:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],386:[function(require,module,exports){
+arguments[4][326][0].apply(exports,arguments)
+},{"dup":326}],387:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:set:y' );
+var logger = require( 'debug' );
 var isArrayLike = require( '@stdlib/assert/is-array-like' );
+
+
+// VARIABLES //
+
+var debug = logger( 'symbols:set:y' );
 
 
 // MAIN //
@@ -12640,7 +14520,7 @@ var isArrayLike = require( '@stdlib/assert/is-array-like' );
 * @throws {TypeError} must be array-like
 */
 function set( y ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isArrayLike( y ) ) {
 		throw new TypeError( 'invalid value. `y` must be array-like. Value: `' + y + '.`' );
 	}
@@ -12650,24 +14530,25 @@ function set( y ) {
 	debug( 'New Value: %s.', JSON.stringify( this._yData ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array-like":5,"debug":550}],330:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32,"debug":642}],388:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:render:closed-circles' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'symbols:render:closed-circles' );
 var ELEMENT = 'circle';
 
 
@@ -12735,19 +14616,19 @@ function render( state ) {
 		out[ i ] = h( ELEMENT, props, [] );
 	}
 	return out;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],331:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],389:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 var closedCircles = require( './closed_circles.js' );
 var openCircles = require( './open_circles.js' );
@@ -12755,6 +14636,7 @@ var openCircles = require( './open_circles.js' );
 
 // VARIABLES //
 
+var debug = logger( 'symbols:render' );
 var ELEMENT = 'g';
 var RENDER = {
 	'closed-circle': closedCircles,
@@ -12771,7 +14653,7 @@ var RENDER = {
 * @returns {VTree} virtual DOM tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var children;
 	var props;
 	var vtree;
@@ -12796,24 +14678,25 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./closed_circles.js":330,"./open_circles.js":332,"debug":550,"virtual-dom/h":615}],332:[function(require,module,exports){
+},{"./closed_circles.js":388,"./open_circles.js":390,"debug":642,"virtual-dom/h":707}],390:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:render:open-circles' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'symbols:render:open-circles' );
 var ELEMENT = 'circle';
 
 
@@ -12882,21 +14765,21 @@ function render( state ) {
 		out[ i ] = h( ELEMENT, props, [] );
 	}
 	return out;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],333:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],391:[function(require,module,exports){
 'use strict';
 
 // TODO: improve JSDoc examples
 
 // MODULES //
 
-var debug = require( 'debug' )( 'symbols:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var getKeys = require( 'object-keys' ).shim();
 var linear = require( 'd3-scale' ).scaleLinear; // TODO: remove
@@ -12910,6 +14793,7 @@ var defaults = require( './defaults.json' );
 
 // VARIABLES //
 
+var debug = logger( 'symbols:main' );
 var PRIVATE_PROPS = [
 	'_autoRender',
 	'_color',
@@ -13007,7 +14891,7 @@ function Symbols( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -13028,7 +14912,7 @@ function Symbols( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Symbols()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -13043,11 +14927,11 @@ Symbols.prototype.constructor = Symbols;
 /**
 * Symbol.
 *
-* @memberof Symbols.prototype
 * @name symbol
+* @memberof Symbols.prototype
 * @type {string}
-* @default 'closed-circle'
 * @throws {TypeError} must be a supported symbol
+* @default 'closed-circle'
 *
 * @example
 * var symbols = new Symbols({
@@ -13067,11 +14951,11 @@ Object.defineProperty( Symbols.prototype, 'symbol', {
 /**
 * `x` values.
 *
-* @memberof Symbols.prototype
 * @name x
+* @memberof Symbols.prototype
 * @type {ArrayLike}
-* @default []
 * @throws {TypeError} must be array-like
+* @default []
 *
 * @example
 * var symbols = new Symbols({
@@ -13091,11 +14975,11 @@ Object.defineProperty( Symbols.prototype, 'x', {
 /**
 * `y` values.
 *
-* @memberof Symbols.prototype
 * @name y
+* @memberof Symbols.prototype
 * @type {ArrayLike}
-* @default []
 * @throws {TypeError} must be array-like
+* @default []
 *
 * @example
 * var symbols = new Symbols({
@@ -13115,8 +14999,8 @@ Object.defineProperty( Symbols.prototype, 'y', {
 /**
 * `x` scale function.
 *
-* @memberof Symbols.prototype
 * @name xScale
+* @memberof Symbols.prototype
 * @type {Function}
 * @throws {TypeError} must be a function
 *
@@ -13138,8 +15022,8 @@ Object.defineProperty( Symbols.prototype, 'xScale', {
 /**
 * `y` scale function.
 *
-* @memberof Symbols.prototype
 * @name yScale
+* @memberof Symbols.prototype
 * @type {Function}
 * @throws {TypeError} must be a function
 *
@@ -13161,8 +15045,8 @@ Object.defineProperty( Symbols.prototype, 'yScale', {
 /**
 * Accessor which defines whether a datum is defined. This accessor is used to define how missing values are encoded. The default behavior is to ignore values which are `NaN`.
 *
-* @memberof Symbols.prototype
 * @name isDefined
+* @memberof Symbols.prototype
 * @type {Function}
 * @throws {TypeError} must be a function
 *
@@ -13194,11 +15078,11 @@ Object.defineProperty( Symbols.prototype, 'isDefined', {
 /**
 * Symbol size. When retrieved, the returned value is a size accessor.
 *
-* @memberof Symbols.prototype
 * @name size
+* @memberof Symbols.prototype
 * @type {(NonNegativeInteger|Function)}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer or function
+* @default 6
 *
 * @example
 * var symbols = new Symbols({
@@ -13218,12 +15102,12 @@ Object.defineProperty( Symbols.prototype, 'size', {
 /**
 * Symbol opacity. When retrieved, the returned value is an opacity accessor.
 *
-* @memberof Symbols.prototype
 * @name opacity
+* @memberof Symbols.prototype
 * @type {(number|Function)}
-* @default 0.9
 * @throws {TypeError} must be a number or function
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @default 0.9
 *
 * @example
 * var symbols = new Symbols({
@@ -13243,8 +15127,8 @@ Object.defineProperty( Symbols.prototype, 'opacity', {
 /**
 * Symbols color. When retrieved, the returned value is a color accessor.
 *
-* @memberof Symbols.prototype
 * @name color
+* @memberof Symbols.prototype
 * @type {(string|Function)}
 * @throws {TypeError} must be a primitive string or function
 *
@@ -13266,8 +15150,8 @@ Object.defineProperty( Symbols.prototype, 'color', {
 /**
 * Symbols label. When retrieved, the returned value is a label accessor.
 *
-* @memberof Symbols.prototype
 * @name label
+* @memberof Symbols.prototype
 * @type {(string|Function)}
 * @throws {TypeError} must be a primitive string or function
 *
@@ -13289,11 +15173,11 @@ Object.defineProperty( Symbols.prototype, 'label', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Symbols.prototype
 * @name autoRender
+* @memberof Symbols.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var symbols = new Symbols({
@@ -13313,9 +15197,9 @@ Object.defineProperty( Symbols.prototype, 'autoRender', {
 /**
 * Function to map values to x coordinate values.
 *
+* @name xPos
 * @memberof Symbols.prototype
 * @type {Function}
-* @name xPos
 *
 * @example
 * var symbols = new Symbols();
@@ -13331,9 +15215,9 @@ Object.defineProperty( Symbols.prototype, 'xPos', {
 /**
 * Function to map values to y coordinate values.
 *
+* @name yPos
 * @memberof Symbols.prototype
 * @type {Function}
-* @name yPos
 *
 * @example
 * var symbols = new Symbols();
@@ -13349,8 +15233,8 @@ Object.defineProperty( Symbols.prototype, 'yPos', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Symbols.prototype
 * @name render
+* @memberof Symbols.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -13366,21 +15250,21 @@ setReadOnly( Symbols.prototype, 'render', require( './render' ) );
 
 module.exports = Symbols;
 
-},{"./accessors/is_defined.js":302,"./defaults.json":303,"./props/auto-render/get.js":305,"./props/auto-render/set.js":306,"./props/color/get.js":307,"./props/color/set.js":308,"./props/is-defined/get.js":309,"./props/is-defined/set.js":310,"./props/label/get.js":311,"./props/label/set.js":312,"./props/opacity/get.js":313,"./props/opacity/set.js":314,"./props/size/get.js":315,"./props/size/set.js":316,"./props/symbol/get.js":317,"./props/symbol/set.js":318,"./props/x-pos/get.js":320,"./props/x-scale/get.js":321,"./props/x-scale/set.js":322,"./props/x/get.js":323,"./props/x/set.js":324,"./props/y-pos/get.js":325,"./props/y-scale/get.js":326,"./props/y-scale/set.js":327,"./props/y/get.js":328,"./props/y/set.js":329,"./render":331,"@stdlib/assert/is-plain-object":50,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"@stdlib/utils/merge":515,"d3-scale":546,"debug":550,"events":565,"object-keys":578}],334:[function(require,module,exports){
+},{"./accessors/is_defined.js":360,"./defaults.json":361,"./props/auto-render/get.js":363,"./props/auto-render/set.js":364,"./props/color/get.js":365,"./props/color/set.js":366,"./props/is-defined/get.js":367,"./props/is-defined/set.js":368,"./props/label/get.js":369,"./props/label/set.js":370,"./props/opacity/get.js":371,"./props/opacity/set.js":372,"./props/size/get.js":373,"./props/size/set.js":374,"./props/symbol/get.js":375,"./props/symbol/set.js":376,"./props/x-pos/get.js":378,"./props/x-scale/get.js":379,"./props/x-scale/set.js":380,"./props/x/get.js":381,"./props/x/set.js":382,"./props/y-pos/get.js":383,"./props/y-scale/get.js":384,"./props/y-scale/set.js":385,"./props/y/get.js":386,"./props/y/set.js":387,"./render":389,"@stdlib/assert/is-plain-object":89,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"@stdlib/utils/merge":607,"d3-scale":638,"debug":642,"events":657,"object-keys":671}],392:[function(require,module,exports){
 module.exports={
 	"text": "",
 	"autoRender": true
 }
 
-},{}],335:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 module.exports={
 	"text": "change",
 	"autoRender": "change"
 }
 
-},{}],336:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"./events.json":335,"dup":99}],337:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"./events.json":393,"dup":157}],395:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13405,17 +15289,18 @@ var Title = require( './title.js' );
 
 module.exports = Title;
 
-},{"./title.js":343}],338:[function(require,module,exports){
+},{"./title.js":401}],396:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'title:render' );
+var logger = require( 'debug' );
 var h = require( 'virtual-dom/h' );
 
 
 // VARIABLES //
 
+var debug = logger( 'title:render' );
 var ELEMENT = 'text';
 
 
@@ -13428,7 +15313,7 @@ var ELEMENT = 'text';
 * @returns {VTree} virtual DOM tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var props;
 	var vtree;
 	var text;
@@ -13456,27 +15341,28 @@ function render() {
 	this.emit( '_render', vtree );
 
 	return vtree;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550,"virtual-dom/h":615}],339:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],340:[function(require,module,exports){
+},{"debug":642,"virtual-dom/h":707}],397:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],398:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'title:set:auto-render' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/auto_render.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'title:set:auto-render' );
 var CHANGE_EVENT = events( 'autoRender' );
 
 
@@ -13490,7 +15376,7 @@ var CHANGE_EVENT = events( 'autoRender' );
 * @throws {TypeError} must be a positive number
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( bool );
 	if ( err ) {
 		throw err;
@@ -13501,14 +15387,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":336,"./../../validators/auto_render.js":345,"debug":550}],341:[function(require,module,exports){
+},{"./../../events":394,"./../../validators/auto_render.js":403,"debug":642}],399:[function(require,module,exports){
 'use strict';
 
 /**
@@ -13518,27 +15404,28 @@ module.exports = set;
 * @returns {string} text
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._text;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],342:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'title:set:text' );
+var logger = require( 'debug' );
 var events = require( './../../events' );
 var isValid = require( './../../validators/text.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'title:set:text' );
 var CHANGE_EVENT = events( 'text' );
 
 
@@ -13552,7 +15439,7 @@ var CHANGE_EVENT = events( 'text' );
 * @throws {TypeError} must be a string primitive
 */
 function set( text ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var err = isValid( text );
 	if ( err ) {
 		throw err;
@@ -13563,24 +15450,29 @@ function set( text ) {
 	debug( 'New Value: %d.', this._text );
 
 	this.emit( CHANGE_EVENT );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./../../events":336,"./../../validators/text.js":347,"debug":550}],343:[function(require,module,exports){
+},{"./../../events":394,"./../../validators/text.js":405,"debug":642}],401:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'title:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var copy = require( '@stdlib/utils/copy' );
 var defaults = require( './defaults.json' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'title:main' );
 
 
 // MAIN //
@@ -13641,7 +15533,7 @@ function Title( options ) {
 	*/
 	function onChange() {
 		debug( 'Received a change event.' );
-		if ( self._autoRender ) {
+		if ( self._autoRender ) { // eslint-disable-line no-underscore-dangle
 			self.render();
 		}
 	}
@@ -13662,7 +15554,7 @@ function Title( options ) {
 		}
 		self.emit.apply( self, args );
 	}
-} // end FUNCTION Title()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -13677,8 +15569,8 @@ Title.prototype.constructor = Title;
 /**
 * Title text.
 *
-* @memberof Title.prototype
 * @name text
+* @memberof Title.prototype
 * @type {string}
 * @throws {TypeError} must be a primitive string
 *
@@ -13700,11 +15592,11 @@ Object.defineProperty( Title.prototype, 'text', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Title.prototype
 * @name autoRender
+* @memberof Title.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var title = new Title({
@@ -13724,8 +15616,8 @@ Object.defineProperty( Title.prototype, 'autoRender', {
 /**
 * Renders a virtual DOM tree.
 *
-* @memberof Title.prototype
 * @name render
+* @memberof Title.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -13741,7 +15633,7 @@ setReadOnly( Title.prototype, 'render', require( './methods/render.js' ) );
 
 module.exports = Title;
 
-},{"./defaults.json":334,"./methods/render.js":338,"./props/auto-render/get.js":339,"./props/auto-render/set.js":340,"./props/text/get.js":341,"./props/text/set.js":342,"./validate.js":344,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"debug":550,"events":565}],344:[function(require,module,exports){
+},{"./defaults.json":392,"./methods/render.js":396,"./props/auto-render/get.js":397,"./props/auto-render/set.js":398,"./props/text/get.js":399,"./props/text/set.js":400,"./validate.js":402,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"debug":642,"events":657}],402:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13799,16 +15691,16 @@ function validate( opts, options ) {
 		}
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{"./validators":346,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-plain-object":50,"object-keys":578}],345:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"@stdlib/assert/is-boolean":10,"dup":139}],346:[function(require,module,exports){
+},{"./validators":404,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-plain-object":89,"object-keys":671}],403:[function(require,module,exports){
+arguments[4][197][0].apply(exports,arguments)
+},{"@stdlib/assert/is-boolean":38,"dup":197}],404:[function(require,module,exports){
 'use strict';
 
 var validators = {
@@ -13821,7 +15713,7 @@ var validators = {
 
 module.exports = validators;
 
-},{"./auto_render.js":345,"./text.js":347}],347:[function(require,module,exports){
+},{"./auto_render.js":403,"./text.js":405}],405:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13841,20 +15733,25 @@ function test( v ) {
 		return new TypeError( 'invalid value. `text` must be a string primitive. Value: `' + v + '.`' );
 	}
 	return null;
-} // end FUNCTION test()
+}
 
 
 // EXPORTS //
 
 module.exports = test;
 
-},{"@stdlib/assert/is-string":62}],348:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101}],406:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:accessor:is-defined' );
+var logger = require( 'debug' );
 var isnan = require( '@stdlib/assert/is-nan' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:accessor:is-defined' );
 
 
 // MAIN //
@@ -13870,14 +15767,14 @@ function isDefined( d ) {
 	var bool = !isnan( d );
 	debug( 'Datum: %s. Defined: %s.', JSON.stringify( d ), bool );
 	return bool;
-} // end FUNCTION isDefined()
+}
 
 
 // EXPORTS //
 
 module.exports = isDefined;
 
-},{"@stdlib/assert/is-nan":29,"debug":550}],349:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":67,"debug":642}],407:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -13941,6 +15838,7 @@ function defaults() {
 	o.lineWidth = 2; // px
 
 	// FIXME: padding props depend on orientation (may require using `null` to flag)
+
 	// Bottom padding:
 	o.paddingBottom = 80; // px
 
@@ -14047,14 +15945,14 @@ function defaults() {
 	o.yTickFormat = null;
 
 	return o;
-} // end FUNCTION defaults()
+}
 
 
 // EXPORTS //
 
 module.exports = defaults;
 
-},{"./accessors/is_defined.js":348,"@stdlib/assert/is-node-repl":32}],350:[function(require,module,exports){
+},{"./accessors/is_defined.js":406,"@stdlib/assert/is-node-repl":70}],408:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -14093,6 +15991,8 @@ function factory( options ) {
 	} else {
 		opts = {};
 	}
+	return plot;
+
 	/**
 	* Creates a plot.
 	*
@@ -14102,20 +16002,20 @@ function factory( options ) {
 	* @throws {TypeError} must provide valid options
 	* @returns {Plot} plot instance
 	*/
-	return function plot( x, y ) {
+	function plot( x, y ) {
 		if ( arguments.length === 2 ) {
 			return new Plot( x, y, opts );
 		}
 		return new Plot( opts );
-	}; // end FUNCTION plot()
-} // end FUNCTION factory()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = factory;
 
-},{"./plot.js":352,"@stdlib/assert/is-plain-object":50,"@stdlib/utils/copy":488}],351:[function(require,module,exports){
+},{"./plot.js":410,"@stdlib/assert/is-plain-object":89,"@stdlib/utils/copy":550}],409:[function(require,module,exports){
 'use strict';
 
 /**
@@ -14160,23 +16060,24 @@ setReadOnly( Plot, 'factory', factory );
 
 module.exports = Plot;
 
-},{"./factory.js":350,"./plot.js":352,"@stdlib/utils/define-read-only-property":491}],352:[function(require,module,exports){
+},{"./factory.js":408,"./plot.js":410,"@stdlib/utils/define-read-only-property":553}],410:[function(require,module,exports){
 'use strict';
 
-var debug = require( 'debug' )( 'plot:main' );
+var logger = require( 'debug' );
 var EventEmitter = require( 'events' ).EventEmitter;
 var getKeys = require( 'object-keys' ).shim();
 var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
 var isObject = require( '@stdlib/assert/is-plain-object' );
 var copy = require( '@stdlib/utils/copy' );
 var mergeFcn = require( '@stdlib/utils/merge' ).factory;
-var minstd = require( '@stdlib/math/base/random/minstd' );
+var minstd = require( '@stdlib/random/base/minstd' );
 var view = require( './view/view.js' );
 var defaults = require( './defaults.js' );
 
 
 // VARIABLES //
 
+var debug = logger( 'plot:main' );
 var PRIVATE_PROPS = [
 	'_autoRender',
 	'_autoView',
@@ -14413,7 +16314,7 @@ function Plot() {
 			view( self, self._viewer, plot );
 		}
 	}
-} // end FUNCTION Plot()
+}
 
 /*
 * Create a prototype which inherits from the parent prototype.
@@ -14428,11 +16329,11 @@ Plot.prototype.constructor = Plot;
 /**
 * `x` values.
 *
-* @memberof Plot.prototype
 * @name x
+* @memberof Plot.prototype
 * @type {Array}
-* @default []
 * @throws {TypeError} must be an array
+* @default []
 *
 * @example
 * var plot = new Plot();
@@ -14455,11 +16356,11 @@ Object.defineProperty( Plot.prototype, 'x', {
 /**
 * `y` values.
 *
-* @memberof Plot.prototype
 * @name y
+* @memberof Plot.prototype
 * @type {Array}
-* @default []
 * @throws {TypeError} must be an array
+* @default []
 *
 * @example
 * var plot = new Plot();
@@ -14484,11 +16385,11 @@ Object.defineProperty( Plot.prototype, 'y', {
 /**
 * Data labels.
 *
-* @memberof Plot.prototype
 * @name labels
+* @memberof Plot.prototype
 * @type {(StringArray|EmptyArray)}
-* @default []
 * @throws {TypeError} must be either an array of strings or an empty array
+* @default []
 *
 * @example
 * var plot = new Plot();
@@ -14511,8 +16412,8 @@ Object.defineProperty( Plot.prototype, 'labels', {
 /**
 * Accessor which defines whether a datum is defined. This accessor is used to define how missing values are encoded. The default behavior is to ignore values which are `NaN`.
 *
-* @memberof Plot.prototype
 * @name isDefined
+* @memberof Plot.prototype
 * @type {Function}
 * @throws {TypeError} must be a function
 *
@@ -14544,11 +16445,11 @@ Object.defineProperty( Plot.prototype, 'isDefined', {
 /**
 * Data colors. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name colors
+* @memberof Plot.prototype
 * @type {(string|StringArray)}
-* @default 'category10'
 * @throws {TypeError} must be either a string or an array of strings
+* @default 'category10'
 *
 * @example
 * var plot = new Plot();
@@ -14571,12 +16472,12 @@ Object.defineProperty( Plot.prototype, 'colors', {
 /**
 * Data line style(s). When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name lineStyle
+* @memberof Plot.prototype
 * @type {(string|StringArray)}
-* @default '-'
 * @throws {TypeError} must be a string or string array
 * @throws {Error} must be a supported line style
+* @default '-'
 *
 * @example
 * var plot = new Plot();
@@ -14599,12 +16500,12 @@ Object.defineProperty( Plot.prototype, 'lineStyle', {
 /**
 * Data line opacity. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name lineOpacity
-* @type {(number|numberArray)}
-* @default '-'
+* @memberof Plot.prototype
+* @type {(number|NumberArray)}
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @default '-'
 *
 * @example
 * var plot = new Plot();
@@ -14627,11 +16528,11 @@ Object.defineProperty( Plot.prototype, 'lineOpacity', {
 /**
 * Data line width. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name lineWidth
+* @memberof Plot.prototype
 * @type {(NonNegativeInteger|NonNegativeIntegerArray)}
-* @default 2
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @default 2
 *
 * @example
 * var plot = new Plot();
@@ -14654,12 +16555,12 @@ Object.defineProperty( Plot.prototype, 'lineWidth', {
 /**
 * Data symbols. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name symbols
+* @memberof Plot.prototype
 * @type {(string|StringArray)}
-* @default 'none'
 * @throws {TypeError} must be a string or string array
 * @throws {Error} must be a supported symbol
+* @default 'none'
 *
 * @example
 * var plot = new Plot();
@@ -14682,11 +16583,11 @@ Object.defineProperty( Plot.prototype, 'symbols', {
 /**
 * Symbols size. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name symbolsSize
+* @memberof Plot.prototype
 * @type {(NonNegativeInteger|NonNegativeIntegerArray)}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @default 6
 *
 * @example
 * var plot = new Plot();
@@ -14709,12 +16610,12 @@ Object.defineProperty( Plot.prototype, 'symbolsSize', {
 /**
 * Symbols opacity. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name symbolsOpacity
+* @memberof Plot.prototype
 * @type {(number|NumberArray)}
-* @default 0.9
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @default 0.9
 *
 * @example
 * var plot = new Plot();
@@ -14737,11 +16638,11 @@ Object.defineProperty( Plot.prototype, 'symbolsOpacity', {
 /**
 * Plot width.
 *
-* @memberof Plot.prototype
 * @name width
+* @memberof Plot.prototype
 * @type {PositiveNumber}
-* @default 400 (px)
 * @throws {TypeError} must be a positive number
+* @default 400 (px)
 *
 * @example
 * var plot = new Plot();
@@ -14764,11 +16665,11 @@ Object.defineProperty( Plot.prototype, 'width', {
 /**
 * Plot height.
 *
-* @memberof Plot.prototype
 * @name height
+* @memberof Plot.prototype
 * @type {PositiveNumber}
-* @default 400 (px)
 * @throws {TypeError} must be a positive number
+* @default 400 (px)
 *
 * @example
 * var plot = new Plot();
@@ -14791,11 +16692,11 @@ Object.defineProperty( Plot.prototype, 'height', {
 /**
 * Plot left padding. Typically used to create space for a left-oriented y-axis.
 *
-* @memberof Plot.prototype
 * @name paddingLeft
+* @memberof Plot.prototype
 * @type {NonNegativeInteger}
-* @default 90 (px)
 * @throws {TypeError} must be a nonnegative integer
+* @default 90 (px)
 *
 * @example
 * var plot = new Plot();
@@ -14818,11 +16719,11 @@ Object.defineProperty( Plot.prototype, 'paddingLeft', {
 /**
 * Plot right padding. Typically used to create space for a right-oriented y-axis.
 *
-* @memberof Plot.prototype
 * @name paddingRight
+* @memberof Plot.prototype
 * @type {NonNegativeInteger}
-* @default 20 (px)
 * @throws {TypeError} must be a nonnegative integer
+* @default 20 (px)
 *
 * @example
 * var plot = new Plot();
@@ -14845,11 +16746,11 @@ Object.defineProperty( Plot.prototype, 'paddingRight', {
 /**
 * Plot top padding. Typically used to create space for a title or top-oriented x-axis.
 *
-* @memberof Plot.prototype
 * @name paddingTop
+* @memberof Plot.prototype
 * @type {NonNegativeInteger}
-* @default 80 (px)
 * @throws {TypeError} must be a nonnegative integer
+* @default 80 (px)
 *
 * @example
 * var plot = new Plot();
@@ -14872,11 +16773,11 @@ Object.defineProperty( Plot.prototype, 'paddingTop', {
 /**
 * Plot bottom padding. Typically used to create space for a bottom-oriented y-axis.
 *
-* @memberof Plot.prototype
 * @name paddingBottom
+* @memberof Plot.prototype
 * @type {NonNegativeInteger}
-* @default 80 (px)
 * @throws {TypeError} must be a nonnegative integer
+* @default 80 (px)
 *
 * @example
 * var plot = new Plot();
@@ -14899,11 +16800,11 @@ Object.defineProperty( Plot.prototype, 'paddingBottom', {
 /**
 * Minimum value of the x-axis domain. When retrieved, if the value has been set to `null`, the returned value is computed from the `x` data.
 *
-* @memberof Plot.prototype
 * @name xMin
+* @memberof Plot.prototype
 * @type {(FiniteNumber|null)}
-* @default null
 * @throws {TypeError} must be a finite number primitive or null
+* @default null
 *
 * @example
 * var plot = new Plot();
@@ -14926,11 +16827,11 @@ Object.defineProperty( Plot.prototype, 'xMin', {
 /**
 * Maximum value of the x-axis domain. When retrieved, if the value has been set to `null`, the returned value is computed from the `x` data.
 *
-* @memberof Plot.prototype
 * @name xMax
+* @memberof Plot.prototype
 * @type {(FiniteNumber|null)}
-* @default null
 * @throws {TypeError} must be a finite number primitive or null
+* @default null
 *
 * @example
 * var plot = new Plot();
@@ -14953,11 +16854,11 @@ Object.defineProperty( Plot.prototype, 'xMax', {
 /**
 * Minimum value of the y-axis domain. When retrieved, if the value has been set to `null`, the returned value is computed from the `y` data.
 *
-* @memberof Plot.prototype
 * @name yMin
+* @memberof Plot.prototype
 * @type {(FiniteNumber|null)}
-* @default null
 * @throws {TypeError} must be a finite number primitive or null
+* @default null
 *
 * @example
 * var plot = new Plot();
@@ -14980,11 +16881,11 @@ Object.defineProperty( Plot.prototype, 'yMin', {
 /**
 * Maximum value of the y-axis domain. When retrieved, if the value has been set to `null`, the returned value is computed from the `y` data.
 *
-* @memberof Plot.prototype
 * @name yMax
+* @memberof Plot.prototype
 * @type {(FiniteNumber|null)}
-* @default null
 * @throws {TypeError} must be a finite number primitive or null
+* @default null
 *
 * @example
 * var plot = new Plot();
@@ -15007,11 +16908,11 @@ Object.defineProperty( Plot.prototype, 'yMax', {
 /**
 * Scale function for mapping values to a coordinate along the x-axis. When retrieved, the returned value is a scale function.
 *
+* @name xScale
 * @memberof Plot.prototype
 * @type {string}
-* @name xScale
-* @default 'linear'
 * @throws {TypeError} must be a string primitive
+* @default 'linear'
 *
 * @example
 * var plot = new Plot();
@@ -15034,11 +16935,11 @@ Object.defineProperty( Plot.prototype, 'xScale', {
 /**
 * Scale function for mapping values to a coordinate along the y-axis. When retrieved, the returned value is a scale function.
 *
+* @name yScale
 * @memberof Plot.prototype
 * @type {string}
-* @name yScale
-* @default 'linear'
 * @throws {TypeError} must be a string primitive
+* @default 'linear'
 *
 * @example
 * var plot = new Plot();
@@ -15061,11 +16962,11 @@ Object.defineProperty( Plot.prototype, 'yScale', {
 /**
 * x-axis tick format. When retrieved, if the value is not `null`, the returned value is a formatting function.
 *
-* @memberof Plot.prototype
 * @name xTickFormat
+* @memberof Plot.prototype
 * @type {(string|null)}
-* @default null
 * @throws {TypeError} must be a string primitive or null
+* @default null
 *
 * @example
 * var plot = new Plot();
@@ -15090,11 +16991,11 @@ Object.defineProperty( Plot.prototype, 'xTickFormat', {
 /**
 * y-axis tick format. If the value is not `null`, when retrieved, the returned value is a formatting function.
 *
-* @memberof Plot.prototype
 * @name yTickFormat
+* @memberof Plot.prototype
 * @type {(string|null)}
-* @default null
 * @throws {TypeError} must be a string primitive or null
+* @default null
 *
 * @example
 * var plot = new Plot();
@@ -15117,11 +17018,11 @@ Object.defineProperty( Plot.prototype, 'yTickFormat', {
 /**
 * Number of x-axis tick marks.
 *
-* @memberof Plot.prototype
 * @name xNumTicks
+* @memberof Plot.prototype
 * @type {(NonNegativeInteger|null)}
-* @default 5
 * @throws {TypeError} must be a nonnegative integer or null
+* @default 5
 *
 * @example
 * var plot = new Plot();
@@ -15144,11 +17045,11 @@ Object.defineProperty( Plot.prototype, 'xNumTicks', {
 /**
 * Number of y-axis tick marks.
 *
-* @memberof Plot.prototype
 * @name yNumTicks
+* @memberof Plot.prototype
 * @type {(NonNegativeInteger|null)}
-* @default 5
 * @throws {TypeError} must be a nonnegative integer or null
+* @default 5
 *
 * @example
 * var plot = new Plot();
@@ -15171,11 +17072,11 @@ Object.defineProperty( Plot.prototype, 'yNumTicks', {
 /**
 * x-axis orientation.
 *
-* @memberof Plot.prototype
 * @name xAxisOrient
+* @memberof Plot.prototype
 * @type {string}
-* @default 'bottom'
 * @throws {TypeError} must be either `'top'` or `'bottom'`
+* @default 'bottom'
 *
 * @example
 * var plot = new Plot();
@@ -15198,11 +17099,11 @@ Object.defineProperty( Plot.prototype, 'xAxisOrient', {
 /**
 * y-axis orientation.
 *
-* @memberof Plot.prototype
 * @name yAxisOrient
+* @memberof Plot.prototype
 * @type {string}
-* @default 'left'
 * @throws {TypeError} must be either `'left'` or `'right'`
+* @default 'left'
 *
 * @example
 * var plot = new Plot();
@@ -15225,11 +17126,11 @@ Object.defineProperty( Plot.prototype, 'yAxisOrient', {
 /**
 * Boolean flag(s) indicating whether to display a rug plot along the x-axis. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name xRug
+* @memberof Plot.prototype
 * @type {(boolean|BooleanArray)}
-* @default false
 * @throws {TypeError} must be a boolean primitive or boolean array
+* @default false
 *
 * @example
 * var plot = new Plot({
@@ -15249,11 +17150,11 @@ Object.defineProperty( Plot.prototype, 'xRug', {
 /**
 * Boolean flag(s) indicating whether to display a rug plot along the y-axis. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name yRug
+* @memberof Plot.prototype
 * @type {(boolean|BooleanArray)}
-* @default false
 * @throws {TypeError} must be a boolean primitive or boolean array
+* @default false
 *
 * @example
 * var plot = new Plot({
@@ -15273,12 +17174,12 @@ Object.defineProperty( Plot.prototype, 'yRug', {
 /**
 * x-axis rug orientation. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name xRugOrient
+* @memberof Plot.prototype
 * @type {(string|StringArray)}
-* @default 'bottom'
 * @throws {TypeError} must be a string or string array
 * @throws {TypeError} must be either `'top'` or `'bottom'`
+* @default 'bottom'
 *
 * @example
 * var plot = new Plot();
@@ -15301,12 +17202,12 @@ Object.defineProperty( Plot.prototype, 'xRugOrient', {
 /**
 * y-axis rug orientation. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name yRugOrient
+* @memberof Plot.prototype
 * @type {(string|StringArray)}
-* @default 'left'
 * @throws {TypeError} must be a string or string array
 * @throws {TypeError} must be either `'left'` or `'right'`
+* @default 'left'
 *
 * @example
 * var plot = new Plot();
@@ -15329,12 +17230,12 @@ Object.defineProperty( Plot.prototype, 'yRugOrient', {
 /**
 * x-axis rug opacity. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name xRugOpacity
+* @memberof Plot.prototype
 * @type {(number|NumberArray)}
-* @default 0.1
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @default 0.1
 *
 * @example
 * var plot = new Plot();
@@ -15357,12 +17258,12 @@ Object.defineProperty( Plot.prototype, 'xRugOpacity', {
 /**
 * y-axis rug opacity. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name yRugOpacity
+* @memberof Plot.prototype
 * @type {(number|NumberArray)}
-* @default 0.1
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @default 0.1
 *
 * @example
 * var plot = new Plot();
@@ -15385,11 +17286,11 @@ Object.defineProperty( Plot.prototype, 'yRugOpacity', {
 /**
 * x-axis rug tick (tassel) size. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name xRugSize
+* @memberof Plot.prototype
 * @type {(NonNegativeInteger|Array<NonNegativeInteger>)}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @default 6
 *
 * @example
 * var plot = new Plot();
@@ -15412,11 +17313,11 @@ Object.defineProperty( Plot.prototype, 'xRugSize', {
 /**
 * y-axis rug tick (tassel) size. When retrieved, the returned value is always an `array`.
 *
-* @memberof Plot.prototype
 * @name yRugSize
+* @memberof Plot.prototype
 * @type {(NonNegativeInteger|Array<NonNegativeInteger>)}
-* @default 6
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @default 6
 *
 * @example
 * var plot = new Plot();
@@ -15439,11 +17340,11 @@ Object.defineProperty( Plot.prototype, 'yRugSize', {
 /**
 * Plot description.
 *
-* @memberof Plot.prototype
 * @name description
+* @memberof Plot.prototype
 * @type {string}
-* @default ''
 * @throws {TypeError} must be a string primitive
+* @default ''
 *
 * @example
 * var plot = new Plot();
@@ -15466,11 +17367,11 @@ Object.defineProperty( Plot.prototype, 'description', {
 /**
 * Plot title.
 *
-* @memberof Plot.prototype
 * @name title
+* @memberof Plot.prototype
 * @type {string}
-* @default ''
 * @throws {TypeError} must be a string primitive
+* @default ''
 *
 * @example
 * var plot = new Plot();
@@ -15493,11 +17394,11 @@ Object.defineProperty( Plot.prototype, 'title', {
 /**
 * x-axis label.
 *
-* @memberof Plot.prototype
 * @name xLabel
+* @memberof Plot.prototype
 * @type {string}
-* @default 'x'
 * @throws {TypeError} must be a string primitive
+* @default 'x'
 *
 * @example
 * var plot = new Plot();
@@ -15520,11 +17421,11 @@ Object.defineProperty( Plot.prototype, 'xLabel', {
 /**
 * y-axis label.
 *
-* @memberof Plot.prototype
 * @name yLabel
+* @memberof Plot.prototype
 * @type {string}
-* @default 'y'
 * @throws {TypeError} must be a string primitive
+* @default 'y'
 *
 * @example
 * var plot = new Plot();
@@ -15547,11 +17448,11 @@ Object.defineProperty( Plot.prototype, 'yLabel', {
 /**
 * Plot engine.
 *
-* @memberof Plot.prototype
 * @name engine
+* @memberof Plot.prototype
 * @type {string}
-* @default 'svg'
 * @throws {TypeError} must be a string primitive
+* @default 'svg'
 *
 * @example
 * var plot = new Plot();
@@ -15574,11 +17475,11 @@ Object.defineProperty( Plot.prototype, 'engine', {
 /**
 * Rendering mode. If `true`, an instance re-renders on each change event.
 *
-* @memberof Plot.prototype
 * @name autoRender
+* @memberof Plot.prototype
 * @type {boolean}
-* @default true
 * @throws {TypeError} must be a boolean primitive
+* @default true
 *
 * @example
 * var plot = new Plot({
@@ -15598,11 +17499,11 @@ Object.defineProperty( Plot.prototype, 'autoRender', {
 /**
 * Plot viewer.
 *
-* @memberof Plot.prototype
 * @name viewer
+* @memberof Plot.prototype
 * @type {string}
-* @default 'none'
 * @throws {TypeError} must be a recognized viewer
+* @default 'none'
 *
 * @example
 * var plot = new Plot();
@@ -15625,11 +17526,11 @@ Object.defineProperty( Plot.prototype, 'viewer', {
 /**
 * Viewer mode. If `true`, an instance generates an updated view on each render event.
 *
-* @memberof Plot.prototype
 * @name autoView
+* @memberof Plot.prototype
 * @type {boolean}
-* @default false
 * @throws {TypeError} must be a boolean primitive
+* @default false
 *
 * @example
 * var plot = new Plot({
@@ -15649,9 +17550,9 @@ Object.defineProperty( Plot.prototype, 'autoView', {
 /**
 * Expected graph width.
 *
+* @name graphWidth
 * @memberof Plot.prototype
 * @type {number}
-* @name graphWidth
 *
 * @example
 * var plot = new Plot({
@@ -15671,9 +17572,9 @@ Object.defineProperty( Plot.prototype, 'graphWidth', {
 /**
 * Expected graph height.
 *
+* @name graphHeight
 * @memberof Plot.prototype
 * @type {number}
-* @name graphHeight
 *
 * @example
 * var plot = new Plot({
@@ -15693,9 +17594,9 @@ Object.defineProperty( Plot.prototype, 'graphHeight', {
 /**
 * x-axis domain.
 *
+* @name xDomain
 * @memberof Plot.prototype
 * @type {NumberArray}
-* @name xDomain
 *
 * @example
 * var plot = new Plot({
@@ -15713,9 +17614,9 @@ Object.defineProperty( Plot.prototype, 'xDomain', {
 /**
 * y-axis domain.
 *
+* @name yDomain
 * @memberof Plot.prototype
 * @type {NumberArray}
-* @name yDomain
 *
 * @example
 * var plot = new Plot({
@@ -15733,9 +17634,9 @@ Object.defineProperty( Plot.prototype, 'yDomain', {
 /**
 * x-axis range.
 *
+* @name xRange
 * @memberof Plot.prototype
 * @type {NumberArray}
-* @name xRange
 *
 * @example
 * var plot = new Plot({
@@ -15755,9 +17656,9 @@ Object.defineProperty( Plot.prototype, 'xRange', {
 /**
 * y-axis range.
 *
+* @name yRange
 * @memberof Plot.prototype
 * @type {NumberArray}
-* @name yRange
 *
 * @example
 * var plot = new Plot({
@@ -15777,9 +17678,9 @@ Object.defineProperty( Plot.prototype, 'yRange', {
 /**
 * Function to map values to x-axis coordinate values.
 *
+* @name xPos
 * @memberof Plot.prototype
 * @type {Function}
-* @name xPos
 *
 * @example
 * var plot = new Plot();
@@ -15795,9 +17696,9 @@ Object.defineProperty( Plot.prototype, 'xPos', {
 /**
 * Function to map values to y-axis coordinate values.
 *
+* @name yPos
 * @memberof Plot.prototype
 * @type {Function}
-* @name yPos
 *
 * @example
 * var plot = new Plot();
@@ -15813,8 +17714,8 @@ Object.defineProperty( Plot.prototype, 'yPos', {
 /**
 * Renders a plot as a virtual DOM tree.
 *
-* @memberof Plot.prototype
 * @name render
+* @memberof Plot.prototype
 * @type {Function}
 * @returns {VTree} virtual tree
 *
@@ -15830,8 +17731,8 @@ setReadOnly( Plot.prototype, 'render', require( './render' ) );
 /**
 * Generates a plot view.
 *
-* @memberof Plot.prototype
 * @name view
+* @memberof Plot.prototype
 * @type {Function}
 * @param {string} [viewer]
 * @throws {TypeError} must provide a recognized viewer
@@ -15850,15 +17751,20 @@ setReadOnly( Plot.prototype, 'view', require( './view' ) );
 
 module.exports = Plot;
 
-},{"./defaults.js":349,"./props/auto-render/get.js":353,"./props/auto-render/set.js":354,"./props/auto-view/get.js":355,"./props/auto-view/set.js":356,"./props/colors/get.js":358,"./props/colors/set.js":359,"./props/description/get.js":360,"./props/description/set.js":361,"./props/engine/get.js":362,"./props/engine/set.js":363,"./props/graph-height/get.js":364,"./props/graph-width/get.js":365,"./props/height/get.js":366,"./props/height/set.js":367,"./props/is-defined/get.js":368,"./props/is-defined/set.js":369,"./props/labels/get.js":370,"./props/labels/set.js":371,"./props/line-opacity/get.js":372,"./props/line-opacity/set.js":373,"./props/line-style/get.js":374,"./props/line-style/set.js":376,"./props/line-width/get.js":377,"./props/line-width/set.js":378,"./props/padding-bottom/get.js":379,"./props/padding-bottom/set.js":380,"./props/padding-left/get.js":381,"./props/padding-left/set.js":382,"./props/padding-right/get.js":383,"./props/padding-right/set.js":384,"./props/padding-top/get.js":385,"./props/padding-top/set.js":386,"./props/symbols-opacity/get.js":387,"./props/symbols-opacity/set.js":388,"./props/symbols-size/get.js":389,"./props/symbols-size/set.js":390,"./props/symbols/get.js":391,"./props/symbols/set.js":392,"./props/title/get.js":394,"./props/title/set.js":395,"./props/viewer/get.js":396,"./props/viewer/set.js":397,"./props/width/get.js":399,"./props/width/set.js":400,"./props/x-axis-orient/get.js":401,"./props/x-axis-orient/set.js":403,"./props/x-domain/get.js":404,"./props/x-label/get.js":405,"./props/x-label/set.js":406,"./props/x-max/get.js":407,"./props/x-max/set.js":408,"./props/x-min/get.js":409,"./props/x-min/set.js":410,"./props/x-num-ticks/get.js":411,"./props/x-num-ticks/set.js":412,"./props/x-pos/get.js":413,"./props/x-range/get.js":414,"./props/x-rug-opacity/get.js":415,"./props/x-rug-opacity/set.js":416,"./props/x-rug-orient/get.js":417,"./props/x-rug-orient/set.js":419,"./props/x-rug-size/get.js":420,"./props/x-rug-size/set.js":421,"./props/x-rug/get.js":422,"./props/x-rug/set.js":423,"./props/x-scale/get.js":424,"./props/x-scale/set.js":425,"./props/x-tick-format/get.js":426,"./props/x-tick-format/set.js":427,"./props/x/get.js":428,"./props/x/set.js":429,"./props/y-axis-orient/get.js":430,"./props/y-axis-orient/set.js":432,"./props/y-domain/get.js":433,"./props/y-label/get.js":434,"./props/y-label/set.js":435,"./props/y-max/get.js":436,"./props/y-max/set.js":437,"./props/y-min/get.js":438,"./props/y-min/set.js":439,"./props/y-num-ticks/get.js":440,"./props/y-num-ticks/set.js":441,"./props/y-pos/get.js":442,"./props/y-range/get.js":443,"./props/y-rug-opacity/get.js":444,"./props/y-rug-opacity/set.js":445,"./props/y-rug-orient/get.js":446,"./props/y-rug-orient/set.js":448,"./props/y-rug-size/get.js":449,"./props/y-rug-size/set.js":450,"./props/y-rug/get.js":451,"./props/y-rug/set.js":452,"./props/y-scale/get.js":453,"./props/y-scale/set.js":454,"./props/y-tick-format/get.js":455,"./props/y-tick-format/set.js":456,"./props/y/get.js":457,"./props/y/set.js":458,"./render":459,"./view":475,"./view/view.js":477,"@stdlib/assert/is-plain-object":50,"@stdlib/math/base/random/minstd":76,"@stdlib/utils/copy":488,"@stdlib/utils/define-read-only-property":491,"@stdlib/utils/merge":515,"debug":550,"events":565,"object-keys":578}],353:[function(require,module,exports){
-arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],354:[function(require,module,exports){
+},{"./defaults.js":407,"./props/auto-render/get.js":411,"./props/auto-render/set.js":412,"./props/auto-view/get.js":413,"./props/auto-view/set.js":414,"./props/colors/get.js":416,"./props/colors/set.js":417,"./props/description/get.js":418,"./props/description/set.js":419,"./props/engine/get.js":420,"./props/engine/set.js":421,"./props/graph-height/get.js":422,"./props/graph-width/get.js":423,"./props/height/get.js":424,"./props/height/set.js":425,"./props/is-defined/get.js":426,"./props/is-defined/set.js":427,"./props/labels/get.js":428,"./props/labels/set.js":429,"./props/line-opacity/get.js":430,"./props/line-opacity/set.js":431,"./props/line-style/get.js":432,"./props/line-style/set.js":434,"./props/line-width/get.js":435,"./props/line-width/set.js":436,"./props/padding-bottom/get.js":437,"./props/padding-bottom/set.js":438,"./props/padding-left/get.js":439,"./props/padding-left/set.js":440,"./props/padding-right/get.js":441,"./props/padding-right/set.js":442,"./props/padding-top/get.js":443,"./props/padding-top/set.js":444,"./props/symbols-opacity/get.js":445,"./props/symbols-opacity/set.js":446,"./props/symbols-size/get.js":447,"./props/symbols-size/set.js":448,"./props/symbols/get.js":449,"./props/symbols/set.js":450,"./props/title/get.js":452,"./props/title/set.js":453,"./props/viewer/get.js":454,"./props/viewer/set.js":455,"./props/width/get.js":457,"./props/width/set.js":458,"./props/x-axis-orient/get.js":459,"./props/x-axis-orient/set.js":461,"./props/x-domain/get.js":462,"./props/x-label/get.js":463,"./props/x-label/set.js":464,"./props/x-max/get.js":465,"./props/x-max/set.js":466,"./props/x-min/get.js":467,"./props/x-min/set.js":468,"./props/x-num-ticks/get.js":469,"./props/x-num-ticks/set.js":470,"./props/x-pos/get.js":471,"./props/x-range/get.js":472,"./props/x-rug-opacity/get.js":473,"./props/x-rug-opacity/set.js":474,"./props/x-rug-orient/get.js":475,"./props/x-rug-orient/set.js":477,"./props/x-rug-size/get.js":478,"./props/x-rug-size/set.js":479,"./props/x-rug/get.js":480,"./props/x-rug/set.js":481,"./props/x-scale/get.js":482,"./props/x-scale/set.js":483,"./props/x-tick-format/get.js":484,"./props/x-tick-format/set.js":485,"./props/x/get.js":486,"./props/x/set.js":487,"./props/y-axis-orient/get.js":488,"./props/y-axis-orient/set.js":490,"./props/y-domain/get.js":491,"./props/y-label/get.js":492,"./props/y-label/set.js":493,"./props/y-max/get.js":494,"./props/y-max/set.js":495,"./props/y-min/get.js":496,"./props/y-min/set.js":497,"./props/y-num-ticks/get.js":498,"./props/y-num-ticks/set.js":499,"./props/y-pos/get.js":500,"./props/y-range/get.js":501,"./props/y-rug-opacity/get.js":502,"./props/y-rug-opacity/set.js":503,"./props/y-rug-orient/get.js":504,"./props/y-rug-orient/set.js":506,"./props/y-rug-size/get.js":507,"./props/y-rug-size/set.js":508,"./props/y-rug/get.js":509,"./props/y-rug/set.js":510,"./props/y-scale/get.js":511,"./props/y-scale/set.js":512,"./props/y-tick-format/get.js":513,"./props/y-tick-format/set.js":514,"./props/y/get.js":515,"./props/y/set.js":516,"./render":517,"./view":533,"./view/view.js":535,"@stdlib/assert/is-plain-object":89,"@stdlib/random/base/minstd":539,"@stdlib/utils/copy":550,"@stdlib/utils/define-read-only-property":553,"@stdlib/utils/merge":607,"debug":642,"events":657,"object-keys":671}],411:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],412:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:auto-render' );
+var logger = require( 'debug' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:auto-render' );
 
 
 // MAIN //
@@ -15869,9 +17775,10 @@ var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 * @private
 * @param {boolean} bool - boolean indicating whether to re-render on a change event
 * @throws {TypeError} must be a boolean primitive
+* @returns {void}
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isBoolean( bool ) ) {
 		throw new TypeError( 'invalid value. `autoRender` must be a boolean primitive. Value: `' + bool + '.`' );
 	}
@@ -15881,14 +17788,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoRender );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":10,"debug":550}],355:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38,"debug":642}],413:[function(require,module,exports){
 'use strict';
 
 /**
@@ -15898,22 +17805,27 @@ module.exports = set;
 * @returns {boolean} viewing mode
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._autoView;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],356:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:auto-view' );
+var logger = require( 'debug' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:auto-view' );
 
 
 // MAIN //
@@ -15924,9 +17836,10 @@ var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
 * @private
 * @param {boolean} bool - boolean indicating whether to generate an updated view on a render event
 * @throws {TypeError} must be a boolean primitive
+* @returns {void}
 */
 function set( bool ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isBoolean( bool ) ) {
 		throw new TypeError( 'invalid value. `autoView` must be a boolean primitive. Value: `' + bool + '.`' );
 	}
@@ -15936,14 +17849,14 @@ function set( bool ) {
 	debug( 'New Value: %d.', this._autoView );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":10,"debug":550}],357:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38,"debug":642}],415:[function(require,module,exports){
 'use strict';
 
 /*
@@ -16039,7 +17952,7 @@ COLORS.category20c = [
 
 module.exports = COLORS;
 
-},{}],358:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16049,24 +17962,29 @@ module.exports = COLORS;
 * @returns {StringArray} colors
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._colors.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],359:[function(require,module,exports){
+},{}],417:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:colors' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
 var COLORS = require( './colors.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:colors' );
 
 
 // MAIN //
@@ -16077,9 +17995,10 @@ var COLORS = require( './colors.js' );
 * @private
 * @param {(string|StringArray)} v - data colors
 * @throws {TypeError} must be either a string or an array of strings
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isStr = isString( v );
 	if (
 		!isStr &&
@@ -16103,14 +18022,14 @@ function set( v ) {
 	debug( 'New Value: %s.', JSON.stringify( this._colors ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./colors.js":357,"@stdlib/assert/is-string":62,"@stdlib/assert/is-string-array":60,"debug":550}],360:[function(require,module,exports){
+},{"./colors.js":415,"@stdlib/assert/is-string":101,"@stdlib/assert/is-string-array":99,"debug":642}],418:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16120,22 +18039,27 @@ module.exports = set;
 * @returns {string} description
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._description;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],361:[function(require,module,exports){
+},{}],419:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:description' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:description' );
 
 
 // MAIN //
@@ -16146,9 +18070,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {string} str - description
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( str ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( str ) ) {
 		throw new TypeError( 'invalid value. `description` must be a string. Value: `' + str + '.`' );
 	}
@@ -16158,14 +18083,14 @@ function set( str ) {
 	debug( 'New value: %s.', this._description );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],362:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],420:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16175,22 +18100,27 @@ module.exports = set;
 * @returns {string} engine
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._engine;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],363:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:engine' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:engine' );
 
 
 // MAIN //
@@ -16201,9 +18131,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {string} engine - engine
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( engine ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	// TODO: verify valid engine
 	if ( !isString( engine ) ) {
 		throw new TypeError( 'invalid value. `engine` must be a string. Value: `' + engine + '.`' );
@@ -16214,14 +18145,14 @@ function set( engine ) {
 	debug( 'New value: %s.', this._engine );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],364:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],422:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16231,16 +18162,16 @@ module.exports = set;
 * @returns {number} graph height
 */
 function get() {
-	/* jshint validthis:true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._height - this._paddingTop - this._paddingBottom;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],365:[function(require,module,exports){
+},{}],423:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16250,24 +18181,29 @@ module.exports = get;
 * @returns {number} graph width
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._width - this._paddingLeft - this._paddingRight;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],366:[function(require,module,exports){
-arguments[4][159][0].apply(exports,arguments)
-},{"dup":159}],367:[function(require,module,exports){
+},{}],424:[function(require,module,exports){
+arguments[4][217][0].apply(exports,arguments)
+},{"dup":217}],425:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:height' );
+var logger = require( 'debug' );
 var isPositiveNumber = require( '@stdlib/assert/is-positive-number' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:height' );
 
 
 // MAIN //
@@ -16278,9 +18214,10 @@ var isPositiveNumber = require( '@stdlib/assert/is-positive-number' ).isPrimitiv
 * @private
 * @param {PositiveNumber} height - height
 * @throws {TypeError} must be a positive number
+* @returns {void}
 */
 function set( height ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isPositiveNumber( height ) ) {
 		throw new TypeError( 'invalid value. `height` must be a positive number. Value: `' + height + '.`' );
 	}
@@ -16290,22 +18227,27 @@ function set( height ) {
 	debug( 'New Value: %d.', this._height );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-positive-number":57,"debug":550}],368:[function(require,module,exports){
-arguments[4][249][0].apply(exports,arguments)
-},{"dup":249}],369:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":96,"debug":642}],426:[function(require,module,exports){
+arguments[4][307][0].apply(exports,arguments)
+},{"dup":307}],427:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:is-defined' );
+var logger = require( 'debug' );
 var isFunction = require( '@stdlib/assert/is-function' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:is-defined' );
 
 
 // MAIN //
@@ -16316,9 +18258,10 @@ var isFunction = require( '@stdlib/assert/is-function' );
 * @private
 * @param {Function} fcn - accessor
 * @throws {TypeError} must be a function
+* @returns {void}
 */
 function set( fcn ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isFunction( fcn ) ) {
 		throw new TypeError( 'invalid value. `isDefined` must be a function. Value: `' + fcn + '.`' );
 	}
@@ -16328,14 +18271,14 @@ function set( fcn ) {
 	debug( 'New Value: %s.', this._isDefined );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-function":21,"debug":550}],370:[function(require,module,exports){
+},{"@stdlib/assert/is-function":53,"debug":642}],428:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16345,23 +18288,28 @@ module.exports = set;
 * @returns {(EmptyArray|StringArray)} labels
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._labels.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],371:[function(require,module,exports){
+},{}],429:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:labels' );
+var logger = require( 'debug' );
 var isEmptyArray = require( '@stdlib/assert/is-empty-array' );
 var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:labels' );
 
 
 // MAIN //
@@ -16372,9 +18320,10 @@ var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
 * @private
 * @param {(StringArray|EmptyArray)} labels - data labels
 * @throws {TypeError} must be either an array of strings or an empty array
+* @returns {void}
 */
 function set( labels ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isEmptyArray( labels ) &&
 		!isStringArray( labels )
@@ -16387,14 +18336,14 @@ function set( labels ) {
 	debug( 'New Value: %s.', JSON.stringify( this._labels ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-empty-array":17,"@stdlib/assert/is-string-array":60,"debug":550}],372:[function(require,module,exports){
+},{"@stdlib/assert/is-empty-array":45,"@stdlib/assert/is-string-array":99,"debug":642}],430:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16404,23 +18353,28 @@ module.exports = set;
 * @returns {NumberArray} line opacity
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._lineOpacity.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],373:[function(require,module,exports){
+},{}],431:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:line-opacity' );
+var logger = require( 'debug' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:line-opacity' );
 
 
 // MAIN //
@@ -16432,9 +18386,10 @@ var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
 * @param {(number|NumberArray)} v - opacity
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isNum = isNumber( v );
 	var i;
 	if (
@@ -16462,14 +18417,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._lineOpacity );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":41,"@stdlib/assert/is-number-array":39,"debug":550}],374:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"@stdlib/assert/is-number-array":78,"debug":642}],432:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16479,16 +18434,16 @@ module.exports = set;
 * @returns {StringArray} line style(s)
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._lineStyle.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],375:[function(require,module,exports){
+},{}],433:[function(require,module,exports){
 module.exports=[
 	"-",
 	"--",
@@ -16497,16 +18452,21 @@ module.exports=[
 	"none"
 ]
 
-},{}],376:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:line-style' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
 var indexOf = require( '@stdlib/utils/index-of' );
 var LINESTYLES = require( './line_styles.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:line-style' );
 
 
 // MAIN //
@@ -16518,9 +18478,10 @@ var LINESTYLES = require( './line_styles.json' );
 * @param {(string|StringArray)} v - line style(s)
 * @throws {TypeError} must be a string or string array
 * @throws {Error} must be a supported line style
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isStr = isString( v );
 	var i;
 	if (
@@ -16545,14 +18506,14 @@ function set( v ) {
 	debug( 'New Value: %s.', JSON.stringify( this._lineStyle ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./line_styles.json":375,"@stdlib/assert/is-string":62,"@stdlib/assert/is-string-array":60,"@stdlib/utils/index-of":504,"debug":550}],377:[function(require,module,exports){
+},{"./line_styles.json":433,"@stdlib/assert/is-string":101,"@stdlib/assert/is-string-array":99,"@stdlib/utils/index-of":596,"debug":642}],435:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16562,23 +18523,28 @@ module.exports = set;
 * @returns {Array<NonNegativeInteger>} line width(s)
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._lineWidth.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],378:[function(require,module,exports){
+},{}],436:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:line-width' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer' ).isNonNegativePrimitiveIntegerArray;
+var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:line-width' );
 
 
 // MAIN //
@@ -16587,11 +18553,12 @@ var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer'
 * Sets the data line width(s).
 *
 * @private
-* @param {(NonNegativeInteger|Array<NonNegativeInteger>} v - width
+* @param {(NonNegativeInteger|Array<NonNegativeInteger>)} v - width
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isInt = isNonNegativeInteger( v );
 	if (
 		!isInt &&
@@ -16610,14 +18577,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._lineWidth );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],379:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/is-nonnegative-integer-array":71,"debug":642}],437:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16627,22 +18594,27 @@ module.exports = set;
 * @returns {number} padding
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._paddingBottom;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],380:[function(require,module,exports){
+},{}],438:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:padding-bottom' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:padding-bottom' );
 
 
 // MAIN //
@@ -16651,11 +18623,12 @@ var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).is
 * Sets the bottom padding.
 *
 * @private
-* @param {NonNegtiveInteger} padding - padding
+* @param {NonNegativeInteger} padding - padding
 * @throws {TypeError} must be a nonnegative integer
+* @returns {void}
 */
 function set( padding ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isNonNegativeInteger( padding ) ) {
 		throw new TypeError( 'invalid value. `paddingBottom` must be a nonnegative integer. Value: `' + padding + '.`' );
 	}
@@ -16665,14 +18638,14 @@ function set( padding ) {
 	debug( 'New value: %d.', this._paddingBottom );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],381:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"debug":642}],439:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16682,22 +18655,27 @@ module.exports = set;
 * @returns {number} padding
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._paddingLeft;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],382:[function(require,module,exports){
+},{}],440:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:padding-left' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:padding-left' );
 
 
 // MAIN //
@@ -16706,11 +18684,12 @@ var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).is
 * Sets the left padding.
 *
 * @private
-* @param {NonNegtiveInteger} padding - padding
+* @param {NonNegativeInteger} padding - padding
 * @throws {TypeError} must be a nonnegative integer
+* @returns {void}
 */
 function set( padding ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isNonNegativeInteger( padding ) ) {
 		throw new TypeError( 'invalid value. `paddingLeft` must be a nonnegative integer. Value: `' + padding + '.`' );
 	}
@@ -16720,14 +18699,14 @@ function set( padding ) {
 	debug( 'New value: %d.', this._paddingLeft );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],383:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"debug":642}],441:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16737,22 +18716,27 @@ module.exports = set;
 * @returns {number} padding
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._paddingRight;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],384:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:padding-right' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:padding-right' );
 
 
 // MAIN //
@@ -16761,11 +18745,12 @@ var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).is
 * Sets the right padding.
 *
 * @private
-* @param {NonNegtiveInteger} padding - padding
+* @param {NonNegativeInteger} padding - padding
 * @throws {TypeError} must be a nonnegative integer
+* @returns {void}
 */
 function set( padding ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isNonNegativeInteger( padding ) ) {
 		return new TypeError( 'invalid value. `paddingRight` must be a nonnegative integer. Value: `' + padding + '.`' );
 	}
@@ -16775,14 +18760,14 @@ function set( padding ) {
 	debug( 'New value: %d.', this._paddingRight );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],385:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"debug":642}],443:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16792,22 +18777,27 @@ module.exports = set;
 * @returns {number} padding
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._paddingTop;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],386:[function(require,module,exports){
+},{}],444:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:padding-top' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:padding-top' );
 
 
 // MAIN //
@@ -16816,11 +18806,12 @@ var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).is
 * Sets the top padding.
 *
 * @private
-* @param {NonNegtiveInteger} padding - padding
+* @param {NonNegativeInteger} padding - padding
 * @throws {TypeError} must be a nonnegative integer
+* @returns {void}
 */
 function set( padding ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isNonNegativeInteger( padding ) ) {
 		return new TypeError( 'invalid value. `paddingTop` must be a nonnegative integer. Value: `' + padding + '.`' );
 	}
@@ -16830,14 +18821,14 @@ function set( padding ) {
 	debug( 'New value: %d.', this._paddingTop );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],387:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"debug":642}],445:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16847,23 +18838,28 @@ module.exports = set;
 * @returns {NumberArray} symbols opacity
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._symbolsOpacity.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],388:[function(require,module,exports){
+},{}],446:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:symbols-opacity' );
+var logger = require( 'debug' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:symbols-opacity' );
 
 
 // MAIN //
@@ -16875,9 +18871,10 @@ var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
 * @param {(number|NumberArray)} v - opacity
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isNum = isNumber( v );
 	var i;
 	if (
@@ -16905,14 +18902,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._symbolsOpacity );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":41,"@stdlib/assert/is-number-array":39,"debug":550}],389:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"@stdlib/assert/is-number-array":78,"debug":642}],447:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16922,23 +18919,29 @@ module.exports = set;
 * @returns {Array<NonNegativeInteger>} symbols sizes
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._symbolsSize.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],390:[function(require,module,exports){
+},{}],448:[function(require,module,exports){
+/* eslint-disable no-invalid-this */
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:symbols-size' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer' ).isNonNegativePrimitiveIntegerArray;
+var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:symbols-size' );
 
 
 // MAIN //
@@ -16947,11 +18950,12 @@ var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer'
 * Sets the symbols size.
 *
 * @private
-* @param {(NonNegativeInteger|Array<NonNegativeInteger>} v - size
+* @param {(NonNegativeInteger|Array<NonNegativeInteger>)} v - size
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isInt = isNonNegativeInteger( v );
 	if (
 		!isInt &&
@@ -16970,14 +18974,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._symbolsSize );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],391:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/is-nonnegative-integer-array":71,"debug":642}],449:[function(require,module,exports){
 'use strict';
 
 /**
@@ -16987,25 +18991,30 @@ module.exports = set;
 * @returns {StringArray} symbols
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._symbols.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],392:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:symbols' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
 var indexOf = require( '@stdlib/utils/index-of' );
 var SYMBOLS = require( './symbols.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:symbols' );
 
 
 // MAIN //
@@ -17017,9 +19026,10 @@ var SYMBOLS = require( './symbols.json' );
 * @param {(string|StringArray)} v - data symbols
 * @throws {TypeError} must be a string or string array
 * @throws {Error} must be a supported symbol
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isStr = isString( v );
 	var i;
 	if (
@@ -17044,21 +19054,21 @@ function set( v ) {
 	debug( 'New Value: %s.', JSON.stringify( this._symbols ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./symbols.json":393,"@stdlib/assert/is-string":62,"@stdlib/assert/is-string-array":60,"@stdlib/utils/index-of":504,"debug":550}],393:[function(require,module,exports){
+},{"./symbols.json":451,"@stdlib/assert/is-string":101,"@stdlib/assert/is-string-array":99,"@stdlib/utils/index-of":596,"debug":642}],451:[function(require,module,exports){
 module.exports=[
 	"closed-circle",
 	"open-circle",
 	"none"
 ]
 
-},{}],394:[function(require,module,exports){
+},{}],452:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17068,22 +19078,27 @@ module.exports=[
 * @returns {string} title
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._title;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],395:[function(require,module,exports){
+},{}],453:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:title' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:title' );
 
 
 // MAIN //
@@ -17094,9 +19109,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {string} str - title
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( str ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( str ) ) {
 		throw new TypeError( 'invalid value. `title` must be a string. Value: `' + str + '.`' );
 	}
@@ -17106,14 +19122,14 @@ function set( str ) {
 	debug( 'New value: %s.', this._title );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],396:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],454:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17123,23 +19139,28 @@ module.exports = set;
 * @returns {string} viewer
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._viewer;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],397:[function(require,module,exports){
+},{}],455:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:viewer' );
+var logger = require( 'debug' );
 var indexOf = require( '@stdlib/utils/index-of' );
 var VIEWERS = require( './viewers.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:viewer' );
 
 
 // MAIN //
@@ -17150,9 +19171,10 @@ var VIEWERS = require( './viewers.json' );
 * @private
 * @param {string} viewer - viewer
 * @throws {TypeError} must be a recognized viewer
+* @returns {void}
 */
 function set( viewer ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( indexOf( VIEWERS, viewer ) === -1 ) {
 		throw new TypeError( 'invalid value. Unrecognized/unsupported `viewer`. Value: `' + viewer + '.`' );
 	}
@@ -17162,14 +19184,14 @@ function set( viewer ) {
 	debug( 'New value: %s.', this._viewer );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./viewers.json":398,"@stdlib/utils/index-of":504,"debug":550}],398:[function(require,module,exports){
+},{"./viewers.json":456,"@stdlib/utils/index-of":596,"debug":642}],456:[function(require,module,exports){
 module.exports=[
 	"none",
 	"browser",
@@ -17178,15 +19200,20 @@ module.exports=[
 	"window"
 ]
 
-},{}],399:[function(require,module,exports){
-arguments[4][161][0].apply(exports,arguments)
-},{"dup":161}],400:[function(require,module,exports){
+},{}],457:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],458:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:width' );
+var logger = require( 'debug' );
 var isPositiveNumber = require( '@stdlib/assert/is-positive-number' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:width' );
 
 
 // MAIN //
@@ -17197,9 +19224,10 @@ var isPositiveNumber = require( '@stdlib/assert/is-positive-number' ).isPrimitiv
 * @private
 * @param {PositiveNumber} width - width
 * @throws {TypeError} must be a positive number
+* @returns {void}
 */
 function set( width ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isPositiveNumber( width ) ) {
 		throw new TypeError( 'invalid value. `width` must be a positive number. Value: `' + width + '.`' );
 	}
@@ -17209,14 +19237,14 @@ function set( width ) {
 	debug( 'New value: %d.', this._width );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-positive-number":57,"debug":550}],401:[function(require,module,exports){
+},{"@stdlib/assert/is-positive-number":96,"debug":642}],459:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17226,29 +19254,34 @@ module.exports = set;
 * @returns {string} orientation
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xAxisOrient;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],402:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 module.exports=[
 	"bottom",
 	"top"
 ]
 
-},{}],403:[function(require,module,exports){
+},{}],461:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:xaxisorient' );
+var logger = require( 'debug' );
 var indexOf = require( '@stdlib/utils/index-of' );
 var ORIENTATIONS = require( './orientations.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:xaxisorient' );
 
 
 // MAIN //
@@ -17259,9 +19292,10 @@ var ORIENTATIONS = require( './orientations.json' );
 * @private
 * @param {string} orientation - axis orientation
 * @throws {TypeError} must be either `'bottom'` or `'top'`
+* @returns {void}
 */
 function set( orientation ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( indexOf( ORIENTATIONS, orientation ) === -1 ) {
 		throw new TypeError( 'invalid value. `xAxisOrient` must be one of `[' + ORIENTATIONS.join(',') + ']`. Value: `' + orientation + '.`' );
 	}
@@ -17271,14 +19305,14 @@ function set( orientation ) {
 	debug( 'New value: %s.', this._xAxisOrient );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./orientations.json":402,"@stdlib/utils/index-of":504,"debug":550}],404:[function(require,module,exports){
+},{"./orientations.json":460,"@stdlib/utils/index-of":596,"debug":642}],462:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17288,16 +19322,16 @@ module.exports = set;
 * @returns {NumberArray} domain
 */
 function get() {
-	/* jshint validthis:true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return [ this.xMin, this.xMax ];
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],405:[function(require,module,exports){
+},{}],463:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17307,22 +19341,27 @@ module.exports = get;
 * @returns {string} label
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xLabel;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],406:[function(require,module,exports){
+},{}],464:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:xlabel' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:xlabel' );
 
 
 // MAIN //
@@ -17333,9 +19372,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {string} label - axis label
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( label ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( label ) ) {
 		throw new TypeError( 'invalid value. `xLabel` must be a string. Value: `' + label + '.`' );
 	}
@@ -17345,14 +19385,14 @@ function set( label ) {
 	debug( 'New value: %s.', this._xLabel );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],407:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],465:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17381,7 +19421,7 @@ function getMax( arr ) {
 		tmp[ i ] = max( arr[ i ] );
 	}
 	return max( tmp );
-} // end FUNCTION getMax
+}
 
 
 // MAIN //
@@ -17393,28 +19433,33 @@ function getMax( arr ) {
 * @returns {number} maximum value
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var max;
 	if ( isNull( this._xMax ) ) {
 		max = getMax( this._xData );
 		return ( isNull( max ) ) ? 1.0 : max;
 	}
 	return this._xMax;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"./../../utils/max.js":473,"@stdlib/assert/is-null":37}],408:[function(require,module,exports){
+},{"./../../utils/max.js":531,"@stdlib/assert/is-null":76}],466:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'line:set:xmax' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'line:set:xmax' );
 
 
 // MAIN //
@@ -17423,15 +19468,18 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * Sets the maximum value of the x-axis domain.
 *
 * @private
-* @param {(Date|FiniteNumber|null)} min - maximum value
+* @param {(Date|FiniteNumber|null)} max - maximum value
 * @throws {TypeError} must be a finite number primitive or null
+* @returns {void}
 */
 function set( max ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
+
 	// TODO: add test to determine if evaluates to valid date?
 	if (
 		!isNull( max ) &&
 		!isNumber( max ) // FIXME: finite number
+
 		// TODO: Date
 	) {
 		throw new TypeError( 'invalid value. `xMax` must be either a finite number, Date, or null. Value: `' + max + '.`' );
@@ -17442,14 +19490,14 @@ function set( max ) {
 	debug( 'New value: %s.', this._xMax );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":37,"@stdlib/assert/is-number":41,"debug":550}],409:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"@stdlib/assert/is-number":80,"debug":642}],467:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17478,7 +19526,7 @@ function getMin( arr ) {
 		tmp[ i ] = min( arr[ i ] );
 	}
 	return min( tmp );
-} // end FUNCTION getMin
+}
 
 
 // MAIN //
@@ -17490,28 +19538,33 @@ function getMin( arr ) {
 * @returns {number} minimum value
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var min;
 	if ( isNull( this._xMin ) ) {
 		min = getMin( this._xData );
 		return ( isNull( min ) ) ? 0.0 : min;
 	}
 	return this._xMin;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"./../../utils/min.js":474,"@stdlib/assert/is-null":37}],410:[function(require,module,exports){
+},{"./../../utils/min.js":532,"@stdlib/assert/is-null":76}],468:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:xmin' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:xmin' );
 
 
 // MAIN //
@@ -17522,13 +19575,16 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * @private
 * @param {(Date|FiniteNumber|null)} min - minimum value
 * @throws {TypeError} must be a finite number primitive or null
+* @returns {void}
 */
 function set( min ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
+
 	// TODO: add test to determine if evaluates to valid date?
 	if (
 		!isNull( min ) &&
 		!isNumber( min ) // FIXME: finite number
+
 		// TODO: Date
 	) {
 		throw new TypeError( 'invalid value. `xMin` must be either a finite number, Date, or null. Value: `' + min + '.`' );
@@ -17539,14 +19595,14 @@ function set( min ) {
 	debug( 'New value: %s.', this._xMin );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":37,"@stdlib/assert/is-number":41,"debug":550}],411:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"@stdlib/assert/is-number":80,"debug":642}],469:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17556,23 +19612,28 @@ module.exports = set;
 * @returns {(NonNegativeInteger|null)} number of ticks
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xNumTicks;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],412:[function(require,module,exports){
+},{}],470:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:xnumticks' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:xnumticks' );
 
 
 // MAIN //
@@ -17583,9 +19644,10 @@ var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).is
 * @private
 * @param {(NonNegativeInteger|null)} ticks - number of ticks
 * @throws {TypeError} must be a nonnegative integer or null
+* @returns {void}
 */
 function set( ticks ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isNull( ticks ) &&
 		!isNonNegativeInteger( ticks )
@@ -17598,19 +19660,24 @@ function set( ticks ) {
 	debug( 'New value: %d.', this._xNumTicks );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"@stdlib/assert/is-null":37,"debug":550}],413:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/is-null":76,"debug":642}],471:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:xpos' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:xpos' );
 
 
 // MAIN //
@@ -17622,8 +19689,10 @@ var debug = require( 'debug' )( 'plot:xpos' );
 * @returns {Function} map function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale = this.xScale;
+	return xPos;
+
 	/**
 	* Maps a value to a x-axis coordinate value.
 	*
@@ -17631,19 +19700,19 @@ function get() {
 	* @param {number} d - datum
 	* @returns {number} pixel value
 	*/
-	return function xPos( d ) {
+	function xPos( d ) {
 		var px = scale( d );
 		debug( 'Value: %d => Pixel: %d.', d, px );
 		return px;
-	}; // end FUNCTION xPos()
-} // end FUNCTION get()
+	}// end FUNCTION xPos()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"debug":550}],414:[function(require,module,exports){
+},{"debug":642}],472:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17653,16 +19722,16 @@ module.exports = get;
 * @returns {NumberArray} range
 */
 function get() {
-	/* jshint validthis:true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return [ 0, this.graphWidth ];
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],415:[function(require,module,exports){
+},{}],473:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17672,23 +19741,28 @@ module.exports = get;
 * @returns {NumberArray} rug opacities
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xRugOpacity.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],416:[function(require,module,exports){
+},{}],474:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:x-rug-opacity' );
+var logger = require( 'debug' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:x-rug-opacity' );
 
 
 // MAIN //
@@ -17700,9 +19774,10 @@ var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
 * @param {(number|NumberArray)} v - opacity
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isNum = isNumber( v );
 	var i;
 	if (
@@ -17730,14 +19805,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._xRugOpacity );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":41,"@stdlib/assert/is-number-array":39,"debug":550}],417:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"@stdlib/assert/is-number-array":78,"debug":642}],475:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17747,27 +19822,32 @@ module.exports = set;
 * @returns {StringArray} orientation
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xRugOrient.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],418:[function(require,module,exports){
-arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],419:[function(require,module,exports){
+},{}],476:[function(require,module,exports){
+arguments[4][460][0].apply(exports,arguments)
+},{"dup":460}],477:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:xrugorient' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
 var indexOf = require( '@stdlib/utils/index-of' );
 var ORIENTATIONS = require( './orientations.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:xrugorient' );
 
 
 // MAIN //
@@ -17779,9 +19859,10 @@ var ORIENTATIONS = require( './orientations.json' );
 * @param {(string|StringArray)} v - rug orientation
 * @throws {TypeError} must be either a string or string array
 * @throws {TypeError} must be either `'bottom'` or `'top'`
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isStr = isString( v );
 	var i;
 	if (
@@ -17806,14 +19887,14 @@ function set( v ) {
 	debug( 'New value: %s.', this._xRugOrient );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./orientations.json":418,"@stdlib/assert/is-string":62,"@stdlib/assert/is-string-array":60,"@stdlib/utils/index-of":504,"debug":550}],420:[function(require,module,exports){
+},{"./orientations.json":476,"@stdlib/assert/is-string":101,"@stdlib/assert/is-string-array":99,"@stdlib/utils/index-of":596,"debug":642}],478:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17823,23 +19904,28 @@ module.exports = set;
 * @returns {Array<NonNegativeInteger>} tick sizes
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xRugSize.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],421:[function(require,module,exports){
+},{}],479:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:x-rug-size' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitiveNonNegativeIntegerArray;
+var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:x-rug-size' );
 
 
 // MAIN //
@@ -17848,11 +19934,12 @@ var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer'
 * Sets the x-axis rug tick (tassel) size.
 *
 * @private
-* @param {(NonNegativeInteger|Array<NonNegativeInteger>} v - size
+* @param {(NonNegativeInteger|Array<NonNegativeInteger>)} v - size
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isInt = isNonNegativeInteger( v );
 	if (
 		!isInt &&
@@ -17871,14 +19958,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._xRugSize );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],422:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/is-nonnegative-integer-array":71,"debug":642}],480:[function(require,module,exports){
 'use strict';
 
 /**
@@ -17888,23 +19975,28 @@ module.exports = set;
 * @returns {BooleanArray} boolean flags
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xRug.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],423:[function(require,module,exports){
+},{}],481:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:x-rug' );
+var logger = require( 'debug' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var isBooleanArray = require( '@stdlib/assert/is-boolean' ).isPrimitiveBooleanArray;
+var isBooleanArray = require( '@stdlib/assert/is-boolean-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:x-rug' );
 
 
 // MAIN //
@@ -17915,9 +20007,10 @@ var isBooleanArray = require( '@stdlib/assert/is-boolean' ).isPrimitiveBooleanAr
 * @private
 * @param {(boolean|BooleanArray)} v - boolean flag(s) indicating whether to display a rug plot along the x-axis
 * @throws {TypeError} must be a boolean primitive or boolean array
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isBool = isBoolean( v );
 	if (
 		!isBool &&
@@ -17934,14 +20027,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._xRug );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":10,"debug":550}],424:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38,"@stdlib/assert/is-boolean-array":36,"debug":642}],482:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -17959,7 +20052,7 @@ var time = require( 'd3-scale' ).scaleTime; // TODO: remove
 * @returns {Function} scale function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale;
 	if ( this._xScale === 'time' ) {
 		scale = time()
@@ -17972,20 +20065,25 @@ function get() {
 	}
 	// TODO: other scales
 	return scale;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"d3-scale":546}],425:[function(require,module,exports){
+},{"d3-scale":638}],483:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:xscale' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:xscale' );
 
 
 // MAIN //
@@ -17996,9 +20094,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {string} scale - axis scale
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( scale ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( scale ) ) {
 		throw new TypeError( 'invalid value. `xScale` must be a string. Value: `' + scale + '.`' );
 	}
@@ -18010,14 +20109,14 @@ function set( scale ) {
 	debug( 'New value: %s.', this._xScale );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],426:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],484:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -18036,7 +20135,7 @@ var timeFormat = require( 'd3-time-format' ).timeFormat; // TODO: remove
 * @returns {(Function|null)} format function or null
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( isNull( this._xTickFormat ) ) {
 		return this._xTickFormat;
 	}
@@ -18044,21 +20143,26 @@ function get() {
 		return timeFormat( this._xTickFormat );
 	}
 	return format( this._xTickFormat );
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":37,"d3-format":543,"d3-time-format":548}],427:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"d3-format":635,"d3-time-format":640}],485:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:xtickformat' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:xtickformat' );
 
 
 // MAIN //
@@ -18069,9 +20173,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {(string|null)} fmt - axis tick format
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( fmt ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isNull( fmt ) &&
 		!isString( fmt )
@@ -18084,14 +20189,14 @@ function set( fmt ) {
 	debug( 'New value: %s.', this._xTickFormat );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":37,"@stdlib/assert/is-string":62,"debug":550}],428:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"@stdlib/assert/is-string":101,"debug":642}],486:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18101,22 +20206,27 @@ module.exports = set;
 * @returns {Array} x values
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._xData.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],429:[function(require,module,exports){
+},{}],487:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:x' );
+var logger = require( 'debug' );
 var isArray = require( '@stdlib/assert/is-array' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:x' );
 
 
 // MAIN //
@@ -18127,9 +20237,10 @@ var isArray = require( '@stdlib/assert/is-array' );
 * @private
 * @param {Array} x - x values
 * @throws {TypeError} must be an array
+* @returns {void}
 */
 function set( x ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isArray( x ) ) {
 		throw new TypeError( 'invalid value. `x` must be an array. Value: `' + x + '.`' );
 	}
@@ -18139,14 +20250,14 @@ function set( x ) {
 	debug( 'New Value: %s.', JSON.stringify( this._xData ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array":7,"debug":550}],430:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34,"debug":642}],488:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18156,29 +20267,34 @@ module.exports = set;
 * @returns {string} orientation
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yAxisOrient;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],431:[function(require,module,exports){
+},{}],489:[function(require,module,exports){
 module.exports=[
 	"left",
 	"right"
 ]
 
-},{}],432:[function(require,module,exports){
+},{}],490:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:yaxisorient' );
+var logger = require( 'debug' );
 var indexOf = require( '@stdlib/utils/index-of' );
 var ORIENTATIONS = require( './orientations.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:yaxisorient' );
 
 
 // MAIN //
@@ -18189,9 +20305,10 @@ var ORIENTATIONS = require( './orientations.json' );
 * @private
 * @param {string} orientation - axis orientation
 * @throws {TypeError} must be either `'left'` or `'right'`
+* @returns {void}
 */
 function set( orientation ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( indexOf( ORIENTATIONS, orientation ) === -1 ) {
 		throw new TypeError( 'invalid value. `yAxisOrient` must be one of `[' + ORIENTATIONS.join(',') + ']`. Value: `' + orientation + '.`' );
 	}
@@ -18201,14 +20318,14 @@ function set( orientation ) {
 	debug( 'New value: %s.', this._yAxisOrient );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./orientations.json":431,"@stdlib/utils/index-of":504,"debug":550}],433:[function(require,module,exports){
+},{"./orientations.json":489,"@stdlib/utils/index-of":596,"debug":642}],491:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18218,16 +20335,16 @@ module.exports = set;
 * @returns {NumberArray} domain
 */
 function get() {
-	/* jshint validthis:true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return [ this.yMin, this.yMax ];
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],434:[function(require,module,exports){
+},{}],492:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18237,22 +20354,27 @@ module.exports = get;
 * @returns {string} label
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yLabel;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],435:[function(require,module,exports){
+},{}],493:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:ylabel' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:ylabel' );
 
 
 // MAIN //
@@ -18263,9 +20385,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {string} label - axis label
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( label ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( label ) ) {
 		throw new TypeError( 'invalid value. `yLabel` must be a string. Value: `' + label + '.`' );
 	}
@@ -18275,14 +20398,14 @@ function set( label ) {
 	debug( 'New value: %s.', this._yLabel );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],436:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],494:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -18311,7 +20434,7 @@ function getMax( arr ) {
 		tmp[ i ] = max( arr[ i ] );
 	}
 	return max( tmp );
-} // end FUNCTION getMax
+}
 
 
 // MAIN //
@@ -18323,28 +20446,33 @@ function getMax( arr ) {
 * @returns {number} maximum value
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var max;
 	if ( isNull( this._yMax ) ) {
 		max = getMax( this._yData );
 		return ( isNull( max ) ) ? 1.0 : max;
 	}
 	return this._yMax;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"./../../utils/max.js":473,"@stdlib/assert/is-null":37}],437:[function(require,module,exports){
+},{"./../../utils/max.js":531,"@stdlib/assert/is-null":76}],495:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:ymax' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:ymax' );
 
 
 // MAIN //
@@ -18353,11 +20481,12 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * Sets the maximum value of the y-axis domain.
 *
 * @private
-* @param {(FiniteNumber|null)} min - maximum value
+* @param {(FiniteNumber|null)} max - maximum value
 * @throws {TypeError} must be a finite number primitive or null
+* @returns {void}
 */
 function set( max ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isNull( max ) &&
 		!isNumber( max ) // FIXME: finite number
@@ -18370,14 +20499,14 @@ function set( max ) {
 	debug( 'New value: %d.', this._yMax );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":37,"@stdlib/assert/is-number":41,"debug":550}],438:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"@stdlib/assert/is-number":80,"debug":642}],496:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -18406,7 +20535,7 @@ function getMin( arr ) {
 		tmp[ i ] = min( arr[ i ] );
 	}
 	return min( tmp );
-} // end FUNCTION getMin
+}
 
 
 // MAIN //
@@ -18418,28 +20547,33 @@ function getMin( arr ) {
 * @returns {number} minimum value
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var min;
 	if ( isNull( this._yMin ) ) {
 		min = getMin( this._yData );
 		return ( isNull( min ) ) ? 0.0 : min;
 	}
 	return this._yMin;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"./../../utils/min.js":474,"@stdlib/assert/is-null":37}],439:[function(require,module,exports){
+},{"./../../utils/min.js":532,"@stdlib/assert/is-null":76}],497:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:ymin' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:ymin' );
 
 
 // MAIN //
@@ -18450,9 +20584,10 @@ var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 * @private
 * @param {(FiniteNumber|null)} min - minimum value
 * @throws {TypeError} must be a finite number primitive or null
+* @returns {void}
 */
 function set( min ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isNull( min ) &&
 		!isNumber( min ) // FIXME: finite number
@@ -18465,14 +20600,14 @@ function set( min ) {
 	debug( 'New value: %d.', this._yMin );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":37,"@stdlib/assert/is-number":41,"debug":550}],440:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"@stdlib/assert/is-number":80,"debug":642}],498:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18482,23 +20617,28 @@ module.exports = set;
 * @returns {(NonNegativeInteger|null)} number of ticks
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yNumTicks;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],441:[function(require,module,exports){
+},{}],499:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:ynumticks' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:ynumticks' );
 
 
 // MAIN //
@@ -18509,9 +20649,10 @@ var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).is
 * @private
 * @param {(NonNegativeInteger|null)} ticks - number of ticks
 * @throws {TypeError} must be a nonnegative integer or null
+* @returns {void}
 */
 function set( ticks ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isNull( ticks ) &&
 		!isNonNegativeInteger( ticks )
@@ -18524,19 +20665,24 @@ function set( ticks ) {
 	debug( 'New value: %d.', this._yNumTicks );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"@stdlib/assert/is-null":37,"debug":550}],442:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/is-null":76,"debug":642}],500:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:ypos' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:ypos' );
 
 
 // MAIN //
@@ -18548,8 +20694,10 @@ var debug = require( 'debug' )( 'plot:ypos' );
 * @returns {Function} map function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale = this.yScale;
+	return yPos;
+
 	/**
 	* Maps a value to a y-axis coordinate value.
 	*
@@ -18557,19 +20705,19 @@ function get() {
 	* @param {number} d - datum
 	* @returns {number} pixel value
 	*/
-	return function yPos( d ) {
+	function yPos( d ) {
 		var px = scale( d );
 		debug( 'Value: %d => Pixel: %d.', d, px );
 		return px;
-	}; // end FUNCTION yPos()
-} // end FUNCTION get()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"debug":550}],443:[function(require,module,exports){
+},{"debug":642}],501:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18579,16 +20727,16 @@ module.exports = get;
 * @returns {NumberArray} range
 */
 function get() {
-	/* jshint validthis:true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return [ this.graphHeight, 0 ];
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],444:[function(require,module,exports){
+},{}],502:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18598,23 +20746,28 @@ module.exports = get;
 * @returns {NumberArray} rug opacities
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yRugOpacity.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],445:[function(require,module,exports){
+},{}],503:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:y-rug-opacity' );
+var logger = require( 'debug' );
 var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:y-rug-opacity' );
 
 
 // MAIN //
@@ -18626,9 +20779,10 @@ var isNumberArray = require( '@stdlib/assert/is-number-array' ).primitives;
 * @param {(number|NumberArray)} v - opacity
 * @throws {TypeError} must be a number or number array
 * @throws {RangeError} must be a number on the interval `[0,1]`
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isNum = isNumber( v );
 	var i;
 	if (
@@ -18656,14 +20810,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._yRugOpacity );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-number":41,"@stdlib/assert/is-number-array":39,"debug":550}],446:[function(require,module,exports){
+},{"@stdlib/assert/is-number":80,"@stdlib/assert/is-number-array":78,"debug":642}],504:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18673,27 +20827,32 @@ module.exports = set;
 * @returns {StringArray} orientation
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yRugOrient.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],447:[function(require,module,exports){
-arguments[4][431][0].apply(exports,arguments)
-},{"dup":431}],448:[function(require,module,exports){
+},{}],505:[function(require,module,exports){
+arguments[4][489][0].apply(exports,arguments)
+},{"dup":489}],506:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:yrugorient' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
 var indexOf = require( '@stdlib/utils/index-of' );
 var ORIENTATIONS = require( './orientations.json' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:yrugorient' );
 
 
 // MAIN //
@@ -18705,9 +20864,10 @@ var ORIENTATIONS = require( './orientations.json' );
 * @param {(string|StringArray)} v - rug orientation
 * @throws {TypeError} must be either a string or string array
 * @throws {TypeError} must be either `'bottom'` or `'top'`
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isStr = isString( v );
 	var i;
 	if (
@@ -18732,14 +20892,14 @@ function set( v ) {
 	debug( 'New value: %s.', this._yRugOrient );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"./orientations.json":447,"@stdlib/assert/is-string":62,"@stdlib/assert/is-string-array":60,"@stdlib/utils/index-of":504,"debug":550}],449:[function(require,module,exports){
+},{"./orientations.json":505,"@stdlib/assert/is-string":101,"@stdlib/assert/is-string-array":99,"@stdlib/utils/index-of":596,"debug":642}],507:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18749,23 +20909,28 @@ module.exports = set;
 * @returns {Array<NonNegativeInteger>} tick sizes
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yRugSize.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],450:[function(require,module,exports){
+},{}],508:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:y-rug-size' );
+var logger = require( 'debug' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer' ).isNonNegativePrimitiveIntegerArray;
+var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:y-rug-size' );
 
 
 // MAIN //
@@ -18774,11 +20939,12 @@ var isNonNegativeIntegerArray = require( '@stdlib/assert/is-nonnegative-integer'
 * Sets the y-axis rug tick (tassel) size.
 *
 * @private
-* @param {(NonNegativeInteger|Array<NonNegativeInteger>} v - size
+* @param {(NonNegativeInteger|Array<NonNegativeInteger>)} v - size
 * @throws {TypeError} must be a nonnegative integer or nonnegative integer array
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isInt = isNonNegativeInteger( v );
 	if (
 		!isInt &&
@@ -18797,14 +20963,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._yRugSize );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-nonnegative-integer":34,"debug":550}],451:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/assert/is-nonnegative-integer-array":71,"debug":642}],509:[function(require,module,exports){
 'use strict';
 
 /**
@@ -18814,23 +20980,28 @@ module.exports = set;
 * @returns {BooleanArray} boolean flag
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yRug.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],452:[function(require,module,exports){
+},{}],510:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:y-rug' );
+var logger = require( 'debug' );
 var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var isBooleanArray = require( '@stdlib/assert/is-boolean' ).isPrimitiveBooleanArray;
+var isBooleanArray = require( '@stdlib/assert/is-boolean-array' ).primitives;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:y-rug' );
 
 
 // MAIN //
@@ -18841,9 +21012,10 @@ var isBooleanArray = require( '@stdlib/assert/is-boolean' ).isPrimitiveBooleanAr
 * @private
 * @param {(boolean|BooleanArray)} v - boolean flag(s) indicating whether to display a rug plot along the y-axis
 * @throws {TypeError} must be a boolean primitive or boolean array
+* @returns {void}
 */
 function set( v ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var isBool = isBoolean( v );
 	if (
 		!isBool &&
@@ -18860,14 +21032,14 @@ function set( v ) {
 	debug( 'New Value: %d.', this._yRug );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-boolean":10,"debug":550}],453:[function(require,module,exports){
+},{"@stdlib/assert/is-boolean":38,"@stdlib/assert/is-boolean-array":36,"debug":642}],511:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -18885,7 +21057,7 @@ var time = require( 'd3-scale' ).scaleTime; // TODO: remove
 * @returns {Function} scale function
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var scale;
 	if ( this._yScale === 'time' ) {
 		scale = time()
@@ -18898,20 +21070,25 @@ function get() {
 	}
 	// TODO: other scales
 	return scale;
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"d3-scale":546}],454:[function(require,module,exports){
+},{"d3-scale":638}],512:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:yscale' );
+var logger = require( 'debug' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:yscale' );
 
 
 // MAIN //
@@ -18922,9 +21099,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {string} scale - axis scale
 * @throws {TypeError} must be a string primitive
+* @returns {void}
 */
 function set( scale ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isString( scale ) ) {
 		throw new TypeError( 'invalid value. `yScale` must be a string. Value: `' + scale + '.`' );
 	}
@@ -18936,14 +21114,14 @@ function set( scale ) {
 	debug( 'New value: %s.', this._yScale );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-string":62,"debug":550}],455:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"debug":642}],513:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -18962,7 +21140,7 @@ var timeFormat = require( 'd3-time-format' ).timeFormat; // TODO: remove
 * @returns {(Function|null)} format function or null
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( isNull( this._yTickFormat ) ) {
 		return this._yTickFormat;
 	}
@@ -18970,21 +21148,26 @@ function get() {
 		return timeFormat( this._yTickFormat );
 	}
 	return format( this._yTickFormat );
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{"@stdlib/assert/is-null":37,"d3-format":543,"d3-time-format":548}],456:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"d3-format":635,"d3-time-format":640}],514:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:ytickformat' );
+var logger = require( 'debug' );
 var isNull = require( '@stdlib/assert/is-null' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:ytickformat' );
 
 
 // MAIN //
@@ -18995,9 +21178,10 @@ var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
 * @private
 * @param {(string|null)} fmt - axis tick format
 * @throws {TypeError} must be a string primitive or null
+* @returns {void}
 */
 function set( fmt ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if (
 		!isNull( fmt ) &&
 		!isString( fmt )
@@ -19010,14 +21194,14 @@ function set( fmt ) {
 	debug( 'New value: %s.', this._yTickFormat );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-null":37,"@stdlib/assert/is-string":62,"debug":550}],457:[function(require,module,exports){
+},{"@stdlib/assert/is-null":76,"@stdlib/assert/is-string":101,"debug":642}],515:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19027,22 +21211,27 @@ module.exports = set;
 * @returns {Array} y values
 */
 function get() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	return this._yData.slice();
-} // end FUNCTION get()
+}
 
 
 // EXPORTS //
 
 module.exports = get;
 
-},{}],458:[function(require,module,exports){
+},{}],516:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:set:y' );
+var logger = require( 'debug' );
 var isArray = require( '@stdlib/assert/is-array' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:set:y' );
 
 
 // MAIN //
@@ -19053,9 +21242,10 @@ var isArray = require( '@stdlib/assert/is-array' );
 * @private
 * @param {Array} y - y values
 * @throws {TypeError} must be an array
+* @returns {void}
 */
 function set( y ) {
-	/*jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	if ( !isArray( y ) ) {
 		throw new TypeError( 'invalid value. `y` must be an array. Value: `' + y + '.`' );
 	}
@@ -19065,21 +21255,26 @@ function set( y ) {
 	debug( 'New Value: %s.', JSON.stringify( this._yData ) );
 
 	this.emit( 'change' );
-} // end FUNCTION set()
+}
 
 
 // EXPORTS //
 
 module.exports = set;
 
-},{"@stdlib/assert/is-array":7,"debug":550}],459:[function(require,module,exports){
+},{"@stdlib/assert/is-array":34,"debug":642}],517:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render' );
+var logger = require( 'debug' );
 var renderSVG = require( './svg' );
 var validate = require( './validate.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render' );
 
 
 // MAIN //
@@ -19091,7 +21286,7 @@ var validate = require( './validate.js' );
 * @returns {VTree} virtual tree
 */
 function render() {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this, no-underscore-dangle */
 	var out;
 
 	debug( 'Validating render state...' );
@@ -19103,24 +21298,29 @@ function render() {
 		this.emit( 'render', out );
 		return out;
 	}
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./svg":460,"./validate.js":472,"debug":550}],460:[function(require,module,exports){
+},{"./svg":518,"./validate.js":530,"debug":642}],518:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:main' );
+var logger = require( 'debug' );
 var xAxisTransform = require( './utils/x_axis_transform.js' );
 var yAxisTransform = require( './utils/y_axis_transform.js' );
 var renderMarks = require( './marks' );
 var init = require( './init.js' );
 var sync = require( './sync.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:main' );
 
 
 // MAIN //
@@ -19190,16 +21390,16 @@ function render( state ) {
 	debug( 'Updating rendered components...' );
 
 	debug( 'Updating title...' );
-	title.properties.attributes.x = state.paddingLeft + state.graphWidth / 2;
+	title.properties.attributes.x = state.paddingLeft + ( state.graphWidth/2 );
 	title.properties.attributes.y = state.paddingTop / 2;
 
 	debug( 'Updating x-axis...' );
 	xAxis.properties.className += ' x';
-	xAxis.properties.attributes.transform = xAxisTransform( state.xAxisOrient, state.graphHeight );
+	xAxis.properties.attributes.transform = xAxisTransform( state.xAxisOrient, state.graphHeight ); // eslint-disable-line max-len
 
 	debug( 'Updating y-axis...' );
 	yAxis.properties.className += ' y';
-	yAxis.properties.attributes.transform = yAxisTransform( state.yAxisOrient, state.graphWidth );
+	yAxis.properties.attributes.transform = yAxisTransform( state.yAxisOrient, state.graphWidth ); // eslint-disable-line max-len
 
 	debug( 'Assembling virtual tree...' );
 
@@ -19240,19 +21440,19 @@ function render( state ) {
 	canvas.count += annotations.count;
 
 	return canvas;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./init.js":461,"./marks":462,"./sync.js":467,"./utils/x_axis_transform.js":468,"./utils/y_axis_transform.js":470,"debug":550}],461:[function(require,module,exports){
+},{"./init.js":519,"./marks":520,"./sync.js":525,"./utils/x_axis_transform.js":526,"./utils/y_axis_transform.js":528,"debug":642}],519:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:init' );
+var logger = require( 'debug' );
 var Annotations = require( '@stdlib/plot/components/svg/annotations' );
 var ClipPath = require( '@stdlib/plot/components/svg/clip-path' );
 var Canvas = require( '@stdlib/plot/components/svg/canvas' );
@@ -19265,6 +21465,11 @@ var Axis = require( '@stdlib/plot/components/svg/axis' );
 var Path = require( '@stdlib/plot/components/svg/path' );
 var Symbols = require( '@stdlib/plot/components/svg/symbols' );
 var Rug = require( '@stdlib/plot/components/svg/rug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:init' );
 
 
 // MAIN //
@@ -19307,7 +21512,7 @@ function init( state ) {
 		'writable': false,
 		'value': new ClipPath({
 			'autoRender': false,
-			'id': state._clipPathId
+			'id': state._clipPathId // eslint-disable-line no-underscore-dangle
 		})
 	});
 
@@ -19358,7 +21563,7 @@ function init( state ) {
 		'writable': false,
 		'value': new Marks({
 			'autoRender': false,
-			'clipPathId': state._clipPathId
+			'clipPathId': state._clipPathId // eslint-disable-line no-underscore-dangle
 		})
 	});
 
@@ -19423,23 +21628,28 @@ function init( state ) {
 	});
 
 	debug( 'All components initialized.' );
-} // end FUNCTION init()
+}
 
 
 // EXPORTS //
 
 module.exports = init;
 
-},{"@stdlib/plot/components/svg/annotations":86,"@stdlib/plot/components/svg/axis":100,"@stdlib/plot/components/svg/background":155,"@stdlib/plot/components/svg/canvas":172,"@stdlib/plot/components/svg/clip-path":191,"@stdlib/plot/components/svg/defs":208,"@stdlib/plot/components/svg/graph":214,"@stdlib/plot/components/svg/marks":230,"@stdlib/plot/components/svg/path":243,"@stdlib/plot/components/svg/rug":276,"@stdlib/plot/components/svg/symbols":304,"@stdlib/plot/components/svg/title":337,"debug":550}],462:[function(require,module,exports){
+},{"@stdlib/plot/components/svg/annotations":144,"@stdlib/plot/components/svg/axis":158,"@stdlib/plot/components/svg/background":213,"@stdlib/plot/components/svg/canvas":230,"@stdlib/plot/components/svg/clip-path":249,"@stdlib/plot/components/svg/defs":266,"@stdlib/plot/components/svg/graph":272,"@stdlib/plot/components/svg/marks":288,"@stdlib/plot/components/svg/path":301,"@stdlib/plot/components/svg/rug":334,"@stdlib/plot/components/svg/symbols":362,"@stdlib/plot/components/svg/title":395,"debug":642}],520:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:marks' );
+var logger = require( 'debug' );
 var lines = require( './lines.js' );
 var symbols = require( './symbols.js' );
 var xRug = require( './x_rug.js' );
 var yRug = require( './y_rug.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:marks' );
 
 
 // MAIN //
@@ -19486,19 +21696,24 @@ function render( state ) {
 	}
 	debug( 'Finished rendering marks.' );
 	return parent;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./lines.js":463,"./symbols.js":464,"./x_rug.js":465,"./y_rug.js":466,"debug":550}],463:[function(require,module,exports){
+},{"./lines.js":521,"./symbols.js":522,"./x_rug.js":523,"./y_rug.js":524,"debug":642}],521:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:marks:lines' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:marks:lines' );
 
 
 // MAIN //
@@ -19564,19 +21779,24 @@ function render( state ) {
 	}
 	debug( 'Finished rendering lines.' );
 	return marks;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550}],464:[function(require,module,exports){
+},{"debug":642}],522:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:marks:symbols' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:marks:symbols' );
 
 
 // MAIN //
@@ -19621,7 +21841,7 @@ function render( state ) {
 			continue;
 		}
 		opacity = state.symbolsOpacity[ i%nOpacities ];
-		debug( 'Symbols opacity: %d (%d).', opacity,i );
+		debug( 'Symbols opacity: %d (%d).', opacity, i );
 
 		size = state.symbolsSize[ i%nSizes ];
 		debug( 'Symbols size: %d (%d).', size, i );
@@ -19642,20 +21862,25 @@ function render( state ) {
 	}
 	debug( 'Finished rendering symbols.' );
 	return marks;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"debug":550}],465:[function(require,module,exports){
+},{"debug":642}],523:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:marks:x-rug' );
+var logger = require( 'debug' );
 var xRugTransform = require( './../utils/x_rug_transform.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:marks:x-rug' );
 
 
 // MAIN //
@@ -19735,20 +21960,25 @@ function render( state ) {
 	}
 	debug( 'Finished rendering x-axis rug plots.' );
 	return marks;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../utils/x_rug_transform.js":469,"debug":550}],466:[function(require,module,exports){
+},{"./../utils/x_rug_transform.js":527,"debug":642}],524:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:marks:y-rug' );
+var logger = require( 'debug' );
 var yRugTransform = require( './../utils/y_rug_transform.js' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:marks:y-rug' );
 
 
 // MAIN //
@@ -19828,19 +22058,24 @@ function render( state ) {
 	}
 	debug( 'Finished rendering y-axis rug plots.' );
 	return marks;
-} // end FUNCTION render()
+}
 
 
 // EXPORTS //
 
 module.exports = render;
 
-},{"./../utils/y_rug_transform.js":471,"debug":550}],467:[function(require,module,exports){
+},{"./../utils/y_rug_transform.js":529,"debug":642}],525:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:render:svg:sync' );
+var logger = require( 'debug' );
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:render:svg:sync' );
 
 
 // MAIN //
@@ -19861,6 +22096,7 @@ function sync( state ) {
 	svg.canvas.height = state.height;
 
 	debug( 'Syncing definitions...' );
+
 	// ...
 
 	debug( 'Syncing clipping path...' );
@@ -19872,6 +22108,7 @@ function sync( state ) {
 	svg.graph.translateY = state.paddingTop;
 
 	debug( 'Syncing annotations...' );
+
 	// ...
 
 	debug( 'Syncing title...' );
@@ -19882,24 +22119,28 @@ function sync( state ) {
 	svg.bkgd.height = state.graphHeight;
 
 	debug( 'Syncing marks...' );
-	svg.marks.clipPathId = state._clipPathId;
+	svg.marks.clipPathId = state._clipPathId; // eslint-disable-line no-underscore-dangle
 
 	debug( 'Syncing path...' );
 	svg.path.xScale = state.xScale;
 	svg.path.yScale = state.yScale;
+
 	// svg.path.isDefined = state.isDefined; // TODO
 
 	debug( 'Syncing symbols...' );
 	svg.symbols.xScale = state.xScale;
 	svg.symbols.yScale = state.yScale;
+
 	// svg.symbols.isDefined = state.isDefined; // TODO
 
 	debug( 'Syncing x-axis rug...' );
 	svg.xRug.scale = state.xScale;
+
 	// svg.xRug.isDefined = state.isDefined; // TODO
 
 	debug( 'Syncing y-axis rug...' );
 	svg.yRug.scale = state.yScale;
+
 	// svg.yRug.isDefined = state.isDefined; // TODO
 
 	debug( 'Syncing x-axis...' );
@@ -19917,14 +22158,14 @@ function sync( state ) {
 	svg.yAxis.orientation = state.yAxisOrient;
 
 	debug( 'Sync complete.' );
-} // end FUNCTION sync()
+}
 
 
 // EXPORTS //
 
 module.exports = sync;
 
-},{"debug":550}],468:[function(require,module,exports){
+},{"debug":642}],526:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19940,14 +22181,14 @@ function xAxisTransform( orient, height ) {
 		return 'translate(0,0)';
 	}
 	return 'translate(0,'+height+')';
-} // end FUNCTION xAxisTransform()
+}
 
 
 // EXPORTS //
 
 module.exports = xAxisTransform;
 
-},{}],469:[function(require,module,exports){
+},{}],527:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19963,14 +22204,14 @@ function xRugTransform( orient, height ) {
 		return 'translate(0,0)';
 	}
 	return 'translate(0,'+height+')';
-} // end FUNCTION xRugTransform()
+}
 
 
 // EXPORTS //
 
 module.exports = xRugTransform;
 
-},{}],470:[function(require,module,exports){
+},{}],528:[function(require,module,exports){
 'use strict';
 
 /**
@@ -19986,14 +22227,14 @@ function yAxisTransform( orient, width ) {
 		return 'translate(0,0)';
 	}
 	return 'translate('+width+',0)';
-} // end FUNCTION yAxisTransform()
+}
 
 
 // EXPORTS //
 
 module.exports = yAxisTransform;
 
-},{}],471:[function(require,module,exports){
+},{}],529:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20009,14 +22250,14 @@ function yRugTransform( orient, width ) {
 		return 'translate(0,0)';
 	}
 	return 'translate('+width+',0)';
-} // end FUNCTION yRugTransform()
+}
 
 
 // EXPORTS //
 
 module.exports = yRugTransform;
 
-},{}],472:[function(require,module,exports){
+},{}],530:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20027,6 +22268,7 @@ module.exports = yRugTransform;
 * @throws {Error} must be in a valid state to render
 */
 function validate( state ) {
+	/* eslint-disable no-underscore-dangle */
 	var x;
 	var y;
 	var i;
@@ -20042,14 +22284,14 @@ function validate( state ) {
 			throw new Error( 'invalid state. Each `x[i]:y[i]` pair must be the same length. x['+i+'].length: '+x[i].length+', y['+i+'].length: '+y[i].length+'.' );
 		}
 	}
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{}],473:[function(require,module,exports){
+},{}],531:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20072,14 +22314,14 @@ function getMax( arr ) {
 		}
 	}
 	return max;
-} // end FUNCTION getMax()
+}
 
 
 // EXPORTS //
 
 module.exports = getMax;
 
-},{}],474:[function(require,module,exports){
+},{}],532:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20102,20 +22344,25 @@ function getMin( arr ) {
 		}
 	}
 	return min;
-} // end FUNCTION getMin
+}
 
 
 // EXPORTS //
 
 module.exports = getMin;
 
-},{}],475:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var debug = require( 'debug' )( 'plot:view' );
-var _view = require( './view.js' );
+var logger = require( 'debug' );
+var _view = require( './view.js' ); // eslint-disable-line no-underscore-dangle
+
+
+// VARIABLES //
+
+var debug = logger( 'plot:view' );
 
 
 // MAIN //
@@ -20127,7 +22374,7 @@ var _view = require( './view.js' );
 * @param {string} viewer - plot viewer
 */
 function view( viewer ) {
-	/* jshint validthis: true */ // TODO: eslint
+	/* eslint-disable no-invalid-this */
 	var tmp = this.viewer;
 	if ( arguments.length ) {
 		// Temporarily set the viewer:
@@ -20140,32 +22387,32 @@ function view( viewer ) {
 		// Restore the viewer:
 		this.viewer = tmp;
 	}
-} // end FUNCTION view()
+}
 
 
 // EXPORTS //
 
 module.exports = view;
 
-},{"./view.js":477,"debug":550}],476:[function(require,module,exports){
+},{"./view.js":535,"debug":642}],534:[function(require,module,exports){
 'use strict';
 
 /**
 * Writes a plot (rendered as a virtual DOM tree) to `stdout`.
 *
 * @private
-* @param {VTree} vtree - virtual tree
+* @param {VTree} plot - virtual tree
 */
 function view( plot ) {
 	console.log( JSON.stringify( plot ) );
-} // end FUNCTION view()
+}
 
 
 // EXPORTS //
 
 module.exports = view;
 
-},{}],477:[function(require,module,exports){
+},{}],535:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20200,14 +22447,14 @@ function view( plot, viewer, vtree ) {
 		return;
 	}
 	throw new Error( 'invalid input argument. Must provide a supported viewer. Value: `'+viewer+'`.' );
-} // end FUNCTION view()
+}
 
 
 // EXPORTS //
 
 module.exports = view;
 
-},{"./stdout":476}],478:[function(require,module,exports){
+},{"./stdout":534}],536:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20233,7 +22480,7 @@ var plot = require( '@stdlib/plot/ctor' );
 
 module.exports = plot;
 
-},{"@stdlib/plot/ctor":351}],479:[function(require,module,exports){
+},{"@stdlib/plot/ctor":409}],537:[function(require,module,exports){
 (function (__filename){
 'use strict';
 
@@ -20259,7 +22506,271 @@ tape( 'the export is an alias for a plot constructor', function test( t ) {
 
 
 }).call(this,"/lib/node_modules/@stdlib/plot/test/test.js")
-},{"./../lib":478,"@stdlib/plot/ctor":351,"tape":608}],480:[function(require,module,exports){
+},{"./../lib":536,"@stdlib/plot/ctor":409,"tape":700}],538:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' ).isPrimitive;
+var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+var randint32 = require( './rand_int32.js' );
+
+
+// VARIABLES //
+
+var NORMALIZATION_CONSTANT = (INT32_MAX - 1)|0; // asm type annotation
+var MAX_SEED = (INT32_MAX - 1)|0; // asm type annotation
+var A = 16807|0; // asm type annotation
+
+
+// MAIN //
+
+/**
+* Returns a linear congruential pseudorandom number generator (LCG) based on Park and Miller.
+*
+* @param {PositiveInteger} [seed] - pseudorandom number generator seed
+* @throws {TypeError} must provide a positive integer
+* @throws {RangeError} must provide a positive integer less than the maximum signed 32-bit integer
+* @returns {Function} LCG
+*
+* @example
+* var minstd = factory();
+*
+* var v = minstd();
+* // returns <number>
+*
+* @example
+* // Return a seeded LCG:
+* var minstd = factory( 1234 );
+*
+* var v = minstd();
+* // returns 20739838
+*/
+function factory( seed ) {
+	var state;
+	if ( arguments.length ) {
+		if ( !isPositiveInteger( seed ) ) {
+			throw new TypeError( 'invalid input argument. Must provide a positive integer. Value: `' + seed + '`.' );
+		}
+		if ( seed > MAX_SEED ) {
+			throw new RangeError( 'invalid input argument. Must provide a positive integer less than the maximum signed 32-bit integer. Value: `' + seed + '`.' );
+		}
+		state = seed|0; // asm type annotation
+	} else {
+		state = randint32()|0; // asm type annotation
+	}
+	setReadOnly( minstd, 'NAME', 'minstd' );
+	setReadOnly( minstd, 'SEED', state );
+	setReadOnly( minstd, 'MIN', 1 );
+	setReadOnly( minstd, 'MAX', INT32_MAX-1 );
+	setReadOnly( minstd, 'normalized', normalized );
+
+	setReadOnly( normalized, 'NAME', minstd.NAME );
+	setReadOnly( normalized, 'SEED', minstd.SEED );
+	setReadOnly( normalized, 'MIN', (minstd.MIN-1.0) / NORMALIZATION_CONSTANT );
+	setReadOnly( normalized, 'MAX', (minstd.MAX-1.0) / NORMALIZATION_CONSTANT );
+
+	return minstd;
+
+	/**
+	* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
+	*
+	* @private
+	* @returns {PositiveInteger} pseudorandom integer
+	*
+	* @example
+	* var v = minstd();
+	* // returns <number>
+	*/
+	function minstd() {
+		state = ( (A*state)%INT32_MAX )|0; // asm type annotation
+		return state;
+	}
+
+	/**
+	* Generates a pseudorandom number on the interval \\( [0,1) \\).
+	*
+	* @private
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = normalized()
+	* // returns <number>
+	*/
+	function normalized() {
+		return (minstd()-1) / NORMALIZATION_CONSTANT;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = factory;
+
+},{"./rand_int32.js":541,"@stdlib/assert/is-positive-integer":92,"@stdlib/constants/math/int32-max":130,"@stdlib/utils/define-read-only-property":553}],539:[function(require,module,exports){
+'use strict';
+
+/**
+* A linear congruential pseudorandom number generator (LCG) based on Park and Miller.
+*
+* @module @stdlib/random/base/minstd
+*
+* @example
+* var minstd = require( '@stdlib/random/base/minstd' );
+*
+* var v = minstd();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/minstd' ).factory;
+*
+* var minstd = factory( 1234 );
+*
+* var v = minstd();
+* // returns 20739838
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-read-only-property' );
+var minstd = require( './minstd.js' );
+var factory = require( './factory.js' );
+
+
+// MAIN //
+
+setReadOnly( minstd, 'factory', factory );
+
+
+// EXPORTS //
+
+module.exports = minstd;
+
+},{"./factory.js":538,"./minstd.js":540,"@stdlib/utils/define-read-only-property":553}],540:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var factory = require( './factory.js' );
+var randint32 = require( './rand_int32.js' );
+
+
+// MAIN //
+
+/**
+* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
+*
+* ## Method
+*
+* Linear congruential generators (LCGs) use the recurrence relation
+*
+* ```tex
+* X_{n+1} = ( a \cdot X_n + c ) \operatorname{mod}(m)
+* ```
+*
+* where the modulus \\( m \\) is a prime number or power of a prime number and \\( a \\) is a primitive root modulo \\( m \\).
+*
+* <!-- <note> -->
+*
+* For an LCG to be a Lehmer RNG, the seed \\( X_0 \\) must be coprime to \\( m \\).
+*
+* <!-- </note> -->
+*
+* In this implementation, the constants \\( a \\), \\( c \\), and \\( m \\) have the values
+*
+* ```tex
+* \begin{align*}
+* a &= 7^5 = 16807 \\
+* c &= 0 \\
+* m &= 2^{31} - 1 = 2147483647
+* \end{align*}
+* ```
+*
+* <!-- <note> -->
+*
+* The constant \\( m \\) is a Mersenne prime (modulo \\(31\\)).
+*
+* <!-- </note> -->
+*
+* <!-- <note> -->
+*
+* The constant \\( a \\) is a primitive root (modulo \\(31\\)).
+*
+* <!-- </note> -->
+*
+* Accordingly, the maximum possible product is
+*
+* ```tex
+* 16807 \cdot (m - 1) \approx 2^{46}
+* ```
+*
+* The values for \\( a \\), \\( c \\), and \\( m \\) are taken from Park and Miller, "Random Number Generators: Good Ones Are Hard To Find". Park's and Miller's article is also the basis for a recipe in the second edition of _Numerical Recipes in C_.
+*
+*
+* ## Notes
+*
+* -   The generator has a period of approximately \\(2.1\mbox{e}9\\) (see [Numerical Recipes in C, 2nd Edition](#references), p. 279).
+*
+*
+* ## References
+*
+* -   Park, S. K., and K. W. Miller. 1988. "Random Number Generators: Good Ones Are Hard to Find." _Communications of the ACM_ 31 (10). New York, NY, USA: ACM: 1192–1201. doi:[10.1145/63039.63042](http://dx.doi.org/10.1145/63039.63042).
+* -   Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. _Numerical Recipes in C: The Art of Scientific Computing, Second Edition_. Cambridge University Press.
+*
+*
+* @function minstd
+* @type {Function}
+* @returns {PositiveInteger} pseudorandom integer
+*
+* @example
+* var v = minstd();
+* // returns <number>
+*/
+var minstd = factory( randint32() );
+
+
+// EXPORTS //
+
+module.exports = minstd;
+
+},{"./factory.js":538,"./rand_int32.js":541}],541:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+var floor = require( '@stdlib/math/base/special/floor' );
+
+
+// VARIABLES //
+
+var MAX = INT32_MAX - 1;
+
+
+// MAIN //
+
+/**
+* Returns a pseudorandom integer on the interval \\([1, 2^{31}-1)\\).
+*
+* @private
+* @returns {PositiveInteger} pseudorandom integer
+*
+* @example
+* var v = randint();
+* // returns <number>
+*/
+function randint32() {
+	var v = floor( 1.0 + (MAX*Math.random()) );
+	return v|0; // asm type annotation
+}
+
+
+// EXPORTS //
+
+module.exports = randint32;
+
+},{"@stdlib/constants/math/int32-max":130,"@stdlib/math/base/special/floor":142}],542:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20296,18 +22807,23 @@ tape( 'the export is an alias for a plot constructor', function test( t ) {
 *
 * Regular expression: `/^\s*function\s*([^(]*)/i`
 *
-* * `/^\s*`
-*   - Match zero or more spaces at beginning
-* * `function`
-*   - Match the word `function`
-* * `\s*`
-*   - Match zero or more spaces after the word `function`
-* * `()`
-*   - Capture
-* * `[^(]*`
-*   - Match anything except a left parenthesis `(` zero or more times
-* * `/i`
-*   - ignore case
+* -   `/^\s*`
+*     -   Match zero or more spaces at beginning
+*
+* -   `function`
+*     -   Match the word `function`
+*
+* -   `\s*`
+*     -   Match zero or more spaces after the word `function`
+*
+* -   `()`
+*     -   Capture
+*
+* -   `[^(]*`
+*     -   Match anything except a left parenthesis `(` zero or more times
+*
+* -   `/i`
+*     -   ignore case
 *
 * @constant
 * @type {RegExp}
@@ -20320,7 +22836,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 module.exports = RE_FUNCTION_NAME;
 
-},{}],481:[function(require,module,exports){
+},{}],543:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20353,24 +22869,32 @@ module.exports = RE_FUNCTION_NAME;
 *
 * Regular expression: `/^\/((?:\\\/|[^\/])+)\/([imgy]*)$/`
 *
-* * `/^\/`
-*   - match a string that begins with a `/`
-* * `()`
-*   - capture
-* * `(?:)+`
-*   - capture, but do not remember, a group of characters which occur one or more times
-* * `\\\/`
-*   - match the literal `\/`
-* * `|`
-*   - OR
-* * `[^\/]`
-*   - anything which is not the literal `\/`
-* * `\/`
-*   - match the literal `/`
-* * `([imgy]*)`
-*   - capture any characters matching `imgy` occurring zero or more times
-* * `$/`
-*   - string end
+* -   `/^\/`
+*     -   match a string that begins with a `/`
+*
+* -   `()`
+*     -   capture
+*
+* -   `(?:)+`
+*     -   capture, but do not remember, a group of characters which occur one or more times
+*
+* -   `\\\/`
+*     -   match the literal `\/`
+*
+* -   `|`
+*     -   OR
+*
+* -   `[^\/]`
+*     -   anything which is not the literal `\/`
+*
+* -   `\/`
+*     -   match the literal `/`
+*
+* -   `([imgy]*)`
+*     -   capture any characters matching `imgy` occurring zero or more times
+*
+* -   `$/`
+*     -   string end
 *
 *
 * @constant
@@ -20384,7 +22908,7 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 module.exports = RE_REGEXP;
 
-},{}],482:[function(require,module,exports){
+},{}],544:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20415,15 +22939,15 @@ function wrap( value ) {
 	*/
 	function constantFunction() {
 		return value;
-	} // end FUNCTION constantFunction()
-} // end FUNCTION wrap()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = wrap;
 
-},{}],483:[function(require,module,exports){
+},{}],545:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20455,7 +22979,7 @@ var constantFunction = require( './constant_function.js' );
 
 module.exports = constantFunction;
 
-},{"./constant_function.js":482}],484:[function(require,module,exports){
+},{"./constant_function.js":544}],546:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20476,17 +23000,21 @@ var isBuffer = require( '@stdlib/assert/is-buffer' );
 * @example
 * var v = constructorName( 'a' );
 * // returns 'String'
+*
 * @example
 * var v = constructorName( 5 );
 * // returns 'Number'
+*
 * @example
 * var v = constructorName( null );
 * // returns 'Null'
+*
 * @example
 * var v = constructorName( undefined );
 * // returns 'Undefined'
+*
 * @example
-* var v = constructorName( function noop(){} );
+* var v = constructorName( function noop() {} );
 * // returns 'Function'
 */
 function constructorName( v ) {
@@ -20504,14 +23032,14 @@ function constructorName( v ) {
 		return 'Buffer';
 	}
 	return name;
-} // end FUNCTION constructorName()
+}
 
 
 // EXPORTS //
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":15,"@stdlib/regexp/function-name":480,"@stdlib/utils/native-class":519}],485:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":43,"@stdlib/regexp/function-name":542,"@stdlib/utils/native-class":611}],547:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20541,14 +23069,14 @@ var constructorName = require( './constructor_name.js' );
 
 module.exports = constructorName;
 
-},{"./constructor_name.js":484}],486:[function(require,module,exports){
+},{"./constructor_name.js":546}],548:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isArray = require( '@stdlib/assert/is-array' );
 var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
 var deepCopy = require( './deep_copy.js' );
 
 
@@ -20591,17 +23119,16 @@ function copy( value, level ) {
 	} else {
 		level = PINF;
 	}
-	out = ( isArray(value) ) ? [] : {};
+	out = ( isArray( value ) ) ? new Array( value.length ) : {};
 	return deepCopy( value, out, [value], [out], level );
-} // end FUNCTION copy()
+}
 
 
 // EXPORTS //
 
 module.exports = copy;
 
-},{"./deep_copy.js":487,"@stdlib/assert/is-array":7,"@stdlib/assert/is-nonnegative-integer":34,"@stdlib/math/constants/float64-pinf":82}],487:[function(require,module,exports){
-(function (Buffer){
+},{"./deep_copy.js":549,"@stdlib/assert/is-array":34,"@stdlib/assert/is-nonnegative-integer":73,"@stdlib/constants/math/float64-pinf":127}],549:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -20614,6 +23141,7 @@ var isError = require( '@stdlib/assert/is-error' );
 var typeOf = require( '@stdlib/utils/type-of' );
 var regexp = require( '@stdlib/utils/regexp-from-string' );
 var indexOf = require( '@stdlib/utils/index-of' );
+var copyBuffer = require( '@stdlib/buffer/from-buffer' );
 var typedArrays = require( './typed_arrays.js' );
 
 
@@ -20622,10 +23150,10 @@ var typedArrays = require( './typed_arrays.js' );
 /**
 * Clones a class instance.
 *
-* #### Notes
+* ## Notes
 *
-* * This should __only__ be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered __fragile__.
-* * The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
+* -   This should **only** be used for simple cases. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This approach should be considered **fragile**.
+* -   The function is greedy, disregarding the notion of a `level`. Instead, the function deep copies all properties, as we assume the concept of `level` applies only to the class instance reference but not to its internal state. This prevents, in theory, two instances from sharing state.
 *
 *
 * @private
@@ -20666,7 +23194,7 @@ function cloneInstance( val ) {
 		Object.freeze( ref );
 	}
 	return ref;
-} // end FUNCTION cloneInstance()
+}
 
 /**
 * Copies an error object.
@@ -20682,7 +23210,6 @@ function cloneInstance( val ) {
 * // returns <TypeError>
 */
 function copyError( error ) {
-	/* jshint newcap:false */ // TODO: eslint
 	var cache = [];
 	var refs = [];
 	var keys;
@@ -20724,7 +23251,7 @@ function copyError( error ) {
 		Object.defineProperty( err, key, desc );
 	}
 	return err;
-} // end FUNCTION copyError()
+}
 
 
 // MAIN //
@@ -20762,7 +23289,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 		return val;
 	}
 	if ( isBuffer( val ) ) {
-		return new Buffer( val );
+		return copyBuffer( val );
 	}
 	if ( isError( val ) ) {
 		return copyError( val );
@@ -20842,7 +23369,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 				continue;
 			}
 			// Plain array or object...
-			ref = ( isArray(x) ) ? [] : {};
+			ref = ( isArray( x ) ) ? new Array( x.length ) : {};
 			cache.push( x );
 			refs.push( ref );
 			if ( parent === 'array' ) {
@@ -20877,15 +23404,14 @@ function deepCopy( val, copy, cache, refs, level ) {
 		Object.freeze( copy );
 	}
 	return copy;
-} // end FUNCTION deepCopy()
+}
 
 
 // EXPORTS //
 
 module.exports = deepCopy;
 
-}).call(this,require("buffer").Buffer)
-},{"./typed_arrays.js":489,"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-array":7,"@stdlib/assert/is-buffer":15,"@stdlib/assert/is-error":19,"@stdlib/utils/index-of":504,"@stdlib/utils/regexp-from-string":525,"@stdlib/utils/type-of":530,"buffer":538,"object-keys":578}],488:[function(require,module,exports){
+},{"./typed_arrays.js":551,"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-array":34,"@stdlib/assert/is-buffer":43,"@stdlib/assert/is-error":47,"@stdlib/buffer/from-buffer":122,"@stdlib/utils/index-of":596,"@stdlib/utils/regexp-from-string":617,"@stdlib/utils/type-of":622,"object-keys":671}],550:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20925,47 +23451,154 @@ var copy = require( './copy.js' );
 
 module.exports = copy;
 
-},{"./copy.js":486}],489:[function(require,module,exports){
+},{"./copy.js":548}],551:[function(require,module,exports){
 /* eslint-disable no-new-func */
 'use strict';
 
-// MAIN //
+// MODULES //
 
-var ctors = [
-	'Int8Array',
-	'Uint8Array',
-	'Uint8ClampedArray',
-	'Int16Array',
-	'Uint16Array',
-	'Int32Array',
-	'Uint32Array',
-	'Float32Array',
-	'Float64Array'
-];
+var Int8Array = require( '@stdlib/array/int8' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Uint8ClampedArray = require( '@stdlib/array/uint8c' );
+var Int16Array = require( '@stdlib/array/int16' );
+var Uint16Array = require( '@stdlib/array/uint16' );
+var Int32Array = require( '@stdlib/array/int32' );
+var Uint32Array = require( '@stdlib/array/uint32' );
+var Float32Array = require( '@stdlib/array/float32' );
+var Float64Array = require( '@stdlib/array/float64' );
+
+
+// FUNCTIONS //
 
 /**
-* Create functions for copying typed arrays.
+* Copies an `Int8Array`.
 *
 * @private
-* @returns {Object} typed array functions
+* @param {Int8Array} arr - array to copy
+* @returns {Int8Array} new array
 */
-function createTypedArrayFcns() {
-	var typedArrays = {};
-	var ctor;
-	var i;
-	for ( i = 0; i < ctors.length; i++ ) {
-		ctor = ctors[ i ];
-		typedArrays[ ctor.toLowerCase() ] = new Function( 'arr', 'return new '+ctor+'( arr );' );
-	}
-	return typedArrays;
-} // end FUNCTION createTypedArrayFcns()
+function int8array( arr ) {
+	return new Int8Array( arr );
+}
+
+/**
+* Copies a `Uint8Array`.
+*
+* @private
+* @param {Uint8Array} arr - array to copy
+* @returns {Uint8Array} new array
+*/
+function uint8array( arr ) {
+	return new Uint8Array( arr );
+}
+
+/**
+* Copies a `Uint8ClampedArray`.
+*
+* @private
+* @param {Uint8ClampedArray} arr - array to copy
+* @returns {Uint8ClampedArray} new array
+*/
+function uint8clampedarray( arr ) {
+	return new Uint8ClampedArray( arr );
+}
+
+/**
+* Copies an `Int16Array`.
+*
+* @private
+* @param {Int16Array} arr - array to copy
+* @returns {Int16Array} new array
+*/
+function int16array( arr ) {
+	return new Int16Array( arr );
+}
+
+/**
+* Copies a `Uint16Array`.
+*
+* @private
+* @param {Uint16Array} arr - array to copy
+* @returns {Uint16Array} new array
+*/
+function uint16array( arr ) {
+	return new Uint16Array( arr );
+}
+
+/**
+* Copies an `Int32Array`.
+*
+* @private
+* @param {Int32Array} arr - array to copy
+* @returns {Int32Array} new array
+*/
+function int32array( arr ) {
+	return new Int32Array( arr );
+}
+
+/**
+* Copies a `Uint32Array`.
+*
+* @private
+* @param {Uint32Array} arr - array to copy
+* @returns {Uint32Array} new array
+*/
+function uint32array( arr ) {
+	return new Uint32Array( arr );
+}
+
+/**
+* Copies a `Float32Array`.
+*
+* @private
+* @param {Float32Array} arr - array to copy
+* @returns {Float32Array} new array
+*/
+function float32array( arr ) {
+	return new Float32Array( arr );
+}
+
+/**
+* Copies a `Float64Array`.
+*
+* @private
+* @param {Float64Array} arr - array to copy
+* @returns {Float64Array} new array
+*/
+function float64array( arr ) {
+	return new Float64Array( arr );
+}
+
+
+// MAIN //
+
+/**
+* Returns a hash of functions for copying typed arrays.
+*
+* @private
+* @returns {Object} function hash
+*/
+function typedarrays() {
+	var out = {
+		'int8array': int8array,
+		'uint8array': uint8array,
+		'uint8clampedarray': uint8clampedarray,
+		'int16array': int16array,
+		'uint16array': uint16array,
+		'int32array': int32array,
+		'uint32array': uint32array,
+		'float32array': float32array,
+		'float64array': float64array
+	};
+	return out;
+}
 
 
 // EXPORTS //
 
-module.exports = createTypedArrayFcns();
+module.exports = typedarrays();
 
-},{}],490:[function(require,module,exports){
+},{"@stdlib/array/float32":2,"@stdlib/array/float64":5,"@stdlib/array/int16":7,"@stdlib/array/int32":10,"@stdlib/array/int8":13,"@stdlib/array/uint16":16,"@stdlib/array/uint32":19,"@stdlib/array/uint8":22,"@stdlib/array/uint8c":25}],552:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20987,14 +23620,14 @@ function setReadOnly( obj, prop, value ) {
 		'writable': false,
 		'enumerable': true
 	});
-} // end FUNCTION setReadOnly()
+}
 
 
 // EXPORTS //
 
 module.exports = setReadOnly;
 
-},{}],491:[function(require,module,exports){
+},{}],553:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21019,7 +23652,493 @@ var setReadOnly = require( './define_read_only_property.js' );
 
 module.exports = setReadOnly;
 
-},{"./define_read_only_property.js":490}],492:[function(require,module,exports){
+},{"./define_read_only_property.js":552}],554:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFloat32Array = require( '@stdlib/assert/is-float32array' );
+var GlobalFloat32Array = require( './float32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Float32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float32Array` support
+*
+* @example
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+function hasFloat32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat32Array( [ 1.0, 3.14, -3.14, 5.0e40 ] );
+		bool = (
+			isFloat32Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.140000104904175 &&
+			arr[ 2 ] === -3.140000104904175 &&
+			arr[ 3 ] === Number.POSITIVE_INFINITY
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasFloat32ArraySupport;
+
+},{"./float32array.js":555,"@stdlib/assert/is-float32array":49}],555:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Float32Array === 'function' ) ? Float32Array : null;
+
+},{}],556:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Float32Array` support.
+*
+* @module @stdlib/utils/detect-float32array-support
+*
+* @example
+* var hasFloat32ArraySupport = require( '@stdlib/utils/detect-float32array-support' );
+*
+* var bool = hasFloat32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasFloat32ArraySupport = require( './detect_float32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasFloat32ArraySupport;
+
+},{"./detect_float32array_support.js":554}],557:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isFloat64Array = require( '@stdlib/assert/is-float64array' );
+var GlobalFloat64Array = require( './float64array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Float64Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Float64Array` support
+*
+* @example
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+function hasFloat64ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalFloat64Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalFloat64Array( [ 1.0, 3.14, -3.14, NaN ] );
+		bool = (
+			isFloat64Array( arr ) &&
+			arr[ 0 ] === 1.0 &&
+			arr[ 1 ] === 3.14 &&
+			arr[ 2 ] === -3.14 &&
+			arr[ 3 ] !== arr[ 3 ]
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasFloat64ArraySupport;
+
+},{"./float64array.js":558,"@stdlib/assert/is-float64array":51}],558:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Float64Array === 'function' ) ? Float64Array : null;
+
+},{}],559:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Float64Array` support.
+*
+* @module @stdlib/utils/detect-float64array-support
+*
+* @example
+* var hasFloat64ArraySupport = require( '@stdlib/utils/detect-float64array-support' );
+*
+* var bool = hasFloat64ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasFloat64ArraySupport = require( './detect_float64array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasFloat64ArraySupport;
+
+},{"./detect_float64array_support.js":557}],560:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt16Array = require( '@stdlib/assert/is-int16array' );
+var INT16_MAX = require( '@stdlib/constants/math/int16-max' );
+var INT16_MIN = require( '@stdlib/constants/math/int16-min' );
+var GlobalInt16Array = require( './int16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int16Array` support
+*
+* @example
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+function hasInt16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt16Array( [ 1, 3.14, -3.14, INT16_MAX+1 ] );
+		bool = (
+			isInt16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&      // truncation
+			arr[ 2 ] === -3 &&     // truncation
+			arr[ 3 ] === INT16_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt16ArraySupport;
+
+},{"./int16array.js":562,"@stdlib/assert/is-int16array":55,"@stdlib/constants/math/int16-max":128,"@stdlib/constants/math/int16-min":129}],561:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int16Array` support.
+*
+* @module @stdlib/utils/detect-int16array-support
+*
+* @example
+* var hasInt16ArraySupport = require( '@stdlib/utils/detect-int16array-support' );
+*
+* var bool = hasInt16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt16ArraySupport = require( './detect_int16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt16ArraySupport;
+
+},{"./detect_int16array_support.js":560}],562:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int16Array === 'function' ) ? Int16Array : null;
+
+},{}],563:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt32Array = require( '@stdlib/assert/is-int32array' );
+var INT32_MAX = require( '@stdlib/constants/math/int32-max' );
+var INT32_MIN = require( '@stdlib/constants/math/int32-min' );
+var GlobalInt32Array = require( './int32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int32Array` support
+*
+* @example
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+function hasInt32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt32Array( [ 1, 3.14, -3.14, INT32_MAX+1 ] );
+		bool = (
+			isInt32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&      // truncation
+			arr[ 2 ] === -3 &&     // truncation
+			arr[ 3 ] === INT32_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt32ArraySupport;
+
+},{"./int32array.js":565,"@stdlib/assert/is-int32array":57,"@stdlib/constants/math/int32-max":130,"@stdlib/constants/math/int32-min":131}],564:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int32Array` support.
+*
+* @module @stdlib/utils/detect-int32array-support
+*
+* @example
+* var hasInt32ArraySupport = require( '@stdlib/utils/detect-int32array-support' );
+*
+* var bool = hasInt32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt32ArraySupport = require( './detect_int32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt32ArraySupport;
+
+},{"./detect_int32array_support.js":563}],565:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int32Array === 'function' ) ? Int32Array : null;
+
+},{}],566:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isInt8Array = require( '@stdlib/assert/is-int8array' );
+var INT8_MAX = require( '@stdlib/constants/math/int8-max' );
+var INT8_MIN = require( '@stdlib/constants/math/int8-min' );
+var GlobalInt8Array = require( './int8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Int8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Int8Array` support
+*
+* @example
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+function hasInt8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalInt8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalInt8Array( [ 1, 3.14, -3.14, INT8_MAX+1 ] );
+		bool = (
+			isInt8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&     // truncation
+			arr[ 2 ] === -3 &&    // truncation
+			arr[ 3 ] === INT8_MIN // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasInt8ArraySupport;
+
+},{"./int8array.js":568,"@stdlib/assert/is-int8array":59,"@stdlib/constants/math/int8-max":132,"@stdlib/constants/math/int8-min":133}],567:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Int8Array` support.
+*
+* @module @stdlib/utils/detect-int8array-support
+*
+* @example
+* var hasInt8ArraySupport = require( '@stdlib/utils/detect-int8array-support' );
+*
+* var bool = hasInt8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasInt8ArraySupport = require( './detect_int8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasInt8ArraySupport;
+
+},{"./detect_int8array_support.js":566}],568:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Int8Array === 'function' ) ? Int8Array : null;
+
+},{}],569:[function(require,module,exports){
+(function (Buffer){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Buffer === 'function' ) ? Buffer : null;
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":630}],570:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Buffer` support.
+*
+* @module @stdlib/utils/detect-node-buffer-support
+*
+* @example
+* var hasNodeBufferSupport = require( '@stdlib/utils/detect-node-buffer-support' );
+*
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasNodeBufferSupport = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = hasNodeBufferSupport;
+
+},{"./main.js":571}],571:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+var GlobalBuffer = require( './buffer.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Buffer` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Buffer` support
+*
+* @example
+* var bool = hasNodeBufferSupport();
+* // returns <boolean>
+*/
+function hasNodeBufferSupport() {
+	var bool;
+	var b;
+
+	if ( typeof GlobalBuffer !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		if ( typeof GlobalBuffer.from === 'function' ) {
+			b = GlobalBuffer.from( [ 1, 2, 3, 4 ] );
+		} else {
+			b = new GlobalBuffer( [ 1, 2, 3, 4 ] ); // Note: this is deprecated behavior starting in Node v6 (see https://nodejs.org/api/buffer.html#buffer_new_buffer_array)
+		}
+		bool = (
+			isBuffer( b ) &&
+			b[ 0 ] === 1 &&
+			b[ 1 ] === 2 &&
+			b[ 2 ] === 3 &&
+			b[ 3 ] === 4
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasNodeBufferSupport;
+
+},{"./buffer.js":569,"@stdlib/assert/is-buffer":43}],572:[function(require,module,exports){
 'use strict';
 
 // MAIN //
@@ -21038,18 +24157,18 @@ function hasSymbolSupport() {
 		typeof Symbol === 'function' &&
 		typeof Symbol( 'foo' ) === 'symbol'
 	);
-} // end FUNCTION hasSymbolSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasSymbolSupport;
 
-},{}],493:[function(require,module,exports){
+},{}],573:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `Symbol` support.
+* Test for native `Symbol` support.
 *
 * @module @stdlib/utils/detect-symbol-support
 *
@@ -21069,7 +24188,7 @@ var hasSymbolSupport = require( './detect_symbol_support.js' );
 
 module.exports = hasSymbolSupport;
 
-},{"./detect_symbol_support.js":492}],494:[function(require,module,exports){
+},{"./detect_symbol_support.js":572}],574:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21090,18 +24209,18 @@ var hasSymbols = require( '@stdlib/utils/detect-symbol-support' )();
 */
 function hasToStringTagSupport() {
 	return ( hasSymbols && typeof Symbol.toStringTag === 'symbol' );
-} // end FUNCTION hasToStringTagSupport()
+}
 
 
 // EXPORTS //
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/utils/detect-symbol-support":493}],495:[function(require,module,exports){
+},{"@stdlib/utils/detect-symbol-support":573}],575:[function(require,module,exports){
 'use strict';
 
 /**
-* Tests for native `toStringTag` support.
+* Test for native `toStringTag` support.
 *
 * @module @stdlib/utils/detect-tostringtag-support
 *
@@ -21121,21 +24240,351 @@ var hasToStringTagSupport = require( './has_tostringtag_support.js' );
 
 module.exports = hasToStringTagSupport;
 
-},{"./has_tostringtag_support.js":494}],496:[function(require,module,exports){
+},{"./has_tostringtag_support.js":574}],576:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint16Array = require( '@stdlib/assert/is-uint16array' );
+var UINT16_MAX = require( '@stdlib/constants/math/uint16-max' );
+var GlobalUint16Array = require( './uint16array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint16Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint16Array` support
+*
+* @example
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+function hasUint16ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint16Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT16_MAX+1, UINT16_MAX+2 ];
+		arr = new GlobalUint16Array( arr );
+		bool = (
+			isUint16Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT16_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./uint16array.js":578,"@stdlib/assert/is-uint16array":106,"@stdlib/constants/math/uint16-max":134}],577:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint16Array` support.
+*
+* @module @stdlib/utils/detect-uint16array-support
+*
+* @example
+* var hasUint16ArraySupport = require( '@stdlib/utils/detect-uint16array-support' );
+*
+* var bool = hasUint16ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint16ArraySupport = require( './detect_uint16array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint16ArraySupport;
+
+},{"./detect_uint16array_support.js":576}],578:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint16Array === 'function' ) ? Uint16Array : null;
+
+},{}],579:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint32Array = require( '@stdlib/assert/is-uint32array' );
+var UINT32_MAX = require( '@stdlib/constants/math/uint32-max' );
+var GlobalUint32Array = require( './uint32array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint32Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint32Array` support
+*
+* @example
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+function hasUint32ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint32Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT32_MAX+1, UINT32_MAX+2 ];
+		arr = new GlobalUint32Array( arr );
+		bool = (
+			isUint32Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&            // truncation
+			arr[ 2 ] === UINT32_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&            // wrap around
+			arr[ 4 ] === 1               // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./uint32array.js":581,"@stdlib/assert/is-uint32array":108,"@stdlib/constants/math/uint32-max":135}],580:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint32Array` support.
+*
+* @module @stdlib/utils/detect-uint32array-support
+*
+* @example
+* var hasUint32ArraySupport = require( '@stdlib/utils/detect-uint32array-support' );
+*
+* var bool = hasUint32ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint32ArraySupport = require( './detect_uint32array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint32ArraySupport;
+
+},{"./detect_uint32array_support.js":579}],581:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint32Array === 'function' ) ? Uint32Array : null;
+
+},{}],582:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8Array = require( '@stdlib/assert/is-uint8array' );
+var UINT8_MAX = require( '@stdlib/constants/math/uint8-max' );
+var GlobalUint8Array = require( './uint8array.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8Array` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8Array` support
+*
+* @example
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8Array !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = [ 1, 3.14, -3.14, UINT8_MAX+1, UINT8_MAX+2 ];
+		arr = new GlobalUint8Array( arr );
+		bool = (
+			isUint8Array( arr ) &&
+			arr[ 0 ] === 1 &&
+			arr[ 1 ] === 3 &&           // truncation
+			arr[ 2 ] === UINT8_MAX-2 && // truncation and wrap around
+			arr[ 3 ] === 0 &&           // wrap around
+			arr[ 4 ] === 1              // wrap around
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./uint8array.js":584,"@stdlib/assert/is-uint8array":110,"@stdlib/constants/math/uint8-max":136}],583:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8Array` support.
+*
+* @module @stdlib/utils/detect-uint8array-support
+*
+* @example
+* var hasUint8ArraySupport = require( '@stdlib/utils/detect-uint8array-support' );
+*
+* var bool = hasUint8ArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ArraySupport = require( './detect_uint8array_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ArraySupport;
+
+},{"./detect_uint8array_support.js":582}],584:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8Array === 'function' ) ? Uint8Array : null;
+
+},{}],585:[function(require,module,exports){
+'use strict';
+
+// MODULES //
+
+var isUint8ClampedArray = require( '@stdlib/assert/is-uint8clampedarray' );
+var GlobalUint8ClampedArray = require( './uint8clampedarray.js' );
+
+
+// MAIN //
+
+/**
+* Tests for native `Uint8ClampedArray` support.
+*
+* @returns {boolean} boolean indicating if an environment has `Uint8ClampedArray` support
+*
+* @example
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+function hasUint8ClampedArraySupport() {
+	var bool;
+	var arr;
+
+	if ( typeof GlobalUint8ClampedArray !== 'function' ) {
+		return false;
+	}
+	// Test basic support...
+	try {
+		arr = new GlobalUint8ClampedArray( [ -1, 0, 1, 3.14, 4.99, 255, 256 ] );
+		bool = (
+			isUint8ClampedArray( arr ) &&
+			arr[ 0 ] === 0 &&   // clamped
+			arr[ 1 ] === 0 &&
+			arr[ 2 ] === 1 &&
+			arr[ 3 ] === 3 &&   // round to nearest
+			arr[ 4 ] === 5 &&   // round to nearest
+			arr[ 5 ] === 255 &&
+			arr[ 6 ] === 255    // clamped
+		);
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		bool = false;
+	}
+	return bool;
+}
+
+
+// EXPORTS //
+
+module.exports = hasUint8ClampedArraySupport;
+
+},{"./uint8clampedarray.js":587,"@stdlib/assert/is-uint8clampedarray":112}],586:[function(require,module,exports){
+'use strict';
+
+/**
+* Test for native `Uint8ClampedArray` support.
+*
+* @module @stdlib/utils/detect-uint8clamped-support
+*
+* @example
+* var hasUint8ClampedArraySupport = require( '@stdlib/utils/detect-uint8clampedarray-support' );
+*
+* var bool = hasUint8ClampedArraySupport();
+* // returns <boolean>
+*/
+
+// MODULES //
+
+var hasUint8ClampedArraySupport = require( './detect_uint8clampedarray_support.js' );
+
+
+// EXPORTS //
+
+module.exports = hasUint8ClampedArraySupport;
+
+},{"./detect_uint8clampedarray_support.js":585}],587:[function(require,module,exports){
+'use strict';
+
+// EXPORTS //
+
+module.exports = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : null;
+
+},{}],588:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
 var isFunction = require( '@stdlib/assert/is-function' );
+var builtin = require( './native.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var getProto;
 if ( isFunction( Object.getPrototypeOf ) ) {
-	getProto = require( './native.js' );
+	getProto = builtin;
 } else {
-	getProto = require( './polyfill.js' );
+	getProto = polyfill;
 }
 
 
@@ -21143,7 +24592,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":499,"./polyfill.js":500,"@stdlib/assert/is-function":21}],497:[function(require,module,exports){
+},{"./native.js":591,"./polyfill.js":592,"@stdlib/assert/is-function":53}],589:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21174,14 +24623,14 @@ function getPrototypeOf( value ) {
 	value = Object( value );
 
 	return getProto( value );
-} // end FUNCTION getPrototypeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":496}],498:[function(require,module,exports){
+},{"./detect.js":588}],590:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21205,14 +24654,19 @@ var getPrototype = require( './get_prototype_of.js' );
 
 module.exports = getPrototype;
 
-},{"./get_prototype_of.js":497}],499:[function(require,module,exports){
+},{"./get_prototype_of.js":589}],591:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var getProto = Object.getPrototypeOf;
+
 
 // EXPORTS //
 
-module.exports = Object.getPrototypeOf;
+module.exports = getProto;
 
-},{}],500:[function(require,module,exports){
+},{}],592:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21244,14 +24698,14 @@ function getPrototypeOf( obj ) {
 	}
 	// Return `null` for objects created via `Object.create( null )`. Also return `null` for cross-realm objects on browsers that lack `__proto__` support, such as IE < 11.
 	return null;
-} // end FUNCTION getPrototypeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":501,"@stdlib/utils/native-class":519}],501:[function(require,module,exports){
+},{"./proto.js":593,"@stdlib/utils/native-class":611}],593:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21264,14 +24718,14 @@ module.exports = getPrototypeOf;
 function getProto( obj ) {
 	// eslint-disable-next-line no-proto
 	return obj.__proto__;
-} // end FUNCTION getProto()
+}
 
 
 // EXPORTS //
 
 module.exports = getProto;
 
-},{}],502:[function(require,module,exports){
+},{}],594:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21293,7 +24747,7 @@ function identity( x ) {
 
 module.exports = identity;
 
-},{}],503:[function(require,module,exports){
+},{}],595:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21320,7 +24774,7 @@ var identity = require( './identity.js' );
 
 module.exports = identity;
 
-},{"./identity.js":502}],504:[function(require,module,exports){
+},{"./identity.js":594}],596:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21377,7 +24831,7 @@ var indexOf = require( './index_of.js' );
 
 module.exports = indexOf;
 
-},{"./index_of.js":505}],505:[function(require,module,exports){
+},{"./index_of.js":597}],597:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21485,31 +24939,37 @@ function indexOf( arr, searchElement, fromIndex ) {
 		}
 	}
 	return -1;
-} // end FUNCTION indexOf()
+}
 
 
 // EXPORTS //
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-array-like":5,"@stdlib/assert/is-integer":24,"@stdlib/assert/is-nan":29}],506:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":32,"@stdlib/assert/is-integer":62,"@stdlib/assert/is-nan":67}],598:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var objectCreate = require( './native.js' );
-var createObject = require( './polyfill.js' );
+var builtin = require( './native.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var createObject;
+if ( typeof builtin === 'function' ) {
+	createObject = builtin;
+} else {
+	createObject = polyfill;
+}
 
 
 // EXPORTS //
 
-if ( typeof objectCreate === 'function' ) {
-	module.exports = objectCreate;
-} else {
-	module.exports = createObject;
-}
+module.exports = createObject;
 
-},{"./native.js":509,"./polyfill.js":510}],507:[function(require,module,exports){
+},{"./native.js":601,"./polyfill.js":602}],599:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21547,7 +25007,7 @@ var inherit = require( './inherit.js' );
 
 module.exports = inherit;
 
-},{"./inherit.js":508}],508:[function(require,module,exports){
+},{"./inherit.js":600}],600:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21561,10 +25021,10 @@ var createObject = require( './detect.js' );
 /**
 * Implements prototypical inheritance by replacing the prototype of one constructor with the prototype of another constructor.
 *
-* #### Notes
+* ## Notes
 *
-* * This implementation is not designed to work with ES2015/ES6 classes. For ES2015/ES6 classes, use `class` with `extends`.
-* * For reference, see [node#3455](https://github.com/nodejs/node/pull/3455), [node#4179](https://github.com/nodejs/node/issues/4179), [node#3452](https://github.com/nodejs/node/issues/3452), and [node commit](https://github.com/nodejs/node/commit/29da8cf8d7ab8f66b9091ab22664067d4468461e#diff-3deb3f32958bb937ae05c6f3e4abbdf5).
+* -   This implementation is not designed to work with ES2015/ES6 classes. For ES2015/ES6 classes, use `class` with `extends`.
+* -   For reference, see [node#3455](https://github.com/nodejs/node/pull/3455), [node#4179](https://github.com/nodejs/node/issues/4179), [node#3452](https://github.com/nodejs/node/issues/3452), and [node commit](https://github.com/nodejs/node/commit/29da8cf8d7ab8f66b9091ab22664067d4468461e#diff-3deb3f32958bb937ae05c6f3e4abbdf5).
 *
 *
 * @param {(Object|Function)} ctor - constructor which will inherit
@@ -21611,21 +25071,21 @@ function inherit( ctor, superCtor ) {
 	ctor.prototype.constructor = ctor;
 
 	return ctor;
-} // end FUNCTION inherit()
+}
 
 
 // EXPORTS //
 
 module.exports = inherit;
 
-},{"./detect.js":506,"./validate.js":511}],509:[function(require,module,exports){
+},{"./detect.js":598,"./validate.js":603}],601:[function(require,module,exports){
 'use strict';
 
 // EXPORTS //
 
 module.exports = Object.create;
 
-},{}],510:[function(require,module,exports){
+},{}],602:[function(require,module,exports){
 'use strict';
 
 // FUNCTIONS //
@@ -21656,14 +25116,14 @@ function Ctor() {
 function createObject( proto ) {
 	Ctor.prototype = proto;
 	return new Ctor();
-} // end FUNCTION createObject()
+}
 
 
 // EXPORTS //
 
 module.exports = createObject;
 
-},{}],511:[function(require,module,exports){
+},{}],603:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21691,14 +25151,14 @@ function validate( value ) {
 		return new TypeError( 'invalid input argument. A provided constructor must be either an object (except null) or a function. Value: `'+value+'`.' );
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{}],512:[function(require,module,exports){
+},{}],604:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21796,19 +25256,19 @@ function deepMerge( target, source, level, copy, override, extend ) {
 			target[ key ] = val;
 		}
 	}
-} // end FUNCTION deepMerge()
+}
 
 
 // EXPORTS //
 
 module.exports = deepMerge;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-buffer":15,"@stdlib/assert/is-function":21,"@stdlib/assert/is-object":48,"@stdlib/utils/copy":488,"@stdlib/utils/type-of":530,"object-keys":578}],513:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-buffer":43,"@stdlib/assert/is-function":53,"@stdlib/assert/is-object":87,"@stdlib/utils/copy":550,"@stdlib/utils/type-of":622,"object-keys":671}],605:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var PINF = require( '@stdlib/math/constants/float64-pinf' );
+var PINF = require( '@stdlib/constants/math/float64-pinf' );
 
 
 // MAIN //
@@ -21825,7 +25285,7 @@ var DEFAULTS = {
 
 module.exports = DEFAULTS;
 
-},{"@stdlib/math/constants/float64-pinf":82}],514:[function(require,module,exports){
+},{"@stdlib/constants/math/float64-pinf":127}],606:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21869,14 +25329,14 @@ function factory( options ) {
 		throw err;
 	}
 	return mergefcn( opts );
-} // end FUNCTION factory()
+}
 
 
 // EXPORTS //
 
 module.exports = factory;
 
-},{"./defaults.js":513,"./mergefcn.js":517,"./validate.js":518,"@stdlib/utils/copy":488}],515:[function(require,module,exports){
+},{"./defaults.js":605,"./mergefcn.js":609,"./validate.js":610,"@stdlib/utils/copy":550}],607:[function(require,module,exports){
 'use strict';
 
 /**
@@ -21928,7 +25388,7 @@ setReadOnly( merge, 'factory', factory );
 
 module.exports = merge;
 
-},{"./factory.js":514,"./merge.js":516,"@stdlib/utils/define-read-only-property":491}],516:[function(require,module,exports){
+},{"./factory.js":606,"./merge.js":608,"@stdlib/utils/define-read-only-property":553}],608:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -21942,8 +25402,8 @@ var mergefcn = require( './mergefcn.js' );
 /**
 * Merges objects into a target object. Note that the target object is mutated.
 *
-* @type {Function}
 * @name merge
+* @type {Function}
 * @param {Object} target - target object
 * @param {...Object} source - source objects (i.e., objects to be merged into the target object)
 * @throws {Error} must provide a target object and one or more source objects
@@ -21970,7 +25430,7 @@ var merge = mergefcn( defaults );
 
 module.exports = merge;
 
-},{"./defaults.js":513,"./mergefcn.js":517}],517:[function(require,module,exports){
+},{"./defaults.js":605,"./mergefcn.js":609}],609:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22043,6 +25503,7 @@ function mergefcn( opts ) {
 		src = new Array( nargs );
 		for ( i = 0; i < nargs; i++ ) {
 			arg = arguments[ i+1 ];
+
 			// WARNING: this is a porous check. Buffers, Numbers, Booleans, Strings, Dates, RegExp, custom class instances,... will all pass.
 			if ( !isObject( arg ) ) {
 				throw new TypeError( 'invalid input argument. A merge source must be an object. Value: `' + arg + '`.' );
@@ -22053,15 +25514,15 @@ function mergefcn( opts ) {
 			deepMerge( target, src[ i ], opts.level, opts.copy, opts.override, opts.extend ); // eslint-disable-line max-len
 		}
 		return target;
-	} // end FUNCTION merge()
-} // end FUNCTION mergefcn()
+	}
+}
 
 
 // EXPORTS //
 
 module.exports = mergefcn;
 
-},{"./deepmerge.js":512,"@stdlib/assert/is-object":48}],518:[function(require,module,exports){
+},{"./deepmerge.js":604,"@stdlib/assert/is-object":87}],610:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22119,14 +25580,14 @@ function validate( opts, options ) {
 		}
 	}
 	return null;
-} // end FUNCTION validate()
+}
 
 
 // EXPORTS //
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":2,"@stdlib/assert/is-boolean":10,"@stdlib/assert/is-function":21,"@stdlib/assert/is-plain-object":50,"@stdlib/assert/is-positive-integer":53}],519:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":29,"@stdlib/assert/is-boolean":38,"@stdlib/assert/is-function":53,"@stdlib/assert/is-plain-object":89,"@stdlib/assert/is-positive-integer":92}],611:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22152,16 +25613,18 @@ module.exports = validate;
 
 // MODULES //
 
-var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' )();
+var hasToStringTag = require( '@stdlib/utils/detect-tostringtag-support' );
+var builtin = require( './native_class.js' );
+var polyfill = require( './polyfill.js' );
 
 
 // MAIN //
 
 var nativeClass;
-if ( hasToStringTag ) {
-	nativeClass = require( './polyfill.js' );
+if ( hasToStringTag() ) {
+	nativeClass = polyfill;
 } else {
-	nativeClass = require( './native_class.js' );
+	nativeClass = builtin;
 }
 
 
@@ -22169,7 +25632,7 @@ if ( hasToStringTag ) {
 
 module.exports = nativeClass;
 
-},{"./native_class.js":520,"./polyfill.js":521,"@stdlib/utils/detect-tostringtag-support":495}],520:[function(require,module,exports){
+},{"./native_class.js":612,"./polyfill.js":613,"@stdlib/utils/detect-tostringtag-support":575}],612:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22202,14 +25665,14 @@ var toStr = require( './tostring.js' );
 */
 function nativeClass( v ) {
 	return toStr.call( v );
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":522}],521:[function(require,module,exports){
+},{"./tostring.js":614}],613:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22267,28 +25730,38 @@ function nativeClass( v ) {
 		delete v[ toStringTag ];
 	}
 	return out;
-} // end FUNCTION nativeClass()
+}
 
 
 // EXPORTS //
 
 module.exports = nativeClass;
 
-},{"./tostring.js":522,"./tostringtag.js":523,"@stdlib/assert/has-own-property":2}],522:[function(require,module,exports){
+},{"./tostring.js":614,"./tostringtag.js":615,"@stdlib/assert/has-own-property":29}],614:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStr = Object.prototype.toString;
+
 
 // EXPORTS //
 
-module.exports = Object.prototype.toString; // eslint-disable-line no-redeclare
+module.exports = toStr;
 
-},{}],523:[function(require,module,exports){
+},{}],615:[function(require,module,exports){
 'use strict';
+
+// MAIN //
+
+var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+
 
 // EXPORTS //
 
-module.exports = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
+module.exports = toStrTag;
 
-},{}],524:[function(require,module,exports){
+},{}],616:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22318,14 +25791,14 @@ function reFromString( str ) {
 
 	// Create a new regular expression:
 	return ( str ) ? new RegExp( str[1], str[2] ) : null;
-} // end FUNCTION reFromString()
+}
 
 
 // EXPORTS //
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":62,"@stdlib/regexp/regexp":481}],525:[function(require,module,exports){
+},{"@stdlib/assert/is-string":101,"@stdlib/regexp/regexp":543}],617:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22349,7 +25822,7 @@ var reFromString = require( './from_string.js' );
 
 module.exports = reFromString;
 
-},{"./from_string.js":524}],526:[function(require,module,exports){
+},{"./from_string.js":616}],618:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22371,27 +25844,29 @@ function check() {
 	if (
 		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
 		typeof RE === 'function' ||
+
 		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
 		typeof typedarray === 'object' ||
+
 		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
 		typeof nodeList === 'function'
 	) {
 		return true;
 	}
 	return false;
-} // end FUNCTION check()
+}
 
 
 // EXPORTS //
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":527,"./fixtures/re.js":528,"./fixtures/typedarray.js":529}],527:[function(require,module,exports){
+},{"./fixtures/nodelist.js":619,"./fixtures/re.js":620,"./fixtures/typedarray.js":621}],619:[function(require,module,exports){
 'use strict';
 
 // MODULES //
 
-var root = require( 'system.global' )(); // eslint-disable-line no-redeclare
+var root = require( 'system.global' )(); // eslint-disable-line stdlib/no-redeclare
 
 
 // MAIN //
@@ -22403,7 +25878,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"system.global":605}],528:[function(require,module,exports){
+},{"system.global":697}],620:[function(require,module,exports){
 'use strict';
 
 var RE = /./;
@@ -22413,7 +25888,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],529:[function(require,module,exports){
+},{}],621:[function(require,module,exports){
 'use strict';
 
 var typedarray = Int8Array;
@@ -22423,7 +25898,7 @@ var typedarray = Int8Array;
 
 module.exports = typedarray;
 
-},{}],530:[function(require,module,exports){
+},{}],622:[function(require,module,exports){
 'use strict';
 
 /**
@@ -22452,7 +25927,7 @@ var polyfill = require( './polyfill.js' );
 
 module.exports = ( usePolyfill() ) ? polyfill : typeOf;
 
-},{"./check.js":526,"./polyfill.js":531,"./typeof.js":532}],531:[function(require,module,exports){
+},{"./check.js":618,"./polyfill.js":623,"./typeof.js":624}],623:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22470,14 +25945,14 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 */
 function typeOf( v ) {
 	return ctorName( v ).toLowerCase();
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":485}],532:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":547}],624:[function(require,module,exports){
 'use strict';
 
 // MODULES //
@@ -22490,7 +25965,7 @@ var ctorName = require( '@stdlib/utils/constructor-name' );
 /*
 * Built-in `typeof` operator behavior:
 *
-* ``` text
+* ```text
 * typeof null => 'object'
 * typeof undefined => 'undefined'
 * typeof 'a' => 'string'
@@ -22530,14 +26005,14 @@ function typeOf( v ) {
 		return ctorName( v ).toLowerCase();
 	}
 	return type;
-} // end FUNCTION typeOf()
+}
 
 
 // EXPORTS //
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":485}],533:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":547}],625:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -22653,9 +26128,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],534:[function(require,module,exports){
+},{}],626:[function(require,module,exports){
 
-},{}],535:[function(require,module,exports){
+},{}],627:[function(require,module,exports){
 /*!
  * Cross-Browser Split 1.1.1
  * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
@@ -22763,9 +26238,9 @@ module.exports = (function split(undef) {
   return self;
 })();
 
-},{}],536:[function(require,module,exports){
-arguments[4][534][0].apply(exports,arguments)
-},{"dup":534}],537:[function(require,module,exports){
+},{}],628:[function(require,module,exports){
+arguments[4][626][0].apply(exports,arguments)
+},{"dup":626}],629:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -22951,11 +26426,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],538:[function(require,module,exports){
+},{}],630:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -24667,7 +28142,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":533,"ieee754":570}],539:[function(require,module,exports){
+},{"base64-js":625,"ieee754":662}],631:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -24778,8 +28253,8 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":574}],540:[function(require,module,exports){
-// https://d3js.org/d3-array/ Version 1.2.0. Copyright 2017 Mike Bostock.
+},{"../../is-buffer/index.js":666}],632:[function(require,module,exports){
+// https://d3js.org/d3-array/ Version 1.2.1. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -24974,14 +28449,15 @@ var e5 = Math.sqrt(10);
 var e2 = Math.sqrt(2);
 
 var ticks = function(start, stop, count) {
-  var reverse = stop < start,
+  var reverse,
       i = -1,
       n,
       ticks,
       step;
 
-  if (reverse) n = start, start = stop, stop = n;
-
+  stop = +stop, start = +start, count = +count;
+  if (start === stop && count > 0) return [start];
+  if (reverse = stop < start) n = start, start = stop, stop = n;
   if ((step = tickIncrement(start, stop, count)) === 0 || !isFinite(step)) return [];
 
   if (step > 0) {
@@ -25369,7 +28845,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],541:[function(require,module,exports){
+},{}],633:[function(require,module,exports){
 // https://d3js.org/d3-collection/ Version 1.0.4. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -25588,7 +29064,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],542:[function(require,module,exports){
+},{}],634:[function(require,module,exports){
 // https://d3js.org/d3-color/ Version 1.0.3. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -26113,8 +29589,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],543:[function(require,module,exports){
-// https://d3js.org/d3-format/ Version 1.2.0. Copyright 2017 Mike Bostock.
+},{}],635:[function(require,module,exports){
+// https://d3js.org/d3-format/ Version 1.2.2. Copyright 2018 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -26344,7 +29820,7 @@ var formatLocale = function(locale) {
 
         // Compute the prefix and suffix.
         valuePrefix = (valueNegative ? (sign === "(" ? sign : "-") : sign === "-" || sign === "(" ? "" : sign) + valuePrefix;
-        valueSuffix = valueSuffix + (type === "s" ? prefixes[8 + prefixExponent / 3] : "") + (valueNegative && sign === "(" ? ")" : "");
+        valueSuffix = (type === "s" ? prefixes[8 + prefixExponent / 3] : "") + valueSuffix + (valueNegative && sign === "(" ? ")" : "");
 
         // Break the formatted value into the integer “value” part that can be
         // grouped, and fractional or exponential “suffix” part that is not.
@@ -26446,8 +29922,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],544:[function(require,module,exports){
-// https://d3js.org/d3-interpolate/ Version 1.1.5. Copyright 2017 Mike Bostock.
+},{}],636:[function(require,module,exports){
+// https://d3js.org/d3-interpolate/ Version 1.1.6. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-color')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'd3-color'], factory) :
@@ -26574,7 +30050,7 @@ var rgbBasisClosed = rgbSpline(basisClosed);
 var array = function(a, b) {
   var nb = b ? b.length : 0,
       na = a ? Math.min(nb, a.length) : 0,
-      x = new Array(nb),
+      x = new Array(na),
       c = new Array(nb),
       i;
 
@@ -26993,7 +30469,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{"d3-color":542}],545:[function(require,module,exports){
+},{"d3-color":634}],637:[function(require,module,exports){
 // https://d3js.org/d3-path/ Version 1.0.5. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -27136,8 +30612,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],546:[function(require,module,exports){
-// https://d3js.org/d3-scale/ Version 1.0.6. Copyright 2017 Mike Bostock.
+},{}],638:[function(require,module,exports){
+// https://d3js.org/d3-scale/ Version 1.0.7. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array'), require('d3-collection'), require('d3-interpolate'), require('d3-format'), require('d3-time'), require('d3-time-format'), require('d3-color')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'd3-array', 'd3-collection', 'd3-interpolate', 'd3-format', 'd3-time', 'd3-time-format', 'd3-color'], factory) :
@@ -27902,7 +31378,7 @@ function calendar(year, month, week, day, hour, minute, second, millisecond, for
         step = i[1];
         interval = i[0];
       } else {
-        step = d3Array.tickStep(start, stop, interval);
+        step = Math.max(d3Array.tickStep(start, stop, interval), 1);
         interval = millisecond;
       }
     }
@@ -28063,7 +31539,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{"d3-array":540,"d3-collection":541,"d3-color":542,"d3-format":543,"d3-interpolate":544,"d3-time":549,"d3-time-format":548}],547:[function(require,module,exports){
+},{"d3-array":632,"d3-collection":633,"d3-color":634,"d3-format":635,"d3-interpolate":636,"d3-time":641,"d3-time-format":640}],639:[function(require,module,exports){
 // https://d3js.org/d3-shape/ Version 1.2.0. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-path')) :
@@ -30000,8 +33476,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{"d3-path":545}],548:[function(require,module,exports){
-// https://d3js.org/d3-time-format/ Version 2.0.5. Copyright 2017 Mike Bostock.
+},{"d3-path":637}],640:[function(require,module,exports){
+// https://d3js.org/d3-time-format/ Version 2.1.1. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-time')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'd3-time'], factory) :
@@ -30059,6 +33535,7 @@ function formatLocale(locale) {
     "c": null,
     "d": formatDayOfMonth,
     "e": formatDayOfMonth,
+    "f": formatMicroseconds,
     "H": formatHour24,
     "I": formatHour12,
     "j": formatDayOfYear,
@@ -30066,9 +33543,13 @@ function formatLocale(locale) {
     "m": formatMonthNumber,
     "M": formatMinutes,
     "p": formatPeriod,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
     "S": formatSeconds,
+    "u": formatWeekdayNumberMonday,
     "U": formatWeekNumberSunday,
-    "w": formatWeekdayNumber,
+    "V": formatWeekNumberISO,
+    "w": formatWeekdayNumberSunday,
     "W": formatWeekNumberMonday,
     "x": null,
     "X": null,
@@ -30086,6 +33567,7 @@ function formatLocale(locale) {
     "c": null,
     "d": formatUTCDayOfMonth,
     "e": formatUTCDayOfMonth,
+    "f": formatUTCMicroseconds,
     "H": formatUTCHour24,
     "I": formatUTCHour12,
     "j": formatUTCDayOfYear,
@@ -30093,9 +33575,13 @@ function formatLocale(locale) {
     "m": formatUTCMonthNumber,
     "M": formatUTCMinutes,
     "p": formatUTCPeriod,
+    "Q": formatUnixTimestamp,
+    "s": formatUnixTimestampSeconds,
     "S": formatUTCSeconds,
+    "u": formatUTCWeekdayNumberMonday,
     "U": formatUTCWeekNumberSunday,
-    "w": formatUTCWeekdayNumber,
+    "V": formatUTCWeekNumberISO,
+    "w": formatUTCWeekdayNumberSunday,
     "W": formatUTCWeekNumberMonday,
     "x": null,
     "X": null,
@@ -30113,6 +33599,7 @@ function formatLocale(locale) {
     "c": parseLocaleDateTime,
     "d": parseDayOfMonth,
     "e": parseDayOfMonth,
+    "f": parseMicroseconds,
     "H": parseHour24,
     "I": parseHour24,
     "j": parseDayOfYear,
@@ -30120,9 +33607,13 @@ function formatLocale(locale) {
     "m": parseMonthNumber,
     "M": parseMinutes,
     "p": parsePeriod,
+    "Q": parseUnixTimestamp,
+    "s": parseUnixTimestampSeconds,
     "S": parseSeconds,
+    "u": parseWeekdayNumberMonday,
     "U": parseWeekNumberSunday,
-    "w": parseWeekdayNumber,
+    "V": parseWeekNumberISO,
+    "w": parseWeekdayNumberSunday,
     "W": parseWeekNumberMonday,
     "x": parseLocaleDate,
     "X": parseLocaleTime,
@@ -30171,16 +33662,38 @@ function formatLocale(locale) {
   function newParse(specifier, newDate) {
     return function(string) {
       var d = newYear(1900),
-          i = parseSpecifier(d, specifier, string += "", 0);
+          i = parseSpecifier(d, specifier, string += "", 0),
+          week, day;
       if (i != string.length) return null;
+
+      // If a UNIX timestamp is specified, return it.
+      if ("Q" in d) return new Date(d.Q);
 
       // The am-pm flag is 0 for AM, and 1 for PM.
       if ("p" in d) d.H = d.H % 12 + d.p * 12;
 
       // Convert day-of-week and week-of-year to day-of-year.
-      if ("W" in d || "U" in d) {
-        if (!("w" in d)) d.w = "W" in d ? 1 : 0;
-        var day = "Z" in d ? utcDate(newYear(d.y)).getUTCDay() : newDate(newYear(d.y)).getDay();
+      if ("V" in d) {
+        if (d.V < 1 || d.V > 53) return null;
+        if (!("w" in d)) d.w = 1;
+        if ("Z" in d) {
+          week = utcDate(newYear(d.y)), day = week.getUTCDay();
+          week = day > 4 || day === 0 ? d3Time.utcMonday.ceil(week) : d3Time.utcMonday(week);
+          week = d3Time.utcDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getUTCFullYear();
+          d.m = week.getUTCMonth();
+          d.d = week.getUTCDate() + (d.w + 6) % 7;
+        } else {
+          week = newDate(newYear(d.y)), day = week.getDay();
+          week = day > 4 || day === 0 ? d3Time.timeMonday.ceil(week) : d3Time.timeMonday(week);
+          week = d3Time.timeDay.offset(week, (d.V - 1) * 7);
+          d.y = week.getFullYear();
+          d.m = week.getMonth();
+          d.d = week.getDate() + (d.w + 6) % 7;
+        }
+      } else if ("W" in d || "U" in d) {
+        if (!("w" in d)) d.w = "u" in d ? d.u % 7 : "W" in d ? 1 : 0;
+        day = "Z" in d ? utcDate(newYear(d.y)).getUTCDay() : newDate(newYear(d.y)).getDay();
         d.m = 0;
         d.d = "W" in d ? (d.w + 6) % 7 + d.W * 7 - (day + 5) % 7 : d.w + d.U * 7 - (day + 6) % 7;
       }
@@ -30324,7 +33837,7 @@ function formatLocale(locale) {
 var pads = {"-": "", "_": " ", "0": "0"};
 var numberRe = /^\s*\d+/;
 var percentRe = /^%/;
-var requoteRe = /[\\\^\$\*\+\?\|\[\]\(\)\.\{\}]/g;
+var requoteRe = /[\\^$*+?|[\]().{}]/g;
 
 function pad(value, fill, width) {
   var sign = value < 0 ? "-" : "",
@@ -30347,18 +33860,28 @@ function formatLookup(names) {
   return map;
 }
 
-function parseWeekdayNumber(d, string, i) {
+function parseWeekdayNumberSunday(d, string, i) {
   var n = numberRe.exec(string.slice(i, i + 1));
   return n ? (d.w = +n[0], i + n[0].length) : -1;
 }
 
+function parseWeekdayNumberMonday(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 1));
+  return n ? (d.u = +n[0], i + n[0].length) : -1;
+}
+
 function parseWeekNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
+  var n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.U = +n[0], i + n[0].length) : -1;
 }
 
+function parseWeekNumberISO(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 2));
+  return n ? (d.V = +n[0], i + n[0].length) : -1;
+}
+
 function parseWeekNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
+  var n = numberRe.exec(string.slice(i, i + 2));
   return n ? (d.W = +n[0], i + n[0].length) : -1;
 }
 
@@ -30373,7 +33896,7 @@ function parseYear(d, string, i) {
 }
 
 function parseZone(d, string, i) {
-  var n = /^(Z)|([+-]\d\d)(?:\:?(\d\d))?/.exec(string.slice(i, i + 6));
+  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
   return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
 }
 
@@ -30412,9 +33935,24 @@ function parseMilliseconds(d, string, i) {
   return n ? (d.L = +n[0], i + n[0].length) : -1;
 }
 
+function parseMicroseconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i, i + 6));
+  return n ? (d.L = Math.floor(n[0] / 1000), i + n[0].length) : -1;
+}
+
 function parseLiteralPercent(d, string, i) {
   var n = percentRe.exec(string.slice(i, i + 1));
   return n ? i + n[0].length : -1;
+}
+
+function parseUnixTimestamp(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.Q = +n[0], i + n[0].length) : -1;
+}
+
+function parseUnixTimestampSeconds(d, string, i) {
+  var n = numberRe.exec(string.slice(i));
+  return n ? (d.Q = (+n[0]) * 1000, i + n[0].length) : -1;
 }
 
 function formatDayOfMonth(d, p) {
@@ -30437,6 +33975,10 @@ function formatMilliseconds(d, p) {
   return pad(d.getMilliseconds(), p, 3);
 }
 
+function formatMicroseconds(d, p) {
+  return formatMilliseconds(d, p) + "000";
+}
+
 function formatMonthNumber(d, p) {
   return pad(d.getMonth() + 1, p, 2);
 }
@@ -30449,11 +33991,22 @@ function formatSeconds(d, p) {
   return pad(d.getSeconds(), p, 2);
 }
 
+function formatWeekdayNumberMonday(d) {
+  var day = d.getDay();
+  return day === 0 ? 7 : day;
+}
+
 function formatWeekNumberSunday(d, p) {
   return pad(d3Time.timeSunday.count(d3Time.timeYear(d), d), p, 2);
 }
 
-function formatWeekdayNumber(d) {
+function formatWeekNumberISO(d, p) {
+  var day = d.getDay();
+  d = (day >= 4 || day === 0) ? d3Time.timeThursday(d) : d3Time.timeThursday.ceil(d);
+  return pad(d3Time.timeThursday.count(d3Time.timeYear(d), d) + (d3Time.timeYear(d).getDay() === 4), p, 2);
+}
+
+function formatWeekdayNumberSunday(d) {
   return d.getDay();
 }
 
@@ -30496,6 +34049,10 @@ function formatUTCMilliseconds(d, p) {
   return pad(d.getUTCMilliseconds(), p, 3);
 }
 
+function formatUTCMicroseconds(d, p) {
+  return formatUTCMilliseconds(d, p) + "000";
+}
+
 function formatUTCMonthNumber(d, p) {
   return pad(d.getUTCMonth() + 1, p, 2);
 }
@@ -30508,11 +34065,22 @@ function formatUTCSeconds(d, p) {
   return pad(d.getUTCSeconds(), p, 2);
 }
 
+function formatUTCWeekdayNumberMonday(d) {
+  var dow = d.getUTCDay();
+  return dow === 0 ? 7 : dow;
+}
+
 function formatUTCWeekNumberSunday(d, p) {
   return pad(d3Time.utcSunday.count(d3Time.utcYear(d), d), p, 2);
 }
 
-function formatUTCWeekdayNumber(d) {
+function formatUTCWeekNumberISO(d, p) {
+  var day = d.getUTCDay();
+  d = (day >= 4 || day === 0) ? d3Time.utcThursday(d) : d3Time.utcThursday.ceil(d);
+  return pad(d3Time.utcThursday.count(d3Time.utcYear(d), d) + (d3Time.utcYear(d).getUTCDay() === 4), p, 2);
+}
+
+function formatUTCWeekdayNumberSunday(d) {
   return d.getUTCDay();
 }
 
@@ -30536,7 +34104,15 @@ function formatLiteralPercent() {
   return "%";
 }
 
-var locale$1;
+function formatUnixTimestamp(d) {
+  return +d;
+}
+
+function formatUnixTimestampSeconds(d) {
+  return Math.floor(+d / 1000);
+}
+
+var locale;
 
 
 
@@ -30554,12 +34130,12 @@ defaultLocale({
 });
 
 function defaultLocale(definition) {
-  locale$1 = formatLocale(definition);
-  exports.timeFormat = locale$1.format;
-  exports.timeParse = locale$1.parse;
-  exports.utcFormat = locale$1.utcFormat;
-  exports.utcParse = locale$1.utcParse;
-  return locale$1;
+  locale = formatLocale(definition);
+  exports.timeFormat = locale.format;
+  exports.timeParse = locale.parse;
+  exports.utcFormat = locale.utcFormat;
+  exports.utcParse = locale.utcParse;
+  return locale;
 }
 
 var isoSpecifier = "%Y-%m-%dT%H:%M:%S.%LZ";
@@ -30590,8 +34166,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{"d3-time":549}],549:[function(require,module,exports){
-// https://d3js.org/d3-time/ Version 1.0.7. Copyright 2017 Mike Bostock.
+},{"d3-time":641}],641:[function(require,module,exports){
+// https://d3js.org/d3-time/ Version 1.0.8. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -30624,11 +34200,12 @@ function newInterval(floori, offseti, count, field) {
   };
 
   interval.range = function(start, stop, step) {
-    var range = [];
+    var range = [], previous;
     start = interval.ceil(start);
     step = step == null ? 1 : Math.floor(step);
     if (!(start < stop) || !(step > 0)) return range; // also handles Invalid Date
-    do range.push(new Date(+start)); while (offseti(start, step), floori(start), start < stop)
+    do range.push(previous = new Date(+start)), offseti(start, step), floori(start);
+    while (previous < start && start < stop);
     return range;
   };
 
@@ -30976,7 +34553,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],550:[function(require,module,exports){
+},{}],642:[function(require,module,exports){
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -31165,7 +34742,7 @@ function localstorage() {
 }
 
 }).call(this,require('_process'))
-},{"./debug":551,"_process":537}],551:[function(require,module,exports){
+},{"./debug":643,"_process":629}],643:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -31369,7 +34946,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":576}],552:[function(require,module,exports){
+},{"ms":669}],644:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -31465,7 +35042,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":553,"./lib/keys.js":554}],553:[function(require,module,exports){
+},{"./lib/is_arguments.js":645,"./lib/keys.js":646}],645:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -31487,7 +35064,7 @@ function unsupported(object){
     false;
 };
 
-},{}],554:[function(require,module,exports){
+},{}],646:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -31498,7 +35075,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],555:[function(require,module,exports){
+},{}],647:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -31556,14 +35133,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"foreach":566,"object-keys":578}],556:[function(require,module,exports){
+},{"foreach":658,"object-keys":671}],648:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],557:[function(require,module,exports){
+},{}],649:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./helpers/isNaN');
@@ -31801,28 +35378,28 @@ var ES5 = {
 
 module.exports = ES5;
 
-},{"./helpers/isFinite":558,"./helpers/isNaN":559,"./helpers/mod":560,"./helpers/sign":561,"es-to-primitive/es5":562,"has":569,"is-callable":575}],558:[function(require,module,exports){
+},{"./helpers/isFinite":650,"./helpers/isNaN":651,"./helpers/mod":652,"./helpers/sign":653,"es-to-primitive/es5":654,"has":661,"is-callable":667}],650:[function(require,module,exports){
 var $isNaN = Number.isNaN || function (a) { return a !== a; };
 
 module.exports = Number.isFinite || function (x) { return typeof x === 'number' && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{}],559:[function(require,module,exports){
+},{}],651:[function(require,module,exports){
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],560:[function(require,module,exports){
+},{}],652:[function(require,module,exports){
 module.exports = function mod(number, modulo) {
 	var remain = number % modulo;
 	return Math.floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],561:[function(require,module,exports){
+},{}],653:[function(require,module,exports){
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],562:[function(require,module,exports){
+},{}],654:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -31861,12 +35438,12 @@ module.exports = function ToPrimitive(input, PreferredType) {
 	return ES5internalSlots['[[DefaultValue]]'](input, PreferredType);
 };
 
-},{"./helpers/isPrimitive":563,"is-callable":575}],563:[function(require,module,exports){
+},{"./helpers/isPrimitive":655,"is-callable":667}],655:[function(require,module,exports){
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],564:[function(require,module,exports){
+},{}],656:[function(require,module,exports){
 'use strict';
 
 var OneVersionConstraint = require('individual/one-version');
@@ -31888,7 +35465,7 @@ function EvStore(elem) {
     return hash;
 }
 
-},{"individual/one-version":572}],565:[function(require,module,exports){
+},{"individual/one-version":664}],657:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -32192,7 +35769,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],566:[function(require,module,exports){
+},{}],658:[function(require,module,exports){
 
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
@@ -32216,7 +35793,7 @@ module.exports = function forEach (obj, fn, ctx) {
 };
 
 
-},{}],567:[function(require,module,exports){
+},{}],659:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -32270,19 +35847,19 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],568:[function(require,module,exports){
+},{}],660:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":567}],569:[function(require,module,exports){
+},{"./implementation":659}],661:[function(require,module,exports){
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":568}],570:[function(require,module,exports){
+},{"function-bind":660}],662:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -32368,7 +35945,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],571:[function(require,module,exports){
+},{}],663:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -32391,7 +35968,7 @@ function Individual(key, value) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],572:[function(require,module,exports){
+},{}],664:[function(require,module,exports){
 'use strict';
 
 var Individual = require('./index.js');
@@ -32415,7 +35992,7 @@ function OneVersion(moduleName, version, defaultValue) {
     return Individual(key, defaultValue);
 }
 
-},{"./index.js":571}],573:[function(require,module,exports){
+},{"./index.js":663}],665:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -32440,11 +36017,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],574:[function(require,module,exports){
+},{}],666:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <https://feross.org>
  * @license  MIT
  */
 
@@ -32463,7 +36040,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],575:[function(require,module,exports){
+},{}],667:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -32504,7 +36081,14 @@ module.exports = function isCallable(value) {
 	return strClass === fnClass || strClass === genClass;
 };
 
-},{}],576:[function(require,module,exports){
+},{}],668:[function(require,module,exports){
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],669:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -32658,7 +36242,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],577:[function(require,module,exports){
+},{}],670:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -32852,7 +36436,7 @@ function inspectString (str) {
     }
 }
 
-},{}],578:[function(require,module,exports){
+},{}],671:[function(require,module,exports){
 'use strict';
 
 // modified from https://github.com/es-shims/es5-shim
@@ -32994,7 +36578,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./isArguments":579}],579:[function(require,module,exports){
+},{"./isArguments":672}],672:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -33013,7 +36597,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],580:[function(require,module,exports){
+},{}],673:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -33241,7 +36825,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":537}],581:[function(require,module,exports){
+},{"_process":629}],674:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -33288,10 +36872,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":537}],582:[function(require,module,exports){
+},{"_process":629}],675:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":583}],583:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":676}],676:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -33416,7 +37000,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":585,"./_stream_writable":587,"core-util-is":539,"inherits":573,"process-nextick-args":581}],584:[function(require,module,exports){
+},{"./_stream_readable":678,"./_stream_writable":680,"core-util-is":631,"inherits":665,"process-nextick-args":674}],677:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -33464,7 +37048,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":586,"core-util-is":539,"inherits":573}],585:[function(require,module,exports){
+},{"./_stream_transform":679,"core-util-is":631,"inherits":665}],678:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -34474,7 +38058,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":583,"./internal/streams/BufferList":588,"./internal/streams/destroy":589,"./internal/streams/stream":590,"_process":537,"core-util-is":539,"events":565,"inherits":573,"isarray":591,"process-nextick-args":581,"safe-buffer":598,"string_decoder/":592,"util":534}],586:[function(require,module,exports){
+},{"./_stream_duplex":676,"./internal/streams/BufferList":681,"./internal/streams/destroy":682,"./internal/streams/stream":683,"_process":629,"core-util-is":631,"events":657,"inherits":665,"isarray":668,"process-nextick-args":674,"safe-buffer":689,"string_decoder/":695,"util":626}],679:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -34689,7 +38273,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":583,"core-util-is":539,"inherits":573}],587:[function(require,module,exports){
+},{"./_stream_duplex":676,"core-util-is":631,"inherits":665}],680:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -35356,7 +38940,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":583,"./internal/streams/destroy":589,"./internal/streams/stream":590,"_process":537,"core-util-is":539,"inherits":573,"process-nextick-args":581,"safe-buffer":598,"util-deprecate":614}],588:[function(require,module,exports){
+},{"./_stream_duplex":676,"./internal/streams/destroy":682,"./internal/streams/stream":683,"_process":629,"core-util-is":631,"inherits":665,"process-nextick-args":674,"safe-buffer":689,"util-deprecate":706}],681:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -35431,7 +39015,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":598}],589:[function(require,module,exports){
+},{"safe-buffer":689}],682:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -35504,17 +39088,315 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":581}],590:[function(require,module,exports){
+},{"process-nextick-args":674}],683:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":565}],591:[function(require,module,exports){
-var toString = {}.toString;
+},{"events":657}],684:[function(require,module,exports){
+module.exports = require('./readable').PassThrough
 
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
+},{"./readable":685}],685:[function(require,module,exports){
+exports = module.exports = require('./lib/_stream_readable.js');
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = require('./lib/_stream_writable.js');
+exports.Duplex = require('./lib/_stream_duplex.js');
+exports.Transform = require('./lib/_stream_transform.js');
+exports.PassThrough = require('./lib/_stream_passthrough.js');
+
+},{"./lib/_stream_duplex.js":676,"./lib/_stream_passthrough.js":677,"./lib/_stream_readable.js":678,"./lib/_stream_transform.js":679,"./lib/_stream_writable.js":680}],686:[function(require,module,exports){
+module.exports = require('./readable').Transform
+
+},{"./readable":685}],687:[function(require,module,exports){
+module.exports = require('./lib/_stream_writable.js');
+
+},{"./lib/_stream_writable.js":680}],688:[function(require,module,exports){
+(function (process){
+var through = require('through');
+var nextTick = typeof setImmediate !== 'undefined'
+    ? setImmediate
+    : process.nextTick
+;
+
+module.exports = function (write, end) {
+    var tr = through(write, end);
+    tr.pause();
+    var resume = tr.resume;
+    var pause = tr.pause;
+    var paused = false;
+    
+    tr.pause = function () {
+        paused = true;
+        return pause.apply(this, arguments);
+    };
+    
+    tr.resume = function () {
+        paused = false;
+        return resume.apply(this, arguments);
+    };
+    
+    nextTick(function () {
+        if (!paused) tr.resume();
+    });
+    
+    return tr;
 };
 
-},{}],592:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":629,"through":705}],689:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":630}],690:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+module.exports = Stream;
+
+var EE = require('events').EventEmitter;
+var inherits = require('inherits');
+
+inherits(Stream, EE);
+Stream.Readable = require('readable-stream/readable.js');
+Stream.Writable = require('readable-stream/writable.js');
+Stream.Duplex = require('readable-stream/duplex.js');
+Stream.Transform = require('readable-stream/transform.js');
+Stream.PassThrough = require('readable-stream/passthrough.js');
+
+// Backwards-compat with node 0.4.x
+Stream.Stream = Stream;
+
+
+
+// old-style streams.  Note that the pipe method (the only relevant
+// part of this class) is overridden in the Readable class.
+
+function Stream() {
+  EE.call(this);
+}
+
+Stream.prototype.pipe = function(dest, options) {
+  var source = this;
+
+  function ondata(chunk) {
+    if (dest.writable) {
+      if (false === dest.write(chunk) && source.pause) {
+        source.pause();
+      }
+    }
+  }
+
+  source.on('data', ondata);
+
+  function ondrain() {
+    if (source.readable && source.resume) {
+      source.resume();
+    }
+  }
+
+  dest.on('drain', ondrain);
+
+  // If the 'end' option is not supplied, dest.end() will be called when
+  // source gets the 'end' or 'close' events.  Only dest.end() once.
+  if (!dest._isStdio && (!options || options.end !== false)) {
+    source.on('end', onend);
+    source.on('close', onclose);
+  }
+
+  var didOnEnd = false;
+  function onend() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    dest.end();
+  }
+
+
+  function onclose() {
+    if (didOnEnd) return;
+    didOnEnd = true;
+
+    if (typeof dest.destroy === 'function') dest.destroy();
+  }
+
+  // don't leave dangling pipes when there are errors.
+  function onerror(er) {
+    cleanup();
+    if (EE.listenerCount(this, 'error') === 0) {
+      throw er; // Unhandled stream error in pipe.
+    }
+  }
+
+  source.on('error', onerror);
+  dest.on('error', onerror);
+
+  // remove all the event listeners that were added.
+  function cleanup() {
+    source.removeListener('data', ondata);
+    dest.removeListener('drain', ondrain);
+
+    source.removeListener('end', onend);
+    source.removeListener('close', onclose);
+
+    source.removeListener('error', onerror);
+    dest.removeListener('error', onerror);
+
+    source.removeListener('end', cleanup);
+    source.removeListener('close', cleanup);
+
+    dest.removeListener('close', cleanup);
+  }
+
+  source.on('end', cleanup);
+  source.on('close', cleanup);
+
+  dest.on('close', cleanup);
+
+  dest.emit('pipe', source);
+
+  // Allow for unix-like usage: A.pipe(B).pipe(C)
+  return dest;
+};
+
+},{"events":657,"inherits":665,"readable-stream/duplex.js":675,"readable-stream/passthrough.js":684,"readable-stream/readable.js":685,"readable-stream/transform.js":686,"readable-stream/writable.js":687}],691:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var ES = require('es-abstract/es5');
+var replace = bind.call(Function.call, String.prototype.replace);
+
+var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
+var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
+
+module.exports = function trim() {
+	var S = ES.ToString(ES.CheckObjectCoercible(this));
+	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
+};
+
+},{"es-abstract/es5":649,"function-bind":660}],692:[function(require,module,exports){
+'use strict';
+
+var bind = require('function-bind');
+var define = require('define-properties');
+
+var implementation = require('./implementation');
+var getPolyfill = require('./polyfill');
+var shim = require('./shim');
+
+var boundTrim = bind.call(Function.call, getPolyfill());
+
+define(boundTrim, {
+	getPolyfill: getPolyfill,
+	implementation: implementation,
+	shim: shim
+});
+
+module.exports = boundTrim;
+
+},{"./implementation":691,"./polyfill":693,"./shim":694,"define-properties":647,"function-bind":660}],693:[function(require,module,exports){
+'use strict';
+
+var implementation = require('./implementation');
+
+var zeroWidthSpace = '\u200b';
+
+module.exports = function getPolyfill() {
+	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
+		return String.prototype.trim;
+	}
+	return implementation;
+};
+
+},{"./implementation":691}],694:[function(require,module,exports){
+'use strict';
+
+var define = require('define-properties');
+var getPolyfill = require('./polyfill');
+
+module.exports = function shimStringTrim() {
+	var polyfill = getPolyfill();
+	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
+	return polyfill;
+};
+
+},{"./polyfill":693,"define-properties":647}],695:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -35787,312 +39669,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":598}],593:[function(require,module,exports){
-module.exports = require('./readable').PassThrough
-
-},{"./readable":594}],594:[function(require,module,exports){
-exports = module.exports = require('./lib/_stream_readable.js');
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = require('./lib/_stream_writable.js');
-exports.Duplex = require('./lib/_stream_duplex.js');
-exports.Transform = require('./lib/_stream_transform.js');
-exports.PassThrough = require('./lib/_stream_passthrough.js');
-
-},{"./lib/_stream_duplex.js":583,"./lib/_stream_passthrough.js":584,"./lib/_stream_readable.js":585,"./lib/_stream_transform.js":586,"./lib/_stream_writable.js":587}],595:[function(require,module,exports){
-module.exports = require('./readable').Transform
-
-},{"./readable":594}],596:[function(require,module,exports){
-module.exports = require('./lib/_stream_writable.js');
-
-},{"./lib/_stream_writable.js":587}],597:[function(require,module,exports){
-(function (process){
-var through = require('through');
-var nextTick = typeof setImmediate !== 'undefined'
-    ? setImmediate
-    : process.nextTick
-;
-
-module.exports = function (write, end) {
-    var tr = through(write, end);
-    tr.pause();
-    var resume = tr.resume;
-    var pause = tr.pause;
-    var paused = false;
-    
-    tr.pause = function () {
-        paused = true;
-        return pause.apply(this, arguments);
-    };
-    
-    tr.resume = function () {
-        paused = false;
-        return resume.apply(this, arguments);
-    };
-    
-    nextTick(function () {
-        if (!paused) tr.resume();
-    });
-    
-    return tr;
-};
-
-}).call(this,require('_process'))
-},{"_process":537,"through":613}],598:[function(require,module,exports){
-/* eslint-disable node/no-deprecated-api */
-var buffer = require('buffer')
-var Buffer = buffer.Buffer
-
-// alternative to using Object.keys for old browsers
-function copyProps (src, dst) {
-  for (var key in src) {
-    dst[key] = src[key]
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports)
-  exports.Buffer = SafeBuffer
-}
-
-function SafeBuffer (arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer)
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number')
-  }
-  return Buffer(arg, encodingOrOffset, length)
-}
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  var buf = Buffer(size)
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding)
-    } else {
-      buf.fill(fill)
-    }
-  } else {
-    buf.fill(0)
-  }
-  return buf
-}
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return Buffer(size)
-}
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number')
-  }
-  return buffer.SlowBuffer(size)
-}
-
-},{"buffer":538}],599:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-module.exports = Stream;
-
-var EE = require('events').EventEmitter;
-var inherits = require('inherits');
-
-inherits(Stream, EE);
-Stream.Readable = require('readable-stream/readable.js');
-Stream.Writable = require('readable-stream/writable.js');
-Stream.Duplex = require('readable-stream/duplex.js');
-Stream.Transform = require('readable-stream/transform.js');
-Stream.PassThrough = require('readable-stream/passthrough.js');
-
-// Backwards-compat with node 0.4.x
-Stream.Stream = Stream;
-
-
-
-// old-style streams.  Note that the pipe method (the only relevant
-// part of this class) is overridden in the Readable class.
-
-function Stream() {
-  EE.call(this);
-}
-
-Stream.prototype.pipe = function(dest, options) {
-  var source = this;
-
-  function ondata(chunk) {
-    if (dest.writable) {
-      if (false === dest.write(chunk) && source.pause) {
-        source.pause();
-      }
-    }
-  }
-
-  source.on('data', ondata);
-
-  function ondrain() {
-    if (source.readable && source.resume) {
-      source.resume();
-    }
-  }
-
-  dest.on('drain', ondrain);
-
-  // If the 'end' option is not supplied, dest.end() will be called when
-  // source gets the 'end' or 'close' events.  Only dest.end() once.
-  if (!dest._isStdio && (!options || options.end !== false)) {
-    source.on('end', onend);
-    source.on('close', onclose);
-  }
-
-  var didOnEnd = false;
-  function onend() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    dest.end();
-  }
-
-
-  function onclose() {
-    if (didOnEnd) return;
-    didOnEnd = true;
-
-    if (typeof dest.destroy === 'function') dest.destroy();
-  }
-
-  // don't leave dangling pipes when there are errors.
-  function onerror(er) {
-    cleanup();
-    if (EE.listenerCount(this, 'error') === 0) {
-      throw er; // Unhandled stream error in pipe.
-    }
-  }
-
-  source.on('error', onerror);
-  dest.on('error', onerror);
-
-  // remove all the event listeners that were added.
-  function cleanup() {
-    source.removeListener('data', ondata);
-    dest.removeListener('drain', ondrain);
-
-    source.removeListener('end', onend);
-    source.removeListener('close', onclose);
-
-    source.removeListener('error', onerror);
-    dest.removeListener('error', onerror);
-
-    source.removeListener('end', cleanup);
-    source.removeListener('close', cleanup);
-
-    dest.removeListener('close', cleanup);
-  }
-
-  source.on('end', cleanup);
-  source.on('close', cleanup);
-
-  dest.on('close', cleanup);
-
-  dest.emit('pipe', source);
-
-  // Allow for unix-like usage: A.pipe(B).pipe(C)
-  return dest;
-};
-
-},{"events":565,"inherits":573,"readable-stream/duplex.js":582,"readable-stream/passthrough.js":593,"readable-stream/readable.js":594,"readable-stream/transform.js":595,"readable-stream/writable.js":596}],600:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var ES = require('es-abstract/es5');
-var replace = bind.call(Function.call, String.prototype.replace);
-
-var leftWhitespace = /^[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+/;
-var rightWhitespace = /[\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF]+$/;
-
-module.exports = function trim() {
-	var S = ES.ToString(ES.CheckObjectCoercible(this));
-	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
-};
-
-},{"es-abstract/es5":557,"function-bind":568}],601:[function(require,module,exports){
-'use strict';
-
-var bind = require('function-bind');
-var define = require('define-properties');
-
-var implementation = require('./implementation');
-var getPolyfill = require('./polyfill');
-var shim = require('./shim');
-
-var boundTrim = bind.call(Function.call, getPolyfill());
-
-define(boundTrim, {
-	getPolyfill: getPolyfill,
-	implementation: implementation,
-	shim: shim
-});
-
-module.exports = boundTrim;
-
-},{"./implementation":600,"./polyfill":602,"./shim":603,"define-properties":555,"function-bind":568}],602:[function(require,module,exports){
-'use strict';
-
-var implementation = require('./implementation');
-
-var zeroWidthSpace = '\u200b';
-
-module.exports = function getPolyfill() {
-	if (String.prototype.trim && zeroWidthSpace.trim() === zeroWidthSpace) {
-		return String.prototype.trim;
-	}
-	return implementation;
-};
-
-},{"./implementation":600}],603:[function(require,module,exports){
-'use strict';
-
-var define = require('define-properties');
-var getPolyfill = require('./polyfill');
-
-module.exports = function shimStringTrim() {
-	var polyfill = getPolyfill();
-	define(String.prototype, { trim: polyfill }, { trim: function () { return String.prototype.trim !== polyfill; } });
-	return polyfill;
-};
-
-},{"./polyfill":602,"define-properties":555}],604:[function(require,module,exports){
+},{"safe-buffer":689}],696:[function(require,module,exports){
 (function (global){
 /* globals self, window, global */
 /* eslint no-negated-condition: 0, no-new-func: 0 */
@@ -36110,7 +39687,7 @@ if (typeof self !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],605:[function(require,module,exports){
+},{}],697:[function(require,module,exports){
 'use strict';
 
 var defineProperties = require('define-properties');
@@ -36131,7 +39708,7 @@ defineProperties(getGlobal, {
 
 module.exports = getGlobal;
 
-},{"./implementation":604,"./polyfill":606,"./shim":607,"define-properties":555}],606:[function(require,module,exports){
+},{"./implementation":696,"./polyfill":698,"./shim":699,"define-properties":647}],698:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -36145,7 +39722,7 @@ module.exports = function getPolyfill() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./implementation":604}],607:[function(require,module,exports){
+},{"./implementation":696}],699:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -36171,7 +39748,7 @@ module.exports = function shimGlobal() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polyfill":606,"define-properties":555}],608:[function(require,module,exports){
+},{"./polyfill":698,"define-properties":647}],700:[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -36325,7 +39902,7 @@ function createHarness (conf_) {
 }
 
 }).call(this,require('_process'))
-},{"./lib/default_stream":609,"./lib/results":611,"./lib/test":612,"_process":537,"defined":556,"through":613}],609:[function(require,module,exports){
+},{"./lib/default_stream":701,"./lib/results":703,"./lib/test":704,"_process":629,"defined":648,"through":705}],701:[function(require,module,exports){
 (function (process){
 var through = require('through');
 var fs = require('fs');
@@ -36360,7 +39937,7 @@ module.exports = function () {
 };
 
 }).call(this,require('_process'))
-},{"_process":537,"fs":536,"through":613}],610:[function(require,module,exports){
+},{"_process":629,"fs":628,"through":705}],702:[function(require,module,exports){
 (function (process){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -36368,7 +39945,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this,require('_process'))
-},{"_process":537}],611:[function(require,module,exports){
+},{"_process":629}],703:[function(require,module,exports){
 (function (process){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -36559,7 +40136,7 @@ function invalidYaml (str) {
 }
 
 }).call(this,require('_process'))
-},{"_process":537,"events":565,"function-bind":568,"has":569,"inherits":573,"object-inspect":577,"resumer":597,"through":613}],612:[function(require,module,exports){
+},{"_process":629,"events":657,"function-bind":660,"has":661,"inherits":665,"object-inspect":670,"resumer":688,"through":705}],704:[function(require,module,exports){
 (function (__dirname){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -37060,7 +40637,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this,"/node_modules/tape/lib")
-},{"./next_tick":610,"deep-equal":552,"defined":556,"events":565,"has":569,"inherits":573,"path":580,"string.prototype.trim":601}],613:[function(require,module,exports){
+},{"./next_tick":702,"deep-equal":644,"defined":648,"events":657,"has":661,"inherits":665,"path":673,"string.prototype.trim":692}],705:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -37172,7 +40749,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":537,"stream":599}],614:[function(require,module,exports){
+},{"_process":629,"stream":690}],706:[function(require,module,exports){
 (function (global){
 
 /**
@@ -37243,12 +40820,12 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],615:[function(require,module,exports){
+},{}],707:[function(require,module,exports){
 var h = require("./virtual-hyperscript/index.js")
 
 module.exports = h
 
-},{"./virtual-hyperscript/index.js":618}],616:[function(require,module,exports){
+},{"./virtual-hyperscript/index.js":710}],708:[function(require,module,exports){
 'use strict';
 
 var EvStore = require('ev-store');
@@ -37277,7 +40854,7 @@ EvHook.prototype.unhook = function(node, propertyName) {
     es[propName] = undefined;
 };
 
-},{"ev-store":564}],617:[function(require,module,exports){
+},{"ev-store":656}],709:[function(require,module,exports){
 'use strict';
 
 module.exports = SoftSetHook;
@@ -37296,7 +40873,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
     }
 };
 
-},{}],618:[function(require,module,exports){
+},{}],710:[function(require,module,exports){
 'use strict';
 
 var isArray = require('x-is-array');
@@ -37435,7 +41012,7 @@ function errorString(obj) {
     }
 }
 
-},{"../vnode/is-thunk":620,"../vnode/is-vhook":621,"../vnode/is-vnode":622,"../vnode/is-vtext":623,"../vnode/is-widget":624,"../vnode/vnode.js":626,"../vnode/vtext.js":627,"./hooks/ev-hook.js":616,"./hooks/soft-set-hook.js":617,"./parse-tag.js":619,"x-is-array":628}],619:[function(require,module,exports){
+},{"../vnode/is-thunk":712,"../vnode/is-vhook":713,"../vnode/is-vnode":714,"../vnode/is-vtext":715,"../vnode/is-widget":716,"../vnode/vnode.js":718,"../vnode/vtext.js":719,"./hooks/ev-hook.js":708,"./hooks/soft-set-hook.js":709,"./parse-tag.js":711,"x-is-array":720}],711:[function(require,module,exports){
 'use strict';
 
 var split = require('browser-split');
@@ -37491,14 +41068,14 @@ function parseTag(tag, props) {
     return props.namespace ? tagName : tagName.toUpperCase();
 }
 
-},{"browser-split":535}],620:[function(require,module,exports){
+},{"browser-split":627}],712:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],621:[function(require,module,exports){
+},{}],713:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -37507,7 +41084,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],622:[function(require,module,exports){
+},{}],714:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -37516,7 +41093,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":625}],623:[function(require,module,exports){
+},{"./version":717}],715:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -37525,17 +41102,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":625}],624:[function(require,module,exports){
+},{"./version":717}],716:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],625:[function(require,module,exports){
+},{}],717:[function(require,module,exports){
 module.exports = "2"
 
-},{}],626:[function(require,module,exports){
+},{}],718:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -37609,7 +41186,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":620,"./is-vhook":621,"./is-vnode":622,"./is-widget":624,"./version":625}],627:[function(require,module,exports){
+},{"./is-thunk":712,"./is-vhook":713,"./is-vnode":714,"./is-widget":716,"./version":717}],719:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -37621,7 +41198,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":625}],628:[function(require,module,exports){
+},{"./version":717}],720:[function(require,module,exports){
 var nativeIsArray = Array.isArray
 var toString = Object.prototype.toString
 
@@ -37631,4 +41208,4 @@ function isArray(obj) {
     return toString.call(obj) === "[object Array]"
 }
 
-},{}]},{},[479]);
+},{}]},{},[537]);
