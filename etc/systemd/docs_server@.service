@@ -17,7 +17,7 @@
 #/
 
 [Unit]
-Description=Manage the stdlib.io docs server
+Description=stdlib.io docs server
 After=network.target
 
 [Install]
