@@ -44,7 +44,7 @@ Assuming that the contents of this repository have been copied to a host server,
 $ sudo cp /path/to/www/etc/systemd/docs_server@.service /etc/systemd/system
 ```
 
-Next, instruct [systemd][systemd] to load the configuration.
+Next, instruct [systemd][systemd] to load its configuration.
 
 ```bash
 $ systemctl daemon-reload
