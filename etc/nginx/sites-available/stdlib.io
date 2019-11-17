@@ -22,7 +22,7 @@
 #
 # To enable this configuration file
 #
-# ``` bash
+# ```bash
 # $ sudo ln -s /etc/nginx/sites-available/stdlib.io /etc/nginx/sites-enabled/stdlib.io
 # ```
 #

@@ -31,7 +31,7 @@ This project uses [`make`][make] as its development utility. For an overview of 
 
 To view a list of available `Makefile` targets,
 
-``` bash
+```bash
 $ make help
 ```
 

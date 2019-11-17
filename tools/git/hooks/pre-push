@@ -27,7 +27,7 @@
 #
 # Information about the commits which are being pushed is supplied as lines to `stdin` in the form:
 #
-# ``` text
+# ```text
 # <local ref> <local sha1> <remote ref> <remote sha1>
 # ```
 

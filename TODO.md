@@ -69,3 +69,18 @@
 
 28. (docs) JSDoc page (developer docs, with linking to type information)
 29. (docs) README syntax highlighted example URLs (i.e., `require( '@stdlib/foo' )`, where `@stdlib/foo` is a hyperlink)
+
+
+30. General update sequence...
+
+    - git pull
+    - nginx stop
+    - rm -rf etc/nginx
+    - cp -R nginx
+    - symlink sites-available to sites-enabled
+    - nginx start
+    - rm -f etc/systemd/system/docs_server@.service
+    - cp etc/systemd/docs_server@.service
+    - systemctl daemon-reload
+    - systemctl enable docs_server@1
+    - systemctl start docs_server@1
