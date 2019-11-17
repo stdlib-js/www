@@ -50,7 +50,7 @@ Next, instruct [systemd][systemd] to load the configuration.
 $ systemctl daemon-reload
 ```
 
-Next, ensure that [systemd][systemd] starts the service on system restart,
+Next, ensure that [systemd][systemd] starts the service on system restart.
 
 ```bash
 $ systemctl enable docs_server@1
