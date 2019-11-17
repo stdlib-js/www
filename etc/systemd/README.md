@@ -38,7 +38,7 @@ This directory contains [systemd][systemd] configuration files.
 
 ## Usage
 
-Assuming that the contents of this repository have been copied to a host server, to use the contents of this configuration directory, copy [systemd][systemd] configuration files to `/etc`.
+Assuming that the contents of this repository have been copied to a host server, to use the contents of this configuration directory, copy [systemd][systemd] configuration files to `/etc`. For example,
 
 ```bash
 $ sudo cp /path/to/www/etc/systemd/docs_server@.service /etc/systemd/system
