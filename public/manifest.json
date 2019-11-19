@@ -1,5 +1,8 @@
 {
-    "name": "",
+    "name": "stdlib",
+    "short_name": "stdlib",
+    "description": "A standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing applications.",
+    "lang": "en-US",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
