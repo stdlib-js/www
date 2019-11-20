@@ -21,14 +21,14 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import fs from 'fs';
-import path, { join } from 'path';
+import { join } from 'path';
 import httpServer from '@stdlib/_tools/docs/www/server';
 import App from './../src/server.jsx';
 
 
 // VARIABLES //
 
-let APP_SHELL_TEMPLATE = fs.readFileSync( path.resolve('./build/index.html' ), 'utf8' );
+let APP_SHELL_TEMPLATE = fs.readFileSync( join( __dirname, '..', 'build', 'index.html' ), 'utf8' );
 APP_SHELL_TEMPLATE = APP_SHELL_TEMPLATE.replace( '<div id="root"></div>', `<div id="root">${ReactDOMServer.renderToString( <App /> )}</div>` );
 
 
