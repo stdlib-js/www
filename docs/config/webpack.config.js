@@ -55,8 +55,6 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 
-const STDLIB_PATH = './../../../../lib/node_modules';
-
 // style files regexes
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
@@ -295,7 +293,6 @@ module.exports = function(webpackEnv) {
 			// https://github.com/facebook/create-react-app/issues/253
 			modules: [
 				'node_modules',
-				STDLIB_PATH,
 				paths.appNodeModules
 			].concat(
 				modules.additionalModulePaths || []
