@@ -48,4 +48,4 @@ require( '@babel/register' )({
 	]
 });
 
-require( './server.js.js' );
+require( './server.js' );

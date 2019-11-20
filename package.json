@@ -14,8 +14,8 @@
   ],
   "bin": {},
   "scripts": {
-    "start": "NODE_ENV=production node server/index.js",
-    "build": "node scripts/build.js"
+    "start": "NODE_ENV=production node tools/server/index.js",
+    "build": "node tools/scripts/build.js"
   },
   "main": "",
   "repository": {
