@@ -35,6 +35,7 @@ var dirpath = path.resolve( __dirname, '..', '..', 'public', 'css' );
 // Child directories containing source CSS files to bundle and minify:
 var dirs = [
 	path.join( dirpath, '404' ),
+	path.join( dirpath, 'docs' ),
 	path.join( dirpath, 'main' )
 ];
 

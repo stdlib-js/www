@@ -24,13 +24,6 @@ import { Link } from 'react-router-dom';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
 import VERSIONS from './versions.json';
-import './css/app.css';
-import './css/reset.css';
-import './css/highlight.css';
-import './css/typography.css';
-import './css/misc.css';
-import './css/layout.css';
-import './css/normalize.css';
 
 
 // VARIABLES //
