@@ -99,7 +99,7 @@ class App extends Component {
 	}
 
 	fetchJSONFiles = () => {
-		const treePath = `/assets/${this.state.version}/package_tree.json`;
+		const treePath = `/${this.state.version}/docs/api/package_tree.json`;
 		if ( !JSON_CACHE[ treePath ] ) {
 			fetch( treePath )
 				.then( res => res.json() )
@@ -115,7 +115,7 @@ class App extends Component {
 				packageTree: JSON_CACHE[ treePath ]
 			});
 		}
-		const resourcesPath = `/assets/${this.state.version}/package_resources.json`;
+		const resourcesPath = `/${this.state.version}/docs/api/package_resources.json`;
 		if ( !JSON_CACHE[ resourcesPath ] ) {
 			fetch( resourcesPath )
 				.then( res => res.json() )
