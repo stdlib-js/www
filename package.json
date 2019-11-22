@@ -17,16 +17,16 @@
   "bin": {},
   "scripts": {
     "build": "npm run clean:api_docs:app && npm run build:api_docs:app && npm run build:api_docs:app_resources && npm run build:api_docs:html_fragments && npm run build:api_docs:tests && npm run build:api_docs:benchmarks",
-    "build:api_docs:app": "node tools/scripts/build_api_docs_app.js",
-    "build:api_docs:app_resources": "npm run build:api_docs:pkg_tree && npm run build:api_docs:asset_database",
-    "build:api_docs:asset_database": "node tools/scripts/build_api_docs_asset_database.js",
-    "build:api_docs:benchmarks": "node tools/scripts/build_api_docs_benchmarks.js",
-    "build:api_docs:html_fragments": "node tools/scripts/build_api_docs_html_fragments.js",
-    "build:api_docs:pkg_tree": "node tools/scripts/build_api_docs_pkg_tree.js",
-    "build:api_docs:tests": "node tools/scripts/build_api_docs_tests.js",
+    "build:api_docs:app": "node ./tools/scripts/build_api_docs_app.js",
+    "build:api_docs:app_resources": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules npm run build:api_docs:pkg_tree && NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules npm run build:api_docs:asset_database",
+    "build:api_docs:asset_database": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_asset_database.js",
+    "build:api_docs:benchmarks": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_benchmarks.js",
+    "build:api_docs:html_fragments": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_html_fragments.js",
+    "build:api_docs:pkg_tree": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_pkg_tree.js",
+    "build:api_docs:tests": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_tests.js",
     "clean": "npm run clean:api_docs:app",
     "clean:api_docs:app": "rm -rf ./public/docs",
-    "start": "NODE_ENV=production node ./server/index.js"
+    "start": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=production node ./server/index.js"
   },
   "main": "",
   "repository": {

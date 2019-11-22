@@ -24,6 +24,7 @@
 
 var join = require( 'path' ).join;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
+var pkgTree = require( '@stdlib/_tools/pkgs/tree' ).sync;
 var documentationPath = require( './api_docs_path.js' );
 
 
@@ -43,7 +44,7 @@ function main() {
 			'_tools/**'
 		]
 	};
-	tree = pkgTree.sync();
+	tree = pkgTree( opts );
 
 	// Index one level into the tree:
 	tree = tree[ '@stdlib' ];
