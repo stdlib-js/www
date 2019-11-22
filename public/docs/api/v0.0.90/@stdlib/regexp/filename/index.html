@@ -9,7 +9,7 @@
 <h4 id="re_filename">RE_FILENAME</h4>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to split a filename.</p>
 <h4 id="re_filenameposix">RE_FILENAME.posix</h4>
-<p><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/regexp/filename-posix">Regular expression</a> to split a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename. </p>
+<p><a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/regexp/filename-posix">Regular expression</a> to split a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename. </p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = RE_FILENAME.posix.exec( <span class="hljs-string">'/foo/bar/index.js'</span> ).slice();
 <span class="hljs-comment">/* returns
     [
@@ -22,7 +22,7 @@
 */</span>
 </code></pre>
 <h4 id="re_filenamewin32">RE_FILENAME.win32</h4>
-<p><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/regexp/filename-windows">Regular expression</a> to split a Windows filename.</p>
+<p><a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/regexp/filename-windows">Regular expression</a> to split a Windows filename.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = RE_FILENAME.win32.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> ).slice();
 <span class="hljs-comment">/* returns
     [
@@ -40,7 +40,7 @@
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The main exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>RE === RE.win32</code>; otherwise, <code>RE === RE.posix</code>.</li>
+<li>The main exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>RE === RE.win32</code>; otherwise, <code>RE === RE.posix</code>.</li>
 </ul>
 </section>
 <!-- /.notes -->

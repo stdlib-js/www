@@ -46,11 +46,11 @@ stream.pipe( iStream );
 <li>
 <p><strong>name</strong>: name of a supported pseudorandom number generator (PRNG), which will serve as the underlying source of pseudorandom numbers. The following generators are supported:</p>
 <ul>
-<li><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/mt19937"><code>mt19937</code></a>: 32-bit Mersenne Twister.</li>
-<li><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/minstd"><code>minstd</code></a>: linear congruential pseudorandom number generator (LCG) based on Park and Miller.</li>
-<li><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/minstd-shuffle"><code>minstd-shuffle</code></a>: linear congruential pseudorandom number generator (LCG) whose output is shuffled.</li>
+<li><a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/mt19937"><code>mt19937</code></a>: 32-bit Mersenne Twister.</li>
+<li><a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/minstd"><code>minstd</code></a>: linear congruential pseudorandom number generator (LCG) based on Park and Miller.</li>
+<li><a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/minstd-shuffle"><code>minstd-shuffle</code></a>: linear congruential pseudorandom number generator (LCG) whose output is shuffled.</li>
 </ul>
-<p>Default: <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/mt19937"><code>'mt19937'</code></a>.</p>
+<p>Default: <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/mt19937"><code>'mt19937'</code></a>.</p>
 </li>
 <li>
 <p><strong>seed</strong>: pseudorandom number generator seed. Valid seed values vary according to the underlying PRNG.</p>
@@ -107,7 +107,7 @@ stream.pipe( iStream );
 
 stream.pipe( iStream );
 </code></pre>
-<p>By default, the underlying pseudorandom number generator is <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/mt19937"><code>mt19937</code></a>. To use a different PRNG, set the <code>name</code> option.</p>
+<p>By default, the underlying pseudorandom number generator is <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/mt19937"><code>mt19937</code></a>. To use a different PRNG, set the <code>name</code> option.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'minstd-shuffle'</span>
 };

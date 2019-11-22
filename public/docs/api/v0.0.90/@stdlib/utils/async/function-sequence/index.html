@@ -87,7 +87,7 @@ f( <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, done 
 <li>The function will throw if provided fewer than <code>2</code> input arguments.</li>
 <li>If a provided function calls the <code>next</code> callback with a truthy <code>error</code> argument, the pipeline function suspends execution and immediately calls the <code>done</code> callback for subsequent <code>error</code> handling.</li>
 <li>Execution is <strong>not</strong> guaranteed to be asynchronous. To guarantee asynchrony, wrap the <code>done</code> callback in a function which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li>
-<li>The difference between this function and <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/utils/async/compose"><code>composeAsync</code></a> is that this function evaluates input arguments from left-to-right, rather than right-to-left.</li>
+<li>The difference between this function and <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/utils/async/compose"><code>composeAsync</code></a> is that this function evaluates input arguments from left-to-right, rather than right-to-left.</li>
 </ul>
 </section>
 <!-- /.notes -->

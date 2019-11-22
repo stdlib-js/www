@@ -5,7 +5,7 @@
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
 <p>Named tuples assign a property name, and thus a meaning, to each position in a tuple and allow for more readable, self-documenting code.</p>
-<p>Named typed tuples can be used wherever <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/typed">typed arrays</a> are used, with the added benefit that they allow accessing fields by both field name and position index.</p>
+<p>Named typed tuples can be used wherever <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/typed">typed arrays</a> are used, with the added benefit that they allow accessing fields by both field name and position index.</p>
 </section>
 <!-- /.intro -->
 <!-- Package usage documentation. -->
@@ -93,7 +93,7 @@ y = tuple[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 0</span>
 </code></pre>
 <h4 id="factory-typedarray-dtype-">factory( typedarray[, dtype] )</h4>
-<p>Returns a named typed tuple from a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/typed">typed array</a>.</p>
+<p>Returns a named typed tuple from a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/typed">typed array</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
@@ -112,7 +112,7 @@ x = tuple[ <span class="hljs-number">0</span> ];
 y = tuple[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns -1.0</span>
 </code></pre>
-<p>To override the default tuple data type (and potentially cast <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/typed">typed array</a> values to another data type), provide a <code>dtype</code>.</p>
+<p>To override the default tuple data type (and potentially cast <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/typed">typed array</a> values to another data type), provide a <code>dtype</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
@@ -168,7 +168,7 @@ y = tuple[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns -1</span>
 </code></pre>
 <h4 id="factory-buffer-byteoffset-dtype-">factory( buffer[, byteOffset][, dtype] )</h4>
-<p>Returns a named typed tuple view of an <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> where the view length equals the number of tuple fields.</p>
+<p>Returns a named typed tuple view of an <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> where the view length equals the number of tuple fields.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 
 <span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
@@ -435,7 +435,7 @@ y = tuple[ <span class="hljs-number">1</span> ];
 </code></pre>
 <p><a name="prop-byte-offset"></a></p>
 <h4 id="tuplebyteoffset">tuple.byteOffset</h4>
-<p>Offset (in bytes) of a tuple from the start of its underlying <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
+<p>Offset (in bytes) of a tuple from the start of its underlying <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 
 <span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
@@ -1544,7 +1544,7 @@ y = tuple.y;
 <p>Invoking this method does <strong>not</strong> affect tuple field assignments.</p>
 <p><a name="method-subarray"></a></p>
 <h4 id="tuplesubarray-begin-end-">tuple.subarray( [begin[, end]] )</h4>
-<p>Creates a new <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/typed">typed array</a> over the same underlying <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> and with the same underlying data type as the host tuple.</p>
+<p>Creates a new <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/typed">typed array</a> over the same underlying <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> and with the same underlying data type as the host tuple.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span> ] );
@@ -1552,7 +1552,7 @@ y = tuple.y;
 <span class="hljs-keyword">var</span> arr = tuple.subarray();
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 0.0, -1.0 ]</span>
 </code></pre>
-<p>By default, the method creates a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/typed">typed array</a> view beginning with the first tuple element. To specify an alternative tuple index at which to begin, provide a <code>begin</code> index (inclusive).</p>
+<p>By default, the method creates a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/typed">typed array</a> view beginning with the first tuple element. To specify an alternative tuple index at which to begin, provide a <code>begin</code> index (inclusive).</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span> ] );
@@ -1560,7 +1560,7 @@ y = tuple.y;
 <span class="hljs-keyword">var</span> arr = tuple.subarray( <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, -1.0 ]</span>
 </code></pre>
-<p>By default, the method creates a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/typed">typed array</a> view which includes all tuple elements after <code>begin</code>. To limit the number of tuple elements after <code>begin</code>, provide an <code>end</code> index (exclusive).</p>
+<p>By default, the method creates a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/typed">typed array</a> view which includes all tuple elements after <code>begin</code>. To limit the number of tuple elements after <code>begin</code>, provide an <code>end</code> index (exclusive).</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span> ] );
@@ -1576,7 +1576,7 @@ y = tuple.y;
 <span class="hljs-keyword">var</span> arr = tuple.subarray( -tuple.length, <span class="hljs-number">-1</span> );
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 0.0 ]</span>
 </code></pre>
-<p>If the method is unable to resolve indices to a non-empty tuple subsequence, the method returns an empty <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/typed">typed array</a>.</p>
+<p>If the method is unable to resolve indices to a non-empty tuple subsequence, the method returns an empty <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/typed">typed array</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span> ] );
@@ -1586,7 +1586,7 @@ y = tuple.y;
 </code></pre>
 <p><a name="method-subtuple"></a></p>
 <h4 id="tuplesubtuple-begin-end-">tuple.subtuple( [begin[, end]] )</h4>
-<p>Creates a new named typed tuple over the same underlying <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> and with the same underlying data type as the host tuple.</p>
+<p>Creates a new named typed tuple over the same underlying <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> and with the same underlying data type as the host tuple.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> p1 = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span> ] );

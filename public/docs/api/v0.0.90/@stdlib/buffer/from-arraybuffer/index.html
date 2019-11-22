@@ -1,6 +1,6 @@
 <h1 id="arraybuffer2buffer">arraybuffer2buffer</h1>
 <blockquote>
-<p>Allocate a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor">buffer</a> from an <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer">ArrayBuffer</a>.</p>
+<p>Allocate a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor">buffer</a> from an <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer">ArrayBuffer</a>.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,14 +12,14 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arraybuffer2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-arraybuffer'</span> );
 </code></pre>
 <h4 id="arraybuffer2buffer-buf-byteoffset-length-">arraybuffer2buffer( buf[, byteOffset[, length]] )</h4>
-<p>Allocates a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor">buffer</a> from an <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
+<p>Allocates a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor">buffer</a> from an <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 <span class="hljs-keyword">var</span> ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
 
 <span class="hljs-keyword">var</span> buf = arraybuffer2buffer( ab );
 <span class="hljs-comment">// returns &#x3C;Buffer></span>
 </code></pre>
-<p>By default, the function allocates a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor">buffer</a> starting from the first byte of the provided <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a>. To specify an alternative starting index, provide a <code>byteOffset</code>.</p>
+<p>By default, the function allocates a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor">buffer</a> starting from the first byte of the provided <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a>. To specify an alternative starting index, provide a <code>byteOffset</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 <span class="hljs-keyword">var</span> ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
 
@@ -29,7 +29,7 @@
 <span class="hljs-keyword">var</span> len = buf.length;
 <span class="hljs-comment">// returns 8</span>
 </code></pre>
-<p>By default, the function allocates a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor">buffer</a> until the end of the provided <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a>. To allocate a specified number of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes, provide a <code>length</code>.</p>
+<p>By default, the function allocates a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor">buffer</a> until the end of the provided <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a>. To allocate a specified number of <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes, provide a <code>length</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 <span class="hljs-keyword">var</span> ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
 
@@ -46,10 +46,10 @@
 <h2 id="notes">Notes</h2>
 <p>The behavior of this function varies across Node.js versions due to changes in the underlying Node.js APIs:</p>
 <ul>
-<li><code>&#x3C;3.0.0</code>: the function copies <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes to a new <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor"><code>Buffer</code></a> instance.</li>
-<li><code>>=3.0.0</code> and <code>&#x3C;5.10.0</code>: if provided a <code>byteOffset</code>, the function copies <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes to a new <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor"><code>Buffer</code></a> instance; otherwise, the function returns a view of an <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> without copying the underlying memory.</li>
-<li><code>&#x3C;6.0.0</code>: if provided an empty <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a>, the function returns an empty <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor"><code>Buffer</code></a> which is <strong>not</strong> an <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> view.</li>
-<li><code>>=6.0.0</code>: the function returns a view of an <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/buffer"><code>ArrayBuffer</code></a> without copying the underlying memory.</li>
+<li><code>&#x3C;3.0.0</code>: the function copies <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes to a new <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor"><code>Buffer</code></a> instance.</li>
+<li><code>>=3.0.0</code> and <code>&#x3C;5.10.0</code>: if provided a <code>byteOffset</code>, the function copies <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes to a new <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor"><code>Buffer</code></a> instance; otherwise, the function returns a view of an <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> without copying the underlying memory.</li>
+<li><code>&#x3C;6.0.0</code>: if provided an empty <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a>, the function returns an empty <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor"><code>Buffer</code></a> which is <strong>not</strong> an <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> view.</li>
+<li><code>>=6.0.0</code>: the function returns a view of an <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/buffer"><code>ArrayBuffer</code></a> without copying the underlying memory.</li>
 </ul>
 </section>
 <!-- /.notes -->

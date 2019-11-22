@@ -40,10 +40,10 @@ v = it.next().value;
 <ul>
 <li><strong>prng</strong>: pseudorandom number generator for generating pseudorandom numbers drawn from a standard normal distribution. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned iterator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable).</li>
 <li><strong>seed</strong>: pseudorandom number generator seed.</li>
-<li><strong>state</strong>: a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
+<li><strong>state</strong>: a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
 <li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned iterator has exclusive control over its internal state. Default: <code>true</code>.</li>
 </ul>
-<p>By default, an iterator uses the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/improved-ziggurat">improved ziggurat</a> algorithm to generate pseudorandom numbers drawn from a standard normal distribution. To use a different PRNG, set the <code>prng</code> option.</p>
+<p>By default, an iterator uses the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/improved-ziggurat">improved ziggurat</a> algorithm to generate pseudorandom numbers drawn from a standard normal distribution. To use a different PRNG, set the <code>prng</code> option.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 <span class="hljs-keyword">var</span> boxMuller = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/box-muller'</span> );
 

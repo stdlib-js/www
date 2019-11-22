@@ -14,7 +14,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-comment">// Create an accumulator for partitioning 2-dimensional data into 5 clusters:</span>
 <span class="hljs-keyword">var</span> accumulator = incrkmeans( <span class="hljs-number">5</span>, <span class="hljs-number">2</span> );
 </code></pre>
-<p>To specify initial centroids, provide a 2-dimensional <code>k</code>-by-<code>ndims</code> <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/ndarray/ctor"><code>ndarray</code></a> containing centroid locations.</p>
+<p>To specify initial centroids, provide a 2-dimensional <code>k</code>-by-<code>ndims</code> <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/ndarray/ctor"><code>ndarray</code></a> containing centroid locations.</p>
 <!-- eslint-disable array-element-newline -->
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> ctor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
@@ -164,7 +164,7 @@ mat.set( <span class="hljs-number">1</span>, <span class="hljs-number">1</span>,
 <span class="hljs-keyword">var</span> out = accumulator.predict( mat );
 <span class="hljs-comment">// returns &#x3C;ndarray></span>
 </code></pre>
-<p>To specify an output vector, provide a 1-dimensional <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/ndarray/ctor"><code>ndarray</code></a> as the first argument. Each element in the returned vector corresponds to a predicted cluster index for a respective data point.</p>
+<p>To specify an output vector, provide a 1-dimensional <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/ndarray/ctor"><code>ndarray</code></a> as the first argument. Each element in the returned vector corresponds to a predicted cluster index for a respective data point.</p>
 </section>
 <!-- /.usage -->
 <section class="notes">

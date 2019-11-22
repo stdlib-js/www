@@ -1,6 +1,6 @@
 <h1 id="gasum">gasum</h1>
 <blockquote>
-<p>Compute the sum of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a> (<a href="http://en.wikipedia.org/wiki/Norm_%28mathematics%29"><em>L1</em> norm</a>).</p>
+<p>Compute the sum of <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/special/abs">absolute values</a> (<a href="http://en.wikipedia.org/wiki/Norm_%28mathematics%29"><em>L1</em> norm</a>).</p>
 </blockquote>
 <section class="intro">
 <p>The <a href="http://en.wikipedia.org/wiki/Norm_%28mathematics%29"><em>L1</em> norm</a> is defined as</p>
@@ -59,7 +59,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gasum = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/gasum'</span> );
 </code></pre>
 <h4 id="gasum-n-x-stride-">gasum( N, x, stride )</h4>
-<p>Computes the sum of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a>.</p>
+<p>Computes the sum of <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/special/abs">absolute values</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">-2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">-5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span>, <span class="hljs-number">-3.0</span> ];
 
 <span class="hljs-keyword">var</span> sum = gasum( x.length, x, <span class="hljs-number">1</span> );
@@ -101,7 +101,7 @@
 </code></pre>
 <p>If either <code>N</code> or <code>stride</code> is less than or equal to <code>0</code>, the function returns <code>0</code>.</p>
 <h4 id="gasumndarray-n-x-stride-offset-">gasum.ndarray( N, x, stride, offset )</h4>
-<p>Computes the sum of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a>, with alternative indexing semantics.</p>
+<p>Computes the sum of <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/special/abs">absolute values</a>, with alternative indexing semantics.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">-2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">-5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span>, <span class="hljs-number">-3.0</span> ];
 
 <span class="hljs-keyword">var</span> sum = gasum.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
@@ -129,7 +129,7 @@ sum = gasum.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-nu
 <h2 id="notes">Notes</h2>
 <ul>
 <li>If <code>N &#x3C;= 0</code>, both functions return <code>0</code>.</li>
-<li><code>gasum()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="http://www.netlib.org/lapack/explore-html/de/da4/group__double__blas__level1.html"><code>dasum</code></a> with the exception that this implementation works with any array type, not just Float64Arrays. Depending on the environment, the typed versions (<a href="https://stdlib.io//docs/api/v0.0.89@stdlib/blas/base/dasum"><code>dasum</code></a>, <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/blas/base/sasum"><code>sasum</code></a>, etc.) are likely to be significantly more performant.</li>
+<li><code>gasum()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="http://www.netlib.org/lapack/explore-html/de/da4/group__double__blas__level1.html"><code>dasum</code></a> with the exception that this implementation works with any array type, not just Float64Arrays. Depending on the environment, the typed versions (<a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/blas/base/dasum"><code>dasum</code></a>, <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/blas/base/sasum"><code>sasum</code></a>, etc.) are likely to be significantly more performant.</li>
 </ul>
 </section>
 <!-- /.notes -->

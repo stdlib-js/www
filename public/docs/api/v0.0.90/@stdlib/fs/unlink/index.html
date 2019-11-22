@@ -42,7 +42,7 @@ unlink( fpath, done );
 <p>If the <code>path</code> refers to a socket, FIFO, or device, processes which have the object open may continue to use it.</p>
 </li>
 <li>
-<p>The path argument should <strong>not</strong> be a directory. To remove a directory, use <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/fs/rmdir"><code>rmdir()</code></a>.</p>
+<p>The path argument should <strong>not</strong> be a directory. To remove a directory, use <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/fs/rmdir"><code>rmdir()</code></a>.</p>
 </li>
 <li>
 <p>The difference between <code>unlink.sync</code> and <a href="https://nodejs.org/api/fs.html"><code>fs.unlinkSync()</code></a> is that <a href="https://nodejs.org/api/fs.html"><code>fs.unlinkSync()</code></a> will throw if an <code>error</code> is encountered (e.g., if given a non-existent path) and this API will return an <code>error</code>. Hence, the following anti-pattern</p>

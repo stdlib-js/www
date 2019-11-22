@@ -1,6 +1,6 @@
 <h1 id="next-data-type">Next Data Type</h1>
 <blockquote>
-<p>Return the next larger array <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/dtypes">data type</a> of the same kind.</p>
+<p>Return the next larger array <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/dtypes">data type</a> of the same kind.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,11 +12,11 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/next-dtype'</span> );
 </code></pre>
 <h4 id="nextdatatype-dtype-">nextDataType( [dtype] )</h4>
-<p>If provided a <code>dtype</code> argument, returns the next larger array <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/dtypes">data type</a> of the same kind.</p>
+<p>If provided a <code>dtype</code> argument, returns the next larger array <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/dtypes">data type</a> of the same kind.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextDataType( <span class="hljs-string">'float32'</span> );
 <span class="hljs-comment">// returns 'float64'</span>
 </code></pre>
-<p>If a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/dtypes">data type</a> does not have a next larger <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/dtypes">data type</a> or the next larger data type is not supported, the function returns <code>-1</code>.</p>
+<p>If a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/dtypes">data type</a> does not have a next larger <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/dtypes">data type</a> or the next larger data type is not supported, the function returns <code>-1</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = nextDataType( <span class="hljs-string">'float64'</span> );
 <span class="hljs-comment">// returns -1</span>
 </code></pre>

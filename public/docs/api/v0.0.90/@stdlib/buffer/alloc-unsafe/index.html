@@ -1,6 +1,6 @@
 <h1 id="alloc">alloc</h1>
 <blockquote>
-<p>Allocate a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor">buffer</a> having a specified number of bytes.</p>
+<p>Allocate a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor">buffer</a> having a specified number of bytes.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,7 +12,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
 </code></pre>
 <h4 id="allocunsafe-size-">allocUnsafe( size )</h4>
-<p><strong>Unsafely</strong> allocates a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor">buffer</a> having a specified number of bytes.</p>
+<p><strong>Unsafely</strong> allocates a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor">buffer</a> having a specified number of bytes.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = allocUnsafe( <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns &#x3C;Buffer></span>
 </code></pre>
@@ -22,8 +22,8 @@
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The underlying memory of returned <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor"><code>Buffer</code></a> instances is <strong>not</strong> initialized. Memory contents are unknown and may contain <strong>sensitive</strong> data.</li>
-<li>When the <code>size</code> is less than half the pool size (specified on the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor"><code>Buffer</code></a> constructor in modern Node.js environments), memory is allocated from the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor"><code>Buffer</code></a> pool for faster allocation of new <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/buffer/ctor"><code>Buffer</code></a> instances.</li>
+<li>The underlying memory of returned <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor"><code>Buffer</code></a> instances is <strong>not</strong> initialized. Memory contents are unknown and may contain <strong>sensitive</strong> data.</li>
+<li>When the <code>size</code> is less than half the pool size (specified on the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor"><code>Buffer</code></a> constructor in modern Node.js environments), memory is allocated from the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor"><code>Buffer</code></a> pool for faster allocation of new <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/buffer/ctor"><code>Buffer</code></a> instances.</li>
 </ul>
 </section>
 <!-- /.notes -->

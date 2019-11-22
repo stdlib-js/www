@@ -107,7 +107,7 @@ v = it.next().value;
 <h2 id="notes">Notes</h2>
 <ul>
 <li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li>
-<li>If provided a generic <code>array</code>, the returned iterator does <strong>not</strong> ignore holes. To achieve greater performance for sparse arrays, use <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/to-sparse-iterator-right"><code>@stdlib/array/to-sparse-iterator-right</code></a>.</li>
+<li>If provided a generic <code>array</code>, the returned iterator does <strong>not</strong> ignore holes. To achieve greater performance for sparse arrays, use <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/to-sparse-iterator-right"><code>@stdlib/array/to-sparse-iterator-right</code></a>.</li>
 <li>A returned iterator does <strong>not</strong> copy a provided array-like <code>object</code>. To ensure iterable reproducibility, copy a provided array-like <code>object</code> <strong>before</strong> creating an iterator. Otherwise, any changes to the contents of an array-like <code>object</code> will be reflected in the returned iterator.</li>
 <li>In environments supporting <code>Symbol.iterator</code>, the function <strong>explicitly</strong> does <strong>not</strong> invoke an array's <code>@@iterator</code> method, regardless of whether this method is defined. To convert an array to an implementation defined iterator, invoke this method directly.</li>
 </ul>

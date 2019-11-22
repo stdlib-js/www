@@ -90,7 +90,7 @@
 </svg>
 </div>
 <!-- </equation> -->
-<p>where <code>|x-y|</code> is the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/utils/absolute-difference">absolute difference</a> and <code>f(x,y)</code> is a scale function. Common scale functions include</p>
+<p>where <code>|x-y|</code> is the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/utils/absolute-difference">absolute difference</a> and <code>f(x,y)</code> is a scale function. Common scale functions include</p>
 <!-- <equation class="equation" label="eq:scale_functions" align="center" raw="\begin{align*}f(x,y) &= \max(|x|, |y|)\\f(x,y) &= \max(x,y)\\ f(x,y) &= \min(|x|,|y|)\\f(x,y) &= \min(x,y) \\f(x,y) &= \frac{|x|+|y|}{2} \\f(x,y) &= \frac{x + y}{2}\end{align*}" alt="Scale functions"> -->
 <div class="equation" align="center" data-raw-text="\begin{align*}f(x,y) &#x26;= \max(|x|, |y|)\\f(x,y) &#x26;= \max(x,y)\\ f(x,y) &#x26;= \min(|x|,|y|)\\f(x,y) &#x26;= \min(x,y) \\f(x,y) &#x26;= \frac{|x|+|y|}{2} \\f(x,y) &#x26;= \frac{x + y}{2}\end{align*}" data-equation="eq:scale_functions">
     <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="22.699ex" height="23.509ex" style="vertical-align: -11.171ex;" viewBox="0 -5312.2 9772.9 10122" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -280,16 +280,16 @@ d = reldiff( <span class="hljs-number">-1.0</span>, <span class="hljs-number">3.
 </code></pre>
 <p>The following <code>scale</code> functions are supported:</p>
 <ul>
-<li><strong>max-abs</strong>: maximum <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> of <code>x</code> and <code>y</code> (<em>default</em>).</li>
+<li><strong>max-abs</strong>: maximum <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/special/abs">absolute value</a> of <code>x</code> and <code>y</code> (<em>default</em>).</li>
 <li><strong>max</strong>: maximum value of <code>x</code> and <code>y</code>.</li>
-<li><strong>min-abs</strong>: minimum <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> of <code>x</code> and <code>y</code>.</li>
+<li><strong>min-abs</strong>: minimum <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/special/abs">absolute value</a> of <code>x</code> and <code>y</code>.</li>
 <li><strong>min</strong>: minimum value of <code>x</code> and <code>y</code>.</li>
-<li><strong>mean-abs</strong>: arithmetic mean of the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a> of <code>x</code> and <code>y</code>.</li>
+<li><strong>mean-abs</strong>: arithmetic mean of the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/special/abs">absolute values</a> of <code>x</code> and <code>y</code>.</li>
 <li><strong>mean</strong>: arithmetic mean of <code>x</code> and <code>y</code>.</li>
 <li><strong>x</strong>: <code>x</code> (<em>noncommutative</em>).</li>
 <li><strong>y</strong>: <code>y</code> (<em>noncommutative</em>).</li>
 </ul>
-<p>By default, the function scales the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/utils/absolute-difference">absolute difference</a> by dividing the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/utils/absolute-difference">absolute difference</a> by the maximum <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> of <code>x</code> and <code>y</code>. To scale by a different function, specify a scale function name.</p>
+<p>By default, the function scales the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/utils/absolute-difference">absolute difference</a> by dividing the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/utils/absolute-difference">absolute difference</a> by the maximum <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/special/abs">absolute value</a> of <code>x</code> and <code>y</code>. To scale by a different function, specify a scale function name.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = reldiff( <span class="hljs-number">-2.0</span>, <span class="hljs-number">5.0</span> ); <span class="hljs-comment">// => |-7/5|</span>
 <span class="hljs-comment">// returns 1.4</span>
 
@@ -348,7 +348,7 @@ d = reldiff( <span class="hljs-number">5.0</span>, <span class="hljs-number">-2.
 <h2 id="notes">Notes</h2>
 <ul>
 <li>
-<p>If the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/utils/absolute-difference">absolute difference</a> of <code>x</code> and <code>y</code> is <code>0</code>, the relative difference is <strong>always</strong> <code>0</code>.</p>
+<p>If the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/math/base/utils/absolute-difference">absolute difference</a> of <code>x</code> and <code>y</code> is <code>0</code>, the relative difference is <strong>always</strong> <code>0</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = reldiff( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
 

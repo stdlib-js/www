@@ -1,6 +1,6 @@
 <h1 id="standard-normal-random-numbers">Standard Normal Random Numbers</h1>
 <blockquote>
-<p>Create a <a href="https://nodejs.org/api/stream.html">readable stream</a> for generating pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Normal_distribution">standard normal</a> distribution using the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/improved-ziggurat">Improved Ziggurat</a> algorithm.</p>
+<p>Create a <a href="https://nodejs.org/api/stream.html">readable stream</a> for generating pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Normal_distribution">standard normal</a> distribution using the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/improved-ziggurat">Improved Ziggurat</a> algorithm.</p>
 </blockquote>
 <section class="usage">
 <h2 id="usage">Usage</h2>
@@ -8,7 +8,7 @@
 </code></pre>
 <p><a name="random-stream"></a></p>
 <h4 id="randomstream-options-">randomStream( [options] )</h4>
-<p>Returns a <a href="https://nodejs.org/api/stream.html">readable stream</a> for generating pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Normal_distribution">standard normal</a> distribution using the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/improved-ziggurat">Improved Ziggurat</a> algorithm.</p>
+<p>Returns a <a href="https://nodejs.org/api/stream.html">readable stream</a> for generating pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Normal_distribution">standard normal</a> distribution using the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/improved-ziggurat">Improved Ziggurat</a> algorithm.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
 
 <span class="hljs-keyword">var</span> iStream;
@@ -35,7 +35,7 @@ stream.pipe( iStream );
 <li><strong>iter</strong>: number of iterations.</li>
 <li><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom numbers on the interval <code>[0,1)</code>. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned pseudorandom number generator stream, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable).</li>
 <li><strong>seed</strong>: pseudorandom number generator seed.</li>
-<li><strong>state</strong>: a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
+<li><strong>state</strong>: a <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
 <li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators and/or streams. Setting this option to <code>true</code> ensures that a stream generator has exclusive control over its internal state. Default: <code>true</code>.</li>
 <li><strong>siter</strong>: number of iterations after which to emit the pseudorandom number generator state. This option is useful when wanting to deterministically capture a stream's underlying PRNG state. Default: <code>1e308</code>.</li>
 </ul>
@@ -232,7 +232,7 @@ stream.pipe( iStream );
 </code></pre>
 <hr>
 <h4 id="randomstreamfactory-options-">randomStream.factory( [options] )</h4>
-<p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">readable streams</a> which generate pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Normal_distribution">standard normal</a> distribution using the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/random/base/improved-ziggurat">Improved Ziggurat</a> algorithm.</p>
+<p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">readable streams</a> which generate pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Normal_distribution">standard normal</a> distribution using the <a href="https://stdlib.io/docs/api/v0.0.90/@stdlib/random/base/improved-ziggurat">Improved Ziggurat</a> algorithm.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>,
