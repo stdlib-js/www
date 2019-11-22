@@ -80,7 +80,7 @@ const WelcomePage = ( props ) => {
 						</li>
 					</ul>
 
-					<p>Most functionality in stdlib is implemented exclusively in JavaScript; however, some implementations try to capture performance benefits by using <a href="https://nodejs.org/api/addons.html">native bindings</a> and/or <a href="http://webassembly.org/">WebAssembly</a>. While **not** required to run stdlib, as <b>every</b> stdlib implementation has a JavaScript fallback, the following dependencies are <b>required</b> for building native add-ons, including linking to BLAS and LAPACK libraries:</p>
+					<p>Most functionality in stdlib is implemented exclusively in JavaScript; however, some implementations try to capture performance benefits by using <a href="https://nodejs.org/api/addons.html">native bindings</a> and/or <a href="http://webassembly.org/">WebAssembly</a>. While <b>not</b> required to run stdlib, as <b>every</b> stdlib implementation has a JavaScript fallback, the following dependencies are <b>required</b> for building native add-ons, including linking to BLAS and LAPACK libraries:</p>
 
 					<ul>
 						<li>
