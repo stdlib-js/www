@@ -47,7 +47,7 @@ function main() {
 		mkdir( dir );
 	}
 	build( dir, {
-		'dir': join( stdlibPath(), 'lib', 'node_modules' ),,
+		'dir': join( stdlibPath(), 'lib', 'node_modules' ),
 		'mount': '/docs/api/'+stdlibVersion()+'/',
 		'ignore': [
 			'benchmark/**',
