@@ -30,7 +30,6 @@ const WelcomePage = ( props ) => {
 				<a href="https://stdlib.io/">Home</a>
 			</nav>
 			<div className="readme" >
-				<h2>project documentation</h2>
 				<section class="banner" >
 					<div class="image" align="center" >
 						<br />
