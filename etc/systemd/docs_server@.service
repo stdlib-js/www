@@ -26,7 +26,7 @@ WantedBy=multi-user.target
 [Service]
 Type=simple
 WorkingDirectory=/srv/www/stdlib.io/server
-ExecStart=npm run install:production && NODE_ENV=production node server/index.js
+ExecStart=NODE_ENV=production node server/index.js
 Restart=always
 RestartSec=500ms
 StartLimitInterval=0
