@@ -9,12 +9,12 @@
 <h4 id="re_extname">RE_EXTNAME</h4>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a filename extension.</p>
 <h4 id="re_extnameposix">RE_EXTNAME.posix</h4>
-<p><a href="https://stdlib.io/develop/docs/api/@stdlib/regexp/extname-posix">Regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p>
+<p><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/regexp/extname-posix">Regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = RE_EXTNAME.posix.exec( <span class="hljs-string">'/foo/bar/index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns '.js'</span>
 </code></pre>
 <h4 id="re_extnamewin32">RE_EXTNAME.win32</h4>
-<p><a href="https://stdlib.io/develop/docs/api/@stdlib/regexp/extname-windows">Regular expression</a> to capture a Windows filename extension.</p>
+<p><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/regexp/extname-windows">Regular expression</a> to capture a Windows filename extension.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = RE_EXTNAME.win32.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns '.js'</span>
 </code></pre>
@@ -23,7 +23,7 @@
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The main exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="https://stdlib.io/develop/docs/api/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>re === re.win32</code>; otherwise, <code>re === re.posix</code>.</li>
+<li>The main exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>re === re.win32</code>; otherwise, <code>re === re.posix</code>.</li>
 </ul>
 </section>
 <!-- /.notes -->

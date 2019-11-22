@@ -1,10 +1,10 @@
 <h1 id="repl-presentation">REPL Presentation</h1>
 <blockquote>
-<p>Run a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> presentation.</p>
+<p>Run a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> presentation.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
-<p>This package allows building presentations using only a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> environment.</p>
+<p>This package allows building presentations using only a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> environment.</p>
 <!-- TODO: display animated presentation GIF and/or link to an ASCI cast -->
 <h3 id="features">Features</h3>
 <ul>
@@ -21,7 +21,7 @@
 <li>Watch mode with automatic reload (aka, "hot reloading").</li>
 </ul>
 <h3 id="authoring">Authoring</h3>
-<p>A <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> presentation source file is a text file which includes minimal markup for delineating slides, slide fragments, speaker notes, code, text alignment, and styling. </p>
+<p>A <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> presentation source file is a text file which includes minimal markup for delineating slides, slide fragments, speaker notes, code, text alignment, and styling. </p>
 <h4 id="slides">Slides</h4>
 <p>To delineate a new slide, use three dashes <code>---</code>.</p>
 <pre><code class="no-highlight language-text">
@@ -95,7 +95,7 @@ var x = 3.14;
 ```
 
 </code></pre>
-<p>Only JavaScript code blocks are runnable. To run JavaScript code on the current slide, invoke the presentation command <code>runSlide()</code> at the <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> prompt.</p>
+<p>Only JavaScript code blocks are runnable. To run JavaScript code on the current slide, invoke the presentation command <code>runSlide()</code> at the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> prompt.</p>
 <h4 id="speaker-notes">Speaker Notes</h4>
 <p>To delineate speaker notes, use three tildes <code>~~~</code> <strong>after</strong> a slide's content and <strong>before</strong> delineating the next slide.</p>
 <pre><code class="no-highlight language-text">
@@ -226,12 +226,12 @@ This is a slide
 
 </code></pre>
 <h4 id="emoji">Emoji</h4>
-<p>To include an <a href="https://stdlib.io/develop/docs/api/@stdlib/datasets/emoji">emoji</a>, insert the relevant <a href="https://stdlib.io/develop/docs/api/@stdlib/datasets/emoji-code-picto">emoji code</a>. For example,</p>
+<p>To include an <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/datasets/emoji">emoji</a>, insert the relevant <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/datasets/emoji-code-picto">emoji code</a>. For example,</p>
 <pre><code class="no-highlight language-text">
 :books: :grinning: :+1: :man: :woman:
 
 </code></pre>
-<p>Note, however, that <a href="https://stdlib.io/develop/docs/api/@stdlib/datasets/emoji">emoji</a> support is <strong>limited</strong> to <a href="https://stdlib.io/develop/docs/api/@stdlib/datasets/emoji">emoji</a> which are <strong>two</strong> columns wide. Accordingly, not all <a href="https://stdlib.io/develop/docs/api/@stdlib/datasets/emoji">emoji</a> are supported.</p>
+<p>Note, however, that <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/datasets/emoji">emoji</a> support is <strong>limited</strong> to <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/datasets/emoji">emoji</a> which are <strong>two</strong> columns wide. Accordingly, not all <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/datasets/emoji">emoji</a> are supported.</p>
 <h4 id="horizontal-rules">Horizontal Rules</h4>
 <p>To insert horizontal rules, use the following markup at the <strong>start</strong> of a line</p>
 <table>
@@ -284,7 +284,7 @@ More content below.
 //\r=\s\**\s\r=\b=\s\**\s\b=
 
 </code></pre>
-<p>And lastly, custom patterns can include <a href="https://stdlib.io/develop/docs/api/@stdlib/datasets/emoji">emoji</a>. For example,</p>
+<p>And lastly, custom patterns can include <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/datasets/emoji">emoji</a>. For example,</p>
 <pre><code class="no-highlight language-text">
 / :grinning: :+1:
 
@@ -301,7 +301,7 @@ More content below.
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Presentation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl/presentation'</span> );
 </code></pre>
 <h4 id="presentation-text-repl-options-">Presentation( [text,] repl[, options] )</h4>
-<p>Returns a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> presentation instance for running a presentation in a provided <a href="https://stdlib.io/develop/docs/api/@stdlib/repl"><code>repl</code></a>.</p>
+<p>Returns a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> presentation instance for running a presentation in a provided <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl"><code>repl</code></a>.</p>
 <!-- eslint-disable stdlib/no-redeclare -->
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
@@ -326,11 +326,11 @@ repl.close();
 <li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li>
 <li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li>
 <li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>false</code>.</li>
-<li><strong>width</strong>: presentation width. If <code>null</code>, the presentation width is either computed based on the screen size (if a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li>
-<li><strong>height</strong>: presentation height. If <code>null</code>, the presentation height is either computed based on the screen size (if a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li>
-<li><strong>workspace</strong>: <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> workspace name. A presentation instance adds presentation commands to the specified workspace, thus allowing presentation navigation and interaction. Default: <code>'presentation'</code>.</li>
+<li><strong>width</strong>: presentation width. If <code>null</code>, the presentation width is either computed based on the screen size (if a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li>
+<li><strong>height</strong>: presentation height. If <code>null</code>, the presentation height is either computed based on the screen size (if a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li>
+<li><strong>workspace</strong>: <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> workspace name. A presentation instance adds presentation commands to the specified workspace, thus allowing presentation navigation and interaction. Default: <code>'presentation'</code>.</li>
 <li><strong>load</strong>: file path specifying a presentation file to load. If a presentation <code>text</code> is provided, this option is <strong>ignored</strong>.</li>
-<li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered slide to the <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a>. Default: <code>true</code>.</li>
+<li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered slide to the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a>. Default: <code>true</code>.</li>
 <li><strong>loop</strong>: <code>boolean</code> indicating whether to "loop" a presentation (i.e., proceed to the first slide after the last slide and have the last slide precede the first slide). Default: <code>false</code>.</li>
 </ul>
 <p>To initialize a presentation upon instantiating a <code>Presentation</code> instance, <strong>either</strong> provide a <code>string</code> as the first argument containing the presentation text to render <strong>or</strong> set the <code>load</code> option to specify a presentation file to load.</p>
@@ -781,7 +781,7 @@ pres.run( done );
 }
 </code></pre>
 <h4 id="presentationprototypeshow">Presentation.prototype.show()</h4>
-<p>Shows a presentation slide (i.e., writes a rendered slide to the presentation <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a>)</p>
+<p>Shows a presentation slide (i.e., writes a rendered slide to the presentation <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a>)</p>
 <!-- eslint-disable stdlib/no-redeclare -->
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
@@ -928,7 +928,7 @@ repl.close();
 </code></pre>
 <hr>
 <h3 id="commands">Commands</h3>
-<p><a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> instances running a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> presentation support the following commands within the presentation workspace...</p>
+<p><a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> instances running a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> presentation support the following commands within the presentation workspace...</p>
 <h4 id="blank">blank()</h4>
 <p>Renders a blank screen.</p>
 <pre><code class="no-highlight language-text">In [1]: blank();
@@ -1131,7 +1131,7 @@ In [2]: jump( -2 ); // jump two slide backward
 </table>
 <hr>
 <h3 id="events">Events</h3>
-<p>A <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> presentation emits the following events...</p>
+<p>A <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> presentation emits the following events...</p>
 <h4 id="watch-1">'watch'</h4>
 <p>This event is emitted upon watching a source presentation file.</p>
 <!-- eslint-disable stdlib/no-redeclare -->
@@ -1215,7 +1215,7 @@ repl.close();
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>Multiple presentations can be run simultaneously within the same <a href="https://stdlib.io/develop/docs/api/@stdlib/repl">REPL</a> environment. To do so, assign each presentation instance to a unique workspace.</li>
+<li>Multiple presentations can be run simultaneously within the same <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl">REPL</a> environment. To do so, assign each presentation instance to a unique workspace.</li>
 </ul>
 </section>
 <!-- /.notes -->

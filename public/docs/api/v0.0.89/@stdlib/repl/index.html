@@ -26,8 +26,8 @@ repl.close();
 </code></pre>
 <p>The function accepts the following <code>options</code>:</p>
 <ul>
-<li><strong>input</strong>: input (readable) stream. Default: <a href="https://stdlib.io/develop/docs/api/@stdlib/streams/node/stdin"><code>stdin</code></a>.</li>
-<li><strong>output</strong>: output (writable) stream. Default: <a href="https://stdlib.io/develop/docs/api/@stdlib/streams/node/stdout"><code>stdout</code></a>.</li>
+<li><strong>input</strong>: input (readable) stream. Default: <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/streams/node/stdin"><code>stdin</code></a>.</li>
+<li><strong>output</strong>: output (writable) stream. Default: <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/streams/node/stdout"><code>stdout</code></a>.</li>
 <li><strong>sandbox</strong>: <code>boolean</code> indicating whether to run a REPL in a sandboxed context. Default: <code>false</code>.</li>
 <li><strong>timeout</strong>: number of milliseconds to execute a command before terminating execution. Default: <code>4294967295</code>.</li>
 <li><strong>isTTY</strong>: <code>boolean</code> indicating whether the input and output streams should be treated like a TTY (terminal) and whether the REPL should use ANSI/VT100 escape codes when writing to the output stream.</li>
@@ -532,7 +532,7 @@ Out[7]: 'undefined'
 <pre><code class="no-highlight language-text">// TODO
 </code></pre>
 <h4 id="presentationstart-text-options-">presentationStart( [text, ][options] )</h4>
-<p>Starts a REPL <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a>.</p>
+<p>Starts a REPL <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a>.</p>
 <pre><code class="no-highlight language-text">In [1]: var id = presentationStart( 'beep\n---\nboop\n' );
 </code></pre>
 <p>The function accepts the following <code>options</code>:</p>
@@ -542,29 +542,29 @@ Out[7]: 'undefined'
 <li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li>
 <li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li>
 <li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>false</code>.</li>
-<li><strong>width</strong>: <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> width. If <code>null</code>, the <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> width is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li>
-<li><strong>height</strong>: <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> height. If <code>null</code>, the <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> height is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li>
-<li><strong>workspace</strong>: REPL workspace name. A <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> navigation and interaction. Default: <code>'presentation-&#x3C;n>'</code>, where <code>n</code> is an assigned <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> identifier.</li>
-<li><strong>load</strong>: file path specifying a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> file to load. If presentation <code>text</code> is provided, this option is <strong>ignored</strong>. Otherwise, this option is <strong>required</strong>.</li>
-<li><strong>watch</strong>: <code>boolean</code> indicating whether to watch a <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> source file for changes. This option is only applicable if not provided presentation <code>text</code> and the <code>options</code> object specifies a presentation file to load. Default: <code>false</code>.</li>
+<li><strong>width</strong>: <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> width. If <code>null</code>, the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> width is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li>
+<li><strong>height</strong>: <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> height. If <code>null</code>, the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> height is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li>
+<li><strong>workspace</strong>: REPL workspace name. A <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> navigation and interaction. Default: <code>'presentation-&#x3C;n>'</code>, where <code>n</code> is an assigned <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> identifier.</li>
+<li><strong>load</strong>: file path specifying a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> file to load. If presentation <code>text</code> is provided, this option is <strong>ignored</strong>. Otherwise, this option is <strong>required</strong>.</li>
+<li><strong>watch</strong>: <code>boolean</code> indicating whether to watch a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> source file for changes. This option is only applicable if not provided presentation <code>text</code> and the <code>options</code> object specifies a presentation file to load. Default: <code>false</code>.</li>
 <li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered slide to the REPL. Default: <code>true</code>.</li>
 <li><strong>loop</strong>: <code>boolean</code> indicating whether to "loop" a presentation. Default: <code>false</code>.</li>
 </ul>
 <p>A few notes:</p>
 <ul>
 <li>When not provided presentation <code>text</code>, an options argument <strong>must</strong> specify a presentation file to load.</li>
-<li>If a specified workspace already exists, the workspace is silently cleared and a new <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative presentation workspace name.</li>
+<li>If a specified workspace already exists, the workspace is silently cleared and a new <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative presentation workspace name.</li>
 </ul>
 <h4 id="presentationstop-id-">presentationStop( [id] )</h4>
-<p>Stops a REPL <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a>.</p>
+<p>Stops a REPL <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a>.</p>
 <pre><code class="no-highlight language-text">In [1]: var id = presentationStart( 'beep\n---\nboop\n' );
 
 In [2]: presentationStop();
 </code></pre>
 <p>A few notes:</p>
 <ul>
-<li>If provided a presentation identifier, the corresponding <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> is stopped. Otherwise, assuming the function is invoked in a presentation workspace, the current <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> is stopped.</li>
-<li>When stopping a REPL <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a>, the presentation's REPL workspace is both <strong>cleared</strong> and <strong>deleted</strong>.</li>
+<li>If provided a presentation identifier, the corresponding <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> is stopped. Otherwise, assuming the function is invoked in a presentation workspace, the current <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> is stopped.</li>
+<li>When stopping a REPL <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a>, the presentation's REPL workspace is both <strong>cleared</strong> and <strong>deleted</strong>.</li>
 </ul>
 <h4 id="quit">quit()</h4>
 <p>Exits the REPL.</p>
@@ -695,13 +695,13 @@ In [4]: rerun( '1:3:2' )
 <li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li>
 <li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li>
 <li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>progress</code>.</li>
-<li><strong>workspace</strong>: REPL workspace name. A tutorial <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing tutorial navigation and interaction. Default: <code>'tutorial-&#x3C;name>-&#x3C;n>'</code>, where <code>name</code> is the tutorial <code>name</code> and <code>n</code> is an assigned tutorial <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> identifier.</li>
+<li><strong>workspace</strong>: REPL workspace name. A tutorial <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing tutorial navigation and interaction. Default: <code>'tutorial-&#x3C;name>-&#x3C;n>'</code>, where <code>name</code> is the tutorial <code>name</code> and <code>n</code> is an assigned tutorial <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> identifier.</li>
 <li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered tutorial slide to the REPL. Default: <code>true</code>.</li>
 </ul>
 <p>A few notes:</p>
 <ul>
 <li>When not provided a tutorial <code>name</code>, the function prints a list of available tutorials.</li>
-<li>If a specified workspace already exists, the workspace is silently cleared and a new tutorial <a href="https://stdlib.io/develop/docs/api/@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative tutorial workspace name.</li>
+<li>If a specified workspace already exists, the workspace is silently cleared and a new tutorial <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative tutorial workspace name.</li>
 </ul>
 <h4 id="userdoc-alias-ref-doc-">userDoc( alias, [ref,] doc )</h4>
 <p>Adds user-defined documentation.</p>

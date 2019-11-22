@@ -12,14 +12,14 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtype'</span> );
 </code></pre>
 <h4 id="dtype-array-">dtype( array )</h4>
-<p>Returns the <a href="https://stdlib.io/develop/docs/api/@stdlib/array/dtypes">data type</a> of an <code>array</code>.</p>
+<p>Returns the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/dtypes">data type</a> of an <code>array</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
 
 <span class="hljs-keyword">var</span> dt = dtype( arr );
 <span class="hljs-comment">// returns 'float64'</span>
 </code></pre>
-<p>If provided an argument having an unknown or unsupported <a href="https://stdlib.io/develop/docs/api/@stdlib/array/dtypes">data type</a>, the function returns <code>null</code>.</p>
+<p>If provided an argument having an unknown or unsupported <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/dtypes">data type</a>, the function returns <code>null</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = dtype( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// returns null</span>
 </code></pre>

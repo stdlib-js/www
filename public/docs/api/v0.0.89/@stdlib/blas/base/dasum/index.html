@@ -1,6 +1,6 @@
 <h1 id="dasum">dasum</h1>
 <blockquote>
-<p>Compute the sum of <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute values</a> (<a href="http://en.wikipedia.org/wiki/Norm_%28mathematics%29"><em>L1</em> norm</a>).</p>
+<p>Compute the sum of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a> (<a href="http://en.wikipedia.org/wiki/Norm_%28mathematics%29"><em>L1</em> norm</a>).</p>
 </blockquote>
 <section class="intro">
 <p>The <a href="http://en.wikipedia.org/wiki/Norm_%28mathematics%29"><em>L1</em> norm</a> is defined as</p>
@@ -59,7 +59,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dasum = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/dasum'</span> );
 </code></pre>
 <h4 id="dasum-n-x-stride-">dasum( N, x, stride )</h4>
-<p>Computes the sum of <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute values</a>.</p>
+<p>Computes the sum of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">-2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">-5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span>, <span class="hljs-number">-3.0</span> ] );
@@ -103,7 +103,7 @@
 </code></pre>
 <p>If either <code>N</code> or <code>stride</code> is less than or equal to <code>0</code>, the function returns <code>0</code>.</p>
 <h4 id="dasumndarray-n-x-stride-offset-">dasum.ndarray( N, x, stride, offset )</h4>
-<p>Computes the sum of <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute values</a>, with alternative indexing semantics.</p>
+<p>Computes the sum of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a>, with alternative indexing semantics.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">-2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">-5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span>, <span class="hljs-number">-3.0</span> ] );
@@ -128,7 +128,7 @@ sum = dasum.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-nu
 <span class="hljs-comment">// returns 15.0</span>
 </code></pre>
 <h4 id="dasumwasm-options-">dasum.wasm( [options] )</h4>
-<p>Returns a memory managed function to compute the sum of <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute values</a>.</p>
+<p>Returns a memory managed function to compute the sum of <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute values</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> wasm = dasum.wasm();

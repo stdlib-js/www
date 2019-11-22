@@ -31,7 +31,7 @@ r = it.next().value;
 <ul>
 <li><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom numbers on the interval <code>[0,1)</code>. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned iterator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable).</li>
 <li><strong>seed</strong>: pseudorandom number generator seed.</li>
-<li><strong>state</strong>: a <a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
+<li><strong>state</strong>: a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
 <li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned iterator has exclusive control over its internal pseudorandom number generator state. Default: <code>true</code>.</li>
 <li><strong>iter</strong>: number of iterations.</li>
 </ul>

@@ -1,6 +1,6 @@
 <h1 id="dabs">dabs</h1>
 <blockquote>
-<p>Compute the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute value</a> for each element in a strided array.</p>
+<p>Compute the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> for each element in a strided array.</p>
 </blockquote>
 <section class="intro">
 </section>
@@ -10,7 +10,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/math/special/dabs'</span> );
 </code></pre>
 <h4 id="dabs-n-x-stridex-y-stridey-">dabs( N, x, strideX, y, strideY )</h4>
-<p>Computes the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute value</a> for each element in <code>x</code> and assigns the result to an element in <code>y</code>.</p>
+<p>Computes the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> for each element in <code>x</code> and assigns the result to an element in <code>y</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">-2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">-5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span>, <span class="hljs-number">-3.0</span> ] );
@@ -22,12 +22,12 @@ dabs( x.length, x, <span class="hljs-number">1</span>, x, <span class="hljs-numb
 <p>The function accepts the following arguments:</p>
 <ul>
 <li><strong>N</strong>: number of elements to sum.</li>
-<li><strong>x</strong>: input <a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
+<li><strong>x</strong>: input <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/float64"><code>Float64Array</code></a>.</li>
 <li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>y</strong>: output <a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
+<li><strong>y</strong>: output <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/float64"><code>Float64Array</code></a>.</li>
 <li><strong>strideY</strong>: index increment for <code>y</code>.</li>
 </ul>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to compute the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute value</a> for every other value in <code>x</code> and to set the first <code>N</code> elements of <code>y</code> in reverse order,</p>
+<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to compute the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> for every other value in <code>x</code> and to set the first <code>N</code> elements of <code>y</code> in reverse order,</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
@@ -39,7 +39,7 @@ dabs( x.length, x, <span class="hljs-number">1</span>, x, <span class="hljs-numb
 dabs( N, x, <span class="hljs-number">2</span>, y, <span class="hljs-number">-1</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 5.0, 3.0, 1.0, 0.0, 0.0, 0.0 ]</span>
 </code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64"><code>typed array</code></a> views.</p>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/float64"><code>typed array</code></a> views.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
@@ -57,7 +57,7 @@ dabs( N, x1, <span class="hljs-number">-2</span>, y1, <span class="hljs-number">
 <span class="hljs-comment">// y0 => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 6.0, 5.0, 4.0 ]</span>
 </code></pre>
 <h4 id="dabsndarray-n-x-stridex-offsetx-y-stridey-offsety-">dabs.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4>
-<p>Computes the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute value</a> for each element in <code>x</code> and assigns the result to an element in <code>y</code>, with alternative indexing semantics.</p>
+<p>Computes the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> for each element in <code>x</code> and assigns the result to an element in <code>y</code>, with alternative indexing semantics.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">-1.0</span>, <span class="hljs-number">-2.0</span>, <span class="hljs-number">-3.0</span>, <span class="hljs-number">-4.0</span>, <span class="hljs-number">-5.0</span> ] );
@@ -71,7 +71,7 @@ dabs.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs
 <li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
 <li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
 </ul>
-<p>While <a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to compute the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute value</a> for every other value in <code>x</code> starting from the second value and to set the last <code>N</code> elements in <code>y</code> where <code>x[i] -> y[n]</code>, <code>x[i+2] -> y[n-1]</code>,...,</p>
+<p>While <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to compute the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a> for every other value in <code>x</code> starting from the second value and to set the last <code>N</code> elements in <code>y</code> where <code>x[i] -> y[n]</code>, <code>x[i+2] -> y[n-1]</code>,...,</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
@@ -84,7 +84,7 @@ dabs.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-number
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 6.0, 4.0, 2.0 ]</span>
 </code></pre>
 <h4 id="dabswasm-options-">dabs.wasm( [options] )</h4>
-<p>Returns a memory managed function to compute the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/abs">absolute value</a>.</p>
+<p>Returns a memory managed function to compute the <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/math/base/special/abs">absolute value</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> wasm = dabs.wasm();
@@ -119,7 +119,7 @@ wasm( N, xbytes, <span class="hljs-number">1</span>, ybytes, <span class="hljs-n
 wasm.free( xbytes );
 wasm.free( ybytes );
 </code></pre>
-<p>For externally defined <a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64">typed arrays</a>, data must be copied to the heap.</p>
+<p>For externally defined <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/float64">typed arrays</a>, data must be copied to the heap.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
@@ -173,7 +173,7 @@ wasm.free( ybytes );
 </code></pre>
 <p>Providing external memory can be advantageous when wanting to a) centrally manage memory allocation, b) share memory between multiple memory managed functions, and/or c) limit the total amount of allocated memory within an application or library. </p>
 <h5 id="wasmmalloc-nbytes-">wasm.malloc( nbytes )</h5>
-<p>Allocates space on the heap and returns a bytes-wise <a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint8"><code>typed array</code></a> view (<a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint8"><code>Uint8Array</code></a>).</p>
+<p>Allocates space on the heap and returns a bytes-wise <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/uint8"><code>typed array</code></a> view (<a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/uint8"><code>Uint8Array</code></a>).</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> wasm = dabs.wasm();
 
 <span class="hljs-comment">// Allocate 64 bytes:</span>
@@ -198,7 +198,7 @@ view.set( [ <span class="hljs-number">-1.0</span>, <span class="hljs-number">-2.
 
 wasm.free( bytes );
 </code></pre>
-<p>While this method may be convenient when interacting with the bytes view directly, using a <a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64"><code>typed array</code></a> view is likely to be more performant.</p>
+<p>While this method may be convenient when interacting with the bytes view directly, using a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/float64"><code>typed array</code></a> view is likely to be more performant.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> wasm = dabs.wasm();
@@ -239,7 +239,7 @@ y = bytes.getValue( ptr );
 
 wasm.free( bytes );
 </code></pre>
-<p>While this method may be convenient when interacting with the bytes view directly, using a <a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64"><code>typed array</code></a> view is likely to be more performant.</p>
+<p>While this method may be convenient when interacting with the bytes view directly, using a <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/array/float64"><code>typed array</code></a> view is likely to be more performant.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> wasm = dabs.wasm();

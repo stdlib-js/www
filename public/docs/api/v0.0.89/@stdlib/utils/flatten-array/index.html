@@ -16,7 +16,7 @@
 <p>The function accepts the following <code>options</code>:</p>
 <ul>
 <li><strong>depth</strong>: maximum depth to flatten.</li>
-<li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="https://stdlib.io/develop/docs/api/@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li>
 </ul>
 <p>To flatten to a specified depth, set the <code>depth</code> option.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
@@ -29,7 +29,7 @@
 <span class="hljs-keyword">var</span> bool = ( arr[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] === out[<span class="hljs-number">3</span>] );
 <span class="hljs-comment">// returns true</span>
 </code></pre>
-<p>To deep <a href="https://stdlib.io/develop/docs/api/@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p>
+<p>To deep <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
 
 <span class="hljs-keyword">var</span> out = flattenArray( arr, {
@@ -65,9 +65,9 @@ out = flatten( arr );
 </code></pre>
 <p>The function accepts the following <code>options</code>:</p>
 <ul>
-<li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="https://stdlib.io/develop/docs/api/@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li>
 </ul>
-<p>To deep <a href="https://stdlib.io/develop/docs/api/@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p>
+<p>To deep <a href="https://stdlib.io//docs/api/v0.0.89@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p>
 <!-- eslint-disable object-curly-newline -->
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flatten = flattenArray.factory( [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ], {
     <span class="hljs-string">'copy'</span>: <span class="hljs-literal">true</span>
