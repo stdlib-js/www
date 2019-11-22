@@ -27,7 +27,7 @@ import App from './app.jsx';
 
 function ServerApp() {
 	return (
-		<StaticRouter location="/:version/docs/api/@stdlib/:pkg" context={{}} >
+		<StaticRouter location="/docs/api/:version/@stdlib/:pkg" context={{}} >
 			<App />
 		</StaticRouter>
 	);
