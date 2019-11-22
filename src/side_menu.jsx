@@ -124,7 +124,7 @@ class MenuBar extends Component {
 							className={`side-menu-list-item ${this.state.activePkg === pkgPath ? 'active-package' : ''}`}
 							onClick={() => {
 								this.handlePackageClick( pkgPath );
-								const path = `/${this.props.version}/docs/api/${pkgPath}`;
+								const path = `/docs/api/${this.props.version}/${pkgPath}`;
 								this.props.onReadmeChange( path );
 							}}
 							style={{
@@ -151,7 +151,7 @@ class MenuBar extends Component {
 						button
 						onClick={() => {
 							this.handleClick( pkgPath );
-							const path = `/${this.props.version}/docs/api/${pkgPath}`;
+							const path = `/docs/api/${this.props.version}/${pkgPath}`;
 							this.props.onReadmeChange( path );
 						}}
 						className={`side-menu-list-item-namespace ${this.state.activePkg === pkgPath ? 'active-package' : ''}`}
@@ -270,7 +270,7 @@ class MenuBar extends Component {
 						}}
 					>
 						<div className="side-menu-head" >
-							<Link to={`/${this.props.version}`}>
+							<Link to={`/docs/api/${this.props.version}/`}>
 								<Logo />
 							</Link>
 							<IconButton aria-label="close drawer" onClick={this.handleDrawerClose} edge="start" >
