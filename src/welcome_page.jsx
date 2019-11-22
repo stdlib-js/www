@@ -154,7 +154,7 @@ const WelcomePage = ( props ) => {
 
 					<h2>Copyright</h2>
 
-					<p>Copyright © 2016-2019. The Stdlib <a href="https://github.com/stdlib-js/stdlib/graphs/contributors" >Authors</a></p>
+					<p>Copyright © 2016-2019. The Stdlib <a href="https://github.com/stdlib-js/stdlib/graphs/contributors" >Authors</a>.</p>
 
 				</section>
 			</div>
