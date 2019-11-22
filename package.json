@@ -55,6 +55,15 @@
   },
   "dependencies": {
     "@stdlib/stdlib": "0.0.88",
+    "fastify": "^2.10.0",
+    "fastify-helmet": "^3.0.2",
+    "fastify-static": "^2.5.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "clean-css": "^4.1.8",
+    "debug": "^2.6.8",
+    "uglify-js": "^3.0.28",
     "@babel/core": "7.6.0",
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-decorators": "^7.7.0",
@@ -122,12 +131,6 @@
     "webpack": "4.41.0",
     "webpack-manifest-plugin": "2.1.1",
     "workbox-webpack-plugin": "4.3.1"
-  },
-  "devDependencies": {
-    "browserify": "^14.4.0",
-    "clean-css": "^4.1.8",
-    "debug": "^2.6.8",
-    "uglify-js": "^3.0.28"
   },
   "eslintConfig": {
     "extends": "react-app"

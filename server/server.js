@@ -22,7 +22,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import fs from 'fs';
 import { resolve, join } from 'path';
-import httpServer from '@stdlib/_tools/docs/www/server';
+import httpServer from '@stdlib/stdlib/lib/node_modules/@stdlib/_tools/docs/www/server';
 import App from './../src/server.jsx';
 
 
