@@ -54,8 +54,8 @@ function main() {
 	};
 	tree = pkgTree( opts );
 
-	// Index one level into the tree:
-	tree = tree[ '@stdlib' ];
+	// Index into the tree:
+	tree = tree[ '@stdlib' ][ 'stdlib' ][ 'lib' ][ 'node_modules' ][ '@stdlib' ];
 
 	// Save as JSON file:
 	dir = documentationPath();
