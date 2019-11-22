@@ -23,6 +23,7 @@
 var resolve = require( 'resolve' ).sync;
 var resolveParentPath = require( '@stdlib/fs/resolve-parent-path' ).sync;
 var dirname = require( '@stdlib/utils/dirname' );
+var root = require( './root.js' );
 
 
 // MAIN //
@@ -41,7 +42,7 @@ function path() {
 
 	// Resolve the main `@stdlib/stdlib` entry point:
 	opts = {
-		'basedir': __dirname
+		'basedir': root()
 	};
 	main = resolve( '@stdlib/stdlib' );
 
