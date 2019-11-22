@@ -63,9 +63,9 @@ const resolveModule = (resolveFn, filePath) => {
 // config after eject: we're in ./config/
 module.exports = {
 	dotenv: resolveApp('.env'),
-	appPath: resolveApp('public/docs'),
-	appBuild: resolveApp('build/public/docs'),
-	appPublic: resolveApp('public/docs'),
+	appPath: resolveApp('public/docs/api'),
+	appBuild: resolveApp('public/docs/api'),
+	appPublic: resolveApp('public/docs/api'),
 	appHtml: resolveApp('src/index.html'),
 	appIndexJs: resolveModule(resolveApp, 'src/index'),
 	appPackageJson: resolveApp('package.json'),
@@ -73,7 +73,7 @@ module.exports = {
 	appJsConfig: resolveApp('jsconfig.json'),
 	appNodeModules: resolveApp('node_modules'),
 	publicUrl: 'https://stdlib.io',
-	servedPath: '/docs/'
+	servedPath: '/docs/api/'
 };
 
 

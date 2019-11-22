@@ -191,7 +191,7 @@ server {
   # Default: `root html;`
   #
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#root
-  root /srv/www/stdlib.io/build/public;
+  root /srv/www/stdlib.io/public;
 
   # Specify the charset in the "Content-Type" response header field.
   #
@@ -247,7 +247,7 @@ server {
   error_log /var/log/www/stdlib.io/error.log warn;
 
   # Define a location directive for serving API documentation:
-  location ~* ^/[a-z0-9.\-_]+/docs/api/ {
+  location ~* ^/docs/api/[a-z0-9.\-_]+/ {
     # Set proxy headers passed to the proxied server.
     #
     # ## Usage
