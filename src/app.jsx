@@ -48,7 +48,10 @@ class App extends Component {
 		super( props );
 
 		let pathname = props.history.location.pathname;
-		let version = pathname.substring( 1, pathname.indexOf( '/docs' ) );
+		let prefix = '/docs/api/';
+		let i = pathname.indexOf( prefix ) + prefix.length;
+		let j = pathname.substring( i ).indexOf( '/' );
+		let version = pathname.substring( i, j );
 		if ( !VERSIONS.includes( version ) ) {
 			pathname = pathname.replace( version, VERSIONS[ 0 ] );
 			this.props.history.push( pathname );
@@ -83,7 +86,7 @@ class App extends Component {
 		const resources = this.state.packageResources[ match.params.pkg ];
 		const hasTests = resources && resources.test;
 		const hasBenchmarks = resources && resources.benchmark;
-		const fullPkgPath = `/${match.params.version}/docs/api/@stdlib/${match.params.pkg}`;
+		const fullPkgPath = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 
 		// Render the README for the selected package:
 		return (
@@ -99,7 +102,7 @@ class App extends Component {
 	}
 
 	fetchJSONFiles = () => {
-		const treePath = `/${this.state.version}/docs/api/package_tree.json`;
+		const treePath = `/docs/api/${this.state.version}/package_tree.json`;
 		if ( !JSON_CACHE[ treePath ] ) {
 			fetch( treePath )
 				.then( res => res.json() )
@@ -115,7 +118,7 @@ class App extends Component {
 				packageTree: JSON_CACHE[ treePath ]
 			});
 		}
-		const resourcesPath = `/${this.state.version}/docs/api/package_resources.json`;
+		const resourcesPath = `/docs/api/${this.state.version}/package_resources.json`;
 		if ( !JSON_CACHE[ resourcesPath ] ) {
 			fetch( resourcesPath )
 				.then( res => res.json() )
@@ -176,18 +179,18 @@ class App extends Component {
 					<Switch>
 						<Route
 							exact
-							path="/:version/docs/api/@stdlib/:pkg*/benchmark.html"
+							path="/docs/api/:version/@stdlib/:pkg*/benchmark.html"
 							render={({ match }) => {
 								const resources = this.state.packageResources[ match.params.pkg ];
 								const hasTests = resources && resources.test;
 								const hasBenchmarks = resources && resources.benchmark;
 								let iframe;
 								if ( hasBenchmarks ) {
-									iframe = <iframe className="readme-iframe" src={`/${match.params.version}/docs/api/@stdlib/${match.params.pkg}/benchmark.html?fragment=true`} title="Benchmarks" />;
+									iframe = <iframe className="readme-iframe" src={`/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/benchmark.html?fragment=true`} title="Benchmarks" />;
 								} else {
 									iframe = <h2><code>{match.params.pkg}</code> does not have any benchmarks.</h2>;
 								}
-								const fullPkgPath = `/${match.params.version}/docs/api/@stdlib/${match.params.pkg}`;
+								const fullPkgPath = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 								return (
 									<Fragment>
 										<nav className="navbar">
@@ -203,18 +206,18 @@ class App extends Component {
 						/>
 						<Route
 							exact
-							path="/:version/docs/api/@stdlib/:pkg*/test.html"
+							path="/docs/api/:version/@stdlib/:pkg*/test.html"
 							render={({ match }) => {
 								const resources = this.state.packageResources[ match.params.pkg ];
 								const hasTests = resources && resources.test;
 								const hasBenchmarks = resources && resources.benchmark;
 								let iframe;
 								if ( hasTests ) {
-									iframe = <iframe className="readme-iframe" src={`/${match.params.version}/docs/api/@stdlib/${match.params.pkg}/test.html?fragment=true`} title="Tests" />;
+									iframe = <iframe className="readme-iframe" src={`/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/test.html?fragment=true`} title="Tests" />;
 								} else {
 									iframe = <h2><code>{match.params.pkg}</code> does not have any tests.</h2>;
 								}
-								const fullPkgPath = `/${match.params.version}/docs/api/@stdlib/${match.params.pkg}`;
+								const fullPkgPath = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 								return (
 									<Fragment>
 										<nav className="navbar">
@@ -230,15 +233,15 @@ class App extends Component {
 						/>
 						<Route
 							exact
-							path="/:version/docs/api/@stdlib/:pkg*/index.html"
+							path="/docs/api/:version//@stdlib/:pkg*/index.html"
 							render={this.renderReadme}
 						/>
 						<Route
 							exact
-							path="/:version/docs/api/@stdlib/:pkg*"
+							path="/docs/api/:version/@stdlib/:pkg*"
 							render={this.renderReadme}
 						/>
-						<Route exact path="/:version?" >
+						<Route exact path="/docs/api/:version?" >
 							<WelcomePage version={this.state.version} />
 						</Route>
 					</Switch>
