@@ -73,6 +73,7 @@ function main() {
 		'template': template(),
 		'root': BUILD_DIR,
 		'static': BUILD_DIR,
+		'prefix': '/docs/api/',
 		'logger': true
 	};
 	httpServer( opts )( done );
