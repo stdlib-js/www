@@ -20,6 +20,7 @@
 
 // MODULES //
 
+var join = require( 'path' ).join;
 var root = require( './root.js' );
 var version = require( './stdlib_version.js' );
 
