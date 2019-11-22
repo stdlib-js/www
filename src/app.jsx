@@ -51,7 +51,7 @@ class App extends Component {
 		let prefix = '/docs/api/';
 		let i = pathname.indexOf( prefix ) + prefix.length;
 		let j = pathname.substring( i ).indexOf( '/' );
-		let version = pathname.substring( i, j );
+		let version = pathname.substring( i, i+j );
 		if ( !VERSIONS.includes( version ) ) {
 			pathname = pathname.replace( version, VERSIONS[ 0 ] );
 			this.props.history.push( pathname );
