@@ -20,8 +20,7 @@
 
 // MODULES //
 
-var join = require( 'path' ).join;
-var resolveParentPath = require( '@stdlib/fs/resolve-parent-path' ).sync;
+var root = require( './root.js' );
 var version = require( './stdlib_version.js' );
 
 
@@ -34,17 +33,7 @@ var version = require( './stdlib_version.js' );
 * @returns {string} API documentation path
 */
 function path() {
-	var opts;
-	var root;
-
-	// Resolve the root directory:
-	opts = {
-		'dir': __dirname
-	};
-	root = resolveParentPath( 'package.json', opts );
-
-	// Resolve the API documentation path:
-	return join( root, 'public', 'docs', 'api', 'v'+version() );
+	return join( root(), 'public', 'docs', 'api', 'v'+version() );
 }
 
 
