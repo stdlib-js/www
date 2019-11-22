@@ -56,13 +56,10 @@
   "bugs": {
     "url": "https://github.com/stdlib-js/stdlib/issues"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "browserify": "^14.4.0",
-    "clean-css": "^4.1.8",
-    "debug": "^2.6.8",
-    "uglify-js": "^3.0.28",
+  "dependencies": {
+    "ignore-styles": "^5.0.1",
     "@babel/core": "7.6.0",
+    "@babel/register": "^7.7.0",
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-decorators": "^7.7.0",
     "@babel/plugin-proposal-do-expressions": "^7.6.0",
@@ -81,7 +78,14 @@
     "@babel/plugin-transform-modules-commonjs": "^7.7.0",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/register": "^7.7.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "clean-css": "^4.1.8",
+    "debug": "^2.6.8",
+    "uglify-js": "^3.0.28",
     "@material-ui/core": "^4.6.0",
     "@material-ui/icons": "^4.5.1",
     "@svgr/webpack": "4.3.2",
@@ -106,7 +110,6 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "4.0.0-beta.5",
     "identity-obj-proxy": "3.0.0",
-    "ignore-styles": "^5.0.1",
     "is-wsl": "^1.1.0",
     "mini-css-extract-plugin": "0.8.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
@@ -116,10 +119,8 @@
     "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
-    "react": "^16.11.0",
     "react-app-polyfill": "^1.0.4",
     "react-dev-utils": "^9.1.0",
-    "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
     "resolve": "1.12.0",
     "semver": "6.3.0",
