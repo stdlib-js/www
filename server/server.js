@@ -28,8 +28,7 @@ import App from './../src/server.jsx';
 
 // VARIABLES //
 
-var BUILD_DIR = resolve( __dirname, '..', 'build', 'docs' );
-var VERSION = 'v0.0.87';
+var BUILD_DIR = resolve( __dirname, '..', 'public', 'docs', 'api' );
 var PORT = 3000;
 
 
@@ -72,7 +71,7 @@ function main() {
 	var opts = {
 		'port': PORT,
 		'template': template(),
-		'root': resolve( BUILD_DIR, '..', VERSION ),
+		'root': BUILD_DIR,
 		'static': BUILD_DIR,
 		'logger': true
 	};
