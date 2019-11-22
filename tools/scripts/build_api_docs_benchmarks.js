@@ -25,6 +25,7 @@
 var join = require( 'path' ).join;
 var mkdir = require( 'fs' ).mkdirSync;
 var exists = require( '@stdlib/fs/exists' ).sync;
+var cwd = require( '@stdlib/process/cwd' );
 var build = require( '@stdlib/_tools/docs/www/benchmark-bundles' );
 var stdlibPath = require( './stdlib_path.js' );
 var stdlibVersion = require( './stdlib_version.js' );
@@ -40,14 +41,18 @@ var documentationPath = require( './api_docs_path.js' );
 */
 function main() {
 	var opts;
-	var dir;
+	var odir;
+	var sdir;
+	var cdir;
 
-	dir = documentationPath();
-	if ( !exists( dir ) ) {
-		mkdir( dir );
+	cdir = cwd();
+	odir = documentationPath();
+	if ( !exists( odir ) ) {
+		mkdir( odir );
 	}
+	sdir = stdlibPath();
 	opts = {
-		'dir': join( stdlibPath(), 'lib', 'node_modules' ),
+		'dir': join( sdir, 'lib', 'node_modules' ),
 		'mount': '/docs/api/'+stdlibVersion()+'/',
 		'ignore': [
 			'benchmark/**',
@@ -62,7 +67,8 @@ function main() {
 			'**/_tools/**'
 		]
 	};
-	build( dir, opts, done );
+	process.chdir( sdir );
+	build( odir, opts, done );
 
 	/**
 	* Callback invoked upon completion.
@@ -72,6 +78,7 @@ function main() {
 	* @throws {Error} unexpected error
 	*/
 	function done( err ) {
+		process.chdir( cdir );
 		if ( err ) {
 			throw err;
 		}
