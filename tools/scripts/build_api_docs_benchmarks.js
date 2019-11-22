@@ -46,7 +46,7 @@ function main() {
 	if ( !exists( dir ) ) {
 		mkdir( dir );
 	}
-	build( dir, {
+	opts = {
 		'dir': join( stdlibPath(), 'lib', 'node_modules' ),
 		'mount': '/docs/api/'+stdlibVersion()+'/',
 		'ignore': [
@@ -61,7 +61,8 @@ function main() {
 			'test/**',
 			'**/_tools/**'
 		]
-	}, done );
+	};
+	build( dir, opts, done );
 
 	/**
 	* Callback invoked upon completion.
