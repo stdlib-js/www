@@ -49,7 +49,7 @@ function main() {
 
 	opts = {
 		'ignore': [
-			'_tools/**'
+			'**/_tools/**'
 		]
 	};
 	tree = pkgTree( opts );
