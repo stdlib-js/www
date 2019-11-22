@@ -24,9 +24,11 @@ After=network.target
 WantedBy=multi-user.target
 
 [Service]
+User=kgryte
 Type=simple
+Environment=NODE_ENV=production
 WorkingDirectory=/srv/www/stdlib.io/server
-ExecStart=NODE_ENV=production /usr/bin/node ./server/index.js
+ExecStart=/usr/bin/node ./server/index.js
 Restart=always
 RestartSec=500ms
 StartLimitInterval=0
