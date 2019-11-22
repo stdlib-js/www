@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run clean:api_docs:app && npm run build:api_docs:app && npm run build:api_docs:app_resources && npm run build:api_docs:html_fragments && npm run build:api_docs:tests && npm run build:api_docs:benchmarks",
     "build:api_docs:app": "node tools/scripts/build_api_docs_app.js",
-    "build:api_docs:app_resources": "build:api_docs:pkg_tree && build:api_docs:asset_database",
+    "build:api_docs:app_resources": "npm run build:api_docs:pkg_tree && npm run build:api_docs:asset_database",
     "build:api_docs:asset_database": "node tools/scripts/build_api_docs_asset_database.js",
     "build:api_docs:benchmarks": "node tools/scripts/build_api_docs_benchmarks.js",
     "build:api_docs:html_fragments": "node tools/scripts/build_api_docs_html_fragments.js",
