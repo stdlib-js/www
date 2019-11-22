@@ -150,7 +150,7 @@ const WelcomePage = ( props ) => {
 
 					<h2>License</h2>
 
-					<p>See <a href="https://raw.githubusercontent.com/stdlib-js/stdlib/develop/LICENSE">LICENSE</a></p>
+					<p>See <a href="https://raw.githubusercontent.com/stdlib-js/stdlib/develop/LICENSE">LICENSE</a>.</p>
 
 					<h2>Copyright</h2>
 
