@@ -21,6 +21,7 @@
 // MODULES //
 
 var resolveParentPath = require( '@stdlib/fs/resolve-parent-path' ).sync;
+var dirname = require( '@stdlib/utils/dirname' );
 
 
 // MAIN //
@@ -43,7 +44,7 @@ function root() {
 	if ( p instanceof Error ) {
 		throw p;
 	}
-	return p;
+	return dirname( p );
 }
 
 
