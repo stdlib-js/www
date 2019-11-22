@@ -1,0 +1,87 @@
+<h1 id="define-properties">Define Properties</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Define</a> (and/or modify) object properties.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperties = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-properties'</span> );
+</code></pre>
+<h4 id="defineproperties-obj-properties-">defineProperties( obj, properties )</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Defines</a> (and/or modifies) object properties.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+
+<span class="hljs-keyword">var</span> obj = {};
+defineProperties( obj, {
+    <span class="hljs-string">'foo'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-string">'bar'</span>,
+        <span class="hljs-string">'writable'</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-string">'baz'</span>: {
+        <span class="hljs-string">'value'</span>: <span class="hljs-number">13</span>,
+        <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">false</span>
+    }
+});
+
+<span class="hljs-comment">// Retrieve all enumerable keys:</span>
+<span class="hljs-keyword">var</span> keys = objectKeys( obj );
+<span class="hljs-comment">// returns [...]</span>
+</code></pre>
+<p>The <code>properties</code> parameter is an <code>object</code> whose own enumerable property values are descriptors for the properties to be defined or modified. A property descriptor has the following optional properties:</p>
+<ul>
+<li><strong>configurable</strong>: <code>boolean</code> indicating if property descriptor can be changed and if the property can be deleted from the provided object. Default: <code>false</code>.</li>
+<li><strong>enumerable</strong>: <code>boolean</code> indicating if the property shows up when enumerating object properties. Default: <code>false</code>.</li>
+<li><strong>writable</strong>: <code>boolean</code> indicating if the value associated with the property can be changed with an assignment operator. Default: <code>false</code>.</li>
+<li><strong>value</strong>: property value.</li>
+<li><strong>get</strong>: <code>function</code> which serves as a getter for the property, or, if no getter, <code>undefined</code>. When the property is accessed, a getter function is called without arguments and with the <code>this</code> context set to the object through which the property is accessed (which may not be the object on which the property is defined due to inheritance). The return value will be used as the property value. Default: <code>undefined</code>.</li>
+<li><strong>set</strong>: <code>function</code> which serves as a setter for the property, or, if no setter, <code>undefined</code>. When assigning a property value, a setter function is called with one argument (the value being assigned to the property) and with the <code>this</code> context set to the object through which the property is assigned. Default: <code>undefined</code>.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Property descriptors come in two flavors: <strong>data descriptors</strong> and <strong>accessor descriptors</strong>. A data descriptor is a property that has a value, which may or may not be writable. An accessor descriptor is a property described by a getter-setter function pair. A descriptor must be <strong>one</strong> of these two flavors and <strong>cannot</strong> be both.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error", no-restricted-syntax: "off" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperties = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-properties'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"> name </span>) </span>{
+    <span class="hljs-keyword">if</span> ( !(<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> Person) ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person( name );
+    }
+    defineProperties( <span class="hljs-keyword">this</span>, {
+        <span class="hljs-string">'name'</span>: {
+            <span class="hljs-string">'value'</span>: name,
+            <span class="hljs-string">'writable'</span>: <span class="hljs-literal">false</span>
+        },
+        <span class="hljs-string">'greeting'</span>: {
+            <span class="hljs-string">'get'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"></span>) </span>{
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello '</span>+<span class="hljs-keyword">this</span>.name;
+            }
+        }
+    });
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+<span class="hljs-keyword">var</span> person = <span class="hljs-keyword">new</span> Person( <span class="hljs-string">'Simon'</span> );
+
+<span class="hljs-keyword">try</span> {
+    person.name = <span class="hljs-string">'Peter'</span>;
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( err.message );
+}
+
+<span class="hljs-keyword">var</span> greeting = person.greeting;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,107 @@
+<h1 id="arrays">Arrays</h1>
+<blockquote>
+<p>Arrays.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Arrays.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace exports the following array constructors:</p>
+<!-- <toc pattern="+(int*|float*|uint*|*buffer)"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer( size )</code></a></span><span class="delimiter">: </span><span class="description">constructor which returns an object used to represent a generic, fixed-length raw binary data buffer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/float32"><code>Float32Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of single-precision floating-point numbers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/float64"><code>Float64Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of double-precision floating-point numbers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/int16"><code>Int16Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of twos-complement 16-bit signed integers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/int32"><code>Int32Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of twos-complement 32-bit signed integers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/int8"><code>Int8Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of twos-complement 8-bit signed integers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/shared-buffer"><code>SharedArrayBuffer( size )</code></a></span><span class="delimiter">: </span><span class="description">constructor returning an object used to represent a generic, fixed-length raw binary data buffer which can be used to create views of shared memory.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint16"><code>Uint16Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of 16-bit unsigned integers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint32"><code>Uint32Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of 32-bit unsigned integers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint8"><code>Uint8Array()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint8c"><code>Uint8ClampedArray()</code></a></span><span class="delimiter">: </span><span class="description">typed array constructor which returns a typed array representing an array of 8-bit unsigned integers in the platform byte order clamped to 0-255.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> ns.Int32Array( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns &#x3C;Int32Array>[ 0, 0, 0, 0, 0 ]</span>
+</code></pre>
+<p>Alternatively, use the <code>typedarray</code> function to create a typed array of a given data type:</p>
+<!-- <toc pattern="typed"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/typed"><code>typedarray()</code></a></span><span class="delimiter">: </span><span class="description">create a typed array.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = ns.typedarray( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 0.0, 0.0 ]</span>
+
+<span class="hljs-keyword">var</span> arr2 = ns.typedarray( <span class="hljs-number">5</span>, <span class="hljs-string">'uint8'</span> );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 0, 0, 0, 0, 0 ]</span>
+</code></pre>
+<p>You can use the following functions to retrieve a list of available data types:</p>
+<!-- <toc pattern="*dtypes"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/dtypes"><code>arrayDataTypes()</code></a></span><span class="delimiter">: </span><span class="description">list of array data types.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/typed-complex-dtypes"><code>typedarrayComplexDataTypes()</code></a></span><span class="delimiter">: </span><span class="description">list of complex typed array data types.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/typed-dtypes"><code>typedarrayDataTypes()</code></a></span><span class="delimiter">: </span><span class="description">list of typed array data types.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> DTYPES = ns.arrayDataTypes();
+<span class="hljs-comment">// returns [ 'float32', 'float64', 'generic', 'int16', 'int32', 'int8', 'uint16', 'uint32', 'uint8', 'uint8c' ]</span>
+</code></pre>
+<p>Furthermore, the namespace contains utility functions to retrieve a given constructor:</p>
+<!-- <toc keywords="+constructors,+constructor"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/ctors"><code>arrayCtors( dtype )</code></a></span><span class="delimiter">: </span><span class="description">array constructors.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/typed-complex-ctors"><code>typedarrayComplexCtors( dtype )</code></a></span><span class="delimiter">: </span><span class="description">complex typed array constructors.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/typed-ctors"><code>typedarrayCtors( dtype )</code></a></span><span class="delimiter">: </span><span class="description">typed array constructors.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctor = ns.typedarrayCtors( <span class="hljs-string">'float64'</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+ctor = ns.typedarrayCtors( <span class="hljs-string">'int'</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<p>Lastly, the namespace contains various other functions for dealing with arrays, including functions to convert arrays from one data type to another or to serialize them as JSON and vice versa.</p>
+<!-- <toc ignore="+(int*|float*|uint*|*buffer)" ignore="typed" ignore="*dtypes" keywords="-constructors,-constructor"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/convert"><code>convertArray( arr, dtype )</code></a></span><span class="delimiter">: </span><span class="description">convert an array to an array of a different data type.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/convert-same"><code>convertArraySame( x, y )</code></a></span><span class="delimiter">: </span><span class="description">convert an array to the same data type as a second input array.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/dtype"><code>arrayDataType( array )</code></a></span><span class="delimiter">: </span><span class="description">return the data type of an array.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/reviver"><code>reviveTypedArray( key, value )</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized typed array.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/array/to-json"><code>typedarray2json( typedarray )</code></a></span><span class="delimiter">: </span><span class="description">return a JSON representation of a typed array.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

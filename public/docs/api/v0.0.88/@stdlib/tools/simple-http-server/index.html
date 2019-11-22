@@ -1,0 +1,123 @@
+<h1 id="simple-http-server">Simple HTTP Server</h1>
+<blockquote>
+<p>Create a simple HTTP server.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> httpServer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/tools/simple-http-server'</span> );
+</code></pre>
+<h4 id="httpserver-options-clbk-">httpServer( [options,] [clbk] )</h4>
+<p>Creates a simple HTTP server.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Serve from the current working directory of the calling process:</span>
+httpServer();
+</code></pre>
+<p>The function accepts the following options:</p>
+<ul>
+<li><strong>dir</strong>: directory from which to serve files.</li>
+<li><strong>port</strong>: server port. Default: <code>0</code> (i.e., randomly assigned).</li>
+<li><strong>maxport</strong>: max server port (used when port hunting). Default: <code>=port</code>.</li>
+<li><strong>hostname</strong>: server hostname.</li>
+<li><strong>address</strong>: server address. Default: <code>"0.0.0.0"</code>.</li>
+<li><strong>open</strong>: <code>boolean</code> indicating whether to launch a web browser.</li>
+</ul>
+<p>By default, the server serves content from the current working directory of the calling process. To serve from an alternative directory (resolved relative to the current working directory), set the <code>dir</code> option.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dir'</span>: <span class="hljs-string">'./examples'</span>
+};
+httpServer( opts );
+</code></pre>
+<p>To obtain the <code>server</code> handle, provide a callback.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onReady</span>(<span class="hljs-params"> error, server </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    process.nextTick( close );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>(<span class="hljs-params"></span>) </span>{
+        server.close();
+    }
+}
+httpServer( onReady );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> httpServer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/tools/simple-http-server'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dir'</span>: <span class="hljs-string">'./'</span>,
+    <span class="hljs-string">'port'</span>: <span class="hljs-number">7331</span>,
+    <span class="hljs-string">'hostname'</span>: <span class="hljs-string">'localhost'</span>,
+    <span class="hljs-string">'open'</span>: <span class="hljs-literal">false</span>
+};
+
+httpServer( opts, clbk );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clbk</span>(<span class="hljs-params"> error, server </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-comment">// Give the user a few seconds to open her web browser before closing the server...</span>
+    setTimeout( onTimeout, <span class="hljs-number">5000</span> );
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        server.close();
+    }
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: simple-http-server [options] [dirpath]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+  -p,    --port port           Server port. Default: 0.
+         --maxport maxport     Max server port. Default: `port`.
+         --hostname hostname   Server hostname.
+         --address address     Server address. Default: 0.0.0.0.
+         --open                Launch a browser once server is ready.
+</code></pre>
+<p>The application recognizes the following <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a>:</p>
+<ul>
+<li><code>DEBUG</code>: enable verbose logging.</li>
+<li><code>PORT</code>: server port.</li>
+<li><code>MAXPORT</code>: max server port.</li>
+<li><code>HOSTNAME</code>: server hostname.</li>
+<li><code>ADDRESS</code>: server address.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h3 id="notes">Notes</h3>
+<ul>
+<li>Command-line arguments <strong>always</strong> take precedence over <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<p>To serve content from the current directory,</p>
+<pre><code class="hljs language-bash">$ DEBUG=* simple-http-server
+...
+</code></pre>
+<p>To serve content from an alternative directory,</p>
+<pre><code class="hljs language-bash">$ DEBUG=* simple-http-server ./examples
+...
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

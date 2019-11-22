@@ -1,0 +1,58 @@
+<h1 id="array2buffer">array2buffer</h1>
+<blockquote>
+<p>Allocate a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> using an octet array.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+</code></pre>
+<h4 id="array2buffer-arr-">array2buffer( arr )</h4>
+<p>Allocates a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> using an <code>array</code> (or array-like <code>object</code>) of octets.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = array2buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns &#x3C;Buffer>[ 1, 2, 3, 4 ]</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+
+<span class="hljs-keyword">var</span> octets;
+<span class="hljs-keyword">var</span> buf;
+<span class="hljs-keyword">var</span> str;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Define a string we want to convert to a buffer:</span>
+str = <span class="hljs-string">'this is a string.'</span>;
+
+<span class="hljs-comment">// Manually convert the string to an array of octets...</span>
+octets = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( str.length );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; str.length; i++ ) {
+    octets[ i ] = str.charCodeAt( i ) % <span class="hljs-number">256</span>;
+}
+
+<span class="hljs-comment">// Create a buffer from the octet array:</span>
+buf = array2buffer( octets );
+<span class="hljs-built_in">console</span>.log( buf.toString() );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

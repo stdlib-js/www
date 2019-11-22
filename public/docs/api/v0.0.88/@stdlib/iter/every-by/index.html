@@ -1,0 +1,104 @@
+<h1 id="itereveryby">iterEveryBy</h1>
+<blockquote>
+<p>Test whether every <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value passes a test implemented by a predicate function.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterEveryBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/every-by'</span> );
+</code></pre>
+<h4 id="itereveryby-iterator-predicate-thisarg-">iterEveryBy( iterator, predicate[, thisArg] )</h4>
+<p>Tests whether every <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value <strong>passes</strong> a test implemented by a <code>predicate</code> function.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
+
+<span class="hljs-keyword">var</span> bool = iterEveryBy( arr, predicate );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>If a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> does not return any iterated values, the function returns <code>true</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-keyword">var</span> bool = iterEveryBy( array2iterator( [] ), predicate );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>A <code>predicate</code> function is provided two arguments:</p>
+<ul>
+<li><strong>value</strong>: iterated value</li>
+<li><strong>index</strong>: iteration index (zero-based)</li>
+</ul>
+<p>To set the execution context of the <code>predicate</code> function, provide a <code>thisArg</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> bool = iterEveryBy( arr, predicate, ctx );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-keyword">var</span> n = ctx.count;
+<span class="hljs-comment">// returns 3</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The function immediately returns upon encountering a falsy return value.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> iterEveryBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/every-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">threshold</span>(<span class="hljs-params"> r </span>) </span>{
+    <span class="hljs-keyword">return</span> ( r &#x3C; <span class="hljs-number">0.99</span> );
+}
+
+<span class="hljs-comment">// Create an iterator which generates uniformly distributed pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+};
+<span class="hljs-keyword">var</span> riter = randu( opts );
+
+<span class="hljs-comment">// Determine if all values are below a threshold:</span>
+<span class="hljs-keyword">var</span> bool = iterEveryBy( riter, threshold );
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+
+<span class="hljs-built_in">console</span>.log( bool );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

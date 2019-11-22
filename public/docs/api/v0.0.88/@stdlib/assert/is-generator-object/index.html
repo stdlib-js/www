@@ -1,0 +1,59 @@
+<h1 id="isgeneratorobject">isGeneratorObject</h1>
+<blockquote>
+<p>Test if a value is a <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Generator"><code>generator</code></a> object.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isGeneratorObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-generator-object'</span> );
+</code></pre>
+<h4 id="isgeneratorobject-value-">isGeneratorObject( value )</h4>
+<p>Tests if a <code>value</code> is a <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Generator"><code>generator</code></a> object.</p>
+<!-- eslint-disable no-restricted-syntax -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">generateID</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> ( idx &#x3C; idx+<span class="hljs-number">1</span> ) {
+        <span class="hljs-keyword">yield</span> idx;
+        idx += <span class="hljs-number">1</span>;
+    }
+}
+
+<span class="hljs-keyword">var</span> bool = isGeneratorObject( generateID() );
+<span class="hljs-comment">// returns true</span>
+
+bool = isGeneratorObject( generateID );
+<span class="hljs-comment">// returns false</span>
+
+bool = isGeneratorObject( {} );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-restricted-syntax -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isGeneratorObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-generator-object'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">generator</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+        <span class="hljs-keyword">yield</span> <span class="hljs-number">1.0</span>;
+    }
+}
+
+<span class="hljs-keyword">var</span> bool = isGeneratorObject( generator() );
+<span class="hljs-comment">// returns true</span>
+
+bool = isGeneratorObject( {} );
+<span class="hljs-comment">// returns false</span>
+
+bool = isGeneratorObject( [] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isGeneratorObject( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,90 @@
+<h1 id="iscolumnmajorcontiguous">isColumnMajorContiguous</h1>
+<blockquote>
+<p>Determine if an array is column-major contiguous.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+<p>An array is <strong>contiguous</strong> if the memory address of each array element is adjacent to the memory address of the next array element.</p>
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isColumnMajorContiguous = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-column-major-contiguous'</span> );
+</code></pre>
+<h4 id="iscolumnmajorcontiguous-shape-strides-offset-">isColumnMajorContiguous( shape, strides, offset )</h4>
+<p>Returns a <code>boolean</code> indicating if an array is column-major contiguous.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">25</span>;
+
+<span class="hljs-keyword">var</span> bool = isColumnMajorContiguous( shape, strides, offset );
+<span class="hljs-comment">// returns true</span>
+
+shape = [ <span class="hljs-number">10</span> ];
+strides = [ <span class="hljs-number">3</span> ]; <span class="hljs-comment">// every third memory element</span>
+offset = <span class="hljs-number">0</span>;
+
+bool = isColumnMajorContiguous( shape, strides, offset );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
+<span class="hljs-keyword">var</span> strides2offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/strides2offset'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> isColumnMajorContiguous = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-column-major-contiguous'</span> );
+
+<span class="hljs-keyword">var</span> strides;
+<span class="hljs-keyword">var</span> offset;
+<span class="hljs-keyword">var</span> shape;
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+
+shape = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">3</span> );
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-comment">// Generate a random array shape:</span>
+    shape[ <span class="hljs-number">0</span> ] = discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> );
+    shape[ <span class="hljs-number">1</span> ] = discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> );
+    shape[ <span class="hljs-number">2</span> ] = discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> );
+
+    <span class="hljs-comment">// Generate strides:</span>
+    <span class="hljs-keyword">if</span> ( randu() &#x3C; <span class="hljs-number">0.5</span> ) {
+        strides = shape2strides( shape, <span class="hljs-string">'row-major'</span> );
+    } <span class="hljs-keyword">else</span> {
+        strides = shape2strides( shape, <span class="hljs-string">'column-major'</span> );
+    }
+    j = discreteUniform( <span class="hljs-number">0</span>, shape.length<span class="hljs-number">-1</span> );
+    strides[ j ] *= ( randu() &#x3C; <span class="hljs-number">0.5</span> ) ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>;
+
+    strides[ <span class="hljs-number">0</span> ] *= discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ); <span class="hljs-comment">// if scaled by 1, then single segment</span>
+
+    <span class="hljs-comment">// Compute the index offset:</span>
+    offset = strides2offset( shape, strides ) + <span class="hljs-number">25</span>; <span class="hljs-comment">// include a view offset</span>
+
+    <span class="hljs-comment">// Determine if the array is column-major contiguous:</span>
+    bool = isColumnMajorContiguous( shape, strides, offset );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Shape: %s. Strides: %s. Offset: %d. Contiguous: %s.'</span>, shape.join( <span class="hljs-string">'x'</span> ), strides.join( <span class="hljs-string">','</span> ), offset, bool );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

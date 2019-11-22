@@ -1,0 +1,67 @@
+<h1 id="set-low-word">Set Low Word</h1>
+<blockquote>
+<p>Set the less significant 32 bits of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setLowWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/set-low-word'</span> );
+</code></pre>
+<h4 id="setlowword-x-low-">setLowWord( x, low )</h4>
+<p>Sets the less significant 32 bits (lower order word) of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> <code>x</code> to a bit sequence represented by an unsigned 32-bit integer <code>low</code>. The returned <code>double</code> will have the same more significant 32 bits (higher order word) as <code>x</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> low = <span class="hljs-number">5</span> >>> <span class="hljs-number">0</span>; <span class="hljs-comment">// => 00000000000000000000000000000101</span>
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">3.14e201</span>; <span class="hljs-comment">// => 0 11010011100 01001000001011000011 10010011110010110101100010000010</span>
+
+<span class="hljs-keyword">var</span> y = setLowWord( x, low ); <span class="hljs-comment">// => 0 11010011100 01001000001011000011 00000000000000000000000000000101</span>
+<span class="hljs-comment">// returns 3.139998651394392e+201</span>
+</code></pre>
+<p>Setting the lower order bits of <code>NaN</code> or positive or negative <code>infinity</code> will return <code>NaN</code>, as <code>NaN</code> is <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">defined</a> as a <code>double</code> whose exponent bit sequence is all ones and whose fraction can be any bit sequence <strong>except</strong> all zeros. Positive and negative <code>infinity</code> are <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">defined</a> as <code>doubles</code> with an exponent bit sequence equal to all ones and a fraction equal to all zeros. Hence, changing the less significant bits of positive and negative <code>infinity</code> converts each value to <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float64-pinf'</span> );
+<span class="hljs-keyword">var</span> NINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float64-ninf'</span> );
+
+<span class="hljs-keyword">var</span> low = <span class="hljs-number">12345678</span>;
+
+<span class="hljs-keyword">var</span> y = setLowWord( PINF, low );
+<span class="hljs-comment">// returns NaN</span>
+
+y = setLowWord( NINF, low );
+<span class="hljs-comment">// returns NaN</span>
+
+y = setLowWord( <span class="hljs-literal">NaN</span>, low );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> MAX_UINT32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/uint32-max'</span> );
+<span class="hljs-keyword">var</span> setLowWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/set-low-word'</span> );
+
+<span class="hljs-keyword">var</span> frac;
+<span class="hljs-keyword">var</span> exp;
+<span class="hljs-keyword">var</span> low;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Generate a random double-precision floating-point number:</span>
+frac = randu() * <span class="hljs-number">10.0</span>;
+exp = -round( randu() * <span class="hljs-number">323.0</span> );
+x = frac * pow( <span class="hljs-number">10.0</span>, exp );
+
+<span class="hljs-comment">// Replace the lower order word of `x` to generate new random numbers having the same higher order word...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    low = round( randu()*MAX_UINT32 );
+    y = setLowWord( x, low );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. new low word: %d. y: %d.'</span>, x, low, y );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

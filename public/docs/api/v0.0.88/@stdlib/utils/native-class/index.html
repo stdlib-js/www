@@ -1,0 +1,185 @@
+<h1 id="native-class">Native Class</h1>
+<blockquote>
+<p>Determine the specification defined classification of an object.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nativeClass = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/native-class'</span> );
+</code></pre>
+<h4 id="nativeclass-value-">nativeClass( value )</h4>
+<p>Returns a <code>string</code> value indicating a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">specification defined</a> classification of an <code>object</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = nativeClass( <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns '[object String]'</span>
+
+str = nativeClass( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns '[object Number]'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Beep</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+str = nativeClass( <span class="hljs-keyword">new</span> Beep() );
+<span class="hljs-comment">// returns '[object Object]'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The function is <strong>not</strong> robust for ES2015+ environments. In ES2015+, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag"><code>Symbol.toStringTag</code></a> allows overriding the default description of an object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toStr = <span class="hljs-built_in">Object</span>.prototype.toString;
+
+<span class="hljs-keyword">var</span> str = toStr.call( <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns '[object Boolean]'</span>
+
+<span class="hljs-keyword">var</span> o = {};
+str = toStr.call( o );
+<span class="hljs-comment">// returns '[object Object]'</span>
+
+<span class="hljs-comment">// Mask the default description:</span>
+o[ <span class="hljs-built_in">Symbol</span>.toStringTag ] = <span class="hljs-string">'Boolean'</span>;
+
+str = toStr.call( o );
+<span class="hljs-comment">// returns '[object Boolean]'</span>
+</code></pre>
+<p>While measures are taken to uncover the default description, such measures can be thwarted. While this function remains useful for type-checking, be aware that value impersonation is possible. Prefer functions tailored to checking for particular value types, as specialized functions are better equipped to address <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag"><code>Symbol.toStringTag</code></a>.</p>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-restricted-syntax, no-empty-function -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+<span class="hljs-keyword">var</span> nativeClass = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/native-class'</span> );
+
+<span class="hljs-keyword">var</span> str = nativeClass( <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns '[object String]'</span>
+
+str = nativeClass( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns '[object Number]'</span>
+
+str = nativeClass( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns '[object Number]'</span>
+
+str = nativeClass( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns '[object Null]'</span>
+
+str = nativeClass( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns '[object Undefined]'</span>
+
+str = nativeClass( <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns '[object Boolean]'</span>
+
+str = nativeClass( <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns '[object Boolean]'</span>
+
+str = nativeClass( {} );
+<span class="hljs-comment">// returns '[object Object]'</span>
+
+str = nativeClass( [] );
+<span class="hljs-comment">// returns '[object Array]'</span>
+
+str = nativeClass( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{} );
+<span class="hljs-comment">// returns '[object Function]'</span>
+
+str = nativeClass( <span class="hljs-regexp">/./</span> );
+<span class="hljs-comment">// returns '[object RegExp]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() );
+<span class="hljs-comment">// returns '[object Date]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>() );
+<span class="hljs-comment">// returns '[object Map]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>() );
+<span class="hljs-comment">// returns '[object WeakMap]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>() );
+<span class="hljs-comment">// returns '[object Set]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakSet</span>() );
+<span class="hljs-comment">// returns '[object WeakSet]'</span>
+
+str = nativeClass( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) );
+<span class="hljs-comment">// returns '[object Symbol]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>() );
+<span class="hljs-comment">// returns '[object Error]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>() );
+<span class="hljs-comment">// returns '[object Error]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">SyntaxError</span>() );
+<span class="hljs-comment">// returns '[object Error]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">URIError</span>() );
+<span class="hljs-comment">// returns '[object Error]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>() );
+<span class="hljs-comment">// returns '[object Error]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">ReferenceError</span>() );
+<span class="hljs-comment">// returns '[object Error]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">EvalError</span>() );
+<span class="hljs-comment">// returns '[object Error]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>() );
+<span class="hljs-comment">// returns '[object Int8Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>() );
+<span class="hljs-comment">// returns '[object Uint8Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8ClampedArray</span>() );
+<span class="hljs-comment">// returns '[object Uint8ClampedArray]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>() );
+<span class="hljs-comment">// returns '[object Int16Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>() );
+<span class="hljs-comment">// returns '[object Uint16Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>() );
+<span class="hljs-comment">// returns '[object Int32Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>() );
+<span class="hljs-comment">// returns '[object Uint32Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>() );
+<span class="hljs-comment">// returns '[object Float32Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>() );
+<span class="hljs-comment">// returns '[object Float64Array]'</span>
+
+str = nativeClass( <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>() );
+<span class="hljs-comment">// returns '[object ArrayBuffer]'</span>
+
+str = nativeClass( <span class="hljs-built_in">Math</span> );
+<span class="hljs-comment">// returns '[object Math]'</span>
+
+str = nativeClass( <span class="hljs-built_in">JSON</span> );
+<span class="hljs-comment">// returns '[object JSON]'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+str = nativeClass( <span class="hljs-keyword">new</span> Person() );
+<span class="hljs-comment">// returns '[object Object]'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,50 @@
+<h1 id="sqrt1pm1">sqrt1pm1</h1>
+<blockquote>
+<p>Compute <code>sqrt( 1 + x ) - 1</code>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sqrt1pm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt1pm1'</span> );
+</code></pre>
+<h4 id="sqrt1pm1-x-">sqrt1pm1( x )</h4>
+<p>Computes <code>sqrt( 1 + x ) - 1</code> more accurately for small <code>x</code>. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = sqrt1pm1( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+
+v = sqrt1pm1( <span class="hljs-number">0.5</span> );
+<span class="hljs-comment">// returns ~0.225</span>
+
+v = sqrt1pm1( <span class="hljs-number">0.02</span> );
+<span class="hljs-comment">// returns ~0.01</span>
+
+v = sqrt1pm1( <span class="hljs-number">-0.5</span> );
+<span class="hljs-comment">// returns ~-0.293</span>
+
+v = sqrt1pm1( <span class="hljs-number">-1.1</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = sqrt1pm1( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> sqrt1pm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt1pm1'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = round( randu() * <span class="hljs-number">100.0</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'sqrt(1+%d) - 1 = %d'</span>, x, sqrt1pm1( x ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

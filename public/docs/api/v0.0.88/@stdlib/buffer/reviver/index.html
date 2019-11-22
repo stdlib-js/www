@@ -1,0 +1,60 @@
+<h1 id="reviver">Reviver</h1>
+<blockquote>
+<p>Revive a JSON-serialized <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">Buffer</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/reviver'</span> );
+</code></pre>
+<h4 id="reviver-key-value-">reviver( key, value )</h4>
+<p>Revives a JSON-serialized <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'{"type":"Buffer","data":[5,3]}'</span>;
+
+<span class="hljs-keyword">var</span> buf = parseJSON( str, reviver );
+<span class="hljs-comment">// returns &#x3C;Buffer>[ 5, 3 ]</span>
+</code></pre>
+<p>For details on the JSON serialization format, see <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/to-json"><code>toJSON()</code></a>.</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+<span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+<span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/to-json'</span> );
+<span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/reviver'</span> );
+
+<span class="hljs-keyword">var</span> buf = array2buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( toJSON( buf ) );
+<span class="hljs-built_in">console</span>.log( str );
+<span class="hljs-comment">// => '{"type":"Buffer","data":[1,2]}'</span>
+
+<span class="hljs-keyword">var</span> out = parseJSON( str, reviver );
+<span class="hljs-keyword">if</span> ( out <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-keyword">throw</span> out;
+}
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// => &#x3C;Buffer>[ 1, 2 ]</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

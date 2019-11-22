@@ -1,0 +1,58 @@
+<h1 id="unzip">Unzip</h1>
+<blockquote>
+<p>Unzip a <a href="https://stdlib.io/develop/docs/api/@stdlib/utils/zip">zipped array</a> (i.e., a nested array of tuples).</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unzip = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/unzip'</span> );
+</code></pre>
+<h4 id="unzip-arr-idx-">unzip( arr[, idx] )</h4>
+<p>Unzips a <a href="https://stdlib.io/develop/docs/api/@stdlib/utils/zip">zipped array</a> (i.e., a nested <code>array</code> of tuples).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ [ <span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">4</span> ] ];
+
+<span class="hljs-keyword">var</span> out = unzip( arr );
+<span class="hljs-comment">// returns [ [ 1, 2 ], [ 'a', 'b' ], [ 3, 4 ] ];</span>
+</code></pre>
+<p>To unzip specific tuple elements, you can provide an <code>array</code> of indices as an optional second argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ [ <span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">4</span> ] ];
+
+<span class="hljs-keyword">var</span> out = unzip( arr, [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns [ [ 1, 2 ], [ 3, 4 ] ];</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unzip = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/unzip'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> len;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+len = <span class="hljs-number">5</span>;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( len );
+    <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">0</span>; j &#x3C; len; j++ ) {
+        arr[ i ][ j ] = round( randu() * pow(<span class="hljs-number">10</span>, j) );
+    }
+}
+out = unzip( arr );
+
+<span class="hljs-built_in">console</span>.dir( out );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

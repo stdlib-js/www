@@ -1,0 +1,56 @@
+<h1 id="lucas-number">Lucas Number</h1>
+<blockquote>
+<p>Maximum safe <a href="https://en.wikipedia.org/wiki/Lucas_number">Lucas number</a> when stored in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> format.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_MAX_SAFE_LUCAS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float64-max-safe-lucas'</span> );
+</code></pre>
+<h4 id="float64_max_safe_lucas">FLOAT64_MAX_SAFE_LUCAS</h4>
+<p>The maximum <a href="http://www.2ality.com/2013/10/safe-integers.html">safe</a> <a href="https://en.wikipedia.org/wiki/Lucas_number">Lucas number</a> when stored in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> format.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT64_MAX_SAFE_LUCAS === <span class="hljs-number">7639424778862807</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_MAX_SAFE_LUCAS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float64-max-safe-lucas'</span> );
+
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lucas</span>(<span class="hljs-params"> n </span>) </span>{
+    <span class="hljs-keyword">var</span> a;
+    <span class="hljs-keyword">var</span> b;
+    <span class="hljs-keyword">var</span> c;
+    <span class="hljs-keyword">var</span> i;
+
+    a = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">if</span> ( n === <span class="hljs-number">0</span> ) {
+        <span class="hljs-keyword">return</span> a;
+    }
+    b = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">2</span>; i &#x3C;= n; i++ ) {
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    <span class="hljs-keyword">return</span> b;
+}
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    v = lucas( i );
+    <span class="hljs-keyword">if</span> ( v > FLOAT64_MAX_SAFE_LUCAS ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Unsafe: %d'</span>, v );
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Safe:   %d'</span>, v );
+    }
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

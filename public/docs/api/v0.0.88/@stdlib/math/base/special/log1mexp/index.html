@@ -1,0 +1,47 @@
+<h1 id="log1mexp">log1mexp</h1>
+<blockquote>
+<p>Evaluates the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1-exp(-|x|)</code>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1mexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1mexp'</span> );
+</code></pre>
+<h4 id="log1mexp-x-">log1mexp( x )</h4>
+<p>Evaluates the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1-exp(-|x|)</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = log1mexp( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns -Infinity</span>
+
+y = log1mexp( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns ~-0.00676</span>
+
+y = log1mexp( <span class="hljs-number">10.0</span> );
+<span class="hljs-comment">// returns ~-0.00005</span>
+
+y = log1mexp( <span class="hljs-number">-10.0</span> );
+<span class="hljs-comment">// returns ~-0.00005</span>
+
+y = log1mexp( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/utils/incrspace'</span> );
+<span class="hljs-keyword">var</span> log1mexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1mexp'</span> );
+
+<span class="hljs-keyword">var</span> x = incrspace( <span class="hljs-number">-10.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">0.01</span> );
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    v = log1mexp( x[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, f(x): %d'</span>, x[ i ], v );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,77 @@
+<h1 id="isnanarray">isNaNArray</h1>
+<blockquote>
+<p>Test if a value is an array-like object containing only NaN values.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isNaNArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-nan-array'</span> );
+</code></pre>
+<h4 id="isnanarray-value-">isNaNArray( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> <code>NaN</code> values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isNaNArray( [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNaNArray( [ <span class="hljs-literal">NaN</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<h4 id="isnanarrayprimitives-value-">isNaNArray.primitives( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> primitive <code>NaN</code> values.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isNaNArray.primitives( [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNaNArray.primitives( [ <span class="hljs-literal">NaN</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-literal">NaN</span> ) ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<h4 id="isnanarrayobjects-value-">isNaNArray.objects( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> object <code>NaN</code> values.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isNaNArray.objects( [ <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-literal">NaN</span> ), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-literal">NaN</span> ) ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNaNArray.objects( [ <span class="hljs-literal">NaN</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-literal">NaN</span> ) ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNaNArray.objects( [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-new-wrappers -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> isNaNArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-nan-array'</span> );
+
+<span class="hljs-keyword">var</span> bool = isNaNArray( [ <span class="hljs-literal">NaN</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNaNArray( [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNaNArray( [ <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-literal">NaN</span> ), <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNaNArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isNaNArray( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNaNArray( [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isNaNArray( [ <span class="hljs-string">'a'</span>, <span class="hljs-literal">NaN</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

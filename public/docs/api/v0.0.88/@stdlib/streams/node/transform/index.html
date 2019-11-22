@@ -1,0 +1,236 @@
+<h1 id="transform-stream">Transform Stream</h1>
+<blockquote>
+<p><a href="https://nodejs.org/api/stream.html">Transform stream</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> transformStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/transform'</span> );
+</code></pre>
+<p><a name="transform-stream"></a></p>
+<h4 id="transformstream-options-">transformStream( [options] )</h4>
+<p>Creates a <a href="https://nodejs.org/api/stream.html">transform stream</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.toString()+<span class="hljs-string">'\n'</span> );
+}
+
+<span class="hljs-keyword">var</span> stream = transformStream({
+    <span class="hljs-string">'transform'</span>: transform
+});
+
+stream.pipe( process.stdout );
+
+stream.write( <span class="hljs-string">'1'</span> );
+stream.write( <span class="hljs-string">'2'</span> );
+stream.write( <span class="hljs-string">'3'</span> );
+
+stream.end();
+<span class="hljs-comment">// => '1\n2\n3\n'</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>transform</strong>: callback to invoke upon receiving a new chunk.</li>
+<li><strong>flush</strong>: callback to invoke after receiving all chunks and prior to a stream closing.</li>
+<li><strong>objectMode</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>false</code>.</li>
+<li><strong>encoding</strong>: specifies how <code>Buffer</code> objects should be decoded to <code>strings</code>. Default: <code>null</code>.</li>
+<li><strong>highWaterMark</strong>: specifies the <code>Buffer</code> level at which <code>write()</code> calls start returning <code>false</code>.</li>
+<li><strong>allowHalfOpen</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should remain open even if one side ends. Default: <code>false</code>.</li>
+<li><strong>decodeStrings</strong>: specifies whether to decode <code>strings</code> into <code>Buffer</code> objects when writing. Default: <code>true</code>.</li>
+</ul>
+<p>To set <a href="https://nodejs.org/api/stream.html">stream</a> <code>options</code>,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>,
+    <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>,
+    <span class="hljs-string">'allowHalfOpen'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'decodeStrings'</span>: <span class="hljs-literal">false</span>
+};
+
+<span class="hljs-keyword">var</span> stream = transformStream( opts );
+</code></pre>
+<p>The <code>transform</code> option should be a <code>function</code> having the following signature:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    <span class="hljs-keyword">var</span> multipleData;
+    <span class="hljs-keyword">var</span> err;
+
+    <span class="hljs-keyword">if</span> ( multipleData ) {
+        <span class="hljs-comment">// Push as many chunks as required...</span>
+        <span class="hljs-keyword">this</span>.push( chunk );
+        <span class="hljs-keyword">this</span>.push( chunk );
+
+        <span class="hljs-comment">// ...</span>
+
+        <span class="hljs-keyword">if</span> ( err ) {
+            <span class="hljs-keyword">return</span> clbk( err );
+        }
+        <span class="hljs-keyword">return</span> clbk();
+    }
+    <span class="hljs-keyword">if</span> ( err ) {
+        <span class="hljs-keyword">return</span> clbk( err );
+    }
+    clbk( <span class="hljs-literal">null</span>, chunk );
+}
+</code></pre>
+<p>The <code>flush</code> option should be a <code>function</code> which performs any remaining tasks before the stream closes, such as unfinished data processing.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flush</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-keyword">var</span> err;
+
+    <span class="hljs-comment">// Push any remaining chunks...</span>
+    <span class="hljs-keyword">this</span>.push( <span class="hljs-string">'...'</span> );
+    <span class="hljs-keyword">this</span>.push( <span class="hljs-string">'...'</span> );
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">if</span> ( err ) {
+        <span class="hljs-keyword">return</span> clbk( err );
+    }
+    clbk();
+}
+</code></pre>
+<p>If no <code>transform</code> is provided, the returned <code>stream</code> will be a simple pass through stream.</p>
+<h4 id="transformstreamfactory-options-">transformStream.factory( [options] )</h4>
+<p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">streams</a> which are identically configured according to provided <code>options</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>,
+    <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>
+};
+
+<span class="hljs-keyword">var</span> factory = transformStream.factory( opts );
+</code></pre>
+<p>This method accepts the same <code>options</code> as <a href="#transform-stream"><code>transformStream()</code></a>, <strong>except</strong> for the <code>transform</code> and <code>flush</code> options which must be provided <strong>explicitly</strong>, as shown below.</p>
+<h5 id="factory-transform-flush-">factory( transform[, flush] )</h5>
+<p>Creates a <a href="https://nodejs.org/api/stream.html">transform stream</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform1</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.toString()+<span class="hljs-string">'\n'</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform2</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.toString()+<span class="hljs-string">'\t'</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flush</span>(<span class="hljs-params"> clbk </span>) </span>{
+    clbk();
+}
+
+<span class="hljs-keyword">var</span> factory = transformStream.factory();
+
+<span class="hljs-keyword">var</span> s1 = factory( transform1 );
+<span class="hljs-keyword">var</span> s2 = factory( transform2, flush );
+</code></pre>
+<h4 id="transformstreamobjectmode-options-">transformStream.objectMode( [options] )</h4>
+<p>This method is a convenience function to create <a href="https://nodejs.org/api/stream.html">streams</a> which always operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>.</p>
+<!-- eslint-disable object-curly-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringify</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, <span class="hljs-built_in">JSON</span>.stringify( chunk ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">newline</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk+<span class="hljs-string">'\n'</span> );
+}
+
+<span class="hljs-keyword">var</span> s1 = transformStream.objectMode({
+    <span class="hljs-string">'transform'</span>: stringify
+});
+
+<span class="hljs-keyword">var</span> s2 = transformStream.objectMode({
+    <span class="hljs-string">'transform'</span>: newline
+});
+
+s1.pipe( s2 ).pipe( process.stdout );
+
+s1.write( { <span class="hljs-string">'value'</span>: <span class="hljs-string">'a'</span> } );
+s1.write( { <span class="hljs-string">'value'</span>: <span class="hljs-string">'b'</span> } );
+s1.write( { <span class="hljs-string">'value'</span>: <span class="hljs-string">'c'</span> } );
+
+s1.end();
+<span class="hljs-comment">// => '{"value":"a"}\n{"value":"b"}\n{"value":"c"}\n'</span>
+</code></pre>
+<p>This method accepts the same <code>options</code> as <a href="#transform-stream"><code>transformStream()</code></a>; however, the method will <strong>always</strong> override the <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a> option in <code>options</code>.</p>
+<h4 id="transformstreamctor-options-">transformStream.ctor( [options] )</h4>
+<p>Instead of returning a <a href="https://nodejs.org/api/stream.html">transform stream</a> instance, this method returns a custom <a href="https://nodejs.org/api/stream.html">transform stream</a> constructor. If provided <code>transform</code> and <code>flush</code> options, these methods are bound to the constructor prototype. If not provided a <code>transform</code>, the returned constructor creates simple pass through streams.</p>
+<!-- eslint-disable no-underscore-dangle -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.toString()+<span class="hljs-string">'\n'</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flush</span>(<span class="hljs-params"> clbk </span>) </span>{
+    <span class="hljs-keyword">this</span>.push( <span class="hljs-string">'beep'</span> );
+    clbk();
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'transform'</span>: transform,
+    <span class="hljs-string">'flush'</span>: flush
+};
+
+<span class="hljs-keyword">var</span> TransformStream = transformStream.ctor( opts );
+
+<span class="hljs-keyword">var</span> bool = ( TransformStream.prototype._transform === transform );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( TransformStream.prototype._flush === flush );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The returned constructor accepts the same <code>options</code> as documented above, <strong>except</strong> for the <code>transform</code> and <code>flush</code> options, which are not supported. Any <code>options</code> provided to the constructor <strong>override</strong> <code>options</code> provided to the constructor factory.</p>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
+<span class="hljs-keyword">var</span> factory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/transform'</span> ).factory;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parse</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, <span class="hljs-built_in">JSON</span>.parse( chunk ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pluck</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.value );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    <span class="hljs-keyword">var</span> v = +chunk;
+    clbk( <span class="hljs-literal">null</span>, v*v );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toStr</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.toString() );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">join</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk+<span class="hljs-string">'\n'</span> );
+}
+
+<span class="hljs-comment">// Create a factory which generates streams running in `objectMode`:</span>
+<span class="hljs-keyword">var</span> tStream = factory({
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Create streams for each transform:</span>
+<span class="hljs-keyword">var</span> s1 = tStream( parse );
+<span class="hljs-keyword">var</span> s2 = tStream( pluck );
+<span class="hljs-keyword">var</span> s3 = tStream( square );
+<span class="hljs-keyword">var</span> s4 = tStream( toStr );
+<span class="hljs-keyword">var</span> s5 = tStream( join );
+
+<span class="hljs-comment">// Create the pipeline:</span>
+s1.pipe( s2 )
+    .pipe( s3 )
+    .pipe( s4 )
+    .pipe( s5 )
+    .pipe( stdout );
+
+<span class="hljs-comment">// Write data to the pipeline...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    v = <span class="hljs-string">'{"value":'</span>+i+<span class="hljs-string">'}'</span>;
+    s1.write( v, <span class="hljs-string">'utf8'</span> );
+}
+s1.end();
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

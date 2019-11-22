@@ -1,0 +1,83 @@
+<h1 id="buffer">Buffer</h1>
+<blockquote>
+<p><a href="https://nodejs.org/api/buffer.html">Buffer</a> constructor.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/ctor'</span> );
+</code></pre>
+<h4 id="buffer-size-">Buffer( size )</h4>
+<p>Allocates a <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a> having a specified number of bytes.</p>
+<!-- eslint-disable stdlib/require-globals, no-buffer-constructor -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> Buffer( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Buffer></span>
+</code></pre>
+<h4 id="buffer-array-">Buffer( array )</h4>
+<p>Allocates a <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a> from an array of octets.</p>
+<!-- eslint-disable stdlib/require-globals, no-buffer-constructor -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> Buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns &#x3C;Buffer>[ 1, 2, 3, 4 ]</span>
+</code></pre>
+<h4 id="buffer-buffer-">Buffer( buffer )</h4>
+<p>Copies <a href="https://nodejs.org/api/buffer.html">buffer</a> data to a new <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a> instance.</p>
+<!-- eslint-disable stdlib/require-globals, no-buffer-constructor -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> Buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> b2 = <span class="hljs-keyword">new</span> Buffer( b1 );
+<span class="hljs-comment">// returns &#x3C;Buffer>[ 1, 2, 3, 4 ]</span>
+</code></pre>
+<h4 id="buffer-str-encoding-">Buffer( str[, encoding] )</h4>
+<p>Returns a <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a> containing a provided <code>string</code>.</p>
+<!-- eslint-disable stdlib/require-globals, no-buffer-constructor -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> b = <span class="hljs-keyword">new</span> Buffer( <span class="hljs-string">'beep boop'</span> );
+<span class="hljs-comment">// returns &#x3C;Buffer></span>
+</code></pre>
+<hr>
+<h3 id="properties">Properties</h3>
+<p>TODO: add properties</p>
+<hr>
+<h3 id="methods">Methods</h3>
+<p>TODO: add methods</p>
+</section>
+<!-- /.usage -->
+<hr>
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/ctor'</span> );
+
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Allocate uninitialized memory:</span>
+<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> ctor.alloc === <span class="hljs-string">'function'</span> ) {
+    b = ctor.alloc( <span class="hljs-number">10</span> );
+} <span class="hljs-keyword">else</span> {
+    b = <span class="hljs-keyword">new</span> ctor( <span class="hljs-number">10</span> );
+}
+
+<span class="hljs-comment">// Zero fill the buffer...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; b.length; i++ ) {
+    b[ i ] = <span class="hljs-number">0</span>;
+}
+<span class="hljs-built_in">console</span>.log( b );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,115 @@
+<h1 id="wage-rates">Wage Rates</h1>
+<blockquote>
+<p><a href="http://www.frbsf.org/economic-research/indicators-data/nominal-wage-rigidity/">Wage rates</a> for U.S. workers that have not changed jobs within the year.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> wages = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/frb-sf-wage-rigidity'</span> );
+</code></pre>
+<h4 id="wages">wages()</h4>
+<p>Returns <a href="http://www.frbsf.org/economic-research/indicators-data/nominal-wage-rigidity/">wage rates</a> for U.S. workers that have not changed jobs within the year.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = wages();
+<span class="hljs-comment">// returns [{...},{...},...]</span>
+</code></pre>
+<p>Each <code>array</code> element has the following fields:</p>
+<ul>
+<li><strong>date</strong>: collection date (month/day/year; e.g., <code>01/01/1980</code>).</li>
+<li><strong>all_workers</strong>: wage rates for hourly and non-hourly workers.</li>
+<li><strong>hourly_workers</strong>: wage rates for hourly workers.</li>
+<li><strong>non_hourly_workers</strong>: wage rates for non-hourly workers.</li>
+<li><strong>less_than_high_school</strong>: wage rates for workers with less than a high school education.</li>
+<li><strong>high_school</strong>: wage rates for workers with a high school education.</li>
+<li><strong>some_college</strong>: wage rates for workers with some college education.</li>
+<li><strong>college</strong>: wage rates for workers with a college education.</li>
+<li><strong>construction</strong>: wage rates for workers in the construction industry.</li>
+<li><strong>finance</strong>: wage rates for workers in the finance industry.</li>
+<li><strong>manufacturing</strong>: wage rates for workers in the manufacturing industry.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Chart = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/sparklines/unicode/tristate'</span> );
+<span class="hljs-keyword">var</span> wages = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/frb-sf-wage-rigidity'</span> );
+
+<span class="hljs-keyword">var</span> chart;
+<span class="hljs-keyword">var</span> opts;
+<span class="hljs-keyword">var</span> data;
+<span class="hljs-keyword">var</span> v1;
+<span class="hljs-keyword">var</span> v2;
+<span class="hljs-keyword">var</span> d;
+<span class="hljs-keyword">var</span> i;
+
+data = wages();
+d = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( data.length );
+v1 = data[ <span class="hljs-number">0</span> ].all_workers;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">1</span>; i &#x3C; data.length; i++ ) {
+    v2 = data[ i ].all_workers;
+    <span class="hljs-keyword">if</span> ( v2 === <span class="hljs-literal">null</span> ) {
+        d[ i ] = <span class="hljs-literal">NaN</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( v2 &#x3C; v1 ) {
+        d[ i ] = <span class="hljs-number">-1</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( v2 > v1 ) {
+        d[ i ] = <span class="hljs-number">1</span>;
+    } <span class="hljs-keyword">else</span> {
+        d[ i ] = <span class="hljs-number">0</span>;
+    }
+    v1 = v2;
+}
+
+opts = {
+    <span class="hljs-string">'data'</span>: d
+};
+chart = <span class="hljs-keyword">new</span> Chart( opts );
+
+<span class="hljs-built_in">console</span>.log( chart.render() );
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: frb-sf-wage-rigidity [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+         --format fmt          Output format: 'csv' or 'ndjson'.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h3 id="notes">Notes</h3>
+<ul>
+<li>The CLI supports two output formats: comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>) and newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>). The default output format is <a href="https://tools.ietf.org/html/rfc4180">CSV</a>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ frb-sf-wage-rigidity
+date,all_workers,hourly_workers,non_hourly_workers,less_than_high_school,high_school,some_college,college,construction,finance,manufacturing
+01/01/1980,,,,,,,,,,
+02/01/1980,,,,,,,,,,
+03/01/1980,,,,,,,,,,
+...
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- <license> -->
+<hr>
+<h2 id="license">License</h2>
+<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons Attribution 1.0 License</a> and their contents are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Public License</a>. The original dataset is attributed to the <a href="http://www.frbsf.org/economic-research/indicators-data/nominal-wage-rigidity/">Federal Reserve Bank of San Francisco</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+<!-- </license> -->
+<section class="links">
+</section>
+<!-- /.links -->

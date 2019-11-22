@@ -1,0 +1,106 @@
+<h1 id="bind2vind">bind2vind</h1>
+<blockquote>
+<p>Convert a linear index in an underlying data buffer to a linear index in an array view.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bind2vind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/bind2vind'</span> );
+</code></pre>
+<h4 id="bind2vind-shape-strides-offset-order-idx-mode-">bind2vind( shape, strides, offset, order, idx, mode )</h4>
+<p>Converts a linear index in an underlying data buffer to a linear index in an array view.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">-3</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">6</span>;
+
+<span class="hljs-keyword">var</span> idx = bind2vind( shape, strides, offset, order, <span class="hljs-number">7</span>, <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns 1</span>
+</code></pre>
+<p>The function supports the following <code>modes</code>:</p>
+<ul>
+<li><code>throw</code>: specifies that the function should throw an error when a linear index exceeds array dimensions.</li>
+<li><code>wrap</code>: specifies that the function should wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
+<li><code>clamp</code>: specifies that the function should set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">-2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">var</span> idx = bind2vind( shape, strides, offset, order, <span class="hljs-number">-2</span>, <span class="hljs-string">'wrap'</span> );
+<span class="hljs-comment">// returns 0</span>
+
+idx = bind2vind( shape, strides, offset, order, <span class="hljs-number">10</span>, <span class="hljs-string">'clamp'</span> );
+<span class="hljs-comment">// returns 1</span>
+</code></pre>
+<p>The <code>order</code> parameter specifies whether an array is <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span>, <span class="hljs-number">-2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">var</span> idx = bind2vind( shape, strides, offset, order, <span class="hljs-number">2</span>, <span class="hljs-string">'throw'</span> );
+<span class="hljs-comment">// returns 0</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
+<span class="hljs-keyword">var</span> strides2offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/strides2offset'</span> );
+<span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> bind2vind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/bind2vind'</span> );
+
+<span class="hljs-comment">// Specify array meta data:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+
+<span class="hljs-comment">// Compute array meta data:</span>
+<span class="hljs-keyword">var</span> len = numel( shape );
+<span class="hljs-keyword">var</span> strides = shape2strides( shape, order );
+
+<span class="hljs-comment">// Randomly flip the sign of strides...</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; shape.length; i++ ) {
+    <span class="hljs-keyword">if</span> ( randu() &#x3C; <span class="hljs-number">0.5</span> ) {
+        strides[ i ] *= <span class="hljs-number">-1</span>;
+    }
+}
+
+<span class="hljs-comment">// Compute the underlying data buffer index offset:</span>
+<span class="hljs-keyword">var</span> offset = strides2offset( shape, strides );
+
+<span class="hljs-comment">// Print array info:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Dims: %s'</span>, shape.join( <span class="hljs-string">'x'</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Strides: %s'</span>, strides.join( <span class="hljs-string">','</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Offset: %d'</span>, offset );
+
+<span class="hljs-comment">// For each underlying data buffer index, determine the corresponding index into an array view...</span>
+<span class="hljs-keyword">var</span> ind;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+    ind = bind2vind( shape, strides, offset, order, i, <span class="hljs-string">'throw'</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'buffer[%d] => view[%d]'</span>, i, ind );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

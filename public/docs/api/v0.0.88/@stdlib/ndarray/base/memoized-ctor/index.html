@@ -1,0 +1,93 @@
+<h1 id="memoized-constructor">Memoized Constructor</h1>
+<blockquote>
+<p>Create a memoized multidimensional array <a href="https://stdlib.io/develop/docs/api/@stdlib/ndarray/base/ctor">constructor</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/memoized-ctor'</span> );
+</code></pre>
+<p><a name="main"></a></p>
+<h4 id="ctor-dtype-ndims-options-">ctor( dtype, ndims[, options] )</h4>
+<p>Returns a memoized multidimensional array <a href="https://stdlib.io/develop/docs/api/@stdlib/ndarray/base/ctor">constructor</a> customized according to an underlying data type <code>dtype</code> and the number of array dimensions <code>ndims</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> f1 = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> f2 = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-keyword">var</span> bool = ( f1 === f2 );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The function accepts the same arguments and options as, and, with the exception of constructor caching, behaves identically to, <a href="https://stdlib.io/develop/docs/api/@stdlib/ndarray/base/ctor">@stdlib/ndarray/base/ctor</a>.</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Using memoized constructors can provide a performance boost when repeatedly creating <code>ndarray</code> <a href="https://stdlib.io/develop/docs/api/@stdlib/ndarray/base/ctor">base</a> constructors.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<span class="hljs-keyword">var</span> ctor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/memoized-ctor'</span> );
+
+<span class="hljs-comment">// Create a memoized ndarray constructor for a 4-dimensional array containing single-precision floating-point numbers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float32'</span>, <span class="hljs-number">4</span> );
+
+<span class="hljs-comment">// Create a data buffer:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( (<span class="hljs-number">3</span>*<span class="hljs-number">3</span>*<span class="hljs-number">3</span>*<span class="hljs-number">3</span>) + <span class="hljs-number">100</span> );
+
+<span class="hljs-comment">// Specify the array shape:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-comment">// Specify the array strides:</span>
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">27</span>, <span class="hljs-number">9</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-comment">// Specify the index offset:</span>
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">4</span>;
+
+<span class="hljs-comment">// Specify the order:</span>
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>; <span class="hljs-comment">// C-style</span>
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Retrieve an array value:</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+<span class="hljs-comment">// Set an array value:</span>
+arr.set( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10.0</span> );
+
+<span class="hljs-comment">// Retrieve the array value:</span>
+v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 10.0</span>
+
+<span class="hljs-comment">// Serialize the array as a string:</span>
+<span class="hljs-keyword">var</span> str = arr.toString();
+<span class="hljs-comment">// e.g., returns 'ndarray( new Float32Array( [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ), [ 3, 3, 3, 3 ], [ 27, 9, 3, 1 ], 0, "row-major" )'</span>
+
+<span class="hljs-comment">// Serialize the array as JSON:</span>
+str = <span class="hljs-built_in">JSON</span>.stringify( arr.toJSON() );
+<span class="hljs-comment">// returns '{"type":"ndarray","dtype":"float32","flags":{},"order":"row-major","shape":[3,3,3,3],"strides":[27,9,3,1],"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

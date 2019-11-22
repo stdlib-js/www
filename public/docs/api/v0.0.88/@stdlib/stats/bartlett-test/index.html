@@ -1,0 +1,141 @@
+<h1 id="bartletttest">bartlettTest</h1>
+<blockquote>
+<p>Compute Bartlett’s test for equal variances.</p>
+</blockquote>
+<section class="intro">
+<p>Bartlett's test is used to test the null hypothesis that the variances of k groups are equal against the alternative that at least two of them are different.</p>
+<p>For <code>k</code> groups each with <code>n_i</code> observations, the test statistic is</p>
+<div class="equation" align="center" data-raw-text="\chi^2 = \frac{N\ln(S^2) - \sum_{i=0}^{k-1} n_i \ln(S_i^2)}{1 + \frac{1}{3(k-1)}\left(\sum_{i=0}^{k-1} \frac{1}{n_i} - \frac{1}{N}\right)}" data-equation="eq:bartlett-test-statistic">
+    <img src="" alt="Equation for Bartlett&#x27;s test statistic.">
+    <br>
+</div>
+<p>where <code>N</code> is the total number of observations, <code>S_i</code> are the biased group-level variances and <code>S^2</code> is a (biased) pooled estimate for the variance. Under the null hypothesis, the test statistic follows a <em>chi-square</em> distribution with <code>df = k - 1</code> degrees of freedom.</p>
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bartlettTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/bartlett-test'</span> );
+</code></pre>
+<h4 id="bartletttest-abk-opts-">bartlettTest( a[,b,...,k][, opts] )</h4>
+<p>For input arrays <code>a</code>, <code>b</code>, ... holding numeric observations, this function calculates Bartlett’s test, which tests the null hypothesis that the variances in all <code>k</code> groups are the same. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Data from Hollander &#x26; Wolfe (1973), p. 116:</span>
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = bartlettTest( x, y, z );
+<span class="hljs-comment">/* returns
+    {
+        'rejected': false,
+        'alpha': 0.05,
+        'df': 2,
+        'pValue': ~0.573,
+        'statistic': ~1.112,
+        ...
+    }
+*/</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li>
+<li><strong>groups</strong>: an <code>array</code> of group indicators. If set, the function assumes that only a single numeric array is provided holding all observations.</li>
+</ul>
+<p>By default, the test is carried out at a significance level of <code>0.05</code>. To choose a custom significance level, set the <code>alpha</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = bartlettTest( x, y, z, {
+    <span class="hljs-string">'alpha'</span>: <span class="hljs-number">0.01</span>
+});
+<span class="hljs-comment">/* returns
+    {
+        'rejected': false,
+        'alpha': 0.01,
+        'df': 2,
+        'pValue': ~0.573,
+        'statistic': ~1.112,
+        ...
+    }
+*/</span>
+</code></pre>
+<p>The function provides an alternate interface by supplying an array of group indicators to the <code>groups</code> option. In this case, it is assumed that only a single numeric array holding all observations is provided to the function.</p>
+<!-- eslint-disable array-element-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+    <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span>,
+    <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span>,
+    <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span>
+];
+<span class="hljs-keyword">var</span> groups = [
+    <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'a'</span>,
+    <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>,
+    <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'c'</span>
+];
+out = bartlettTest( arr, {
+    <span class="hljs-string">'groups'</span>: groups
+});
+</code></pre>
+<p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = bartlettTest( x, y, z );
+<span class="hljs-built_in">console</span>.log( out.print() );
+<span class="hljs-comment">/* =>
+    Bartlett's test of equal variances
+
+    Null hypothesis: The variances in all groups are the same.
+
+        pValue: 0.5735
+        statistic: 1.1122
+        df: 2
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bartlettTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/bartlett-test'</span> );
+
+<span class="hljs-comment">// Data from Hollander &#x26; Wolfe (1973), p. 116:</span>
+<span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
+
+<span class="hljs-keyword">var</span> out = bartlettTest( x, y, z );
+<span class="hljs-comment">/* returns
+    {
+        'rejected': false,
+        'alpha': 0.05,
+        'df': 2,
+        'pValue': ~0.573,
+        'statistic': ~1.112,
+        ...
+    }
+*/</span>
+
+<span class="hljs-keyword">var</span> table = out.print();
+<span class="hljs-comment">/* returns
+    Bartlett's test of equal variances
+
+    Null hypothesis: The variances in all groups are the same.
+
+        pValue: 0.5735
+        statistic: 1.1122
+        df: 2
+
+    Test Decision: Fail to reject null in favor of alternative at 5% significance level
+*/</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="references">
+</section>
+<!-- /.references -->
+<section class="links">
+</section>
+<!-- /.links -->

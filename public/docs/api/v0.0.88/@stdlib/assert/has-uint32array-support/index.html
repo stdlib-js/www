@@ -1,0 +1,55 @@
+<h1 id="uint32array-support">Uint32Array Support</h1>
+<blockquote>
+<p>Detect native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code>Uint32Array</code></a> support.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasUint32ArraySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-uint32array-support'</span> );
+</code></pre>
+<h4 id="hasuint32arraysupport">hasUint32ArraySupport()</h4>
+<p>Detects if a runtime environment supports <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code>Uint32Array</code></a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasUint32ArraySupport();
+<span class="hljs-comment">// returns &#x3C;boolean></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasUint32ArraySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-uint32array-support'</span> );
+
+<span class="hljs-keyword">var</span> bool = hasUint32ArraySupport();
+<span class="hljs-keyword">if</span> ( bool ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment has Uint32Array support.'</span> );
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment lacks Uint32Array support.'</span> );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: has-uint32array-support [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ has-uint32array-support
+&#x3C;boolean>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

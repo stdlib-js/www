@@ -1,0 +1,84 @@
+<h1 id="quantile-function">Quantile Function</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Raised_cosine_distribution">Raised cosine</a> distribution <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a>.</p>
+</blockquote>
+<section class="intro">
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> quantile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/cosine/quantile'</span> );
+</code></pre>
+<h4 id="quantile-p-mu-s-">quantile( p, mu, s )</h4>
+<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> for a <a href="https://en.wikipedia.org/wiki/Raised_cosine_distribution">raised cosine</a> distribution with parameters <code>mu</code> (location parameter) and <code>s</code> (scale parameter).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">0.5</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~0.0</span>
+
+y = quantile( <span class="hljs-number">0.2</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~3.345</span>
+</code></pre>
+<p>If provided a probability <code>p</code> outside the interval <code>[0,1]</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">1.9</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( <span class="hljs-number">-0.1</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If provided <code>NaN</code> as any argument, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-literal">NaN</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = quantile( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If provided <code>s &#x3C; 0</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">0.4</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">-1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If provided <code>s = 0</code>, the function evaluates the <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> of a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = quantile( <span class="hljs-number">0.3</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 8.0</span>
+
+y = quantile( <span class="hljs-number">0.9</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 8.0</span>
+</code></pre>
+<h4 id="quantilefactory-mu-s-">quantile.factory( mu, s )</h4>
+<p>Returns a function for evaluating the <a href="https://en.wikipedia.org/wiki/Quantile_function">quantile function</a> of a <a href="https://en.wikipedia.org/wiki/Raised_cosine_distribution">raised cosine</a> distribution with parameters <code>mu</code> and <code>s</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myQuantile = quantile.factory( <span class="hljs-number">10.0</span>, <span class="hljs-number">2.0</span> );
+
+<span class="hljs-keyword">var</span> y = myQuantile( <span class="hljs-number">0.2</span> );
+<span class="hljs-comment">// returns ~9.345</span>
+
+y = myQuantile( <span class="hljs-number">0.9</span> );
+<span class="hljs-comment">// returns ~10.964</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> quantile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/cosine/quantile'</span> );
+
+<span class="hljs-keyword">var</span> mu;
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">var</span> p;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    p = randu();
+    mu = randu() * <span class="hljs-number">10.0</span>;
+    s = randu() * <span class="hljs-number">10.0</span>;
+    y = quantile( p, mu, s );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'p: %d, µ: %d, s: %d, Q(p;µ,s): %d'</span>, p, mu, s, y );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->
+</section>

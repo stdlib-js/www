@@ -1,0 +1,140 @@
+<h1 id="iterpop">iterPop</h1>
+<blockquote>
+<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which skips the last value of a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterPop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/pop'</span> );
+</code></pre>
+<h4 id="iterpop-iterator-clbk-thisarg-">iterPop( iterator[, clbk[, thisArg]] )</h4>
+<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which skips the last value of a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> it = iterPop( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p>
+<ul>
+<li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li>
+<li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li>
+</ul>
+<p>To invoke a callback upon skipping the last value of a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a>, provide a <code>clbk</code> argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPop</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( v );
+    <span class="hljs-comment">// => 4</span>
+}
+
+<span class="hljs-keyword">var</span> it = iterPop( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), onPop );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The callback function is provided a single argument:</p>
+<ul>
+<li><strong>v</strong>: the skipped value</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable no-invalid-this -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPop</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.count += <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> it = iterPop( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), onPop, ctx );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+
+bool = ( ctx.count === <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> iterPop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/pop'</span> );
+
+<span class="hljs-comment">// Create a seeded iterator for generating pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> rand = randu({
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-comment">// Create an iterator which skips the last number:</span>
+<span class="hljs-keyword">var</span> it = iterPop( rand );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,96 @@
+<h1 id="normalize">Normalize</h1>
+<blockquote>
+<p>Return a normal number <code>y</code> and exponent <code>exp</code> satisfying <code>x = y * 2^exp</code>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normalizef = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/normalize'</span> );
+</code></pre>
+<h4 id="normalizef-out-x-">normalizef( [out,] x )</h4>
+<p>Returns a normal number <code>y</code> and exponent <code>exp</code> satisfying <code>x = y * 2^exp</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+
+<span class="hljs-keyword">var</span> out = normalizef( toFloat32( <span class="hljs-number">1.401e-45</span> ) );
+<span class="hljs-comment">// returns [ 1.1754943508222875e-38, -23 ]</span>
+</code></pre>
+<p>By default, the function returns <code>y</code> and <code>exp</code> as a two-element <code>array</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+<span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+
+<span class="hljs-keyword">var</span> out = normalizef( toFloat32( <span class="hljs-number">1.401e-45</span> ) );
+<span class="hljs-comment">// returns [ 1.1754943508222875e-38, -23 ]</span>
+
+<span class="hljs-keyword">var</span> y = out[ <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">var</span> exp = out[ <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> bool = ( y*pow(<span class="hljs-number">2</span>, exp) === toFloat32(<span class="hljs-number">1.401e-45</span>) );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>To avoid unnecessary memory allocation, the function supports providing an output (destination) object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = normalizef( out, toFloat32( <span class="hljs-number">1.401e-45</span> ) );
+<span class="hljs-comment">// returns &#x3C;Float32Array>[ 1.1754943508222875e-38, -23 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( v === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The function expects a finite, non-zero <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> <code>x</code>. If <code>x == 0</code>,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = normalizef( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns [ 0.0, 0 ];</span>
+</code></pre>
+<p>If <code>x</code> is either positive or negative <code>infinity</code> or <code>NaN</code>,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float32-pinf'</span> );
+<span class="hljs-keyword">var</span> NINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float32-ninf'</span> );
+
+<span class="hljs-keyword">var</span> out = normalizef( PINF );
+<span class="hljs-comment">// returns [ Infinity, 0 ]</span>
+
+out = normalizef( NINF );
+<span class="hljs-comment">// returns [ -Infinity, 0 ]</span>
+
+out = normalizef( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns [ NaN, 0 ]</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>While the function accepts higher precision <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point numbers</a>, beware that providing such numbers can be a source of subtle bugs as the relation <code>x = y * 2^exp</code> may <strong>not</strong> hold.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+<span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+<span class="hljs-keyword">var</span> normalizef = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/normalize'</span> );
+
+<span class="hljs-keyword">var</span> frac;
+<span class="hljs-keyword">var</span> exp;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Generate denormalized single-precision floating-point numbers and then normalize them...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    frac = randu() * <span class="hljs-number">10.0</span>;
+    exp = <span class="hljs-number">38</span> + round( randu()*<span class="hljs-number">6.0</span> );
+    x = frac * pow( <span class="hljs-number">10.0</span>, -exp );
+    x = toFloat32( x );
+    v = normalizef( x );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d = %d * 2^%d = %d'</span>, x, v[<span class="hljs-number">0</span>], v[<span class="hljs-number">1</span>], v[<span class="hljs-number">0</span>]*pow(<span class="hljs-number">2.0</span>, v[<span class="hljs-number">1</span>]) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

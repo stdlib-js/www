@@ -1,0 +1,122 @@
+<h1 id="decimal-number">Decimal Number</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a decimal number.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DECIMAL_NUMBER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/decimal-number'</span> );
+</code></pre>
+<h4 id="re_decimal_number">RE_DECIMAL_NUMBER</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a decimal number. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = RE_DECIMAL_NUMBER.exec( <span class="hljs-string">'beep 1.234 boop'</span> ).slice();
+<span class="hljs-comment">// returns [ '1.234', '1.234' ]</span>
+
+out = RE_DECIMAL_NUMBER.exec( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>A leading digit is not required.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'.5'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</li>
+<li>
+<p>A decimal point and at least one trailing digit is required.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'5.'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</li>
+<li>
+<p>To capture all matches, create a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'1.234 5.67, 8.9'</span>;
+
+<span class="hljs-keyword">var</span> RE = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>( RE_DECIMAL_NUMBER.source, <span class="hljs-string">'g'</span> );
+
+<span class="hljs-keyword">var</span> out = str.match( RE ).slice();
+<span class="hljs-comment">// returns [ '1.234', '5.67', '8.9' ]</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DECIMAL_NUMBER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/decimal-number'</span> );
+
+<span class="hljs-keyword">var</span> bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'1.234'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'beep 1.234'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'1.234 boop'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'foo 1.234.'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'foo 1.234.567.890'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'1.234!'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'0.234'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'.234'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'beep .234'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'.234 boop'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'1.0'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'-1.0'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'+1.0'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'0.0'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'.0'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'1.234:'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'1.234%'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'0'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'beep 0'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'2:3'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_DECIMAL_NUMBER.test( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

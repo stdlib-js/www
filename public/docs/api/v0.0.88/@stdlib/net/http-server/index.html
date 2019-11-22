@@ -1,0 +1,108 @@
+<h1 id="http-server">HTTP Server</h1>
+<blockquote>
+<p><a href="https://nodejs.org/api/http.html">HTTP</a> server.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> httpServer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/net/http-server'</span> );
+</code></pre>
+<h4 id="httpserver-options--requestlistener-">httpServer( [options,] [ requestListener] )</h4>
+<p>Returns a function to create an <a href="https://nodejs.org/api/http.html">HTTP</a> server.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> createServer = httpServer();
+</code></pre>
+<p>To bind a request callback to a server, provide a <code>requestListener</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestListener</span>(<span class="hljs-params"> request, response </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( request.url );
+    response.end( <span class="hljs-string">'OK'</span> );
+}
+
+<span class="hljs-keyword">var</span> createServer = httpServer( requestListener );
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>port</strong>: server port. Default: <code>0</code> (i.e., randomly assigned).</li>
+<li><strong>maxport</strong>: max server port when port hunting. Default: <code>maxport=port</code>.</li>
+<li><strong>hostname</strong>: server hostname.</li>
+<li><strong>address</strong>: server address. Default: <code>127.0.0.1</code>.</li>
+</ul>
+<p>To specify server options, provide an <code>options</code> object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'port'</span>: <span class="hljs-number">7331</span>,
+    <span class="hljs-string">'address'</span>: <span class="hljs-string">'0.0.0.0'</span>
+};
+
+<span class="hljs-keyword">var</span> createServer = httpServer( opts );
+</code></pre>
+<p>To specify a range of permissible ports, set the <code>maxport</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'maxport'</span>: <span class="hljs-number">9999</span>
+};
+
+<span class="hljs-keyword">var</span> createServer = httpServer( opts );
+</code></pre>
+<p>When provided a <code>maxport</code> option, a created server will search for the first available <code>port</code> on which to listen, starting from <code>port</code>.</p>
+<h4 id="createserver-done-">createServer( done )</h4>
+<p>Creates an <a href="https://nodejs.org/api/http.html">HTTP</a> server.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, server </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Success!'</span> );
+    server.close();
+}
+
+<span class="hljs-keyword">var</span> createServer = httpServer();
+
+createServer( done );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Port hunting can be useful in a microservice deployment. When a <code>port</code> is randomly assigned (<code>options.port=0</code>), if a server fails and is restarted, the server is unlikely to bind to its previous <code>port</code>. By allowing a constrained search, assuming no lower <code>ports</code> within a specified range have freed up in the meantime, the likelihood of listening on the same <code>port</code> is increased. A server can typically restart and bind to the same <code>port</code> faster than binding to a new <code>port</code> and re-registering with a microservice registry, thus minimizing possible service interruption and downtime. </li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-process-exit -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> http = <span class="hljs-built_in">require</span>( <span class="hljs-string">'http'</span> );
+<span class="hljs-keyword">var</span> httpServer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/net/http-server'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, server </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    http.get( <span class="hljs-string">'http://127.0.0.1:7331/beep/boop'</span>, onResponse );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onResponse</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Success!'</span> );
+    process.exit( <span class="hljs-number">0</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRequest</span>(<span class="hljs-params"> request, response </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( request.url );
+    response.end( <span class="hljs-string">'OK'</span> );
+}
+
+<span class="hljs-comment">// Specify server options...</span>
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'port'</span>: <span class="hljs-number">7331</span>,
+    <span class="hljs-string">'maxport'</span>: <span class="hljs-number">9999</span>,
+    <span class="hljs-string">'hostname'</span>: <span class="hljs-string">'localhost'</span>
+};
+
+<span class="hljs-comment">// Create a function for creating an HTTP server...</span>
+<span class="hljs-keyword">var</span> createServer = httpServer( opts, onRequest );
+
+<span class="hljs-comment">// Create a server:</span>
+createServer( done );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

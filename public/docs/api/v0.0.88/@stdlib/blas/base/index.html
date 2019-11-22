@@ -1,0 +1,47 @@
+<h1 id="blas">BLAS</h1>
+<blockquote>
+<p>Standard library base basic linear algebra subroutines (BLAS).</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> blas = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base'</span> );
+</code></pre>
+<h4 id="blas-1">blas</h4>
+<p>Standard library base basic linear algebra subroutines (BLAS).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = blas;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<h3 id="blas-level-1">BLAS Level 1</h3>
+<!-- <toc pattern="+(*asum|*axpy|*copy)"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/dasum"><code>dasum( N, x, stride )</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of absolute values (<em>L1</em> norm).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/daxpy"><code>daxpy( N, alpha, x, strideX, y, strideY )</code></a></span><span class="delimiter">: </span><span class="description">multiply <code>x</code> by a constant <code>alpha</code> and add the result to <code>y</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/dcopy"><code>dcopy( N, x, strideX, y, strideY )</code></a></span><span class="delimiter">: </span><span class="description">copy values from <code>x</code> into <code>y</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/gasum"><code>gasum( N, x, stride )</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of absolute values (<em>L1</em> norm).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/gaxpy"><code>gaxpy( N, alpha, x, strideX, y, strideY )</code></a></span><span class="delimiter">: </span><span class="description">multiply <code>x</code> by a constant <code>alpha</code> and add the result to <code>y</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/gcopy"><code>gcopy( N, x, strideX, y, strideY )</code></a></span><span class="delimiter">: </span><span class="description">copy values from <code>x</code> into <code>y</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/sasum"><code>sasum( N, x, stride )</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of absolute values (<em>L1</em> norm).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/saxpy"><code>saxpy( N, alpha, x, strideX, y, strideY )</code></a></span><span class="delimiter">: </span><span class="description">multiply <code>x</code> by a constant <code>alpha</code> and add the result to <code>y</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/blas/base/scopy"><code>scopy( N, x, strideX, y, strideY )</code></a></span><span class="delimiter">: </span><span class="description">copy values from <code>x</code> into <code>y</code>.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> blas = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( blas ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

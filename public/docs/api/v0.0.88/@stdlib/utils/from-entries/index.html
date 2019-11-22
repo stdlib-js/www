@@ -1,0 +1,53 @@
+<h1 id="objectfromentries">objectFromEntries</h1>
+<blockquote>
+<p>Create an object from key-value pairs.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectFromEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/from-entries'</span> );
+</code></pre>
+<h4 id="objectfromentries-entries-">objectFromEntries( entries )</h4>
+<p>Returns an <code>object</code> created from <code>[key, value]</code> pairs.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> entries = [ [<span class="hljs-string">'a'</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">'b'</span>, <span class="hljs-number">2</span>] ];
+
+<span class="hljs-keyword">var</span> obj = objectFromEntries( entries );
+<span class="hljs-comment">// returns { 'a': 1, 'b': 2 }</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/entries'</span> );
+<span class="hljs-keyword">var</span> objectFromEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/from-entries'</span> );
+
+<span class="hljs-keyword">var</span> obj1 = {
+    <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'a'</span>: {
+        <span class="hljs-string">'b'</span>: <span class="hljs-string">'c'</span>
+    },
+    <span class="hljs-string">'foo'</span>: [ <span class="hljs-string">'bar'</span> ]
+};
+
+<span class="hljs-keyword">var</span> entries = objectEntries( obj1 );
+<span class="hljs-comment">// e.g., returns [ ['beep', 'boop'], ['a', {'b':'c'}], ['foo', [ 'bar' ]] ]</span>
+
+<span class="hljs-keyword">var</span> obj2 = objectFromEntries( entries );
+<span class="hljs-comment">/* returns
+    {
+        'beep': 'boop',
+        'a': {
+            'b': 'c'
+        },
+        'foo': [ 'bar' ]
+    }
+*/</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

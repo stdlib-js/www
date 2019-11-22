@@ -1,0 +1,80 @@
+<h1 id="iterator-statistics">Iterator Statistics</h1>
+<blockquote>
+<p>Standard library functions for computing statistics over iterators.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/iter'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Standard library functions for computing statistics over iterators.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cugmean"><code>itercugmean( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative geometric mean.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cuhmean"><code>itercuhmean( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative harmonic mean.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cumax"><code>itercumax( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative maximum value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cumaxabs"><code>itercumaxabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative maximum absolute value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cumean"><code>itercumean( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative arithmetic mean.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cumeanabs"><code>itercumeanabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative arithmetic mean of absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cumeanabs2"><code>itercumeanabs2( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative arithmetic mean of squared absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cumidrange"><code>itercumidrange( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative mid-range.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cumin"><code>itercumin( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative minimum value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cuminabs"><code>itercuminabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative minimum absolute value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cuprod"><code>itercuprod( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative product.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/curange"><code>itercurange( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative range.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cusum"><code>itercusum( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative sum.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cusumabs"><code>itercusumabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative sum of absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/cusumabs2"><code>itercusumabs2( iterator )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a cumulative sum of squared absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/max"><code>itermax( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the maximum value of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/maxabs"><code>itermaxabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the maximum absolute value of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mean"><code>itermean( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the arithmetic mean over all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/meanabs"><code>itermeanabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the arithmetic mean of absolute values for all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/meanabs2"><code>itermeanabs2( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the arithmetic mean of squared absolute values for all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/midrange"><code>itermidrange( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the mid-range of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/min"><code>itermin( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the minimum value of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/minabs"><code>iterminabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the minimum absolute value of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mmax"><code>itermmax( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving maximum value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mmaxabs"><code>itermmaxabs( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving maximum absolute value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mmean"><code>itermmean( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving arithmetic mean.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mmeanabs"><code>itermmeanabs( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving arithmetic mean of absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mmeanabs2"><code>itermmeanabs2( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving arithmetic mean of squared absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mmidrange"><code>itermmidrange( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving mid-range.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mmin"><code>itermmin( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving minimum value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mminabs"><code>itermminabs( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving minimum absolute value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mprod"><code>itermprod( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving product.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/mrange"><code>itermrange( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving range.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/msum"><code>itermsum( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving sum.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/msumabs"><code>itermsumabs( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving sum of absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/msumabs2"><code>itermsumabs2( iterator, W )</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which iteratively computes a moving sum of squared absolute values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/prod"><code>iterprod( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the product of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/range"><code>iterrange( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the range of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/stdev"><code>iterstdev( iterator[, mean] )</code></a></span><span class="delimiter">: </span><span class="description">compute the corrected sample standard deviation over all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/sum"><code>itersum( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/sumabs"><code>itersumabs( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of absolute values for all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/sumabs2"><code>itersumabs2( iterator )</code></a></span><span class="delimiter">: </span><span class="description">compute the sum of squared absolute values for all iterated values.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/iter/variance"><code>itervariance( iterator[, mean] )</code></a></span><span class="delimiter">: </span><span class="description">compute the unbiased sample variance over all iterated values.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/iter'</span> );
+
+<span class="hljs-built_in">console</span>.log( getKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

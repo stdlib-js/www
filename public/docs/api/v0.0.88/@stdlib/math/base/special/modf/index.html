@@ -1,0 +1,65 @@
+<h1 id="modf">modf</h1>
+<blockquote>
+<p>Decompose a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into integral and fractional parts.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> modf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/modf'</span> );
+</code></pre>
+<h4 id="modf-out-x-">modf( [out,] x )</h4>
+<p>Decomposes a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> into integral and fractional parts, each having the same type and sign as <code>x</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = modf( <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns [ 3.0, 0.14000000000000012 ]</span>
+
+parts = modf( +<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns [ +0.0, +0.0 ]</span>
+
+parts = modf( <span class="hljs-number">-0.0</span> );
+<span class="hljs-comment">// returns [ -0.0, -0.0 ]</span>
+
+parts = modf( <span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns [ Infinity, +0.0 ]</span>
+
+parts = modf( -<span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns [ -Infinity, -0.0 ]</span>
+
+parts = modf( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+</code></pre>
+<p>To avoid unnecessary memory allocation, the function supports providing an output (destination) object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> parts = modf( out, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 3.0, 0.14000000000000012 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( parts === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> modf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/modf'</span> );
+
+<span class="hljs-keyword">var</span> parts;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = (randu()*<span class="hljs-number">1000.0</span>) - <span class="hljs-number">500.0</span>;
+    parts = modf( x );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'modf(%d) => integral: %d. fraction: %d.'</span>, x, parts[ <span class="hljs-number">0</span> ], parts[ <span class="hljs-number">1</span> ] );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

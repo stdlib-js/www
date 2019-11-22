@@ -1,0 +1,297 @@
+<h1 id="gamma-random-numbers">Gamma Random Numbers</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma</a> distributed pseudorandom numbers.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gamma = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/gamma'</span> );
+</code></pre>
+<h4 id="gamma-alpha-beta-">gamma( alpha, beta )</h4>
+<p>Returns a pseudorandom number drawn from a <a href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma</a> distribution with parameters <code>alpha</code> (shape parameter) and <code>beta</code> (rate parameter).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>If <code>alpha &#x3C;= 0</code> or <code>beta &#x3C;= 0</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">-2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+r = gamma( <span class="hljs-number">-2.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If <code>alpha</code> or <code>beta</code> is <code>NaN</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = gamma( <span class="hljs-literal">NaN</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<h4 id="gammafactory-alpha-beta-options-">gamma.factory( [alpha, beta, ][options] )</h4>
+<p>Returns a pseudorandom number generator (PRNG) for generating pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Gamma_distribution">gamma</a> distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory();
+
+<span class="hljs-keyword">var</span> r = rand( <span class="hljs-number">1.5</span>, <span class="hljs-number">1.5</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>If provided <code>alpha</code> and <code>beta</code>, the returned generator returns random variates from the specified distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Draw from Gamma( 1.5, 1.5 ) distribution:</span>
+<span class="hljs-keyword">var</span> rand = gamma.factory( <span class="hljs-number">1.5</span>, <span class="hljs-number">1.5</span> );
+
+<span class="hljs-keyword">var</span> r = rand();
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = rand();
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>If not provided <code>alpha</code> and <code>beta</code>, the returned generator requires that both parameters be provided at each invocation.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory();
+
+<span class="hljs-keyword">var</span> r = rand( <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = rand( <span class="hljs-number">3.14</span>, <span class="hljs-number">2.25</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom numbers on the interval <code>[0,1)</code>. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned pseudorandom number generator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable).</li>
+<li><strong>seed</strong>: pseudorandom number generator seed.</li>
+<li><strong>state</strong>: a <a href="https://stdlib.io/develop/docs/api/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</li>
+</ul>
+<p>To use a custom PRNG as the underlying source of uniformly distributed pseudorandom numbers, set the <code>prng</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+
+<span class="hljs-keyword">var</span> rand = gamma.factory({
+    <span class="hljs-string">'prng'</span>: minstd.normalized
+});
+
+<span class="hljs-keyword">var</span> r = rand( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>To seed a pseudorandom number generator, set the <code>seed</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand1 = gamma.factory({
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
+});
+
+<span class="hljs-keyword">var</span> r1 = rand1( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-keyword">var</span> rand2 = gamma.factory( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
+});
+
+<span class="hljs-keyword">var</span> r2 = rand2();
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-keyword">var</span> bool = ( r1 === r2 );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>To return a generator having a specific initial state, set the generator <code>state</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Generate pseudorandom numbers, thus progressing the generator state:</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">1000</span>; i++ ) {
+    r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> );
+}
+
+<span class="hljs-comment">// Create a new PRNG initialized to the current state of `gamma`:</span>
+rand = gamma.factory({
+    <span class="hljs-string">'state'</span>: gamma.state
+});
+
+<span class="hljs-comment">// Test that the generated pseudorandom numbers are the same:</span>
+bool = ( rand( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ) === gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<h4 id="gammaname">gamma.NAME</h4>
+<p>The generator name.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = gamma.NAME;
+<span class="hljs-comment">// returns 'gamma'</span>
+</code></pre>
+<h4 id="gammaprng">gamma.PRNG</h4>
+<p>The underlying pseudorandom number generator.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> prng = gamma.PRNG;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<h4 id="gammaseed">gamma.seed</h4>
+<p>The value used to seed <code>gamma()</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Generate pseudorandom values...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> );
+}
+
+<span class="hljs-comment">// Generate the same pseudorandom values...</span>
+rand = gamma.factory( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, {
+    <span class="hljs-string">'seed'</span>: gamma.seed
+});
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    r = rand();
+}
+</code></pre>
+<p>If provided a PRNG for uniformly distributed numbers, this value is <code>null</code>.</p>
+<!-- eslint-disable stdlib/no-builtin-math -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory({
+    <span class="hljs-string">'prng'</span>: <span class="hljs-built_in">Math</span>.random
+});
+
+<span class="hljs-keyword">var</span> seed = rand.seed;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<h4 id="gammaseedlength">gamma.seedLength</h4>
+<p>Length of generator seed.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = gamma.seedLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>If provided a PRNG for uniformly distributed numbers, this value is <code>null</code>.</p>
+<!-- eslint-disable stdlib/no-builtin-math -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory({
+    <span class="hljs-string">'prng'</span>: <span class="hljs-built_in">Math</span>.random
+});
+
+<span class="hljs-keyword">var</span> len = rand.seedLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<h4 id="gammastate">gamma.state</h4>
+<p>Writable property for getting and setting the generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Get a copy of the current state:</span>
+<span class="hljs-keyword">var</span> state = gamma.state;
+<span class="hljs-comment">// returns &#x3C;Uint32Array></span>
+
+r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-comment">// Reset the state:</span>
+gamma.state = state;
+
+<span class="hljs-comment">// Replay the last two pseudorandom numbers:</span>
+r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>If provided a PRNG for uniformly distributed numbers, this value is <code>null</code>.</p>
+<!-- eslint-disable stdlib/no-builtin-math -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory({
+    <span class="hljs-string">'prng'</span>: <span class="hljs-built_in">Math</span>.random
+});
+
+<span class="hljs-keyword">var</span> state = rand.state;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<h4 id="gammastatelength">gamma.stateLength</h4>
+<p>Length of generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = gamma.stateLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>If provided a PRNG for uniformly distributed numbers, this value is <code>null</code>.</p>
+<!-- eslint-disable stdlib/no-builtin-math -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory({
+    <span class="hljs-string">'prng'</span>: <span class="hljs-built_in">Math</span>.random
+});
+
+<span class="hljs-keyword">var</span> len = rand.stateLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<h4 id="gammabytelength">gamma.byteLength</h4>
+<p>Size (in bytes) of generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sz = gamma.byteLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>If provided a PRNG for uniformly distributed numbers, this value is <code>null</code>.</p>
+<!-- eslint-disable stdlib/no-builtin-math -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory({
+    <span class="hljs-string">'prng'</span>: <span class="hljs-built_in">Math</span>.random
+});
+
+<span class="hljs-keyword">var</span> sz = rand.byteLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<h4 id="gammatojson">gamma.toJSON()</h4>
+<p>Serializes the pseudorandom number generator as a JSON object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = gamma.toJSON();
+<span class="hljs-comment">// returns { 'type': 'PRNG', 'name': '...', 'state': {...}, 'params': [] }</span>
+</code></pre>
+<p>If provided a PRNG for uniformly distributed numbers, this method returns <code>null</code>.</p>
+<!-- eslint-disable stdlib/no-builtin-math -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = gamma.factory({
+    <span class="hljs-string">'prng'</span>: <span class="hljs-built_in">Math</span>.random
+});
+
+<span class="hljs-keyword">var</span> o = rand.toJSON();
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If PRNG state is "shared" (meaning a state array was provided during PRNG creation and <strong>not</strong> copied) and one sets the generator state to a state array having a different length, the PRNG does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for <strong>each</strong> relevant PRNG must be <strong>explicitly</strong> set.</li>
+<li>If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gamma = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/gamma'</span> );
+
+<span class="hljs-keyword">var</span> seed;
+<span class="hljs-keyword">var</span> rand;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Generate pseudorandom numbers...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-built_in">console</span>.log( gamma( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ) );
+}
+
+<span class="hljs-comment">// Create a new pseudorandom number generator...</span>
+seed = <span class="hljs-number">1234</span>;
+rand = gamma.factory( <span class="hljs-number">6.0</span>, <span class="hljs-number">2.0</span>, {
+    <span class="hljs-string">'seed'</span>: seed
+});
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-built_in">console</span>.log( rand() );
+}
+
+<span class="hljs-comment">// Create another pseudorandom number generator using a previous seed...</span>
+rand = gamma.factory( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, {
+    <span class="hljs-string">'seed'</span>: gamma.seed
+});
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-built_in">console</span>.log( rand() );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="references">
+<h2 id="references">References</h2>
+<ul>
+<li>Marsaglia, George, and Wai Wan Tsang. 2000. "A Simple Method for Generating Gamma Variables." <em>ACM Transactions on Mathematical Software</em> 26 (3). New York, NY, USA: ACM: 363–72. doi:<a href="http://dx.doi.org/10.1145/358407.358414">10.1145/358407.358414</a>.</li>
+</ul>
+</section>
+<!-- /.references -->
+<section class="links">
+</section>
+<!-- /.links -->

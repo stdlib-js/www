@@ -1,0 +1,61 @@
+<h1 id="propertynames">propertyNames</h1>
+<blockquote>
+<p>Return an array of an object's own enumerable and non-enumerable property names.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> propertyNames = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-names'</span> );
+</code></pre>
+<h4 id="propertynames-obj-">propertyNames( obj )</h4>
+<p>Returns an <code>array</code> of an object's own enumerable and non-enumerable property names.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
+};
+
+<span class="hljs-keyword">var</span> keys = propertyNames( obj );
+<span class="hljs-comment">// e.g., returns [ 'a', 'b' ]</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Name order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic extraction.</li>
+<li>In contrast to the built-in <code>Object.getOwnPropertyNames()</code>, if provided <code>null</code> or <code>undefined</code>, the function returns an empty <code>array</code>, rather than throwing an error.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+<span class="hljs-keyword">var</span> propertyNames = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-names'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.beep = <span class="hljs-string">'boop'</span>;
+    <span class="hljs-keyword">this</span>.a = {
+        <span class="hljs-string">'b'</span>: <span class="hljs-string">'c'</span>
+    };
+    defineProperty( <span class="hljs-keyword">this</span>, <span class="hljs-string">'baz'</span>, {
+        <span class="hljs-string">'value'</span>: <span class="hljs-string">'qux'</span>,
+        <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'writable'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">false</span>
+    });
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+Foo.prototype.foo = [ <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> keys = propertyNames( obj );
+
+<span class="hljs-built_in">console</span>.log( keys );
+<span class="hljs-comment">// e.g., => [ 'beep', 'a', 'baz' ]</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

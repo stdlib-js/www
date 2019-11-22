@@ -1,0 +1,63 @@
+<h1 id="maximum-array-length">Maximum Array Length</h1>
+<blockquote>
+<p>Maximum length for a generic array.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> MAX_ARRAY_LENGTH = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/array/max-array-length'</span> );
+</code></pre>
+<h4 id="max_array_length">MAX_ARRAY_LENGTH</h4>
+<p>Maximum length for a generic array.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = MAX_ARRAY_LENGTH;
+<span class="hljs-comment">// returns 4294967295</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> MAX_ARRAY_LENGTH = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/array/max-array-length'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">alloc</span>(<span class="hljs-params"> len </span>) </span>{
+    <span class="hljs-keyword">var</span> arr;
+    <span class="hljs-keyword">var</span> i;
+    <span class="hljs-keyword">if</span> ( len > MAX_ARRAY_LENGTH ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>( <span class="hljs-string">'invalid argument. The maximum length for a generic array is '</span>+MAX_ARRAY_LENGTH+<span class="hljs-string">'. To create a longer array-like data structure, consider either typed arrays or an array-like object.'</span> );
+    }
+    <span class="hljs-comment">// Manually allocate to ensure "fast" elements...</span>
+    arr = [];
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+        arr.push( <span class="hljs-number">0</span> );
+    }
+    <span class="hljs-keyword">return</span> arr;
+}
+
+<span class="hljs-keyword">var</span> arr = alloc( <span class="hljs-number">10</span> );
+<span class="hljs-built_in">console</span>.log( arr );
+
+<span class="hljs-keyword">try</span> {
+    arr = alloc( <span class="hljs-number">1e300</span> );
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.error( err.message );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

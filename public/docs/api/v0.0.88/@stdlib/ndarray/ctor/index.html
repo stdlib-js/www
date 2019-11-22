@@ -1,0 +1,628 @@
+<h1 id="constructor">Constructor</h1>
+<blockquote>
+<p>Create a multidimensional array constructor.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+</code></pre>
+<p><a name="main"></a></p>
+<h4 id="ctor-dtype-ndims-options-">ctor( dtype, ndims[, options] )</h4>
+<p>Returns a multidimensional array constructor customized according to an underlying data type <a href="https://stdlib.io/develop/docs/api/@stdlib/ndarray/dtypes"><code>dtype</code></a> and the number of array dimensions <code>ndims</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><code>codegen</code>: <code>boolean</code> indicating whether to use code generation. Default: <code>true</code>.</li>
+<li><code>mode</code>: specifies how to handle indices which exceed array dimensions. Default: <code>'throw'</code>.</li>
+<li><code>submode</code>: a mode array which specifies for each dimension how to handle subscripts which exceed array dimensions. If provided fewer modes than dimensions, the function recycles modes using modulo arithmetic. Default: <code>[ options.mode ]</code>.</li>
+</ul>
+<p>The function supports the following <code>modes</code>:</p>
+<ul>
+<li><code>throw</code>: specifies that an <code>ndarray</code> instance should throw an error when an index exceeds array dimensions.</li>
+<li><code>wrap</code>: specifies that an <code>ndarray</code> instance should wrap around an index exceeding array dimensions using modulo arithmetic.</li>
+<li><code>clamp</code>: specifies that an <code>ndarray</code> instance should set an index exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index.</li>
+</ul>
+<p>By default, the function uses code generation for fast element lookup. To disable code generation, set the <code>codegen</code> option to <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'codegen'</span>: <span class="hljs-literal">false</span>
+};
+
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">3</span>, opts );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p>By default, an <code>ndarray</code> instance <strong>throws</strong> when provided an index which exceeds array dimensions. To support alternative indexing behavior, set the <code>mode</code> option, which will affect all public methods for getting and setting array elements.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'mode'</span>: <span class="hljs-string">'clamp'</span>
+};
+
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span>, opts );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Attempt to access an out-of-bounds linear index (clamped):</span>
+<span class="hljs-keyword">var</span> v = arr.iget( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre>
+<p>By default, the <code>mode</code> option is applied to subscripts which exceed array dimensions. To specify behavior for each dimension, set the <code>submode</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'submode'</span>: [ <span class="hljs-string">'wrap'</span>, <span class="hljs-string">'clamp'</span> ]
+};
+
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">3</span>, opts );
+<span class="hljs-comment">// returns &#x3C;Function></span>
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Attempt to access out-of-bounds subscripts:</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">-2</span>, <span class="hljs-number">10</span>, <span class="hljs-number">-1</span> ); <span class="hljs-comment">// linear index: 3</span>
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre>
+<p><a name="constructor"></a></p>
+<h4 id="ndarray-buffer-shape-strides-offset-order-">ndarray( buffer, shape, strides, offset, order )</h4>
+<p>Returns an <code>ndarray</code> instance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre>
+<p>The constructor expects the following arguments:</p>
+<ul>
+<li><code>buffer</code>: data buffer.</li>
+<li><code>shape</code>: array shape (dimensions).</li>
+<li><code>strides</code>: array strides which are index offsets specifying how to access along corresponding dimensions.</li>
+<li><code>offset</code>: index offset specifying the location of the first indexed element in the data buffer.</li>
+<li><code>order</code>: array order, which is either <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</li>
+</ul>
+<hr>
+<h3 id="properties">Properties</h3>
+<p><a name="static-prop-bytes-per-element"></a></p>
+<h4 id="ndarraybytes_per_element">ndarray.BYTES_PER_ELEMENT</h4>
+<p>Static property returning the size (in bytes) of each array element (if known).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> nbytes = ndarray.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns 8</span>
+
+ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+nbytes = ndarray.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<p><a name="static-prop-dtype"></a></p>
+<h4 id="ndarraydtype">ndarray.dtype</h4>
+<p>Static property returning the underlying data type.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> dtype = ndarray.dtype;
+<span class="hljs-comment">// returns 'float64'</span>
+
+ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+dtype = ndarray.dtype;
+<span class="hljs-comment">// returns 'generic'</span>
+</code></pre>
+<p><a name="static-prop-ndims"></a></p>
+<h4 id="ndarrayndims">ndarray.ndims</h4>
+<p>Static property returning the number of dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> ndims = ndarray.ndims;
+<span class="hljs-comment">// returns 2</span>
+</code></pre>
+<p><a name="prop-byte-length"></a></p>
+<h4 id="ndarrayprototypebytelength">ndarray.prototype.byteLength</h4>
+<p>Size (in bytes) of the array (if known).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing double-precision floating-point numbers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float64'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the byte length:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.byteLength;
+<span class="hljs-comment">// returns 32</span>
+</code></pre>
+<p>If unable to determine the size of the array, the property value is <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the byte length:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.byteLength;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<p><a name="prop-bytes-per-element"></a></p>
+<h4 id="ndarrayprototypebytes_per_element">ndarray.prototype.BYTES_PER_ELEMENT</h4>
+<p>Size (in bytes) of each array element (if known).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing single-precision floating-point numbers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float32'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the number of bytes per element:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns 4</span>
+</code></pre>
+<p>If size of each array element is unknown, the property value is <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the number of bytes per element:</span>
+<span class="hljs-keyword">var</span> nbytes = arr.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+<p><a name="prop-data"></a></p>
+<h4 id="ndarrayprototypedata">ndarray.prototype.data</h4>
+<p>A reference to the underlying data buffer.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing signed 8-bit integers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'int8'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the buffer reference:</span>
+<span class="hljs-keyword">var</span> d = arr.data;
+<span class="hljs-comment">// returns &#x3C;Int8Array>[ 1, 2, 3, 4 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( d === buffer );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p><a name="prop-dtype"></a></p>
+<h4 id="ndarrayprototypedtype">ndarray.prototype.dtype</h4>
+<p>Underlying data type.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing unsigned 8-bit integers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'uint8'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">-2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the underlying data type:</span>
+<span class="hljs-keyword">var</span> dtype = arr.dtype;
+<span class="hljs-comment">// returns 'uint8'</span>
+</code></pre>
+<p><a name="prop-flags"></a></p>
+<h4 id="ndarrayprototypeflags">ndarray.prototype.flags</h4>
+<p>Information regarding the memory layout of the array. The returned <code>object</code> has the following properties:</p>
+<ul>
+<li><code>ROW_MAJOR_CONTIGUOUS</code>: <code>boolean</code> indicating if an array is row-major contiguous.</li>
+<li><code>COLUMN_MAJOR_CONTIGUOUS</code>: <code>boolean</code> indicating if an array is column-major contiguous.</li>
+</ul>
+<p>An array is contiguous if (1) an array is compatible with being stored in a single memory segment and (2) each array element is adjacent to the next array element. Note that an array can be both row-major contiguous and column-major contiguous at the same time (e.g., if an array is a 1-dimensional ndarray with <code>strides = [1]</code>).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing signed 32-bit integers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'int32'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array flags:</span>
+<span class="hljs-keyword">var</span> flg = arr.flags;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p><a name="prop-length"></a></p>
+<h4 id="ndarrayprototypelength">ndarray.prototype.length</h4>
+<p>Number of array elements.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing unsigned 16-bit integers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'uint16'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">-1</span>, <span class="hljs-number">-2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">3</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array length:</span>
+<span class="hljs-keyword">var</span> len = arr.length;
+<span class="hljs-comment">// returns 4</span>
+</code></pre>
+<p><a name="prop-ndims"></a></p>
+<h4 id="ndarrayprototypendims">ndarray.prototype.ndims</h4>
+<p>Number of dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing clamped unsigned 8-bit integers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'uint8c'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8ClampedArray</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">-2</span>, <span class="hljs-number">-1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">3</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the number of dimensions:</span>
+<span class="hljs-keyword">var</span> ndims = arr.ndims;
+<span class="hljs-comment">// returns 2</span>
+</code></pre>
+<p><a name="prop-offset"></a></p>
+<h4 id="ndarrayprototypeoffset">ndarray.prototype.offset</h4>
+<p>Index offset which specifies the <code>buffer</code> index at which to start iterating over array elements.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing signed 16-bit integers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'int16'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">-2</span>, <span class="hljs-number">-1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">10</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the index offset:</span>
+<span class="hljs-keyword">var</span> o = arr.offset;
+<span class="hljs-comment">// returns 10</span>
+</code></pre>
+<p><a name="prop-order"></a></p>
+<h4 id="ndarrayprototypeorder">ndarray.prototype.order</h4>
+<p>Array order. The array order is either row-major (C-style) or column-major (Fortran-style).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
+
+<span class="hljs-comment">// Create a constructor for generating 2-dimensional ndarrays containing unsigned 32-bit integers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'uint32'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array order:</span>
+<span class="hljs-keyword">var</span> ord = arr.order;
+<span class="hljs-comment">// returns 'row-major'</span>
+</code></pre>
+<p><a name="prop-shape"></a></p>
+<h4 id="ndarrayprototypeshape">ndarray.prototype.shape</h4>
+<p>Returns a copy of the array shape.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array shape:</span>
+<span class="hljs-keyword">var</span> dims = arr.shape;
+<span class="hljs-comment">// returns [ 2, 2 ]</span>
+</code></pre>
+<p><a name="prop-strides"></a></p>
+<h4 id="ndarrayprototypestrides">ndarray.prototype.strides</h4>
+<p>Returns a copy of the array strides which specify how to access data along corresponding array dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">-1</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the array strides:</span>
+<span class="hljs-keyword">var</span> s = arr.strides;
+<span class="hljs-comment">// returns [ -1, 2 ]</span>
+</code></pre>
+<hr>
+<h3 id="methods">Methods</h3>
+<p><a name="method-get"></a></p>
+<h4 id="ndarrayprototypeget-i-j-k--">ndarray.prototype.get( i, j, k, ... )</h4>
+<p>Returns an array element specified according to provided subscripts. The number of provided subscripts should equal the number of dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the element located at (1,1):</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre>
+<p><a name="method-iget"></a></p>
+<h4 id="ndarrayprototypeiget-idx-">ndarray.prototype.iget( idx )</h4>
+<p>Returns an array element located at a specified linear index.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Get the element located at index 3:</span>
+<span class="hljs-keyword">var</span> v = arr.iget( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre>
+<p><a name="method-set"></a></p>
+<h4 id="ndarrayprototypeset-i-j-k--v-">ndarray.prototype.set( i, j, k, ..., v )</h4>
+<p>Sets an array element specified according to provided subscripts. The number of provided subscripts should equal the number of dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Set the element located at (1,1):</span>
+arr.set( <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">40.0</span> );
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 40.0</span>
+
+<span class="hljs-comment">// Get the underlying buffer:</span>
+<span class="hljs-keyword">var</span> d = arr.data;
+<span class="hljs-comment">// returns [ 1.0, 2.0, 3.0, 40.0 ]</span>
+</code></pre>
+<p>The method returns the <code>ndarray</code> instance.</p>
+<p><a name="method-iset"></a></p>
+<h4 id="ndarrayprototypeiset-idx-v-">ndarray.prototype.iset( idx, v )</h4>
+<p>Sets an array element located at a specified linear index.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Set the element located at index 3:</span>
+arr.iset( <span class="hljs-number">3</span>, <span class="hljs-number">40.0</span> );
+<span class="hljs-keyword">var</span> v = arr.iget( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 40.0</span>
+
+<span class="hljs-comment">// Get the underlying buffer:</span>
+<span class="hljs-keyword">var</span> d = arr.data;
+<span class="hljs-comment">// returns [ 1.0, 2.0, 3.0, 40.0 ]</span>
+</code></pre>
+<p>The method returns the <code>ndarray</code> instance.</p>
+<p><a name="method-to-string"></a></p>
+<h4 id="ndarrayprototypetostring">ndarray.prototype.toString()</h4>
+<p>Serializes an <code>ndarray</code> as a <code>string</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Serialize to a string:</span>
+<span class="hljs-keyword">var</span> str = arr.toString();
+<span class="hljs-comment">// e.g., returns 'ndarray( [ 3, 4, 5, 6, 7, 8 ], [ 3, 2 ], [ 2, 1 ], 0, "row-major" )'</span>
+</code></pre>
+<p>The method does <strong>not</strong> serialize data outside of the buffer region defined by the array configuration.</p>
+<p><a name="method-to-json"></a></p>
+<h4 id="ndarrayprototypetojson">ndarray.prototype.toJSON()</h4>
+<p>Serializes an <code>ndarray</code> as a <a href="http://www.json.org/">JSON</a> <code>object</code>. <code>JSON.stringify()</code> implicitly calls this method when stringifying an <code>ndarray</code> instance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a constructor for generating "generic" 2-dimensional ndarrays:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'generic'</span>, <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Specify the array configuration:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Serialize to JSON:</span>
+<span class="hljs-keyword">var</span> o = arr.toJSON();
+<span class="hljs-comment">// returns { 'type': 'ndarray', 'dtype': 'generic', 'flags': {...}, 'offset': 0, 'order': 'row-major', 'shape': [ 3, 2 ], 'strides': [ 2, 1 ], 'data': [ 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] }</span>
+</code></pre>
+<p>The method does <strong>not</strong> serialize data outside of the buffer region defined by the array configuration.</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<hr>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Code generation can boost performance, but may be problematic in browser contexts enforcing a strict <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">content security policy</a> (CSP). If running in or targeting an environment with a CSP, set the <code>codegen</code> option to <code>false</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<hr>
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<span class="hljs-keyword">var</span> ctor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-comment">// Create an ndarray constructor for a 4-dimensional array containing single-precision floating-point numbers:</span>
+<span class="hljs-keyword">var</span> ndarray = ctor( <span class="hljs-string">'float32'</span>, <span class="hljs-number">4</span> );
+
+<span class="hljs-comment">// Create a data buffer:</span>
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( (<span class="hljs-number">3</span>*<span class="hljs-number">3</span>*<span class="hljs-number">3</span>*<span class="hljs-number">3</span>) + <span class="hljs-number">100</span> );
+
+<span class="hljs-comment">// Specify the array shape:</span>
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-comment">// Specify the array strides:</span>
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">27</span>, <span class="hljs-number">9</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-comment">// Specify the index offset:</span>
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">4</span>;
+
+<span class="hljs-comment">// Specify the order:</span>
+<span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>; <span class="hljs-comment">// C-style</span>
+
+<span class="hljs-comment">// Create a new ndarray:</span>
+<span class="hljs-keyword">var</span> arr = ndarray( buffer, shape, strides, offset, order );
+
+<span class="hljs-comment">// Retrieve an array value:</span>
+<span class="hljs-keyword">var</span> v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+<span class="hljs-comment">// Set an array value:</span>
+arr.set( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10.0</span> );
+
+<span class="hljs-comment">// Retrieve the array value:</span>
+v = arr.get( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 10.0</span>
+
+<span class="hljs-comment">// Serialize the array as a string:</span>
+<span class="hljs-keyword">var</span> str = arr.toString();
+<span class="hljs-comment">// e.g., returns 'ndarray( new Float32Array( [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ), [ 3, 3, 3, 3 ], [ 27, 9, 3, 1 ], 0, "row-major" )'</span>
+
+<span class="hljs-comment">// Serialize the array as JSON:</span>
+str = <span class="hljs-built_in">JSON</span>.stringify( arr.toJSON() );
+<span class="hljs-comment">// returns '{"type":"ndarray","dtype":"float32","flags":{},"order":"row-major","shape":[3,3,3,3],"strides":[27,9,3,1],"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

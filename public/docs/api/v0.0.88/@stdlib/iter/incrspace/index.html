@@ -1,0 +1,130 @@
+<h1 id="iterincrspace">iterIncrspace</h1>
+<blockquote>
+<p>Create an iterator which returns evenly spaced numbers according to a specified increment.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterIncrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/incrspace'</span> );
+</code></pre>
+<h4 id="iterincrspace-start-stop-increment-">iterIncrspace( start, stop[, increment] )</h4>
+<p>Returns an iterator which returns evenly spaced numbers according to a specified <code>increment</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterIncrspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span> );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>The returned iterator protocol-compliant object has the following properties:</p>
+<ul>
+<li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li>
+<li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li>
+</ul>
+<p>By default, the iterator returns values incremented by <code>1</code>. To adjust value spacing, provide an <code>increment</code> argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterIncrspace( <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 4</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The returned iterator is guaranteed to return the <code>start</code> value, but does <strong>not</strong> include the <code>stop</code> value. Beware, however, that values subsequent to the <code>start</code> value are subject to floating-point rounding errors. For example,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterIncrspace( <span class="hljs-number">0.1</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">0.2</span> );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 0.1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns ~0.3</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 0.5</span>
+</code></pre>
+<p>If you desire more control over value precision, consider using <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/roundn">roundn</a>:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+<span class="hljs-keyword">var</span> iterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/map'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">round</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> roundn( v, <span class="hljs-number">-2</span> );
+}
+
+<span class="hljs-comment">// Create an iterator returning values subject to floating-point errors:</span>
+<span class="hljs-keyword">var</span> it1 = iterIncrspace( <span class="hljs-number">0.1</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.2</span> );
+
+<span class="hljs-comment">// Create an iterator to round each value to the nearest hundredth:</span>
+<span class="hljs-keyword">var</span> it2 = iterMap( it1, roundn );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it2.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre>
+</li>
+<li>
+<p>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterIncrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/incrspace'</span> );
+
+<span class="hljs-comment">// Create an iterator which is subject to floating-point rounding errors:</span>
+<span class="hljs-keyword">var</span> it = iterIncrspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.01</span>, <span class="hljs-number">0.02</span> );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

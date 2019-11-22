@@ -1,0 +1,136 @@
+<h1 id="bifurcateby">bifurcateBy</h1>
+<blockquote>
+<p>Split values into two groups according to a predicate function.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bifurcateBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/bifurcate-by'</span> );
+</code></pre>
+<h4 id="bifurcateby-collection-options-predicate-">bifurcateBy( collection, [options,] predicate )</h4>
+<p>Splits values into two groups according to a <code>predicate</code> function, which specifies which group an element in the input <code>collection</code> belongs to. If a <code>predicate</code> function returns a truthy value, a collection element belongs to the first group; otherwise, a collection element belongs to the second group.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> out = bifurcateBy( arr, predicate );
+<span class="hljs-comment">// returns [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]</span>
+</code></pre>
+<p>A <code>predicate</code> function is provided two arguments:</p>
+<ul>
+<li><code>value</code>: collection element</li>
+<li><code>index</code>: collection index</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, i </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d: %s'</span>, i, v );
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> out = bifurcateBy( arr, predicate );
+<span class="hljs-comment">// returns [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><code>returns</code>: specifies the output format. If the option equals <code>'values'</code>, the function outputs element values. If the option equals <code>'indices'</code>, the function outputs element indices. If the option equals <code>'*'</code>, the function outputs both element indices and values. Default: <code>'values'</code>.</li>
+<li><code>thisArg</code>: execution context.</li>
+</ul>
+<p>By default, the function returns element values. To return element indices, set the <code>returns</code> option to <code>'indices'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'indices'</span>
+};
+<span class="hljs-keyword">var</span> out = bifurcateBy( arr, opts, predicate );
+<span class="hljs-comment">// returns [ [ 0, 1, 3 ], [ 2 ] ]</span>
+</code></pre>
+<p>To return index-element pairs, set the <code>returns</code> option to <code>'*'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'*'</span>
+};
+<span class="hljs-keyword">var</span> out = bifurcateBy( arr, opts, predicate );
+<span class="hljs-comment">// returns [ [ [ 0, 'beep' ], [ 1, 'boop' ], [ 3, 'bar' ] ], [ [ 2, 'foo' ] ] ]</span>
+</code></pre>
+<p>To set the <code>predicate</code> execution context, provide a <code>thisArg</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'thisArg'</span>: context
+};
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> out = bifurcateBy( arr, opts, predicate );
+<span class="hljs-comment">// returns [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]</span>
+
+<span class="hljs-built_in">console</span>.log( context.count );
+<span class="hljs-comment">// => 4</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+<span class="hljs-keyword">var</span> bifurcateBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/bifurcate-by'</span> );
+
+<span class="hljs-keyword">var</span> vals;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+
+vals = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'woot'</span>, <span class="hljs-string">'woot'</span> ];
+
+<span class="hljs-comment">// Generate a random collection...</span>
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    j = floor( randu()*vals.length );
+    arr[ i ] = vals[ j ];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+
+<span class="hljs-comment">// Compute the groups:</span>
+out = bifurcateBy( arr, predicate );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

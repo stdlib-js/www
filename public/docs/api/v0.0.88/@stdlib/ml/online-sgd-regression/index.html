@@ -1,0 +1,207 @@
+<h1 id="online-regression">Online Regression</h1>
+<blockquote>
+<p>Online regression via <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">Stochastic Gradient Descent</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> onlineSGDRegression = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/online-sgd-regression'</span> );
+</code></pre>
+<h4 id="onlinesgdregression-options-">onlineSGDRegression( [options] )</h4>
+<p>Creates an online linear regression model fitted via <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">stochastic gradient descent</a>. The module performs <a href="https://en.wikipedia.org/wiki/Tikhonov_regularization">L2 regularization</a> of the model coefficients, shrinking them towards zero by penalizing the squared <a href="https://en.wikipedia.org/wiki/Norm_(mathematics)#Euclidean_norm">euclidean norm</a> of the coefficients.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
+<span class="hljs-keyword">var</span> model = onlineSGDRegression();
+
+<span class="hljs-keyword">var</span> x1;
+<span class="hljs-keyword">var</span> x2;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> y;
+
+<span class="hljs-comment">// Update model as data comes in...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100000</span>; i++ ) {
+    x1 = randu();
+    x2 = randu();
+    y = (<span class="hljs-number">3.0</span> * x1) + (<span class="hljs-number">-3.0</span> * x2) + <span class="hljs-number">2.0</span> + normal( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+    model.update( [ x1, x2 ], y );
+}
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>learningRate</strong>: <code>string</code> denoting the learning rate to use. Can be <code>constant</code>, <code>pegasos</code> or <code>basic</code>. Default: <code>basic</code>.</li>
+<li><strong>loss</strong>: <code>string</code> denoting the loss function to use. Can be <code>squaredError</code>, <code>epsilonInsensitive</code> or <code>huber</code>. Default: <code>squaredError</code>.</li>
+<li><strong>epsilon</strong>: insensitivity parameter. Default: <code>0.1</code>.</li>
+<li><strong>lambda</strong>: regularization parameter. Default: <code>1e-3</code>.</li>
+<li><strong>eta0</strong>: constant learning rate. Default: <code>0.02</code>.</li>
+<li><strong>intercept</strong>: <code>boolean</code> indicating whether to include an intercept. Default: <code>true</code>.</li>
+</ul>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> model = onlineSGDRegression({
+    <span class="hljs-string">'loss'</span>: <span class="hljs-string">'squaredError'</span>,
+    <span class="hljs-string">'lambda'</span>: <span class="hljs-number">1e-4</span>
+});
+</code></pre>
+<p>The <code>learningRate</code> decides how fast or slow the weights will be updated towards the optimal weights. Let <code>i</code> denote the current iteration of the algorithm (i.e. the number of data points having arrived). The possible learning rates are:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">basic (default)</td>
+<td align="center">1000.0 / ( i + 1000.0 )</td>
+</tr>
+<tr>
+<td align="center">constant</td>
+<td align="center">eta0</td>
+</tr>
+<tr>
+<td align="center">pegasos</td>
+<td align="center">1.0 / ( lambda * i )</td>
+</tr>
+</tbody>
+</table>
+<p>The used loss function is specified via the <code>loss</code> option. The available options are:</p>
+<ul>
+<li><strong>epsilonInsensitive</strong>: Penalty is the absolute value of the error whenever the absolute error exceeds epsilon and zero otherwise.</li>
+<li><strong>huber</strong>: Squared-error loss for observations with error smaller than epsilon in magnitude, linear loss otherwise. Should be used in order to decrease the influence of outliers on the model fit.</li>
+<li><strong>squaredError</strong>: Squared error loss, i.e. the squared difference of the observed and fitted values.</li>
+</ul>
+<p>The <code>lambda</code> parameter determines the amount of shrinkage inflicted on the model coefficients:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> createRandom = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> ).factory;
+
+<span class="hljs-keyword">var</span> model;
+<span class="hljs-keyword">var</span> coefs;
+<span class="hljs-keyword">var</span> opts;
+<span class="hljs-keyword">var</span> rand;
+<span class="hljs-keyword">var</span> x1;
+<span class="hljs-keyword">var</span> x2;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> y;
+
+opts = {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">23</span>
+};
+rand = createRandom( opts );
+
+model = onlineSGDRegression({
+    <span class="hljs-string">'lambda'</span>: <span class="hljs-number">1e-5</span>
+});
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x1 = rand();
+    x2 = rand();
+    y = (<span class="hljs-number">3.0</span> * x1) + (<span class="hljs-number">-3.0</span> * x2) + <span class="hljs-number">2.0</span>;
+    model.update( [ x1, x2 ], y );
+}
+
+coefs = model.coefs;
+<span class="hljs-comment">// returns [ ~2.9997, ~-2.9994, ~1.9999 ]</span>
+
+rand = createRandom( opts );
+model = onlineSGDRegression({
+    <span class="hljs-string">'lambda'</span>: <span class="hljs-number">1e-2</span>
+});
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x1 = rand();
+    x2 = rand();
+    y = (<span class="hljs-number">3.0</span> * x1) + (<span class="hljs-number">-3.0</span> * x2) + <span class="hljs-number">2.0</span>;
+    model.update( [ x1, x2 ], y );
+}
+
+coefs = model.coefs;
+<span class="hljs-comment">// returns [ ~2.7446, ~-2.5017, ~1.9323 ]</span>
+</code></pre>
+<p>Higher values of <code>lambda</code> reduce the variance of the model coefficient estimates at the expense of introducing bias.</p>
+<p>By default, the model contains an <code>intercept</code> term. To omit the <code>intercept</code>, set the corresponding option to <code>false</code>:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> model = onlineSGDRegression({
+    <span class="hljs-string">'intercept'</span>: <span class="hljs-literal">false</span>
+});
+model.update( [ <span class="hljs-number">1.4</span>, <span class="hljs-number">0.5</span> ], <span class="hljs-number">2.0</span> );
+
+<span class="hljs-keyword">var</span> dim = model.coefs.length;
+<span class="hljs-comment">// returns 2</span>
+
+model = onlineSGDRegression();
+model.update( [ <span class="hljs-number">1.4</span>, <span class="hljs-number">0.5</span> ], <span class="hljs-number">2.0</span> );
+
+dim = model.coefs.length;
+<span class="hljs-comment">// returns 3</span>
+</code></pre>
+<p>If <code>intercept</code> is <code>true</code>, an element equal to one is implicitly added to each <code>x</code> vector. Hence, this module performs regularization of the intercept term.</p>
+<h4 id="model">Model</h4>
+<p>Returned models have the following properties and methods...</p>
+<h4 id="modelupdate-x-y-">model.update( x, y )</h4>
+<p>Update the model coefficients in light of incoming data. <code>y</code> must be a numeric response value, <code>x</code> a <code>numeric array</code> of predictors. The number of predictors is decided upon first invocation of this method. All subsequent calls must supply <code>x</code> vectors of the same dimensionality.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript">model.update( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span> ], <span class="hljs-number">5.0</span> );
+</code></pre>
+<h4 id="modelpredict-x-">model.predict( x )</h4>
+<p>Predict the response for a new feature vector <code>x</code>, where <code>x</code> must be a <code>numeric array</code> of predictors. Given feature vector <code>x = [x_0, x_1, ...]</code> and model coefficients <code>c = [c_0, c_1, ...]</code>, the prediction is equal to <code>x_0*c_0 + x_1*c_1 + ... + c_intercept</code>.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> yhat = model.predict( [ <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<h4 id="modelcoefs">model.coefs</h4>
+<p>Getter for the model coefficients / feature weights stored in an <code>array</code>. The coefficients are ordered as <code>[c_0, c_1,..., c_intercept]</code>, where <code>c_0</code> corresponds to the first feature in <code>x</code> and so on.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> coefs = model.coefs;
+<span class="hljs-comment">// returns &#x3C;Array></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Stochastic gradient descent is sensitive to the scaling of the features. One is best advised to either scale each attribute to <code>[0,1]</code> or <code>[-1,1]</code> or to transform them into z-scores with zero mean and unit variance. One should keep in mind that the same scaling has to be applied to test vectors in order to obtain accurate predictions.</li>
+<li>Since this module performs regularization of the intercept term, scaling the response variable to an appropriate scale is also highly recommended.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
+<span class="hljs-keyword">var</span> onlineSGDRegression = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/online-sgd-regression'</span> );
+
+<span class="hljs-keyword">var</span> model;
+<span class="hljs-keyword">var</span> rnorm;
+<span class="hljs-keyword">var</span> x1;
+<span class="hljs-keyword">var</span> x2;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+rnorm = normal.factory( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+
+<span class="hljs-comment">// Create model:</span>
+model = onlineSGDRegression({
+    <span class="hljs-string">'lambda'</span>: <span class="hljs-number">1e-7</span>,
+    <span class="hljs-string">'loss'</span>: <span class="hljs-string">'squaredError'</span>,
+    <span class="hljs-string">'intercept'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Update model as data comes in...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10000</span>; i++ ) {
+    x1 = randu();
+    x2 = randu();
+    y = (<span class="hljs-number">3.0</span> * x1) + (<span class="hljs-number">-3.0</span> * x2) + <span class="hljs-number">2.0</span> + rnorm();
+    model.update( [ x1, x2 ], y );
+}
+
+<span class="hljs-comment">// Extract model coefficients:</span>
+<span class="hljs-built_in">console</span>.log( model.coefs );
+
+<span class="hljs-comment">// Predict new observations:</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'y_hat = %d; x1 = %d; x2 = %d'</span>, model.predict( [<span class="hljs-number">0.9</span>, <span class="hljs-number">0.1</span>] ), <span class="hljs-number">0.9</span>, <span class="hljs-number">0.1</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'y_hat = %d; x1 = %d; x2 = %d'</span>, model.predict( [<span class="hljs-number">0.1</span>, <span class="hljs-number">0.9</span>] ), <span class="hljs-number">0.1</span>, <span class="hljs-number">0.9</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'y_hat = %d; x1 = %d; x2 = %d'</span>, model.predict( [<span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span>] ), <span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span> );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

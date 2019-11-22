@@ -1,0 +1,47 @@
+<h1 id="function-name">Function Name</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a function name.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_FUNCTION_NAME = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/function-name'</span> );
+</code></pre>
+<h4 id="re_function_name">RE_FUNCTION_NAME</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a <code>function</code> name.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'boop'</span>;
+}
+
+<span class="hljs-keyword">var</span> str = RE_FUNCTION_NAME.exec( beep.toString() )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 'beep'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable func-names, no-restricted-syntax, no-empty-function, stdlib/no-builtin-math -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+<span class="hljs-keyword">var</span> RE_FUNCTION_NAME = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/function-name'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fname</span>(<span class="hljs-params"> fcn </span>) </span>{
+    <span class="hljs-keyword">return</span> RE_FUNCTION_NAME.exec( fcn.toString() )[ <span class="hljs-number">1</span> ];
+}
+
+<span class="hljs-keyword">var</span> f = fname( <span class="hljs-built_in">Math</span>.sqrt );
+<span class="hljs-comment">// returns 'sqrt'</span>
+
+f = fname( <span class="hljs-built_in">Int8Array</span> );
+<span class="hljs-comment">// returns 'Int8Array'</span>
+
+f = fname( <span class="hljs-built_in">Object</span>.prototype.toString );
+<span class="hljs-comment">// returns 'toString'</span>
+
+f = fname( <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{} );
+<span class="hljs-comment">// returns ''</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

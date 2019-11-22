@@ -1,0 +1,54 @@
+<h1 id="alloc">alloc</h1>
+<blockquote>
+<p>Allocate a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> having a specified number of bytes.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
+</code></pre>
+<h4 id="allocunsafe-size-">allocUnsafe( size )</h4>
+<p><strong>Unsafely</strong> allocates a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> having a specified number of bytes.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = allocUnsafe( <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns &#x3C;Buffer></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The underlying memory of returned <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a> instances is <strong>not</strong> initialized. Memory contents are unknown and may contain <strong>sensitive</strong> data.</li>
+<li>When the <code>size</code> is less than half the pool size (specified on the <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a> constructor in modern Node.js environments), memory is allocated from the <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a> pool for faster allocation of new <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a> instances.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
+
+<span class="hljs-keyword">var</span> buf;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Repeatedly unsafely allocate memory and inspect the buffer contents...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    buf = allocUnsafe( <span class="hljs-number">100</span> );
+    <span class="hljs-built_in">console</span>.log( buf.toString() );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

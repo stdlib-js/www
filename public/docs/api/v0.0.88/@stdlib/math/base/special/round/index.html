@@ -1,0 +1,64 @@
+<h1 id="round">Round</h1>
+<blockquote>
+<p>Round a numeric value to the nearest integer.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+</code></pre>
+<h4 id="round-x-">round( x )</h4>
+<p>Rounds a <code>numeric</code> value to the nearest <code>integer</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = round( <span class="hljs-number">-4.2</span> );
+<span class="hljs-comment">// returns -4.0</span>
+
+v = round( <span class="hljs-number">-4.5</span> );
+<span class="hljs-comment">// returns -4.0</span>
+
+v = round( <span class="hljs-number">-4.6</span> );
+<span class="hljs-comment">// returns -5.0</span>
+
+v = round( <span class="hljs-number">9.99999</span> );
+<span class="hljs-comment">// returns 10.0</span>
+
+v = round( <span class="hljs-number">9.5</span> );
+<span class="hljs-comment">// returns 10.0</span>
+
+v = round( <span class="hljs-number">9.2</span> );
+<span class="hljs-comment">// returns 9.0</span>
+
+v = round( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = round( <span class="hljs-number">-0.0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+
+v = round( <span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+v = round( -<span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns -Infinity</span>
+
+v = round( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Value: %d. Rounded: %d.'</span>, x, round( x ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

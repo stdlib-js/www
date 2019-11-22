@@ -1,0 +1,48 @@
+<h1 id="dirname">Dirname</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
+</code></pre>
+<h4 id="re_dirname_windows">RE_DIRNAME_WINDOWS</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 'foo\\bar'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
+
+<span class="hljs-keyword">var</span> dir;
+
+dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'index.js'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns ''</span>
+
+dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'C:\\foo\\bar\\home.html'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 'C:\\foo\\bar'</span>
+
+dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'foo\\file.pdf'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 'foo'</span>
+
+dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'beep\\boop.'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 'beep'</span>
+
+dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">''</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns ''</span>
+
+dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'\\foo\\bar\\file'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns '\\foo\\bar'</span>
+
+dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'C:\\foo\\bar\\.gitignore'</span> )[ <span class="hljs-number">1</span> ];
+<span class="hljs-comment">// returns 'C:\\foo\\bar'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

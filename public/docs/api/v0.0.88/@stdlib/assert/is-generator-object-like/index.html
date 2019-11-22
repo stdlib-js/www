@@ -1,0 +1,52 @@
+<h1 id="isgeneratorobjectlike">isGeneratorObjectLike</h1>
+<blockquote>
+<p>Test if a value is <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Generator"><code>generator</code></a> object-like.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isGeneratorObjectLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-generator-object-like'</span> );
+</code></pre>
+<h4 id="isgeneratorobjectlike-value-">isGeneratorObjectLike( value )</h4>
+<p>Tests if a <code>value</code> is <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Generator"><code>generator</code></a> object-like.</p>
+<!-- eslint-disable no-restricted-syntax, no-empty-function -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'next'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{},
+    <span class="hljs-string">'return'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{},
+    <span class="hljs-string">'throw'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{}
+};
+<span class="hljs-keyword">var</span> bool = isGeneratorObjectLike( obj );
+<span class="hljs-comment">// returns true</span>
+
+bool = isGeneratorObjectLike( {} );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> noop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/noop'</span> );
+<span class="hljs-keyword">var</span> isGeneratorObjectLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-generator-object-like'</span> );
+
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'next'</span>: noop,
+    <span class="hljs-string">'return'</span>: noop,
+    <span class="hljs-string">'throw'</span>: noop
+};
+<span class="hljs-keyword">var</span> bool = isGeneratorObjectLike( obj );
+<span class="hljs-comment">// returns true</span>
+
+bool = isGeneratorObjectLike( {} );
+<span class="hljs-comment">// returns false</span>
+
+bool = isGeneratorObjectLike( [] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isGeneratorObjectLike( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

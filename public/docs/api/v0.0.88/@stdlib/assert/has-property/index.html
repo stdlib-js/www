@@ -1,0 +1,96 @@
+<h1 id="hasproperty">hasProperty</h1>
+<blockquote>
+<p>Test if an object has a specified property, either own or inherited.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-property'</span> );
+</code></pre>
+<h4 id="hasprop-value-property-">hasProp( value, property )</h4>
+<p>Returns a <code>boolean</code> indicating if a <code>value</code> has a specified <code>property</code>, either own or inherited.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = {
+    <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span>
+};
+
+<span class="hljs-keyword">var</span> bool = hasProp( value, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = hasProp( value, <span class="hljs-string">'hasOwnProperty'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = hasProp( value, <span class="hljs-string">'bap'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The function does <strong>not</strong> throw when provided <code>null</code> or <code>undefined</code>. Instead, the function returns <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasProp( <span class="hljs-literal">null</span>, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = hasProp( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</li>
+<li>
+<p>Value arguments other than <code>null</code> or <code>undefined</code> are coerced to <code>objects</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasProp( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'length'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</li>
+<li>
+<p>Non-symbol property arguments are coerced to <code>strings</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = {
+    <span class="hljs-string">'null'</span>: <span class="hljs-literal">false</span>
+};
+<span class="hljs-keyword">var</span> bool = hasProp( value, <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns true</span>
+
+value = {
+    <span class="hljs-string">'[object Object]'</span>: <span class="hljs-literal">false</span>
+};
+bool = hasProp( value, {} );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-property'</span> );
+
+<span class="hljs-keyword">var</span> bool = hasProp( { <span class="hljs-string">'a'</span>: <span class="hljs-string">'b'</span> }, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = hasProp( {}, <span class="hljs-string">'hasOwnProperty'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = hasProp( { <span class="hljs-string">'a'</span>: <span class="hljs-string">'b'</span> }, <span class="hljs-string">'c'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = hasProp( { <span class="hljs-string">'a'</span>: <span class="hljs-string">'b'</span> }, <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = hasProp( <span class="hljs-literal">null</span>, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = hasProp( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = hasProp( { <span class="hljs-string">'null'</span>: <span class="hljs-literal">false</span> }, <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = hasProp( { <span class="hljs-string">'[object Object]'</span>: <span class="hljs-literal">false</span> }, {} );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

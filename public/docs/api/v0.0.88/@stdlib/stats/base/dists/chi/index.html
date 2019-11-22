@@ -1,0 +1,71 @@
+<h1 id="chi">Chi</h1>
+<blockquote>
+<p>Chi distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/chi'</span> );
+</code></pre>
+<h4 id="chi-1">chi</h4>
+<p>Chi distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = chi;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/cdf"><code>cdf( x, k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution cumulative distribution function.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/logpdf"><code>logpdf( x, k )</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of the probability density function (PDF) for a chi distribution .</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/pdf"><code>pdf( x, k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution probability density function (PDF).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/quantile"><code>quantile( p, k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following functions for calculating distribution properties:</p>
+<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/entropy"><code>entropy( k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution differential entropy.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/kurtosis"><code>kurtosis( k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution excess kurtosis.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/mean"><code>mean( k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution expected value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/mode"><code>mode( k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution mode.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/skewness"><code>skewness( k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution skewness.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/stdev"><code>stdev( k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution standard deviation.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/variance"><code>variance( k )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution variance.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Chi_distribution">Chi</a> distribution object.</p>
+<!-- <toc pattern="*ctor*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/chi/ctor"><code>Chi( [k] )</code></a></span><span class="delimiter">: </span><span class="description">Chi distribution constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Chi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/chi'</span> ).Chi;
+
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Chi( <span class="hljs-number">4.0</span> );
+
+<span class="hljs-keyword">var</span> mu = dist.mean;
+<span class="hljs-comment">// returns ~1.88</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> chi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/chi'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( chi ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

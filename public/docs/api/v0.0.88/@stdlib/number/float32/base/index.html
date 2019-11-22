@@ -1,0 +1,47 @@
+<h1 id="float32">Float32</h1>
+<blockquote>
+<p>Base utilities for single-precision floating-point numbers.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Base utilities for single-precision floating-point numbers.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/exponent"><code>exponentf( x )</code></a></span><span class="delimiter">: </span><span class="description">return an integer corresponding to the unbiased exponent of a single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/from-binary-string"><code>fromBinaryStringf( bstr )</code></a></span><span class="delimiter">: </span><span class="description">create a single-precision floating-point number from an IEEE 754 literal bit representation.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/from-word"><code>fromWordf( x )</code></a></span><span class="delimiter">: </span><span class="description">create a single-precision floating-point number from an unsigned integer corresponding to an IEEE 754 binary representation.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/normalize"><code>normalizef( [out,] x )</code></a></span><span class="delimiter">: </span><span class="description">return a normal number <code>y</code> and exponent <code>exp</code> satisfying <code>x = y * 2^exp</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/signbit"><code>signbitf( x )</code></a></span><span class="delimiter">: </span><span class="description">return a boolean indicating if the sign bit for a single-precision floating-point number is on (true) or off (false).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/significand"><code>significandf( x )</code></a></span><span class="delimiter">: </span><span class="description">return an integer corresponding to the significand of a single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/to-binary-string"><code>toBinaryStringf( x )</code></a></span><span class="delimiter">: </span><span class="description">return a string giving the literal bit representation of a single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/to-int32"><code>float32ToInt32( x )</code></a></span><span class="delimiter">: </span><span class="description">convert a single-precision floating-point number to a signed 32-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/to-uint32"><code>float32ToUint32( x )</code></a></span><span class="delimiter">: </span><span class="description">convert a single-precision floating-point number to an unsigned 32-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/number/float32/base/to-word"><code>toWordf( x )</code></a></span><span class="delimiter">: </span><span class="description">return an unsigned 32-bit integer corresponding to the IEEE 754 binary representation of a single-precision floating-point number.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

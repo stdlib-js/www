@@ -1,0 +1,75 @@
+<h1 id="clamp">clamp</h1>
+<blockquote>
+<p>Restrict a value to a specified range.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+</code></pre>
+<h4 id="clamp-v-min-max-">clamp( v, min, max )</h4>
+<p>Restricts a value to a specified range.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = clamp( <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 3.14</span>
+
+v = clamp( <span class="hljs-number">-3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = clamp( <span class="hljs-number">10.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 5.0</span>
+
+v = clamp( <span class="hljs-number">-0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = clamp( <span class="hljs-number">0.0</span>, <span class="hljs-number">-3.14</span>, <span class="hljs-number">-0.0</span> );
+<span class="hljs-comment">// returns -0.0</span>
+</code></pre>
+<p>If provided <code>NaN</code> for any argument, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = clamp( <span class="hljs-literal">NaN</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = clamp( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = clamp( <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> clamp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/clamp'</span> );
+
+<span class="hljs-keyword">var</span> min;
+<span class="hljs-keyword">var</span> max;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    min = discreteUniform( <span class="hljs-number">0.0</span>, <span class="hljs-number">10.0</span> );
+    max = discreteUniform( <span class="hljs-number">5.0</span>, <span class="hljs-number">15.0</span> );
+    v = discreteUniform( <span class="hljs-number">-20.0</span>, <span class="hljs-number">20.0</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'clamp(%d,%d,%d) => %d'</span>, v, min, max, clamp( v, min, max ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

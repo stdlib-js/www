@@ -1,0 +1,73 @@
+<h1 id="ispositivenumberarray">isPositiveNumberArray</h1>
+<blockquote>
+<p>Test if a value is an array-like object containing only positive numbers.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPositiveNumberArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-number-array'</span> );
+</code></pre>
+<h4 id="ispositivenumberarray-value-">isPositiveNumberArray( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> positive numbers.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveNumberArray( [ <span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3.0</span>) ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveNumberArray( [ <span class="hljs-number">3.0</span>, <span class="hljs-string">'3.0'</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<h4 id="ispositivenumberarrayprimitives-value-">isPositiveNumberArray.primitives( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object <code>array</code> containing <strong>only</strong> primitive positive numbers.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveNumberArray.primitives( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">10.0</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveNumberArray.primitives( [ <span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<h4 id="ispositivenumberarrayobjects-value-">isPositiveNumberArray.objects( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object <code>array</code> containing <strong>only</strong> object positive numbers.</p>
+<!-- eslint-disable no-new-wrappers, max-len -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveNumberArray.objects( [ <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveNumberArray.objects( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">10.0</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-new-wrappers -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<span class="hljs-keyword">var</span> isPositiveNumberArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-number-array'</span> );
+
+<span class="hljs-keyword">var</span> bool = isPositiveNumberArray( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">3.9</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveNumberArray( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveNumberArray( [ <span class="hljs-number">1</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">6</span> ), <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isPositiveNumberArray( [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveNumberArray( [ <span class="hljs-number">1</span>, <span class="hljs-string">'abc'</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isPositiveNumberArray( <span class="hljs-number">78.0</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

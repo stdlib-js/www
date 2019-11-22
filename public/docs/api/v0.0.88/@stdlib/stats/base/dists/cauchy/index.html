@@ -1,0 +1,68 @@
+<h1 id="cauchy">Cauchy</h1>
+<blockquote>
+<p>Cauchy distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cauchy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/cauchy'</span> );
+</code></pre>
+<h4 id="cauchy-1">cauchy</h4>
+<p>Cauchy distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = cauchy;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/cdf"><code>cdf( x, x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution cumulative distribution function.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/logcdf"><code>logcdf( x, x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution logarithm of cumulative distribution function.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/logpdf"><code>logpdf( x, x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution logarithm of probability density function (logPDF).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/pdf"><code>pdf( x, x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution probability density function (PDF).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/quantile"><code>quantile( p, x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following functions for calculating distribution properties:</p>
+<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/entropy"><code>entropy( x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution differential entropy.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/median"><code>median( x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution median.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/mode"><code>mode( x0, gamma )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution mode.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy</a> distribution object.</p>
+<!-- <toc pattern="*ctor*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/cauchy/ctor"><code>Cauchy( [x0, gamma] )</code></a></span><span class="delimiter">: </span><span class="description">Cauchy distribution constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Cauchy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/cauchy'</span> ).Cauchy;
+
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Cauchy( <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span> );
+
+<span class="hljs-keyword">var</span> median = dist.median;
+<span class="hljs-comment">// returns 2.0</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> cauchy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/cauchy'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( cauchy ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

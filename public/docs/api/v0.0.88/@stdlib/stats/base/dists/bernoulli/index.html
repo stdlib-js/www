@@ -1,0 +1,75 @@
+<h1 id="bernoulli">Bernoulli</h1>
+<blockquote>
+<p>Bernoulli distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/bernoulli'</span> );
+</code></pre>
+<h4 id="bernoulli-1">bernoulli</h4>
+<p>Bernoulli distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = bernoulli;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pmf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/cdf"><code>cdf( x, p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution cumulative distribution function.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/mgf"><code>mgf( t, p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution moment-generating function (MGF).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/pmf"><code>pmf( x, p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution probability mass function (PMF).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/quantile"><code>quantile( r, p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following functions for calculating distribution properties:</p>
+<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/entropy"><code>entropy( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution entropy.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/kurtosis"><code>kurtosis( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution excess kurtosis.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/mean"><code>mean( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution expected value.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/median"><code>median( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution median.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/mode"><code>mode( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution mode.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/skewness"><code>skewness( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution skewness.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/stdev"><code>stdev( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution standard deviation.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/variance"><code>variance( p )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution variance.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli</a> distribution object.</p>
+<!-- <toc pattern="*ctor*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/stats/base/dists/bernoulli/ctor"><code>Bernoulli( [p] )</code></a></span><span class="delimiter">: </span><span class="description">Bernoulli distribution constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/bernoulli'</span> ).Bernoulli;
+
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Bernoulli( <span class="hljs-number">0.2</span> );
+
+<span class="hljs-keyword">var</span> y = dist.pmf( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.8</span>
+
+y = dist.pmf( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns 0.2</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/bernoulli'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( bernoulli ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

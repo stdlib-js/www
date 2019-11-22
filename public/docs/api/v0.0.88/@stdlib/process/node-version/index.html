@@ -1,0 +1,59 @@
+<h1 id="node-version">Node Version</h1>
+<blockquote>
+<p>Node version.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> NODE_VERSION = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/node-version'</span> );
+</code></pre>
+<h4 id="node_version">NODE_VERSION</h4>
+<p>Node version.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( NODE_VERSION );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> semver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'semver'</span> );
+<span class="hljs-keyword">var</span> NODE_VERSION = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/node-version'</span> );
+
+<span class="hljs-keyword">if</span> ( semver.lt( NODE_VERSION, <span class="hljs-string">'1.0.0'</span> ) ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Running on a pre-io.js version...'</span> );
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( semver.lt( NODE_VERSION, <span class="hljs-string">'4.0.0'</span> ) ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Running on an io.js version...'</span> );
+}
+<span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Running on a post-io.js version...'</span> );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: node-version [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ node-version
+&#x3C;node_version>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,175 @@
+<h1 id="deep-set">Deep Set</h1>
+<blockquote>
+<p>Set a nested property value.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> deepSet = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/deep-set'</span> );
+</code></pre>
+<h4 id="deepset-obj-path-value-options-">deepSet( obj, path, value[, options] )</h4>
+<p>Sets a nested property value.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepSet( obj, <span class="hljs-string">'a.b.c'</span>, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">console</span>.log( obj );
+<span class="hljs-comment">// => { 'a': { 'b': { 'c': 'beep' } } }</span>
+</code></pre>
+<p>If the function is able to deep set a nested property, the function returns <code>true</code>; otherwise, the function returns <code>false</code>.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepSet( obj, <span class="hljs-string">'a.b.c'</span>, <span class="hljs-string">'woot'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = deepSet( obj, <span class="hljs-string">'a.beep.c'</span>, <span class="hljs-string">'boop'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = deepSet( <span class="hljs-literal">null</span>, <span class="hljs-string">'a.beep.c'</span>, <span class="hljs-string">'boop'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = deepSet( <span class="hljs-string">'bap'</span>, <span class="hljs-string">'a.beep.c'</span>, <span class="hljs-string">'boop'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<p>For <code>paths</code> including <code>arrays</code>, specify the numeric index.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+    { <span class="hljs-string">'a'</span>: [ { <span class="hljs-string">'x'</span>: <span class="hljs-number">5</span> } ] },
+    { <span class="hljs-string">'a'</span>: [ { <span class="hljs-string">'x'</span>: <span class="hljs-number">10</span> } ] }
+];
+
+<span class="hljs-keyword">var</span> bool = deepSet( arr, <span class="hljs-string">'1.a.0.x'</span>, <span class="hljs-number">25</span> );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">console</span>.log( arr );
+<span class="hljs-comment">/* =>
+    [
+        { 'a': [ { 'x': 5 } ] },
+        { 'a': [ { 'x': 25 } ] }
+    ]
+*/</span>
+</code></pre>
+<p>The key <code>path</code> may be specified as either a delimited <code>string</code> or a key <code>array</code>.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepSet( obj, [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span> ], <span class="hljs-string">'beep'</span> ); <span class="hljs-comment">// obj => { 'a': { 'b': { 'c': 'beep' } } }</span>
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>If <code>value</code> is a <code>function</code>, the argument is treated as a <code>callback</code> and should return a value to set.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">set</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">var</span> ch = val;
+    <span class="hljs-keyword">var</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        val += ch;
+    }
+    <span class="hljs-keyword">return</span> val;
+}
+<span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepSet( obj, <span class="hljs-string">'a.b.c'</span>, <span class="hljs-keyword">set</span> ); // obj => { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'ddddd'</span> } } }
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>sep</strong>: key path separator. Default: <code>'.'</code>.</li>
+<li><strong>create</strong>: <code>boolean</code> indicating whether to create a path if the key path does not already exist. Default: <code>false</code>.</li>
+</ul>
+<p>By default, the function assumes <code>dot</code> separated key values. To specify an alternative separator, set the <code>sep</code> option.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepSet( obj, <span class="hljs-string">'a/b/c'</span>, <span class="hljs-string">'beep'</span>, {
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">'/'</span>
+});
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">console</span>.log( obj );
+<span class="hljs-comment">// => { 'a': { 'b': { 'c': 'beep' } } }</span>
+</code></pre>
+<p>To create a key path which does not already exist, set the <code>create</code> option to <code>true</code>.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepSet( obj, <span class="hljs-string">'a.e.c'</span>, <span class="hljs-string">'boop'</span>, {
+    <span class="hljs-string">'create'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">console</span>.log( obj );
+<span class="hljs-comment">/* =>
+    {
+        'a': {
+            'b': {
+                'c': 'beep'
+            },
+            'e': {
+                'c': 'boop'
+            }
+        }
+    }
+*/</span>
+</code></pre>
+<h4 id="deepsetfactory-path-options-">deepSet.factory( path[, options] )</h4>
+<p>Creates a reusable deep set function. The factory method ensures a <code>deepSet</code> function is configured identically by using the same set of provided <code>options</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dset = deepSet.factory( <span class="hljs-string">'a/b/c'</span>, {
+    <span class="hljs-string">'create'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">'/'</span>
+});
+</code></pre>
+<h4 id="dset-obj-value-">dset( obj, value )</h4>
+<p>Sets a nested property value.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dset = deepSet.factory( <span class="hljs-string">'a.b.c'</span> );
+
+<span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = dset( obj, <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-built_in">console</span>.log( obj );
+<span class="hljs-comment">// => { 'a': { 'b': { 'c': 'beep' } } }</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> deepSet = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/deep-set'</span> );
+
+<span class="hljs-keyword">var</span> data;
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> keys;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">set</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val * <span class="hljs-number">10.0</span>;
+}
+
+data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; data.length; i++ ) {
+    data[ i ] = {
+        <span class="hljs-string">'x'</span>: <span class="hljs-built_in">Date</span>.now(),
+        <span class="hljs-string">'y'</span>: [ randu(), randu(), i ]
+    };
+}
+
+keys = [ <span class="hljs-number">0</span>, <span class="hljs-string">'y'</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; data.length; i++ ) {
+    keys[ <span class="hljs-number">0</span> ] = i;
+    bool = deepSet( data, keys, <span class="hljs-keyword">set</span> );
+    if ( !bool ) {
+        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Unable to deep set value.'</span> );
+    }
+}
+<span class="hljs-built_in">console</span>.log( data );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

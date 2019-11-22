@@ -1,0 +1,48 @@
+<h1 id="milliseconds-in-a-minute">Milliseconds in a Minute</h1>
+<blockquote>
+<p>Number of milliseconds in a minute.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> MILLISECONDS_IN_MINUTE = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time/milliseconds-in-minute'</span> );
+</code></pre>
+<h4 id="milliseconds_in_minute">MILLISECONDS_IN_MINUTE</h4>
+<p>Number of milliseconds in a minute.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( MILLISECONDS_IN_MINUTE === <span class="hljs-number">60000</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The value is a generalization and does <strong>not</strong> take into account inaccuracies arising due to complications with time and dates. </li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> roundn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/roundn'</span> );
+<span class="hljs-keyword">var</span> MILLISECONDS_IN_MINUTE = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time/milliseconds-in-minute'</span> );
+
+<span class="hljs-keyword">var</span> ms;
+<span class="hljs-keyword">var</span> m;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mins2ms</span>(<span class="hljs-params"> mins </span>) </span>{
+    <span class="hljs-keyword">return</span> mins * MILLISECONDS_IN_MINUTE;
+}
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    m = roundn( randu()*<span class="hljs-number">20.0</span>, <span class="hljs-number">-2</span> );
+    ms = mins2ms( m );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d mins => %d milliseconds'</span>, m, ms );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

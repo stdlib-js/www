@@ -1,0 +1,45 @@
+<h1 id="cosm1">cosm1</h1>
+<blockquote>
+<p>Compute <code>cos(x) - 1</code>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cosm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cosm1'</span> );
+</code></pre>
+<h4 id="cosm1-x-">cosm1( x )</h4>
+<p>Computes <code>cos(x) - 1</code>, where <code>cos</code> is the <a href="https://stdlib.io/develop/docs/api/@stdlib/math/base/special/cos">cosine</a> of a <code>number</code> (in radians). This function should be used instead of manually calculating <code>cos(x) - 1</code> when the argument is near unity.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float64-pi'</span> );
+
+<span class="hljs-keyword">var</span> v = cosm1( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = cosm1( PI/<span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns ~-0.293</span>
+
+v = cosm1( -PI/<span class="hljs-number">6.0</span> );
+<span class="hljs-comment">// returns ~-0.134</span>
+
+v = cosm1( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/utils/linspace'</span> );
+<span class="hljs-keyword">var</span> PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/float64-pi'</span> );
+<span class="hljs-keyword">var</span> cosm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cosm1'</span> );
+
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span>*PI, <span class="hljs-number">100</span> );
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( cosm1( x[ i ] ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

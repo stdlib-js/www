@@ -1,0 +1,53 @@
+<h1 id="touint32">toUint32</h1>
+<blockquote>
+<p>Convert a signed 32-bit integer to an unsigned 32-bit integer.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> int32ToUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/int32/base/to-uint32'</span> );
+</code></pre>
+<h4 id="int32touint32-x-">int32ToUint32( x )</h4>
+<p>Converts a signed 32-bit integer to an unsigned 32-bit integer.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToInt32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int32'</span> );
+
+<span class="hljs-keyword">var</span> y = int32ToUint32( float64ToInt32( <span class="hljs-number">-1</span> ) );
+<span class="hljs-comment">// returns 4294967295</span>
+
+y = int32ToUint32( float64ToInt32( <span class="hljs-number">3</span> ) );
+<span class="hljs-comment">// returns 3</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> MAX_INT32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/int32-max'</span> );
+<span class="hljs-keyword">var</span> float64ToInt32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int32'</span> );
+<span class="hljs-keyword">var</span> int32ToUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/int32/base/to-uint32'</span> );
+
+<span class="hljs-keyword">var</span> uint32;
+<span class="hljs-keyword">var</span> int32;
+<span class="hljs-keyword">var</span> sign;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-keyword">if</span> ( randu() &#x3C; <span class="hljs-number">0.5</span> ) {
+        sign = <span class="hljs-number">-1.0</span>;
+    } <span class="hljs-keyword">else</span> {
+        sign = <span class="hljs-number">1.0</span>;
+    }
+    <span class="hljs-comment">// Generate a random signed 32-bit integer:</span>
+    int32 = float64ToInt32( sign*randu()*MAX_INT32 );
+
+    <span class="hljs-comment">// Convert the signed integer to an unsigned 32-bit integer:</span>
+    uint32 = int32ToUint32( int32 );
+
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'int32: %d => uint32: %d'</span>, int32, uint32 );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

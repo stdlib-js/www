@@ -1,0 +1,44 @@
+<h1 id="spence">spence</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Spence%27s_function">Spence’s function</a>, also known as the dilogarithm.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> spence = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/spence'</span> );
+</code></pre>
+<h4 id="spence-x-">spence( x )</h4>
+<p>Evaluates <a href="https://en.wikipedia.org/wiki/Spence%27s_function">Spence’s function</a>, which is alternatively known as the dilogarithm.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = spence( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~-1.437</span>
+
+v = spence( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns ~1.645</span>
+
+v = spence( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>For negative numbers, the dilogarithm is <strong>not</strong> defined.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = spence( <span class="hljs-number">-4.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> spence = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/spence'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = randu() * <span class="hljs-number">100.0</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'spence( %d ) = %d'</span>, x, spence( x ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

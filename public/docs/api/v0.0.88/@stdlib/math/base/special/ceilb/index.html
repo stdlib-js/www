@@ -1,0 +1,67 @@
+<h1 id="ceilb">ceilb</h1>
+<blockquote>
+<p>Round a numeric value to the nearest multiple of b^n toward positive infinity.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ceilb = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceilb'</span> );
+</code></pre>
+<h4 id="ceilb-x-n-b-">ceilb( x, n, b )</h4>
+<p>Rounds a <code>numeric</code> value to the nearest multiple of <code>b^n</code> toward positive infinity.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Round a value to 4 decimal places:</span>
+<span class="hljs-keyword">var</span> v = ceilb( <span class="hljs-number">3.141592653589793</span>, <span class="hljs-number">-4</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 3.1416</span>
+
+<span class="hljs-comment">// If n = 0 or b = 1, `ceilb` behaves like `ceil`:</span>
+v = ceilb( <span class="hljs-number">3.141592653589793</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 4.0</span>
+
+<span class="hljs-comment">// Round a value to the nearest multiple of two toward positive infinity:</span>
+v = ceilb( <span class="hljs-number">5.0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 6.0</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Due to rounding error in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point numbers</a>, rounding may <strong>not</strong> be exact. For example,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">0.2</span> + <span class="hljs-number">0.1</span>;
+<span class="hljs-comment">// returns 0.30000000000000004</span>
+
+<span class="hljs-comment">// Should round to 0.3...</span>
+<span class="hljs-keyword">var</span> v = ceilb( x, <span class="hljs-number">-16</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 0.3000000000000001</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+<span class="hljs-keyword">var</span> ceilb = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceilb'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> n;
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span>;
+    n = round( (randu()*<span class="hljs-number">10.0</span>) - <span class="hljs-number">5.0</span> );
+    b = round( randu()*<span class="hljs-number">10.0</span> );
+    v = ceilb( x, n, b );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. %d^%d: %d. Rounded: %d.'</span>, x, b, n, pow( b, n ), v );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,99 @@
+<h1 id="bifurcate">bifurcate</h1>
+<blockquote>
+<p>Split values into two groups.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bifurcate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/bifurcate'</span> );
+</code></pre>
+<h4 id="bifurcate-collection-options-filter-">bifurcate( collection, [options,] filter )</h4>
+<p>Splits values into two groups. If an element in <code>filter</code> is truthy, the corresponding element in <code>collection</code> belongs to the first group; otherwise, the <code>collection</code> element belongs to the second group.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+<span class="hljs-keyword">var</span> filter = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ];
+
+<span class="hljs-keyword">var</span> out = bifurcate( arr, filter );
+<span class="hljs-comment">// returns [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><code>returns</code>: specifies the output format. If the option equals <code>'values'</code>, the function outputs element values. If the option equals <code>'indices'</code>, the function outputs element indices. If the option equals <code>'*'</code>, the function outputs both element indices and values. Default: <code>'values'</code>.</li>
+</ul>
+<p>By default, the function returns element values. To return element indices, set the <code>returns</code> option to <code>'indices'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+<span class="hljs-keyword">var</span> filter = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'indices'</span>
+};
+<span class="hljs-keyword">var</span> out = bifurcate( arr, opts, filter );
+<span class="hljs-comment">// returns [ [ 0, 1, 3 ], [ 2 ] ]</span>
+</code></pre>
+<p>To return index-element pairs, set the <code>returns</code> option to <code>'*'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+<span class="hljs-keyword">var</span> filter = [ <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'*'</span>
+};
+<span class="hljs-keyword">var</span> out = bifurcate( arr, opts, filter );
+<span class="hljs-comment">// returns [ [ [ 0, 'beep' ], [ 1, 'boop' ], [ 3, 'bar' ] ], [ [ 2, 'foo' ] ] ]</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Both <code>collection</code> and <code>filter</code> <strong>must</strong> be collections. A collection may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+<span class="hljs-keyword">var</span> bifurcate = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/bifurcate'</span> );
+
+<span class="hljs-keyword">var</span> vals;
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> f;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> j;
+
+vals = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'woot'</span>, <span class="hljs-string">'woot'</span> ];
+
+<span class="hljs-comment">// Generate a random collection...</span>
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    j = floor( randu()*vals.length );
+    arr[ i ] = vals[ j ];
+}
+
+<span class="hljs-comment">// Randomly assign collection values to a group...</span>
+f = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( arr.length );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    f[ i ] = ( randu() &#x3C; <span class="hljs-number">0.5</span> );
+}
+
+<span class="hljs-comment">// Compute the groups:</span>
+out = bifurcate( arr, f );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

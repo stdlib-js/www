@@ -1,0 +1,139 @@
+<h1 id="try-function">Try Function</h1>
+<blockquote>
+<p>Wrap a function in a try/catch block.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> wrap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/try-function'</span> );
+</code></pre>
+<h4 id="wrap-fcn-">wrap( fcn )</h4>
+<p>Wraps a <code>function</code> in a <code>try/catch</code> block.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'beep boop'</span> );
+}
+
+<span class="hljs-keyword">var</span> f = wrap( fcn );
+
+<span class="hljs-keyword">var</span> out = f();
+<span class="hljs-keyword">if</span> ( out <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
+    <span class="hljs-built_in">console</span>.error( out.message );
+    <span class="hljs-comment">// => 'beep boop'</span>
+}
+</code></pre>
+<p>The returned <code>function</code> has the same signature as the wrapped <code>function</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> a, b, c, d </span>) </span>{
+    <span class="hljs-keyword">var</span> sum = a + b + c + d;
+    <span class="hljs-keyword">if</span> ( sum &#x3C; <span class="hljs-number">10</span> ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'invalid arguments. Arguments must sum to a number greater than or equal to 10.'</span> );
+    }
+    <span class="hljs-keyword">return</span> sum;
+}
+
+<span class="hljs-keyword">var</span> f = wrap( fcn );
+
+<span class="hljs-keyword">var</span> out = f( <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> );
+<span class="hljs-comment">// returns 26</span>
+
+out = f( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;Error></span>
+</code></pre>
+<p>If provided an asynchronous <code>function</code>, the returned <code>function</code> only traps <code>errors</code> which occur during the current event loop tick.</p>
+<!-- run throws: true -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> a, b, clbk </span>) </span>{
+    <span class="hljs-keyword">if</span> ( !a ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'invalid argument.'</span> );
+    }
+    setTimeout( onTimeout, <span class="hljs-number">0</span> );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> ( !b ) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'invalid argument.'</span> );
+        }
+        clbk();
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'beep'</span> );
+}
+
+<span class="hljs-keyword">var</span> f = wrap( fcn );
+
+<span class="hljs-keyword">var</span> out = f( <span class="hljs-literal">null</span>, <span class="hljs-number">5</span>, done );
+<span class="hljs-comment">// returns &#x3C;Error></span>
+
+out = f( <span class="hljs-literal">true</span>, <span class="hljs-literal">null</span>, done );
+<span class="hljs-comment">// returns undefined</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Isolating <code>try/catch</code> blocks as separate wrapped <code>functions</code> prevents a parent scope from permanently entering optimization hell.</li>
+<li>If a function throws a literal, the literal is serialized as a <code>string</code> and returned as an <code>Error</code> object.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- run throws: true -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> wrap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/try-function'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"> str </span>) </span>{
+    <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> str !== <span class="hljs-string">'string'</span> ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>( <span class="hljs-string">'invalid argument. Must provide a string primitive. Value: `'</span> + str + <span class="hljs-string">'`.'</span> );
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'beep '</span> + str;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">boop</span>(<span class="hljs-params"> str, clbk </span>) </span>{
+    <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> str !== <span class="hljs-string">'string'</span> ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>( <span class="hljs-string">'invalid argument. Must provide a string primitive. Value: `'</span> + str + <span class="hljs-string">'`.'</span> );
+    }
+    setTimeout( done, <span class="hljs-number">1000</span> );
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> ( str !== <span class="hljs-string">'beep'</span> ) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'invalid argument. String must equal `beep`. Value: `'</span> + str + <span class="hljs-string">'`.'</span> );
+        }
+        clbk( str + <span class="hljs-string">' boop'</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> str </span>) </span>{
+    <span class="hljs-keyword">if</span> ( str !== <span class="hljs-string">'beep boop'</span> ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'huh?'</span> );
+    }
+}
+
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> f;
+
+<span class="hljs-comment">// Synchronous...</span>
+f = wrap( beep );
+
+out = f( <span class="hljs-string">'boop'</span> );
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// => 'beep boop'</span>
+
+out = f( <span class="hljs-literal">null</span> );
+<span class="hljs-built_in">console</span>.log( out.message );
+<span class="hljs-comment">// => '...'</span>
+
+<span class="hljs-comment">// Asynchronous...</span>
+f = wrap( boop );
+
+out = f( <span class="hljs-string">'beep'</span>, done );
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// => undefined</span>
+
+out = f( <span class="hljs-string">'foo'</span>, done );
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// => undefined</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

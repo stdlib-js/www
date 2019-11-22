@@ -1,0 +1,74 @@
+<h1 id="bitwise-rotation">Bitwise Rotation</h1>
+<blockquote>
+<p>Bitwise rotation to the left.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rotl32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/rotl'</span> );
+</code></pre>
+<h4 id="rotl32-x-shift-">rotl32( x, shift )</h4>
+<p>Performs a bitwise rotation to the left.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryStringUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/to-binary-string'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-number">2147483649</span>;
+<span class="hljs-keyword">var</span> bstr = toBinaryStringUint32( x );
+<span class="hljs-comment">// returns '10000000000000000000000000000001'</span>
+
+<span class="hljs-keyword">var</span> y = rotl32( x, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 1536</span>
+
+bstr = toBinaryStringUint32( y );
+<span class="hljs-comment">// returns '00000000000000000000011000000000'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>If provided a <code>shift</code> equal to <code>0</code>, the function returns the input value.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = rotl32( <span class="hljs-number">3</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 3</span>
+</code></pre>
+</li>
+<li>
+<p>If provided a <code>shift</code> greater than <code>31</code>, the function performs a bitwise rotation based on the <code>5</code> least significant bits of <code>shift</code> (i.e., <code>shift % 32</code>).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shift = <span class="hljs-number">34</span>; <span class="hljs-comment">// 00000000000000000000000000100010</span>
+
+<span class="hljs-keyword">var</span> y = rotl( <span class="hljs-number">1</span>, shift ); <span class="hljs-comment">// 00000000000000000000000000000100</span>
+<span class="hljs-comment">// returns 4</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryStringUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/to-binary-string'</span> );
+<span class="hljs-keyword">var</span> MAX_INT = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math/uint32-max'</span> );
+<span class="hljs-keyword">var</span> rotl32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/rotl'</span> );
+
+<span class="hljs-keyword">var</span> HALF;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = i;
+    y = rotl32( x, <span class="hljs-number">10</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => %s => %s => %d'</span>, x, toBinaryStringUint32( x ), toBinaryStringUint32( y ), y );
+}
+
+HALF = (MAX_INT+<span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = HALF + i;
+    y = rotl32( x, <span class="hljs-number">10</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => %s => %s => %d'</span>, x, toBinaryStringUint32( x ), toBinaryStringUint32( y ), y );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

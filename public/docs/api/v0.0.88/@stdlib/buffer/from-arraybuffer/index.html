@@ -1,0 +1,106 @@
+<h1 id="arraybuffer2buffer">arraybuffer2buffer</h1>
+<blockquote>
+<p>Allocate a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> from an <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer">ArrayBuffer</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arraybuffer2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-arraybuffer'</span> );
+</code></pre>
+<h4 id="arraybuffer2buffer-buf-byteoffset-length-">arraybuffer2buffer( buf[, byteOffset[, length]] )</h4>
+<p>Allocates a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> from an <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> buf = arraybuffer2buffer( ab );
+<span class="hljs-comment">// returns &#x3C;Buffer></span>
+</code></pre>
+<p>By default, the function allocates a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> starting from the first byte of the provided <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a>. To specify an alternative starting index, provide a <code>byteOffset</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> buf = arraybuffer2buffer( ab, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns &#x3C;Buffer></span>
+
+<span class="hljs-keyword">var</span> len = buf.length;
+<span class="hljs-comment">// returns 8</span>
+</code></pre>
+<p>By default, the function allocates a <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor">buffer</a> until the end of the provided <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a>. To allocate a specified number of <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes, provide a <code>length</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">10</span> );
+
+<span class="hljs-keyword">var</span> buf = arraybuffer2buffer( ab, <span class="hljs-number">2</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns &#x3C;Buffer></span>
+
+<span class="hljs-keyword">var</span> len = buf.length;
+<span class="hljs-comment">// returns 4</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<p>The behavior of this function varies across Node.js versions due to changes in the underlying Node.js APIs:</p>
+<ul>
+<li><code>&#x3C;3.0.0</code>: the function copies <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes to a new <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a> instance.</li>
+<li><code>>=3.0.0</code> and <code>&#x3C;5.10.0</code>: if provided a <code>byteOffset</code>, the function copies <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a> bytes to a new <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a> instance; otherwise, the function returns a view of an <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a> without copying the underlying memory.</li>
+<li><code>&#x3C;6.0.0</code>: if provided an empty <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a>, the function returns an empty <a href="https://stdlib.io/develop/docs/api/@stdlib/buffer/ctor"><code>Buffer</code></a> which is <strong>not</strong> an <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a> view.</li>
+<li><code>>=6.0.0</code>: the function returns a view of an <a href="https://stdlib.io/develop/docs/api/@stdlib/array/buffer"><code>ArrayBuffer</code></a> without copying the underlying memory.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
+<span class="hljs-keyword">var</span> arraybuffer2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-arraybuffer'</span> );
+
+<span class="hljs-keyword">var</span> high;
+<span class="hljs-keyword">var</span> view;
+<span class="hljs-keyword">var</span> low;
+<span class="hljs-keyword">var</span> buf;
+<span class="hljs-keyword">var</span> ab;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Allocate an ArrayBuffer:</span>
+ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">64</span> );
+
+<span class="hljs-comment">// Create a Float64 view and set random values:</span>
+view = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( ab );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; view.length; i++ ) {
+    view[ i ] = randu();
+}
+
+<span class="hljs-comment">// Create a new buffer from the ArrayBuffer:</span>
+buf = arraybuffer2buffer( ab );
+
+<span class="hljs-comment">// Read the high and low words for each double:</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; view.length; i++ ) {
+    <span class="hljs-keyword">if</span> ( IS_LITTLE_ENDIAN ) {
+        high = buf.readUInt32LE( (<span class="hljs-number">8</span>*i)+<span class="hljs-number">4</span> );
+        low = buf.readUInt32LE( <span class="hljs-number">8</span>*i );
+    } <span class="hljs-keyword">else</span> {
+        high = buf.readUInt32BE( <span class="hljs-number">8</span>*i );
+        low = buf.readUInt32BE( (<span class="hljs-number">8</span>*i)+<span class="hljs-number">4</span> );
+    }
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Value: %d. High: %d. Low: %d.'</span>, view[ i ], high, low );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

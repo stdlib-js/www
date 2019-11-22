@@ -1,0 +1,59 @@
+<h1 id="enumerablepropertiesin">enumerablePropertiesIn</h1>
+<blockquote>
+<p>Return an array of an object's own and inherited enumerable property names and <a href="https://stdlib.io/develop/docs/api/@stdlib/symbol/ctor">symbols</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> enumerablePropertiesIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/enumerable-properties-in'</span> );
+</code></pre>
+<h4 id="enumerablepropertiesin-obj-">enumerablePropertiesIn( obj )</h4>
+<p>Returns an <code>array</code> of an object's own and inherited enumerable property names and <a href="https://stdlib.io/develop/docs/api/@stdlib/symbol/ctor">symbols</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'a'</span>
+};
+
+<span class="hljs-keyword">var</span> props = enumerablePropertiesIn( obj );
+<span class="hljs-comment">// returns [ 'a' ]</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+<span class="hljs-keyword">var</span> enumerablePropertiesIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/enumerable-properties-in'</span> );
+
+<span class="hljs-keyword">var</span> hasSymbols;
+<span class="hljs-keyword">var</span> props;
+<span class="hljs-keyword">var</span> obj;
+
+hasSymbols = hasSymbolSupport();
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.a = <span class="hljs-string">'b'</span>;
+    <span class="hljs-keyword">if</span> ( hasSymbols ) {
+        <span class="hljs-keyword">this</span>[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'a'</span> ) ] = <span class="hljs-string">'b'</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+Foo.prototype.foo = <span class="hljs-string">'bar'</span>;
+<span class="hljs-keyword">if</span> ( hasSymbols ) {
+    Foo.prototype[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'foo'</span> ) ] = <span class="hljs-string">'bar'</span>;
+}
+
+obj = <span class="hljs-keyword">new</span> Foo();
+props = enumerablePropertiesIn( obj );
+
+<span class="hljs-built_in">console</span>.log( props );
+<span class="hljs-comment">// e.g., => [ 'a', 'foo', ... ]</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

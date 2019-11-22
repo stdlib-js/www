@@ -1,0 +1,337 @@
+<h1 id="inmaprightasync">inmapRightAsync</h1>
+<blockquote>
+<p>Invoke a function for each element in a collection and update the collection in-place, iterating from right to left.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inmapRightAsync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/inmap-right'</span> );
+</code></pre>
+<h4 id="inmaprightasync-collection-options-fcn-done-">inmapRightAsync( collection, [options,] fcn, done )</h4>
+<p>Invokes a function for each element in a <code>collection</code> and updates the <code>collection</code> in-place, iterating from right to left.</p>
+<!-- eslint-disable no-use-before-define -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, index, next </span>) </span>{
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log( value );
+        next( <span class="hljs-literal">null</span>, value*index );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( collection === arr );
+    <span class="hljs-built_in">console</span>.log( collection );
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">3000</span> ];
+
+inmapRightAsync( arr, fcn, done );
+<span class="hljs-comment">/*
+    1000
+    2500
+    3000
+    true
+    [ 0, 2500, 6000 ]
+*/</span>
+</code></pre>
+<p>The <code>next</code> callback accepts two arguments: <code>error</code> and <code>result</code>. The second argument to the <code>next</code> callback is used to update the <code>collection</code> element for the corresponding collection <code>index</code>, thus mutating the input <code>collection</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, index, next </span>) </span>{
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, <span class="hljs-string">'beep: '</span>+index );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( collection );
+    <span class="hljs-comment">// => [ 'beep: 0', 'beep: 1', 'beep: 2' ]</span>
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">3000</span> ];
+
+inmapRightAsync( arr, fcn, done );
+</code></pre>
+<p>If the <code>next</code> callback is called with an <code>error</code> argument, the input <code>collection</code> may be <strong>partially</strong> mutated.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, index, next </span>) </span>{
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> ( index === <span class="hljs-number">1</span> ) {
+            <span class="hljs-keyword">return</span> next( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'boop'</span> ) );
+        }
+        next( <span class="hljs-literal">null</span>, <span class="hljs-string">'beep: '</span>+index );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-comment">// Ignore error...</span>
+    }
+    <span class="hljs-built_in">console</span>.log( collection );
+    <span class="hljs-comment">// => [ 1000, 2000, 'beep: 2' ]</span>
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2000</span>, <span class="hljs-number">3000</span> ];
+
+inmapRightAsync( arr, fcn, done );
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><code>limit</code>: the maximum number of pending invocations at any one time. Default: <code>infinity</code>.</li>
+<li><code>series</code>: <code>boolean</code> indicating whether to sequentially invoke <code>fcn</code> for each <code>collection</code> element. If <code>true</code>, the function sets <code>options.limit=1</code>. Default: <code>false</code>.</li>
+<li><code>thisArg</code>: the execution context for <code>fcn</code>.</li>
+</ul>
+<p>By default, all elements are processed concurrently, which means that the function does <strong>not</strong> guarantee completion order. To process each <code>collection</code> element sequentially, set the <code>series</code> option to <code>true</code>.</p>
+<!-- eslint-disable no-use-before-define -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, index, next </span>) </span>{
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log( value );
+        next( <span class="hljs-literal">null</span>, value*index );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( collection === arr );
+    <span class="hljs-built_in">console</span>.log( collection );
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">3000</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'series'</span>: <span class="hljs-literal">true</span>
+};
+
+inmapRightAsync( arr, opts, fcn, done );
+<span class="hljs-comment">/* =>
+    3000
+    2500
+    1000
+    true
+    [ 0, 2500, 6000 ]
+*/</span>
+</code></pre>
+<p>To limit the maximum number of pending function invocations, set the <code>limit</code> option.</p>
+<!-- eslint-disable no-use-before-define -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, index, next </span>) </span>{
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log( value );
+        next( <span class="hljs-literal">null</span>, value*index );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( collection === arr );
+    <span class="hljs-built_in">console</span>.log( collection );
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">3000</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'limit'</span>: <span class="hljs-number">2</span>
+};
+
+inmapRightAsync( arr, opts, fcn, done );
+<span class="hljs-comment">/* =>
+    2500
+    3000
+    1000
+    true,
+    [ 0, 2500, 6000 ]
+*/</span>
+</code></pre>
+<p>To set the execution context of <code>fcn</code>, set the <code>thisArg</code> option.</p>
+<!-- eslint-disable no-use-before-define -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, index, next </span>) </span>{
+    <span class="hljs-keyword">this</span>.count += <span class="hljs-number">1</span>;
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        next( <span class="hljs-literal">null</span>, value*index );
+    }
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">3000</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'thisArg'</span>: context
+};
+
+inmapRightAsync( arr, opts, fcn, done );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( collection === arr );
+    <span class="hljs-comment">// => true</span>
+
+    <span class="hljs-built_in">console</span>.log( collection );
+    <span class="hljs-comment">// => [ 0, 2500, 6000 ]</span>
+
+    <span class="hljs-built_in">console</span>.log( context.count );
+    <span class="hljs-comment">// => 3</span>
+}
+</code></pre>
+<p>When invoked, <code>fcn</code> is provided a maximum of four arguments:</p>
+<ul>
+<li><code>value</code>: collection value.</li>
+<li><code>index</code>: collection index.</li>
+<li><code>collection</code>: the input <code>collection</code>.</li>
+<li><code>next</code>: a callback which should be called once <code>fcn</code> has finished processing a collection <code>value</code>.</li>
+</ul>
+<p>The actual number of provided arguments depends on function <code>length</code>. If <code>fcn</code> accepts two arguments, <code>fcn</code> is provided <code>value</code> and <code>next</code>. If <code>fcn</code> accepts three arguments, <code>fcn</code> is provided <code>value</code>, <code>index</code>, and <code>next</code>. For every other <code>fcn</code> signature, <code>fcn</code> is provided all four arguments.</p>
+<!-- eslint-disable no-use-before-define -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, i, collection, next </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'collection: %s. %d: %d'</span>, collection.join( <span class="hljs-string">','</span> ), i, value );
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log( value );
+        next( <span class="hljs-literal">null</span>, value*i );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( collection === arr );
+    <span class="hljs-built_in">console</span>.log( collection );
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">3000</span> ];
+
+inmapRightAsync( arr, fcn, done );
+<span class="hljs-comment">/* =>
+    collection: 3000,2500,1000. 2: 3000
+    collection: 3000,2500,1000. 1: 2500
+    collection: 3000,2500,1000. 0: 1000
+    1000
+    2500
+    3000
+    true
+    [ 0, 2500, 6000 ]
+*/</span>
+</code></pre>
+<h4 id="inmaprightasyncfactory-options-fcn-">inmapRightAsync.factory( [options,] fcn )</h4>
+<p>Returns a <code>function</code> which invokes a function once for each element in a <code>collection</code>, iterating from right to left.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> value, index, next </span>) </span>{
+    setTimeout( onTimeout, value );
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log( value );
+        next( <span class="hljs-literal">null</span>, value*index );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, collection </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( collection );
+}
+
+<span class="hljs-keyword">var</span> f = inmapRightAsync.factory( fcn );
+
+<span class="hljs-keyword">var</span> arr1 = [ <span class="hljs-number">1000</span>, <span class="hljs-number">2500</span>, <span class="hljs-number">3000</span> ];
+
+f( arr1, done );
+<span class="hljs-comment">/* =>
+    1000
+    2500
+    3000
+    [ 0, 2500, 6000 ]
+*/</span>
+
+<span class="hljs-keyword">var</span> arr2 = [ <span class="hljs-number">100</span>, <span class="hljs-number">250</span>, <span class="hljs-number">300</span> ];
+
+f( arr2, done );
+<span class="hljs-comment">/* =>
+    100
+    250
+    300
+    [ 0, 250, 600 ]
+*/</span>
+</code></pre>
+<p>The function accepts the same <code>options</code> as <code>inmapRightAsync()</code>.</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li>
+<li>If a provided function calls the <code>next</code> callback with a truthy <code>error</code> argument, the function suspends execution and immediately calls the <code>done</code> callback for subsequent <code>error</code> handling.</li>
+<li>The function invokes the <code>done</code> callback with the input <code>collection</code> provided as the second argument.</li>
+<li>The function modifies <code>collection</code> elements in-place.</li>
+<li>The function does <strong>not</strong> support dynamic <code>collection</code> resizing.</li>
+<li>The function does <strong>not</strong> skip <code>undefined</code> elements.</li>
+<li><strong>Neither</strong> <code>inmapRightAsync</code> nor the function returned by the <code>factory</code> method <strong>guarantee</strong> asynchronous execution. To guarantee asynchrony, wrap the <code>done</code> callback in a function which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> resolve = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).resolve;
+<span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-file'</span> );
+<span class="hljs-keyword">var</span> inmapRightAsync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/inmap-right'</span> );
+
+<span class="hljs-keyword">var</span> files = [
+    resolve( __dirname, <span class="hljs-string">'package.json'</span> ),
+    resolve( __dirname, <span class="hljs-string">'README.md'</span> )
+];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span>(<span class="hljs-params"> error, results </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( results );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">read</span>(<span class="hljs-params"> file, next </span>) </span>{
+    <span class="hljs-keyword">var</span> opts = {
+        <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>
+    };
+    readFile( file, opts, onFile );
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onFile</span>(<span class="hljs-params"> error, data </span>) </span>{
+        <span class="hljs-keyword">if</span> ( error ) {
+            error = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'unable to read file: '</span>+file );
+            <span class="hljs-keyword">return</span> next( error );
+        }
+        next( <span class="hljs-literal">null</span>, data );
+    }
+}
+
+inmapRightAsync( files, read, done );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

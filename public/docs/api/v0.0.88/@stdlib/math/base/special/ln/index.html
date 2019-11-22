@@ -1,0 +1,48 @@
+<h1 id="natural-logarithm">Natural Logarithm</h1>
+<blockquote>
+<p>Evaluate the <a href="https://en.wikipedia.org/wiki/Natural_logarithm">natural logarithm</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ln = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ln'</span> );
+</code></pre>
+<h4 id="ln-x-">ln( x )</h4>
+<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Natural_logarithm">natural logarithm</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ln( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns ~1.386</span>
+
+v = ln( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns -Infinity</span>
+
+v = ln( <span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns Infinity</span>
+
+v = ln( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>For negative numbers, the <a href="https://en.wikipedia.org/wiki/Natural_logarithm">natural logarithm</a> is <strong>not</strong> defined.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ln( <span class="hljs-number">-4.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> ln = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ln'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = round( randu() * <span class="hljs-number">100.0</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'ln(%d) = %d'</span>, x, ln( x ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

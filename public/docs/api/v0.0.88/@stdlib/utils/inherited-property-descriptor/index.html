@@ -1,0 +1,91 @@
+<h1 id="inheritedpropertydescriptor">inheritedPropertyDescriptor</h1>
+<blockquote>
+<p>Return a property descriptor for an object's inherited property.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<!-- eslint-disable id-length -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inheritedPropertyDescriptor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherited-property-descriptor'</span> );
+</code></pre>
+<h4 id="inheritedpropertydescriptor-obj-property-level-">inheritedPropertyDescriptor( obj, property[, level] )</h4>
+<p>Returns a property descriptor for an object's inherited property.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+Foo.prototype.bar = <span class="hljs-string">'foo'</span>;
+
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> Foo();
+
+<span class="hljs-keyword">var</span> desc = inheritedPropertyDescriptor( obj, <span class="hljs-string">'bar'</span> );
+<span class="hljs-comment">// returns {'configurable':true,'enumerable':true,'writable':true,'value':'foo'}</span>
+</code></pre>
+<p>By default, the function walks an object's entire prototype chain. To limit the inheritance level, provide a <code>level</code> argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Bar</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+Bar.prototype.beep = <span class="hljs-string">'boop'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    Bar.call( <span class="hljs-keyword">this</span> );
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+inherit( Foo, Bar );
+
+<span class="hljs-keyword">var</span> f = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> desc = inheritedPropertyDescriptor( f, <span class="hljs-string">'beep'</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns null</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>This function differs from the built-in <code>Object.getOwnPropertyDescriptor()</code> as follows:</p>
+<ul>
+<li>If provided <code>null</code> or <code>undefined</code>, the function returns <code>null</code>, rather than throwing an error.</li>
+<li>If an object does not have a provided inherited property, the function returns <code>null</code>, rather than <code>undefined</code>.</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable id-length -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+<span class="hljs-keyword">var</span> inheritedPropertyDescriptor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherited-property-descriptor'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.beep = <span class="hljs-string">'boop'</span>;
+    <span class="hljs-keyword">this</span>.a = {
+        <span class="hljs-string">'b'</span>: <span class="hljs-string">'c'</span>
+    };
+    defineProperty( <span class="hljs-keyword">this</span>, <span class="hljs-string">'baz'</span>, {
+        <span class="hljs-string">'value'</span>: <span class="hljs-string">'qux'</span>,
+        <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'writable'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'enumerable'</span>: <span class="hljs-literal">false</span>
+    });
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+Foo.prototype.foo = [ <span class="hljs-string">'bar'</span> ];
+
+<span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> desc = inheritedPropertyDescriptor( obj, <span class="hljs-string">'foo'</span> );
+
+<span class="hljs-built_in">console</span>.log( desc );
+<span class="hljs-comment">// => {'configurable':true,'enumerable':true,'writable':true,'value':['bar']}</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,151 @@
+<h1 id="reduceright">reduceRight</h1>
+<blockquote>
+<p>Apply a function against an accumulator and each element in a collection and return the accumulated result, iterating from right to left.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reduceRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce-right'</span> );
+</code></pre>
+<h4 id="reduceright-collection-initial-reducer-thisarg--">reduceRight( collection, initial, reducer[, thisArg ] )</h4>
+<p>Applies a <code>function</code> against an accumulator and each element in a <code>collection</code> and returns the accumulated result, iterating from right to left.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
+    <span class="hljs-keyword">return</span> accumulator + value;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = reduceRight( arr, <span class="hljs-number">0</span>, sum );
+<span class="hljs-comment">// returns 10</span>
+</code></pre>
+<p>The <code>reducer</code> function is provided four arguments:</p>
+<ul>
+<li><code>accumulator</code>: accumulated value</li>
+<li><code>value</code>: collection element</li>
+<li><code>index</code>: collection index</li>
+<li><code>collection</code>: input collection</li>
+</ul>
+<p>Basic support for dynamic collections is provided. Note, however, that index incrementation is <strong>not</strong> guaranteed to be monotonically <strong>decreasing</strong>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum1</span>(<span class="hljs-params"> accumulator, value, index, collection </span>) </span>{
+    i += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> ( index === <span class="hljs-number">0</span> &#x26;&#x26; collection.length &#x3C; <span class="hljs-number">10</span> ) {
+        collection.unshift( i+<span class="hljs-number">1</span> );
+    }
+    <span class="hljs-keyword">return</span> accumulator + value;
+}
+
+<span class="hljs-keyword">var</span> out = reduceRight( arr, <span class="hljs-number">0</span>, sum1 );
+<span class="hljs-comment">// returns 55</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum2</span>(<span class="hljs-params"> accumulator, value, index, collection </span>) </span>{
+    collection.pop();
+    <span class="hljs-keyword">return</span> accumulator + value;
+}
+
+arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+out = reduceRight( arr, <span class="hljs-number">0</span>, sum2 );
+<span class="hljs-comment">// returns 6</span>
+</code></pre>
+<p>To set the function execution context, provide a <code>thisArg</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
+    <span class="hljs-keyword">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> accumulator + value;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> out = reduceRight( arr, <span class="hljs-number">0</span>, sum, context );
+<span class="hljs-comment">// returns 10</span>
+
+<span class="hljs-keyword">var</span> mean = out / context.count;
+<span class="hljs-comment">// returns 2.5</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</p>
+</li>
+<li>
+<p>The function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight"><code>Array.prototype.reduceRight</code></a> in the following ways:</p>
+<ul>
+<li>
+<p>The function <strong>requires</strong> an <code>initial</code> value for the <code>accumulator</code>. The <code>initial</code> value is used during the first invocation of the <code>reducer</code> function.</p>
+</li>
+<li>
+<p>The function does <strong>not</strong> skip the first element in the <code>collection</code>.</p>
+</li>
+<li>
+<p>The function does <strong>not</strong> skip <code>undefined</code> elements.</p>
+<!-- eslint-disable no-sparse-arrays, stdlib/doctest-marker -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> accumulator, value, index </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, index, value );
+    <span class="hljs-keyword">return</span> accumulator;
+}
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, , , <span class="hljs-number">4</span> ];
+
+<span class="hljs-keyword">var</span> out = reduceRight( arr, <span class="hljs-number">0</span>, log );
+<span class="hljs-comment">/* =>
+    3: 4
+    2: undefined
+    1: undefined
+    0: 1
+*/</span>
+</code></pre>
+</li>
+<li>
+<p>The function provides limited support for dynamic collections (i.e., collections whose <code>length</code> changes during execution).</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reduceRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce-right'</span> );
+
+<span class="hljs-keyword">var</span> arr;
+<span class="hljs-keyword">var</span> s;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> acc, value </span>) </span>{
+    <span class="hljs-keyword">return</span> acc + value;
+}
+
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">1000</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    arr[ i ] = i;
+}
+
+s = reduceRight( arr, <span class="hljs-number">0</span>, sum );
+<span class="hljs-built_in">console</span>.log( s );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

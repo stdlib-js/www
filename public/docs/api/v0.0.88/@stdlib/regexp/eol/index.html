@@ -1,0 +1,54 @@
+<h1 id="eol">EOL</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/Newline">newline</a> character sequence.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_EOL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/eol'</span> );
+</code></pre>
+<h4 id="re_eol">RE_EOL</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/Newline">newline</a> character sequence. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = RE_EOL.test( <span class="hljs-string">'\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_EOL.test( <span class="hljs-string">'\r\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_EOL.test( <span class="hljs-string">'\\r\\n'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_EOL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/eol'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> str;
+
+bool = RE_EOL.test( <span class="hljs-string">'\r\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_EOL.test( <span class="hljs-string">'\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_EOL.test( <span class="hljs-string">'\r'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_EOL.test( <span class="hljs-string">'\\r\\n'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = RE_EOL.test( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+
+str = <span class="hljs-string">'This is\na newline\r\ndelimited string.'</span>;
+
+<span class="hljs-keyword">var</span> arr = str.split( RE_EOL );
+<span class="hljs-comment">// returns [ 'This is', 'a newline', 'delimited string.' ]</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

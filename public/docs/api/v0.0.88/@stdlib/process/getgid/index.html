@@ -1,0 +1,34 @@
+<h1 id="getgid">getgid</h1>
+<blockquote>
+<p>Return the numeric group identity of the calling process.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getgid = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/getgid'</span> );
+</code></pre>
+<h4 id="getgid-1">getgid()</h4>
+<p>Returns the numeric group identity of the calling process.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> id = getgid();
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The function <strong>only</strong> returns an <code>integer</code> group identity on POSIX platforms. For all other platforms (e.g., Windows and Android), the function returns <code>null</code>. </li>
+<li>See <a href="http://man7.org/linux/man-pages/man2/getgid.2.html">getgid(2)</a>.</li>
+</ul>
+</section>
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getgid = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/getgid'</span> );
+
+<span class="hljs-keyword">var</span> gid = getgid();
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'gid: %d'</span>, gid );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

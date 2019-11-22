@@ -1,0 +1,166 @@
+<h1 id="constants">Constants</h1>
+<blockquote>
+<p>Mathematical constants.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constants = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math'</span> );
+</code></pre>
+<h4 id="constants-1">constants</h4>
+<p>Mathematical constants.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> c = constants;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<!-- <toc pattern="*" ignore="float32-*" ignore="float16-*" ignore="+(uint|int)*" ignore="complex*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-apery"><code>APERY</code></a></span><span class="delimiter">: </span><span class="description">Apéry's constant.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-catalan"><code>CATALAN</code></a></span><span class="delimiter">: </span><span class="description">Catalan's constant.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-cbrt-eps"><code>CBRT_EPS</code></a></span><span class="delimiter">: </span><span class="description">cube root of double-precision floating-point epsilon.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-e"><code>E</code></a></span><span class="delimiter">: </span><span class="description">the mathematical constant <em>e</em>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-eps"><code>EPS</code></a></span><span class="delimiter">: </span><span class="description">difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-eulergamma"><code>EULERGAMMA</code></a></span><span class="delimiter">: </span><span class="description">the Euler-Mascheroni constant.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-exponent-bias"><code>FLOAT64_EXPONENT_BIAS</code></a></span><span class="delimiter">: </span><span class="description">the bias of a double-precision floating-point number's exponent.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-fourth-pi"><code>FOURTH_PI</code></a></span><span class="delimiter">: </span><span class="description">one fourth times the mathematical constant π.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-fourth-root-eps"><code>FOURTH_ROOT_EPS</code></a></span><span class="delimiter">: </span><span class="description">fourth root of double-precision floating-point epsilon.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-gamma-lanczos-g"><code>GAMMA_LANCZOS_G</code></a></span><span class="delimiter">: </span><span class="description">arbitrary constant <code>g</code> to be used in Lanczos approximation functions.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-glaisher-kinkelin"><code>GLAISHER</code></a></span><span class="delimiter">: </span><span class="description">Glaisher-Kinkelin constant.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-half-ln-two"><code>HALF_LN2</code></a></span><span class="delimiter">: </span><span class="description">one half times the natural logarithm of 2.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-half-pi"><code>HALF_PI</code></a></span><span class="delimiter">: </span><span class="description">one half times the mathematical constant π.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-high-word-exponent-mask"><code>FLOAT64_HIGH_WORD_EXPONENT_MASK</code></a></span><span class="delimiter">: </span><span class="description">high word mask for the exponent of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-high-word-significand-mask"><code>FLOAT64_HIGH_WORD_SIGNIFICAND_MASK</code></a></span><span class="delimiter">: </span><span class="description">high word mask for the significand of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-ln-half"><code>LN_HALF</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of <code>1/2</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-ln-pi"><code>LN_PI</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of the mathematical constant π.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-ln-sqrt-two-pi"><code>LN_SQRT_TWO_PI</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of the square root of 2π.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-ln-ten"><code>LN10</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of <code>10</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-ln-two"><code>LN2</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of <code>2</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-ln-two-pi"><code>LN_TWO_PI</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of <code>2π</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-log10-e"><code>LOG10E</code></a></span><span class="delimiter">: </span><span class="description">base 10 logarithm of the mathematical constant <em>e</em>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-log2-e"><code>LOG2E</code></a></span><span class="delimiter">: </span><span class="description">base 2 logarithm of the mathematical constant <em>e</em>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max"><code>FLOAT64_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-base10-exponent"><code>FLOAT64_MAX_BASE10_EXPONENT</code></a></span><span class="delimiter">: </span><span class="description">the maximum base 10 exponent for a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-base10-exponent-subnormal"><code>FLOAT64_MAX_BASE10_EXPONENT_SUBNORMAL</code></a></span><span class="delimiter">: </span><span class="description">the maximum base 10 exponent for a subnormal double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-base2-exponent"><code>FLOAT64_MAX_BASE2_EXPONENT</code></a></span><span class="delimiter">: </span><span class="description">the maximum biased base 2 exponent for a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-base2-exponent-subnormal"><code>FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL</code></a></span><span class="delimiter">: </span><span class="description">the maximum biased base 2 exponent for a subnormal double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-ln"><code>FLOAT64_MAX_LN</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of the maximum double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-safe-fibonacci"><code>FLOAT64_MAX_SAFE_FIBONACCI</code></a></span><span class="delimiter">: </span><span class="description">maximum safe Fibonacci number when stored in double-precision floating-point format.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-safe-integer"><code>FLOAT64_MAX_SAFE_INTEGER</code></a></span><span class="delimiter">: </span><span class="description">maximum safe double-precision floating-point integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-safe-lucas"><code>FLOAT64_MAX_SAFE_LUCAS</code></a></span><span class="delimiter">: </span><span class="description">maximum safe Lucas number when stored in double-precision floating-point format.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-safe-nth-fibonacci"><code>FLOAT64_MAX_SAFE_NTH_FIBONACCI</code></a></span><span class="delimiter">: </span><span class="description">maximum safe nth Fibonacci number when stored in double-precision floating-point format.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-max-safe-nth-lucas"><code>FLOAT64_MAX_SAFE_NTH_LUCAS</code></a></span><span class="delimiter">: </span><span class="description">maximum safe nth Lucas number when stored in double-precision floating-point format.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-min-base10-exponent"><code>FLOAT64_MIN_BASE10_EXPONENT</code></a></span><span class="delimiter">: </span><span class="description">the minimum base 10 exponent for a normal double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-min-base10-exponent-subnormal"><code>FLOAT64_MIN_BASE10_EXPONENT_SUBNORMAL</code></a></span><span class="delimiter">: </span><span class="description">the minimum base 10 exponent for a subnormal double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-min-base2-exponent"><code>FLOAT64_MIN_BASE2_EXPONENT</code></a></span><span class="delimiter">: </span><span class="description">the minimum biased base 2 exponent for a normal double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-min-base2-exponent-subnormal"><code>FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL</code></a></span><span class="delimiter">: </span><span class="description">the minimum biased base 2 exponent for a subnormal double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-min-ln"><code>FLOAT64_MIN_LN</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm of the smallest <strong>normalized</strong> double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-min-safe-integer"><code>FLOAT64_MIN_SAFE_INTEGER</code></a></span><span class="delimiter">: </span><span class="description">minimum safe double-precision floating-point integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-ninf"><code>NINF</code></a></span><span class="delimiter">: </span><span class="description">double-precision floating-point negative infinity.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-num-bytes"><code>FLOAT64_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-phi"><code>PHI</code></a></span><span class="delimiter">: </span><span class="description">golden ratio.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-pi"><code>PI</code></a></span><span class="delimiter">: </span><span class="description">the mathematical constant π.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-pi-squared"><code>PI_SQUARED</code></a></span><span class="delimiter">: </span><span class="description">π².</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-pinf"><code>PINF</code></a></span><span class="delimiter">: </span><span class="description">double-precision floating-point positive infinity.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-precision"><code>FLOAT64_PRECISION</code></a></span><span class="delimiter">: </span><span class="description">effective number of bits in the significand of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-smallest-normal"><code>FLOAT64_SMALLEST_NORMAL</code></a></span><span class="delimiter">: </span><span class="description">smallest positive <strong>normalized</strong> double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-smallest-subnormal"><code>FLOAT64_SMALLEST_SUBNORMAL</code></a></span><span class="delimiter">: </span><span class="description">smallest positive <strong>denormalized</strong> double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-eps"><code>SQRT_EPS</code></a></span><span class="delimiter">: </span><span class="description">square root of double-precision floating-point epsilon.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-half"><code>SQRT_HALF</code></a></span><span class="delimiter">: </span><span class="description">square root of <code>1/2</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-half-pi"><code>SQRT_HALF_PI</code></a></span><span class="delimiter">: </span><span class="description">square root of the mathematical constant π divided by 2.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-phi"><code>SQRT_PHI</code></a></span><span class="delimiter">: </span><span class="description">square root of the Golden ratio (φ).</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-pi"><code>SQRT_PI</code></a></span><span class="delimiter">: </span><span class="description">square root of the mathematical constant π.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-three"><code>SQRT_THREE</code></a></span><span class="delimiter">: </span><span class="description">square root of <code>3</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-two"><code>SQRT_TWO</code></a></span><span class="delimiter">: </span><span class="description">square root of <code>2</code>.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-sqrt-two-pi"><code>SQRT_TWO_PI</code></a></span><span class="delimiter">: </span><span class="description">square root of the mathematical constant π times 2.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float64-two-pi"><code>TWO_PI</code></a></span><span class="delimiter">: </span><span class="description">the mathematical constant π times 2.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<h4 id="single-precsision-floating-point-constants">Single-Precsision Floating-Point Constants</h4>
+<!-- <toc pattern="float32-*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-cbrt-eps"><code>FLOAT32_CBRT_EPS</code></a></span><span class="delimiter">: </span><span class="description">cube root of single-precision floating-point epsilon.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-eps"><code>FLOAT32_EPS</code></a></span><span class="delimiter">: </span><span class="description">difference between one and the smallest value greater than one that can be represented as a single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-exponent-bias"><code>FLOAT32_EXPONENT_BIAS</code></a></span><span class="delimiter">: </span><span class="description">the bias of a single-precision floating-point number's exponent.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-max"><code>FLOAT32_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-max-safe-integer"><code>FLOAT32_MAX_SAFE_INTEGER</code></a></span><span class="delimiter">: </span><span class="description">maximum safe single-precision floating-point integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-min-safe-integer"><code>FLOAT32_MIN_SAFE_INTEGER</code></a></span><span class="delimiter">: </span><span class="description">minimum safe single-precision floating-point integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-ninf"><code>FLOAT32_NINF</code></a></span><span class="delimiter">: </span><span class="description">single-precision floating-point negative infinity.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-num-bytes"><code>FLOAT32_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-pinf"><code>FLOAT32_PINF</code></a></span><span class="delimiter">: </span><span class="description">single-precision floating-point positive infinity.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-precision"><code>FLOAT32_PRECISION</code></a></span><span class="delimiter">: </span><span class="description">effective number of bits in the significand of a single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-smallest-normal"><code>FLOAT32_SMALLEST_NORMAL</code></a></span><span class="delimiter">: </span><span class="description">smallest positive <strong>normalized</strong> single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-smallest-subnormal"><code>FLOAT32_SMALLEST_SUBNORMAL</code></a></span><span class="delimiter">: </span><span class="description">smallest positive <strong>denormalized</strong> single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float32-sqrt-eps"><code>FLOAT32_SQRT_EPS</code></a></span><span class="delimiter">: </span><span class="description">square root of single-precision floating-point epsilon.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<h4 id="half-precsision-floating-point-constants">Half-Precsision Floating-Point Constants</h4>
+<!-- <toc pattern="float16-*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-cbrt-eps"><code>FLOAT16_CBRT_EPS</code></a></span><span class="delimiter">: </span><span class="description">cube root of half-precision floating-point epsilon.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-eps"><code>FLOAT16_EPS</code></a></span><span class="delimiter">: </span><span class="description">difference between one and the smallest value greater than one that can be represented as a half-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-exponent-bias"><code>FLOAT16_EXPONENT_BIAS</code></a></span><span class="delimiter">: </span><span class="description">the bias of a half-precision floating-point number's exponent.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-max"><code>FLOAT16_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum half-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-max-safe-integer"><code>FLOAT16_MAX_SAFE_INTEGER</code></a></span><span class="delimiter">: </span><span class="description">maximum safe half-precision floating-point integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-min-safe-integer"><code>FLOAT16_MIN_SAFE_INTEGER</code></a></span><span class="delimiter">: </span><span class="description">minimum safe half-precision floating-point integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-ninf"><code>FLOAT16_NINF</code></a></span><span class="delimiter">: </span><span class="description">half-precision floating-point negative infinity.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-num-bytes"><code>FLOAT16_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a half-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-pinf"><code>FLOAT16_PINF</code></a></span><span class="delimiter">: </span><span class="description">half-precision floating-point positive infinity.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-precision"><code>FLOAT16_PRECISION</code></a></span><span class="delimiter">: </span><span class="description">effective number of bits in the significand of a half-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-smallest-normal"><code>FLOAT16_SMALLEST_NORMAL</code></a></span><span class="delimiter">: </span><span class="description">smallest positive <strong>normalized</strong> half-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-smallest-subnormal"><code>FLOAT16_SMALLEST_SUBNORMAL</code></a></span><span class="delimiter">: </span><span class="description">smallest positive <strong>denormalized</strong> half-precision floating-point number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/float16-sqrt-eps"><code>FLOAT16_SQRT_EPS</code></a></span><span class="delimiter">: </span><span class="description">square root of half-precision floating-point epsilon.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<h4 id="signed-and-unsigned-integer-constants">Signed and Unsigned Integer Constants</h4>
+<!-- <toc pattern="+(uint|int)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int16-max"><code>INT16_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum signed 16-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int16-min"><code>INT16_MIN</code></a></span><span class="delimiter">: </span><span class="description">minimum signed 16-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int16-num-bytes"><code>INT16_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a 16-bit signed integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int32-max"><code>INT32_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum signed 32-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int32-min"><code>INT32_MIN</code></a></span><span class="delimiter">: </span><span class="description">minimum signed 32-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int32-num-bytes"><code>INT32_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a 32-bit signed integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int8-max"><code>INT8_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum signed 8-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int8-min"><code>INT8_MIN</code></a></span><span class="delimiter">: </span><span class="description">minimum signed 8-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/int8-num-bytes"><code>INT8_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of an 8-bit signed integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/uint16-max"><code>UINT16_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum unsigned 16-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/uint16-num-bytes"><code>UINT16_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a 16-bit unsigned integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/uint32-max"><code>UINT32_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum unsigned 32-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/uint32-num-bytes"><code>UINT32_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a 32-bit unsigned integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/uint8-max"><code>UINT8_MAX</code></a></span><span class="delimiter">: </span><span class="description">maximum unsigned 8-bit integer.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/uint8-num-bytes"><code>UINT8_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of an 8-bit unsigned integer.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<h4 id="complex-number-constants">Complex Number Constants</h4>
+<!-- <toc pattern="complex*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/complex128-num-bytes"><code>COMPLEX128_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a 128-bit complex number.</span></li>
+<li><span class="signature"><a href="https://stdlib.io/develop/docs/api/@stdlib/constants/math/complex64-num-bytes"><code>COMPLEX64_NUM_BYTES</code></a></span><span class="delimiter">: </span><span class="description">size (in bytes) of a 64-bit complex number.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> constants = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/math'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( constants ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->
