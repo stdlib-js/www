@@ -23,6 +23,7 @@
 // MODULES //
 
 var join = require( 'path' ).join;
+var mkdir = require( 'fs' ).mkdirSync;
 var flattenObject = require( '@stdlib/utils/flatten-object' );
 var merge = require( '@stdlib/utils/merge' );
 var objectKeys = require( '@stdlib/utils/keys' );
@@ -84,6 +85,9 @@ function main() {
 		}
 	}
 	// Write the database to file:
+	if ( !exists( dpath ) ) {
+		mkdir( dpath );
+	}
 	writeFile( join( dpath, OUTPUT ), JSON.stringify( db ) );
 }
 

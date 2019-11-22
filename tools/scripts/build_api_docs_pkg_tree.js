@@ -23,9 +23,16 @@
 // MODULES //
 
 var join = require( 'path' ).join;
+var mkdir = require( 'fs' ).mkdirSync;
+var exists = require( '@stdlib/fs/exists' ).sync;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var pkgTree = require( '@stdlib/_tools/pkgs/tree' ).sync;
 var documentationPath = require( './api_docs_path.js' );
+
+
+// VARIABLES //
+
+var OUTPUT = 'package_tree.json';
 
 
 // MAIN //
@@ -38,6 +45,7 @@ var documentationPath = require( './api_docs_path.js' );
 function main() {
 	var opts;
 	var tree;
+	var dir;
 
 	opts = {
 		'ignore': [
@@ -50,10 +58,14 @@ function main() {
 	tree = tree[ '@stdlib' ];
 
 	// Save as JSON file:
+	dir = documentationPath();
+	if ( !exists( dir ) ) {
+		mkdir( dir );
+	}
 	opts = {
 		'encoding': 'utf8'
 	};
-	writeFile( join( documentationPath(), 'package_tree.json' ), JSON.stringify( tree ), opts );
+	writeFile( join( dir, OUTPUT ), JSON.stringify( tree ), opts );
 }
 
 main();

@@ -55,7 +55,7 @@ function path() {
 		throw pdir;
 	}
 	// Return the package path:
-	return pdir;
+	return dirname( pdir );
 }
 
 
