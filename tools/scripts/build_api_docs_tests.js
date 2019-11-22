@@ -53,7 +53,7 @@ function main() {
 	sdir = stdlibPath();
 	opts = {
 		'dir': join( sdir, 'lib', 'node_modules' ),
-		'mount': '/docs/api/'+stdlibVersion()+'/',
+		'mount': '/docs/api/v'+stdlibVersion()+'/',
 		'ignore': [
 			'benchmark/**',
 			'bin/**',
