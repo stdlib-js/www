@@ -26,7 +26,9 @@
     "build:api_docs:tests": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_tests.js",
     "clean": "npm run clean:api_docs:app",
     "clean:api_docs:app": "rm -rf ./public/docs",
-    "install:production": "npm install --only production && cd ./node_modules/@stdlib/stdlib && npm install",
+    "install:development": "npm install && npm run install:production",
+    "install:production": "npm install --only production && npm run install:stdlib",
+    "install:stdlib": "git clone https://github.com/stdlib-js/stdlib.git --depth=1 --branch=v0.0.88 ./node_modules/@stdlib/stdlib && cd ./node_modules/@stdlib/stdlib && npm install",
     "start": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=production node ./server/index.js"
   },
   "main": "",
@@ -54,9 +56,7 @@
   "bugs": {
     "url": "https://github.com/stdlib-js/stdlib/issues"
   },
-  "dependencies": {
-    "@stdlib/stdlib": "0.0.88"
-  },
+  "dependencies": {},
   "devDependencies": {
     "browserify": "^14.4.0",
     "clean-css": "^4.1.8",
