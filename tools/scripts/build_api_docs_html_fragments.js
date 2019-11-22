@@ -57,7 +57,7 @@ function main() {
 			'reports/**',
 			'scripts/**',
 			'test/**',
-			'_tools/**'
+			'**/_tools/**'
 		]
 	};
 	build( dir, opts, done );
