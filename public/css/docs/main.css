@@ -165,7 +165,7 @@ body {
 }
 
 .navbar {
-	position: fixed;
+	position: absolute;
 	top: 30px;
 	right: 2%;
 }
@@ -180,5 +180,18 @@ body {
 	max-width: 1200px;
 	margin-top: 80px;
 	margin-left: 12.5%;
-	height: 75vh;
+}
+
+.center {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bottom-nav {
+	font-size: .85em;
+}
+
+.bottom-nav > a {
+	color: #585858;
 }
