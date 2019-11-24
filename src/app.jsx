@@ -194,7 +194,7 @@ class App extends Component {
 								return (
 									<Fragment>
 										<nav className="navbar">
-											<Link to={fullPkgPath} >Back to README</Link>
+											<Link to={fullPkgPath} >Documentation</Link>
 											{ hasBenchmarks ? <Link to={`${fullPkgPath}/benchmark.html`}>Benchmarks</Link> : null}
 											{ hasTests ? <Link to={`${fullPkgPath}/test.html`}>Tests</Link> : null}
 											{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
@@ -221,7 +221,7 @@ class App extends Component {
 								return (
 									<Fragment>
 										<nav className="navbar">
-											<Link to={fullPkgPath} >Back to README</Link>
+											<Link to={fullPkgPath} >Documentation</Link>
 											{ hasBenchmarks ? <Link to={`${fullPkgPath}/benchmark.html`}>Benchmarks</Link> : null}
 											{ hasTests ? <Link to={`${fullPkgPath}/test.html`}>Tests</Link> : null}
 											{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}

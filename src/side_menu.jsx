@@ -182,7 +182,7 @@ class MenuBar extends Component {
 	handleFilterChange = ( event ) => {
 		const newFilter = event.target.value;
 		this.setState({
-			filter: newFilter
+			filter: newFilter.toLowerCase()
 		}, () => {
 			if ( !this.debounced ) {
 				this.debounced = debounce( 300, this.applyFilterChange );
