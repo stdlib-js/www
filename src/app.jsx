@@ -39,6 +39,7 @@ const ReadmePage = ( props ) => {
 };
 const HTML_FRAGMENT_CACHE = {};
 const JSON_CACHE = {};
+const RE_UNDERSCORE_REPLACE = /[\/-]/g;
 
 
 // MAIN //
@@ -86,6 +87,7 @@ class App extends Component {
 		const resources = this.state.packageResources[ match.params.pkg ];
 		const hasTests = resources && resources.test;
 		const hasBenchmarks = resources && resources.benchmark;
+		const hasTypescript = resources && resources.typescript;
 		const fullPkgPath = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 
 		// Render the README for the selected package:
@@ -95,6 +97,7 @@ class App extends Component {
 					{ hasBenchmarks ? <Link to={`${fullPkgPath}/benchmark.html`}>Benchmarks</Link> : null}
 					{ hasTests ? <Link to={`${fullPkgPath}/test.html`}>Tests</Link> : null}
 					{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
+					{ hasTypescript ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
 				</nav>
 				<ReadmePage path={match.url} />
 			</Fragment>
@@ -184,6 +187,7 @@ class App extends Component {
 								const resources = this.state.packageResources[ match.params.pkg ];
 								const hasTests = resources && resources.test;
 								const hasBenchmarks = resources && resources.benchmark;
+								const hasTypescript = resources && resources.typescript;
 								let iframe;
 								if ( hasBenchmarks ) {
 									iframe = <iframe className="readme-iframe" src={`/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/benchmark.html?fragment=true`} title="Benchmarks" />;
@@ -198,6 +202,7 @@ class App extends Component {
 											{ hasBenchmarks ? <Link to={`${fullPkgPath}/benchmark.html`}>Benchmarks</Link> : null}
 											{ hasTests ? <Link to={`${fullPkgPath}/test.html`}>Tests</Link> : null}
 											{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
+											{ hasTypescript ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
 										</nav>
 										{iframe}
 									</Fragment>
@@ -211,6 +216,7 @@ class App extends Component {
 								const resources = this.state.packageResources[ match.params.pkg ];
 								const hasTests = resources && resources.test;
 								const hasBenchmarks = resources && resources.benchmark;
+								const hasTypescript = resources && resources.typescript;
 								let iframe;
 								if ( hasTests ) {
 									iframe = <iframe className="readme-iframe" src={`/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/test.html?fragment=true`} title="Tests" />;
@@ -225,6 +231,7 @@ class App extends Component {
 											{ hasBenchmarks ? <Link to={`${fullPkgPath}/benchmark.html`}>Benchmarks</Link> : null}
 											{ hasTests ? <Link to={`${fullPkgPath}/test.html`}>Tests</Link> : null}
 											{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
+											{ hasTypescript ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
 										</nav>
 										{iframe}
 									</Fragment>
