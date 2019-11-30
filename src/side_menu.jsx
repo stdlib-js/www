@@ -86,14 +86,21 @@ class MenuBar extends Component {
 		this.props.onDrawerChange( false );
 	}
 
-	handleClick( path ) {
-		this.setState( prevState => {
-			const active = !prevState[ path ];
-			return {
-				[ path ]: active,
-				activePkg: path
-			}
-		});
+	handleClickFactory( path ) {
+		const fullPath = `/docs/api/${this.props.version}/${path}`;
+		return () => {
+			this.setState( prevState => {
+				const active = !prevState[ path ];
+				const newState = {
+					[ path ]: active
+				};
+				if ( active ) {
+					newState.activePkg = path;
+					this.props.onReadmeChange( fullPath );
+				}
+				return newState;
+			});
+		}
 	}
 
 	handlePackageClick( pkgPath ) {
@@ -149,11 +156,7 @@ class MenuBar extends Component {
 				<div key={pkgPath} >
 					<ListItem
 						button
-						onClick={() => {
-							this.handleClick( pkgPath );
-							const path = `/docs/api/${this.props.version}/${pkgPath}`;
-							this.props.onReadmeChange( path );
-						}}
+						onClick={this.handleClickFactory( pkgPath )}
 						className={`side-menu-list-item-namespace ${this.state.activePkg === pkgPath ? 'active-package' : ''}`}
 						style={{
 							paddingLeft: 16 + 10 * level
