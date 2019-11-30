@@ -28,14 +28,19 @@ var flattenObject = require( '@stdlib/utils/flatten-object' );
 var merge = require( '@stdlib/utils/merge' );
 var objectKeys = require( '@stdlib/utils/keys' );
 var exists = require( '@stdlib/fs/exists' ).sync;
+var replace = require( '@stdlib/string/replace' );
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var documentationPath = require( './api_docs_path.js' );
+var tsPath = require( './ts_docs_path.js' );
+var root = require( './root.js' );
 
 
 // VARIABLES //
 
 var OUTPUT = 'package_resources.json';
+var TS_SUFFIX = '_docs_types_index_d_.html';
+var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 
 
 // MAIN //
@@ -47,6 +52,7 @@ var OUTPUT = 'package_resources.json';
 * @throws {Error} unexpected error
 */
 function main() {
+	var tspath;
 	var dpath;
 	var opts;
 	var tree;
@@ -57,6 +63,9 @@ function main() {
 
 	// Resolve the API documentation path:
 	dpath = documentationPath();
+
+	// Resolve the TypeScript documentation path:
+	tspath = tsPath();
 
 	// Load the API documentation package tree:
 	opts = {
@@ -81,7 +90,8 @@ function main() {
 		k = keys[ i ];
 		db[ k ] = {
 			'benchmark': exists( join( dpath, '@stdlib', k, 'benchmark.html' ) ),
-			'test': exists( join( dpath, '@stdlib', k, 'test.html' ) )
+			'test': exists( join( dpath, '@stdlib', k, 'test.html' ) ),
+			'typescript': exists( join( tspath, '_' + replace( k, RE_UNDERSCORE_REPLACE, '_' ) + TS_SUFFIX ) )
 		}
 	}
 	// Write the database to file:
