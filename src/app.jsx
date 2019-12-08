@@ -21,8 +21,10 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import IframeResizer from 'iframe-resizer-react';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
+import generateHTMLBoilerplate from './generate_html_boilerplate.jsx';
 import VERSIONS from './versions.json';
 
 
@@ -190,7 +192,14 @@ class App extends Component {
 								const hasTypescript = resources && resources.typescript;
 								let iframe;
 								if ( hasBenchmarks ) {
-									iframe = <iframe className="readme-iframe" src={`/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/benchmark.html?fragment=true`} title="Benchmarks" />;
+									const html = generateHTMLBoilerplate( `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/benchmark.html` )
+									iframe = <IframeResizer
+										className="readme-iframe"
+										srcdoc={html}
+										title="Benchmarks"
+										width="100%"
+										checkOrigin={false}
+									/>;
 								} else {
 									iframe = <h2><code>{match.params.pkg}</code> does not have any benchmarks.</h2>;
 								}
@@ -219,7 +228,14 @@ class App extends Component {
 								const hasTypescript = resources && resources.typescript;
 								let iframe;
 								if ( hasTests ) {
-									iframe = <iframe className="readme-iframe" src={`/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/test.html?fragment=true`} title="Tests" />;
+									const html = generateHTMLBoilerplate( `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/test.html` );
+									iframe = <IframeResizer
+										className="readme-iframe"
+										srcdoc={html}
+										title="Tests"
+										width="100%"
+										checkOrigin={false}
+									/>;
 								} else {
 									iframe = <h2><code>{match.params.pkg}</code> does not have any tests.</h2>;
 								}
