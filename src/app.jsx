@@ -177,9 +177,8 @@ class App extends Component {
 					onVersionChange={this.selectVersion}
 					packageTree={this.state.packageTree}
 				/>
-				<div style={{
-					marginLeft: this.state.slideoutIsOpen ? 350 : 0,
-					transition: 'margin 225ms cubic-bezier(0, 0, 0.2, 1) 0ms'
+				<div className="readme-container" style={{
+					marginLeft: this.state.slideoutIsOpen ? 350 : 0
 				}}>
 					<Switch>
 						<Route
