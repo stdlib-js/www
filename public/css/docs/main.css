@@ -167,7 +167,7 @@ body {
 
 .navbar {
 	position: absolute;
-	top: -50px;
+	top: 20px;
 	right: 12px;
 }
 
@@ -175,18 +175,19 @@ body {
 	padding: 0 1em;
 }
 
-.readme-container {
+.readme-outer-container {
 	position: relative;
 	transition: margin 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-	min-height: calc(100vh - 80px);
 }
 
 .readme-iframe {
 	width: 75%;
 	min-width: 594px;
 	max-width: 1200px;
-	margin-top: 80px;
+	padding-top: 80px;
 	margin-left: 12.5%;
+	min-height: calc(100vh - 80px);
+	padding-bottom: 6.25em;
 }
 
 .center {
@@ -197,8 +198,7 @@ body {
 
 .readme-footer {
 	margin-left: 12.5%;
-	margin-top: 36px;
-	margin-bottom: 24px;
+	margin-bottom: 36px;
 }
 
 .readme-footer-bottom-nav {

@@ -120,9 +120,10 @@ h2 {
 }
 
 .readme {
-	margin-top: 80px;
+	padding-top: 80px;
 	margin-left: 12.5%;
-	margin-bottom: 20px;
+	min-height: calc(100vh - 80px);
+	padding-bottom: 6.25em;
 }
 
 .readme > h1,

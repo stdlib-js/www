@@ -177,7 +177,7 @@ class App extends Component {
 					onVersionChange={this.selectVersion}
 					packageTree={this.state.packageTree}
 				/>
-				<div className="readme-container" style={{
+				<div className="readme-outer-container" style={{
 					marginLeft: this.state.slideoutIsOpen ? 350 : 0
 				}}>
 					<Switch>
