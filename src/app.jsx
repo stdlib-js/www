@@ -267,6 +267,19 @@ class App extends Component {
 							<WelcomePage version={this.state.version} />
 						</Route>
 					</Switch>
+					<footer className="readme-footer" >
+						<div class="bottom-nav center">
+							<a href="https://www.patreon.com/athan">Donate</a>
+							<span className="nav-separator">/</span>
+							<a href="/docs/api/">Docs</a>
+							<span className="nav-separator">/</span>
+							<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
+							<span className="nav-separator">/</span>
+							<a href="https://twitter.com/stdlibjs">Twitter</a>
+							<span className="nav-separator">/</span>
+							<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
+						</div>
+					</footer>
 				</div>
 			</div>
 		)

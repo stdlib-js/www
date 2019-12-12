@@ -4,6 +4,7 @@
 	"./../common/highlight.css",
 	"./main.css",
 	"./layout.css",
+	"./../common/fonts/lato/latin/lato_light.css",
 	"./typography.css",
 	"./misc.css"
 ]

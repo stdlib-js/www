@@ -166,7 +166,7 @@ body {
 
 .navbar {
 	position: absolute;
-	top: 30px;
+	top: -50px;
 	right: 2%;
 }
 
@@ -175,6 +175,7 @@ body {
 }
 
 .readme-container {
+	position: relative;
 	transition: margin 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 	min-height: calc(100vh - 80px);
 }
@@ -193,12 +194,21 @@ body {
 	margin-right: auto;
 }
 
-footer {
+.readme-footer {
+	position: absolute;
+	bottom: 0;
 	margin: 24px;
+	width: 100%;
 }
 
 .bottom-nav {
-	font-size: .85em;
+	font-family: LatoLatinWebLight;
+	font-size: .9em;
+}
+
+.nav-separator {
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .bottom-nav > a {
