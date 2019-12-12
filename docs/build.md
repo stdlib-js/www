@@ -31,6 +31,7 @@ Building the website **requires** the following prerequisites:
 -   [GNU bash][bash]: an sh-compatible shell
 -   [Node.js][node-js]: JavaScript runtime (the latest stable version is **strongly** recommended)
 -   [npm][npm]: package manager (the latest stable version is **strongly** recommended)
+-   [Python][python]: general purpose language (version `>3.7`)
 
 ## Installation
 
@@ -108,6 +109,28 @@ To remove API documentation build artifacts,
 $ npm run clean:api_docs:app
 ```
 
+## Viewing
+
+To view the website, create a new terminal window and navigate to the `public` folder
+
+```bash
+$ cd /path/to/stdlib/www/public
+```
+
+and then start a local web server
+
+```bash
+$ python -m http.server 9000
+```
+
+Once the local web server is running, run
+
+```bash
+$ open http://127.0.0.1:9000
+```
+
+which will open the website homepage in a local web browser.
+
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
 <section class="links">
@@ -121,6 +144,8 @@ $ npm run clean:api_docs:app
 [node-js]: https://nodejs.org/en/
 
 [npm]: https://www.npmjs.com/
+
+[python]: https://www.python.org/
 
 </section>
 
