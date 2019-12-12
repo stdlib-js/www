@@ -33,6 +33,8 @@ Building the website **requires** the following prerequisites:
 -   [npm][npm]: package manager (the latest stable version is **strongly** recommended)
 -   [Python][python]: general purpose language (version `>3.7`)
 
+* * *
+
 ## Installation
 
 To install dependencies,
@@ -40,6 +42,8 @@ To install dependencies,
 ```bash
 $ npm run install:production
 ```
+
+* * *
 
 ## Build
 
@@ -93,6 +97,8 @@ Assuming the above build steps have completed, to generate documentation resourc
 $ npm run build:api_docs:app_resources
 ```
 
+* * *
+
 ## Clean
 
 To remove **all** build artifacts,
@@ -108,6 +114,8 @@ To remove API documentation build artifacts,
 ```bash
 $ npm run clean:api_docs:app
 ```
+
+* * *
 
 ## Viewing
 
