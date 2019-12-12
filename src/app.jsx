@@ -268,7 +268,7 @@ class App extends Component {
 						</Route>
 					</Switch>
 					<footer className="readme-footer" >
-						<div class="bottom-nav center">
+						<div class="readme-footer-bottom-nav">
 							<a href="https://www.patreon.com/athan">Donate</a>
 							<span className="nav-separator">/</span>
 							<a href="/docs/api/">Docs</a>

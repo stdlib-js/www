@@ -168,7 +168,7 @@ body {
 .navbar {
 	position: absolute;
 	top: -50px;
-	right: 2%;
+	right: 12px;
 }
 
 .navbar > a {
@@ -196,15 +196,18 @@ body {
 }
 
 .readme-footer {
-	position: absolute;
-	bottom: 0;
-	margin: 24px;
-	width: 100%;
+	margin-left: 12.5%;
+	margin-top: 24px;
+	margin-bottom: 24px;
 }
 
-.bottom-nav {
+.readme-footer-bottom-nav {
 	font-family: LatoLatinWebLight;
 	font-size: .9em;
+	width: 55%;
+	min-width: 720px;
+	max-width: 960px;
+	text-align: center;
 }
 
 .nav-separator {
@@ -212,6 +215,6 @@ body {
 	margin-right: 5px;
 }
 
-.bottom-nav > a {
+.readme-footer-bottom-nav > a {
 	color: #585858;
 }
