@@ -50,7 +50,7 @@ To run the entire build sequence sequentially,
 $ npm run build
 ```
 
-However, you may want to run the following steps in parallel in separate terminal windows in order to expedite the build process. Every step **except** the generation of documentation resources can be executed in parallel.
+However, you may want to run the following steps in parallel (e.g., in separate terminal windows) in order to expedite the build process. Every step **except** the generation of documentation resources can be executed in parallel.
 
 #### Application
 
