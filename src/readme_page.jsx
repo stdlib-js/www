@@ -19,29 +19,22 @@
 // MODULES //
 
 import React from 'react';
+import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
 
 
 // MAIN //
 
-const Footer = ( props ) => {
-	return (
-		<footer className={props.fullPage ? 'readme-footer-full' : 'readme-footer'} >
-			<div class="readme-footer-bottom-nav">
-				<a href="https://www.patreon.com/athan">Donate</a>
-				<span className="nav-separator">/</span>
-				<a href="/docs/api/">Docs</a>
-				<span className="nav-separator">/</span>
-				<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
-				<span className="nav-separator">/</span>
-				<a href="https://twitter.com/stdlibjs">Twitter</a>
-				<span className="nav-separator">/</span>
-				<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
-			</div>
-		</footer>
-	);
+const ReadmePage = ( props ) => {
+	const html = HTML_FRAGMENT_CACHE[ props.path ] || '{{ FRAGMENT }}';
+	return ( <div
+		id="readme-container"
+		className="readme"
+		suppressHydrationWarning
+		dangerouslySetInnerHTML={{ __html: html }}
+	/> );
 };
 
 
 // EXPORTS //
 
-export default Footer;
+export default ReadmePage;

@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import IframeResizer from 'iframe-resizer-react';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
+import ReadmePage from './readme_page.jsx';
 import Footer from './footer.jsx';
 import generateHTMLBoilerplate from './generate_html_boilerplate.jsx';
 import VERSIONS from './versions.json';
@@ -33,15 +34,6 @@ import JSON_CACHE from './json_cache.js';
 
 // VARIABLES //
 
-const ReadmePage = ( props ) => {
-	const html = HTML_FRAGMENT_CACHE[ props.path ] || '{{ FRAGMENT }}';
-	return ( <div
-		id="readme-container"
-		className="readme"
-		suppressHydrationWarning
-		dangerouslySetInnerHTML={{ __html: html }}
-	/> );
-};
 const RE_UNDERSCORE_REPLACE = /[\/-]/g;
 
 
