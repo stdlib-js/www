@@ -18,6 +18,13 @@
 
 // MAIN //
 
+/**
+* Cache for storing HTML fragments in order to avoid unnecessary HTTP requests.
+*
+* @private
+* @constant
+* @type {Object}
+*/
 const CACHE = {};
 
 
