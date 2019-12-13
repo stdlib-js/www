@@ -57,15 +57,14 @@ function WelcomePage( props ) {
 					<h2>Features</h2>
 
 					<ul>
-						<li>150+ <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/assert/`}>special math functions</a></li>
-						<li>35+ <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/stats/base/dists/`}>probability distributions</a>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
-						<li>40+ <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/random/base/`}>seedable pseudorandom number generators</a> (PRNGs).</li>
-						<li>200+ general <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/utils/`}>utilities</a> for data transformation, functional programming, and asynchronous control flow.</li>
-						<li>200+ <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/assert/`}>assertion utilities</a> for data validation and feature detection.</li>
-						<li>50+ <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/datasets/`}>sample datasets</a> for testing and development.</li>
-						<li>A <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/plot/ctor`}>plot API</a> for data visualization and exploratory data analysis.</li>
+						<li>35+ <a href={`/docs/api/${props.version}/@stdlib/stats/base/dists/`}>probability distributions</a>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
+						<li>40+ <a href={`/docs/api/${props.version}/@stdlib/random/base/`}>seedable pseudorandom number generators</a> (PRNGs).</li>
+						<li>200+ general <a href={`/docs/api/${props.version}/@stdlib/utils/`}>utilities</a> for data transformation, functional programming, and asynchronous control flow.</li>
+						<li>200+ <a href={`/docs/api/${props.version}/@stdlib/assert/`}>assertion utilities</a> for data validation and feature detection.</li>
+						<li>50+ <a href={`/docs/api/${props.version}/@stdlib/datasets/`}>sample datasets</a> for testing and development.</li>
+						<li>A <a href={`/docs/api/${props.version}/@stdlib/plot/ctor`}>plot API</a> for data visualization and exploratory data analysis.</li>
 						<li>Native add-ons for interfacing with BLAS libraries, with pure JavaScript fallbacks.</li>
-						<li>A <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/bench/harness`}>benchmark framework</a> supporting TAP.</li>
+						<li>A <a href={`/docs/api/${props.version}/@stdlib/bench/harness`}>benchmark framework</a> supporting TAP.</li>
 						<li>REPL environment with integrated help and examples.</li>
 						<li>Can be bundled using <a href="http://browserify.org/">Browserify</a>, <a href="https://webpack.js.org/">Webpack</a>, and other bundlers for use in web browsers.</li>
 					</ul>
