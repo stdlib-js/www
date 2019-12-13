@@ -34,33 +34,39 @@ import JSON_CACHE from './json_cache.js';
 
 // VARIABLES //
 
-const RE_UNDERSCORE_REPLACE = /[\/-]/g;
+var RE_UNDERSCORE_REPLACE = /[\/-]/g;
+var PREFIX = '/docs/api/';
 
 
 // MAIN //
 
 class App extends Component {
 	constructor( props ) {
+		var pathname;
+		var version;
+		var i;
+		var j;
+
 		super( props );
 
-		let pathname = props.history.location.pathname;
-		const prefix = '/docs/api/';
-		let i = pathname.indexOf( prefix ) + prefix.length;
-		let j = pathname.substring( i ).indexOf( '/' );
-		let version = '';
-		if ( j !== -1 ) {
+		pathname = props.history.location.pathname;
+		i = pathname.indexOf( PREFIX ) + PREFIX.length;
+		j = pathname.substring( i ).indexOf( '/' );
+		if ( j === -1 ) {
+			version = '';
+		} else {
 			version = pathname.substring( i, i+j );
 		}
 		if ( !VERSIONS.includes( version ) ) {
-			pathname = pathname.replace( prefix+version, prefix+VERSIONS[0]+'/' );
+			pathname = pathname.replace( PREFIX+version, PREFIX+VERSIONS[0]+'/' );
 			this.props.history.push( pathname );
 			version = VERSIONS[ 0 ];
 		}
 		this.state = {
-			slideoutIsOpen: true,
-			version: version,
-			packageTree: null,
-			packageResources: {}
+			'slideoutIsOpen': true,
+			'version': version,
+			'packageTree': null,
+			'packageResources': {}
 		};
 	}
 
@@ -70,32 +76,40 @@ class App extends Component {
 
 	handleSlideOutChange = ( value ) => {
 		this.setState({
-			slideoutIsOpen: value
+			'slideoutIsOpen': value
 		});
 	}
 
 	replaceReadmeContainer( res ) {
-		const el = document.getElementById( 'readme-container' );
+		var el = document.getElementById( 'readme-container' );
 		if ( el ) {
 			el.innerHTML = res;
 		}
 	}
 
 	renderReadme = ({ match }) => {
-		const resources = this.state.packageResources[ match.params.pkg ];
-		const hasTests = resources && resources.test;
-		const hasBenchmarks = resources && resources.benchmark;
-		const hasTypescript = resources && resources.typescript;
-		const fullPkgPath = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
+		var benchmarks;
+		var resources;
+		var tests;
+		var path;
+		var ts;
+
+		resources = this.state.packageResources[ match.params.pkg ];
+		if ( resources ) {
+			tests = resources.test;
+			benchmarks = resources.benchmark;
+			ts = resources.typescript;
+		}
+		path = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 
 		// Render the README for the selected package:
 		return (
 			<Fragment>
 				<nav className="navbar">
-					{ hasBenchmarks ? <Link to={`${fullPkgPath}/benchmark.html`}>Benchmarks</Link> : null}
-					{ hasTests ? <Link to={`${fullPkgPath}/test.html`}>Tests</Link> : null}
+					{ benchmarks ? <Link to={`${path}/benchmark.html`}>Benchmarks</Link> : null}
+					{ tests ? <Link to={`${path}/test.html`}>Tests</Link> : null}
 					{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
-					{ hasTypescript ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
+					{ ts ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
 				</nav>
 				<ReadmePage path={match.url} />
 			</Fragment>
@@ -103,12 +117,15 @@ class App extends Component {
 	}
 
 	fetchJSONFiles = () => {
-		const treePath = `/docs/api/${this.state.version}/package_tree.json`;
-		if ( !JSON_CACHE[ treePath ] ) {
-			fetch( treePath )
+		var tpath;
+		var rpath;
+
+		tpath = `/docs/api/${this.state.version}/package_tree.json`;
+		if ( !JSON_CACHE[ tpath ] ) {
+			fetch( tpath )
 				.then( res => res.json() )
 				.then( res => {
-					JSON_CACHE[ treePath ] = res;
+					JSON_CACHE[ tpath ] = res;
 					this.setState({
 						packageTree: res
 					});
@@ -116,15 +133,15 @@ class App extends Component {
 				.catch( err => console.error( err ) );
 		} else {
 			this.setState({
-				packageTree: JSON_CACHE[ treePath ]
+				packageTree: JSON_CACHE[ tpath ]
 			});
 		}
-		const resourcesPath = `/docs/api/${this.state.version}/package_resources.json`;
-		if ( !JSON_CACHE[ resourcesPath ] ) {
-			fetch( resourcesPath )
+		rpath = `/docs/api/${this.state.version}/package_resources.json`;
+		if ( !JSON_CACHE[ rpath ] ) {
+			fetch( rpath )
 				.then( res => res.json() )
 				.then( res => {
-					JSON_CACHE[ resourcesPath ] = res;
+					JSON_CACHE[ rpath ] = res;
 					this.setState({
 						packageResources: res
 					});
@@ -132,7 +149,7 @@ class App extends Component {
 				.catch( err => console.error( err ) );
 		} else {
 			this.setState({
-				packageResources: JSON_CACHE[ resourcesPath ]
+				packageResources: JSON_CACHE[ rpath ]
 			});
 		}
 	}
@@ -154,7 +171,7 @@ class App extends Component {
 	}
 
 	selectVersion = ( event ) => {
-		let pathname = this.props.history.location.pathname;
+		var pathname = this.props.history.location.pathname;
 		pathname = pathname.replace( this.state.version, event.target.value );
 		this.props.history.push( pathname );
 		this.setState({
