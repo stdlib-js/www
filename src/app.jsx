@@ -142,7 +142,7 @@ class App extends Component {
 		window.scrollTo( 0, 0 );
 		if ( !HTML_FRAGMENT_CACHE[ path ] ) {
 			fetch( `${path}?fragment=true` )
-				.then(res => res.text() )
+				.then( res => res.text() )
 				.then( res => {
 					HTML_FRAGMENT_CACHE[ path ] = res;
 					this.replaceReadmeContainer( res );
@@ -164,7 +164,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
+			<div className="app">
 				<SideMenu
 					onDrawerChange={this.handleSlideOutChange}
 					onReadmeChange={this.fetchAndCacheFragment}
