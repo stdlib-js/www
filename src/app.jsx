@@ -27,6 +27,8 @@ import WelcomePage from './welcome_page.jsx';
 import Footer from './footer.jsx';
 import generateHTMLBoilerplate from './generate_html_boilerplate.jsx';
 import VERSIONS from './versions.json';
+import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
+import JSON_CACHE from './json_cache.js';
 
 
 // VARIABLES //
@@ -40,8 +42,6 @@ const ReadmePage = ( props ) => {
 		dangerouslySetInnerHTML={{ __html: html }}
 	/> );
 };
-const HTML_FRAGMENT_CACHE = {};
-const JSON_CACHE = {};
 const RE_UNDERSCORE_REPLACE = /[\/-]/g;
 
 
