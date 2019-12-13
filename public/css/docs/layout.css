@@ -139,9 +139,8 @@ h2 {
 .readme > code,
 .readme > ul,
 .readme > hr {
-	width: 55%;
-	min-width: 720px;
-	max-width: 960px;
+	width: calc(70vw - 350px);
+	min-width: 594px;
 }
 
 .readme p,
