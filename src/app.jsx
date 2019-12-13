@@ -75,9 +75,9 @@ class App extends Component {
 	}
 
 	replaceReadmeContainer( res ) {
-		const readme = document.getElementById( 'readme-container' );
-		if ( readme ) {
-			readme.innerHTML = res;
+		const el = document.getElementById( 'readme-container' );
+		if ( el ) {
+			el.innerHTML = res;
 		}
 	}
 
