@@ -186,7 +186,7 @@ class App extends Component {
 		pathname = pathname.replace( this.state.version, event.target.value );
 		this.props.history.push( pathname );
 		this.setState({
-			version: event.target.value
+			'version': event.target.value
 		}, this.fetchJSONFiles );
 	}
 
