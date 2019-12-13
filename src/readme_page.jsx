@@ -24,14 +24,23 @@ import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
 
 // MAIN //
 
-const ReadmePage = ( props ) => {
+/**
+* Returns a React component for rendering a README.
+*
+* @private
+* @param {Object} props - component properties
+* @returns {ReactComponent} React component
+*/
+function ReadmePage( props ) {
 	const html = HTML_FRAGMENT_CACHE[ props.path ] || '{{ FRAGMENT }}';
-	return ( <div
-		id="readme-container"
-		className="readme"
-		suppressHydrationWarning
-		dangerouslySetInnerHTML={{ __html: html }}
-	/> );
+	return (
+		<div
+			id="readme-container"
+			className="readme"
+			suppressHydrationWarning
+			dangerouslySetInnerHTML={{ __html: html }}
+		/>
+	);
 };
 
 
