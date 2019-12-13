@@ -42,6 +42,23 @@ const ReadmePage = ( props ) => {
 const HTML_FRAGMENT_CACHE = {};
 const JSON_CACHE = {};
 const RE_UNDERSCORE_REPLACE = /[\/-]/g;
+const Footer = ( props ) => {
+	return (
+		<footer className={props.fullPage ? 'readme-footer-full' : 'readme-footer'} >
+			<div class="readme-footer-bottom-nav">
+				<a href="https://www.patreon.com/athan">Donate</a>
+				<span className="nav-separator">/</span>
+				<a href="/docs/api/">Docs</a>
+				<span className="nav-separator">/</span>
+				<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
+				<span className="nav-separator">/</span>
+				<a href="https://twitter.com/stdlibjs">Twitter</a>
+				<span className="nav-separator">/</span>
+				<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
+			</div>
+		</footer>
+	);
+};
 
 
 // MAIN //
@@ -267,20 +284,9 @@ class App extends Component {
 							<WelcomePage version={this.state.version} />
 						</Route>
 					</Switch>
-					<footer className="readme-footer" >
-						<div class="readme-footer-bottom-nav">
-							<a href="https://www.patreon.com/athan">Donate</a>
-							<span className="nav-separator">/</span>
-							<a href="/docs/api/">Docs</a>
-							<span className="nav-separator">/</span>
-							<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
-							<span className="nav-separator">/</span>
-							<a href="https://twitter.com/stdlibjs">Twitter</a>
-							<span className="nav-separator">/</span>
-							<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
-						</div>
-					</footer>
+					{ this.state.slideoutIsOpen ? <Footer /> : null }
 				</div>
+				{ !this.state.slideoutIsOpen ? <Footer fullPage /> : null }
 			</div>
 		)
 	}

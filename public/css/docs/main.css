@@ -186,8 +186,8 @@ body {
 	max-width: 1200px;
 	padding-top: 80px;
 	margin-left: 12.5%;
-	min-height: calc(100vh - 80px);
-	padding-bottom: 6.25em;
+	min-height: calc(100vh - 52px);
+	padding-bottom: 100px;
 }
 
 .center {
@@ -196,16 +196,38 @@ body {
 	margin-right: auto;
 }
 
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 .readme-footer {
+	animation: fadein 2s;
 	margin-left: 12.5%;
+	margin-bottom: 36px;
+}
+
+.readme-footer-full {
+	animation: fadein 1s;
 	margin-bottom: 36px;
 }
 
 .readme-footer-bottom-nav {
 	font-family: LatoLatinWebLight;
-	font-size: .9em;
+	font-size: 0.9em;
+}
+
+.readme-footer > .readme-footer-bottom-nav {
 	width: calc(70vw - 350px);
 	min-width: 594px;
+	text-align: center;
+}
+
+.readme-footer-full > .readme-footer-bottom-nav {
 	text-align: center;
 }
 
