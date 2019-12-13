@@ -71,11 +71,15 @@ function WelcomePage( props ) {
 
 					<h2>Getting Help</h2>
 
-					<p>Ask questions and get help from the community on the project's <a href="https://gitter.im/stdlib-js/stdlib">Gitter</a> channel.</p>
+					<p>
+						Ask questions and get help from the community on the project's <a href="https://gitter.im/stdlib-js/stdlib">Gitter</a> channel.
+					</p>
 
 					<h2>Prerequisites</h2>
 
-					<p>Running stdlib <b>requires</b> the following prerequisites</p>
+					<p>
+						Running stdlib <b>requires</b> the following prerequisites
+					</p>
 
 					<ul>
 						<li>
@@ -86,7 +90,9 @@ function WelcomePage( props ) {
 						</li>
 					</ul>
 
-					<p>Most functionality in stdlib is implemented exclusively in JavaScript; however, some implementations try to capture performance benefits by using <a href="https://nodejs.org/api/addons.html">native bindings</a> and/or <a href="http://webassembly.org/">WebAssembly</a>. While <b>not</b> required to run stdlib, as <b>every</b> stdlib implementation has a JavaScript fallback, the following dependencies are <b>required</b> for building native add-ons, including linking to BLAS and LAPACK libraries:</p>
+					<p>
+						Most functionality in stdlib is implemented exclusively in JavaScript; however, some implementations try to capture performance benefits by using <a href="https://nodejs.org/api/addons.html">native bindings</a> and/or <a href="http://webassembly.org/">WebAssembly</a>. While <b>not</b> required to run stdlib, as <b>every</b> stdlib implementation has a JavaScript fallback, the following dependencies are <b>required</b> for building native add-ons, including linking to BLAS and LAPACK libraries:
+					</p>
 
 					<ul>
 						<li>
@@ -103,13 +109,17 @@ function WelcomePage( props ) {
 						</li>
 					</ul>
 
-					<p>While <b>not</b> required to run stdlib, the following dependencies are <b>required</b> for automatically downloading external libraries:</p>
+					<p>
+						While <b>not</b> required to run stdlib, the following dependencies are <b>required</b> for automatically downloading external libraries:
+					</p>
 
 					<ul>
 						<li><a href="http://curl.haxx.se/">curl</a>, <a href="http://www.gnu.org/software/wget">wget</a>, or <a href="http://www.freebsd.org/cgi/man.cgi?fetch%281%29">fetch</a>(FreeBSD): utilities for downloading remote resources</li>
 					</ul>
 
-					<p>The following external libraries can be automatically downloaded and compiled from source using <code>make</code>:</p>
+					<p>
+						The following external libraries can be automatically downloaded and compiled from source using <code>make</code>:
+					</p>
 
 					<ul>
 						<li><a href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a>: optimized BLAS library</li>
@@ -118,7 +128,9 @@ function WelcomePage( props ) {
 
 					<h2>Installation</h2>
 
-					<p>To install as a library or application dependency,</p>
+					<p>
+						To install as a library or application dependency,
+					</p>
 
 					<pre>
 						<code className="hljs language-bash">
@@ -126,7 +138,9 @@ function WelcomePage( props ) {
 						</code>
 					</pre>
 
-					<p>To install globally for use as a command-line utility,</p>
+					<p>
+						To install globally for use as a command-line utility,
+					</p>
 
 					<pre>
 						<code className="hljs language-bash">
@@ -134,7 +148,9 @@ function WelcomePage( props ) {
 						</code>
 					</pre>
 
-					<p>which will expose the <code>stdlib</code> command. For example, to see available sub-commands</p>
+					<p>
+						which will expose the <code>stdlib</code> command. For example, to see available sub-commands
+					</p>
 
 					<pre>
 						<code className="hljs language-bash">
@@ -142,7 +158,9 @@ function WelcomePage( props ) {
 						</code>
 					</pre>
 
-					<p>and to run the <a href={`https://stdlib.io/${props.version}/docs/api/@stdlib/repl/`}>REPL</a></p>
+					<p>
+						and to run the <a href={`/docs/api/${props.version}/@stdlib/repl/`}>REPL</a>
+					</p>
 
 					<pre>
 						<code className="hljs language-bash">
@@ -150,17 +168,25 @@ function WelcomePage( props ) {
 						</code>
 					</pre>
 
-					<p>For distributable bundles for use in browser environments or as shared ("vendored") libraries in server environments, see the <a href={`https://github.com/stdlib-js/stdlib/tree/${props.version}/dist`}><code>dist</code></a> directory and associated <a href={`https://github.com/stdlib-js/stdlib/tree/${props.version}/dist`}>guide</a>.</p>
+					<p>
+						For distributable bundles for use in browser environments or as shared ("vendored") libraries in server environments, see the <a href={`https://github.com/stdlib-js/stdlib/tree/${props.version}/dist`}><code>dist</code></a> directory and associated <a href={`https://github.com/stdlib-js/stdlib/tree/${props.version}/dist`}>guide</a>.
+					</p>
 
-					<p>Otherwise, to install as a system library, follow the <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md#download`}>download</a>, <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md`}>configuration</a>, and <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md#installation`}>installation</a> instructions as described in the <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md`}>development guide</a>.</p>
+					<p>
+						Otherwise, to install as a system library, follow the <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md#download`}>download</a>, <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md`}>configuration</a>, and <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md#installation`}>installation</a> instructions as described in the <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md`}>development guide</a>.
+					</p>
 
 					<h2>License</h2>
 
-					<p>See <a href="https://raw.githubusercontent.com/stdlib-js/stdlib/develop/LICENSE">LICENSE</a>.</p>
+					<p>
+						See <a href="https://raw.githubusercontent.com/stdlib-js/stdlib/develop/LICENSE">LICENSE</a>.
+					</p>
 
 					<h2>Copyright</h2>
 
-					<p>Copyright © 2016-2019. The Stdlib <a href="https://github.com/stdlib-js/stdlib/graphs/contributors" >Authors</a>.</p>
+					<p>
+						Copyright © 2016-2019. The Stdlib <a href="https://github.com/stdlib-js/stdlib/graphs/contributors" >Authors</a>.
+					</p>
 
 				</section>
 			</div>
