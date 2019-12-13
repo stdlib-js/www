@@ -23,7 +23,14 @@ import React from 'react';
 
 // MAIN //
 
-const Footer = ( props ) => {
+/**
+* Returns a React component for rendering the application footer.
+*
+* @private
+* @param {Object} props - component properties
+* @returns {ReactComponent} React component
+*/
+function Footer( props ) {
 	return (
 		<footer className={props.fullPage ? 'readme-footer-full' : 'readme-footer'} >
 			<div class="readme-footer-bottom-nav">
