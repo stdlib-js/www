@@ -138,13 +138,13 @@ class App extends Component {
 				.then( res => {
 					JSON_CACHE[ tpath ] = res;
 					this.setState({
-						packageTree: res
+						'packageTree': res
 					});
 				})
 				.catch( logError );
 		} else {
 			this.setState({
-				packageTree: JSON_CACHE[ tpath ]
+				'packageTree': JSON_CACHE[ tpath ]
 			});
 		}
 		rpath = `/docs/api/${this.state.version}/package_resources.json`;
@@ -154,13 +154,13 @@ class App extends Component {
 				.then( res => {
 					JSON_CACHE[ rpath ] = res;
 					this.setState({
-						packageResources: res
+						'packageResources': res
 					});
 				})
 				.catch( logError );
 		} else {
 			this.setState({
-				packageResources: JSON_CACHE[ rpath ]
+				'packageResources': JSON_CACHE[ rpath ]
 			});
 		}
 	}
