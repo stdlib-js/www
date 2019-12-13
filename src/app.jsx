@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import IframeResizer from 'iframe-resizer-react';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
+import Footer from './footer.jsx';
 import generateHTMLBoilerplate from './generate_html_boilerplate.jsx';
 import VERSIONS from './versions.json';
 
@@ -42,23 +43,6 @@ const ReadmePage = ( props ) => {
 const HTML_FRAGMENT_CACHE = {};
 const JSON_CACHE = {};
 const RE_UNDERSCORE_REPLACE = /[\/-]/g;
-const Footer = ( props ) => {
-	return (
-		<footer className={props.fullPage ? 'readme-footer-full' : 'readme-footer'} >
-			<div class="readme-footer-bottom-nav">
-				<a href="https://www.patreon.com/athan">Donate</a>
-				<span className="nav-separator">/</span>
-				<a href="/docs/api/">Docs</a>
-				<span className="nav-separator">/</span>
-				<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
-				<span className="nav-separator">/</span>
-				<a href="https://twitter.com/stdlibjs">Twitter</a>
-				<span className="nav-separator">/</span>
-				<a href="https://github.com/stdlib-js/stdlib">Contribute</a>
-			</div>
-		</footer>
-	);
-};
 
 
 // MAIN //
