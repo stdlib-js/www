@@ -52,7 +52,7 @@ class App extends Component {
 			version = pathname.substring( i, i+j );
 		}
 		if ( !VERSIONS.includes( version ) ) {
-			pathname = pathname.replace( prefix + version, prefix + VERSIONS[ 0 ] + '/' );
+			pathname = pathname.replace( prefix+version, prefix+VERSIONS[0]+'/' );
 			this.props.history.push( pathname );
 			version = VERSIONS[ 0 ];
 		}
