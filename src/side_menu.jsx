@@ -311,7 +311,7 @@ class MenuBar extends Component {
 					</Drawer>
 				</div>
 			</Fragment>
-		)
+		);
 	}
 }
 
