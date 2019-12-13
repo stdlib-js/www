@@ -25,6 +25,12 @@ import App from './app.jsx';
 
 // MAIN //
 
+/**
+* Returns a React component for rendering an application on the server.
+*
+* @private
+* @returns {ReactComponent} React component
+*/
 function ServerApp() {
 	return (
 		<StaticRouter location="/docs/api/:version/@stdlib/:pkg" context={{}} >
