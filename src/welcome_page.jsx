@@ -23,7 +23,14 @@ import React, { Fragment } from 'react';
 
 // MAIN //
 
-const WelcomePage = ( props ) => {
+/**
+* Returns a React component for rendering a welcome page.
+*
+* @private
+* @param {Object} props - component properties
+* @returns {ReactComponent} React component
+*/
+function WelcomePage( props ) {
 	return (
 		<Fragment>
 			<nav className="navbar">
