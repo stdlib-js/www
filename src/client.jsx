@@ -25,6 +25,12 @@ import App from './app.jsx';
 
 // MAIN //
 
+/**
+* Returns a React component for rendering a client application.
+*
+* @private
+* @returns {ReactComponent} React component
+*/
 function ClientApp() {
 	return (
 		<BrowserRouter onUpdate={() => window.scrollTo( 0, 0 )} >
