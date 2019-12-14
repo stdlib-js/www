@@ -30,10 +30,10 @@ import React from 'react';
 * @param {Object} props - component properties
 * @returns {ReactComponent} React component
 */
-function Footer( props ) {
+function Footer() {
 	return (
-		<footer className={props.fullPage ? 'readme-footer-full' : 'readme-footer'} >
-			<div class="readme-footer-bottom-nav">
+		<footer>
+			<div class="bottom-nav center">
 				<a href="https://www.patreon.com/athan">Donate</a>
 				<span className="nav-separator">/</span>
 				<a href="/docs/api/">Docs</a>

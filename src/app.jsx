@@ -192,7 +192,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="app">
+			<div class="main" role="main">
 				<SideMenu
 					onDrawerChange={this.handleSlideOutChange}
 					onReadmeChange={this.fetchAndCacheFragment}
@@ -309,9 +309,8 @@ class App extends Component {
 							<WelcomePage version={this.state.version} />
 						</Route>
 					</Switch>
-					{ this.state.slideoutIsOpen ? <Footer /> : null }
 				</div>
-				{ !this.state.slideoutIsOpen ? <Footer fullPage /> : null }
+				<Footer />
 			</div>
 		)
 	}
