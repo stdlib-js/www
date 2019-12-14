@@ -28,11 +28,11 @@ import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
 import ReadmePage from './readme_page.jsx';
 import Footer from './footer.jsx';
+import topnav from './top_nav.jsx';
 import generateHTMLBoilerplate from './generate_html_boilerplate.js';
 import VERSIONS from './versions.json';
 import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
 import JSON_CACHE from './json_cache.js';
-import topnav from './top_nav.jsx';
 import pkgPath from './pkg_doc_path.js';
 import config from './config.js';
 import log from './log.js';
@@ -121,7 +121,7 @@ class App extends Component {
 		var tpath;
 		var rpath;
 
-		tpath = `${config.mount}${this.state.version}/package_tree.json`;
+		tpath = config.mount+this.state.version+'/package_tree.json';
 		if ( JSON_CACHE[ tpath ] ) {
 			this.setState({
 				'packageTree': JSON_CACHE[ tpath ]
@@ -137,7 +137,7 @@ class App extends Component {
 				})
 				.catch( log );
 		}
-		rpath = `${config.mount}${this.state.version}/package_resources.json`;
+		rpath = config.mount+this.state.version+'/package_resources.json';
 		if ( JSON_CACHE[ rpath ] ) {
 			this.setState({
 				'packageResources': JSON_CACHE[ rpath ]
@@ -156,12 +156,12 @@ class App extends Component {
 	}
 
 	fetchFragment = ( path ) => {
-		this.props.history.push( path );
 		window.scrollTo( 0, 0 );
+		this.props.history.push( path );
 		if ( HTML_FRAGMENT_CACHE[ path ] ) {
 			this.replaceReadmeContainer( HTML_FRAGMENT_CACHE[ path ] );
 		} else {
-			fetch( `${path}?fragment=true` )
+			fetch( path+'?fragment=true' )
 				.then( res => res.text() )
 				.then( res => {
 					HTML_FRAGMENT_CACHE[ path ] = res;
@@ -177,10 +177,11 @@ class App extends Component {
 
 	selectVersion = ( event ) => {
 		var pathname = this.props.history.location.pathname;
-		pathname = pathname.replace( this.state.version, event.target.value );
+		var version = event.target.value;
+		pathname = pathname.replace( this.state.version, version );
 		this.props.history.push( pathname );
 		this.setState({
-			'version': event.target.value
+			'version': version
 		}, this.fetchJSONFiles );
 	}
 
