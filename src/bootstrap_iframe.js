@@ -31,25 +31,26 @@ const IFRAME_RESIZER_CONTENT_SCRIPT_PATH = 'https://cdnjs.cloudflare.com/ajax/li
 * @returns {string} boilerplate HTML page
 */
 function bootstrap( resource ) {
-	return `<html>
-<body>
-<script type="text/javascript">
-document.addEventListener( 'DOMContentLoaded', () => {
-	var html = fetch( '${ resource }' );
-	html
-		.then( response => response.text() )
-		.then( text => {
-			var script = document.createElement( 'script' );
-			script.src = '${ IFRAME_RESIZER_CONTENT_SCRIPT_PATH }';
-			document.open();
-			document.write( text );
-			document.head.appendChild( script );
-			document.close();
-		});
-});
-</script>
-</body>
-</html>`;
+	return [
+		'<html>',
+		'<body>',
+		'<script type="text/javascript">',
+		'document.addEventListener( "DOMContentLoaded", () => {',
+		'    var html = fetch( "'+resource+'" );',
+		'    html.then( response => response.text() )',
+		'        .then( text => {',
+		'            var script = document.createElement( "script" );',
+		'            script.src = "'+IFRAME_RESIZER_CONTENT_SCRIPT_PATH+'";',
+		'            document.open();',
+		'            document.write( text );',
+		'            document.head.appendChild( script );',
+		'            document.close();',
+		'        });',
+        '});',
+		'</script>',
+		'</body>',
+		'</html>'
+	].join( '\n' );
 }
 
 
