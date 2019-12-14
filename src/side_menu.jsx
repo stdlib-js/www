@@ -53,92 +53,127 @@ class MenuBar extends Component {
 		};
 	}
 
-	componentDidUpdate( _, prevState ) {
-		const history = this.props.history;
-		const pathname = history.location.pathname;
+	componentDidUpdate( _, prev ) {
+		var pathname;
+		var match;
+		var state;
+		var path;
+		var el;
+
+		pathname = this.props.history.location.pathname;
 		if ( !pathname.endsWith( this.state.activePkg ) ) {
-			const packagePath = pathname.substring( pathname.indexOf( '@stdlib' ) );
-			const newState = {
-				[ packagePath ]: true,
-				activePkg: packagePath
-			};
-			let match;
-			while ( ( match = RE_FORWARD_SLASH.exec( packagePath) ) !== null ) {
-				newState[ packagePath.substring( 0, match.index ) ] = true;
+			path = pathname.substring( pathname.indexOf( '@stdlib' ) );
+			state = {};
+			state[ path ] = true;
+			state.activePkg = path;
+			while ( ( match = RE_FORWARD_SLASH.exec( path) ) !== null ) {
+				state[ path.substring( 0, match.index ) ] = true;
 			}
-			this.setState( newState );
+			this.setState( state );
 		}
-		if ( this.state.activePkg !== prevState.activePkg ) {
-			const elems = document.getElementsByClassName( 'active-package' );
-			if ( elems.length > 0 ) {
-				setTimeout( () => {
-					elems[ 0 ].scrollIntoViewIfNeeded();
-				}, COLLAPSE_TRANSITION_TIMEOUT );
+		if ( this.state.activePkg !== prev.activePkg ) {
+			el = document.getElementsByClassName( 'active-package' );
+			if ( el.length > 0 ) {
+				el = el[ 0 ];
+				setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
 			}
+		}
+
+		/**
+		* Callback invoked after a timeout.
+		*
+		* @private
+		*/
+		function onTimeout() {
+			el.scrollIntoViewIfNeeded();
 		}
 	}
 
-	handleDrawerOpen = () => {
+	_onDrawerOpen = () => {
 		this.props.onDrawerChange( true );
 	}
 
-	handleDrawerClose = () => {
+	_onDrawerClose = () => {
 		this.props.onDrawerChange( false );
 	}
 
-	handleClickFactory( path ) {
-		const fullPath = `/docs/api/${this.props.version}/${path}`;
-		return () => {
-			this.setState( prevState => {
-				const active = !prevState[ path ];
-				const newState = {
-					[ path ]: active
-				};
-				if ( active ) {
-					newState.activePkg = path;
-					this.props.onReadmeChange( fullPath );
-				}
-				return newState;
-			});
+	_onClickFactory( path ) {
+		var self;
+		var path;
+
+		self = this;
+		path = config.mount + this.props.version + '/' + path;
+
+		return onClick;
+
+		/**
+		* Callback invoked upon a "click" event.
+		*
+		* @private
+		*/
+		function onClick() {
+			self.setState( setState );
+		}
+
+		/**
+		* Updates the component state.
+		*
+		* @private
+		* @param {Object} prev - previous state
+		* @returns {Object} updated state
+		*/
+		function setState( prev ) {
+			var active;
+			var state;
+
+			active = !prev[ path ];
+			state = {};
+			state[ path ] = active;
+			if ( active ) {
+				state.activePkg = path;
+				self.props.onReadmeChange( path );
+			}
+			return state;
 		}
 	}
 
-	handlePackageClick( pkgPath ) {
+	_onPackageClick( path ) {
 		this.setState({
-			activePkg: pkgPath
+			'activePkg': path
 		});
 	}
 
-	renderItems( namespace, path, level ) {
-		const keys = Object.keys( namespace );
+	_renderItems( namespace, path, level ) {
+		var keys = Object.keys( namespace );
 		return keys.map( ( pkg ) => {
-			const pkgPath =`${path}/${pkg}`;
+			var pkgPath = path + '/' + pkg;
 			if ( pkg === '__namespace__' ) {
 				return null;
 			}
 			if ( typeof namespace[ pkg ] !== 'object' ) {
 				// Case: Individual package
 				if (
-					this.state.filter && !pkgPath.includes( this.state.filter )
+					this.state.filter &&
+					!pkgPath.includes( this.state.filter )
 				) {
 					return null;
 				}
 				return (
-					<div key={pkgPath}>
+					<div key={ pkgPath }>
 						<ListItem
 							button
-							key={`${pkgPath}-item`}
-							className={`side-menu-list-item ${this.state.activePkg === pkgPath ? 'active-package' : ''}`}
+							key={ pkgPath+'-item' }
+							className={ 'side-menu-list-item '+( (this.state.activePkg === pkgPath) ? 'active-package' : '' ) }
 							onClick={() => {
-								this.handlePackageClick( pkgPath );
-								const path = `/docs/api/${this.props.version}/${pkgPath}`;
+								var path = config.mount + this.props.version + '/' + pkgPath;
+								this._onPackageClick( pkgPath );
 								this.props.onReadmeChange( path );
 							}}
 							style={{
 								paddingLeft: 16 + 10 * level
 							}}
 						>
-								{pkg}
+							{pkg}
 						</ListItem>
 					</div>
 				)
@@ -156,8 +191,8 @@ class MenuBar extends Component {
 				<div key={pkgPath} >
 					<ListItem
 						button
-						onClick={this.handleClickFactory( pkgPath )}
-						className={`side-menu-list-item-namespace ${this.state.activePkg === pkgPath ? 'active-package' : ''}`}
+						onClick={ this._onClickFactory( pkgPath ) }
+						className={ 'side-menu-list-item-namespace '+( (this.state.activePkg === pkgPath) ? 'active-package' : '' ) }
 						style={{
 							paddingLeft: 16 + 10 * level
 						}}
@@ -165,71 +200,92 @@ class MenuBar extends Component {
 						{pkg}
 						<span className="side-menu-list-item-namespace-icon" >
 							{this.state[ pkgPath ] ?
-								<RemoveIcon style={{ fontSize: 14 }} /> :
-								<AddIcon style={{ fontSize: 14 }} />
+								<RemoveIcon style={ { fontSize: 14 } } /> :
+								<AddIcon style={ { fontSize: 14 } } />
 							}
 						</span>
 					</ListItem>
 					<Collapse
-						in={this.state[ pkgPath ]}
-						timeout={COLLAPSE_TRANSITION_TIMEOUT}
+						in={ this.state[ pkgPath ] }
+						timeout={ COLLAPSE_TRANSITION_TIMEOUT }
 						unmountOnExit
 					>
-						{this.renderItems( namespace[ pkg ], pkgPath, level+1 )}
+						{this._renderItems( namespace[ pkg ], pkgPath, level+1 )}
 					</Collapse>
 				</div>
 			)
 		} )
 	}
 
-	handleFilterChange = ( event ) => {
-		const newFilter = event.target.value;
+	_onFilterChange = ( event ) => {
+		var newFilter = event.target.value;
+		var self = this;
 		this.setState({
-			filter: newFilter.toLowerCase()
-		}, () => {
-			if ( !this.debounced ) {
-				this.debounced = debounce( 300, this.applyFilterChange );
+			'filter': newFilter.toLowerCase()
+		}, clbk );
+
+		/**
+		* Callback invoked after setting component state.
+		*
+		* @private
+		*/
+		function clbk() {
+			if ( !self.debounced ) {
+				self.debounced = debounce( 300, self._applyFilterChange );
 			}
-			this.debounced();
-		});
+			self.debounced();
+		}
 	}
 
-	applyFilterChange = () => {
+	_applyFilterChange = () => {
+		var found;
+		var state;
+		var keys;
+		var i;
 		if ( this.state.filter ) {
-			const found = {};
-			this.checkFilter( found, this.props.packageTree, '@stdlib', this.state.filter );
-			const keys = Object.keys( found );
-			const newState = {};
-			for ( let i = 0; i < keys.length; i++ ) {
-				newState[ keys[ i ] ] = true;
+			found = {};
+			this._checkFilter( found, this.props.packageTree, '@stdlib', this.state.filter );
+			keys = Object.keys( found );
+			state = {};
+			for ( i = 0; i < keys.length; i++ ) {
+				state[ keys[ i ] ] = true;
 			}
 			this.setState({
-				...newState,
+				...state,
 				found
 			});
 		} else {
-			this.resetFilter();
+			this._resetFilter();
 		}
 	}
 
-	resetFilter = () => {
-		const keys = Object.keys( this.state.found );
-		const newState = {};
-		for ( let i = 0; i < keys.length; i++ ) {
-			newState[ keys[ i ] ] = false;
+	_resetFilter = () => {
+		var state;
+		var keys;
+		var i;
+
+		keys = Object.keys( this.state.found );
+		state = {};
+		for ( i = 0; i < keys.length; i++ ) {
+			state[ keys[ i ] ] = false;
 		}
 		this.setState({
-			...newState,
+			...state,
 			filter: '',
 			found: {}
 		});
 	}
 
-	checkFilter( state, docs, path, filter ) {
-		const keys = Object.keys( docs );
-		let matched = false;
-		for ( let i = 0; i < keys.length; i++ ) {
-			const pkg = keys[ i ];
+	_checkFilter( state, docs, path, filter ) {
+		var matched;
+		var keys;
+		var pkg;
+		var flg;
+		var i;
+
+		keys = Object.keys( docs );
+		for ( i = 0; i < keys.length; i++ ) {
+			pkg = keys[ i ];
 			if ( typeof docs[ pkg ] !== 'object' ) {
 				if ( pkg.includes( filter ) ) {
 					matched = true;
@@ -238,8 +294,8 @@ class MenuBar extends Component {
 				matched = true;
 				state[ path+'/'+pkg ] = true;
 			} else {
-				const foundInChild = this.checkFilter( state, docs[ pkg ], path+'/'+pkg, filter );
-				if ( foundInChild ) {
+				flg = this._checkFilter( state, docs[ pkg ], path+'/'+pkg, filter );
+				if ( flg ) {
 					matched = true;
 				}
 			}
@@ -256,7 +312,7 @@ class MenuBar extends Component {
 				<IconButton
 					color="inherit"
 					aria-label="open drawer"
-					onClick={this.handleDrawerOpen}
+					onClick={this._onDrawerOpen}
 					edge="start"
 					id="menu-icon-button"
 				>
@@ -276,7 +332,7 @@ class MenuBar extends Component {
 							<Link to={`/docs/api/${this.props.version}/`}>
 								<Logo />
 							</Link>
-							<IconButton aria-label="close drawer" onClick={this.handleDrawerClose} edge="start" >
+							<IconButton aria-label="close drawer" onClick={this._onDrawerClose} edge="start" >
 								<ChevronLeftIcon id="menu-close-icon" />
 							</IconButton>
 						</div>
@@ -291,19 +347,19 @@ class MenuBar extends Component {
 							<input
 								className="side-menu-filter-input"
 								type="text"
-								onChange={this.handleFilterChange}
+								onChange={this._onFilterChange}
 								value={this.state.filter}
 								placeholder="Type here to filter menu..."
 							/>
 							{ this.state.filter ? <ClearIcon
 								className="side-menu-filter-clear"
-								onClick={this.resetFilter}
+								onClick={this._resetFilter}
 							/> : null }
 						</div>
 						<div className="side-menu-list-wrapper" >
 							<List disablePadding >
 								{ this.props.packageTree ?
-									this.renderItems( this.props.packageTree, '@stdlib', 0 ) :
+									this._renderItems( this.props.packageTree, '@stdlib', 0 ) :
 									null
 								}
 							</List>
