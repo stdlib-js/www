@@ -71,10 +71,6 @@ class App extends Component {
 		};
 	}
 
-	componentDidMount() {
-		this._fetchJSONFiles();
-	}
-
 	_handleSlideOutChange = ( value ) => {
 		this.setState({
 			'slideoutIsOpen': value
@@ -246,6 +242,10 @@ class App extends Component {
 		return (
 			<WelcomePage version={this.state.version} />
 		);
+	}
+
+	componentDidMount() {
+		this._fetchJSONFiles();
 	}
 
 	render() {
