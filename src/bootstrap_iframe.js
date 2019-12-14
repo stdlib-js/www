@@ -24,23 +24,23 @@ const IFRAME_RESIZER_CONTENT_SCRIPT_PATH = 'https://cdnjs.cloudflare.com/ajax/li
 // MAIN //
 
 /**
-* Generates a boilerplate HTML page which fetches a specified resource and overwrites its contents.
+* Returns a boilerplate HTML page for bootstrapping an iframe.
 *
 * @private
-* @param {string} resourcePath - URL of resource to fetch
+* @param {string} resource - URL of resource to fetch
 * @returns {string} boilerplate HTML page
 */
-function generateHTMLBoilerplate( resourcePath ) {
+function bootstrap( resource ) {
 	return `<html>
 <body>
 <script type="text/javascript">
 document.addEventListener( 'DOMContentLoaded', () => {
-	var html = fetch( '${resourcePath}' );
+	var html = fetch( '${ resource }' );
 	html
 		.then( response => response.text() )
 		.then( text => {
 			var script = document.createElement( 'script' );
-			script.src = '${IFRAME_RESIZER_CONTENT_SCRIPT_PATH}';
+			script.src = '${ IFRAME_RESIZER_CONTENT_SCRIPT_PATH }';
 			document.open();
 			document.write( text );
 			document.head.appendChild( script );
@@ -55,4 +55,4 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 // EXPORTS //
 
-export default generateHTMLBoilerplate;
+export default bootstrap;

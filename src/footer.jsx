@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import config from './config.js';
 
 
 // MAIN //
@@ -36,7 +37,7 @@ function Footer() {
 			<div class="bottom-nav center">
 				<a href="https://www.patreon.com/athan">Donate</a>
 				<span className="nav-separator">/</span>
-				<a href="/docs/api/">Docs</a>
+				<a href={ config.mount }>Docs</a>
 				<span className="nav-separator">/</span>
 				<a href="https://gitter.im/stdlib-js/stdlib">Chat</a>
 				<span className="nav-separator">/</span>

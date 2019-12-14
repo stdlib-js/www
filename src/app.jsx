@@ -29,7 +29,7 @@ import WelcomePage from './welcome_page.jsx';
 import ReadmePage from './readme_page.jsx';
 import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
-import generateHTMLBoilerplate from './generate_html_boilerplate.js';
+import iframeBootstrap from './bootstrap_iframe.js';
 import VERSIONS from './versions.json';
 import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
 import JSON_CACHE from './json_cache.js';
@@ -37,11 +37,6 @@ import pkgPath from './pkg_doc_path.js';
 import config from './config.js';
 import log from './log.js';
 import downloadAssets from './download_assets.js';
-
-
-// VARIABLES //
-
-var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 
 
 // MAIN //
@@ -149,8 +144,10 @@ class App extends Component {
 	selectVersion = ( event ) => {
 		var pathname = this.props.history.location.pathname;
 		var version = event.target.value;
+
 		pathname = pathname.replace( this.state.version, version );
 		this.props.history.push( pathname );
+
 		this.setState({
 			'version': version
 		}, this.fetchJSONFiles );
@@ -185,12 +182,12 @@ class App extends Component {
 		return (
 			<div class="main" role="main">
 				<SideMenu
-					onDrawerChange={this.handleSlideOutChange}
-					onReadmeChange={this.fetchFragment}
-					open={this.state.slideoutIsOpen}
-					version={this.state.version}
-					onVersionChange={this.selectVersion}
-					packageTree={this.state.packageTree}
+					onDrawerChange={ this.handleSlideOutChange }
+					onReadmeChange={ this.fetchFragment }
+					onVersionChange={ this.selectVersion }
+					open={ this.state.slideoutIsOpen }
+					version={ this.state.version }
+					packageTree={ this.state.packageTree }
 				/>
 				<div className="readme-container" style={{
 					marginLeft: this.state.slideoutIsOpen ? 350 : 0
@@ -198,105 +195,88 @@ class App extends Component {
 					<Switch>
 						<Route
 							exact
-							path="/docs/api/:version/@stdlib/:pkg*/benchmark.html"
+							path={ config.mount+':version/@stdlib/:pkg*/benchmark.html' }
 							render={({ match }) => {
-								var benchmarks;
 								var resources;
 								var iframe;
-								var tests;
-								var path;
-								var html;
-								var ts;
 
-								path = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 								resources = this.state.packageResources[ match.params.pkg ];
-								if ( resources ) {
-									tests = resources.test;
-									benchmarks = resources.benchmark;
-									ts = resources.typescript;
-								}
-								if ( benchmarks ) {
-									html = generateHTMLBoilerplate( `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/benchmark.html` )
+								if ( resources.benchmark ) {
 									iframe = <IframeResizer
-										className="readme-iframe"
-										srcdoc={html}
+										className="benchmarks-iframe"
+										srcdoc={ iframeBoostrap( match.url ) }
 										title="Benchmarks"
 										width="100%"
 										checkOrigin={false}
 									/>;
 								} else {
-									iframe = <h2><code>{match.params.pkg}</code> does not have any benchmarks.</h2>;
+									iframe = <p><code>{ match.params.pkg }</code> does not have any benchmarks.</p>;
 								}
 								return (
 									<Fragment>
-										<nav className="navbar">
-											<Link to={path} >Documentation</Link>
-											{ benchmarks ? <Link to={`${path}/benchmark.html`}>Benchmarks</Link> : null}
-											{ tests ? <Link to={`${path}/test.html`}>Tests</Link> : null}
-											{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
-											{ ts ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
-										</nav>
-										{iframe}
+										<TopNav
+											pkg={ match.params.pkg }
+											version={ match.params.version }
+											docs={ true }
+											benchmarks={ false }
+											tests={ Boolean( resources && resources.test ) }
+											src={ Boolean( resources ) }
+											typescript={ Boolean( resources && resources.typescript ) }
+										/>
+										{ iframe }
 									</Fragment>
 								);
 							}}
 						/>
 						<Route
 							exact
-							path="/docs/api/:version/@stdlib/:pkg*/test.html"
+							path={ config.mount+':version/@stdlib/:pkg*/test.html' }
 							render={({ match }) => {
-								var benchmarks;
 								var resources;
 								var iframe;
-								var tests;
-								var path;
-								var html;
-								var ts;
 
-								path = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 								resources = this.state.packageResources[ match.params.pkg ];
-								if ( resources ) {
-									tests = resources.test;
-									benchmarks = resources.benchmark;
-									ts = resources.typescript;
-								}
-								if ( tests ) {
-									html = generateHTMLBoilerplate( `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/test.html` );
+								if ( resources.test ) {
 									iframe = <IframeResizer
-										className="readme-iframe"
-										srcdoc={html}
+										className="tests-iframe"
+										srcdoc={ iframeBoostrap( match.url ) }
 										title="Tests"
 										width="100%"
 										checkOrigin={false}
 									/>;
 								} else {
-									iframe = <h2><code>{match.params.pkg}</code> does not have any tests.</h2>;
+									iframe = <p><code>{ match.params.pkg }</code> does not have any tests.</p>;
 								}
 								return (
 									<Fragment>
-										<nav className="navbar">
-											<Link to={path} >Documentation</Link>
-											{ benchmarks ? <Link to={`${path}/benchmark.html`}>Benchmarks</Link> : null}
-											{ tests ? <Link to={`${path}/test.html`}>Tests</Link> : null}
-											{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
-											{ ts ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
-										</nav>
-										{iframe}
+										<TopNav
+											pkg={ match.params.pkg }
+											version={ match.params.version }
+											docs={ true }
+											benchmarks={ Boolean( resources && resources.benchmark ) }
+											tests={ false }
+											src={ Boolean( resources ) }
+											typescript={ Boolean( resources && resources.typescript ) }
+										/>
+										{ iframe }
 									</Fragment>
 								);
 							}}
 						/>
 						<Route
 							exact
-							path="/docs/api/:version//@stdlib/:pkg*/index.html"
-							render={this.renderReadme}
+							path={ config.mount+':version//@stdlib/:pkg*/index.html' }
+							render={ this.renderReadme }
 						/>
 						<Route
 							exact
-							path="/docs/api/:version/@stdlib/:pkg*"
-							render={this.renderReadme}
+							path={ config.mount+':version/@stdlib/:pkg*' }
+							render={ this.renderReadme }
 						/>
-						<Route exact path="/docs/api/:version?" >
+						<Route
+							exact
+							path={ config.mount+':version?' }
+						>
 							<WelcomePage version={this.state.version} />
 						</Route>
 					</Switch>
@@ -304,12 +284,12 @@ class App extends Component {
 				<Footer />
 				<Tooltip placement="left" title="Download documentation for offline access">
 					<GetAppIcon
-						style={{ position: 'fixed', bottom: 20, right: 20, cursor: 'pointer' }}
-						onClick={this.downloadAssets}
+						style={ { position: 'fixed', bottom: 20, right: 20, cursor: 'pointer' } }
+						onClick={ this.downloadAssets }
 					/>
 				</Tooltip>
 			</div>
-		)
+		);
 	}
 }
 

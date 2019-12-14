@@ -33,7 +33,7 @@ import App from './app.jsx';
 */
 function ClientApp() {
 	return (
-		<BrowserRouter onUpdate={() => window.scrollTo( 0, 0 )} >
+		<BrowserRouter onUpdate={ () => window.scrollTo( 0, 0 ) } >
 			<App />
 		</BrowserRouter>
 	);
