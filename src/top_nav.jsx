@@ -109,25 +109,25 @@ function ts( pkg ) {
 * Returns a React component for rendering top navigation.
 *
 * @private
-* @param {Object} params - component parameters
-* @param {string} params.version - version
-* @param {string} params.pkg - package name
-* @param {boolean} [params.docs] - boolean indicating whether to link to package documentation
-* @param {boolean} [params.src] - boolean indicating whether to link to package source
-* @param {boolean} [params.benchmarks] - boolean indicating whether to link to package benchmarks
-* @param {boolean} [params.tests] - boolean indicating whether to link to package tests
-* @param {boolean} [params.typescript] - boolean indicating whether to link to TypeScript type declarations
+* @param {Object} props - component properties
+* @param {string} props.version - version
+* @param {string} props.pkg - package name
+* @param {boolean} [props.docs] - boolean indicating whether to link to package documentation
+* @param {boolean} [props.src] - boolean indicating whether to link to package source
+* @param {boolean} [props.benchmarks] - boolean indicating whether to link to package benchmarks
+* @param {boolean} [props.tests] - boolean indicating whether to link to package tests
+* @param {boolean} [props.typescript] - boolean indicating whether to link to TypeScript type declarations
 * @returns {ReactComponent} React component
 */
-function topnav( params ) {
-	var path = pkgPath( params.pkg, params.version );
+function TopNav( props ) {
+	var path = pkgPath( props.pkg, props.version );
 	return (
 		<nav className="top-nav" role="navigation">
-			{ params.docs ? docs( path ) : null }
-			{ params.benchmarks ? bench( path ) : null }
-			{ params.tests ? test( path ) : null }
-			{ params.src ? src( params.pkg, params.version ) : null }
-			{ params.typescript ? ts( params.pkg ) : null }
+			{ props.docs ? docs( path ) : null }
+			{ props.benchmarks ? bench( path ) : null }
+			{ props.tests ? test( path ) : null }
+			{ props.src ? src( props.pkg, props.version ) : null }
+			{ props.typescript ? ts( props.pkg ) : null }
 		</nav>
 	);
 }
@@ -135,4 +135,4 @@ function topnav( params ) {
 
 // EXPORTS //
 
-export default topnav;
+export default TopNav;

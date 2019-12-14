@@ -28,7 +28,7 @@ import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
 import ReadmePage from './readme_page.jsx';
 import Footer from './footer.jsx';
-import topnav from './top_nav.jsx';
+import TopNav from './top_nav.jsx';
 import generateHTMLBoilerplate from './generate_html_boilerplate.js';
 import VERSIONS from './versions.json';
 import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
@@ -86,35 +86,6 @@ class App extends Component {
 		this.setState({
 			'slideoutIsOpen': value
 		});
-	}
-
-	replaceReadmeContainer( res ) {
-		var el = document.getElementById( 'readme-container' );
-		if ( el ) {
-			el.innerHTML = res;
-		}
-	}
-
-	renderReadme = ({ match }) => {
-		var resources;
-		var nav;
-
-		resources = this.state.packageResources[ match.params.pkg ];
-		nav = topnav({
-			'pkg': match.params.pkg,
-			'version': match.params.version,
-			'docs': false,
-			'benchmarks': resources ? resources.benchmark : false,
-			'tests': resources ? resources.test : false,
-			'src': resources || false,
-			'typescript': resources ? resources.typescript : false
-		});
-		return (
-			<Fragment>
-				{nav}
-				<ReadmePage path={match.url} />
-			</Fragment>
-		);
 	}
 
 	fetchJSONFiles = () => {
@@ -183,6 +154,33 @@ class App extends Component {
 		this.setState({
 			'version': version
 		}, this.fetchJSONFiles );
+	}
+
+	replaceReadmeContainer( res ) {
+		var el = document.getElementById( 'readme-container' );
+		if ( el ) {
+			el.innerHTML = res;
+		}
+	}
+
+	renderReadme = ({ match }) => {
+		var resources;
+
+		resources = this.state.packageResources[ match.params.pkg ];
+		return (
+			<Fragment>
+				<TopNav
+					pkg={ match.params.pkg }
+					version={ match.params.version }
+					docs={ false }
+					benchmarks={ Boolean( resources && resources.benchmark ) }
+					tests={ Boolean( resources && resources.test ) }
+					src={ Boolean( resources ) }
+					typescript={ Boolean( resources && resources.typescript ) }
+				/>
+				<ReadmePage path={ match.url } />
+			</Fragment>
+		);
 	}
 
 	render() {
