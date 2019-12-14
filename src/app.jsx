@@ -22,6 +22,8 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import IframeResizer from 'iframe-resizer-react';
+import Tooltip from '@material-ui/core/Tooltip';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
 import ReadmePage from './readme_page.jsx';
@@ -181,6 +183,38 @@ class App extends Component {
 		}
 	}
 
+	downloadAssets = () => {
+		var download;
+		var resources;
+		var keys;
+		var i;
+
+		download = ( pkgPath ) => {
+			var path = `/docs/api/${this.state.version}/@stdlib/${pkgPath}`;
+			if ( !path.includes( '__namespace__' ) ) {
+				fetch( `${path}?fragment=true` )
+					.then( res => res.text() )
+					.then( res => {
+						HTML_FRAGMENT_CACHE[ path ] = res;
+						i += 1;
+						if ( i < keys.length ) {
+							download( keys[ i ] );
+						}
+					})
+					.catch( logError );
+			} else {
+				i += 1;
+				if ( i < keys.length ) {
+					download( keys[ i ] );
+				}
+			}
+		};
+		resources = this.state.packageResources;
+		keys = Object.keys( resources );
+		i = 0;
+		download( keys[ i ] );
+	}
+
 	selectVersion = ( event ) => {
 		var pathname = this.props.history.location.pathname;
 		pathname = pathname.replace( this.state.version, event.target.value );
@@ -312,6 +346,12 @@ class App extends Component {
 					{ this.state.slideoutIsOpen ? <Footer /> : null }
 				</div>
 				{ !this.state.slideoutIsOpen ? <Footer fullPage /> : null }
+				<Tooltip placement="left" title="Download documentation for offline access">
+					<GetAppIcon
+						style={{ position: 'fixed', bottom: 20, right: 20, cursor: 'pointer' }}
+						onClick={this.downloadAssets}
+					/>
+				</Tooltip>
 			</div>
 		)
 	}
