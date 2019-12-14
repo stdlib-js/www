@@ -18,6 +18,13 @@
 
 // MAIN //
 
+/**
+* Application configuration.
+*
+* @private
+* @constant
+* @type {Object}
+*/
 const config = {
 	// Base URL path for API documentation:
 	'mount': '/docs/api/',
