@@ -259,6 +259,7 @@ class App extends Component {
 					version={ this.state.version }
 					packageTree={ this.state.packageTree }
 				/>
+				// TODO: toggle class to apply CSS transform
 				<div className="readme-container" style={{
 					marginLeft: this.state.slideoutIsOpen ? 350 : 0
 				}}>
