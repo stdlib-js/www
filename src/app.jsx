@@ -157,16 +157,14 @@ class App extends Component {
 	}
 
 	replaceReadmeContainer( res ) {
-		var el = document.getElementById( 'readme-container' );
+		var el = document.getElementById( 'readme' );
 		if ( el ) {
 			el.innerHTML = res;
 		}
 	}
 
 	renderReadme = ({ match }) => {
-		var resources;
-
-		resources = this.state.packageResources[ match.params.pkg ];
+		var resources = this.state.packageResources[ match.params.pkg ];
 		return (
 			<Fragment>
 				<TopNav
@@ -194,7 +192,7 @@ class App extends Component {
 					onVersionChange={this.selectVersion}
 					packageTree={this.state.packageTree}
 				/>
-				<div className="readme-outer-container" style={{
+				<div className="readme-container" style={{
 					marginLeft: this.state.slideoutIsOpen ? 350 : 0
 				}}>
 					<Switch>

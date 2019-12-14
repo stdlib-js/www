@@ -36,7 +36,7 @@ function ReadmePage( props ) {
 	var html = HTML_FRAGMENT_CACHE[ props.path ] || '{{ FRAGMENT }}';
 	return (
 		<div
-			id="readme-container"
+			id="readme"
 			className="readme"
 			suppressHydrationWarning
 			dangerouslySetInnerHTML={{ __html: html }}
