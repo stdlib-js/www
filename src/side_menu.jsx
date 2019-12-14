@@ -53,42 +53,6 @@ class MenuBar extends Component {
 		};
 	}
 
-	componentDidUpdate( _, prev ) {
-		var pathname;
-		var match;
-		var state;
-		var path;
-		var el;
-
-		pathname = this.props.history.location.pathname;
-		if ( !pathname.endsWith( this.state.activePkg ) ) {
-			path = pathname.substring( pathname.indexOf( '@stdlib' ) );
-			state = {};
-			state[ path ] = true;
-			state.activePkg = path;
-			while ( ( match = RE_FORWARD_SLASH.exec( path) ) !== null ) {
-				state[ path.substring( 0, match.index ) ] = true;
-			}
-			this.setState( state );
-		}
-		if ( this.state.activePkg !== prev.activePkg ) {
-			el = document.getElementsByClassName( 'active-package' );
-			if ( el.length > 0 ) {
-				el = el[ 0 ];
-				setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
-			}
-		}
-
-		/**
-		* Callback invoked after a timeout.
-		*
-		* @private
-		*/
-		function onTimeout() {
-			el.scrollIntoViewIfNeeded();
-		}
-	}
-
 	_onDrawerOpen = () => {
 		this.props.onDrawerChange( true );
 	}
@@ -304,6 +268,42 @@ class MenuBar extends Component {
 			state[ path ] = true;
 		}
 		return matched;
+	}
+
+	componentDidUpdate( _, prev ) {
+		var pathname;
+		var match;
+		var state;
+		var path;
+		var el;
+
+		pathname = this.props.history.location.pathname;
+		if ( !pathname.endsWith( this.state.activePkg ) ) {
+			path = pathname.substring( pathname.indexOf( '@stdlib' ) );
+			state = {};
+			state[ path ] = true;
+			state.activePkg = path;
+			while ( ( match = RE_FORWARD_SLASH.exec( path) ) !== null ) {
+				state[ path.substring( 0, match.index ) ] = true;
+			}
+			this.setState( state );
+		}
+		if ( this.state.activePkg !== prev.activePkg ) {
+			el = document.getElementsByClassName( 'active-package' );
+			if ( el.length > 0 ) {
+				el = el[ 0 ];
+				setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
+			}
+		}
+
+		/**
+		* Callback invoked after a timeout.
+		*
+		* @private
+		*/
+		function onTimeout() {
+			el.scrollIntoViewIfNeeded();
+		}
 	}
 
 	render() {
