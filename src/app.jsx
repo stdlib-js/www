@@ -29,7 +29,6 @@ import ReadmePage from './readme_page.jsx';
 import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
 import iframeBootstrap from './bootstrap_iframe.js';
-import pkgPath from './pkg_doc_path.js';
 import log from './log.js';
 import downloadAssets from './download_assets.js';
 import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
