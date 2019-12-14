@@ -39,7 +39,7 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 */
 function docs( path ) {
 	return (
-		<Link to={path}>Documentation</Link>
+		<Link to={ path }>Documentation</Link>
 	);
 }
 
@@ -53,7 +53,7 @@ function docs( path ) {
 function bench( path ) {
 	path += 'benchmark.html';
 	return (
-		<Link to={path}>Benchmarks</Link>
+		<Link to={ path } title="Run package benchmarks">Benchmarks</Link>
 	);
 }
 
@@ -67,7 +67,7 @@ function bench( path ) {
 function test( path ) {
 	path += 'test.html';
 	return (
-		<Link to={path}>Tests</Link>
+		<Link to={ path } title="Run package tests">Tests</Link>
 	);
 }
 
@@ -82,7 +82,7 @@ function test( path ) {
 function src( pkg, version ) {
 	var path = 'https://github.com/stdlib-js/stdlib/tree/'+version+'/lib/node_modules/@stdlib/'+pkg;
 	return (
-		<a href={path}>Source</a>
+		<a href={ path } title="View source code">Source</a>
 	);
 }
 
@@ -98,7 +98,7 @@ function ts( pkg ) {
 	pkg = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
 	path = '/docs/ts/modules/_'+pkg+'_docs_types_index_d_.html';
 	return (
-		<a href={path}>TypeScript</a>
+		<a href={ path } title="View TypeScript type definitions">TypeScript</a>
 	);
 }
 
