@@ -34,7 +34,7 @@ import config from './config.js';
 function Footer() {
 	return (
 		<footer>
-			<div class="bottom-nav center">
+			<div class="bottom-nav center" role="navigation">
 				<a href="https://www.patreon.com/athan">Donate</a>
 				<span className="nav-separator">/</span>
 				<a href={ config.mount }>Docs</a>
