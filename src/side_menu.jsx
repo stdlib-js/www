@@ -312,7 +312,7 @@ class MenuBar extends Component {
 				<IconButton
 					color="inherit"
 					aria-label="open drawer"
-					onClick={this._onDrawerOpen}
+					onClick={ this._onDrawerOpen }
 					edge="start"
 					id="menu-icon-button"
 				>
@@ -323,37 +323,37 @@ class MenuBar extends Component {
 						className="side-menu-drawer"
 						variant="persistent"
 						anchor="left"
-						open={this.props.open}
+						open={ this.props.open }
 						classes={{
 							paper: 'side-menu-drawer'
 						}}
 					>
 						<div className="side-menu-head" >
-							<Link to={`/docs/api/${this.props.version}/`}>
+							<Link to={ config.mount+this.props.version+'/' }>
 								<Logo />
 							</Link>
-							<IconButton aria-label="close drawer" onClick={this._onDrawerClose} edge="start" >
+							<IconButton aria-label="close drawer" onClick={ this._onDrawerClose } edge="start" >
 								<ChevronLeftIcon id="menu-close-icon" />
 							</IconButton>
 						</div>
 						<select
 							className="side-menu-version-select"
-							onChange={this.props.onVersionChange}
-							value={this.props.version}
+							onChange={ this.props.onVersionChange }
+							value={ this.props.version }
 						>
-							{config.versions.map( ( val, key ) => <option key={key} value={val}>{val}</option> )}
+							{config.versions.map( ( val, key ) => <option key={ key } value={ val }>{ val }</option> )}
 						</select>
 						<div className="side-menu-filter" >
 							<input
 								className="side-menu-filter-input"
 								type="text"
-								onChange={this._onFilterChange}
-								value={this.state.filter}
+								onChange={ this._onFilterChange }
+								value={ this.state.filter }
 								placeholder="Type here to filter menu..."
 							/>
 							{ this.state.filter ? <ClearIcon
 								className="side-menu-filter-clear"
-								onClick={this._resetFilter}
+								onClick={ this._resetFilter }
 							/> : null }
 						</div>
 						<div className="side-menu-list-wrapper" >
