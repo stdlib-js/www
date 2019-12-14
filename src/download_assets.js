@@ -20,6 +20,7 @@
 
 import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
 import log from './log.js';
+import config from './config.js';
 
 
 // MAIN //
@@ -59,8 +60,8 @@ function download( pkgs, version ) {
 		}
 		fetch( path+'fragment=true' )
 			.then( res => res.text() )
-			.then( res => {
-				HTML_FRAGMENT_CACHE[ path ] = res;
+			.then( text => {
+				HTML_FRAGMENT_CACHE[ path ] = text;
 				next();
 			})
 			.catch( log );
