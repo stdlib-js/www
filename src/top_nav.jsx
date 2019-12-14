@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import config from './config.js';
+import pkgPath from './pkg_doc_path.js';
 
 
 // VARIABLES //
@@ -120,7 +120,7 @@ function ts( pkg ) {
 * @returns {ReactComponent} React component
 */
 function topnav( params ) {
-	var path = config.mount+params.version+'/@stdlib/'+params.pkg+'/';
+	var path = pkgPath( params.pkg, params.version );
 	return (
 		<nav className="top-nav" role="navigation">
 			{ params.docs ? docs( path ) : null }

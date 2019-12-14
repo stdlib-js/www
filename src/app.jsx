@@ -32,25 +32,16 @@ import generateHTMLBoilerplate from './generate_html_boilerplate.js';
 import VERSIONS from './versions.json';
 import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
 import JSON_CACHE from './json_cache.js';
+import topnav from './top_nav.jsx';
+import pkgPath from './pkg_doc_path.js';
+import config from './config.js';
+import log from './log.js';
+import downloadAssets from './download_assets.js';
 
 
 // VARIABLES //
 
 var RE_UNDERSCORE_REPLACE = /[\/-]/g;
-var PREFIX = '/docs/api/';
-
-
-// FUNCTIONS //
-
-/**
-* Logs an error.
-*
-* @private
-* @param {Error} error - error object
-*/
-function logError( error ) {
-	console.error( error );
-}
 
 
 // MAIN //
@@ -59,13 +50,15 @@ class App extends Component {
 	constructor( props ) {
 		var pathname;
 		var version;
+		var prefix;
 		var i;
 		var j;
 
 		super( props );
 
+		prefix = config.mount;
 		pathname = props.history.location.pathname;
-		i = pathname.indexOf( PREFIX ) + PREFIX.length;
+		i = pathname.indexOf( prefix ) + prefix.length;
 		j = pathname.substring( i ).indexOf( '/' );
 		if ( j === -1 ) {
 			version = '';
@@ -73,7 +66,7 @@ class App extends Component {
 			version = pathname.substring( i, i+j );
 		}
 		if ( !VERSIONS.includes( version ) ) {
-			pathname = pathname.replace( PREFIX+version, PREFIX+VERSIONS[0]+'/' );
+			pathname = pathname.replace( prefix+version, prefix+VERSIONS[0]+'/' );
 			this.props.history.push( pathname );
 			version = VERSIONS[ 0 ];
 		}
@@ -103,27 +96,22 @@ class App extends Component {
 	}
 
 	renderReadme = ({ match }) => {
-		var benchmarks;
 		var resources;
-		var tests;
-		var path;
-		var ts;
+		var nav;
 
-		path = `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}`;
 		resources = this.state.packageResources[ match.params.pkg ];
-		if ( resources ) {
-			tests = resources.test;
-			benchmarks = resources.benchmark;
-			ts = resources.typescript;
-		}
+		nav = topnav({
+			'pkg': match.params.pkg,
+			'version': match.params.version,
+			'docs': false,
+			'benchmarks': resources ? resources.benchmark : false,
+			'tests': resources ? resources.test : false,
+			'src': resources || false,
+			'typescript': resources ? resources.typescript : false
+		});
 		return (
 			<Fragment>
-				<nav className="navbar">
-					{ benchmarks ? <Link to={`${path}/benchmark.html`}>Benchmarks</Link> : null}
-					{ tests ? <Link to={`${path}/test.html`}>Tests</Link> : null}
-					{ resources ? <a href={`https://github.com/stdlib-js/stdlib/tree/${match.params.version}/lib/node_modules/@stdlib/${match.params.pkg}`}>Source</a> : null}
-					{ ts ? <a href={`/docs/ts/modules/_${match.params.pkg.replace( RE_UNDERSCORE_REPLACE, '_' )}_docs_types_index_d_.html`}>TypeScript</a> : null}
-				</nav>
+				{nav}
 				<ReadmePage path={match.url} />
 			</Fragment>
 		);
@@ -133,8 +121,12 @@ class App extends Component {
 		var tpath;
 		var rpath;
 
-		tpath = `/docs/api/${this.state.version}/package_tree.json`;
-		if ( !JSON_CACHE[ tpath ] ) {
+		tpath = `${config.mount}${this.state.version}/package_tree.json`;
+		if ( JSON_CACHE[ tpath ] ) {
+			this.setState({
+				'packageTree': JSON_CACHE[ tpath ]
+			});
+		} else {
 			fetch( tpath )
 				.then( res => res.json() )
 				.then( res => {
@@ -143,14 +135,14 @@ class App extends Component {
 						'packageTree': res
 					});
 				})
-				.catch( logError );
-		} else {
-			this.setState({
-				'packageTree': JSON_CACHE[ tpath ]
-			});
+				.catch( log );
 		}
-		rpath = `/docs/api/${this.state.version}/package_resources.json`;
-		if ( !JSON_CACHE[ rpath ] ) {
+		rpath = `${config.mount}${this.state.version}/package_resources.json`;
+		if ( JSON_CACHE[ rpath ] ) {
+			this.setState({
+				'packageResources': JSON_CACHE[ rpath ]
+			});
+		} else {
 			fetch( rpath )
 				.then( res => res.json() )
 				.then( res => {
@@ -159,60 +151,28 @@ class App extends Component {
 						'packageResources': res
 					});
 				})
-				.catch( logError );
-		} else {
-			this.setState({
-				'packageResources': JSON_CACHE[ rpath ]
-			});
+				.catch( log );
 		}
 	}
 
-	fetchAndCacheFragment = ( path ) => {
+	fetchFragment = ( path ) => {
 		this.props.history.push( path );
 		window.scrollTo( 0, 0 );
-		if ( !HTML_FRAGMENT_CACHE[ path ] ) {
+		if ( HTML_FRAGMENT_CACHE[ path ] ) {
+			this.replaceReadmeContainer( HTML_FRAGMENT_CACHE[ path ] );
+		} else {
 			fetch( `${path}?fragment=true` )
 				.then( res => res.text() )
 				.then( res => {
 					HTML_FRAGMENT_CACHE[ path ] = res;
 					this.replaceReadmeContainer( res );
 				})
-				.catch( logError )
-		} else {
-			this.replaceReadmeContainer( HTML_FRAGMENT_CACHE[ path ] );
+				.catch( log )
 		}
 	}
 
 	downloadAssets = () => {
-		var download;
-		var resources;
-		var keys;
-		var i;
-
-		download = ( pkgPath ) => {
-			var path = `/docs/api/${this.state.version}/@stdlib/${pkgPath}`;
-			if ( !path.includes( '__namespace__' ) ) {
-				fetch( `${path}?fragment=true` )
-					.then( res => res.text() )
-					.then( res => {
-						HTML_FRAGMENT_CACHE[ path ] = res;
-						i += 1;
-						if ( i < keys.length ) {
-							download( keys[ i ] );
-						}
-					})
-					.catch( logError );
-			} else {
-				i += 1;
-				if ( i < keys.length ) {
-					download( keys[ i ] );
-				}
-			}
-		};
-		resources = this.state.packageResources;
-		keys = Object.keys( resources );
-		i = 0;
-		download( keys[ i ] );
+		downloadAssets( Object.keys( this.state.packageResources ), this.state.version );
 	}
 
 	selectVersion = ( event ) => {
@@ -229,7 +189,7 @@ class App extends Component {
 			<div class="main" role="main">
 				<SideMenu
 					onDrawerChange={this.handleSlideOutChange}
-					onReadmeChange={this.fetchAndCacheFragment}
+					onReadmeChange={this.fetchFragment}
 					open={this.state.slideoutIsOpen}
 					version={this.state.version}
 					onVersionChange={this.selectVersion}
