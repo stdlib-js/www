@@ -268,12 +268,23 @@ class App extends Component {
 						/>
 						<Route
 							exact
+							path={ config.mount+':version/@stdlib/:pkg*/' }
+							render={ this.renderReadme }
+						/>
+						<Route
+							exact
 							path={ config.mount+':version/@stdlib/:pkg*' }
 							render={ this.renderReadme }
 						/>
 						<Route
 							exact
-							path={ config.mount+':version?' }
+							path={ config.mount+':version/' }
+						>
+							<WelcomePage version={this.state.version} />
+						</Route>
+						<Route
+							exact
+							path={ config.mount+':version' }
 						>
 							<WelcomePage version={this.state.version} />
 						</Route>
