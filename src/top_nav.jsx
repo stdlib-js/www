@@ -31,37 +31,59 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 // FUNCTIONS //
 
 /**
-* Returns a path to a package benchmark resource.
+* Returns a React component for navigating to package documentation.
 *
 * @private
 * @param {string} path - package documentation URL
-* @returns {string} resource path
+* @returns {ReactComponent} React component
+*/
+function docs( path ) {
+	return (
+		<Link to={path}>Documentation</Link>
+	);
+}
+
+/**
+* Returns a React component for navigating to package benchmarks.
+*
+* @private
+* @param {string} path - package documentation URL
+* @returns {ReactComponent} React component
 */
 function bench( path ) {
-	return path + 'benchmark.html';
+	path += 'benchmark.html';
+	return (
+		<Link to={path}>Benchmarks</Link>
+	);
 }
 
 /**
-* Returns a path to a package test resource.
+* Returns a React component for navigating to package tests.
 *
 * @private
 * @param {string} path - package documentation URL
-* @returns {string} resource path
+* @returns {ReactComponent} React component
 */
 function test( path ) {
-	return path + 'test.html';
+	path += 'test.html';
+	return (
+		<Link to={path}>Tests</Link>
+	);
 }
 
 /**
-* Returns a path to a package's hosted source code.
+* Returns a React component for navigating to a package's hosted source code.
 *
 * @private
 * @param {string} pkg - package name
 * @param {string} version - version
-* @returns {string} path
+* @returns {ReactComponent} React component
 */
 function src( pkg, version ) {
-	return 'https://github.com/stdlib-js/stdlib/tree/'+version+'/lib/node_modules/@stdlib/'+pkg;
+	var path = 'https://github.com/stdlib-js/stdlib/tree/'+version+'/lib/node_modules/@stdlib/'+pkg;
+	return (
+		<a href={path}>Source</a>
+	);
 }
 
 /**
@@ -72,8 +94,12 @@ function src( pkg, version ) {
 * @returns {string} resource path
 */
 function ts( pkg ) {
+	var path;
 	pkg = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
-	return '/docs/ts/modules/_'+pkg+'_docs_types_index_d_.html';
+	path = '/docs/ts/modules/_'+pkg+'_docs_types_index_d_.html';
+	return (
+		<a href={path}>TypeScript</a>
+	);
 }
 
 
@@ -96,12 +122,12 @@ function ts( pkg ) {
 function topnav( params ) {
 	var path = config.mount+params.version+'/@stdlib/'+params.pkg+'/';
 	return (
-		<nav className="top-nav">
-			{ params.docs ? <Link to={path}>Documentation</Link> : null }
-			{ params.benchmarks ? <Link to={bench( path )}>Benchmarks</Link> : null }
-			{ params.tests ? <Link to={test( path )}>Tests</Link> : null }
-			{ params.src ? <a href={src( params.pkg, params.version )}>Source</a> : null }
-			{ params.typescript ? <a href={ts( params.pkg )}>TypeScript</a> : null }
+		<nav className="top-nav" role="navigation">
+			{ params.docs ? docs( path ) : null }
+			{ params.benchmarks ? bench( path ) : null }
+			{ params.tests ? test( path ) : null }
+			{ params.src ? src( params.pkg, params.version ) : null }
+			{ params.typescript ? ts( params.pkg ) : null }
 		</nav>
 	);
 }
