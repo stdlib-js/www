@@ -39,7 +39,7 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 */
 function docs( path ) {
 	return (
-		<Link to={ path }>Documentation</Link>
+		<Link to={ path } title="View package documentation">Documentation</Link>
 	);
 }
 

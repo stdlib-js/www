@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import config from './config.js';
 
 
 // MAIN //
@@ -33,12 +34,12 @@ import React, { Fragment } from 'react';
 function WelcomePage( props ) {
 	return (
 		<Fragment>
-			<nav className="navbar">
-				<a href="https://stdlib.io/">Home</a>
+			<nav className="top-nav">
+				<a href="https://stdlib.io/" title="Go to the main website">Home</a>
 			</nav>
 			<div className="readme" >
-				<section class="banner" >
-					<div class="image" align="center" >
+				<section className="banner" >
+					<div className="image" align="center" >
 						<br />
 						<br />
 						<img src="https://stdlib.io/img/logo_banner.svg" alt="stdlib logo" />
@@ -48,7 +49,7 @@ function WelcomePage( props ) {
 						<br />
 					</div>
 				</section>
-				<section class="intro">
+				<section className="intro">
 					<p>
 						stdlib (<a href="https://en.wikipedia.org/wiki/Help:IPA/English">/ˈstændərd lɪb/</a> "standard lib") is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing applications. The library provides a collection of robust, high performance libraries for mathematics, statistics, data processing, streams, and more and includes many of the utilities you would expect from a standard library.
 					</p>
@@ -57,14 +58,14 @@ function WelcomePage( props ) {
 					<h2>Features</h2>
 
 					<ul>
-						<li>35+ <a href={`/docs/api/${props.version}/@stdlib/stats/base/dists/`}>probability distributions</a>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
-						<li>40+ <a href={`/docs/api/${props.version}/@stdlib/random/base/`}>seedable pseudorandom number generators</a> (PRNGs).</li>
-						<li>200+ general <a href={`/docs/api/${props.version}/@stdlib/utils/`}>utilities</a> for data transformation, functional programming, and asynchronous control flow.</li>
-						<li>200+ <a href={`/docs/api/${props.version}/@stdlib/assert/`}>assertion utilities</a> for data validation and feature detection.</li>
-						<li>50+ <a href={`/docs/api/${props.version}/@stdlib/datasets/`}>sample datasets</a> for testing and development.</li>
-						<li>A <a href={`/docs/api/${props.version}/@stdlib/plot/ctor`}>plot API</a> for data visualization and exploratory data analysis.</li>
+						<li>35+ <a href={ config.mount+props.version+'/@stdlib/stats/base/dists/' }>probability distributions</a>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
+						<li>40+ <a href={ config.mount+props.version+'/@stdlib/random/base/' }>seedable pseudorandom number generators</a> (PRNGs).</li>
+						<li>200+ general <a href={ config.mount+props.version+'/@stdlib/utils/' }>utilities</a> for data transformation, functional programming, and asynchronous control flow.</li>
+						<li>200+ <a href={ config.mount+props.version+'/@stdlib/assert/' }>assertion utilities</a> for data validation and feature detection.</li>
+						<li>50+ <a href={ config.mount+props.version+'/@stdlib/datasets/' }>sample datasets</a> for testing and development.</li>
+						<li>A <a href={ config.mount+props.version+'/@stdlib/plot/ctor' }>plot API</a> for data visualization and exploratory data analysis.</li>
 						<li>Native add-ons for interfacing with BLAS libraries, with pure JavaScript fallbacks.</li>
-						<li>A <a href={`/docs/api/${props.version}/@stdlib/bench/harness`}>benchmark framework</a> supporting TAP.</li>
+						<li>A <a href={ config.mount+props.version+'/@stdlib/bench/harness' }>benchmark framework</a> supporting TAP.</li>
 						<li>REPL environment with integrated help and examples.</li>
 						<li>Can be bundled using <a href="http://browserify.org/">Browserify</a>, <a href="https://webpack.js.org/">Webpack</a>, and other bundlers for use in web browsers.</li>
 					</ul>
@@ -159,7 +160,7 @@ function WelcomePage( props ) {
 					</pre>
 
 					<p>
-						and to run the <a href={`/docs/api/${props.version}/@stdlib/repl/`}>REPL</a>
+						and to run the <a href={ config.mount+props.version+'/@stdlib/repl/' }>REPL</a>
 					</p>
 
 					<pre>
@@ -169,17 +170,18 @@ function WelcomePage( props ) {
 					</pre>
 
 					<p>
-						For distributable bundles for use in browser environments or as shared ("vendored") libraries in server environments, see the <a href={`https://github.com/stdlib-js/stdlib/tree/${props.version}/dist`}><code>dist</code></a> directory and associated <a href={`https://github.com/stdlib-js/stdlib/tree/${props.version}/dist`}>guide</a>.
+						For distributable bundles for use in browser environments or as shared ("vendored") libraries in server environments, see the <a href={ 'https://github.com/stdlib-js/stdlib/tree/'+props.version+'/dist' }><code>dist</code></a> directory and associated <a href={ 'https://github.com/stdlib-js/stdlib/tree/'+props.version+'/dist' }>guide</a>.
 					</p>
 
 					<p>
-						Otherwise, to install as a system library, follow the <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md#download`}>download</a>, <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md`}>configuration</a>, and <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md#installation`}>installation</a> instructions as described in the <a href={`https://github.com/stdlib-js/stdlib/blob/${props.version}/docs/development.md`}>development guide</a>.
+						Otherwise, to install as a system library, follow the <a href={
+							 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md#download'}>download</a>, <a href={ 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md' }>configuration</a>, and <a href={ 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md#installation' }>installation</a> instructions as described in the <a href={ 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md' }>development guide</a>.
 					</p>
 
 					<h2>License</h2>
 
 					<p>
-						See <a href="https://raw.githubusercontent.com/stdlib-js/stdlib/develop/LICENSE">LICENSE</a>.
+						See <a href={ 'https://raw.githubusercontent.com/stdlib-js/stdlib/'+props.version+'/LICENSE' }>LICENSE</a>.
 					</p>
 
 					<h2>Copyright</h2>
