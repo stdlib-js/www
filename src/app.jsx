@@ -72,16 +72,16 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		this.fetchJSONFiles();
+		this._fetchJSONFiles();
 	}
 
-	handleSlideOutChange = ( value ) => {
+	_handleSlideOutChange = ( value ) => {
 		this.setState({
 			'slideoutIsOpen': value
 		});
 	}
 
-	fetchJSONFiles = () => {
+	_fetchJSONFiles = () => {
 		var tpath;
 		var rpath;
 
@@ -119,27 +119,27 @@ class App extends Component {
 		}
 	}
 
-	fetchFragment = ( path ) => {
+	_fetchFragment = ( path ) => {
 		window.scrollTo( 0, 0 );
 		this.props.history.push( path );
 		if ( HTML_FRAGMENT_CACHE[ path ] ) {
-			this.replaceReadmeContainer( HTML_FRAGMENT_CACHE[ path ] );
+			this._replaceReadmeContainer( HTML_FRAGMENT_CACHE[ path ] );
 		} else {
 			fetch( path+'?fragment=true' )
 				.then( res => res.text() )
 				.then( res => {
 					HTML_FRAGMENT_CACHE[ path ] = res;
-					this.replaceReadmeContainer( res );
+					this._replaceReadmeContainer( res );
 				})
 				.catch( log )
 		}
 	}
 
-	downloadAssets = () => {
+	_downloadAssets = () => {
 		downloadAssets( Object.keys( this.state.packageResources ), this.state.version );
 	}
 
-	selectVersion = ( event ) => {
+	_selectVersion = ( event ) => {
 		var pathname = this.props.history.location.pathname;
 		var version = event.target.value;
 
@@ -148,17 +148,17 @@ class App extends Component {
 
 		this.setState({
 			'version': version
-		}, this.fetchJSONFiles );
+		}, this._fetchJSONFiles );
 	}
 
-	replaceReadmeContainer( res ) {
+	_replaceReadmeContainer( res ) {
 		var el = document.getElementById( 'readme' );
 		if ( el ) {
 			el.innerHTML = res;
 		}
 	}
 
-	renderReadme = ({ match }) => {
+	_renderReadme = ({ match }) => {
 		var resources = this.state.packageResources[ match.params.pkg ];
 		return (
 			<Fragment>
@@ -176,7 +176,7 @@ class App extends Component {
 		);
 	}
 
-	renderBenchmark = ({ match }) => {
+	_renderBenchmark = ({ match }) => {
 		var resources;
 		var iframe;
 
@@ -209,7 +209,7 @@ class App extends Component {
 		);
 	}
 
-	renderTest = ({ match }) => {
+	_renderTest = ({ match }) => {
 		var resources;
 		var iframe;
 
@@ -242,7 +242,7 @@ class App extends Component {
 		);
 	}
 
-	renderWelcome = () => {
+	_renderWelcome = () => {
 		return (
 			<WelcomePage version={this.state.version} />
 		);
@@ -252,9 +252,9 @@ class App extends Component {
 		return (
 			<div class="main" role="main">
 				<SideMenu
-					onDrawerChange={ this.handleSlideOutChange }
-					onReadmeChange={ this.fetchFragment }
-					onVersionChange={ this.selectVersion }
+					onDrawerChange={ this._handleSlideOutChange }
+					onReadmeChange={ this._fetchFragment }
+					onVersionChange={ this._selectVersion }
 					open={ this.state.slideoutIsOpen }
 					version={ this.state.version }
 					packageTree={ this.state.packageTree }
@@ -266,27 +266,27 @@ class App extends Component {
 						<Route
 							exact
 							path={ config.mount+':version/@stdlib/:pkg*/benchmark.html' }
-							render={ this.renderBenchmark }
+							render={ this._renderBenchmark }
 						/>
 						<Route
 							exact
 							path={ config.mount+':version/@stdlib/:pkg*/test.html' }
-							render={ this.renderTest }
+							render={ this._renderTest }
 						/>
 						<Route
 							exact
 							path={ config.mount+':version//@stdlib/:pkg*/index.html' }
-							render={ this.renderReadme }
+							render={ this._renderReadme }
 						/>
 						<Route
 							exact
 							path={ config.mount+':version/@stdlib/:pkg*' }
-							render={ this.renderReadme }
+							render={ this._renderReadme }
 						/>
 						<Route
 							exact
 							path={ config.mount+':version' }
-							render={ this.renderWelcome }
+							render={ this._renderWelcome }
 						/>
 					</Switch>
 				</div>
@@ -294,7 +294,7 @@ class App extends Component {
 				<Tooltip placement="left" title="Download documentation for offline access">
 					<GetAppIcon
 						style={ { position: 'fixed', bottom: 20, right: 20, cursor: 'pointer' } }
-						onClick={ this.downloadAssets }
+						onClick={ this._downloadAssets }
 					/>
 				</Tooltip>
 			</div>

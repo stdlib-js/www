@@ -47,9 +47,9 @@ class MenuBar extends Component {
 	constructor( props ) {
 		super( props )
 		this.state = {
-			activePkg: null,
-			filter: '',
-			found: {}
+			'activePkg': null,
+			'filter': '',
+			'found': {}
 		};
 	}
 
