@@ -122,7 +122,7 @@ function ts( pkg ) {
 function TopNav( props ) {
 	var path = pkgPath( props.pkg, props.version );
 	return (
-		<nav className="top-nav" role="navigation">
+		<nav className="top-nav" aria-label="Main">
 			{ props.docs ? docs( path ) : null }
 			{ props.benchmarks ? bench( path ) : null }
 			{ props.tests ? test( path ) : null }
