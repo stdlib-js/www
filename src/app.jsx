@@ -180,7 +180,7 @@ class App extends Component {
 		if ( resources.benchmark ) {
 			iframe = <IframeResizer
 				className="benchmarks-iframe"
-				srcdoc={ iframeBoostrap( match.url ) }
+				srcdoc={ iframeBootstrap( match.url ) }
 				title="Benchmarks"
 				width="100%"
 				checkOrigin={false}
@@ -213,7 +213,7 @@ class App extends Component {
 		if ( resources.test ) {
 			iframe = <IframeResizer
 				className="tests-iframe"
-				srcdoc={ iframeBoostrap( match.url ) }
+				srcdoc={ iframeBootstrap( match.url ) }
 				title="Tests"
 				width="100%"
 				checkOrigin={false}
