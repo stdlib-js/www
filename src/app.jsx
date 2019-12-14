@@ -304,7 +304,7 @@ class App extends Component {
 									ts = resources.typescript;
 								}
 								if ( tests ) {
-									const html = generateHTMLBoilerplate( `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/test.html` );
+									html = generateHTMLBoilerplate( `/docs/api/${match.params.version}/@stdlib/${match.params.pkg}/test.html` );
 									iframe = <IframeResizer
 										className="readme-iframe"
 										srcdoc={html}
