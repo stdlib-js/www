@@ -32,7 +32,7 @@ import config from './config.js';
 * @returns {string} path
 */
 function pkgPath( pkg, version ) {
-	return config.mount+version+'/@stdlib/'+pkg+'/';
+	return config.mount + version + '/@stdlib/' + pkg + '/';
 }
 
 

@@ -21,6 +21,7 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import App from './app.jsx';
+import config from './config.js';
 
 
 // MAIN //
@@ -33,7 +34,7 @@ import App from './app.jsx';
 */
 function ServerApp() {
 	return (
-		<StaticRouter location="/docs/api/:version/@stdlib/:pkg" context={{}} >
+		<StaticRouter location={ config.mount+':version/@stdlib/:pkg' } context={ {} } >
 			<App />
 		</StaticRouter>
 	);
