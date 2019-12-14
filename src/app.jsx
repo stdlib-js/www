@@ -190,6 +190,7 @@ class App extends Component {
 				checkOrigin={false}
 			/>;
 		} else {
+			// TODO: more creative 404
 			iframe = <p><code>{ match.params.pkg }</code> does not have any benchmarks.</p>;
 		}
 		return (
@@ -222,6 +223,7 @@ class App extends Component {
 				checkOrigin={false}
 			/>;
 		} else {
+			// TODO: more creative 404
 			iframe = <p><code>{ match.params.pkg }</code> does not have any tests.</p>;
 		}
 		return (
