@@ -176,6 +176,76 @@ class App extends Component {
 		);
 	}
 
+	renderBenchmark = ({ match }) => {
+		var resources;
+		var iframe;
+
+		resources = this.state.packageResources[ match.params.pkg ];
+		if ( resources.benchmark ) {
+			iframe = <IframeResizer
+				className="benchmarks-iframe"
+				srcdoc={ iframeBoostrap( match.url ) }
+				title="Benchmarks"
+				width="100%"
+				checkOrigin={false}
+			/>;
+		} else {
+			iframe = <p><code>{ match.params.pkg }</code> does not have any benchmarks.</p>;
+		}
+		return (
+			<Fragment>
+				<TopNav
+					pkg={ match.params.pkg }
+					version={ match.params.version }
+					docs={ true }
+					benchmarks={ false }
+					tests={ Boolean( resources && resources.test ) }
+					src={ Boolean( resources ) }
+					typescript={ Boolean( resources && resources.typescript ) }
+				/>
+				{ iframe }
+			</Fragment>
+		);
+	}
+
+	renderTest = ({ match }) => {
+		var resources;
+		var iframe;
+
+		resources = this.state.packageResources[ match.params.pkg ];
+		if ( resources.test ) {
+			iframe = <IframeResizer
+				className="tests-iframe"
+				srcdoc={ iframeBoostrap( match.url ) }
+				title="Tests"
+				width="100%"
+				checkOrigin={false}
+			/>;
+		} else {
+			iframe = <p><code>{ match.params.pkg }</code> does not have any tests.</p>;
+		}
+		return (
+			<Fragment>
+				<TopNav
+					pkg={ match.params.pkg }
+					version={ match.params.version }
+					docs={ true }
+					benchmarks={ Boolean( resources && resources.benchmark ) }
+					tests={ false }
+					src={ Boolean( resources ) }
+					typescript={ Boolean( resources && resources.typescript ) }
+				/>
+				{ iframe }
+			</Fragment>
+		);
+	}
+
+	renderWelcome = () => {
+		return (
+			<WelcomePage version={this.state.version} />
+		);
+	}
+
 	render() {
 		return (
 			<div class="main" role="main">
@@ -194,72 +264,12 @@ class App extends Component {
 						<Route
 							exact
 							path={ config.mount+':version/@stdlib/:pkg*/benchmark.html' }
-							render={({ match }) => {
-								var resources;
-								var iframe;
-
-								resources = this.state.packageResources[ match.params.pkg ];
-								if ( resources.benchmark ) {
-									iframe = <IframeResizer
-										className="benchmarks-iframe"
-										srcdoc={ iframeBoostrap( match.url ) }
-										title="Benchmarks"
-										width="100%"
-										checkOrigin={false}
-									/>;
-								} else {
-									iframe = <p><code>{ match.params.pkg }</code> does not have any benchmarks.</p>;
-								}
-								return (
-									<Fragment>
-										<TopNav
-											pkg={ match.params.pkg }
-											version={ match.params.version }
-											docs={ true }
-											benchmarks={ false }
-											tests={ Boolean( resources && resources.test ) }
-											src={ Boolean( resources ) }
-											typescript={ Boolean( resources && resources.typescript ) }
-										/>
-										{ iframe }
-									</Fragment>
-								);
-							}}
+							render={ this.renderBenchmark }
 						/>
 						<Route
 							exact
 							path={ config.mount+':version/@stdlib/:pkg*/test.html' }
-							render={({ match }) => {
-								var resources;
-								var iframe;
-
-								resources = this.state.packageResources[ match.params.pkg ];
-								if ( resources.test ) {
-									iframe = <IframeResizer
-										className="tests-iframe"
-										srcdoc={ iframeBoostrap( match.url ) }
-										title="Tests"
-										width="100%"
-										checkOrigin={false}
-									/>;
-								} else {
-									iframe = <p><code>{ match.params.pkg }</code> does not have any tests.</p>;
-								}
-								return (
-									<Fragment>
-										<TopNav
-											pkg={ match.params.pkg }
-											version={ match.params.version }
-											docs={ true }
-											benchmarks={ Boolean( resources && resources.benchmark ) }
-											tests={ false }
-											src={ Boolean( resources ) }
-											typescript={ Boolean( resources && resources.typescript ) }
-										/>
-										{ iframe }
-									</Fragment>
-								);
-							}}
+							render={ this.renderTest }
 						/>
 						<Route
 							exact
@@ -274,9 +284,8 @@ class App extends Component {
 						<Route
 							exact
 							path={ config.mount+':version' }
-						>
-							<WelcomePage version={this.state.version} />
-						</Route>
+							render={ this.renderWelcome }
+						/>
 					</Switch>
 				</div>
 				<Footer />
