@@ -31,8 +31,8 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import VERSIONS from './versions.json';
 import Logo from './logo.jsx';
+import config from './config.js';
 
 
 // VARIABLES //
@@ -285,7 +285,7 @@ class MenuBar extends Component {
 							onChange={this.props.onVersionChange}
 							value={this.props.version}
 						>
-							{VERSIONS.map( ( val, key ) => <option key={key} value={val}>{val}</option> )}
+							{config.versions.map( ( val, key ) => <option key={key} value={val}>{val}</option> )}
 						</select>
 						<div className="side-menu-filter" >
 							<input

@@ -20,7 +20,12 @@
 
 const config = {
 	// Base URL path for API documentation:
-	'mount': '/docs/api/'
+	'mount': '/docs/api/',
+
+	// Supported documentation versions:
+	'versions': [
+		'v0.0.90'
+	]
 };
 
 

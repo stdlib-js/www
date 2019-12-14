@@ -20,7 +20,6 @@
 
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import IframeResizer from 'iframe-resizer-react';
 import Tooltip from '@material-ui/core/Tooltip';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -30,13 +29,12 @@ import ReadmePage from './readme_page.jsx';
 import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
 import iframeBootstrap from './bootstrap_iframe.js';
-import VERSIONS from './versions.json';
-import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
-import JSON_CACHE from './json_cache.js';
 import pkgPath from './pkg_doc_path.js';
-import config from './config.js';
 import log from './log.js';
 import downloadAssets from './download_assets.js';
+import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
+import JSON_CACHE from './json_cache.js';
+import config from './config.js';
 
 
 // MAIN //
@@ -60,10 +58,10 @@ class App extends Component {
 		} else {
 			version = pathname.substring( i, i+j );
 		}
-		if ( !VERSIONS.includes( version ) ) {
-			pathname = pathname.replace( prefix+version, prefix+VERSIONS[0]+'/' );
+		if ( !config.versions.includes( version ) ) {
+			pathname = pathname.replace( prefix+version, prefix+config.versions[0]+'/' );
 			this.props.history.push( pathname );
-			version = VERSIONS[ 0 ];
+			version = config.versions[ 0 ];
 		}
 		this.state = {
 			'slideoutIsOpen': true,
