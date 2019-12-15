@@ -178,7 +178,7 @@ class App extends Component {
 		resources = this.state.packageResources[ match.params.pkg ];
 		if ( resources.benchmark ) {
 			iframe = <IframeResizer
-				className="benchmarks-iframe"
+				className="embedded-iframe"
 				srcdoc={ iframeBootstrap( match.url ) }
 				title="Benchmarks"
 				width="100%"
@@ -211,7 +211,7 @@ class App extends Component {
 		resources = this.state.packageResources[ match.params.pkg ];
 		if ( resources.test ) {
 			iframe = <IframeResizer
-				className="tests-iframe"
+				className="embedded-iframe"
 				srcdoc={ iframeBootstrap( match.url ) }
 				title="Tests"
 				width="100%"

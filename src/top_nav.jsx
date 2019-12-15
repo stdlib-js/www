@@ -39,7 +39,7 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 */
 function docs( path ) {
 	return (
-		<Link to={ path } title="View package documentation">Documentation</Link>
+		<li class="top-nav-item"><Link to={ path } title="View package documentation">Documentation</Link></li>
 	);
 }
 
@@ -53,7 +53,7 @@ function docs( path ) {
 function bench( path ) {
 	path += 'benchmark.html';
 	return (
-		<Link to={ path } title="Run package benchmarks">Benchmarks</Link>
+		<li class="top-nav-item"><Link to={ path } title="Run package benchmarks">Benchmarks</Link></li>
 	);
 }
 
@@ -67,7 +67,7 @@ function bench( path ) {
 function test( path ) {
 	path += 'test.html';
 	return (
-		<Link to={ path } title="Run package tests">Tests</Link>
+		<li class="top-nav-item"><Link to={ path } title="Run package tests">Tests</Link></li>
 	);
 }
 
@@ -82,7 +82,7 @@ function test( path ) {
 function src( pkg, version ) {
 	var path = 'https://github.com/stdlib-js/stdlib/tree/'+version+'/lib/node_modules/@stdlib/'+pkg;
 	return (
-		<a href={ path } title="View source code">Source</a>
+		<li class="top-nav-item"><a href={ path } title="View source code">Source</a></li>
 	);
 }
 
@@ -98,7 +98,7 @@ function ts( pkg ) {
 	pkg = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
 	path = '/docs/ts/modules/_'+pkg+'_docs_types_index_d_.html';
 	return (
-		<a href={ path } title="View TypeScript type definitions">TypeScript</a>
+		<li class="top-nav-item"><a href={ path } title="View TypeScript type definitions">TypeScript</a></li>
 	);
 }
 
@@ -123,11 +123,13 @@ function TopNav( props ) {
 	var path = pkgPath( props.pkg, props.version );
 	return (
 		<nav className="top-nav" ariaLabel="Main">
-			{ props.docs ? docs( path ) : null }
-			{ props.benchmarks ? bench( path ) : null }
-			{ props.tests ? test( path ) : null }
-			{ props.src ? src( props.pkg, props.version ) : null }
-			{ props.typescript ? ts( props.pkg ) : null }
+			<ul class="top-nav-items">
+				{ props.docs ? docs( path ) : null }
+				{ props.benchmarks ? bench( path ) : null }
+				{ props.tests ? test( path ) : null }
+				{ props.src ? src( props.pkg, props.version ) : null }
+				{ props.typescript ? ts( props.pkg ) : null }
+			</ul>
 		</nav>
 	);
 }
