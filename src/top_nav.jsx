@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import pkgPath from './pkg_doc_path.js';
 
@@ -29,6 +29,18 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 
 
 // FUNCTIONS //
+
+/**
+* Returns a React component for navigating to the main website.
+*
+* @private
+* @returns {ReactComponent} React component
+*/
+function home() {
+	return (
+		<li class="top-nav-item"><a href="https://stdlib.io/" title="Go to the main website">Home</a></li>
+	);
+}
 
 /**
 * Returns a React component for navigating to package documentation.
@@ -112,6 +124,7 @@ function ts( pkg ) {
 * @param {Object} props - component properties
 * @param {string} props.version - version
 * @param {string} props.pkg - package name
+* @param {boolean} [props.home] - boolean indicating whether to link to the main website
 * @param {boolean} [props.docs] - boolean indicating whether to link to package documentation
 * @param {boolean} [props.src] - boolean indicating whether to link to package source
 * @param {boolean} [props.benchmarks] - boolean indicating whether to link to package benchmarks
@@ -122,15 +135,22 @@ function ts( pkg ) {
 function TopNav( props ) {
 	var path = pkgPath( props.pkg, props.version );
 	return (
-		<nav className="top-nav" ariaLabel="Main">
-			<ul class="top-nav-items">
-				{ props.docs ? docs( path ) : null }
-				{ props.benchmarks ? bench( path ) : null }
-				{ props.tests ? test( path ) : null }
-				{ props.src ? src( props.pkg, props.version ) : null }
-				{ props.typescript ? ts( props.pkg ) : null }
-			</ul>
-		</nav>
+		<Fragment>
+			<input class="top-nav-input" id="top-nav-input" name="top-nav-input" type="checkbox" />
+			<label class="top-nav-label" for="top-nav-input">
+				<span class="TODO-down-chevron-Material-UI-icon"></span>
+			</label>
+			<nav className="top-nav" ariaLabel="Main">
+				<ul class="top-nav-items">
+					{ props.home ? home() : null }
+					{ props.docs ? docs( path ) : null }
+					{ props.benchmarks ? bench( path ) : null }
+					{ props.tests ? test( path ) : null }
+					{ props.src ? src( props.pkg, props.version ) : null }
+					{ props.typescript ? ts( props.pkg ) : null }
+				</ul>
+			</nav>
+		</Fragment>
 	);
 }
 

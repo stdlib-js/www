@@ -34,9 +34,6 @@ import config from './config.js';
 function WelcomePage( props ) {
 	return (
 		<Fragment>
-			<nav className="top-nav">
-				<a href="https://stdlib.io/" title="Go to the main website">Home</a>
-			</nav>
 			<div className="readme" >
 				<section className="banner" >
 					<div className="image" align="center" >

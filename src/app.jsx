@@ -153,25 +153,13 @@ class App extends Component {
 		}
 	}
 
-	_renderReadme = ({ match }) => {
-		var resources = this.state.packageResources[ match.params.pkg ];
+	_renderReadme = ( match ) => {
 		return (
-			<Fragment>
-				<TopNav
-					pkg={ match.params.pkg }
-					version={ match.params.version }
-					docs={ false }
-					benchmarks={ Boolean( resources && resources.benchmark ) }
-					tests={ Boolean( resources && resources.test ) }
-					src={ Boolean( resources ) }
-					typescript={ Boolean( resources && resources.typescript ) }
-				/>
-				<ReadmePage path={ match.url } />
-			</Fragment>
+			<ReadmePage path={ match.url } />
 		);
 	}
 
-	_renderBenchmark = ({ match }) => {
+	_renderBenchmark = ( match ) => {
 		var resources;
 		var iframe;
 
@@ -188,23 +176,10 @@ class App extends Component {
 			// TODO: more creative 404
 			iframe = <p><code>{ match.params.pkg }</code> does not have any benchmarks.</p>;
 		}
-		return (
-			<Fragment>
-				<TopNav
-					pkg={ match.params.pkg }
-					version={ match.params.version }
-					docs={ true }
-					benchmarks={ false }
-					tests={ Boolean( resources && resources.test ) }
-					src={ Boolean( resources ) }
-					typescript={ Boolean( resources && resources.typescript ) }
-				/>
-				{ iframe }
-			</Fragment>
-		);
+		return iframe;
 	}
 
-	_renderTest = ({ match }) => {
+	_renderTest = ( match ) => {
 		var resources;
 		var iframe;
 
@@ -221,20 +196,7 @@ class App extends Component {
 			// TODO: more creative 404
 			iframe = <p><code>{ match.params.pkg }</code> does not have any tests.</p>;
 		}
-		return (
-			<Fragment>
-				<TopNav
-					pkg={ match.params.pkg }
-					version={ match.params.version }
-					docs={ true }
-					benchmarks={ Boolean( resources && resources.benchmark ) }
-					tests={ false }
-					src={ Boolean( resources ) }
-					typescript={ Boolean( resources && resources.typescript ) }
-				/>
-				{ iframe }
-			</Fragment>
-		);
+		return iframe;
 	}
 
 	_renderWelcome = () => {
@@ -243,13 +205,102 @@ class App extends Component {
 		);
 	}
 
+	_renderTopNav = ( content, match ) => {
+		var resources;
+		var props;
+
+		props = {
+			'pkg': '',
+			'version': '',
+			'benchmarks': false,
+			'docs': false,
+			'home': false,
+			'src': false,
+			'tests': false,
+			'typescript': false
+		};
+		if ( content === 'welcome' ) {
+			props.home = true;
+		} else {
+			props.pkg = match.params.pkg;
+			props.version = match.params.version;
+
+			resources = this.state.packageResources[ props.pkg ];
+			if ( resources ) {
+				props.src = true;
+				props.typescript = Boolean( resources.typescript );
+				if ( content === 'readme' ) {
+					props.benchmarks = Boolean( resources.benchmark );
+					props.tests = Boolean( resources.test );
+				} else if ( content === 'benchmark' ) {
+					props.docs = true;
+					props.tests = Boolean( resources.test );
+				} else if ( content === 'test' ) {
+					props.docs = true;
+					props.benchmarks = Boolean( resources.benchmark );
+				}
+			}
+		}
+		return (
+			<TopNav
+				pkg={ props.pkg }
+				version={ props.version }
+				benchmarks={ props.benchmarks }
+				docs={ props.docs }
+				home={ props.home }
+				src={ props.src }
+				tests={ props.tests }
+				typescript={ props.typescript }
+			/>
+		);
+	}
+
+	_renderer = ( content ) => {
+		var method;
+		var self;
+
+		self = this;
+		if ( content === 'welcome' ) {
+			method = '_renderWelcome';
+		} else if ( content === 'readme' ) {
+			method = '_renderReadme';
+		} else if ( content === 'benchmark' ) {
+			method = '_renderBenchmark';
+		} else if ( content === 'test' ) {
+			method = '_renderTest';
+		}
+		return render;
+
+		/**
+		* Returns a React component for rendering the main content.
+		*
+		* @private
+		* @param {Object} props - route properties
+		* @param {Object} props.match - match properties
+		* @returns {ReactComponent} React component
+		*/
+		function render( props ) {
+			return (
+				<Fragment>
+					{ self._renderTopNav( content, props.match ) }
+					<div class="main" role="main">
+						<div className={ 'main-content '+( self.state.slideoutIsOpen ? 'side-menu-adjacent' : '' ) }>
+							{ self[ method ]( props.match ) }
+						</div>
+					</div>
+				</Fragment>
+			);
+		}
+	}
+
 	componentDidMount() {
 		this._fetchJSONFiles();
 	}
 
 	render() {
+		// TODO: toggle class to apply CSS transform
 		return (
-			<div class="main" role="main">
+			<Fragment>
 				<SideMenu
 					onDrawerChange={ this._handleSlideOutChange }
 					onReadmeChange={ this._fetchFragment }
@@ -258,46 +309,41 @@ class App extends Component {
 					version={ this.state.version }
 					packageTree={ this.state.packageTree }
 				/>
-				// TODO: toggle class to apply CSS transform
-				<div className="readme-container" style={{
-					marginLeft: this.state.slideoutIsOpen ? 350 : 0
-				}}>
-					<Switch>
-						<Route
-							exact
-							path={ config.mount+':version/@stdlib/:pkg*/benchmark.html' }
-							render={ this._renderBenchmark }
-						/>
-						<Route
-							exact
-							path={ config.mount+':version/@stdlib/:pkg*/test.html' }
-							render={ this._renderTest }
-						/>
-						<Route
-							exact
-							path={ config.mount+':version//@stdlib/:pkg*/index.html' }
-							render={ this._renderReadme }
-						/>
-						<Route
-							exact
-							path={ config.mount+':version/@stdlib/:pkg*' }
-							render={ this._renderReadme }
-						/>
-						<Route
-							exact
-							path={ config.mount+':version' }
-							render={ this._renderWelcome }
-						/>
-					</Switch>
-				</div>
+				<Switch>
+					<Route
+						exact
+						path={ config.mount+':version/@stdlib/:pkg*/benchmark.html' }
+						render={ this._renderer( 'benchmark' ) }
+					/>
+					<Route
+						exact
+						path={ config.mount+':version/@stdlib/:pkg*/test.html' }
+						render={ this._renderer( 'test' ) }
+					/>
+					<Route
+						exact
+						path={ config.mount+':version//@stdlib/:pkg*/index.html' }
+						render={ this._renderer( 'readme' ) }
+					/>
+					<Route
+						exact
+						path={ config.mount+':version/@stdlib/:pkg*' }
+						render={ this._renderer( 'readme' ) }
+					/>
+					<Route
+						exact
+						path={ config.mount+':version' }
+						render={ this._renderer( 'welcome' ) }
+					/>
+				</Switch>
 				<Footer />
 				<Tooltip placement="left" title="Download documentation for offline access">
 					<GetAppIcon
-						style={ { position: 'fixed', bottom: 20, right: 20, cursor: 'pointer' } }
+						id="download-icon-button"
 						onClick={ this._downloadAssets }
 					/>
 				</Tooltip>
-			</div>
+			</Fragment>
 		);
 	}
 }

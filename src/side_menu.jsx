@@ -216,7 +216,7 @@ class MenuBar extends Component {
 			}
 			this.setState({
 				...state,
-				found
+				'found': found
 			});
 		} else {
 			this._resetFilter();
@@ -235,8 +235,8 @@ class MenuBar extends Component {
 		}
 		this.setState({
 			...state,
-			filter: '',
-			found: {}
+			'filter': '',
+			'found': {}
 		});
 	}
 
