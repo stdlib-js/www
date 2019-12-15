@@ -61,12 +61,12 @@ class MenuBar extends Component {
 		this.props.onDrawerChange( false );
 	}
 
-	_onClickFactory( path ) {
+	_onClickFactory( pkg ) {
 		var self;
 		var path;
 
 		self = this;
-		path = config.mount + this.props.version + '/' + path;
+		path = config.mount + this.props.version + '/' + pkg;
 
 		return onClick;
 
@@ -90,20 +90,20 @@ class MenuBar extends Component {
 			var active;
 			var state;
 
-			active = !prev[ path ];
+			active = !prev[ pkg ];
 			state = {};
-			state[ path ] = active;
+			state[ pkg ] = active;
 			if ( active ) {
-				state.activePkg = path;
+				state.activePkg = pkg;
 				self.props.onReadmeChange( path );
 			}
 			return state;
 		}
 	}
 
-	_onPackageClick( path ) {
+	_onPackageClick( pkg ) {
 		this.setState({
-			'activePkg': path
+			'activePkg': pkg
 		});
 	}
 
