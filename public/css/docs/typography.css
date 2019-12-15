@@ -29,6 +29,8 @@
 body {
 	font-size: 16px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -116,8 +118,8 @@ a:active {
 	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-.main > section > pre,
-.main > section > code {
+.main .readme > section > pre,
+.main .readme > section > code {
 	font-size: 14px;
 }
 
@@ -237,6 +239,11 @@ a:active {
 
 .side-menu-list-item.active-package {
 	color: #5ca2c8;
+}
+
+.side-menu-list-item-collapse-icon,
+.side-menu-list-item-expand-icon {
+	font-size: 0.875em !important; /* if 16px is 1em, then 14px */
 }
 
 /*

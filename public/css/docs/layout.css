@@ -201,7 +201,7 @@ h2 {
 .main .readme > code,
 .main .readme > ul,
 .main .readme > hr {
-	width: calc(70vw - 350px);
+	width: calc(75vw - 350px);
 	min-width: 594px;
 }
 
