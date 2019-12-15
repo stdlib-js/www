@@ -36,13 +36,13 @@ function Footer() {
 		<footer>
 			<nav className="bottom-nav center" ariaLabel="Footer">
 				<a href="https://www.patreon.com/athan" title="Help support the project">Donate</a>
-				/
+				{ ' / ' }
 				<a href={ config.mount } title="Documentation">Docs</a>
-				/
+				{ ' / ' }
 				<a href="https://gitter.im/stdlib-js/stdlib" title="Talk to us on Gitter!">Chat</a>
-				/
+				{ ' / ' }
 				<a href="https://twitter.com/stdlibjs" title="Follow us on Twitter!">Twitter</a>
-				/
+				{ ' / ' }
 				<a href="https://github.com/stdlib-js/stdlib" title="Contribute to stdlib">Contribute</a>
 			</nav>
 		</footer>
