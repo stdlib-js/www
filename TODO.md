@@ -7,14 +7,14 @@
    - inspiration: https://medium.com/inspiration-supply/funny-and-creative-404-pages-45f6da146268
 
 2. webhook server to trigger build
-3. TypeScript docs (tsdoc)
+3.
 4. Document local development setup
 
     -   https://github.com/CodepediaOrg/bookmarks.dev-api/wiki/Setup-Nginx-for-development-(macOS)---work-in-progress
     -   https://tech.finn.no/2015/09/25/setup-nginx-with-http2-for-local-development/
     -   https://bneijt.nl/blog/post/running-nginx-for-local-development/
     -   https://github.com/sonatype-nexus-community/search-maven-org/pull/58
-    -   current hack is to do `python -m SimpleHTTPServer 8000` from the `/public` directory and manually navigate to documentation, leveraging static file resolution
+    -   current hack is to do `python -m http.server 8000` from the `/public` directory and manually navigate to documentation, leveraging static file resolution
 
 5. a "staging" version of the website in order to test out features before going live
 
@@ -31,18 +31,18 @@
 
 8. (docs) view which transforms slideout menu into a fullscreen mega menu overlay (maybe with a touch of transparency, so can see the page update underneath)
 9. (docs) build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
-10. (docs) update docs top-nav to match landing page (menu bar styling etc, fonts, box shadow, etc)
+10.
 11. diffie-hellman: https://mozilla.github.io/server-side-tls/ssl-config-generator/
 
     - see digital ocean blog
 
 12. SSL-stapling config
 13. (docs) HTML minify (rehype plugin)
-14. (docs) CSS and JavaScript in HTML minify (rehype plugin)
+14.
 15. (docs) Consider JS bundle minify
-16. (docs) Replace `@stdlib/stdlib` HTML doc with something less repo/dev focused
+16.
 17. update Makefiles, including moving npm scripts to Makefile targets
-18. (docs) add support for different build targets (e.g., a `www` target where we can refer to common assets like `reset.css`, package ToC, etc, and a standalone target which inlines everything such that package docs can be standalone)
+18.
 19. (docs) investigate [hammer.js](https://github.com/hammerjs/hammer.js) for touch support
 
     - swipe right to reveal slideout menu
@@ -94,3 +94,12 @@
 https://blog.codeship.com/running-node-js-linux-systemd/
 sudo ln -s $(which npm) /usr/bin/npm
 sudo ln -s $(which node) /usr/bin/node
+
+31. It would be a nice (future) feature if we could make the docs an HTML5 mobile app which can be run offline:
+
+    -   https://labs.ft.com/2012/08/basic-offline-html5-web-app/
+    -   https://github.com/matthew-andrews/workshop-making-it-work-offline
+
+    This would allow a user to install the docs as a mobile app and use them offline after downloading all the requisite fragments and bundles.
+
+32. Previous behavior: <https://github.com/stdlib-js/www/blob/0c547db74a1d67af0b5c7f99407230a4ea2826d1/public/develop/docs/api/%40stdlib/array/buffer/index.html#L1730>
