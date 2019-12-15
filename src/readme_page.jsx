@@ -32,8 +32,7 @@ import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
 * @returns {ReactComponent} React component
 */
 function ReadmePage( props ) {
-	// TODO: consider whether to redirect to a 404 page
-	var html = HTML_FRAGMENT_CACHE[ props.path ] || '{{ FRAGMENT }}';
+	var html = HTML_FRAGMENT_CACHE[ props.path ] || '';
 	return (
 		<div
 			id="readme"
