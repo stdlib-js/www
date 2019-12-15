@@ -233,11 +233,12 @@ a:active {
 .side-menu-version-select,
 .side-menu-filter-input,
 .side-menu-filter-clear,
-.side-menu-list-item-namespace-icon{
+.side-menu-list-item-namespace-icon {
 	color: #acafb3;
 }
 
-.side-menu-list-item.active-package {
+.side-menu-list-item.active-package,
+.side-menu-list-item-namespace.active-package {
 	color: #5ca2c8;
 }
 

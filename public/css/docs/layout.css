@@ -113,7 +113,9 @@ h2 {
 
 .main {
 	width: 100%;
+	min-height: 100%;
 	margin-bottom: 6.25em; /* 100px */
+	padding-top: 100px;
 }
 
 .main p,
@@ -132,7 +134,7 @@ h2 {
 .main-content {
 	position: relative;
 	width: 100%;
-	margin-top: 100px;
+	min-height: 100%;
 }
 
 /*
@@ -201,8 +203,8 @@ h2 {
 .main .readme > code,
 .main .readme > ul,
 .main .readme > hr {
-	width: calc(75vw - 350px);
 	min-width: 594px;
+	max-width: 720px;
 }
 
 /*
