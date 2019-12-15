@@ -97,6 +97,14 @@ Assuming the above build steps have completed, to generate documentation resourc
 $ npm run build:api_docs:app_resources
 ```
 
+### CSS
+
+To compile stylesheet bundles,
+
+```bash
+$ npm run build:css
+```
+
 * * *
 
 ## Clean
