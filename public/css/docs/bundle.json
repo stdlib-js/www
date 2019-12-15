@@ -2,9 +2,8 @@
 	"./../common/reset.css",
 	"./../common/normalize.css",
 	"./../common/highlight.css",
-	"./main.css",
-	"./layout.css",
 	"./../common/fonts/lato/latin/lato_light.css",
+	"./layout.css",
 	"./typography.css",
 	"./misc.css"
 ]
