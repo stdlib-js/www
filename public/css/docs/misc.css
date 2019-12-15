@@ -1,7 +1,7 @@
 /*
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2019 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -173,4 +173,62 @@ body {
 	-webkit-box-shadow: inset 0 -1px 0 #bbb;
 	-moz-box-shadow: inset 0 -1px 0 #bbb;
 	box-shadow: inset 0 -1px 0 #bbb;
+}
+
+/*
+* Side menu.
+*/
+
+/*
+* Apply a background gradient to the side menu.
+*/
+.side-menu-drawer {
+	background-color: #1D1F20;
+	background-image: -webkit-linear-gradient(145deg, #1D1F20, #404348);
+	background-image: -moz-linear-gradient(145deg, #1D1F20, #404348);
+	background-image: -ms-linear-gradient(145deg, #1D1F20, #404348);
+	background-image: -o-linear-gradient(145deg, #1D1F20, #404348);
+	background-image: linear-gradient(145deg, #1D1F20, #404348);
+}
+
+.side-menu-version-select,
+.side-menu-filter-input {
+	background: #1f1f1f;
+	border: none;
+}
+
+.side-menu-filter-clear {
+	opacity: 0.75;
+	cursor: pointer;
+}
+
+.side-menu-list-item-namespace,
+.side-menu-list-item-namespace.MuiListItem-button {
+	background: #2a2d2f;
+}
+
+.side-menu-list-item.MuiListItem-button {
+	background: #242627;
+}
+
+.side-menu-list-wrapper {
+	overflow-y: auto;
+}
+
+#menu-close-icon:hover {
+	-webkit-box-shadow: 20px;
+	-moz-box-shadow: 20px;
+	box-shadow: 20px;
+}
+
+/*
+* Logo.
+*/
+
+#stdlib-logo {
+	opacity: 0.9;
+}
+
+#stdlib-logo:hover {
+	opacity: 1;
 }

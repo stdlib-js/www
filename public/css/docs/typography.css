@@ -1,7 +1,7 @@
 /*
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2019 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@
 * 1. General rules.
 * 2. Tables.
 * 3. Code.
+* 4. Classes.
+* 5. Elements.
 */
 
 body {
@@ -83,44 +85,24 @@ a:active {
 	text-decoration: underline;
 }
 
-/*
-* General class rules.
-*/
-
-.top-nav {
-	line-height: 64px;
-}
-
-.readme {
-	line-height: 1.5;
-	word-wrap: break-word;
-}
-
-.readme a:not([href]) {
-	color: inherit;
-	text-decoration: none;
-}
-
-.readme blockquote {
-	color: #777;
-}
-
-.readme input {
-	-webkit-font-feature-settings: "liga" 0;
-	font-feature-settings: "liga" 0;
-}
-
-.readme dl dt {
-	font-size: 1.0em;
+::-webkit-input-placeholder {
 	font-style: italic;
-	font-weight: bold;
+}
+:-moz-placeholder {
+	font-style: italic;
+}
+::-moz-placeholder {
+	font-style: italic;
+}
+:-ms-input-placeholder {
+	font-style: italic;
 }
 
 /*
 * Tables.
 */
 
-.readme table th {
+.main table th {
 	font-weight: bold;
 }
 
@@ -128,36 +110,139 @@ a:active {
 * Code.
 */
 
-.readme pre,
-.readme code,
-.readme kbd {
+.main pre,
+.main code,
+.main kbd {
 	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-.readme > section > pre,
-.readme > section > code {
+.main > section > pre,
+.main > section > code {
 	font-size: 14px;
 }
 
-.readme pre {
+.main pre {
 	line-height: 1.45;
 	word-wrap: normal;
 }
 
-.readme pre code {
+.main pre code {
 	line-height: inherit;
 	word-wrap: normal;
 }
 
-.readme pre > code {
+.main pre > code {
 	font-size: 1.0em;
 	white-space: pre;
 	word-break: normal;
 }
 
-.readme kbd {
+.main kbd {
 	color: #555;
 	font-size: 11px;
 	line-height: 10px;
 	vertical-align: middle;
+}
+
+/*
+* General class rules.
+*/
+
+.main {
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+
+.main a:not([href]) {
+	color: inherit;
+	text-decoration: none;
+}
+
+.main blockquote {
+	color: #777;
+}
+
+.main input {
+	-webkit-font-feature-settings: "liga" 0;
+	font-feature-settings: "liga" 0;
+}
+
+.main dl dt {
+	font-size: 1.0em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.top-nav,
+.bottom-nav {
+	font-family: "LatoLatinWebLight";
+}
+
+.top-nav {
+	line-height: 1em;
+}
+
+.bottom-nav {
+	font-size: 0.85em;
+}
+
+.top-nav a,
+.bottom-nav a {
+	color: #585858;
+}
+
+.top-nav-item a:hover,
+.top-nav-item a:active {
+	text-decoration: none;
+}
+
+@media only screen and (min-width: 43.75em) { /* 700px */
+	.top-nav-item a:hover,
+	.top-nav-item a:active {
+		text-decoration: underline;
+	}
+}
+
+.side-menu-filter-clear:hover,
+.side-menu-filter-input:hover {
+	color: #bfc4c9;
+}
+
+.side-menu-list-item,
+.side-menu-list-item-namespace {
+	font-family: "Lato", "Helvetica Neue";
+	font-weight: 200;
+}
+
+.side-menu-list-item.MuiListItem-root,
+.side-menu-list-item-namespace.MuiListItem-root {
+	color: white;
+	text-decoration: none;
+}
+
+.side-menu-list-item.MuiListItem-root:hover {
+	text-decoration: underline;
+}
+
+.side-menu-version-select,
+.side-menu-filter-input,
+.side-menu-filter-clear,
+.side-menu-list-item-namespace-icon{
+	color: #acafb3;
+}
+
+.side-menu-list-item.active-package {
+	color: #5ca2c8;
+}
+
+/*
+* Element rules.
+*/
+
+#menu-close-icon {
+	color: #c7c7c7;
+}
+
+#menu-close-icon:hover {
+	color: #bfc4c9;
 }
