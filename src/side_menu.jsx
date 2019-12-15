@@ -164,8 +164,8 @@ class MenuBar extends Component {
 						{pkg}
 						<span className="side-menu-list-item-namespace-icon" >
 							{this.state[ pkgPath ] ?
-								<RemoveIcon style={ { fontSize: 14 } } /> :
-								<AddIcon style={ { fontSize: 14 } } />
+								<RemoveIcon className="side-menu-list-item-collapse-icon" /> :
+								<AddIcon className="side-menu-list-item-expand-icon" />
 							}
 						</span>
 					</ListItem>
