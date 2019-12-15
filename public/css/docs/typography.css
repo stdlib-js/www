@@ -179,7 +179,7 @@ a:active {
 }
 
 .top-nav {
-	line-height: 1em;
+	line-height: 4em;
 }
 
 .bottom-nav {
@@ -201,6 +201,10 @@ a:active {
 	.top-nav-item a:active {
 		text-decoration: underline;
 	}
+}
+
+.side-menu-drawer {
+	line-height: 1;
 }
 
 .side-menu-filter-clear:hover,

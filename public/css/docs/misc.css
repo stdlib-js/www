@@ -24,12 +24,66 @@ body {
 	overflow-x: hidden;
 }
 
+img {
+	background-color: #fff;
+}
+
+/*
+* Style the top-navigation.
+*/
+.top-nav-label {
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.top-nav {
+	background-color: #ffffff;
+	/*background-color: #000000;*/
+
+	-webkit-box-shadow: #ced4da 0 -5px 15px 0;
+	-moz-box-shadow: #ced4da 0 -5px 15px 0;
+	box-shadow: #ced4da 0 -5px 15px 0;
+}
+
+.top-nav-item a:hover,
+.top-nav-item a:active {
+	background-color: #f7f7f7;
+}
+
+@media only screen and (min-width: 43.75em) { /* 700px */
+	.top-nav-item a:hover,
+	.top-nav-item a:active {
+		background-color: transparent;
+	}
+}
+
+/*
+* For certain animations, the backface of an element can become visible. Prevent this.
+*
+* ## Notes
+*
+* -   Helps prevent flickering for some engines when using `translate3d`.
+*/
 .main {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
 	-o-backface-visibility: hidden;
 	backface-visibility: hidden;
+
+	-webkit-transform-style: preserve-3d;
+}
+
+/*
+* Specify transition speed.
+*/
+.main {
+	/* name | duration | timing function | delay */
+	-webkit-transition: transform 100ms ease-in;
+	-moz-transition: transform 100ms ease-in;
+	-ms-transition: transform 100ms ease-in;
+	-o-transition: transform 100ms ease-in;
+	transition: transform 100ms ease-in;
 }
 
 /*
@@ -176,6 +230,21 @@ body {
 }
 
 /*
+* Define a diffuse shadow. Useful for things like images.
+*/
+.diffuse-shadow {
+	-webkit-box-shadow: #e2e2e2 0 0 50px 0;
+	-moz-box-shadow: #e2e2e2 0 0 50px 0;
+	box-shadow: #e2e2e2 0 0 50px 0;
+}
+
+.diffuse-shadow-dark {
+	-webkit-box-shadow: #636161 0 0 50px 0;
+	-moz-box-shadow: #636161 0 0 50px 0;
+	box-shadow: #636161 0 0 50px 0;
+}
+
+/*
 * Side menu.
 */
 
@@ -183,7 +252,8 @@ body {
 * Apply a background gradient to the side menu.
 */
 .side-menu-drawer {
-	background-color: #1D1F20;
+	background-color: #1D1F20; /* fallback */
+
 	background-image: -webkit-linear-gradient(145deg, #1D1F20, #404348);
 	background-image: -moz-linear-gradient(145deg, #1D1F20, #404348);
 	background-image: -ms-linear-gradient(145deg, #1D1F20, #404348);
@@ -231,4 +301,12 @@ body {
 
 #stdlib-logo:hover {
 	opacity: 1;
+}
+
+/*
+* Download button.
+*/
+
+#download-icon-button {
+	cursor: pointer;
 }
