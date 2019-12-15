@@ -38,7 +38,7 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 */
 function home() {
 	return (
-		<li class="top-nav-item"><a href="https://stdlib.io/" title="Go to the main website">Home</a></li>
+		<li class="top-nav-item"><a href="https://stdlib.io/" title="Go to the main website">home</a></li>
 	);
 }
 
@@ -51,7 +51,7 @@ function home() {
 */
 function docs( path ) {
 	return (
-		<li class="top-nav-item"><Link to={ path } title="View package documentation">Documentation</Link></li>
+		<li class="top-nav-item"><Link to={ path } title="View package documentation">documentation</Link></li>
 	);
 }
 
@@ -65,7 +65,7 @@ function docs( path ) {
 function bench( path ) {
 	path += 'benchmark.html';
 	return (
-		<li class="top-nav-item"><Link to={ path } title="Run package benchmarks">Benchmarks</Link></li>
+		<li class="top-nav-item"><Link to={ path } title="Run package benchmarks">benchmarks</Link></li>
 	);
 }
 
@@ -79,7 +79,7 @@ function bench( path ) {
 function test( path ) {
 	path += 'test.html';
 	return (
-		<li class="top-nav-item"><Link to={ path } title="Run package tests">Tests</Link></li>
+		<li class="top-nav-item"><Link to={ path } title="Run package tests">tests</Link></li>
 	);
 }
 
@@ -94,7 +94,7 @@ function test( path ) {
 function src( pkg, version ) {
 	var path = 'https://github.com/stdlib-js/stdlib/tree/'+version+'/lib/node_modules/@stdlib/'+pkg;
 	return (
-		<li class="top-nav-item"><a href={ path } title="View source code">Source</a></li>
+		<li class="top-nav-item"><a href={ path } title="View source code">source</a></li>
 	);
 }
 
@@ -110,7 +110,7 @@ function ts( pkg ) {
 	pkg = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
 	path = '/docs/ts/modules/_'+pkg+'_docs_types_index_d_.html';
 	return (
-		<li class="top-nav-item"><a href={ path } title="View TypeScript type definitions">TypeScript</a></li>
+		<li class="top-nav-item"><a href={ path } title="View TypeScript type definitions">typescript</a></li>
 	);
 }
 
