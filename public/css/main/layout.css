@@ -539,11 +539,11 @@ h2 {
 	top: 50%;
 	left: 0;
 
-	width: 30px;
-	height: 25px;
+	width: 18px;
+	height: 14px;
 
-	margin-left: 15px; /* half width */
-	margin-top: -12px; /* half height */
+	margin-left: 24px;
+	margin-top: -7px; /* half height */
 }
 
 /*
@@ -554,7 +554,7 @@ h2 {
 	position: absolute;
 	left: 0;
 
-	height: 4px;
+	height: 2px;
 	width: 100%;
 }
 
@@ -566,15 +566,15 @@ h2 {
 }
 
 .hamburger-menu-icon span:nth-child(2) {
-	top: 10px;
+	top: 5px;
 }
 
 .hamburger-menu-icon span:nth-child(3) {
-	top: 10px;
+	top: 5px;
 }
 
 .hamburger-menu-icon span:nth-child(4) {
-	top: 20px;
+	top: 10px;
 }
 
 /*
