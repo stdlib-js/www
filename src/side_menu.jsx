@@ -332,7 +332,11 @@ class MenuBar extends Component {
 							<Link to={ config.mount+this.props.version+'/' }>
 								<Logo />
 							</Link>
-							<IconButton aria-label="close drawer" onClick={ this._onDrawerClose } edge="start" >
+							<IconButton
+								aria-label="close drawer"
+								onClick={ this._onDrawerClose }
+								edge="start"
+							>
 								<ChevronLeftIcon className="MuiSvgIcon-root menu-close-icon" />
 							</IconButton>
 						</div>
