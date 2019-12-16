@@ -500,6 +500,13 @@ h2 {
 	display: block;
 }
 
+.top-nav-menu-icon-button {
+	position: fixed;
+	top: 9px;
+	right: 20px;
+	padding: 12px;
+}
+
 @media only screen and (min-width: 43.75em) { /* 700px */
 	.top-nav {
 		padding: 0 2.5em;
@@ -624,12 +631,6 @@ h2 {
 	top: 8px;
 	left: 20px;
 	z-index: 120;
-}
-
-#top-nav-menu-icon-button {
-	position: fixed;
-	top: 8px;
-	right: 20px;
 }
 
 #download-icon-button {
