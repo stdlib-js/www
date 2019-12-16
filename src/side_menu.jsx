@@ -162,8 +162,11 @@ class MenuBar extends Component {
 						}}
 					>
 						{pkg}
-						<span className="side-menu-list-item-namespace-icon" >
-							{this.state[ pkgPath ] ?
+						<span
+							className="side-menu-list-item-namespace-icon"
+							title={ this.state[ pkgPath ] ? 'Collapse sub-menu' : 'Expand sub-menu' }
+						>
+							{ this.state[ pkgPath ] ?
 								<RemoveIcon className="side-menu-list-item-collapse-icon" /> :
 								<AddIcon className="side-menu-list-item-expand-icon" />
 							}
@@ -315,6 +318,7 @@ class MenuBar extends Component {
 					onClick={ this._onDrawerOpen }
 					edge="start"
 					id="menu-icon-button"
+					title="Open documentation navigation menu"
 				>
 					<MenuIcon id="menu-icon" />
 				</IconButton>
@@ -329,13 +333,14 @@ class MenuBar extends Component {
 						}}
 					>
 						<div className="side-menu-head" >
-							<Link to={ config.mount+this.props.version+'/' }>
+							<Link to={ config.mount+this.props.version+'/' } title="Navigate to documentation home">
 								<Logo />
 							</Link>
 							<IconButton
 								aria-label="close drawer"
 								onClick={ this._onDrawerClose }
 								edge="start"
+								title="Close documentation navigation menu"
 							>
 								<ChevronLeftIcon className="MuiSvgIcon-root menu-close-icon" />
 							</IconButton>
@@ -344,6 +349,7 @@ class MenuBar extends Component {
 							className="side-menu-version-select"
 							onChange={ this.props.onVersionChange }
 							value={ this.props.version }
+							title="Select documentation version"
 						>
 							{config.versions.map( ( val, key ) => <option key={ key } value={ val }>{ val }</option> )}
 						</select>
@@ -354,9 +360,11 @@ class MenuBar extends Component {
 								onChange={ this._onFilterChange }
 								value={ this.state.filter }
 								placeholder="Type here to filter menu..."
+								title="Filter documentation menu"
 							/>
 							{ this.state.filter ? <ClearIcon
 								className="side-menu-filter-clear"
+								title="Clear the current filter"
 								onClick={ this._resetFilter }
 							/> : null }
 						</div>

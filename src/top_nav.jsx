@@ -139,11 +139,11 @@ function TopNav( props ) {
 		<Fragment>
 			<input class="top-nav-input" id="top-nav-input" name="top-nav-input" type="checkbox" />
 			<label class="top-nav-label" for="top-nav-input">
-				<span class="top-nav-menu-icon-button">
+				<span class="top-nav-menu-icon-button" title="Toggle package navigation menu" aria-label="toggle package navigation menu">
 					<ExpandMoreIcon class="MuiSvgIcon-root top-nav-menu-icon" />
 				</span>
 			</label>
-			<nav className="top-nav" ariaLabel="Main">
+			<nav className="top-nav" aria-label="Main">
 				<ul class="top-nav-items">
 					{ props.home ? home() : null }
 					{ props.docs ? docs( path ) : null }
