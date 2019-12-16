@@ -20,7 +20,6 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import pkgPath from './pkg_doc_path.js';
 
@@ -140,15 +139,9 @@ function TopNav( props ) {
 		<Fragment>
 			<input class="top-nav-input" id="top-nav-input" name="top-nav-input" type="checkbox" />
 			<label class="top-nav-label" for="top-nav-input">
-				<IconButton
-					id="top-nav-menu-icon-button"
-					aria-label="open menu"
-					color="inherit"
-					edge="end"
-					size="medium"
-				>
+				<span class="top-nav-menu-icon-button">
 					<ExpandMoreIcon class="MuiSvgIcon-root top-nav-menu-icon" />
-				</IconButton>
+				</span>
 			</label>
 			<nav className="top-nav" ariaLabel="Main">
 				<ul class="top-nav-items">
