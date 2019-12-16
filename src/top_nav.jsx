@@ -20,6 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import ChevronDownIcon from '@material-ui/icons/ChevronDown';
 import pkgPath from './pkg_doc_path.js';
 
 
@@ -138,7 +139,7 @@ function TopNav( props ) {
 		<Fragment>
 			<input class="top-nav-input" id="top-nav-input" name="top-nav-input" type="checkbox" />
 			<label class="top-nav-label" for="top-nav-input">
-				<span class="TODO-down-chevron-Material-UI-icon"></span>
+				<ChevronDownIcon class="top-nav-menu-icon" />
 			</label>
 			<nav className="top-nav" ariaLabel="Main">
 				<ul class="top-nav-items">
