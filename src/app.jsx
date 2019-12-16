@@ -21,8 +21,10 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import IframeResizer from 'iframe-resizer-react';
-import Tooltip from '@material-ui/core/Tooltip';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import CancelIcon from '@material-ui/icons/Cancel';
+import Tooltip from '@material-ui/core/Tooltip';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
 import ReadmePage from './readme_page.jsx';
@@ -63,6 +65,7 @@ class App extends Component {
 			version = config.versions[ 0 ];
 		}
 		this.state = {
+			'downloadProgress': 0,
 			'slideoutIsOpen': true,
 			'version': version,
 			'packageTree': null,
@@ -131,7 +134,14 @@ class App extends Component {
 	}
 
 	_downloadAssets = () => {
-		downloadAssets( Object.keys( this.state.packageResources ), this.state.version );
+		var self = this;
+		downloadAssets( Object.keys( this.state.packageResources ), this.state.version, onDownload );
+
+		function onDownload( progress ) {
+			self.setState({
+				downloadProgress: progress
+			});
+		}
 	}
 
 	_selectVersion = ( event ) => {
@@ -337,12 +347,24 @@ class App extends Component {
 					/>
 				</Switch>
 				<Footer />
-				<Tooltip placement="left" title="Download documentation for offline access">
-					<GetAppIcon
-						id="download-icon-button"
-						onClick={ this._downloadAssets }
-					/>
-				</Tooltip>
+				{ this.state.downloadProgress ? <LinearProgress
+					id="download-progress"
+					variant="determinate"
+					value={ this.state.downloadProgress }
+				/> : null }
+				{ this.state.downloadProgress ?
+					<Tooltip placement="left-start" title="Cancel download">
+						<CancelIcon
+							id="download-icon-button"
+						/>
+					</Tooltip> :
+					<Tooltip placement="left-start" title="Download documentation for offline access">
+						<GetAppIcon
+							id="download-icon-button"
+							onClick={ this._downloadAssets }
+						/>
+					</Tooltip>
+				}
 			</Fragment>
 		);
 	}
