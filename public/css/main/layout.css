@@ -536,14 +536,13 @@ h2 {
 	display: block;
 	position: absolute;
 
-	top: 50%;
-	left: 0;
+	top: 8px;
+	left: 8px;
 
-	width: 18px;
-	height: 14px;
+	width: 48px;
+	height: 48px;
 
-	margin-left: 24px;
-	margin-top: -7px; /* half height */
+	padding: 12px;
 }
 
 /*
@@ -552,29 +551,30 @@ h2 {
 .hamburger-menu-icon span {
 	display: block;
 	position: absolute;
-	left: 0;
 
 	height: 2px;
-	width: 100%;
+	width: 18px;
+
+	margin-left: 3px;
 }
 
 /*
 * Position the hamburger menu lines.
 */
 .hamburger-menu-icon span:nth-child(1) {
-	top: 0;
+	top: 18px;
 }
 
 .hamburger-menu-icon span:nth-child(2) {
-	top: 5px;
+	top: 23px;
 }
 
 .hamburger-menu-icon span:nth-child(3) {
-	top: 5px;
+	top: 23px;
 }
 
 .hamburger-menu-icon span:nth-child(4) {
-	top: 10px;
+	top: 28px;
 }
 
 /*

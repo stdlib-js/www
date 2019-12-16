@@ -64,6 +64,21 @@ img {
 	cursor: pointer;
 }
 
+.hamburger-menu-icon:hover {
+	background-color: rgba(0, 0, 0, 0.08);
+
+	/* name | duration | timing function | delay */
+	-webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	-moz-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	-ms-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	-o-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
 /*
 * Style each hamburger menu line.
 */
