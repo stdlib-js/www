@@ -168,22 +168,24 @@ h2 {
 * When the side menu is visible, translate the content of the "main" element.
 */
 .main-content.side-menu-adjacent {
-	/* Add transform fallbacks for browsers not supporting `translate3d`. Translate the width of the menu. */
-	-webkit-transform: translateX(300px); /* menu width */
-	-moz-transform: translateX(300px); /* menu width */
-	-ms-transform: translateX(300px); /* menu width */
-	-o-transform: translateX(300px); /* menu width */
-	transform: translateX(300px); /* menu width */
-	-webkit-transform: translateZ(0) translateX(300px); /* menu width */
-	-moz-transform: translateZ(0) translateX(300px); /* menu width */
-	-ms-transform: translateZ(0) translateX(300px); /* menu width */
-	-o-transform: translateZ(0) translateX(300px); /* menu width */
-	transform: translateZ(0) translateX(300px); /* menu width */
-	-webkit-transform: translate3d(300px, 0, 0); /* menu width */
-	-moz-transform: translate3d(300px, 0, 0); /* menu width */
-	-ms-transform: translate3d(300px, 0, 0); /* menu width */
-	-o-transform: translate3d(300px, 0, 0); /* menu width */
-	transform: translate3d(300px, 0, 0); /* menu width */
+	/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
+	-webkit-transform: translateX(300px);
+	-moz-transform: translateX(300px);
+	-ms-transform: translateX(300px);
+	-o-transform: translateX(300px);
+	transform: translateX(300px);
+
+	-webkit-transform: translateZ(0) translateX(300px);
+	-moz-transform: translateZ(0) translateX(300px);
+	-ms-transform: translateZ(0) translateX(300px);
+	-o-transform: translateZ(0) translateX(300px);
+	transform: translateZ(0) translateX(300px);
+
+	-webkit-transform: translate3d(300px, 0, 0);
+	-moz-transform: translate3d(300px, 0, 0);
+	-ms-transform: translate3d(300px, 0, 0);
+	-o-transform: translate3d(300px, 0, 0);
+	transform: translate3d(300px, 0, 0);
 }
 
 /*
@@ -259,6 +261,27 @@ h2 {
 	.main {
 		width: 86%;
 		margin-left: 7%;
+	}
+
+	.main-content.side-menu-adjacent {
+		/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
+		-webkit-transform: translateX(350px);
+		-moz-transform: translateX(350px);
+		-ms-transform: translateX(350px);
+		-o-transform: translateX(350px);
+		transform: translateX(350px);
+
+		-webkit-transform: translateZ(0) translateX(350px);
+		-moz-transform: translateZ(0) translateX(350px);
+		-ms-transform: translateZ(0) translateX(350px);
+		-o-transform: translateZ(0) translateX(350px);
+		transform: translateZ(0) translateX(350px);
+
+		-webkit-transform: translate3d(350px, 0, 0);
+		-moz-transform: translate3d(350px, 0, 0);
+		-ms-transform: translate3d(350px, 0, 0);
+		-o-transform: translate3d(350px, 0, 0);
+		transform: translate3d(350px, 0, 0);
 	}
 
 	.main .readme {
