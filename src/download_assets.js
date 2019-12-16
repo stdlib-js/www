@@ -31,9 +31,9 @@ import config from './config.js';
 * @private
 * @param {Array<string>} pkgs - list of packages
 * @param {string} version - version
-* @param {Function} onDownload - callback invoked upon downloading assets for a single package
+* @param {Function} progress - callback invoked to report download progress
 */
-function download( pkgs, version, onDownload ) {
+function download( pkgs, version, progress ) {
 	var len;
 	var i;
 
@@ -53,7 +53,7 @@ function download( pkgs, version, onDownload ) {
 
 		i += 1;
 		if ( i >= len ) {
-			onDownload( 100 );
+			progress( 100.0 );
 			return;
 		}
 		path = config.mount + version + '/@stdlib/' + pkgs[ i ];
@@ -64,7 +64,7 @@ function download( pkgs, version, onDownload ) {
 			.then( res => res.text() )
 			.then( text => {
 				HTML_FRAGMENT_CACHE[ path ] = text;
-				onDownload( ( i / len ) * 100 );
+				progress( ( i/len ) * 100.0 );
 				next();
 			})
 			.catch( log );
