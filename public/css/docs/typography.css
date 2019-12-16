@@ -247,14 +247,10 @@ a:active {
 	font-size: 0.875em !important; /* if 16px is 1em, then 14px */
 }
 
-/*
-* Element rules.
-*/
-
-#menu-close-icon {
+.side-menu-drawer .menu-close-icon {
 	color: #c7c7c7;
 }
 
-#menu-close-icon:hover {
+.side-menu-drawer .menu-close-icon:hover {
 	color: #bfc4c9;
 }

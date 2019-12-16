@@ -285,7 +285,7 @@ img {
 	overflow-y: auto;
 }
 
-#menu-close-icon:hover {
+.side-menu-drawer .menu-close-icon:hover {
 	-webkit-box-shadow: 20px;
 	-moz-box-shadow: 20px;
 	box-shadow: 20px;
