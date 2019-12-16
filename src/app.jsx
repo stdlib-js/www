@@ -24,7 +24,7 @@ import IframeResizer from 'iframe-resizer-react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CancelIcon from '@material-ui/icons/Cancel';
-import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
 import ReadmePage from './readme_page.jsx';
@@ -311,6 +311,32 @@ class App extends Component {
 		// TODO: toggle class to apply CSS transform
 		return (
 			<Fragment>
+				{ this.state.downloadProgress ? <LinearProgress
+					id="download-progress"
+					variant="determinate"
+					value={ this.state.downloadProgress }
+				/> : null }
+				{ this.state.downloadProgress ?
+					<IconButton
+						aria-label="cancel download"
+						id="download-icon-button"
+						edge="start"
+						title="Cancel download"
+						onClick={ () => console.log( "TODO" ) }
+					>
+						<CancelIcon />
+					</IconButton>
+					:
+					<IconButton
+						aria-label="download documentation for offline access"
+						id="download-icon-button"
+						edge="start"
+						title="Download documentation for offline access"
+						onClick={ this._downloadAssets }
+					>
+						<GetAppIcon />
+					</IconButton>
+				}
 				<SideMenu
 					onDrawerChange={ this._handleSlideOutChange }
 					onReadmeChange={ this._fetchFragment }
@@ -347,24 +373,6 @@ class App extends Component {
 					/>
 				</Switch>
 				<Footer />
-				{ this.state.downloadProgress ? <LinearProgress
-					id="download-progress"
-					variant="determinate"
-					value={ this.state.downloadProgress }
-				/> : null }
-				{ this.state.downloadProgress ?
-					<Tooltip placement="left-start" title="Cancel download">
-						<CancelIcon
-							id="download-icon-button"
-						/>
-					</Tooltip> :
-					<Tooltip placement="left-start" title="Download documentation for offline access">
-						<GetAppIcon
-							id="download-icon-button"
-							onClick={ this._downloadAssets }
-						/>
-					</Tooltip>
-				}
 			</Fragment>
 		);
 	}
