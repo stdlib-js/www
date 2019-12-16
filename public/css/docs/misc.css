@@ -57,6 +57,12 @@ img {
 	}
 }
 
+.top-nav-menu-icon:hover {
+	-webkit-box-shadow: 20px;
+	-moz-box-shadow: 20px;
+	box-shadow: 20px;
+}
+
 /*
 * For certain animations, the backface of an element can become visible. Prevent this.
 *

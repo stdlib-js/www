@@ -626,6 +626,12 @@ h2 {
 	z-index: 120;
 }
 
+#top-nav-menu-icon-button {
+	position: fixed;
+	top: 8px;
+	right: 20px;
+}
+
 #download-icon-button {
 	position: fixed;
 	bottom: 20px;
