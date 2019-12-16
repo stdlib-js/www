@@ -474,7 +474,7 @@ h2 {
 	position: fixed;
 
 	top: 0;
-	right: 0;
+	right: 3.5em;
 
 	z-index: 101;
 
@@ -501,15 +501,16 @@ h2 {
 }
 
 .top-nav-menu-icon-button {
-	position: fixed;
+	position: absolute;
 	top: 9px;
-	right: 20px;
+	right: 0;
 	padding: 12px;
 }
 
 @media only screen and (min-width: 43.75em) { /* 700px */
 	.top-nav {
-		padding: 0 2.5em;
+		/* top | right | bottom | left */
+		padding: 0 3.5em 0 2.5em;
 	}
 
 	.top-nav-label {
@@ -635,8 +636,9 @@ h2 {
 
 #download-icon-button {
 	position: fixed;
-	bottom: 20px;
-	right: 20px;
+	top: 8px;
+	right: 8px;
+	z-index: 120;
 }
 
 #download-progress {
