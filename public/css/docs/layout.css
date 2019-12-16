@@ -631,3 +631,10 @@ h2 {
 	bottom: 20px;
 	right: 20px;
 }
+
+#download-progress {
+	right: 60px;
+	position: fixed;
+	width: 350px;
+	bottom: 30px;
+}
