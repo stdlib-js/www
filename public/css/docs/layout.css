@@ -169,21 +169,21 @@ h2 {
 */
 .main-content.side-menu-adjacent {
 	/* Add transform fallbacks for browsers not supporting `translate3d`. Translate the width of the menu. */
-	-webkit-transform: translateX(400px); /* menu width */
-	-moz-transform: translateX(400px); /* menu width */
-	-ms-transform: translateX(400px); /* menu width */
-	-o-transform: translateX(400px); /* menu width */
-	transform: translateX(400px); /* menu width */
-	-webkit-transform: translateZ(0) translateX(400px); /* menu width */
-	-moz-transform: translateZ(0) translateX(400px); /* menu width */
-	-ms-transform: translateZ(0) translateX(400px); /* menu width */
-	-o-transform: translateZ(0) translateX(400px); /* menu width */
-	transform: translateZ(0) translateX(400px); /* menu width */
-	-webkit-transform: translate3d(400px, 0, 0); /* menu width */
-	-moz-transform: translate3d(400px, 0, 0); /* menu width */
-	-ms-transform: translate3d(400px, 0, 0); /* menu width */
-	-o-transform: translate3d(400px, 0, 0); /* menu width */
-	transform: translate3d(400px, 0, 0); /* menu width */
+	-webkit-transform: translateX(300px); /* menu width */
+	-moz-transform: translateX(300px); /* menu width */
+	-ms-transform: translateX(300px); /* menu width */
+	-o-transform: translateX(300px); /* menu width */
+	transform: translateX(300px); /* menu width */
+	-webkit-transform: translateZ(0) translateX(300px); /* menu width */
+	-moz-transform: translateZ(0) translateX(300px); /* menu width */
+	-ms-transform: translateZ(0) translateX(300px); /* menu width */
+	-o-transform: translateZ(0) translateX(300px); /* menu width */
+	transform: translateZ(0) translateX(300px); /* menu width */
+	-webkit-transform: translate3d(300px, 0, 0); /* menu width */
+	-moz-transform: translate3d(300px, 0, 0); /* menu width */
+	-ms-transform: translate3d(300px, 0, 0); /* menu width */
+	-o-transform: translate3d(300px, 0, 0); /* menu width */
+	transform: translate3d(300px, 0, 0); /* menu width */
 }
 
 /*
@@ -261,6 +261,10 @@ h2 {
 		margin-left: 7%;
 	}
 
+	.main .readme {
+		margin-left: 0;
+	}
+
 	.main .readme > h1,
 	.main .readme > h2,
 	.main .readme > h3,
@@ -281,8 +285,12 @@ h2 {
 
 @media only screen and (max-width: 45em) { /* 720px */
 	.main {
-		width: 96%;
-		margin-left: 2%;
+		width: 94%;
+		margin-left: 3%;
+	}
+
+	.main .readme {
+		margin-left: 0;
 	}
 
 	.main .readme > h1,
