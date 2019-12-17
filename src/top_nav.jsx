@@ -39,7 +39,7 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 */
 function home() {
 	return (
-		<li class="top-nav-item"><a href="https://stdlib.io/" title="Go to the main website">home</a></li>
+		<li class="top-nav-item"><a href="/" title="Go to the main website">home</a></li>
 	);
 }
 
