@@ -41,9 +41,12 @@
 
 12. SSL-stapling config
 13. (docs) HTML minify (rehype plugin)
-14.
+14. (docs) stub search input in top nav
+
+    -   disable until search backend is ready
+
 15. (docs) Consider JS bundle minify
-16.
+16. (docs) welcome page should link to local (rendered) LICENSE
 17. update Makefiles, including moving npm scripts to Makefile targets
 18.
 19. (docs) investigate [hammer.js](https://github.com/hammerjs/hammer.js) for touch support
