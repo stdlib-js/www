@@ -31,7 +31,7 @@ import config from './config.js';
 * @param {Object} props - component properties
 * @returns {ReactComponent} React component
 */
-function WelcomePage( props ) {
+function Welcome( props ) {
 	return (
 		<Fragment>
 			<div className="readme" >
@@ -39,7 +39,7 @@ function WelcomePage( props ) {
 					<div className="image" align="center" >
 						<br />
 						<br />
-						<img src="https://stdlib.io/img/logo_banner.svg" alt="stdlib logo" />
+						<img src="/img/logo_banner.svg" alt="stdlib logo" />
 						<br />
 						<br />
 						<br />
@@ -70,7 +70,7 @@ function WelcomePage( props ) {
 					<h2>Getting Help</h2>
 
 					<p>
-						Ask questions and get help from the community on the project's <a href="https://gitter.im/stdlib-js/stdlib">Gitter</a> channel.
+						Ask questions and get help from the community on the project's <a href={ config.gitter }>Gitter</a> channel.
 					</p>
 
 					<h2>Prerequisites</h2>
@@ -167,12 +167,12 @@ function WelcomePage( props ) {
 					</pre>
 
 					<p>
-						For distributable bundles for use in browser environments or as shared ("vendored") libraries in server environments, see the <a href={ 'https://github.com/stdlib-js/stdlib/tree/'+props.version+'/dist' }><code>dist</code></a> directory and associated <a href={ 'https://github.com/stdlib-js/stdlib/tree/'+props.version+'/dist' }>guide</a>.
+						For distributable bundles for use in browser environments or as shared ("vendored") libraries in server environments, see the <a href={ config.repository+'/tree/'+props.version+'/dist' }><code>dist</code></a> directory and associated <a href={ config.repository+'/tree/'+props.version+'/dist' }>guide</a>.
 					</p>
 
 					<p>
 						Otherwise, to install as a system library, follow the <a href={
-							 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md#download'}>download</a>, <a href={ 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md' }>configuration</a>, and <a href={ 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md#installation' }>installation</a> instructions as described in the <a href={ 'https://github.com/stdlib-js/stdlib/blob/'+props.version+'/docs/development.md' }>development guide</a>.
+							 config.repository+'/blob/'+props.version+'/docs/development.md#download'}>download</a>, <a href={ config.repository+'/blob/'+props.version+'/docs/development.md' }>configuration</a>, and <a href={ config.repository+'/blob/'+props.version+'/docs/development.md#installation' }>installation</a> instructions as described in the <a href={ config.repository+'/blob/'+props.version+'/docs/development.md' }>development guide</a>.
 					</p>
 
 					<h2>License</h2>
@@ -184,7 +184,7 @@ function WelcomePage( props ) {
 					<h2>Copyright</h2>
 
 					<p>
-						Copyright &copy; 2016-2019. The Stdlib <a href="https://github.com/stdlib-js/stdlib/graphs/contributors" >Authors</a>.
+						Copyright &copy; 2016-2019. The Stdlib <a href={ config.repository+'/graphs/contributors' } >Authors</a>.
 					</p>
 
 				</section>
@@ -196,4 +196,4 @@ function WelcomePage( props ) {
 
 // EXPORTS //
 
-export default WelcomePage;
+export default Welcome;

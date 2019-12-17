@@ -19,37 +19,35 @@
 // MODULES //
 
 import React from 'react';
-import config from './config.js';
+import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
+import FourZeroFour from './404.jsx';
 
 
 // MAIN //
 
 /**
-* Returns a React component for rendering the application footer.
+* Returns a React component for rendering a README.
 *
 * @private
 * @param {Object} props - component properties
 * @returns {ReactComponent} React component
 */
-function Footer() {
+function Readme( props ) {
+	var html = HTML_FRAGMENT_CACHE[ props.path ];
+	if ( html === void 0 ) {
+		return <FourZeroFour />;
+	}
 	return (
-		<footer>
-			<nav className="bottom-nav center" aria-label="Footer">
-				<a href={ config.funding } title="Help support the project">Donate</a>
-				{ ' / ' }
-				<a href={ config.mount } title="Documentation">Docs</a>
-				{ ' / ' }
-				<a href={ config.gitter } title="Talk to us on Gitter!">Chat</a>
-				{ ' / ' }
-				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
-				{ ' / ' }
-				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
-			</nav>
-		</footer>
+		<div
+			id="readme"
+			className="readme"
+			suppressHydrationWarning
+			dangerouslySetInnerHTML={{ __html: html }}
+		/>
 	);
 };
 
 
 // EXPORTS //
 
-export default Footer;
+export default Readme;

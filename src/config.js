@@ -32,7 +32,19 @@ const config = {
 	// Supported documentation versions:
 	'versions': [
 		'v0.0.90'
-	]
+	],
+
+	// Publicly hosted Git repository:
+	'repository': 'https://github.com/stdlib-js/stdlib',
+
+	// Twitter:
+	'twitter': 'https://twitter.com/stdlibjs',
+
+	// Gitter:
+	'gitter': 'https://gitter.im/stdlib-js/stdlib',
+
+	// Sponsorship/funding URL:
+	'funding': 'https://www.patreon.com/athan'
 };
 
 

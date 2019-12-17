@@ -22,6 +22,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import pkgPath from './pkg_doc_path.js';
+import config from './config.js';
 
 
 // VARIABLES //
@@ -97,7 +98,7 @@ function test( path ) {
 * @returns {ReactComponent} React component
 */
 function src( pkg, version ) {
-	var path = 'https://github.com/stdlib-js/stdlib/tree/'+version+'/lib/node_modules/@stdlib/'+pkg;
+	var path = config.repository+'/tree/'+version+'/lib/node_modules/@stdlib/'+pkg;
 	return (
 		<li class="top-nav-item"><a href={ path } title="View source code">source</a></li>
 	);

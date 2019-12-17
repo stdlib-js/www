@@ -18,32 +18,39 @@
 
 // MODULES //
 
-import React from 'react';
-import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
+import React, { Fragment } from 'react';
+import config from './config.js';
 
 
 // MAIN //
 
 /**
-* Returns a React component for rendering a README.
+* Returns a React component for rendering a 404 page.
 *
 * @private
 * @param {Object} props - component properties
 * @returns {ReactComponent} React component
 */
-function ReadmePage( props ) {
-	var html = HTML_FRAGMENT_CACHE[ props.path ] || '';
+function FourZeroFour( props ) {
 	return (
-		<div
-			id="readme"
-			className="readme"
-			suppressHydrationWarning
-			dangerouslySetInnerHTML={{ __html: html }}
-		/>
+		<Fragment>
+			<div className="readme" >
+				<section>
+					<h1>Whoops!</h1>
+
+					<p>
+						The page you are looking for does not exist. 😢
+					</p>
+					<p>
+						If you think this page would be useful and want to help make this page happen, consider becoming a <a href={ config.funding }>financial sponsor</a>!
+					</p>
+				</section>
+			</div>
+		</Fragment>
 	);
 };
 
 
 // EXPORTS //
 
-export default ReadmePage;
+export default FourZeroFour;

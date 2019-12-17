@@ -26,8 +26,9 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';
 import IframeResizer from './iframe_resizer.jsx';
 import SideMenu from './side_menu.jsx';
-import WelcomePage from './welcome_page.jsx';
-import ReadmePage from './readme_page.jsx';
+import Welcome from './welcome.jsx';
+import Readme from './readme.jsx';
+import FourZeroFour from './404.jsx';
 import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
 import log from './log.js';
@@ -164,7 +165,7 @@ class App extends React.Component {
 
 	_renderReadme = ( match ) => {
 		return (
-			<ReadmePage path={ match.url } />
+			<Readme path={ match.url } />
 		);
 	}
 
@@ -181,8 +182,7 @@ class App extends React.Component {
 				width="100%"
 			/>;
 		} else {
-			// TODO: more creative 404
-			iframe = <p><code>{ match.params.pkg }</code> does not have any benchmarks.</p>;
+			iframe = <FourZeroFour />;
 		}
 		return iframe;
 	}
@@ -200,15 +200,14 @@ class App extends React.Component {
 				width="100%"
 			/>;
 		} else {
-			// TODO: more creative 404
-			iframe = <p><code>{ match.params.pkg }</code> does not have any tests.</p>;
+			iframe = <FourZeroFour />
 		}
 		return iframe;
 	}
 
 	_renderWelcome = () => {
 		return (
-			<WelcomePage version={this.state.version} />
+			<Welcome version={this.state.version} />
 		);
 	}
 
