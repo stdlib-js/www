@@ -51,6 +51,10 @@ function home() {
 * @returns {ReactComponent} React component
 */
 function docs( path ) {
+	// Check for a trailing slash (e.g., `@stdlib/assert/contains/`)...
+	if ( path[ path.length-1 ] === '/' ) {
+		path = path.substring( 0, path.length-1 );
+	}
 	return (
 		<li class="top-nav-item"><Link to={ path } title="View package documentation">documentation</Link></li>
 	);
