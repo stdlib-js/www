@@ -18,19 +18,18 @@
 
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import IframeResizer from 'iframe-resizer-react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';
+import IframeResizer from './iframe_resizer.jsx';
 import SideMenu from './side_menu.jsx';
 import WelcomePage from './welcome_page.jsx';
 import ReadmePage from './readme_page.jsx';
 import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
-import iframeBootstrap from './bootstrap_iframe.js';
 import log from './log.js';
 import downloadAssets from './download_assets.js';
 import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
@@ -40,7 +39,7 @@ import config from './config.js';
 
 // MAIN //
 
-class App extends Component {
+class App extends React.Component {
 	constructor( props ) {
 		var pathname;
 		var version;
@@ -177,10 +176,9 @@ class App extends Component {
 		if ( resources.benchmark ) {
 			iframe = <IframeResizer
 				className="embedded-iframe"
-				srcdoc={ iframeBootstrap( match.url ) }
+				url={ match.url }
 				title="Benchmarks"
 				width="100%"
-				checkOrigin={false}
 			/>;
 		} else {
 			// TODO: more creative 404
@@ -197,10 +195,9 @@ class App extends Component {
 		if ( resources.test ) {
 			iframe = <IframeResizer
 				className="embedded-iframe"
-				srcdoc={ iframeBootstrap( match.url ) }
+				url={ match.url }
 				title="Tests"
 				width="100%"
-				checkOrigin={false}
 			/>;
 		} else {
 			// TODO: more creative 404

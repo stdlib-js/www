@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { debounce } from 'throttle-debounce';
 import { Link, withRouter } from 'react-router-dom';
 import List from '@material-ui/core/List';
@@ -43,7 +43,7 @@ const COLLAPSE_TRANSITION_TIMEOUT = 500;
 
 // MAIN //
 
-class MenuBar extends Component {
+class MenuBar extends React.Component {
 	constructor( props ) {
 		super( props )
 		this.state = {
