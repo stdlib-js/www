@@ -61,7 +61,7 @@
 21. (docs) sidenote/marginnote styling: https://edwardtufte.github.io/tufte-css/
 22. (docs) need to update font links to hosted resources
 23. Background image slideshow? (see https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/)
-24. (docs) on smaller devices, convert top nav to dropdown on right side (use a downarrow as the icon?)
+24.
 25. resolve approach for using `stdlib` pkgs in www JS assets (e.g., setting NODE_PATH during browserify or some other approach?)
 26. Use of "Learn More" on www feature buttons (?)
 27. (docs) source view
