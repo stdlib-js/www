@@ -34,9 +34,11 @@ import config from './config.js';
 * @param {Function} progress - callback invoked to report download progress
 */
 function download( pkgs, version, progress ) {
+	var mnt;
 	var len;
 	var i;
 
+	mnt = config.mount + version + '/@stdlib/';
 	len = pkgs.length;
 	i = -1;
 
@@ -56,7 +58,7 @@ function download( pkgs, version, progress ) {
 			progress( 100.0 );
 			return;
 		}
-		path = config.mount + version + '/@stdlib/' + pkgs[ i ];
+		path = mnt + pkgs[ i ];
 		if ( path.includes( '__namespace__' ) ) {
 			return next();
 		}
