@@ -31,10 +31,10 @@ import config from './config.js';
 * @param {Object} props - component properties
 * @returns {ReactComponent} React component
 */
-function FourZeroFour( props ) {
+function FourZeroFour() {
 	return (
 		<Fragment>
-			<div className="readme" >
+			<div className="readme">
 				<section>
 					<h1>Whoops!</h1>
 
