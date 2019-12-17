@@ -19,8 +19,6 @@
 // MODULES //
 
 import React from 'react';
-import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
-import FourZeroFour from './404.jsx';
 
 
 // MAIN //
@@ -33,16 +31,12 @@ import FourZeroFour from './404.jsx';
 * @returns {ReactComponent} React component
 */
 function Readme( props ) {
-	var html = HTML_FRAGMENT_CACHE[ props.path ];
-	if ( html === void 0 ) {
-		return <FourZeroFour />;
-	}
 	return (
 		<div
 			id="readme"
 			className="readme"
 			suppressHydrationWarning
-			dangerouslySetInnerHTML={{ __html: html }}
+			dangerouslySetInnerHTML={ { '__html': props.html } }
 		/>
 	);
 };
