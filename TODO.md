@@ -7,7 +7,10 @@
    - inspiration: https://medium.com/inspiration-supply/funny-and-creative-404-pages-45f6da146268
 
 2. webhook server to trigger build
-3.
+3. when a user navigates through the api docs and gets 404'd, consider showing the main website 404 page in an iframe in the API docs application.
+
+   -   this would allow for the side menu navigation to still be displayed and for a user to navigate it without having to navigate back using, e.g., the back button
+
 4. Document local development setup
 
     -   https://github.com/CodepediaOrg/bookmarks.dev-api/wiki/Setup-Nginx-for-development-(macOS)---work-in-progress
@@ -31,7 +34,7 @@
 
 8. (docs) view which transforms slideout menu into a fullscreen mega menu overlay (maybe with a touch of transparency, so can see the page update underneath)
 9. (docs) build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
-10.
+10. test/benchmark iframe media queries (on small devices, we can reduce the left margin)
 11. diffie-hellman: https://mozilla.github.io/server-side-tls/ssl-config-generator/
 
     - see digital ocean blog
