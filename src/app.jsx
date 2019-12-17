@@ -355,7 +355,7 @@ class App extends React.Component {
 					/>
 					<Route
 						exact
-						path={ config.mount+':version//@stdlib/:pkg*/index.html' }
+						path={ config.mount+':version/@stdlib/:pkg*/index.html' }
 						render={ this._renderer( 'readme' ) }
 					/>
 					<Route
