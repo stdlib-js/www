@@ -139,3 +139,12 @@ sudo ln -s $(which node) /usr/bin/node
 36. (docs) currently, if you directly link to benchmarks or tests and open a URL directly (e.g., `https://stdlib.io/docs/api/v0.0.90/@stdlib/assert/test.html`), then the benchmarks or tests are loaded and run directly in the browser without any of the API documentation "chrome" (e.g., side menu, navigation, etc)
 
     -   Is this desirable? Or should we configure the fastify server to return a rendered application which loads the respective benchmark/test file?
+
+37. (docs) consider alternative namespace doc generation to improve mobile-first layout on www docs
+
+38. (docs) explore using Web Speech API for speech recognition in the filter (and future search) input
+
+    -   browser support is limited (and almost non-existent)
+    -   <https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API>
+    -   <https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API>
+    -   <https://github.com/mdn/web-speech-api>
