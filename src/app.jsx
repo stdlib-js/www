@@ -240,7 +240,7 @@ class App extends React.Component {
 				url={ match.url }
 				title="Benchmarks"
 				width="100%"
-			/>;
+			/>
 		);
 	}
 
@@ -257,7 +257,7 @@ class App extends React.Component {
 				url={ match.url }
 				title="Tests"
 				width="100%"
-			/>;
+			/>
 		);
 	}
 
