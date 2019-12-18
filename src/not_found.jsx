@@ -25,7 +25,7 @@ import config from './config.js';
 // MAIN //
 
 /**
-* Returns a React component for rendering a 404 page.
+* Returns a React component for when a resource is not found.
 *
 * @private
 * @param {Object} props - component properties
@@ -34,12 +34,11 @@ import config from './config.js';
 function NotFound() {
 	return (
 		<Fragment>
-			<div className="readme">
+			<div id="readme" className="readme">
 				<section>
 					<h1>Whoops!</h1>
-
 					<p>
-						The page you are looking for does not exist. 😢
+						Oh no! We're having trouble locating that page. 😢
 					</p>
 					<p>
 						If you think this page would be useful and want to help make this page happen, consider becoming a <a href={ config.funding }>financial sponsor</a>!
