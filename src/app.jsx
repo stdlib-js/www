@@ -143,9 +143,9 @@ class App extends React.Component {
 		// Attempt to fetch a package README fragment:
 		html = fetchFragment( path, clbk );
 
-		// If we were unable to resolve a fragment synchronously, inform the user that we're working on it...
+		// If we were unable to resolve a fragment synchronously, return an empty string in the hopes that we'll be able to quickly resolve the fragment asynchronously...
 		if ( html === null ) {
-			return '<section><p>Loading...</p></section>';
+			return '';
 		}
 		return html;
 
