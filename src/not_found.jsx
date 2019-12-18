@@ -31,7 +31,7 @@ import config from './config.js';
 * @param {Object} props - component properties
 * @returns {ReactComponent} React component
 */
-function FourZeroFour() {
+function NotFound() {
 	return (
 		<Fragment>
 			<div className="readme">
@@ -53,4 +53,4 @@ function FourZeroFour() {
 
 // EXPORTS //
 
-export default FourZeroFour;
+export default NotFound;
