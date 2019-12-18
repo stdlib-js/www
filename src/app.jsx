@@ -413,11 +413,6 @@ class App extends React.Component {
 						path={ config.mount+':version/@stdlib/:pkg+/test.html' }
 						render={ this._renderer( 'test' ) }
 					/>
-					<Redirect
-						exact
-						from={ config.mount+':version/@stdlib/:pkg+/*' }
-						to={ config.mount+':version/@stdlib/:pkg+' }
-					/>
 					<Route
 						exact
 						path={ config.mount+':version/@stdlib/:pkg+' }
