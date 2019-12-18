@@ -95,7 +95,7 @@ class MenuBar extends React.Component {
 			state[ pkg ] = active;
 			if ( active ) {
 				state.activePkg = pkg;
-				self.props.onReadmeChange( path );
+				self.props.onPackageChange( path );
 			}
 			return state;
 		}
@@ -131,7 +131,7 @@ class MenuBar extends React.Component {
 							onClick={() => {
 								var path = config.mount + this.props.version + '/' + pkgPath;
 								this._onPackageClick( pkgPath );
-								this.props.onReadmeChange( path );
+								this.props.onPackageChange( path );
 							}}
 							style={{
 								paddingLeft: 16 + 10 * level
