@@ -36,14 +36,42 @@ function fetchFragment( path, clbk ) {
 		return HTML_FRAGMENT_CACHE[ path ];
 	}
 	fetch( path+'?fragment=true' )
-		.then( res => res.text() )
-		.then( res => {
-			HTML_FRAGMENT_CACHE[ path ] = res;
-			clbk( null, res );
-		})
+		.then( onResponse )
+		.then( onText )
 		.catch( onError );
 
 	return null;
+
+	/**
+	* Callback invoked upon receiving an HTTP response.
+	*
+	* @private
+	* @param {Object} response - HTTP response
+	* @returns {(Promise|void)} promise
+	*/
+	function onResponse( response ) {
+		var err;
+		if ( response.ok ) {
+			return response.text();
+		}
+		if ( response.status === 404 ) {
+			err = new Error( 'resource not found. Resource: ' + path + '.' );
+		} else {
+			err = new Error( 'unexpected error. Resource: ' + path + '. Status code: ' + response.status + '.' );
+		}
+		onError( err );
+	}
+
+	/**
+	* Callback invoked upon resolving a response body as text.
+	*
+	* @private
+	* @param {string} text - response body
+	*/
+	function onText( text ) {
+		HTML_FRAGMENT_CACHE[ path ] = text;
+		clbk( null, text );
+	}
 
 	/**
 	* Callback invoked upon encountering an error while fetching a fragment.
