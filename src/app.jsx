@@ -63,7 +63,7 @@ class App extends React.Component {
 			version = pathname.substring( i, i+j );
 		}
 		// If the extracted version is not supported, default to the latest supported version...
-		if ( version && !config.versions.includes( version ) ) {
+		if ( !version || !config.versions.includes( version ) ) {
 			version = config.versions[ 0 ];
 		}
 		this.state = {
