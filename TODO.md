@@ -7,10 +7,7 @@
    - inspiration: https://medium.com/inspiration-supply/funny-and-creative-404-pages-45f6da146268
 
 2. webhook server to trigger build
-3. when a user navigates through the api docs and gets 404'd, consider showing the main website 404 page in an iframe in the API docs application.
-
-   -   this would allow for the side menu navigation to still be displayed and for a user to navigate it without having to navigate back using, e.g., the back button
-
+3. 
 4. Document local development setup
 
     -   https://github.com/CodepediaOrg/bookmarks.dev-api/wiki/Setup-Nginx-for-development-(macOS)---work-in-progress
@@ -48,7 +45,7 @@
 15. (docs) Consider JS bundle minify
 16. (docs) welcome page should link to local (rendered) LICENSE
 17. update Makefiles, including moving npm scripts to Makefile targets
-18. (docs) iframe content resizer script should be vendored and served from local filesystem, rather than using a public CDN
+18. (docs) iframe content resizer script should be vendored and served from local filesystem, rather than using a public CDN (why? for offline access)
 19. (docs) investigate [hammer.js](https://github.com/hammerjs/hammer.js) for touch support
 
     - swipe right to reveal slideout menu
