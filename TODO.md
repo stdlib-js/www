@@ -48,7 +48,7 @@
 15. (docs) Consider JS bundle minify
 16. (docs) welcome page should link to local (rendered) LICENSE
 17. update Makefiles, including moving npm scripts to Makefile targets
-18.
+18. (docs) iframe content resizer script should be vendored and served from local filesystem, rather than using a public CDN
 19. (docs) investigate [hammer.js](https://github.com/hammerjs/hammer.js) for touch support
 
     - swipe right to reveal slideout menu
@@ -67,7 +67,7 @@
 21. (docs) sidenote/marginnote styling: https://edwardtufte.github.io/tufte-css/
 22. (docs) need to update font links to hosted resources
 23. Background image slideshow? (see https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/)
-24.
+24. (docs) handle failure to load test/benchmark resource in iframe (e.g., due to server/network failure)
 25. resolve approach for using `stdlib` pkgs in www JS assets (e.g., setting NODE_PATH during browserify or some other approach?)
 26. Use of "Learn More" on www feature buttons (?)
 27. (docs) source view
@@ -123,3 +123,22 @@ sudo ln -s $(which node) /usr/bin/node
     -   when the API docs frontend requests bundles, the docs server can forward those requests to the bundle microservice, instead of reading directly from the file system as it does now. This will mean slightly longer load times, given both the proxying and having to run `git show`, but the overhead should not be too great and, for this purpose, worth it and within user expectation.
     -   Importantly, this bundling strategy has implications for live documentation. Notably, when we want to run a code cell in a README, we can parse the code, looking for `import`/`require` statements. Next, we can check this list against the list of currently loaded packages. For anything which is missing, we can send a request to query the "browser build" repo for the list of dependencies for that package. We compute the intersection of those dependency requirements and load the bundle for each dependency **prior to** loading the explicit `import`/`require` paths. Once we have loaded the bundles, we should be able to execute the code cell. This should allow us to lazily load `stdlib` dependencies on demand.
     -   for downloading the documentation for offline use, we'd need to think carefully about whether we'd want to support downloading tests, benchmarks, and examples bundles. If offline and they have not been downloaded, we may want to disable those navigation items.
+
+34. For downloading assets for offline usage, what about other versions?
+
+    -   Does a user need to manually select the version she wants to download and then click download?
+    -   Or do we download assets for all versions?
+    -   What is the user expectation here?
+    -   Maybe consider a dialog to allow a user to select which versions?
+
+        -   checkbox for each version
+        -   ability to select/de-select all versions
+        -   option to specify "latest" (if so, then we need to be able to check for updates and to prompt the user when new docs are available)
+
+35. (docs) bug in fastify server when attempting to access `stdlib.io/docs/api/:version`
+
+    -   Currently, the only supported routes are either `stdlib.io/docs/api` or `stdlib.io/docs/api/:version/*`, where `*` is a stdlib pkg path
+
+36. (docs) currently, if you directly link to benchmarks or tests and open a URL directly (e.g., `https://stdlib.io/docs/api/v0.0.90/@stdlib/assert/test.html`), then the benchmarks or tests are loaded and run directly in the browser without any of the API documentation "chrome" (e.g., side menu, navigation, etc)
+
+    -   Is this desirable? Or should we configure the fastify server to return a rendered application which loads the respective benchmark/test file?
