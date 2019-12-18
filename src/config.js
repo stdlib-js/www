@@ -31,6 +31,7 @@ const config = {
 
 	// Supported documentation versions:
 	'versions': [
+		// NOTE: keep in reverse order (i.e., the latest version first)...
 		'v0.0.90'
 	],
 
