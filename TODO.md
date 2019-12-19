@@ -162,3 +162,7 @@ sudo ln -s $(which node) /usr/bin/node
     -   why? in order to provide a public format which can be consumed by IDEs and code editors
 
 41. (docs) setup [Matomo](https://matomo.org/) for site analytics as self-hosted alternative to GA
+
+42. (docs) add "See Also" section to package READMEs
+
+    -   will need to extract this info from the namespace database, similar to how we populate `repl.txt` files during the build process
