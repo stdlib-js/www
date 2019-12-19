@@ -503,12 +503,15 @@ h2 {
 }
 
 .top-nav-search {
-	flex: 1;
-
-	margin-left: 0.5em;
+	margin-left: auto;
 	margin-right: 0.25em;
 	padding-left: 1em;
 	padding-top: 3px;
+}
+
+.top-nav-search.Mui-focused {
+	flex: 1;
+	margin-left: 0.5em;
 }
 
 .top-nav-search,

@@ -199,15 +199,19 @@ a:active {
 }
 
 .top-nav-search input::-webkit-input-placeholder {
+	font-family: "LatoLatinWebLight";
 	font-style: normal;
 }
 .top-nav-search input:-moz-placeholder {
+	font-family: "LatoLatinWebLight";
 	font-style: normal;
 }
 .top-nav-search input::-moz-placeholder {
+	font-family: "LatoLatinWebLight";
 	font-style: normal;
 }
 .top-nav-search input:-ms-input-placeholder {
+	font-family: "LatoLatinWebLight";
 	font-style: normal;
 }
 

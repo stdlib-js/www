@@ -45,7 +45,10 @@ img {
 	background-color: #f7f7f7;
 }
 
-.top-nav-search {
+.top-nav-search:hover,
+.top-nav-search:active,
+.top-nav-search:focus-within,
+.top-nav-search-active {
 	background-color: #fafafa;
 }
 

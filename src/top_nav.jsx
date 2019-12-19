@@ -194,6 +194,10 @@ class TopNav extends React.Component {
 		});
 	}
 
+	_onSearchInput = ( event ) => {
+		// console.log( event.target.value );
+	}
+
 	render() {
 		var path = pkgPath( this.props.pkg, this.props.version );
 		return (
@@ -226,6 +230,7 @@ class TopNav extends React.Component {
 						inputProps={{
 							'aria-label': 'search documentation'
 						}}
+						onChange={ this._onSearchInput }
 					/>
 					<IconButton
 						type="submit"
