@@ -20,9 +20,6 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import CancelIcon from '@material-ui/icons/Cancel';
 import IconButton from '@material-ui/core/IconButton';
 import IframeResizer from './iframe_resizer.jsx';
 import SideMenu from './side_menu.jsx';
@@ -33,7 +30,6 @@ import notFoundHTML from './not_found_html.js';
 import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
 import log from './log.js';
-import downloadAssets from './download_assets.js';
 import fetchFragment from './fetch_fragment.js';
 import JSON_CACHE from './json_cache.js';
 import config from './config.js';
@@ -67,7 +63,6 @@ class App extends React.Component {
 			version = config.versions[ 0 ];
 		}
 		this.state = {
-			'downloadProgress': 0,
 			'sideMenu': true,
 			'version': version,
 			'packageTree': null,
@@ -76,19 +71,21 @@ class App extends React.Component {
 	}
 
 	_fetchPackageData = ( version ) => {
-		var tpath;
-		var rpath;
+		var o;
 
-		tpath = config.mount+version+'/package_tree.json';
-		if ( JSON_CACHE[ tpath ] ) {
+		o = JSON_CACHE[ version ];
+		if ( o && o.tree ) {
 			this.setState({
-				'packageTree': JSON_CACHE[ tpath ]
+				'packageTree': o.tree
 			});
 		} else {
-			fetch( tpath )
+			fetch( config.mount+version+'/package_tree.json' )
 				.then( res => res.json() )
 				.then( res => {
-					JSON_CACHE[ tpath ] = res;
+					if ( JSON_CACHE[ version ] === void 0 ) {
+						JSON_CACHE[ version ] = {};
+					}
+					JSON_CACHE[ version ].tree = res;
 
 					// Guard against race conditions (e.g., this request resolving *after* a user subsequently selected a different version whose associated request already resolved)...
 					if ( version === this.state.version ) {
@@ -99,16 +96,18 @@ class App extends React.Component {
 				})
 				.catch( log );
 		}
-		rpath = config.mount+version+'/package_resources.json';
-		if ( JSON_CACHE[ rpath ] ) {
+		if ( o && o.resources ) {
 			this.setState({
-				'packageResources': JSON_CACHE[ rpath ]
+				'packageResources': o.resources
 			});
 		} else {
-			fetch( rpath )
+			fetch( config.mount+version+'/package_resources.json' )
 				.then( res => res.json() )
 				.then( res => {
-					JSON_CACHE[ rpath ] = res;
+					if ( JSON_CACHE[ version ] === void 0 ) {
+						JSON_CACHE[ version ] = {};
+					}
+					JSON_CACHE[ version ].resources = res;
 
 					// Guard against race conditions (e.g., this request resolving *after* a user subsequently selected a different version whose associated request already resolved)...
 					if ( version === this.state.version ) {
@@ -118,19 +117,6 @@ class App extends React.Component {
 					}
 				})
 				.catch( log );
-		}
-	}
-
-	_downloadAssets = () => {
-		var self = this;
-
-		// TODO: what about other versions???
-		downloadAssets( Object.keys( this.state.packageResources ), this.state.version, onProgress );
-
-		function onProgress( progress ) {
-			self.setState({
-				'downloadProgress': progress
-			});
 		}
 	}
 
@@ -304,16 +290,7 @@ class App extends React.Component {
 			}
 		}
 		return (
-			<TopNav
-				pkg={ props.pkg }
-				version={ props.version }
-				benchmarks={ props.benchmarks }
-				docs={ props.docs }
-				home={ props.home }
-				src={ props.src }
-				tests={ props.tests }
-				typescript={ props.typescript }
-			/>
+			<TopNav {...props} />
 		);
 	}
 
@@ -360,35 +337,8 @@ class App extends React.Component {
 	}
 
 	render() {
-		// TODO: consider moving inline download components (icons, buttons) to separate render function/component/file
 		return (
 			<Fragment>
-				{ this.state.downloadProgress ? <LinearProgress
-					id="download-progress"
-					variant="determinate"
-					value={ this.state.downloadProgress }
-				/> : null }
-				{ this.state.downloadProgress ?
-					<IconButton
-						aria-label="cancel download"
-						id="download-icon-button"
-						edge="start"
-						title="Cancel download"
-						onClick={ () => console.log( "TODO" ) }
-					>
-						<CancelIcon />
-					</IconButton>
-					:
-					<IconButton
-						aria-label="download documentation for offline access"
-						id="download-icon-button"
-						edge="start"
-						title="Download documentation for offline access"
-						onClick={ this._downloadAssets }
-					>
-						<GetAppIcon />
-					</IconButton>
-				}
 				<SideMenu
 					onDrawerChange={ this._onSideMenuChange }
 					onPackageChange={ this._onPackageChange }
