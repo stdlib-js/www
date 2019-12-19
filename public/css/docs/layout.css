@@ -504,16 +504,15 @@ h2 {
 
 .top-nav-search {
 	flex: 1;
+
+	margin-left: 0.5em;
 	padding-left: 1em;
+	padding-top: 3px;
 }
 
 .top-nav-search,
 .top-nav-item {
 	height: 4em;
-}
-
-.top-nav-search-input {
-	margin-top: -3px;
 }
 
 .top-nav-divider {
@@ -555,7 +554,10 @@ h2 {
 		position: relative;
 		float: right;
 
+		order: 0;
+
 		height: 100%;
+		width: auto;
 		margin-top: 0;
 	}
 
