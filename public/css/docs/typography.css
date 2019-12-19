@@ -88,16 +88,16 @@ a:active {
 }
 
 ::-webkit-input-placeholder {
-	font-style: italic;
+	font-family: "LatoLatinWebLight";
 }
 :-moz-placeholder {
-	font-style: italic;
+	font-family: "LatoLatinWebLight";
 }
 ::-moz-placeholder {
-	font-style: italic;
+	font-family: "LatoLatinWebLight";
 }
 :-ms-input-placeholder {
-	font-style: italic;
+	font-family: "LatoLatinWebLight";
 }
 
 /*
@@ -196,23 +196,6 @@ a:active {
 .top-nav-item a:hover,
 .top-nav-item a:active {
 	text-decoration: none;
-}
-
-.top-nav-search input::-webkit-input-placeholder {
-	font-family: "LatoLatinWebLight";
-	font-style: normal;
-}
-.top-nav-search input:-moz-placeholder {
-	font-family: "LatoLatinWebLight";
-	font-style: normal;
-}
-.top-nav-search input::-moz-placeholder {
-	font-family: "LatoLatinWebLight";
-	font-style: normal;
-}
-.top-nav-search input:-ms-input-placeholder {
-	font-family: "LatoLatinWebLight";
-	font-style: normal;
 }
 
 @media only screen and (min-width: 43.75em) { /* 700px */

@@ -238,7 +238,7 @@ class TopNav extends React.Component {
 					</IconButton>
 					<span class="top-nav-divider"></span>
 					<IconButton
-						className="icon-button top-nav-items-menu-button"
+						className={ 'icon-button top-nav-items-menu-button '+( this.props.sideMenu ? 'top-nav-items-menu-disabled' : '' ) }
 						aria-label="toggle navigation menu"
 						title="Toggle package navigation menu"
 						onClick={ this._onPackageNavigationMenu }
