@@ -19,7 +19,7 @@
 // MAIN //
 
 /**
-* Cache for storing JSON application resources in order to avoid unnecessary HTTP requests.
+* Cache for storing package data in order to avoid unnecessary HTTP requests.
 *
 * @private
 * @constant

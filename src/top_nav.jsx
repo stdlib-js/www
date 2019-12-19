@@ -31,7 +31,7 @@ import Divider from '@material-ui/core/Divider';
 import pkgPath from './pkg_doc_path.js';
 import config from './config.js';
 import downloadAssets from './download_assets.js';
-import JSON_CACHE from './json_cache.js';
+import PACKAGE_DATA_CACHE from './package_data_cache.js';
 
 
 // VARIABLES //
@@ -165,7 +165,7 @@ class TopNav extends React.Component {
 		var res;
 
 		// TODO: what about other versions???
-		res = JSON_CACHE[ this.props.version ].resources;
+		res = PACKAGE_DATA_CACHE[ this.props.version ].resources;
 		downloadAssets( Object.keys( res ), this.props.version, onProgress );
 
 		function onProgress( progress ) {

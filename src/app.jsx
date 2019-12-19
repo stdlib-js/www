@@ -31,7 +31,7 @@ import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
 import log from './log.js';
 import fetchFragment from './fetch_fragment.js';
-import JSON_CACHE from './json_cache.js';
+import PACKAGE_DATA_CACHE from './package_data_cache.js';
 import config from './config.js';
 
 
@@ -73,7 +73,7 @@ class App extends React.Component {
 	_fetchPackageData = ( version ) => {
 		var o;
 
-		o = JSON_CACHE[ version ];
+		o = PACKAGE_DATA_CACHE[ version ];
 		if ( o && o.tree ) {
 			this.setState({
 				'packageTree': o.tree
@@ -82,10 +82,10 @@ class App extends React.Component {
 			fetch( config.mount+version+'/package_tree.json' )
 				.then( res => res.json() )
 				.then( res => {
-					if ( JSON_CACHE[ version ] === void 0 ) {
-						JSON_CACHE[ version ] = {};
+					if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+						PACKAGE_DATA_CACHE[ version ] = {};
 					}
-					JSON_CACHE[ version ].tree = res;
+					PACKAGE_DATA_CACHE[ version ].tree = res;
 
 					// Guard against race conditions (e.g., this request resolving *after* a user subsequently selected a different version whose associated request already resolved)...
 					if ( version === this.state.version ) {
@@ -104,10 +104,10 @@ class App extends React.Component {
 			fetch( config.mount+version+'/package_resources.json' )
 				.then( res => res.json() )
 				.then( res => {
-					if ( JSON_CACHE[ version ] === void 0 ) {
-						JSON_CACHE[ version ] = {};
+					if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+						PACKAGE_DATA_CACHE[ version ] = {};
 					}
-					JSON_CACHE[ version ].resources = res;
+					PACKAGE_DATA_CACHE[ version ].resources = res;
 
 					// Guard against race conditions (e.g., this request resolving *after* a user subsequently selected a different version whose associated request already resolved)...
 					if ( version === this.state.version ) {
