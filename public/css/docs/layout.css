@@ -167,7 +167,7 @@ h2 {
 /*
 * When the side menu is visible, translate the content of the "main" element.
 */
-.main-content.side-menu-adjacent {
+.main-content.translate-right {
 	/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
 	-webkit-transform: translateX(300px);
 	-moz-transform: translateX(300px);
@@ -263,7 +263,7 @@ h2 {
 		margin-left: 7%;
 	}
 
-	.main-content.side-menu-adjacent {
+	.main-content.translate-right {
 		/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
 		-webkit-transform: translateX(350px);
 		-moz-transform: translateX(350px);
@@ -504,13 +504,16 @@ h2 {
 
 .top-nav-search {
 	flex: 1;
-	margin-left: 1em;
-	padding-top: 4px;
+	padding-left: 1em;
 }
 
 .top-nav-search,
 .top-nav-item {
 	height: 4em;
+}
+
+.top-nav-search-input {
+	margin-top: -3px;
 }
 
 .top-nav-divider {
