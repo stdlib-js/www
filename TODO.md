@@ -7,7 +7,7 @@
    - inspiration: https://medium.com/inspiration-supply/funny-and-creative-404-pages-45f6da146268
 
 2. webhook server to trigger build
-3. 
+3. (docs) investigate using [hotjar](https://www.hotjar.com/pricing) to collect user feedback for the API docs
 4. Document local development setup
 
     -   https://github.com/CodepediaOrg/bookmarks.dev-api/wiki/Setup-Nginx-for-development-(macOS)---work-in-progress
@@ -100,8 +100,11 @@ sudo ln -s $(which node) /usr/bin/node
 
 31. It would be a nice (future) feature if we could make the docs an HTML5 mobile app which can be run offline:
 
-    -   https://labs.ft.com/2012/08/basic-offline-html5-web-app/
-    -   https://github.com/matthew-andrews/workshop-making-it-work-offline
+    -   <https://labs.ft.com/2012/08/basic-offline-html5-web-app/>
+    -   <https://github.com/matthew-andrews/workshop-making-it-work-offline>
+    -   <https://www.html5rocks.com/en/tutorials/appcache/beginner/>
+    -   <https://www.html5rocks.com/en/mobile/workingoffthegrid/>
+    -   <https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine>
 
     This would allow a user to install the docs as a mobile app and use them offline after downloading all the requisite fragments and bundles.
 
@@ -148,3 +151,14 @@ sudo ln -s $(which node) /usr/bin/node
     -   <https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API>
     -   <https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API>
     -   <https://github.com/mdn/web-speech-api>
+
+39. (docs) investigate using Algolia's [docsearch](https://github.com/algolia/docsearch) offering to provide documentation search
+
+    -   note, however, that, were we to use Algolia, users would not be able to search offline!
+
+40. (docs) consider adding support for viewing docs as JSON (similar to Node.js)
+
+    -   <https://nodejs.org/dist/latest-v12.x/docs/api/console.html> and then "View as JSON"
+    -   why? in order to provide a public format which can be consumed by IDEs and code editors
+
+41. (docs) setup [Matomo](https://matomo.org/) for site analytics as self-hosted alternative to GA
