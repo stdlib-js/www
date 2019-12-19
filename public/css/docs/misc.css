@@ -308,10 +308,6 @@ img {
 * Download button.
 */
 
-#download-icon-button {
-	cursor: pointer;
-}
-
 #download-icon-button svg {
 	fill: #3c3c3c;
 }
