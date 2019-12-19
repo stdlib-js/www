@@ -22,7 +22,6 @@ import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import IframeResizer from './iframe_resizer.jsx';
-import SideMenu from './side_menu.jsx';
 import Welcome from './welcome.jsx';
 import Readme from './readme.jsx';
 import NotFound from './not_found.jsx';
@@ -265,6 +264,7 @@ class App extends React.Component {
 		};
 		if ( content === 'welcome' ) {
 			props.home = true;
+			props.version = this.state.version;
 		} else {
 			props.pkg = match.params.pkg;
 			props.version = match.params.version;
@@ -286,7 +286,13 @@ class App extends React.Component {
 			}
 		}
 		return (
-			<TopNav {...props} />
+			<TopNav
+				onSideMenuChange={ this._onSideMenuChange }
+				onPackageChange={ this._onPackageChange }
+				onVersionChange={ this._onVersionChange }
+				sideMenu={ this.state.sideMenu }
+				{...props}
+			/>
 		);
 	}
 
@@ -356,13 +362,6 @@ class App extends React.Component {
 	render() {
 		return (
 			<Fragment>
-				<SideMenu
-					onDrawerChange={ this._onSideMenuChange }
-					onPackageChange={ this._onPackageChange }
-					onVersionChange={ this._onVersionChange }
-					open={ this.state.sideMenu }
-					version={ this.state.version }
-				/>
 				<Switch>
 					<Redirect
 						exact

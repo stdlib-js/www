@@ -28,6 +28,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Divider from '@material-ui/core/Divider';
+import SideMenu from './side_menu.jsx';
 import pkgPath from './pkg_doc_path.js';
 import config from './config.js';
 import downloadAssets from './download_assets.js';
@@ -144,18 +145,23 @@ class TopNav extends React.Component {
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
-	* @param {string} props.pkg - package name
+	* @param {Callback} props.onSideMenuChange - callback to invoke upon a change to the side menu
+	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
+	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
+	* @param {string} [props.pkg] - package name
 	* @param {boolean} [props.home] - boolean indicating whether to link to the main website
 	* @param {boolean} [props.docs] - boolean indicating whether to link to package documentation
 	* @param {boolean} [props.src] - boolean indicating whether to link to package source
 	* @param {boolean} [props.benchmarks] - boolean indicating whether to link to package benchmarks
 	* @param {boolean} [props.tests] - boolean indicating whether to link to package tests
 	* @param {boolean} [props.typescript] - boolean indicating whether to link to TypeScript type declarations
+	* @param {boolean} [props.sideMenu] - boolean indicating whether to expand the side menu
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
 		super( props );
 		this.state = {
+			'dropdown': false,
 			'downloadProgress': 0
 		}
 	}
@@ -175,6 +181,19 @@ class TopNav extends React.Component {
 		}
 	}
 
+	_onPackageNavigationMenu = () => {
+		this.setState({
+			'dropdown': !this.state.dropdown
+		});
+	}
+
+	_onDrawerChange = ( value ) => {
+		this.props.onSideMenuChange( value );
+		this.setState({
+			'dropdown': false
+		});
+	}
+
 	render() {
 		var path = pkgPath( this.props.pkg, this.props.version );
 		return (
@@ -187,16 +206,20 @@ class TopNav extends React.Component {
 					/>
 					: null
 				}
-				<input class="top-nav-input" id="top-nav-input" name="top-nav-input" type="checkbox" />
-				<label class="top-nav-label" for="top-nav-input">
-					<span class="top-nav-menu-icon-button" title="Toggle package navigation menu" aria-label="toggle package navigation menu">
-						<ExpandMoreIcon class="MuiSvgIcon-root top-nav-menu-icon" />
-					</span>
-				</label>
-				<nav className="top-nav" aria-label="Main">
+				<nav
+					className={ 'top-nav '+( this.props.open ? '' : 'side-menu-closed' ) }
+					aria-label="Main"
+				>
+					<SideMenu
+						onDrawerChange={ this._onDrawerChange }
+						onPackageChange={ this.props.onPackageChange }
+						onVersionChange={ this.props.onVersionChange }
+						open={ this.props.sideMenu }
+						version={ this.props.version }
+					/>
 					<InputBase
-						className="top-nav-search"
 						id="top-nav-search-input"
+						className="top-nav-search"
 						placeholder="Search documentation"
 						name="top-nav-search-input"
 						type="text"
@@ -204,11 +227,26 @@ class TopNav extends React.Component {
 							'aria-label': 'search documentation'
 						}}
 					/>
-					<IconButton type="submit" className="top-nav-search-button" aria-label="search">
+					<IconButton
+						type="submit"
+						className="icon-button top-nav-search-button"
+						aria-label="search"
+					>
 						<SearchIcon />
 					</IconButton>
 					<span class="top-nav-divider"></span>
-					<ul class="top-nav-items">
+					<IconButton
+						className="icon-button top-nav-items-menu-button"
+						aria-label="toggle navigation menu"
+						title="Toggle package navigation menu"
+						onClick={ this._onPackageNavigationMenu }
+					>
+						<ExpandMoreIcon />
+					</IconButton>
+					<ul
+						className={ 'top-nav-items '+( this.state.dropdown ? ' top-nav-items-dropdown' : '' ) }
+						onClick={ this._onPackageNavigationMenu }
+					>
 						{ this.props.home ? home() : null }
 						{ this.props.docs ? docs( path ) : null }
 						{ this.props.benchmarks ? bench( path ) : null }
@@ -218,9 +256,9 @@ class TopNav extends React.Component {
 					</ul>
 					{ this.state.downloadProgress ?
 						<IconButton
-							aria-label="cancel download"
 							id="download-icon-button"
-							edge="start"
+							className="icon-button"
+							aria-label="cancel download"
 							title="Cancel download"
 							onClick={ () => console.log( "TODO" ) }
 						>
@@ -228,9 +266,9 @@ class TopNav extends React.Component {
 						</IconButton>
 						:
 						<IconButton
-							aria-label="download documentation for offline access"
 							id="download-icon-button"
-							edge="start"
+							className="icon-button"
+							aria-label="download documentation for offline access"
 							title="Download documentation for offline access"
 							onClick={ this._downloadAssets }
 						>

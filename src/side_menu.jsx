@@ -321,16 +321,16 @@ class MenuBar extends React.Component {
 		return (
 			<Fragment>
 				<IconButton
+					id="menu-icon-button"
+					className="icon-button"
 					color="inherit"
 					aria-label="open drawer"
 					onClick={ this._onDrawerOpen }
-					edge="start"
-					id="menu-icon-button"
 					title="Open documentation navigation menu"
 				>
 					<MenuIcon id="menu-icon" />
 				</IconButton>
-				<div>
+				<div className="side-menu-wrapper">
 					<Drawer
 						className="side-menu-drawer"
 						variant="persistent"
