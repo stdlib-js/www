@@ -211,7 +211,7 @@ class TopNav extends React.Component {
 					: null
 				}
 				<nav
-					className={ 'top-nav '+( this.props.open ? '' : 'side-menu-closed' ) }
+					className={ 'top-nav '+( this.props.sideMenu ? '' : 'side-menu-closed' ) }
 					aria-label="Main"
 				>
 					<SideMenu
