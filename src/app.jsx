@@ -32,6 +32,7 @@ import TopNav from './top_nav.jsx';
 import log from './log.js';
 import fetchFragment from './fetch_fragment.js';
 import PACKAGE_DATA_CACHE from './package_data_cache.js';
+import getPackageResources from './get_package_resources.js';
 import config from './config.js';
 
 
@@ -39,45 +40,24 @@ import config from './config.js';
 
 class App extends React.Component {
 	constructor( props ) {
-		var pathname;
-		var version;
-		var prefix;
-		var i;
-		var j;
-
 		super( props );
-
-		prefix = config.mount;
-		pathname = props.history.location.pathname;
-
-		// Extract the version from the current window location...
-		i = pathname.indexOf( prefix ) + prefix.length;
-		j = pathname.substring( i ).indexOf( '/' );
-		if ( j === -1 ) {
-			version = '';
-		} else {
-			version = pathname.substring( i, i+j );
-		}
-		// If the extracted version is not supported, default to the latest supported version...
-		if ( !version || !config.versions.includes( version ) ) {
-			version = config.versions[ 0 ];
-		}
 		this.state = {
 			'sideMenu': true,
-			'version': version,
-			'packageTree': null,
-			'packageResources': {}
+			'version': ''
 		};
 	}
 
-	_fetchPackageData = ( version ) => {
+	_fetchPackageData = ( version, clbk ) => {
+		var total;
+		var count;
 		var o;
+
+		total = 2;
+		count = 0;
 
 		o = PACKAGE_DATA_CACHE[ version ];
 		if ( o && o.tree ) {
-			this.setState({
-				'packageTree': o.tree
-			});
+			done();
 		} else {
 			fetch( config.mount+version+'/package_tree.json' )
 				.then( res => res.json() )
@@ -86,20 +66,12 @@ class App extends React.Component {
 						PACKAGE_DATA_CACHE[ version ] = {};
 					}
 					PACKAGE_DATA_CACHE[ version ].tree = res;
-
-					// Guard against race conditions (e.g., this request resolving *after* a user subsequently selected a different version whose associated request already resolved)...
-					if ( version === this.state.version ) {
-						this.setState({
-							'packageTree': res
-						});
-					}
+					return done();
 				})
-				.catch( log );
+				.catch( done );
 		}
 		if ( o && o.resources ) {
-			this.setState({
-				'packageResources': o.resources
-			});
+			done();
 		} else {
 			fetch( config.mount+version+'/package_resources.json' )
 				.then( res => res.json() )
@@ -108,15 +80,26 @@ class App extends React.Component {
 						PACKAGE_DATA_CACHE[ version ] = {};
 					}
 					PACKAGE_DATA_CACHE[ version ].resources = res;
-
-					// Guard against race conditions (e.g., this request resolving *after* a user subsequently selected a different version whose associated request already resolved)...
-					if ( version === this.state.version ) {
-						this.setState({
-							'packageResources': res
-						});
-					}
+					return done();
 				})
-				.catch( log );
+				.catch( done );
+		}
+
+		/**
+		* Callback invoked upon resolving a package resource.
+		*
+		* @private
+		* @param {Error} [error] - error object
+		* @returns {void}
+		*/
+		function done( error ) {
+			if ( error ) {
+				return clbk( error );
+			}
+			count += 1;
+			if ( count === total ) {
+				return clbk();
+			}
 		}
 	}
 
@@ -173,30 +156,37 @@ class App extends React.Component {
 	}
 
 	_onVersionChange = ( event ) => {
-		var pathname;
-		var version;
-		var state;
-		var self;
+		this._updateVersion( event.target.value );
+	}
 
-		self = this;
-		version = event.target.value;
-
-		pathname = this.props.history.location.pathname;
-		pathname = pathname.replace( this.state.version, version );
-		this.props.history.push( pathname );
-
-		state = {
-			'version': version
-		};
-		this.setState( state, clbk );
+	_updateVersion = ( version ) => {
+		var self = this;
+		this._fetchPackageData( version, clbk );
 
 		/**
-		* Callback invoked upon setting component state and re-rendering a component.
+		* Callback invoked upon fetching package resources associated with a specified version.
 		*
 		* @private
+		* @param {Error} [error] - error object
+		* @returns {void}
 		*/
-		function clbk() {
-			self._fetchPackageData( version );
+		function clbk( error ) {
+			var pathname;
+			if ( error ) {
+				// TODO: render a model indicating that we are unable to update the version (e.g., due to network error, etc) (Note: we may need to reset the triggering UI element; e.g., the dropdown menu in the side menu)
+				return log( error );
+			}
+			pathname = self.props.history.location.pathname;
+			if ( pathname === config.mount ) {
+				pathname += version + '/';
+			} else {
+				pathname = pathname.replace( self.state.version, version );
+			}
+			self.props.history.push( pathname );
+
+			self.setState({
+				'version': version
+			});
 		}
 	}
 
@@ -214,36 +204,42 @@ class App extends React.Component {
 	}
 
 	_renderBenchmark = ( match ) => {
-		var resources = this.state.packageResources[ match.params.pkg ];
-		if ( !resources.benchmark ) {
+		var resources = getPackageResources( this.state.version );
+		if ( resources ) {
+			resources = resources[ match.params.pkg ];
+		}
+		if ( resources && resources.benchmark ) {
 			return (
-				<NotFound />
+				<IframeResizer
+					className="embedded-iframe"
+					url={ match.url }
+					title="Benchmarks"
+					width="100%"
+				/>
 			);
 		}
 		return (
-			<IframeResizer
-				className="embedded-iframe"
-				url={ match.url }
-				title="Benchmarks"
-				width="100%"
-			/>
+			<NotFound />
 		);
 	}
 
 	_renderTest = ( match ) => {
-		var resources = this.state.packageResources[ match.params.pkg ];
-		if ( !resources.test ) {
+		var resources = getPackageResources( this.state.version );
+		if ( resources ) {
+			resources = resources[ match.params.pkg ];
+		}
+		if ( resources && resources.test ) {
 			return (
-				<NotFound />
+				<IframeResizer
+					className="embedded-iframe"
+					url={ match.url }
+					title="Tests"
+					width="100%"
+				/>
 			);
 		}
 		return (
-			<IframeResizer
-				className="embedded-iframe"
-				url={ match.url }
-				title="Tests"
-				width="100%"
-			/>
+			<NotFound />
 		);
 	}
 
@@ -273,7 +269,7 @@ class App extends React.Component {
 			props.pkg = match.params.pkg;
 			props.version = match.params.version;
 
-			resources = this.state.packageResources[ props.pkg ];
+			resources = PACKAGE_DATA_CACHE[ this.state.version ].resources[ props.pkg ];
 			if ( resources ) {
 				props.src = true;
 				props.typescript = Boolean( resources.typescript );
@@ -333,7 +329,28 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this._fetchPackageData( this.state.version );
+		var pathname;
+		var version;
+		var prefix;
+		var i;
+		var j;
+
+		prefix = config.mount;
+		pathname = this.props.history.location.pathname;
+
+		// Extract the version from the current window location...
+		i = pathname.indexOf( prefix ) + prefix.length;
+		j = pathname.substring( i ).indexOf( '/' );
+		if ( j === -1 ) {
+			version = '';
+		} else {
+			version = pathname.substring( i, i+j );
+		}
+		// If the extracted version is not supported, default to the latest supported version...
+		if ( !version || !config.versions.includes( version ) ) {
+			version = config.versions[ 0 ];
+		}
+		this._updateVersion( version );
 	}
 
 	render() {
@@ -345,7 +362,6 @@ class App extends React.Component {
 					onVersionChange={ this._onVersionChange }
 					open={ this.state.sideMenu }
 					version={ this.state.version }
-					packageTree={ this.state.packageTree }
 				/>
 				<Switch>
 					<Redirect

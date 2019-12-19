@@ -31,6 +31,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import getPackageTree from './get_package_tree.js';
 import Logo from './logo.jsx';
 import config from './config.js';
 
@@ -208,10 +209,12 @@ class MenuBar extends React.Component {
 		var found;
 		var state;
 		var keys;
+		var tree;
 		var i;
 		if ( this.state.filter ) {
 			found = {};
-			this._checkFilter( found, this.props.packageTree, '@stdlib', this.state.filter );
+			tree = getPackageTree( this.props.version );
+			this._checkFilter( found, tree, '@stdlib', this.state.filter );
 			keys = Object.keys( found );
 			state = {};
 			for ( i = 0; i < keys.length; i++ ) {
@@ -310,6 +313,11 @@ class MenuBar extends React.Component {
 	}
 
 	render() {
+		var tree;
+		if ( !this.props.version ) {
+			return null;
+		}
+		tree = getPackageTree( this.props.version );
 		return (
 			<Fragment>
 				<IconButton
@@ -370,8 +378,8 @@ class MenuBar extends React.Component {
 						</div>
 						<div className="side-menu-list-wrapper" >
 							<List disablePadding >
-								{ this.props.packageTree ?
-									this._renderItems( this.props.packageTree, '@stdlib', 0 ) :
+								{ tree ?
+									this._renderItems( tree, '@stdlib', 0 ) :
 									null
 								}
 							</List>
