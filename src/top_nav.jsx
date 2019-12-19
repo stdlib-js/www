@@ -20,7 +20,11 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import SearchIcon from '@material-ui/icons/Search';
+import Divider from '@material-ui/core/Divider';
 import pkgPath from './pkg_doc_path.js';
 import config from './config.js';
 
@@ -149,6 +153,20 @@ function TopNav( props ) {
 				</span>
 			</label>
 			<nav className="top-nav" aria-label="Main">
+				<InputBase
+					className="top-nav-search"
+					id="top-nav-search-input"
+					placeholder="Search documentation"
+					name="top-nav-search-input"
+					type="text"
+					inputProps={{
+						'aria-label': 'search documentation'
+					}}
+				/>
+				<IconButton type="submit" className="top-nav-search-button" aria-label="search">
+					<SearchIcon />
+				</IconButton>
+				<span class="top-nav-divider"></span>
 				<ul class="top-nav-items">
 					{ props.home ? home() : null }
 					{ props.docs ? docs( path ) : null }

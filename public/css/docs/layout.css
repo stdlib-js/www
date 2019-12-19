@@ -485,7 +485,7 @@ h2 {
 */
 
 .top-nav {
-	display: block;
+	display: flex;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -511,6 +511,18 @@ h2 {
 
 	width: 100px;
 	height: 4em;
+}
+
+.top-nav-search {
+	flex: 1;
+	margin-left: 2em;
+}
+
+.top-nav-divider {
+	height: 2em;
+	margin-top: 1em;
+	margin-left: 4px;
+	margin-right: 4px;
 }
 
 .top-nav-items {
@@ -549,7 +561,7 @@ h2 {
 	}
 
 	.top-nav-items {
-		display: block;
+		display: inline;
 		position: relative;
 		float: right;
 

@@ -50,6 +50,12 @@ img {
 	background-color: #f7f7f7;
 }
 
+.top-nav-divider {
+	border-right-style: solid;
+	border-right-color: #d3d3d3;
+	border-right-width: 1px;
+}
+
 @media only screen and (min-width: 43.75em) { /* 700px */
 	.top-nav-item a:hover,
 	.top-nav-item a:active {
