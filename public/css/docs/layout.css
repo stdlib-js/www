@@ -553,7 +553,7 @@ h2 {
 @media only screen and (min-width: 43.75em) { /* 700px */
 	.top-nav {
 		/* top | right | bottom | left */
-		padding: 0 3.5em 0 2.5em;
+		padding: 0 2.5em 0 2.5em;
 	}
 
 	.top-nav-label {
@@ -677,16 +677,9 @@ h2 {
 	z-index: 120;
 }
 
-#download-icon-button {
-	position: fixed;
-	top: 8px;
-	right: 8px;
-	z-index: 120;
-}
-
 #download-progress {
-	right: 60px;
 	position: fixed;
-	width: 350px;
-	bottom: 30px;
+	top: 0;
+	right: 0;
+	width: 100%;
 }
