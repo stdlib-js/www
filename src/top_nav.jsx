@@ -210,10 +210,7 @@ class TopNav extends React.Component {
 					/>
 					: null
 				}
-				<nav
-					className={ 'top-nav '+( this.props.sideMenu ? '' : 'side-menu-closed' ) }
-					aria-label="Main"
-				>
+				<nav className="top-nav" aria-label="Main">
 					<SideMenu
 						onDrawerChange={ this._onDrawerChange }
 						onPackageChange={ this.props.onPackageChange }
