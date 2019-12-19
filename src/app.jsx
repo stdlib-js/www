@@ -41,6 +41,7 @@ class App extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
+			'ready': false,
 			'sideMenu': true,
 			'version': ''
 		};
@@ -155,10 +156,23 @@ class App extends React.Component {
 	}
 
 	_onVersionChange = ( event ) => {
-		this._updateVersion( event.target.value );
+		this._updateVersion( event.target.value, done );
+
+		/**
+		* Callback invoked upon updating the version.
+		*
+		* @private
+		* @param {Error} [error] - error object
+		*/
+		function done( error ) {
+			if ( error ) {
+				// TODO: render a modal indicating that we are unable to update the version (e.g., due to network error, etc) (Note: we may need to reset the triggering UI element; e.g., the dropdown menu in the side menu)
+				return log( error );
+			}
+		}
 	}
 
-	_updateVersion = ( version ) => {
+	_updateVersion = ( version, done ) => {
 		var self = this;
 		this._fetchPackageData( version, clbk );
 
@@ -171,9 +185,9 @@ class App extends React.Component {
 		*/
 		function clbk( error ) {
 			var pathname;
+			var state;
 			if ( error ) {
-				// TODO: render a model indicating that we are unable to update the version (e.g., due to network error, etc) (Note: we may need to reset the triggering UI element; e.g., the dropdown menu in the side menu)
-				return log( error );
+				return done( error );
 			}
 			pathname = self.props.history.location.pathname;
 			if ( pathname === config.mount ) {
@@ -183,9 +197,19 @@ class App extends React.Component {
 			}
 			self.props.history.push( pathname );
 
-			self.setState({
+			state = {
 				'version': version
-			});
+			};
+			self.setState( state, onState );
+		}
+
+		/**
+		* Callback invoked upon updating the component state.
+		*
+		* @private
+		*/
+		function onState() {
+			done();
 		}
 	}
 
@@ -325,7 +349,7 @@ class App extends React.Component {
 				<Fragment>
 					{ self._renderTopNav( content, props.match ) }
 					<div class="main" role="main">
-						<div className={ 'main-content '+( self.state.sideMenu ? 'side-menu-adjacent' : '' ) }>
+						<div className={ 'main-content '+( self.state.sideMenu ? 'translate-right' : '' ) }>
 							{ self[ method ]( props.match ) }
 						</div>
 					</div>
@@ -338,8 +362,11 @@ class App extends React.Component {
 		var pathname;
 		var version;
 		var prefix;
+		var self;
 		var i;
 		var j;
+
+		self = this;
 
 		prefix = config.mount;
 		pathname = this.props.history.location.pathname;
@@ -356,10 +383,30 @@ class App extends React.Component {
 		if ( !version || !config.versions.includes( version ) ) {
 			version = config.versions[ 0 ];
 		}
-		this._updateVersion( version );
+		this._updateVersion( version, done );
+
+		/**
+		* Callback invoked upon updating the current version.
+		*
+		* @private
+		* @param {Error} [error] - error object
+		*/
+		function done( error ) {
+			if ( error ) {
+				// TODO: render a modal indicating that we are unable to set the version (e.g., due to network error, etc)
+				return log( error );
+			}
+			self.setState({
+				'ready': true
+			});
+		}
 	}
 
 	render() {
+		if ( this.state.ready === false ) {
+			// TODO: present a loading page until we are ready...
+			return null;
+		}
 		return (
 			<Fragment>
 				<Switch>
