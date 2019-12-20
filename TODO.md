@@ -144,7 +144,7 @@ sudo ln -s $(which node) /usr/bin/node
 37. Consider whether we always want the side menu displayed by default at all device sizes (the current behavior).
 
     -   May only want this for large devices (e.g., desktop). Otherwise, on mobile, say I click a link in a tweet linking to a package’s docs. When it opens in a mobile browser, in order to see the content, I first have to close the menu, which does not seem desirable.
-    -   Don’t need use the Mui useQuery component for this, as we just need it once, which is on initial render, so we may want to think about how to do this most effectively.
+    -   Don’t need use the Mui `useQuery` component for this, as we just need it once, which is on initial render, so we may want to think about how to do this most effectively.
 
 38. (docs) explore using Web Speech API for speech recognition in the filter (and future search) input
 
@@ -167,3 +167,5 @@ sudo ln -s $(which node) /usr/bin/node
 42. (docs) add "See Also" section to package READMEs
 
     -   will need to extract this info from the namespace database, similar to how we populate `repl.txt` files during the build process
+    -   question: should we create a "REPL" version of the docs (i.e., where we transform the READMEs to elide imports of `stdlib` packages, swapping out example aliases with their respective REPL alias.
+    -   This would be another tool => taking a README and converting/transforming it to one which uses `stdlib` aliases.
