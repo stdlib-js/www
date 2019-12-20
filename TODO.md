@@ -18,7 +18,8 @@
 
 5. a "staging" version of the website in order to test out features before going live
 
-   - we need a much shorter build process for this to realistically be viable
+   -   we need a much shorter build process for this to realistically be viable
+   -   <https://github.com/linode/docs/blob/master/docs/websites/static-sites/install-gatsbyjs/index.md>
 
 6. We need a way to refer to the "latest" docs, so we don’t have to manually update versions, e.g., on the homepage, etc.
 
