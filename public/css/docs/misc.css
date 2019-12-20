@@ -159,6 +159,13 @@ img {
 }
 
 /*
+* Namespace unordered list items should not display a list marker.
+*/
+.readme .namespace-toc ul {
+	list-style-type: none;
+}
+
+/*
 * Tables.
 */
 
@@ -235,6 +242,10 @@ img {
 	-webkit-box-shadow: inset 0 -1px 0 #bbb;
 	-moz-box-shadow: inset 0 -1px 0 #bbb;
 	box-shadow: inset 0 -1px 0 #bbb;
+}
+
+.main .readme .namespace-toc .signature {
+	overflow: hidden;
 }
 
 /*

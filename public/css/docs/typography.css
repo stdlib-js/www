@@ -175,6 +175,12 @@ a:active {
 	font-weight: bold;
 }
 
+.main .readme .namespace-toc .signature {
+	font-size: 14px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .top-nav,
 .bottom-nav {
 	font-family: "LatoLatinWebLight";

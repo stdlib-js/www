@@ -353,6 +353,24 @@ h2 {
 	margin-bottom: 0;
 }
 
+.main .readme .namespace-toc ul {
+	padding-left: 0.5em;
+}
+
+.main .readme .namespace-toc ul li {
+	display: flex;
+	flex-shrink: 1;
+}
+
+.main .readme .namespace-toc .signature {
+	width: 50%;
+	min-width: 50%;
+}
+
+.main .readme .namespace-toc .delimiter {
+	display: none;
+}
+
 /*
 * Set the top margin of any list item children which are paragraphs.
 */
