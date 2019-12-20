@@ -249,7 +249,7 @@ class TopNav extends React.Component {
 						<ExpandMoreIcon />
 					</IconButton>
 					<ul
-						className={ 'top-nav-items '+( this.state.dropdown ? ' top-nav-items-dropdown' : '' ) }
+						className={ this.state.dropdown ? 'top-nav-items-dropdown' : 'top-nav-items' }
 						onClick={ this._onPackageNavigationMenu }
 					>
 						{ this.props.home ? home() : null }
