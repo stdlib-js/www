@@ -20,10 +20,14 @@
 * Typography stylesheet.
 *
 * 1. General rules.
-* 2. Tables.
-* 3. Code.
-* 4. Classes.
-* 5. Elements.
+* 2. Main.
+* 3. Tables.
+* 4. Code.
+* 5. Lists.
+* 6. Definition lists.
+* 7. Blockquotes.
+* 8. Inputs.
+* 9. Navigation.
 */
 
 body {
@@ -101,10 +105,24 @@ a:active {
 }
 
 /*
+* Main.
+*/
+
+.readme {
+	line-height: 1.5;
+	word-wrap: break-word;
+}
+
+.readme a:not([href]) {
+	color: inherit;
+	text-decoration: none;
+}
+
+/*
 * Tables.
 */
 
-.main table th {
+.readme table th {
 	font-weight: bold;
 }
 
@@ -112,34 +130,34 @@ a:active {
 * Code.
 */
 
-.main pre,
-.main code,
-.main kbd {
+.readme pre,
+.readme code,
+.readme kbd {
 	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
-.main .readme > section > pre,
-.main .readme > section > code {
+.readme > section > pre,
+.readme > section > code {
 	font-size: 14px;
 }
 
-.main pre {
+.readme pre {
 	line-height: 1.45;
 	word-wrap: normal;
 }
 
-.main pre code {
+.readme pre code {
 	line-height: inherit;
 	word-wrap: normal;
 }
 
-.main pre > code {
+.readme pre > code {
 	font-size: 1.0em;
 	white-space: pre;
 	word-break: normal;
 }
 
-.main kbd {
+.readme kbd {
 	color: #555;
 	font-size: 11px;
 	line-height: 10px;
@@ -147,39 +165,45 @@ a:active {
 }
 
 /*
-* General class rules.
+* Lists.
 */
 
-.main {
-	line-height: 1.5;
-	word-wrap: break-word;
+.readme .namespace-toc ul li .signature {
+	font-size: 0.875em;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.main a:not([href]) {
-	color: inherit;
-	text-decoration: none;
-}
+/*
+* Definition lists.
+*/
 
-.main blockquote {
-	color: #777;
-}
-
-.main input {
-	-webkit-font-feature-settings: "liga" 0;
-	font-feature-settings: "liga" 0;
-}
-
-.main dl dt {
+.readme dl dt {
 	font-size: 1.0em;
 	font-style: italic;
 	font-weight: bold;
 }
 
-.main .readme .namespace-toc .signature {
-	font-size: 14px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+/*
+* Blockquotes.
+*/
+
+.readme blockquote {
+	color: #777;
 }
+
+/*
+* Inputs.
+*/
+
+.readme input {
+	-webkit-font-feature-settings: "liga" 0;
+	font-feature-settings: "liga" 0;
+}
+
+/*
+* Navigation.
+*/
 
 .top-nav,
 .bottom-nav {
@@ -210,6 +234,10 @@ a:active {
 		text-decoration: underline;
 	}
 }
+
+/*
+* Side menu.
+*/
 
 .side-menu-drawer {
 	line-height: 1;

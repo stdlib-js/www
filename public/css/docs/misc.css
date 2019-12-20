@@ -29,8 +29,9 @@ img {
 }
 
 /*
-* Style the top-navigation.
+* Top-navigation.
 */
+
 .top-nav {
 	background-color: #ffffff;
 	/*background-color: #000000;*/
@@ -64,6 +65,14 @@ img {
 		background-color: transparent;
 	}
 }
+
+.top-nav-download-button svg {
+	fill: #3c3c3c;
+}
+
+/*
+* Main.
+*/
 
 /*
 * For certain animations, the backface of an element can become visible. Prevent this.
@@ -166,6 +175,13 @@ img {
 }
 
 /*
+* Namespace unordered list items containing a signature should truncate their contents.
+*/
+.readme .namespace-toc ul li .signature {
+	overflow: hidden;
+}
+
+/*
 * Tables.
 */
 
@@ -244,25 +260,6 @@ img {
 	box-shadow: inset 0 -1px 0 #bbb;
 }
 
-.main .readme .namespace-toc .signature {
-	overflow: hidden;
-}
-
-/*
-* Define a diffuse shadow. Useful for things like images.
-*/
-.diffuse-shadow {
-	-webkit-box-shadow: #e2e2e2 0 0 50px 0;
-	-moz-box-shadow: #e2e2e2 0 0 50px 0;
-	box-shadow: #e2e2e2 0 0 50px 0;
-}
-
-.diffuse-shadow-dark {
-	-webkit-box-shadow: #636161 0 0 50px 0;
-	-moz-box-shadow: #636161 0 0 50px 0;
-	box-shadow: #636161 0 0 50px 0;
-}
-
 /*
 * Side menu.
 */
@@ -311,6 +308,21 @@ img {
 }
 
 /*
+* Define a diffuse shadow. Useful for things like images.
+*/
+.diffuse-shadow {
+	-webkit-box-shadow: #e2e2e2 0 0 50px 0;
+	-moz-box-shadow: #e2e2e2 0 0 50px 0;
+	box-shadow: #e2e2e2 0 0 50px 0;
+}
+
+.diffuse-shadow-dark {
+	-webkit-box-shadow: #636161 0 0 50px 0;
+	-moz-box-shadow: #636161 0 0 50px 0;
+	box-shadow: #636161 0 0 50px 0;
+}
+
+/*
 * Logo.
 */
 
@@ -320,12 +332,4 @@ img {
 
 #stdlib-logo:hover {
 	opacity: 1;
-}
-
-/*
-* Download button.
-*/
-
-.top-nav-download-button svg {
-	fill: #3c3c3c;
 }

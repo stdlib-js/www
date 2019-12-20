@@ -29,8 +29,10 @@
 * 8. Horizontal rules.
 * 9. Tables.
 * 10. Code.
-* 12. Classes.
-* 13. Elements.
+* 11. Navigation.
+* 12. Equations.
+* 13. iframes.
+* 14. Elements.
 */
 
 /*
@@ -123,15 +125,6 @@ h2 {
 	padding-top: 100px;
 }
 
-.main p,
-.main blockquote,
-.main dl,
-.main table,
-.main pre {
-	margin-top: 0;
-	margin-bottom: 1em;
-}
-
 /*
 * Content container.
 */
@@ -189,29 +182,38 @@ h2 {
 }
 
 /*
-* README styles.
+* README.
 */
 
-.main .readme {
+.readme {
 	min-height: 100%;
 	margin-left: 12.5%;
 }
 
-.main .readme > h1,
-.main .readme > h2,
-.main .readme > h3,
-.main .readme > h4,
-.main .readme > h5,
-.main .readme > h6,
-.main .readme > section,
-.main .readme > p,
-.main .readme > blockquote,
-.main .readme > pre,
-.main .readme > code,
-.main .readme > ul,
-.main .readme > hr {
+.readme > h1,
+.readme > h2,
+.readme > h3,
+.readme > h4,
+.readme > h5,
+.readme > h6,
+.readme > section,
+.readme > p,
+.readme > blockquote,
+.readme > pre,
+.readme > code,
+.readme > ul,
+.readme > hr {
 	min-width: 594px;
 	max-width: 720px;
+}
+
+.readme p,
+.readme blockquote,
+.readme dl,
+.readme table,
+.readme pre {
+	margin-top: 0;
+	margin-bottom: 1em;
 }
 
 /*
@@ -221,37 +223,37 @@ h2 {
 */
 
 @media only screen and (max-width: 76.25em) { /* 1220px */
-	.main .readme > h1,
-	.main .readme > h2,
-	.main .readme > h3,
-	.main .readme > h4,
-	.main .readme > h5,
-	.main .readme > h6,
-	.main .readme > section,
-	.main .readme > p,
-	.main .readme > blockquote,
-	.main .readme > pre,
-	.main .readme > code,
-	.main .readme > ul,
-	.main .readme > hr {
+	.readme > h1,
+	.readme > h2,
+	.readme > h3,
+	.readme > h4,
+	.readme > h5,
+	.readme > h6,
+	.readme > section,
+	.readme > p,
+	.readme > blockquote,
+	.readme > pre,
+	.readme > code,
+	.readme > ul,
+	.readme > hr {
 		width: 66.66666666666%;
 	}
 }
 
 @media only screen and (max-width: 67.5em) { /* 1080px */
-	.main .readme > h1,
-	.main .readme > h2,
-	.main .readme > h3,
-	.main .readme > h4,
-	.main .readme > h5,
-	.main .readme > h6,
-	.main .readme > section,
-	.main .readme > p,
-	.main .readme > blockquote,
-	.main .readme > pre,
-	.main .readme > code,
-	.main .readme > ul,
-	.main .readme > hr {
+	.readme > h1,
+	.readme > h2,
+	.readme > h3,
+	.readme > h4,
+	.readme > h5,
+	.readme > h6,
+	.readme > section,
+	.readme > p,
+	.readme > blockquote,
+	.readme > pre,
+	.readme > code,
+	.readme > ul,
+	.readme > hr {
 		width: 80%;
 		max-width: 700px;
 	}
@@ -284,23 +286,23 @@ h2 {
 		transform: translate3d(350px, 0, 0);
 	}
 
-	.main .readme {
+	.readme {
 		margin-left: 0;
 	}
 
-	.main .readme > h1,
-	.main .readme > h2,
-	.main .readme > h3,
-	.main .readme > h4,
-	.main .readme > h5,
-	.main .readme > h6,
-	.main .readme > section,
-	.main .readme > p,
-	.main .readme > blockquote,
-	.main .readme > pre,
-	.main .readme > code,
-	.main .readme > ul,
-	.main .readme > hr {
+	.readme > h1,
+	.readme > h2,
+	.readme > h3,
+	.readme > h4,
+	.readme > h5,
+	.readme > h6,
+	.readme > section,
+	.readme > p,
+	.readme > blockquote,
+	.readme > pre,
+	.readme > code,
+	.readme > ul,
+	.readme > hr {
 		width: 96%;
 		max-width: 700px;
 	}
@@ -312,23 +314,23 @@ h2 {
 		margin-left: 3%;
 	}
 
-	.main .readme {
+	.readme {
 		margin-left: 0;
 	}
 
-	.main .readme > h1,
-	.main .readme > h2,
-	.main .readme > h3,
-	.main .readme > h4,
-	.main .readme > h5,
-	.main .readme > h6,
-	.main .readme > section,
-	.main .readme > p,
-	.main .readme > blockquote,
-	.main .readme > pre,
-	.main .readme > code,
-	.main .readme > ul,
-	.main .readme > hr {
+	.readme > h1,
+	.readme > h2,
+	.readme > h3,
+	.readme > h4,
+	.readme > h5,
+	.readme > h6,
+	.readme > section,
+	.readme > p,
+	.readme > blockquote,
+	.readme > pre,
+	.readme > code,
+	.readme > ul,
+	.readme > hr {
 		width: 100%;
 		min-width: 100%;
 	}
@@ -338,72 +340,75 @@ h2 {
 * Lists.
 */
 
-.main ul,
-.main ol {
+.readme ul,
+.readme ol {
 	margin-top: 0;
 	margin-bottom: 1em;
 	padding-left: 2em;
 }
 
-.main ul ul,
-.main ul ol,
-.main ol ol,
-.main ol ul {
+.readme ul ul,
+.readme ul ol,
+.readme ol ol,
+.readme ol ul {
 	margin-top: 0;
 	margin-bottom: 0;
-}
-
-.main .readme .namespace-toc ul {
-	padding-left: 0.5em;
-}
-
-.main .readme .namespace-toc ul li {
-	display: flex;
-	flex-shrink: 1;
-}
-
-.main .readme .namespace-toc .signature {
-	width: 50%;
-	min-width: 50%;
-}
-
-.main .readme .namespace-toc .delimiter {
-	display: none;
 }
 
 /*
 * Set the top margin of any list item children which are paragraphs.
 */
-.main li > p {
+.readme li > p {
 	margin-top: 1em;
 }
 
 /*
 * Add space between adjacent list items.
 */
-.main li + li {
+.readme li + li {
 	margin-top: 0.25em;
+}
+
+/*
+* Set special rules for lists within a namespace table of contents.
+*/
+.readme .namespace-toc ul {
+	padding-left: 0.5em;
+}
+
+.readme .namespace-toc ul li {
+	display: flex;
+	flex-shrink: 1;
+}
+
+.readme .namespace-toc ul li .signature {
+	width: 50%;
+	min-width: 50%;
+}
+
+.readme .namespace-toc ul li .delimiter {
+	display: none;
 }
 
 /*
 * Definition lists.
 */
 
-.main dl {
+.readme dl {
 	padding: 0;
 }
 
-.main dl dt {
+.readme dl dt {
 	margin-top: 1em;
 	padding: 0;
 }
 
-.main dl dd {
+.readme dl dd {
 	margin-bottom: 1em;
 	padding: 0 1em;
 }
 
-.main dd {
+.readme dd {
 	margin-left: 0;
 }
 
@@ -411,15 +416,15 @@ h2 {
 * Blockquotes.
 */
 
-.main blockquote {
+.readme blockquote {
 	padding: 0 1.0em;
 }
 
-.main blockquote > :first-child {
+.readme blockquote > :first-child {
 	margin-top: 0;
 }
 
-.main blockquote > :last-child {
+.readme blockquote > :last-child {
 	margin-bottom: 0;
 }
 
@@ -427,13 +432,13 @@ h2 {
 * Horizontal rules.
 */
 
-.main hr {
+.readme hr {
 	height: 0.25em;
 	margin: 1.5em 0;
 	padding: 0;
 }
 
-.main hr::before {
+.readme hr::before {
 	display: table;
 	content: "";
 }
@@ -442,18 +447,18 @@ h2 {
 * Tables.
 */
 
-.main table {
+.readme table {
 	display: block;
 	width: 100%;
 }
 
-.main table th,
-.main table td {
+.readme table th,
+.readme table td {
 	padding: 6px 13px;
 }
 
-.main td,
-.main th {
+.readme td,
+.readme th {
 	padding: 0;
 }
 
@@ -461,41 +466,41 @@ h2 {
 * Code.
 */
 
-.main pre {
+.readme pre {
 	padding: 1em;
 }
 
-.main pre code {
+.readme pre code {
 	display: inline;
 	max-width: inherit;
 	padding: 0;
 }
 
-.main code {
+.readme code {
 	margin: 0;
 	padding: 0;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
 }
 
-.main code::before,
-.main code::after {
+.readme code::before,
+.readme code::after {
 	letter-spacing: -0.2em;
 	content: "\00a0";
 }
 
-.main pre code::before,
-.main pre code::after {
+.readme pre code::before,
+.readme pre code::after {
 	content: normal;
 }
 
-.main kbd {
+.readme kbd {
 	display: inline-block;
 	padding: 3px 5px;
 }
 
 /*
-* General class level rules.
+* Navigation.
 */
 
 /*
@@ -621,29 +626,6 @@ h2 {
 }
 
 /*
-* Equations.
-*/
-
-.equation {
-	margin-top: 0;
-	margin-bottom: 1em;
-}
-
-/*
-* Embedded iframes.
-*/
-
-.embedded-iframe {
-	width: 75%;
-	min-width: 594px;
-	max-width: 1200px;
-	min-height: calc(100vh - 52px);
-	margin-left: 12.5%;
-	padding-top: 80px;
-	padding-bottom: 100px;
-}
-
-/*
 * Side menu.
 */
 
@@ -699,6 +681,29 @@ h2 {
 
 .side-menu-list-wrapper ul {
 	padding-left: 0;
+}
+
+/*
+* Equations.
+*/
+
+.equation {
+	margin-top: 0;
+	margin-bottom: 1em;
+}
+
+/*
+* iframes.
+*/
+
+.embedded-iframe {
+	width: 75%;
+	min-width: 594px;
+	max-width: 1200px;
+	min-height: calc(100vh - 52px);
+	margin-left: 12.5%;
+	padding-top: 80px;
+	padding-bottom: 100px;
 }
 
 /*
