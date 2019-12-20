@@ -228,9 +228,10 @@ a:active {
 	text-decoration: none;
 }
 
-@media only screen and (min-width: 50em) { /* 700px */
+@media only screen and (min-width: 50em) { /* 800px */
 	.top-nav-item a:hover,
 	.top-nav-item a:active {
+		background-color: transparent;
 		text-decoration: underline;
 	}
 }

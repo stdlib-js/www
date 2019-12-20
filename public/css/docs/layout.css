@@ -525,39 +525,55 @@ h2 {
 	padding: 0 0.5em 0 0.5em;
 }
 
+.top-nav .icon-button {
+	height: 2em;
+	margin-top: 8px;
+}
+
+.top-nav-divider {
+	height: 2em;
+
+	margin-top: 1em;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
 .top-nav-search {
+	height: 4em;
+
 	margin-left: auto;
 	margin-right: 0.25em;
 	padding-left: 1em;
 	padding-top: 3px;
 }
 
+/*
+* When a user focuses the search element, we want to grow the search box to occupy all available width.
+*/
 .top-nav-search.Mui-focused {
 	flex: 1;
 	margin-left: 0.5em;
 }
 
-.top-nav-search,
-.top-nav-item {
-	height: 4em;
-}
-
-.top-nav-divider {
-	height: 2em;
-	margin-top: 1em;
-	margin-left: 4px;
-	margin-right: 4px;
-}
-
+/*
+* On smaller devices, we don't want to automatically display these navigational elements.
+*/
 .top-nav-items {
 	display: none;
 	margin-top: -1em;
 }
 
-.top-nav-items.top-nav-items-dropdown {
+/*
+* We only want to display the dropdown menu when the side menu is *not* displayed.
+*/
+:not(.side-menu-open) .top-nav-items-dropdown {
 	order: 100;
 	display: block;
 	width: 100%;
+}
+
+.top-nav-item {
+	height: 4em;
 }
 
 .top-nav-item a {
@@ -565,35 +581,57 @@ h2 {
 	padding: 0 1em;
 }
 
-.top-nav .icon-button {
-	height: 2em;
-	margin-top: 8px;
-}
-
+/*
+* On smaller devices, when the side menu is open, we don't want to allow the user to interact with package navigation or search due to lack of available screen real estate.
+*/
 .side-menu-open .top-nav-items-menu-button,
+.side-menu-open .top-nav-search-button,
 .side-menu-open .top-nav-search {
 	display: none !important;
 }
 
-.side-menu-open .top-nav-download-button {
+/*
+* On smaller devices, when the side menu is open, because search is not shown, we want to push the divider as far as we can to the right.
+*/
+.side-menu-open .top-nav-divider {
 	margin-left: auto;
 }
 
+@media only screen and (min-width: 76.25em) { /* 1220px */
+	/*
+	* For large devices, always display the package navigation items inline.
+	*/
+	.side-menu-open .top-nav-items,
+	.side-menu-open .top-nav-items-dropdown {
+		display: inline-flex !important;
+	}
+}
+
 @media only screen and (min-width: 50em) { /* 800px */
+	/*
+	* For larger devices, we allow search even though the side menu is open.
+	*/
+	.side-menu-open .top-nav-divider {
+		margin-left: 4px;
+	}
+
+	.side-menu-open .top-nav-search-button,
 	.side-menu-open .top-nav-search {
 		display: inline-flex !important;
 	}
 
-	.side-menu-open .top-nav-download-button {
-		margin-left: 0;
-	}
-
+	/*
+	* On larger devices, we display all package navigation items inline and not in a dropdown, so we should hide this button.
+	*/
 	.top-nav-items-menu-button {
 		display: none !important;
 	}
 
+	/*
+	* When the side menu is not open, display all package navigation items inline.
+	*/
 	.top-nav-items,
-	.top-nav-items.top-nav-items-dropdown {
+	.top-nav-items-dropdown {
 		display: inline-flex;
 		position: relative;
 		float: right;
@@ -604,15 +642,9 @@ h2 {
 		width: auto;
 		margin-top: 0;
 	}
-
-	.top-nav-item {
-		float: left;
-	}
-
-	.top-nav-item a:hover,
-	.top-nav-item a:active {
-		background-color: transparent;
-		text-decoration: underline;
+	.side-menu-open .top-nav-items,
+	.side-menu-open .top-nav-items-dropdown {
+		display: none;
 	}
 }
 
@@ -638,13 +670,17 @@ h2 {
 	justify-content: space-between;
 }
 
+.side-menu-wrapper {
+	width: 0px;
+}
+
+.side-menu-open .side-menu-wrapper,
 .side-menu-drawer {
-	z-index: 121;
 	width: 350px;
 }
 
-.side-menu-wrapper {
-	width: 0px;
+.side-menu-drawer {
+	z-index: 121;
 }
 
 .side-menu-version-select {
