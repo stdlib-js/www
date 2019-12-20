@@ -198,7 +198,7 @@ a:active {
 	text-decoration: none;
 }
 
-@media only screen and (min-width: 43.75em) { /* 700px */
+@media only screen and (min-width: 50em) { /* 700px */
 	.top-nav-item a:hover,
 	.top-nav-item a:active {
 		text-decoration: underline;

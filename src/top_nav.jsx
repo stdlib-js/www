@@ -210,7 +210,10 @@ class TopNav extends React.Component {
 					/>
 					: null
 				}
-				<nav className="top-nav" aria-label="Main">
+				<nav
+					className={ 'top-nav '+( this.props.sideMenu ? 'side-menu-open' : '' ) }
+					aria-label="Main"
+				>
 					<SideMenu
 						onDrawerChange={ this._onDrawerChange }
 						onPackageChange={ this.props.onPackageChange }
@@ -238,7 +241,7 @@ class TopNav extends React.Component {
 					</IconButton>
 					<span class="top-nav-divider"></span>
 					<IconButton
-						className={ 'icon-button top-nav-items-menu-button '+( this.props.sideMenu ? 'top-nav-items-menu-disabled' : '' ) }
+						className="icon-button top-nav-items-menu-button"
 						aria-label="toggle navigation menu"
 						title="Toggle package navigation menu"
 						onClick={ this._onPackageNavigationMenu }
@@ -258,8 +261,7 @@ class TopNav extends React.Component {
 					</ul>
 					{ this.state.downloadProgress ?
 						<IconButton
-							id="download-icon-button"
-							className="icon-button"
+							className="icon-button top-nav-download-button"
 							aria-label="cancel download"
 							title="Cancel download"
 							onClick={ () => console.log( "TODO" ) }
@@ -268,8 +270,7 @@ class TopNav extends React.Component {
 						</IconButton>
 						:
 						<IconButton
-							id="download-icon-button"
-							className="icon-button"
+							className="icon-button top-nav-download-button"
 							aria-label="download documentation for offline access"
 							title="Download documentation for offline access"
 							onClick={ this._downloadAssets }

@@ -58,7 +58,7 @@ img {
 	border-right-width: 1px;
 }
 
-@media only screen and (min-width: 43.75em) { /* 700px */
+@media only screen and (min-width: 50em) { /* 700px */
 	.top-nav-item a:hover,
 	.top-nav-item a:active {
 		background-color: transparent;
@@ -315,6 +315,6 @@ img {
 * Download button.
 */
 
-#download-icon-button svg {
+.top-nav-download-button svg {
 	fill: #3c3c3c;
 }
