@@ -141,7 +141,11 @@ sudo ln -s $(which node) /usr/bin/node
 
     -   Is this desirable? Or should we configure the fastify server to return a rendered application which loads the respective benchmark/test file?
 
-37.
+37. Consider whether we always want the side menu displayed by default at all device sizes (the current behavior).
+
+    -   May only want this for large devices (e.g., desktop). Otherwise, on mobile, say I click a link in a tweet linking to a package’s docs. When it opens in a mobile browser, in order to see the content, I first have to close the menu, which does not seem desirable.
+    -   Don’t need use the Mui useQuery component for this, as we just need it once, which is on initial render, so we may want to think about how to do this most effectively.
+
 38. (docs) explore using Web Speech API for speech recognition in the filter (and future search) input
 
     -   browser support is limited (and almost non-existent)
