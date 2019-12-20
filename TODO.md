@@ -39,10 +39,7 @@
 
 12. SSL-stapling config
 13. (docs) HTML minify (rehype plugin)
-14. (docs) stub search input in top nav
-
-    -   disable until search backend is ready
-
+14. (docs) disable until search backend is ready
 15. (docs) Consider JS bundle minify
 16. (docs) welcome page should link to local (rendered) LICENSE
 17. update Makefiles, including moving npm scripts to Makefile targets
@@ -144,8 +141,7 @@ sudo ln -s $(which node) /usr/bin/node
 
     -   Is this desirable? Or should we configure the fastify server to return a rendered application which loads the respective benchmark/test file?
 
-37. (docs) consider alternative namespace doc generation to improve mobile-first layout on www docs
-
+37.
 38. (docs) explore using Web Speech API for speech recognition in the filter (and future search) input
 
     -   browser support is limited (and almost non-existent)
