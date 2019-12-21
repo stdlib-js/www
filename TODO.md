@@ -49,7 +49,7 @@
 
 13. (docs) HTML minify (rehype plugin)
 
-14. (docs) disable until search backend is ready
+14. (docs) disable search input until search backend is ready
 
 15. (docs) Consider JS bundle minify
 
@@ -166,10 +166,7 @@
 
     -   Is this desirable? Or should we configure the fastify server to return a rendered application which loads the respective benchmark/test file?
 
-37. (docs) consider whether we always want the side menu displayed by default at all device sizes (the current behavior).
-
-    -   May only want this for large devices (e.g., desktop). Otherwise, on mobile, say I click a link in a tweet linking to a package’s docs. When it opens in a mobile browser, in order to see the content, I first have to close the menu, which does not seem desirable.
-    -   Don’t need use the Mui `useQuery` component for this, as we just need it once, which is on initial render, so we may want to think about how to do this most effectively.
+37.
 
 38. (docs) explore using Web Speech API for speech recognition in the filter (and future search) input
 
@@ -185,7 +182,8 @@
 40. (docs) consider adding support for viewing docs as JSON (similar to Node.js)
 
     -   <https://nodejs.org/dist/latest-v12.x/docs/api/console.html> and then "View as JSON"
-    -   why? in order to provide a public format which can be consumed by IDEs and code editors
+    -   why? in order to provide a consumable public format which can be consumed by IDEs and code editors
+    -   would require writing some tooling
 
 41. setup [Matomo](https://matomo.org/) for site analytics as self-hosted alternative to GA
 

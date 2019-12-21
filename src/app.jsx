@@ -51,7 +51,7 @@ class App extends React.Component {
 		// Set the initial component state:
 		this.state = {
 			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
-			'version': config.versions[ 0 ]           // default to the latest version
+			'version': config.versions[ 0 ]            // default to the latest version
 		};
 	}
 
