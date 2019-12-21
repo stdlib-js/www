@@ -32,6 +32,7 @@ import log from './log.js';
 import fetchFragment from './fetch_fragment.js';
 import PACKAGE_DATA_CACHE from './package_data_cache.js';
 import getPackageResources from './get_package_resources.js';
+import viewportWidth from './viewport_width.js';
 import config from './config.js';
 
 
@@ -39,10 +40,18 @@ import config from './config.js';
 
 class App extends React.Component {
 	constructor( props ) {
+		var w;
+
+		// Register component properties:
 		super( props );
+
+		// Query the current viewport width:
+		w = viewportWidth();
+
+		// Set the initial component state:
 		this.state = {
-			'sideMenu': true,
-			'version': config.versions[ 0 ] // default to the latest version
+			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
+			'version': config.versions[ 0 ]           // default to the latest version
 		};
 	}
 
