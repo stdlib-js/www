@@ -80,13 +80,13 @@
 
     -   this navigation element could also be used to house the benchmarks, tests, source, and other links for a package, but maybe we want to keep separate (?)
 
-23. (www) background image slideshow? (see https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/)
+23. (www) background image slideshow? (see <https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/>)
 
 24. (docs) handle failure to load test/benchmark resource in iframe (e.g., due to server/network failure)
 
 25. resolve approach for using `stdlib` pkgs in www JS assets (e.g., setting NODE_PATH during browserify or some other approach?)
 
-26. Use of "Learn More" on www feature buttons (?)
+26. Use of "Learn More" on www feature buttons (?; not even sure what this item refers to anymore 😢)
 
 27. (docs) source view
 
@@ -130,6 +130,8 @@
     -   <https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine>
 
     This would allow a user to install the docs as a mobile app and use them offline after downloading all the requisite fragments and bundles.
+
+    -   should we allow the TypeScript docs to be downloaded offline, too?
 
 32. (docs) for reference, previous behavior: <https://github.com/stdlib-js/www/blob/0c547db74a1d67af0b5c7f99407230a4ea2826d1/public/develop/docs/api/%40stdlib/array/buffer/index.html#L1730>
 
@@ -200,3 +202,10 @@
 43. (docs) should we allow viewing a package's dependency graph?
 
     -   e.g., dependencies and dependants
+
+44. (docs) how (and do) we want to support internationalization?
+
+45. add a `\ping` route to the API docs server to determine whether the server is available
+
+    -   this route can be used by the API docs application to determine whether a user is "online"
+    -   knowing whether a user is "online" could be useful for determining whether a user should be able to run tests and benchmarks which might require pulling in bundles on demand from a remote server. If "offline", we may want to disable those navigational elements. Ditto for search functionality if we opt to use Algolia.
