@@ -356,10 +356,11 @@ class App extends React.Component {
 			return (
 				<Fragment>
 					{ self._renderTopNav( content, props.match ) }
-					<div class="main" role="main">
-						<div className={ 'main-content '+( self.state.sideMenu ? 'translate-right' : '' ) }>
-							{ self[ method ]( props.match ) }
-						</div>
+					<div
+						class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
+						 role="main"
+					>
+						{ self[ method ]( props.match ) }
 					</div>
 				</Fragment>
 			);

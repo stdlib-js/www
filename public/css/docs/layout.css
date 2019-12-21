@@ -115,30 +115,29 @@ h2 {
 }
 
 /*
+* Root.
+*/
+
+#root {
+	position: relative;
+	width: 100%;
+}
+
+/*
 * Main.
 */
 
 .main {
+	position: relative;
 	width: 100%;
 	min-height: 100vh;
 	margin-bottom: 7em;
 	padding-top: 100px;
-}
 
-/*
-* Content container.
-*/
+	/*
+	* Initialize the render layer to allow for hardware acceleration.
+	*/
 
-.main-content {
-	position: relative;
-	width: 100%;
-	min-height: 100%;
-}
-
-/*
-* Initialize the render layer to allow for hardware acceleration.
-*/
-.main-content {
 	/* Add transform fallbacks for browsers not supporting `translate3d`. */
 	-webkit-transform: translateX(0);
 	-moz-transform: translateX(0);
@@ -158,9 +157,9 @@ h2 {
 }
 
 /*
-* When the side menu is visible, translate the content of the "main" element.
+* When the side menu is visible, translate the "main" element.
 */
-.main-content.translate-right {
+.main.translate-right {
 	/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
 	-webkit-transform: translateX(300px);
 	-moz-transform: translateX(300px);
@@ -265,7 +264,7 @@ h2 {
 		margin-left: 7%;
 	}
 
-	.main-content.translate-right {
+	.main.translate-right {
 		/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
 		-webkit-transform: translateX(350px);
 		-moz-transform: translateX(350px);

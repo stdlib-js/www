@@ -71,17 +71,28 @@ img {
 }
 
 /*
+* Root.
+*/
+
+#root {
+	/*
+	* At certain (smaller) device sizes, when the side menu is open, the "main" element will overflow outside of the viewport. Allow users to view the content of that element by scrolling.
+	*/
+	overflow-x: scroll;
+}
+
+/*
 * Main.
 */
 
-/*
-* For certain animations, the backface of an element can become visible. Prevent this.
-*
-* ## Notes
-*
-* -   Helps prevent flickering for some engines when using `translate3d`.
-*/
 .main {
+	/*
+	* For certain animations, the backface of an element can become visible. Prevent this.
+	*
+	* ## Notes
+	*
+	* -   Helps prevent flickering for some engines when using `translate3d`.
+	*/
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
@@ -89,12 +100,11 @@ img {
 	backface-visibility: hidden;
 
 	-webkit-transform-style: preserve-3d;
-}
 
-/*
-* Specify transition speed.
-*/
-.main-content {
+	/*
+	* Specify transition speed.
+	*/
+
 	/* name | duration | timing function | delay */
 	-webkit-transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 	-moz-transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
