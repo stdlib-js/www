@@ -4,21 +4,24 @@
 
 1. 404
 
-   - inspiration: https://medium.com/inspiration-supply/funny-and-creative-404-pages-45f6da146268
+   - inspiration: <https://medium.com/inspiration-supply/funny-and-creative-404-pages-45f6da146268>
 
 2. webhook server to trigger build
 
+    -   can be part of GitHub action pipeline
+    -   upon tagging the docs, trigger an action to push and deploy docs
+
 3. (docs) investigate using [hotjar](https://www.hotjar.com/pricing) to collect user feedback for the API docs
 
-4. Document local development setup
+4. (tools) Document local development setup
 
-    -   https://github.com/CodepediaOrg/bookmarks.dev-api/wiki/Setup-Nginx-for-development-(macOS)---work-in-progress
-    -   https://tech.finn.no/2015/09/25/setup-nginx-with-http2-for-local-development/
-    -   https://bneijt.nl/blog/post/running-nginx-for-local-development/
-    -   https://github.com/sonatype-nexus-community/search-maven-org/pull/58
+    -   <https://github.com/CodepediaOrg/bookmarks.dev-api/wiki/Setup-Nginx-for-development-(macOS)---work-in-progress>
+    -   <https://tech.finn.no/2015/09/25/setup-nginx-with-http2-for-local-development/>
+    -   <https://bneijt.nl/blog/post/running-nginx-for-local-development/>
+    -   <https://github.com/sonatype-nexus-community/search-maven-org/pull/58>
     -   current hack is to do `python -m http.server 8000` from the `/public` directory and manually navigate to documentation, leveraging static file resolution
 
-5. a "staging" version of the website in order to test out features before going live
+5. (tools) a "staging" version of the website in order to test out features before going live
 
    -   we need a much shorter build process for this to realistically be viable, but may work for serving all non-package assets (e.g., API docs application, static www pages, etc)
    -   <https://github.com/linode/docs/blob/master/docs/websites/static-sites/install-gatsbyjs/index.md>
@@ -27,16 +30,16 @@
 
     -   This should be a straightforward reroute on the fastify side of things.
 
-7. Use URL shortening for click tracking (e.g., Bit.ly)
+7. (tools) use URL shortening for click tracking (e.g., Bit.ly)
 
-   - to integrate with GA, for inbound, need to add URL tags (https://www.linkedin.com/pulse/small-biz-guide-how-track-clicks-your-website-blog-jay-lane, https://support.google.com/analytics/answer/1033867?hl=en, and https://support.google.com/analytics/answer/1033863#parameters)
+   - to integrate with GA, for inbound, need to add URL tags (<https://www.linkedin.com/pulse/small-biz-guide-how-track-clicks-your-website-blog-jay-lane>, <https://support.google.com/analytics/answer/1033867?hl=en>, and <https://support.google.com/analytics/answer/1033863#parameters>)
    - should add a privacy policy to the repo describing what data is collected and why and should link to this policy in the docs (footer link)
 
 8. (docs) view which transforms slideout menu into a fullscreen mega menu overlay (maybe with a touch of transparency, so can see the page update underneath)
 
 9. (docs) build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
 
-10. test/benchmark iframe media queries (on small devices, we can reduce the left margin)
+10. (docs) test/benchmark iframe media queries (on small devices, we can reduce the left margin)
 
 11. diffie-hellman: <https://mozilla.github.io/server-side-tls/ssl-config-generator/>
 
@@ -52,7 +55,7 @@
 
 16. (docs) welcome page should link to local (rendered) LICENSE
 
-17. update Makefiles, including moving npm scripts to Makefile targets
+17. (tools) update Makefiles, including moving npm scripts to Makefile targets
 
 18. (docs) iframe content resizer script should be vendored and served from local filesystem, rather than using a public CDN (why? for offline access)
 
@@ -61,7 +64,7 @@
     - swipe right to reveal slideout menu
     - swipe left to close slideout menu
 
-20. parallelize build process?
+20. (tools) parallelize build process?
 
     -   see https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/utils/parallel
     -   in short, generate scripts for bundling various package assets
@@ -73,7 +76,9 @@
 
 21. (docs) sidenote/marginnote styling: <https://edwardtufte.github.io/tufte-css/>
 
-22.
+22. (docs) generate a ToC for each package README which can be used to populate a right-hand side-menu for navigation within package documentation
+
+    -   this navigation element could also be used to house the benchmarks, tests, source, and other links for a package, but maybe we want to keep separate (?)
 
 23. (www) background image slideshow? (see https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/)
 
@@ -94,7 +99,7 @@
 
 29. (docs) README syntax highlighted example URLs (i.e., `require( '@stdlib/foo' )`, where `@stdlib/foo` is a hyperlink)
 
-30. General update sequence...
+30. (tools) General update sequence...
 
     - git pull
     - rm -rf ./node_modules
@@ -112,9 +117,9 @@
     - systemctl status docs_server@1
     - journalctl -u docs_server@1
 
-https://blog.codeship.com/running-node-js-linux-systemd/
-sudo ln -s $(which npm) /usr/bin/npm
-sudo ln -s $(which node) /usr/bin/node
+    - <https://blog.codeship.com/running-node-js-linux-systemd/>
+    - sudo ln -s $(which npm) /usr/bin/npm
+    - sudo ln -s $(which node) /usr/bin/node
 
 31. (docs) It would be a nice (future) feature if we could make the docs an HTML5 mobile app which can be run offline:
 
@@ -194,8 +199,6 @@ sudo ln -s $(which node) /usr/bin/node
     -   question: should we create a "REPL" version of the docs (i.e., where we transform the READMEs to elide imports of `stdlib` packages, swapping out example aliases with their respective REPL alias.
     -   This would be another tool => taking a README and converting/transforming it to one which uses `stdlib` aliases.
 
-43.
-
-44. (docs) should we allow viewing a package's dependency graph?
+43. (docs) should we allow viewing a package's dependency graph?
 
     -   e.g., dependencies and dependants
