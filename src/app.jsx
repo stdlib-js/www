@@ -41,9 +41,8 @@ class App extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			'ready': false,
 			'sideMenu': true,
-			'version': ''
+			'version': config.versions[ 0 ] // default to the latest version
 		};
 	}
 
@@ -396,17 +395,11 @@ class App extends React.Component {
 				// TODO: render a modal indicating that we are unable to set the version (e.g., due to network error, etc)
 				return log( error );
 			}
-			self.setState({
-				'ready': true
-			});
+			// TODO: if the updated version is not the latest supported version, display a message indicating that this version of the docs is "out-of-date"
 		}
 	}
 
 	render() {
-		if ( this.state.ready === false ) {
-			// TODO: present a loading page until we are ready...
-			return null;
-		}
 		return (
 			<Fragment>
 				<Switch>

@@ -164,8 +164,18 @@ sudo ln -s $(which node) /usr/bin/node
 
 41. (docs) setup [Matomo](https://matomo.org/) for site analytics as self-hosted alternative to GA
 
+    -   <https://www.linode.com/docs/uptime/analytics/piwik-on-ubuntu-12-04-precise-pangolin/>
+    -   <https://www.linode.com/docs/uptime/analytics/open-web-analytics-install-and-launch-on-your-server/>
+    -   <https://matomo.org/docs/requirements/>
+
 42. (docs) add "See Also" section to package READMEs
 
     -   will need to extract this info from the namespace database, similar to how we populate `repl.txt` files during the build process
     -   question: should we create a "REPL" version of the docs (i.e., where we transform the READMEs to elide imports of `stdlib` packages, swapping out example aliases with their respective REPL alias.
     -   This would be another tool => taking a README and converting/transforming it to one which uses `stdlib` aliases.
+
+43. (docs) check that server-side rendering works as expected due to slight delay in page rendering (subsequent to componentDidMount)
+
+44. (docs) should we allow viewing a package's dependency graph?
+
+    -   e.g., dependencies and dependants
