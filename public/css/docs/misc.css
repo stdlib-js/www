@@ -36,9 +36,10 @@ img {
 	background-color: #ffffff;
 	/*background-color: #000000;*/
 
-	-webkit-box-shadow: #ced4da 0 -5px 15px 0;
-	-moz-box-shadow: #ced4da 0 -5px 15px 0;
-	box-shadow: #ced4da 0 -5px 15px 0;
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	-webkit-box-shadow: 0 -5px 15px 0#ced4da ;
+	-moz-box-shadow: 0 -5px 15px 0#ced4da ;
+	box-shadow: 0 -5px 15px 0#ced4da ;
 }
 
 .top-nav-item a:hover,
@@ -118,6 +119,7 @@ img {
 */
 .readme h1,
 .readme h2 {
+	/* width | style | color */
 	border-bottom: 1px solid #eee;
 }
 
@@ -125,6 +127,7 @@ img {
 * To the left of a blockquote, create a vertical gray bar, similar to how GitHub styles blockquotes.
 */
 .readme blockquote {
+	/* width | style | color */
 	border-left: 0.25em solid #ddd;
 }
 
@@ -138,6 +141,8 @@ img {
 	background-color: #e7e7e7;
 
 	border: 0;
+
+	/* width | style | color */
 	border-bottom: 1px solid #eee;
 }
 
@@ -201,11 +206,14 @@ img {
 
 .readme table th,
 .readme table td {
+	/* width | style | color */
 	border: 1px solid #ddd;
 }
 
 .readme table tr {
 	background-color: #fff;
+
+	/* width | style | color */
 	border-top: 1px solid #ccc;
 }
 
@@ -265,6 +273,7 @@ img {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 
+	/* offset-x | offset-y | blur-radius | color */
 	-webkit-box-shadow: inset 0 -1px 0 #bbb;
 	-moz-box-shadow: inset 0 -1px 0 #bbb;
 	box-shadow: inset 0 -1px 0 #bbb;
@@ -321,15 +330,17 @@ img {
 * Define a diffuse shadow. Useful for things like images.
 */
 .diffuse-shadow {
-	-webkit-box-shadow: #e2e2e2 0 0 50px 0;
-	-moz-box-shadow: #e2e2e2 0 0 50px 0;
-	box-shadow: #e2e2e2 0 0 50px 0;
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	-webkit-box-shadow: 0 0 50px 0 #e2e2e2;
+	-moz-box-shadow: 0 0 50px 0 #e2e2e2;
+	box-shadow: 0 0 50px 0 #e2e2e2;
 }
 
 .diffuse-shadow-dark {
-	-webkit-box-shadow: #636161 0 0 50px 0;
-	-moz-box-shadow: #636161 0 0 50px 0;
-	box-shadow: #636161 0 0 50px 0;
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	-webkit-box-shadow: 0 0 50px 0 #636161;
+	-moz-box-shadow: 0 0 50px 0 #636161;
+	box-shadow: 0 0 50px 0 #636161;
 }
 
 /*

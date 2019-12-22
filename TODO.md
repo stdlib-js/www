@@ -19,6 +19,7 @@
     -   <https://tech.finn.no/2015/09/25/setup-nginx-with-http2-for-local-development/>
     -   <https://bneijt.nl/blog/post/running-nginx-for-local-development/>
     -   <https://github.com/sonatype-nexus-community/search-maven-org/pull/58>
+    -   maybe use Docker? (at least for local development)
     -   current hack is to do `python -m http.server 8000` from the `/public` directory and manually navigate to documentation, leveraging static file resolution
 
 5. (tools) a "staging" version of the website in order to test out features before going live
