@@ -187,6 +187,12 @@ class TopNav extends React.Component {
 		});
 	}
 
+	_closePackageNavigationMenu = () => {
+		this.setState({
+			'dropdown': false
+		});
+	}
+
 	_onDrawerChange = ( value ) => {
 		this.props.onSideMenuChange( value );
 		this.setState({
@@ -250,7 +256,7 @@ class TopNav extends React.Component {
 					</IconButton>
 					<ul
 						className={ this.state.dropdown ? 'top-nav-items-dropdown' : 'top-nav-items' }
-						onClick={ this._onPackageNavigationMenu }
+						onClick={ this._closePackageNavigationMenu }
 					>
 						{ this.props.home ? home() : null }
 						{ this.props.docs ? docs( path ) : null }
