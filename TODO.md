@@ -33,8 +33,11 @@
 
 7. (tools) use URL shortening for click tracking (e.g., Bit.ly)
 
-   - to integrate with GA, for inbound, need to add URL tags (<https://www.linkedin.com/pulse/small-biz-guide-how-track-clicks-your-website-blog-jay-lane>, <https://support.google.com/analytics/answer/1033867?hl=en>, and <https://support.google.com/analytics/answer/1033863#parameters>)
-   - should add a privacy policy to the repo describing what data is collected and why and should link to this policy in the docs (footer link)
+   -   to integrate with GA, for inbound, need to add URL tags (<https://www.linkedin.com/pulse/small-biz-guide-how-track-clicks-your-website-blog-jay-lane>, <https://support.google.com/analytics/answer/1033867?hl=en>, and <https://support.google.com/analytics/answer/1033863#parameters>)
+   -   should add a privacy policy to the repo describing what data is collected and why and should link to this policy in the docs (footer link)
+   -   Polr: <https://github.com/cydrobolt/polr>
+   -   YOURLS: <https://github.com/YOURLS/YOURLS>
+   -   <https://scalegrid.io/blog/how-to-build-a-url-shortener-with-node-js-and-mongodb/>
 
 8. (docs) view which transforms slideout menu into a fullscreen mega menu overlay (maybe with a touch of transparency, so can see the page update underneath)
 
@@ -181,6 +184,7 @@
 39. (docs) investigate using Algolia's [docsearch](https://github.com/algolia/docsearch) offering to provide documentation search
 
     -   note, however, that, were we to use Algolia, users would not be able to search offline!
+    -   we could just use Algolia's search when the user has Internet access and disable search altogether whenever a user does not have Internet access (or even fallback to an invariably poorer in-browser search library)
 
 40. (docs) consider adding support for viewing docs as JSON (similar to Node.js)
 
