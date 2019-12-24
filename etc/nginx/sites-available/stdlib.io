@@ -246,6 +246,56 @@ server {
   # [1]: http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/var.html
   error_log /var/log/www/stdlib.io/error.log warn;
 
+  # Define a location directive for resolving the API documentation server status:
+  location ~ /docs/api/status {
+    # Set proxy headers passed to the proxied server.
+    #
+    # ## Usage
+    #
+    # Syntax: `proxy_set_header field value;`
+    # Default: `proxy_set_header Host $proxy_host; proxy_set_header Connection close;`
+    #
+    # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-NginX-Proxy true;
+
+    # Set the protocol and address of the proxied server.
+    #
+    # ## Usage
+    #
+    # Syntax: `proxy_pass URL;`
+    #
+    # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
+    proxy_pass http://127.0.0.1:3000/status;
+  }
+
+  # Define a location directive for pinging the API documentation server:
+  location ~ /docs/api/ping {
+    # Set proxy headers passed to the proxied server.
+    #
+    # ## Usage
+    #
+    # Syntax: `proxy_set_header field value;`
+    # Default: `proxy_set_header Host $proxy_host; proxy_set_header Connection close;`
+    #
+    # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-NginX-Proxy true;
+
+    # Set the protocol and address of the proxied server.
+    #
+    # ## Usage
+    #
+    # Syntax: `proxy_pass URL;`
+    #
+    # [1]: https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass
+    proxy_pass http://127.0.0.1:3000/ping;
+  }
+
   # Define a location directive for serving API documentation:
   location ~* ^/docs/api/[a-z0-9.\-_]+/ {
     # Set proxy headers passed to the proxied server.
