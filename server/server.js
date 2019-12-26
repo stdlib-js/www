@@ -23,6 +23,7 @@ import ReactDOMServer from 'react-dom/server';
 import fs from 'fs';
 import { resolve, join } from 'path';
 import httpServer from '@stdlib/_tools/docs/www/server';
+import config from './../src/config.js';
 import App from './../src/server.jsx';
 
 
@@ -69,7 +70,7 @@ function done( error ) {
 */
 function main() {
 	var opts = {
-		'latest': 'v0.0.90',
+		'latest': config.versions[ 0 ],
 		'logger': true,
 		'port': PORT,
 		'prefix': '/docs/api/',
