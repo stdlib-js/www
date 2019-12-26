@@ -283,6 +283,7 @@ class App extends React.Component {
 	_renderTopNav = ( content, match ) => {
 		var resources;
 		var props;
+		var obj;
 
 		props = {
 			'pkg': '',
@@ -301,19 +302,22 @@ class App extends React.Component {
 			props.pkg = match.params.pkg;
 			props.version = match.params.version;
 
-			resources = PACKAGE_DATA_CACHE[ this.state.version ].resources[ props.pkg ];
-			if ( resources ) {
-				props.src = true;
-				props.typescript = Boolean( resources.typescript );
-				if ( content === 'readme' ) {
-					props.benchmarks = Boolean( resources.benchmark );
-					props.tests = Boolean( resources.test );
-				} else if ( content === 'benchmark' ) {
-					props.docs = true;
-					props.tests = Boolean( resources.test );
-				} else if ( content === 'test' ) {
-					props.docs = true;
-					props.benchmarks = Boolean( resources.benchmark );
+			obj = PACKAGE_DATA_CACHE[ this.state.version ];
+			if ( obj ) {
+				resources = obj.resources[ props.pkg ];
+				if ( resources ) {
+					props.src = true;
+					props.typescript = Boolean( resources.typescript );
+					if ( content === 'readme' ) {
+						props.benchmarks = Boolean( resources.benchmark );
+						props.tests = Boolean( resources.test );
+					} else if ( content === 'benchmark' ) {
+						props.docs = true;
+						props.tests = Boolean( resources.test );
+					} else if ( content === 'test' ) {
+						props.docs = true;
+						props.benchmarks = Boolean( resources.benchmark );
+					}
 				}
 			}
 		}
