@@ -166,9 +166,7 @@
 
 35.
 
-36. (docs) currently, if you directly link to benchmarks or tests and open a URL directly (e.g., `https://stdlib.io/docs/api/v0.0.90/@stdlib/assert/test.html`), then the benchmarks or tests are loaded and run directly in the browser without any of the API documentation "chrome" (e.g., side menu, navigation, etc)
-
-    -   Is this desirable? Or should we configure the fastify server to return a rendered application which loads the respective benchmark/test file?
+36.
 
 37.
 
