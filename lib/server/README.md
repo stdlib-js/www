@@ -95,7 +95,7 @@ var createServer = httpServer( opts );
 
 <a name="docs-api-get"></a>
 
-#### GET /docs/api
+#### GET /docs/api/
 
 Returns the main documentation web application and is equivalent to returning the landing page for the latest documentation version.
 
