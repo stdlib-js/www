@@ -164,9 +164,7 @@
         -   ability to select/de-select all versions
         -   option to specify "latest" (if so, then we need to be able to check for updates and to prompt the user when new docs are available)
 
-35. bug in fastify API docs server when attempting to access `stdlib.io/docs/api/:version`
-
-    -   Currently, the only supported routes are either `stdlib.io/docs/api` or `stdlib.io/docs/api/:version/*`, where `*` is a stdlib pkg path
+35.
 
 36. (docs) currently, if you directly link to benchmarks or tests and open a URL directly (e.g., `https://stdlib.io/docs/api/v0.0.90/@stdlib/assert/test.html`), then the benchmarks or tests are loaded and run directly in the browser without any of the API documentation "chrome" (e.g., side menu, navigation, etc)
 
