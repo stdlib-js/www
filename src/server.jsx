@@ -34,7 +34,7 @@ import config from './config.js';
 */
 function ServerApp() {
 	return (
-		<StaticRouter location={ config.mount+':version/@stdlib/:pkg' } context={ {} } >
+		<StaticRouter location={ config.mount } context={ {} } >
 			<App />
 		</StaticRouter>
 	);
