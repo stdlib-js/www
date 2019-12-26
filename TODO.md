@@ -29,7 +29,7 @@
 
 6. We need a way to refer to the "latest" docs, so we don’t have to manually update versions, e.g., on the homepage, etc.
 
-    -   This should be a straightforward reroute on the fastify side of things.
+    -   Unfortunately, this is **not** a straightforward reroute on the fastify side of things.
 
 7. (tools) use URL shortening for click tracking (e.g., Bit.ly)
 
