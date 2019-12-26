@@ -27,9 +27,7 @@
    -   we need a much shorter build process for this to realistically be viable, but may work for serving all non-package assets (e.g., API docs application, static www pages, etc)
    -   <https://github.com/linode/docs/blob/master/docs/websites/static-sites/install-gatsbyjs/index.md>
 
-6. We need a way to refer to the "latest" docs, so we don’t have to manually update versions, e.g., on the homepage, etc.
-
-    -   Unfortunately, this is **not** a straightforward reroute on the fastify side of things.
+6.
 
 7. (tools) use URL shortening for click tracking (e.g., Bit.ly)
 

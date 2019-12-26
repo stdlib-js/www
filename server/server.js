@@ -69,12 +69,13 @@ function done( error ) {
 */
 function main() {
 	var opts = {
+		'latest': 'v0.0.90',
+		'logger': true,
 		'port': PORT,
-		'template': template(),
+		'prefix': '/docs/api/',
 		'root': BUILD_DIR,
 		'static': BUILD_DIR,
-		'prefix': '/docs/api/',
-		'logger': true
+		'template': template()
 	};
 	httpServer( opts )( done );
 }
