@@ -18,14 +18,18 @@
 
 # Files #
 #########
-
+.editorconfig
+.npmignore
+.npmrc
+TODO.md
 
 # Directories #
 ###############
-reports/
 build/
-tmp/
+docs/
 downloads/
+reports/
+tmp/
 
 # Compiled source #
 ###################
@@ -91,6 +95,11 @@ Desktop.ini
 # Temporary files #
 ###################
 *~
+
+# Git #
+#######
+.git*
+.mailmap
 
 # Node.js #
 ###########
