@@ -23,31 +23,16 @@ TODO.md
 
 # Directories #
 ###############
-.github/
-**/benchmark/
-**/build/
-**/docs/
-**/examples/
+build/
 reports/
 support/
-**/tmp/
-workshops/
-
-# Ignore test directories, except for testing dependency installation:
-**/test/
-!/deps/test/
-
-# Only top-level directories:
-/etc/
-/tools/
+tmp/
 
 
 # Node.js #
 ###########
-.npmignore
-
-# Only top-level node_modules:
 /node_modules/
+.npmignore
 
 
 # Logs #
