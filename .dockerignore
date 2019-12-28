@@ -19,8 +19,6 @@
 # Files #
 #########
 .editorconfig
-.npmignore
-.npmrc
 TODO.md
 
 # Directories #
@@ -107,6 +105,7 @@ Desktop.ini
 pids
 *.pid
 *.seed
+.npm*
 
 # Matlab #
 ##########
