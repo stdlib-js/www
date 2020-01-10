@@ -134,18 +134,18 @@ function ts( pkg ) {
 // MAIN //
 
 /**
-* React component for rendering top navigation.
+* Component for rendering top navigation.
 *
 * @private
 */
 class TopNav extends React.Component {
 	/**
-	* Returns a React component for rendering top navigation.
+	* Returns a component for rendering top navigation.
 	*
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
-	* @param {Callback} props.onSideMenuChange - callback to invoke upon a change to the side menu
+	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
 	* @param {string} [props.pkg] - package name
@@ -156,7 +156,7 @@ class TopNav extends React.Component {
 	* @param {boolean} [props.tests] - boolean indicating whether to link to package tests
 	* @param {boolean} [props.typescript] - boolean indicating whether to link to TypeScript type declarations
 	* @param {boolean} [props.sideMenu] - boolean indicating whether to expand the side menu
-	* @returns {ReactComponent} React component
+	* @returns {ReactComponent} component
 	*/
 	constructor( props ) {
 		super( props );
@@ -166,7 +166,13 @@ class TopNav extends React.Component {
 		}
 	}
 
-	_downloadAssets = () => {
+	/**
+	* Callback invoked upon clicking a download button.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onDownloadClick = () => {
 		var self = this;
 		var res;
 
@@ -174,6 +180,12 @@ class TopNav extends React.Component {
 		res = PACKAGE_DATA_CACHE[ this.props.version ].resources;
 		downloadAssets( Object.keys( res ), this.props.version, onProgress );
 
+		/**
+		* Callback invoked upon a progress update.
+		*
+		* @private
+		* @param {number} progress - current progress
+		*/
 		function onProgress( progress ) {
 			self.setState({
 				'downloadProgress': progress
@@ -181,109 +193,213 @@ class TopNav extends React.Component {
 		}
 	}
 
+	/**
+	* Callback invoked upon clicking a button to cancel downloading assets.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onDownloadCancel = () => {
+		console.log( "TODO" );
+	}
+
+	/**
+	* Callback invoked upon clicking a package navigation menu.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
 	_onPackageNavigationMenu = () => {
 		this.setState({
 			'dropdown': !this.state.dropdown
 		});
 	}
 
-	_closePackageNavigationMenu = () => {
+	/**
+	* Callback invoked upon closing a package navigation menu.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onPackageNavigationMenuClose = () => {
 		this.setState({
 			'dropdown': false
 		});
 	}
 
-	_onDrawerChange = ( value ) => {
-		this.props.onSideMenuChange( value );
+	/**
+	* Callback invoked upon toggling the side menu.
+	*
+	* @private
+	* @param {boolean} bool - boolean indicating whether a side menu is open or closed
+	*/
+	_onSideMenuToggle = ( bool ) => {
+		this.props.onSideMenuToggle( bool );
 		this.setState({
 			'dropdown': false
 		});
 	}
 
+	/**
+	* Callback invoked upon updating a search input element.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
 	_onSearchInput = ( event ) => {
 		// console.log( event.target.value );
 	}
 
-	render() {
+	/**
+	* Renders a side menu component.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderSideMenu() {
+		return (
+			<SideMenu
+				onToggle={ this._onSideMenuToggle }
+				onPackageChange={ this.props.onPackageChange }
+				onVersionChange={ this.props.onVersionChange }
+				open={ this.props.sideMenu }
+				version={ this.props.version }
+			/>
+		);
+	}
+
+	/**
+	* Renders a search input component.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderSearchInput() {
+		return (
+			<Fragment>
+				<InputBase
+					id="top-nav-search-input"
+					className="top-nav-search"
+					placeholder="Search documentation"
+					name="top-nav-search-input"
+					type="text"
+					inputProps={{
+						'aria-label': 'search documentation'
+					}}
+					onChange={ this._onSearchInput }
+				/>
+				<IconButton
+					type="submit"
+					className="icon-button top-nav-search-button"
+					aria-label="search"
+				>
+					<SearchIcon />
+				</IconButton>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Renders a package navigation menu.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderPackageNavigationMenu() {
 		var path = pkgPath( this.props.pkg, this.props.version );
 		return (
 			<Fragment>
-				{ this.state.downloadProgress ?
-					<LinearProgress
-						id="download-progress"
-						variant="determinate"
-						value={ this.state.downloadProgress }
-					/>
-					: null
-				}
+				<IconButton
+					className="icon-button top-nav-items-menu-button"
+					aria-label="toggle navigation menu"
+					title="Toggle package navigation menu"
+					onClick={ this._onPackageNavigationMenu }
+				>
+					<ExpandMoreIcon />
+				</IconButton>
+				<ul
+					className={ this.state.dropdown ? 'top-nav-items-dropdown' : 'top-nav-items' }
+					onClick={ this._onPackageNavigationMenuClose }
+				>
+					{ this.props.home ? home() : null }
+					{ this.props.docs ? docs( path ) : null }
+					{ this.props.benchmarks ? bench( path ) : null }
+					{ this.props.tests ? test( path ) : null }
+					{ this.props.src ? src( this.props.pkg, this.props.version ) : null }
+					{ this.props.typescript ? ts( this.props.pkg ) : null }
+				</ul>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Renders a component for downloading assets.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderDownloadButton() {
+		if ( this.state.downloadProgress ) {
+			return (
+				<IconButton
+					className="icon-button top-nav-download-button"
+					aria-label="cancel download"
+					title="Cancel download"
+					onClick={ this._onDownloadCancel }
+				>
+					<CancelIcon />
+				</IconButton>
+			);
+		}
+		return (
+			<IconButton
+				className="icon-button top-nav-download-button"
+				aria-label="download documentation for offline access"
+				title="Download documentation for offline access"
+				onClick={ this._onDownloadClick }
+			>
+				<GetAppIcon />
+			</IconButton>
+		);
+	}
+
+	/**
+	* Renders a component for displaying a download progress bar.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderDownloadProgress() {
+		if ( this.state.downloadProgress ) {
+			return (
+				<LinearProgress
+					id="download-progress"
+					variant="determinate"
+					value={ this.state.downloadProgress }
+				/>
+			);
+		}
+		return null;
+	}
+
+	/**
+	* Renders a component.
+	*
+	* @returns {JSX} rendered component
+	*/
+	render() {
+		return (
+			<Fragment>
+				{ this._renderDownloadProgress() }
 				<nav
 					className={ 'top-nav '+( this.props.sideMenu ? 'side-menu-open' : '' ) }
 					aria-label="Main"
 				>
-					<SideMenu
-						onDrawerChange={ this._onDrawerChange }
-						onPackageChange={ this.props.onPackageChange }
-						onVersionChange={ this.props.onVersionChange }
-						open={ this.props.sideMenu }
-						version={ this.props.version }
-					/>
-					<InputBase
-						id="top-nav-search-input"
-						className="top-nav-search"
-						placeholder="Search documentation"
-						name="top-nav-search-input"
-						type="text"
-						inputProps={{
-							'aria-label': 'search documentation'
-						}}
-						onChange={ this._onSearchInput }
-					/>
-					<IconButton
-						type="submit"
-						className="icon-button top-nav-search-button"
-						aria-label="search"
-					>
-						<SearchIcon />
-					</IconButton>
+					{ this._renderSideMenu() }
+					{ this._renderSearchInput() }
 					<span class="top-nav-divider"></span>
-					<IconButton
-						className="icon-button top-nav-items-menu-button"
-						aria-label="toggle navigation menu"
-						title="Toggle package navigation menu"
-						onClick={ this._onPackageNavigationMenu }
-					>
-						<ExpandMoreIcon />
-					</IconButton>
-					<ul
-						className={ this.state.dropdown ? 'top-nav-items-dropdown' : 'top-nav-items' }
-						onClick={ this._closePackageNavigationMenu }
-					>
-						{ this.props.home ? home() : null }
-						{ this.props.docs ? docs( path ) : null }
-						{ this.props.benchmarks ? bench( path ) : null }
-						{ this.props.tests ? test( path ) : null }
-						{ this.props.src ? src( this.props.pkg, this.props.version ) : null }
-						{ this.props.typescript ? ts( this.props.pkg ) : null }
-					</ul>
-					{ this.state.downloadProgress ?
-						<IconButton
-							className="icon-button top-nav-download-button"
-							aria-label="cancel download"
-							title="Cancel download"
-							onClick={ () => console.log( "TODO" ) }
-						>
-							<CancelIcon />
-						</IconButton>
-						:
-						<IconButton
-							className="icon-button top-nav-download-button"
-							aria-label="download documentation for offline access"
-							title="Download documentation for offline access"
-							onClick={ this._downloadAssets }
-						>
-							<GetAppIcon />
-						</IconButton>
-					}
+					{ this._renderPackageNavigationMenu() }
+					{ this._renderDownloadButton() }
 				</nav>
 			</Fragment>
 		);

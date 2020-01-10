@@ -25,11 +25,12 @@ import config from './config.js';
 // MAIN //
 
 /**
-* Returns a React component for rendering a welcome page.
+* Renders a welcome page.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {ReactComponent} React component
+* @param {string} props.version - version
+* @returns {JSX} rendered component
 */
 function Welcome( props ) {
 	return (

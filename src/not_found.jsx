@@ -25,11 +25,11 @@ import config from './config.js';
 // MAIN //
 
 /**
-* Returns a React component for when a resource is not found.
+* Renders a component for when a resource is not found.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {ReactComponent} React component
+* @returns {JSX} rendered component
 */
 function NotFound() {
 	return (

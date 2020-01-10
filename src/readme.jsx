@@ -24,11 +24,12 @@ import React from 'react';
 // MAIN //
 
 /**
-* Returns a React component for rendering a README.
+* Renders a README.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {ReactComponent} React component
+* @param {string} props.html - README HTML
+* @returns {JSX} rendered component
 */
 function Readme( props ) {
 	return (

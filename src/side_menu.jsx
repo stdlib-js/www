@@ -44,25 +44,71 @@ const COLLAPSE_TRANSITION_TIMEOUT = 500;
 
 // MAIN //
 
-class MenuBar extends React.Component {
+/**
+* Component for rendering a side menu for navigating project packages.
+*
+* @private
+*/
+class SideMenu extends React.Component {
+	/**
+	* Returns a component for rendering a side menu for navigating project packages.
+	*
+	* @constructor
+	* @param {Object} props - component properties
+	* @param {Callback} props.onToggle - callback to invoke upon toggling the side menu
+	* @param {Callback} props.onPackageChange - callback to invoke upon a change to the selected package
+	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
+	* @param {boolean} props.open - boolean indicating whether the side menu is open
+	* @param {string} props.version - documentation version
+	* @returns {ReactComponent} component
+	*/
 	constructor( props ) {
 		super( props )
 		this.state = {
-			'activePkg': null,
+			'active': null,
 			'filter': '',
 			'found': {}
 		};
 	}
 
-	_onDrawerOpen = () => {
-		this.props.onDrawerChange( true );
+	/**
+	* Callback invoked upon opening the side menu.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onMenuOpen = () => {
+		this.props.onToggle( true );
 	}
 
-	_onDrawerClose = () => {
-		this.props.onDrawerChange( false );
+	/**
+	* Callback invoked upon closing the side menu.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onMenuClose = () => {
+		this.props.onToggle( false );
 	}
 
-	_onClickFactory( pkg ) {
+	/**
+	* Callback invoked upon changing the version.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onVersionChange = ( event ) => {
+		this.props.onVersionChange( event.target.value );
+	}
+
+	/**
+	* Returns a callback which is invoked upon clicking on a specified namespace package.
+	*
+	* @private
+	* @param {string} pkg - package namespace
+	* @returns {Callback} event handler
+	*/
+	_onNamespaceClickFactory( pkg ) {
 		var self;
 		var path;
 
@@ -95,102 +141,58 @@ class MenuBar extends React.Component {
 			state = {};
 			state[ pkg ] = active;
 			if ( active ) {
-				state.activePkg = pkg;
+				state.active = pkg;
 				self.props.onPackageChange( path );
 			}
 			return state;
 		}
 	}
 
-	_onPackageClick( pkg ) {
-		this.setState({
-			'activePkg': pkg
-		});
+	/**
+	* Returns a callback which is invoked upon clicking on a specified package.
+	*
+	* @private
+	* @param {string} pkg - package name
+	* @returns {Callback} event handler
+	*/
+	_onPackageClickFactory( pkg ) {
+		var self;
+		var path;
+
+		self = this;
+		path = config.mount + this.props.version + '/' + pkg;
+
+		return onClick;
+
+		/**
+		* Callback invoked upon clicking on a package.
+		*
+		* @private
+		* @param {Object} event - event object
+		*/
+		function onClick() {
+			self.props.onPackageChange( path );
+			self.setState({
+				'active': pkg
+			});
+		}
 	}
 
-	_renderItems( namespace, path, level ) {
-		var keys = Object.keys( namespace );
-		return keys.map( ( pkg ) => {
-			var pkgPath = path + '/' + pkg;
-			if ( pkg === '__namespace__' ) {
-				return null;
-			}
-			if ( typeof namespace[ pkg ] !== 'object' ) {
-				// Case: Individual package
-				if (
-					this.state.filter &&
-					!pkgPath.includes( this.state.filter )
-				) {
-					return null;
-				}
-				return (
-					<div key={ pkgPath }>
-						<ListItem
-							button
-							key={ pkgPath+'-item' }
-							className={ 'side-menu-list-item '+( (this.state.activePkg === pkgPath) ? 'active-package' : '' ) }
-							onClick={() => {
-								var path = config.mount + this.props.version + '/' + pkgPath;
-								this._onPackageClick( pkgPath );
-								this.props.onPackageChange( path );
-							}}
-							style={{
-								paddingLeft: 16 + 10 * level
-							}}
-						>
-							{pkg}
-						</ListItem>
-					</div>
-				)
-			}
-			// Case: Namespace package
-			if (
-				this.state.filter &&
-				!this.state.found[ pkgPath ] &&
-				!path.endsWith( this.state.filter )
-			) {
-				// Case: Filter does not match package or parent namespace
-				return null;
-			}
-			return (
-				<div key={pkgPath} >
-					<ListItem
-						button
-						onClick={ this._onClickFactory( pkgPath ) }
-						className={ 'side-menu-list-item-namespace '+( (this.state.activePkg === pkgPath) ? 'active-package' : '' ) }
-						style={{
-							paddingLeft: 16 + 10 * level
-						}}
-					>
-						{pkg}
-						<span
-							className="side-menu-list-item-namespace-icon"
-							title={ this.state[ pkgPath ] ? 'Collapse sub-menu' : 'Expand sub-menu' }
-						>
-							{ this.state[ pkgPath ] ?
-								<RemoveIcon className="side-menu-list-item-collapse-icon" /> :
-								<AddIcon className="side-menu-list-item-expand-icon" />
-							}
-						</span>
-					</ListItem>
-					<Collapse
-						in={ this.state[ pkgPath ] }
-						timeout={ COLLAPSE_TRANSITION_TIMEOUT }
-						unmountOnExit
-					>
-						{this._renderItems( namespace[ pkg ], pkgPath, level+1 )}
-					</Collapse>
-				</div>
-			)
-		} )
-	}
-
+	/**
+	* Callback invoked upon a change to the menu filter.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
 	_onFilterChange = ( event ) => {
-		var newFilter = event.target.value;
-		var self = this;
-		this.setState({
-			'filter': newFilter.toLowerCase()
-		}, clbk );
+		var state;
+		var self;
+
+		self = this;
+		state = {
+			'filter': event.target.value.toLowerCase()
+		};
+		this.setState( state, clbk );
 
 		/**
 		* Callback invoked after setting component state.
@@ -198,38 +200,60 @@ class MenuBar extends React.Component {
 		* @private
 		*/
 		function clbk() {
-			if ( !self.debounced ) {
-				self.debounced = debounce( 300, self._applyFilterChange );
+			if ( !self._debounced ) {
+				self._debounced = debounce( 300, self._filterMenu );
 			}
-			self.debounced();
+			self._debounced();
 		}
 	}
 
-	_applyFilterChange = () => {
+	/**
+	* Filters the menu.
+	*
+	* @private
+	* @returns {void}
+	*/
+	_filterMenu() {
 		var found;
 		var state;
 		var keys;
 		var tree;
 		var i;
-		if ( this.state.filter ) {
-			found = {};
-			tree = getPackageTree( this.props.version );
-			this._checkFilter( found, tree, '@stdlib', this.state.filter );
-			keys = Object.keys( found );
-			state = {};
-			for ( i = 0; i < keys.length; i++ ) {
-				state[ keys[ i ] ] = true;
-			}
-			this.setState({
-				...state,
-				'found': found
-			});
-		} else {
-			this._resetFilter();
+
+		if ( !this.state.filter ) {
+			return this._resetFilter();
 		}
+		tree = getPackageTree( this.props.version );
+		found = {};
+		this._applyFilter( found, tree, '@stdlib', this.state.filter );
+
+		keys = Object.keys( found );
+		state = {};
+		for ( i = 0; i < keys.length; i++ ) {
+			state[ keys[ i ] ] = true;
+		}
+		this.setState({
+			...state,
+			'found': found
+		});
 	}
 
-	_resetFilter = () => {
+	/**
+	* Callback invoked upon clicking a button to reset the menu filter.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onResetFilterClick = () => {
+		this._resetFilter();
+	}
+
+	/**
+	* Resets a menu filter.
+	*
+	* @private
+	*/
+	_resetFilter() {
 		var state;
 		var keys;
 		var i;
@@ -246,36 +270,150 @@ class MenuBar extends React.Component {
 		});
 	}
 
-	_checkFilter( state, docs, path, filter ) {
+	/**
+	* Applies a filter.
+	*
+	* @private
+	* @param {Object} out - destination object
+	* @param {Object} tree - package tree
+	* @param {string} path - namespace path
+	* @param {string} filter - filter to apply
+	* @returns {boolean} boolean indicating whether a match was found
+	*/
+	_applyFilter( out, tree, path, filter ) {
 		var matched;
 		var keys;
 		var pkg;
 		var flg;
 		var i;
 
-		keys = Object.keys( docs );
+		keys = Object.keys( tree );
 		for ( i = 0; i < keys.length; i++ ) {
 			pkg = keys[ i ];
-			if ( typeof docs[ pkg ] !== 'object' ) {
+			if ( typeof tree[ pkg ] !== 'object' ) {
 				if ( pkg.includes( filter ) ) {
 					matched = true;
 				}
 			} else if ( pkg.includes( filter ) ) {
 				matched = true;
-				state[ path+'/'+pkg ] = true;
+				out[ path+'/'+pkg ] = true;
 			} else {
-				flg = this._checkFilter( state, docs[ pkg ], path+'/'+pkg, filter );
+				flg = this._applyFilter( out, tree[ pkg ], path+'/'+pkg, filter );
 				if ( flg ) {
 					matched = true;
 				}
 			}
 		}
 		if ( matched  ) {
-			state[ path ] = true;
+			out[ path ] = true;
 		}
-		return matched;
+		return matched || false;
 	}
 
+	/**
+	* Renders menu items for a specified namespace.
+	*
+	* @private
+	* @param {Object} namespace - namespace
+	* @param {string} path - namespace path
+	* @param {number} level - namespace level
+	* @returns {Array<JSX>} rendered components
+	*/
+	_renderItems( namespace, path, level ) {
+		var self;
+		var keys;
+
+		self = this;
+		keys = Object.keys( namespace );
+
+		return keys.map( render );
+
+		/**
+		* Renders a menu item.
+		*
+		* @private
+		* @param {string} pkg - package name
+		* @param {number} idx - package index
+		* @returns {JSX} rendering component
+		*/
+		function render( pkg ) {
+			var pkgPath = path + '/' + pkg;
+			if ( pkg === '__namespace__' ) {
+				return null;
+			}
+			if ( typeof namespace[ pkg ] !== 'object' ) {
+				// Case: Individual package
+				if (
+					self.state.filter &&
+					!pkgPath.includes( self.state.filter )
+				) {
+					return null;
+				}
+				return (
+					<div key={ pkgPath }>
+						<ListItem
+							button
+							key={ pkgPath+'-item' }
+							className={ 'side-menu-list-item '+( (self.state.active === pkgPath) ? 'active-package' : '' ) }
+							onClick={ self._onPackageClickFactory( pkgPath ) }
+							style={{
+								paddingLeft: 16 + 10 * level
+							}}
+						>
+							{ pkg }
+						</ListItem>
+					</div>
+				);
+			}
+			// Case: Namespace package
+			if (
+				self.state.filter &&
+				!self.state.found[ pkgPath ] &&
+				!path.endsWith( self.state.filter )
+			) {
+				// Case: Filter does not match package or parent namespace
+				return null;
+			}
+			return (
+				<div key={ pkgPath } >
+					<ListItem
+						button
+						onClick={ self._onNamespaceClickFactory( pkgPath ) }
+						className={ 'side-menu-list-item-namespace '+( (self.state.active === pkgPath) ? 'active-package' : '' ) }
+						style={{
+							paddingLeft: 16 + 10*level
+						}}
+					>
+						{ pkg }
+						<span
+							className="side-menu-list-item-namespace-icon"
+							title={ self.state[ pkgPath ] ? 'Collapse sub-menu' : 'Expand sub-menu' }
+						>
+							{ self.state[ pkgPath ] ?
+								<RemoveIcon className="side-menu-list-item-collapse-icon" /> :
+								<AddIcon className="side-menu-list-item-expand-icon" />
+							}
+						</span>
+					</ListItem>
+					<Collapse
+						in={ self.state[ pkgPath ] }
+						timeout={ COLLAPSE_TRANSITION_TIMEOUT }
+						unmountOnExit
+					>
+						{ self._renderItems( namespace[ pkg ], pkgPath, level+1 ) }
+					</Collapse>
+				</div>
+			);
+		}
+	}
+
+	/**
+	* Callback invoked immediately after updating a component.
+	*
+	* @private
+	* @param {Object} _ - previous properties
+	* @param {Object} prev - previous state
+	*/
 	componentDidUpdate( _, prev ) {
 		var pathname;
 		var match;
@@ -284,17 +422,17 @@ class MenuBar extends React.Component {
 		var el;
 
 		pathname = this.props.history.location.pathname;
-		if ( !pathname.endsWith( this.state.activePkg ) ) {
+		if ( !pathname.endsWith( this.state.active ) ) {
 			path = pathname.substring( pathname.indexOf( '@stdlib' ) );
 			state = {};
 			state[ path ] = true;
-			state.activePkg = path;
+			state.active = path;
 			while ( ( match = RE_FORWARD_SLASH.exec( path) ) !== null ) {
 				state[ path.substring( 0, match.index ) ] = true;
 			}
 			this.setState( state );
 		}
-		if ( this.state.activePkg !== prev.activePkg ) {
+		if ( this.state.active !== prev.active ) {
 			el = document.getElementsByClassName( 'active-package' );
 			if ( el.length > 0 ) {
 				el = el[ 0 ];
@@ -312,6 +450,11 @@ class MenuBar extends React.Component {
 		}
 	}
 
+	/**
+	* Renders a component.
+	*
+	* @returns {JSX} rendered component
+	*/
 	render() {
 		var tree;
 		if ( !this.props.version ) {
@@ -325,7 +468,7 @@ class MenuBar extends React.Component {
 					className="icon-button"
 					color="inherit"
 					aria-label="open drawer"
-					onClick={ this._onDrawerOpen }
+					onClick={ this._onMenuOpen }
 					title="Open documentation navigation menu"
 				>
 					<MenuIcon id="menu-icon" />
@@ -341,12 +484,15 @@ class MenuBar extends React.Component {
 						}}
 					>
 						<div className="side-menu-head" >
-							<Link to={ config.mount+this.props.version+'/' } title="Navigate to documentation home">
+							<Link
+								to={ config.mount+this.props.version+'/' }
+								title="Navigate to documentation home"
+							>
 								<Logo />
 							</Link>
 							<IconButton
 								aria-label="close drawer"
-								onClick={ this._onDrawerClose }
+								onClick={ this._onMenuClose }
 								edge="start"
 								title="Close documentation navigation menu"
 							>
@@ -355,11 +501,17 @@ class MenuBar extends React.Component {
 						</div>
 						<select
 							className="side-menu-version-select"
-							onChange={ this.props.onVersionChange }
+							onChange={ this._onVersionChange }
 							value={ this.props.version }
 							title="Select documentation version"
 						>
-							{config.versions.map( ( val, key ) => <option key={ key } value={ val }>{ val }</option> )}
+							{
+								config.versions.map( function map( val, key ) {
+									return (
+										<option key={ key } value={ val }>{ val }</option>
+									);
+								});
+							}
 						</select>
 						<div className="side-menu-filter" >
 							<input
@@ -370,18 +522,18 @@ class MenuBar extends React.Component {
 								placeholder="Type here to filter menu..."
 								title="Filter documentation menu"
 							/>
-							{ this.state.filter ? <ClearIcon
-								className="side-menu-filter-clear"
-								title="Clear the current filter"
-								onClick={ this._resetFilter }
-							/> : null }
+							{ this.state.filter
+								? <ClearIcon
+									className="side-menu-filter-clear"
+									title="Clear the current filter"
+									onClick={ this._onResetFilterClick }
+								/>
+								: null
+							}
 						</div>
 						<div className="side-menu-list-wrapper" >
 							<List disablePadding >
-								{ tree ?
-									this._renderItems( tree, '@stdlib', 0 ) :
-									null
-								}
+								{ tree ? this._renderItems( tree, '@stdlib', 0 ) : null }
 							</List>
 						</div>
 					</Drawer>
@@ -394,4 +546,4 @@ class MenuBar extends React.Component {
 
 // EXPORTS //
 
-export default withRouter( MenuBar );
+export default withRouter( SideMenu );

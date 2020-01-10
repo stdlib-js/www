@@ -27,10 +27,10 @@ import config from './config.js';
 // MAIN //
 
 /**
-* Returns a React component for rendering an application on the server.
+* Renders an application on the server.
 *
 * @private
-* @returns {ReactComponent} React component
+* @returns {JSX} rendered component
 */
 function ServerApp() {
 	return (

@@ -26,10 +26,10 @@ import App from './app.jsx';
 // MAIN //
 
 /**
-* Returns a React component for rendering a client application.
+* Renders a client application.
 *
 * @private
-* @returns {ReactComponent} React component
+* @returns {JSX} rendered component
 */
 function ClientApp() {
 	return (

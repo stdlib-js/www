@@ -38,7 +38,20 @@ import config from './config.js';
 
 // MAIN //
 
+/**
+* Component for rendering the main application.
+*
+* @private
+*/
 class App extends React.Component {
+	/**
+	* Returns a component which renders the main application.
+	*
+	* @constructor
+	* @param {Object} props - component properties
+	* @param {Object} props.history - history object for navigation
+	* @returns {ReactComponent} component
+	*/
 	constructor( props ) {
 		var w;
 
@@ -55,7 +68,14 @@ class App extends React.Component {
 		};
 	}
 
-	_fetchPackageData = ( version, clbk ) => {
+	/**
+	* Retrieves package data for a specified documentation version.
+	*
+	* @private
+	* @param {string} version - documentation version
+	* @param {Callback} clbk - callback invoked upon retrieving package data
+	*/
+	_fetchPackageData( version, clbk ) {
 		var total;
 		var count;
 		var o;
@@ -111,7 +131,18 @@ class App extends React.Component {
 		}
 	}
 
-	_fetchFragment = ( path ) => {
+	/**
+	* Fetches a package README fragment.
+	*
+	* ## Notes
+	*
+	* -   If unable to immediately resolve a fragment, the method attempts to asynchronously resolve the fragment and manually updated the rendered application.
+	*
+	* @private
+	* @param {string} path - fragment path
+	* @returns {string} HTML string
+	*/
+	_fetchFragment( path ) {
 		var self;
 		var html;
 
@@ -149,12 +180,24 @@ class App extends React.Component {
 		}
 	}
 
-	_onSideMenuChange = ( value ) => {
+	/**
+	* Callback invoked upon toggling the side menu.
+	*
+	* @private
+	* @param {boolean} bool - boolean indicating whether the side menu is open or closed
+	*/
+	_onSideMenuToggle = ( bool ) => {
 		this.setState({
-			'sideMenu': value
+			'sideMenu': bool
 		});
 	}
 
+	/**
+	* Callback invoked upon a change to the current package.
+	*
+	* @private
+	* @param {string} path - package path
+	*/
 	_onPackageChange = ( path ) => {
 		// Update the history in order to navigate to the desired package:
 		this.props.history.push( path );
@@ -163,8 +206,14 @@ class App extends React.Component {
 		window.scrollTo( 0, 0 );
 	}
 
-	_onVersionChange = ( event ) => {
-		this._updateVersion( event.target.value, done );
+	/**
+	* Callback invoked upon a change to the current documentation version.
+	*
+	* @private
+	* @param {string} version - version
+	*/
+	_onVersionChange = ( version ) => {
+		this._updateVersion( version, done );
 
 		/**
 		* Callback invoked upon updating the version.
@@ -180,7 +229,14 @@ class App extends React.Component {
 		}
 	}
 
-	_updateVersion = ( version, done ) => {
+	/**
+	* Updates the documentation version.
+	*
+	* @private
+	* @param {string} version - version
+	* @param {Callback} done - callback to invoke upon completion
+	*/
+	_updateVersion( version, done ) {
 		var self = this;
 		this._fetchPackageData( version, clbk );
 
@@ -221,6 +277,16 @@ class App extends React.Component {
 		}
 	}
 
+	/**
+	* Updates rendered README content.
+	*
+	* ## Notes
+	*
+	* -   This method updates rendered content **outside** of the standard component lifecyle.
+	*
+	* @private
+	* @param {string} html - README content
+	*/
 	_updateReadme( html ) {
 		var el = document.getElementById( 'readme' );
 		if ( el ) {
@@ -228,13 +294,31 @@ class App extends React.Component {
 		}
 	}
 
-	_renderReadme = ( match ) => {
+	/**
+	* Renders a README.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @returns {JSX} rendered component
+	*/
+	_renderReadme( match ) {
 		return (
 			<Readme html={ this._fetchFragment( match.url ) } />
 		);
 	}
 
-	_renderBenchmark = ( match ) => {
+	/**
+	* Renders a benchmark.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
+	* @param {string} match.params.pkg - package name
+	* @returns {JSX} rendered component
+	*/
+	_renderBenchmark( match ) {
 		var resources = getPackageResources( this.state.version );
 		if ( resources ) {
 			resources = resources[ match.params.pkg ];
@@ -254,7 +338,17 @@ class App extends React.Component {
 		);
 	}
 
-	_renderTest = ( match ) => {
+	/**
+	* Renders tests.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
+	* @param {string} match.params.pkg - package name
+	* @returns {JSX} rendered component
+	*/
+	_renderTest( match ) {
 		var resources = getPackageResources( this.state.version );
 		if ( resources ) {
 			resources = resources[ match.params.pkg ];
@@ -274,13 +368,30 @@ class App extends React.Component {
 		);
 	}
 
-	_renderWelcome = () => {
+	/**
+	* Renders landing page content.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderWelcome() {
 		return (
 			<Welcome version={ this.state.version } />
 		);
 	}
 
-	_renderTopNav = ( content, match ) => {
+	/**
+	* Renders top navigation.
+	*
+	* @private
+	* @param {string} content - content type
+	* @param {Object} match - match object
+	* @param {Object} match.params - URL parameters
+	* @param {string} match.params.pkg - package name
+	* @param {string} match.params.version - documentation version
+	* @returns {JSX} rendered component
+	*/
+	_renderTopNav( content, match ) {
 		var resources;
 		var props;
 		var obj;
@@ -323,7 +434,7 @@ class App extends React.Component {
 		}
 		return (
 			<TopNav
-				onSideMenuChange={ this._onSideMenuChange }
+				onSideMenuToggle={ this._onSideMenuToggle }
 				onPackageChange={ this._onPackageChange }
 				onVersionChange={ this._onVersionChange }
 				sideMenu={ this.state.sideMenu }
@@ -332,7 +443,14 @@ class App extends React.Component {
 		);
 	}
 
-	_renderer = ( content ) => {
+	/**
+	* Returns a rendering function.
+	*
+	* @private
+	* @param {string} content - content type
+	* @returns {Function} rendering function
+	*/
+	_renderer( content ) {
 		var method;
 		var self;
 
@@ -349,12 +467,12 @@ class App extends React.Component {
 		return render;
 
 		/**
-		* Returns a React component for rendering the main content.
+		* Renders the main content.
 		*
 		* @private
 		* @param {Object} props - route properties
-		* @param {Object} props.match - match properties
-		* @returns {ReactComponent} React component
+		* @param {Object} props.match - match object
+		* @returns {JSX} rendered component
 		*/
 		function render( props ) {
 			return (
@@ -371,6 +489,9 @@ class App extends React.Component {
 		}
 	}
 
+	/**
+	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*/
 	componentDidMount() {
 		var pathname;
 		var version;
@@ -413,6 +534,11 @@ class App extends React.Component {
 		}
 	}
 
+	/**
+	* Renders a component.
+	*
+	* @returns {JSX} rendered component
+	*/
 	render() {
 		return (
 			<Fragment>
