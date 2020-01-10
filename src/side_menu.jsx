@@ -357,7 +357,7 @@ class SideMenu extends React.Component {
 							className={ 'side-menu-list-item '+( (self.state.active === pkgPath) ? 'active-package' : '' ) }
 							onClick={ self._onPackageClickFactory( pkgPath ) }
 							style={{
-								paddingLeft: 16 + 10 * level
+								paddingLeft: 16 + 10*level
 							}}
 						>
 							{ pkg }
@@ -389,9 +389,9 @@ class SideMenu extends React.Component {
 							className="side-menu-list-item-namespace-icon"
 							title={ self.state[ pkgPath ] ? 'Collapse sub-menu' : 'Expand sub-menu' }
 						>
-							{ self.state[ pkgPath ] ?
-								<RemoveIcon className="side-menu-list-item-collapse-icon" /> :
-								<AddIcon className="side-menu-list-item-expand-icon" />
+							{ self.state[ pkgPath ]
+								? <RemoveIcon className="side-menu-list-item-collapse-icon" />
+								: <AddIcon className="side-menu-list-item-expand-icon" />
 							}
 						</span>
 					</ListItem>
@@ -405,6 +405,112 @@ class SideMenu extends React.Component {
 				</div>
 			);
 		}
+	}
+
+	/**
+	* Renders the menu "head".
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderHead() {
+		return (
+			<div className="side-menu-head" >
+				<Link
+					to={ config.mount+this.props.version+'/' }
+					title="Navigate to documentation home"
+				>
+					<Logo />
+				</Link>
+				<IconButton
+					aria-label="close drawer"
+					onClick={ this._onMenuClose }
+					edge="start"
+					title="Close documentation navigation menu"
+				>
+					<ChevronLeftIcon className="MuiSvgIcon-root menu-close-icon" />
+				</IconButton>
+			</div>
+		);
+	}
+
+	/**
+	* Renders a menu to select a documentation version.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderVersionMenu() {
+		return (
+			<select
+				className="side-menu-version-select"
+				onChange={ this._onVersionChange }
+				value={ this.props.version }
+				title="Select documentation version"
+			>
+				{ config.versions.map( onOption ) }
+			</select>
+		);
+
+		/**
+		* Renders a menu option.
+		*
+		* @private
+		* @param {string} version - version
+		* @param {number} idx - index
+		* @returns {JSX} rendered component
+		*/
+		function onOption( version, idx ) {
+			return (
+				<option key={ idx } value={ version }>{ version }</option>
+			);
+		}
+	}
+
+	/**
+	* Renders a component to filter a menu.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderFilter() {
+		return (
+			<div className="side-menu-filter" >
+				<input
+					className="side-menu-filter-input"
+					type="text"
+					onChange={ this._onFilterChange }
+					value={ this.state.filter }
+					placeholder="Type here to filter menu..."
+					title="Filter documentation menu"
+				/>
+				{ this.state.filter
+					? <ClearIcon
+						className="side-menu-filter-clear"
+						title="Clear the current filter"
+						onClick={ this._onResetFilterClick }
+					/>
+					: null
+				}
+			</div>
+		);
+	}
+
+	/**
+	* Renders the menu list of packages.
+	*
+	* @private
+	* @returns {JSX} rendered component
+	*/
+	_renderList() {
+		var tree = getPackageTree( this.props.version );
+		return (
+			<div className="side-menu-list-wrapper" >
+				<List disablePadding >
+					{ tree ? this._renderItems( tree, '@stdlib', 0 ) : null }
+				</List>
+			</div>
+		);
 	}
 
 	/**
@@ -456,11 +562,9 @@ class SideMenu extends React.Component {
 	* @returns {JSX} rendered component
 	*/
 	render() {
-		var tree;
 		if ( !this.props.version ) {
 			return null;
 		}
-		tree = getPackageTree( this.props.version );
 		return (
 			<Fragment>
 				<IconButton
@@ -483,59 +587,10 @@ class SideMenu extends React.Component {
 							paper: 'side-menu-drawer'
 						}}
 					>
-						<div className="side-menu-head" >
-							<Link
-								to={ config.mount+this.props.version+'/' }
-								title="Navigate to documentation home"
-							>
-								<Logo />
-							</Link>
-							<IconButton
-								aria-label="close drawer"
-								onClick={ this._onMenuClose }
-								edge="start"
-								title="Close documentation navigation menu"
-							>
-								<ChevronLeftIcon className="MuiSvgIcon-root menu-close-icon" />
-							</IconButton>
-						</div>
-						<select
-							className="side-menu-version-select"
-							onChange={ this._onVersionChange }
-							value={ this.props.version }
-							title="Select documentation version"
-						>
-							{
-								config.versions.map( function map( val, key ) {
-									return (
-										<option key={ key } value={ val }>{ val }</option>
-									);
-								});
-							}
-						</select>
-						<div className="side-menu-filter" >
-							<input
-								className="side-menu-filter-input"
-								type="text"
-								onChange={ this._onFilterChange }
-								value={ this.state.filter }
-								placeholder="Type here to filter menu..."
-								title="Filter documentation menu"
-							/>
-							{ this.state.filter
-								? <ClearIcon
-									className="side-menu-filter-clear"
-									title="Clear the current filter"
-									onClick={ this._onResetFilterClick }
-								/>
-								: null
-							}
-						</div>
-						<div className="side-menu-list-wrapper" >
-							<List disablePadding >
-								{ tree ? this._renderItems( tree, '@stdlib', 0 ) : null }
-							</List>
-						</div>
+						{ this._renderHead() }
+						{ this._renderVersionMenu() }
+						{ this._renderFilter() }
+						{ this._renderList() }
 					</Drawer>
 				</div>
 			</Fragment>
