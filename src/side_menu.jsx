@@ -533,8 +533,10 @@ class SideMenu extends React.Component {
 			state = {};
 			state[ path ] = true;
 			state.active = path;
-			while ( ( match = RE_FORWARD_SLASH.exec( path) ) !== null ) {
+			match = RE_FORWARD_SLASH.exec( path );
+			while ( match ) {
 				state[ path.substring( 0, match.index ) ] = true;
+				match = RE_FORWARD_SLASH.exec( path );
 			}
 			this.setState( state );
 		}
