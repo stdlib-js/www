@@ -28,15 +28,15 @@
 #
 # ## Notes
 #
-# * We redirect all HTTP requests to HTTPS, and we redirect all www requests to non-www.
-# * We avoid www/non-www duplication, as this is harmful for SEO, and the non-www URL format is shorter to type.
+# -   We redirect all HTTP requests to HTTPS, and we redirect all www requests to non-www.
+# -   We avoid www/non-www duplication, as this is harmful for SEO, and the non-www URL format is shorter to type.
 #
 
 # Set a configuration for a virtual server.
 #
 # ## Notes
 #
-# * Redirects all HTTP requests to HTTPS.
+# -   Redirects all HTTP requests to HTTPS.
 #
 # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server
 server {
@@ -50,7 +50,7 @@ server {
   #
   # ## Notes
   #
-  # * Listen on both www and non-www hosts.
+  # -   Listen on both www and non-www hosts.
   #
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name stdlib.io www.stdlib.io;
@@ -63,7 +63,7 @@ server {
   #
   # ## Notes
   #
-  # * Avoids the redirect chain:
+  # -   Avoids the redirect chain:
   #
   #   ```text
   #   http://www -> https://www -> https://
@@ -77,7 +77,7 @@ server {
 #
 # ## Notes
 #
-# * Redirects all www requests to non-www.
+# -   Redirects all www requests to non-www.
 #
 # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server
 server {
@@ -91,7 +91,7 @@ server {
   #
   # ## Notes
   #
-  # * Listen on the www host.
+  # -   Listen on the www host.
   #
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name www.stdlib.io;
@@ -149,7 +149,7 @@ server {
   #
   # ## Notes
   #
-  # * Listen on the non-www host.
+  # -   Listen on the non-www host.
   #
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
   server_name stdlib.io;
