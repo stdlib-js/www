@@ -44,7 +44,7 @@ server {
   #
   # [1]: http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
   listen 80 default_server;
-  listen [::]:80 default_server ipv6only=on;
+  listen [::]:80 default_server;
 
   # Set the virtual server names.
   #
