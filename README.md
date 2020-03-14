@@ -42,7 +42,7 @@ See [LICENSE][stdlib-license].
 
 ## Copyright
 
-Copyright &copy; 2016-2019. The Stdlib [Authors][stdlib-authors].
+Copyright &copy; 2016-2020. The Stdlib [Authors][stdlib-authors].
 
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
