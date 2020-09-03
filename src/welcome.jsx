@@ -138,6 +138,16 @@ function Welcome( props ) {
 					</pre>
 
 					<p>
+						Once installed, stdlib packages can be individually required/imported to minimize load times and decrease bundle sizes. For example,
+					</p>
+
+					<pre>
+						<code className="hljs language-javascript">
+							var dswap = require( '@stdlib/blas/base/dswap' );
+						</code>
+					</pre>
+
+					<p>
 						To install globally for use as a command-line utility,
 					</p>
 
@@ -185,7 +195,7 @@ function Welcome( props ) {
 					<h2>Copyright</h2>
 
 					<p>
-						Copyright &copy; 2016-2019. The Stdlib <a href={ config.repository+'/graphs/contributors' } >Authors</a>.
+						Copyright &copy; 2016-2020. The Stdlib <a href={ config.repository+'/graphs/contributors' } >Authors</a>.
 					</p>
 
 				</section>
