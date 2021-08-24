@@ -47,7 +47,7 @@ function main() {
 		mkdir( dir );
 	}
 	opts = {
-		'base': '/docs/api/v' + stdlibVersion() + '/',
+		'base': '/docs/api/'+stdlibVersion()+'/',
 		'dir': join( stdlibPath(), 'lib', 'node_modules' ),
 		'ignore': [
 			'benchmark/**',

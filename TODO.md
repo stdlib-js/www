@@ -90,6 +90,8 @@
 
 26. Use of "Learn More" on www feature buttons (?; not even sure what this item refers to anymore 😢)
 
+    -   maybe to allow people to actually investigate further regarding stats, math, and other advertised functionality
+
 27. (docs) source view
 
     - rather than redirect to GitHub for source view, generate syntax highlighted HTML files for each source file

@@ -33,21 +33,27 @@ include $(TOOLS_MAKE_LIB_DIR)/node/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/notes/Makefile
 
 
-# TARGETS #
+# RULES #
 
+#/
 # Default target.
 #
-# This target is the default target.
-
+# @example
+# make
+#
+# @example
+# make all
+#/
 all: help
 
 .PHONY: all
 
-
-# Perform clean-up.
+#/
+# Runs the project's cleanup sequence.
 #
-# This target runs the project's cleanup sequence.
-
+# @example
+# make clean
+#/
 clean: clean-node
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(BUILD_DIR)
 

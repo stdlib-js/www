@@ -1,3 +1,20 @@
+#/
+# @license Apache-2.0
+#
+# Copyright (c) 2021 The Stdlib Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#/
 
 # VARIABLES #
 
@@ -11,24 +28,29 @@ FIND_MAKEFILES_FLAGS ?= \
 	-name '*.mk'
 
 
-# TARGETS #
+# RULES #
 
-# Print Makefile help.
+#/
+# Prints a help message and lists available targets.
 #
-# This target prints a help message and lists available targets.
-
+# @example
+# make help
+#/
 help:
 	$(QUIET) $(CAT) $(MAKE_USAGE)
 
 .PHONY: help
 
-
-# List Makefile targets.
+#/
+# Lists all Makefile targets.
 #
-# This target lists all Makefile targets.
+# ## Notes
 #
-# Note: the list of targets is NOT exhaustive, as it does not include targets which have not been explicitly declared PHONY targets and does not include targets declared via variables. These targets could be included by dumping the Makefile database `make -qp`, but not seen as necessary due to predominant use of PHONY.
-
+# -   The list of targets is NOT exhaustive, as it does not include targets which have not been explicitly declared PHONY targets and does not include targets declared via variables. These targets could be included by dumping the Makefile database `make -qp`, but not seen as necessary due to predominant use of PHONY.
+#
+# @example
+# make list-targets
+#/
 list-targets:
 	$(QUIET) find $(TOOLS_MAKE_DIR) $(FIND_MAKEFILES_FLAGS) \
 	| xargs grep '^.PHONY: ' \

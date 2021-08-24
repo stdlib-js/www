@@ -19,7 +19,7 @@ limitations under the License.
 -->
 
 <div class="image" align="center">
-    <img src="https://cdn.rawgit.com/stdlib-js/www/3cce9c709008d4ef37a78e41a835dcb5d2e1089e/docs/assets/logo_header.png" alt="stdlib logo">
+    <img src="https://cdn.jsdelivr.net/gh/stdlib-js/www@3cce9c709008d4ef37a78e41a835dcb5d2e1089e/docs/assets/logo_header.png" alt="stdlib logo">
     <br>
 </div>
 
@@ -42,7 +42,7 @@ See [LICENSE][stdlib-license].
 
 ## Copyright
 
-Copyright &copy; 2016-2020. The Stdlib [Authors][stdlib-authors].
+Copyright &copy; 2016-2021. The Stdlib [Authors][stdlib-authors].
 
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
