@@ -25,12 +25,13 @@
 var fs = require( 'fs' );
 var path = require( 'path' );
 var CleanCSS = require( 'clean-css' );
+var root = require( './root.js' );
 
 
 // VARIABLES //
 
 // Parent directory containing source CSS files:
-var dirpath = path.resolve( __dirname, '..', '..', 'public', 'css' );
+var dirpath = path.join( root(), 'public', 'css' );
 
 // Child directories containing source CSS files to bundle and minify:
 var dirs = [
@@ -64,9 +65,9 @@ function readFiles( list ) {
 	opts = {
 		'encoding': 'utf8'
 	};
-	out = new Array( list.length );
+	out = [];
 	for ( i = 0; i < list.length; i++ ) {
-		out[ i ] = fs.readFileSync( list[ i ], opts );
+		out.push( fs.readFileSync( list[ i ], opts ) );
 	}
 	return out;
 }
