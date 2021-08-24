@@ -247,7 +247,7 @@ server {
   error_log /var/log/www/stdlib.io/error.log warn;
 
   # Define a location directive for resolving the API documentation server status:
-  location ~ /docs/api/status {
+  location = /docs/api/status {
     # Set proxy headers passed to the proxied server.
     #
     # ## Usage
@@ -272,7 +272,7 @@ server {
   }
 
   # Define a location directive for pinging the API documentation server:
-  location ~ /docs/api/ping {
+  location = /docs/api/ping {
     # Set proxy headers passed to the proxied server.
     #
     # ## Usage
