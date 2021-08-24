@@ -27,8 +27,9 @@ var mkdir = require( 'fs' ).mkdirSync;
 var exists = require( '@stdlib/fs/exists' ).sync;
 var build = require( '@stdlib/_tools/docs/www/readme-fragment-file-tree' );
 var stdlibPath = require( './stdlib_path.js' );
-var stdlibVersion = require( './stdlib_version.js' );
 var documentationPath = require( './api_docs_path.js' );
+
+// var stdlibVersion = require( './stdlib_version.js' );
 
 
 // MAIN //
@@ -47,7 +48,7 @@ function main() {
 		mkdir( dir );
 	}
 	opts = {
-		'base': '/docs/api/v' + stdlibVersion() + '/',
+		'base': '/docs/api/latest/', // '/docs/api/v' + stdlibVersion() + '/',
 		'dir': join( stdlibPath(), 'lib', 'node_modules' ),
 		'ignore': [
 			'benchmark/**',
