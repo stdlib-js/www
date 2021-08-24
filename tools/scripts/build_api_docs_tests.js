@@ -28,9 +28,8 @@ var exists = require( '@stdlib/fs/exists' ).sync;
 var cwd = require( '@stdlib/process/cwd' );
 var build = require( '@stdlib/_tools/docs/www/test-bundles' );
 var stdlibPath = require( './stdlib_path.js' );
+var stdlibVersion = require( './stdlib_version.js' );
 var documentationPath = require( './api_docs_path.js' );
-
-// var stdlibVersion = require( './stdlib_version.js' );
 
 
 // MAIN //
@@ -54,7 +53,7 @@ function main() {
 	sdir = stdlibPath();
 	opts = {
 		'dir': join( sdir, 'lib', 'node_modules' ),
-		'mount': '/docs/api/latest/', // '/docs/api/v'+stdlibVersion()+'/',
+		'mount': '/docs/api/'+stdlibVersion()+'/',
 		'ignore': [
 			'benchmark/**',
 			'bin/**',

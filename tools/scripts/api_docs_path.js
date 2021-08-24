@@ -34,7 +34,7 @@ var version = require( './stdlib_version.js' );
 * @returns {string} API documentation path
 */
 function path() {
-	return join( root(), 'public', 'docs', 'api', 'v'+version() );
+	return join( root(), 'public', 'docs', 'api', version() );
 }
 
 
