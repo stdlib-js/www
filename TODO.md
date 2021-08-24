@@ -106,7 +106,7 @@
     - git pull
     - rm -rf ./node_modules
     - npm run install:production
-    - nginx -s stop
+    - sudo nginx -s stop
     - rm -rf /etc/nginx
     - cp -R ./etc/nginx/ /etc/nginx/
     - symlink sites-available to sites-enabled
@@ -162,9 +162,21 @@
         -   ability to select/de-select all versions
         -   option to specify "latest" (if so, then we need to be able to check for updates and to prompt the user when new docs are available)
 
-35.
+35. (docs) add support for an RSS and/or Atom feed?
 
-36.
+    -   <https://www.lifewire.com/how-to-add-rss-feed-3469294>
+    -   <https://github.com/dylang/node-rss>
+    -   <https://www.wikihow.com/Create-an-RSS-Feed>
+    -   <https://en.wikipedia.org/wiki/Atom_(Web_standard)>
+    -   basic idea would be to allow users to subscribe to updates to particular packages, which is not really possible now
+    -   upon viewing the documentation for a particular package, a user could subscribe to a feed for that package
+    -   probably possible to convert the Git commit log, provided certain standards are followed, into an RSS and/or Atom feed
+
+36. (docs) refactor the side bar menu to not inject SVG icons
+
+    -   instead rely on CSS background images.
+    -   Why? Otherwise, we inject a lot of duplicate DOM nodes when we could instead point to a single SVG file that the browser can cache and present.
+    -   In short, we can leverage CSS to get a perf boost.
 
 37.
 
