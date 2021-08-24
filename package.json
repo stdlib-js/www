@@ -24,7 +24,7 @@
     "build:api_docs:html_fragments": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_html_fragments.js",
     "build:api_docs:pkg_tree": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_pkg_tree.js",
     "build:api_docs:tests": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_tests.js",
-    "build:css": "node ./tools/scripts/minify_css.js",
+    "build:css": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/minify_css.js",
     "clean": "npm run clean:api_docs:app",
     "clean:api_docs:app": "rm -rf ./public/docs/api/static && rm -f ./public/docs/api/service-worker.js ./public/docs/api/precache-manifest.*.js ./public/docs/api/index.html ./public/docs/api/asset-manifest.json",
     "install:development": "npm run install:production",
