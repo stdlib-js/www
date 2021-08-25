@@ -1,7 +1,7 @@
 #/
 # @license Apache-2.0
 #
-# Copyright (c) 2019 The Stdlib Authors.
+# Copyright (c) 2021 The Stdlib Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,91 +16,158 @@
 # limitations under the License.
 #/
 
+# EditorConfig configuration file (see <http://editorconfig.org/>).
+
+# Indicate that this file is a root-level configuration file:
 root = true
 
+# Set properties for all files:
 [*]
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.js]
+# Set properties for JavaScript files:
+[*.{js,js.txt}]
 indent_style = tab
 
-[*.py]
+# Set properties for JavaScript ES module files:
+[*.{mjs,mjs.txt}]
+indent_style = tab
+
+# Set properties for JavaScript CommonJS files:
+[*.{cjs,cjs.txt}]
+indent_style = tab
+
+# Set properties for JSON files:
+[*.{json,json.txt}]
+indent_style = space
+indent_size = 2
+
+# Set properties for TypeScript files:
+[*.ts]
+indent_style = tab
+
+# Set properties for Python files:
+[*.{py,py.txt}]
 indent_style = space
 indent_size = 4
 
-[*.jl]
+# Set properties for Julia files:
+[*.{jl,jl.txt}]
 indent_style = tab
 
-[*.R]
+# Set properties for R files:
+[*.{R,R.txt}]
 indent_style = tab
 
-[*.c]
+# Set properties for C files:
+[*.{c,c.txt}]
 indent_style = tab
 
-[*.h]
+# Set properties for C header files:
+[*.{h,h.txt}]
 indent_style = tab
 
-[*.cpp]
+# Set properties for C++ files:
+[*.{cpp,cpp.txt}]
 indent_style = tab
 
-[*.hpp]
+# Set properties for C++ header files:
+[*.{hpp,hpp.txt}]
 indent_style = tab
 
-[*.f]
+# Set properties for Fortran files:
+[*.{f,f.txt}]
 indent_style = space
 indent_size = 2
 insert_final_newline = false
 
-[*.sh]
+# Set properties for shell files:
+[*.{sh,sh.txt}]
 indent_style = tab
 
-[*.awk]
+# Set properties for AWK files:
+[*.{awk,awk.txt}]
 indent_style = tab
 
-[*.html]
+# Set properties for HTML files:
+[*.{html,html.txt}]
 indent_style = tab
 tab_width = 2
 
-[*.css]
+# Set properties for XML files:
+[*.{xml,xml.txt}]
+indent_style = tab
+tab_width = 2
+
+# Set properties for CSS files:
+[*.{css,css.txt}]
 indent_style = tab
 
+# Set properties for Makefiles:
 [Makefile]
 indent_style = tab
 
-[*.mk]
+[*.{mk,mk.txt}]
 indent_style = tab
 
-[*.md]
+# Set properties for Markdown files:
+[*.{md,md.txt}]
 indent_style = space
 indent_size = 4
 trim_trailing_whitespace = false
 
+# Set properties for `usage.txt` files:
 [usage.txt]
 indent_style = space
 indent_size = 2
 
+# Set properties for `repl.txt` files:
 [repl.txt]
 indent_style = space
 indent_size = 4
 
-[package.json]
+# Set properties for `package.json` files:
+[package.{json,json.txt}]
 indent_style = space
 indent_size = 2
 
+# Set properties for `datapackage.json` files:
 [datapackage.json]
 indent_style = space
 indent_size = 2
 
-[*.bib]
-indent_style = tab
-
-[*.yml]
+# Set properties for `manifest.json` files:
+[manifest.json]
 indent_style = space
 indent_size = 2
 
+# Set properties for `tslint.json` files:
+[tslint.json]
+indent_style = space
+indent_size = 2
+
+# Set properties for `tsconfig.json` files:
+[tsconfig.json]
+indent_style = space
+indent_size = 2
+
+# Set properties for LaTeX files:
+[*.{tex,tex.txt}]
+indent_style = tab
+
+# Set properties for LaTeX Bibliography files:
+[*.{bib,bib.txt}]
+indent_style = tab
+
+# Set properties for YAML files:
+[*.{yml,yml.txt}]
+indent_style = space
+indent_size = 2
+
+# Set properties for GYP files:
 [binding.gyp]
 indent_style = space
 indent_size = 2
