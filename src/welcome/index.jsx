@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import Banner from './banner.jsx';
 import config from './config.js';
 
 
@@ -37,15 +38,7 @@ function Welcome( props ) {
 		<Fragment>
 			<div className="readme" >
 				<section className="banner" >
-					<div className="image" align="center" >
-						<br />
-						<br />
-						<img src="/img/logo_banner.svg" alt="stdlib logo" />
-						<br />
-						<br />
-						<br />
-						<br />
-					</div>
+					<Banner />
 				</section>
 				<section className="intro">
 					<p>
@@ -581,7 +574,7 @@ function Welcome( props ) {
 			</div>
 		</Fragment>
 	);
-};
+}
 
 
 // EXPORTS //

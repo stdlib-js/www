@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,38 +18,35 @@
 
 // MODULES //
 
-import React from 'react';
-import config from './config.js';
+import React, { Fragment } from 'react';
 
 
 // MAIN //
 
 /**
-* Renders the application footer.
+* Renders a component displaying the project banner.
 *
 * @private
 * @param {Object} props - component properties
 * @returns {JSX} rendered component
 */
-function Footer() {
+function Banner() {
 	return (
-		<footer>
-			<nav className="bottom-nav center" aria-label="Footer">
-				<a href={ config.funding } title="Help support the project">Donate</a>
-				{ ' / ' }
-				<a href={ config.mount } title="Documentation">Docs</a>
-				{ ' / ' }
-				<a href={ config.gitter } title="Talk to us on Gitter!">Chat</a>
-				{ ' / ' }
-				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
-				{ ' / ' }
-				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
-			</nav>
-		</footer>
+		<Fragment>
+			<div className="image" align="center" >
+				<br />
+				<br />
+				<img src="/img/logo_banner.svg" alt="stdlib logo" />
+				<br />
+				<br />
+				<br />
+				<br />
+			</div>
+		</Fragment>
 	);
 }
 
 
 // EXPORTS //
 
-export default Footer;
+export default Banner;

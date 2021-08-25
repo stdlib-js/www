@@ -47,7 +47,7 @@ function NotFound() {
 			</div>
 		</Fragment>
 	);
-};
+}
 
 
 // EXPORTS //
