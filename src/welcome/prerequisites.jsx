@@ -19,7 +19,6 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import config from './../config.js';
 
 
 // MAIN //
@@ -31,7 +30,7 @@ import config from './../config.js';
 * @param {Object} props - component properties
 * @returns {JSX} rendered component
 */
-function Prerequisites( props ) {
+function Prerequisites() {
 	return (
 		<Fragment>
 			<p>
