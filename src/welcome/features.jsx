@@ -35,10 +35,9 @@ import config from './../config.js';
 function Features( props ) {
 	return (
 		<Fragment>
-			<h2>Features</h2>
 			<ul>
 				<li>35+ <a href={ config.mount+props.version+'/@stdlib/stats/base/dists/' }>probability distributions</a>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
-				<li>40+ <a href={ config.mount+props.version+'/@stdlib/random/base/' }>seedable pseudorandom number generators</a> (PRNGs).</li>
+				<li>40+ seedable <a href={ config.mount+props.version+'/@stdlib/random/base/' }>pseudorandom number generators</a> (PRNGs).</li>
 				<li>200+ general <a href={ config.mount+props.version+'/@stdlib/utils/' }>utilities</a> for data transformation, functional programming, and asynchronous control flow.</li>
 				<li>200+ <a href={ config.mount+props.version+'/@stdlib/assert/' }>assertion utilities</a> for data validation and feature detection.</li>
 				<li>50+ <a href={ config.mount+props.version+'/@stdlib/datasets/' }>sample datasets</a> for testing and development.</li>
