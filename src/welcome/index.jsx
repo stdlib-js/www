@@ -24,6 +24,7 @@ import Banner from './banner.jsx';
 import Intro from './intro.jsx';
 import Features from './features.jsx';
 import Installation from './installation/index.jsx';
+import Prerequisites from './prerequisites.jsx';
 
 
 // MAIN //
