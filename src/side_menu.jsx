@@ -63,7 +63,7 @@ class SideMenu extends React.Component {
 	* @returns {ReactComponent} component
 	*/
 	constructor( props ) {
-		super( props )
+		super( props );
 		this.state = {
 			'active': null,
 			'filter': '',

@@ -19,8 +19,10 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import config from './../config.js';
 import Banner from './banner.jsx';
-import config from './config.js';
+import Intro from './intro.jsx';
+import Features from './features.jsx';
 
 
 // MAIN //
@@ -41,32 +43,18 @@ function Welcome( props ) {
 					<Banner />
 				</section>
 				<section className="intro">
-					<p>
-						stdlib (<a href="https://en.wikipedia.org/wiki/Help:IPA/English">/ˈstændərd lɪb/</a> "standard lib") is a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing applications. The library provides a collection of robust, high performance libraries for mathematics, statistics, data processing, streams, and more and includes many of the utilities you would expect from a standard library.
-					</p>
+					<Intro />
 				</section>
-				<section>
-					<h2>Features</h2>
-
-					<ul>
-						<li>35+ <a href={ config.mount+props.version+'/@stdlib/stats/base/dists/' }>probability distributions</a>, with support for evaluating probability density functions (PDFs), cumulative distribution functions (CDFs), quantiles, moments, and more.</li>
-						<li>40+ <a href={ config.mount+props.version+'/@stdlib/random/base/' }>seedable pseudorandom number generators</a> (PRNGs).</li>
-						<li>200+ general <a href={ config.mount+props.version+'/@stdlib/utils/' }>utilities</a> for data transformation, functional programming, and asynchronous control flow.</li>
-						<li>200+ <a href={ config.mount+props.version+'/@stdlib/assert/' }>assertion utilities</a> for data validation and feature detection.</li>
-						<li>50+ <a href={ config.mount+props.version+'/@stdlib/datasets/' }>sample datasets</a> for testing and development.</li>
-						<li>A <a href={ config.mount+props.version+'/@stdlib/plot/ctor' }>plot API</a> for data visualization and exploratory data analysis.</li>
-						<li>Native add-ons for interfacing with BLAS libraries, with pure JavaScript fallbacks.</li>
-						<li>A <a href={ config.mount+props.version+'/@stdlib/bench/harness' }>benchmark framework</a> supporting TAP.</li>
-						<li>REPL environment with integrated help and examples.</li>
-						<li>Can be bundled using <a href="http://browserify.org/">Browserify</a>, <a href="https://webpack.js.org/">Webpack</a>, and other bundlers for use in web browsers.</li>
-					</ul>
-
+				<section className="features">
+					<Features version={ props.version }/>
+				</section>
+				<section className="help">
 					<h2>Getting Help</h2>
-
 					<p>
 						Ask questions and get help from the community on the project's <a href={ config.gitter }>Gitter</a> channel.
 					</p>
-
+				</section>
+				<section className="installation">
 					<h2>Installation</h2>
 
 					<p>

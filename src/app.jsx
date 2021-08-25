@@ -22,7 +22,7 @@ import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import IframeResizer from './iframe_resizer.jsx';
-import Welcome from './welcome.jsx';
+import Welcome from './welcome/index.jsx';
 import Readme from './readme.jsx';
 import NotFound from './not_found.jsx';
 import notFoundHTML from './not_found_html.js';
