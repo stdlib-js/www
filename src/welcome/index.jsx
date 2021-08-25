@@ -27,6 +27,11 @@ import Installation from './installation/index.jsx';
 import Prerequisites from './prerequisites.jsx';
 
 
+// VARIABLES //
+
+var CURRENT_YEAR = ( new Date() ).getFullYear();
+
+
 // MAIN //
 
 /**
@@ -74,7 +79,7 @@ function Welcome( props ) {
 					</p>
 					<h2>Copyright</h2>
 					<p>
-						Copyright &copy; 2016-2021. The Stdlib <a href={ config.repository+'/graphs/contributors' } >Authors</a>.
+						Copyright &copy; 2016-{ CURRENT_YEAR }. The Stdlib <a href={ config.repository+'/graphs/contributors' } >Authors</a>.
 					</p>
 				</section>
 			</div>
