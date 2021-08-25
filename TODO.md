@@ -27,7 +27,7 @@
    -   we need a much shorter build process for this to realistically be viable, but may work for serving all non-package assets (e.g., API docs application, static www pages, etc)
    -   <https://github.com/linode/docs/blob/master/docs/websites/static-sites/install-gatsbyjs/index.md>
 
-6.
+6. (docs) consider adding link elements to section headings similar to how GitHub displays a link icon on hover which supports creating a link to that specific section
 
 7. (tools) use URL shortening for click tracking (e.g., Bit.ly)
 
@@ -81,6 +81,7 @@
 22. (docs) generate a ToC for each package README which can be used to populate a right-hand side-menu for navigation within package documentation
 
     -   this navigation element could also be used to house the benchmarks, tests, source, and other links for a package, but maybe we want to keep separate (?)
+    -   this would be similar in appearance to docusaurus, which may or may not be a good thing
 
 23. (www) background image slideshow? (see <https://tympanus.net/codrops/2012/01/02/fullscreen-background-image-slideshow-with-css3/>)
 
