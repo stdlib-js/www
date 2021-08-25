@@ -1,0 +1,175 @@
+<h1 id="iterdedupeby">iterDedupeBy</h1>
+<blockquote>
+<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which removes consecutive values that resolve to the same value according to a provided function.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterDedupeBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/dedupe-by'</span> );
+</code></pre>
+<h4 id="iterdedupeby-iterator-limit-fcn-">iterDedupeBy( iterator, [limit,] fcn )</h4>
+<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which removes consecutive values that resolve to the same value according to a provided function.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> it = iterDedupeBy( arr, fcn );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 3</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 4</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p>
+<ul>
+<li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li>
+<li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li>
+</ul>
+<p>The callback function is provided five arguments:</p>
+<ul>
+<li><strong>curr</strong>: current source iterated value.</li>
+<li><strong>sprev</strong>: previous source iterated value.</li>
+<li><strong>dprev</strong>: previous downstream iterated value.</li>
+<li><strong>index</strong>: source iteration index (zero-based).</li>
+<li><strong>acc</strong>: previous resolved value.</li>
+</ul>
+<p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> removes <strong>consecutive</strong> values which resolve to the same value and does <strong>not</strong> return globally "unique" values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-keyword">var</span> it = iterDedupeBy( arr, fcn );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>To specify the number of allowed consecutive duplicated values, provide a <code>limit</code> argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v;
+}
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> it = iterDedupeBy( arr, <span class="hljs-number">2</span>, fcn );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 1</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 2</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 3</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 3</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 4</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 4</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randi = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> iterDedupe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/dedupe'</span> );
+<span class="hljs-keyword">var</span> iterDedupeBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/dedupe-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> curr, sprev, dprev, i, acc </span>) </span>{
+    <span class="hljs-keyword">if</span> ( curr &#x3C; dprev ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">if</span> ( curr === dprev ) {
+        <span class="hljs-keyword">return</span> acc; <span class="hljs-comment">// ensures that duplicate values are removed</span>
+    }
+    <span class="hljs-comment">// curr > dprev</span>
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+}
+
+<span class="hljs-comment">// Create a seeded iterator for generating pseudorandom integers:</span>
+<span class="hljs-keyword">var</span> rand = randi( <span class="hljs-number">1</span>, <span class="hljs-number">10</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create an iterator which removes consecutive duplicated values:</span>
+<span class="hljs-keyword">var</span> deduped = iterDedupe( rand );
+
+<span class="hljs-comment">// Create an iterator which forces consecutive values to follow an alternating less than, greater than pattern:</span>
+<span class="hljs-keyword">var</span> it = iterDedupeBy( deduped, fcn );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

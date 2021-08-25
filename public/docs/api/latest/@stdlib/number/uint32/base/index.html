@@ -1,0 +1,42 @@
+<h1 id="uint32">Uint32</h1>
+<blockquote>
+<p>Base utilities for unsigned 32-bit integers.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Base utilities for unsigned 32-bit integers.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/uint32/base/from-binary-string"><code>fromBinaryStringUint32( bstr )</code></a></span><span class="delimiter">: </span><span class="description">create an unsigned 32-bit integer from a literal bit representation.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/uint32/base/rotl"><code>rotl32( x, shift )</code></a></span><span class="delimiter">: </span><span class="description">bitwise rotation to the left.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/uint32/base/rotr"><code>rotr32( x, shift )</code></a></span><span class="delimiter">: </span><span class="description">bitwise rotation to the right.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/uint32/base/to-binary-string"><code>toBinaryStringUint32( x )</code></a></span><span class="delimiter">: </span><span class="description">return a string giving the literal bit representation of an unsigned 32-bit integer.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/uint32/base/to-int32"><code>uint32ToInt32( x )</code></a></span><span class="delimiter">: </span><span class="description">convert an unsigned 32-bit integer to a signed 32-bit integer.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

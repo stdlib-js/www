@@ -1,0 +1,159 @@
+<h1 id="bifurcateown">bifurcateOwn</h1>
+<blockquote>
+<p>Split an object's <strong>own</strong> property values into two groups according to a predicate function.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bifurcateOwn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/bifurcate-own'</span> );
+</code></pre>
+<h4 id="bifurcateown-obj-options-predicate-">bifurcateOwn( obj, [options,] predicate )</h4>
+<p>Splits an object's <strong>own</strong> property values into two groups according to a <code>predicate</code> function, which specifies which group a value in the input <code>object</code> belongs to. If a <code>predicate</code> function returns a truthy value, a value belongs to the first group; otherwise, a value belongs to the second group.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-string">'bar'</span>
+};
+
+<span class="hljs-keyword">var</span> out = bifurcateOwn( obj, predicate );
+<span class="hljs-comment">// e.g., returns [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]</span>
+</code></pre>
+<p>A <code>predicate</code> function is provided two arguments:</p>
+<ul>
+<li><code>value</code>: object value</li>
+<li><code>key</code>: object index</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v, k </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, k, v );
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-string">'bar'</span>
+};
+
+<span class="hljs-keyword">var</span> out = bifurcateOwn( obj, predicate );
+<span class="hljs-comment">// e.g., returns [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><code>returns</code>: specifies the output format. If the option equals <code>'values'</code>, the function outputs values. If the option equals <code>'keys'</code>, the function outputs keys. If the option equals <code>'*'</code>, the function outputs both keys and values. Default: <code>'values'</code>.</li>
+<li><code>thisArg</code>: execution context.</li>
+</ul>
+<p>By default, the function returns object values. To return object keys, set the <code>returns</code> option to <code>'keys'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-string">'bar'</span>
+};
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'keys'</span>
+};
+<span class="hljs-keyword">var</span> out = bifurcateOwn( obj, opts, predicate );
+<span class="hljs-comment">// e.g., returns [ [ 'a', 'b', 'd' ], [ 'c' ] ]</span>
+</code></pre>
+<p>To return key-value pairs, set the <code>returns</code> option to <code>'*'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-string">'bar'</span>
+};
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'*'</span>
+};
+<span class="hljs-keyword">var</span> out = bifurcateOwn( obj, opts, predicate );
+<span class="hljs-comment">// e.g., returns [ [ [ 'a', 'beep' ], [ 'b', 'boop ], [ 'd', 'bar' ] ], [ [ 'c', 'foo' ] ] ]</span>
+</code></pre>
+<p>To set the <code>predicate</code> execution context, provide a <code>thisArg</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v[ <span class="hljs-number">0</span> ] === <span class="hljs-string">'b'</span>;
+}
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'thisArg'</span>: context
+};
+<span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>,
+    <span class="hljs-string">'b'</span>: <span class="hljs-string">'boop'</span>,
+    <span class="hljs-string">'c'</span>: <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'d'</span>: <span class="hljs-string">'bar'</span>
+};
+<span class="hljs-keyword">var</span> out = bifurcateOwn( obj, opts, predicate );
+<span class="hljs-comment">// e.g., returns [ [ 'beep', 'boop', 'bar' ], [ 'foo' ] ]</span>
+
+<span class="hljs-built_in">console</span>.log( context.count );
+<span class="hljs-comment">// => 4</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Iteration order is <strong>not</strong> guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic iteration.</li>
+<li>Because iteration order is <strong>not</strong> guaranteed, result order is <strong>not</strong> guaranteed.</li>
+<li>The function determines the list of own enumerable properties <strong>before</strong> invoking the provided function. Hence, any modifications made to the input <code>object</code> <strong>after</strong> calling this function (such as adding and removing properties) will <strong>not</strong> affect the list of visited properties.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> fromCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/from-code-point'</span> );
+<span class="hljs-keyword">var</span> bifurcateOwn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/bifurcate-own'</span> );
+
+<span class="hljs-keyword">var</span> key;
+<span class="hljs-keyword">var</span> obj;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Generate a random object...</span>
+obj = {};
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    key = fromCodePoint( <span class="hljs-number">97</span>+i );
+    obj[ key ] = randu();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> ( v &#x3C; <span class="hljs-number">0.5</span> );
+}
+
+<span class="hljs-comment">// Compute the groups:</span>
+out = bifurcateOwn( obj, predicate );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

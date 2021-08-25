@@ -1,0 +1,69 @@
+<h1 id="capitalize">capitalize</h1>
+<blockquote>
+<p>Capitalize the first character in a string.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/capitalize'</span> );
+</code></pre>
+<h4 id="capitalize-str-">capitalize( str )</h4>
+<p>Capitalizes the first character in a <code>string</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = capitalize( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'Last man standing'</span>
+
+out = capitalize( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'Hidden Treasures'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/capitalize'</span> );
+
+<span class="hljs-keyword">var</span> str;
+
+str = capitalize( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'Last man standing'</span>
+
+str = capitalize( <span class="hljs-string">'presidential election'</span> );
+<span class="hljs-comment">// returns 'Presidential election'</span>
+
+str = capitalize( <span class="hljs-string">'javaScript'</span> );
+<span class="hljs-comment">// returns 'JavaScript'</span>
+
+str = capitalize( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'Hidden Treasures'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: capitalize [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ capitalize beep
+Beep
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beEp'</span> | capitalize
+BeEp
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

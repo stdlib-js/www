@@ -1,0 +1,66 @@
+<h1 id="maximum-typed-array-length">Maximum Typed Array Length</h1>
+<blockquote>
+<p>Maximum length for a typed array.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> MAX_TYPED_ARRAY_LENGTH = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/array/max-typed-array-length'</span> );
+</code></pre>
+<h4 id="max_typed_array_length">MAX_TYPED_ARRAY_LENGTH</h4>
+<p>Maximum length for a typed array.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = MAX_TYPED_ARRAY_LENGTH;
+<span class="hljs-comment">// returns 9007199254740991</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable stdlib/new-cap-error -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ctors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/ctors'</span> );
+<span class="hljs-keyword">var</span> MAX_TYPED_ARRAY_LENGTH = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/array/max-typed-array-length'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> dtype, len, value </span>) </span>{
+    <span class="hljs-keyword">var</span> ctor;
+    <span class="hljs-keyword">var</span> arr;
+    <span class="hljs-keyword">var</span> i;
+    <span class="hljs-keyword">if</span> ( len > MAX_TYPED_ARRAY_LENGTH ) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>( <span class="hljs-string">'invalid argument. The maximum length for a typed array is '</span>+MAX_TYPED_ARRAY_LENGTH+<span class="hljs-string">'.'</span> );
+    }
+    ctor = ctors( dtype );
+    arr = <span class="hljs-keyword">new</span> ctor( len );
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+        arr[ i ] = value;
+    }
+    <span class="hljs-keyword">return</span> arr;
+}
+
+<span class="hljs-keyword">var</span> arr = fill( <span class="hljs-string">'float64'</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-built_in">console</span>.log( arr );
+
+<span class="hljs-keyword">try</span> {
+    arr = fill( <span class="hljs-string">'float64'</span>, <span class="hljs-number">1e300</span>, <span class="hljs-number">3.14</span> );
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.error( err.message );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

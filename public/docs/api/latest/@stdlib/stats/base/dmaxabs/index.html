@@ -1,0 +1,108 @@
+<h1 id="dmaxabs">dmaxabs</h1>
+<blockquote>
+<p>Calculate the maximum absolute value of a double-precision floating-point strided array.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dmaxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dmaxabs'</span> );
+</code></pre>
+<h4 id="dmaxabs-n-x-stride-">dmaxabs( N, x, stride )</h4>
+<p>Computes the maximum absolute value of a double-precision floating-point strided array <code>x</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> N = x.length;
+
+<span class="hljs-keyword">var</span> v = dmaxabs( N, x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 2.0</span>
+</code></pre>
+<p>The function has the following parameters:</p>
+<ul>
+<li><strong>N</strong>: number of indexed elements.</li>
+<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
+<li><strong>stride</strong>: index increment for <code>x</code>.</li>
+</ul>
+<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to compute the maximum absolute value of every other element in <code>x</code>,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">7.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = dmaxabs( N, x, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
+<!-- eslint-disable stdlib/capitalized-comments -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+
+<span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> x1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x0.buffer, x0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
+
+<span class="hljs-keyword">var</span> N = floor( x0.length / <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = dmaxabs( N, x1, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre>
+<h4 id="dmaxabsndarray-n-x-stride-offset-">dmaxabs.ndarray( N, x, stride, offset )</h4>
+<p>Computes the maximum absolute value of a double-precision floating-point strided array using alternative indexing semantics.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> N = x.length;
+
+<span class="hljs-keyword">var</span> v = dmaxabs.ndarray( N, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns 2.0</span>
+</code></pre>
+<p>The function has the following additional parameters:</p>
+<ul>
+<li><strong>offset</strong>: starting index for <code>x</code>.</li>
+</ul>
+<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to calculate the maximum absolute value for every other value in <code>x</code> starting from the second value</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
+<span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
+
+<span class="hljs-keyword">var</span> v = dmaxabs.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 4.0</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If <code>N &#x3C;= 0</code>, both functions return <code>NaN</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> dmaxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dmaxabs'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    x[ i ] = round( (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span> );
+}
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> v = dmaxabs( x.length, x, <span class="hljs-number">1</span> );
+<span class="hljs-built_in">console</span>.log( v );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

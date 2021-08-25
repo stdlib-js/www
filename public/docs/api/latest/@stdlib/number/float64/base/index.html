@@ -1,0 +1,53 @@
+<h1 id="float64">Float64</h1>
+<blockquote>
+<p>Base utilities for double-precision floating-point numbers.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Base utilities for double-precision floating-point numbers.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/exponent"><code>exponent( x )</code></a></span><span class="delimiter">: </span><span class="description">return an integer corresponding to the unbiased exponent of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/from-binary-string"><code>fromBinaryString( bstr )</code></a></span><span class="delimiter">: </span><span class="description">create a double-precision floating-point number from a literal bit representation.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/from-int64-bytes"><code>fromInt64Bytes( bytes, stride, offset )</code></a></span><span class="delimiter">: </span><span class="description">convert a signed 64-bit integer byte array to a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/from-words"><code>fromWords( high, low )</code></a></span><span class="delimiter">: </span><span class="description">create a double-precision floating-point number from a higher order word and a lower order word.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/get-high-word"><code>getHighWord( x )</code></a></span><span class="delimiter">: </span><span class="description">return an unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/get-low-word"><code>getLowWord( x )</code></a></span><span class="delimiter">: </span><span class="description">return an unsigned 32-bit integer corresponding to the less significant 32 bits of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/normalize"><code>normalize( [out,] x )</code></a></span><span class="delimiter">: </span><span class="description">return a normal number <code>y</code> and exponent <code>exp</code> satisfying <code>x = y * 2^exp</code>.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/set-high-word"><code>setHighWord( x, high )</code></a></span><span class="delimiter">: </span><span class="description">set the more significant 32 bits of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/set-low-word"><code>setLowWord( x, low )</code></a></span><span class="delimiter">: </span><span class="description">set the less significant 32 bits of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/signbit"><code>signbit( x )</code></a></span><span class="delimiter">: </span><span class="description">return a boolean indicating if the sign bit for a double-precision floating-point number is on (true) or off (false).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/to-binary-string"><code>toBinaryString( x )</code></a></span><span class="delimiter">: </span><span class="description">return a string giving the literal bit representation of a double-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/to-float32"><code>float64ToFloat32( x )</code></a></span><span class="delimiter">: </span><span class="description">convert a double-precision floating-point number to the nearest single-precision floating-point number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/to-int32"><code>float64ToInt32( x )</code></a></span><span class="delimiter">: </span><span class="description">convert a double-precision floating-point number to a signed 32-bit integer.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/to-int64-bytes"><code>float64ToInt64Bytes( x )</code></a></span><span class="delimiter">: </span><span class="description">convert an integer-valued double-precision floating-point number to a signed 64-bit integer byte array according to host byte order (endianness).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/to-uint32"><code>float64ToUint32( x )</code></a></span><span class="delimiter">: </span><span class="description">convert a double-precision floating-point number to an unsigned 32-bit integer.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/number/float64/base/to-words"><code>toWords( [out,] x )</code></a></span><span class="delimiter">: </span><span class="description">split a double-precision floating-point number into a higher order word and a lower order word.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

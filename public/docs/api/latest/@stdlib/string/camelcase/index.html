@@ -1,0 +1,74 @@
+<h1 id="camelcase">camelcase</h1>
+<blockquote>
+<p>Convert a string to camel case.</p>
+</blockquote>
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> camelcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/camelcase'</span> );
+</code></pre>
+<h4 id="camelcase-str-">camelcase( str )</h4>
+<p>Converts a string to camel case.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = camelcase( <span class="hljs-string">'foo bar'</span> );
+<span class="hljs-comment">// returns 'fooBar'</span>
+
+out = camelcase( <span class="hljs-string">'IS_MOBILE'</span> );
+<span class="hljs-comment">// returns 'isMobile'</span>
+
+out = camelcase( <span class="hljs-string">'Hello World!'</span> );
+<span class="hljs-comment">// returns 'helloWorld'</span>
+
+out = camelcase( <span class="hljs-string">'--foo-bar--'</span> );
+<span class="hljs-comment">// returns 'fooBar'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> camelcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/camelcase'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> out = camelcase( str );
+<span class="hljs-comment">// returns 'helloWorld'</span>
+
+str = <span class="hljs-string">'HELLO WORLD!'</span>;
+out = camelcase( str );
+<span class="hljs-comment">// returns 'helloWorld'</span>
+
+str = <span class="hljs-string">'To be, or not to be: that is the question.'</span>;
+out = camelcase( str );
+<span class="hljs-comment">// returns 'toBeOrNotToBeThatIsTheQuestion'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: camelcase [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ camelcase <span class="hljs-string">'hello world!'</span>
+helloWorld
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beEp booP'</span> | camelcase
+beEpBooP
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

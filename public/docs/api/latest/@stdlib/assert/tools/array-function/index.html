@@ -1,0 +1,70 @@
+<h1 id="array-function">Array Function</h1>
+<blockquote>
+<p>Return a function which tests if every element in an array passes a test condition.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayfcn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/tools/array-function'</span> );
+</code></pre>
+<p><a name="arrayfcn"></a></p>
+<h4 id="arrayfcn-predicate-">arrayfcn( predicate )</h4>
+<p>Returns a function which tests if every element in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a> passes a test condition. Given an input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a>, the function returns <code>true</code> if all elements pass the test and <code>false</code> otherwise.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isOdd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-odd'</span> );
+
+<span class="hljs-keyword">var</span> arr1 = [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span> ];
+<span class="hljs-keyword">var</span> arr2 = [ <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-keyword">var</span> f = arrayfcn( isOdd );
+
+<span class="hljs-keyword">var</span> bool = f( arr1 );
+<span class="hljs-comment">// returns true</span>
+
+bool = f( arr2 );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The returned function will return <code>false</code> if <strong>not</strong> provided an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a>.</li>
+<li>The returned function will return <code>false</code> if provided an empty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a>.</li>
+<li>A <code>predicate</code> function should accept a single argument: an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a> element. If the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a> element satisfies a test condition, the <code>predicate</code> function should return <code>true</code>; otherwise, the <code>predicate</code> function should return <code>false</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isEven = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-even'</span> );
+<span class="hljs-keyword">var</span> arrayfcn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/tools/array-function'</span> );
+
+<span class="hljs-keyword">var</span> arr1;
+<span class="hljs-keyword">var</span> arr2;
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> f;
+<span class="hljs-keyword">var</span> i;
+
+arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">25</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr1.length; i++ ) {
+    arr1[ i ] = i;
+}
+
+arr2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">25</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr2.length; i++ ) {
+    arr2[ i ] = <span class="hljs-number">2</span> * i;
+}
+
+f = arrayfcn( isEven );
+
+bool = f( arr1 );
+<span class="hljs-comment">// returns false</span>
+
+bool = f( arr2 );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

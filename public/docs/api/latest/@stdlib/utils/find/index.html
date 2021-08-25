@@ -1,0 +1,169 @@
+<h1 id="find">Find</h1>
+<blockquote>
+<p>Find elements in an array-like object that satisfy a test condition.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> find = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/find'</span> );
+</code></pre>
+<h4 id="find-arr-opts-clbk-">find( arr, [opts,] clbk )</h4>
+<p>Finds elements in an array-like object that satisfy a test condition. The function accepts two options: <code>k</code> and <code>returns</code>.</p>
+<ul>
+<li>
+<p><strong>k</strong>: an <code>integer</code> which limits the number of elements returned and whose sign determines the direction in which to search. If set to a negative <code>integer</code>, the function searches from the last element to the first element.</p>
+</li>
+<li>
+<p><strong>returns</strong>: specifies the type of result to return and may be one of three options: <code>indices</code>, <code>values</code>, <code>*</code>.</p>
+<ul>
+<li><strong>indices</strong>: indicates to return the element indices of those elements satisfying the search condition.</li>
+<li><strong>values</strong>: indicates to return the element values of those elements satisfying the search condition.</li>
+<li><strong>*</strong>: indicates to return both the element indices and values of those elements satisfying the search condition. The returned result is an <code>array</code> of <code>arrays</code>, where each sub-array is an index-value pair.</li>
+</ul>
+</li>
+</ul>
+<p>The <code>callback</code> is provided three arguments:</p>
+<ul>
+<li><strong>element</strong>: the current element</li>
+<li><strong>index</strong>: the current element's index</li>
+<li><strong>array</strong>: the input <code>array</code>, <code>typed array</code> or <code>string</code></li>
+</ul>
+<p>By default, <code>k</code> is the length of <code>arr</code> and <code>returns</code> is set to <code>indices</code>.</p>
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">60</span>, <span class="hljs-number">10</span> ];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greaterThan20</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val > <span class="hljs-number">20</span>;
+}
+
+<span class="hljs-keyword">var</span> vals = find( data, greaterThan20 );
+<span class="hljs-comment">// returns [ 0, 2, 3 ]</span>
+
+data = <span class="hljs-string">'Hello World'</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isUpperCase</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-regexp">/[A-Z]/</span>.test( val );
+}
+
+vals = find( data, isUpperCase );
+<span class="hljs-comment">// returns [ 0, 6 ]</span>
+</code></pre>
+<p>To limit the number of results and specify that <code>values</code> should be returned,</p>
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">60</span>, <span class="hljs-number">10</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'k'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'values'</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">condition</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val > <span class="hljs-number">20</span>;
+}
+
+<span class="hljs-keyword">var</span> vals = find( data, opts, condition );
+<span class="hljs-comment">// returns [ 30, 50 ]</span>
+</code></pre>
+<p>If no <code>array</code> elements satisfy the test condition, the function returns an empty <code>array</code>.</p>
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">60</span>, <span class="hljs-number">10</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'k'</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'values'</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">condition</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val > <span class="hljs-number">1000</span>;
+}
+
+<span class="hljs-keyword">var</span> vals = find( data, opts, condition );
+<span class="hljs-comment">// returns []</span>
+</code></pre>
+<p>To find the last two values satisfying a search condition,</p>
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">60</span>, <span class="hljs-number">10</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'k'</span>: -<span class="hljs-number">2</span>,
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'values'</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">condition</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val > <span class="hljs-number">20</span>;
+}
+
+<span class="hljs-keyword">var</span> vals = find( data, opts, condition );
+<span class="hljs-comment">// returns [ 60, 50 ]</span>
+</code></pre>
+<p>To explicitly specify that only indices are returned,</p>
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">60</span>, <span class="hljs-number">10</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'k'</span>: -<span class="hljs-number">2</span>,
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'indices'</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">condition</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val > <span class="hljs-number">20</span>;
+}
+
+<span class="hljs-keyword">var</span> vals = find( data, opts, condition );
+<span class="hljs-comment">// returns [ 3, 2 ]</span>
+</code></pre>
+<p>And to return both indices and values as index-value pairs,</p>
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">60</span>, <span class="hljs-number">10</span> ];
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'k'</span>: -<span class="hljs-number">2</span>,
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'*'</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">condition</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val > <span class="hljs-number">20</span>;
+}
+
+<span class="hljs-keyword">var</span> vals = find( data, opts, condition );
+<span class="hljs-comment">// returns [ [3, 60], [2, 50] ]</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable stdlib/no-redeclare -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> find = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/find'</span> );
+
+<span class="hljs-keyword">var</span> data;
+<span class="hljs-keyword">var</span> opts;
+<span class="hljs-keyword">var</span> vals;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Simulate the data...</span>
+data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; data.length; i++ ) {
+    data[ i ] = round( randu*<span class="hljs-number">100</span> );
+}
+
+<span class="hljs-comment">// Find the first 10 values greater than 25...</span>
+opts = {
+    <span class="hljs-string">'k'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'returns'</span>: <span class="hljs-string">'*'</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">condition</span>(<span class="hljs-params"> val </span>) </span>{
+    <span class="hljs-keyword">return</span> val > <span class="hljs-number">25</span>;
+}
+
+vals = find( data, opts, condition );
+<span class="hljs-built_in">console</span>.log( vals.join( <span class="hljs-string">'\n'</span> ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

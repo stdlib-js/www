@@ -1,0 +1,126 @@
+<h1 id="ranks">ranks</h1>
+<blockquote>
+<p>Compute ranks for values of an array-like object.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ranks = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ranks'</span> );
+</code></pre>
+<h4 id="ranks-arr-opts-">ranks( arr[, opts] )</h4>
+<p>Returns the sample ranks of the elements in <code>arr</code>, which can be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays"><code>typed array</code></a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1.1</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.5</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.4</span> ];
+<span class="hljs-keyword">var</span> out = ranks( arr );
+<span class="hljs-comment">// returns [ 2, 3, 5, 1, 4 ]</span>
+
+<span class="hljs-comment">// Ties are averaged:</span>
+arr = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span> ];
+out = ranks( arr );
+<span class="hljs-comment">// returns [ 2.5, 2.5, 1, 5, 4 ];</span>
+
+<span class="hljs-comment">// Missing values are placed last:</span>
+arr = [ <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> ];
+out = ranks( arr );
+<span class="hljs-comment">// returns [ 6, 2.5, 2.5, 1, 5, 4, 7 ,8 ]</span>
+</code></pre>
+<p>The function accepts the following options:</p>
+<ul>
+<li><strong>method</strong>: <code>string</code> indicating how ties are handled. Can be one of the following values: <code>'average'</code>, <code>'min'</code>, <code>'max'</code>, <code>'ordinal'</code> and <code>'dense'</code>.  Default: <code>'average'</code>.</li>
+<li><strong>missing</strong>: <code>string</code> specifying how missing values are handled. Must be either <code>'last'</code>, <code>'first'</code> or <code>'remove'</code>. Default: <code>'last'</code>.</li>
+<li><strong>encoding</strong>: <code>array</code> holding all values which will be regarded as missing values. Default: <code>[ NaN, null]</code>.</li>
+</ul>
+<p>When all elements of the <code>array</code> are different, the ranks are uniquely determined. When there are equal elements (called <em>ties</em>), the <code>method</code> option determines how they are handled. The default, <code>'average'</code>, replace the ranks of the ties by their mean. Other possible options are <code>'min'</code> and <code>'max'</code>, which replace the ranks of the ties by their minimum and maximum, respectively. <code>'dense'</code> works like <code>'min'</code>, with the difference that the next highest element after a tie is assigned the next smallest integer. Finally, <code>ordinal</code> gives each element in <code>arr</code> a distinct rank, according to the position they appear in.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-comment">// Max method:</span>
+<span class="hljs-keyword">var</span> out = ranks( data, {
+    <span class="hljs-string">'method'</span>: <span class="hljs-string">'max'</span>
+});
+<span class="hljs-comment">// returns [ 3, 3, 1, 5, 4 ]</span>
+
+<span class="hljs-comment">// Min method:</span>
+out = ranks( data, {
+    <span class="hljs-string">'method'</span>: <span class="hljs-string">'min'</span>
+});
+<span class="hljs-comment">// returns [ 2, 2, 1, 5, 4 ]</span>
+
+<span class="hljs-comment">// Ordinal method</span>
+out = ranks( data, {
+    <span class="hljs-string">'method'</span>: <span class="hljs-string">'ordinal'</span>
+});
+<span class="hljs-comment">// returns [ 2, 3, 1, 5, 4 ]</span>
+
+<span class="hljs-comment">// Dense method:</span>
+out = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span> ];
+out = ranks( data, {
+    <span class="hljs-string">'method'</span>: <span class="hljs-string">'dense'</span>
+});
+<span class="hljs-comment">// returns [ 2, 2, 1, 4, 3 ]</span>
+</code></pre>
+<p>The <code>missing</code> option is used to specify how to handle missing data. By default, <code>NaN</code> or <code>null</code> are treated as missing values. <code>'last'</code>specifies that missing values are placed last, <code>'first'</code> that the are assigned the lowest ranks and <code>'remove'</code> means that they are removed from the array before the ranks are calculated.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = [ <span class="hljs-literal">NaN</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span> ];
+
+<span class="hljs-keyword">var</span> out = ranks( data, {
+    <span class="hljs-string">'missing'</span>: <span class="hljs-string">'first'</span>
+});
+<span class="hljs-comment">// returns [ 1, 5.5, 5.5, 4, 8, 7, 2, 3 ]</span>
+
+out = ranks( data, {
+    <span class="hljs-string">'missing'</span>: <span class="hljs-string">'last'</span>
+});
+<span class="hljs-comment">// returns [ 6, 2.5, 2.5, 1, 5, 4, 7 ,8 ]</span>
+
+out = ranks( data, {
+    <span class="hljs-string">'missing'</span>: <span class="hljs-string">'remove'</span>
+});
+<span class="hljs-comment">// returns [ 2.5, 2.5, 1, 5, 4 ]</span>
+</code></pre>
+<p>Custom encoding for missing values is supported via the <code>encoding</code> option, which allows to supply the function with an <code>array</code> of values which should be treated as missing.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">999</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> out = ranks( data, {
+    <span class="hljs-string">'encoding'</span>: [ -<span class="hljs-number">999</span> ]
+});
+<span class="hljs-comment">// returns [ 2, 1, 5, 3, 4 ]</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> ranks = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ranks'</span> );
+
+<span class="hljs-keyword">var</span> data;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Plain arrays...</span>
+data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; data.length; i++ ) {
+    data[ i ] = round( randu()*<span class="hljs-number">10.0</span> );
+}
+
+out = ranks( data );
+<span class="hljs-comment">// returns &#x3C;array></span>
+
+<span class="hljs-comment">// Typed arrays...</span>
+data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( <span class="hljs-number">10</span> );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; data.length; i++ ) {
+    data[ i ] = randu() * <span class="hljs-number">10.0</span>;
+}
+
+out = ranks( data );
+<span class="hljs-comment">// returns &#x3C;array></span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="references">
+</section>
+<!-- /.references -->
+<section class="links">
+</section>
+<!-- /.links -->

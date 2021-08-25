@@ -1,0 +1,32 @@
+<h1 id="is_darwin">IS_DARWIN</h1>
+<blockquote>
+<p>Boolean indicating if the current process is running on <a href="https://en.wikipedia.org/wiki/Darwin_%28operating_system%29">Darwin</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_DARWIN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-darwin'</span> );
+</code></pre>
+<h4 id="is_darwin-1">IS_DARWIN</h4>
+<p><code>Boolean</code> indicating if the current process is running on <a href="https://en.wikipedia.org/wiki/Darwin_%28operating_system%29">Darwin</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( IS_DARWIN );
+<span class="hljs-comment">// => &#x3C;boolean></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PLATFORM = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/os/platform'</span> );
+<span class="hljs-keyword">var</span> IS_DARWIN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-darwin'</span> );
+
+<span class="hljs-keyword">if</span> ( IS_DARWIN ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Running on Darwin...'</span> );
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Running on %s...'</span>, PLATFORM );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

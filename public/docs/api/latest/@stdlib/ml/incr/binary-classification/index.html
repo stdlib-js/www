@@ -1,0 +1,208 @@
+<h1 id="incrbinaryclassification">incrBinaryClassification</h1>
+<blockquote>
+<p>Incrementally perform binary classification using <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">stochastic gradient descent</a> (SGD).</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrBinaryClassification = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/incr/binary-classification'</span> );
+</code></pre>
+<h4 id="incrbinaryclassification-n-options-">incrBinaryClassification( N[, options] )</h4>
+<p>Returns an accumulator <code>function</code> which incrementally performs binary classification using <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">stochastic gradient descent</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create an accumulator for performing binary classification on 3-dimensional data:</span>
+<span class="hljs-keyword">var</span> accumulator = incrBinaryClassification( <span class="hljs-number">3</span> );
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li>
+<p><strong>intercept</strong>: <code>boolean</code> indicating whether to include an intercept. If <code>true</code>, an element equal to one is implicitly added to each provided feature vector (note, however, that the model does not perform regularization of the intercept term). If <code>false</code>, the model assumes that feature vectors are already centered. Default: <code>true</code>.</p>
+</li>
+<li>
+<p><strong>lambda</strong>: regularization parameter. The regularization parameter determines the amount of shrinkage inflicted on the model coefficients. Higher values reduce the variance of the model coefficient estimates at the expense of introducing bias. Default: <code>1.0e-4</code>.</p>
+</li>
+<li>
+<p><strong>learningRate</strong>: an array-like object containing the learning rate function and associated parameters. The learning rate function decides how fast or slow the model coefficients will be updated toward the optimal coefficients. Must be one of the following:</p>
+<ul>
+<li><code>['constant', ...]</code>: constant learning rate function. To set the learning rate, provide a second array element. By default, when the learn rate function is 'constant', the learning rate is set to <code>0.02</code>.</li>
+<li><code>['basic']</code>: basic learning rate function according to the formula <code>10/(10+t)</code> where <code>t</code> is the current iteration.</li>
+<li><code>['invscaling', ...]</code>: inverse scaling learning rate function according to the formula <code>eta0/pow(t, power_t)</code> where <code>eta0</code> is the initial learning rate and <code>power_t</code> is the exponent controlling how quickly the learning rate decreases. To set the initial learning rate, provide a second array element. By default, the initial learning rate is <code>0.02</code>. To set the exponent, provide a third array element. By default, the exponent is <code>0.5</code>.</li>
+<li><code>['pegasos']</code>: <a href="https://doi.org/10.1007/s10107-010-0420-4">Pegasos</a> learning rate function according to the formula <code>1/(lambda*t)</code> where <code>t</code> is the current iteration and <code>lambda</code> is the regularization parameter.</li>
+</ul>
+<p>Default: <code>['basic']</code>.</p>
+</li>
+<li>
+<p><strong>loss</strong>: loss function. Must be one of the following:</p>
+<ul>
+<li><code>hinge</code>: hinge loss function. Corresponds to a soft-margin linear Support Vector Machine (SVM), which can handle non-linearly separable data.</li>
+<li><code>log</code>: logistic loss function. Corresponds to Logistic Regression.</li>
+<li><code>modifiedHuber</code>: Huber loss function <a href="https://doi.org/10.1145/1015330.1015332">variant</a> for classification. </li>
+<li><code>perceptron</code>: hinge loss function without a margin. Corresponds to the original perceptron by Rosenblatt (1957).</li>
+<li><code>squaredHinge</code>: squared hinge loss function SVM (L2-SVM).</li>
+</ul>
+<p>Default: <code>'log'</code>.</p>
+</li>
+</ul>
+<p>By default, the model contains an intercept term. To omit the intercept, set the <code>intercept</code> option to <code>false</code>:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-comment">// Create a model with the intercept term:</span>
+<span class="hljs-keyword">var</span> acc = incrBinaryClassification( <span class="hljs-number">2</span>, {
+    <span class="hljs-string">'intercept'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-keyword">var</span> coefs = acc( array( [ <span class="hljs-number">1.4</span>, <span class="hljs-number">0.5</span> ] ), <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> dim = coefs.length;
+<span class="hljs-comment">// returns 3</span>
+
+<span class="hljs-comment">// Create a model without the intercept term:</span>
+acc = incrBinaryClassification( <span class="hljs-number">2</span>, {
+    <span class="hljs-string">'intercept'</span>: <span class="hljs-literal">false</span>
+});
+coefs = acc( array( [ <span class="hljs-number">1.4</span>, <span class="hljs-number">0.5</span> ] ), -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+dim = coefs.length;
+<span class="hljs-comment">// returns 2</span>
+</code></pre>
+<h4 id="accumulator-x-y-">accumulator( x, y )</h4>
+<p>If provided a feature vector <code>x</code> and response value <code>y</code> (either <code>+1</code> or <code>-1</code>), the accumulator function updates a binary classification model; otherwise, the accumulator function returns the current binary classification model coefficients.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-comment">// Create an accumulator:</span>
+<span class="hljs-keyword">var</span> acc = incrBinaryClassification( <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// Provide data to the accumulator...</span>
+<span class="hljs-keyword">var</span> x = array( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span> ] );
+
+<span class="hljs-keyword">var</span> coefs = acc( x, -<span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+x.set( <span class="hljs-number">0</span>, <span class="hljs-number">0.0</span> );
+x.set( <span class="hljs-number">1</span>, <span class="hljs-number">1.0</span> );
+
+coefs = acc( x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+x.set( <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span> );
+x.set( <span class="hljs-number">1</span>, <span class="hljs-number">1.0</span> );
+
+coefs = acc( x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+coefs = acc();
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre>
+<h4 id="accumulatorpredict-x-type-">accumulator.predict( X[, type] )</h4>
+<p>Computes predicted response values for one or more observation vectors <code>X</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-comment">// Create a model with the intercept term:</span>
+<span class="hljs-keyword">var</span> acc = incrBinaryClassification( <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> label = acc.predict( array( [ <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre>
+<p>Provided an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> having shape <code>(..., N)</code>, where <code>N</code> is the number of features, the returned <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> has shape <code>(...)</code> (i.e., the number of dimensions is reduced by one) and data type <code>float64</code>. For example, if provided a one-dimensional <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>, the method returns a zero-dimensional <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> whose only element is the predicted response value.</p>
+<p>By default, the method returns the predict label (<code>type='label'</code>). In order to return a prediction probability of a <code>+1</code> response value given either the logistic (<code>log</code>) or modified Huber (<code>modifiedHuber</code>) loss functions, set the second argument to <code>'probability'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-comment">// Create a model with the intercept term:</span>
+<span class="hljs-keyword">var</span> acc = incrBinaryClassification( <span class="hljs-number">2</span>, {
+    <span class="hljs-string">'loss'</span>: <span class="hljs-string">'log'</span>
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> phat = acc.predict( array( [ <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span> ] ), <span class="hljs-string">'probability'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre>
+<p>In order to return the linear predictor (i.e., the signed distance to the hyperplane, which is computed as the dot product between the model coefficients and the provided feature vector <code>x</code>, plus the intercept), set the second argument to <code>'linear'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-comment">// Create a model with the intercept term:</span>
+<span class="hljs-keyword">var</span> acc = incrBinaryClassification( <span class="hljs-number">2</span>, {
+    <span class="hljs-string">'loss'</span>: <span class="hljs-string">'log'</span>
+});
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> lp = acc.predict( array( [ <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span> ] ), <span class="hljs-string">'linear'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre>
+<p>Given a feature vector <code>x = [x_0, x_1, ...]</code> and model coefficients <code>c = [c_0, c_1, ...]</code>, the linear predictor is equal to <code>(x_0*c_0) + (x_1*c_1) + ... + c_intercept</code>.</p>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The underlying binary classification model performs <a href="https://en.wikipedia.org/wiki/Tikhonov_regularization">L2 regularization</a> of model coefficients, shrinking them toward zero by penalizing their squared <a href="https://en.wikipedia.org/wiki/Norm_%28mathematics%29#Euclidean_norm">euclidean norm</a>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">Stochastic gradient descent</a> is sensitive to the scaling of the features. One is advised to either scale each feature to <code>[0,1]</code> or <code>[-1,1]</code> or to transform each feature into z-scores with zero mean and unit variance. One should keep in mind that the same scaling has to be applied to training data in order to obtain accurate predictions.</li>
+<li>In general, the more data provided to an accumulator, the more reliable the model predictions.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
+<span class="hljs-keyword">var</span> binomial = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/binomial'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> exp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/exp'</span> );
+<span class="hljs-keyword">var</span> incrBinaryClassification = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/incr/binary-classification'</span> );
+
+<span class="hljs-comment">// Create a new accumulator:</span>
+<span class="hljs-keyword">var</span> acc = incrBinaryClassification( <span class="hljs-number">2</span>, {
+    <span class="hljs-string">'intercept'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'lambda'</span>: <span class="hljs-number">1.0e-3</span>,
+    <span class="hljs-string">'loss'</span>: <span class="hljs-string">'log'</span>
+});
+
+<span class="hljs-comment">// Incrementally update the classification model...</span>
+<span class="hljs-keyword">var</span> phat;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10000</span>; i++ ) {
+    x = array( [ normal( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> ), normal( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> ) ] );
+    phat = <span class="hljs-number">1.0</span> / ( <span class="hljs-number">1.0</span>+exp( -( ( <span class="hljs-number">3.0</span>*x.get(<span class="hljs-number">0</span>) ) - ( <span class="hljs-number">2.0</span>*x.get(<span class="hljs-number">1</span>) ) + <span class="hljs-number">1.0</span> ) ) );
+    acc( x, ( binomial( <span class="hljs-number">1</span>, phat ) ) ? <span class="hljs-number">1.0</span> : -<span class="hljs-number">1.0</span> );
+}
+
+<span class="hljs-comment">// Retrieve model coefficients:</span>
+<span class="hljs-keyword">var</span> coefs = acc();
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Feature coefficients: %d, %d'</span>, coefs.get( <span class="hljs-number">0</span> ), coefs.get( <span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Intercept: %d'</span>, coefs.get( <span class="hljs-number">2</span> ) );
+
+<span class="hljs-comment">// Predict new observations...</span>
+x = array( [ [ <span class="hljs-number">0.9</span>, <span class="hljs-number">0.1</span> ], [ <span class="hljs-number">0.1</span>, <span class="hljs-number">0.9</span> ], [ <span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span> ] ] );
+
+<span class="hljs-keyword">var</span> out = acc.predict( x );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; label = %d'</span>, x.get( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">0</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; label = %d'</span>, x.get( <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; label = %d'</span>, x.get( <span class="hljs-number">2</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">2</span> ) );
+
+out = acc.predict( x, <span class="hljs-string">'probability'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; P(y=1|x) = %d'</span>, x.get( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">0</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; P(y=1|x) = %d'</span>, x.get( <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; P(y=1|x) = %d'</span>, x.get( <span class="hljs-number">2</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">2</span> ) );
+
+out = acc.predict( x, <span class="hljs-string">'linear'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; lp = %d'</span>, x.get( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">0</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; lp = %d'</span>, x.get( <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x = [%d, %d]; lp = %d'</span>, x.get( <span class="hljs-number">2</span>, <span class="hljs-number">0</span> ), x.get( <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ), out.get( <span class="hljs-number">2</span> ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="references">
+<h2 id="references">References</h2>
+<ul>
+<li>Rosenblatt, Frank. 1957. "The Perceptron–a perceiving and recognizing automaton." 85-460-1. Buffalo, NY, USA: Cornell Aeronautical Laboratory.</li>
+<li>Zhang, Tong. 2004. "Solving Large Scale Linear Prediction Problems Using Stochastic Gradient Descent Algorithms." In <em>Proceedings of the Twenty-First International Conference on Machine Learning</em>, 116. New York, NY, USA: Association for Computing Machinery. doi:<a href="https://doi.org/10.1145/1015330.1015332">10.1145/1015330.1015332</a>.</li>
+<li>Shalev-Shwartz, Shai, Yoram Singer, Nathan Srebro, and Andrew Cotter. 2011. "Pegasos: primal estimated sub-gradient solver for SVM." <em>Mathematical Programming</em> 127 (1): 3–30. doi:<a href="https://doi.org/10.1007/s10107-010-0420-4">10.1007/s10107-010-0420-4</a>.</li>
+</ul>
+</section>
+<!-- /.references -->
+<section class="links">
+</section>
+<!-- /.links -->

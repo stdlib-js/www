@@ -1,0 +1,486 @@
+<h1 id="constructor-name">Constructor Name</h1>
+<blockquote>
+<p>Determine the name of a value's constructor.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-title">constructorName</span> = <span class="hljs-title">require</span>(<span class="hljs-params"> <span class="hljs-string">'@stdlib/utils/constructor-name'</span> </span>);
+</code></pre>
+<h4 id="constructorname-value-">constructorName( value )</h4>
+<p>Returns the name of a value's constructor.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-string">'a'</span> </span>);
+<span class="hljs-comment">// returns 'String'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-number">5</span> </span>);
+<span class="hljs-comment">// returns 'Number'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Beep</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> Beep() </span>);
+<span class="hljs-comment">// returns 'Beep'</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>description</th>
+<th>value</th>
+<th>constructor</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string</td>
+<td><code>'beep'</code></td>
+<td><code>'String'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>number</td>
+<td><code>5</code></td>
+<td><code>'Number'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>NaN</td>
+<td><code>NaN</code></td>
+<td><code>'Number'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>infinity</td>
+<td><code>+infinity</code>/<code>-infinity</code></td>
+<td><code>'Number'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td><code>true</code>/<code>false</code></td>
+<td><code>'Boolean'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>null</td>
+<td><code>null</code></td>
+<td><code>'Null'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>undefined</td>
+<td><code>undefined</code></td>
+<td><code>'Undefined'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>array</td>
+<td><code>['beep', 5]</code></td>
+<td><code>'Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>object</td>
+<td><code>{'foo': 'bar'}</code></td>
+<td><code>'Object'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>function</td>
+<td><code>function (){}</code></td>
+<td><code>'Function'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td><code>Symbol()</code></td>
+<td><code>'Symbol'</code></td>
+<td>ES2015</td>
+</tr>
+<tr>
+<td>regexp</td>
+<td><code>/./</code></td>
+<td><code>'RegExp'</code></td>
+<td>Android 4.1+</td>
+</tr>
+<tr>
+<td>String</td>
+<td><code>new String('beep')</code></td>
+<td><code>'String'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Number</td>
+<td><code>new Number(5)</code></td>
+<td><code>'Number'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>new Boolean(false)</code></td>
+<td><code>'Boolean'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Object</td>
+<td><code>new Object()</code></td>
+<td><code>'Object'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Array</td>
+<td><code>new Array()</code></td>
+<td><code>'Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Int8Array</td>
+<td><code>new Int8Array()</code></td>
+<td><code>'Int8Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Uint8Array</td>
+<td><code>new Uint8Array()</code></td>
+<td><code>'Uint8Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Uint8ClampedArray</td>
+<td><code>new Uint8ClampedArray()</code></td>
+<td><code>'Uint8ClampedArray'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Int16Array</td>
+<td><code>new Int16Array()</code></td>
+<td><code>'Int16Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Uint16Array</td>
+<td><code>new Uint16Array()</code></td>
+<td><code>'Uint16Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Int32Array</td>
+<td><code>new Int32Array()</code></td>
+<td><code>'Int32Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Uint32Array</td>
+<td><code>new Uint32Array()</code></td>
+<td><code>'Uint32Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Float32Array</td>
+<td><code>new Float32Array()</code></td>
+<td><code>'Float32Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Float64Array</td>
+<td><code>new Float64Array()</code></td>
+<td><code>'Float64Array'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>ArrayBuffer</td>
+<td><code>new ArrayBuffer()</code></td>
+<td><code>'ArrayBuffer'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Buffer</td>
+<td><code>new Buffer()</code></td>
+<td><code>'Buffer'</code></td>
+<td>Node.js</td>
+</tr>
+<tr>
+<td>Date</td>
+<td><code>new Date()</code></td>
+<td><code>'Date'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>RegExp</td>
+<td><code>new RegExp('.')</code></td>
+<td><code>'RegExp'</code></td>
+<td>Android 4.1+</td>
+</tr>
+<tr>
+<td>Function</td>
+<td><code>new Function('x', 'return x')</code></td>
+<td><code>'Function'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Map</td>
+<td><code>new Map()</code></td>
+<td><code>'Map'</code></td>
+<td>ES2015</td>
+</tr>
+<tr>
+<td>WeakMap</td>
+<td><code>new WeakMap()</code></td>
+<td><code>'WeakMap'</code></td>
+<td>ES2015</td>
+</tr>
+<tr>
+<td>Set</td>
+<td><code>new Set()</code></td>
+<td><code>'Set'</code></td>
+<td>ES2015</td>
+</tr>
+<tr>
+<td>WeakSet</td>
+<td><code>new WeakSet()</code></td>
+<td><code>'WeakSet'</code></td>
+<td>ES2015</td>
+</tr>
+<tr>
+<td>Error</td>
+<td><code>new Error()</code></td>
+<td><code>'Error'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>TypeError</td>
+<td><code>new TypeError()</code></td>
+<td><code>'TypeError'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>SyntaxError</td>
+<td><code>new SyntaxError()</code></td>
+<td><code>'SyntaxError'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>ReferenceError</td>
+<td><code>new ReferenceError()</code></td>
+<td><code>'ReferenceError'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>URIError</td>
+<td><code>new URIError()</code></td>
+<td><code>'URIError'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>RangeError</td>
+<td><code>new RangeError()</code></td>
+<td><code>'RangeError'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>EvalError</td>
+<td><code>new EvalError()</code></td>
+<td><code>'EvalError'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Math</td>
+<td><code>Math</code></td>
+<td><code>'Math'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>JSON</td>
+<td><code>JSON</code></td>
+<td><code>'JSON'</code></td>
+<td>IE8+</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td><code>(function(){return arguments;})()</code></td>
+<td><code>'Arguments'</code></td>
+<td>IE9+</td>
+</tr>
+<tr>
+<td>custom constructor</td>
+<td><code>new Beep()</code></td>
+<td><code>'Beep'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>anonymous constructor</td>
+<td><code>new (function(){})()</code></td>
+<td><code>''</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>If a value's constructor is an anonymous <code>function</code>, the implementation returns an empty <code>string</code>.</p>
+<!-- eslint-disable no-restricted-syntax, func-style, func-names -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Beep = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+};
+
+<span class="hljs-keyword">var</span> v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> Beep() </span>);
+<span class="hljs-comment">// returns ''</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: update once have Buffer wrapper -->
+<!-- eslint no-undef: "error" -->
+<!-- eslint-disable no-restricted-syntax, no-buffer-constructor, func-style, func-names -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<span class="hljs-keyword">var</span> Buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/ctor'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-title">constructorName</span> = <span class="hljs-title">require</span>(<span class="hljs-params"> <span class="hljs-string">'@stdlib/utils/constructor-name'</span> </span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Do nothing...</span>
+}
+
+<span class="hljs-keyword">var</span> v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-string">'a'</span> </span>);
+<span class="hljs-comment">// returns 'String'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-number">5</span> </span>);
+<span class="hljs-comment">// returns 'Number'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-literal">NaN</span> </span>);
+<span class="hljs-comment">// returns 'Number'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-literal">null</span> </span>);
+<span class="hljs-comment">// returns 'Null'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> </span>);
+<span class="hljs-comment">// returns 'Undefined'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-literal">true</span> </span>);
+<span class="hljs-comment">// returns 'Boolean'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-literal">false</span> </span>);
+<span class="hljs-comment">// returns 'Boolean'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> {} </span>);
+<span class="hljs-comment">// returns 'Object'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> [] </span>);
+<span class="hljs-comment">// returns 'Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> noop </span>);
+<span class="hljs-comment">// returns 'Function'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-regexp">/./</span> </span>);
+<span class="hljs-comment">// returns 'RegExp'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() </span>);
+<span class="hljs-comment">// returns 'Date'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>() </span>);
+<span class="hljs-comment">// returns 'Map'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>() </span>);
+<span class="hljs-comment">// returns 'WeakMap'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>() </span>);
+<span class="hljs-comment">// returns 'Set'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakSet</span>() </span>);
+<span class="hljs-comment">// returns 'WeakSet'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) </span>);
+<span class="hljs-comment">// returns 'Symbol'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>() </span>);
+<span class="hljs-comment">// returns 'Error'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>() </span>);
+<span class="hljs-comment">// returns 'TypeError'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">SyntaxError</span>() </span>);
+<span class="hljs-comment">// returns 'SyntaxError'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">URIError</span>() </span>);
+<span class="hljs-comment">// returns 'URIError'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>() </span>);
+<span class="hljs-comment">// returns 'RangeError'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">ReferenceError</span>() </span>);
+<span class="hljs-comment">// returns 'ReferenceError'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">EvalError</span>() </span>);
+<span class="hljs-comment">// returns 'EvalError'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>() </span>);
+<span class="hljs-comment">// returns 'Int8Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>() </span>);
+<span class="hljs-comment">// returns 'Uint8Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8ClampedArray</span>() </span>);
+<span class="hljs-comment">// returns 'Uint8ClampedArray'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>() </span>);
+<span class="hljs-comment">// returns 'Int16Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>() </span>);
+<span class="hljs-comment">// returns 'Uint16Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>() </span>);
+<span class="hljs-comment">// returns 'Int32Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>() </span>);
+<span class="hljs-comment">// returns 'Uint32Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>() </span>);
+<span class="hljs-comment">// returns 'Float32Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>() </span>);
+<span class="hljs-comment">// returns 'Float64Array'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>() </span>);
+<span class="hljs-comment">// returns 'ArrayBuffer'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> Buffer( <span class="hljs-string">'beep'</span> ) </span>);
+<span class="hljs-comment">// returns 'Buffer'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-built_in">Math</span> </span>);
+<span class="hljs-comment">// returns 'Math'</span>
+
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-built_in">JSON</span> </span>);
+<span class="hljs-comment">// returns 'JSON'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person1</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> Person1() </span>);
+<span class="hljs-comment">// returns 'Person1'</span>
+
+<span class="hljs-keyword">var</span> Person2 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+};
+v = <span class="hljs-title">constructorName</span>(<span class="hljs-params"> <span class="hljs-keyword">new</span> Person2() </span>);
+<span class="hljs-comment">// returns ''</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

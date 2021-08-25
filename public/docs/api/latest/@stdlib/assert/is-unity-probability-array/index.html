@@ -1,0 +1,82 @@
+<h1 id="isunityprobabilityarray">isUnityProbabilityArray</h1>
+<blockquote>
+<p>Test if a value is an array of probabilities that sum to one.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isUnityProbabilityArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-unity-probability-array'</span> );
+</code></pre>
+<h4 id="isunityprobabilityarray-value-">isUnityProbabilityArray( value )</h4>
+<p>Tests if a <code>value</code> is an array of probabilities that sum to one.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+
+<span class="hljs-keyword">var</span> bool = isUnityProbabilityArray( [ <span class="hljs-number">0.25</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.25</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isUnityProbabilityArray( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] ) );
+<span class="hljs-comment">// returns true</span>
+
+bool = isUnityProbabilityArray( [ <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Summation of finite-precision floating-point numbers often has numerical error. For example,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.1</span> ]; <span class="hljs-comment">// => 1.0</span>
+<span class="hljs-keyword">var</span> sum = <span class="hljs-number">0.0</span>;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    sum += arr[ i ];
+}
+<span class="hljs-built_in">console</span>.log( sum );
+<span class="hljs-comment">// => 0.9999999999999999</span>
+</code></pre>
+<p>To account for numerical error, the function tests if array elements sum to approximately one; specifically,</p>
+<pre><code class="no-highlight language-text">1.0 - sqrt(eps) &#x3C;= sum(A) &#x3C;= 1.0 + sqrt(eps)
+</code></pre>
+<p>where <code>eps</code> is <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">double-precision floating-point</a> epsilon (<code>~2.22e-16</code>) and <code>sqrt(eps) ~ 1.49e-8</code>. The above comparison ensures equality for approximately half the significand bits.</p>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> isUnityProbabilityArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-unity-probability-array'</span> );
+
+<span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> ];
+<span class="hljs-keyword">var</span> bool = isUnityProbabilityArray( arr );
+<span class="hljs-comment">// returns true</span>
+
+arr = [ <span class="hljs-number">0.5</span>, <span class="hljs-number">0.25</span>, <span class="hljs-number">0.25</span> ];
+bool = isUnityProbabilityArray( arr );
+<span class="hljs-comment">// returns true</span>
+
+arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ] );
+bool = isUnityProbabilityArray( arr );
+<span class="hljs-comment">// returns true</span>
+
+arr = [ <span class="hljs-number">0.4</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.4</span> ];
+bool = isUnityProbabilityArray( arr );
+<span class="hljs-comment">// returns false</span>
+
+arr = [ <span class="hljs-number">3.14</span>, -<span class="hljs-number">1.0</span> ];
+bool = isUnityProbabilityArray( arr );
+<span class="hljs-comment">// returns false</span>
+
+bool = isUnityProbabilityArray( [] );
+<span class="hljs-comment">// returns false</span>
+
+bool = isUnityProbabilityArray( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

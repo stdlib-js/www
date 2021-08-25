@@ -1,0 +1,76 @@
+<h1 id="configurable-read-write-accessor">Configurable Read-Write Accessor</h1>
+<blockquote>
+<p><a href="/docs/api/develop/@stdlib/utils/define-property">Define</a> a configurable <strong>read-write</strong> accessor.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<!-- eslint-disable id-length -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setConfigurableReadWriteAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-configurable-read-write-accessor'</span> );
+</code></pre>
+<h4 id="setconfigurablereadwriteaccessor-obj-prop-getter-setter-">setConfigurableReadWriteAccessor( obj, prop, getter, setter )</h4>
+<p><a href="/docs/api/develop/@stdlib/utils/define-property">Defines</a> a configurable <strong>read-write</strong> accessor.</p>
+<!-- eslint-disable id-length -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> word = <span class="hljs-string">'bar'</span>;
+<span class="hljs-keyword">var</span> obj = {};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getter</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> word + <span class="hljs-string">' foo'</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setter</span>(<span class="hljs-params"> v </span>) </span>{
+    word = v;
+}
+
+setConfigurableReadWriteAccessor( obj, <span class="hljs-string">'foo'</span>, getter, setter );
+
+<span class="hljs-keyword">var</span> v = obj.foo;
+<span class="hljs-comment">// returns 'bar foo'</span>
+
+obj.foo = <span class="hljs-string">'beep'</span>;
+
+v = obj.foo;
+<span class="hljs-comment">// returns 'beep foo'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+    
+## Notes
+<ul>
+<li>Configurable read-write accessors are <strong>enumerable</strong>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable id-length -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setConfigurableReadWriteAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-configurable-read-write-accessor'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"> name </span>) </span>{
+    <span class="hljs-keyword">if</span> ( !(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Foo) ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Foo( name );
+    }
+    setConfigurableReadWriteAccessor( <span class="hljs-built_in">this</span>, <span class="hljs-string">'name'</span>, getName, setName );
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello, '</span> + name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setName</span>(<span class="hljs-params"> v </span>) </span>{
+        name = v;
+    }
+}
+
+<span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">new</span> Foo( <span class="hljs-string">'Grace'</span> );
+<span class="hljs-built_in">console</span>.log( foo.name );
+
+foo.name = <span class="hljs-string">'Ada'</span>;
+<span class="hljs-built_in">console</span>.log( foo.name );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

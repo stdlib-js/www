@@ -1,0 +1,125 @@
+<h1 id="pdiff">pdiff</h1>
+<blockquote>
+<p>Return the positive difference between <code>x</code> and <code>y</code>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pdiff = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pdiff'</span> );
+</code></pre>
+<h4 id="pdiff-x-y-">pdiff( x, y )</h4>
+<p>Returns the positive difference between <code>x</code> and <code>y</code> if <code>x &#x3C; y</code>; otherwise, returns <code>0</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = pdiff( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns 1.06</span>
+
+v = pdiff( <span class="hljs-number">3.14</span>, <span class="hljs-number">4.2</span> );
+<span class="hljs-comment">// returns +0.0</span>
+
+v = pdiff( -<span class="hljs-number">0.0</span>, +<span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns +0.0</span>
+</code></pre>
+<p>If any argument is <code>NaN</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = pdiff( <span class="hljs-number">4.2</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = pdiff( <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.14</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+v = pdiff( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>This function is the equivalent of <a href="http://en.cppreference.com/w/cpp/numeric/math/fdim"><code>fdim</code></a> in the C/C++ standard library.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> );
+<span class="hljs-keyword">var</span> pdiff = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pdiff'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = minstd();
+    y = minstd();
+    v = pdiff( x, y );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'pdiff(%d,%d) = %d'</span>, x, y, v );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/pdiff.h
+</span></span></code></pre>
+<h4 id="stdlib_base_pdiff-x-y-">stdlib_base_pdiff( x, y )</h4>
+<p>Returns the positive difference between <code>x</code> and <code>y</code>.</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">double</span> v = stdlib_base_pdiff( <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>x</strong>: <code>[in] double</code> input value.</li>
+<li><strong>y</strong>: <code>[in] double</code> input value.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_pdiff</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span></span>;
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/pdiff.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">5.0</span> };
+
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i += <span class="hljs-number">2</span> ) {
+        y = stdlib_base_pdiff( x[ i ], x[ i+<span class="hljs-number">1</span> ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"pdiff(%lf, %lf) = %lf\n"</span>, x[ i ], x[ i+<span class="hljs-number">1</span> ], y );
+    }
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

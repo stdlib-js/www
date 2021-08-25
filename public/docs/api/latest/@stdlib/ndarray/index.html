@@ -1,0 +1,66 @@
+<h1 id="ndarray">ndarray</h1>
+<blockquote>
+<p>Multidimensional arrays.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>ndarray namespace.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace exports the following functions to create multidimensional arrays:</p>
+<!-- <toc pattern="+(array|ctor)"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/array"><code>array( [buffer,] [options] )</code></a></span><span class="delimiter">: </span><span class="description">create a multidimensional array.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray( dtype, buffer, shape, strides, offset, order[, options] )</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following sub-namespaces:</p>
+<!-- <toc pattern="base"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base"><code>base</code></a></span><span class="delimiter">: </span><span class="description">base ndarray.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>In addition, the namespace contaians the following multidimensional array utility functions:</p>
+<!-- <toc pattern="*" > -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/casting-modes"><code>ndarrayCastingModes()</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray casting modes.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/dtypes"><code>ndarrayDataTypes()</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray data types.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/ind2sub"><code>ind2sub( shape, idx[, options] )</code></a></span><span class="delimiter">: </span><span class="description">convert a linear index to an array of subscripts.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/index-modes"><code>ndarrayIndexModes()</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray index modes.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/min-dtype"><code>ndarrayMinDataType( value )</code></a></span><span class="delimiter">: </span><span class="description">determine the minimum ndarray data type of the closest "kind" necessary for storing a provided scalar value.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/next-dtype"><code>ndarrayNextDataType( [dtype] )</code></a></span><span class="delimiter">: </span><span class="description">return the next larger ndarray data type of the same kind.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/orders"><code>ndarrayOrders()</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray orders.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/promotion-rules"><code>ndarrayPromotionRules( [dtype1, dtype2] )</code></a></span><span class="delimiter">: </span><span class="description">return the ndarray data type with the smallest size and closest "kind" to which ndarray data types can be <strong>safely</strong> cast.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/safe-casts"><code>ndarraySafeCasts( [dtype] )</code></a></span><span class="delimiter">: </span><span class="description">return a list of ndarray data types to which a provided ndarray data type can be safely cast.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/same-kind-casts"><code>ndarraySameKindCasts( [dtype] )</code></a></span><span class="delimiter">: </span><span class="description">return a list of ndarray data types to which a provided ndarray data type can be safely cast or cast within the same "kind".</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/sub2ind"><code>sub2ind( shape, ...subscripts[, options] )</code></a></span><span class="delimiter">: </span><span class="description">convert subscripts to a linear index.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

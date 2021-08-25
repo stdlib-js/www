@@ -1,0 +1,1066 @@
+<h1 id="plot">Plot</h1>
+<blockquote>
+<p>Create a 2-dimensional plot.</p>
+</blockquote>
+<section class="intro">
+<!-- <figure class="figure" align="center" label="fig:intro_plot" src="./srv/scripts/fig_intro_plot.js" alt="Scatterplot with rug plots along the axes."> -->
+<!-- </figure> -->
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Plot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/ctor'</span> );
+</code></pre>
+<h4 id="plot-x-y-options-">Plot( [x, y,] [options] )</h4>
+<p>Returns a <code>plot</code> instance for creating 2-dimensional plots.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+<span class="hljs-comment">// returns &#x3C;Plot></span>
+</code></pre>
+<p>To provide plot data at instantiation, provide <code>x</code> <strong>and</strong> <code>y</code> data as arguments.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [[<span class="hljs-number">0.10</span>, <span class="hljs-number">0.20</span>, <span class="hljs-number">0.30</span>]];
+<span class="hljs-keyword">var</span> y = [[<span class="hljs-number">0.52</span>, <span class="hljs-number">0.79</span>, <span class="hljs-number">0.64</span>]];
+
+<span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot( x, y );
+<span class="hljs-comment">// returns &#x3C;Plot></span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><a href="#prop-auto-render"><strong>autoRender</strong></a>: <code>boolean</code> indicating whether to re-render on a <code>change</code> event. Default: <code>false</code>.</li>
+<li><a href="#prop-auto-view"><strong>autoView</strong></a>: <code>boolean</code> indicating whether to generate an updated view on a <code>render</code> event. Default: <code>false</code>.</li>
+<li><a href="#prop-colors"><strong>colors</strong></a>: data color(s). Default: <code>category10</code>.</li>
+<li><a href="#prop-description"><strong>description</strong></a>: plot description. Default: <code>''</code>.</li>
+<li><a href="#prop-engine"><strong>engine</strong></a>: plot engine. Default: <code>svg</code>.</li>
+<li><a href="#prop-height"><strong>height</strong></a>: plot height. Default: <code>400</code> (pixels).</li>
+<li><a href="#prop-labels"><strong>labels</strong></a>: data labels.</li>
+<li><a href="#prop-is-defined"><strong>isDefined</strong></a>: accessor <code>function</code> indicating whether a datum is defined.</li>
+<li><a href="#prop-line-style"><strong>lineStyle</strong></a>: data line style(s). Default: <code>'-'</code>.</li>
+<li><a href="#prop-line-opacity"><strong>lineOpacity</strong></a>: data line opacity. Default: <code>0.9</code>.</li>
+<li><a href="#prop-line-width"><strong>lineWidth</strong></a>: data line width. Default: <code>2</code> (pixels).</li>
+<li><a href="#prop-padding-bottom"><strong>paddingBottom</strong></a>: bottom padding. Default: <code>80</code> (pixels).</li>
+<li><a href="#prop-padding-left"><strong>paddingLeft</strong></a>: left padding. Default: <code>90</code> (pixels).</li>
+<li><a href="#prop-padding-right"><strong>paddingRight</strong></a>: right padding. Default: <code>20</code> (pixels).</li>
+<li><a href="#prop-padding-top"><strong>paddingTop</strong></a>: top padding. Default: <code>80</code> (pixels).</li>
+<li><a href="#prop-render-format"><strong>renderFormat</strong></a>: render format. Default: <code>'vdom'</code>.</li>
+<li><a href="#prop-symbols"><strong>symbols</strong></a>: data symbols. Default: <code>'none'</code>.</li>
+<li><a href="#prop-symbols-opacity"><strong>symbolsOpacity</strong></a>: symbols opacity. Default: <code>0.9</code>.</li>
+<li><a href="#prop-symbols-size"><strong>symbolsSize</strong></a>: symbols size. Default: <code>6</code> (pixels).</li>
+<li><a href="#prop-title"><strong>title</strong></a>: plot title. Default: <code>''</code>.</li>
+<li><a href="#prop-viewer"><strong>viewer</strong></a>: plot viewer. Default: <code>'none'</code>.</li>
+<li><a href="#prop-width"><strong>width</strong></a>: plot width. Default: <code>400</code> (pixels).</li>
+<li><a href="#prop-x"><strong>x</strong></a>: <code>x</code> values. Default: <code>[]</code>.</li>
+<li><a href="#prop-x-axis-orient"><strong>xAxisOrient</strong></a>: <code>x</code>-axis orientation. Default: <code>'bottom'</code>.</li>
+<li><a href="#prop-x-label"><strong>xLabel</strong></a>: <code>x</code>-axis label. Default: <code>'x'</code>.</li>
+<li><a href="#prop-x-max"><strong>xMax</strong></a>: maximum value of the <code>x</code>-axis domain. Default: <code>null</code>.</li>
+<li><a href="#prop-x-min"><strong>xMin</strong></a>: minimum value of the <code>x</code>-axis domain. Default: <code>null</code>.</li>
+<li><a href="#prop-x-num-ticks"><strong>xNumTicks</strong></a>: number of <code>x</code>-axis tick marks. Default: <code>5</code>.</li>
+<li><a href="#prop-x-rug"><strong>xRug</strong></a>: <code>boolean</code> indicating whether to render a rug plot along an <code>x</code>-axis.</li>
+<li><a href="#prop-x-rug-orient"><strong>xRugOrient</strong></a>: <code>x</code>-axis rug orientation. Default: <code>'bottom'</code>.</li>
+<li><a href="#prop-x-rug-opacity"><strong>xRugOpacity</strong></a>: <code>x</code>-axis rug opacity. Default: <code>0.1</code>.</li>
+<li><a href="#prop-x-rug-size"><strong>xRugSize</strong></a>: <code>x</code>-axis rug tick (tassel) size. Default: <code>6</code> (pixels).</li>
+<li><a href="#prop-x-scale"><strong>xScale</strong></a>: <code>x</code>-axis scale. Default: <code>'linear'</code>.</li>
+<li><a href="#prop-x-tick-format"><strong>xTickFormat</strong></a>: <code>x</code>-axis tick format. Default: <code>null</code>.</li>
+<li><a href="#prop-y"><strong>y</strong></a>: <code>y</code> values. Default: <code>[]</code>.</li>
+<li><a href="#prop-y-axis-orient"><strong>yAxisOrient</strong></a>: <code>y</code>-axis orientation. Default: <code>'left'</code>.</li>
+<li><a href="#prop-y-label"><strong>yLabel</strong></a>: <code>y</code>-axis label. Default: <code>'y'</code>.</li>
+<li><a href="#prop-y-max"><strong>yMax</strong></a>: maximum value of the <code>y</code>-axis domain. Default: <code>null</code>.</li>
+<li><a href="#prop-y-min"><strong>yMin</strong></a>: minimum value of the <code>y</code>-axis domain. Default: <code>null</code>.</li>
+<li><a href="#prop-y-num-ticks"><strong>yNumTicks</strong></a>: number of <code>y</code>-axis tick marks. Default: <code>5</code>.</li>
+<li><a href="#prop-y-rug"><strong>yRug</strong></a>: <code>boolean</code> indicating whether to render a rug plot along an <code>y</code>-axis.</li>
+<li><a href="#prop-y-rug-orient"><strong>yRugOrient</strong></a>: <code>y</code>-axis rug orientation. Default: <code>'left'</code>.</li>
+<li><a href="#prop-y-rug-opacity"><strong>yRugOpacity</strong></a>: <code>y</code>-axis rug opacity. Default: <code>0.1</code>.</li>
+<li><a href="#prop-y-rug-size"><strong>yRugSize</strong></a>: <code>y</code>-axis rug tick (tassel) size. Default: <code>6</code> (pixels).</li>
+<li><a href="#prop-y-scale"><strong>yScale</strong></a>: <code>y</code>-axis scale. Default: <code>'linear'</code>.</li>
+<li><a href="#prop-y-tick-format"><strong>yTickFormat</strong></a>: <code>y</code>-axis tick format. Default: <code>null</code>.</li>
+</ul>
+<p>In addition to supporting <code>x</code> and <code>y</code> data as arguments, the constructor supports providing data via the <code>x</code> and <code>y</code> options.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'x'</span>: [[<span class="hljs-number">0.10</span>, <span class="hljs-number">0.20</span>, <span class="hljs-number">0.30</span>]],
+    <span class="hljs-string">'y'</span>: [[<span class="hljs-number">0.52</span>, <span class="hljs-number">0.79</span>, <span class="hljs-number">0.64</span>]]
+};
+
+<span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot( opts );
+<span class="hljs-comment">// returns &#x3C;Plot></span>
+</code></pre>
+<p>Note that <code>x</code> and <code>y</code> arguments take precedence over <code>x</code> and <code>y</code> options.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'x'</span>: [[<span class="hljs-number">0.10</span>, <span class="hljs-number">0.20</span>, <span class="hljs-number">0.30</span>]],
+    <span class="hljs-string">'y'</span>: [[<span class="hljs-number">0.52</span>, <span class="hljs-number">0.79</span>, <span class="hljs-number">0.64</span>]]
+};
+
+<span class="hljs-keyword">var</span> x = [[<span class="hljs-number">0.40</span>, <span class="hljs-number">0.50</span>, <span class="hljs-number">0.60</span>]];
+<span class="hljs-keyword">var</span> y = [[<span class="hljs-number">0.37</span>, <span class="hljs-number">0.51</span>, <span class="hljs-number">0.44</span>]];
+
+<span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot( x, y, opts );
+
+<span class="hljs-keyword">var</span> x1 = plot.x;
+<span class="hljs-comment">// returns [[0.40, 0.50, 0.60]]</span>
+
+<span class="hljs-keyword">var</span> y1 = plot.y;
+<span class="hljs-comment">// returns [[0.37, 0.51, 0.44]]</span>
+</code></pre>
+<hr>
+<h3 id="methods">Methods</h3>
+<p><a name="method-render"></a></p>
+<h4 id="plotprototyperender-format-">Plot.prototype.render( [format] )</h4>
+<p>Renders a plot.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+<span class="hljs-keyword">var</span> vtree = plot.render();
+<span class="hljs-comment">// returns &#x3C;Object></span>
+</code></pre>
+<p>By default, the method renders a plot as a <a href="https://github.com/Matt-Esch/virtual-dom">virtual DOM tree</a>. To render to an alternative format, provide a <code>format</code> argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+<span class="hljs-keyword">var</span> vtree = plot.render( <span class="hljs-string">'html'</span> );
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre>
+<p><a name="method-view"></a></p>
+<h4 id="plotprototypeview-viewer-">Plot.prototype.view( [viewer] )</h4>
+<p>Generates a plot view.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+plot.view();
+</code></pre>
+<p>To generate a particular plot view without updating the <a href="#prop-viewer"><code>viewer</code></a> property, provide a <code>viewer</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+plot.view( <span class="hljs-string">'stdout'</span> );
+<span class="hljs-comment">// => '{...}'</span>
+</code></pre>
+<hr>
+<h3 id="writable-properties">Writable Properties</h3>
+<p><a name="prop-x"></a></p>
+<h4 id="plotprototypex">Plot.prototype.x</h4>
+<p><code>x</code> values. The <code>x</code> property value must be an <code>array</code>, where each element corresponds to a plotted dataset.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.x = [
+    [ <span class="hljs-number">1417563950959</span>, <span class="hljs-number">1417563952959</span> ], <span class="hljs-comment">// dataset 1</span>
+    [ <span class="hljs-number">1417563950959</span>, <span class="hljs-number">1417563952959</span> ]  <span class="hljs-comment">// dataset 2</span>
+];
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> x = plot.x;
+<span class="hljs-comment">// returns [ [ 1417563950959, 1417563952959 ], [ 1417563950959, 1417563952959 ] ]</span>
+</code></pre>
+<p><a name="prop-y"></a></p>
+<h4 id="plotprototypey">Plot.prototype.y</h4>
+<p><code>y</code> values. The <code>y</code> property value must be an <code>array</code>, where each element corresponds to a plotted dataset.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.y = [
+    [ <span class="hljs-number">0.25</span>, <span class="hljs-number">0.23</span> ], <span class="hljs-comment">// dataset 1</span>
+    [ <span class="hljs-number">0.72</span>, <span class="hljs-number">0.89</span> ]  <span class="hljs-comment">// dataset 2</span>
+];
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> y = plot.y;
+<span class="hljs-comment">// returns [ [ 0.25, 0.23 ], [ 0.72, 0.89 ] ]</span>
+</code></pre>
+<p><a name="prop-labels"></a></p>
+<h4 id="plotprototypelabels">Plot.prototype.labels</h4>
+<p>Data labels. During plot creation, each plotted dataset is assigned a <code>label</code>. If the number of <code>labels</code> is less than the number of plotted datasets, <code>labels</code> are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.labels = [
+    <span class="hljs-string">'beep'</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-string">'boop'</span>  <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> labels = plot.labels;
+<span class="hljs-comment">// returns ['beep','boop']</span>
+</code></pre>
+<p><a name="prop-is-defined"></a></p>
+<h4 id="plotprototypeisdefined-d-i-">Plot.prototype.isDefined( d, i )</h4>
+<p>An accessor <code>function</code> which defines whether a datum is defined. This accessor is used to define how missing values are encoded. When invoked, the function is provided two arguments:</p>
+<ul>
+<li><strong>d</strong>: datum</li>
+<li><strong>i</strong>: datum index</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span>(<span class="hljs-params"> d </span>) </span>{
+    <span class="hljs-keyword">return</span> ( d !== <span class="hljs-literal">null</span> );
+}
+
+<span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.isDefined = isDefined;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> fcn = plot.isDefined;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p>The default behavior is to ignore values which are <code>NaN</code>.</p>
+<p><a name="prop-colors"></a></p>
+<h4 id="plotprototypecolors">Plot.prototype.colors</h4>
+<p>Data colors. To set the <code>color</code> for all plotted datasets, provide a <code>color</code> name.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.colors = <span class="hljs-string">'#474747'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> colors = plot.colors;
+<span class="hljs-comment">// returns ['#474747']</span>
+</code></pre>
+<p>To specify the colors for each dataset, provide an <code>array</code> of colors. During plot creation, each plotted dataset is assigned one of the provided colors. If the number of colors is less than the number of plotted datasets, colors are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.colors = [
+    <span class="hljs-string">'#000'</span>,             <span class="hljs-comment">// assigned to datasets 0,3,6,9,...</span>
+    <span class="hljs-string">'rgb(100,100,100)'</span>, <span class="hljs-comment">// assigned to datasets 1,4,7,10,...</span>
+    <span class="hljs-string">'red'</span>               <span class="hljs-comment">// assigned to datasets 2,5,8,11,...</span>
+];
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> colors = plot.colors;
+<span class="hljs-comment">// returns ['#000','rgb(100,100,100)','red']</span>
+</code></pre>
+<p>A <code>plot</code> instance also supports providing the name of a predefined color scheme. The following schemes are supported:</p>
+<ul>
+<li><strong>category10</strong></li>
+<li><strong>category20</strong></li>
+<li><strong>category20b</strong></li>
+<li><strong>category20c</strong></li>
+</ul>
+<!-- TODO: display the colors schemes. Should be able to generate via a script and then auto-insert similar to equations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.colors = <span class="hljs-string">'category20'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> colors = plot.colors;
+<span class="hljs-comment">// returns &#x3C;Array></span>
+</code></pre>
+<p><a name="prop-line-style"></a></p>
+<h4 id="plotprototypelinestyle">Plot.prototype.lineStyle</h4>
+<p>Data line style(s). The following line styles are supported:</p>
+<ul>
+<li><code>'-'</code>: solid line.</li>
+<li><code>'--'</code>: dashed line.</li>
+<li><code>':'</code>: dotted line.</li>
+<li><code>'-.'</code>: alternating dashes and dots.</li>
+<li><code>'none'</code>: no line.</li>
+</ul>
+<p>To set the line style for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.lineStyle = <span class="hljs-string">'-'</span>; <span class="hljs-comment">// all solid lines</span>
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> lineStyle = plot.lineStyle;
+<span class="hljs-comment">// returns ['-']</span>
+</code></pre>
+<p>To specify the line style for each dataset, provide an <code>array</code> of line styles. During plot creation, each plotted dataset is assigned a <code>lineStyle</code>. If the number of line styles is less than the number of plotted datasets, line styles are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.lineStyle = [
+    <span class="hljs-string">':'</span>,    <span class="hljs-comment">// assigned to datasets 0,3,6,9,...</span>
+    <span class="hljs-string">'none'</span>, <span class="hljs-comment">// assigned to datasets 1,4,7,10,...</span>
+    <span class="hljs-string">'--'</span>    <span class="hljs-comment">// assigned to datasets 2,5,8,11,...</span>
+];
+</code></pre>
+<p><a name="prop-line-opacity"></a></p>
+<h4 id="plotprototypelineopacity">Plot.prototype.lineOpacity</h4>
+<p>Data line opacity, where an opacity of <code>0.0</code> makes a line completely transparent and an opacity of <code>1.0</code> makes a line completely opaque. To set the opacity for all plotted lines,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.lineOpacity = <span class="hljs-number">0.9</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> opacity = plot.lineOpacity;
+<span class="hljs-comment">// returns [0.9]</span>
+</code></pre>
+<p>To specify the line opacity for each dataset, provide an <code>array</code> of opacities. During plot creation, each plotted dataset is assigned an opacity. If the number of opacities is less than the number of plotted datasets, opacities are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.lineOpacity = [
+    <span class="hljs-number">0.7</span>, <span class="hljs-comment">// assigned to datasets 0,3,6,9,...</span>
+    <span class="hljs-number">0.2</span>, <span class="hljs-comment">// assigned to datasets 1,4,7,10,...</span>
+    <span class="hljs-number">1.0</span>  <span class="hljs-comment">// assigned to datasets 2,5,8,11,...</span>
+];
+</code></pre>
+<p><a name="prop-line-width"></a></p>
+<h4 id="plotprototypelinewidth">Plot.prototype.lineWidth</h4>
+<p>Data line width(s). To set the line widths for all plotted lines,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.lineWidth = <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> width = plot.lineWidth;
+<span class="hljs-comment">// returns [1]</span>
+</code></pre>
+<p>To specify the line width for each dataset, provide an <code>array</code> of widths. During plot creation, each plotted dataset is assigned a line width. If the number of line widths is less than the number of plotted datasets, line widths are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.lineWidth = [
+    <span class="hljs-number">1</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-number">3</span>  <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-symbols"></a></p>
+<h4 id="plotprototypesymbols">Plot.prototype.symbols</h4>
+<p>Data symbols. The following symbols are supported:</p>
+<ul>
+<li><code>'closed-circle'</code>: closed circles.</li>
+<li><code>'open-circle'</code>: open circles.</li>
+<li><code>'none'</code>: no symbols.</li>
+</ul>
+<p>To set the symbols for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.symbols = <span class="hljs-string">'closed-circle'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> sym = plot.symbols;
+<span class="hljs-comment">// returns ['closed-circle']</span>
+</code></pre>
+<p>To specify the symbols used for each dataset, provide an <code>array</code> of symbols. During plot creation, each plotted dataset is assigned a symbol. If the number of symbols is less than the number of plotted datasets, symbols are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.symbols = [
+    <span class="hljs-string">'closed-circle'</span>, <span class="hljs-comment">// assigned to datasets 0,3,6,9,...</span>
+    <span class="hljs-string">'none'</span>,          <span class="hljs-comment">// assigned to datasets 1,4,7,10,...</span>
+    <span class="hljs-string">'open-circle'</span>    <span class="hljs-comment">// assigned to datasets 2,5,8,11,...</span>
+];
+</code></pre>
+<p><a name="prop-symbols-size"></a></p>
+<h4 id="plotprototypesymbolssize">Plot.prototype.symbolsSize</h4>
+<p>Symbols size. To set the size of all symbols,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.symbolsSize = <span class="hljs-number">4</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> size = plot.symbolsSize;
+<span class="hljs-comment">// returns [4]</span>
+</code></pre>
+<p>To specify the symbols size for each dataset, provide an <code>array</code> of sizes. During plot creation, each plotted dataset is assigned a symbols size. If the number of sizes is less than the number of plotted datasets, sizes are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.symbolsSize = [
+    <span class="hljs-number">4</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-number">6</span>  <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-symbols-opacity"></a></p>
+<h4 id="plotprototypesymbolsopacity">Plot.prototype.symbolsOpacity</h4>
+<p>Symbols opacity, where an opacity of <code>0.0</code> makes a symbol completely transparent and an opacity of <code>1.0</code> makes a symbol completely opaque. To set the opacity for all plotted symbols,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.symbolsOpacity = <span class="hljs-number">0.9</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> opacity = plot.symbolsOpacity;
+<span class="hljs-comment">// returns [0.9]</span>
+</code></pre>
+<p>To specify the opacity for each dataset, provide an <code>array</code> of opacities. During plot creation, each plotted dataset is assigned an opacity. If the number of opacities is less than the number of plotted datasets, opacities are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.symbolsOpacity = [
+    <span class="hljs-number">0.7</span>, <span class="hljs-comment">// assigned to datasets 0,3,6,9,...</span>
+    <span class="hljs-number">0.2</span>, <span class="hljs-comment">// assigned to datasets 1,4,7,10,...</span>
+    <span class="hljs-number">1.0</span>  <span class="hljs-comment">// assigned to datasets 2,5,8,11,...</span>
+];
+</code></pre>
+<p><a name="prop-width"></a></p>
+<h4 id="plotprototypewidth">Plot.prototype.width</h4>
+<p>Plot width (in pixels).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.width = <span class="hljs-number">720</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> width = plot.width;
+<span class="hljs-comment">// returns 720</span>
+</code></pre>
+<p><a name="prop-height"></a></p>
+<h4 id="plotprototypeheight">Plot.prototype.height</h4>
+<p>Plot height (in pixels).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.height = <span class="hljs-number">480</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> height = plot.height;
+<span class="hljs-comment">// returns 480</span>
+</code></pre>
+<p><a name="prop-padding-left"></a></p>
+<h4 id="plotprototypepaddingleft">Plot.prototype.paddingLeft</h4>
+<p>Plot left padding (in pixels). Left padding is typically used to create space for a left-oriented <code>y</code>-axis.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.paddingLeft = <span class="hljs-number">120</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> padding = plot.paddingLeft;
+<span class="hljs-comment">// returns 120</span>
+</code></pre>
+<p><a name="prop-padding-right"></a></p>
+<h4 id="plotprototypepaddingright">Plot.prototype.paddingRight</h4>
+<p>Plot right padding (in pixels). Right padding is typically used to create space for a right-oriented <code>y</code>-axis.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.paddingRight = <span class="hljs-number">90</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> padding = plot.paddingRight;
+<span class="hljs-comment">// returns 90</span>
+</code></pre>
+<p><a name="prop-padding-top"></a></p>
+<h4 id="plotprototypepaddingtop">Plot.prototype.paddingTop</h4>
+<p>Plot top padding (in pixels). Top padding is typically used to create space for a title or top-oriented <code>x</code>-axis.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.paddingTop = <span class="hljs-number">100</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> padding = plot.paddingTop;
+<span class="hljs-comment">// returns 100</span>
+</code></pre>
+<p><a name="prop-padding-bottom"></a></p>
+<h4 id="plotprototypepaddingbottom">Plot.prototype.paddingBottom</h4>
+<p>Plot bottom padding (in pixels). Bottom padding is typically used to create space for a bottom-oriented <code>x</code>-axis.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.paddingBottom = <span class="hljs-number">105</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> padding = plot.paddingBottom;
+<span class="hljs-comment">// returns 105</span>
+</code></pre>
+<p><a name="prop-x-min"></a></p>
+<h4 id="plotprototypexmin">Plot.prototype.xMin</h4>
+<p>Minimum value of the <code>x</code>-axis domain. When retrieved, if the value has been set to <code>null</code>, the returned value is computed from the <code>x</code> data.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xMin = -<span class="hljs-number">1.0</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> xMin = plot.xMin;
+<span class="hljs-comment">// returns -1.0</span>
+</code></pre>
+<p><a name="prop-x-max"></a></p>
+<h4 id="plotprototypexmax">Plot.prototype.xMax</h4>
+<p>Maximum value of the <code>x</code>-axis domain. When retrieved, if the value has been set to <code>null</code>, the returned value is computed from the <code>x</code> data.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xMax = <span class="hljs-number">100.0</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> xMax = plot.xMax;
+<span class="hljs-comment">// returns 100.0</span>
+</code></pre>
+<p><a name="prop-y-min"></a></p>
+<h4 id="plotprototypeymin">Plot.prototype.yMin</h4>
+<p>Minimum value of the <code>y</code>-axis domain. When retrieved, if the value has been set to <code>null</code>, the returned value is computed from the <code>y</code> data.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yMin = -<span class="hljs-number">50.0</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> yMin = plot.yMin;
+<span class="hljs-comment">// returns -50.0</span>
+</code></pre>
+<p><a name="prop-y-max"></a></p>
+<h4 id="plotprototypeymax">Plot.prototype.yMax</h4>
+<p>Maximum value of the <code>y</code>-axis domain. When retrieved, if the value has been set to <code>null</code>, the returned value is computed from the <code>y</code> data.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yMax = <span class="hljs-number">31.4</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> yMax = plot.yMax;
+<span class="hljs-comment">// returns 31.4</span>
+</code></pre>
+<p><a name="prop-x-scale"></a></p>
+<h4 id="plotprototypexscale">Plot.prototype.xScale</h4>
+<p>Scale function for mapping values to a coordinate along the <code>x</code>-axis. The following <code>scales</code> are supported:</p>
+<ul>
+<li><code>'linear'</code>: linear scale.</li>
+<li><code>'time'</code>: time scale.</li>
+</ul>
+<p>To set the scale,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.xScale = <span class="hljs-string">'time'</span>;
+</code></pre>
+<p>When retrieved, the returned value is a scale <code>function</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-keyword">var</span> xScale = plot.xScale;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p><a name="prop-y-scale"></a></p>
+<h4 id="plotprototypeyscale">Plot.prototype.yScale</h4>
+<p>Scale function for mapping values to a coordinate along the <code>y</code>-axis. The following <code>scales</code> are supported:</p>
+<ul>
+<li><code>'linear'</code>: linear scale.</li>
+<li><code>'time'</code>: time scale.</li>
+</ul>
+<p>To set the scale,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.yScale = <span class="hljs-string">'linear'</span>;
+</code></pre>
+<p>When retrieved, the returned value is a scale <code>function</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-keyword">var</span> yScale = plot.yScale;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p><a name="prop-x-tick-format"></a></p>
+<h4 id="plotprototypextickformat">Plot.prototype.xTickFormat</h4>
+<p><code>x</code>-axis tick format. To set the tick format,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'xScale'</span>: <span class="hljs-string">'time'</span>
+});
+
+plot.xTickFormat = <span class="hljs-string">'%H:%M'</span>;
+</code></pre>
+<p>When retrieved, if the value has not been set to <code>null</code>, the returned value is a formatting <code>function</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'xScale'</span>: <span class="hljs-string">'time'</span>,
+    <span class="hljs-string">'xTickFormat'</span>: <span class="hljs-string">'%H:%M'</span>
+});
+
+<span class="hljs-keyword">var</span> fmt = plot.xTickFormat;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p><a name="prop-y-tick-format"></a></p>
+<h4 id="plotprototypeytickformat">Plot.prototype.yTickFormat</h4>
+<p><code>y</code>-axis tick format. To set the tick format,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'yScale'</span>: <span class="hljs-string">'linear'</span>
+});
+
+plot.yTickFormat = <span class="hljs-string">'.0%'</span>;
+</code></pre>
+<p>When retrieved, if the value has not been set to <code>null</code>, the returned value is a formatting <code>function</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'yScale'</span>: <span class="hljs-string">'linear'</span>,
+    <span class="hljs-string">'yTickFormat'</span>: <span class="hljs-string">'.0%'</span>
+});
+
+<span class="hljs-keyword">var</span> fmt = plot.yTickFormat;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p><a name="prop-x-num-ticks"></a></p>
+<h4 id="plotprototypexnumticks">Plot.prototype.xNumTicks</h4>
+<p>Number of <code>x</code>-axis tick marks. To set the number of tick marks,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xNumTicks = <span class="hljs-number">10</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> numTicks = plot.xNumTicks;
+<span class="hljs-comment">// returns 10</span>
+</code></pre>
+<p>If the value is set to <code>null</code>, the number of tick marks is computed internally.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.xNumTicks = <span class="hljs-literal">null</span>;
+</code></pre>
+<p><a name="prop-y-num-ticks"></a></p>
+<h4 id="plotprototypeynumticks">Plot.prototype.yNumTicks</h4>
+<p>Number of <code>y</code>-axis tick marks. To set the number of tick marks,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yNumTicks = <span class="hljs-number">5</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> numTicks = plot.yNumTicks;
+<span class="hljs-comment">// returns 5</span>
+</code></pre>
+<p>If the value is set to <code>null</code>, the number of tick marks is computed internally.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.yNumTicks = <span class="hljs-literal">null</span>;
+</code></pre>
+<p><a name="prop-x-axis-orient"></a></p>
+<h4 id="plotprototypexaxisorient">Plot.prototype.xAxisOrient</h4>
+<p><code>x</code>-axis orientation. The following orientations are supported:</p>
+<ul>
+<li><code>'bottom'</code></li>
+<li><code>'top'</code></li>
+</ul>
+<p>To set the orientation,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xAxisOrient = <span class="hljs-string">'top'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> orient = plot.xAxisOrient;
+<span class="hljs-comment">// returns 'top'</span>
+</code></pre>
+<p><a name="prop-y-axis-orient"></a></p>
+<h4 id="plotprototypeyaxisorient">Plot.prototype.yAxisOrient</h4>
+<p><code>y</code>-axis orientation. The following orientations are supported:</p>
+<ul>
+<li><code>'left'</code></li>
+<li><code>'right'</code></li>
+</ul>
+<p>To set the orientation,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yAxisOrient = <span class="hljs-string">'right'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> orient = plot.yAxisOrient;
+<span class="hljs-comment">// returns 'right'</span>
+</code></pre>
+<p><a name="prop-x-rug"></a></p>
+<h4 id="plotprototypexrug">Plot.prototype.xRug</h4>
+<p>Boolean flag(s) indicating whether to display a rug plot along the <code>x</code>-axis. To set the for flag all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xRug = <span class="hljs-literal">true</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> flgs = plot.xRug;
+<span class="hljs-comment">// returns [true]</span>
+</code></pre>
+<p>To specify the flag for each dataset, provide an <code>array</code> of <code>booleans</code>. During plot creation, each plotted dataset is assigned a flag. If the number of flags is less than the number of plotted datasets, flags are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.xRug = [
+    <span class="hljs-literal">true</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-literal">false</span> <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-y-rug"></a></p>
+<h4 id="plotprototypeyrug">Plot.prototype.yRug</h4>
+<p>Boolean flag(s) indicating whether to display a rug plot along the <code>y</code>-axis. To set the for flag all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yRug = <span class="hljs-literal">true</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> flgs = plot.yRug;
+<span class="hljs-comment">// returns [true]</span>
+</code></pre>
+<p>To specify the flag for each dataset, provide an <code>array</code> of <code>booleans</code>. During plot creation, each plotted dataset is assigned a flag. If the number of flags is less than the number of plotted datasets, flags are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.yRug = [
+    <span class="hljs-literal">false</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-literal">true</span>   <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-x-rug-orient"></a></p>
+<h4 id="plotprototypexrugorient">Plot.prototype.xRugOrient</h4>
+<p><code>x</code>-axis rug orientation. The following orientations are supported:</p>
+<ul>
+<li><code>'bottom'</code></li>
+<li><code>'top'</code></li>
+</ul>
+<p>To set the orientation for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xRugOrient = <span class="hljs-string">'top'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> orient = plot.xRugOrient;
+<span class="hljs-comment">// returns ['top']</span>
+</code></pre>
+<p>To specify the <code>x</code>-axis rug orientation for each dataset, provide an <code>array</code> of orientations. During plot creation, each plotted dataset is assigned an orientation. If the number of orientations is less than the number of plotted datasets, orientations are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.xRugOrient = [
+    <span class="hljs-string">'bottom'</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-string">'top'</span>     <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-y-rug-orient"></a></p>
+<h4 id="plotprototypeyrugorient">Plot.prototype.yRugOrient</h4>
+<p><code>y</code>-axis rug orientation. The following orientations are supported:</p>
+<ul>
+<li><code>'left'</code></li>
+<li><code>'right'</code></li>
+</ul>
+<p>To set the orientation for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yRugOrient = <span class="hljs-string">'right'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> orient = plot.yRugOrient;
+<span class="hljs-comment">// returns ['right']</span>
+</code></pre>
+<p>To specify the <code>y</code>-axis rug orientation for each dataset, provide an <code>array</code> of orientations. During plot creation, each plotted dataset is assigned an orientation. If the number of orientations is less than the number of plotted datasets, orientations are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.yRugOrient = [
+    <span class="hljs-string">'left'</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-string">'right'</span> <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-x-rug-opacity"></a></p>
+<h4 id="plotprototypexrugopacity">Plot.prototype.xRugOpacity</h4>
+<p><code>x</code>-axis rug opacity, where an opacity of <code>0.0</code> makes a rug completely transparent and an opacity of <code>1.0</code> makes a rug completely opaque. To set the opacity for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xRugOpacity = <span class="hljs-number">0.2</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> opacity = plot.xRugOpacity;
+<span class="hljs-comment">// returns [0.2]</span>
+</code></pre>
+<p>To specify the <code>x</code>-axis rug opacity for each dataset, provide an <code>array</code> of opacities. During plot creation, each plotted dataset is assigned an opacity. If the number of opacities is less than the number of plotted datasets, opacities are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.xRugOpacity = [
+    <span class="hljs-number">0.1</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-number">1.0</span>  <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-y-rug-opacity"></a></p>
+<h4 id="plotprototypeyrugopacity">Plot.prototype.yRugOpacity</h4>
+<p><code>y</code>-axis rug opacity, where an opacity of <code>0.0</code> makes a rug completely transparent and an opacity of <code>1.0</code> makes a rug completely opaque. To set the opacity for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yRugOpacity = <span class="hljs-number">0.4</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> opacity = plot.yRugOpacity;
+<span class="hljs-comment">// returns [0.4]</span>
+</code></pre>
+<p>To specify the <code>y</code>-axis rug opacity for each dataset, provide an <code>array</code> of opacities. During plot creation, each plotted dataset is assigned an opacity. If the number of opacities is less than the number of plotted datasets, opacities are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.yRugOpacity = [
+    <span class="hljs-number">0.7</span>, <span class="hljs-comment">// assigned to datasets 0,2,4,...</span>
+    <span class="hljs-number">0.1</span>  <span class="hljs-comment">// assigned to datasets 1,3,5,...</span>
+];
+</code></pre>
+<p><a name="prop-x-rug-size"></a></p>
+<h4 id="plotprototypexrugsize">Plot.prototype.xRugSize</h4>
+<p><code>x</code>-axis rug tick (tassel) size. To set the tick size for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xRugSize = <span class="hljs-number">4</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> size = plot.xRugSize;
+<span class="hljs-comment">// returns [4]</span>
+</code></pre>
+<p>To specify the <code>x</code>-axis rug size for each dataset, provide an <code>array</code> of sizes. During plot creation, each plotted dataset is assigned a tick size. If the number of sizes is less than the number of plotted datasets, sizes are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.xRugSize = [
+    <span class="hljs-number">4</span>, <span class="hljs-comment">// assigned to datasets 0,3,6,...</span>
+    <span class="hljs-number">6</span>, <span class="hljs-comment">// assigned to datasets 1,4,7,...</span>
+    <span class="hljs-number">4</span>  <span class="hljs-comment">// assigned to datasets 2,5,8,...</span>
+];
+</code></pre>
+<p><a name="prop-y-rug-size"></a></p>
+<h4 id="plotprototypeyrugsize">Plot.prototype.yRugSize</h4>
+<p><code>y</code>-axis rug tick (tassel) size. To set the tick size for all plotted datasets,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yRugSize = <span class="hljs-number">4</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> size = plot.yRugSize;
+<span class="hljs-comment">// returns [4]</span>
+</code></pre>
+<p>To specify the <code>y</code>-axis rug size for each dataset, provide an <code>array</code> of sizes. During plot creation, each plotted dataset is assigned a tick size. If the number of sizes is less than the number of plotted datasets, sizes are reused using modulo arithmetic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+plot.yRugSize = [
+    <span class="hljs-number">6</span>, <span class="hljs-comment">// assigned to datasets 0,3,6,...</span>
+    <span class="hljs-number">4</span>, <span class="hljs-comment">// assigned to datasets 1,4,7,...</span>
+    <span class="hljs-number">4</span>  <span class="hljs-comment">// assigned to datasets 2,5,8,...</span>
+];
+</code></pre>
+<p><a name="prop-description"></a></p>
+<h4 id="plotprototypedescription">Plot.prototype.description</h4>
+<p>Plot description.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.description = <span class="hljs-string">'A plot of `x` vs `y`.'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> desc = plot.description;
+<span class="hljs-comment">// returns 'A plot of `x` vs `y`.'</span>
+</code></pre>
+<p><a name="prop-title"></a></p>
+<h4 id="plotprototypetitle">Plot.prototype.title</h4>
+<p>Plot title.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.title = <span class="hljs-string">'Time Series'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> title = plot.title;
+<span class="hljs-comment">// returns 'Time Series'</span>
+</code></pre>
+<p><a name="prop-x-label"></a></p>
+<h4 id="plotprototypexlabel">Plot.prototype.xLabel</h4>
+<p><code>x</code>-axis label.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.xLabel = <span class="hljs-string">'time'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> label = plot.xLabel;
+<span class="hljs-comment">// returns 'time'</span>
+</code></pre>
+<p><a name="prop-y-label"></a></p>
+<h4 id="plotprototypeylabel">Plot.prototype.yLabel</h4>
+<p><code>y</code>-axis label.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.yLabel = <span class="hljs-string">'value'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> label = plot.yLabel;
+<span class="hljs-comment">// returns 'value'</span>
+</code></pre>
+<p><a name="prop-engine"></a></p>
+<h4 id="plotprototypeengine">Plot.prototype.engine</h4>
+<p>Plot rendering engine. The following engines are supported:</p>
+<ul>
+<li><code>'svg'</code></li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.engine = <span class="hljs-string">'svg'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> engine = plot.engine;
+<span class="hljs-comment">// returns 'svg'</span>
+</code></pre>
+<p><a name="prop-render-format"></a></p>
+<h4 id="plotprototyperenderformat">Plot.prototype.renderFormat</h4>
+<p>Plot render format. The following formats are supported:</p>
+<ul>
+<li><code>'vdom'</code></li>
+<li><code>'html'</code></li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.renderFormat = <span class="hljs-string">'html'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> fmt = plot.renderFormat;
+<span class="hljs-comment">// returns 'html'</span>
+</code></pre>
+<p><a name="prop-auto-render"></a></p>
+<h4 id="plotprototypeautorender">Plot.prototype.autoRender</h4>
+<p>Rendering mode. If <code>true</code>, an instance renders on each <code>'change'</code> event; otherwise, rendering must be triggered manually.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.autoRender = <span class="hljs-literal">false</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> mode = plot.autoRender;
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<p><a name="prop-viewer"></a></p>
+<h4 id="plotprototypeviewer">Plot.prototype.viewer</h4>
+<p>Plot viewer. The following viewers are supported:</p>
+<ul>
+<li><code>'none'</code></li>
+<li><code>'stdout'</code></li>
+<li><code>'window'</code></li>
+<li><code>'browser'</code></li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.viewer = <span class="hljs-string">'window'</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> viewer = plot.viewer;
+<span class="hljs-comment">// returns 'window'</span>
+</code></pre>
+<p><a name="prop-auto-view"></a></p>
+<h4 id="plotprototypeautoview">Plot.prototype.autoView</h4>
+<p>Viewer mode. If <code>true</code>, an instance generates an updated view on each <code>'render'</code> event; otherwise, generating a view must be triggered manually.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+
+<span class="hljs-comment">// Set:</span>
+plot.autoView = <span class="hljs-literal">true</span>;
+
+<span class="hljs-comment">// Get:</span>
+<span class="hljs-keyword">var</span> mode = plot.autoView;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<hr>
+<h3 id="computed-properties">Computed Properties</h3>
+<p><a name="prop-graph-width"></a></p>
+<h4 id="plotprototypegraphwidth">Plot.prototype.graphWidth</h4>
+<p>Returns the expected graph width.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'width'</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">'paddingLeft'</span>: <span class="hljs-number">20</span>,
+    <span class="hljs-string">'paddingRight'</span>: <span class="hljs-number">10</span>
+});
+<span class="hljs-keyword">var</span> width = plot.graphWidth;
+<span class="hljs-comment">// returns 70</span>
+</code></pre>
+<p><a name="prop-graph-height"></a></p>
+<h4 id="plotprototypegraphheight">Plot.prototype.graphHeight</h4>
+<p>Returns the expected graph height.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'height'</span>: <span class="hljs-number">500</span>,
+    <span class="hljs-string">'paddingTop'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'paddingBottom'</span>: <span class="hljs-number">120</span>
+});
+<span class="hljs-keyword">var</span> height = plot.graphHeight;
+<span class="hljs-comment">// returns 370</span>
+</code></pre>
+<p><a name="prop-x-domain"></a></p>
+<h4 id="plotprototypexdomain">Plot.prototype.xDomain</h4>
+<p>Returns the <code>x</code>-axis domain.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'xMin'</span>: -<span class="hljs-number">1.0</span>,
+    <span class="hljs-string">'xMax'</span>: <span class="hljs-number">1.0</span>
+});
+<span class="hljs-keyword">var</span> domain = plot.xDomain;
+<span class="hljs-comment">// returns [-1.0,1.0]</span>
+</code></pre>
+<p><a name="prop-y-domain"></a></p>
+<h4 id="plotprototypeydomain">Plot.prototype.yDomain</h4>
+<p>Returns the <code>y</code>-axis domain.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'yMin'</span>: <span class="hljs-number">0.0</span>,
+    <span class="hljs-string">'yMax'</span>: <span class="hljs-number">100.0</span>
+});
+<span class="hljs-keyword">var</span> domain = plot.yDomain;
+<span class="hljs-comment">// returns [0.0,100.0]</span>
+</code></pre>
+<p><a name="prop-x-range"></a></p>
+<h4 id="plotprototypexrange">Plot.prototype.xRange</h4>
+<p>Returns the <code>x</code>-axis range.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'width'</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">'paddingLeft'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'paddingRight'</span>: <span class="hljs-number">10</span>
+});
+<span class="hljs-keyword">var</span> range = plot.xRange;
+<span class="hljs-comment">// returns [0,80]</span>
+</code></pre>
+<p><a name="prop-y-range"></a></p>
+<h4 id="plotprototypeyrange">Plot.prototype.yRange</h4>
+<p>Returns the <code>y</code>-axis range.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot({
+    <span class="hljs-string">'height'</span>: <span class="hljs-number">500</span>,
+    <span class="hljs-string">'paddingTop'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'paddingBottom'</span>: <span class="hljs-number">120</span>
+});
+<span class="hljs-keyword">var</span> range = plot.yRange;
+<span class="hljs-comment">// returns [370,0]</span>
+</code></pre>
+<p><a name="prop-x-pos"></a></p>
+<h4 id="plotprototypexpos">Plot.prototype.xPos</h4>
+<p>Returns a <code>function</code> to map values to <code>x</code>-axis coordinate values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+<span class="hljs-keyword">var</span> xPos = plot.xPos;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+<p><a name="prop-y-pos"></a></p>
+<h4 id="plotprototypeypos">Plot.prototype.yPos</h4>
+<p>Returns a <code>function</code> to map values to <code>y</code>-axis coordinate values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-keyword">new</span> Plot();
+<span class="hljs-keyword">var</span> yPos = plot.yPos;
+<span class="hljs-comment">// returns &#x3C;Function></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<hr>
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/box-muller'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> plot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/ctor'</span> );
+
+<span class="hljs-keyword">var</span> now;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Create some data...</span>
+now = ( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() ).getTime();
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">100</span> );
+y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    x[ i ] = now + (i*<span class="hljs-number">360000</span>);
+    y[ i ] = <span class="hljs-number">50.0</span> + (<span class="hljs-number">10.0</span>*randn());
+}
+
+<span class="hljs-comment">// Create a new plot:</span>
+<span class="hljs-keyword">var</span> h = plot( [x], [y], {
+    <span class="hljs-string">'width'</span>: <span class="hljs-number">600</span>,
+    <span class="hljs-string">'height'</span>: <span class="hljs-number">480</span>,
+    <span class="hljs-string">'xScale'</span>: <span class="hljs-string">'time'</span>,
+    <span class="hljs-string">'xTickFormat'</span>: <span class="hljs-string">'%H:%M'</span>,
+    <span class="hljs-string">'renderFormat'</span>: <span class="hljs-string">'html'</span>,
+    <span class="hljs-string">'autoRender'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Render as a virtual DOM tree:</span>
+<span class="hljs-keyword">var</span> vtree = h.render( <span class="hljs-string">'vdom'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">JSON</span>.stringify( vtree ) );
+
+<span class="hljs-comment">// Render as HTML:</span>
+<span class="hljs-keyword">var</span> html = h.render();
+<span class="hljs-built_in">console</span>.log( html );
+
+<span class="hljs-comment">// Listen for 'render' events (e.g., when triggered due to changes in state):</span>
+h.on( <span class="hljs-string">'render'</span>, onRender );
+
+<span class="hljs-built_in">setTimeout</span>( update, <span class="hljs-number">1000</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>(<span class="hljs-params"></span>) </span>{
+    h.width = <span class="hljs-number">720</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRender</span>(<span class="hljs-params"> html </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( html );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

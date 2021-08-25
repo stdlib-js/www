@@ -1,0 +1,67 @@
+<h1 id="removefirst">removeFirst</h1>
+<blockquote>
+<p>Remove the first character of a string.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeFirst = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-first'</span> );
+</code></pre>
+<h4 id="removefirst-str-">removeFirst( str )</h4>
+<p>Removes the first character of a <code>string</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeFirst( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'ast man standing'</span>
+
+out = removeFirst( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'idden Treasures'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeFirst = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-first'</span> );
+
+<span class="hljs-keyword">var</span> str = removeFirst( <span class="hljs-string">'last man standing'</span> );
+<span class="hljs-comment">// returns 'ast man standing'</span>
+
+str = removeFirst( <span class="hljs-string">'presidential election'</span> );
+<span class="hljs-comment">// returns 'residential election'</span>
+
+str = removeFirst( <span class="hljs-string">'javaScript'</span> );
+<span class="hljs-comment">// returns 'avaScript'</span>
+
+str = removeFirst( <span class="hljs-string">'Hidden Treasures'</span> );
+<span class="hljs-comment">// returns 'idden Treasures'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: remove-first [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ remove-first beep
+eep
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep'</span> | remove-first
+eep
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

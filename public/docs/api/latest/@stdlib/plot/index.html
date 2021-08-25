@@ -1,0 +1,77 @@
+<h1 id="plot">Plot</h1>
+<blockquote>
+<p>Standard library plotting.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> plot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot'</span> );
+</code></pre>
+<h4 id="plot-1">plot</h4>
+<p>Standard library plotting.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ];
+
+<span class="hljs-keyword">var</span> plt = plot( [ x ], [ y ] );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/box-muller'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> now = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/now'</span> );
+<span class="hljs-keyword">var</span> plot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot'</span> );
+
+<span class="hljs-keyword">var</span> t;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Create some data...</span>
+t = now() * <span class="hljs-number">1000</span>;
+x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">100</span> );
+y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x.length );
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
+    x[ i ] = t + (i*<span class="hljs-number">360000</span>);
+    y[ i ] = <span class="hljs-number">50.0</span> + (<span class="hljs-number">10.0</span>*randn());
+}
+
+<span class="hljs-comment">// Create a new plot:</span>
+<span class="hljs-keyword">var</span> plt = plot( [x], [y], {
+    <span class="hljs-string">'width'</span>: <span class="hljs-number">600</span>,
+    <span class="hljs-string">'height'</span>: <span class="hljs-number">480</span>,
+    <span class="hljs-string">'xScale'</span>: <span class="hljs-string">'time'</span>,
+    <span class="hljs-string">'xTickFormat'</span>: <span class="hljs-string">'%H:%M'</span>,
+    <span class="hljs-string">'renderFormat'</span>: <span class="hljs-string">'html'</span>
+});
+
+<span class="hljs-comment">// Render as a virtual DOM tree:</span>
+<span class="hljs-keyword">var</span> vtree = plt.render( <span class="hljs-string">'vdom'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">JSON</span>.stringify( vtree ) );
+
+<span class="hljs-comment">// Render as HTML:</span>
+<span class="hljs-keyword">var</span> html = plt.render();
+<span class="hljs-built_in">console</span>.log( html );
+
+<span class="hljs-comment">// Listen for 'render' events (e.g., when triggered due to changes in state):</span>
+plt.on( <span class="hljs-string">'render'</span>, onRender );
+
+<span class="hljs-built_in">setTimeout</span>( update, <span class="hljs-number">1000</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>(<span class="hljs-params"></span>) </span>{
+    plt.width = <span class="hljs-number">720</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRender</span>(<span class="hljs-params"> html </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( html );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

@@ -1,0 +1,73 @@
+<h1 id="fréchet">Fréchet</h1>
+<blockquote>
+<p>Fréchet distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> frechet = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/frechet'</span> );
+</code></pre>
+<h4 id="frechet">frechet</h4>
+<p>Fréchet distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = frechet;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/cdf"><code>cdf( x, alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution cumulative distribution function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/logcdf"><code>logcdf( x, alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution logarithm of cumulative distribution function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/logpdf"><code>logpdf( x, alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution logarithm of probability density function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/pdf"><code>pdf( x, alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution probability density function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/quantile"><code>quantile( p, alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following functions for calculating distribution properties:</p>
+<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/entropy"><code>entropy( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution differential entropy.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/kurtosis"><code>kurtosis( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution kurtosis.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/mean"><code>mean( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution expected value.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/median"><code>median( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution median.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/mode"><code>mode( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution mode.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/skewness"><code>skewness( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution skewness.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/stdev"><code>stdev( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution standard deviation.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/variance"><code>variance( alpha, s, m )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution variance.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_distribution">Fréchet</a> distribution object.</p>
+<!-- <toc pattern="*ctor*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/frechet/ctor"><code>Frechet( [alpha, s, m] )</code></a></span><span class="delimiter">: </span><span class="description">Fréchet distribution constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Frechet = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/frechet'</span> ).Frechet;
+
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Frechet( <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> );
+
+<span class="hljs-keyword">var</span> y = dist.pdf( <span class="hljs-number">5.5</span> );
+<span class="hljs-comment">// returns ~0.158</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> frechet = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/frechet'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( frechet ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

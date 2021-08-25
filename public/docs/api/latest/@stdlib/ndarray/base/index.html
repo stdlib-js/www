@@ -1,0 +1,74 @@
+<h1 id="base">Base</h1>
+<blockquote>
+<p>Base ndarray.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Base ndarray.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<!-- <toc keywords="-assertion" > -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/bind2vind"><code>bind2vind( shape, strides, offset, order, idx, mode )</code></a></span><span class="delimiter">: </span><span class="description">convert a linear index in an underlying data buffer to a linear index in an array view.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/broadcast-array"><code>broadcastArray( arr, shape )</code></a></span><span class="delimiter">: </span><span class="description">broadcast an ndarray to a specified shape.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/broadcast-shapes"><code>broadcastShapes( shapes )</code></a></span><span class="delimiter">: </span><span class="description">broadcast array shapes to a single shape.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/buffer-ctors"><code>bufferCtors( dtype )</code></a></span><span class="delimiter">: </span><span class="description">ndarray data buffer constructors.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/buffer-dtype-enum"><code>bufferDataTypeEnum( buffer )</code></a></span><span class="delimiter">: </span><span class="description">return the data type enumeration constant of an ndarray data buffer.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/buffer-dtype"><code>bufferDataType( buffer )</code></a></span><span class="delimiter">: </span><span class="description">return the data type of an ndarray data buffer.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/buffer"><code>buffer( dtype, size )</code></a></span><span class="delimiter">: </span><span class="description">create a zero-filled contiguous linear ndarray data buffer.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/bytes-per-element"><code>bytesPerElement( dtype )</code></a></span><span class="delimiter">: </span><span class="description">return the number of bytes per element provided an underlying array data type.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/clamp-index"><code>clampIndex( idx, max )</code></a></span><span class="delimiter">: </span><span class="description">restrict an index to the interval <code>[0,max]</code>.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/ctor"><code>ndarray( dtype, buffer, shape, strides, offset, order )</code></a></span><span class="delimiter">: </span><span class="description">create a multidimensional array.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/dtype-char"><code>dtypeChar( dtype )</code></a></span><span class="delimiter">: </span><span class="description">return the single letter abbreviation for an underlying array data type.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/dtypes2signatures"><code>dtypes2signatures( dtypes, nin, nout )</code></a></span><span class="delimiter">: </span><span class="description">transform a list of array argument data types into a list of signatures.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/ind"><code>ind( idx, max, mode )</code></a></span><span class="delimiter">: </span><span class="description">return an index given an index mode.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/ind2sub"><code>ind2sub( shape, strides, offset, order, idx, mode )</code></a></span><span class="delimiter">: </span><span class="description">convert a linear index to an array of subscripts.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/iteration-order"><code>iterationOrder( strides )</code></a></span><span class="delimiter">: </span><span class="description">given a stride array, determine array iteration order.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/max-view-buffer-index"><code>maxViewBufferIndex( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">compute the maximum linear index in an underlying data buffer accessible to an array view.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/min-view-buffer-index"><code>minViewBufferIndex( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">compute the minimum linear index in an underlying data buffer accessible to an array view.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/minmax-view-buffer-index"><code>minmaxViewBufferIndex( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">compute the minimum and maximum linear indices in an underlying data buffer which are accessible to an array view.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/nonsingleton-dimensions"><code>nonsingletonDimensions( shape )</code></a></span><span class="delimiter">: </span><span class="description">return the number of non-singleton dimensions.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/numel"><code>numel( shape )</code></a></span><span class="delimiter">: </span><span class="description">return the number of elements in an array.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/serialize-meta-data"><code>serializeMetaData( x )</code></a></span><span class="delimiter">: </span><span class="description">serialize ndarray meta data.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/shape2strides"><code>shape2strides( shape, order )</code></a></span><span class="delimiter">: </span><span class="description">generate a stride array from an array shape.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/singleton-dimensions"><code>singletonDimensions( shape )</code></a></span><span class="delimiter">: </span><span class="description">return the number of singleton dimensions.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/strides2offset"><code>strides2offset( shape, strides )</code></a></span><span class="delimiter">: </span><span class="description">determine the index offset which specifies the location of the first indexed value in a multidimensional array based on a stride array.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/strides2order"><code>strides2order( strides )</code></a></span><span class="delimiter">: </span><span class="description">determine the order of a multidimensional array based on a provided stride array.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/sub2ind"><code>sub2ind( shape, strides, offset, ...subscripts, mode )</code></a></span><span class="delimiter">: </span><span class="description">convert subscripts to a linear index.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/to-array"><code>ndarray2array( buffer, shape, strides, offset, order )</code></a></span><span class="delimiter">: </span><span class="description">convert an ndarray buffer to a generic array.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/vind2bind"><code>vind2bind( shape, strides, offset, order, idx, mode )</code></a></span><span class="delimiter">: </span><span class="description">convert a linear index in an array view to a linear index in an underlying data buffer.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/wrap-index"><code>wrapIndex( idx, max )</code></a></span><span class="delimiter">: </span><span class="description">wrap an index on the interval <code>[0,max]</code>.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following sub-namespaces:</p>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ndarray/base/assert"><code>assert</code></a></span><span class="delimiter">: </span><span class="description">base ndarray assertion utilities.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

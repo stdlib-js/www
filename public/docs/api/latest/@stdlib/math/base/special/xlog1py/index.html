@@ -1,0 +1,60 @@
+<h1 id="xlog1py">xlog1py</h1>
+<blockquote>
+<p>Compute <code>x * ln(y+1)</code> so that the result is <code>0</code> if <code>x = 0</code>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> xlog1py = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/xlog1py'</span> );
+</code></pre>
+<h4 id="xlog1py-x-y-">xlog1py( x, y )</h4>
+<p>Computes <code>x * ln(y+1)</code> so that the result is <code>0</code> if <code>x = 0</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = xlog1py( <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns ~3.296</span>
+
+out = xlog1py( <span class="hljs-number">1.5</span>, <span class="hljs-number">5.9</span> );
+<span class="hljs-comment">// returns ~2.897</span>
+
+out = xlog1py( <span class="hljs-number">0.9</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~0.624</span>
+
+out = xlog1py( <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+out = xlog1py( <span class="hljs-number">0.0</span>, -<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+out = xlog1py( <span class="hljs-number">1.5</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+out = xlog1py( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+out = xlog1py( <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.3</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> xlog1py = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/xlog1py'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = randu();
+    <span class="hljs-keyword">if</span> ( x &#x3C; <span class="hljs-number">0.5</span> ) {
+        x = <span class="hljs-number">0.0</span>;
+    }
+    y = ( randu() * <span class="hljs-number">20.0</span> ) - <span class="hljs-number">5.0</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'xlog1py(%d, %d) = %d'</span>, x, y, xlog1py( x, y ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

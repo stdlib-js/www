@@ -1,0 +1,115 @@
+<h1 id="white-space">White Space</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> character.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reWhitespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/whitespace'</span> );
+</code></pre>
+<h4 id="rewhitespace-options-">reWhitespace( [options] )</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> character. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_WHITESPACE = reWhitespace();
+
+<span class="hljs-keyword">var</span> bool = RE_WHITESPACE.test( <span class="hljs-string">'\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_WHITESPACE.test( <span class="hljs-string">' '</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The function accepts an <code>options</code> object with optional properties:</p>
+<ul>
+<li><strong>flags</strong>: <code>string</code> specifying regular expression <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#advanced_searching_with_flags_2">flags</a>. Default: <code>''</code>.</li>
+<li><strong>capture</strong>: <code>boolean</code> indicating whether to create a capture group for the match. Default: <code>false</code>.</li>
+</ul>
+<p>By default, the function returns a regular expression which does not have any flags specified. To specify <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#advanced_searching_with_flags_2">flags</a>, set the <code>flags</code> option with a list of flags (which may be in any order).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_WHITESPACE = reWhitespace({
+    <span class="hljs-string">'flags'</span>: <span class="hljs-string">'gm'</span>
+});
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> bool = RE_WHITESPACE.test( str );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_WHITESPACE.test( str );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<p>By default, the function returns a regular expression which does not capture the part of a string matching the regular expression. To capture matches, set the <code>capture</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_WHITESPACE = reWhitespace({
+    <span class="hljs-string">'capture'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
+<span class="hljs-keyword">var</span> arr = str.split( RE_WHITESPACE );
+<span class="hljs-comment">// returns [ 'Hello', ' ', 'World!' ]</span>
+</code></pre>
+<h4 id="rewhitespaceregexp">reWhitespace.REGEXP</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> character. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reWhitespace.REGEXP.test( <span class="hljs-string">'\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = reWhitespace.REGEXP.test( <span class="hljs-string">'\\n'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<h4 id="rewhitespaceregexp_capture">reWhitespace.REGEXP_CAPTURE</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture characters matching a <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a> character. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'Duplicate capture'</span>;
+<span class="hljs-keyword">var</span> out = replace( str, reWhitespace.REGEXP_CAPTURE, <span class="hljs-string">'$1$1'</span> );
+<span class="hljs-comment">// returns 'Duplicate  capture'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Matches the <code>25</code> characters defined as white space ("WSpace=Y","WS") characters in the Unicode <code>9.0</code> character database.</p>
+</li>
+<li>
+<p>Matches one related white space character without the Unicode character property "WSpace=Y" (zero width non-breaking space which was deprecated as of Unicode 3.2).</p>
+</li>
+<li>
+<p>The <code>REGEXP</code> regular expression is defined as </p>
+<pre><code class="no-highlight language-text">/[\u0009\u000A\u000B\u000C\u000D\u0020\u0085\u00A0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF]/
+</code></pre>
+</li>
+<li>
+<p>The <code>REGEXP_CAPTURE</code> regular expression is defined as </p>
+<pre><code class="no-highlight language-text">/([\u0009\u000A\u000B\u000C\u000D\u0020\u0085\u00A0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF])/
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error",  stdlib/doctest: "off" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reWhitespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/whitespace'</span> );
+
+<span class="hljs-keyword">var</span> RE_WHITESPACE = reWhitespace();
+
+<span class="hljs-keyword">var</span> bool = RE_WHITESPACE.test( <span class="hljs-string">'beep boop'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_WHITESPACE.test( <span class="hljs-string">'\n'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_WHITESPACE.test( <span class="hljs-string">'\r'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_WHITESPACE.test( <span class="hljs-string">'\t'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = RE_WHITESPACE.test( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-keyword">var</span> str = <span class="hljs-string">'This is\na newline\r\ndelimited string.'</span>;
+
+<span class="hljs-keyword">var</span> arr = str.split( RE_WHITESPACE );
+<span class="hljs-comment">// returns [ 'This', 'is', 'a', 'newline', '', 'delimited', 'string.' ]</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

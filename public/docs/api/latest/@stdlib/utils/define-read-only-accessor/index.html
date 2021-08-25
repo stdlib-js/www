@@ -1,0 +1,62 @@
+<h1 id="read-only-accessor">Read-Only Accessor</h1>
+<blockquote>
+<p><a href="/docs/api/develop/@stdlib/utils/define-property">Define</a> a <strong>read-only</strong> accessor.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setReadOnlyAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-read-only-accessor'</span> );
+</code></pre>
+<h4 id="setreadonlyaccessor-obj-prop-getter-">setReadOnlyAccessor( obj, prop, getter )</h4>
+<p><a href="/docs/api/develop/@stdlib/utils/define-property">Defines</a> a <strong>read-only</strong> accessor.</p>
+<!-- run throws: true -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getter</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span>;
+}
+
+<span class="hljs-keyword">var</span> obj = {};
+
+setReadOnlyAccessor( obj, <span class="hljs-string">'foo'</span>, getter );
+
+obj.foo = <span class="hljs-string">'boop'</span>;
+<span class="hljs-comment">// throws &#x3C;Error></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+    
+## Notes
+<ul>
+<li>Read-only accessors are <strong>enumerable</strong> and <strong>non-configurable</strong>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setReadOnlyAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-read-only-accessor'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"> name </span>) </span>{
+    <span class="hljs-keyword">if</span> ( !(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Foo) ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Foo( name );
+    }
+    setReadOnlyAccessor( <span class="hljs-built_in">this</span>, <span class="hljs-string">'name'</span>, getName );
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> name;
+    }
+}
+
+<span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">new</span> Foo( <span class="hljs-string">'beep'</span> );
+
+<span class="hljs-keyword">try</span> {
+    foo.name = <span class="hljs-string">'boop'</span>;
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.error( err.message );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

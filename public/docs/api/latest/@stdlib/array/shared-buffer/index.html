@@ -1,0 +1,166 @@
+<h1 id="sharedarraybuffer">SharedArrayBuffer</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer">Constructor</a> returning an object used to represent a generic, fixed-length raw binary data buffer which can be used to create views of shared memory.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> SharedArrayBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shared-buffer'</span> );
+</code></pre>
+<h4 id="sharedarraybuffer-size-">SharedArrayBuffer( size )</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a> having a specified number of bytes.</p>
+<!-- eslint-disable stdlib/require-globals, no-unused-vars, no-inner-declarations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">5</span> );
+    <span class="hljs-comment">// returns &#x3C;SharedArrayBuffer></span>
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support SharedArrayBuffers.'</span> );
+}
+</code></pre>
+<hr>
+<h3 id="properties">Properties</h3>
+<h4 id="sharedarraybufferlength">SharedArrayBuffer.length</h4>
+<p>Number of input arguments the constructor accepts.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = SharedArrayBuffer.length;
+<span class="hljs-comment">// returns 1</span>
+</code></pre>
+<h4 id="sharedarraybufferprototypebytelength">SharedArrayBuffer.prototype.byteLength</h4>
+<p><strong>Read-only</strong> property which returns the length (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>.</p>
+<!-- eslint-disable stdlib/require-globals, no-unused-vars, no-inner-declarations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">5</span> );
+    <span class="hljs-keyword">var</span> byteLength = buf.byteLength;
+    <span class="hljs-comment">// returns 5</span>
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support SharedArrayBuffers.'</span> );
+}
+</code></pre>
+<hr>
+<h3 id="methods">Methods</h3>
+<h4 id="sharedarraybufferprototypeslice-start-end-">SharedArrayBuffer.prototype.slice( [start[, end]] )</h4>
+<p>Copies the bytes of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a> to a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>.</p>
+<!-- eslint-disable stdlib/require-globals, no-unused-vars, no-inner-declarations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">10</span> );
+
+    <span class="hljs-keyword">var</span> b2 = b1.slice();
+    <span class="hljs-comment">// returns &#x3C;SharedArrayBuffer></span>
+
+    <span class="hljs-keyword">var</span> bool = ( b2 === b1 );
+    <span class="hljs-comment">// returns false</span>
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support SharedArrayBuffers.'</span> );
+}
+</code></pre>
+<p>By default, the method copies from the beginning of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>. To beginning copying from a different byte index, provide a <code>start</code> argument, specifying the starting byte index (inclusive).</p>
+<!-- eslint-disable stdlib/require-globals, no-unused-vars, no-inner-declarations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">10</span> );
+    <span class="hljs-keyword">var</span> b2 = b1.slice( <span class="hljs-number">2</span> );
+
+    <span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+    <span class="hljs-comment">// returns 8</span>
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support SharedArrayBuffers.'</span> );
+}
+</code></pre>
+<p>If <code>start &#x3C; 0</code>, the index is relative to the end of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>.</p>
+<!-- eslint-disable stdlib/require-globals, no-unused-vars, no-inner-declarations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">10</span> );
+    <span class="hljs-keyword">var</span> b2 = b1.slice( -<span class="hljs-number">2</span> );
+
+    <span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+    <span class="hljs-comment">// returns 2</span>
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support SharedArrayBuffers.'</span> );
+}
+</code></pre>
+<p>By default, the method copies to the end of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>. To copy until a particular byte index, provide an <code>end</code> index, specifying the ending byte index (exclusive).</p>
+<!-- eslint-disable stdlib/require-globals, no-unused-vars, no-inner-declarations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">10</span> );
+    <span class="hljs-keyword">var</span> b2 = b1.slice( <span class="hljs-number">2</span>, <span class="hljs-number">6</span> );
+
+    <span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+    <span class="hljs-comment">// returns 4</span>
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support SharedArrayBuffers.'</span> );
+}
+</code></pre>
+<p>If <code>end &#x3C; 0</code>, the index is relative to the end of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>.</p>
+<!-- eslint-disable stdlib/require-globals, no-unused-vars, no-inner-declarations -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">var</span> b1 = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">10</span> );
+    <span class="hljs-keyword">var</span> b2 = b1.slice( <span class="hljs-number">2</span>, -<span class="hljs-number">2</span> );
+
+    <span class="hljs-keyword">var</span> nbytes = b2.byteLength;
+    <span class="hljs-comment">// returns 6</span>
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support SharedArrayBuffers.'</span> );
+}
+</code></pre>
+</section>
+<!-- /.usage -->
+<hr>
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: update example to show explicit threading use case -->
+<!-- eslint no-undef: "error" -->
+<!-- eslint-disable no-unused-vars -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
+<span class="hljs-keyword">var</span> SharedArrayBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shared-buffer'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> bytes;
+    <span class="hljs-keyword">var</span> buf;
+    <span class="hljs-keyword">var</span> arr;
+    <span class="hljs-keyword">var</span> i;
+
+    <span class="hljs-comment">// Create a new SharedArrayBuffer:</span>
+    buf = <span class="hljs-keyword">new</span> SharedArrayBuffer( <span class="hljs-number">64</span> );
+
+    <span class="hljs-comment">// Create a Float64 array buffer view:</span>
+    arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( buf.byteLength/<span class="hljs-number">8</span> );
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+        arr[ i ] = randu() * <span class="hljs-number">100.0</span>;
+    }
+
+    <span class="hljs-comment">// Create a "bytes" view of the array buffer:</span>
+    bytes = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( arr.buffer );
+
+    <span class="hljs-comment">// Print the bytes:</span>
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; bytes.length; i++ ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'byte %d: %s'</span>, i, toBinaryString( bytes[ i ] ) );
+    }
+}
+
+<span class="hljs-keyword">try</span> {
+    main();
+} <span class="hljs-keyword">catch</span> ( err ) {
+    <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Environment does not provide SharedArrayBuffer support.'</span> );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,47 @@
+<h1 id="iscomplex">isComplex</h1>
+<blockquote>
+<p>Test if a value is a <a href="/docs/api/develop/@stdlib/complex/float32">64-bit</a> or <a href="/docs/api/develop/@stdlib/complex/float64">128-bit</a> complex number.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isComplex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-complex'</span> );
+</code></pre>
+<h4 id="iscomplex-value-">isComplex( value )</h4>
+<p>Tests if a value is a <a href="/docs/api/develop/@stdlib/complex/float32">64-bit</a> or <a href="/docs/api/develop/@stdlib/complex/float64">128-bit</a> complex number.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-keyword">var</span> bool = isComplex( x );
+<span class="hljs-comment">// returns true</span>
+
+x = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">3.0</span>, <span class="hljs-number">1.0</span> );
+bool = isComplex( x );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
+<span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<span class="hljs-keyword">var</span> isComplex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-complex'</span> );
+
+<span class="hljs-keyword">var</span> out = isComplex( <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+out = isComplex( <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, <span class="hljs-number">1.0</span> ) );
+<span class="hljs-comment">// returns true</span>
+
+out = isComplex( {} );
+<span class="hljs-comment">// returns false</span>
+
+out = isComplex( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

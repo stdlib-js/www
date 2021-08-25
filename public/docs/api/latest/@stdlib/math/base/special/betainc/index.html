@@ -1,0 +1,75 @@
+<h1 id="betainc">betainc</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">Incomplete beta function</a>.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> betainc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/betainc'</span> );
+</code></pre>
+<h4 id="betainc-x-a-b-regularized-upper-">betainc( x, a, b[, regularized[, upper]] )</h4>
+<p>By default, evaluates the regularized lower <a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">incomplete beta function</a> for inputs <code>x</code>, <code>a > 0</code> and <code>b > 0</code>. The fourth and fifth parameters of the function can be used to specify whether instead to evaluate the non-regularized and/or upper incomplete beta functions, respectively.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = betainc( <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns 0.5</span>
+
+y = betainc( <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns ~0.083</span>
+
+y = betainc( <span class="hljs-number">0.2</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns 0.36</span>
+
+y = betainc( <span class="hljs-number">0.2</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns 0.64</span>
+</code></pre>
+<p>If provided <code>NaN</code> as any argument, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = betainc( <span class="hljs-literal">NaN</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = betainc( <span class="hljs-number">0.8</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = betainc( <span class="hljs-number">0.8</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If provided a <code>x</code> outside the interval <code>[0,1]</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = betainc( <span class="hljs-number">1.5</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = betainc( -<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If provided a negative <code>a</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = betainc( <span class="hljs-number">0.5</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If provided a negative <code>b</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = betainc( <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> betainc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/betainc'</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> a;
+<span class="hljs-keyword">var</span> b;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = randu();
+    a = randu() * <span class="hljs-number">10.0</span>;
+    b = randu() * <span class="hljs-number">10.0</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, \t a: %d, \t b: %d, \t f(x,a,b): %d'</span>, x.toFixed( <span class="hljs-number">4</span> ), a.toFixed( <span class="hljs-number">4</span> ), b.toFixed( <span class="hljs-number">4</span> ), betainc( x, a, b ).toFixed( <span class="hljs-number">4</span> ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

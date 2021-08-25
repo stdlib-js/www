@@ -1,0 +1,140 @@
+<h1 id="resolveparentpathby">resolveParentPathBy</h1>
+<blockquote>
+<p>Resolve a path according to a predicate function by walking parent directories.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> resolveParentPathBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/resolve-parent-path-by'</span> );
+</code></pre>
+<p><a name="resolve-parent-path-by"></a></p>
+<h4 id="resolveparentpathby-path-options-predicate-clbk-">resolveParentPathBy( path[, options], predicate, clbk )</h4>
+<p>Asynchronously resolves a path according to a <code>predicate</code> function by walking parent directories.</p>
+<pre><code class="hljs language-javascript">resolveParentPathBy( <span class="hljs-string">'package.json'</span>, predicate, onPath );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> path, next </span>) </span>{
+    <span class="hljs-keyword">var</span> bool = ( <span class="hljs-regexp">/\/test\//</span>.test( path ) === <span class="hljs-literal">false</span> );
+    next( <span class="hljs-literal">null</span>, bool );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPath</span>(<span class="hljs-params"> error, path </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( path );
+    <span class="hljs-comment">// e.g., => '...'</span>
+}
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>dir</strong>: base directory from which to begin walking. May be either an absolute path or a path relative to the current working directory.</li>
+</ul>
+<p>By default, the function begins walking from the current working directory. To specify an alternative directory, set the <code>dir</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dir'</span>: __dirname
+};
+resolveParentPathBy( <span class="hljs-string">'package.json'</span>, opts, predicate, onPath );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> path, next </span>) </span>{
+    <span class="hljs-keyword">var</span> bool = ( <span class="hljs-regexp">/\/test\//</span>.test( path ) === <span class="hljs-literal">false</span> );
+    next( <span class="hljs-literal">null</span>, bool );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPath</span>(<span class="hljs-params"> error, path </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( path );
+    <span class="hljs-comment">// e.g., => '...'</span>
+}
+</code></pre>
+<p>When invoked, the <code>predicate</code> function is provided two arguments:</p>
+<ul>
+<li><code>path</code>: a resolved path.</li>
+<li><code>next</code>: a callback which should be called once the <code>predicate</code> function has finished processing a resolved path.</li>
+</ul>
+<p>If a <code>predicate</code> function calls the <code>next</code> callback with a truthy second argument, the function stops processing any additional paths and returns the resolved path as the test result.</p>
+<p>If unable to resolve a path, the function returns <code>null</code> as the path result.</p>
+<h4 id="resolveparentpathbysync-path-options-predicate-">resolveParentPathBy.sync( path[, options], predicate )</h4>
+<p>Synchronously resolves a path according to a <code>predicate</code> function by walking parent directories.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> path </span>) </span>{
+    <span class="hljs-keyword">return</span> ( <span class="hljs-regexp">/\/test\//</span>.test( path ) === <span class="hljs-literal">false</span> );
+}
+
+<span class="hljs-keyword">var</span> path = resolveParentPathBy.sync( <span class="hljs-string">'package.json'</span>, predicate );
+<span class="hljs-comment">// e.g., returns '...'</span>
+</code></pre>
+<p>The function accepts the same <code>options</code> as <a href="#resolve-parent-path-by"><code>resolveParentPathBy()</code></a>.</p>
+<p>When invoked, the <code>predicate</code> function is provided one argument:</p>
+<ul>
+<li><code>path</code>: a resolved path.</li>
+</ul>
+<p>The function immediately returns upon encountering a truthy <code>predicate</code> function return value.</p>
+<p>If unable to resolve a path, the function returns <code>null</code> as the path result.</p>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If a provided <code>predicate</code> function calls the <code>next</code> callback with a truthy <code>error</code> argument, the function suspends execution and immediately calls the <code>done</code> callback for subsequent <code>error</code> handling.</li>
+<li>For <code>resolveParentPathBy</code>, execution is <strong>not</strong> guaranteed to be asynchronous. To guarantee asynchrony, wrap the <code>done</code> callback in a function which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li>
+<li>This implementation is <strong>not</strong> similar in functionality to core <a href="https://nodejs.org/api/path.html#path_path_resolve_paths"><code>path.resolve</code></a>. The latter performs string manipulation to generate a full path. This implementation walks parent directories to perform a <strong>search</strong>, thereby touching the file system. Accordingly, this implementation resolves a <em>real</em> absolute file path and is intended for use when a target's location in a parent directory is unknown relative to a child directory; e.g., when wanting to find a package root from deep within a package directory.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<!-- eslint-disable stdlib/no-dynamic-require -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> resolveParentPathBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/resolve-parent-path-by'</span> );
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'dir'</span>: __dirname
+};
+
+<span class="hljs-comment">/* Sync */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicateSync</span>(<span class="hljs-params"> path </span>) </span>{
+    <span class="hljs-keyword">var</span> pkg = <span class="hljs-built_in">require</span>( path );
+    <span class="hljs-keyword">if</span> ( pkg.name !== <span class="hljs-string">'@stdlib/stdlib'</span> ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-keyword">var</span> out = resolveParentPathBy.sync( <span class="hljs-string">'package.json'</span>, opts, predicateSync );
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// e.g., => '...'</span>
+
+out = resolveParentPathBy.sync( <span class="hljs-string">'non_existent_basename/package.json'</span>, predicateSync );
+<span class="hljs-built_in">console</span>.log( out );
+<span class="hljs-comment">// => null</span>
+
+<span class="hljs-comment">/* Async */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicateAsync</span>(<span class="hljs-params"> path, next </span>) </span>{
+    <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> pkg = <span class="hljs-built_in">require</span>( path );
+        <span class="hljs-keyword">if</span> ( pkg.name !== <span class="hljs-string">'@stdlib/stdlib'</span> ) {
+            <span class="hljs-keyword">return</span> next( <span class="hljs-literal">null</span>, <span class="hljs-literal">false</span> );
+        }
+        next( <span class="hljs-literal">null</span>, <span class="hljs-literal">true</span> );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onPath</span>(<span class="hljs-params"> error, path </span>) </span>{
+    <span class="hljs-keyword">if</span> ( error ) {
+        <span class="hljs-keyword">throw</span> error;
+    }
+    <span class="hljs-built_in">console</span>.log( path );
+}
+
+resolveParentPathBy( <span class="hljs-string">'package.json'</span>, opts, predicateAsync, onPath );
+resolveParentPathBy( <span class="hljs-string">'./../non_existent_path/package.json'</span>, predicateAsync, onPath );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

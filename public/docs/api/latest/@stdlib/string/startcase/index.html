@@ -1,0 +1,70 @@
+<h1 id="startcase">startcase</h1>
+<blockquote>
+<p>Capitalize the first letter of each word in a string.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/startcase'</span> );
+</code></pre>
+<h4 id="startcase-str-">startcase( str )</h4>
+<p>Capitalizes the first letter of each word in a <code>string</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = startcase( <span class="hljs-string">'beep boop a foo bar'</span> );
+<span class="hljs-comment">// returns 'Beep Boop A Foo Bar'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> startcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/startcase'</span> );
+
+<span class="hljs-keyword">var</span> str = startcase( <span class="hljs-string">'beep boop foo bar'</span> );
+<span class="hljs-comment">// returns 'Beep Boop Foo Bar'</span>
+
+str = startcase( <span class="hljs-string">'Beep'</span> );
+<span class="hljs-comment">// returns 'Beep'</span>
+
+str = startcase( <span class="hljs-string">'BeEp'</span> );
+<span class="hljs-comment">// returns 'BeEp'</span>
+
+str = startcase( <span class="hljs-string">'$**_beep_BoOp_**$'</span> );
+<span class="hljs-comment">// returns '$**_beep_BoOp_**$'</span>
+
+str = startcase( <span class="hljs-string">''</span> );
+<span class="hljs-comment">// returns ''</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: startcase [options] [&#x3C;string>]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ startcase <span class="hljs-string">'beep boop foo bar'</span>
+Beep Boop Foo Bar
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep boop foo bar'</span> | startcase
+Beep Boop Foo Bar 
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

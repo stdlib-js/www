@@ -1,0 +1,130 @@
+<h1 id="smap">smap</h1>
+<blockquote>
+<p>C API for registering a Node-API module exporting a strided array interface for applying a unary callback accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array and assigning results to elements in a single-precision floating-point strided output array.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/smap'</span> );
+</code></pre>
+<h4 id="headerdir">headerDir</h4>
+<p>Absolute file path for the directory containing header files for C APIs.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/smap'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/napi/smap.h"</span></span>
+</code></pre>
+<h4 id="stdlib_strided_napi_smap-env-info-fcn-">stdlib_strided_napi_smap( env, info, fcn )</h4>
+<p>Invokes a strided array interface which applies a unary callback accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array and assigns results to elements in a single-precision floating-point strided output array.</p>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">identityf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span> </span>{
+    <span class="hljs-keyword">return</span> x;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    stdlib_strided_napi_smap( env, info, identityf );
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li>
+<li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li>
+<li><strong>fcn</strong>: <code>[in] float (*fcn)( float )</code> unary callback.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_napi_smap</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">float</span> (*fcn)( <span class="hljs-keyword">float</span> ) )</span></span>;
+</code></pre>
+<h4 id="stdlib_strided_napi_module_smap-clbk-">STDLIB_STRIDED_NAPI_MODULE_SMAP( clbk )</h4>
+<p>Macro for registering a Node-API module exporting a strided array interface for applying a unary callback accepting and return single-precision floating-point numbers to each element in a single-precision floating-point strided input array and assigning results to elements in a single-precision floating-point strided output array.</p>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">scale</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span> </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10.0f</span>;
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Register a Node-API module:</span>
+STDLIB_STRIDED_NAPI_MODULE_SMAP( scale );
+</code></pre>
+<p>The macro expects the following arguments:</p>
+<ul>
+<li><strong>clbk</strong>: <code>float (*fcn)( float )</code> unary callback.</li>
+</ul>
+<p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h3 id="notes">Notes</h3>
+<ul>
+<li>
+<p>The function expects that the callback <code>info</code> argument provides access to the following JavaScript arguments:</p>
+<ul>
+<li><code>N</code>: number of indexed elements.</li>
+<li><code>X</code>: input <a href="/docs/api/develop/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
+<li><code>strideX</code>: <code>X</code> stride length.</li>
+<li><code>Y</code>: destination <a href="/docs/api/develop/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
+<li><code>strideY</code>: <code>Y</code> stride length.</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

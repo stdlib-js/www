@@ -1,0 +1,40 @@
+<h1 id="incremental-machine-learning">Incremental Machine Learning</h1>
+<blockquote>
+<p>Standard library incremental machine learning algorithms.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/incr'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Standard library incremental machine learning algorithms.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incr = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ml/incr/binary-classification"><code>incrBinaryClassification( N[, options] )</code></a></span><span class="delimiter">: </span><span class="description">incrementally perform binary classification using stochastic gradient descent (SGD).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ml/incr/kmeans"><code>incrkmeans( k[, ndims][, options] )</code></a></span><span class="delimiter">: </span><span class="description">incrementally partition data into <code>k</code> clusters.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/ml/incr/sgd-regression"><code>incrSGDRegression( [options] )</code></a></span><span class="delimiter">: </span><span class="description">online regression via Stochastic Gradient Descent.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ml/incr'</span> );
+
+<span class="hljs-built_in">console</span>.log( getKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

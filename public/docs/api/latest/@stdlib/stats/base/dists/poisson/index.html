@@ -1,0 +1,75 @@
+<h1 id="poisson">Poisson</h1>
+<blockquote>
+<p>Poisson distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> poisson = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/poisson'</span> );
+</code></pre>
+<h4 id="poisson-1">poisson</h4>
+<p>Poisson distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = poisson;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pmf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/cdf"><code>cdf( x, lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution cumulative distribution function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/logpmf"><code>logpmf( x, lambda )</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of the probability mass function (PMF) for a Poisson distribution.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/mgf"><code>mgf( t, lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution moment-generating function (MGF).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/pmf"><code>pmf( x, lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution probability mass function (PMF).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/quantile"><code>quantile( p, lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following functions for calculating distribution properties:</p>
+<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/kurtosis"><code>kurtosis( lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution excess kurtosis.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/mean"><code>mean( lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution expected value.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/median"><code>median( lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution median.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/mode"><code>mode( lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution mode.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/skewness"><code>skewness( lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution skewness.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/stdev"><code>stdev( lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution standard deviation.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/variance"><code>variance( lambda )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution variance.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson</a> distribution object.</p>
+<!-- <toc pattern="*ctor*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/poisson/ctor"><code>Poisson( [lambda] )</code></a></span><span class="delimiter">: </span><span class="description">Poisson distribution constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Poisson = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/poisson'</span> ).Poisson;
+
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Poisson( <span class="hljs-number">2.0</span> );
+
+<span class="hljs-keyword">var</span> y = dist.pmf( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~0.18</span>
+
+y = dist.pmf( <span class="hljs-number">2.3</span> );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> poisson = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/poisson'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( poisson ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

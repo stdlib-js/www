@@ -1,0 +1,77 @@
+<h1 id="geometric">Geometric</h1>
+<blockquote>
+<p>Geometric distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> geometric = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/geometric'</span> );
+</code></pre>
+<h4 id="geometric-1">geometric</h4>
+<p>Geometric distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = geometric;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pmf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/cdf"><code>cdf( x, p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution cumulative distribution function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/logcdf"><code>logcdf( x, p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution logarithm of cumulative distribution function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/logpmf"><code>logpmf( x, p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution logarithm of probability mass function (PMF).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/mgf"><code>mgf( t, p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution moment-generating function (MGF).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/pmf"><code>pmf( x, p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution probability mass function (PMF).</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/quantile"><code>quantile( r, p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following functions for calculating distribution properties:</p>
+<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/entropy"><code>entropy( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution entropy.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/kurtosis"><code>kurtosis( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution excess kurtosis.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/mean"><code>mean( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution expected value.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/median"><code>median( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution median.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/mode"><code>mode( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution mode.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/skewness"><code>skewness( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution skewness.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/stdev"><code>stdev( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution standard deviation.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/variance"><code>variance( p )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution variance.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric</a> distribution object.</p>
+<!-- <toc pattern="*ctor*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/geometric/ctor"><code>Geometric( [p] )</code></a></span><span class="delimiter">: </span><span class="description">geometric distribution constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Geometric = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/geometric'</span> ).Geometric;
+
+<span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Geometric( <span class="hljs-number">0.2</span> );
+
+<span class="hljs-keyword">var</span> y = dist.logpmf( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~-2.279</span>
+
+y = dist.logpmf( <span class="hljs-number">2.3</span> );
+<span class="hljs-comment">// returns -Infinity</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> geometric = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/geometric'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( geometric ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

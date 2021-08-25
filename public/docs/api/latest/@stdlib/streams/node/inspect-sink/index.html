@@ -1,0 +1,174 @@
+<h1 id="inspect-stream">Inspect Stream</h1>
+<blockquote>
+<p><a href="https://nodejs.org/api/stream.html">Writable stream</a> for inspecting streamed data.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectSinkStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+</code></pre>
+<p><a name="inspect-sink-stream"></a></p>
+<h4 id="inspectsinkstream-options-clbk-">inspectSinkStream( [options,] clbk )</h4>
+<p>Creates a <a href="https://nodejs.org/api/stream.html">writable stream</a> for inspecting streamed data.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk, idx </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'index: %d'</span>, idx );
+    <span class="hljs-built_in">console</span>.log( chunk );
+}
+
+<span class="hljs-keyword">var</span> stream = inspectSinkStream( log );
+
+stream.write( <span class="hljs-string">'a'</span> );
+stream.write( <span class="hljs-string">'b'</span> );
+stream.write( <span class="hljs-string">'c'</span> );
+
+stream.end();
+
+<span class="hljs-comment">// prints: index: 0</span>
+<span class="hljs-comment">// prints: a</span>
+<span class="hljs-comment">// prints: index: 1</span>
+<span class="hljs-comment">// prints: b</span>
+<span class="hljs-comment">// prints: index: 2</span>
+<span class="hljs-comment">// prints: c</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>objectMode</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>false</code>.</li>
+<li><strong>highWaterMark</strong>: specifies the <code>Buffer</code> level at which <code>write()</code> calls start returning <code>false</code>.</li>
+<li><strong>decodeStrings</strong>: specifies whether to encode strings as <code>Buffer</code> objects before writing data to a returned <a href="https://nodejs.org/api/stream.html">stream</a>. Default: <code>true</code>.</li>
+<li><strong>defaultEncoding</strong>: default encoding when not explicitly specified when writing data. Default: <code>'utf8'</code>.</li>
+</ul>
+<p>To set <a href="https://nodejs.org/api/stream.html">stream</a> <code>options</code>,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk, idx </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'index: %d'</span>, idx );
+    <span class="hljs-built_in">console</span>.log( chunk );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>,
+    <span class="hljs-string">'decodeStrings'</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'defaultEncoding'</span>: <span class="hljs-string">'utf8'</span>
+};
+
+<span class="hljs-keyword">var</span> stream = inspectSinkStream( opts, log );
+</code></pre>
+<h4 id="inspectsinkstreamfactory-options-">inspectSinkStream.factory( [options] )</h4>
+<p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">streams</a> which are identically configured according to provided <code>options</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>
+};
+
+<span class="hljs-keyword">var</span> factory = inspectSinkStream.factory( opts );
+</code></pre>
+<p>This method accepts the same <code>options</code> as <a href="#inspect-sink-stream"><code>inspectSinkStream()</code></a>.</p>
+<h5 id="factory-clbk-">factory( clbk )</h5>
+<p>Creates a <a href="https://nodejs.org/api/stream.html">writable stream</a> for inspecting streamed data.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk, idx </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'index: %d'</span>, idx );
+    <span class="hljs-built_in">console</span>.log( chunk );
+}
+
+<span class="hljs-keyword">var</span> factory = inspectSinkStream.factory();
+
+<span class="hljs-comment">// Create 10 identically configured streams...</span>
+<span class="hljs-keyword">var</span> streams = [];
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    streams.push( factory( log ) );
+}
+</code></pre>
+<h4 id="inspectsinkstreamobjectmode-options-clbk-">inspectSinkStream.objectMode( [options,] clbk )</h4>
+<p>This method is a convenience function to create <a href="https://nodejs.org/api/stream.html">streams</a> which <strong>always</strong> operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>.</p>
+<!-- eslint-disable object-curly-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk, idx </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'index: %d'</span>, idx );
+    <span class="hljs-built_in">console</span>.log( chunk );
+}
+
+<span class="hljs-keyword">var</span> stream = inspectSinkStream.objectMode( log );
+
+stream.write( { <span class="hljs-string">'value'</span>: <span class="hljs-string">'a'</span> } );
+stream.write( { <span class="hljs-string">'value'</span>: <span class="hljs-string">'b'</span> } );
+stream.write( { <span class="hljs-string">'value'</span>: <span class="hljs-string">'c'</span> } );
+
+stream.end();
+
+<span class="hljs-comment">// prints: index: 0</span>
+<span class="hljs-comment">// prints: {'value': 'a'}</span>
+<span class="hljs-comment">// prints: index: 1</span>
+<span class="hljs-comment">// prints: {'value': 'b'}</span>
+<span class="hljs-comment">// prints: index: 2</span>
+<span class="hljs-comment">// prints: {'value': 'c'}</span>
+</code></pre>
+<p>This method accepts the same <code>options</code> as <a href="#inspect-sink-stream"><code>inspectSinkStream()</code></a>; however, the method will <strong>always</strong> override the <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a> option in <code>options</code>.</p>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+<span class="hljs-keyword">var</span> transformFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/transform'</span> ).factory;
+<span class="hljs-keyword">var</span> inspect = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> ).objectMode;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parse</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, parseJSON( chunk ) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pluck</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.value );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    <span class="hljs-keyword">var</span> v = +chunk;
+    clbk( <span class="hljs-literal">null</span>, v*v );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toStr</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk.toString() );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">join</span>(<span class="hljs-params"> chunk, enc, clbk </span>) </span>{
+    clbk( <span class="hljs-literal">null</span>, chunk+<span class="hljs-string">'\n'</span> );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logger</span>(<span class="hljs-params"> chunk, idx </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'index: %d'</span>, idx );
+    <span class="hljs-built_in">console</span>.log( chunk );
+}
+
+<span class="hljs-comment">// Create a factory for generating streams running in `objectMode`:</span>
+<span class="hljs-keyword">var</span> tStream = transformFactory({
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-comment">// Create streams for each transform:</span>
+<span class="hljs-keyword">var</span> s1 = tStream( parse );
+<span class="hljs-keyword">var</span> s2 = tStream( pluck );
+<span class="hljs-keyword">var</span> s3 = tStream( square );
+<span class="hljs-keyword">var</span> s4 = tStream( toStr );
+<span class="hljs-keyword">var</span> s5 = tStream( join );
+
+<span class="hljs-comment">// Create a writable stream for inspecting the result of the transformations:</span>
+<span class="hljs-keyword">var</span> is = inspect( logger );
+
+<span class="hljs-comment">// Create the pipeline:</span>
+s1.pipe( s2 )
+    .pipe( s3 )
+    .pipe( s4 )
+    .pipe( s5 )
+    .pipe( is );
+
+<span class="hljs-comment">// Write data to the pipeline...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    v = <span class="hljs-string">'{"value":'</span>+i+<span class="hljs-string">'}'</span>;
+    s1.write( v, <span class="hljs-string">'utf8'</span> );
+}
+s1.end();
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

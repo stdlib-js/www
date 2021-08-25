@@ -1,0 +1,42 @@
+<h1 id="isinfinitef">isInfinitef</h1>
+<blockquote>
+<p>Test if a single-precision floating-point numeric value is infinite.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isInfinitef = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-infinitef'</span> );
+</code></pre>
+<h4 id="isinfinitef-x-">isInfinitef( x )</h4>
+<p>Tests if a single-precision floating-point <code>numeric</code> value is infinite.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isInfinitef( <span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isInfinitef( -<span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/pinf'</span> );
+<span class="hljs-keyword">var</span> NINF = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/ninf'</span> );
+<span class="hljs-keyword">var</span> isInfinitef = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-infinitef'</span> );
+
+<span class="hljs-keyword">var</span> bool = isInfinitef( PINF );
+<span class="hljs-comment">// returns true</span>
+
+bool = isInfinitef( NINF );
+<span class="hljs-comment">// returns true</span>
+
+bool = isInfinitef( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isInfinitef( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

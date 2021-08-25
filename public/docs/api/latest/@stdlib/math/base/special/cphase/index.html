@@ -1,0 +1,46 @@
+<h1 id="phase">phase</h1>
+<blockquote>
+<p>Compute the <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a complex number in radians.</p>
+</blockquote>
+<section class="intro">
+<p>The <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a complex number, also known as the <strong>phase</strong>, is the angle of the radius extending from the origin to the complex number plotted in the complex plane and the positive real axis.</p>
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cphase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cphase'</span> );
+</code></pre>
+<h4 id="cphase-re-im-">cphase( re, im )</h4>
+<p>Computes the <a href="https://en.wikipedia.org/wiki/Argument_%28complex_analysis%29">argument</a> of a <code>complex</code> number comprised of a <strong>real</strong> component <code>re</code> and an <strong>imaginary</strong> component <code>im</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> phi = cphase( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns ~0.5404</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+<span class="hljs-keyword">var</span> real = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/real'</span> );
+<span class="hljs-keyword">var</span> imag = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/imag'</span> );
+<span class="hljs-keyword">var</span> cphase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cphase'</span> );
+
+<span class="hljs-keyword">var</span> re;
+<span class="hljs-keyword">var</span> im;
+<span class="hljs-keyword">var</span> z;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    re = round( randu()*<span class="hljs-number">100.0</span> ) - <span class="hljs-number">50.0</span>;
+    im = round( randu()*<span class="hljs-number">100.0</span> ) - <span class="hljs-number">50.0</span>;
+    z = <span class="hljs-keyword">new</span> Complex128( re, im );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'arg(%s) = %d'</span>, z.toString(), cphase( real(z), imag(z) ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

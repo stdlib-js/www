@@ -1,0 +1,97 @@
+<h1 id="strided-array-native-add-ons">Strided Array Native Add-ons</h1>
+<blockquote>
+<p>C APIs for creating Node-API strided array native add-ons.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+<p>This package exposes an absolute file path for the directory containing header files for various C APIs. The various C APIs facilitate the creation of Node-API strided array native add-ons.</p>
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi'</span> );
+</code></pre>
+<h4 id="headerdir">headerDir</h4>
+<p>Absolute file path for the directory containing header files for C APIs.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+<p>This package exposes various C APIs to facilitate the creation of Node-API strided array native add-ons. The included C APIs are the APIs implemented in the following packages:</p>
+<!-- NOTE: please keep in alphabetical order -->
+<ul>
+<li><a href="/docs/api/develop/@stdlib/strided/base/binary"><code>@stdlib/strided/base/binary</code></a>: strided array loops for operating on two input strided arrays and one or more output strided arrays. </li>
+<li><a href="/docs/api/develop/@stdlib/strided/base/dmap"><code>@stdlib/strided/base/dmap</code></a>: double-precision floating-point strided array interface for applying a unary callback to a single input strided array. </li>
+<li><a href="/docs/api/develop/@stdlib/strided/base/dmskmap"><code>@stdlib/strided/base/dmskmap</code></a>: double-precision floating-point strided array interface for applying a unary callback to a single input strided array according to a mask strided array.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/base/function-object"><code>@stdlib/strided/base/function-object</code></a>: strided array function object.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/base/mskunary"><code>@stdlib/strided/base/mskunary</code></a>: strided array loops for operating on a single input strided array, a mask strided array, and one or more output strided arrays. </li>
+<li><a href="/docs/api/develop/@stdlib/strided/base/smap"><code>@stdlib/strided/base/smap</code></a>: single-precision floating-point strided array interface for applying a unary callback to a single input strided array.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/base/smskmap"><code>@stdlib/strided/base/smskmap</code></a>: single-precision floating-point strided array interface for applying a unary callback to a single input strided array according to a mask strided array.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/base/unary"><code>@stdlib/strided/base/unary</code></a>: strided array loops for operating on a single input strided array and one or more output strided arrays. </li>
+<li><a href="/docs/api/develop/@stdlib/strided/dtypes"><code>@stdlib/strided/dtypes</code></a>: supported strided array data types.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/napi/dmap"><code>@stdlib/strided/napi/dmap</code></a>: Node-API interfaces and macros for registering a <a href="/docs/api/develop/@stdlib/strided/base/dmap"><code>@stdlib/strided/base/dmap</code></a> function.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/napi/dmskmap"><code>@stdlib/strided/napi/dmskmap</code></a>: Node-API interfaces and macros for registering a <a href="/docs/api/develop/@stdlib/strided/base/dmskmap"><code>@stdlib/strided/base/dmskmap</code></a> function.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/napi/mskunary"><code>@stdlib/strided/napi/mskunary</code></a>: Node-API interfaces and macros for registering one or more <a href="/docs/api/develop/@stdlib/strided/base/mskunary"><code>@stdlib/strided/base/mskunary</code></a> interfaces with support for multiple dispatch.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/napi/smap"><code>@stdlib/strided/napi/smap</code></a>: Node-API interfaces and macros for registering a <a href="/docs/api/develop/@stdlib/strided/base/smap"><code>@stdlib/strided/base/smap</code></a> function.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/napi/smskmap"><code>@stdlib/strided/napi/smskmap</code></a>: Node-API interfaces and macros for registering a <a href="/docs/api/develop/@stdlib/strided/base/smskmap"><code>@stdlib/strided/base/smskmap</code></a> function.</li>
+<li><a href="/docs/api/develop/@stdlib/strided/napi/unary"><code>@stdlib/strided/napi/unary</code></a>: Node-API interfaces and macros for registering one or more <a href="/docs/api/develop/@stdlib/strided/base/unary"><code>@stdlib/strided/base/unary</code></a> interfaces with support for multiple dispatch.</li>
+</ul>
+<p>For API documentation, consult the individual packages.</p>
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/napi.h"</span></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/napi.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">identity</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x )</span> </span>{
+    <span class="hljs-keyword">return</span> x;
+}
+
+STDLIB_STRIDED_NAPI_MODULE_DMAP( identity )
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

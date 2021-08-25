@@ -1,0 +1,346 @@
+<h1 id="randi">randi</h1>
+<blockquote>
+<p>Create a <a href="https://nodejs.org/api/stream.html">readable stream</a> for generating pseudorandom numbers having integer values.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randomStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/streams/randi'</span> );
+</code></pre>
+<p><a name="random-stream"></a></p>
+<h4 id="randomstream-options-">randomStream( [options] )</h4>
+<p>Returns a <a href="https://nodejs.org/api/stream.html">readable stream</a> for generating pseudorandom numbers having integer values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+
+<span class="hljs-keyword">var</span> iStream;
+<span class="hljs-keyword">var</span> stream;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk, idx </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( chunk.toString() );
+    <span class="hljs-keyword">if</span> ( idx === <span class="hljs-number">10</span> ) {
+        stream.destroy();
+    }
+}
+
+stream = randomStream();
+iStream = inspectStream( log );
+
+stream.pipe( iStream );
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li>
+<p><strong>objectMode</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>false</code>.</p>
+</li>
+<li>
+<p><strong>encoding</strong>: specifies how <code>Buffer</code> objects should be decoded to <code>strings</code>. Default: <code>null</code>.</p>
+</li>
+<li>
+<p><strong>highWaterMark</strong>: specifies the maximum number of bytes to store in an internal buffer before ceasing to generate additional pseudorandom numbers.</p>
+</li>
+<li>
+<p><strong>sep</strong>: separator used to join streamed data. This option is only applicable when a stream is <strong>not</strong> in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>'\n'</code>.</p>
+</li>
+<li>
+<p><strong>iter</strong>: number of iterations.</p>
+</li>
+<li>
+<p><strong>name</strong>: name of a supported pseudorandom number generator (PRNG), which will serve as the underlying source of pseudorandom numbers. The following generators are supported:</p>
+<ul>
+<li><a href="/docs/api/develop/@stdlib/random/base/mt19937"><code>mt19937</code></a>: 32-bit Mersenne Twister.</li>
+<li><a href="/docs/api/develop/@stdlib/random/base/minstd"><code>minstd</code></a>: linear congruential pseudorandom number generator (LCG) based on Park and Miller.</li>
+<li><a href="/docs/api/develop/@stdlib/random/base/minstd-shuffle"><code>minstd-shuffle</code></a>: linear congruential pseudorandom number generator (LCG) whose output is shuffled.</li>
+</ul>
+<p>Default: <a href="/docs/api/develop/@stdlib/random/base/mt19937"><code>'mt19937'</code></a>.</p>
+</li>
+<li>
+<p><strong>seed</strong>: pseudorandom number generator seed. Valid seed values vary according to the underlying PRNG.</p>
+</li>
+<li>
+<p><strong>state</strong>: pseudorandom number generator state. Valid state values vary according to the underlying PRNG. If provided, the function ignores the <code>seed</code> option.</p>
+</li>
+<li>
+<p><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators and/or streams. Setting this option to <code>true</code> ensures that a stream generator has exclusive control over its internal state. Default: <code>true</code>.</p>
+</li>
+<li>
+<p><strong>siter</strong>: number of iterations after which to emit the pseudorandom number generator state. This option is useful when wanting to deterministically capture a stream's underlying PRNG state. Default: <code>1e308</code>.</p>
+</li>
+</ul>
+<p>To set <a href="https://nodejs.org/api/stream.html">stream</a> <code>options</code>,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>,
+    <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts );
+</code></pre>
+<p>By default, the function returns a <a href="https://nodejs.org/api/stream.html">stream</a> which can generate an infinite number of values (i.e., the <a href="https://nodejs.org/api/stream.html">stream</a> will <strong>never</strong> end). To limit the number of generated pseudorandom numbers, set the <code>iter</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( chunk.toString() );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts );
+<span class="hljs-keyword">var</span> iStream = inspectStream( log );
+
+stream.pipe( iStream );
+</code></pre>
+<p>By default, when not operating in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>, a returned <a href="https://nodejs.org/api/stream.html">stream</a> delineates generated pseudorandom numbers using a newline character. To specify an alternative separator, set the <code>sep</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> chunk </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( chunk.toString() );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">','</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts );
+<span class="hljs-keyword">var</span> iStream = inspectStream( log );
+
+stream.pipe( iStream );
+</code></pre>
+<p>By default, the underlying pseudorandom number generator is <a href="/docs/api/develop/@stdlib/random/base/mt19937"><code>mt19937</code></a>. To use a different PRNG, set the <code>name</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'minstd-shuffle'</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts );
+</code></pre>
+<p>To seed the underlying pseudorandom number generator, set the <code>seed</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( v );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'mt19937'</span>,
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts );
+
+opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>
+};
+<span class="hljs-keyword">var</span> iStream = inspectStream( opts, log );
+
+stream.pipe( iStream );
+</code></pre>
+<p>To return a <a href="https://nodejs.org/api/stream.html">readable stream</a> with an underlying pseudorandom number generator having a specific initial state, set the <code>state</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( v );
+}
+
+<span class="hljs-keyword">var</span> opts1 = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'mt19937'</span>,
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts1 );
+
+<span class="hljs-keyword">var</span> opts2 = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>
+};
+<span class="hljs-keyword">var</span> iStream = inspectStream( opts2, log );
+
+<span class="hljs-comment">// Stream pseudorandom numbers, thus progressing the underlying generator state:</span>
+stream.pipe( iStream );
+
+<span class="hljs-comment">// Create a new PRNG stream initialized to the last state of the previous stream:</span>
+<span class="hljs-keyword">var</span> opts3 = {
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'mt19937'</span>,
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-string">'state'</span>: stream.state
+};
+
+stream = randomStream( opts3 );
+iStream = inspectStream( opts2, log );
+
+<span class="hljs-comment">// Stream pseudorandom numbers starting from the last state of the previous stream:</span>
+stream.pipe( iStream );
+</code></pre>
+<h5 id="streamseed">stream.seed</h5>
+<p>The value used to seed the underlying pseudorandom number generator.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = randomStream();
+
+<span class="hljs-keyword">var</span> seed = stream.seed;
+</code></pre>
+<h5 id="streamseedlength">stream.seedLength</h5>
+<p>Length of underlying pseudorandom number generator seed.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = randomStream();
+
+<span class="hljs-keyword">var</span> len = stream.seedLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<h5 id="streamstate">stream.state</h5>
+<p>Writable property for getting and setting the underlying pseudorandom number generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = randomStream();
+
+<span class="hljs-keyword">var</span> state = stream.state;
+</code></pre>
+<h5 id="streamstatelength">stream.stateLength</h5>
+<p>Length of underlying pseudorandom number generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = randomStream();
+
+<span class="hljs-keyword">var</span> len = stream.stateLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<h5 id="streambytelength">stream.byteLength</h5>
+<p>Size (in bytes) of underlying pseudorandom number generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = randomStream();
+
+<span class="hljs-keyword">var</span> sz = stream.byteLength;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<hr>
+<h4 id="randomstreamfactory-options-">randomStream.factory( [options] )</h4>
+<p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">readable streams</a> which generate pseudorandom numbers having integer values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>,
+    <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>
+};
+
+<span class="hljs-keyword">var</span> createStream = randomStream.factory( opts );
+</code></pre>
+<p>The method accepts the same <code>options</code> as <a href="#random-stream"><code>randomStream()</code></a>.</p>
+<hr>
+<h4 id="randomstreamobjectmode-options-">randomStream.objectMode( [options] )</h4>
+<p>This method is a convenience function to create <a href="https://nodejs.org/api/stream.html">streams</a> which <strong>always</strong> operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( v );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+};
+<span class="hljs-keyword">var</span> stream = randomStream.objectMode( opts );
+
+opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>
+};
+<span class="hljs-keyword">var</span> iStream = inspectStream( opts, log );
+
+stream.pipe( iStream );
+</code></pre>
+<p>This method accepts the same <code>options</code> as <a href="#random-stream"><code>randomStream()</code></a>; however, the method will <strong>always</strong> override the <a href="https://nodejs.org/api/stream.html#stream_object_mode"><code>objectMode</code></a> option in <code>options</code>.</p>
+<hr>
+<h3 id="events">Events</h3>
+<p>In addition to the standard <a href="https://nodejs.org/api/stream.html">readable stream</a> events, the following events are supported...</p>
+<h4 id="state">'state'</h4>
+<p>Emitted after internally generating <code>siter</code> pseudorandom numbers.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'siter'</span>: <span class="hljs-number">10</span> <span class="hljs-comment">// emit the PRNG state every 10 pseudorandom numbers</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts );
+
+stream.on( <span class="hljs-string">'state'</span>, onState );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onState</span>(<span class="hljs-params"> state </span>) </span>{
+    <span class="hljs-comment">// Do something with the emitted state, such as save to file...</span>
+}
+</code></pre>
+</section>
+<!-- /.usage -->
+<hr>
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li><strong>Warning</strong>: the default underlying source of pseudorandom numbers may <strong>change</strong> in the future. If exact reproducibility is required, either explicitly specify a PRNG via the <code>name</code> option or use an underlying PRNG directly.</li>
+<li>If PRNG state is "shared" (meaning a state array was provided during stream creation and <strong>not</strong> copied) and one sets the generator state to a state array having a different length, the underlying PRNG does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for <strong>each</strong> relevant PRNG must be <strong>explicitly</strong> set.</li>
+<li>If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).</li>
+<li>In order to capture the PRNG state after a specific number of generated pseudorandom numbers, regardless of internal stream buffering, use the <code>siter</code> option in conjunction with a <code>state</code> event listener. Attempting to capture the underlying PRNG state after <strong>reading</strong> generated numbers is <strong>not</strong> likely to give expected results, as internal stream buffering will mean more values have been generated than have been read. Thus, the state returned by the <code>state</code> property will likely reflect a future PRNG state from the perspective of downstream consumers.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<hr>
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
+<span class="hljs-keyword">var</span> randomStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/streams/randi'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">console</span>.log( v.toString() );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+};
+
+<span class="hljs-keyword">var</span> stream = randomStream( opts );
+
+opts = {
+    <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>
+};
+<span class="hljs-keyword">var</span> iStream = inspectStream( opts, log );
+
+stream.pipe( iStream );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for describing a command-line interface. -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<!-- CLI usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: random-randi [options]
+
+Options:
+
+  -h,  --help               Print this message.
+  -V,  --version            Print the package version.
+       --sep sep            Separator used to join streamed data. Default: '\n'.
+  -n,  --iter iterations    Number of pseudorandom numbers.
+       --name name          Pseudorandom number generator name. Default:
+                            'mt19937'.
+       --seed seed          Pseudorandom number generator seed.
+       --state filepath     Path to a file containing the pseudorandom number
+                            generator state.
+       --snapshot filepath  Output file path for saving the pseudorandom number
+                            generator state upon exit.
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h3 id="notes-1">Notes</h3>
+<ul>
+<li>In accordance with POSIX convention, a trailing newline is <strong>always</strong> appended to generated output prior to exit.</li>
+<li>Specifying a "snapshot" file path is useful when wanting to resume pseudorandom number generation due to, e.g., a downstream failure in an analysis pipeline. Before exiting, the process will store the pseudorandom number generator state in a file specified according to a provided file path. Upon loading a snapshot (state), the process will generate pseudorandom numbers starting from the loaded state, thus avoiding having to seed and replay an entire analysis.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- CLI usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ random-randi -n 10 --name mt19937 --seed 1234
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<section class="links">
+</section>
+<!-- /.links -->

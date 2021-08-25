@@ -1,0 +1,152 @@
+<h1 id="iterator2arrayviewright">iterator2arrayviewRight</h1>
+<blockquote>
+<p>Fill an array-like object view from right to left with values returned from an iterator.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterator2arrayviewRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/to-array-view-right'</span> );
+</code></pre>
+<h4 id="iterator2arrayviewright-iterator-dest-begin-end-mapfcn-thisarg-">iterator2arrayviewRight( iterator, dest[, begin[, end]][, mapFcn[, thisArg]] )</h4>
+<p>Fills an array-like <code>object</code> view from right to left with values returned from an <code>iterator</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> iter = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( iter, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">10</span> ) );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 0, 0, 0, 0, 0, 0, 4, 3, 2, 1 ]</span>
+</code></pre>
+<p>The <code>begin</code> and <code>end</code> arguments define the starting (inclusive) and ending (non-inclusive) indices of the array view. By default, the function begins filling from the last element of a provided array-like <code>object</code> (i.e., from the "end"). To specify an alternative view end, provide an <code>end</code> argument (zero-based and non-inclusive).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> iter = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ] );
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( iter, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">10</span> ), <span class="hljs-number">0</span>, <span class="hljs-number">4</span> );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 4, 3, 2, 1, 0, 0, 0, 0, 0, 0 ]</span>
+</code></pre>
+<p>If <code>end</code> is less than <code>0</code>, the last view element is resolved relative to the last element of the provided array-like <code>object</code>. For example, the following achieves the same behavior as the previous example</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> iter = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ] );
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( iter, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">10</span> ), <span class="hljs-number">0</span>, -<span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 4, 3, 2, 1, 0, 0, 0, 0, 0, 0 ]</span>
+</code></pre>
+<p>By default, the function fills through the first element of the provided array-like <code>object</code>. To specify an alternative view beginning, provide a <code>begin</code> argument (zero-based and inclusive).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> iter = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ] );
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( iter, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">10</span> ), <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 0, 0, 0, 7, 6, 5, 4, 3, 2, 1 ]</span>
+</code></pre>
+<p>If <code>begin</code> is less than <code>0</code>, the first view element index is resolved relative to the last element of the provided array-like <code>object</code>. For example, the following achieves the same behavior as the previous example</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> iter = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ] );
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( iter, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">10</span> ), -<span class="hljs-number">7</span> );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 0, 0, 0, 7, 6, 5, 4, 3, 2, 1 ]</span>
+</code></pre>
+<p>To invoke a function for each iterated value, provide a callback function.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v * <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-keyword">var</span> iter = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( iter, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">4</span> ), fcn );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 40.0, 30.0, 20.0, 10.0 ]</span>
+</code></pre>
+<p>The invoked function is provided three arguments:</p>
+<ul>
+<li><code>value</code>: iterated value</li>
+<li><code>index</code>: destination index (zero-based)</li>
+<li><code>n</code>: iteration index (zero-based)</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+<span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v, i, n </span>) </span>{
+    <span class="hljs-keyword">return</span> v * (n+<span class="hljs-number">1</span>);
+}
+
+<span class="hljs-keyword">var</span> iter = array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( iter, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">4</span> ), fcn );
+<span class="hljs-comment">// returns &#x3C;Uint8Array>[ 16, 9, 4, 1 ]</span>
+</code></pre>
+<p>To set the callback function execution context, provide a <code>thisArg</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v * <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( randu(), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> ), fcn, ctx );
+<span class="hljs-comment">// returns &#x3C;Float64Array></span>
+
+<span class="hljs-keyword">var</span> count = ctx.count;
+<span class="hljs-comment">// returns 10</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Iteration stops when an output array view is full <strong>or</strong> an iterator finishes; whichever comes first.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+<span class="hljs-keyword">var</span> iterator2arrayviewRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/to-array-view-right'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scale</span>(<span class="hljs-params"> v, i, n </span>) </span>{
+    <span class="hljs-keyword">return</span> v * (n+<span class="hljs-number">1</span>) * <span class="hljs-number">10.0</span>;
+}
+
+<span class="hljs-comment">// Create an iterator for generating uniformly distributed pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> it = randu();
+
+<span class="hljs-comment">// Fill an array view with scaled iterator values:</span>
+<span class="hljs-keyword">var</span> arr = iterator2arrayviewRight( it, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">100</span> ), <span class="hljs-number">40</span>, <span class="hljs-number">60</span>, scale );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; arr.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( arr[ i ] );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

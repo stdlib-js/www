@@ -1,0 +1,94 @@
+<h1 id="ceilf">ceilf</h1>
+<blockquote>
+<p>Round a single-precision floating-point number toward positive infinity.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ceilf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceilf'</span> );
+</code></pre>
+<h4 id="ceilf-x-">ceilf( x )</h4>
+<p>Rounds a single-precision floating-point number toward positive infinity.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ceilf( -<span class="hljs-number">4.2</span> );
+<span class="hljs-comment">// returns -4.0</span>
+
+v = ceilf( <span class="hljs-number">9.99999</span> );
+<span class="hljs-comment">// returns 10.0</span>
+
+v = ceilf( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns 0.0</span>
+
+v = ceilf( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> ceilf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceilf'</span> );
+
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span>;
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'ceilf(%d) = %d'</span>, x, ceilf( x ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/ceilf.h"</span></span>
+</code></pre>
+<h4 id="stdlib_base_ceilf-x-">stdlib_base_ceilf( x )</h4>
+<p>Rounds a single-precision floating-point number toward positive infinity.</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_ceilf( <span class="hljs-number">3.14f</span> );
+<span class="hljs-comment">// returns 4.0f</span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>x</strong>: <code>[in] float</code> input value.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_ceilf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/ceilf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span>/<span class="hljs-number">0.0f</span> };
+
+    <span class="hljs-keyword">float</span> y;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">4</span>; i++ ) {
+        y = stdlib_base_ceilf( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"ceilf(%f) = %f\n"</span>, x[ i ], y );
+    }
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<section class="links">
+</section>
+<!-- /.links -->

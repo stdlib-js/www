@@ -1,0 +1,128 @@
+<h1 id="complex128">Complex128</h1>
+<blockquote>
+<p>128-bit complex number.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+</code></pre>
+<h4 id="complex128-real-imag-">Complex128( real, imag )</h4>
+<p>128-bit complex number constructor, where <code>real</code> and <code>imag</code> are the <strong>real</strong> and <strong>imaginary</strong> components, respectively.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+</code></pre>
+<hr>
+<h2 id="properties">Properties</h2>
+<h4 id="complex128bytes_per_element">Complex128.BYTES_PER_ELEMENT</h4>
+<p>Size (in bytes) of each component.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nbytes = Complex128.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns 8</span>
+</code></pre>
+<h4 id="complex128prototypebytes_per_element">Complex128.prototype.BYTES_PER_ELEMENT</h4>
+<p>Size (in bytes) of each component.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+
+<span class="hljs-keyword">var</span> nbytes = z.BYTES_PER_ELEMENT;
+<span class="hljs-comment">// returns 8</span>
+</code></pre>
+<h4 id="complex128prototypebytelength">Complex128.prototype.byteLength</h4>
+<p>Length (in bytes) of a complex number.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+
+<span class="hljs-keyword">var</span> nbytes = z.byteLength;
+<span class="hljs-comment">// returns 16</span>
+</code></pre>
+<h3 id="instance">Instance</h3>
+<p>A <code>Complex128</code> instance has the following properties...</p>
+<h4 id="re">re</h4>
+<p>A <strong>read-only</strong> property returning the <strong>real</strong> component.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+
+<span class="hljs-keyword">var</span> re = z.re;
+<span class="hljs-comment">// returns 5.0</span>
+</code></pre>
+<h4 id="im">im</h4>
+<p>A <strong>read-only</strong> property returning the <strong>imaginary</strong> component.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span> );
+
+<span class="hljs-keyword">var</span> im = z.im;
+<span class="hljs-comment">// returns -3.0</span>
+</code></pre>
+<hr>
+<h2 id="methods">Methods</h2>
+<h3 id="accessor-methods">Accessor Methods</h3>
+<p>These methods do <strong>not</strong> mutate a <code>Complex128</code> instance and, instead, return a complex number representation.</p>
+<h4 id="complex128prototypetostring">Complex128.prototype.toString()</h4>
+<p>Returns a <code>string</code> representation of a <code>Complex128</code> instance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-keyword">var</span> str = z.toString();
+<span class="hljs-comment">// returns '5 + 3i'</span>
+
+z = <span class="hljs-keyword">new</span> Complex128( -<span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span> );
+str = z.toString();
+<span class="hljs-comment">// returns '-5 - 3i'</span>
+</code></pre>
+<h4 id="complex128prototypetojson">Complex128.prototype.toJSON()</h4>
+<p>Returns a <a href="http://www.json.org/">JSON</a> representation of a <code>Complex128</code> instance. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a> implicitly calls this method when stringifying a <code>Complex128</code> instance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span> );
+
+<span class="hljs-keyword">var</span> o = z.toJSON();
+<span class="hljs-comment">/*
+  {
+    "type": "Complex128",
+    "re": 5.0,
+    "im": -3.0
+  }
+*/</span>
+</code></pre>
+<p>To <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">revive</a> a <code>Complex128</code> number from a <a href="http://www.json.org/">JSON</a> <code>string</code>, see <a href="/docs/api/develop/@stdlib/complex/reviver-float64">@stdlib/complex/reviver-float64</a>.</p>
+</section>
+<!-- /.usage -->
+<hr>
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Both the <strong>real</strong> and <strong>imaginary</strong> components are stored as double-precision floating-point numbers.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<hr>
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+
+<span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">3.0</span>, -<span class="hljs-number">2.0</span> );
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'type: %s'</span>, <span class="hljs-keyword">typeof</span> z );
+<span class="hljs-comment">// => type: object</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'str: %s'</span>, z );
+<span class="hljs-comment">// => str: 3 - 2i</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'real: %d'</span>, z.re );
+<span class="hljs-comment">// => real: 3.0</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'imag: %d'</span>, z.im );
+<span class="hljs-comment">// => imag: -2.0</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'JSON: %s'</span>, <span class="hljs-built_in">JSON</span>.stringify( z ) );
+<span class="hljs-comment">// => JSON: {"type":"Complex128","re":3,"im":-2}</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,69 @@
+<h1 id="incrmidrange">incrmidrange</h1>
+<blockquote>
+<p>Compute a <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a> incrementally.</p>
+</blockquote>
+<section class="intro">
+<p>The <a href="https://en.wikipedia.org/wiki/Mid-range"><strong>mid-range</strong></a>, or <strong>mid-extreme</strong>, is the arithmetic mean of maximum and minimum values. Accordingly, the <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a> is the midpoint of the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> and a measure of central tendency.</p>
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrmidrange = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/midrange'</span> );
+</code></pre>
+<h4 id="incrmidrange-1">incrmidrange()</h4>
+<p>Returns an accumulator <code>function</code> which incrementally computes a <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmidrange();
+</code></pre>
+<h4 id="accumulator-x-">accumulator( [x] )</h4>
+<p>If provided an input value <code>x</code>, the accumulator function returns an updated <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a>. If not provided an input value <code>x</code>, the accumulator function returns the current <a href="https://en.wikipedia.org/wiki/Mid-range">mid-range</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmidrange();
+
+<span class="hljs-keyword">var</span> midrange = accumulator();
+<span class="hljs-comment">// returns null</span>
+
+midrange = accumulator( -<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns -2.0</span>
+
+midrange = accumulator( <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns -0.5</span>
+
+midrange = accumulator( <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns 0.5</span>
+
+midrange = accumulator();
+<span class="hljs-comment">// returns 0.5</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Input values are <strong>not</strong> type checked. If provided <code>NaN</code>, the accumulated value is <code>NaN</code> for <strong>all</strong> future invocations. If non-numeric inputs are possible, you are advised to type check and handle accordingly <strong>before</strong> passing the value to the accumulator function.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> incrmidrange = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/midrange'</span> );
+
+<span class="hljs-keyword">var</span> accumulator;
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Initialize an accumulator:</span>
+accumulator = incrmidrange();
+
+<span class="hljs-comment">// For each simulated datum, update the mid-range...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    v = randu() * <span class="hljs-number">100.0</span>;
+    accumulator( v );
+}
+<span class="hljs-built_in">console</span>.log( accumulator() );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

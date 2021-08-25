@@ -1,0 +1,78 @@
+<h1 id="probability-density-function">Probability Density Function</h1>
+<blockquote>
+<p>Wilcoxon signed rank test statistic <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">probability density function</a>.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pdf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/signrank/pdf'</span> );
+</code></pre>
+<h4 id="pdf-x-n-">pdf( x, n )</h4>
+<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">probability density function</a> of the Wilcoxon signed rank test statistic with <code>n</code> observations.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = pdf( <span class="hljs-number">7.0</span>, <span class="hljs-number">9</span> );
+<span class="hljs-comment">// returns ~0.0098</span>
+
+y = pdf( <span class="hljs-number">7.0</span>, <span class="hljs-number">6</span> );
+<span class="hljs-comment">// returns ~0.063</span>
+
+y = pdf( -<span class="hljs-number">1.0</span>, <span class="hljs-number">40</span> );
+<span class="hljs-comment">// returns 0.0</span>
+</code></pre>
+<p>If provided <code>NaN</code> as any argument, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = pdf( <span class="hljs-literal">NaN</span>, <span class="hljs-number">8</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = pdf( <span class="hljs-number">0.0</span>, <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If provided <code>x &#x3C; 0</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = pdf( <span class="hljs-number">2.0</span>, -<span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<p>If not provided a positive integer for <code>n</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = pdf( <span class="hljs-number">2.0</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = pdf( <span class="hljs-number">2.0</span>, -<span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns NaN</span>
+
+y = pdf( <span class="hljs-number">2.0</span>, <span class="hljs-number">8.9</span> );
+<span class="hljs-comment">// returns NaN</span>
+</code></pre>
+<h4 id="pdffactory-n-">pdf.factory( n )</h4>
+<p>Returns a function for evaluating the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">probability density function</a> of the Wilcoxon signed rank test statistic with <code>n</code> observations.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mypdf = pdf.factory( <span class="hljs-number">8</span> );
+<span class="hljs-keyword">var</span> y = mypdf( <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns ~0.008</span>
+
+y = mypdf( <span class="hljs-number">17.0</span> );
+<span class="hljs-comment">// returns ~0.051</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ceil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceil'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> pdf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/signrank/pdf'</span> );
+
+<span class="hljs-keyword">var</span> n;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+    x = randu() * <span class="hljs-number">30.0</span>;
+    n = ceil( randu() * <span class="hljs-number">30.0</span> );
+    y = pdf( x, n );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, n: %d, F(x;n): %d'</span>, x.toFixed( <span class="hljs-number">4</span> ), n.toFixed( <span class="hljs-number">4</span> ), y.toFixed( <span class="hljs-number">4</span> ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

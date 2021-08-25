@@ -1,0 +1,185 @@
+<h1 id="deephasownprop">deepHasOwnProp</h1>
+<blockquote>
+<p>Test whether an object contains a nested key path.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> deepHasOwnProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/deep-has-own-property'</span> );
+</code></pre>
+<h4 id="deephasownprop-value-path-options-">deepHasOwnProp( value, path[, options] )</h4>
+<p>Returns a <code>boolean</code> indicating if a <code>value</code> has a specified <code>path</code>.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepHasOwnProp( obj, <span class="hljs-string">'a.b.c'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = deepHasOwnProp( obj, <span class="hljs-string">'a.b.c.d.e'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<p>If a key path includes an <code>array</code>, specify the numeric index.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+    {
+        <span class="hljs-string">'a'</span>: [
+            {
+                <span class="hljs-string">'b'</span>: [
+                    { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> },
+                    { <span class="hljs-string">'e'</span>: <span class="hljs-string">'f'</span> }
+                ]
+            }
+        ]
+    }
+];
+
+<span class="hljs-keyword">var</span> bool = deepHasOwnProp( arr, <span class="hljs-string">'0.a.0.b.0.c'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = deepHasOwnProp( arr, <span class="hljs-string">'0.a.1.b.0.c'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = deepHasOwnProp( arr, <span class="hljs-string">'0.a.0.b.1.c'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+<p>The key path may be specified as either a delimited <code>string</code> or a key <code>array</code>.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepHasOwnProp( obj, [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span> ] );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>sep</strong>: key path separator. Default: <code>'.'</code>.</li>
+</ul>
+<p>By default, the function assumes <code>.</code> separated key values. To specify an alternative separator, set the <code>sep</code> option.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = deepHasOwnProp( obj, <span class="hljs-string">'a/b/c'</span>, {
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">'/'</span>
+});
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<h4 id="deephasownpropfactory-path-options-">deepHasOwnProp.factory( path[, options] )</h4>
+<p>Returns a <code>function</code> which tests whether a <code>value</code> contains a nested key <code>path</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> has = deepHasOwnProp.factory( <span class="hljs-string">'a/b/c'</span>, {
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">'/'</span>
+});
+</code></pre>
+<h4 id="has-value-">has( value )</h4>
+<p>Returns a <code>boolean</code> indicating whether a <code>value</code> contains a nested key <code>path</code>.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> has = deepHasOwnProp.factory( <span class="hljs-string">'a.b.c'</span> );
+
+<span class="hljs-keyword">var</span> obj = { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } };
+
+<span class="hljs-keyword">var</span> bool = has( obj );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Only <strong>own</strong> properties are tested. Paths matching inherited properties are not considered.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>.a = <span class="hljs-string">'b'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+Foo.prototype.c = <span class="hljs-string">'d'</span>;
+
+<span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">new</span> Foo();
+
+<span class="hljs-keyword">var</span> bool = deepHasOwnProp( foo, <span class="hljs-string">'a'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = deepHasOwnProp( foo, <span class="hljs-string">'c'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</li>
+<li>
+<p>When provided <code>null</code> or <code>undefined</code>, the function result is always <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = deepHasOwnProp( <span class="hljs-literal">null</span>, <span class="hljs-string">'a.b.c'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = deepHasOwnProp( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>, <span class="hljs-string">'a.b.c'</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</li>
+<li>
+<p>Property values other than <code>null</code> or <code>undefined</code> are coerced to <code>objects</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'a'</span>: <span class="hljs-string">'b'</span>
+};
+
+<span class="hljs-keyword">var</span> bool = deepHasOwnProp( obj, <span class="hljs-string">'a.length'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</li>
+<li>
+<p>Key path <code>array</code> elements are coerced to <code>strings</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+    <span class="hljs-string">'null'</span>: <span class="hljs-literal">false</span>
+};
+<span class="hljs-keyword">var</span> bool = deepHasOwnProp( obj, [ <span class="hljs-literal">null</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+obj = {
+    <span class="hljs-string">'[object Object]'</span>: <span class="hljs-literal">false</span>
+};
+bool = deepHasOwnProp( obj, [ {} ] );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> deepHasOwnProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/deep-has-own-property'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> has;
+
+bool = deepHasOwnProp( { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } }, <span class="hljs-string">'a.b.c'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = deepHasOwnProp( { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } }, [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = deepHasOwnProp( { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } }, <span class="hljs-string">'a/b/c'</span>, {
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">'/'</span>
+});
+<span class="hljs-comment">// returns true</span>
+
+bool = deepHasOwnProp( { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } }, <span class="hljs-string">'a.b.c.d'</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = deepHasOwnProp( { <span class="hljs-string">'a'</span>: [ { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } ] }, [ <span class="hljs-string">'a'</span>, <span class="hljs-string">'0'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = deepHasOwnProp( { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } }, <span class="hljs-string">'a/b/c/d/e'</span>, {
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">'/'</span>
+});
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-comment">// Create a customized function:</span>
+has = deepHasOwnProp.factory( <span class="hljs-string">'a_b_c'</span>, {
+    <span class="hljs-string">'sep'</span>: <span class="hljs-string">'_'</span>
+});
+
+bool = has( { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } } );
+<span class="hljs-comment">// returns true</span>
+
+bool = has( { <span class="hljs-string">'a'</span>: [ { <span class="hljs-string">'b'</span>: { <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span> } } ] } );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

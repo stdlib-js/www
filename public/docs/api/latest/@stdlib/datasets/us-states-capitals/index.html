@@ -1,0 +1,122 @@
+<h1 id="us-state-capitals">US State Capitals</h1>
+<blockquote>
+<p>A list of US state capitals.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitals = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/us-states-capitals'</span> );
+</code></pre>
+<h4 id="capitals">capitals()</h4>
+<p>Returns a list of US state capitals in alphabetical order according to state name.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = capitals();
+<span class="hljs-comment">/* returns
+    [
+        'Montgomery',
+        'Juneau',
+        'Phoenix',
+        'Little Rock',
+        'Sacramento',
+        'Denver',
+        'Hartford',
+        'Dover',
+        'Tallahassee',
+        'Atlanta',
+        'Honolulu',
+        'Boise',
+        'Springfield',
+        'Indianapolis',
+        'Des Moines',
+        'Topeka',
+        'Frankfort',
+        'Baton Rouge',
+        'Augusta',
+        'Annapolis',
+        'Boston',
+        'Lansing',
+        'Saint Paul',
+        'Jackson',
+        'Jefferson City',
+        'Helena',
+        'Lincoln',
+        'Carson City',
+        'Concord',
+        'Trenton',
+        'Santa Fe',
+        'Albany',
+        'Raleigh',
+        'Bismarck',
+        'Columbus',
+        'Oklahoma City',
+        'Salem',
+        'Harrisburg',
+        'Providence',
+        'Columbia',
+        'Pierre',
+        'Nashville',
+        'Austin',
+        'Salt Lake City',
+        'Montpelier',
+        'Richmond',
+        'Olympia',
+        'Charleston',
+        'Madison',
+        'Cheyenne'
+    ]
+*/</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<!-- TODO: more creative example. -->
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> capitals = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/us-states-capitals'</span> );
+
+<span class="hljs-keyword">var</span> data = capitals();
+<span class="hljs-keyword">var</span> len = data.length;
+<span class="hljs-keyword">var</span> idx;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-comment">// Select random capitals from the list...</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    idx = floor( randu()*len );
+    <span class="hljs-built_in">console</span>.log( data[ idx ] );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: us-states-capitals [options]
+
+Options:
+
+  -h,    --help                Print this message.
+  -V,    --version             Print the package version.
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ us-states-capitals
+Montgomery
+Juneau
+Phoenix
+...
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- <license> -->
+<h2 id="license">License</h2>
+<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+<!-- </license> -->
+<section class="links">
+</section>
+<!-- /.links -->

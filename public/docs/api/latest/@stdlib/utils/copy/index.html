@@ -1,0 +1,211 @@
+<h1 id="copy">Copy</h1>
+<blockquote>
+<p>Copy or deep clone a value to an arbitrary depth.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/copy'</span> );
+</code></pre>
+<h4 id="copy-value-level-">copy( value[, level] )</h4>
+<p>Copy or deep clone an input <code>value</code> to an arbitrary depth. The function accepts both <code>objects</code> and <code>primitives</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Primitives...</span>
+<span class="hljs-keyword">var</span> out = copy( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns 'beep'</span>
+
+<span class="hljs-comment">// Objects...</span>
+<span class="hljs-keyword">var</span> value = [
+    {
+        <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">'b'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'c'</span>: [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]
+    }
+];
+out = copy( value );
+<span class="hljs-comment">// returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( value[<span class="hljs-number">0</span>].c === out[<span class="hljs-number">0</span>].c );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-comment">// Error object...</span>
+<span class="hljs-keyword">var</span> err1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>( <span class="hljs-string">'beep'</span> );
+
+<span class="hljs-keyword">var</span> err2 = copy( err1 );
+<span class="hljs-comment">// returns &#x3C;TypeError></span>
+</code></pre>
+<p>The default behavior returns a <strong>full</strong> deep copy of any <code>object</code>. To limit the copy depth, set the <code>level</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = [
+    {
+        <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">'b'</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">'c'</span>: [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]
+    }
+];
+
+<span class="hljs-comment">// Trivial case => return the same reference</span>
+<span class="hljs-keyword">var</span> out = copy( value, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns [ { 'a': 1, 'b': true, 'c': [ 1, 2, 3 ] } ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( value[<span class="hljs-number">0</span>] === out[<span class="hljs-number">0</span>] );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-comment">// Shallow copy:</span>
+out = copy( value, <span class="hljs-number">1</span> );
+
+bool = ( value === out );
+<span class="hljs-comment">// returns false</span>
+
+bool = ( value[<span class="hljs-number">0</span>] === out[<span class="hljs-number">0</span>] );
+<span class="hljs-comment">// returns true</span>
+
+<span class="hljs-comment">// Deep copy:</span>
+out = copy( value, <span class="hljs-number">2</span> );
+
+bool = ( value[<span class="hljs-number">0</span>] === out[<span class="hljs-number">0</span>] );
+<span class="hljs-comment">// returns false</span>
+
+bool = ( value[<span class="hljs-number">0</span>].c === out[<span class="hljs-number">0</span>].c );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>List of <strong>supported</strong> values/types:</p>
+<ul>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>boolean</code>/<code>Boolean</code></li>
+<li><code>string</code>/<code>String</code></li>
+<li><code>number</code>/<code>Number</code></li>
+<li><code>function</code></li>
+<li><code>Object</code></li>
+<li><code>Date</code></li>
+<li><code>RegExp</code></li>
+<li><code>Set</code></li>
+<li><code>Map</code></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>Error</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError"><code>URIError</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError"><code>ReferenceError</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError"><code>SyntaxError</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError"><code>RangeError</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError"><code>EvalError</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></li>
+<li><a href="https://nodejs.org/api/errors.html#errors_class_system_error"><code>System Error</code></a> (Node.js)</li>
+<li><code>Array</code></li>
+<li><code>Int8Array</code></li>
+<li><code>Uint8Array</code></li>
+<li><code>Uint8ClampedArray</code></li>
+<li><code>Init16Array</code></li>
+<li><code>Uint16Array</code></li>
+<li><code>Int32Array</code></li>
+<li><code>Uint32Array</code></li>
+<li><code>Float32Array</code></li>
+<li><code>Float64Array</code></li>
+<li><code>Buffer</code> (<a href="http://nodejs.org/api/buffer.html">Node.js</a>)</li>
+</ul>
+</li>
+<li>
+<p>List of <strong>unsupported</strong> values/types:</p>
+<ul>
+<li><code>DOMElement</code>: to copy DOM elements, use <code>element.cloneNode()</code>.</li>
+<li><code>Symbol</code></li>
+<li><code>WeakMap</code></li>
+<li><code>WeakSet</code></li>
+<li><code>Blob</code></li>
+<li><code>File</code></li>
+<li><code>FileList</code></li>
+<li><code>ImageData</code></li>
+<li><code>ImageBitmap</code></li>
+<li><code>ArrayBuffer</code></li>
+</ul>
+</li>
+<li>
+<p>The implementation <strong>can</strong> handle circular references.</p>
+</li>
+<li>
+<p>If a <code>Number</code>, <code>String</code>, or <code>Boolean</code> object is encountered, the value is cloned as a <strong>primitive</strong>. This behavior is intentional. The implementation is opinionated in wanting to <strong>avoid</strong> creating <code>numbers</code>, <code>strings</code>, and <code>booleans</code> via the <code>new</code> operator and a constructor.</p>
+</li>
+<li>
+<p>For <code>objects</code>, the implementation <strong>only</strong> copies <code>enumerable</code> keys and their associated property descriptors.</p>
+</li>
+<li>
+<p>The implementation <strong>only</strong> checks whether basic <code>Objects</code>, <code>Arrays</code>, and class instances are <code>extensible</code>, <code>sealed</code>, and/or <code>frozen</code>.</p>
+</li>
+<li>
+<p><code>functions</code> are <strong>not</strong> cloned; their reference is copied.</p>
+</li>
+<li>
+<p>The implementation supports custom <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>error</code></a> types which are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>Error</code></a> instances (e.g., ES2015 subclasses).</p>
+</li>
+<li>
+<p>Support for copying class instances is inherently <strong>fragile</strong>. Any instances with privileged access to variables (e.g., within closures) cannot be cloned. This stated, basic copying of class instances is supported. Provided an environment which supports ES5, the implementation is greedy and performs a deep clone of any arbitrary class instance and its properties. The implementation assumes that the concept of <code>level</code> applies only to the class instance reference, but not to its internal state.</p>
+<!-- eslint-disable no-underscore-dangle -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">this</span>._data = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+    <span class="hljs-built_in">this</span>._name = <span class="hljs-string">'bar'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
+}
+
+<span class="hljs-keyword">var</span> foo1 = <span class="hljs-keyword">new</span> Foo();
+<span class="hljs-keyword">var</span> foo2 = copy( foo1 );
+
+<span class="hljs-keyword">var</span> bool = ( foo1._name === foo2._name );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( foo1._data === foo2._data );
+<span class="hljs-comment">// returns false</span>
+
+bool = ( foo1._data[<span class="hljs-number">0</span>] === foo2._data[<span class="hljs-number">0</span>] );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+<span class="hljs-keyword">var</span> copy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/copy'</span> );
+
+<span class="hljs-keyword">var</span> arr = [
+    {
+        <span class="hljs-string">'x'</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+        <span class="hljs-string">'y'</span>: [ randu(), randu() ],
+        <span class="hljs-string">'z'</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ),
+        <span class="hljs-string">'label'</span>: <span class="hljs-string">'Beep'</span>
+    },
+    {
+        <span class="hljs-string">'x'</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+        <span class="hljs-string">'y'</span>: [ randu(), randu() ],
+        <span class="hljs-string">'z'</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ] ),
+        <span class="hljs-string">'label'</span>: <span class="hljs-string">'Boop'</span>
+    }
+];
+
+<span class="hljs-comment">// Perform a full deep copy:</span>
+<span class="hljs-keyword">var</span> out = copy( arr );
+
+<span class="hljs-keyword">var</span> bool = ( arr[ <span class="hljs-number">0</span> ] === out[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns false</span>
+
+bool = ( arr[ <span class="hljs-number">1</span> ].y === out[ <span class="hljs-number">1</span> ].y );
+<span class="hljs-comment">// returns false</span>
+
+<span class="hljs-comment">// Perform a shallow copy:</span>
+out = copy( arr, <span class="hljs-number">1</span> );
+
+bool = ( arr[ <span class="hljs-number">0</span> ] === out[ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+bool = ( arr[ <span class="hljs-number">1</span> ].z === out[ <span class="hljs-number">1</span> ].z );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

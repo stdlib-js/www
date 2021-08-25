@@ -1,0 +1,64 @@
+<h1 id="bigint">BigInt</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt">BigInt</a> factory.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">BigInt</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/bigint/ctor'</span> );
+</code></pre>
+<h4 id="bigint-value-">BigInt( value )</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt"><code>BigInt</code></a> primitive.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = <span class="hljs-built_in">BigInt</span>( <span class="hljs-string">'1'</span> );
+<span class="hljs-comment">// returns &#x3C;bigint></span>
+</code></pre>
+<p>TODO: document properties/methods</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Unlike conventional constructors, the function does <strong>not</strong> support the <code>new</code> keyword.</li>
+<li>The function is only supported in environments which support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt"><code>BigInt</code></a>. In non-supporting environments, the value is <code>undefined</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasBigIntSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-bigint-support'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">BigInt</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/bigint/ctor'</span> );
+
+<span class="hljs-keyword">var</span> v;
+
+<span class="hljs-keyword">if</span> ( hasBigIntSupport() ) {
+    v = <span class="hljs-built_in">BigInt</span>( <span class="hljs-string">'1'</span> );
+
+    <span class="hljs-comment">// Print the value type:</span>
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-keyword">typeof</span> v );
+    <span class="hljs-comment">// => 'bigint'</span>
+
+    <span class="hljs-comment">// Serialize the BigInt as a string:</span>
+    <span class="hljs-built_in">console</span>.log( v.toString() );
+    <span class="hljs-comment">// => '1'</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support BigInts.'</span> );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,41 @@
+<h1 id="signed-rank">Signed Rank</h1>
+<blockquote>
+<p>Distribution of the Wilcoxon signed rank test statistic.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> signrank = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/signrank'</span> );
+</code></pre>
+<h4 id="signrank">signrank</h4>
+<p>Distribution of the Wilcoxon signed rank test statistic.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = signrank;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/signrank/cdf"><code>cdf( x, n )</code></a></span><span class="delimiter">: </span><span class="description">wilcoxon signed rank test statistic cumulative distribution function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/signrank/pdf"><code>pdf( x, n )</code></a></span><span class="delimiter">: </span><span class="description">wilcoxon signed rank test statistic probability density function.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/stats/base/dists/signrank/quantile"><code>quantile( p, n )</code></a></span><span class="delimiter">: </span><span class="description">wilcoxon signed rank test statistic quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> signrank = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/signrank'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( signrank ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

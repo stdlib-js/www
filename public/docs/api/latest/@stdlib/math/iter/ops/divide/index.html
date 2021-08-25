@@ -1,0 +1,103 @@
+<h1 id="iterdivide">iterDivide</h1>
+<blockquote>
+<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which performs element-wise division of two or more <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterDivide = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/ops/divide'</span> );
+</code></pre>
+<h4 id="iterdivide-iter0-iterator-">iterDivide( iter0, ...iterator )</h4>
+<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which performs element-wise division of two or more <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> it1 = array2iterator( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> ] );
+<span class="hljs-keyword">var</span> it2 = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">4.0</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterDivide( it1, it2 );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 3.0</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 0.5</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p>
+<ul>
+<li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li>
+<li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li>
+</ul>
+<p>If provided a numeric value as an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> argument, the value is broadcast as an <strong>infinite</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which <strong>always</strong> returns the provided value.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
+
+<span class="hljs-keyword">var</span> it = iterDivide( arr, <span class="hljs-number">4.0</span> );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> v = it.next().value;
+<span class="hljs-comment">// returns 0.25</span>
+
+v = it.next().value;
+<span class="hljs-comment">// returns 0.5</span>
+
+<span class="hljs-keyword">var</span> bool = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If an iterated value is non-numeric (including <code>NaN</code>), the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> returns <code>NaN</code>. If non-numeric iterated values are possible, you are advised to provide an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> which type checks and handles non-numeric values accordingly.</li>
+<li>The length of the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is equal to the length of the shortest provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>. In other words, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> ends once <strong>one</strong> of the provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> ends.</li>
+<li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterators</a> are iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterSineWave = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/simulate/iter/sine-wave'</span> );
+<span class="hljs-keyword">var</span> iterDivide = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/ops/divide'</span> );
+
+<span class="hljs-comment">// Create an iterator which generates a sine wave:</span>
+<span class="hljs-keyword">var</span> sine = iterSineWave({
+    <span class="hljs-string">'period'</span>: <span class="hljs-number">50</span>,
+    <span class="hljs-string">'offset'</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">100</span>
+});
+
+<span class="hljs-comment">// Create an iterator which scales the sine wave amplitude:</span>
+<span class="hljs-keyword">var</span> it = iterDivide( sine, <span class="hljs-number">10.0</span> );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    v = it.next();
+    <span class="hljs-keyword">if</span> ( v.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( v.value );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

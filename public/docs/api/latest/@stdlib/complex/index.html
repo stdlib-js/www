@@ -1,0 +1,75 @@
+<h1 id="complex-numbers">Complex Numbers</h1>
+<blockquote>
+<p>Complex number data types.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex'</span> );
+</code></pre>
+<h4 id="ns">ns</h4>
+<p>Complex number data types.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<p>The namespace constains complex number constructors.</p>
+<!-- <toc keywords="+data, +structure, +types"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/cmplx"><code>complex( real, imag[, dtype] )</code></a></span><span class="delimiter">: </span><span class="description">create a complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/float32"><code>Complex64( real, imag )</code></a></span><span class="delimiter">: </span><span class="description">64-bit complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/float64"><code>Complex128( real, imag )</code></a></span><span class="delimiter">: </span><span class="description">128-bit complex number.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = ns.complex( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex128></span>
+
+<span class="hljs-keyword">var</span> str = z.toString();
+<span class="hljs-comment">// returns '5 + 3i'</span>
+
+z = ns.complex( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-string">'float32'</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+
+z = <span class="hljs-keyword">new</span> ns.Complex64( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// returns &#x3C;Complex64></span>
+</code></pre>
+<p>In addition, the namespace contains the following functions:</p>
+<!-- <toc keywords="-data, -structure, -types"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/conj"><code>conj( z )</code></a></span><span class="delimiter">: </span><span class="description">return the complex conjugate of a complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/imag"><code>imag( z )</code></a></span><span class="delimiter">: </span><span class="description">return the imaginary component of a complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/real"><code>real( z )</code></a></span><span class="delimiter">: </span><span class="description">return the real component of a complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/reim"><code>reim( z )</code></a></span><span class="delimiter">: </span><span class="description">return the real and imaginary components of a complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/reviver-float32"><code>reviveComplex64( key, value )</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized 64-bit complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/reviver-float64"><code>reviveComplex128( key, value )</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized 128-bit complex number.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/complex/reviver"><code>reviveComplex( key, value )</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized complex number.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = ns.complex( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
+<span class="hljs-keyword">var</span> str = z.toString();
+<span class="hljs-comment">// returns '5 + 3i'</span>
+
+<span class="hljs-keyword">var</span> v = ns.conj( z );
+str = v.toString();
+<span class="hljs-comment">// returns '5 - 3i'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

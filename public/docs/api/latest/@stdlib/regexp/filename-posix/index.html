@@ -1,0 +1,156 @@
+<h1 id="filename">Filename</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to split a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reFilenamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/filename-posix'</span> );
+</code></pre>
+<h4 id="refilenameposix">reFilenamePosix()</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to split a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_FILENAME_POSIX = reFilenamePosix();
+<span class="hljs-keyword">var</span> parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">'/foo/bar/index.js'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        '/foo/bar/index.js',  // input value
+        '/',                  // root
+        'foo/bar/',           // dirname
+        'index.js',           // basename
+        '.js'                 // extname
+    ]
+*/</span>
+</code></pre>
+<h4 id="refilenameposixregexp">reFilenamePosix.REGEXP</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to split a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reFilenamePosix.REGEXP.exec( <span class="hljs-string">'/foo/bar/index.js'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        '/foo/bar/index.js',  // input value
+        '/',                  // root
+        'foo/bar/',           // dirname
+        'index.js',           // basename
+        '.js'                 // extname
+    ]
+*/</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>When executed against dotfile filenames (e.g., <code>.gitignore</code>), the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> does <strong>not</strong> capture the basename as a filename extension.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reFilenamePosix.REGEXP.exec( <span class="hljs-string">'.bash_profile'</span> ).slice();
+<span class="hljs-comment">/* returns
+  [
+      '.bash_profile',
+      '',
+      '',
+      '.bash_profile',
+      ''
+  ]
+*/</span>
+
+parts = reFilenamePosix.REGEXP.exec( <span class="hljs-string">'.travis.yml'</span> ).slice();
+<span class="hljs-comment">/* returns
+  [
+      '.travis.yml',
+      '',
+      '',
+      '.travis.yml',
+      '.yml'
+  ]
+*/</span>
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reFilenamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/filename-posix'</span> );
+
+<span class="hljs-keyword">var</span> RE_FILENAME_POSIX = reFilenamePosix();
+<span class="hljs-keyword">var</span> parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">'index.js'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        'index.js',
+        '',
+        '',
+        'index.js',
+        '.js'
+    ]
+*/</span>
+
+parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">'/foo/bar/home.html'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        '/foo/bar/home.html',
+        '/',
+        'foo/bar/',
+        'home.html',
+        '.html'
+    ]
+*/</span>
+
+parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">'foo/file.pdf'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        'foo/file.pdf',
+        '',
+        'foo/',
+        'file.pdf',
+        '.pdf'
+    ]
+*/</span>
+
+parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">'beep/boop.'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        'beep/boop.',
+        '',
+        'beep/',
+        'boop.',
+        '.'
+    ]
+*/</span>
+
+parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">''</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        '',
+        '',
+        '',
+        '',
+        ''
+    ]
+*/</span>
+
+parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">'/foo/bar/file'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        '/foo/bar/file',
+        '/',
+        'foo/bar/',
+        'file',
+        ''
+    ]
+*/</span>
+
+parts = RE_FILENAME_POSIX.exec( <span class="hljs-string">'/foo/bar/.gitignore'</span> ).slice();
+<span class="hljs-comment">/* returns
+    [
+        '/foo/bar/.gitignore',
+        '/',
+        'foo/bar/',
+        '.gitignore',
+        ''
+    ]
+*/</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

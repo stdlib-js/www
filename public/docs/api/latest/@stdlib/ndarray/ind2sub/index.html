@@ -1,0 +1,125 @@
+<h1 id="ind2sub">ind2sub</h1>
+<blockquote>
+<p>Convert a linear index to an array of subscripts.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ind2sub = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ind2sub'</span> );
+</code></pre>
+<h4 id="ind2sub-shape-idx-options-">ind2sub( shape, idx[, options] )</h4>
+<p>Converts a linear index to an array of subscripts.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> s = ind2sub( shape, <span class="hljs-number">2</span> );
+<span class="hljs-comment">// returns [ 1, 0 ]</span>
+</code></pre>
+<p>The function supports the following <code>options</code>:</p>
+<ul>
+<li>
+<p><code>mode</code>: specifies how to handle a linear index which exceeds array dimensions. The following modes are supported:</p>
+<ul>
+<li><code>throw</code>: specifies that the function should throw an error when a linear index exceeds array dimensions.</li>
+<li><code>wrap</code>: specifies that the function should wrap around a linear index exceeding array dimensions using modulo arithmetic.</li>
+<li><code>clamp</code>: specifies that the function should set a linear index exceeding array dimensions to either <code>0</code> (minimum linear index) or the maximum linear index.</li>
+</ul>
+</li>
+<li>
+<p><code>order</code>: specifies whether an array is <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style). Default: <code>'row-major'</code>.</p>
+</li>
+</ul>
+<p>By default, the function assumes a row-major array. To return subscripts for a column-major array, set the <code>order</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> opts = {};
+
+opts.order = <span class="hljs-string">'column-major'</span>;
+<span class="hljs-keyword">var</span> s = ind2sub( shape, <span class="hljs-number">1</span>, opts );
+<span class="hljs-comment">// returns [ 1, 0 ]</span>
+</code></pre>
+<p>By default, the function throws an <code>error</code> if provided a linear index which exceeds array dimensions. To specify alternative behavior, set the <code>mode</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> opts = {};
+
+opts.mode = <span class="hljs-string">'wrap'</span>;
+<span class="hljs-keyword">var</span> s = ind2sub( shape, -<span class="hljs-number">5</span>, opts );
+<span class="hljs-comment">// returns [ 1, 1 ]</span>
+
+opts.mode = <span class="hljs-string">'clamp'</span>;
+s = ind2sub( shape, <span class="hljs-number">7</span>, opts );
+<span class="hljs-comment">// returns [ 1, 1 ]</span>
+</code></pre>
+<h4 id="ind2subassign-shape-idx-options-out-">ind2sub.assign( shape, idx[, options], out )</h4>
+<p>Converts a linear index to an array of subscripts and assigns results to a provided output array.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> out = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+
+<span class="hljs-keyword">var</span> subscripts = ind2sub.assign( shape, <span class="hljs-number">1</span>, out );
+<span class="hljs-comment">// returns [ 0, 1 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( subscripts === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The function accepts the same <code>options</code> as above.</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+<span class="hljs-keyword">var</span> ind2sub = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ind2sub'</span> );
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> len = numel( shape );
+
+<span class="hljs-keyword">var</span> arr = [];
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+    arr.push( i );
+}
+
+<span class="hljs-keyword">var</span> opts = {
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'column-major'</span>
+};
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Dimensions: %s.'</span>, shape.join( <span class="hljs-string">'x'</span> ) );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'View (subscripts):'</span> );
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+
+<span class="hljs-keyword">var</span> row;
+<span class="hljs-keyword">var</span> s;
+
+row = <span class="hljs-string">'  '</span>;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; len; i++ ) {
+    s = ind2sub( shape, i, opts );
+    row += <span class="hljs-string">'('</span> + s.join( <span class="hljs-string">','</span> ) + <span class="hljs-string">')'</span>;
+    <span class="hljs-keyword">if</span> ( (i+<span class="hljs-number">1</span>)%shape[<span class="hljs-number">0</span>] === <span class="hljs-number">0</span> ) {
+        <span class="hljs-built_in">console</span>.log( row );
+        row = <span class="hljs-string">'  '</span>;
+    } <span class="hljs-keyword">else</span> {
+        row += <span class="hljs-string">', '</span>;
+    }
+    <span class="hljs-keyword">if</span> ( (i+<span class="hljs-number">1</span>)%(shape[<span class="hljs-number">0</span>]*shape[<span class="hljs-number">1</span>]) === <span class="hljs-number">0</span> ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
+    }
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

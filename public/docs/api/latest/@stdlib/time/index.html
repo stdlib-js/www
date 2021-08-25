@@ -1,0 +1,76 @@
+<h1 id="time">Time</h1>
+<blockquote>
+<p>Standard library time utilities.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> time = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time'</span> );
+</code></pre>
+<h4 id="time-1">time</h4>
+<p>Standard library time utilities.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = time;
+<span class="hljs-comment">// returns {...}</span>
+</code></pre>
+<h3 id="calendar-utilities">Calendar Utilities</h3>
+<!-- <toc keywords="+calendar"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/day-of-quarter"><code>dayOfQuarter( [month[, day, year]] )</code></a></span><span class="delimiter">: </span><span class="description">determine the day of the quarter.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/day-of-year"><code>dayOfYear( [month[, day, year]] )</code></a></span><span class="delimiter">: </span><span class="description">determine the day of the year.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/days-in-month"><code>daysInMonth( [month[, year]] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of days in a month.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/days-in-year"><code>daysInYear( [value] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of days in a year according to the Gregorian calendar.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/hours-in-month"><code>hoursInMonth( [month[, year]] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of hours in a month.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/hours-in-year"><code>hoursInYear( [value] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of hours in a year according to the Gregorian calendar.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/iso-weeks-in-year"><code>isoWeeksInYear( [value] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of ISO weeks in a year according to the Gregorian calendar.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/minutes-in-month"><code>minutesInMonth( [month[, year]] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of minutes in a month.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/minutes-in-year"><code>minutesInYear( [value] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of minutes in a year according to the Gregorian calendar.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/quarter-of-year"><code>quarterOfYear( [month] )</code></a></span><span class="delimiter">: </span><span class="description">determine the quarter of the year.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/seconds-in-month"><code>secondsInMonth( [month[, year]] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of seconds in a month.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/seconds-in-year"><code>secondsInYear( [value] )</code></a></span><span class="delimiter">: </span><span class="description">determine the number of seconds in a year according to the Gregorian calendar.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = time.daysInYear( <span class="hljs-number">2000</span> );
+<span class="hljs-comment">// returns 366</span>
+
+num = time.hoursInMonth( <span class="hljs-number">2</span>, <span class="hljs-number">2017</span> );
+<span class="hljs-comment">// returns 672</span>
+</code></pre>
+<h3 id="timer-utilities">Timer Utilities</h3>
+<!-- <toc keywords="+timer"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/tic"><code>tic()</code></a></span><span class="delimiter">: </span><span class="description">return a high-resolution time.</span></li>
+<li><span class="signature"><a href="/docs/api/develop/@stdlib/time/toc"><code>toc( time )</code></a></span><span class="delimiter">: </span><span class="description">return a high-resolution time difference.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> time = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time'</span> );
+
+<span class="hljs-keyword">var</span> start = time.tic();
+
+<span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">2000</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> elapsed = time.toc( start );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Elapsed: %d seconds and %d nanoseconds'</span>, elapsed[<span class="hljs-number">0</span>], elapsed[<span class="hljs-number">1</span>] );
+}
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+<span class="hljs-keyword">var</span> time = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time'</span> );
+
+<span class="hljs-built_in">console</span>.log( objectKeys( time ) );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

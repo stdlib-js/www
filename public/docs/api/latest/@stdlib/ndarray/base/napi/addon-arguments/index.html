@@ -1,0 +1,146 @@
+<h1 id="add-on-arguments">Add-on Arguments</h1>
+<blockquote>
+<p>C API for validating, extracting, and transforming (to native C types) function arguments provided to an ndarray Node-API add-on interface.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/napi/addon-arguments'</span> );
+</code></pre>
+<h4 id="headerdir">headerDir</h4>
+<p>Absolute file path for the directory containing header files for C APIs.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/napi/addon-arguments'</span> );
+
+<span class="hljs-built_in">console</span>.log( headerDir );
+<span class="hljs-comment">// => &#x3C;string></span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/napi/addon_arguments.h"</span></span>
+</code></pre>
+<!-- lint disable maximum-heading-length -->
+<h4 id="stdlib_ndarray_napi_addon_arguments-env-argv-nargs-nin-arrays-err-">stdlib_ndarray_napi_addon_arguments( env, argv, nargs, nin, *arrays[], *err )</h4>
+<p>Validates, extracts, and transforms (to native C types) function arguments provided to an ndarray Node-API add-on interface.</p>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;assert.h></span></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">/**
+* Receives JavaScript callback invocation data.
+*
+* @param env    environment under which the function is invoked
+* @param info   callback data
+* @return       Node-API value
+*/</span>
+<span class="hljs-function">napi_value <span class="hljs-title">addon</span><span class="hljs-params">( napi_env env, napi_callback_info info )</span> </span>{
+    napi_status status;
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">int64_t</span> nargs = <span class="hljs-number">6</span>;
+    <span class="hljs-keyword">int64_t</span> nin = <span class="hljs-number">2</span>;
+
+    <span class="hljs-comment">// Get callback arguments:</span>
+    <span class="hljs-keyword">size_t</span> argc = <span class="hljs-number">6</span>;
+    napi_value argv[ <span class="hljs-number">6</span> ];
+    status = napi_get_cb_info( env, info, &#x26;argc, argv, <span class="hljs-literal">nullptr</span>, <span class="hljs-literal">nullptr</span> );
+    assert( status == napi_ok );
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-comment">// Process the provided arguments:</span>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ndarray</span> *<span class="hljs-title">arrays</span>[ 3 ];</span>
+
+    napi_value err;
+    status = stdlib_ndarray_napi_addon_arguments( env, argv, nargs, nin, arrays, &#x26;err );
+    assert( status == napi_ok );
+
+    <span class="hljs-comment">// ...</span>
+
+}
+
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li>
+<li><strong>argv</strong>: <code>[in] napi_value*</code> ndarray function arguments.</li>
+<li><strong>nargs</strong>: <code>[in] int64_t</code> total number of expected arguments.</li>
+<li><strong>nin</strong>: <code>[in] int64_t</code> number of input ndarray arguments.</li>
+<li><strong>arrays</strong>: <code>[out] struct ndarrays**</code> destination array for storing pointers to both input and output ndarrays.</li>
+<li><strong>err</strong>: <code>[out] napi_value*</code> pointer for storing a JavaScript error.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function">napi_status <span class="hljs-title">stdlib_ndarray_napi_addon_arguments</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> napi_value *argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> nargs, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> nin, struct ndarray *arrays[], napi_value *err )</span></span>;
+</code></pre>
+<p>The function returns a <code>napi_status</code> status code indicating success or failure (returns <code>napi_ok</code> if success).</p>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h3 id="notes">Notes</h3>
+<ul>
+<li>
+<p>The function assumes the following argument order:</p>
+<pre><code class="no-highlight language-text">[ ib1, im1, ib2, im2, ..., ob1, om1, ob2, om2, ... ]
+</code></pre>
+<p>where</p>
+<ul>
+<li><code>ib#</code> is a data buffer for an input ndarray.</li>
+<li><code>im#</code> is meta data for an input ndarray.</li>
+<li><code>ob#</code> is a data buffer for an output ndarray.</li>
+<li><code>om#</code> is meta data for an output ndarray.</li>
+</ul>
+</li>
+<li>
+<p>The function may return one of the following JavaScript errors:</p>
+<ul>
+<li><code>Error</code>: unable to allocate memory when processing input ndarray.</li>
+<li><code>Error</code>: unable to allocate memory when processing output ndarray.</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

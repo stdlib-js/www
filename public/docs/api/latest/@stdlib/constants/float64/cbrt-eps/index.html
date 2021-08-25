@@ -1,0 +1,50 @@
+<h1 id="cube-root-of-epsilon">Cube Root of Epsilon</h1>
+<blockquote>
+<p><a href="/docs/api/develop/@stdlib/math/base/special/cbrt">Cube root</a> of <a href="/docs/api/develop/@stdlib/constants/float64/eps">double-precision floating-point epsilon</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_CBRT_EPSILON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/cbrt-eps'</span> );
+</code></pre>
+<h4 id="float64_cbrt_epsilon">FLOAT64_CBRT_EPSILON</h4>
+<p><a href="/docs/api/develop/@stdlib/math/base/special/cbrt">Cube root</a> of <a href="/docs/api/develop/@stdlib/constants/float64/eps">double-precision floating-point epsilon</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT64_CBRT_EPSILON === <span class="hljs-number">0.0000060554544523933395</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> max = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/max'</span> );
+<span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> FLOAT64_CBRT_EPSILON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/cbrt-eps'</span> );
+
+<span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> a;
+<span class="hljs-keyword">var</span> b;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isApprox</span>(<span class="hljs-params"> a, b </span>) </span>{
+    <span class="hljs-keyword">var</span> delta;
+    <span class="hljs-keyword">var</span> tol;
+
+    delta = abs( a - b );
+    tol = FLOAT64_CBRT_EPSILON * max( abs( a ), abs( b ) );
+
+    <span class="hljs-keyword">return</span> ( delta &#x3C;= tol );
+}
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    a = randu() * <span class="hljs-number">10.0</span>;
+    b = a + (randu()*<span class="hljs-number">5.0e-7</span>) - <span class="hljs-number">2.5e-7</span>;
+    bool = isApprox( a, b );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d %s approximately equal to %d. Delta: %d.'</span>, a, ( bool ) ? <span class="hljs-string">'is'</span> : <span class="hljs-string">'is not'</span>, b, abs( a - b ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

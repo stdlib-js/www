@@ -1,0 +1,86 @@
+<h1 id="kernel-betainc">Kernel Betainc</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">Incomplete beta function</a> and its first derivative.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kernelBetainc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/kernel-betainc'</span> );
+</code></pre>
+<h4 id="kernelbetainc-x-a-b-regularized-upper-">kernelBetainc( x, a, b, regularized, upper )</h4>
+<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">incomplete beta function</a> and its first derivative for parameters <code>x</code>, <code>a > 0</code> and <code>b > 0</code>. The <code>regularized</code> and <code>upper</code> boolean parameters are used to specify whether to evaluate the regularized or non-regularized and the upper or lower incomplete beta functions, respectively.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = kernelBetainc( <span class="hljs-number">0.8</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.3</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ ~1.277, ~0.926 ]</span>
+
+out = kernelBetainc( <span class="hljs-number">0.2</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span> );
+<span class="hljs-comment">// returns [ 0.36, 1.6 ]</span>
+
+out = kernelBetainc( <span class="hljs-number">0.2</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ 0.64, 1.6 ]</span>
+</code></pre>
+<p>If provided <code>NaN</code> for <code>x</code>, <code>a</code>, or <code>b</code>, the function returns <code>[ NaN, NaN ]</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = kernelBetainc( <span class="hljs-literal">NaN</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+
+out = kernelBetainc( <span class="hljs-number">0.8</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+
+out = kernelBetainc( <span class="hljs-number">0.8</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+</code></pre>
+<p>If <code>x</code> is outside the interval <code>[0,1]</code>, the function returns <code>[ NaN, NaN ]</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = kernelBetainc( <span class="hljs-number">1.5</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+
+out = kernelBetainc( -<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+</code></pre>
+<p>If <code>a</code> or <code>b</code> is negative, the function returns <code>[ NaN, NaN ]</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = kernelBetainc( <span class="hljs-number">0.5</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+
+out = kernelBetainc( <span class="hljs-number">0.5</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns [ NaN, NaN ]</span>
+</code></pre>
+<h4 id="kernelbetaincassign-x-a-b-regularized-upper-out-stride-offset-">kernelBetainc.assign( x, a, b, regularized, upper, out, stride, offset )</h4>
+<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">incomplete beta function</a> and its first derivative for parameters <code>x</code>, <code>a > 0</code> and <code>b > 0</code> and assigns results to a provided output array.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+
+<span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> v = kernelBetainc.assign( <span class="hljs-number">0.2</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns &#x3C;Float64Array>[ 0.64, 1.6 ]</span>
+
+<span class="hljs-keyword">var</span> bool = ( v === out );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The <code>offset</code> parameter specifies the index of the first output array element, and the <code>stride</code> parameter specifies the stride length between consecutive output array elements.</p>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<span class="hljs-keyword">var</span> kernelBetainc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/kernel-betainc'</span> );
+
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> a;
+<span class="hljs-keyword">var</span> b;
+
+out = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ];
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    x = randu();
+    a = randu() * <span class="hljs-number">10.0</span>;
+    b = randu() * <span class="hljs-number">10.0</span>;
+    kernelBetainc( x, a, b, <span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>, out, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, \t a: %d, \t b: %d, \t f(x,a,b): %d, \t f^1(x,a,b): %d'</span>, x.toFixed( <span class="hljs-number">4</span> ), a.toFixed( <span class="hljs-number">4</span> ), b.toFixed( <span class="hljs-number">4</span> ), out[ <span class="hljs-number">0</span> ].toFixed( <span class="hljs-number">4</span> ), out[ <span class="hljs-number">1</span> ].toFixed( <span class="hljs-number">4</span> ) );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

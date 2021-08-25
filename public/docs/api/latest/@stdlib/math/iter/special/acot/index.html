@@ -1,0 +1,80 @@
+<h1 id="iteracot">iterAcot</h1>
+<blockquote>
+<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively computes the <a href="/docs/api/develop/@stdlib/math/base/special/acot">inverse cotangent</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterAcot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/special/acot'</span> );
+</code></pre>
+<h4 id="iteracot-iterator-">iterAcot( iterator )</h4>
+<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively computes the <a href="/docs/api/develop/@stdlib/math/base/special/acot">inverse cotangent</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+
+<span class="hljs-keyword">var</span> it = iterAcot( array2iterator( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span> ] ) );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns ~0.4636</span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns ~0.7854</span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p>
+<ul>
+<li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li>
+<li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If an iterated value is non-numeric (including <code>NaN</code>), the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> returns <code>NaN</code>. If non-numeric iterated values are possible, you are advised to provide an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol"><code>iterator</code></a> which type checks and handles non-numeric values accordingly.</li>
+<li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/uniform'</span> );
+<span class="hljs-keyword">var</span> iterAcot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/special/acot'</span> );
+
+<span class="hljs-comment">// Create a seeded iterator for generating pseudorandom numbers:</span>
+<span class="hljs-keyword">var</span> rand = uniform( -<span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-comment">// Create an iterator which consumes the pseudorandom number iterator:</span>
+<span class="hljs-keyword">var</span> it = iterAcot( rand );
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    r = it.next();
+    <span class="hljs-keyword">if</span> ( r.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( r.value );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

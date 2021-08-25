@@ -1,0 +1,66 @@
+<h1 id="isarraylike">isArrayLike</h1>
+<blockquote>
+<p>Test if a value is array-like.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isArrayLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-array-like'</span> );
+</code></pre>
+<h4 id="isarraylike-value-">isArrayLike( value )</h4>
+<p>Tests if a value is <a href="http://www.2ality.com/2013/05/quirk-array-like-objects.html">array-like</a>.</p>
+<!-- eslint-disable object-curly-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isArrayLike( [] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isArrayLike( { <span class="hljs-string">'length'</span>: <span class="hljs-number">10</span> } );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>If provided a <code>string</code>, the function returns <code>true</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isArrayLike( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable object-curly-newline, no-restricted-syntax, no-empty-function -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isArrayLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-array-like'</span> );
+
+<span class="hljs-keyword">var</span> bool = isArrayLike( { <span class="hljs-string">'length'</span>: <span class="hljs-number">10</span> } );
+<span class="hljs-comment">// returns true</span>
+
+bool = isArrayLike( [] );
+<span class="hljs-comment">// returns true</span>
+
+bool = isArrayLike( <span class="hljs-string">'beep'</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> isArrayLike( <span class="hljs-built_in">arguments</span> );
+})();
+<span class="hljs-comment">// returns true</span>
+
+bool = isArrayLike( <span class="hljs-literal">null</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isArrayLike( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isArrayLike( <span class="hljs-number">5</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isArrayLike( <span class="hljs-literal">true</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isArrayLike( {} );
+<span class="hljs-comment">// returns false</span>
+
+bool = isArrayLike( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{} );
+<span class="hljs-comment">// returns false</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

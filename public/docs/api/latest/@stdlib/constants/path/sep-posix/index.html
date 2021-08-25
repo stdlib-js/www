@@ -1,0 +1,36 @@
+<h1 id="path-separator">Path Separator</h1>
+<blockquote>
+<p>POSIX path segment separator.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP_POSIX = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep-posix'</span> );
+</code></pre>
+<h4 id="path_sep_posix">PATH_SEP_POSIX</h4>
+<p>POSIX path segment separator.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sep = PATH_SEP_POSIX;
+<span class="hljs-comment">// returns '/'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP_POSIX = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep-posix'</span> );
+
+<span class="hljs-keyword">var</span> parts;
+<span class="hljs-keyword">var</span> path;
+
+path = <span class="hljs-string">'foo/bar/baz'</span>;
+parts = path.split( PATH_SEP_POSIX );
+<span class="hljs-comment">// returns ['foo','bar','baz']</span>
+
+path = <span class="hljs-string">'foo\\bar\\baz'</span>;
+parts = path.split( PATH_SEP_POSIX );
+<span class="hljs-comment">// returns ['foo\\bar\\baz' ]</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,0 +1,152 @@
+<h1 id="erlang-random-numbers">Erlang Random Numbers</h1>
+<blockquote>
+<p>Create an iterator for generating pseudorandom numbers drawn from an <a href="https://en.wikipedia.org/wiki/Erlang_distribution">Erlang</a> distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/erlang'</span> );
+</code></pre>
+<h4 id="iterator-k-lambda-options-">iterator( k, lambda[, options] )</h4>
+<p>Returns an iterator for generating pseudorandom numbers drawn from an <a href="https://en.wikipedia.org/wiki/Erlang_distribution">Erlang</a> distribution with parameters <code>k</code> (shape parameter) and <code>lambda</code> (rate parameter).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns &#x3C;Object></span>
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>If <code>k</code> is not a positive integer or <code>λ &#x3C;= 0</code>, the function throws an error.</p>
+<!-- run throws: true -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator( <span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// throws &#x3C;TypeError></span>
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom numbers on the interval <code>[0,1)</code>. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned iterator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable).</li>
+<li><strong>seed</strong>: pseudorandom number generator seed.</li>
+<li><strong>state</strong>: a <a href="/docs/api/develop/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned iterator has exclusive control over its internal pseudorandom number generator state. Default: <code>true</code>.</li>
+<li><strong>iter</strong>: number of iterations.</li>
+</ul>
+<p>To use a custom PRNG as the underlying source of uniformly distributed pseudorandom numbers, set the <code>prng</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+
+<span class="hljs-keyword">var</span> it = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">4.0</span>, {
+    <span class="hljs-string">'prng'</span>: minstd.normalized
+});
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+</code></pre>
+<p>To return an iterator having a specific initial state, set the iterator <code>state</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> it1;
+<span class="hljs-keyword">var</span> it2;
+<span class="hljs-keyword">var</span> r;
+<span class="hljs-keyword">var</span> i;
+
+it1 = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">4.0</span> );
+
+<span class="hljs-comment">// Generate pseudorandom numbers, thus progressing the generator state:</span>
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">1000</span>; i++ ) {
+    r = it1.next().value;
+}
+
+<span class="hljs-comment">// Create a new iterator initialized to the current state of `it1`:</span>
+it2 = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">4.0</span>, {
+    <span class="hljs-string">'state'</span>: it1.state
+});
+
+<span class="hljs-comment">// Test that the generated pseudorandom numbers are the same:</span>
+bool = ( it1.next().value === it2.next().value );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>To seed the iterator, set the <code>seed</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it1 = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">4.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
+});
+
+<span class="hljs-keyword">var</span> r1 = it1.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-keyword">var</span> it2 = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">4.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
+});
+
+<span class="hljs-keyword">var</span> r2 = it2.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+<span class="hljs-keyword">var</span> bool = ( r1 === r2 );
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>To limit the number of iterations, set the <code>iter</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">4.0</span>, {
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">2</span>
+});
+
+<span class="hljs-keyword">var</span> r = it.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = it.next().value;
+<span class="hljs-comment">// returns &#x3C;number></span>
+
+r = it.next().done;
+<span class="hljs-comment">// returns true</span>
+</code></pre>
+<p>The returned iterator protocol-compliant object has the following properties:</p>
+<ul>
+<li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li>
+<li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li>
+<li><strong>seed</strong>: pseudorandom number generator seed. If provided a <code>prng</code> option, the property value is <code>null</code>.</li>
+<li><strong>seedLength</strong>: length of generator seed. If provided a <code>prng</code> option, the property value is <code>null</code>.</li>
+<li><strong>state</strong>: writable property for getting and setting the generator state. If provided a <code>prng</code> option, the property value is <code>null</code>.</li>
+<li><strong>stateLength</strong>: length of generator state. If provided a <code>prng</code> option, the property value is <code>null</code>.</li>
+<li><strong>byteLength</strong>: size (in bytes) of generator state. If provided a <code>prng</code> option, the property value is <code>null</code>.</li>
+<li><strong>PRNG</strong>: underlying pseudorandom number generator.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li>
+<li>If PRNG state is "shared" (meaning a state array was provided during iterator creation and <strong>not</strong> copied) and one sets the underlying generator state to a state array having a different length, the iterator does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize the output of the underlying generator according to the new shared state array, the state array for <strong>each</strong> relevant iterator and/or PRNG must be <strong>explicitly</strong> set.</li>
+<li>If PRNG state is "shared" and one sets the underlying generator state to a state array of the same length, the PRNG state is updated (along with the state of all other iterator and/or PRNGs sharing the PRNG's state array).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/erlang'</span> );
+
+<span class="hljs-keyword">var</span> it;
+<span class="hljs-keyword">var</span> r;
+
+<span class="hljs-comment">// Create a seeded iterator for generating pseudorandom numbers:</span>
+it = iterator( <span class="hljs-number">2</span>, <span class="hljs-number">5.0</span>, {
+    <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>,
+    <span class="hljs-string">'iter'</span>: <span class="hljs-number">10</span>
+});
+
+<span class="hljs-comment">// Perform manual iteration...</span>
+<span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
+    r = it.next();
+    <span class="hljs-keyword">if</span> ( r.done ) {
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-built_in">console</span>.log( r.value );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

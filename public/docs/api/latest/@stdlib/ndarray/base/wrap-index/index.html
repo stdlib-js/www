@@ -1,0 +1,57 @@
+<h1 id="wrap-index">Wrap Index</h1>
+<blockquote>
+<p>Wrap an index on the interval <code>[0,max]</code>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> wrapIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/wrap-index'</span> );
+</code></pre>
+<h4 id="wrapindex-idx-max-">wrapIndex( idx, max )</h4>
+<p>Wrap an index on the interval <code>[0,max]</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = wrapIndex( <span class="hljs-number">2</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 2</span>
+
+idx = wrapIndex( -<span class="hljs-number">5</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 6</span>
+
+idx = wrapIndex( <span class="hljs-number">15</span>, <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns 4</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> wrapIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/wrap-index'</span> );
+
+<span class="hljs-keyword">var</span> idx;
+<span class="hljs-keyword">var</span> out;
+<span class="hljs-keyword">var</span> i;
+
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    idx = discreteUniform( -<span class="hljs-number">20</span>, <span class="hljs-number">20</span> );
+    out = wrapIndex( idx, <span class="hljs-number">9</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => [%d,%d] => %d'</span>, idx, <span class="hljs-number">0</span>, <span class="hljs-number">9</span>, out );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

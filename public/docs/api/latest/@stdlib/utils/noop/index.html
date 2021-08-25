@@ -1,0 +1,34 @@
+<h1 id="noop">noop</h1>
+<blockquote>
+<p>Function which does <a href="https://en.wikipedia.org/wiki/NOP">nothing</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> noop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/noop'</span> );
+</code></pre>
+<h4 id="noop-1">noop()</h4>
+<p>A <code>function</code> which does <a href="https://en.wikipedia.org/wiki/NOP">nothing</a>.</p>
+<pre><code class="hljs language-javascript">noop();
+<span class="hljs-comment">// ...does nothing.</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> noop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/noop'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> next </span>) </span>{
+    <span class="hljs-comment">// Do something...</span>
+
+    <span class="hljs-comment">// Then...</span>
+    next();
+}
+
+foo( noop );
+</code></pre>
+</section>
+<!-- /.examples -->
+<section class="links">
+</section>
+<!-- /.links -->

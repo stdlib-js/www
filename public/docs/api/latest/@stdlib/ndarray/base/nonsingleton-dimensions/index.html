@@ -1,0 +1,110 @@
+<h1 id="non-singleton-dimensions">Non-Singleton Dimensions</h1>
+<blockquote>
+<p>Return the number of non-singleton dimensions.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nonsingletonDimensions = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/nonsingleton-dimensions'</span> );
+</code></pre>
+<h4 id="nonsingletondimensions-shape-">nonsingletonDimensions( shape )</h4>
+<p>Returns number of non-singleton dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> n = nonsingletonDimensions( [ <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns 2</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>A singleton dimension is a dimension whose size is equal to <code>1</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> nonsingletonDimensions = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/nonsingleton-dimensions'</span> );
+
+<span class="hljs-keyword">var</span> shape;
+<span class="hljs-keyword">var</span> n;
+<span class="hljs-keyword">var</span> i;
+
+shape = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ];
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    shape[ <span class="hljs-number">0</span> ] = discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">5</span> );
+    shape[ <span class="hljs-number">1</span> ] = discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">5</span> );
+    shape[ <span class="hljs-number">2</span> ] = discreteUniform( <span class="hljs-number">1</span>, <span class="hljs-number">5</span> );
+    n = nonsingletonDimensions( shape );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'shape: %s. non-singleton dimensions: %d.'</span>, shape.join( <span class="hljs-string">'x'</span> ), n );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/nonsingleton_dimensions.h"</span></span>
+</code></pre>
+<h4 id="stdlib_ndarray_nonsingleton_dimensions-ndims-shape-">stdlib_ndarray_nonsingleton_dimensions( ndims, *shape )</h4>
+<p>Returns the number of non-singleton dimensions.</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">int64_t</span> ndims = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">10</span>, <span class="hljs-number">1</span> };
+
+<span class="hljs-keyword">int64_t</span> n = stdlib_ndarray_nonsingleton_dimensions( ndims, shape );
+<span class="hljs-comment">// returns 1</span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>ndims</strong>: <code>[in] int64_t</code> number of dimensions.</li>
+<li><strong>shape</strong>: <code>[in] int64_t*</code> array shape.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">int64_t</span> <span class="hljs-title">stdlib_ndarray_nonsingleton_dimensions</span><span class="hljs-params">( <span class="hljs-keyword">int64_t</span> ndims, <span class="hljs-keyword">int64_t</span> *shape )</span></span>;
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/nonsingleton_dimensions.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int64_t</span> shape[] = { <span class="hljs-number">10</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span> };
+
+    <span class="hljs-keyword">int64_t</span> n = stdlib_ndarray_nonsingleton_dimensions( <span class="hljs-number">5</span>, shape );
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"shape: %"</span>PRId64<span class="hljs-string">"x%"</span>PRId64<span class="hljs-string">"x%"</span>PRId64<span class="hljs-string">"x%"</span>PRId64<span class="hljs-string">"x%"</span>PRId64<span class="hljs-string">". non-singleton dimensions: %"</span>PRId64<span class="hljs-string">"\n"</span>, shape[ <span class="hljs-number">0</span> ], shape[ <span class="hljs-number">1</span> ], shape[ <span class="hljs-number">2</span> ], shape[ <span class="hljs-number">3</span> ], shape[ <span class="hljs-number">4</span> ], n );
+}
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->
