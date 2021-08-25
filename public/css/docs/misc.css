@@ -165,11 +165,17 @@ img {
 }
 
 /*
-* Second-level unordered and ordered list items should use lowercase Roman numerals.
+* Second-level ordered list items should use lowercase Roman numerals.
 */
-.readme ol ol,
-.readme ul ul {
+.readme ol ol {
 	list-style-type: lower-roman;
+}
+
+/*
+* Second-level unordered list items should use a solid square.
+*/
+.readme ul ul {
+	list-style-type: square;
 }
 
 /*
@@ -180,6 +186,16 @@ img {
 .readme ol ul ol,
 .readme ol ol ol {
 	list-style-type: lower-alpha;
+}
+
+/*
+* Third-level unordered list items should should use an open circle.
+*/
+.readme ul ul ul,
+.readme ul ol ul,
+.readme ol ul ul,
+.readme ol ol ul {
+	list-style-type: circle;
 }
 
 /*
