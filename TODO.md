@@ -114,13 +114,14 @@
     - sudo cp ./etc/nginx/sites-available/stdlib.io /etc/nginx/sites-available/stdlib.io
     - sudo ln -s /etc/nginx/sites-available/stdlib.io /etc/nginx/sites-enabled/stdlib.io
     - sudo service nginx restart
+    - systemctl status nginx.service
     - sudo rm -f etc/systemd/system/docs_server@.service
     - sudo cp ./etc/systemd/docs_server@.service /etc/systemd/system/docs_server@.service
-    - systemctl daemon-reload
-    - systemctl enable docs_server@1
-    - systemctl start docs_server@1
-    - systemctl status docs_server@1
-    - journalctl -u docs_server@1
+    - sudo systemctl daemon-reload
+    - sudo systemctl enable docs_server@1
+    - sudo systemctl start docs_server@1
+    - sudo systemctl status docs_server@1
+    - sudo journalctl -u docs_server@1
 
     - <https://blog.codeship.com/running-node-js-linux-systemd/>
     - sudo ln -s $(which npm) /usr/bin/npm
