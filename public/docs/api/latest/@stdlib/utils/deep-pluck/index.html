@@ -33,7 +33,7 @@
 <p>The function accepts the following <code>options</code>:</p>
 <ul>
 <li><strong>copy</strong>: <code>boolean</code> indicating whether to return a new data structure. Default: <code>true</code>.</li>
-<li><strong>sep</strong>: key path <a href="/docs/api/develop/@stdlib/utils/deep-get">separator</a>. Default: <code>'.'</code>.</li>
+<li><strong>sep</strong>: key path <a href="/docs/api/latest/@stdlib/utils/deep-get">separator</a>. Default: <code>'.'</code>.</li>
 </ul>
 <p>By default, the function returns a new data structure. To mutate the input data structure (e.g., when input values can be discarded or when optimizing memory usage), set the <code>copy</code> option to <code>false</code>.</p>
 <!-- eslint-disable object-curly-newline, object-curly-spacing -->
@@ -90,7 +90,7 @@
 <span class="hljs-keyword">var</span> bool = ( arr[ <span class="hljs-number">0</span> ].a.b === out[ <span class="hljs-number">0</span> ] );
 <span class="hljs-comment">// returns true</span>
 </code></pre>
-<p>To prevent subsequent unintended mutation, use <a href="/docs/api/develop/@stdlib/utils/copy">copy</a>.</p>
+<p>To prevent subsequent unintended mutation, use <a href="/docs/api/latest/@stdlib/utils/copy">copy</a>.</p>
 <!-- eslint-disable object-curly-newline, object-curly-spacing -->
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/copy'</span> );
 

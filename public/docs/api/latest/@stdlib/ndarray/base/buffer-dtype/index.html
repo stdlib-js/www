@@ -12,14 +12,14 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtype = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/buffer-dtype'</span> );
 </code></pre>
 <h4 id="dtype-buffer-">dtype( buffer )</h4>
-<p>Returns the <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a> of an ndarray data <a href="/docs/api/develop/@stdlib/ndarray/base/buffer-ctors"><code>buffer</code></a>.</p>
+<p>Returns the <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> of an ndarray data <a href="/docs/api/latest/@stdlib/ndarray/base/buffer-ctors"><code>buffer</code></a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
 
 <span class="hljs-keyword">var</span> dt = dtype( buf );
 <span class="hljs-comment">// returns 'float64'</span>
 </code></pre>
-<p>If provided an ndarray data <a href="/docs/api/develop/@stdlib/ndarray/base/buffer-ctors"><code>buffer</code></a> having an unknown or unsupported <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>, the function returns <code>null</code>.</p>
+<p>If provided an ndarray data <a href="/docs/api/latest/@stdlib/ndarray/base/buffer-ctors"><code>buffer</code></a> having an unknown or unsupported <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>, the function returns <code>null</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = dtype( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// returns null</span>
 </code></pre>

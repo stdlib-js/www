@@ -26,7 +26,7 @@
 <span class="hljs-comment">// returns 10</span>
 </code></pre>
 <h4 id="complex64array-typedarray-">Complex64Array( typedarray )</h4>
-<p>Creates a 64-bit complex number array from a <a href="/docs/api/develop/@stdlib/array/typed">typed array</a> containing interleaves real and imaginary components.</p>
+<p>Creates a 64-bit complex number array from a <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> containing interleaves real and imaginary components.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span> ] ); <span class="hljs-comment">// [ re, im, re, im ]</span>
@@ -57,7 +57,7 @@ len = arr2.length;
 <span class="hljs-comment">// returns 2</span>
 </code></pre>
 <h4 id="complex64array-buffer-byteoffset-length-">Complex64Array( buffer[, byteOffset[, length]] )</h4>
-<p>Returns a 64-bit complex number array view of an <a href="/docs/api/develop/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
+<p>Returns a 64-bit complex number array view of an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">240</span> );
 
@@ -546,7 +546,7 @@ arr.set( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0<
 <span class="hljs-keyword">var</span> im = imag( z );
 <span class="hljs-comment">// returns -1.0</span>
 </code></pre>
-<p>By default, the method returns a <a href="/docs/api/develop/@stdlib/complex/float32">64-bit complex number</a>. To return real and imaginary components separately, provide an array-like <code>object</code> as the first argument.</p>
+<p>By default, the method returns a <a href="/docs/api/latest/@stdlib/complex/float32">64-bit complex number</a>. To return real and imaginary components separately, provide an array-like <code>object</code> as the first argument.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> Complex64Array( <span class="hljs-number">10</span> );
 
 <span class="hljs-comment">// Set the first element:</span>
@@ -648,7 +648,7 @@ arr.set( buf, <span class="hljs-number">4</span> );
 <ul>
 <li>If <code>i</code> is out-of-bounds, the method throws an error.</li>
 <li>If a target array cannot accommodate all values (i.e., the length of source array plus <code>i</code> exceeds the target array length), the method throws an error.</li>
-<li>If provided a <a href="/docs/api/develop/@stdlib/array/typed">typed array</a> which shares an <a href="/docs/api/develop/@stdlib/array/buffer"><code>ArrayBuffer</code></a> with the target array, the method will intelligently copy the source range to the destination range.</li>
+<li>If provided a <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> which shares an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> with the target array, the method will intelligently copy the source range to the destination range.</li>
 </ul>
 </section>
 <!-- /.usage -->
@@ -658,7 +658,7 @@ arr.set( buf, <span class="hljs-number">4</span> );
 <h2 id="notes">Notes</h2>
 <ul>
 <li>
-<p>While a <code>Complex64Array</code> <em>strives</em> to maintain (but does not <strong>guarantee</strong>) consistency with <a href="/docs/api/develop/@stdlib/array/typed">typed arrays</a>, significant deviations from ECMAScript-defined <a href="/docs/api/develop/@stdlib/array/typed">typed array</a> behavior are as follows:</p>
+<p>While a <code>Complex64Array</code> <em>strives</em> to maintain (but does not <strong>guarantee</strong>) consistency with <a href="/docs/api/latest/@stdlib/array/typed">typed arrays</a>, significant deviations from ECMAScript-defined <a href="/docs/api/latest/@stdlib/array/typed">typed array</a> behavior are as follows:</p>
 <ul>
 <li>The constructor does <strong>not</strong> require the <code>new</code> operator.</li>
 <li>The constructor and associated methods support a broader variety of input argument types in order to better accommodate complex number input.</li>

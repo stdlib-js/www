@@ -20,10 +20,10 @@
 <li>
 <p><strong>name</strong>: name of the underlying pseudorandom number generator which samples from the standard normal distribution.</p>
 <ul>
-<li><a href="/docs/api/develop/@stdlib/random/base/improved-ziggurat"><code>improved-ziggurat</code></a>: improved ziggurat method.</li>
-<li><a href="/docs/api/develop/@stdlib/random/base/box-muller"><code>box-muller</code></a>: Box-Muller transform.</li>
+<li><a href="/docs/api/latest/@stdlib/random/base/improved-ziggurat"><code>improved-ziggurat</code></a>: improved ziggurat method.</li>
+<li><a href="/docs/api/latest/@stdlib/random/base/box-muller"><code>box-muller</code></a>: Box-Muller transform.</li>
 </ul>
-<p>Default: <a href="/docs/api/develop/@stdlib/random/base/improved-ziggurat"><code>'improved-ziggurat'</code></a>.</p>
+<p>Default: <a href="/docs/api/latest/@stdlib/random/base/improved-ziggurat"><code>'improved-ziggurat'</code></a>.</p>
 </li>
 <li>
 <p><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom numbers on the interval <code>[0,1)</code>. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned pseudorandom number generator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable).</p>
@@ -38,7 +38,7 @@
 <p><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</p>
 </li>
 </ul>
-<p>By default, the underlying pseudorandom number generator is <a href="/docs/api/develop/@stdlib/random/base/improved-ziggurat"><code>improved-ziggurat</code></a>. To use a different PRNG, set the <code>name</code> option.</p>
+<p>By default, the underlying pseudorandom number generator is <a href="/docs/api/latest/@stdlib/random/base/improved-ziggurat"><code>improved-ziggurat</code></a>. To use a different PRNG, set the <code>name</code> option.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = randn.factory({
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'box-muller'</span>
 });

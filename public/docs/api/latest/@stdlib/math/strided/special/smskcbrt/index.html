@@ -1,6 +1,6 @@
 <h1 id="smskcbrt">smskcbrt</h1>
 <blockquote>
-<p>Compute the <a href="/docs/api/develop/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array according to a strided mask array.</p>
+<p>Compute the <a href="/docs/api/latest/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array according to a strided mask array.</p>
 </blockquote>
 <section class="intro">
 </section>
@@ -10,7 +10,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> smskcbrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/smskcbrt'</span> );
 </code></pre>
 <h4 id="smskcbrt-n-x-sx-m-sm-y-sy-">smskcbrt( N, x, sx, m, sm, y, sy )</h4>
-<p>Computes the <a href="/docs/api/develop/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array <code>x</code> according to a strided mask array and assigns the results to elements in a single-precision floating-point strided array <code>y</code>.</p>
+<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array <code>x</code> according to a strided mask array and assigns the results to elements in a single-precision floating-point strided array <code>y</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
@@ -24,11 +24,11 @@ smskcbrt( x.length, x, <span class="hljs-number">1</span>, m, <span class="hljs-
 <p>The function accepts the following arguments:</p>
 <ul>
 <li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
+<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
 <li><strong>sx</strong>: index increment for <code>x</code>.</li>
-<li><strong>m</strong>: mask <a href="/docs/api/develop/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
+<li><strong>m</strong>: mask <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
 <li><strong>sm</strong>: index increment for <code>m</code>.</li>
-<li><strong>y</strong>: output <a href="/docs/api/develop/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
+<li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
 <li><strong>sy</strong>: index increment for <code>y</code>.</li>
 </ul>
 <p>The <code>N</code> and stride parameters determine which strided array elements are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p>
@@ -42,7 +42,7 @@ smskcbrt( x.length, x, <span class="hljs-number">1</span>, m, <span class="hljs-
 smskcbrt( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, m, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]</span>
 </code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/develop/@stdlib/array/float32"><code>typed array</code></a> views.</p>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
@@ -60,7 +60,7 @@ smskcbrt( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</
 <span class="hljs-comment">// y0 => &#x3C;Float32Array>[ 0.0, 0.0, 0.0, 0.0, 3.0, 1.0 ]</span>
 </code></pre>
 <h4 id="smskcbrtndarray-n-x-sx-ox-m-sm-om-y-sy-oy-">smskcbrt.ndarray( N, x, sx, ox, m, sm, om, y, sy, oy )</h4>
-<p>Computes the <a href="/docs/api/develop/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array <code>x</code> according to a strided mask array and assigns the results to elements in a single-precision floating-point strided array <code>y</code> using alternative indexing semantics.</p>
+<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array <code>x</code> according to a strided mask array and assigns the results to elements in a single-precision floating-point strided array <code>y</code> using alternative indexing semantics.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
@@ -77,7 +77,7 @@ smskcbrt.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="
 <li><strong>om</strong>: starting index for <code>m</code>.</li>
 <li><strong>oy</strong>: starting index for <code>y</code>.</li>
 </ul>
-<p>While <a href="/docs/api/develop/@stdlib/array/float32"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
+<p>While <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
@@ -135,7 +135,7 @@ smskcbrt.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="
 <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/strided/special/smskcbrt.h"</span></span>
 </code></pre>
 <h4 id="stdlib_strided_smskcbrt-n-x-stridex-mask-stridemask-y-stridey-">stdlib_strided_smskcbrt( N, *X, strideX, *Mask, strideMask, *Y, strideY )</h4>
-<p>Computes the <a href="/docs/api/develop/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array <code>X</code> according to a strided mask array and assigns the results to elements in a single-precision floating-point strided array <code>Y</code>.</p>
+<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/cbrtf">cube root</a> for each element in a single-precision floating-point strided array <code>X</code> according to a strided mask array and assigns the results to elements in a single-precision floating-point strided array <code>Y</code>.</p>
 <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 
 <span class="hljs-keyword">float</span> X[] = { <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">27.0</span>, <span class="hljs-number">64.0</span>, <span class="hljs-number">125.0</span>, <span class="hljs-number">216.0</span>, <span class="hljs-number">343.0</span> };

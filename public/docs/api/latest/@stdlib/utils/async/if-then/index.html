@@ -97,7 +97,7 @@ ifthenAsync( predicate, x, y, done );
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The function is similar to <a href="/docs/api/develop/@stdlib/utils/async/if-else"><code>ifelseAsync()</code></a>, but allows deferred argument evaluation.</li>
+<li>The function is similar to <a href="/docs/api/latest/@stdlib/utils/async/if-else"><code>ifelseAsync()</code></a>, but allows deferred argument evaluation.</li>
 <li>Execution is <strong>not</strong> guaranteed to be asynchronous. To guarantee asynchrony, wrap the <code>done</code> callback in a function which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li>
 </ul>
 </section>

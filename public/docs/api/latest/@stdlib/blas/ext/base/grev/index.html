@@ -67,7 +67,7 @@ grev.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">1
 <ul>
 <li>If <code>N &#x3C;= 0</code>, both functions return <code>x</code> unchanged.</li>
 <li>Where possible, one should "reverse" a strided array by negating its stride, which is an <code>O(1)</code> operation, in contrast to performing an in-place reversal, which is <code>O(N)</code>. However, in certain circumstances, this is not tenable, particularly when interfacing with libraries which assume and/or expect a specific memory layout (e.g., strided array elements arranged in memory in ascending order). In general, when working with strided arrays, only perform an in-place reversal when strictly necessary.</li>
-<li>Depending on the environment, the typed versions (<a href="/docs/api/develop/@stdlib/blas/ext/base/drev"><code>drev</code></a>, <a href="/docs/api/develop/@stdlib/blas/ext/base/srev"><code>srev</code></a>, etc.) are likely to be significantly more performant.</li>
+<li>Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/blas/ext/base/drev"><code>drev</code></a>, <a href="/docs/api/latest/@stdlib/blas/ext/base/srev"><code>srev</code></a>, etc.) are likely to be significantly more performant.</li>
 </ul>
 </section>
 <!-- /.notes -->

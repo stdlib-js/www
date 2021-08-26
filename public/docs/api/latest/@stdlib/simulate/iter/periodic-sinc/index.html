@@ -1,10 +1,10 @@
 <h1 id="iterperiodicsinc">iterPeriodicSinc</h1>
 <blockquote>
-<p>Create an iterator which generates a periodic <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> waveform.</p>
+<p>Create an iterator which generates a periodic <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> waveform.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
-<p>The periodic <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> function, also known as the Dirichlet function, is defined as</p>
+<p>The periodic <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> function, also known as the Dirichlet function, is defined as</p>
 <!-- <equation class="equation" label="eq:periodic_sinc" align="center" raw="D_N(x; A) = \begin{cases}\frac{A\sin(Nx/2)} {N\sin(x/2)} & x \neq 2\pi k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots  \\ A (-1)^{k(N-1)} & x = 2\pi k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots \end{cases}" alt="Periodic sinc function."> -->
 <div class="equation" align="center" data-raw-text="D_N(x; A) = \begin{cases}\frac{A\sin(Nx/2)} {N\sin(x/2)} &#x26; x \neq 2\pi k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots  \\ A (-1)^{k(N-1)} &#x26; x = 2\pi k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots \end{cases}" data-equation="eq:periodic_sinc">
     <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="59.348ex" height="7.843ex" style="vertical-align: -3.079ex; margin-bottom: -0.259ex;" viewBox="0 -1939.5 25552.4 3376.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -156,7 +156,7 @@
 </div>
 <!-- </equation> -->
 <p>where <code>N</code> is the function order and <code>A</code> is the peak amplitude. For odd <code>N</code>, the waveform has a period of <code>2π</code>, and, for even <code>N</code>, the waveform has a period of <code>4π</code>.</p>
-<p>To express the periodic <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> function as a function of a discrete iteration number <code>t</code> and the waveform period <code>τ</code>, for odd <code>N</code>, let</p>
+<p>To express the periodic <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> function as a function of a discrete iteration number <code>t</code> and the waveform period <code>τ</code>, for odd <code>N</code>, let</p>
 <!-- <equation class="equation" label="eq:periodic_sinc_substitution_odd" align="center" raw="x = \frac{2\pi (t-\varphi)}{\tau}" alt="Periodic sinc function substitution for odd N."> -->
 <div class="equation" align="center" data-raw-text="x = \frac{2\pi (t-\varphi)}{\tau}" data-equation="eq:periodic_sinc_substitution_odd">
     <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="14.768ex" height="5.676ex" style="vertical-align: -1.838ex;" viewBox="0 -1652.5 6358.5 2443.8" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -234,7 +234,7 @@
 </svg>
 </div>
 <!-- </equation> -->
-<p>where <code>τ</code> is the period (i.e., the number of iterations until a waveform repeats) and <code>φ</code> is the phase (iteration) offset. For odd <code>N</code>, we can thus substitute and express the periodic <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> function as</p>
+<p>where <code>τ</code> is the period (i.e., the number of iterations until a waveform repeats) and <code>φ</code> is the phase (iteration) offset. For odd <code>N</code>, we can thus substitute and express the periodic <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> function as</p>
 <!-- <equation class="equation" label="eq:periodic_sinc_in_terms_of_period" align="center" raw="D_N(t; A, \tau, \varphi) = \begin{cases}\frac{A\sin(N\pi(t-\varphi)/\tau)} {N\sin(\pi (t-\varphi)/\tau)} & t-\varphi \neq \tau k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots  \\ A (-1)^{k(N-1)} & t-\varphi = \tau k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots \end{cases}" alt="Periodic sinc function as a function of the waveform period."> -->
 <div class="equation" align="center" data-raw-text="D_N(t; A, \tau, \varphi) = \begin{cases}\frac{A\sin(N\pi(t-\varphi)/\tau)} {N\sin(\pi (t-\varphi)/\tau)} &#x26; t-\varphi \neq \tau k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots  \\ A (-1)^{k(N-1)} &#x26; t-\varphi = \tau k\ \textrm{for}\ k = 0, \pm 1, \pm 2, \ldots \end{cases}" data-equation="eq:periodic_sinc_in_terms_of_period">
     <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="67.829ex" height="7.843ex" style="vertical-align: -3.079ex; margin-bottom: -0.259ex;" viewBox="0 -1939.5 29203.9 3376.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -403,8 +403,8 @@
 </svg>
 </div>
 <!-- </equation> -->
-<p>For even <code>N</code>, we can express the periodic <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> function similarly.</p>
-<p>Note that the periodic <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> can be equivalently expressed as a function of the <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> function</p>
+<p>For even <code>N</code>, we can express the periodic <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> function similarly.</p>
+<p>Note that the periodic <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> can be equivalently expressed as a function of the <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> function</p>
 <!-- <equation class="equation" label="eq:periodic_sinc_in_terms_of_sinc_function" align="center" raw="D_N(\pi x; N, A) = A \cdot \frac{\operatorname{sinc}(Nx/2)} {\operatorname{sinc}(x/2)}" alt="Periodic sinc function in terms of the sinc function."> -->
 <div class="equation" align="center" data-raw-text="D_N(\pi x; N, A) = A \cdot \frac{\operatorname{sinc}(Nx/2)} {\operatorname{sinc}(x/2)}" data-equation="eq:periodic_sinc_in_terms_of_sinc_function">
     <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="32.734ex" height="6.509ex" style="vertical-align: -2.671ex;" viewBox="0 -1652.5 14093.6 2802.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" aria-labelledby="MathJax-SVG-1-Title">
@@ -483,7 +483,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterPeriodicSinc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/simulate/iter/periodic-sinc'</span> );
 </code></pre>
 <h4 id="iterperiodicsinc-n-options-">iterPeriodicSinc( n[, options] )</h4>
-<p>Returns an iterator which generates a periodic <a href="/docs/api/develop/@stdlib/math/base/special/sinc">sinc</a> waveform of order <code>n</code>.</p>
+<p>Returns an iterator which generates a periodic <a href="/docs/api/latest/@stdlib/math/base/special/sinc">sinc</a> waveform of order <code>n</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterPeriodicSinc( <span class="hljs-number">7</span> );
 <span class="hljs-comment">// returns &#x3C;Object></span>
 

@@ -1,6 +1,6 @@
 <h1 id="serialize-meta-data">Serialize Meta Data</h1>
 <blockquote>
-<p>Serialize <a href="/docs/api/develop/@stdlib/ndarray/ctor">ndarray</a> meta data.</p>
+<p>Serialize <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> meta data.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,7 +12,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> serialize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/serialize-meta-data'</span> );
 </code></pre>
 <h4 id="serialize-x-">serialize( x )</h4>
-<p>Serializes <a href="/docs/api/develop/@stdlib/ndarray/ctor">ndarray</a> meta data.</p>
+<p>Serializes <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> meta data.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 
 <span class="hljs-keyword">var</span> arr = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
@@ -55,7 +55,7 @@
 <p>Buffer length:</p>
 <pre><code class="no-highlight language-text">1 + 2 + 8 + (ndims*8) + (ndims*8) + 8 + 1 + 1 + 8 + (nsubmodes*1) = 29 + (ndims*16) + nsubmodes
 </code></pre>
-<p>For example, consider a three-dimensional <a href="/docs/api/develop/@stdlib/ndarray/ctor">ndarray</a> with one subscript index mode (submode):</p>
+<p>For example, consider a three-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> with one subscript index mode (submode):</p>
 <pre><code class="no-highlight language-text">29 + (3*16) + 1 = 78 bytes
 </code></pre>
 </li>

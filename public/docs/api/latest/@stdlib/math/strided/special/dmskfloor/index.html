@@ -24,11 +24,11 @@ dmskfloor( x.length, x, <span class="hljs-number">1</span>, m, <span class="hljs
 <p>The function accepts the following arguments:</p>
 <ul>
 <li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
+<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
 <li><strong>sx</strong>: index increment for <code>x</code>.</li>
-<li><strong>m</strong>: mask <a href="/docs/api/develop/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
+<li><strong>m</strong>: mask <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
 <li><strong>sm</strong>: index increment for <code>m</code>.</li>
-<li><strong>y</strong>: output <a href="/docs/api/develop/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
+<li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
 <li><strong>sy</strong>: index increment for <code>y</code>.</li>
 </ul>
 <p>The <code>N</code> and stride parameters determine which strided array elements are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p>
@@ -42,7 +42,7 @@ dmskfloor( x.length, x, <span class="hljs-number">1</span>, m, <span class="hljs
 dmskfloor( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, m, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 0.0, 0.0, 1.0, 0.0, 0.0, 0.0 ]</span>
 </code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/develop/@stdlib/array/float64"><code>typed array</code></a> views.</p>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
@@ -77,7 +77,7 @@ dmskfloor.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class=
 <li><strong>om</strong>: starting index for <code>m</code>.</li>
 <li><strong>oy</strong>: starting index for <code>y</code>.</li>
 </ul>
-<p>While <a href="/docs/api/develop/@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
+<p>While <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the offset parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 

@@ -74,7 +74,7 @@
 <ul>
 <li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li>
 <li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li>
-<li><strong>obj</strong>: <code>[in] struct ndarrayFunctionObject*</code> ndarray <a href="/docs/api/develop/@stdlib/ndarray/base/function-object">function object</a>.</li>
+<li><strong>obj</strong>: <code>[in] struct ndarrayFunctionObject*</code> ndarray <a href="/docs/api/latest/@stdlib/ndarray/base/function-object">function object</a>.</li>
 </ul>
 <pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_ndarray_napi_unary</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">const</span> struct ndarrayFunctionObject *obj )</span></span>;
 </code></pre>
@@ -94,7 +94,7 @@ STDLIB_NDARRAY_NAPI_MODULE_UNARY( obj );
 </code></pre>
 <p>The macro expects the following arguments:</p>
 <ul>
-<li><strong>obj</strong>: <code>struct ndarrayFunctionObject</code> ndarray <a href="/docs/api/develop/@stdlib/ndarray/base/function-object">function object</a>.</li>
+<li><strong>obj</strong>: <code>struct ndarrayFunctionObject</code> ndarray <a href="/docs/api/latest/@stdlib/ndarray/base/function-object">function object</a>.</li>
 </ul>
 <p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p>
 </section>
@@ -107,9 +107,9 @@ STDLIB_NDARRAY_NAPI_MODULE_UNARY( obj );
 <p>The function expects that the callback <code>info</code> argument provides access to the following JavaScript arguments:</p>
 <ul>
 <li><code>X</code>: input ndarray data buffer (i.e., <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>).</li>
-<li><code>metaX</code>: <code>X</code> <a href="/docs/api/develop/@stdlib/ndarray/base/serialize-meta-data">serialized meta data</a>.</li>
+<li><code>metaX</code>: <code>X</code> <a href="/docs/api/latest/@stdlib/ndarray/base/serialize-meta-data">serialized meta data</a>.</li>
 <li><code>Y</code>: destination ndarray data buffer (i.e., <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>).</li>
-<li><code>metaY</code>: <code>Y</code> <a href="/docs/api/develop/@stdlib/ndarray/base/serialize-meta-data">serialized meta data</a>.</li>
+<li><code>metaY</code>: <code>Y</code> <a href="/docs/api/latest/@stdlib/ndarray/base/serialize-meta-data">serialized meta data</a>.</li>
 </ul>
 </li>
 </ul>

@@ -18,7 +18,7 @@
 <span class="hljs-keyword">var</span> arr = array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], [ <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] ] );
 <span class="hljs-comment">// returns &#x3C;ndarray></span>
 </code></pre>
-<p>To initialize multidimensional array data, provide a <code>buffer</code> argument, which may be a <a href="/docs/api/develop/@stdlib/array/generic">generic array</a>, <a href="/docs/api/develop/@stdlib/array/typed">typed array</a>, <a href="/docs/api/develop/@stdlib/buffer/ctor">Buffer</a>, or <a href="/docs/api/develop/@stdlib/ndarray/ctor">ndarray</a>.</p>
+<p>To initialize multidimensional array data, provide a <code>buffer</code> argument, which may be a <a href="/docs/api/latest/@stdlib/array/generic">generic array</a>, <a href="/docs/api/latest/@stdlib/array/typed">typed array</a>, <a href="/docs/api/latest/@stdlib/buffer/ctor">Buffer</a>, or <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</p>
 <!-- eslint-disable object-curly-spacing, object-curly-newline -->
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
@@ -45,7 +45,7 @@ arr = array( array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-
 <p><code>buffer</code>: data source. If provided along with a <code>buffer</code> argument, the argument takes precedence.</p>
 </li>
 <li>
-<p><code>dtype</code>: underlying storage <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>. If not specified and a data source is provided, the data type is inferred from the provided data source. If an input data source is not of the same type, this option specifies the data type to which to cast the input data. For non-<a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> generic array data sources, the function casts generic array data elements to the default data type. In order to prevent this cast, the <code>dtype</code> option <strong>must</strong> be explicitly set to <code>'generic'</code>. Any time a cast is required, the <code>copy</code> option is set to <code>true</code>, as memory must be copied from the data source to an output data buffer. Default: <code>'float64'</code>.</p>
+<p><code>dtype</code>: underlying storage <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>. If not specified and a data source is provided, the data type is inferred from the provided data source. If an input data source is not of the same type, this option specifies the data type to which to cast the input data. For non-<a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> generic array data sources, the function casts generic array data elements to the default data type. In order to prevent this cast, the <code>dtype</code> option <strong>must</strong> be explicitly set to <code>'generic'</code>. Any time a cast is required, the <code>copy</code> option is set to <code>true</code>, as memory must be copied from the data source to an output data buffer. Default: <code>'float64'</code>.</p>
 </li>
 <li>
 <p><code>order</code>: specifies the memory layout of the data source as either row-major (C-style) or column-major (Fortran-style). The option may be one of the following values:</p>
@@ -83,9 +83,9 @@ arr = array( array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-
 <li>
 <p><code>mode</code>: specifies how to handle indices which exceed array dimensions.</p>
 <ul>
-<li><code>throw</code>: specifies that an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should throw an error when an index exceeds array dimensions.</li>
-<li><code>wrap</code>: specifies that an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should wrap around an index exceeding array dimensions using modulo arithmetic.</li>
-<li><code>clamp</code>: specifies that an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should set an index exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index.</li>
+<li><code>throw</code>: specifies that an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should throw an error when an index exceeds array dimensions.</li>
+<li><code>wrap</code>: specifies that an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should wrap around an index exceeding array dimensions using modulo arithmetic.</li>
+<li><code>clamp</code>: specifies that an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance should set an index exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index.</li>
 </ul>
 <p>Default: <code>'throw'</code>.</p>
 </li>
@@ -93,7 +93,7 @@ arr = array( array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-
 <p><code>submode</code>: a mode array which specifies for each dimension how to handle subscripts which exceed array dimensions. If provided fewer modes than dimensions, the function recycles modes using modulo arithmetic. Default: <code>[ options.mode ]</code>.</p>
 </li>
 </ul>
-<p>By default, an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance <strong>throws</strong> when provided an index which exceeds array dimensions. To support alternative indexing behavior, set the <code>mode</code> option, which will affect all public methods for getting and setting array elements.</p>
+<p>By default, an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> instance <strong>throws</strong> when provided an index which exceeds array dimensions. To support alternative indexing behavior, set the <code>mode</code> option, which will affect all public methods for getting and setting array elements.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'mode'</span>: <span class="hljs-string">'clamp'</span>
 };
@@ -117,7 +117,7 @@ arr = array( array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-
 <span class="hljs-keyword">var</span> v = arr.get( -<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, -<span class="hljs-number">1</span> ); <span class="hljs-comment">// linear index: 3</span>
 <span class="hljs-comment">// returns 4.0</span>
 </code></pre>
-<p>By default, the function automatically flattens <a href="/docs/api/develop/@stdlib/array/generic">generic array</a> data sources. To prevent flattening, set the <code>flatten</code> option to <code>false</code>.</p>
+<p>By default, the function automatically flattens <a href="/docs/api/latest/@stdlib/array/generic">generic array</a> data sources. To prevent flattening, set the <code>flatten</code> option to <code>false</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'flatten'</span>: <span class="hljs-literal">false</span>,
     <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
@@ -144,7 +144,7 @@ arr = array( array( [ [ <span class="hljs-number">1.0</span>, <span class="hljs-
 <hr>
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The number of elements in a data source <code>buffer</code> <strong>must</strong> agree with a specified array <code>shape</code> (i.e., the function assumes a single-segment contiguous <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>). To create arbitrary multidimensional views over linear data buffers, use a <a href="/docs/api/develop/@stdlib/ndarray/ctor">lower-level constructor</a>.</li>
+<li>The number of elements in a data source <code>buffer</code> <strong>must</strong> agree with a specified array <code>shape</code> (i.e., the function assumes a single-segment contiguous <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>). To create arbitrary multidimensional views over linear data buffers, use a <a href="/docs/api/latest/@stdlib/ndarray/ctor">lower-level constructor</a>.</li>
 <li>The function supports arbitrary casting between data types. Note, however, that casting from a larger data type to a smaller data type (e.g., <code>int32</code> to <code>int8</code>) and between signed and unsigned types of the same size should be considered <strong>unsafe</strong>. </li>
 </ul>
 </section>

@@ -20,11 +20,11 @@
 <li>
 <p><strong>name</strong>: name of a supported pseudorandom number generator (PRNG), which will serve as the underlying source of pseudorandom numbers. The following generators are supported:</p>
 <ul>
-<li><a href="/docs/api/develop/@stdlib/random/base/mt19937"><code>mt19937</code></a>: 32-bit Mersenne Twister.</li>
-<li><a href="/docs/api/develop/@stdlib/random/base/minstd"><code>minstd</code></a>: linear congruential pseudorandom number generator (LCG) based on Park and Miller.</li>
-<li><a href="/docs/api/develop/@stdlib/random/base/minstd-shuffle"><code>minstd-shuffle</code></a>: linear congruential pseudorandom number generator (LCG) whose output is shuffled.</li>
+<li><a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>mt19937</code></a>: 32-bit Mersenne Twister.</li>
+<li><a href="/docs/api/latest/@stdlib/random/base/minstd"><code>minstd</code></a>: linear congruential pseudorandom number generator (LCG) based on Park and Miller.</li>
+<li><a href="/docs/api/latest/@stdlib/random/base/minstd-shuffle"><code>minstd-shuffle</code></a>: linear congruential pseudorandom number generator (LCG) whose output is shuffled.</li>
 </ul>
-<p>Default: <a href="/docs/api/develop/@stdlib/random/base/mt19937"><code>'mt19937'</code></a>.</p>
+<p>Default: <a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>'mt19937'</code></a>.</p>
 </li>
 <li>
 <p><strong>seed</strong>: pseudorandom number generator seed. Valid seed values vary according to the underlying PRNG.</p>
@@ -36,7 +36,7 @@
 <p><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</p>
 </li>
 </ul>
-<p>By default, the underlying pseudorandom number generator is <a href="/docs/api/develop/@stdlib/random/base/mt19937"><code>mt19937</code></a>. To use a different PRNG, set the <code>name</code> option.</p>
+<p>By default, the underlying pseudorandom number generator is <a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>mt19937</code></a>. To use a different PRNG, set the <code>name</code> option.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = randi.factory({
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'minstd-shuffle'</span>
 });

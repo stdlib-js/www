@@ -294,7 +294,7 @@
 <li>If <code>N &#x3C;= 0</code>, both functions return <code>NaN</code>.</li>
 <li>If <code>n - c</code> is less than or equal to <code>0</code> (where <code>c</code> corresponds to the provided degrees of freedom adjustment and <code>n</code> corresponds to the number of non-<code>NaN</code> indexed elements), both functions return <code>NaN</code>.</li>
 <li>The underlying algorithm is a specialized case of Neely's two-pass algorithm. As the variance is invariant with respect to changes in the location parameter, the underlying algorithm uses the first non-<code>NaN</code> strided array element as a trial mean to shift subsequent data values and thus mitigate catastrophic cancellation. Accordingly, the algorithm's accuracy is best when data is <strong>unordered</strong> (i.e., the data is <strong>not</strong> sorted in either ascending or descending order such that the first value is an "extreme" value).</li>
-<li>Depending on the environment, the typed versions (<a href="/docs/api/develop/@stdlib/stats/base/dnanvariancech"><code>dnanvariancech</code></a>, <a href="/docs/api/develop/@stdlib/stats/base/snanvariancech"><code>snanvariancech</code></a>, etc.) are likely to be significantly more performant.</li>
+<li>Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/stats/base/dnanvariancech"><code>dnanvariancech</code></a>, <a href="/docs/api/latest/@stdlib/stats/base/snanvariancech"><code>snanvariancech</code></a>, etc.) are likely to be significantly more performant.</li>
 </ul>
 </section>
 <!-- /.notes -->

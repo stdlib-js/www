@@ -74,7 +74,7 @@
 <ul>
 <li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li>
 <li><strong>info</strong>: <code>[in] napi_callback_info</code> callback data.</li>
-<li><strong>obj</strong>: <code>[in] struct StridedFunctionObject*</code> strided array <a href="/docs/api/develop/@stdlib/strided/base/function-object">function object</a>.</li>
+<li><strong>obj</strong>: <code>[in] struct StridedFunctionObject*</code> strided array <a href="/docs/api/latest/@stdlib/strided/base/function-object">function object</a>.</li>
 </ul>
 <pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_napi_mskunary</span><span class="hljs-params">( napi_env env, napi_callback_info info, <span class="hljs-keyword">const</span> struct StridedFunctionObject *obj )</span></span>;
 </code></pre>
@@ -94,7 +94,7 @@ STDLIB_STRIDED_NAPI_MODULE_MSKUNARY( obj );
 </code></pre>
 <p>The macro expects the following arguments:</p>
 <ul>
-<li><strong>obj</strong>: <code>struct StridedFunctionObject</code> strided array <a href="/docs/api/develop/@stdlib/strided/base/function-object">function object</a>.</li>
+<li><strong>obj</strong>: <code>struct StridedFunctionObject</code> strided array <a href="/docs/api/latest/@stdlib/strided/base/function-object">function object</a>.</li>
 </ul>
 <p>When used, this macro should be used <strong>instead of</strong> <code>NAPI_MODULE</code>. The macro includes <code>NAPI_MODULE</code>, thus ensuring Node-API module registration.</p>
 </section>
@@ -109,7 +109,7 @@ STDLIB_STRIDED_NAPI_MODULE_MSKUNARY( obj );
 <li><code>N</code>: number of indexed elements.</li>
 <li><code>X</code>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</li>
 <li><code>strideX</code>: <code>X</code> stride length.</li>
-<li><code>Mask</code>: mask <a href="/docs/api/develop/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
+<li><code>Mask</code>: mask <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
 <li><code>strideMask</code>: <code>Mask</code> stride length.</li>
 <li><code>Y</code>: destination <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</li>
 <li><code>strideY</code>: <code>Y</code> stride length.</li>

@@ -24,9 +24,9 @@
 <p>The function has the following parameters:</p>
 <ul>
 <li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
+<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
 <li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>mask</strong>: mask <a href="/docs/api/develop/@stdlib/array/uint8"><code>Uint8Array</code></a>. If a <code>mask</code> array element is <code>0</code>, the corresponding element in <code>x</code> is considered valid and <strong>included</strong> in computation. If a <code>mask</code> array element is <code>1</code>, the corresponding element in <code>x</code> is considered invalid/missing and <strong>excluded</strong> from computation.</li>
+<li><strong>mask</strong>: mask <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>. If a <code>mask</code> array element is <code>0</code>, the corresponding element in <code>x</code> is considered valid and <strong>included</strong> in computation. If a <code>mask</code> array element is <code>1</code>, the corresponding element in <code>x</code> is considered invalid/missing and <strong>excluded</strong> from computation.</li>
 <li><strong>strideMask</strong>: index increment for <code>mask</code>.</li>
 </ul>
 <p>The <code>N</code> and <code>stride</code> parameters determine which elements are accessed at runtime. For example, to compute the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> of every other element in <code>x</code>,</p>

@@ -28,7 +28,7 @@
 </code></pre>
 <p>The constructor expects the following arguments:</p>
 <ul>
-<li><strong>dtype</strong>: underlying <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>.</li>
+<li><strong>dtype</strong>: underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</li>
 <li><strong>buffer</strong>: data buffer.</li>
 <li><strong>shape</strong>: array shape (dimensions).</li>
 <li><strong>strides</strong>: array strides which are index offsets specifying how to access along corresponding dimensions.</li>
@@ -186,7 +186,7 @@
 </code></pre>
 <p><a name="prop-dtype"></a></p>
 <h4 id="ndarrayprototypedtype">ndarray.prototype.dtype</h4>
-<p>Underlying <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>.</p>
+<p>Underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
 <span class="hljs-comment">// Specify the array configuration:</span>
@@ -665,16 +665,16 @@ stdlib_ndarray_free( x );
 </code></pre>
 <p>The function accepts the following arguments:</p>
 <ul>
-<li><strong>dtype</strong>: <code>[in] int16_t</code> <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>.</li>
+<li><strong>dtype</strong>: <code>[in] int16_t</code> <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</li>
 <li><strong>data</strong>: <code>[in] uint8_t*</code> pointer to the underlying byte array.</li>
 <li><strong>ndims</strong>: <code>[in] int64_t</code> number of dimensions.</li>
 <li><strong>shape</strong>: <code>[in] int64_t*</code> array shape (i.e., dimensions).</li>
 <li><strong>strides</strong>: <code>[in] int64_t*</code> array strides (in bytes).</li>
 <li><strong>offset</strong>: <code>[in] int64_t</code> byte offset specifying the location of the first element.</li>
-<li><strong>order</strong>: <code>[in] int8_t</code> specifies whether an array is <a href="/docs/api/develop/@stdlib/ndarray/orders">row-major</a> (C-style) or <a href="/docs/api/develop/@stdlib/ndarray/orders">column-major</a> (Fortran-style).</li>
-<li><strong>imode</strong>: <code>[in] int8_t</code> specifies the <a href="/docs/api/develop/@stdlib/ndarray/index-modes">index mode</a> (i.e., how to handle indices which exceed array dimensions).</li>
+<li><strong>order</strong>: <code>[in] int8_t</code> specifies whether an array is <a href="/docs/api/latest/@stdlib/ndarray/orders">row-major</a> (C-style) or <a href="/docs/api/latest/@stdlib/ndarray/orders">column-major</a> (Fortran-style).</li>
+<li><strong>imode</strong>: <code>[in] int8_t</code> specifies the <a href="/docs/api/latest/@stdlib/ndarray/index-modes">index mode</a> (i.e., how to handle indices which exceed array dimensions).</li>
 <li><strong>nsubmodes</strong>: <code>[in] int64_t</code> number of subscript modes.</li>
-<li><strong>submodes</strong>: <code>[in] int8_t*</code> specifies how to handle subscripts which <a href="/docs/api/develop/@stdlib/ndarray/index-modes">exceed</a> array dimensions on a per dimension basis (if provided fewer submodes than dimensions, submodes are recycled using modulo arithmetic).</li>
+<li><strong>submodes</strong>: <code>[in] int8_t*</code> specifies how to handle subscripts which <a href="/docs/api/latest/@stdlib/ndarray/index-modes">exceed</a> array dimensions on a per dimension basis (if provided fewer submodes than dimensions, submodes are recycled using modulo arithmetic).</li>
 </ul>
 <pre><code class="hljs language-c"><span class="hljs-function">struct ndarray * <span class="hljs-title">stdlib_ndarray_allocate</span><span class="hljs-params">( <span class="hljs-keyword">int16_t</span> dtype, <span class="hljs-keyword">uint8_t</span> *data, <span class="hljs-keyword">int64_t</span> ndims, <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">int64_t</span> offset, <span class="hljs-keyword">int8_t</span> order, <span class="hljs-keyword">int8_t</span> imode, <span class="hljs-keyword">int64_t</span> nsubmodes, <span class="hljs-keyword">int8_t</span> *submodes )</span></span>;
 </code></pre>

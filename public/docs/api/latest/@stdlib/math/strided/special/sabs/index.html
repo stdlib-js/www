@@ -1,6 +1,6 @@
 <h1 id="sabs">sabs</h1>
 <blockquote>
-<p>Compute the <a href="/docs/api/develop/@stdlib/math/base/special/abs">absolute value</a> for each element in a single-precision floating-point strided array.</p>
+<p>Compute the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> for each element in a single-precision floating-point strided array.</p>
 </blockquote>
 <section class="intro">
 </section>
@@ -10,7 +10,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/sabs'</span> );
 </code></pre>
 <h4 id="sabs-n-x-stridex-y-stridey-">sabs( N, x, strideX, y, strideY )</h4>
-<p>Computes the <a href="/docs/api/develop/@stdlib/math/base/special/abs">absolute value</a> for each element in a single-precision floating-point strided array <code>x</code> and assigns the results to elements in a single-precision floating-point strided array <code>y</code>.</p>
+<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> for each element in a single-precision floating-point strided array <code>x</code> and assigns the results to elements in a single-precision floating-point strided array <code>y</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ] );
@@ -22,9 +22,9 @@ sabs( x.length, x, <span class="hljs-number">1</span>, x, <span class="hljs-numb
 <p>The function accepts the following arguments:</p>
 <ul>
 <li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
+<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
 <li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>y</strong>: output <a href="/docs/api/develop/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
+<li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
 <li><strong>strideY</strong>: index increment for <code>y</code>.</li>
 </ul>
 <p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p>
@@ -39,7 +39,7 @@ sabs( x.length, x, <span class="hljs-number">1</span>, x, <span class="hljs-numb
 sabs( N, x, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 5.0, 3.0, 1.0, 0.0, 0.0, 0.0 ]</span>
 </code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/develop/@stdlib/array/float32"><code>typed array</code></a> views.</p>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
@@ -57,7 +57,7 @@ sabs( N, x1, -<span class="hljs-number">2</span>, y1, <span class="hljs-number">
 <span class="hljs-comment">// y0 => &#x3C;Float32Array>[ 0.0, 0.0, 0.0, 6.0, 4.0, 2.0 ]</span>
 </code></pre>
 <h4 id="sabsndarray-n-x-stridex-offsetx-y-stridey-offsety-">sabs.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4>
-<p>Computes the <a href="/docs/api/develop/@stdlib/math/base/special/abs">absolute value</a> for each element in a single-precision floating-point strided array <code>x</code> and assigns the results to elements in a single-precision floating-point strided array <code>y</code> using alternative indexing semantics.</p>
+<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> for each element in a single-precision floating-point strided array <code>x</code> and assigns the results to elements in a single-precision floating-point strided array <code>y</code> using alternative indexing semantics.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, -<span class="hljs-number">5.0</span> ] );
@@ -71,7 +71,7 @@ sabs.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs
 <li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
 <li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
 </ul>
-<p>While <a href="/docs/api/develop/@stdlib/array/float32"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
+<p>While <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 

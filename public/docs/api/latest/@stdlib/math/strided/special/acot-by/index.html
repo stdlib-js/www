@@ -1,7 +1,7 @@
 <!-- lint disable maximum-heading-length -->
 <h1 id="acotby">acotBy</h1>
 <blockquote>
-<p>Compute the <a href="/docs/api/develop/@stdlib/math/base/special/acot">inverse cotangent</a> of each element retrieved from an input strided array via a callback function.</p>
+<p>Compute the <a href="/docs/api/latest/@stdlib/math/base/special/acot">inverse cotangent</a> of each element retrieved from an input strided array via a callback function.</p>
 </blockquote>
 <section class="intro">
 </section>
@@ -11,7 +11,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> acotBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/acot-by'</span> );
 </code></pre>
 <h4 id="acotby-n-x-stridex-y-stridey-clbk-thisarg-">acotBy( N, x, strideX, y, strideY, clbk[, thisArg] )</h4>
-<p>Computes the <a href="/docs/api/develop/@stdlib/math/base/special/acot">inverse cotangent</a> of each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code>.</p>
+<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/acot">inverse cotangent</a> of each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v;
 }
@@ -90,7 +90,7 @@ acotBy( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</sp
 <span class="hljs-comment">// y0 => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, ~0.588, ~1.571, ~-0.588 ]</span>
 </code></pre>
 <h4 id="acotbyndarray-n-x-stridex-offsetx-y-stridey-offsety-clbk-thisarg-">acotBy.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, clbk[, thisArg] )</h4>
-<p>Computes the <a href="/docs/api/develop/@stdlib/math/base/special/acot">inverse cotangent</a> of each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code> using alternative indexing semantics.</p>
+<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/acot">inverse cotangent</a> of each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code> using alternative indexing semantics.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v;
 }

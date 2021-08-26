@@ -1,6 +1,6 @@
 <h1 id="itersqrt1pm1">iterSqrt1pm1</h1>
 <blockquote>
-<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which computes <a href="/docs/api/develop/@stdlib/math/base/special/sqrt1pm1"><code>sqrt(1+x) - 1</code></a> for each iterated value.</p>
+<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which computes <a href="/docs/api/latest/@stdlib/math/base/special/sqrt1pm1"><code>sqrt(1+x) - 1</code></a> for each iterated value.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,7 +12,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterSqrt1pm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/special/sqrt1pm1'</span> );
 </code></pre>
 <h4 id="itersqrt1pm1-iterator-">iterSqrt1pm1( iterator )</h4>
-<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively computes <a href="/docs/api/develop/@stdlib/math/base/special/sqrt1pm1"><code>sqrt(1+x) - 1</code></a> more accurately for small <code>x</code>.</p>
+<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively computes <a href="/docs/api/latest/@stdlib/math/base/special/sqrt1pm1"><code>sqrt(1+x) - 1</code></a> more accurately for small <code>x</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> it = iterSqrt1pm1( array2iterator( [ <span class="hljs-number">3.0</span>, <span class="hljs-number">0.5</span> ] ) );

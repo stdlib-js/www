@@ -267,7 +267,7 @@
 <ul>
 <li><strong>N</strong>: number of indexed elements.</li>
 <li><strong>correction</strong>: degrees of freedom adjustment. Setting this parameter to a value other than <code>0</code> has the effect of adjusting the divisor during the calculation of the <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> according to <code>N-c</code> where <code>c</code> corresponds to the provided degrees of freedom adjustment. When computing the <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> of a population, setting this parameter to <code>0</code> is the standard choice (i.e., the provided array contains data constituting an entire population). When computing the corrected sample <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a>, setting this parameter to <code>1</code> is the standard choice (i.e., the provided array contains data sampled from a larger population; this is commonly referred to as Bessel's correction).</li>
-<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
+<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
 <li><strong>stride</strong>: index increment for <code>x</code>.</li>
 </ul>
 <p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to compute the <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a> of every other element in <code>x</code>,</p>

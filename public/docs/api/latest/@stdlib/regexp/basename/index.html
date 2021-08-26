@@ -29,12 +29,12 @@ base = RE.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> )[ <sp
 <span class="hljs-comment">// returns true</span>
 </code></pre>
 <h4 id="rebasenameregexp_posix">reBasename.REGEXP_POSIX</h4>
-<p><a href="/docs/api/develop/@stdlib/regexp/basename-posix">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path. </p>
+<p><a href="/docs/api/latest/@stdlib/regexp/basename-posix">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path. </p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasename.REGEXP_POSIX.exec( <span class="hljs-string">'/foo/bar/index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'index.js'</span>
 </code></pre>
 <h4 id="rebasenameregexp_win32">reBasename.REGEXP_WIN32</h4>
-<p><a href="/docs/api/develop/@stdlib/regexp/basename-windows">Regular expression</a> to capture the last part of a Windows path. </p>
+<p><a href="/docs/api/latest/@stdlib/regexp/basename-windows">Regular expression</a> to capture the last part of a Windows path. </p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasename.REGEXP_WIN32.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'index.js'</span>
 </code></pre>
@@ -43,7 +43,7 @@ base = RE.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> )[ <sp
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The as <code>REGEXP</code> exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="/docs/api/develop/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>REGEXP === REGEXP_WIN32</code>; otherwise, <code>REGEXP === REGEXP_POSIX</code>.</li>
+<li>The as <code>REGEXP</code> exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="/docs/api/latest/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>REGEXP === REGEXP_WIN32</code>; otherwise, <code>REGEXP === REGEXP_POSIX</code>.</li>
 </ul>
 </section>
 <!-- /.notes -->

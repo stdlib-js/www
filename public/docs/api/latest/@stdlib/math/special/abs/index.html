@@ -73,10 +73,10 @@
 </code></pre>
 <p>The function accepts the following arguments:</p>
 <ul>
-<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>, array-like object, or number. If provided an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, the function performs element-wise computation.</li>
+<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, array-like object, or number. If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, the function performs element-wise computation.</li>
 <li><strong>options</strong>: function options.</li>
 </ul>
-<p>If provided an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>, the function returns an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> having the same shape and data type as <code>x</code>.</p>
+<p>If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, the function returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> having the same shape and data type as <code>x</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 
 <span class="hljs-keyword">var</span> x = array( [ [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ], [ -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ] ] ); <span class="hljs-comment">// 2x2</span>
@@ -99,10 +99,10 @@ y = abs( x );
 </code></pre>
 <p>The function accepts the following <code>options</code>:</p>
 <ul>
-<li><strong>dtype</strong>: output array <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>. Only applicable when <code>x</code> is either an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object. By default, the output array data type is inferred from the input array.</li>
-<li><strong>order</strong>: output array <a href="/docs/api/develop/@stdlib/ndarray/orders">order</a>. Only applicable when <code>x</code> is an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>. By default, the output array order is inferred from the input array.</li>
+<li><strong>dtype</strong>: output array <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>. Only applicable when <code>x</code> is either an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object. By default, the output array data type is inferred from the input array.</li>
+<li><strong>order</strong>: output array <a href="/docs/api/latest/@stdlib/ndarray/orders">order</a>. Only applicable when <code>x</code> is an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>. By default, the output array order is inferred from the input array.</li>
 </ul>
-<p>By default, when provided either an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> or an array-like object, the function returns an object of the same "kind" (either an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, respectively) having the same underlying <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>. To specify a different output array <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>, set the <code>dtype</code> option.</p>
+<p>By default, when provided either an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or an array-like object, the function returns an object of the same "kind" (either an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, respectively) having the same underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>. To specify a different output array <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>, set the <code>dtype</code> option.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ] );
@@ -130,7 +130,7 @@ y = abs( x, {
 <span class="hljs-keyword">var</span> v = y.get( <span class="hljs-number">0</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 2.0</span>
 </code></pre>
-<p>The output array must be the same data "kind" (i.e., <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object) as the input array. For example, if <code>x</code> is an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>, <code>y</code> must also be an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>. Similarly, if <code>x</code> is an array-like object, <code>y</code> must also be an array-like object.</p>
+<p>The output array must be the same data "kind" (i.e., <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object) as the input array. For example, if <code>x</code> is an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, <code>y</code> must also be an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>. Similarly, if <code>x</code> is an array-like object, <code>y</code> must also be an array-like object.</p>
 <p>TODO: broadcasting discussion and example(s).</p>
 </section>
 <!-- /.usage -->

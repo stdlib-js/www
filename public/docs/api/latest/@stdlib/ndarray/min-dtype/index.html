@@ -1,6 +1,6 @@
 <h1 id="minimum-data-type">Minimum Data Type</h1>
 <blockquote>
-<p>Determine the minimum ndarray <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a> of the closest "kind" necessary for storing a provided scalar value.</p>
+<p>Determine the minimum ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> of the closest "kind" necessary for storing a provided scalar value.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,7 +12,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/min-dtype'</span> );
 </code></pre>
 <h4 id="mindatatype-value-">minDataType( value )</h4>
-<p>Returns the minimum ndarray <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a> of the closest "kind" necessary for storing a provided scalar value.</p>
+<p>Returns the minimum ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> of the closest "kind" necessary for storing a provided scalar value.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = minDataType( <span class="hljs-number">3.141592653589793</span> );
 <span class="hljs-comment">// returns 'float32'</span>
 
@@ -31,7 +31,7 @@ dt = minDataType( <span class="hljs-string">'3'</span> );
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The function does <strong>not</strong> provide precision guarantees for non-integer-valued real numbers. In other words, the function returns the smallest possible floating-point (i.e., inexact) <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a> for storing numbers having decimals.</li>
+<li>The function does <strong>not</strong> provide precision guarantees for non-integer-valued real numbers. In other words, the function returns the smallest possible floating-point (i.e., inexact) <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> for storing numbers having decimals.</li>
 </ul>
 </section>
 <!-- /.notes -->

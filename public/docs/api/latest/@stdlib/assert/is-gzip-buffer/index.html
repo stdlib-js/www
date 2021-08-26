@@ -26,7 +26,7 @@ bool = isgzipBuffer( [] );
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>A <a href="https://tools.ietf.org/html/rfc1952">gzip</a> buffer is defined as either a Node.js <a href="/docs/api/develop/@stdlib/buffer/ctor"><code>Buffer</code></a> or <a href="/docs/api/develop/@stdlib/array/uint8"><code>Uint8Array</code></a> which contains a 10-byte header, a body containing the compressed payload, and an 8-byte footer containing a CRC-32 checksum and the length of the original uncompressed data, modulo <code>2^32</code>.</li>
+<li>A <a href="https://tools.ietf.org/html/rfc1952">gzip</a> buffer is defined as either a Node.js <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a> or <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a> which contains a 10-byte header, a body containing the compressed payload, and an 8-byte footer containing a CRC-32 checksum and the length of the original uncompressed data, modulo <code>2^32</code>.</li>
 <li>This function only examines the 10-byte header to ensure the header includes the expected magic number and compression method. The function does not perform an integrity check.</li>
 </ul>
 </section>

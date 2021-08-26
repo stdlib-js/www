@@ -58,23 +58,23 @@
 <li><strong>y</strong>: destination strided array.</li>
 <li><strong>strideY</strong>: index increment for <code>y</code>.</li>
 </ul>
-<p>Supported array data types consist of all supported <a href="/docs/api/develop/@stdlib/ndarray/dtypes">ndarray</a> data types.</p>
+<p>Supported array data types consist of all supported <a href="/docs/api/latest/@stdlib/ndarray/dtypes">ndarray</a> data types.</p>
 </li>
 <li>
-<p><strong>ndarray</strong>: strided look-up table for <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> arguments. Implementation functions must follow strided array ndarray interface argument conventions:</p>
+<p><strong>ndarray</strong>: strided look-up table for <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> arguments. Implementation functions must follow strided array ndarray interface argument conventions:</p>
 <pre><code class="no-highlight language-text">fcn( N, x, strideX, offsetX, y, strideY, offsetY )
 </code></pre>
 <p>where</p>
 <ul>
 <li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input strided array (i.e., underlying input <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li>
+<li><strong>x</strong>: input strided array (i.e., underlying input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li>
 <li><strong>strideX</strong>: index increment for <code>x</code>.</li>
 <li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
-<li><strong>y</strong>: destination strided array (i.e., underlying output <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li>
+<li><strong>y</strong>: destination strided array (i.e., underlying output <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li>
 <li><strong>strideY</strong>: index increment for <code>y</code>.</li>
 <li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
 </ul>
-<p>Supported data types consist of all supported <a href="/docs/api/develop/@stdlib/ndarray/dtypes">ndarray</a> data types.</p>
+<p>Supported data types consist of all supported <a href="/docs/api/latest/@stdlib/ndarray/dtypes">ndarray</a> data types.</p>
 </li>
 </ul>
 <p>Each strided look-up table should be comprised as follows:</p>
@@ -114,9 +114,9 @@
 </code></pre>
 <p>The returned dispatch function accepts the following arguments:</p>
 <ul>
-<li><strong>x</strong>: input <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>, array-like object, or number. If provided an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, the function performs element-wise computation.</li>
+<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, array-like object, or number. If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, the function performs element-wise computation.</li>
 </ul>
-<p>If provided an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a>, the function returns an <a href="/docs/api/develop/@stdlib/ndarray/ctor"><code>ndarray</code></a> having the same shape and data type as <code>x</code>.</p>
+<p>If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, the function returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> having the same shape and data type as <code>x</code>.</p>
 <!-- eslint-disable array-element-newline -->
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
 <span class="hljs-keyword">var</span> sabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/sabs'</span> );

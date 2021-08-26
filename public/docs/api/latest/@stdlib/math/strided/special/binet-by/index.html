@@ -1,7 +1,7 @@
 <!-- lint disable maximum-heading-length -->
 <h1 id="binetby">binetBy</h1>
 <blockquote>
-<p>Evaluate <a href="/docs/api/develop/@stdlib/math/base/special/binet">Binet's formula extended to real numbers</a> for each element retrieved from an input strided array via a callback function.</p>
+<p>Evaluate <a href="/docs/api/latest/@stdlib/math/base/special/binet">Binet's formula extended to real numbers</a> for each element retrieved from an input strided array via a callback function.</p>
 </blockquote>
 <section class="intro">
 </section>
@@ -11,7 +11,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> binetBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/binet-by'</span> );
 </code></pre>
 <h4 id="binetby-n-x-stridex-y-stridey-clbk-thisarg-">binetBy( N, x, strideX, y, strideY, clbk[, thisArg] )</h4>
-<p>Evaluates <a href="/docs/api/develop/@stdlib/math/base/special/binet">Binet's formula extended to real numbers</a> for each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code>.</p>
+<p>Evaluates <a href="/docs/api/latest/@stdlib/math/base/special/binet">Binet's formula extended to real numbers</a> for each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v;
 }
@@ -90,7 +90,7 @@ binetBy( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</s
 <span class="hljs-comment">// y0 => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, ~2.116, 2.0, 1.0 ]</span>
 </code></pre>
 <h4 id="binetbyndarray-n-x-stridex-offsetx-y-stridey-offsety-clbk-thisarg-">binetBy.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, clbk[, thisArg] )</h4>
-<p>Evaluates <a href="/docs/api/develop/@stdlib/math/base/special/binet">Binet's formula extended to real numbers</a> for each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code> using alternative indexing semantics.</p>
+<p>Evaluates <a href="/docs/api/latest/@stdlib/math/base/special/binet">Binet's formula extended to real numbers</a> for each element retrieved from an input strided array <code>x</code> via a callback function and assigns each result to an element in an output strided array <code>y</code> using alternative indexing semantics.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v;
 }

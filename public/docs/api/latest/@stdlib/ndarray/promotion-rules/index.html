@@ -1,6 +1,6 @@
 <h1 id="promotion-rules">Promotion Rules</h1>
 <blockquote>
-<p>Return the ndarray <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a> with the smallest size and closest "kind" to which ndarray <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data types</a> can be <strong>safely</strong> cast.</p>
+<p>Return the ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> with the smallest size and closest "kind" to which ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a> can be <strong>safely</strong> cast.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,15 +12,15 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> promotionRules = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/promotion-rules'</span> );
 </code></pre>
 <h4 id="promotionrules-dtype1-dtype2-">promotionRules( [dtype1, dtype2] )</h4>
-<p>If provided <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data types</a>, returns the ndarray <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a> with the smallest size and closest "kind" to which ndarray <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data types</a> can be <strong>safely</strong> cast.</p>
+<p>If provided <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a>, returns the ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> with the smallest size and closest "kind" to which ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a> can be <strong>safely</strong> cast.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = promotionRules( <span class="hljs-string">'float32'</span>, <span class="hljs-string">'uint32'</span> );
 <span class="hljs-comment">// returns 'float64'</span>
 </code></pre>
-<p>If a <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a> to which <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data types</a> can be safely cast does <strong>not</strong> exist (or is not supported), the function returns <code>-1</code>.</p>
+<p>If a <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> to which <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a> can be safely cast does <strong>not</strong> exist (or is not supported), the function returns <code>-1</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = promotionRules( <span class="hljs-string">'binary'</span>, <span class="hljs-string">'generic'</span> );
 <span class="hljs-comment">// returns -1</span>
 </code></pre>
-<p>If not provided <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data types</a>, the function returns a promotion table.</p>
+<p>If not provided <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a>, the function returns a promotion table.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = promotionRules();
 <span class="hljs-comment">// returns {...}</span>
 

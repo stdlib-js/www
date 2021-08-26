@@ -27,7 +27,7 @@
 </code></pre>
 <p>The constructor has the following parameters:</p>
 <ul>
-<li><strong>dtype</strong>: underlying <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>.</li>
+<li><strong>dtype</strong>: underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</li>
 <li><strong>buffer</strong>: data buffer.</li>
 <li><strong>shape</strong>: array shape (dimensions).</li>
 <li><strong>strides</strong>: array strides which are index offsets specifying how to access along corresponding dimensions.</li>
@@ -145,7 +145,7 @@
 </code></pre>
 <p><a name="prop-dtype"></a></p>
 <h4 id="ndarrayprototypedtype">ndarray.prototype.dtype</h4>
-<p>Underlying <a href="/docs/api/develop/@stdlib/ndarray/dtypes">data type</a>.</p>
+<p>Underlying <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
 <span class="hljs-comment">// Specify the array configuration:</span>
@@ -422,7 +422,7 @@ arr.iset( <span class="hljs-number">3</span>, <span class="hljs-number">40</span
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>A data buffer must be an array-like object (i.e., have a <code>length</code> property). For data buffers which are not indexed collections (i.e., collections which cannot support direct index access, such as <code>buffer[ index ]</code>; e.g., <a href="/docs/api/develop/@stdlib/array/complex64"><code>Complex64Array</code></a>, <a href="/docs/api/develop/@stdlib/array/complex128"><code>Complex128Array</code></a>, etc), a data buffer should provide <code>#.get( idx )</code> and <code>#.set( v[, idx] )</code> methods. Note that, for <code>set</code> methods, the value to set should be the first argument, followed by the linear index, similar to the native typed array <code>set</code> method.</li>
+<li>A data buffer must be an array-like object (i.e., have a <code>length</code> property). For data buffers which are not indexed collections (i.e., collections which cannot support direct index access, such as <code>buffer[ index ]</code>; e.g., <a href="/docs/api/latest/@stdlib/array/complex64"><code>Complex64Array</code></a>, <a href="/docs/api/latest/@stdlib/array/complex128"><code>Complex128Array</code></a>, etc), a data buffer should provide <code>#.get( idx )</code> and <code>#.set( v[, idx] )</code> methods. Note that, for <code>set</code> methods, the value to set should be the first argument, followed by the linear index, similar to the native typed array <code>set</code> method.</li>
 </ul>
 </section>
 <!-- /.notes -->

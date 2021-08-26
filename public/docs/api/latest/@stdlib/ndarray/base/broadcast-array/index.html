@@ -1,6 +1,6 @@
 <h1 id="broadcastarray">broadcastArray</h1>
 <blockquote>
-<p>Broadcast an <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> to a specified shape.</p>
+<p>Broadcast an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> to a specified shape.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,7 +12,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> broadcastArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/broadcast-array'</span> );
 </code></pre>
 <h4 id="broadcastarray-arr-shape-">broadcastArray( arr, shape )</h4>
-<p>Broadcasts an <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> to a specified <code>shape</code>.</p>
+<p>Broadcasts an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> to a specified <code>shape</code>.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 
 <span class="hljs-comment">// Create a 2x2 ndarray:</span>
@@ -29,10 +29,10 @@
 <section class="notes">
 <h2 id="notes">Notes</h2>
 <ul>
-<li>The function throws an error if a provided <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> is <a href="/docs/api/develop/@stdlib/ndarray/base/broadcast-shapes">incompatible</a> with a provided shape.</li>
-<li>The returned <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> is a view on the input <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> data buffer. The view is typically <strong>not</strong> contiguous. As more than one element of a returned view may refer to the same memory location, writing to the view may affect multiple elements. If you need to write to the returned <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a>, copy the <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> <strong>before</strong> performing operations which may mutate elements.</li>
-<li>The returned <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> is a "base" <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a>, and, thus, the returned <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> does not perform bounds checking or afford any of the guarantees of the non-base <a href="/docs/api/develop/@stdlib/ndarray/ctor">ndarray</a> constructor. The primary intent of this function is to broadcast an ndarray-like object within internal implementations and to do so with minimal overhead.</li>
-<li>The function always returns a new <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> instance even if the input <a href="/docs/api/develop/@stdlib/ndarray/base/ctor">ndarray</a> shape and the desired shape are the same.</li>
+<li>The function throws an error if a provided <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">incompatible</a> with a provided shape.</li>
+<li>The returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is a view on the input <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> data buffer. The view is typically <strong>not</strong> contiguous. As more than one element of a returned view may refer to the same memory location, writing to the view may affect multiple elements. If you need to write to the returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, copy the <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> <strong>before</strong> performing operations which may mutate elements.</li>
+<li>The returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is a "base" <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, and, thus, the returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> does not perform bounds checking or afford any of the guarantees of the non-base <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> constructor. The primary intent of this function is to broadcast an ndarray-like object within internal implementations and to do so with minimal overhead.</li>
+<li>The function always returns a new <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> instance even if the input <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> shape and the desired shape are the same.</li>
 </ul>
 </section>
 <!-- /.notes -->
