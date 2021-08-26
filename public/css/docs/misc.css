@@ -76,10 +76,16 @@ img {
 */
 
 #root {
-	/*
-	* At certain (smaller) device sizes, when the side menu is open, the "main" element will overflow outside of the viewport. Allow users to view the content of that element by scrolling.
-	*/
-	overflow-x: scroll;
+	overflow-x: hidden;
+}
+
+@media only screen and (max-width: 67.5em) { /* 1080px */
+	#root {
+		/*
+		* At certain (smaller) device sizes, when the side menu is open, the "main" element will overflow outside of the viewport. Allow users to view the content of that element by scrolling.
+		*/
+		overflow-x: scroll;
+	}
 }
 
 /*
