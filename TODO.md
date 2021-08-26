@@ -110,8 +110,8 @@
     - sudo rm -rf ./node_modules
     - sudo npm run install:production
     - sudo nginx -s stop
-    - sudo rm -rf /etc/nginx
-    - sudo cp -R ./etc/nginx/ /etc/nginx/
+    - sudo rm -rf /etc/nginx/sites-enabled/stdlib.io
+    - sudo cp ./etc/nginx/sites-available/stdlib.io /etc/nginx/sites-available/stdlib.io
     - sudo ln -s /etc/nginx/sites-available/stdlib.io /etc/nginx/sites-enabled/stdlib.io
     - sudo service nginx restart
     - sudo rm -f etc/systemd/system/docs_server@.service

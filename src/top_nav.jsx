@@ -307,6 +307,8 @@ class TopNav extends React.Component {
 	*/
 	_renderPackageNavigationMenu() {
 		var path = pkgPath( this.props.pkg, this.props.version );
+
+		// FIXME: we are hardcoding `develop`, but the `source` link to use `this.props.version`, and, if `latest`, we should map to the first version in `config.versions`
 		return (
 			<Fragment>
 				<IconButton
@@ -325,7 +327,7 @@ class TopNav extends React.Component {
 					{ this.props.docs ? docs( path ) : null }
 					{ this.props.benchmarks ? bench( path ) : null }
 					{ this.props.tests ? test( path ) : null }
-					{ this.props.src ? src( this.props.pkg, this.props.version ) : null }
+					{ this.props.src ? src( this.props.pkg, 'develop' ) : null }
 					{ this.props.typescript ? ts( this.props.pkg ) : null }
 				</ul>
 			</Fragment>
