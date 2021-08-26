@@ -16,11 +16,6 @@
 * limitations under the License.
 */
 
-// VARIABLES //
-
-const IFRAME_RESIZER_CONTENT_SCRIPT_PATH = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.2.1/iframeResizer.contentWindow.min.js';
-
-
 // MAIN //
 
 /**
@@ -40,7 +35,7 @@ function bootstrap( resource ) {
 		'    html.then( response => response.text() )',
 		'        .then( text => {',
 		'            var script = document.createElement( "script" );',
-		'            script.src = "'+IFRAME_RESIZER_CONTENT_SCRIPT_PATH+'";',
+		'            script.src = "/js/vendor/iframeresizer.min.js";',
 		'            document.open();',
 		'            document.write( text );',
 		'            document.head.appendChild( script );',
