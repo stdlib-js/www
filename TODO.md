@@ -59,7 +59,7 @@
 
 17. (tools) update Makefiles, including moving npm scripts to Makefile targets
 
-18. (docs) iframe content resizer script should be vendored and served from local filesystem, rather than using a public CDN (why? for offline access)
+18.
 
 19. (docs) investigate [hammer.js](https://github.com/hammerjs/hammer.js) for touch support
 
