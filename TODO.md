@@ -89,6 +89,8 @@
 
 25. resolve approach for using `stdlib` pkgs in www JS assets (e.g., setting NODE_PATH during browserify or some other approach?)
 
+    -   see, e.g., js/404/particular_animation.js
+
 26. Use of "Learn More" on www feature buttons (?; not even sure what this item refers to anymore 😢)
 
     -   maybe to allow people to actually investigate further regarding stats, math, and other advertised functionality
@@ -142,6 +144,8 @@
 32. (docs) for reference, previous behavior: <https://github.com/stdlib-js/www/blob/0c547db74a1d67af0b5c7f99407230a4ea2826d1/public/develop/docs/api/%40stdlib/array/buffer/index.html#L1730>
 
 33. strategy for bundling assets:
+
+    -   UPDATE: I think that, better than below, would be best if, instead of bundling, we leverage ES modules here so that we don't have to bundle at all. This approach may require pre-bundles of vendored deps. We can see how Ricky managed to do so with his `@stdlib/esm` build.
 
     -   for each `stdlib` package, we need to resolve package dependencies. We should resolve dependencies separately for the main library, tests, benchmarks, and examples. We can do this using current tooling: `@stdlib/_tools/pkgs/deps`. The resolved dependency trees should be flat, stopping at any non-`stdlib` packages. The dependency trees should be written to separate files in the "browser build" repo discussed below.
     -   we then create package bundles for each package: a library bundle, a test bundle, and a benchmark bundle. The key here is that we do not include "external" deps in those bundles. We instruct `browserify` to exclude external deps (see <https://github.com/browserify/browserify>). This should generate bundles with only the code in that package. Each bundle should export a `require` function so that bundles can inter-operate with one another, and, for tests, benchmarks, and examples, be `require`'d in order to explicitly run.
@@ -220,7 +224,7 @@
 
 44. (docs) how (and do) we want to support internationalization?
 
-45. add a `\ping` route to the API docs server to determine whether the server is available
+45. add a `\ping` route to the API docs server to determine whether the server is available (**update**: this has been added)
 
     -   this route can be used by the API docs application to determine whether a user is "online"
     -   knowing whether a user is "online" could be useful for determining whether a user should be able to run tests and benchmarks which might require pulling in bundles on demand from a remote server. If "offline", we may want to disable those navigational elements. Ditto for search functionality if we opt to use Algolia.
