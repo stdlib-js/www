@@ -106,16 +106,16 @@
 
 30. (tools) General update sequence...
 
-    - git pull
-    - rm -rf ./node_modules
-    - npm run install:production
+    - sudo git pull origin master
+    - sudo rm -rf ./node_modules
+    - sudo npm run install:production
     - sudo nginx -s stop
-    - rm -rf /etc/nginx
-    - cp -R ./etc/nginx/ /etc/nginx/
-    - symlink sites-available to sites-enabled
+    - sudo rm -rf /etc/nginx
+    - sudo cp -R ./etc/nginx/ /etc/nginx/
+    - sudo ln -s /etc/nginx/sites-available/stdlib.io /etc/nginx/sites-enabled/stdlib.io
     - sudo service nginx restart
-    - rm -f etc/systemd/system/docs_server@.service
-    - cp ./etc/systemd/docs_server@.service /etc/systemd/system/docs_server@.service
+    - sudo rm -f etc/systemd/system/docs_server@.service
+    - sudo cp ./etc/systemd/docs_server@.service /etc/systemd/system/docs_server@.service
     - systemctl daemon-reload
     - systemctl enable docs_server@1
     - systemctl start docs_server@1
