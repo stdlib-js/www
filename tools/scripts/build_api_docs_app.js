@@ -43,7 +43,6 @@ require('../../etc/webpack/env');
 
 const path = require('path');
 const chalk = require('react-dev-utils/chalk');
-const fs = require('fs-extra');
 const webpack = require('webpack');
 const configFactory = require('../../etc/webpack/config');
 const paths = require('../../etc/webpack/paths');
