@@ -66,6 +66,7 @@ The function accepts the following `options`:
 -   **static**: directory from which to serve static documentation assets and files. May be either an absolute path or a path relative to the current working directory. When set to an empty string (as is the default), the server does **not** serve static assets. Default: `''`.
 -   **template**: application shell template. Default: `''`.
 -   **trustProxy**: `boolean` indicating whether to trust `X-forwarded-by` headers when the server is sitting behind a proxy. Default: `false`.
+-   **ignoreTrailingSlash**: `boolean` indicating whether to ignore trailing slashes in routes (e.g., `/foo/bar` and `/foo/bar/`). Default: `true`.
 
 An application shell template should include a `{{ FRAGMENT }}` parameter into which fragments are injected.
 

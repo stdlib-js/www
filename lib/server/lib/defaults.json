@@ -7,5 +7,6 @@
 	"root": "",
 	"static": "",
 	"template": "",
-	"trustProxy": false
+	"trustProxy": false,
+  "ignoreTrailingSlash": true
 }
