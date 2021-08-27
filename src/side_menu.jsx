@@ -448,23 +448,23 @@ class SideMenu extends React.Component {
 				value={ this.props.version }
 				title="Select documentation version"
 			>
-				{ config.versions.map( onOption ) }
+				{ config.versions.map( this._renderVersionOption ) }
 			</select>
 		);
+	}
 
-		/**
-		* Renders a menu option.
-		*
-		* @private
-		* @param {string} version - version
-		* @param {number} idx - index
-		* @returns {JSX} rendered component
-		*/
-		function onOption( version, idx ) {
-			return (
-				<option key={ idx } value={ version }>{ version }</option>
-			);
-		}
+	/**
+	* Renders a menu option.
+	*
+	* @private
+	* @param {string} version - version
+	* @param {number} idx - index
+	* @returns {JSX} rendered component
+	*/
+	_renderVersionOption( version, idx ) {
+		return (
+			<option key={ idx } value={ version }>{ version }</option>
+		);
 	}
 
 	/**
