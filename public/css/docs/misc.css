@@ -71,6 +71,14 @@ img {
 	fill: #3c3c3c;
 }
 
+.top-nav .download-progress {
+	background-color: #00aeef;
+}
+
+.top-nav .download-progress > * {
+	background-color: #f0ad3e;
+}
+
 /*
 * Root.
 */

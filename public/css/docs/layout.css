@@ -648,6 +648,17 @@ h2 {
 }
 
 /*
+* When a download progress bar is displayed, ensure it is visible at the top of the top navigation element.
+*/
+.top-nav .download-progress {
+	z-index: 2000;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+
+/*
 * Bottom navigation.
 */
 
@@ -739,15 +750,4 @@ h2 {
 	margin-left: 12.5%;
 	padding-top: 80px;
 	padding-bottom: 100px;
-}
-
-/*
-* Element rules.
-*/
-
-#download-progress {
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 100%;
 }
