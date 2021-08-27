@@ -31,7 +31,7 @@ import Divider from '@material-ui/core/Divider';
 import SideMenu from './side_menu.jsx';
 import pkgPath from './pkg_doc_path.js';
 import config from './config.js';
-import downloadAssets from './download_assets.js';
+import download from './download_assets.js';
 import PACKAGE_DATA_CACHE from './package_data_cache.js';
 
 
@@ -160,9 +160,10 @@ class TopNav extends React.Component {
 	*/
 	constructor( props ) {
 		super( props );
+		this._download = null;
 		this.state = {
 			'dropdown': false,
-			'downloadProgress': 0
+			'downloadProgress': 0.0
 		}
 	}
 
@@ -173,24 +174,11 @@ class TopNav extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onDownloadClick = () => {
-		var self = this;
 		var res;
 
 		// TODO: what about other versions???
 		res = PACKAGE_DATA_CACHE[ this.props.version ].resources;
-		downloadAssets( Object.keys( res ), this.props.version, onProgress );
-
-		/**
-		* Callback invoked upon a progress update.
-		*
-		* @private
-		* @param {number} progress - current progress
-		*/
-		function onProgress( progress ) {
-			self.setState({
-				'downloadProgress': progress
-			});
-		}
+		this._download = download( Object.keys( res ), this.props.version, this._onDownloadProgress );
 	}
 
 	/**
@@ -200,7 +188,39 @@ class TopNav extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onDownloadCancel = () => {
-		console.log( "TODO" );
+		var d = this._download;
+		this._download = null;
+		if ( d ) {
+			d.cancel();
+
+			// Reset the progress bar:
+			this.setState({
+				'downloadProgress': 0.0
+			});
+		}
+	}
+
+	/**
+	* Callback invoked upon a progress update.
+	*
+	* @private
+	* @param {number} progress - current progress
+	*/
+	_onDownloadProgress = ( progress ) => {
+		if ( this._download ) {
+			this.setState({
+				'downloadProgress': progress
+			});
+		}
+		// Check whether we have finished...
+		if ( progress === 100.0 ) {
+			this._download = null;
+
+			// Reset the progress bar:
+			this.setState({
+				'downloadProgress': 0.0
+			});
+		}
 	}
 
 	/**
@@ -375,7 +395,7 @@ class TopNav extends React.Component {
 		if ( this.state.downloadProgress ) {
 			return (
 				<LinearProgress
-					id="download-progress"
+					className="download-progress"
 					variant="determinate"
 					value={ this.state.downloadProgress }
 				/>
@@ -392,7 +412,6 @@ class TopNav extends React.Component {
 	render() {
 		return (
 			<Fragment>
-				{ this._renderDownloadProgress() }
 				<nav
 					className={ 'top-nav '+( this.props.sideMenu ? 'side-menu-open' : '' ) }
 					aria-label="Main"
@@ -402,6 +421,7 @@ class TopNav extends React.Component {
 					<span class="top-nav-divider"></span>
 					{ this._renderPackageNavigationMenu() }
 					{ this._renderDownloadButton() }
+					{ this._renderDownloadProgress() }
 				</nav>
 			</Fragment>
 		);

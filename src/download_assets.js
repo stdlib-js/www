@@ -23,57 +23,189 @@ import log from './log.js';
 import config from './config.js';
 
 
+// VARIABLES //
+
+var hasOwnProp = Object.prototype.hasOwnProperty;
+
+
 // MAIN //
 
 /**
-* Downloads package assets.
+* Returns a download "manager" for downloading package assets.
 *
 * @private
+* @constructor
 * @param {Array<string>} pkgs - list of packages
 * @param {string} version - version
-* @param {Function} progress - callback invoked to report download progress
+* @param {Function} onProgress - callback invoked to report download progress
+* @returns {Download} download manager instance
 */
-function download( pkgs, version, progress ) {
-	var mnt;
-	var len;
-	var i;
+function Download( pkgs, version, onProgress ) {
+	if ( !( this instanceof Download ) ) {
+		return new Download( pkgs, version, onProgress );
+	}
+	this._idx = -1;
+	this._pkgs = pkgs;
+	this._N = pkgs.length;
+	this._version = version;
+	this._mount = config.mount + version + '/@stdlib/';
+	this._onProgress = onProgress;
+	this._canceled = false;
+	this._paused = false;
 
-	mnt = config.mount + version + '/@stdlib/';
-	len = pkgs.length;
-	i = -1;
+	this._next();
 
-	next();
+	return this;
+}
+
+/**
+* Downloads the next package asset.
+*
+* @private
+* @name _next
+* @memberof Download.prototype
+* @type {Function}
+* @returns {Download} download manager instance
+*/
+Download.prototype._next = function next() {
+	var self;
+	var path;
+	var idx;
+	var N;
+
+	if ( this._canceled || this._paused ) {
+		return this;
+	}
+	self = this;
+	this._idx += 1;
+
+	idx = this._idx;
+	N = this._N;
+
+	if ( idx >= N ) {
+		this._onProgress( 100.0 );
+		return this;
+	}
+	path = this._mount + this._pkgs[ idx ];
+
+	// Skip `__namespace__` "packages"...
+	if ( path.includes( '__namespace__' ) ) {
+		setTimeout( next, 0 ); // ensure consistent async behavior (i.e., don't release the zalgo)
+		return this;
+	}
+	// Check whether we have already fetched this asset...
+	if ( hasOwnProp.call( HTML_FRAGMENT_CACHE, path ) && HTML_FRAGMENT_CACHE[ path ] ) {
+		setTimeout( next, 0 ); // ensure consistent async behavior (i.e., don't release the zalgo)
+		return this;
+	}
+	// Retrieve the HTML fragment for this package:
+	fetch( path+'?fragment=true' )
+		.then( onResponse )
+		.then( onText )
+		.catch( onError );
+
+	return this;
 
 	/**
-	* Downloads assets for the next package in the package list.
+	* Callback invoked upon receiving an HTTP response.
 	*
 	* @private
-	* @returns {void}
+	* @param {Object} response - HTTP response
+	* @returns {(Promise|void)} promise
+	*/
+	function onResponse( response ) {
+		var err;
+		if ( response.ok ) {
+			return response.text();
+		}
+		if ( response.status === 404 ) {
+			err = new Error( 'resource not found. Resource: ' + path + '.' );
+		} else {
+			err = new Error( 'unexpected error. Resource: ' + path + '. Status code: ' + response.status + '.' );
+		}
+		onError( err );
+	}
+
+	/**
+	* Callback invoked upon resolving a response body as text.
+	*
+	* @private
+	* @param {string} text - response body
+	*/
+	function onText( text ) {
+		HTML_FRAGMENT_CACHE[ path ] = text;
+		self._onProgress( ( idx/N ) * 100.0 );
+		self._next();
+	}
+
+	/**
+	* Callback invoked upon encountering an error while fetching a fragment.
+	*
+	* @private
+	* @param {Error} error - error object
+	*/
+	function onError( error ) {
+		log( error );
+	}
+
+	/**
+	* Callback invoked after a subsequent turn of the event loop.
+	*
+	* @private
 	*/
 	function next() {
-		var path;
+		self._onProgress( ( idx/N ) * 100.0 );
+		self._next();
+	}
+};
 
-		i += 1;
-		if ( i >= len ) {
-			progress( 100.0 );
-			return;
-		}
-		path = mnt + pkgs[ i ];
-		if ( path.includes( '__namespace__' ) ) {
-			return next();
-		}
-		fetch( path+'?fragment=true' )
-			.then( res => res.text() )
-			.then( text => {
-				HTML_FRAGMENT_CACHE[ path ] = text;
-				progress( ( i/len ) * 100.0 );
-				next();
-			})
-			.catch( log );
-	};
-}
+/**
+* Pauses an in-progress download.
+*
+* @private
+* @name pause
+* @memberof Download.prototype
+* @type {Function}
+* @returns {Download} download manager instance
+*/
+Download.prototype.pause = function pause() {
+	this._paused = true;
+	return this;
+};
+
+/**
+* Resumes a paused in-progress download.
+*
+* @private
+* @name resume
+* @memberof Download.prototype
+* @type {Function}
+* @returns {Download} download manager instance
+*/
+Download.prototype.resume = function resume() {
+	this._paused = false;
+	return this;
+};
+
+/**
+* Cancels an in-progress download.
+*
+* ## Notes
+*
+* -   Once canceled, downloads can never be resumed.
+*
+* @private
+* @name cancel
+* @memberof Download.prototype
+* @type {Function}
+* @returns {Download} download manager instance
+*/
+Download.prototype.cancel = function cancel() {
+	this._canceled = true;
+	return this;
+};
 
 
 // EXPORTS //
 
-export default download;
+export default Download;
