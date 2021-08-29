@@ -88,29 +88,56 @@ class App extends React.Component {
 			done();
 		} else {
 			fetch( config.mount+version+'/package_tree.json' )
-				.then( res => res.json() )
-				.then( res => {
-					if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-						PACKAGE_DATA_CACHE[ version ] = {};
-					}
-					PACKAGE_DATA_CACHE[ version ].tree = res;
-					return done();
-				})
+				.then( toJSON )
+				.then( onTree )
 				.catch( done );
 		}
 		if ( o && o.resources ) {
 			done();
 		} else {
 			fetch( config.mount+version+'/package_resources.json' )
-				.then( res => res.json() )
-				.then( res => {
-					if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-						PACKAGE_DATA_CACHE[ version ] = {};
-					}
-					PACKAGE_DATA_CACHE[ version ].resources = res;
-					return done();
-				})
+				.then( toJSON )
+				.then( onResources )
 				.catch( done );
+		}
+
+		/**
+		* Callback invoked upon receiving a JSON resource.
+		*
+		* @private
+		* @param {Object} res - response
+		* @returns {Promise} promise to resolve the response as JSON
+		*/
+		function toJSON( res ) {
+			return res.json();
+		}
+
+		/**
+		* Callback invoked upon resolving a package tree.
+		*
+		* @private
+		* @param {Object} json - JSON object
+		*/
+		function onTree( json ) {
+			if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+				PACKAGE_DATA_CACHE[ version ] = {};
+			}
+			PACKAGE_DATA_CACHE[ version ].tree = json;
+			done();
+		}
+
+		/**
+		* Callback invoked upon resolving package resources.
+		*
+		* @private
+		* @param {Object} json - JSON object
+		*/
+		function onResources( json ) {
+			if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+				PACKAGE_DATA_CACHE[ version ] = {};
+			}
+			PACKAGE_DATA_CACHE[ version ].resources = json;
+			done();
 		}
 
 		/**
@@ -257,6 +284,7 @@ class App extends React.Component {
 			if ( pathname === config.mount ) {
 				pathname += version + '/';
 			} else {
+				// FIXME: what happens when we change the version while viewing a package and the package has either moved or does not exist in the new version of the docs?
 				pathname = pathname.replace( self.state.version, version );
 			}
 			self.props.history.push( pathname );
@@ -291,6 +319,8 @@ class App extends React.Component {
 		var el = document.getElementById( 'readme' );
 		if ( el ) {
 			el.innerHTML = html;
+
+			// TODO: consider adding click listeners to allow for integration with react-router-dom: https://stackoverflow.com/questions/30523800/call-react-component-function-from-onclick-in-dangerouslysetinnerhtml
 		}
 	}
 
@@ -515,6 +545,7 @@ class App extends React.Component {
 		}
 		// If the extracted version is not supported, default to the latest supported version...
 		if ( !version || !config.versions.includes( version ) || version === 'latest' ) {
+			// TODO: should we inform the user that a version is not supported? Presumably. We could display a banner at the top, or something.
 			version = config.versions[ 0 ];
 		}
 		this._updateVersion( version, done );
