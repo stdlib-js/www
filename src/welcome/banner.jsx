@@ -24,11 +24,11 @@ import React, { Fragment } from 'react';
 // MAIN //
 
 /**
-* Renders a component displaying the project banner.
+* Component for displaying the project banner.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function Banner() {
 	return (

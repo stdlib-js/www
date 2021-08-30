@@ -35,12 +35,12 @@ var CURRENT_YEAR = ( new Date() ).getFullYear();
 // MAIN //
 
 /**
-* Renders a welcome page.
+* Component for rendering a welcome page.
 *
 * @private
 * @param {Object} props - component properties
 * @param {string} props.version - version
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function Welcome( props ) {
 	return (

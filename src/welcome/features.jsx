@@ -25,12 +25,12 @@ import config from './../config.js';
 // MAIN //
 
 /**
-* Renders a list of project features.
+* Component for displaying project features.
 *
 * @private
 * @param {Object} props - component properties
 * @param {string} props.version - version
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function Features( props ) {
 	return (
