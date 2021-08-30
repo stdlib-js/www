@@ -24,11 +24,11 @@ import React, { Fragment } from 'react';
 // MAIN //
 
 /**
-* Renders a component displaying an introduction to installation information.
+* Component for displaying an introduction to installation information.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function Intro() {
 	return (

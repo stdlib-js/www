@@ -33,12 +33,12 @@ import SystemLibrary from './system_library.jsx';
 // MAIN //
 
 /**
-* Renders a component displaying installation information.
+* Component for displaying installation information.
 *
 * @private
 * @param {Object} props - component properties
 * @param {string} props.version - version
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function Installation( props ) {
 	return (

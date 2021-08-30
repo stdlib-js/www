@@ -25,11 +25,11 @@ import config from './../../config.js';
 // MAIN //
 
 /**
-* Renders a component displaying installation user stories.
+* Component for displaying installation user stories.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function UserStories() {
 	return (

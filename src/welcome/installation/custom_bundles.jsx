@@ -25,11 +25,11 @@ import config from './../../config.js';
 // MAIN //
 
 /**
-* Renders a component displaying information concerning how to create custom project bundles.
+* Component for displaying information concerning how to create custom project bundles.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function CustomBundles() {
 	return (

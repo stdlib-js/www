@@ -25,12 +25,12 @@ import config from './../../config.js';
 // MAIN //
 
 /**
-* Renders a component displaying information concerning how to install browser bundles.
+* Component for displaying information concerning how to install browser bundles.
 *
 * @private
 * @param {Object} props - component properties
 * @param {string} props.version - version
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function BrowserBundles( props ) {
 	return (

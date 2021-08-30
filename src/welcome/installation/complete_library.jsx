@@ -24,11 +24,11 @@ import React, { Fragment } from 'react';
 // MAIN //
 
 /**
-* Renders a component displaying information concerning how to install the entire library.
+* Component for displaying information concerning how to install the entire library.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function CompleteLibrary() {
 	return (

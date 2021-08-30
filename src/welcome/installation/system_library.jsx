@@ -25,11 +25,11 @@ import config from './../../config.js';
 // MAIN //
 
 /**
-* Renders a component displaying information concerning how to install the project as a "system" library.
+* Component for displaying information concerning how to install the project as a "system" library.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function SystemLibrary() {
 	return (
