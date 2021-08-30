@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import HTML_FRAGMENT_CACHE from './html_fragment_cache.js';
+import HTML_FRAGMENT_CACHE from './caches/html_fragments.js';
 
 
 // MAIN //
