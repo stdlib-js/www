@@ -350,12 +350,11 @@ class App extends React.Component {
 			props.home = true;
 			props.version = this.state.version;
 		} else {
-			props.pkg = match.params.pkg;
 			props.version = match.params.version;
 
-			resources = packageResources( this.state.version );
+			resources = packageResources( this.state.version ); // TODO: state.version or match.params.version?
 			if ( resources ) {
-				resources = resources[ props.pkg ];
+				resources = resources[ match.params.pkg ];
 				if ( resources ) {
 					props.src = true;
 					props.typescript = Boolean( resources.typescript );
@@ -371,6 +370,7 @@ class App extends React.Component {
 					}
 				}
 			}
+			props.pkg = '@stdlib/' + match.params.pkg;
 		}
 		return (
 			<TopNav
