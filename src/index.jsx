@@ -21,11 +21,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './client.jsx';
-import * as serviceWorker from './service_worker.js';
+import * as serviceWorker from './utils/service_worker.js';
 
 
 // MAIN //
 
 ReactDOM.hydrate( <App />, document.getElementById( 'root' ) );
-
 serviceWorker.register();

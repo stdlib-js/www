@@ -18,38 +18,29 @@
 
 // MODULES //
 
-import React, { Fragment } from 'react';
-import config from './config.js';
+import PACKAGE_DATA_CACHE from './caches/package_data.js';
 
 
 // MAIN //
 
 /**
-* Component for displaying a message when a resource is not found.
+* Retrieves a package tree for a specified version.
 *
 * @private
-* @param {Object} props - component properties
-* @returns {ReactElement} React element
+* @param {string} version - version
+* @returns {(Object|null)} package tree
 */
-function NotFound() {
-	return (
-		<Fragment>
-			<div id="readme" className="readme">
-				<section>
-					<h1>Whoops!</h1>
-					<p>
-						Oh no! We're having trouble locating that page. 😢
-					</p>
-					<p>
-						If you think this page would be useful and want to help make this page happen, consider becoming a <a href={ config.funding }>financial sponsor</a>!
-					</p>
-				</section>
-			</div>
-		</Fragment>
-	);
+function getTree( version ) {
+	var o = PACKAGE_DATA_CACHE[ version ];
+	if ( o ) {
+		if ( o.tree ) {
+			return o.tree;
+		}
+	}
+	return null;
 }
 
 
 // EXPORTS //
 
-export default NotFound;
+export default getTree;

@@ -18,24 +18,29 @@
 
 // MODULES //
 
-import config from './config.js';
+import PACKAGE_DATA_CACHE from './caches/package_data.js';
 
 
 // MAIN //
 
 /**
-* Returns the path for package documentation.
+* Retrieves package resources for a specified version.
 *
 * @private
-* @param {string} pkg - package name
 * @param {string} version - version
-* @returns {string} path
+* @returns {(Object|null)} package resources
 */
-function pkgPath( pkg, version ) {
-	return config.mount + version + '/@stdlib/' + pkg + '/';
+function getResources( version ) {
+	var o = PACKAGE_DATA_CACHE[ version ];
+	if ( o ) {
+		if ( o.resources ) {
+			return o.resources;
+		}
+	}
+	return null;
 }
 
 
 // EXPORTS //
 
-export default pkgPath;
+export default getResources;

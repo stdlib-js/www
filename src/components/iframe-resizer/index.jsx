@@ -20,7 +20,7 @@
 
 import React from 'react';
 import iframeResizer from 'iframe-resizer/js/iframeResizer.js';
-import iframeBootstrap from './bootstrap_iframe.js';
+import bootstrap from './bootstrap.js';
 
 
 // MAIN //
@@ -30,7 +30,7 @@ import iframeBootstrap from './bootstrap_iframe.js';
 *
 * @private
 */
-class CustomIframeResizer extends React.Component {
+class IframeResizer extends React.Component {
 	/**
 	* Returns a component which renders an `iframe` which automatically resizes based on its content.
 	*
@@ -76,7 +76,7 @@ class CustomIframeResizer extends React.Component {
 		return (
 			<iframe
 				className={ this.props.className }
-				srcdoc={ iframeBootstrap( this.props.url+'?=fragment=true' ) }
+				srcdoc={ bootstrap( this.props.url+'?=fragment=true' ) }
 				title={ this.props.title }
 				width={ this.props.width }
 				checkOrigin={ false }
@@ -89,4 +89,4 @@ class CustomIframeResizer extends React.Component {
 
 // EXPORTS //
 
-export default CustomIframeResizer;
+export default IframeResizer;

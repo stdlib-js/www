@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import config from './../config.js';
+import config from './../../config.js';
 import Banner from './banner.jsx';
 import Intro from './intro.jsx';
 import Features from './features.jsx';

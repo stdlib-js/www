@@ -21,18 +21,18 @@
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
-import IframeResizer from './iframe_resizer.jsx';
-import Welcome from './welcome/index.jsx';
-import Readme from './readme.jsx';
-import NotFound from './not_found.jsx';
-import notFoundHTML from './not_found_html.js';
-import Footer from './footer.jsx';
-import TopNav from './top_nav.jsx';
-import log from './log.js';
-import fetchFragment from './fetch_fragment.js';
-import fetchPackageData from './fetch_package_data.js';
-import packageResources from './package_resources.js';
-import viewportWidth from './viewport_width.js';
+import IframeResizer from './components/iframe-resizer/index.jsx';
+import Welcome from './components/welcome/index.jsx';
+import Footer from './components/footer/index.jsx';
+import Readme from './components/readme/index.jsx';
+import NotFound from './components/not-found/index.jsx';
+import notFoundHTML from './components/not-found/html.js';
+import TopNav from './components/top-nav/index.jsx';
+import log from './utils/log.js';
+import fetchFragment from './utils/fetch_fragment.js';
+import fetchPackageData from './utils/fetch_package_data.js';
+import packageResources from './utils/package_resources.js';
+import viewportWidth from './utils/viewport_width.js';
 import config from './config.js';
 
 
