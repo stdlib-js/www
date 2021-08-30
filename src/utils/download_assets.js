@@ -88,11 +88,6 @@ Download.prototype._next = function next() {
 	}
 	path = this._mount + this._pkgs[ idx ];
 
-	// Skip `__namespace__` "packages"...
-	if ( path.includes( '__namespace__' ) ) {
-		setTimeout( next, 0 ); // ensure consistent async behavior (i.e., don't release the zalgo)
-		return this;
-	}
 	// Check whether we have already fetched this asset...
 	if ( hasOwnProp.call( HTML_FRAGMENT_CACHE, path ) && HTML_FRAGMENT_CACHE[ path ] ) {
 		setTimeout( next, 0 ); // ensure consistent async behavior (i.e., don't release the zalgo)
