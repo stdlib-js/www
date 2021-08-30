@@ -25,11 +25,11 @@ import config from './config.js';
 // MAIN //
 
 /**
-* Renders the application footer.
+* Component for rendering the application footer.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function Footer() {
 	return (
