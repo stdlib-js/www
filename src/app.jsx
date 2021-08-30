@@ -30,8 +30,8 @@ import Footer from './footer.jsx';
 import TopNav from './top_nav.jsx';
 import log from './log.js';
 import fetchFragment from './fetch_fragment.js';
-import PACKAGE_DATA_CACHE from './package_data_cache.js';
-import getPackageResources from './get_package_resources.js';
+import fetchPackageData from './fetch_package_data.js';
+import packageResources from './package_resources.js';
 import viewportWidth from './viewport_width.js';
 import config from './config.js';
 
@@ -50,7 +50,7 @@ class App extends React.Component {
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {Object} props.history - history object for navigation
-	* @returns {ReactComponent} component
+	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
 		var w;
@@ -66,96 +66,6 @@ class App extends React.Component {
 			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
 			'version': config.versions[ 0 ]            // default to the latest version
 		};
-	}
-
-	/**
-	* Retrieves package data for a specified documentation version.
-	*
-	* @private
-	* @param {string} version - documentation version
-	* @param {Callback} clbk - callback invoked upon retrieving package data
-	*/
-	_fetchPackageData( version, clbk ) {
-		var total;
-		var count;
-		var o;
-
-		total = 2;
-		count = 0;
-
-		o = PACKAGE_DATA_CACHE[ version ];
-		if ( o && o.tree ) {
-			done();
-		} else {
-			fetch( config.mount+version+'/package_tree.json' )
-				.then( toJSON )
-				.then( onTree )
-				.catch( done );
-		}
-		if ( o && o.resources ) {
-			done();
-		} else {
-			fetch( config.mount+version+'/package_resources.json' )
-				.then( toJSON )
-				.then( onResources )
-				.catch( done );
-		}
-
-		/**
-		* Callback invoked upon receiving a JSON resource.
-		*
-		* @private
-		* @param {Object} res - response
-		* @returns {Promise} promise to resolve the response as JSON
-		*/
-		function toJSON( res ) {
-			return res.json();
-		}
-
-		/**
-		* Callback invoked upon resolving a package tree.
-		*
-		* @private
-		* @param {Object} json - JSON object
-		*/
-		function onTree( json ) {
-			if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-				PACKAGE_DATA_CACHE[ version ] = {};
-			}
-			PACKAGE_DATA_CACHE[ version ].tree = json;
-			done();
-		}
-
-		/**
-		* Callback invoked upon resolving package resources.
-		*
-		* @private
-		* @param {Object} json - JSON object
-		*/
-		function onResources( json ) {
-			if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-				PACKAGE_DATA_CACHE[ version ] = {};
-			}
-			PACKAGE_DATA_CACHE[ version ].resources = json;
-			done();
-		}
-
-		/**
-		* Callback invoked upon resolving a package resource.
-		*
-		* @private
-		* @param {Error} [error] - error object
-		* @returns {void}
-		*/
-		function done( error ) {
-			if ( error ) {
-				return clbk( error );
-			}
-			count += 1;
-			if ( count === total ) {
-				return clbk();
-			}
-		}
 	}
 
 	/**
@@ -265,7 +175,8 @@ class App extends React.Component {
 	*/
 	_updateVersion( version, done ) {
 		var self = this;
-		this._fetchPackageData( version, clbk );
+
+		fetchPackageData( version, clbk );
 
 		/**
 		* Callback invoked upon fetching package resources associated with a specified version.
@@ -330,7 +241,7 @@ class App extends React.Component {
 	* @private
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
-	* @returns {JSX} rendered component
+	* @returns {ReactElement} React element
 	*/
 	_renderReadme( match ) {
 		return (
@@ -346,10 +257,10 @@ class App extends React.Component {
 	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
 	* @param {string} match.params.pkg - package name
-	* @returns {JSX} rendered component
+	* @returns {ReactElement} React element
 	*/
 	_renderBenchmark( match ) {
-		var resources = getPackageResources( this.state.version );
+		var resources = packageResources( this.state.version );
 		if ( resources ) {
 			resources = resources[ match.params.pkg ];
 		}
@@ -376,10 +287,10 @@ class App extends React.Component {
 	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
 	* @param {string} match.params.pkg - package name
-	* @returns {JSX} rendered component
+	* @returns {ReactElement} React element
 	*/
 	_renderTest( match ) {
-		var resources = getPackageResources( this.state.version );
+		var resources = packageResources( this.state.version );
 		if ( resources ) {
 			resources = resources[ match.params.pkg ];
 		}
@@ -402,7 +313,7 @@ class App extends React.Component {
 	* Renders landing page content.
 	*
 	* @private
-	* @returns {JSX} rendered component
+	* @returns {ReactElement} React element
 	*/
 	_renderWelcome() {
 		return (
@@ -419,12 +330,11 @@ class App extends React.Component {
 	* @param {Object} match.params - URL parameters
 	* @param {string} match.params.pkg - package name
 	* @param {string} match.params.version - documentation version
-	* @returns {JSX} rendered component
+	* @returns {ReactElement} React element
 	*/
 	_renderTopNav( content, match ) {
 		var resources;
 		var props;
-		var obj;
 
 		props = {
 			'pkg': '',
@@ -443,9 +353,9 @@ class App extends React.Component {
 			props.pkg = match.params.pkg;
 			props.version = match.params.version;
 
-			obj = PACKAGE_DATA_CACHE[ this.state.version ];
-			if ( obj ) {
-				resources = obj.resources[ props.pkg ];
+			resources = packageResources( this.state.version );
+			if ( resources ) {
+				resources = resources[ props.pkg ];
 				if ( resources ) {
 					props.src = true;
 					props.typescript = Boolean( resources.typescript );
@@ -502,7 +412,7 @@ class App extends React.Component {
 		* @private
 		* @param {Object} props - route properties
 		* @param {Object} props.match - match object
-		* @returns {JSX} rendered component
+		* @returns {ReactElement} React element
 		*/
 		function render( props ) {
 			return (
@@ -566,9 +476,9 @@ class App extends React.Component {
 	}
 
 	/**
-	* Renders a component.
+	* Renders the component.
 	*
-	* @returns {JSX} rendered component
+	* @returns {ReactElement} React element
 	*/
 	render() {
 		return (
