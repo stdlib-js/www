@@ -24,10 +24,10 @@ import React from 'react';
 // MAIN //
 
 /**
-* Renders the project logo.
+* Component for rendering the project logo.
 *
 * @private
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function logo() {
 	return (

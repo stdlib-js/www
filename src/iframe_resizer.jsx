@@ -40,7 +40,7 @@ class CustomIframeResizer extends React.Component {
 	* @param {string} props.url - resource URL
 	* @param {string} props.title - title
 	* @param {number} props.width - width
-	* @returns {ReactComponent} component
+	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
 		super( props );
@@ -68,9 +68,9 @@ class CustomIframeResizer extends React.Component {
 	}
 
 	/**
-	* Renders a component.
+	* Renders the component.
 	*
-	* @returns {JSX} rendered component
+	* @returns {ReactElement} React element
 	*/
 	render() {
 		return (

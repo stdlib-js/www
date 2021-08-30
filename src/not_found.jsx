@@ -25,11 +25,11 @@ import config from './config.js';
 // MAIN //
 
 /**
-* Renders a component for when a resource is not found.
+* Component for displaying a message when a resource is not found.
 *
 * @private
 * @param {Object} props - component properties
-* @returns {JSX} rendered component
+* @returns {ReactElement} React element
 */
 function NotFound() {
 	return (
