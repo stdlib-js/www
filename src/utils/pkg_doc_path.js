@@ -21,6 +21,11 @@
 import config from './../config.js';
 
 
+// VARIABLES //
+
+var RE_STDLIB_PREFIX = /^@stdlib\//;
+
+
 // MAIN //
 
 /**
@@ -32,7 +37,10 @@ import config from './../config.js';
 * @returns {string} path
 */
 function pkgPath( pkg, version ) {
-	return config.mount + version + '/@stdlib/' + pkg + '/';
+	if ( !RE_STDLIB_PREFIX.test( pkg ) ) {
+		pkg = '@stdlib/' + pkg;
+	}
+	return config.mount + version + '/' + pkg;
 }
 
 
