@@ -22,6 +22,7 @@
 
 var join = require( 'path' ).join;
 var root = require( './root.js' );
+var version = require( './stdlib_version.js' );
 
 
 // MAIN //
@@ -33,7 +34,7 @@ var root = require( './root.js' );
 * @returns {string} TypeScript documentation path
 */
 function path() {
-	return join( root(), 'public', 'docs', 'ts', 'modules' );
+	return join( root(), 'public', 'docs', 'ts', version(), 'modules' );
 }
 
 
