@@ -27,7 +27,9 @@ import config from './../../../config.js';
 var RE_UNDERSCORE_REPLACE = /[\/-]/g;
 var RE_STDLIB_PREFIX = /^@stdlib\//;
 var PATH = [
-	'/docs/ts/modules/_',
+	'/docs/ts/',
+	'',
+	'modules/_',
 	'',
 	'_docs_types_index_d_.html'
 ];
@@ -46,8 +48,12 @@ var PATH = [
 */
 function TypeScript( props ) {
 	var pkg = props.pkg;
+
+	PATH[ 1 ] = props.version;
+
 	pkg = pkg.replace( RE_STDLIB_PREFIX, '' );
-	PATH[ 1 ] = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
+	PATH[ 3 ] = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
+
 	return (
 		<li class="top-nav-item">
 			<a href={ PATH.join( '' ) } title="View TypeScript type definitions">typescript</a>
