@@ -19,6 +19,8 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import pkgPath from './../../../utils/pkg_doc_path.js';
 import Benchmarks from './benchmarks.jsx';
 import Docs from './docs.jsx';
@@ -104,7 +106,7 @@ class PackageMenu extends React.Component {
 					{ this.props.docs ? <Docs path={ path } /> : null }
 					{ this.props.benchmarks ? <Benchmarks path={ path } /> : null }
 					{ this.props.tests ? <Test path={ path } /> : null }
-					{ this.props.src ? <Source pkg={ this.props.pkg } version='develop' /> : null }
+					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } /> : null }
 					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } /> : null }
 				</ul>
 			</Fragment>
