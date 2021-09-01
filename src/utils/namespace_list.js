@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24,17 +24,17 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 // MAIN //
 
 /**
-* Retrieves package resources for a specified version.
+* Retrieves the list of namespace packages for a specified version.
 *
 * @private
 * @param {string} version - version
-* @returns {(Object|null)} package resources
+* @returns {(StringArray|null)} namespace list
 */
-function packageResources( version ) {
+function namespaceList( version ) {
 	var o = PACKAGE_DATA_CACHE[ version ];
 	if ( o ) {
-		if ( o.resources ) {
-			return o.resources;
+		if ( o.namespaces ) {
+			return o.namespaces;
 		}
 	}
 	return null;
@@ -43,4 +43,4 @@ function packageResources( version ) {
 
 // EXPORTS //
 
-export default packageResources;
+export default namespaceList;

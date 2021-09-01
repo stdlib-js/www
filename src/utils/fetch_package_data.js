@@ -36,7 +36,7 @@ fetchPackageData( version, clbk ) {
 	var count;
 	var o;
 
-	total = 3;
+	total = 4;
 	count = 0;
 
 	o = PACKAGE_DATA_CACHE[ version ];
@@ -56,12 +56,20 @@ fetchPackageData( version, clbk ) {
 			.then( onResources )
 			.catch( done );
 	}
-	if ( o && o.list ) {
+	if ( o && o.packages ) {
 		done();
 	} else {
 		fetch( config.mount+version+'/package_list.json' )
 			.then( toJSON )
-			.then( onList )
+			.then( onPackages )
+			.catch( done );
+	}
+	if ( o && o.packages ) {
+		done();
+	} else {
+		fetch( config.mount+version+'/namespace_list.json' )
+			.then( toJSON )
+			.then( onNamespaces )
 			.catch( done );
 	}
 
@@ -110,11 +118,25 @@ fetchPackageData( version, clbk ) {
 	* @private
 	* @param {StringArray} list - list of packages
 	*/
-	function onList( list ) {
+	function onPackages( list ) {
 		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
 			PACKAGE_DATA_CACHE[ version ] = {};
 		}
-		PACKAGE_DATA_CACHE[ version ].list = list;
+		PACKAGE_DATA_CACHE[ version ].packages = list;
+		done();
+	}
+
+	/**
+	* Callback invoked upon resolving a list of namespace packages.
+	*
+	* @private
+	* @param {StringArray} list - list of namespace packages
+	*/
+	function onNamespaces( list ) {
+		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+			PACKAGE_DATA_CACHE[ version ] = {};
+		}
+		PACKAGE_DATA_CACHE[ version ].namespaces = list;
 		done();
 	}
 

@@ -30,11 +30,11 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 * @param {string} version - version
 * @returns {(StringArray|null)} package list
 */
-function getPackageList( version ) {
+function packageList( version ) {
 	var o = PACKAGE_DATA_CACHE[ version ];
 	if ( o ) {
-		if ( o.list ) {
-			return o.list;
+		if ( o.packages ) {
+			return o.packages;
 		}
 	}
 	return null;
@@ -43,4 +43,4 @@ function getPackageList( version ) {
 
 // EXPORTS //
 
-export default getPackageList;
+export default packageList;

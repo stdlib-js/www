@@ -30,7 +30,7 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 * @param {string} version - version
 * @returns {(Object|null)} package tree
 */
-function getTree( version ) {
+function packageTree( version ) {
 	var o = PACKAGE_DATA_CACHE[ version ];
 	if ( o ) {
 		if ( o.tree ) {
@@ -43,4 +43,4 @@ function getTree( version ) {
 
 // EXPORTS //
 
-export default getTree;
+export default packageTree;
