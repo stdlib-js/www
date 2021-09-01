@@ -26,7 +26,7 @@
 * @param {RegExp} filter - filter to apply
 * @returns {(ObjectArray|null)} filtered tree
 */
-filterTree( tree, filter ) {
+function filterTree( tree, filter ) {
 	var node;
 	var pkg;
 	var out;

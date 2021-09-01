@@ -31,7 +31,7 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 * @param {string} version - documentation version
 * @param {Callback} clbk - callback invoked upon retrieving package data
 */
-fetchPackageData( version, clbk ) {
+function fetchPackageData( version, clbk ) {
 	var total;
 	var count;
 	var o;
@@ -64,7 +64,7 @@ fetchPackageData( version, clbk ) {
 			.then( onPackages )
 			.catch( done );
 	}
-	if ( o && o.packages ) {
+	if ( o && o.namespaces ) {
 		done();
 	} else {
 		fetch( config.mount+version+'/namespace_list.json' )
