@@ -255,25 +255,33 @@ a:active {
 	font-weight: 200;
 }
 
-.side-menu-list-item.MuiListItem-root,
-.side-menu-list-item-namespace.MuiListItem-root {
+.side-menu-list-item.MuiListItem-root a,
+.side-menu-list-item-namespace.MuiListItem-root a {
 	color: white;
 	text-decoration: none;
 }
 
-.side-menu-list-item.MuiListItem-root:hover {
+.side-menu-list-item.MuiListItem-root a:hover {
 	text-decoration: underline;
 }
 
 .side-menu-version-select,
 .side-menu-filter-input,
 .side-menu-filter-clear,
-.side-menu-list-item-namespace-icon {
+button.side-menu-list-item-namespace-icon {
 	color: #acafb3;
 }
 
-.side-menu-list-item.active-package,
-.side-menu-list-item-namespace.active-package {
+button.side-menu-list-item-namespace-icon {
+	font-size: 1.1435em;
+}
+
+button.side-menu-list-item-namespace-icon:hover {
+	color: #ffffff;
+}
+
+.side-menu-list-item.active-package a,
+.side-menu-list-item-namespace.active-package a {
 	color: #5ca2c8;
 }
 

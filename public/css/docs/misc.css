@@ -328,7 +328,7 @@ img {
 
 .side-menu-version-select,
 .side-menu-filter-input {
-	background: #1f1f1f;
+	background-color: #1f1f1f;
 	border: none;
 }
 
@@ -337,13 +337,38 @@ img {
 	cursor: pointer;
 }
 
-.side-menu-list-item-namespace,
-.side-menu-list-item-namespace.MuiListItem-button {
-	background: #2a2d2f;
+.side-menu-list-item-namespace {
+	background-color: #2a2d2f;
 }
 
-.side-menu-list-item.MuiListItem-button {
-	background: #242627;
+.side-menu-list-item {
+	background-color: #242627;
+}
+
+.side-menu-list-item,
+.side-menu-list-item-namespace {
+	overflow: hidden;
+}
+
+.side-menu-list-item:hover,
+.side-menu-list-item-namespace:hover,
+.side-menu-list-item.active-package {
+	background-color: rgba(0, 0, 0, 0.04);
+}
+
+button.side-menu-list-item-namespace-icon {
+	border-radius: 0;
+}
+
+button.side-menu-list-item-namespace-icon:hover {
+	background-color: #1f1f1f;
+}
+
+.side-menu-list-item a::after,
+.side-menu-list-item-namespace a::after {
+	background-color: rgba(255, 255, 255, 0.2);
+	opacity: 0;
+	animation: button-press 1s;
 }
 
 .side-menu-list-wrapper {
@@ -383,4 +408,17 @@ img {
 
 #stdlib-logo:hover {
 	opacity: 1;
+}
+
+/*
+* Button press animation.
+*/
+
+@keyframes button-press {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }

@@ -715,18 +715,52 @@ h2 {
 	right: 4px;
 }
 
-.side-menu-list-item-namespace-icon {
-	position: absolute;
-	top: 8px;
-	right: 10px;
+.side-menu-list-item.MuiListItem-root,
+.side-menu-list-item-namespace.MuiListItem-root {
+	display: flex;
+	padding: 0;
+}
+
+.side-menu-list-item a,
+.side-menu-list-item-namespace a {
+	flex-grow: 1;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+button.side-menu-list-item-namespace-icon {
+	padding: 8px;
 }
 
 .side-menu-list-wrapper {
 	height: calc(100vh - 140px);
 }
 
-.side-menu-list-wrapper ul {
+.side-menu-list {
 	padding-left: 0;
+}
+
+/*
+* Create a pseudo-element after each side menu list item which we can use to create button press animation. By default, this pseudo-element is hidden.
+*/
+.side-menu-list-item a::after,
+.side-menu-list-item-namespace a::after {
+	display: none;
+	content: "";
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+/*
+* When a user clicks on a side menu list item, we display the pseudo-element.
+*/
+.side-menu-list-item a:focus:not(:active)::after,
+.side-menu-list-item-namespace a:focus:not(active)::after {
+ 	display: block;
 }
 
 /*
