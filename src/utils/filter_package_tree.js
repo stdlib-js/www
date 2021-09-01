@@ -42,7 +42,7 @@ function filterTree( tree, filter ) {
 		if ( filter.test( node.name ) ) {
 			// We found a match! We don't need to recurse any further...
 			out.push( node );
-			break;
+			continue;
 		}
 		// Check if the current package is a namespace (i.e., has children), and, if so, we need to continue descending down the tree to see if any child nodes satisfy the filter...
 		if ( node.children ) {
@@ -56,13 +56,14 @@ function filterTree( tree, filter ) {
 					'children': tmp
 				}
 				out.push( o );
-				break;
+				continue;
 			}
 		}
 	}
 	if ( out.length === 0 ) {
 		return null;
 	}
+	return out;
 }
 
 
