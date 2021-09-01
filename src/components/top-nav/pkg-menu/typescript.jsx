@@ -29,7 +29,7 @@ var RE_STDLIB_PREFIX = /^@stdlib\//;
 var PATH = [
 	'/docs/ts/',
 	'',
-	'modules/_',
+	'/modules/_',
 	'',
 	'_docs_types_index_d_.html'
 ];
