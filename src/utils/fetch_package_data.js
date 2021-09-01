@@ -43,7 +43,7 @@ fetchPackageData( version, clbk ) {
 	if ( o && o.tree ) {
 		done();
 	} else {
-		fetch( config.mount+version+'/package_tree.json' )
+		fetch( config.mount+version+'/package_tree_array.json' )
 			.then( toJSON )
 			.then( onTree )
 			.catch( done );
