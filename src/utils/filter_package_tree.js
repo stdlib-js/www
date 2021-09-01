@@ -24,29 +24,33 @@
 * @private
 * @param {ObjectArray} tree - package tree to filter
 * @param {RegExp} filter - filter to apply
+* @param {ArrayLikeObject} [out] - output array for storing the list of matched packages
 * @returns {(ObjectArray|null)} filtered tree
 */
-function filterTree( tree, filter ) {
+function filterTree( tree, filter, out ) {
+	var matches;
 	var node;
 	var pkg;
-	var out;
 	var tmp;
 	var o;
 	var i;
 
-	out = [];
+	matches = [];
 	for ( i = 0; i < tree.length; i++ ) {
 		node = tree[ i ];
 
 		// Check if the current package satisfies the filter...
 		if ( filter.test( node.name ) ) {
 			// We found a match! We don't need to recurse any further...
-			out.push( node );
+			matches.push( node );
+			if ( out ) {
+				out.push( node.name );
+			}
 			continue;
 		}
 		// Check if the current package is a namespace (i.e., has children), and, if so, we need to continue descending down the tree to see if any child nodes satisfy the filter...
 		if ( node.children ) {
-			tmp = filterTree( node.children, filter );
+			tmp = filterTree( node.children, filter, out );
 
 			// If we were able to resolve packages satisfying the filter, we need to copy the current (pruned) node in order to avoid mutation (we're modifying the `children` property)...
 			if ( tmp ) {
@@ -55,15 +59,18 @@ function filterTree( tree, filter ) {
 					'name': node.name,
 					'children': tmp
 				}
-				out.push( o );
+				matches.push( o );
+				if ( out ) {
+					out.push( node.name );
+				}
 				continue;
 			}
 		}
 	}
-	if ( out.length === 0 ) {
+	if ( matches.length === 0 ) {
 		return null;
 	}
-	return out;
+	return matches;
 }
 
 
