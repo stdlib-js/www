@@ -19,7 +19,7 @@
 // MODULES //
 
 import config from './../config.js';
-import HTML_FRAGMENT_CACHE from './caches/html_fragment_cache.js';
+import HTML_FRAGMENT_CACHE from './caches/html_fragments.js';
 import log from './log.js';
 
 
