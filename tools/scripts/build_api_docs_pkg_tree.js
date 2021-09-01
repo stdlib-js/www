@@ -47,21 +47,20 @@ function main() {
 	var tree;
 	var dir;
 
+	dir = documentationPath();
+	if ( !exists( dir ) ) {
+		mkdir( dir );
+	}
+	// Resolve a package tree:
 	opts = {
 		'ignore': [
 			'**/_tools/**'
 		]
 	};
 	tree = pkgTree( opts );
-
-	// Index into the tree:
 	tree = tree[ '@stdlib' ];
 
 	// Save as JSON file:
-	dir = documentationPath();
-	if ( !exists( dir ) ) {
-		mkdir( dir );
-	}
 	opts = {
 		'encoding': 'utf8'
 	};

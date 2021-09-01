@@ -23,9 +23,7 @@
 // MODULES //
 
 var join = require( 'path' ).join;
-var mkdir = require( 'fs' ).mkdirSync;
 var objectKeys = require( '@stdlib/utils/keys' );
-var exists = require( '@stdlib/fs/exists' ).sync;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var documentationPath = require( './api_docs_path.js' );
@@ -74,9 +72,6 @@ function main() {
 		}
 	}
 	// Write the database to file:
-	if ( !exists( dpath ) ) {
-		mkdir( dpath );
-	}
 	writeFile( join( dpath, OUTPUT ), JSON.stringify( pkgs ) );
 }
 

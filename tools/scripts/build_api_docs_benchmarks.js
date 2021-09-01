@@ -45,11 +45,11 @@ function main() {
 	var sdir;
 	var cdir;
 
-	cdir = cwd();
 	odir = documentationPath();
 	if ( !exists( odir ) ) {
 		mkdir( odir );
 	}
+	cdir = cwd();
 	sdir = stdlibPath();
 	opts = {
 		'dir': join( sdir, 'lib', 'node_modules' ),
