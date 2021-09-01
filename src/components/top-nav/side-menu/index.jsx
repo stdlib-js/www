@@ -1,0 +1,91 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2019 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+// MODULES //
+
+import React, { Fragment } from 'react';
+import OpenButton from './open_button.jsx';
+import Drawer from './drawer.jsx';
+
+
+// MAIN //
+
+/**
+* Component for rendering a side menu for navigating project packages.
+*
+* @private
+*/
+class SideMenu extends React.Component {
+	/**
+	* Returns a component for rendering a side menu for navigating project packages.
+	*
+	* @constructor
+	* @param {Object} props - component properties
+	* @param {Callback} props.onToggle - callback to invoke upon toggling the side menu
+	* @param {Callback} props.onPackageChange - callback to invoke upon a change to the selected package
+	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
+	* @param {boolean} props.open - boolean indicating whether the side menu is open
+	* @param {string} props.version - documentation version
+	* @returns {ReactComponent} component
+	*/
+	constructor( props ) {
+		super( props );
+	}
+
+	/**
+	* Callback invoked upon opening the side menu.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onMenuOpen = () => {
+		this.props.onToggle( true );
+	}
+
+	/**
+	* Renders the component.
+	*
+	* @returns {ReactElement} React element
+	*/
+	render() {
+		if ( !this.props.version ) {
+			return null;
+		}
+		return (
+			<Fragment>
+				<OpenButton
+					onClick={ this._onMenuOpen }
+				/>
+				<div className="side-menu-wrapper">
+					<Drawer
+						open={ this.props.open }
+						version={ this.props.version }
+						onToggle={ this.props.onToggle }
+						onPackageChange={ this.props.onPackageChange }
+						onVersionChange={ this.props.onVersionChange }
+					/>
+				</div>
+			</Fragment>
+		);
+	}
+}
+
+
+// EXPORTS //
+
+export default SideMenu;
