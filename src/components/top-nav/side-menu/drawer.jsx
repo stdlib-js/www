@@ -297,7 +297,7 @@ class SideMenuDrawer extends React.Component {
 		}
 		// Update component state...
 		state = {
-			'filter': reFromString( filter )
+			'filter': reFromString( '/'+filter+'/' )
 		};
 		this.setState( state, clbk );
 
