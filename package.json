@@ -23,6 +23,7 @@
     "build:api_docs:benchmarks": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_benchmarks.js",
     "build:api_docs:html_fragments": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_html_fragments.js",
     "build:api_docs:pkg_tree": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_pkg_tree.js",
+    "build:api_docs:pkg_tree_array": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_pkg_tree_array.js",
     "build:api_docs:pkg_list": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_pkg_list.js",
     "build:api_docs:namespace_list": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_namespace_list.js",
     "build:api_docs:tests": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules node ./tools/scripts/build_api_docs_tests.js",
