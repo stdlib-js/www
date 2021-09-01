@@ -87,10 +87,11 @@ var OUTPUT = 'package_tree_array.json';
 *     ```
 *
 * @private
-* @param {Object} tree
+* @param {Object} tree - package tree
+* @param {string} path - tree path
 * @returns {ObjectArray} array of tree nodes
 */
-function recurse( tree ) {
+function recurse( tree, path ) {
 	var keys;
 	var node;
 	var out;
@@ -110,8 +111,8 @@ function recurse( tree ) {
 		o = {};
 		o.key = k;
 		if ( typeof node === 'object' ) {
-			o.name = node[ '__namespace__' ];
-			o.children = recurse( node );
+			o.name = node[ '__namespace__' ] || path+'/'+k;
+			o.children = recurse( node, o.name );
 		} else {
 			o.name = node;
 		}
@@ -147,7 +148,7 @@ function main() {
 		throw tree;
 	}
 	// Convert the tree to a "tree array":
-	out = recurse( tree );
+	out = recurse( tree, '@stdlib' );
 
 	// Write the database to file:
 	writeFile( join( dpath, OUTPUT ), JSON.stringify( out ) );
