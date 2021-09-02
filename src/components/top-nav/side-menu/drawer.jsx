@@ -19,8 +19,9 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import { debounce } from 'throttle-debounce';
 import { Link, withRouter } from 'react-router-dom';
+import { debounce } from 'throttle-debounce';
+import scrollIntoView from 'scroll-into-view-if-needed';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
@@ -33,7 +34,6 @@ import packageTree from './../../../utils/package_tree.js';
 import namespaces from './../../../utils/namespace_list.js';
 import filter from './../../../utils/filter_package_tree.js';
 import deprefix from './../../../utils/deprefix_package_name.js';
-import config from './../../../config.js';
 import VersionMenu from './version_menu.jsx';
 import Head from './head.jsx';
 import Filter from './filter.jsx';
@@ -44,6 +44,10 @@ import Filter from './filter.jsx';
 var RE_TRAILING_SLASH = /\/$/;
 var COLLAPSE_TRANSITION_TIMEOUT = 500;
 var DEBOUNCE_INTERVAL = 300;
+var SCROLL_OPTIONS = {
+	'behavior': 'smooth',
+	'scrollMode': 'if-needed'
+};
 
 
 // FUNCTIONS //
@@ -94,7 +98,7 @@ function resetView() {
 	* @private
 	*/
 	function onTimeout() {
-		el.scrollIntoView();
+		scrollIntoView( el, SCROLL_OPTIONS );
 	}
 }
 
@@ -732,6 +736,9 @@ class SideMenuDrawer extends React.Component {
 		}
 		// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view...
 		if ( this.state.active !== prevState.active ) {
+			console.log( 'UPDATE' );
+			console.log( prevState );
+			console.log( this.state.active );
 			resetView();
 		}
 	}
