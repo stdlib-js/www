@@ -20,7 +20,6 @@
 
 import React, { Fragment } from 'react';
 import { debounce } from 'throttle-debounce';
-import reFromString from '@stdlib/utils/regexp-from-string';
 import { Link, withRouter } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -456,7 +455,7 @@ class SideMenuDrawer extends React.Component {
 		}
 		// Update component state...
 		state = {
-			'filter': reFromString( '/'+filter+'/' )
+			'filter': filter
 		};
 		this.setState( state, clbk );
 
