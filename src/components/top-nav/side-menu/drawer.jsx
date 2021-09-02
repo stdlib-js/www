@@ -244,9 +244,6 @@ class SideMenuDrawer extends React.Component {
 			// If expanded, collapse, and, if collapsed, expand...
 			if ( self.state.filter ) {
 				self.state.filteredExpanded[ pkg ] = !self.state.filteredExpanded[ pkg ];
-
-				// Update the cached state so that, when expanded and a user clears the filter, the package and its associated namespace path are still displayed in the menu...
-				self._cachedState.expanded[ pkg ] = self.state.filteredExpanded[ pkg ];
 			} else {
 				self.state.expanded[ pkg ] = !self.state.expanded[ pkg ];
 			}
