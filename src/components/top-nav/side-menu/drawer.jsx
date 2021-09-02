@@ -49,14 +49,19 @@ var DEBOUNCE_INTERVAL = 300;
 // FUNCTIONS //
 
 /**
-* Expands ancestor namespaces.
+* Expands (or collapses) ancestor namespaces.
+*
+* ## Notes
+*
+* -   If `state` is `true`, ancestor namespaces are expanded; otherwise, if `state` is `false`, ancestor namespaces are collapsed.
 *
 * @private
 * @param {Object} hash - hash for setting the collapse state
 * @param {string} pkg - package name
+* @param {boolean} state - collapse state
 * @returns {Object} collapse state hash
 */
-function expandAncestors( hash, pkg ) {
+function expandAncestors( hash, pkg, state ) {
 	var parts;
 	var i;
 
@@ -65,10 +70,32 @@ function expandAncestors( hash, pkg ) {
 
 	// Update the collapse states of ancestor namespaces...
 	for ( i = 0; i < parts.length-1; i++ ) {
-		hash[ parts.slice( 0, i+1 ).join( '/' ) ] = true;
+		hash[ parts.slice( 0, i+1 ).join( '/' ) ] = state;
 	}
 
 	return hash;
+}
+
+/**
+* Updates the side menu view to ensure that the active package is visible.
+*
+* @private
+*/
+function resetView() {
+	var el = document.getElementsByClassName( 'active-package' );
+	if ( el.length > 0 ) {
+		el = el[ 0 ];
+		setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
+	}
+
+	/**
+	* Callback invoked after a timeout.
+	*
+	* @private
+	*/
+	function onTimeout() {
+		el.scrollIntoView();
+	}
 }
 
 
@@ -147,9 +174,109 @@ class SideMenuDrawer extends React.Component {
 			this.state.active = deprefix( pathname.substring( i ) );
 
 			// Update the collapse states of ancestor namespaces:
-			expandAncestors( this.state.expanded, this.state.active );
+			expandAncestors( this.state.expanded, this.state.active, true );
 		}
 		return this;
+	}
+
+	/**
+	* Returns the current component state for select properties.
+	*
+	* ## Notes
+	*
+	* -   Only select properties are captured. Accordingly, the returned snapshot **cannot** be used for more generally "rewinding" component state.
+	*
+	* @private
+	* @returns {Object} current component state for select properties
+	*/
+	_snapshot() {
+		var dest;
+		var out;
+		var src;
+		var ns;
+		var k;
+		var i;
+
+		out = {};
+
+		// Capture the current active package:
+		out.active = this.state.active;
+
+		// Get the list of namespaces for the current documentation version:
+		ns = namespaces( this.props.version );
+		if ( ns === null ) {
+			console.log( 'unexpected error. Unable to resolve list of namespaces for current documentation version. Version: ' + this.props.version + '.' );
+			return out;
+		}
+		// Copy the current namespace collapse states to a new object...
+		src = this.state.expanded;
+		dest = {};
+		for ( i = 0; i < ns.length; i++ ) {
+			k = ns[ i ];
+			dest[ k ] = src[ k ];
+		}
+		out.expanded = dest;
+
+		return out;
+	}
+
+	/**
+	* Restores component state to a cached version.
+	*
+	* @private
+	* @returns {void}
+	*/
+	_restoreState() {
+		var state;
+		var dest;
+		var src;
+		var tmp;
+		var ns;
+		var k;
+		var i;
+
+		tmp = this._cachedState;
+
+		// If we don't have a snapshot, nothing to restore...
+		if ( !tmp ) {
+			return;
+		}
+		state = {};
+
+		// Restore the active package:
+		state.active = tmp.active;
+
+		// Get the list of namespaces for the current documentation version:
+		ns = namespaces( this.props.version );
+
+		// Restore the namespace collapse states...
+		if ( ns ) {
+			dest = this.state.expanded;
+			src = tmp.expanded;
+			for ( i = 0; i < ns.length; i++ ) {
+				k = ns[ i ];
+				dest[ k ] = src[ k ];
+			}
+		} else {
+			console.log( 'unexpected error. Unable to resolve the list of namespaces for the current documentation version. Version: ' + this.props.version + '.' );
+		}
+		// Set the update counter to indicate that the component should re-render:
+		state.update = this.state.update + 1;
+
+		// Reset the filtered tree:
+		state.filteredTree = null;
+
+		// Reset the filtered expanded hash:
+		state.filteredExpanded = null;
+
+		// Discard any cached state:
+		this._cachedState = null;
+
+		// Discard any references to a debounced function:
+		this._debounced = null;
+
+		// Update the component state:
+		this.setState( state, resetView );
 	}
 
 	/**
@@ -276,9 +403,14 @@ class SideMenuDrawer extends React.Component {
 			// Notify the application that a user has selected a package:
 			self.props.onPackageChange( path );
 
-			// If a user has selected a package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package is still displayed in the menu...
+			// If a user has selected a package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package and its associated namespace path are still displayed in the menu...
 			if ( self.state.filter ) {
+				// Check whether we need to collapse a previously active namespace path during filtering...
+				if ( self.state.active !== pkg ) {
+					expandAncestors( self._cachedState.expanded, self.state.active, false );
+				}
 				self._cachedState.active = pkg;
+				expandAncestors( self._cachedState.expanded, pkg, true );
 			}
 			// Update the component state:
 			self.setState({
@@ -340,106 +472,6 @@ class SideMenuDrawer extends React.Component {
 	}
 
 	/**
-	* Returns the current component state for select properties.
-	*
-	* ## Notes
-	*
-	* -   Only select properties are captured, so the returned snapshot **cannot** be used for more generally "rewinding" component state.
-	*
-	* @private
-	* @returns {Object} current component state for select properties
-	*/
-	_snapshot() {
-		var dest;
-		var out;
-		var src;
-		var ns;
-		var k;
-		var i;
-
-		out = {};
-
-		// Capture the current active package:
-		out.active = this.state.active;
-
-		// Get the list of namespaces for the current documentation version:
-		ns = namespaces( this.props.version );
-		if ( ns === null ) {
-			console.log( 'unexpected error. Unable to resolve list of namespaces for current documentation version. Version: ' + this.props.version + '.' );
-			return out;
-		}
-		// Copy the current namespace collapse states to a new object...
-		src = this.state.expanded;
-		dest = {};
-		for ( i = 0; i < ns.length; i++ ) {
-			k = ns[ i ];
-			dest[ k ] = src[ k ];
-		}
-		out.expanded = dest;
-
-		return out;
-	}
-
-	/**
-	* Restores component state to a cached version.
-	*
-	* @private
-	* @returns {void}
-	*/
-	_restoreState() {
-		var state;
-		var dest;
-		var src;
-		var tmp;
-		var ns;
-		var k;
-		var i;
-
-		tmp = this._cachedState;
-
-		// If we don't have a snapshot, nothing to restore...
-		if ( !tmp ) {
-			return;
-		}
-		state = {};
-
-		// Restore the active package:
-		state.active = tmp.active;
-
-		// Get the list of namespaces for the current documentation version:
-		ns = namespaces( this.props.version );
-
-		// Restore the namespace collapse states...
-		if ( ns ) {
-			dest = this.state.expanded;
-			src = tmp.expanded;
-			for ( i = 0; i < ns.length; i++ ) {
-				k = ns[ i ];
-				dest[ k ] = src[ k ];
-			}
-		} else {
-			console.log( 'unexpected error. Unable to resolve the list of namespaces for the current documentation version. Version: ' + this.props.version + '.' );
-		}
-		// Set the update counter to indicate that the component should re-render:
-		state.update = this.state.update + 1;
-
-		// Reset the filtered tree:
-		state.filteredTree = null;
-
-		// Reset the filtered expanded hash:
-		state.filteredExpanded = null;
-
-		// Discard any cached state:
-		this._cachedState = null;
-
-		// Discard any references to a debounced function:
-		this._debounced = null;
-
-		// Update the component state:
-		this.setState( state );
-	}
-
-	/**
 	* Filters the menu.
 	*
 	* @private
@@ -470,7 +502,7 @@ class SideMenuDrawer extends React.Component {
 		// Automatically expand ancestor namespaces for each match...
 		expanded = {};
 		for ( i = 0; i < list.length; i++ ) {
-			expandAncestors( expanded, deprefix( list[ i ] ) );
+			expandAncestors( expanded, deprefix( list[ i ] ), true );
 		}
 
 		// Update the component state:
@@ -661,7 +693,7 @@ class SideMenuDrawer extends React.Component {
 				// Automatically expand ancestor namespaces for each match...
 				o = {};
 				for ( i = 0; i < list.length; i++ ) {
-					expandAncestors( o, deprefix( list[ i ] ) );
+					expandAncestors( o, deprefix( list[ i ] ), true );
 				}
 				state.filteredExpanded = o;
 			}
@@ -674,7 +706,7 @@ class SideMenuDrawer extends React.Component {
 			path = pathname.substring( pathname.indexOf( '@stdlib' ) );
 
 			// Expand ancestor namespace packages:
-			expandAncestors( this.state.expanded, deprefix( path ) );
+			expandAncestors( this.state.expanded, deprefix( path ), true );
 
 			// Update the component state:
 			this.setState({
@@ -683,20 +715,7 @@ class SideMenuDrawer extends React.Component {
 		}
 		// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view...
 		if ( this.state.active !== prevState.active ) {
-			el = document.getElementsByClassName( 'active-package' );
-			if ( el.length > 0 ) {
-				el = el[ 0 ];
-				setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
-			}
-		}
-
-		/**
-		* Callback invoked after a timeout.
-		*
-		* @private
-		*/
-		function onTimeout() {
-			el.scrollIntoView();
+			resetView();
 		}
 	}
 
