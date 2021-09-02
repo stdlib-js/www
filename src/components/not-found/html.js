@@ -36,7 +36,7 @@ function NotFound() {
 		'<section>',
 		'<h1>Whoops!</h1>',
 		'<p>',
-		'Oh no! We\'re having trouble locating that page. 😢',
+		'Oh no! We\'re having trouble locating that page. <span role="img" aria-label="sadface emoji">😢</span>',
 		'</p>',
 		'<p>',
 		'If you think this page would be useful and want to help make this page happen, consider becoming a <a href="'+config.funding+'">financial sponsor</a>!',
