@@ -18,8 +18,10 @@
 
 // MAIN //
 
+// @babel/register hook to ignore imported style files when running in Node.js:
 require( 'ignore-styles' );
 
+// Register `require` hooks to allow import JSX and other non-standard Node.js behavior when dynamically compiling the React-based web application:
 require( '@babel/register' )({
 	ignore: [ /(node_modules)/ ],
 	root:"./server",
@@ -48,4 +50,5 @@ require( '@babel/register' )({
 	]
 });
 
+// Run the web server:
 require( './server.js' );
