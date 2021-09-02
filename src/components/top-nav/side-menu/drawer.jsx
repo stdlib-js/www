@@ -84,7 +84,6 @@ function expandAncestors( hash, pkg, state ) {
 */
 function resetView() {
 	var el = document.getElementsByClassName( 'active-package' );
-
 	if ( el.length > 0 ) {
 		el = el[ 0 ];
 		setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
@@ -650,7 +649,7 @@ class SideMenuDrawer extends React.Component {
 	* @private
 	*/
 	componentDidMount() {
-		resetView();
+		setTimeout( resetView, 1000 );
 	}
 
 	/**
