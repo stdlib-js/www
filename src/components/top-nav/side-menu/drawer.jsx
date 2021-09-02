@@ -702,11 +702,11 @@ class SideMenuDrawer extends React.Component {
 		}
 		// If the current URL does not match the "active" package, update the current state to match URL...
 		if ( !pathname.endsWith( this.state.active ) ) {
-			// Isolate the package path (e.g., /docs/api/latest/@stdlib/foo/bar => @stdlib/foo/bar):
-			path = pathname.substring( pathname.indexOf( '@stdlib' ) );
+			// Isolate the package path (e.g., /docs/api/latest/@stdlib/foo/bar => @stdlib/foo/bar => foo/bar):
+			path = deprefix( pathname.substring( pathname.indexOf( '@stdlib' ) ) );
 
 			// Expand ancestor namespace packages:
-			expandAncestors( this.state.expanded, deprefix( path ), true );
+			expandAncestors( this.state.expanded, path, true );
 
 			// Update the component state:
 			this.setState({
