@@ -699,7 +699,7 @@ class SideMenuDrawer extends React.Component {
 		* @private
 		*/
 		function onTimeout() {
-			el.scrollIntoViewIfNeeded();
+			el.scrollIntoView();
 		}
 	}
 
