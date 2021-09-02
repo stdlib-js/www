@@ -34,6 +34,7 @@ import packageTree from './../../../utils/package_tree.js';
 import namespaces from './../../../utils/namespace_list.js';
 import filter from './../../../utils/filter_package_tree.js';
 import deprefix from './../../../utils/deprefix_package_name.js';
+import log from './../../../utils/log.js';
 import VersionMenu from './version_menu.jsx';
 import Head from './head.jsx';
 import Filter from './filter.jsx';
@@ -210,7 +211,7 @@ class SideMenuDrawer extends React.Component {
 		// Get the list of namespaces for the current documentation version:
 		ns = namespaces( this.props.version );
 		if ( ns === null ) {
-			console.log( 'unexpected error. Unable to resolve list of namespaces for current documentation version. Version: ' + this.props.version + '.' );
+			log( 'unexpected error. Unable to resolve list of namespaces for current documentation version. Version: ' + this.props.version + '.' );
 			return out;
 		}
 		// Copy the current namespace collapse states to a new object...
@@ -263,7 +264,7 @@ class SideMenuDrawer extends React.Component {
 				dest[ k ] = src[ k ];
 			}
 		} else {
-			console.log( 'unexpected error. Unable to resolve the list of namespaces for the current documentation version. Version: ' + this.props.version + '.' );
+			log( 'unexpected error. Unable to resolve the list of namespaces for the current documentation version. Version: ' + this.props.version + '.' );
 		}
 		// Set the update counter to indicate that the component should re-render:
 		state.update = this.state.update + 1;
