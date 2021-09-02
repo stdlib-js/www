@@ -16,14 +16,28 @@
 * limitations under the License.
 */
 
+// MODULES //
+
+import reFromString from '@stdlib/utils/regexp-from-string';
+
+
+// VARIABLES //
+
+var RE_FORWARD_SLASH = /\//g;
+
+
 // MAIN //
 
 /**
-* Applies a regular expression filter to a provide package tree.
+* Applies a filter to a provide package tree.
+*
+* ## Notes
+*
+* -   The filter may be a regular expression string. If unable to generate a regular expression from a provided `filter` string, the function returns `null`.
 *
 * @private
 * @param {ObjectArray} tree - package tree to filter
-* @param {RegExp} filter - filter to apply
+* @param {string} filter - filter to apply
 * @param {ArrayLikeObject} [out] - output array for storing the list of matched packages
 * @returns {(ObjectArray|null)} filtered tree
 */
@@ -35,6 +49,11 @@ function filterTree( tree, filter, out ) {
 	var o;
 	var i;
 
+	try {
+		filter = reFromString( '/'+filter.replace( RE_FORWARD_SLASH, '\\/' )+'/' );
+	} catch ( err ) {
+		return null;
+	}
 	matches = [];
 	for ( i = 0; i < tree.length; i++ ) {
 		node = tree[ i ];
