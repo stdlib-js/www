@@ -26,22 +26,18 @@ import reFromString from '@stdlib/utils/regexp-from-string';
 var RE_FORWARD_SLASH = /\//g;
 
 
-// MAIN //
+// FUNCTIONS //
 
 /**
-* Applies a filter to a provide package tree.
-*
-* ## Notes
-*
-* -   The filter may be a regular expression string. If unable to generate a regular expression from a provided `filter` string, the function returns `null`.
+* Recursively applies a regular expression filter to a provided package tree.
 *
 * @private
 * @param {ObjectArray} tree - package tree to filter
-* @param {string} filter - filter to apply
+* @param {RegExp} filter - filter to apply
 * @param {ArrayLikeObject} [out] - output array for storing the list of matched packages
 * @returns {(ObjectArray|null)} filtered tree
 */
-function filterTree( tree, filter, out ) {
+function recurse( tree, filter, out ) {
 	var matches;
 	var node;
 	var pkg;
@@ -49,11 +45,6 @@ function filterTree( tree, filter, out ) {
 	var o;
 	var i;
 
-	try {
-		filter = reFromString( '/'+filter.replace( RE_FORWARD_SLASH, '\\/' )+'/' );
-	} catch ( err ) {
-		return null;
-	}
 	matches = [];
 	for ( i = 0; i < tree.length; i++ ) {
 		node = tree[ i ];
@@ -69,7 +60,7 @@ function filterTree( tree, filter, out ) {
 		}
 		// Check if the current package is a namespace (i.e., has children), and, if so, we need to continue descending down the tree to see if any child nodes satisfy the filter...
 		if ( node.children ) {
-			tmp = filterTree( node.children, filter, out );
+			tmp = recurse( node.children, filter, out );
 
 			// If we were able to resolve packages satisfying the filter, we need to copy the current (pruned) node in order to avoid mutation (we're modifying the `children` property)...
 			if ( tmp ) {
@@ -90,6 +81,31 @@ function filterTree( tree, filter, out ) {
 		return null;
 	}
 	return matches;
+}
+
+
+// MAIN //
+
+/**
+* Applies a filter to a provided package tree.
+*
+* ## Notes
+*
+* -   The filter must be capable of being converted to a regular expression. If unable to generate a regular expression from a provided `filter` string, the function returns `null`.
+*
+* @private
+* @param {ObjectArray} tree - package tree to filter
+* @param {string} filter - filter to apply
+* @param {ArrayLikeObject} [out] - output array for storing the list of matched packages
+* @returns {(ObjectArray|null)} filtered tree
+*/
+function filterTree( tree, filter, out ) {
+	try {
+		filter = reFromString( '/'+filter.replace( RE_FORWARD_SLASH, '\\/' )+'/' );
+	} catch ( err ) {
+		return null;
+	}
+	return recurse( tree, filter, out );
 }
 
 
