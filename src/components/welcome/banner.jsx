@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React from 'react';
 
 
 // MAIN //
@@ -32,17 +32,15 @@ import React, { Fragment } from 'react';
 */
 function Banner() {
 	return (
-		<Fragment>
-			<div className="image" align="center" >
-				<br />
-				<br />
-				<img src="/img/logo_banner.svg" alt="stdlib logo" />
-				<br />
-				<br />
-				<br />
-				<br />
-			</div>
-		</Fragment>
+		<div className="image" align="center" >
+			<br />
+			<br />
+			<img src="/img/logo_banner.svg" alt="stdlib logo" />
+			<br />
+			<br />
+			<br />
+			<br />
+		</div>
 	);
 }
 
