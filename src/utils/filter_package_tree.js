@@ -40,7 +40,6 @@ var RE_FORWARD_SLASH = /\//g;
 function recurse( tree, filter, out ) {
 	var matches;
 	var node;
-	var pkg;
 	var tmp;
 	var o;
 	var i;
