@@ -42,6 +42,7 @@ import Filter from './filter.jsx';
 
 // VARIABLES //
 
+var RE_TRAILING_SLASH = /\/$/;
 var COLLAPSE_TRANSITION_TIMEOUT = 500;
 var DEBOUNCE_INTERVAL = 300;
 
@@ -121,6 +122,7 @@ class SideMenuDrawer extends React.Component {
 	*/
 	constructor( props ) {
 		var pathname;
+		var pkg;
 		var ns;
 		var i;
 
@@ -171,7 +173,8 @@ class SideMenuDrawer extends React.Component {
 		// Toggle the display for the current package, its siblings, and its ancestors (note: why are we doing this? Because, if a user is dropped into package documentation, we want the side menu to be automatically expanded to show the location of the package in the package tree)...
 		if ( i >= 0 ) {
 			// Update the state for the current package, making it the "active" package:
-			this.state.active = deprefix( pathname.substring( i ) );
+			pkg = deprefix( pathname.substring( i ) );
+			this.state.active = pkg.replace( RE_TRAILING_SLASH, '' );
 
 			// Update the collapse states of ancestor namespaces:
 			expandAncestors( this.state.expanded, this.state.active, true );
@@ -664,9 +667,6 @@ class SideMenuDrawer extends React.Component {
 
 		// FIXME: this method is called when, e.g., the docs version changes (due to updated props); what happens if the location does not point to a package which exists in that version? The app should 404, but what happens to the side  menu?
 
-		// Get the current URL:
-		pathname = this.props.history.location.pathname;
-
 		// If the version changed, we need to update various resources...
 		if ( this.props.version !== props.version ) {
 			state = {};
@@ -700,6 +700,10 @@ class SideMenuDrawer extends React.Component {
 			// Update component state:
 			this.setState( state );
 		}
+		// Get the current URL:
+		pathname = this.props.history.location.pathname;
+		pathname = pathname.replace( RE_TRAILING_SLASH, '' );
+
 		// If the current URL does not match the "active" package, update the current state to match URL...
 		if ( !pathname.endsWith( this.state.active ) ) {
 			// Isolate the package path (e.g., /docs/api/latest/@stdlib/foo/bar => @stdlib/foo/bar => foo/bar):
