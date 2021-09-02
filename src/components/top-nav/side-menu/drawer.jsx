@@ -84,6 +84,7 @@ function expandAncestors( hash, pkg, state ) {
 */
 function resetView() {
 	var el = document.getElementsByClassName( 'active-package' );
+
 	if ( el.length > 0 ) {
 		el = el[ 0 ];
 		setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
@@ -122,7 +123,6 @@ class SideMenuDrawer extends React.Component {
 	*/
 	constructor( props ) {
 		var pathname;
-		var pkg;
 		var ns;
 		var i;
 
@@ -166,6 +166,7 @@ class SideMenuDrawer extends React.Component {
 		}
 		// Get the current URL:
 		pathname = this.props.history.location.pathname;
+		pathname = pathname.replace( RE_TRAILING_SLASH, '' );
 
 		// Isolate the package path, if such a path exists (e.g., /docs/api/@stdlib/foo/bar => @stdlib/foo/bar):
 		i = pathname.indexOf( '@stdlib/' );
@@ -173,8 +174,7 @@ class SideMenuDrawer extends React.Component {
 		// Toggle the display for the current package, its siblings, and its ancestors (note: why are we doing this? Because, if a user is dropped into package documentation, we want the side menu to be automatically expanded to show the location of the package in the package tree)...
 		if ( i >= 0 ) {
 			// Update the state for the current package, making it the "active" package:
-			pkg = deprefix( pathname.substring( i ) );
-			this.state.active = pkg.replace( RE_TRAILING_SLASH, '' );
+			this.state.active = deprefix( pathname.substring( i ) );
 
 			// Update the collapse states of ancestor namespaces:
 			expandAncestors( this.state.expanded, this.state.active, true );
@@ -642,6 +642,15 @@ class SideMenuDrawer extends React.Component {
 			out.push( el );
 		}
 		return out;
+	}
+
+	/**
+	* Callback invoked immediately after mounting a component (i.e., is inserted into the tree).
+	*
+	* @private
+	*/
+	componentDidMount() {
+		resetView();
 	}
 
 	/**
