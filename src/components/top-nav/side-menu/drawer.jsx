@@ -484,12 +484,9 @@ class SideMenuDrawer extends React.Component {
 	*/
 	_filterMenu() {
 		var expanded;
-		var parts;
 		var tree;
 		var list;
-		var pkg;
 		var i;
-		var j;
 
 		// Check whether the filter has been reset...
 		if ( this.state.filter === null ) {
@@ -666,16 +663,13 @@ class SideMenuDrawer extends React.Component {
 	*/
 	componentDidUpdate( props, prevState ) {
 		var pathname;
-		var parts;
 		var state;
 		var tree;
 		var path;
 		var list;
 		var ns;
-		var el;
 		var o;
 		var i;
-		var j;
 		var k;
 
 		// FIXME: this method is called when, e.g., the docs version changes (due to updated props); what happens if the location does not point to a package which exists in that version? The app should 404, but what happens to the side  menu?
@@ -693,7 +687,7 @@ class SideMenuDrawer extends React.Component {
 				k = ns[ i ];
 
 				// By default, all namespaces are collapsed...
-				o[ k ] = Boolean( prev.expanded[ k ] );
+				o[ k ] = Boolean( prevState.expanded[ k ] );
 			}
 			state.expanded = o;
 
