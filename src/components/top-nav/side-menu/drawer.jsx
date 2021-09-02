@@ -736,9 +736,6 @@ class SideMenuDrawer extends React.Component {
 		}
 		// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view...
 		if ( this.state.active !== prevState.active ) {
-			console.log( 'UPDATE' );
-			console.log( prevState );
-			console.log( this.state.active );
 			resetView();
 		}
 	}
