@@ -500,7 +500,9 @@ class SideMenuDrawer extends React.Component {
 		// Filter the package tree:
 		list = [];
 		tree = filter( tree, this.state.filter, list );
-
+		if ( tree === null ) {
+			tree = [];
+		}
 		// Automatically expand ancestor namespaces for each match...
 		expanded = {};
 		for ( i = 0; i < list.length; i++ ) {
@@ -696,7 +698,11 @@ class SideMenuDrawer extends React.Component {
 			if ( this.state.filter ) {
 				tree = packageTree( this.props.version );
 				list = [];
-				state.filteredTree = filter( tree, this.state.filter, list );
+				tree = filter( tree, this.state.filter, list );
+				if ( tree === null ) {
+					tree = [];
+				}
+				state.filteredTree = tree;
 
 				// Automatically expand ancestor namespaces for each match...
 				o = {};
