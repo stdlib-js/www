@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import config from './../../../config.js';
 
 

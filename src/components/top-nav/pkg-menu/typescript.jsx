@@ -19,12 +19,11 @@
 // MODULES //
 
 import React from 'react';
-import config from './../../../config.js';
 
 
 // VARIABLES //
 
-var RE_UNDERSCORE_REPLACE = /[\/-]/g;
+var RE_UNDERSCORE_REPLACE = /[\/-]/g; // eslint-disable-line no-useless-escape
 var RE_STDLIB_PREFIX = /^@stdlib\//;
 var PATH = [
 	'/docs/ts/',
