@@ -33,6 +33,7 @@ import pkgPath from './../../../utils/pkg_doc_path.js';
 import packageTree from './../../../utils/package_tree.js';
 import namespaces from './../../../utils/namespace_list.js';
 import filter from './../../../utils/filter_package_tree.js';
+import deprefix from './../../../utils/deprefix_package_name.js';
 import config from './../../../config.js';
 import VersionMenu from './version_menu.jsx';
 import Head from './head.jsx';
@@ -41,10 +42,34 @@ import Filter from './filter.jsx';
 
 // VARIABLES //
 
-var RE_FORWARD_SLASH = /\//g;
 var COLLAPSE_TRANSITION_TIMEOUT = 500;
 var DEBOUNCE_INTERVAL = 300;
-var PKG_PREFIX = '@stdlib';
+
+
+// FUNCTIONS //
+
+/**
+* Expands ancestor namespaces.
+*
+* @private
+* @param {Object} hash - hash for setting the collapse state
+* @param {string} pkg - package name
+* @returns {Object} collapse state hash
+*/
+function expandAncestors( hash, pkg ) {
+	var parts;
+	var i;
+
+	// Split the package name into its path components (e.g., `foo/bar` => `[ 'foo', 'bar' ]`):
+	parts = pkg.split( '/' );
+
+	// Update the collapse states of ancestor namespaces...
+	for ( i = 0; i < parts.length-1; i++ ) {
+		hash[ parts.slice( 0, i+1 ).join( '/' ) ] = true;
+	}
+
+	return hash;
+}
 
 
 // MAIN //
@@ -69,11 +94,7 @@ class SideMenuDrawer extends React.Component {
 	*/
 	constructor( props ) {
 		var pathname;
-		var parts;
-		var path;
-		var key;
 		var ns;
-		var o;
 		var i;
 
 		// Pass provided properties to parent constructor:
@@ -92,6 +113,9 @@ class SideMenuDrawer extends React.Component {
 
 			// Hash for tracking the collapse state of namespaces:
 			'expanded': {},
+
+			// Hash for tracking the collapse state of namespaces during filtering:
+			'filteredExpanded': null,
 
 			// Update counter for triggering component rendering on updates to the `expanded` hash:
 			'update': 0
@@ -119,24 +143,11 @@ class SideMenuDrawer extends React.Component {
 
 		// Toggle the display for the current package, its siblings, and its ancestors (note: why are we doing this? Because, if a user is dropped into package documentation, we want the side menu to be automatically expanded to show the location of the package in the package tree)...
 		if ( i >= 0 ) {
-			path = pathname.substring( i );
-
 			// Update the state for the current package, making it the "active" package:
-			this.state.active = path;
+			this.state.active = deprefix( pathname.substring( i ) );
 
-			// Remove the `@stdlib/` prefix (e.g., `@stdlib/foo/bar` => `foo/bar`):
-			path = path.substring( 8 ); // `@stdlib/` is 8 characters long
-
-			// Extract the ancestor namespaces:
-			parts = path.split( '/' );
-			parts = parts.slice( 0, parts.length-1 );
-
-			// Update the collapse states of ancestor namespaces...
-			o = this.state.expanded;
-			for ( i = 0; i < parts.length; i++ ) {
-				key = parts.slice( 0, i+1 ).join( '/' );
-				o[ key ] = true;
-			}
+			// Update the collapse states of ancestor namespaces:
+			expandAncestors( this.state.expanded, this.state.active );
 		}
 		return this;
 	}
@@ -182,18 +193,28 @@ class SideMenuDrawer extends React.Component {
 			// Notify the application that a user has selected a new package:
 			self.props.onPackageChange( path );
 
-			// If already active and expanded, collapse...
-			if ( self.state.active === pkg && self.state.expanded[ pkg ] ) {
-				self.state.expanded[ pkg ] = false; // collapse
-			}
-			// Otherwise, activate and expand the selected namespace...
-			else {
-				self.state.expanded[ pkg ] = true; // expand
-			}
-			// If a user has selected a namespace package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package (and its associated namespace path) is still displayed in the menu...
+			// Check whether a user is currently applying a menu filter...
 			if ( self.state.filter ) {
+				// If already active and expanded, collapse...
+				if ( self.state.active === pkg && self.state.filteredExpanded[ pkg ] ) {
+					self.state.filteredExpanded[ pkg ] = false; // collapse
+				}
+				// Otherwise, activate and expand the selected namespace...
+				else {
+					self.state.filteredExpanded[ pkg ] = true; // expand
+				}
+				// If a user has selected a namespace package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package and its associated namespace path are still displayed in the menu...
 				self._cachedState.active = pkg;
-				self._cachedState.expanded[ pkg ] = self.state.expanded[ pkg ];
+				self._cachedState.expanded[ pkg ] = self.state.filteredExpanded[ pkg ];
+			} else {
+				// If already active and expanded, collapse...
+				if ( self.state.active === pkg && self.state.expanded[ pkg ] ) {
+					self.state.expanded[ pkg ] = false; // collapse
+				}
+				// Otherwise, activate and expand the selected namespace...
+				else {
+					self.state.expanded[ pkg ] = true; // expand
+				}
 			}
 			// Update the component state:
 			self.setState({
@@ -220,9 +241,15 @@ class SideMenuDrawer extends React.Component {
 		* @private
 		*/
 		function onClick() {
-			// If expanded, collapse, and, if collapsed, expand:
-			self.state.expanded[ pkg ] = !self.state.expanded[ pkg ];
+			// If expanded, collapse, and, if collapsed, expand...
+			if ( self.state.filter ) {
+				self.state.filteredExpanded[ pkg ] = !self.state.filteredExpanded[ pkg ];
 
+				// Update the cached state so that, when expanded and a user clears the filter, the package and its associated namespace path are still displayed in the menu...
+				self._cachedState.expanded[ pkg ] = self.state.filteredExpanded[ pkg ];
+			} else {
+				self.state.expanded[ pkg ] = !self.state.expanded[ pkg ];
+			}
 			// Signal that we need to re-render the component:
 			self.setState({
 				'update': self.state.update + 1
@@ -287,7 +314,8 @@ class SideMenuDrawer extends React.Component {
 		if ( filter === '' ) {
 			this.setState({
 				'filter': null,
-				'filteredTree': null
+				'filteredTree': null,
+				'filteredExpanded': null
 			});
 			return this._restoreState();
 		}
@@ -401,6 +429,9 @@ class SideMenuDrawer extends React.Component {
 		// Reset the filtered tree:
 		state.filteredTree = null;
 
+		// Reset the filtered expanded hash:
+		state.filteredExpanded = null;
+
 		// Discard any cached state:
 		this._cachedState = null;
 
@@ -418,7 +449,13 @@ class SideMenuDrawer extends React.Component {
 	* @returns {void}
 	*/
 	_filterMenu() {
+		var expanded;
+		var parts;
 		var tree;
+		var list;
+		var pkg;
+		var i;
+		var j;
 
 		// Check whether the filter has been reset...
 		if ( this.state.filter === null ) {
@@ -430,8 +467,19 @@ class SideMenuDrawer extends React.Component {
 			return;
 		}
 		// Filter the package tree:
+		list = [];
+		tree = filter( tree, this.state.filter, list );
+
+		// Automatically expand ancestor namespaces for each match...
+		expanded = {};
+		for ( i = 0; i < list.length; i++ ) {
+			expandAncestors( expanded, deprefix( list[ i ] ) );
+		}
+
+		// Update the component state:
 		this.setState({
-			'filteredTree': filter( tree, this.state.filter )
+			'filteredTree': tree,
+			'filteredExpanded': expanded
 		});
 	}
 
@@ -443,18 +491,19 @@ class SideMenuDrawer extends React.Component {
 	* @param {string} node.name - namespace package name (e.g., `@stdlib/foo/bar`)
 	* @param {string} node.key - the last part of the package name (e.g., `@stdlib/foo/bar` => `bar`)
 	* @param {ObjectArray} node.children - list of children nodes (i.e., namespaces and/or leaf packages)
+	* @parma {Object} hash - hash indicating whether a namespace tree node is expanded
 	* @param {NonNegativeInteger} level - namespace level
 	* @returns {ReactElement} React element
 	*/
-	_renderNamespace( node, level ) {
+	_renderNamespace( node, hash, level ) {
 		var expanded;
 		var name;
 		var pkg;
 
 		name = node.name;
-		pkg = name.substring( 8 ); // `@stdlib/` prefix is 8 characters long
+		pkg = deprefix( name );
 
-		expanded = this.state.expanded[ pkg ];
+		expanded = hash[ pkg ];
 
 		return (
 			<Fragment>
@@ -492,7 +541,7 @@ class SideMenuDrawer extends React.Component {
 					unmountOnExit
 				>
 					<List disablePadding >
-						{ this._renderTree( node.children, level+1 ) }
+						{ this._renderTree( node.children, hash, level+1 ) }
 					</List>
 				</Collapse>
 			</Fragment>
@@ -514,7 +563,7 @@ class SideMenuDrawer extends React.Component {
 		var pkg;
 
 		name = node.name;
-		pkg = name.substring( 8 ); // `@stdlib/` prefix is 8 characters long
+		pkg = deprefix( name );
 
 		return (
 			<ListItem
@@ -540,10 +589,11 @@ class SideMenuDrawer extends React.Component {
 	*
 	* @private
 	* @param {ObjectArray} tree - package tree
+	* @param {Object} expanded - hash indicating whether a namespace node (i.e., package) is expanded
 	* @param {number} level - tree level (depth)
 	* @returns {Array<ReactElement>} React elements
 	*/
-	_renderTree( tree, level ) {
+	_renderTree( tree, expanded, level ) {
 		var pkg;
 		var out;
 		var el;
@@ -553,7 +603,7 @@ class SideMenuDrawer extends React.Component {
 		for ( i = 0; i < tree.length; i++ ) {
 			pkg = tree[ i ];
 			if ( pkg.children ) {
-				el = this._renderNamespace( pkg, level );
+				el = this._renderNamespace( pkg, expanded, level );
 			} else {
 				el = this._renderPackage( pkg, level );
 			}
@@ -575,10 +625,12 @@ class SideMenuDrawer extends React.Component {
 		var state;
 		var tree;
 		var path;
+		var list;
 		var ns;
 		var el;
 		var o;
 		var i;
+		var j;
 		var k;
 
 		// FIXME: this method is called when, e.g., the docs version changes (due to updated props); what happens if the location does not point to a package which exists in that version? The app should 404, but what happens to the side  menu?
@@ -606,21 +658,27 @@ class SideMenuDrawer extends React.Component {
 			// If a filtered is applied, we need to filter the new package tree... (TODO: is this desired? Or should we automatically clear the filter when the version changes?)
 			if ( this.state.filter ) {
 				tree = packageTree( this.props.version );
-				state.filteredTree = filter( tree, this.state.filter );
+				list = [];
+				state.filteredTree = filter( tree, this.state.filter, list );
+
+				// Automatically expand ancestor namespaces for each match...
+				o = {};
+				for ( i = 0; i < list.length; i++ ) {
+					expandAncestors( o, deprefix( list[ i ] ) );
+				}
+				state.filteredExpanded = o;
 			}
 			// Update component state:
 			this.setState( state );
 		}
 		// If the current URL does not match the "active" package, update the current state to match URL...
 		if ( !pathname.endsWith( this.state.active ) ) {
-			// Isolate the package path (e.g., /docs/api/@stdlib/foo/bar => @stdlib/foo/bar):
-			path = pathname.substring( pathname.indexOf( '@stdlib' )+8 ); // `@stdlib/` is 8 characters long
+			// Isolate the package path (e.g., /docs/api/latest/@stdlib/foo/bar => @stdlib/foo/bar):
+			path = pathname.substring( pathname.indexOf( '@stdlib' ) );
 
-			// Walk the path to update the state for each parent namespace package...
-			parts = path.split( '/' );
-			for ( i = 0; i < parts.length; i++ ) {
-				this.state.expanded[ parts.slice( 0, i+1 ).join( '/' ) ] = true;
-			}
+			// Expand ancestor namespace packages:
+			expandAncestors( this.state.expanded, deprefix( path ) );
+
 			// Update the component state:
 			this.setState({
 				'active': path
@@ -651,7 +709,21 @@ class SideMenuDrawer extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	render() {
-		var tree = packageTree( this.props.version );
+		var expanded;
+		var tree;
+
+		// Ensure that we can resolve a package tree for the current documentation version:
+		tree = packageTree( this.props.version );
+		if ( tree === null ) {
+			return null;
+		}
+		// Check whether a user is currently applying a menu filter...
+		if ( this.state.filteredTree ) {
+			tree = this.state.filteredTree;
+			expanded = this.state.filteredExpanded;
+		} else {
+			expanded = this.state.expanded;
+		}
 		return (
 			<Drawer
 				className="side-menu-drawer"
@@ -679,7 +751,7 @@ class SideMenuDrawer extends React.Component {
 						disablePadding
 						className="side-menu-list"
 					>
-						{ ( tree ) ? this._renderTree( this.state.filteredTree || tree, 0 ) : null }
+						{ this._renderTree( tree, expanded, 0 ) }
 					</List>
 				</div>
 			</Drawer>
