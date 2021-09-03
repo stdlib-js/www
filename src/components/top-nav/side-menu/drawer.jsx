@@ -47,7 +47,8 @@ var COLLAPSE_TRANSITION_TIMEOUT = 500;
 var DEBOUNCE_INTERVAL = 300;
 var SCROLL_OPTIONS = {
 	'behavior': 'smooth',
-	'scrollMode': 'if-needed'
+	'scrollMode': 'if-needed',
+	'boundary': null
 };
 
 
@@ -99,6 +100,8 @@ function resetView() {
 	* @private
 	*/
 	function onTimeout() {
+		var parent = document.getElementsByClassName( 'side-menu-list-wrapper' );
+		SCROLL_OPTIONS.boundary = parent[ 0 ];
 		scrollIntoView( el, SCROLL_OPTIONS );
 	}
 }
