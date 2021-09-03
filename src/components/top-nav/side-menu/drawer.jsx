@@ -716,20 +716,25 @@ class SideMenuDrawer extends React.Component {
 		pathname = this.props.history.location.pathname;
 		pathname = pathname.replace( RE_PACKAGE_PAGE, '' );
 
+		// If present, isolate the package path (e.g., /docs/api/latest/@stdlib/foo/bar => @stdlib/foo/bar => foo/bar):
+		i = pathname.indexOf( '@stdlib' );
+		if ( i >= 0 ) {
+			path = deprefix( pathname.substring( i ) );
+		} else {
+			path = '';
+		}
 		// If the current URL does not match the "active" package, update the current state to match URL...
-		if ( !pathname.endsWith( this.state.active ) ) {
-			// Isolate the package path (e.g., /docs/api/latest/@stdlib/foo/bar => @stdlib/foo/bar => foo/bar):
-			path = deprefix( pathname.substring( pathname.indexOf( '@stdlib' ) ) );
-
-			// Expand ancestor namespace packages:
-			expandAncestors( this.state.expanded, path, true );
-
+		if ( path !== this.state.active ) {
+			// If we've navigated to a new package, expand ancestor namespace packages...
+			if ( path ) {
+				expandAncestors( this.state.expanded, path, true );
+			}
 			// Update the component state:
 			this.setState({
 				'active': path
 			});
 		}
-		// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view...
+		// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view in the side menu...
 		if ( this.state.active !== prevState.active ) {
 			resetView();
 		}
