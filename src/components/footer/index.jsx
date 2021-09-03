@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import config from './../../config.js';
 
 
@@ -37,7 +38,7 @@ function Footer() {
 			<nav className="bottom-nav center" aria-label="Footer">
 				<a href={ config.funding } title="Help support the project">Donate</a>
 				{ ' / ' }
-				<a href={ config.mount } title="Documentation">Docs</a>
+				<Link to={ config.mount } title="Documentation">Docs</Link>
 				{ ' / ' }
 				<a href={ config.gitter } title="Talk to us on Gitter!">Chat</a>
 				{ ' / ' }
