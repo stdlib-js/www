@@ -31,6 +31,7 @@ import log from './utils/log.js';
 import fetchFragment from './utils/fetch_fragment.js';
 import fetchPackageData from './utils/fetch_package_data.js';
 import packageResources from './utils/package_resources.js';
+import packageResource from './utils/package_resource.js';
 import viewportWidth from './utils/viewport_width.js';
 import config from './config.js';
 import routes from './routes.js';
@@ -106,27 +107,6 @@ function matchCurrentPath( pathname, version ) {
 			'version': version
 		}
 	};
-}
-
-/**
-* Returns a package resource for a specified documentation version.
-*
-* @private
-* @param {string} pkg - package name
-* @param {string} resource - resource name
-* @param {string} version - documentation version
-* @returns {(string|null)} package resource
-*/
-function packageResource( pkg, resource, version ) {
-	var resources = packageResources( version );
-	if ( resources === null ) {
-		return null;
-	}
-	resources = resources[ pkg ];
-	if ( !resources ) {
-		return null;
-	}
-	return resources[ resource ] || null;
 }
 
 
