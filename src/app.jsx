@@ -20,7 +20,6 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
 import IframeResizer from './components/iframe-resizer/index.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -34,6 +33,23 @@ import fetchPackageData from './utils/fetch_package_data.js';
 import packageResources from './utils/package_resources.js';
 import viewportWidth from './utils/viewport_width.js';
 import config from './config.js';
+
+
+// VARIABLES //
+
+var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
+
+
+// FUNCTIONS //
+
+/**
+* Resets the window scroll position to the top of the page.
+*
+* @private
+*/
+function resetScroll() {
+	window.scrollTo( 0, 0 );
+}
 
 
 // MAIN //
@@ -73,7 +89,7 @@ class App extends React.Component {
 	*
 	* ## Notes
 	*
-	* -   If unable to immediately resolve a fragment, the method attempts to asynchronously resolve the fragment and manually updated the rendered application.
+	* -   If unable to immediately resolve a fragment, the method attempts to asynchronously resolve the fragment and manually update the rendered application.
 	*
 	* @private
 	* @param {string} path - fragment path
@@ -130,6 +146,38 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked upon clicking on README content.
+	*
+	* ## Notes
+	*
+	* -   This `click` handler intercepts hyperlink navigation in order to notify the application router and ensure that internal documentation navigation does not trigger a fresh page load.
+	*
+	* @private
+	* @param {Object} event - event object
+	* @returns {void}
+	*/
+	_onReadmeClick = ( event ) => {
+		var target;
+		var href;
+
+		// Find the nearest parent anchor element:
+		target = event.target.closest( 'a' );
+		if ( !target ) {
+			return;
+		}
+		// Allow links to external resources to proceed unhindered:
+		href = target.getAttribute( 'href' );
+		if ( RE_INTERNAL_URL.test( href ) === false ) {
+			return;
+		}
+		// Prevent the application from navigating to a documentation page via a fresh page load:
+		event.preventDefault();
+
+		// Notify the router that the user has navigated to a different documentation page:
+		this.props.history.push( href );
+	}
+
+	/**
 	* Callback invoked upon a change to the current package.
 	*
 	* @private
@@ -138,9 +186,6 @@ class App extends React.Component {
 	_onPackageChange = ( path ) => {
 		// Update the history in order to navigate to the desired package:
 		this.props.history.push( path );
-
-		// Scroll back to the top of the page:
-		window.scrollTo( 0, 0 );
 	}
 
 	/**
@@ -230,8 +275,6 @@ class App extends React.Component {
 		var el = document.getElementById( 'readme' );
 		if ( el ) {
 			el.innerHTML = html;
-
-			// TODO: consider adding click listeners to allow for integration with react-router-dom: https://stackoverflow.com/questions/30523800/call-react-component-function-from-onclick-in-dangerouslysetinnerhtml
 		}
 	}
 
@@ -245,7 +288,10 @@ class App extends React.Component {
 	*/
 	_renderReadme( match ) {
 		return (
-			<Readme html={ this._fetchFragment( match.url ) } />
+			<Readme
+				html={ this._fetchFragment( match.url ) }
+				onClick={ this._onReadmeClick }
+			/>
 		);
 	}
 
@@ -415,6 +461,9 @@ class App extends React.Component {
 		* @returns {ReactElement} React element
 		*/
 		function render( props ) {
+			// Whenever we navigate to a new page, reset the window scroll position:
+			resetScroll();
+
 			return (
 				<Fragment>
 					{ self._renderTopNav( content, props.match ) }
