@@ -101,6 +101,23 @@ function matchCurrentPath( pathname, version ) {
 	};
 }
 
+/**
+* Updates rendered README content.
+*
+* ## Notes
+*
+* -   This function updates rendered content **outside** of the standard component lifecyle.
+*
+* @private
+* @param {string} html - README content
+*/
+function updateReadme( html ) {
+	var el = document.getElementById( 'readme' );
+	if ( el ) {
+		el.innerHTML = html;
+	}
+}
+
 
 // MAIN //
 
@@ -172,13 +189,13 @@ class App extends React.Component {
 			if ( error ) {
 				// Guard against race conditions (e.g., a fragment fails to resolve *after* a user subsequently navigated to a different package whose associated fragment already resolved)...
 				if ( path === self.props.history.location.pathname ) {
-					self._updateReadme( notFoundHTML() );
+					updateReadme( notFoundHTML() );
 				}
 				return log( error );
 			}
 			// Guard against race conditions (e.g., a fragment is resolved *after* a user subsequently navigated to a different package whose associated fragment already resolved)...
 			if ( path === self.props.history.location.pathname ) {
-				self._updateReadme( fragment );
+				updateReadme( fragment );
 			}
 		}
 	}
@@ -308,23 +325,6 @@ class App extends React.Component {
 		*/
 		function onState() {
 			done();
-		}
-	}
-
-	/**
-	* Updates rendered README content.
-	*
-	* ## Notes
-	*
-	* -   This method updates rendered content **outside** of the standard component lifecyle.
-	*
-	* @private
-	* @param {string} html - README content
-	*/
-	_updateReadme( html ) {
-		var el = document.getElementById( 'readme' );
-		if ( el ) {
-			el.innerHTML = html;
 		}
 	}
 
