@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
+import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
 import IframeResizer from './components/iframe-resizer/index.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -33,11 +33,18 @@ import fetchPackageData from './utils/fetch_package_data.js';
 import packageResources from './utils/package_resources.js';
 import viewportWidth from './utils/viewport_width.js';
 import config from './config.js';
+import routes from './routes.js';
 
 
 // VARIABLES //
 
 var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
+var RENDER_METHOD_NAMES = {
+	'welcome': '_renderWelcome',
+	'readme': '_renderReadme',
+	'benchmark': '_renderBenchmark',
+	'test': '_renderTest'
+};
 
 
 // FUNCTIONS //
@@ -49,6 +56,77 @@ var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
 */
 function resetScroll() {
 	window.scrollTo( 0, 0 );
+}
+
+/**
+* Parses the current URL path.
+*
+* @private
+* @param {string} pathname - current URL path
+* @param {string} version - default documentation version
+* @returns {(Object|null)} parse results
+*/
+function matchCurrentPath( pathname, version ) {
+	var match;
+
+	// Try to find the matching route...
+	match = matchPath( pathname, {
+		'path': routes.PACKAGE_BENCHMARKS,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
+	match = matchPath( pathname, {
+		'path': routes.PACKAGE_TESTS,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
+	match = matchPath( pathname, {
+		'path': routes.PACKAGE_DEFAULT,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
+	match = matchPath( pathname, {
+		'path': routes.VERSION_DEFAULT,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
+	// Default to version landing page:
+	return {
+		'path': routes.VERSION_DEFAULT,
+		'url': pathname,
+		'params': {
+			'version': version
+		}
+	};
+}
+
+/**
+* Returns a package resource for a specified documentation version.
+*
+* @private
+* @param {string} pkg - package name
+* @param {string} resource - resource name
+* @param {string} version - documentation version
+* @returns {(string|null)} package resource
+*/
+function packageResource( pkg, resource, version ) {
+	var resources = packageResources( version );
+	if ( resources === null ) {
+		return null;
+	}
+	resources = resources[ pkg ];
+	if ( !resources ) {
+		return null;
+	}
+	return resources[ resource ] || null;
 }
 
 
@@ -279,6 +357,74 @@ class App extends React.Component {
 	}
 
 	/**
+	* Renders top navigation.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderTopNav() {
+		var resources;
+		var match;
+		var props;
+		var path;
+
+		// Parse the current URL path:
+		match = matchCurrentPath( this.props.history.location.pathname, this.state.version );
+		path = match.path;
+
+		// Define default property values:
+		props = {
+			'pkg': '',
+			'version': '',
+			'benchmarks': false,
+			'docs': false,
+			'home': false,
+			'src': false,
+			'tests': false,
+			'typescript': false
+		};
+		// Update property values based on the current "view"...
+		if ( path === routes.VERSION_DEFAULT ) {
+			props.home = true;
+			props.version = this.state.version;
+		} else {
+			// We are currently rendering a package view...
+			props.pkg = '@stdlib/' + match.params.pkg;
+			props.version = match.params.version;
+			props.src = true;
+
+			// Attempt to resolve package resources for the current package...
+			resources = packageResources( props.version );
+			if ( resources ) {
+				resources = resources[ match.params.pkg ];
+			}
+			// If we were able to resolve package resources, determine which links we want to display in the top navigation...
+			if ( resources ) {
+				props.typescript = Boolean( resources.typescript );
+				if ( path === routes.PACKAGE_DEFAULT ) {
+					props.benchmarks = Boolean( resources.benchmark );
+					props.tests = Boolean( resources.test );
+				} else if ( path === routes.PACKAGE_BENCHMARKS ) {
+					props.docs = true;
+					props.tests = Boolean( resources.test );
+				} else if ( path === routes.PACKAGE_TESTS ) {
+					props.docs = true;
+					props.benchmarks = Boolean( resources.benchmark );
+				}
+			}
+		}
+		return (
+			<TopNav
+				onSideMenuToggle={ this._onSideMenuToggle }
+				onPackageChange={ this._onPackageChange }
+				onVersionChange={ this._onVersionChange }
+				sideMenu={ this.state.sideMenu }
+				{...props}
+			/>
+		);
+	}
+
+	/**
 	* Renders a README.
 	*
 	* @private
@@ -303,14 +449,12 @@ class App extends React.Component {
 	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
 	* @param {string} match.params.pkg - package name
+	* @param {string} match.params.version - documentation version
 	* @returns {ReactElement} React element
 	*/
 	_renderBenchmark( match ) {
-		var resources = packageResources( this.state.version );
-		if ( resources ) {
-			resources = resources[ match.params.pkg ];
-		}
-		if ( resources && resources.benchmark ) {
+		var rsrc = packageResource( match.params.pkg, 'benchmark', match.params.version );
+		if ( rsrc ) {
 			return (
 				<IframeResizer
 					className="embedded-iframe"
@@ -333,14 +477,12 @@ class App extends React.Component {
 	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
 	* @param {string} match.params.pkg - package name
+	* @param {string} match.params.version - documentation version
 	* @returns {ReactElement} React element
 	*/
 	_renderTest( match ) {
-		var resources = packageResources( this.state.version );
-		if ( resources ) {
-			resources = resources[ match.params.pkg ];
-		}
-		if ( resources && resources.test ) {
+		var rsrc = packageResource( match.params.pkg, 'test', match.params.version );
+		if ( rsrc ) {
 			return (
 				<IframeResizer
 					className="embedded-iframe"
@@ -359,73 +501,15 @@ class App extends React.Component {
 	* Renders landing page content.
 	*
 	* @private
-	* @returns {ReactElement} React element
-	*/
-	_renderWelcome() {
-		return (
-			<Welcome version={ this.state.version } />
-		);
-	}
-
-	/**
-	* Renders top navigation.
-	*
-	* @private
-	* @param {string} content - content type
 	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
-	* @param {string} match.params.pkg - package name
 	* @param {string} match.params.version - documentation version
 	* @returns {ReactElement} React element
 	*/
-	_renderTopNav( content, match ) {
-		var resources;
-		var props;
-
-		props = {
-			'pkg': '',
-			'version': '',
-			'benchmarks': false,
-			'docs': false,
-			'home': false,
-			'src': false,
-			'tests': false,
-			'typescript': false
-		};
-		if ( content === 'welcome' ) {
-			props.home = true;
-			props.version = this.state.version;
-		} else {
-			props.version = match.params.version;
-
-			resources = packageResources( this.state.version ); // TODO: state.version or match.params.version?
-			if ( resources ) {
-				resources = resources[ match.params.pkg ];
-				if ( resources ) {
-					props.src = true;
-					props.typescript = Boolean( resources.typescript );
-					if ( content === 'readme' ) {
-						props.benchmarks = Boolean( resources.benchmark );
-						props.tests = Boolean( resources.test );
-					} else if ( content === 'benchmark' ) {
-						props.docs = true;
-						props.tests = Boolean( resources.test );
-					} else if ( content === 'test' ) {
-						props.docs = true;
-						props.benchmarks = Boolean( resources.benchmark );
-					}
-				}
-			}
-			props.pkg = '@stdlib/' + match.params.pkg;
-		}
+	_renderWelcome( match ) {
 		return (
-			<TopNav
-				onSideMenuToggle={ this._onSideMenuToggle }
-				onPackageChange={ this._onPackageChange }
-				onVersionChange={ this._onVersionChange }
-				sideMenu={ this.state.sideMenu }
-				{...props}
-			/>
+			<Welcome version={ match.params.version } />
 		);
 	}
 
@@ -441,15 +525,8 @@ class App extends React.Component {
 		var self;
 
 		self = this;
-		if ( content === 'welcome' ) {
-			method = '_renderWelcome';
-		} else if ( content === 'readme' ) {
-			method = '_renderReadme';
-		} else if ( content === 'benchmark' ) {
-			method = '_renderBenchmark';
-		} else if ( content === 'test' ) {
-			method = '_renderTest';
-		}
+		method = RENDER_METHOD_NAMES[ content ];
+
 		return render;
 
 		/**
@@ -461,19 +538,13 @@ class App extends React.Component {
 		* @returns {ReactElement} React element
 		*/
 		function render( props ) {
-			// Whenever we navigate to a new page, reset the window scroll position:
-			resetScroll();
-
 			return (
-				<Fragment>
-					{ self._renderTopNav( content, props.match ) }
-					<div
-						class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
-						 role="main"
-					>
-						{ self[ method ]( props.match ) }
-					</div>
-				</Fragment>
+				<div
+					class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
+					role="main"
+				>
+					{ self[ method ]( props.match ) }
+				</div>
 			);
 		}
 	}
@@ -527,37 +598,41 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	render() {
+		// Whenever we navigate to a new page, reset the window scroll position:
+		resetScroll();
+
 		return (
 			<Fragment>
+				{ this._renderTopNav() }
 				<Switch>
 					<Redirect
 						exact
-						from={ config.mount+':version/@stdlib/:pkg+/index.html' }
-						to={ config.mount+':version/@stdlib/:pkg+' }
+						from={ routes.PACKAGE_INDEX }
+						to={ routes.PACKAGE_DEFAULT }
 					/>
 					<Route
 						exact
-						path={ config.mount+':version/@stdlib/:pkg+/benchmark.html' }
+						path={ routes.PACKAGE_BENCHMARKS }
 						render={ this._renderer( 'benchmark' ) }
 					/>
 					<Route
 						exact
-						path={ config.mount+':version/@stdlib/:pkg+/test.html' }
+						path={ routes.PACKAGE_TESTS }
 						render={ this._renderer( 'test' ) }
 					/>
 					<Route
 						exact
-						path={ config.mount+':version/@stdlib/:pkg+' }
+						path={ routes.PACKAGE_DEFAULT }
 						render={ this._renderer( 'readme' ) }
 					/>
 					<Redirect
 						exact
-						from={ config.mount+':version/*' }
-						to={ config.mount+':version' }
+						from={ routes.NONPACKAGE_DEFAULT }
+						to={ routes.VERSION_DEFAULT }
 					/>
 					<Route
 						exact
-						path={ config.mount+':version' }
+						path={ routes.VERSION_DEFAULT }
 						render={ this._renderer( 'welcome' ) }
 					/>
 					<Redirect to={ config.mount+this.state.version } />
