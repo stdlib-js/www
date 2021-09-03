@@ -485,7 +485,6 @@ class App extends React.Component {
 		var pathname;
 		var version;
 		var prefix;
-		var self;
 		var i;
 		var j;
 
