@@ -488,8 +488,6 @@ class App extends React.Component {
 		var i;
 		var j;
 
-		self = this;
-
 		prefix = config.mount;
 		pathname = this.props.history.location.pathname;
 
