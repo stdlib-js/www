@@ -33,6 +33,7 @@ import fetchPackageData from './utils/fetch_package_data.js';
 import packageResources from './utils/package_resources.js';
 import packageResource from './utils/package_resource.js';
 import viewportWidth from './utils/viewport_width.js';
+import resetScroll from './utils/reset_scroll.js';
 import config from './config.js';
 import routes from './routes.js';
 
@@ -49,15 +50,6 @@ var RENDER_METHOD_NAMES = {
 
 
 // FUNCTIONS //
-
-/**
-* Resets the window scroll position to the top of the page.
-*
-* @private
-*/
-function resetScroll() {
-	window.scrollTo( 0, 0 );
-}
 
 /**
 * Parses the current URL path.

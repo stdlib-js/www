@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,31 +16,18 @@
 * limitations under the License.
 */
 
-// MODULES //
-
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import resetScroll from './utils/reset_scroll.js';
-import App from './app.jsx';
-
-
 // MAIN //
 
 /**
-* Component for rendering a client application.
+* Resets the window scroll position to the top of the page.
 *
 * @private
-* @returns {ReactElement} React element
 */
-function ClientApp() {
-	return (
-		<BrowserRouter onUpdate={ resetScroll } >
-			<App />
-		</BrowserRouter>
-	);
+function resetScroll() {
+	window.scrollTo( 0, 0 );
 }
 
 
 // EXPORTS //
 
-export default ClientApp;
+export default resetScroll;
