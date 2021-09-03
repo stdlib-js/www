@@ -29,6 +29,7 @@ import React from 'react';
 * @private
 * @param {Object} props - component properties
 * @param {string} props.html - README HTML
+* @param {Callback} props.onClick - callback to invoke upon clicking on README content
 * @returns {ReactElement} React element
 */
 function Readme( props ) {
@@ -36,11 +37,12 @@ function Readme( props ) {
 		<div
 			id="readme"
 			className="readme"
+			onClick={ props.onClick }
 			suppressHydrationWarning
 			dangerouslySetInnerHTML={ { '__html': props.html } }
 		/>
 	);
-};
+}
 
 
 // EXPORTS //
