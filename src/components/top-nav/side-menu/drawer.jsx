@@ -42,7 +42,7 @@ import Filter from './filter.jsx';
 
 // VARIABLES //
 
-var RE_TRAILING_SLASH = /\/$/;
+var RE_PACKAGE_PAGE = /\/(?:[^\/]+\.(?:html))*$/; // eslint-disable-line no-useless-escape
 var COLLAPSE_TRANSITION_TIMEOUT = 500;
 var DEBOUNCE_INTERVAL = 300;
 var SCROLL_OPTIONS = {
@@ -169,7 +169,7 @@ class SideMenuDrawer extends React.Component {
 		}
 		// Get the current URL:
 		pathname = this.props.history.location.pathname;
-		pathname = pathname.replace( RE_TRAILING_SLASH, '' );
+		pathname = pathname.replace( RE_PACKAGE_PAGE, '' );
 
 		// Isolate the package path, if such a path exists (e.g., /docs/api/@stdlib/foo/bar => @stdlib/foo/bar):
 		i = pathname.indexOf( '@stdlib/' );
@@ -714,7 +714,7 @@ class SideMenuDrawer extends React.Component {
 		}
 		// Get the current URL:
 		pathname = this.props.history.location.pathname;
-		pathname = pathname.replace( RE_TRAILING_SLASH, '' );
+		pathname = pathname.replace( RE_PACKAGE_PAGE, '' );
 
 		// If the current URL does not match the "active" package, update the current state to match URL...
 		if ( !pathname.endsWith( this.state.active ) ) {
