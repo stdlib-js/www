@@ -26,6 +26,7 @@
 
    -   we need a much shorter build process for this to realistically be viable, but may work for serving all non-package assets (e.g., API docs application, static www pages, etc)
    -   <https://github.com/linode/docs/blob/master/docs/websites/static-sites/install-gatsbyjs/index.md>
+   -   consider netlify, although it now has build limits
 
 6. (docs) consider adding link elements to section headings similar to how GitHub displays a link icon on hover which supports creating a link to that specific section
 
@@ -41,7 +42,7 @@
 
 9. (docs) build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
 
-10. (docs) test/benchmark iframe media queries (on small devices, we can reduce the left margin)
+10.
 
 11. diffie-hellman: <https://mozilla.github.io/server-side-tls/ssl-config-generator/>
 
@@ -89,7 +90,7 @@
 
 25. resolve approach for using `stdlib` pkgs in www JS assets (e.g., setting NODE_PATH during browserify or some other approach?)
 
-    -   see, e.g., js/404/particular_animation.js
+    -   see, e.g., js/404/particle_animation.js
 
 26. Use of "Learn More" on www feature buttons (?; not even sure what this item refers to anymore 😢)
 
@@ -169,6 +170,8 @@
         -   checkbox for each version
         -   ability to select/de-select all versions
         -   option to specify "latest" (if so, then we need to be able to check for updates and to prompt the user when new docs are available)
+
+    -   may also want a dialog to allow user to specify the downloading of search indices, test/benchmark bundles, and/or ESM modules for running examples locally
 
 35. (docs) add support for an RSS and/or Atom feed?
 

@@ -181,6 +181,47 @@ h2 {
 }
 
 /*
+* Media queries.
+*
+* [1]: https://zellwk.com/blog/media-query-units/
+*/
+
+@media only screen and (max-width: 53.75em) { /* 860px */
+	.main {
+		width: 86%;
+		margin-left: 7%;
+	}
+
+	.main.translate-right {
+		/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
+		-webkit-transform: translateX(350px);
+		-moz-transform: translateX(350px);
+		-ms-transform: translateX(350px);
+		-o-transform: translateX(350px);
+		transform: translateX(350px);
+
+		-webkit-transform: translateZ(0) translateX(350px);
+		-moz-transform: translateZ(0) translateX(350px);
+		-ms-transform: translateZ(0) translateX(350px);
+		-o-transform: translateZ(0) translateX(350px);
+		transform: translateZ(0) translateX(350px);
+
+		-webkit-transform: translate3d(350px, 0, 0);
+		-moz-transform: translate3d(350px, 0, 0);
+		-ms-transform: translate3d(350px, 0, 0);
+		-o-transform: translate3d(350px, 0, 0);
+		transform: translate3d(350px, 0, 0);
+	}
+}
+
+@media only screen and (max-width: 45em) { /* 720px */
+	.main {
+		width: 94%;
+		margin-left: 3%;
+	}
+}
+
+/*
 * README.
 */
 
@@ -259,32 +300,6 @@ h2 {
 }
 
 @media only screen and (max-width: 53.75em) { /* 860px */
-	.main {
-		width: 86%;
-		margin-left: 7%;
-	}
-
-	.main.translate-right {
-		/* Add transform fallbacks for browsers not supporting `translate3d`. Translate in order to accommodate the side menu. */
-		-webkit-transform: translateX(350px);
-		-moz-transform: translateX(350px);
-		-ms-transform: translateX(350px);
-		-o-transform: translateX(350px);
-		transform: translateX(350px);
-
-		-webkit-transform: translateZ(0) translateX(350px);
-		-moz-transform: translateZ(0) translateX(350px);
-		-ms-transform: translateZ(0) translateX(350px);
-		-o-transform: translateZ(0) translateX(350px);
-		transform: translateZ(0) translateX(350px);
-
-		-webkit-transform: translate3d(350px, 0, 0);
-		-moz-transform: translate3d(350px, 0, 0);
-		-ms-transform: translate3d(350px, 0, 0);
-		-o-transform: translate3d(350px, 0, 0);
-		transform: translate3d(350px, 0, 0);
-	}
-
 	.readme {
 		margin-left: 0;
 	}
@@ -308,11 +323,6 @@ h2 {
 }
 
 @media only screen and (max-width: 45em) { /* 720px */
-	.main {
-		width: 94%;
-		margin-left: 3%;
-	}
-
 	.readme {
 		margin-left: 0;
 	}
@@ -784,4 +794,33 @@ button.side-menu-list-item-namespace-icon {
 	margin-left: 12.5%;
 	padding-top: 80px;
 	padding-bottom: 100px;
+}
+
+@media only screen and (max-width: 76.25em) { /* 1220px */
+	.embedded-iframe {
+		width: 66.66666666666%;
+	}
+}
+
+@media only screen and (max-width: 67.5em) { /* 1080px */
+	.embedded-iframe {
+		width: 80%;
+		max-width: 700px;
+	}
+}
+
+@media only screen and (max-width: 53.75em) { /* 860px */
+	.embedded-iframe {
+		margin-left: 0;
+		width: 96%;
+		max-width: 700px;
+	}
+}
+
+@media only screen and (max-width: 45em) { /* 720px */
+	.embedded-iframe {
+		margin-left: 0;
+		width: 100%;
+		min-width: 100%;
+	}
 }
