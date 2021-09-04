@@ -50,7 +50,7 @@ function recurse( tree, filter, out ) {
 		node = tree[ i ];
 
 		// Check if the current package satisfies the filter...
-		if ( filter.test( node.name ) ) {
+		if ( filter.test( node.name ) || filter.test( node.standalone ) ) {
 			// We found a match! We don't need to recurse any further...
 			matches.push( node );
 			if ( out ) {
@@ -67,6 +67,7 @@ function recurse( tree, filter, out ) {
 				o = {
 					'key': node.key,
 					'name': node.name,
+					'standalone': node.standalone,
 					'children': tmp
 				}
 				matches.push( o );
