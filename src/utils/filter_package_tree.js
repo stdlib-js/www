@@ -18,6 +18,7 @@
 
 // MODULES //
 
+import isRegExpString from '@stdlib/assert/is-regexp-string';
 import reFromString from '@stdlib/utils/regexp-from-string';
 
 
@@ -99,10 +100,15 @@ function recurse( tree, filter, out ) {
 * @returns {(ObjectArray|null)} filtered tree
 */
 function filterTree( tree, filter, out ) {
-	try {
-		filter = reFromString( '/'+filter.replace( RE_FORWARD_SLASH, '\\/' )+'/' );
-	} catch ( err ) {
-		return null;
+	if ( isRegExpString( filter ) ) {
+		filter = reFromString( filter );
+	} else {
+		filter = filter.replace( RE_FORWARD_SLASH, '\\/' );
+		try {
+			filter = reFromString( '/'+filter+'/' );
+		} catch ( err ) {
+			return null;
+		}
 	}
 	return recurse( tree, filter, out );
 }
