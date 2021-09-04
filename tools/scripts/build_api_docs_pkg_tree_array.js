@@ -26,6 +26,8 @@ var join = require( 'path' ).join;
 var objectKeys = require( '@stdlib/utils/keys' );
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
+var name2standalone = require( '@stdlib/_tools/pkgs/name2standalone' );
+var pkg2alias = require( '@stdlib/namespace/pkg2alias' );
 var documentationPath = require( './api_docs_path.js' );
 
 
@@ -43,8 +45,13 @@ var OUTPUT = 'package_tree_array.json';
 *
 * -   A package tree "node" has the following properties:
 *
-*     -   **key**: the last part of the package name (e.g., `math/base/special/sin` => `sin`). This corresponds to the "leaf" name.
-*     -   **name**: full package name (e.g., `math/base/special/sin`).
+*     -   **key**: the last part of the package name (e.g., `@stdlib/math/base/special/sin` => `sin`). This corresponds to the "leaf" name.
+*     -   **name**: full package name (e.g., `@stdlib/math/base/special/sin`).
+*     -   **standalone**: full standalone package name (e.g., `@stdlib/math-base-special-sin`).
+*
+* -   A package tree "node" **may** have the following additional properties:
+*
+*     -   **alias**: global project alias (e.g., `base.sin`).
 *
 * -   A namespace tree "node" has the same properties as a package tree "node" and has the following additional properties:
 *
@@ -57,14 +64,18 @@ var OUTPUT = 'package_tree_array.json';
 *         {
 *             "key": "array",
 *             "name": "@stdlib/array",
+*             "standalone": "@stdlib/array",
 *             "children": [
 *                 {
 *                     "key": "base",
 *                     "name": "@stdlib/array/base",
+*                     "standalone": "@stdlib/array-base",
 *                     "children": [
 *                         {
 *                             "key": "foo",
 *                             "name": "@stdlib/array/base/foo"
+*                             "standalone": "@stdlib/array-base-foo",
+*                             "alias": "base.foo"
 *                         },
 *                         ...
 *                     ]
@@ -73,6 +84,8 @@ var OUTPUT = 'package_tree_array.json';
 *                 {
 *                     "key": "bar",
 *                     "name": "@stdlib/array/bar"
+*                     "standalone": "@stdlib/array-bar",
+*                     "alias": "bar"
 *                 },
 *                 ...
 *             ]
@@ -81,6 +94,7 @@ var OUTPUT = 'package_tree_array.json';
 *         {
 *             "key": "types",
 *             "name": "@stdlib/types"
+*             "standalone": "@stdlib/types"
 *         },
 *         ...
 *     ]
@@ -92,6 +106,7 @@ var OUTPUT = 'package_tree_array.json';
 * @returns {ObjectArray} array of tree nodes
 */
 function recurse( tree, path ) {
+	var alias;
 	var keys;
 	var node;
 	var out;
@@ -115,6 +130,12 @@ function recurse( tree, path ) {
 			o.children = recurse( node, o.name );
 		} else {
 			o.name = node;
+		}
+		o.standalone = name2standalone( o.name );
+
+		alias = pkg2alias( o.name );
+		if ( alias ) {
+			o.alias = alias;
 		}
 		out.push( o );
 	}
