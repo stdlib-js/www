@@ -43,7 +43,7 @@ var OUTPUT = 'package_tree_array.json';
 *
 * ## Notes
 *
-* -   A package tree "node" has the following properties:
+* -   A package tree "node" has the following guaranteed properties:
 *
 *     -   **key**: the last part of the package name (e.g., `@stdlib/math/base/special/sin` => `sin`). This corresponds to the "leaf" name.
 *     -   **name**: full package name (e.g., `@stdlib/math/base/special/sin`).
@@ -53,7 +53,7 @@ var OUTPUT = 'package_tree_array.json';
 *
 *     -   **alias**: global project alias (e.g., `base.sin`).
 *
-* -   A namespace tree "node" has the same properties as a package tree "node" and has the following additional properties:
+* -   A namespace tree "node" has the same guaranteed properties as a package tree "node" and has the following additional properties:
 *
 *     -   **children**: list of children "nodes".
 *
