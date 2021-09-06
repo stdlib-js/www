@@ -296,7 +296,6 @@ class SideMenuDrawer extends React.Component {
 	* @returns {Callback} event handler
 	*/
 	_onNamespaceClickFactory( pkg ) {
-		var path = pkgPath( pkg, this.props.version );
 		var self = this;
 		return onClick;
 
@@ -307,7 +306,7 @@ class SideMenuDrawer extends React.Component {
 		*/
 		function onClick() {
 			// Notify the application that a user has selected a new package:
-			self.props.onPackageChange( path );
+			self.props.onPackageChange( pkg );
 
 			// Check whether a user is currently applying a menu filter...
 			if ( self.state.filter ) {
@@ -376,7 +375,6 @@ class SideMenuDrawer extends React.Component {
 	* @returns {Callback} event handler
 	*/
 	_onPackageClickFactory( pkg ) {
-		var path = pkgPath( pkg, this.props.version );
 		var self = this;
 		return onClick;
 
@@ -388,7 +386,7 @@ class SideMenuDrawer extends React.Component {
 		*/
 		function onClick() {
 			// Notify the application that a user has selected a package:
-			self.props.onPackageChange( path );
+			self.props.onPackageChange( pkg );
 
 			// If a user has selected a package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package and its associated namespace path are still displayed in the menu...
 			if ( self.state.filter ) {
