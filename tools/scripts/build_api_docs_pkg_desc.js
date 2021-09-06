@@ -27,13 +27,13 @@ var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var replace = require( '@stdlib/string/replace' );
 var documentationPath = require( './api_docs_path.js' );
-var root = require( './root.js' );
+var stdlibPath = require( './stdlib_path.js' );
 
 
 // VARIABLES //
 
 var RE_BACKTICK = /`/g;
-var STDLIB_PATH = join( root(), 'node_modules', '@stdlib', 'stdlib', 'lib', 'node_modules' );
+var STDLIB_PATH = join( stdlibPath(), 'lib', 'node_modules' );
 var OUTPUT = 'package_desc.json';
 
 
