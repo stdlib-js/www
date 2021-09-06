@@ -37,7 +37,7 @@ function DownloadProgressBar( props ) {
 		<LinearProgress
 			className="download-progress"
 			variant="determinate"
-			value={ this.props.value }
+			value={ props.value }
 		/>
 	);
 }
