@@ -22,8 +22,10 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CancelIcon from '@material-ui/icons/Cancel';
+import fetchPackageList from './../../utils/fetch_package_list.js';
 import packageList from './../../utils/package_list.js';
 import download from './../../utils/download_assets.js';
+import log from './../../utils/log.js';
 
 
 // MAIN //
@@ -80,14 +82,28 @@ class DownloadButton extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onDownloadClick = () => {
-		var list;
+		var self = this;
 
 		// TODO: what about other versions???
-		list = packageList( this.props.version );
-		if ( list ) {
-			this._download = download( list, this.props.version, this._onProgress );
+		fetchPackageList( this.props.version, clbk );
+
+		/**
+		* Callback invoked upon resolving a package list.
+		*
+		* @private
+		* @param {(Error|null)} error - error object
+		* @returns {void}
+		*/
+		function clbk( error ) {
+			var list;
+			if ( error ) {
+				// TODO: display message to user that unable to download assets
+				log( error.message );
+				return;
+			}
+			list = packageList( self.props.version );
+			self._download = download( list, self.props.version, self._onProgress );
 		}
-		// TODO: what if we didn't resolve a package list?!?!
 	}
 
 	/**
