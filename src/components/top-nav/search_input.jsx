@@ -38,6 +38,7 @@ class SearchInput extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {Callback} props.onChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSubmit - callback to invoke upon a user submitting a search query
 	* @returns {ReactComponent} React component
 	*/
@@ -62,6 +63,7 @@ class SearchInput extends React.Component {
 		this.setState({
 			'query': event.target.value
 		});
+		this.props.onChange( event.target.value );
 	}
 
 	/**
@@ -76,8 +78,8 @@ class SearchInput extends React.Component {
 			return;
 		}
 		if ( event.charCode === 13 || event.key === 'Enter' ) {
-          this.props.onSubmit( this.state.query );
-        }
+			this.props.onSubmit( this.state.query );
+		}
 	}
 
 	/**
