@@ -97,7 +97,7 @@ class DownloadButton extends React.Component {
 		*/
 		function clbk( error, data ) {
 			if ( error ) {
-				// TODO: display message to user that unable to download assets
+				// TODO: display message to user that we are unable to download assets
 				log( error.message );
 				return;
 			}
