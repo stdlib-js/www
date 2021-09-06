@@ -40,19 +40,19 @@ class TopNav extends React.Component {
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
+	* @param {string} props.pkg - package name
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
 	* @param {Callback} props.onSearchSubmit - callback to invoke upon submitting a search query
 	* @param {Callback} props.onSearchChange - callback to invoke upon updating a search input element
-	* @param {string} [props.pkg] - package name
-	* @param {boolean} [props.home] - boolean indicating whether to link to the main website
-	* @param {boolean} [props.docs] - boolean indicating whether to link to package documentation
-	* @param {boolean} [props.src] - boolean indicating whether to link to package source
-	* @param {boolean} [props.benchmarks] - boolean indicating whether to link to package benchmarks
-	* @param {boolean} [props.tests] - boolean indicating whether to link to package tests
-	* @param {boolean} [props.typescript] - boolean indicating whether to link to TypeScript type declarations
-	* @param {boolean} [props.sideMenu] - boolean indicating whether to expand the side menu
+	* @param {boolean} props.home - boolean indicating whether to link to the main website
+	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
+	* @param {boolean} props.src - boolean indicating whether to link to package source
+	* @param {boolean} props.benchmarks - boolean indicating whether to link to package benchmarks
+	* @param {boolean} props.tests - boolean indicating whether to link to package tests
+	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
+	* @param {boolean} props.sideMenu - boolean indicating whether to expand the side menu
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -132,6 +132,7 @@ class TopNav extends React.Component {
 				>
 					<SideMenu
 						open={ this.props.sideMenu }
+						pkg={ this.props.pkg }
 						version={ this.props.version }
 						onToggle={ this._onSideMenuToggle }
 						onPackageChange={ this.props.onPackageChange }
