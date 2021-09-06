@@ -116,6 +116,9 @@ class DownloadButton extends React.Component {
 		this._download = null;
 		if ( d ) {
 			d.cancel();
+			this.setState({
+				'progress': 0.0
+			});
 			this.props.onProgress( null );
 		}
 	}
