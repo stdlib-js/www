@@ -1,0 +1,120 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+// MODULES //
+
+import config from './../config.js';
+import PACKAGE_DATA_CACHE from './caches/package_data.js';
+
+
+// MAIN //
+
+/**
+* Retrieves a package search data for a specified documentation version.
+*
+* @private
+* @param {string} version - documentation version
+* @param {Callback} clbk - callback invoked upon retrieving search data
+*/
+function fetchSearchData( version, clbk ) {
+	var total;
+	var count;
+	var o;
+
+	total = 2;
+	count = 0;
+
+	o = PACKAGE_DATA_CACHE[ version ];
+	if ( o && o.index ) {
+		done();
+	} else {
+		fetch( config.mount+version+'/package_index.json' )
+			.then( toJSON )
+			.then( onIndex )
+			.catch( done );
+	}
+	if ( o && o.descriptions ) {
+		done();
+	} else {
+		fetch( config.mount+version+'/package_desc.json' )
+			.then( toJSON )
+			.then( onDesc )
+			.catch( done );
+	}
+
+	/**
+	* Callback invoked upon receiving a JSON resource.
+	*
+	* @private
+	* @param {Object} res - response
+	* @returns {Promise} promise to resolve the response as JSON
+	*/
+	function toJSON( res ) {
+		return res.json();
+	}
+
+	/**
+	* Callback invoked upon resolving a search index.
+	*
+	* @private
+	* @param {Object} idx - search index
+	*/
+	function onIndex( idx ) {
+		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+			PACKAGE_DATA_CACHE[ version ] = {};
+		}
+		PACKAGE_DATA_CACHE[ version ].index = idx;
+		done();
+	}
+
+	/**
+	* Callback invoked upon resolving package descriptions.
+	*
+	* @private
+	* @param {Object} desc - package descriptions
+	*/
+	function onDesc( desc ) {
+		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+			PACKAGE_DATA_CACHE[ version ] = {};
+		}
+		PACKAGE_DATA_CACHE[ version ].descriptions = desc;
+		done();
+	}
+
+	/**
+	* Callback invoked upon resolving a package resource.
+	*
+	* @private
+	* @param {Error} [error] - error object
+	* @returns {void}
+	*/
+	function done( error ) {
+		if ( error ) {
+			return clbk( error );
+		}
+		count += 1;
+		if ( count === total ) {
+			return clbk();
+		}
+	}
+}
+
+
+// EXPORTS //
+
+export default fetchSearchData;
