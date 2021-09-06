@@ -81,10 +81,11 @@ class DownloadButton extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onDownloadClick = () => {
+		var version = this.props.version;
 		var self = this;
 
 		// TODO: what about other versions???
-		fetchDownloadData( this.props.version, clbk );
+		fetchDownloadData( version, clbk );
 
 		/**
 		* Callback invoked upon resolving package data.
@@ -100,7 +101,7 @@ class DownloadButton extends React.Component {
 				log( error.message );
 				return;
 			}
-			self._download = download( data.packages, self.props.version, self._onProgress );
+			self._download = download( data.packages, version, self._onProgress );
 		}
 	}
 
