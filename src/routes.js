@@ -31,6 +31,8 @@ import config from './config.js';
 * @type {Object}
 */
 const routes = {
+	'SEARCH': config.mount+'search',
+
 	'VERSION_DEFAULT': config.mount+':version',
 
 	'NONPACKAGE_DEFAULT': config.mount+':version/*',
