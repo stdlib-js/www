@@ -42,7 +42,6 @@ import Filter from './filter.jsx';
 
 // VARIABLES //
 
-var RE_PACKAGE_PAGE = /\/(?:[^\/]+\.(?:html))*$/; // eslint-disable-line no-useless-escape
 var COLLAPSE_TRANSITION_TIMEOUT = 500;
 var DEBOUNCE_INTERVAL = 300;
 var SCROLL_OPTIONS = {
@@ -122,13 +121,13 @@ class SideMenuDrawer extends React.Component {
 	* @param {Object} props - component properties
 	* @param {boolean} props.open - boolean indicating whether the side menu is open
 	* @param {string} props.version - documentation version
+	* @param {string} props.pkg - name of the package which is currently selected
 	* @param {Callback} props.onToggle - callback to invoke upon toggling the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon a change to the selected package
 	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
 	* @returns {ReactComponent} component
 	*/
 	constructor( props ) {
-		var pathname;
 		var ns;
 		var i;
 
@@ -137,9 +136,6 @@ class SideMenuDrawer extends React.Component {
 
 		// Set the initial state...
 		this.state = {
-			// Package which is currently selected by the user:
-			'active': '',
-
 			// Text the user has entered to filter the list of packages displayed in the side menu:
 			'filter': null,
 
@@ -170,20 +166,10 @@ class SideMenuDrawer extends React.Component {
 				this.state.expanded[ ns[i] ] = false;
 			}
 		}
-		// Get the current URL:
-		pathname = this.props.history.location.pathname;
-		pathname = pathname.replace( RE_PACKAGE_PAGE, '' );
-
-		// Isolate the package path, if such a path exists (e.g., /docs/api/@stdlib/foo/bar => @stdlib/foo/bar):
-		i = pathname.indexOf( '@stdlib/' );
-
 		// Toggle the display for the current package, its siblings, and its ancestors (note: why are we doing this? Because, if a user is dropped into package documentation, we want the side menu to be automatically expanded to show the location of the package in the package tree)...
-		if ( i >= 0 ) {
-			// Update the state for the current package, making it the "active" package:
-			this.state.active = deprefix( pathname.substring( i ) );
-
+		if ( props.pkg ) {
 			// Update the collapse states of ancestor namespaces:
-			expandAncestors( this.state.expanded, this.state.active, true );
+			expandAncestors( this.state.expanded, props.pkg, true );
 		}
 		return this;
 	}
@@ -207,9 +193,6 @@ class SideMenuDrawer extends React.Component {
 		var i;
 
 		out = {};
-
-		// Capture the current active package:
-		out.active = this.state.active;
 
 		// Get the list of namespaces for the current documentation version:
 		ns = namespaces( this.props.version );
@@ -251,9 +234,6 @@ class SideMenuDrawer extends React.Component {
 			return;
 		}
 		state = {};
-
-		// Restore the active package:
-		state.active = tmp.active;
 
 		// Get the list of namespaces for the current documentation version:
 		ns = namespaces( this.props.version );
@@ -332,29 +312,27 @@ class SideMenuDrawer extends React.Component {
 			// Check whether a user is currently applying a menu filter...
 			if ( self.state.filter ) {
 				// If already active and expanded, collapse...
-				if ( self.state.active === pkg && self.state.filteredExpanded[ pkg ] ) {
+				if ( self.props.pkg === pkg && self.state.filteredExpanded[ pkg ] ) {
 					self.state.filteredExpanded[ pkg ] = false; // collapse
 				}
-				// Otherwise, activate and expand the selected namespace...
+				// Otherwise, expand the selected namespace...
 				else {
 					self.state.filteredExpanded[ pkg ] = true; // expand
 				}
 				// If a user has selected a namespace package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package and its associated namespace path are still displayed in the menu...
-				self._cachedState.active = pkg;
 				self._cachedState.expanded[ pkg ] = self.state.filteredExpanded[ pkg ];
 			} else {
 				// If already active and expanded, collapse...
-				if ( self.state.active === pkg && self.state.expanded[ pkg ] ) {
+				if ( self.props.pkg === pkg && self.state.expanded[ pkg ] ) {
 					self.state.expanded[ pkg ] = false; // collapse
 				}
-				// Otherwise, activate and expand the selected namespace...
+				// Otherwise, expand the selected namespace...
 				else {
 					self.state.expanded[ pkg ] = true; // expand
 				}
 			}
 			// Update the component state:
 			self.setState({
-				'active': pkg,
 				'update': self.state.update + 1
 			});
 		}
@@ -415,16 +393,11 @@ class SideMenuDrawer extends React.Component {
 			// If a user has selected a package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package and its associated namespace path are still displayed in the menu...
 			if ( self.state.filter ) {
 				// Check whether we need to collapse a previously active namespace path during filtering...
-				if ( self.state.active !== pkg ) {
-					expandAncestors( self._cachedState.expanded, self.state.active, false );
+				if ( self.props.pkg !== pkg ) {
+					expandAncestors( self._cachedState.expanded, self.props.pkg, false );
 				}
-				self._cachedState.active = pkg;
 				expandAncestors( self._cachedState.expanded, pkg, true );
 			}
-			// Update the component state:
-			self.setState({
-				'active': pkg
-			});
 		}
 	}
 
@@ -546,7 +519,7 @@ class SideMenuDrawer extends React.Component {
 			<Fragment>
 				<ListItem
 					key={ name }
-					className={ 'side-menu-list-item-namespace '+( ( this.state.active === pkg ) ? 'active-package' : '' ) }
+					className={ 'side-menu-list-item-namespace '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
 				>
 					<Link
 						to={ pkgPath( name, this.props.version ) }
@@ -605,7 +578,7 @@ class SideMenuDrawer extends React.Component {
 		return (
 			<ListItem
 				key={ name }
-				className={ 'side-menu-list-item '+( ( this.state.active === pkg ) ? 'active-package' : '' ) }
+				className={ 'side-menu-list-item '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
 			>
 				<Link
 					to={ pkgPath( name, this.props.version ) }
@@ -662,14 +635,12 @@ class SideMenuDrawer extends React.Component {
 	* Callback invoked immediately after updating a component.
 	*
 	* @private
-	* @param {Object} props - previous properties
+	* @param {Object} prevProps - previous properties
 	* @param {Object} prevState - previous state
 	*/
-	componentDidUpdate( props, prevState ) {
-		var pathname;
+	componentDidUpdate( prevProps, prevState ) {
 		var state;
 		var tree;
-		var path;
 		var list;
 		var ns;
 		var o;
@@ -679,7 +650,7 @@ class SideMenuDrawer extends React.Component {
 		// FIXME: this method is called when, e.g., the docs version changes (due to updated props); what happens if the location does not point to a package which exists in that version? The app should 404, but what happens to the side  menu?
 
 		// If the version changed, we need to update various resources...
-		if ( this.props.version !== props.version ) {
+		if ( this.props.version !== prevProps.version ) {
 			state = {};
 
 			// Get the list of namespaces for the current version:
@@ -715,30 +686,13 @@ class SideMenuDrawer extends React.Component {
 			// Update component state:
 			this.setState( state );
 		}
-		// Get the current URL:
-		pathname = this.props.history.location.pathname;
-		pathname = pathname.replace( RE_PACKAGE_PAGE, '' );
-
-		// If present, isolate the package path (e.g., /docs/api/latest/@stdlib/foo/bar => @stdlib/foo/bar => foo/bar):
-		i = pathname.indexOf( '@stdlib' );
-		if ( i >= 0 ) {
-			path = deprefix( pathname.substring( i ) );
-		} else {
-			path = '';
-		}
-		// If the current URL does not match the "active" package, update the current state to match URL...
-		if ( path !== this.state.active ) {
+		// If the current package does not match the previous package, update the current state to match...
+		if ( this.props.pkg !== prevProps.pkg ) {
 			// If we've navigated to a new package, expand ancestor namespace packages...
-			if ( path ) {
-				expandAncestors( this.state.expanded, path, true );
+			if ( this.props.pkg ) {
+				expandAncestors( this.state.expanded, this.props.pkg, true );
 			}
-			// Update the component state:
-			this.setState({
-				'active': path
-			});
-		}
-		// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view in the side menu...
-		if ( this.state.active !== prevState.active ) {
+			// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view in the side menu...
 			resetView();
 		}
 	}
