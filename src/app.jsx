@@ -37,6 +37,7 @@ import packageResource from './utils/package_resource.js';
 import packageDescription from './utils/package_description.js';
 import viewportWidth from './utils/viewport_width.js';
 import resetScroll from './utils/reset_scroll.js';
+import deprefix from './utils/deprefix_package_name.js';
 import config from './config.js';
 import routes from './routes.js';
 
@@ -304,7 +305,7 @@ class App extends React.Component {
 
 		// If we do not currently have a search index, create one...
 		if ( this._searchIndex === null ) {
-			fetchSearchData( this.props.version, done );
+			fetchSearchData( this.state.version, done );
 		}
 
 		/**
@@ -342,10 +343,10 @@ class App extends React.Component {
 		results = this._searchIndex.search( query );
 		out = [];
 		for ( i = 0; i < results.length; i++ ) {
-			pkg = results[ i ].id;
+			pkg = results[ i ].ref;
 			out.push({
 				'name': pkg,
-				'desc': packageDescription( pkg, this.state.version )
+				'desc': packageDescription( deprefix( pkg ), this.state.version )
 			});
 		}
 		log( out );
@@ -465,6 +466,7 @@ class App extends React.Component {
 				onSideMenuToggle={ this._onSideMenuToggle }
 				onPackageChange={ this._onPackageChange }
 				onVersionChange={ this._onVersionChange }
+				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
 				sideMenu={ this.state.sideMenu }
 				{...props}
