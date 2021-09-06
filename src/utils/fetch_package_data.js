@@ -36,10 +36,12 @@ function fetchPackageData( version, clbk ) {
 	var count;
 	var o;
 
-	total = 5;
+	total = 3;
 	count = 0;
 
 	o = PACKAGE_DATA_CACHE[ version ];
+
+	// Fetch data necessary for rendering the side menu...
 	if ( o && o.tree ) {
 		done();
 	} else {
@@ -54,22 +56,6 @@ function fetchPackageData( version, clbk ) {
 		fetch( config.mount+version+'/package_resources.json' )
 			.then( toJSON )
 			.then( onResources )
-			.catch( done );
-	}
-	if ( o && o.packages ) {
-		done();
-	} else {
-		fetch( config.mount+version+'/package_list.json' )
-			.then( toJSON )
-			.then( onPackages )
-			.catch( done );
-	}
-	if ( o && o.descriptions ) {
-		done();
-	} else {
-		fetch( config.mount+version+'/package_desc.json' )
-			.then( toJSON )
-			.then( onDescriptions )
 			.catch( done );
 	}
 	if ( o && o.namespaces ) {
@@ -117,34 +103,6 @@ function fetchPackageData( version, clbk ) {
 			PACKAGE_DATA_CACHE[ version ] = {};
 		}
 		PACKAGE_DATA_CACHE[ version ].resources = json;
-		done();
-	}
-
-	/**
-	* Callback invoked upon resolving a list of packages.
-	*
-	* @private
-	* @param {StringArray} list - list of packages
-	*/
-	function onPackages( list ) {
-		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-			PACKAGE_DATA_CACHE[ version ] = {};
-		}
-		PACKAGE_DATA_CACHE[ version ].packages = list;
-		done();
-	}
-
-	/**
-	* Callback invoked upon resolving package descriptions.
-	*
-	* @private
-	* @param {Object} hash - hash containing package descriptions
-	*/
-	function onDescriptions( hash ) {
-		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-			PACKAGE_DATA_CACHE[ version ] = {};
-		}
-		PACKAGE_DATA_CACHE[ version ].descriptions = hash;
 		done();
 	}
 
