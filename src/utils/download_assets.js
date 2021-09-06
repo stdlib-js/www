@@ -20,6 +20,7 @@
 
 import config from './../config.js';
 import HTML_FRAGMENT_CACHE from './caches/html_fragments.js';
+import fetchSearchData from './fetch_search_data.js';
 import log from './log.js';
 
 
@@ -53,10 +54,38 @@ function Download( pkgs, version, onProgress ) {
 	this._canceled = false;
 	this._paused = false;
 
-	this._next();
+	this._init();
 
 	return this;
 }
+
+/**
+* Performs initial download tasks.
+*
+* @private
+* @name _init
+* @memberof Download.prototype
+* @type {Function}
+*/
+Download.prototype._init = function init() {
+	var self = this;
+
+	fetchSearchData( this._version, done );
+
+	/**
+	* Callback invoked upon retrieving search data.
+	*
+	* @private
+	* @param {(Error|null)} error - error object
+	* @returns {void}
+	*/
+	function done( error ) {
+		if ( error ) {
+			return log( error );
+		}
+		self._next();
+	}
+};
 
 /**
 * Downloads the next package asset.
