@@ -20,6 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
+import lunr from 'lunr';
 import IframeResizer from './components/iframe-resizer/index.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -30,8 +31,10 @@ import TopNav from './components/top-nav/index.jsx';
 import log from './utils/log.js';
 import fetchFragment from './utils/fetch_fragment.js';
 import fetchPackageData from './utils/fetch_package_data.js';
+import fetchSearchData from './utils/fetch_search_data.js';
 import packageResources from './utils/package_resources.js';
 import packageResource from './utils/package_resource.js';
+import packageDescription from './utils/package_description.js';
 import viewportWidth from './utils/viewport_width.js';
 import resetScroll from './utils/reset_scroll.js';
 import config from './config.js';
@@ -146,9 +149,15 @@ class App extends React.Component {
 
 		// Set the initial component state:
 		this.state = {
+			// Boolean indicating whether to show the side menu:
 			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
+
+			// Current documentation version:
 			'version': config.versions[ 0 ]            // default to the latest version
 		};
+
+		// Search index:
+		this._searchIndex = null;
 	}
 
 	/**
@@ -279,13 +288,67 @@ class App extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon attempting to submit a search query.
+	* Callback invoked upon updating a search input element.
 	*
 	* @private
 	* @param {string} query - search query
 	*/
-	_onSearch = ( query ) => {
-		console.log( query );
+	_onSearchChange = ( query ) => {
+		var version;
+		var self;
+
+		self = this;
+
+		// Cache the version in order to avoid race conditions:
+		version = this.state.version;
+
+		// If we do not currently have a search index, create one...
+		if ( this._searchIndex === null ) {
+			fetchSearchData( this.props.version, done );
+		}
+
+		/**
+		* Callback invoked upon retrieving search data.
+		*
+		* @private
+		* @param {(Error|null)} error - error object
+		* @param {Object} data - search data
+		* @returns {void}
+		*/
+		function done( error, data ) {
+			if ( error ) {
+				return log( error );
+			}
+			// Check that the version has remained the same...
+			if ( version === self.state.version ) {
+				// Load the serialized index into Lunr:
+				self._searchIndex = lunr.Index.load( data.index );
+			}
+		}
+	}
+
+	/**
+	* Callback invoked upon submitting a search query.
+	*
+	* @private
+	* @param {string} query - search query
+	*/
+	_onSearchSubmit = ( query ) => {
+		var results;
+		var out;
+		var pkg;
+		var i;
+
+		results = this._searchIndex.search( query );
+		out = [];
+		for ( i = 0; i < results.length; i++ ) {
+			pkg = results[ i ].id;
+			out.push({
+				'name': pkg,
+				'desc': packageDescription( pkg, this.state.version )
+			});
+		}
+		log( out );
 	}
 
 	/**
@@ -323,6 +386,7 @@ class App extends React.Component {
 			}
 			self.props.history.push( pathname );
 
+			self._searchIndex = null;
 			state = {
 				'version': version
 			};
@@ -401,7 +465,7 @@ class App extends React.Component {
 				onSideMenuToggle={ this._onSideMenuToggle }
 				onPackageChange={ this._onPackageChange }
 				onVersionChange={ this._onVersionChange }
-				onSearch={ this._onSearch }
+				onSearchSubmit={ this._onSearchSubmit }
 				sideMenu={ this.state.sideMenu }
 				{...props}
 			/>
