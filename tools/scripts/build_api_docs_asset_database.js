@@ -32,14 +32,13 @@ var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var documentationPath = require( './api_docs_path.js' );
 var tsPath = require( './ts_docs_path.js' );
-var root = require( './root.js' );
 
 
 // VARIABLES //
 
 var OUTPUT = 'package_resources.json';
 var TS_SUFFIX = '_docs_types_index_d_.html';
-var RE_UNDERSCORE_REPLACE = /[\/-]/g;
+var RE_UNDERSCORE_REPLACE = /[\/-]/g; // eslint-disable-line no-useless-escape
 
 
 // MAIN //
