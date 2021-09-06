@@ -343,10 +343,10 @@ class App extends React.Component {
 		results = this._searchIndex.search( query );
 		out = [];
 		for ( i = 0; i < results.length; i++ ) {
-			pkg = results[ i ].ref;
+			pkg = deprefix( results[ i ].ref );
 			out.push({
 				'name': pkg,
-				'desc': packageDescription( deprefix( pkg ), this.state.version )
+				'desc': packageDescription( pkg, this.state.version )
 			});
 		}
 		log( out );
