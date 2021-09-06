@@ -158,7 +158,10 @@ class TopNav extends React.Component {
 						onToggle={ this._onPackageMenuToggle }
 					/>
 
-					<DownloadButton onProgress={ this._onDownloadProgress } />
+					<DownloadButton
+						version={ this.props.version }
+						onProgress={ this._onDownloadProgress }
+					/>
 
 					{ progress ? <DownloadProgressBar value={ progress } /> : null }
 				</nav>
