@@ -288,6 +288,7 @@ class App extends React.Component {
 	_updateVersion( version, done ) {
 		var self = this;
 
+		// TODO: we should overlay a progress indicator while we load package data (see, e.g., https://material-ui.com/components/backdrop/)...
 		fetchPackageData( version, clbk );
 
 		/**
