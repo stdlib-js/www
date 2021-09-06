@@ -150,6 +150,9 @@ class App extends React.Component {
 
 		// Set the initial component state:
 		this.state = {
+			// Currently active package:
+			'active': '',
+
 			// Boolean indicating whether to show the side menu:
 			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
 
@@ -262,13 +265,12 @@ class App extends React.Component {
 	* Callback invoked upon a change to the current package.
 	*
 	* @private
-	* @param {string} path - package path
+	* @param {string} pkg - package name (e.g., `math/base/special/sin`)
 	*/
-	_onPackageChange = ( path ) => {
-		if ( path !== this.props.history.location.pathname ) {
-			// Update the history in order to navigate to the desired package:
-			this.props.history.push( path );
-		}
+	_onPackageChange = ( pkg ) => {
+		this.setState({
+			'active': pkg
+		});
 	}
 
 	/**
@@ -330,6 +332,9 @@ class App extends React.Component {
 			if ( version === self.state.version ) {
 				// Load the serialized index into Lunr:
 				self._searchIndex = lunr.Index.load( data.index );
+			} else {
+				// Try to create another search index based on the current version:
+				fetchSearchData( self.state.version, done );
 			}
 		}
 	}
@@ -441,7 +446,7 @@ class App extends React.Component {
 		// Update property values based on the current "view"...
 		if ( path === routes.VERSION_DEFAULT ) {
 			props.home = true;
-			props.version = this.state.version;
+			props.version = match.params.version;
 		} else {
 			// We are currently rendering a package view...
 			props.pkg = '@stdlib/' + match.params.pkg;
