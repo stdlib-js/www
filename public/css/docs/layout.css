@@ -557,9 +557,9 @@ h2 {
 }
 
 /*
-* When a user focuses the search element, we want to grow the search box to occupy all available width.
+* When a search element is active, we want to grow the search box to occupy all available width.
 */
-.top-nav-search.Mui-focused {
+.top-nav-search.top-nav-search-active {
 	flex: 1;
 	margin-left: 0.5em;
 }

@@ -206,6 +206,7 @@ a:active {
 */
 
 .top-nav,
+.top-nav-search input,
 .bottom-nav {
 	font-family: "LatoLatinWebLight";
 }
