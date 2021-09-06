@@ -61,10 +61,7 @@ class TopNav extends React.Component {
 			'packageMenu': false,
 
 			// Value indicating progress when downloading documentation assets (e.g., for offline use):
-			'downloadProgress': 0.0,
-
-			// Search query:
-			'query': ''
+			'downloadProgress': 0.0
 		}
 	}
 
@@ -120,47 +117,6 @@ class TopNav extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon updating a search input element.
-	*
-	* @private
-	* @param {Object} event - event object
-	*/
-	_onSearchChange = ( event ) => {
-		this.setState({
-			'query': event.target.value
-		});
-	}
-
-	/**
-	* Callback invoked upon a user releasing a key on a keyboard when using a search input element.
-	*
-	* @private
-	* @param {Object} event - event object
-	* @returns {void}
-	*/
-	_onSearchKeyUp = ( event ) => {
-		if ( this.state.query === '' ) {
-			return;
-		}
-		if ( event.charCode === 13 || event.key === 'Enter' ) {
-          this.props.onSearch( this.state.query );
-        }
-	}
-
-	/**
-	* Callback invoked upon a user attempting to submit a search query.
-	*
-	* @private
-	* @returns {void}
-	*/
-	_onSearchSubmit = () => {
-		if ( this.state.query === '' ) {
-			return;
-		}
-		this.props.onSearch( this.state.query );
-	}
-
-	/**
 	* Renders the component.
 	*
 	* @returns {ReactElement} React element
@@ -181,11 +137,7 @@ class TopNav extends React.Component {
 						onVersionChange={ this.props.onVersionChange }
 					/>
 
-					<SearchInput
-						onChange={ this._onSearchChange }
-						onKeyUp={ this._onSearchKeyUp }
-						onSubmit={ this._onSearchSubmit }
-					/>
+					<SearchInput onSubmit={ this.props.onSearch } />
 
 					<span class="top-nav-divider"></span>
 					<PackageMenu
