@@ -43,7 +43,8 @@ class TopNav extends React.Component {
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
-	* @param {Callback} props.onSearch - callback to invoke upon submitting a search query
+	* @param {Callback} props.onSearchSubmit - callback to invoke upon submitting a search query
+	* @param {Callback} props.onSearchChange - callback to invoke upon updating a search input element
 	* @param {string} [props.pkg] - package name
 	* @param {boolean} [props.home] - boolean indicating whether to link to the main website
 	* @param {boolean} [props.docs] - boolean indicating whether to link to package documentation
@@ -137,7 +138,10 @@ class TopNav extends React.Component {
 						onVersionChange={ this.props.onVersionChange }
 					/>
 
-					<SearchInput onSubmit={ this.props.onSearch } />
+					<SearchInput
+						onSubmit={ this.props.onSearchSubmit }
+						onChange={ this.props.onSearchChange }
+					/>
 
 					<span class="top-nav-divider"></span>
 					<PackageMenu
