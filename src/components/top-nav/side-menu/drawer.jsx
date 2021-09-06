@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { debounce } from 'throttle-debounce';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import List from '@material-ui/core/List';
@@ -756,4 +756,4 @@ class SideMenuDrawer extends React.Component {
 
 // EXPORTS //
 
-export default withRouter( SideMenuDrawer );
+export default SideMenuDrawer;
