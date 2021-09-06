@@ -25,11 +25,11 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 // MAIN //
 
 /**
-* Retrieves the list of packages for for a specified documentation version.
+* Retrieves the list of packages for a specified documentation version.
 *
 * @private
 * @param {string} version - documentation version
-* @param {Callback} clbk - callback invoked upon retrieving the lsit of packages
+* @param {Callback} clbk - callback invoked upon retrieving the list of packages
 */
 function fetchPackageList( version, clbk ) {
 	var total;
