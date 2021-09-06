@@ -279,6 +279,16 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked upon attempting to submit a search query.
+	*
+	* @private
+	* @param {string} query - search query
+	*/
+	_onSearch = ( query ) => {
+		console.log( query );
+	}
+
+	/**
 	* Updates the documentation version.
 	*
 	* @private
@@ -391,6 +401,7 @@ class App extends React.Component {
 				onSideMenuToggle={ this._onSideMenuToggle }
 				onPackageChange={ this._onPackageChange }
 				onVersionChange={ this._onVersionChange }
+				onSearch={ this._onSearch }
 				sideMenu={ this.state.sideMenu }
 				{...props}
 			/>
