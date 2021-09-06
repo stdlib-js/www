@@ -19,7 +19,6 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import Divider from '@material-ui/core/Divider';
 import SideMenu from './side-menu/index.jsx';
 import PackageMenu from './pkg-menu/index.jsx';
 import SearchInput from './search_input.jsx';
@@ -44,6 +43,7 @@ class TopNav extends React.Component {
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
+	* @param {Callback} props.onSearch - callback to invoke upon submitting a search query
 	* @param {string} [props.pkg] - package name
 	* @param {boolean} [props.home] - boolean indicating whether to link to the main website
 	* @param {boolean} [props.docs] - boolean indicating whether to link to package documentation
@@ -57,8 +57,14 @@ class TopNav extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
+			// Boolean indicating whether to show the package menu:
 			'packageMenu': false,
-			'downloadProgress': 0.0
+
+			// Value indicating progress when downloading documentation assets (e.g., for offline use):
+			'downloadProgress': 0.0,
+
+			// Search query:
+			'query': ''
 		}
 	}
 
@@ -120,7 +126,38 @@ class TopNav extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onSearchChange = ( event ) => {
-		// console.log( event.target.value );
+		this.setState({
+			'query': event.target.value
+		});
+	}
+
+	/**
+	* Callback invoked upon a user releasing a key on a keyboard when using a search input element.
+	*
+	* @private
+	* @param {Object} event - event object
+	* @returns {void}
+	*/
+	_onSearchKeyUp = ( event ) => {
+		if ( this.state.query === '' ) {
+			return;
+		}
+		if ( event.charCode === 13 || event.key === 'Enter' ) {
+          this.props.onSearch( this.state.query );
+        }
+	}
+
+	/**
+	* Callback invoked upon a user attempting to submit a search query.
+	*
+	* @private
+	* @returns {void}
+	*/
+	_onSearchSubmit = () => {
+		if ( this.state.query === '' ) {
+			return;
+		}
+		this.props.onSearch( this.state.query );
 	}
 
 	/**
@@ -144,7 +181,11 @@ class TopNav extends React.Component {
 						onVersionChange={ this.props.onVersionChange }
 					/>
 
-					<SearchInput onChange={ this._onSearchChange } />
+					<SearchInput
+						onChange={ this._onSearchChange }
+						onKeyUp={ this._onSearchKeyUp }
+						onSubmit={ this._onSearchSubmit }
+					/>
 
 					<span class="top-nav-divider"></span>
 					<PackageMenu

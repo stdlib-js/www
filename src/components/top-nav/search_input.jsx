@@ -32,26 +32,28 @@ import SearchIcon from '@material-ui/icons/Search';
 * @private
 * @param {Object} props - component properties
 * @param {Callback} props.onChange - callback to invoke upon a change to the search input element
+* @param {Callback} props.onKeyUp - callback to invoke upon a user releasing a key on a keyboard
+* @param {Callback} props.onSubmit - callback to invoke upon a user attempting to submit a search query
 * @returns {ReactElement} React element
 */
 function SearchInput( props ) {
 	return (
 		<Fragment>
 			<InputBase
-				id="top-nav-search-input"
 				className="top-nav-search"
 				placeholder="Search documentation"
-				name="top-nav-search-input"
 				type="text"
 				inputProps={{
 					'aria-label': 'search documentation'
 				}}
 				onChange={ props.onChange }
+				onKeyUp={ props.onKeyUp }
 			/>
 			<IconButton
-				type="submit"
+				type="button"
 				className="icon-button top-nav-search-button"
 				aria-label="search"
+				onClick={ props.onSubmit }
 			>
 				<SearchIcon />
 			</IconButton>
