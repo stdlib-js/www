@@ -109,7 +109,7 @@ function fetchSearchData( version, clbk ) {
 		}
 		count += 1;
 		if ( count === total ) {
-			return clbk();
+			return clbk( null, PACKAGE_DATA_CACHE[ version ] );
 		}
 	}
 }

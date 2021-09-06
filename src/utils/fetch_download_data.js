@@ -25,13 +25,13 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 // MAIN //
 
 /**
-* Retrieves the list of packages for a specified documentation version.
+* Retrieves data necessary for downloading documentation for a specified documentation version.
 *
 * @private
 * @param {string} version - documentation version
-* @param {Callback} clbk - callback invoked upon retrieving the list of packages
+* @param {Callback} clbk - callback invoked upon retrieving download data
 */
-function fetchPackageList( version, clbk ) {
+function fetchDownloadData( version, clbk ) {
 	var total;
 	var count;
 	var o;
@@ -87,7 +87,7 @@ function fetchPackageList( version, clbk ) {
 		}
 		count += 1;
 		if ( count === total ) {
-			return clbk();
+			return clbk( null, PACKAGE_DATA_CACHE[ version ] );
 		}
 	}
 }
@@ -95,4 +95,4 @@ function fetchPackageList( version, clbk ) {
 
 // EXPORTS //
 
-export default fetchPackageList;
+export default fetchDownloadData;
