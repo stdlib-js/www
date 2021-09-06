@@ -247,6 +247,10 @@ class App extends React.Component {
 		if ( RE_INTERNAL_URL.test( href ) === false ) {
 			return;
 		}
+		// Check that the user is navigating to a different page:
+		if ( href === this.props.history.location.pathname ) {
+			return;
+		}
 		// Prevent the application from navigating to a documentation page via a fresh page load:
 		event.preventDefault();
 
@@ -261,8 +265,10 @@ class App extends React.Component {
 	* @param {string} path - package path
 	*/
 	_onPackageChange = ( path ) => {
-		// Update the history in order to navigate to the desired package:
-		this.props.history.push( path );
+		if ( path !== this.props.history.location.pathname ) {
+			// Update the history in order to navigate to the desired package:
+			this.props.history.push( path );
+		}
 	}
 
 	/**
@@ -385,8 +391,9 @@ class App extends React.Component {
 				// FIXME: what happens when we change the version while viewing a package and the package has either moved or does not exist in the new version of the docs?
 				pathname = pathname.replace( self.state.version, version );
 			}
-			self.props.history.push( pathname );
-
+			if ( pathname !== self.props.history.location.pathname ) {
+				self.props.history.push( pathname );
+			}
 			self._searchIndex = null;
 			state = {
 				'version': version
@@ -655,6 +662,11 @@ class App extends React.Component {
 			<Fragment>
 				{ this._renderTopNav() }
 				<Switch>
+					<Route
+						exact
+						path={ routes.SEARCH }
+						render={ this._renderer( 'search' ) }
+					/>
 					<Redirect
 						exact
 						from={ routes.PACKAGE_INDEX }
