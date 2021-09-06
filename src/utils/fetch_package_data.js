@@ -36,7 +36,7 @@ function fetchPackageData( version, clbk ) {
 	var count;
 	var o;
 
-	total = 4;
+	total = 5;
 	count = 0;
 
 	o = PACKAGE_DATA_CACHE[ version ];
@@ -62,6 +62,14 @@ function fetchPackageData( version, clbk ) {
 		fetch( config.mount+version+'/package_list.json' )
 			.then( toJSON )
 			.then( onPackages )
+			.catch( done );
+	}
+	if ( o && o.descriptions ) {
+		done();
+	} else {
+		fetch( config.mount+version+'/package_desc.json' )
+			.then( toJSON )
+			.then( onDescriptions )
 			.catch( done );
 	}
 	if ( o && o.namespaces ) {
@@ -123,6 +131,20 @@ function fetchPackageData( version, clbk ) {
 			PACKAGE_DATA_CACHE[ version ] = {};
 		}
 		PACKAGE_DATA_CACHE[ version ].packages = list;
+		done();
+	}
+
+	/**
+	* Callback invoked upon resolving package descriptions.
+	*
+	* @private
+	* @param {Object} hash - hash containing package descriptions
+	*/
+	function onDescriptions( hash ) {
+		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+			PACKAGE_DATA_CACHE[ version ] = {};
+		}
+		PACKAGE_DATA_CACHE[ version ].descriptions = hash;
 		done();
 	}
 
