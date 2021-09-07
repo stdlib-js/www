@@ -43,16 +43,16 @@ class PackageMenu extends React.Component {
 	*
 	* @constructor
 	* @param {Object} props - component properties
-	* @param {string} props.pkg - package name
+	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.version - documentation version
 	* @param {boolean} props.open - boolean indicating whether to expand the menu
 	* @param {Callback} props.onToggle - callback to invoke upon a change to the package navigation menu
-	* @param {boolean} [props.home] - boolean indicating whether to link to the main website
-	* @param {boolean} [props.docs] - boolean indicating whether to link to package documentation
-	* @param {boolean} [props.src] - boolean indicating whether to link to package source
-	* @param {boolean} [props.benchmarks] - boolean indicating whether to link to package benchmarks
-	* @param {boolean} [props.tests] - boolean indicating whether to link to package tests
-	* @param {boolean} [props.typescript] - boolean indicating whether to link to TypeScript type declarations
+	* @param {boolean} props.home - boolean indicating whether to link to the main website
+	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
+	* @param {boolean} props.src - boolean indicating whether to link to package source
+	* @param {boolean} props.benchmarks - boolean indicating whether to link to package benchmarks
+	* @param {boolean} props.tests - boolean indicating whether to link to package tests
+	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {

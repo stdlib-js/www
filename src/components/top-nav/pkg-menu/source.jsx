@@ -29,12 +29,12 @@ import config from './../../../config.js';
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name
+* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {string} props.version - documentation version
 * @returns {ReactElement} React element
 */
 function Source( props ) {
-	var path = config.repository+'/tree/'+props.version+'/lib/node_modules/'+props.pkg;
+	var path = config.repository+'/tree/'+props.version+'/lib/node_modules/@stdlib/'+props.pkg;
 	return (
 		<li class="top-nav-item">
 			<a href={ path } title="View source code">source</a>

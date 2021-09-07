@@ -41,7 +41,7 @@ var PATH = [
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name
+* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {string} props.version - documentation version
 * @returns {ReactElement} React element
 */
