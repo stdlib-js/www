@@ -20,7 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
-import lunr from 'lunr';
+import qs from 'qs';
 import IframeResizer from './components/iframe-resizer/index.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -28,16 +28,15 @@ import Readme from './components/readme/index.jsx';
 import NotFound from './components/not-found/index.jsx';
 import notFoundHTML from './components/not-found/html.js';
 import TopNav from './components/top-nav/index.jsx';
+import Search from './components/search/index.jsx';
 import log from './utils/log.js';
 import fetchFragment from './utils/fetch_fragment.js';
 import fetchPackageData from './utils/fetch_package_data.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import packageResources from './utils/package_resources.js';
 import packageResource from './utils/package_resource.js';
-import packageDescription from './utils/package_description.js';
 import viewportWidth from './utils/viewport_width.js';
 import resetScroll from './utils/reset_scroll.js';
-import deprefix from './utils/deprefix_package_name.js';
 import config from './config.js';
 import routes from './routes.js';
 
@@ -47,6 +46,7 @@ import routes from './routes.js';
 var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
 var RENDER_METHOD_NAMES = {
 	'welcome': '_renderWelcome',
+	'search': '_renderSearch',
 	'readme': '_renderReadme',
 	'benchmark': '_renderBenchmark',
 	'test': '_renderTest'
@@ -67,6 +67,13 @@ function matchCurrentPath( pathname, version ) {
 	var match;
 
 	// Try to find the matching route...
+	match = matchPath( pathname, {
+		'path': routes.SEARCH,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
 	match = matchPath( pathname, {
 		'path': routes.PACKAGE_BENCHMARKS,
 		'exact': true
@@ -151,7 +158,7 @@ class App extends React.Component {
 		// Set the initial component state:
 		this.state = {
 			// Currently active package:
-			'active': '',
+			'active': '',  // e.g., `math/base/special/sin`
 
 			// Boolean indicating whether to show the side menu:
 			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
@@ -159,9 +166,6 @@ class App extends React.Component {
 			// Current documentation version:
 			'version': config.versions[ 0 ]            // default to the latest version
 		};
-
-		// Search index:
-		this._searchIndex = null;
 	}
 
 	/**
@@ -311,29 +315,23 @@ class App extends React.Component {
 		// Cache the version in order to avoid race conditions:
 		version = this.state.version;
 
-		// If we do not currently have a search index, create one...
-		if ( this._searchIndex === null ) {
-			fetchSearchData( this.state.version, done );
-		}
+		// If we do not currently have a search index, try to eagerly create one...
+		fetchSearchData( this.state.version, done );
 
 		/**
 		* Callback invoked upon retrieving search data.
 		*
 		* @private
 		* @param {(Error|null)} error - error object
-		* @param {Object} data - search data
 		* @returns {void}
 		*/
-		function done( error, data ) {
+		function done( error ) {
 			if ( error ) {
 				return log( error );
 			}
-			// Check that the version has remained the same...
-			if ( version === self.state.version ) {
-				// Load the serialized index into Lunr:
-				self._searchIndex = lunr.Index.load( data.index );
-			} else {
-				// Try to create another search index based on the current version:
+			// Check whether the version has changed...
+			if ( version !== self.state.version ) {
+				// Try eagerly creating another search index based on the current version:
 				fetchSearchData( self.state.version, done );
 			}
 		}
@@ -346,21 +344,8 @@ class App extends React.Component {
 	* @param {string} query - search query
 	*/
 	_onSearchSubmit = ( query ) => {
-		var results;
-		var out;
-		var pkg;
-		var i;
-
-		results = this._searchIndex.search( query );
-		out = [];
-		for ( i = 0; i < results.length; i++ ) {
-			pkg = deprefix( results[ i ].ref );
-			out.push({
-				'name': pkg,
-				'desc': packageDescription( pkg, this.state.version )
-			});
-		}
-		log( out );
+		var path = config.mount + this.state.version + '/search?q=' + encodeURIComponent( query );
+		this.props.history.push( path );
 	}
 
 	/**
@@ -399,7 +384,6 @@ class App extends React.Component {
 			if ( pathname !== self.props.history.location.pathname ) {
 				self.props.history.push( pathname );
 			}
-			self._searchIndex = null;
 			state = {
 				'version': version
 			};
@@ -447,10 +431,14 @@ class App extends React.Component {
 		if ( path === routes.VERSION_DEFAULT ) {
 			props.home = true;
 			props.version = match.params.version;
+		} else if ( path === routes.SEARCH ) {
+			props.home = true;
+			props.version = match.params.version;
+			props.pkg = match.params.pkg; // e.g., `math/base/special/sin`
 		} else {
 			// We are currently rendering a package view...
-			props.pkg = '@stdlib/' + match.params.pkg;
 			props.version = match.params.version;
+			props.pkg = match.params.pkg; // e.g., `math/base/special/sin`
 			props.src = true;
 
 			// Attempt to resolve package resources for the current package...
@@ -510,7 +498,7 @@ class App extends React.Component {
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
-	* @param {string} match.params.pkg - package name
+	* @param {string} match.params.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} match.params.version - documentation version
 	* @returns {ReactElement} React element
 	*/
@@ -538,7 +526,7 @@ class App extends React.Component {
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
-	* @param {string} match.params.pkg - package name
+	* @param {string} match.params.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} match.params.version - documentation version
 	* @returns {ReactElement} React element
 	*/
@@ -572,6 +560,33 @@ class App extends React.Component {
 	_renderWelcome( match ) {
 		return (
 			<Welcome version={ match.params.version } />
+		);
+	}
+
+	/**
+	* Renders search results.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
+	* @param {string} match.params.version - documentation version
+	* @returns {ReactElement} React element
+	*/
+	_renderSearch( match ) {
+		var query = this.props.location.search || '';
+		if ( query ) {
+			query = qs.parse( query, {
+				'ignoreQueryPrefix': true
+			});
+			query = query.q || '';
+		}
+		return (
+			<Search
+				version={ match.params.version }
+				query={ query }
+				onPackageChange={ this._onPackageChange }
+			/>
 		);
 	}
 
@@ -667,11 +682,6 @@ class App extends React.Component {
 			<Fragment>
 				{ this._renderTopNav() }
 				<Switch>
-					<Route
-						exact
-						path={ routes.SEARCH }
-						render={ this._renderer( 'search' ) }
-					/>
 					<Redirect
 						exact
 						from={ routes.PACKAGE_INDEX }
@@ -691,6 +701,11 @@ class App extends React.Component {
 						exact
 						path={ routes.PACKAGE_DEFAULT }
 						render={ this._renderer( 'readme' ) }
+					/>
+					<Route
+						exact
+						path={ routes.SEARCH }
+						render={ this._renderer( 'search' ) }
 					/>
 					<Redirect
 						exact
