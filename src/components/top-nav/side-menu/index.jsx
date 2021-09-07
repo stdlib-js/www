@@ -19,7 +19,6 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import deprefix from './../../../utils/deprefix_package_name.js';
 import OpenButton from './open_button.jsx';
 import Drawer from './drawer.jsx';
 
@@ -38,7 +37,7 @@ class SideMenu extends React.Component {
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - documentation version
-	* @param {string} props.pkg - package name
+	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {Callback} props.onToggle - callback to invoke upon toggling the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon a change to the selected package
 	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
@@ -77,7 +76,7 @@ class SideMenu extends React.Component {
 					<Drawer
 						open={ this.props.open }
 						version={ this.props.version }
-						pkg={ deprefix( this.props.pkg ) }
+						pkg={ this.props.pkg }
 						onToggle={ this.props.onToggle }
 						onPackageChange={ this.props.onPackageChange }
 						onVersionChange={ this.props.onVersionChange }
