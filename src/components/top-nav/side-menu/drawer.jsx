@@ -42,7 +42,8 @@ import Filter from './filter.jsx';
 
 // VARIABLES //
 
-var COLLAPSE_TRANSITION_TIMEOUT = 500;
+var COLLAPSE_TRANSITION_TIMEOUT = 300;
+var RESET_VIEW_TIMEOUT = 500;
 var DEBOUNCE_INTERVAL = 300;
 var SCROLL_OPTIONS = {
 	'behavior': 'smooth',
@@ -87,11 +88,7 @@ function expandAncestors( hash, pkg, state ) {
 * @private
 */
 function resetView() {
-	var el = document.getElementsByClassName( 'active-package' );
-	if ( el.length > 0 ) {
-		el = el[ 0 ];
-		setTimeout( onTimeout, COLLAPSE_TRANSITION_TIMEOUT );
-	}
+	setTimeout( onTimeout, RESET_VIEW_TIMEOUT );
 
 	/**
 	* Callback invoked after a timeout.
@@ -99,9 +96,16 @@ function resetView() {
 	* @private
 	*/
 	function onTimeout() {
-		var parent = document.getElementsByClassName( 'side-menu-list-wrapper' );
-		SCROLL_OPTIONS.boundary = parent[ 0 ];
-		scrollIntoView( el, SCROLL_OPTIONS );
+		var parent;
+		var el;
+
+		el = document.getElementsByClassName( 'active-package' );
+		if ( el.length > 0 ) {
+			el = el[ 0 ];
+			parent = document.getElementsByClassName( 'side-menu-list-wrapper' );
+			SCROLL_OPTIONS.boundary = parent[ 0 ];
+			scrollIntoView( el, SCROLL_OPTIONS );
+		}
 	}
 }
 
@@ -689,6 +693,11 @@ class SideMenuDrawer extends React.Component {
 			// If we've navigated to a new package, expand ancestor namespace packages...
 			if ( this.props.pkg ) {
 				expandAncestors( this.state.expanded, this.props.pkg, true );
+
+				// Signal that we need to re-render the component:
+				this.setState({
+					'update': this.state.update + 1
+				});
 			}
 			// If the current "active" package is different from the previous active package, we want to reset the scroll position to ensure that the current active package is in view in the side menu...
 			resetView();
