@@ -743,10 +743,12 @@ button.side-menu-list-item-namespace-icon {
 }
 
 .side-menu-list-wrapper {
+	position: relative;
 	height: calc(100vh - 140px);
 }
 
 .side-menu-list {
+	height: 100%;
 	padding-left: 0;
 }
 
