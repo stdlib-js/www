@@ -40,7 +40,7 @@ class TopNav extends React.Component {
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
-	* @param {string} props.pkg - package name
+	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
