@@ -19,13 +19,13 @@
 /*
 * Stylesheet for syntax highlighting with highlight.js.
 *
-* [1]: https://github.com/isagalaev/highlight.js
-* [2]: https://github.com/jmblog/color-themes-for-highlightjs
+* [1]: https://github.com/highlightjs/highlight.js/
+* [2]: https://github.com/highlightjs/highlight.js/blob/55f68f72be2cb69d14561353ad851d6b2242dfcc/src/styles/a11y-light.css
 */
 
 .hljs-comment,
 .hljs-quote {
-	color: #8e908c;
+	color: #696969;
 }
 
 .hljs-variable,
@@ -36,7 +36,7 @@
 .hljs-selector-class,
 .hljs-regexp,
 .hljs-deletion {
-	color: #c82829; /* tomorrow red */
+	color: #d91e18; /* red */
 }
 
 .hljs-number,
@@ -47,35 +47,35 @@
 .hljs-params,
 .hljs-meta,
 .hljs-link {
-	color: #f5871f; /* tomorrow orange */
+	color: #aa5d00; /* orange */
 }
 
 .hljs-attribute {
-	color: #eab700; /* tomorrow yellow */
+	color: #aa5d00; /* yellow */
 }
 
 .hljs-string,
 .hljs-symbol,
 .hljs-bullet,
 .hljs-addition {
-	color: #718c00; /* tomorrow green */
+	color: #008000; /* green */
 }
 
 .hljs-title,
 .hljs-section {
-	color: #4271ae; /* tomorrow blue */
+	color: #007faa; /* blue */
 }
 
 .hljs-keyword,
 .hljs-selector-tag {
-	color: #8959a8; /* tomorrow purple */
+	color: #7928a1; /* purple */
 }
 
 .hljs {
 	display: block;
 	overflow-x: auto;
 	background: white;
-	color: #4d4d4c;
+	color: #545454;
 	padding: 0.5em;
 }
 
@@ -85,4 +85,28 @@
 
 .hljs-strong {
 	font-weight: bold;
+}
+
+@media screen and (-ms-high-contrast: active) {
+	.hljs-addition,
+	.hljs-attribute,
+	.hljs-built_in,
+	.hljs-bullet,
+	.hljs-comment,
+	.hljs-link,
+	.hljs-literal,
+	.hljs-meta,
+	.hljs-number,
+	.hljs-params,
+	.hljs-string,
+	.hljs-symbol,
+	.hljs-type,
+	.hljs-quote {
+		color: highlight;
+	}
+
+	.hljs-keyword,
+	.hljs-selector-tag {
+		font-weight: bold;
+	}
 }
