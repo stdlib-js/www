@@ -355,6 +355,10 @@ class App extends React.Component {
 	*/
 	_onSearchClose = () => {
 		// FIXME: implement returning to previous view
+
+		// TODO: can probably cache the current location in the callback above and then redirect after close; if no cached location, redirect to welcome page. The only time we should have a cached location is if a user directly loaded the search page without going there via the top navigation.
+
+		// TODO: we should probably reset the search input, as well. This means that we probably need to refactor the search input element to get its value from this component.
 	}
 
 	/**
