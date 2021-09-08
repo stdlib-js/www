@@ -649,15 +649,26 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked immediately after updating a component.
+	*
+	* @private
+	* @param {Object} prevProps - previous properties
+	* @param {Object} prevState - previous state
+	*/
+	componentDidUpdate( prevProps ) {
+		// Whenever we navigate to a new page, reset the window scroll position...
+		if ( this.props.location !== prevProps.location ) {
+			resetScroll();
+		}
+	}
+
+	/**
 	* Renders the component.
 	*
 	* @private
 	* @returns {ReactElement} React element
 	*/
 	render() {
-		// Whenever we navigate to a new page, reset the window scroll position:
-		resetScroll();
-
 		return (
 			<Fragment>
 				{ this._renderTopNav() }
