@@ -18,8 +18,9 @@
 
 // MODULES //
 
-import React, { Fragment } from 'react';
-import EditIcon from '@material-ui/icons/Edit';
+import React from 'react';
+import ReadmeContent from './content.jsx';
+import EditLink from './edit_link.jsx';
 
 
 // MAIN //
@@ -36,23 +37,15 @@ import EditIcon from '@material-ui/icons/Edit';
 */
 function Readme( props ) {
 	return (
-		<Fragment>
-			<div
-				id="readme"
-				className="readme"
+		<div
+			className="readme"
+		>
+			<ReadmeContent
+				html={ props.html }
 				onClick={ props.onClick }
-				suppressHydrationWarning
-				dangerouslySetInnerHTML={ { '__html': props.html } }
 			/>
-			<a
-				className="readme-edit-link"
-				href={"https://github.com/stdlib-js/stdlib/edit/develop/lib/node_modules/@stdlib/"+props.pkg+"/README.md"}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				<EditIcon fontSize="inherit" /> Edit on GitHub
-			</a>
-		</Fragment>
+			{ ( props.html ) ? <EditLink pkg={ props.pkg } /> : null }
+		</div>
 	);
 }
 
