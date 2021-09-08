@@ -349,6 +349,15 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked upon closing search results.
+	*
+	* @private
+	*/
+	_onSearchClose = () => {
+		// FIXME: implement returning to previous view
+	}
+
+	/**
 	* Updates the documentation version.
 	*
 	* @private
@@ -586,6 +595,7 @@ class App extends React.Component {
 				version={ match.params.version }
 				query={ query }
 				onPackageChange={ this._onPackageChange }
+				onClose={ this._onSearchClose }
 			/>
 		);
 	}
