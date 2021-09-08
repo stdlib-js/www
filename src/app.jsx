@@ -26,11 +26,9 @@ import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
 import Readme from './components/readme/index.jsx';
 import NotFound from './components/not-found/index.jsx';
-import notFoundHTML from './components/not-found/html.js';
 import TopNav from './components/top-nav/index.jsx';
 import Search from './components/search/index.jsx';
 import log from './utils/log.js';
-import fetchFragment from './utils/fetch_fragment.js';
 import fetchPackageData from './utils/fetch_package_data.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import packageResources from './utils/package_resources.js';
@@ -113,23 +111,6 @@ function matchCurrentPath( pathname, version ) {
 	};
 }
 
-/**
-* Updates rendered README content.
-*
-* ## Notes
-*
-* -   This function updates rendered content **outside** of the standard component lifecyle.
-*
-* @private
-* @param {string} html - README content
-*/
-function updateReadme( html ) {
-	var el = document.getElementById( 'readme-content' );
-	if ( el ) {
-		el.innerHTML = html;
-	}
-}
-
 
 // MAIN //
 
@@ -165,63 +146,14 @@ class App extends React.Component {
 			'query': '',
 
 			// Boolean indicating whether to show the side menu:
-			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
+			'sideMenu': ( w ) ? ( w >= 1080 ) : true, // default to showing the side menu, except on smaller devices
 
 			// Current documentation version:
-			'version': config.versions[ 0 ]            // default to the latest version
+			'version': config.versions[ 0 ] // default to the latest version
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
 		this._prevLocation = config.mount; // default is API docs landing page
-	}
-
-	/**
-	* Fetches a package README fragment.
-	*
-	* ## Notes
-	*
-	* -   If unable to immediately resolve a fragment, the method attempts to asynchronously resolve the fragment and manually update the rendered application.
-	*
-	* @private
-	* @param {string} path - fragment path
-	* @returns {string} HTML string
-	*/
-	_fetchFragment( path ) {
-		var self;
-		var html;
-
-		self = this;
-
-		// Attempt to fetch a package README fragment:
-		html = fetchFragment( path, clbk );
-
-		// If we were unable to resolve a fragment synchronously, return an empty string in the hopes that we'll be able to quickly resolve the fragment asynchronously...
-		if ( html === null ) {
-			return '';
-		}
-		return html;
-
-		/**
-		* Callback invoked upon fetching a fragment.
-		*
-		* @private
-		* @param {(Error|null)} error - error object
-		* @param {string} fragment
-		* @returns {void}
-		*/
-		function clbk( error, fragment ) {
-			if ( error ) {
-				// Guard against race conditions (e.g., a fragment fails to resolve *after* a user subsequently navigated to a different package whose associated fragment already resolved)...
-				if ( path === self.props.history.location.pathname ) {
-					updateReadme( notFoundHTML() );
-				}
-				return log( error );
-			}
-			// Guard against race conditions (e.g., a fragment is resolved *after* a user subsequently navigated to a different package whose associated fragment already resolved)...
-			if ( path === self.props.history.location.pathname ) {
-				updateReadme( fragment );
-			}
-		}
 	}
 
 	/**
@@ -529,7 +461,7 @@ class App extends React.Component {
 		return (
 			<Readme
 				pkg={ match.params.pkg }
-				html={ this._fetchFragment( match.url ) }
+				url={ match.url }
 				onClick={ this._onReadmeClick }
 			/>
 		);
@@ -673,6 +605,8 @@ class App extends React.Component {
 
 	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*
+	* @private
 	*/
 	componentDidMount() {
 		var pathname;
@@ -717,6 +651,7 @@ class App extends React.Component {
 	/**
 	* Renders the component.
 	*
+	* @private
 	* @returns {ReactElement} React element
 	*/
 	render() {
