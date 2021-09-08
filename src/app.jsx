@@ -124,7 +124,7 @@ function matchCurrentPath( pathname, version ) {
 * @param {string} html - README content
 */
 function updateReadme( html ) {
-	var el = document.getElementById( 'readme' );
+	var el = document.getElementById( 'readme-content' );
 	if ( el ) {
 		el.innerHTML = html;
 	}
@@ -528,9 +528,9 @@ class App extends React.Component {
 	_renderReadme( match ) {
 		return (
 			<Readme
+				pkg={ match.params.pkg }
 				html={ this._fetchFragment( match.url ) }
 				onClick={ this._onReadmeClick }
-				pkg={ match.params.pkg }
 			/>
 		);
 	}
