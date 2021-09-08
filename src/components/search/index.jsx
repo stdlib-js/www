@@ -23,6 +23,8 @@ import lunr from 'lunr';
 import { Link, withRouter } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import IconButton from '@material-ui/core/IconButton';
+import ClearIcon from '@material-ui/icons/Clear';
 import fetchSearchData from './../../utils/fetch_search_data.js';
 import packageDescription from './../../utils/package_description.js';
 import deprefix from './../../utils/deprefix_package_name.js';
@@ -107,6 +109,7 @@ class Search extends React.Component {
 	* @param {string} props.version - version
 	* @param {string} props.query - search query
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
+	* @param {Callback} props.onClose - callback to invoke upon closing search results
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -337,8 +340,17 @@ class Search extends React.Component {
 		}
 		results = this.state.index.search( this.props.query );
 		return (
-			<div id="readme" className="readme">
-				<h1>Search Results</h1>
+			<div id="readme" className="readme search-results">
+				<h1>
+					<span>Search Results</span>
+					<IconButton aria-label="close">
+						<ClearIcon
+							className="search-results-close"
+							title="Close the search results"
+							onClick={ this.props.onClose }
+						/>
+					</IconButton>
+				</h1>
 				<p>
 					{ results.length } search result(s)...
 				</p>
