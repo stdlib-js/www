@@ -44,6 +44,7 @@ import routes from './routes.js';
 // VARIABLES //
 
 var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
+var RE_SEARCH_URL = /\/search\/?/;
 var RENDER_METHOD_NAMES = {
 	'welcome': '_renderWelcome',
 	'search': '_renderSearch',
@@ -160,12 +161,18 @@ class App extends React.Component {
 			// Currently active package:
 			'active': '',  // e.g., `math/base/special/sin`
 
+			// Search query:
+			'query': '',
+
 			// Boolean indicating whether to show the side menu:
 			'sideMenu': ( w ) ? ( w >= 1080 ) : true,  // default to showing the side menu, except on smaller devices
 
 			// Current documentation version:
 			'version': config.versions[ 0 ]            // default to the latest version
 		};
+
+		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
+		this._prevLocation = config.mount; // default is API docs landing page
 	}
 
 	/**
@@ -312,6 +319,11 @@ class App extends React.Component {
 
 		self = this;
 
+		// Update the component state:
+		this.setState({
+			'query': query
+		});
+
 		// Cache the version in order to avoid race conditions:
 		version = this.state.version;
 
@@ -341,11 +353,26 @@ class App extends React.Component {
 	* Callback invoked upon submitting a search query.
 	*
 	* @private
-	* @param {string} query - search query
+	* @returns {void}
 	*/
-	_onSearchSubmit = ( query ) => {
-		var path = config.mount + this.state.version + '/search?q=' + encodeURIComponent( query );
+	_onSearchSubmit = () => {
+		var path;
+
+		// Check whether a user has entered a search query...
+		if ( this.state.query === '' ) {
+			return;
+		}
+		// If we are coming from a non-search page, cache the current location...
+		path = this.props.location.pathname;
+		if ( RE_SEARCH_URL.test( path ) === false ) {
+			this._prevLocation = path;
+		}
+		// Resolve a search URL based on the search query:
+		path = config.mount + this.state.version + '/search?q=' + encodeURIComponent( this.state.query );
+
+		// Manually update the history to trigger navigation to the search page:
 		this.props.history.push( path );
+
 	}
 
 	/**
@@ -354,11 +381,13 @@ class App extends React.Component {
 	* @private
 	*/
 	_onSearchClose = () => {
-		// FIXME: implement returning to previous view
+		// Manually update the history to trigger navigation to a previous (non-search) page:
+		this.props.history.push( this._prevLocation );
 
-		// TODO: can probably cache the current location in the callback above and then redirect after close; if no cached location, redirect to welcome page. The only time we should have a cached location is if a user directly loaded the search page without going there via the top navigation.
-
-		// TODO: we should probably reset the search input, as well. This means that we probably need to refactor the search input element to get its value from this component.
+		// Update the component state:
+		this.setState({
+			'query': '' // reset the search input element
+		});
 	}
 
 	/**
@@ -431,6 +460,7 @@ class App extends React.Component {
 
 		// Define default property values:
 		props = {
+			'query': this.state.query,
 			'pkg': '',
 			'version': '',
 			'benchmarks': false,
