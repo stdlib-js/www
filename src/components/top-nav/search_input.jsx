@@ -38,6 +38,7 @@ class SearchInput extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {string} value - value of input element
 	* @param {Callback} props.onChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSubmit - callback to invoke upon a user submitting a search query
 	* @returns {ReactComponent} React component
@@ -45,9 +46,6 @@ class SearchInput extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			// Search query:
-			'query': '',
-
 			// Boolean indicating whether a search input element is "active" (e.g., is focused or contains a search query):
 			'active': false
 		};
@@ -60,9 +58,6 @@ class SearchInput extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onChange = ( event ) => {
-		this.setState({
-			'query': event.target.value
-		});
 		this.props.onChange( event.target.value );
 	}
 
@@ -74,11 +69,8 @@ class SearchInput extends React.Component {
 	* @returns {void}
 	*/
 	_onKeyUp = ( event ) => {
-		if ( this.state.query === '' ) {
-			return;
-		}
 		if ( event.charCode === 13 || event.key === 'Enter' ) {
-			this.props.onSubmit( this.state.query );
+			this.props.onSubmit();
 		}
 	}
 
@@ -110,7 +102,7 @@ class SearchInput extends React.Component {
 	* @private
 	*/
 	_onSubmitClick = () => {
-		this.props.onSubmit( this.state.query );
+		this.props.onSubmit();
 	}
 
 	/**
@@ -123,8 +115,9 @@ class SearchInput extends React.Component {
 		return (
 			<Fragment>
 				<InputBase
-					className={ 'top-nav-search ' + ( ( this.state.active || this.state.query ) ? 'top-nav-search-active' : '' ) }
+					className={ 'top-nav-search ' + ( ( this.state.active || this.props.value ) ? 'top-nav-search-active' : '' ) }
 					placeholder="Search documentation"
+					value={ this.props.value }
 					type="text"
 					inputProps={{
 						'aria-label': 'search documentation'
