@@ -317,7 +317,7 @@ class Search extends React.Component {
 	* @param {Object} prevProps - previous properties
 	* @param {Object} prevState - previous state
 	*/
-	componentDidUpdate( prevProps, prevState ) {
+	componentDidUpdate( prevProps ) {
 		if ( this.props.version !== prevProps.version ) {
 			this._updateSearchIndex();
 		}
