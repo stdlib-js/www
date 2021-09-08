@@ -41,6 +41,7 @@ class TopNav extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
+	* @param {string} props.query - search query
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
@@ -140,6 +141,7 @@ class TopNav extends React.Component {
 					/>
 
 					<SearchInput
+						value={ this.props.query }
 						onSubmit={ this.props.onSearchSubmit }
 						onChange={ this.props.onSearchChange }
 					/>
