@@ -231,19 +231,19 @@ h2 {
 	margin-bottom: 12px;
 }
 
-.readme > h1,
-.readme > h2,
-.readme > h3,
-.readme > h4,
-.readme > h5,
-.readme > h6,
-.readme > section,
-.readme > p,
-.readme > blockquote,
-.readme > pre,
-.readme > code,
-.readme > ul,
-.readme > hr {
+.readme h1,
+.readme h2,
+.readme h3,
+.readme h4,
+.readme h5,
+.readme h6,
+.readme section,
+.readme p,
+.readme blockquote,
+.readme pre,
+.readme code,
+.readme ul,
+.readme hr {
 	min-width: 594px;
 	max-width: 720px;
 }
@@ -264,37 +264,37 @@ h2 {
 */
 
 @media only screen and (max-width: 76.25em) { /* 1220px */
-	.readme > h1,
-	.readme > h2,
-	.readme > h3,
-	.readme > h4,
-	.readme > h5,
-	.readme > h6,
-	.readme > section,
-	.readme > p,
-	.readme > blockquote,
-	.readme > pre,
-	.readme > code,
-	.readme > ul,
-	.readme > hr {
+	.readme h1,
+	.readme h2,
+	.readme h3,
+	.readme h4,
+	.readme h5,
+	.readme h6,
+	.readme section,
+	.readme p,
+	.readme blockquote,
+	.readme pre,
+	.readme code,
+	.readme ul,
+	.readme hr {
 		width: 66.66666666666%;
 	}
 }
 
 @media only screen and (max-width: 67.5em) { /* 1080px */
-	.readme > h1,
-	.readme > h2,
-	.readme > h3,
-	.readme > h4,
-	.readme > h5,
-	.readme > h6,
-	.readme > section,
-	.readme > p,
-	.readme > blockquote,
-	.readme > pre,
-	.readme > code,
-	.readme > ul,
-	.readme > hr {
+	.readme h1,
+	.readme h2,
+	.readme h3,
+	.readme h4,
+	.readme h5,
+	.readme h6,
+	.readme section,
+	.readme p,
+	.readme blockquote,
+	.readme pre,
+	.readme code,
+	.readme ul,
+	.readme hr {
 		width: 80%;
 		max-width: 700px;
 	}
@@ -305,19 +305,19 @@ h2 {
 		margin-left: 0;
 	}
 
-	.readme > h1,
-	.readme > h2,
-	.readme > h3,
-	.readme > h4,
-	.readme > h5,
-	.readme > h6,
-	.readme > section,
-	.readme > p,
-	.readme > blockquote,
-	.readme > pre,
-	.readme > code,
-	.readme > ul,
-	.readme > hr {
+	.readme h1,
+	.readme h2,
+	.readme h3,
+	.readme h4,
+	.readme h5,
+	.readme h6,
+	.readme section,
+	.readme p,
+	.readme blockquote,
+	.readme pre,
+	.readme code,
+	.readme ul,
+	.readme hr {
 		width: 96%;
 		max-width: 700px;
 	}
@@ -328,19 +328,19 @@ h2 {
 		margin-left: 0;
 	}
 
-	.readme > h1,
-	.readme > h2,
-	.readme > h3,
-	.readme > h4,
-	.readme > h5,
-	.readme > h6,
-	.readme > section,
-	.readme > p,
-	.readme > blockquote,
-	.readme > pre,
-	.readme > code,
-	.readme > ul,
-	.readme > hr {
+	.readme h1,
+	.readme h2,
+	.readme h3,
+	.readme h4,
+	.readme h5,
+	.readme h6,
+	.readme section,
+	.readme p,
+	.readme blockquote,
+	.readme pre,
+	.readme code,
+	.readme ul,
+	.readme hr {
 		width: 100%;
 		min-width: 100%;
 	}
