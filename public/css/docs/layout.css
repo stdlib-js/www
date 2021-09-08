@@ -400,52 +400,6 @@ h2 {
 }
 
 /*
-* Set special rules for search results lists.
-*/
-.readme .search-results-list {
-	padding-left: 0;
-}
-
-.readme .search-results-list-item {
-	display: block;
-	margin-top: 0;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-.readme .search-results-list .logo-icon {
-	display: inline-block;
-	height: 1em;
-	width: 1em;
-}
-
-.readme .search-results-list-item-title {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.readme .search-results-list-item-url {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.readme .search-results-list-item-url .logo-icon {
-	vertical-align: text-bottom;
-}
-
-.readme .search-results-list-item-url-link {
-	padding-left: 0.5em;
-}
-
-.readme .search-results-list-item-description {
-	display: block;
-	margin-top: 0.5em;
-	margin-bottom: 0;
-}
-
-/*
 * Definition lists.
 */
 
@@ -552,6 +506,64 @@ h2 {
 .readme kbd {
 	display: inline-block;
 	padding: 3px 5px;
+}
+
+/*
+* Search results.
+*/
+
+.search-results h1 {
+	display: flex;
+}
+
+.search-results h1 span {
+	flex-grow: 1;
+}
+
+/*
+* Set special rules for search results lists.
+*/
+.search-results .search-results-list {
+	padding-left: 0;
+}
+
+.search-results .search-results-list-item {
+	display: block;
+	margin-top: 0;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.search-results .search-results-list .logo-icon {
+	display: inline-block;
+	height: 1em;
+	width: 1em;
+}
+
+.search-results .search-results-list-item-title {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.search-results .search-results-list-item-url {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.search-results .search-results-list-item-url .logo-icon {
+	vertical-align: text-bottom;
+}
+
+.search-results .search-results-list-item-url-link {
+	padding-left: 0.5em;
+}
+
+.search-results .search-results-list-item-description {
+	display: block;
+	margin-top: 0.5em;
+	margin-bottom: 0;
 }
 
 /*
