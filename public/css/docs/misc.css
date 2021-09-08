@@ -227,6 +227,28 @@ img {
 }
 
 /*
+* Search results unordered list items should not display a list marker.
+*/
+.readme .search-results-list {
+	list-style-type: none;
+}
+
+/*
+* Outline a search result item when focused or hovered.
+*/
+.readme .search-results-list-item {
+	border-radius: 4px;
+	border: 1px solid transparent;
+
+	cursor: pointer;
+}
+
+.readme .search-results-list-item:focus,
+.readme .search-results-list-item:hover {
+	border: 1px solid #4078c0;
+}
+
+/*
 * Tables.
 */
 
@@ -412,6 +434,11 @@ button.side-menu-list-item-namespace-icon:hover {
 
 #stdlib-logo:hover {
 	opacity: 1;
+}
+
+.stdlib-logo-icon {
+	background-image: url("/img/logo_icon_16x16.svg");
+	background-repeat: no-repeat;
 }
 
 /*

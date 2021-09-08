@@ -174,6 +174,15 @@ a:active {
 	white-space: nowrap;
 }
 
+.readme .search-results-list-item-title {
+	font-size: 1.25em;
+}
+
+.readme .search-results-list-item-package-kind {
+	font-weight: 500;
+	color: #606060;
+}
+
 /*
 * Definition lists.
 */
