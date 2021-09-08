@@ -493,6 +493,7 @@ class App extends React.Component {
 	* @private
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
+	* @param {string} match.params.pkg - package name (e.g., `math/base/special/sin`)
 	* @returns {ReactElement} React element
 	*/
 	_renderReadme( match ) {
@@ -500,6 +501,7 @@ class App extends React.Component {
 			<Readme
 				html={ this._fetchFragment( match.url ) }
 				onClick={ this._onReadmeClick }
+				pkg={ match.params.pkg }
 			/>
 		);
 	}

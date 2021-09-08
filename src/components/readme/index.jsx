@@ -18,7 +18,8 @@
 
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
+import EditIcon from '@material-ui/icons/Edit';
 
 
 // MAIN //
@@ -29,18 +30,29 @@ import React from 'react';
 * @private
 * @param {Object} props - component properties
 * @param {string} props.html - README HTML
+* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @param {Callback} props.onClick - callback to invoke upon clicking on README content
 * @returns {ReactElement} React element
 */
 function Readme( props ) {
 	return (
-		<div
-			id="readme"
-			className="readme"
-			onClick={ props.onClick }
-			suppressHydrationWarning
-			dangerouslySetInnerHTML={ { '__html': props.html } }
-		/>
+		<Fragment>
+			<div
+				id="readme"
+				className="readme"
+				onClick={ props.onClick }
+				suppressHydrationWarning
+				dangerouslySetInnerHTML={ { '__html': props.html } }
+			/>
+			<a
+				className="readme-edit-link"
+				href={"https://github.com/stdlib-js/stdlib/edit/develop/lib/node_modules/@stdlib/"+props.pkg+"/README.md"}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<EditIcon fontSize="inherit" /> Edit on GitHub
+			</a>
+		</Fragment>
 	);
 }
 

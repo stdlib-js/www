@@ -228,6 +228,7 @@ h2 {
 .readme {
 	min-height: 100%;
 	margin-left: 12.5%;
+	margin-bottom: 12px;
 }
 
 .readme > h1,
@@ -506,6 +507,10 @@ h2 {
 .readme kbd {
 	display: inline-block;
 	padding: 3px 5px;
+}
+
+.readme-edit-link {
+	margin-left: 12.5%;
 }
 
 /*
