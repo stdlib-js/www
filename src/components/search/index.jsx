@@ -20,7 +20,7 @@
 
 import React from 'react';
 import lunr from 'lunr';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import fetchSearchData from './../../utils/fetch_search_data.js';
@@ -28,6 +28,67 @@ import packageDescription from './../../utils/package_description.js';
 import deprefix from './../../utils/deprefix_package_name.js';
 import pkgPath from './../../utils/pkg_doc_path.js';
 import log from './../../utils/log.js';
+
+
+// VARIABLES //
+
+// Note: this regular expression is intentionally not exhaustive. Primary intent is to roughly group packages according to what should be relative common/popular top-level namespaces...
+var RE_NAMESPACE = /^(assert|blas|datasets|fs|math|ml|net|random|regexp|simulate|stats|streams|time|utils)\//;
+
+// Note: this regular expression is intentionally not exhaustive. Primary intent is to help disambiguate packages whose basenames may be present in multiple sub-namespaces...
+var RE_SUBNAMESPACE = /\/(base|dists|incr|iter|strided)\//;
+
+
+// FUNCTIONS //
+
+/**
+* Returns the last index of a specified character.
+*
+* @private
+* @param {string} str - string to search
+* @param {string} ch - character to match
+* @returns {integer} index
+*/
+function lastIndexOf( str, ch ) {
+	var len;
+	var i;
+
+	len = str.length;
+	for ( i = len-1; i >= 0; i-- ) {
+		if ( str[ i ] === ch ) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+/**
+* Returns a package "kind" based on the package path.
+*
+* ## Notes
+*
+* -   This is invariably not exhaustive.
+*
+* @private
+* @param {string} str - package name
+* @returns {string} kind
+*/
+function packageKind( pkg ) {
+	var match;
+	var kind;
+
+	kind = [];
+
+	match = pkg.match( RE_NAMESPACE );
+	if ( match ) {
+		kind.push( match[ 1 ] );
+	}
+	match = pkg.match( RE_SUBNAMESPACE );
+	if ( match ) {
+		kind.push( match[ 1 ] );
+	}
+	return kind.join( ', ' );
+}
 
 
 // MAIN //
@@ -73,7 +134,37 @@ class Search extends React.Component {
 		* @private
 		* @param {Object} event - event object
 		*/
-		function onClick() {
+		function onClick( event ) {
+			// Prevent the event from bubbling up:
+			event.stopPropagation();
+
+			// Notify the application that a user has selected a package:
+			self.props.onPackageChange( pkg );
+		}
+	}
+
+	/**
+	* Returns a callback which is invoked upon clicking on a specified package's associated search result list item.
+	*
+	* @private
+	* @param {string} url - package documentation URL
+	* @param {string} pkg - package name
+	* @returns {Callback} event handler
+	*/
+	_onPackageItemClickFactory( url, pkg ) {
+		var self = this;
+		return onClick;
+
+		/**
+		* Callback invoked upon clicking on a package.
+		*
+		* @private
+		* @param {Object} event - event object
+		*/
+		function onClick( event ) {
+			// Manually update history in order to navigate to the desired package:
+			self.props.history.push( url );
+
 			// Notify the application that a user has selected a package:
 			self.props.onPackageChange( pkg );
 		}
@@ -141,32 +232,70 @@ class Search extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderItem( result ) {
+		var basename;
+		var clbk;
 		var name;
 		var desc;
+		var kind;
 		var pkg;
+		var url;
+		var idx;
 
-		name = result.ref;
-		pkg = deprefix( name );
+		// Get the package name associated with the search result:
+		name = result.ref; // e.g., `@stdlib/math/base/special/sin`
+
+		// Remove the `@stdlib/` prefix:
+		pkg = deprefix( name ); // e.g., `math/base/special/sin`
+
+		// Isolate the basename of the package path:
+		idx = lastIndexOf( pkg, '/' );
+		basename = pkg.substring( idx+1 ); // e.g., `sin`
+
+		// Determine if we can resolve a package "kind":
+		kind = packageKind( pkg );
+
+		// Retrieve the package description:
 		desc = packageDescription( pkg, this.props.version ) || '(no description)';
+
+		// Resolve the documentation path for this package:
+		url = pkgPath( name, this.props.version );
+
+		// Create a callback to be invoked whenever a user clicks on a search result link:
+		clbk = this._onPackageClickFactory( pkg );
 
 		return (
 			<ListItem
+				disableGutters
 				key={ pkg }
 				className="search-results-list-item"
+				onClick={ this._onPackageItemClickFactory( url, pkg ) }
 			>
-				<span class="package-name">
+				<h2 className="search-results-list-item-title">
 					<Link
-						to={ pkgPath( name, this.props.version ) }
+						to={ url }
 						title={ name }
-						onClick={ this._onPackageClickFactory( pkg ) }
+						onClick={ clbk }
 					>
-						{ pkg }
+						{ basename }
 					</Link>
-				</span>
-				<span class="delimiter">: </span>
-				<span class="description">
+					<span className="search-results-list-item-package-kind">
+						{  ( kind ) ? ' ('+kind+')' : null }
+					</span>
+				</h2>
+				<p className="search-results-list-item-url">
+					<span className="logo-icon stdlib-logo-icon"></span>
+					<Link
+						className="search-results-list-item-url-link"
+						to={ url }
+						title={ name }
+						onClick={ clbk }
+					>
+						{ url }
+					</Link>
+				</p>
+				<p className="search-results-list-item-description">
 					{ desc }
-				</span>
+				</p>
 			</ListItem>
 		);
 	}
@@ -210,6 +339,9 @@ class Search extends React.Component {
 		return (
 			<div id="readme" className="readme">
 				<h1>Search Results</h1>
+				<p>
+					{ results.length } search result(s)...
+				</p>
 				<List
 					disablePadding
 					className="search-results-list"
@@ -224,4 +356,4 @@ class Search extends React.Component {
 
 // EXPORTS //
 
-export default Search;
+export default withRouter( Search );
