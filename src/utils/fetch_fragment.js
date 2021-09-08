@@ -28,12 +28,13 @@ import HTML_FRAGMENT_CACHE from './caches/html_fragments.js';
 *
 * @private
 * @param {string} path - fragment path
-* @param {Callback} clbk - callback to invoke upon asynchronously fetching a fragment
+* @param {Callback} clbk - callback to invoke upon fetching a fragment
 * @returns {(string|null)} fragment (if cached); otherwise, `null`
 */
 function fetchFragment( path, clbk ) {
-	if ( HTML_FRAGMENT_CACHE[ path ] ) {
-		return HTML_FRAGMENT_CACHE[ path ];
+	var text = HTML_FRAGMENT_CACHE[ path ];
+	if ( text ) {
+		return clbk( null, text );
 	}
 	fetch( path+'?fragment=true' )
 		.then( onResponse )
