@@ -372,7 +372,6 @@ class App extends React.Component {
 
 		// Manually update the history to trigger navigation to the search page:
 		this.props.history.push( path );
-
 	}
 
 	/**
