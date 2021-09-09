@@ -82,8 +82,12 @@ input {
 }
 
 a {
-	color: #4078c0;
+	color: #0053be;
 	text-decoration: none;
+}
+
+a code {
+	color: #004db1; /* better contrast ratio on grey background */
 }
 
 a:hover,
