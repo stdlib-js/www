@@ -13,6 +13,7 @@
 	font-style: normal;
 	font-weight: normal;
 	text-rendering: optimizeLegibility;
+	font-display: swap;
 }
 
 /* Webfont: LatoLatin-ThinItalic */
@@ -26,5 +27,6 @@
 	font-style: italic;
 	font-weight: normal;
 	text-rendering: optimizeLegibility;
+	font-display: swap;
 }
 
