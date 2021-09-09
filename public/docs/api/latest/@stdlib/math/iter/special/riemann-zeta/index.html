@@ -1,6 +1,6 @@
 <h1 id="iterzeta">iterZeta</h1>
 <blockquote>
-<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/zeta">Riemann zeta</a> function for each iterated value.</p>
+<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which evaluates the [Riemann zeta][@stdlib/math/base/special/zeta] function for each iterated value.</p>
 </blockquote>
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 <section class="intro">
@@ -12,7 +12,7 @@
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterZeta = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/iter/special/riemann-zeta'</span> );
 </code></pre>
 <h4 id="iterzeta-iterator-">iterZeta( iterator )</h4>
-<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/zeta">Riemann zeta</a> function.</p>
+<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iteratively evaluates the [Riemann zeta][@stdlib/math/base/special/zeta] function.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> it = iterZeta( array2iterator( [ <span class="hljs-number">1.1</span>, -<span class="hljs-number">4.0</span> ] ) );
@@ -74,7 +74,18 @@ v = it.next().value;
 <section class="references">
 </section>
 <!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/riemann-zeta"><code>@stdlib/math/base/special/riemann-zeta</code></a></span><span class="delimiter">: </span><span class="description">riemann Zeta function.</span></li>
+</ul>
+</section>
+<!-- /.related -->
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 <section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
 </section>
 <!-- /.links -->

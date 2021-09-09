@@ -19,9 +19,9 @@ gaxpy( x.length, alpha, x, <span class="hljs-number">1</span>, y, <span class="h
 <ul>
 <li><strong>N</strong>: number of indexed elements.</li>
 <li><strong>alpha</strong>: <code>numeric</code> constant.</li>
-<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
+<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
 <li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>y</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
+<li><strong>y</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
 <li><strong>strideY</strong>: index increment for <code>y</code>.</li>
 </ul>
 <p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to multiply every other value in <code>x</code> by <code>alpha</code> and add the result to the first <code>N</code> elements of <code>y</code> in reverse order,</p>
@@ -115,6 +115,19 @@ gaxpy.ndarray( x.length, <span class="hljs-number">5.0</span>, x, <span class="h
 </code></pre>
 </section>
 <!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/daxpy"><code>@stdlib/blas/base/daxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector x by a constant and add the result to y.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/saxpy"><code>@stdlib/blas/base/saxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector x by a constant and add the result to y.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 <section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
 </section>
 <!-- /.links -->
