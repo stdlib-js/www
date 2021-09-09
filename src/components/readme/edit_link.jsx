@@ -36,7 +36,6 @@ import config from './../../config.js';
 function EditLink( props ) {
 	return (
 		<a
-			className="readme-edit-link"
 			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
 		>
 			<EditIcon fontSize="inherit" /> Edit on GitHub

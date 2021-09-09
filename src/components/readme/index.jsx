@@ -131,7 +131,9 @@ class Readme extends React.Component {
 					html={ this.state.content }
 					onClick={ this.props.onClick }
 				/>
-				{ ( this.state.content ) ? <EditLink pkg={ this.props.pkg } /> : null }
+				<section className="readme-addendum" role="navigation">
+					{ ( this.state.content ) ? <EditLink pkg={ this.props.pkg } /> : null }
+				</section>
 			</div>
 		);
 	}
