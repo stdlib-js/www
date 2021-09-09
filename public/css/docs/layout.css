@@ -114,6 +114,12 @@ h2 {
 	margin-right: auto;
 }
 
+.right {
+	text-align: right;
+	margin-left: auto;
+	margin-right: 0;
+}
+
 /*
 * Root.
 */
@@ -507,6 +513,16 @@ h2 {
 .readme kbd {
 	display: inline-block;
 	padding: 3px 5px;
+}
+
+/*
+* README addendum.
+*/
+
+.readme-addendum {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 2em;
 }
 
 /*
