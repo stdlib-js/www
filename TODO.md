@@ -52,7 +52,7 @@
 
 13. (docs) HTML minify (rehype plugin)
 
-14. (docs) disable search input until search backend is ready
+14.
 
 15. (docs) Consider JS bundle minify
 
@@ -217,7 +217,6 @@
 
 42. (docs) add "See Also" section to package READMEs
 
-    -   will need to extract this info from the namespace database, similar to how we populate `repl.txt` files during the build process
     -   question: should we create a "REPL" version of the docs (i.e., where we transform the READMEs to elide imports of `stdlib` packages, swapping out example aliases with their respective REPL alias.
     -   This would be another tool => taking a README and converting/transforming it to one which uses `stdlib` aliases.
 
