@@ -734,6 +734,7 @@ class SideMenuDrawer extends React.Component {
 				classes={{
 					paper: 'side-menu-drawer'
 				}}
+				aria-hidden={ ( this.props.open ) ? null : "true" }
 			>
 				<Head
 					version={ this.props.version }
