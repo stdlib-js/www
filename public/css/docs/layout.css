@@ -22,17 +22,18 @@
 * 1. General rules.
 * 2. Clearfix.
 * 3. Positioning.
-* 4. Main.
-* 5. Lists.
-* 6. Definition lists.
-* 7. Blockquotes.
-* 8. Horizontal rules.
-* 9. Tables.
-* 10. Code.
-* 11. Navigation.
-* 12. Equations.
-* 13. iframes.
-* 14. Elements.
+* 4. Visibility.
+* 5. Main.
+* 6. Lists.
+* 7. Definition lists.
+* 8. Blockquotes.
+* 9. Horizontal rules.
+* 10. Tables.
+* 11. Code.
+* 12. Navigation.
+* 13. Equations.
+* 14. iframes.
+* 15. Elements.
 */
 
 /*
@@ -118,6 +119,14 @@ h2 {
 	text-align: right;
 	margin-left: auto;
 	margin-right: 0;
+}
+
+/*
+* Visibility.
+*/
+
+.invisible {
+	visibility: hidden;
 }
 
 /*
