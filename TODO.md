@@ -28,7 +28,7 @@
    -   <https://github.com/linode/docs/blob/master/docs/websites/static-sites/install-gatsbyjs/index.md>
    -   consider netlify, although it now has build limits
 
-6. (docs) consider adding link elements to section headings similar to how GitHub displays a link icon on hover which supports creating a link to that specific section
+6.
 
 7. (tools) use URL shortening for click tracking (e.g., Bit.ly)
 
@@ -50,7 +50,7 @@
 
 12. SSL-stapling config
 
-13. (docs) HTML minify (rehype plugin)
+13.
 
 14.
 
@@ -103,7 +103,7 @@
     - for relative requires, we simply load the syntax highlighted HTML
     - if we are really fancy, on hover, we can provide typescript/IDE-like functionality where we provide the type signature of an imported function and its description, all without ever leaving our website docs
 
-28. (docs) JSDoc page (developer docs, with linking to type information)
+28.
 
 29. (docs) README syntax highlighted example URLs (i.e., `require( '@stdlib/foo' )`, where `@stdlib/foo` is a hyperlink)
 
@@ -183,15 +183,11 @@
     -   upon viewing the documentation for a particular package, a user could subscribe to a feed for that package
     -   probably possible to convert the Git commit log, provided certain standards are followed, into an RSS and/or Atom feed
 
-36. (docs) refactor the side bar menu to not inject SVG icons
-
-    -   instead rely on CSS background images.
-    -   Why? Otherwise, we inject a lot of duplicate DOM nodes when we could instead point to a single SVG file that the browser can cache and present.
-    -   In short, we can leverage CSS to get a perf boost.
+36.
 
 37.
 
-38. (docs) explore using Web Speech API for speech recognition in the filter (and future search) input
+38. (docs) explore using Web Speech API for speech recognition in the filter and search input
 
     -   browser support is limited (and almost non-existent)
     -   <https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API>
@@ -202,12 +198,10 @@
 
     -   note, however, that, were we to use Algolia, users would not be able to search offline!
     -   we could just use Algolia's search when the user has Internet access and disable search altogether whenever a user does not have Internet access (or even fallback to an invariably poorer in-browser search library)
+    -   another alternative could be typesense which is open source.
+    -   **update**: search has been added using `lunr.js` with support for offline usage. Seems to be good enough.
 
-40. (docs) consider adding support for viewing docs as JSON (similar to Node.js)
-
-    -   <https://nodejs.org/dist/latest-v12.x/docs/api/console.html> and then "View as JSON"
-    -   why? in order to provide a consumable public format which can be consumed by IDEs and code editors
-    -   would require writing some tooling
+40. 
 
 41. setup [Matomo](https://matomo.org/) for site analytics as self-hosted alternative to GA
 
@@ -215,7 +209,7 @@
     -   <https://www.linode.com/docs/uptime/analytics/open-web-analytics-install-and-launch-on-your-server/>
     -   <https://matomo.org/docs/requirements/>
 
-42. (docs) add "See Also" section to package READMEs
+42. (docs) add "See Also" section to package READMEs (**update**: this has been done)
 
     -   question: should we create a "REPL" version of the docs (i.e., where we transform the READMEs to elide imports of `stdlib` packages, swapping out example aliases with their respective REPL alias.
     -   This would be another tool => taking a README and converting/transforming it to one which uses `stdlib` aliases.
@@ -223,10 +217,9 @@
 43. (docs) should we allow viewing a package's dependency graph?
 
     -   e.g., dependencies and dependants
+    -   doing so would come with risks. Namely, users who are overly concerned about deeply nested dep trees may be scared off from using a particular package. Not sure we can reasonably make this public without inevitable backlash.
 
-44. (docs) how (and do) we want to support internationalization?
-
-45. add a `\ping` route to the API docs server to determine whether the server is available (**update**: this has been added)
+44. add a `/ping` route to the API docs server to determine whether the server is available (**update**: this has been added)
 
     -   this route can be used by the API docs application to determine whether a user is "online"
     -   knowing whether a user is "online" could be useful for determining whether a user should be able to run tests and benchmarks which might require pulling in bundles on demand from a remote server. If "offline", we may want to disable those navigational elements. Ditto for search functionality if we opt to use Algolia.
