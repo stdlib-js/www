@@ -211,6 +211,19 @@ a:active {
 }
 
 /*
+* "See Also" section.
+*/
+
+.readme .related h2 {
+	font-size: 1.1em;
+}
+
+.readme .related .package-name code {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 1em;
+}
+
+/*
 * Navigation.
 */
 

@@ -332,6 +332,40 @@ img {
 }
 
 /*
+* "See Also" section.
+*/
+
+.readme .related {
+	border-left: 3px solid #007bff;
+
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+
+	/* offset-x | offset-y | blur-radius | color */
+	-webkit-box-shadow: 0 4px 20px 0 #e2e2e2;
+	-moz-box-shadow: 0 4px 20px 0 #e2e2e2;
+	box-shadow: 0 4px 20px 0 #e2e2e2;
+}
+
+.readme .related h2 {
+	background-color: #e4f1ff; /* fallback */
+	background-color: rgba(0, 123, 255, 0.1);
+}
+
+.readme .related h2:before {
+	content: url("/img/info_icon_blue_24x24.svg");
+}
+
+.readme .related ul {
+	list-style-type: none;
+}
+
+.readme .related .package-name code {
+	background-color:  #ffffff;
+}
+
+/*
 * Side menu.
 */
 

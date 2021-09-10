@@ -237,19 +237,32 @@ h2 {
 	margin-bottom: 12px;
 }
 
-.readme h1,
-.readme h2,
-.readme h3,
-.readme h4,
-.readme h5,
-.readme h6,
-.readme section,
-.readme p,
-.readme blockquote,
-.readme pre,
-.readme code,
-.readme ul,
-.readme hr {
+.readme > h1,
+.readme .readme-content > h1,
+.readme > h2,
+.readme .readme-content > h2,
+.readme > h3,
+.readme .readme-content > h3,
+.readme > h4,
+.readme .readme-content > h4,
+.readme > h5,
+.readme .readme-content > h5,
+.readme > h6,
+.readme .readme-content > h6,
+.readme > section,
+.readme .readme-content > section,
+.readme > p,
+.readme .readme-content > p,
+.readme > blockquote,
+.readme .readme-content > blockquote,
+.readme > pre,
+.readme .readme-content > pre,
+.readme > code,
+.readme .readme-content > code,
+.readme > ul,
+.readme .readme-content > ul,
+.readme > hr,
+.readme .readme-content > hr {
 	min-width: 594px;
 	max-width: 720px;
 }
@@ -270,37 +283,63 @@ h2 {
 */
 
 @media only screen and (max-width: 76.25em) { /* 1220px */
-	.readme h1,
-	.readme h2,
-	.readme h3,
-	.readme h4,
-	.readme h5,
-	.readme h6,
-	.readme section,
-	.readme p,
-	.readme blockquote,
-	.readme pre,
-	.readme code,
-	.readme ul,
-	.readme hr {
+	.readme > h1,
+	.readme .readme-content > h1,
+	.readme > h2,
+	.readme .readme-content > h2,
+	.readme > h3,
+	.readme .readme-content > h3,
+	.readme > h4,
+	.readme .readme-content > h4,
+	.readme > h5,
+	.readme .readme-content > h5,
+	.readme > h6,
+	.readme .readme-content > h6,
+	.readme > section,
+	.readme .readme-content > section,
+	.readme > p,
+	.readme .readme-content > p,
+	.readme > blockquote,
+	.readme .readme-content > blockquote,
+	.readme > pre,
+	.readme .readme-content > pre,
+	.readme > code,
+	.readme .readme-content > code,
+	.readme > ul,
+	.readme .readme-content > ul,
+	.readme > hr,
+	.readme .readme-content > hr {
 		width: 66.66666666666%;
 	}
 }
 
 @media only screen and (max-width: 67.5em) { /* 1080px */
-	.readme h1,
-	.readme h2,
-	.readme h3,
-	.readme h4,
-	.readme h5,
-	.readme h6,
-	.readme section,
-	.readme p,
-	.readme blockquote,
-	.readme pre,
-	.readme code,
-	.readme ul,
-	.readme hr {
+	.readme > h1,
+	.readme .readme-content > h1,
+	.readme > h2,
+	.readme .readme-content > h2,
+	.readme > h3,
+	.readme .readme-content > h3,
+	.readme > h4,
+	.readme .readme-content > h4,
+	.readme > h5,
+	.readme .readme-content > h5,
+	.readme > h6,
+	.readme .readme-content > h6,
+	.readme > section,
+	.readme .readme-content > section,
+	.readme > p,
+	.readme .readme-content > p,
+	.readme > blockquote,
+	.readme .readme-content > blockquote,
+	.readme > pre,
+	.readme .readme-content > pre,
+	.readme > code,
+	.readme .readme-content > code,
+	.readme > ul,
+	.readme .readme-content > ul,
+	.readme > hr,
+	.readme .readme-content > hr {
 		width: 80%;
 		max-width: 700px;
 	}
@@ -311,19 +350,32 @@ h2 {
 		margin-left: 0;
 	}
 
-	.readme h1,
-	.readme h2,
-	.readme h3,
-	.readme h4,
-	.readme h5,
-	.readme h6,
-	.readme section,
-	.readme p,
-	.readme blockquote,
-	.readme pre,
-	.readme code,
-	.readme ul,
-	.readme hr {
+	.readme > h1,
+	.readme .readme-content > h1,
+	.readme > h2,
+	.readme .readme-content > h2,
+	.readme > h3,
+	.readme .readme-content > h3,
+	.readme > h4,
+	.readme .readme-content > h4,
+	.readme > h5,
+	.readme .readme-content > h5,
+	.readme > h6,
+	.readme .readme-content > h6,
+	.readme > section,
+	.readme .readme-content > section,
+	.readme > p,
+	.readme .readme-content > p,
+	.readme > blockquote,
+	.readme .readme-content > blockquote,
+	.readme > pre,
+	.readme .readme-content > pre,
+	.readme > code,
+	.readme .readme-content > code,
+	.readme > ul,
+	.readme .readme-content > ul,
+	.readme > hr,
+	.readme .readme-content > hr {
 		width: 96%;
 		max-width: 700px;
 	}
@@ -334,19 +386,32 @@ h2 {
 		margin-left: 0;
 	}
 
-	.readme h1,
-	.readme h2,
-	.readme h3,
-	.readme h4,
-	.readme h5,
-	.readme h6,
-	.readme section,
-	.readme p,
-	.readme blockquote,
-	.readme pre,
-	.readme code,
-	.readme ul,
-	.readme hr {
+	.readme > h1,
+	.readme .readme-content > h1,
+	.readme > h2,
+	.readme .readme-content > h2,
+	.readme > h3,
+	.readme .readme-content > h3,
+	.readme > h4,
+	.readme .readme-content > h4,
+	.readme > h5,
+	.readme .readme-content > h5,
+	.readme > h6,
+	.readme .readme-content > h6,
+	.readme > section,
+	.readme .readme-content > section,
+	.readme > p,
+	.readme .readme-content > p,
+	.readme > blockquote,
+	.readme .readme-content > blockquote,
+	.readme > pre,
+	.readme .readme-content > pre,
+	.readme > code,
+	.readme .readme-content > code,
+	.readme > ul,
+	.readme .readme-content > ul,
+	.readme > hr,
+	.readme .readme-content > hr {
 		width: 100%;
 		min-width: 100%;
 	}
@@ -513,6 +578,55 @@ h2 {
 .readme kbd {
 	display: inline-block;
 	padding: 3px 5px;
+}
+
+/*
+* "See Also" section.
+*/
+
+.readme .related {
+	margin-top: 3em;
+	padding-bottom: 0.2em;
+}
+
+.readme .related hr {
+	display: none;
+}
+
+.readme .related h2 {
+	margin-top: 0;
+	padding-top: 0.7em;
+	padding-bottom: 0.4em;
+	padding-left: 0.5em;
+}
+
+.readme .related h2:before {
+	display: inline-block;
+	padding-right: 0.3em;
+
+	vertical-align: middle;
+}
+
+.readme .related ul {
+	padding-left: 1em;
+}
+
+.readme .related .delimiter {
+	display: none;
+}
+
+.readme .related .package-name {
+	display: block;
+
+	margin-top: 0.75em;
+	margin-bottom: 0.2em;
+}
+
+.readme .related .description {
+	display: block;
+
+	margin-bottom: 0.5em;
+	padding-left: 2em;
 }
 
 /*
