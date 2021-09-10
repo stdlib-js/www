@@ -70,6 +70,7 @@ class SideMenu extends React.Component {
 		return (
 			<Fragment>
 				<OpenButton
+					hide={ this.props.open }
 					onClick={ this._onMenuOpen }
 				/>
 				<div className="side-menu-wrapper">

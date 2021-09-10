@@ -30,6 +30,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 *
 * @private
 * @param {Object} props - component properties
+* @param {boolean} props.hide - callback indicating whether to hide the button
 * @param {Callback} props.onClick - callback to invoke upon clicking on the button
 * @returns {ReactElement} React element
 */
@@ -37,7 +38,7 @@ function OpenButton( props ) {
 	return (
 		<IconButton
 			id="menu-icon-button"
-			className="icon-button"
+			className={ 'icon-button ' + ( ( props.hide ) ? 'invisible' : '' ) }
 			color="inherit"
 			aria-label="open drawer"
 			onClick={ props.onClick }
