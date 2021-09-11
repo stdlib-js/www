@@ -26,8 +26,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
 import Drawer from '@material-ui/core/Drawer';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import pkgPath from './../../../utils/pkg_doc_path.js';
 import packageTree from './../../../utils/package_tree.js';
@@ -541,8 +539,8 @@ class SideMenuDrawer extends React.Component {
 						size="small"
 					>
 						{ ( expanded )
-							? <RemoveIcon className="side-menu-list-item-collapse-icon" />
-							: <AddIcon className="side-menu-list-item-expand-icon" />
+							? <span className="side-menu-list-item-collapse-icon">&ndash;</span>
+							: <span className="side-menu-list-item-expand-icon">+</span>
 						}
 					</IconButton>
 				</ListItem>
