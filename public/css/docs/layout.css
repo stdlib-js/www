@@ -1027,7 +1027,7 @@ button.side-menu-list-item-namespace-icon {
 
 .side-menu-list-wrapper {
 	position: relative;
-	height: calc(100vh - 140px);
+	height: calc(100vh - 116px); /* -140px with version menu */
 }
 
 .side-menu-list {
