@@ -547,6 +547,7 @@ class SideMenuDrawer extends React.Component {
 				<Collapse
 					key={ name+'-submenu' }
 					in={ expanded }
+					component="li"
 					timeout={ COLLAPSE_TRANSITION_TIMEOUT }
 					unmountOnExit
 				>
