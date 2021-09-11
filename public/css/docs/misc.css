@@ -382,6 +382,15 @@ img {
 	background-image: linear-gradient(145deg, #1D1F20, #404348);
 }
 
+.side-menu-version-wrapper {
+	background-color: #1f1f1f;
+	border-top: 2px solid #2d2d2d;
+}
+
+.side-menu-version-wrapper label {
+	border-right: 1px solid #757575;
+}
+
 .side-menu-version-select,
 .side-menu-filter-input {
 	background-color: #1f1f1f;

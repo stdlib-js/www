@@ -290,7 +290,15 @@ a:active {
 	text-decoration: underline;
 }
 
-.side-menu-version-select,
+.side-menu-version-wrapper label {
+	color: #fff;
+	line-height: 1.5em;
+}
+
+.side-menu-version-select {
+	color: #fff;
+}
+
 .side-menu-filter-input,
 .side-menu-filter-clear,
 button.side-menu-list-item-namespace-icon {
