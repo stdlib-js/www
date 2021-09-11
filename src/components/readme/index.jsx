@@ -125,6 +125,7 @@ class Readme extends React.Component {
 	render() {
 		return (
 			<div
+				id="readme"
 				className="readme"
 			>
 				<ReadmeContent

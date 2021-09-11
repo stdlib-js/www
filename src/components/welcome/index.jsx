@@ -45,7 +45,7 @@ var CURRENT_YEAR = ( new Date() ).getFullYear();
 function Welcome( props ) {
 	return (
 		<Fragment>
-			<div className="readme" >
+			<div id="readme" className="readme" >
 				<section className="banner" >
 					<Banner />
 				</section>

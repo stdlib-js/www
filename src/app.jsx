@@ -595,6 +595,7 @@ class App extends React.Component {
 			return (
 				<div
 					class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
+					id="main"
 					role="main"
 				>
 					{ self[ method ]( props.match ) }
