@@ -320,5 +320,15 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 .side-menu-drawer .menu-close-icon:hover {
-	color: #bfc4c9;
+	color: #fff;
+}
+
+/*
+* Skip link.
+*/
+
+.skip-link {
+	text-align: center;
+
+	color: #00aeef;
 }

@@ -435,10 +435,25 @@ button.side-menu-list-item-namespace-icon:hover {
 	overflow-y: scroll;
 }
 
-.side-menu-drawer .menu-close-icon:hover {
-	-webkit-box-shadow: 20px;
-	-moz-box-shadow: 20px;
-	box-shadow: 20px;
+/*
+* Skip link.
+*/
+
+.skip-link {
+	background-color: #1d1f20;
+
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	-webkit-box-shadow: 0 0 3px 0 #000;
+	-moz-box-shadow: 0 0 3px 0 #000;
+	box-shadow: 0 0 3px 0 #000;
+}
+
+.skip-link:focus {
+	outline: none;
 }
 
 /*
