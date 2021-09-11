@@ -725,6 +725,7 @@ class SideMenuDrawer extends React.Component {
 		} else {
 			expanded = this.state.expanded;
 		}
+		// TODO: re-enable version menu once we actually support multiple documentation versions
 		return (
 			<Drawer
 				className="side-menu-drawer"
@@ -740,10 +741,10 @@ class SideMenuDrawer extends React.Component {
 					version={ this.props.version }
 					onClose={ this._onMenuClose }
 				/>
-				<VersionMenu
+				{ true ? null : <VersionMenu
 					version={ this.props.version }
 					onChange={ this._onVersionChange }
-				/>
+				/> }
 				<Filter
 					onChange={ this._onFilterChange }
 				/>
