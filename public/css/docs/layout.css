@@ -1011,19 +1011,20 @@ h2 {
 .side-menu-list-item.MuiListItem-root,
 .side-menu-list-item-namespace.MuiListItem-root {
 	display: flex;
+	height: 2.25em;
 	padding: 0;
 }
 
 .side-menu-list-item a,
 .side-menu-list-item-namespace a {
 	flex-grow: 1;
-	padding-top: 8px;
-	padding-bottom: 8px;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 button.side-menu-list-item-namespace-icon {
-	width: 36px;
-	padding: 8px;
+	width: 2.25em;
+	padding: 0.5em;
 }
 
 .side-menu-list-wrapper {
