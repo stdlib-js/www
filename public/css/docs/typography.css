@@ -320,7 +320,7 @@ button.side-menu-list-item-namespace-icon:hover {
 
 .side-menu-list-item-collapse-icon,
 .side-menu-list-item-expand-icon {
-	font-size: 0.875em !important; /* if 16px is 1em, then 14px */
+	font-size: 1em!important;
 }
 
 .side-menu-drawer .menu-close-icon {
