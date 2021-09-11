@@ -747,7 +747,6 @@ class SideMenuDrawer extends React.Component {
 				<Filter
 					onChange={ this._onFilterChange }
 				/>
-
 				<div className="side-menu-list-wrapper" >
 					<List
 						disablePadding
