@@ -36,7 +36,10 @@ function fetchFragment( path, clbk ) {
 	if ( text ) {
 		return clbk( null, text );
 	}
-	fetch( path+'?fragment=true' )
+	if ( path.charAt( path.length-1 ) !== '/' ) {
+		path += '/';
+	}
+	fetch( path+'index.html' )
 		.then( onResponse )
 		.then( onText )
 		.catch( onError );
