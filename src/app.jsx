@@ -149,7 +149,10 @@ class App extends React.Component {
 			'sideMenu': ( w ) ? ( w >= 1080 ) : true, // default to showing the side menu, except on smaller devices
 
 			// Current documentation version:
-			'version': config.versions[ 0 ] // default to the latest version
+			'version': config.versions[ 0 ], // default to the latest version
+
+			// Boolean indicating whether keyboard shortcuts are active:
+			'shortcuts': true
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -322,6 +325,54 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked when the search input element receives focus.
+	*
+	* @private
+	*/
+	_onSearchFocus = () => {
+		// Whenever the search input element receives focus, we want to disable keyboard shortcuts:
+		this.setState({
+			'shortcuts': false
+		});
+	}
+
+	/**
+	* Callback invoked when the search input element loses focus.
+	*
+	* @private
+	*/
+	_onSearchBlur = () => {
+		// Whenever the search input element loses focus, we can enable keyboard shortcuts:
+		this.setState({
+			'shortcuts': true
+		});
+	}
+
+	/**
+	* Callback invoked when the side menu filter receives focus.
+	*
+	* @private
+	*/
+	_onFilterFocus = () => {
+		// Whenever the side menu filter receives focus, we want to disable keyboard shortcuts:
+		this.setState({
+			'shortcuts': false
+		});
+	}
+
+	/**
+	* Callback invoked when the side menu filter loses focus.
+	*
+	* @private
+	*/
+	_onFilterBlur = () => {
+		// Whenever the side menu filter loses focus, we can enable keyboard shortcuts:
+		this.setState({
+			'shortcuts': true
+		});
+	}
+
+	/**
 	* Updates the documentation version.
 	*
 	* @private
@@ -442,6 +493,10 @@ class App extends React.Component {
 				onVersionChange={ this._onVersionChange }
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
+				onSearchFocus={ this._onSearchFocus }
+				onSearchBlur={ this._onSearchBlur }
+				onFilterFocus={ this._onFilterFocus }
+				onFilterBlur={ this._onFilterBlur }
 				sideMenu={ this.state.sideMenu }
 				{...props}
 			/>

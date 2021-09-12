@@ -35,6 +35,8 @@ class SideMenuFilter extends React.Component {
 	*
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {Callback} props.onFocus - callback to invoke when the menu filter receives focus
+	* @param {Callback} props.onBlur - callback to invoke when the menu filter loses focus
 	* @param {Callback} props.onChange - callback to invoke upon a change in the filter
 	* @returns {ReactComponent} React component
 	*/
@@ -85,6 +87,8 @@ class SideMenuFilter extends React.Component {
 					className="side-menu-filter-input"
 					type="text"
 					onChange={ this._onFilterChange }
+					onFocus={ this.props.onFocus }
+					onBlur={ this.props.onBlur }
 					value={ this.state.filter }
 					placeholder="Type here to filter menu..."
 					title="Filter documentation menu"

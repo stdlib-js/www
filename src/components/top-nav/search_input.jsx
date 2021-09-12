@@ -41,6 +41,8 @@ class SearchInput extends React.Component {
 	* @param {string} value - value of input element
 	* @param {Callback} props.onChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSubmit - callback to invoke upon a user submitting a search query
+	* @param {Callback} props.onFocus - callback to invoke when search input element receives focus
+	* @param {Callback} props.onBlur - callback to invoke when search input element loses focus
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -78,22 +80,26 @@ class SearchInput extends React.Component {
 	* Callback invoked upon the search input element being focused.
 	*
 	* @private
+	* @param {Object} event - event object
 	*/
-	_onFocus = () => {
+	_onFocus = ( event ) => {
 		this.setState({
 			'active': true
 		});
+		this.props.onFocus( event );
 	}
 
 	/**
 	* Callback invoked upon the search input element losing focus.
 	*
 	* @private
+	* @param {Object} event - event object
 	*/
-	_onBlur = () => {
+	_onBlur = ( event ) => {
 		this.setState({
 			'active': false
 		});
+		this.props.onBlur( event );
 	}
 
 	/**

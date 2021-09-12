@@ -127,6 +127,8 @@ class SideMenuDrawer extends React.Component {
 	* @param {Callback} props.onToggle - callback to invoke upon toggling the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon a change to the selected package
 	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
+	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
+	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
 	* @returns {ReactComponent} component
 	*/
 	constructor( props ) {
@@ -745,6 +747,8 @@ class SideMenuDrawer extends React.Component {
 					onChange={ this._onVersionChange }
 				/> }
 				<Filter
+					onFocus={ this.props.onFilterFocus }
+					onBlur={ this.props.onFilterBlur }
 					onChange={ this._onFilterChange }
 				/>
 				<div className="side-menu-list-wrapper" >

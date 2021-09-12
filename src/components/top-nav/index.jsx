@@ -45,8 +45,12 @@ class TopNav extends React.Component {
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
+	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
+	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
 	* @param {Callback} props.onSearchSubmit - callback to invoke upon submitting a search query
 	* @param {Callback} props.onSearchChange - callback to invoke upon updating a search input element
+	* @param {Callback} props.onSearchFocus - callback to invoke when search input receives focus
+	* @param {Callback} props.onSearchBlur - callback to invoke when search input loses focus
 	* @param {boolean} props.home - boolean indicating whether to link to the main website
 	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
 	* @param {boolean} props.src - boolean indicating whether to link to package source
@@ -138,12 +142,16 @@ class TopNav extends React.Component {
 						onToggle={ this._onSideMenuToggle }
 						onPackageChange={ this.props.onPackageChange }
 						onVersionChange={ this.props.onVersionChange }
+						onFilterFocus={ this.props.onFilterFocus }
+						onFilterBlur={ this.props.onFilterBlur }
 					/>
 
 					<SearchInput
 						value={ this.props.query }
 						onSubmit={ this.props.onSearchSubmit }
 						onChange={ this.props.onSearchChange }
+						onFocus={ this.props.onSearchFocus }
+						onBlur={ this.props.onSearchBlur }
 					/>
 
 					<span class="top-nav-divider"></span>

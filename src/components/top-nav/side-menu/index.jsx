@@ -41,6 +41,8 @@ class SideMenu extends React.Component {
 	* @param {Callback} props.onToggle - callback to invoke upon toggling the side menu
 	* @param {Callback} props.onPackageChange - callback to invoke upon a change to the selected package
 	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
+	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
+	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
 	* @param {boolean} props.open - boolean indicating whether the side menu is open
 	* @returns {ReactComponent} component
 	*/
@@ -81,6 +83,8 @@ class SideMenu extends React.Component {
 						onToggle={ this.props.onToggle }
 						onPackageChange={ this.props.onPackageChange }
 						onVersionChange={ this.props.onVersionChange }
+						onFilterFocus={ this.props.onFilterFocus }
+						onFilterBlur={ this.props.onFilterBlur }
 					/>
 				</div>
 			</Fragment>
