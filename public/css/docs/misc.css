@@ -336,6 +336,8 @@ img {
 */
 
 .readme .related {
+	overflow: auto;
+
 	border-left: 3px solid #007bff;
 
 	-webkit-border-radius: 2px;
