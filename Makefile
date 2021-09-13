@@ -81,8 +81,12 @@ BUILD_FOLDER ?= build
 # Define the folder name convention for temporary files:
 TMP_FOLDER ?= tmp
 
+# Define filename extension conventions (keep in alphabetical order):
+CSS_FILENAME_EXT ?= css
+HTML_FILENAME_EXT ?= html
+
 # Define Node paths:
-NODE_PATH ?= $(ROOT_DIR)
+NODE_PATH ?= $(NODE_MODULES)/@stdlib/stdlib/lib/node_modules
 
 
 # DEPENDENCIES #
