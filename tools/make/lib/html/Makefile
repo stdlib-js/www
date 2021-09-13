@@ -25,6 +25,7 @@ HTML_MINIFIER ?= $(BIN_DIR)/html-minifier-terser
 HTML_MINIFIER_FLAGS ?= \
 	--remove-comments \
 	--collapse-whitespace \
+	--remove-empty-elements \
 	--minify-css true \
 	--minify-js true
 
