@@ -30,7 +30,7 @@ CSS_MINIFIER ?= $(TOOLS_DIR)/scripts/minify_css.js
 # @example
 # make css-minify
 #/
-css-minify: $(CSS_MINIFIER)
+css-minify: $(NODE_MODULES) $(CSS_MINIFIER)
 	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(CSS_MINIFIER)"
 
 .PHONY: css-minify
