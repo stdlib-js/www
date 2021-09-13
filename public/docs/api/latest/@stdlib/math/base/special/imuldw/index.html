@@ -1,35 +1,10 @@
-<h1 id="imuldw">imuldw</h1>
-<blockquote>
-<p>Compute the double word product of two signed 32-bit integers.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> imuldw = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/imuldw'</span> );
-</code></pre>
-<h4 id="imuldw-out-a-b-">imuldw( [out,] a, b )</h4>
-<p>Multiplies two signed 32-bit integers and returns an <code>array</code> of two signed 32-bit integers which represents the signed 64-bit integer product.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = imuldw( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> );
+<h1 id="imuldw">imuldw</h1><blockquote><p>Compute the double word product of two signed 32-bit integers.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> imuldw = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/imuldw'</span> );
+</code></pre><h4 id="imuldw-out-a-b-">imuldw( [out,] a, b )</h4><p>Multiplies two signed 32-bit integers and returns an <code>array</code> of two signed 32-bit integers which represents the signed 64-bit integer product.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = imuldw( <span class="hljs-number">1</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns [ 0, 10 ]</span>
 
 v = imuldw( <span class="hljs-number">0x80000000</span>|<span class="hljs-number">0</span>, <span class="hljs-number">0x40000000</span>|<span class="hljs-number">0</span> ); <span class="hljs-comment">// -(2^31) * 2^30 = -2305843009213694000 => 32-bit integer overflow</span>
 <span class="hljs-comment">// returns [ -536870912, 0 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>When computing the product of 32-bit integer values in double-precision floating-point format (the default JavaScript numeric data type), computing the double word product is necessary in order to <strong>avoid</strong> exceeding the <a href="/docs/api/latest/@stdlib/constants/float64/max-safe-integer">maximum safe double-precision floating-point integer value</a>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>When computing the product of 32-bit integer values in double-precision floating-point format (the default JavaScript numeric data type), computing the double word product is necessary in order to <strong>avoid</strong> exceeding the <a href="/docs/api/latest/@stdlib/constants/float64/max-safe-integer">maximum safe double-precision floating-point integer value</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
 <span class="hljs-keyword">var</span> imuldw = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/imuldw'</span> );
 
 <span class="hljs-keyword">var</span> i;
@@ -42,22 +17,4 @@ v = imuldw( <span class="hljs-number">0x80000000</span>|<span class="hljs-number
         <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d x %d = 0x%s%s'</span>, i|<span class="hljs-number">0</span>, j|<span class="hljs-number">0</span>, lpad( ( y[<span class="hljs-number">0</span>] >>> <span class="hljs-number">0</span> ).toString( <span class="hljs-number">16</span> ), <span class="hljs-number">8</span>, <span class="hljs-string">'0'</span>), lpad( ( y[<span class="hljs-number">1</span>] >>> <span class="hljs-number">0</span> ).toString( <span class="hljs-number">16</span> ), <span class="hljs-number">8</span>, <span class="hljs-string">'0'</span> ) );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/imul"><code>@stdlib/math/base/special/imul</code></a></span><span class="delimiter">: </span><span class="description">perform C-like multiplication of two signed 32-bit integers.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/uimuldw"><code>@stdlib/math/base/special/uimuldw</code></a></span><span class="delimiter">: </span><span class="description">compute the double word product of two unsigned 32-bit integers.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/imul"><code>@stdlib/math/base/special/imul</code></a></span><span class="delimiter">: </span><span class="description">perform C-like multiplication of two signed 32-bit integers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/uimuldw"><code>@stdlib/math/base/special/uimuldw</code></a></span><span class="delimiter">: </span><span class="description">compute the double word product of two unsigned 32-bit integers.</span></li></ul></section><section class="links"></section>

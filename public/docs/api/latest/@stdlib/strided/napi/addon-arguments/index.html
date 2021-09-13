@@ -1,54 +1,12 @@
-<h1 id="add-on-arguments">Add-on Arguments</h1>
-<blockquote>
-<p>C API for validating, extracting, and transforming (to native C types) function arguments provided to a strided array Node-API add-on interface.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/addon-arguments'</span> );
-</code></pre>
-<h4 id="headerdir">headerDir</h4>
-<p>Absolute file path for the directory containing header files for C APIs.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<h1 id="add-on-arguments">Add-on Arguments</h1><blockquote><p>C API for validating, extracting, and transforming (to native C types) function arguments provided to a strided array Node-API add-on interface.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/addon-arguments'</span> );
+</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
 <span class="hljs-comment">// returns &#x3C;string></span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/addon-arguments'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/napi/addon-arguments'</span> );
 
 <span class="hljs-built_in">console</span>.log( headerDir );
 <span class="hljs-comment">// => &#x3C;string></span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/napi/addon_arguments.h"</span></span>
-</code></pre>
-<!-- lint disable maximum-heading-length -->
-<h4 id="stdlib_strided_napi_addon_arguments-env-argv-nargs-nin-arrays-shape-strides-types-err-">stdlib_strided_napi_addon_arguments( env, argv, nargs, nin, *arrays[], *shape, *strides, *types, *err )</h4>
-<p>Validates, extracts, and transforms (to native C types) function arguments provided to a strided array Node-API add-on interface.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/napi/addon_arguments.h"</span></span>
+</code></pre><h4 id="stdlib_strided_napi_addon_arguments-env-argv-nargs-nin-arrays-shape-strides-types-err-">stdlib_strided_napi_addon_arguments( env, argv, nargs, nin, *arrays[], *shape, *strides, *types, *err )</h4><p>Validates, extracts, and transforms (to native C types) function arguments provided to a strided array Node-API add-on interface.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;node_api.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;assert.h></span></span>
 
@@ -93,71 +51,6 @@
 }
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li>
-<li><strong>argv</strong>: <code>[in] napi_value*</code> strided function arguments.</li>
-<li><strong>nargs</strong>: <code>[in] int64_t</code> total number of expected arguments.</li>
-<li><strong>nin</strong>: <code>[in] int64_t</code> number of input strided array arguments.</li>
-<li><strong>arrays</strong>: <code>[out] uint8_t**</code> destination array for storing pointers to both input and output strided byte arrays.</li>
-<li><strong>shape</strong>: <code>[out] int64_t*</code> destination array for storing the array shape (dimensions).</li>
-<li><strong>strides</strong>: <code>[out] int64_t*</code> destination array for storing array strides (in bytes) for each strided array.</li>
-<li><strong>types</strong>: <code>[out] int32_t*</code> destination array for storing strided array argument data types.</li>
-<li><strong>err</strong>: <code>[out] napi_value*</code> pointer for storing a JavaScript error.</li>
-</ul>
-<pre><code class="hljs language-c"><span class="hljs-function">napi_status <span class="hljs-title">stdlib_strided_napi_addon_arguments</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> napi_value *argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> nargs, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> nin, <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">int32_t</span> *types, napi_value *err )</span></span>;
-</code></pre>
-<p>The function returns a <code>napi_status</code> status code indicating success or failure (returns <code>napi_ok</code> if success).</p>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h3 id="notes">Notes</h3>
-<ul>
-<li>
-<p>The function assumes the following argument order:</p>
-<pre><code class="no-highlight language-text">[ N, ia1, is1, ia2, is2, ..., oa1, os1, oa2, os2, ... ]
-</code></pre>
-<p>where</p>
-<ul>
-<li><code>N</code> is the number of elements over which to iterate.</li>
-<li><code>ia#</code> is an input strided array.</li>
-<li><code>is#</code> is a corresponding input strided array stride (in units of elements).</li>
-<li><code>oa#</code> is an output strided array.</li>
-<li><code>os#</code> is a corresponding output strided array stride (in units of elements).</li>
-</ul>
-</li>
-<li>
-<p>The function may return one of the following JavaScript errors:</p>
-<ul>
-<li><code>TypeError</code>: first argument must be an integer.</li>
-<li><code>TypeError</code>: input array stride argument must be an integer.</li>
-<li><code>TypeError</code>: output array stride argument must be an integer.</li>
-<li><code>TypeError</code>: input array argument must be a typed array.</li>
-<li><code>TypeError</code>: output array argument must be a typed array.</li>
-<li><code>RangeError</code>: input array argument must have sufficient elements based on the associated stride and the number of indexed elements.</li>
-<li><code>RangeError</code>: output array argument must have sufficient elements based on the associated stride and the number of indexed elements.</li>
-</ul>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>env</strong>: <code>[in] napi_env</code> environment under which the function is invoked.</li><li><strong>argv</strong>: <code>[in] napi_value*</code> strided function arguments.</li><li><strong>nargs</strong>: <code>[in] int64_t</code> total number of expected arguments.</li><li><strong>nin</strong>: <code>[in] int64_t</code> number of input strided array arguments.</li><li><strong>arrays</strong>: <code>[out] uint8_t**</code> destination array for storing pointers to both input and output strided byte arrays.</li><li><strong>shape</strong>: <code>[out] int64_t*</code> destination array for storing the array shape (dimensions).</li><li><strong>strides</strong>: <code>[out] int64_t*</code> destination array for storing array strides (in bytes) for each strided array.</li><li><strong>types</strong>: <code>[out] int32_t*</code> destination array for storing strided array argument data types.</li><li><strong>err</strong>: <code>[out] napi_value*</code> pointer for storing a JavaScript error.</li></ul><pre><code class="hljs language-c"><span class="hljs-function">napi_status <span class="hljs-title">stdlib_strided_napi_addon_arguments</span><span class="hljs-params">( <span class="hljs-keyword">const</span> napi_env env, <span class="hljs-keyword">const</span> napi_value *argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> nargs, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> nin, <span class="hljs-keyword">uint8_t</span> *arrays[], <span class="hljs-keyword">int64_t</span> *shape, <span class="hljs-keyword">int64_t</span> *strides, <span class="hljs-keyword">int32_t</span> *types, napi_value *err )</span></span>;
+</code></pre><p>The function returns a <code>napi_status</code> status code indicating success or failure (returns <code>napi_ok</code> if success).</p></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>The function assumes the following argument order:</p><pre><code class="no-highlight language-text">[ N, ia1, is1, ia2, is2, ..., oa1, os1, oa2, os2, ... ]
+</code></pre><p>where</p><ul><li><code>N</code> is the number of elements over which to iterate.</li><li><code>ia#</code> is an input strided array.</li><li><code>is#</code> is a corresponding input strided array stride (in units of elements).</li><li><code>oa#</code> is an output strided array.</li><li><code>os#</code> is a corresponding output strided array stride (in units of elements).</li></ul></li><li><p>The function may return one of the following JavaScript errors:</p><ul><li><code>TypeError</code>: first argument must be an integer.</li><li><code>TypeError</code>: input array stride argument must be an integer.</li><li><code>TypeError</code>: output array stride argument must be an integer.</li><li><code>TypeError</code>: input array argument must be a typed array.</li><li><code>TypeError</code>: output array argument must be a typed array.</li><li><code>RangeError</code>: input array argument must have sufficient elements based on the associated stride and the number of indexed elements.</li><li><code>RangeError</code>: output array argument must have sufficient elements based on the associated stride and the number of indexed elements.</li></ul></li></ul></section><section class="examples"></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

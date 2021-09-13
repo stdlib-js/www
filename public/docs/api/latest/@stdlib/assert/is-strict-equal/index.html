@@ -1,14 +1,5 @@
-<h1 id="isstrictequal">isStrictEqual</h1>
-<blockquote>
-<p>Test if two arguments are strictly equal.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isStrictEqual = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-strict-equal'</span> );
-</code></pre>
-<h4 id="isstrictequal-a-b-">isStrictEqual( a, b )</h4>
-<p>Tests if two arguments <code>a</code> and <code>b</code> are strictly equal.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isStrictEqual( <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
+<h1 id="isstrictequal">isStrictEqual</h1><blockquote><p>Test if two arguments are strictly equal.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isStrictEqual = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-strict-equal'</span> );
+</code></pre><h4 id="isstrictequal-a-b-">isStrictEqual( a, b )</h4><p>Tests if two arguments <code>a</code> and <code>b</code> are strictly equal.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isStrictEqual( <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isStrictEqual( <span class="hljs-string">''</span>, <span class="hljs-string">''</span> );
@@ -19,10 +10,7 @@ bool = isStrictEqual( {}, {} );
 
 bool = isStrictEqual( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<p>In contrast to the strict equality operator <code>===</code>, the function distinguishes between <code>+0</code> and <code>-0</code>.</p>
-<!-- eslint-disable no-compare-neg-zero -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-number">0.0</span> === -<span class="hljs-number">0.0</span> );
+</code></pre><p>In contrast to the strict equality operator <code>===</code>, the function distinguishes between <code>+0</code> and <code>-0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-number">0.0</span> === -<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isStrictEqual( <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
@@ -30,13 +18,7 @@ bool = isStrictEqual( <span class="hljs-number">0.0</span>, -<span class="hljs-n
 
 bool = isStrictEqual( -<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isStrictEqual = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-strict-equal'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isStrictEqual = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-strict-equal'</span> );
 
 <span class="hljs-keyword">var</span> bool = isStrictEqual( <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
 <span class="hljs-comment">// returns true</span>
@@ -70,21 +52,4 @@ bool = isStrictEqual( [], [] );
 
 bool = isStrictEqual( isStrictEqual, isStrictEqual );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-value"><code>@stdlib/assert/is-same-value</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are the same value.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-value"><code>@stdlib/assert/is-same-value</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are the same value.</span></li></ul></section><section class="links"></section>

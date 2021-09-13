@@ -1,45 +1,11 @@
-<h1 id="hypot">hypot</h1>
-<blockquote>
-<p>Compute the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a>.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/hypot'</span> );
-</code></pre>
-<h4 id="hypot-x-y-">hypot( x, y )</h4>
-<p>Computes the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( -<span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
+<h1 id="hypot">hypot</h1><blockquote><p>Compute the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/hypot'</span> );
+</code></pre><h4 id="hypot-x-y-">hypot( x, y )</h4><p>Computes the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( -<span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
 <span class="hljs-comment">// returns 13.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>For a sufficiently large <code>x</code> and/or <code>y</code>, computing the hypotenuse will overflow.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-number">1.0e154</span>, <span class="hljs-number">1.0e154</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>For a sufficiently large <code>x</code> and/or <code>y</code>, computing the hypotenuse will overflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-number">1.0e154</span>, <span class="hljs-number">1.0e154</span> );
 <span class="hljs-comment">// returns Infinity</span>
-</code></pre>
-<p>Similarly, for sufficiently small <code>x</code> and/or <code>y</code>, computing the hypotenuse will underflow.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-number">1e-200</span>, <span class="hljs-number">1.0e-200</span> );
+</code></pre><p>Similarly, for sufficiently small <code>x</code> and/or <code>y</code>, computing the hypotenuse will underflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-number">1e-200</span>, <span class="hljs-number">1.0e-200</span> );
 <span class="hljs-comment">// returns 0.0</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/hypot'</span> );
 
@@ -54,25 +20,4 @@
     h = hypot( x, y );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'hypot(%d,%d) = %d'</span>, x, y, h );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/hypot"><code>@stdlib/math/base/special/hypot</code></a></span><span class="delimiter">: </span><span class="description">compute the hypotenuse avoiding overflow and underflow.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/hypot"><code>@stdlib/math/base/special/hypot</code></a></span><span class="delimiter">: </span><span class="description">compute the hypotenuse avoiding overflow and underflow.</span></li></ul></section><section class="links"></section>

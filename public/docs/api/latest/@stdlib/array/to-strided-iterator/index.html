@@ -1,19 +1,5 @@
-<h1 id="strided-iterator">Strided Iterator</h1>
-<blockquote>
-<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> from a strided array-like object.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stridedarray2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-strided-iterator'</span> );
-</code></pre>
-<h4 id="stridedarray2iterator-n-src-stride-offset-mapfcn-thisarg-">stridedarray2iterator( N, src, stride, offset[, mapFcn[, thisArg]] )</h4>
-<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iterates over elements in an array-like <code>object</code> according to specified stride parameters.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> values = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+<h1 id="strided-iterator">Strided Iterator</h1><blockquote><p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> from a strided array-like object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stridedarray2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-strided-iterator'</span> );
+</code></pre><h4 id="stridedarray2iterator-n-src-stride-offset-mapfcn-thisarg-">stridedarray2iterator( N, src, stride, offset[, mapFcn[, thisArg]] )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which iterates over elements in an array-like <code>object</code> according to specified stride parameters.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> values = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
 
 <span class="hljs-keyword">var</span> N = <span class="hljs-number">4</span>;
 <span class="hljs-keyword">var</span> stride = -<span class="hljs-number">2</span>;
@@ -32,14 +18,7 @@ v = it.next().value;
 <span class="hljs-comment">// returns 3</span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p>
-<ul>
-<li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li>
-<li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an iterator protocol-compliant object.</li>
-</ul>
-<p>To invoke a function for each <code>src</code> value, provide a callback function.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an iterator protocol-compliant object.</li></ul><p>To invoke a function for each <code>src</code> value, provide a callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">10.0</span>;
 }
 
@@ -56,15 +35,7 @@ v = it.next().value;
 <span class="hljs-comment">// returns 30.0</span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<p>The invoked function is provided four arguments:</p>
-<ul>
-<li><code>value</code>: iterated value</li>
-<li><code>index</code>: iterated value index</li>
-<li><code>n</code>: iteration count (zero-based)</li>
-<li><code>src</code>: source array-like object</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v, i </span>) </span>{
+</code></pre><p>The invoked function is provided four arguments:</p><ul><li><code>value</code>: iterated value</li><li><code>index</code>: iterated value index</li><li><code>n</code>: iteration count (zero-based)</li><li><code>src</code>: source array-like object</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v, i </span>) </span>{
     <span class="hljs-keyword">return</span> v * (i+<span class="hljs-number">1</span>);
 }
 
@@ -81,9 +52,7 @@ v = it.next().value;
 <span class="hljs-comment">// returns 9</span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<p>To set the callback function execution context, provide a <code>thisArg</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>To set the callback function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">10.0</span>;
 }
@@ -106,25 +75,7 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> count = ctx.count;
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If an environment supports <code>Symbol.iterator</code>, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li>
-<li>If provided a generic <code>array</code>, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> does <strong>not</strong> ignore holes. To achieve greater performance for sparse arrays, use a custom <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</li>
-<li>A returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> does <strong>not</strong> copy a provided array-like <code>object</code>. To ensure iterable reproducibility, copy a provided array-like <code>object</code> <strong>before</strong> creating an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>. Otherwise, any changes to the contents of an array-like <code>object</code> will be reflected in the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</li>
-<li>In environments supporting <code>Symbol.iterator</code>, the function <strong>explicitly</strong> does <strong>not</strong> invoke an array's <code>@@iterator</code> method, regardless of whether this method is defined. To convert an array to an implementation defined <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>, invoke this method directly.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an environment supports <code>Symbol.iterator</code>, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li><li>If provided a generic <code>array</code>, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> does <strong>not</strong> ignore holes. To achieve greater performance for sparse arrays, use a custom <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</li><li>A returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> does <strong>not</strong> copy a provided array-like <code>object</code>. To ensure iterable reproducibility, copy a provided array-like <code>object</code> <strong>before</strong> creating an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>. Otherwise, any changes to the contents of an array-like <code>object</code> will be reflected in the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</li><li>In environments supporting <code>Symbol.iterator</code>, the function <strong>explicitly</strong> does <strong>not</strong> invoke an array's <code>@@iterator</code> method, regardless of whether this method is defined. To convert an array to an implementation defined <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>, invoke this method directly.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> inmap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inmap'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> stridedarray2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-strided-iterator'</span> );
@@ -148,26 +99,4 @@ v = it.next().value;
     }
     <span class="hljs-built_in">console</span>.log( v.value );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/from-iterator"><code>@stdlib/array/from-iterator</code></a></span><span class="delimiter">: </span><span class="description">create (or fill) an array from an iterator.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-iterator"><code>@stdlib/array/to-iterator</code></a></span><span class="delimiter">: </span><span class="description">create an iterator from an array-like object.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/from-iterator"><code>@stdlib/array/from-iterator</code></a></span><span class="delimiter">: </span><span class="description">create (or fill) an array from an iterator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-iterator"><code>@stdlib/array/to-iterator</code></a></span><span class="delimiter">: </span><span class="description">create an iterator from an array-like object.</span></li></ul></section><section class="links"></section>

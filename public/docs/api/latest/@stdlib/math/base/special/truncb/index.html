@@ -1,14 +1,5 @@
-<h1 id="truncb">truncb</h1>
-<blockquote>
-<p>Round a numeric value to the nearest multiple of b^n toward zero.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncb = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/truncb'</span> );
-</code></pre>
-<h4 id="truncb-x-n-b-">truncb( x, n, b )</h4>
-<p>Rounds a <code>numeric</code> value to the nearest multiple of <code>b^n</code> toward zero.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Round a value to 4 decimal places:</span>
+<h1 id="truncb">truncb</h1><blockquote><p>Round a numeric value to the nearest multiple of b^n toward zero.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncb = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/truncb'</span> );
+</code></pre><h4 id="truncb-x-n-b-">truncb( x, n, b )</h4><p>Rounds a <code>numeric</code> value to the nearest multiple of <code>b^n</code> toward zero.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Round a value to 4 decimal places:</span>
 <span class="hljs-keyword">var</span> v = truncb( <span class="hljs-number">3.141592653589793</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns 3.1415</span>
 
@@ -19,20 +10,7 @@ v = truncb( <span class="hljs-number">3.141592653589793</span>, <span class="hlj
 <span class="hljs-comment">// Round a value to the nearest multiple of two toward zero:</span>
 v = truncb( <span class="hljs-number">5.0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 4.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Due to rounding error in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point numbers</a>, rounding may <strong>not</strong> be exact.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Due to rounding error in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point numbers</a>, rounding may <strong>not</strong> be exact.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> truncb = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/truncb'</span> );
@@ -50,25 +28,4 @@ v = truncb( <span class="hljs-number">5.0</span>, <span class="hljs-number">1</s
     v = truncb( x, n, b );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. %d^%d: %d. Rounded: %d.'</span>, x, b, n, pow( b, n ), v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceilb"><code>@stdlib/math/base/special/ceilb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n toward positive infinity.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floorb"><code>@stdlib/math/base/special/floorb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n toward negative infinity.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/roundb"><code>@stdlib/math/base/special/roundb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n on a linear scale.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/trunc"><code>@stdlib/math/base/special/trunc</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward zero.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/truncn"><code>@stdlib/math/base/special/truncn</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n toward zero.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceilb"><code>@stdlib/math/base/special/ceilb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floorb"><code>@stdlib/math/base/special/floorb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n toward negative infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/roundb"><code>@stdlib/math/base/special/roundb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n on a linear scale.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/trunc"><code>@stdlib/math/base/special/trunc</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward zero.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/truncn"><code>@stdlib/math/base/special/truncn</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n toward zero.</span></li></ul></section><section class="links"></section>

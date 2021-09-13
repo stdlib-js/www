@@ -1,33 +1,10 @@
-<h1 id="broadcastshapes">broadcastShapes</h1>
-<blockquote>
-<p>Broadcast array shapes to a single shape.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> broadcastShapes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/broadcast-shapes'</span> );
-</code></pre>
-<h4 id="broadcastshapes-shapes-">broadcastShapes( shapes )</h4>
-<p>Broadcasts array shapes to a single shape.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sh1 = [ <span class="hljs-number">8</span>, <span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">1</span> ];
+<h1 id="broadcastshapes">broadcastShapes</h1><blockquote><p>Broadcast array shapes to a single shape.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> broadcastShapes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/broadcast-shapes'</span> );
+</code></pre><h4 id="broadcastshapes-shapes-">broadcastShapes( shapes )</h4><p>Broadcasts array shapes to a single shape.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sh1 = [ <span class="hljs-number">8</span>, <span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">1</span> ];
 <span class="hljs-keyword">var</span> sh2 = [ <span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span> ];
 
 <span class="hljs-keyword">var</span> sh = broadcastShapes( [ sh1, sh2 ] );
 <span class="hljs-comment">// returns [ 8, 7, 6, 5 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>When operating on two arrays, the function compares their shapes element-wise, beginning with the trailing (i.e., rightmost) dimension. The following are examples of compatible shapes and their corresponding broadcasted shape:</p>
-<pre><code class="no-highlight language-text">A      (4d array):  8 x 1 x 6 x 1
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>When operating on two arrays, the function compares their shapes element-wise, beginning with the trailing (i.e., rightmost) dimension. The following are examples of compatible shapes and their corresponding broadcasted shape:</p><pre><code class="no-highlight language-text">A      (4d array):  8 x 1 x 6 x 1
 B      (3d array):      7 x 1 x 5
 ---------------------------------
 Result (4d array):  8 x 7 x 6 x 5
@@ -87,52 +64,28 @@ A      (0d array):
 B      (3d array):  3 x 2 x 1
 -----------------------------
 Result (3d array):  3 x 2 x 1
-</code></pre>
-<p>As demonstrated above, arrays are not required to have the same number of dimensions in order to be broadcast compatible. Array shapes with fewer dimensions are implicitly prepended with singleton dimensions (i.e., dimensions equal to <code>1</code>). Accordingly, the following example</p>
-<pre><code class="no-highlight language-text">A      (2d array):  5 x 4
+</code></pre><p>As demonstrated above, arrays are not required to have the same number of dimensions in order to be broadcast compatible. Array shapes with fewer dimensions are implicitly prepended with singleton dimensions (i.e., dimensions equal to <code>1</code>). Accordingly, the following example</p><pre><code class="no-highlight language-text">A      (2d array):  5 x 4
 B      (1d array):      4
 -------------------------
 Result (2d array):  5 x 4
-</code></pre>
-<p>is equivalent to</p>
-<pre><code class="no-highlight language-text">A      (2d array):  5 x 4
+</code></pre><p>is equivalent to</p><pre><code class="no-highlight language-text">A      (2d array):  5 x 4
 B      (2d array):  1 x 4
 -------------------------
 Result (2d array):  5 x 4
-</code></pre>
-<p>Similarly, a zero-dimensional array is expanded (by prepending singleton dimensions) from</p>
-<pre><code class="no-highlight language-text">A      (3d array):  3 x 2 x 1
+</code></pre><p>Similarly, a zero-dimensional array is expanded (by prepending singleton dimensions) from</p><pre><code class="no-highlight language-text">A      (3d array):  3 x 2 x 1
 B      (0d array):
 -----------------------------
 Result (3d array):  3 x 2 x 1
-</code></pre>
-<p>to</p>
-<pre><code class="no-highlight language-text">A      (3d array):  3 x 2 x 1
+</code></pre><p>to</p><pre><code class="no-highlight language-text">A      (3d array):  3 x 2 x 1
 B      (3d array):  1 x 1 x 1
 -----------------------------
 Result (3d array):  3 x 2 x 1
-</code></pre>
-<p>Stated otherwise, every array has implicit leading dimensions of size <code>1</code>. During broadcasting, a <code>3 x 4</code> matrix is the same as a <code>3 x 4 x 1 x 1 x 1</code> multidimensional array.</p>
-</li>
-<li>
-<p>Two respective dimensions in two shape arrays are compatible if</p>
-<ol>
-<li>the dimensions are equal.</li>
-<li>one dimension is <code>1</code>.</li>
-</ol>
-<p>The two aforementioned rules apply to empty arrays or arrays that have a dimension of size <code>0</code>. For unequal dimensions, the size of the dimension which is not <code>1</code> determines the size of the output shape dimension.</p>
-<p>Accordingly, dimensions of size <code>0</code> must be paired with a dimension of size <code>0</code> or <code>1</code>. In such cases, by the rules above, the size of the corresponding output shape dimension is <code>0</code>.</p>
-</li>
-<li>
-<p>The function returns <code>null</code> if provided incompatible shapes (i.e., shapes which cannot be broadcast with one another).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sh1 = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+</code></pre><p>Stated otherwise, every array has implicit leading dimensions of size <code>1</code>. During broadcasting, a <code>3 x 4</code> matrix is the same as a <code>3 x 4 x 1 x 1 x 1</code> multidimensional array.</p></li><li><p>Two respective dimensions in two shape arrays are compatible if</p><ol><li>the dimensions are equal.</li><li>one dimension is <code>1</code>.</li></ol><p>The two aforementioned rules apply to empty arrays or arrays that have a dimension of size <code>0</code>. For unequal dimensions, the size of the dimension which is not <code>1</code> determines the size of the output shape dimension.</p><p>Accordingly, dimensions of size <code>0</code> must be paired with a dimension of size <code>0</code> or <code>1</code>. In such cases, by the rules above, the size of the corresponding output shape dimension is <code>0</code>.</p></li><li><p>The function returns <code>null</code> if provided incompatible shapes (i.e., shapes which cannot be broadcast with one another).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sh1 = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> sh2 = [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
 
 <span class="hljs-keyword">var</span> sh = broadcastShapes( [ sh1, sh2 ] );
 <span class="hljs-comment">// returns null</span>
-</code></pre>
-<p>The following are examples of array shapes which are <strong>not</strong> compatible and do <strong>not</strong> broadcast:</p>
-<pre><code class="no-highlight language-text">A      (1d array):  3
+</code></pre><p>The following are examples of array shapes which are <strong>not</strong> compatible and do <strong>not</strong> broadcast:</p><pre><code class="no-highlight language-text">A      (1d array):  3
 B      (1d array):  4                   # dimension does not match
 
 A      (2d array):      2 x 1
@@ -143,16 +96,7 @@ B      (2d array):  15 x 3              # singleton dimensions can only be prepe
 
 A      (5d array):  8 x 8 x 1 x 6 x 1
 B      (5d array):  8 x 0 x 1 x 6 x 1   # second dimension does not match
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
 <span class="hljs-keyword">var</span> broadcastShapes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/broadcast-shapes'</span> );
 
 <span class="hljs-keyword">var</span> shapes;
@@ -186,25 +130,8 @@ shapes = [
     out = broadcastShapes( sh );
     <span class="hljs-built_in">console</span>.log( shape2string( out )+<span class="hljs-string">'\n'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/broadcast_shapes.h"</span></span>
-</code></pre>
-<h4 id="stdlib_ndarray_broadcast_shapes-m-shapes-ndims-out-">stdlib_ndarray_broadcast_shapes( M, **shapes, *ndims, *out )</h4>
-<p>Broadcasts array shapes to a single shape.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/broadcast_shapes.h"</span></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/broadcast_shapes.h"</span></span>
+</code></pre><h4 id="stdlib_ndarray_broadcast_shapes-m-shapes-ndims-out-">stdlib_ndarray_broadcast_shapes( M, **shapes, *ndims, *out )</h4><p>Broadcasts array shapes to a single shape.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/broadcast_shapes.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 
 <span class="hljs-keyword">int64_t</span> N1 = <span class="hljs-number">4</span>;
@@ -221,31 +148,8 @@ shapes = [
 <span class="hljs-keyword">if</span> ( status != <span class="hljs-number">0</span> ) {
     <span class="hljs-comment">// Handle error...</span>
 }
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>M</strong>: <code>[in] int64_t</code> number of shape arrays.</li>
-<li><strong>shapes</strong>: <code>[in] int64_t**</code> array of shape arrays (dimensions).</li>
-<li><strong>ndims</strong>: <code>[in] int64_t*</code> number of dimensions for each respective shape array.</li>
-<li><strong>out</strong>: <code>[out] int64_t*</code> output shape array.</li>
-</ul>
-<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">int8_t</span> <span class="hljs-title">stdlib_ndarray_broadcast_shapes</span><span class="hljs-params">( <span class="hljs-keyword">int64_t</span> M, <span class="hljs-keyword">int64_t</span> *shapes[], <span class="hljs-keyword">int64_t</span> ndims[], <span class="hljs-keyword">int64_t</span> *out )</span></span>;
-</code></pre>
-<p>If successful, the function returns <code>0</code>; otherwise, the function returns <code>-1</code> (e.g., due to incompatible shapes).</p>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h3 id="notes-1">Notes</h3>
-<ul>
-<li>Even if the function is unsuccessful, the function may still overwrite elements in the output array before returning. In other words, do not assume that providing incompatible shapes is a no-op with regard to the output array.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/broadcast_shapes.h"</span></span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>M</strong>: <code>[in] int64_t</code> number of shape arrays.</li><li><strong>shapes</strong>: <code>[in] int64_t**</code> array of shape arrays (dimensions).</li><li><strong>ndims</strong>: <code>[in] int64_t*</code> number of dimensions for each respective shape array.</li><li><strong>out</strong>: <code>[out] int64_t*</code> output shape array.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">int8_t</span> <span class="hljs-title">stdlib_ndarray_broadcast_shapes</span><span class="hljs-params">( <span class="hljs-keyword">int64_t</span> M, <span class="hljs-keyword">int64_t</span> *shapes[], <span class="hljs-keyword">int64_t</span> ndims[], <span class="hljs-keyword">int64_t</span> *out )</span></span>;
+</code></pre><p>If successful, the function returns <code>0</code>; otherwise, the function returns <code>-1</code> (e.g., due to incompatible shapes).</p></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Even if the function is unsuccessful, the function may still overwrite elements in the output array before returning. In other words, do not assume that providing incompatible shapes is a no-op with regard to the output array.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/broadcast_shapes.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
@@ -277,20 +181,4 @@ shapes = [
     <span class="hljs-built_in">printf</span>( <span class="hljs-string">" )\n"</span> );
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

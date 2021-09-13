@@ -1,40 +1,17 @@
-<h1 id="gapxsumkbn2">gapxsumkbn2</h1>
-<blockquote>
-<p>Add a constant to each strided array element and compute the sum using a second-order iterative Kahan–Babuška algorithm.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gapxsumkbn2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gapxsumkbn2'</span> );
-</code></pre>
-<h4 id="gapxsumkbn2-n-alpha-x-stride-">gapxsumkbn2( N, alpha, x, stride )</h4>
-<p>Adds a constant to each strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ];
+<h1 id="gapxsumkbn2">gapxsumkbn2</h1><blockquote><p>Add a constant to each strided array element and compute the sum using a second-order iterative Kahan–Babuška algorithm.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gapxsumkbn2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gapxsumkbn2'</span> );
+</code></pre><h4 id="gapxsumkbn2-n-alpha-x-stride-">gapxsumkbn2( N, alpha, x, stride )</h4><p>Adds a constant to each strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ];
 <span class="hljs-keyword">var</span> N = x.length;
 
 <span class="hljs-keyword">var</span> v = gapxsumkbn2( N, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 16.0</span>
-</code></pre>
-<p>The function has the following parameters:</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
-<li><strong>stride</strong>: index increment for <code>x</code>.</li>
-</ul>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to access every other element in <code>x</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li><li><strong>stride</strong>: index increment for <code>x</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to access every other element in <code>x</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">7.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span> ];
 <span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
 
 <span class="hljs-keyword">var</span> v = gapxsumkbn2( N, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 25.0</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
-<!-- eslint-disable stdlib/capitalized-comments -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
@@ -44,42 +21,19 @@
 
 <span class="hljs-keyword">var</span> v = gapxsumkbn2( N, <span class="hljs-number">5.0</span>, x1, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 25.0</span>
-</code></pre>
-<h4 id="gapxsumkbn2ndarray-n-alpha-x-stride-offset-">gapxsumkbn2.ndarray( N, alpha, x, stride, offset )</h4>
-<p>Adds a constant to each strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm and alternative indexing semantics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ];
+</code></pre><h4 id="gapxsumkbn2ndarray-n-alpha-x-stride-offset-">gapxsumkbn2.ndarray( N, alpha, x, stride, offset )</h4><p>Adds a constant to each strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm and alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ];
 <span class="hljs-keyword">var</span> N = x.length;
 
 <span class="hljs-keyword">var</span> v = gapxsumkbn2.ndarray( N, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 16.0</span>
-</code></pre>
-<p>The function has the following additional parameters:</p>
-<ul>
-<li><strong>offset</strong>: starting index for <code>x</code>.</li>
-</ul>
-<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access every other value in <code>x</code> starting from the second value</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offset</strong>: starting index for <code>x</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access every other value in <code>x</code> starting from the second value</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ];
 <span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
 
 <span class="hljs-keyword">var</span> v = gapxsumkbn2.ndarray( N, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 25.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If <code>N &#x3C;= 0</code>, both functions return <code>0.0</code>.</li>
-<li>Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/blas/ext/base/dapxsumkbn2"><code>dapxsumkbn2</code></a>, <a href="/docs/api/latest/@stdlib/blas/ext/base/sapxsumkbn2"><code>sapxsumkbn2</code></a>, etc.) are likely to be significantly more performant.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>0.0</code>.</li><li>Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/blas/ext/base/dapxsumkbn2"><code>dapxsumkbn2</code></a>, <a href="/docs/api/latest/@stdlib/blas/ext/base/sapxsumkbn2"><code>sapxsumkbn2</code></a>, etc.) are likely to be significantly more performant.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> gapxsumkbn2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gapxsumkbn2'</span> );
@@ -95,32 +49,4 @@ x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Arr
 
 <span class="hljs-keyword">var</span> v = gapxsumkbn2( x.length, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( v );
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." <em>Computing</em> 76 (3): 279–93. doi:<a href="https://doi.org/10.1007/s00607-005-0139-x">10.1007/s00607-005-0139-x</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dapxsumkbn2"><code>@stdlib/blas/ext/base/dapxsumkbn2</code></a></span><span class="delimiter">: </span><span class="description">adds a constant to each double-precision floating-point strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/gapxsum"><code>@stdlib/blas/ext/base/gapxsum</code></a></span><span class="delimiter">: </span><span class="description">adds a constant to each strided array element and computes the sum.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/gsumkbn2"><code>@stdlib/blas/ext/base/gsumkbn2</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of strided array elements using a second-order iterative Kahan–Babuška algorithm.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/sapxsumkbn2"><code>@stdlib/blas/ext/base/sapxsumkbn2</code></a></span><span class="delimiter">: </span><span class="description">adds a constant to each single-precision floating-point strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." <em>Computing</em> 76 (3): 279–93. doi:<a href="https://doi.org/10.1007/s00607-005-0139-x">10.1007/s00607-005-0139-x</a>.</li></ul></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dapxsumkbn2"><code>@stdlib/blas/ext/base/dapxsumkbn2</code></a></span><span class="delimiter">: </span><span class="description">adds a constant to each double-precision floating-point strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/gapxsum"><code>@stdlib/blas/ext/base/gapxsum</code></a></span><span class="delimiter">: </span><span class="description">adds a constant to each strided array element and computes the sum.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/gsumkbn2"><code>@stdlib/blas/ext/base/gsumkbn2</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of strided array elements using a second-order iterative Kahan–Babuška algorithm.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/sapxsumkbn2"><code>@stdlib/blas/ext/base/sapxsumkbn2</code></a></span><span class="delimiter">: </span><span class="description">adds a constant to each single-precision floating-point strided array element and computes the sum using a second-order iterative Kahan–Babuška algorithm.</span></li></ul></section><section class="links"></section>

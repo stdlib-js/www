@@ -1,14 +1,5 @@
-<h1 id="object-inverse">Object Inverse</h1>
-<blockquote>
-<p>Invert an object, such that keys become values and values become keys, according to a transform function.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> invertBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/object-inverse-by'</span> );
-</code></pre>
-<h4 id="invertby-obj-options-transform-">invertBy( obj, [options,] transform )</h4>
-<p>Inverts an <code>object</code>, such that keys become values and values become keys, according to a <code>transform</code> function.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
+<h1 id="object-inverse">Object Inverse</h1><blockquote><p>Invert an object, such that keys become values and values become keys, according to a transform function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> invertBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/object-inverse-by'</span> );
+</code></pre><h4 id="invertby-obj-options-transform-">invertBy( obj, [options,] transform )</h4><p>Inverts an <code>object</code>, such that keys become values and values become keys, according to a <code>transform</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
     <span class="hljs-keyword">return</span> value;
 }
 <span class="hljs-keyword">var</span> obj = {
@@ -17,13 +8,7 @@
 };
 <span class="hljs-keyword">var</span> out = invertBy( obj, transform );
 <span class="hljs-comment">// returns { 'beep': 'a', 'boop': 'b' }</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>duplicates</strong>: <code>boolean</code> indicating whether to store keys mapped to duplicate values in <code>arrays</code>. Default: <code>true</code>.</li>
-</ul>
-<p>By default, keys mapped to duplicate values are stored in <code>arrays</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>duplicates</strong>: <code>boolean</code> indicating whether to store keys mapped to duplicate values in <code>arrays</code>. Default: <code>true</code>.</li></ul><p>By default, keys mapped to duplicate values are stored in <code>arrays</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
     <span class="hljs-keyword">return</span> value;
 }
 <span class="hljs-keyword">var</span> obj = {
@@ -32,9 +17,7 @@
 };
 <span class="hljs-keyword">var</span> out = invertBy( obj, transform );
 <span class="hljs-comment">// returns { 'beep': [ 'a', 'b' ] }</span>
-</code></pre>
-<p>To <strong>not</strong> allow duplicates, set the <code>duplicates</code> option to <code>false</code>. The output <code>key-value</code> pair will be the <code>key</code> most recently inserted into the input <code>object</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
+</code></pre><p>To <strong>not</strong> allow duplicates, set the <code>duplicates</code> option to <code>false</code>. The output <code>key-value</code> pair will be the <code>key</code> most recently inserted into the input <code>object</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
     <span class="hljs-keyword">return</span> value;
 }
 <span class="hljs-keyword">var</span> obj = {};
@@ -47,14 +30,7 @@ obj.c = <span class="hljs-string">'beep'</span>; <span class="hljs-comment">// i
 };
 <span class="hljs-keyword">var</span> out = invertBy( obj, opts, transform );
 <span class="hljs-comment">// returns { 'beep': 'c', 'boop': 'b' }</span>
-</code></pre>
-<p>The <code>transform</code> function is provided three arguments:</p>
-<ul>
-<li><code>key</code>: object key</li>
-<li><code>value</code>: object value corresponding to <code>key</code></li>
-<li><code>obj</code>: input object</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, o </span>) </span>{
+</code></pre><p>The <code>transform</code> function is provided three arguments:</p><ul><li><code>key</code>: object key</li><li><code>value</code>: object value corresponding to <code>key</code></li><li><code>obj</code>: input object</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value, o </span>) </span>{
     <span class="hljs-keyword">if</span> ( key === <span class="hljs-string">'name'</span> ) {
         <span class="hljs-keyword">return</span> value;
     }
@@ -67,15 +43,7 @@ obj.c = <span class="hljs-string">'beep'</span>; <span class="hljs-comment">// i
 };
 <span class="hljs-keyword">var</span> out = invertBy( obj, transform );
 <span class="hljs-comment">// returns { 'foo': 'name', 'foo:beep': 'a', 'foo:boop': 'b' }</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>Beware when providing <code>objects</code> having values which are themselves <code>objects</code>. This function relies on native <code>object</code> serialization (<code>#toString</code>) when converting <code>transform</code> function return values to keys.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Beware when providing <code>objects</code> having values which are themselves <code>objects</code>. This function relies on native <code>object</code> serialization (<code>#toString</code>) when converting <code>transform</code> function return values to keys.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params"> key, value </span>) </span>{
     <span class="hljs-keyword">return</span> value;
 }
 <span class="hljs-keyword">var</span> obj = {
@@ -87,18 +55,7 @@ obj.c = <span class="hljs-string">'beep'</span>; <span class="hljs-comment">// i
 
 <span class="hljs-keyword">var</span> out = invertBy( obj, transform );
 <span class="hljs-comment">// returns { '1,2,3': 'a', '[object Object]': 'b' }</span>
-</code></pre>
-</li>
-<li>
-<p>Insertion order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic inversion.</p>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></li><li><p>Insertion order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic inversion.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> invertBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/object-inverse-by'</span> );
 
@@ -127,21 +84,4 @@ keys = <span class="hljs-built_in">Object</span>.keys( out );
     }
 }
 <span class="hljs-built_in">console</span>.dir( out );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/object-inverse"><code>@stdlib/utils/object-inverse</code></a></span><span class="delimiter">: </span><span class="description">invert an object, such that keys become values and values become keys.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/object-inverse"><code>@stdlib/utils/object-inverse</code></a></span><span class="delimiter">: </span><span class="description">invert an object, such that keys become values and values become keys.</span></li></ul></section><section class="links"></section>

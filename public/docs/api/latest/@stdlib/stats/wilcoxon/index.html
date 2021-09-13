@@ -1,14 +1,5 @@
-<h1 id="wilcoxon-signed-rank-test">Wilcoxon Signed Rank Test</h1>
-<blockquote>
-<p>One-sample and paired Wilcoxon signed rank test.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> wilcoxon = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/wilcoxon'</span> );
-</code></pre>
-<h4 id="wilcoxon-x-y-opts-">wilcoxon( x[, y][, opts] )</h4>
-<p>Performs a one-sample t-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>x</code> is drawn from a distribution that is symmetric around zero (i.e., with median zero).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Differences in plant heights, see Cureton (1967)</span>
+<h1 id="wilcoxon-signed-rank-test">Wilcoxon Signed Rank Test</h1><blockquote><p>One-sample and paired Wilcoxon signed rank test.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> wilcoxon = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/wilcoxon'</span> );
+</code></pre><h4 id="wilcoxon-x-y-opts-">wilcoxon( x[, y][, opts] )</h4><p>Performs a one-sample t-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>x</code> is drawn from a distribution that is symmetric around zero (i.e., with median zero).</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Differences in plant heights, see Cureton (1967)</span>
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">14</span>, <span class="hljs-number">16</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">28</span>, <span class="hljs-number">29</span>, <span class="hljs-number">41</span>, -<span class="hljs-number">48</span>, <span class="hljs-number">49</span>, <span class="hljs-number">56</span>, <span class="hljs-number">60</span>, -<span class="hljs-number">67</span>, <span class="hljs-number">75</span> ];
 <span class="hljs-keyword">var</span> out = wilcoxon( x );
 <span class="hljs-comment">/* e.g., returns
@@ -20,9 +11,7 @@
         // ...
     }
 */</span>
-</code></pre>
-<p>When <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>y</code> is supplied, the function tests whether the paired differences <code>x - y</code> come from a distribution that is symmetric around zero (i.e., with median zero).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Patient measurements at first (x) and second (y) visit, see Hollander &#x26; Wolfe (1973)</span>
+</code></pre><p>When <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>y</code> is supplied, the function tests whether the paired differences <code>x - y</code> come from a distribution that is symmetric around zero (i.e., with median zero).</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Patient measurements at first (x) and second (y) visit, see Hollander &#x26; Wolfe (1973)</span>
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.83</span>, <span class="hljs-number">0.50</span>, <span class="hljs-number">1.62</span>, <span class="hljs-number">2.48</span>, <span class="hljs-number">1.68</span>, <span class="hljs-number">1.88</span>, <span class="hljs-number">1.55</span>, <span class="hljs-number">3.06</span>, <span class="hljs-number">1.30</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.878</span>, <span class="hljs-number">0.647</span>, <span class="hljs-number">0.598</span>, <span class="hljs-number">2.05</span>, <span class="hljs-number">1.06</span>, <span class="hljs-number">1.29</span>, <span class="hljs-number">1.06</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">1.29</span> ];
 
@@ -36,10 +25,7 @@
         // ...
     }
 */</span>
-</code></pre>
-<p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the hypothesis test results. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
+</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the hypothesis test results. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
 <span class="hljs-comment">/* e.g., =>
     Paired Wilcoxon signed rank test
 
@@ -50,18 +36,7 @@
 
     Test Decision: Reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-<p>The <code>wilcoxon</code> function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li>
-<li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the mean of <code>x</code> is larger than <code>mu</code> (<code>greater</code>), smaller than <code>mu</code> (<code>less</code>), or equal to <code>mu</code> (<code>two-sided</code>). Default: <code>two-sided</code>.</li>
-<li><strong>correction</strong>: continuity correction adjusting the Wilcoxon rank statistic by 0.5 towards the mean when using the normal approximation. Default: <code>true</code>.</li>
-<li><strong>exact</strong>: Determines whether to force use of the exact distribution instead of a normal approximation when there are more than fifty data points. Default: <code>false</code>.</li>
-<li><strong>mu</strong>: <code>number</code> denoting the hypothesized median under the null hypothesis. Default: <code>0</code>.</li>
-<li><strong>zeroMethod</strong>:  Method governing how zero-differences are handled (<code>pratt</code>, <code>wilcox</code>, or <code>zsplit</code>). Default: <code>'wilcox'</code>.</li>
-</ul>
-<p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
+</code></pre><p>The <code>wilcoxon</code> function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the mean of <code>x</code> is larger than <code>mu</code> (<code>greater</code>), smaller than <code>mu</code> (<code>less</code>), or equal to <code>mu</code> (<code>two-sided</code>). Default: <code>two-sided</code>.</li><li><strong>correction</strong>: continuity correction adjusting the Wilcoxon rank statistic by 0.5 towards the mean when using the normal approximation. Default: <code>true</code>.</li><li><strong>exact</strong>: Determines whether to force use of the exact distribution instead of a normal approximation when there are more than fifty data points. Default: <code>false</code>.</li><li><strong>mu</strong>: <code>number</code> denoting the hypothesized median under the null hypothesis. Default: <code>0</code>.</li><li><strong>zeroMethod</strong>: Method governing how zero-differences are handled (<code>pratt</code>, <code>wilcox</code>, or <code>zsplit</code>). Default: <code>'wilcox'</code>.</li></ul><p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
 <span class="hljs-keyword">var</span> out;
 <span class="hljs-keyword">var</span> arr;
 
@@ -95,9 +70,7 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 1% significance level
 */</span>
-</code></pre>
-<p>To test whether the data comes from a distribution with a median different than zero, set the <code>mu</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> ];
+</code></pre><p>To test whether the data comes from a distribution with a median different than zero, set the <code>mu</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> ];
 <span class="hljs-keyword">var</span> out = wilcoxon( arr, {
     <span class="hljs-string">'mu'</span>: <span class="hljs-number">5</span>
 });
@@ -109,9 +82,7 @@ table = out.print();
     // ...
 }
 */</span>
-</code></pre>
-<p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> ];
+</code></pre><p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> ];
 <span class="hljs-keyword">var</span> out = wilcoxon( arr, {
     <span class="hljs-string">'alternative'</span>: <span class="hljs-string">'less'</span>
 });
@@ -141,9 +112,7 @@ table = out.print();
 
     Test Decision: Reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-<p>By default, all zero-differences are discarded before calculating the ranks. Set <code>zeroMethod</code> to <code>pratt</code> when you wish differences of zero to be used in the rank calculation but then drop them or to <code>zsplit</code> when differences of zero are shall be used in the ranking procedure and the ranks then split between positive and negative ones. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ];
+</code></pre><p>By default, all zero-differences are discarded before calculating the ranks. Set <code>zeroMethod</code> to <code>pratt</code> when you wish differences of zero to be used in the rank calculation but then drop them or to <code>zsplit</code> when differences of zero are shall be used in the ranking procedure and the ranks then split between positive and negative ones.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ];
 <span class="hljs-keyword">var</span> out = wilcoxon( arr, {
     <span class="hljs-string">'zeroMethod'</span>: <span class="hljs-string">'pratt'</span>
 });
@@ -169,9 +138,7 @@ out = wilcoxon( arr, {
         // ...
     }
 */</span>
-</code></pre>
-<p>By default, the test uses the exact distribution of the rank statistic to calculate the critical values for the test in case of no ties and no zero-differences. Since it is more computationally efficient, starting with fifty observations a normal approximation is employed. If you would like the test to use the correct distribution even for larger samples, set the <code>exact</code> option to <code>true</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+</code></pre><p>By default, the test uses the exact distribution of the rank statistic to calculate the critical values for the test in case of no ties and no zero-differences. Since it is more computationally efficient, starting with fifty observations a normal approximation is employed. If you would like the test to use the correct distribution even for larger samples, set the <code>exact</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
 <span class="hljs-keyword">var</span> rnorm;
 <span class="hljs-keyword">var</span> arr;
 <span class="hljs-keyword">var</span> out;
@@ -210,9 +177,7 @@ out = wilcoxon( arr, {
         // ...
     }
 */</span>
-</code></pre>
-<p>By default, when using the normal approximation, the test uses a continuity correction, which adjusts the Wilcoxon rank statistic by <code>0.5</code> towards the mean. To disable this correction, set <code>correction</code> to <code>false</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+</code></pre><p>By default, when using the normal approximation, the test uses a continuity correction, which adjusts the Wilcoxon rank statistic by <code>0.5</code> towards the mean. To disable this correction, set <code>correction</code> to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
 <span class="hljs-keyword">var</span> rnorm;
 <span class="hljs-keyword">var</span> arr;
 <span class="hljs-keyword">var</span> out;
@@ -251,13 +216,7 @@ out = wilcoxon( arr, {
         // ...
     }
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
 <span class="hljs-keyword">var</span> wilcoxon = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/wilcoxon'</span> );
 
 <span class="hljs-keyword">var</span> table;
@@ -303,22 +262,4 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ttest"><code>@stdlib/stats/ttest</code></a></span><span class="delimiter">: </span><span class="description">one-sample and paired Student's t-Test.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ztest"><code>@stdlib/stats/ztest</code></a></span><span class="delimiter">: </span><span class="description">one-sample and paired z-Test.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ttest"><code>@stdlib/stats/ttest</code></a></span><span class="delimiter">: </span><span class="description">one-sample and paired Student's t-Test.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ztest"><code>@stdlib/stats/ztest</code></a></span><span class="delimiter">: </span><span class="description">one-sample and paired z-Test.</span></li></ul></section><section class="links"></section>

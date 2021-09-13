@@ -1,14 +1,5 @@
-<h1 id="single-hop-sensor-network">Single-Hop Sensor Network</h1>
-<blockquote>
-<p>Labeled wireless sensor network data set collected from a simple single-hop wireless sensor network deployment using TelosB motes.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dataset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/suthaharan-single-hop-sensor-network'</span> );
-</code></pre>
-<h4 id="dataset">dataset()</h4>
-<p>Returns a dataset consisting of labeled wireless sensor network data set collected from a simple single-hop wireless sensor network deployment using TelosB motes.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = dataset();
+<h1 id="single-hop-sensor-network">Single-Hop Sensor Network</h1><blockquote><p>Labeled wireless sensor network data set collected from a simple single-hop wireless sensor network deployment using TelosB motes.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dataset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/suthaharan-single-hop-sensor-network'</span> );
+</code></pre><h4 id="dataset">dataset()</h4><p>Returns a dataset consisting of labeled wireless sensor network data set collected from a simple single-hop wireless sensor network deployment using TelosB motes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = dataset();
 <span class="hljs-comment">/* returns
     [
         {
@@ -22,24 +13,7 @@
         ...
     ]
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Humidity and temperature measurements were collected at <code>5</code> second intervals over a six hour period on May 9, 2010.</li>
-<li>Temperature is in degrees Celsius.</li>
-<li>Humidity is temperature corrected relative humidity, ranging from 0-100%.</li>
-<li>The label <code>0</code> denotes normal data, and the label <code>1</code> denotes an introduced event.</li>
-<li>If a mote was an indoor sensor, the corresponding indicator is <code>1</code>. If a mote was an outdoor sensor, the indoor indicator is <code>0</code>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrgrubbs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/grubbs'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Humidity and temperature measurements were collected at <code>5</code> second intervals over a six hour period on May 9, 2010.</li><li>Temperature is in degrees Celsius.</li><li>Humidity is temperature corrected relative humidity, ranging from 0-100%.</li><li>The label <code>0</code> denotes normal data, and the label <code>1</code> denotes an introduced event.</li><li>If a mote was an indoor sensor, the corresponding indicator is <code>1</code>. If a mote was an outdoor sensor, the indoor indicator is <code>0</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrgrubbs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/grubbs'</span> );
 <span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/suthaharan-single-hop-sensor-network'</span> );
 
 <span class="hljs-keyword">var</span> acc;
@@ -70,56 +44,12 @@ i = <span class="hljs-number">0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
     <span class="hljs-built_in">console</span>.log( acc().print() );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: suthaharan-single-hop-sensor-network [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: suthaharan-single-hop-sensor-network [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --format fmt          Output format: 'csv' or 'ndjson'.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ suthaharan-single-hop-sensor-network
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Suthaharan, Shan, Mohammed Alzahrani, Sutharshan Rajasegarar, Christopher Leckie, and Marimuthu Palaniswami. 2010. "Labelled data collection for anomaly detection in wireless sensor networks." In <em>Proceedings of the Sixth International Conference on Intelligent Sensors, Sensor Networks and Information Processing (ISSNIP 2010)</em>. Brisbane, Australia: IEEE.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons Attribution 1.0 License</a> and their contents are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Public License</a>. The original dataset is attributed to Shan Suthaharan, Mohammed Alzahrani, Sutharshan Rajasegarar, Christopher Leckie, and Marimuthu Palaniswami and can be found <a href="http://www.uncg.edu/cmp/downloads/lwsndr.html">here</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/suthaharan-multi-hop-sensor-network"><code>@stdlib/datasets/suthaharan-multi-hop-sensor-network</code></a></span><span class="delimiter">: </span><span class="description">labeled wireless sensor network data set collected from a multi-hop wireless sensor network deployment using TelosB motes.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ suthaharan-single-hop-sensor-network
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Suthaharan, Shan, Mohammed Alzahrani, Sutharshan Rajasegarar, Christopher Leckie, and Marimuthu Palaniswami. 2010. "Labelled data collection for anomaly detection in wireless sensor networks." In <em>Proceedings of the Sixth International Conference on Intelligent Sensors, Sensor Networks and Information Processing (ISSNIP 2010)</em>. Brisbane, Australia: IEEE.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons Attribution 1.0 License</a> and their contents are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Public License</a>. The original dataset is attributed to Shan Suthaharan, Mohammed Alzahrani, Sutharshan Rajasegarar, Christopher Leckie, and Marimuthu Palaniswami and can be found <a href="http://www.uncg.edu/cmp/downloads/lwsndr.html">here</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/suthaharan-multi-hop-sensor-network"><code>@stdlib/datasets/suthaharan-multi-hop-sensor-network</code></a></span><span class="delimiter">: </span><span class="description">labeled wireless sensor network data set collected from a multi-hop wireless sensor network deployment using TelosB motes.</span></li></ul></section><section class="links"></section>

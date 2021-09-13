@@ -1,14 +1,5 @@
-<h1 id="xlog1py">xlog1py</h1>
-<blockquote>
-<p>Compute <code>x * ln(y+1)</code> so that the result is <code>0</code> if <code>x = 0</code>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> xlog1py = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/xlog1py'</span> );
-</code></pre>
-<h4 id="xlog1py-x-y-">xlog1py( x, y )</h4>
-<p>Computes <code>x * ln(y+1)</code> so that the result is <code>0</code> if <code>x = 0</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = xlog1py( <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
+<h1 id="xlog1py">xlog1py</h1><blockquote><p>Compute <code>x * ln(y+1)</code> so that the result is <code>0</code> if <code>x = 0</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> xlog1py = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/xlog1py'</span> );
+</code></pre><h4 id="xlog1py-x-y-">xlog1py( x, y )</h4><p>Computes <code>x * ln(y+1)</code> so that the result is <code>0</code> if <code>x = 0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = xlog1py( <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns ~3.296</span>
 
 out = xlog1py( <span class="hljs-number">1.5</span>, <span class="hljs-number">5.9</span> );
@@ -31,13 +22,7 @@ out = xlog1py( <span class="hljs-number">0.0</span>, <span class="hljs-literal">
 
 out = xlog1py( <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.3</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> xlog1py = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/xlog1py'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -52,22 +37,4 @@ out = xlog1py( <span class="hljs-literal">NaN</span>, <span class="hljs-number">
     y = ( randu() * <span class="hljs-number">20.0</span> ) - <span class="hljs-number">5.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'xlog1py(%d, %d) = %d'</span>, x, y, xlog1py( x, y ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/xlogy"><code>@stdlib/math/base/special/xlogy</code></a></span><span class="delimiter">: </span><span class="description">compute <code>x * ln(y)</code> so that the result is <code>0</code> if <code>x = 0</code>.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/xlogy"><code>@stdlib/math/base/special/xlogy</code></a></span><span class="delimiter">: </span><span class="description">compute <code>x * ln(y)</code> so that the result is <code>0</code> if <code>x = 0</code>.</span></li></ul></section><section class="links"></section>

@@ -1,14 +1,5 @@
-<h1 id="object-keys">Object Keys</h1>
-<blockquote>
-<p>Return an array of an object's own and inherited enumerable property names.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keysIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys-in'</span> );
-</code></pre>
-<h4 id="keysin-obj-">keysIn( obj )</h4>
-<p>Returns an <code>array</code> of an object's own and inherited enumerable property names.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+<h1 id="object-keys">Object Keys</h1><blockquote><p>Return an array of an object's own and inherited enumerable property names.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keysIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys-in'</span> );
+</code></pre><h4 id="keysin-obj-">keysIn( obj )</h4><p>Returns an <code>array</code> of an object's own and inherited enumerable property names.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.a = <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
 }
@@ -19,20 +10,7 @@ Foo.prototype.b = <span class="hljs-number">2</span>;
 
 <span class="hljs-keyword">var</span> keys = keysIn( obj );
 <span class="hljs-comment">// e.g., returns [ 'a', 'b' ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Name order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic extraction.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keysIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys-in'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Name order is not guaranteed, as <code>object</code> key enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s keys, thus allowing for deterministic extraction.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keysIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys-in'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.beep = <span class="hljs-string">'boop'</span>;
@@ -49,23 +27,4 @@ Foo.prototype.foo = [ <span class="hljs-string">'bar'</span> ];
 
 <span class="hljs-built_in">console</span>.log( keys );
 <span class="hljs-comment">// e.g., => [ 'beep', 'a', 'foo' ]</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/entries-in"><code>@stdlib/utils/entries-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable property key-value pairs.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/keys"><code>@stdlib/utils/keys</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own enumerable property names.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/values-in"><code>@stdlib/utils/values-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable property values.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/entries-in"><code>@stdlib/utils/entries-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable property key-value pairs.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/keys"><code>@stdlib/utils/keys</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/values-in"><code>@stdlib/utils/values-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable property values.</span></li></ul></section><section class="links"></section>

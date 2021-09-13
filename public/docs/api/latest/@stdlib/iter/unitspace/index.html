@@ -1,19 +1,5 @@
-<h1 id="iterunitspace">iterUnitspace</h1>
-<blockquote>
-<p>Create an iterator which returns numbers incremented by <code>1</code>.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterUnitspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/unitspace'</span> );
-</code></pre>
-<h4 id="iterunitspace-start-stop-">iterUnitspace( start[, stop] )</h4>
-<p>Returns an iterator which returns numbers incremented by <code>1</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterUnitspace( -<span class="hljs-number">5</span> );
+<h1 id="iterunitspace">iterUnitspace</h1><blockquote><p>Create an iterator which returns numbers incremented by <code>1</code>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterUnitspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/unitspace'</span> );
+</code></pre><h4 id="iterunitspace-start-stop-">iterUnitspace( start[, stop] )</h4><p>Returns an iterator which returns numbers incremented by <code>1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterUnitspace( -<span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns &#x3C;Object></span>
 
 <span class="hljs-keyword">var</span> v = it.next().value;
@@ -26,14 +12,7 @@ v = it.next().value;
 <span class="hljs-comment">// returns -3</span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<p>The returned iterator protocol-compliant object has the following properties:</p>
-<ul>
-<li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li>
-<li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li>
-</ul>
-<p>By default, the stopping value is <code>+infinity</code>, and, hence, the returned iterator is an infinite iterator (i.e., the iterator never ends). To specify an alternative stopping value, provide a second argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterUnitspace( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
+</code></pre><p>The returned iterator protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li><li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li></ul><p>By default, the stopping value is <code>+infinity</code>, and, hence, the returned iterator is an infinite iterator (i.e., the iterator never ends). To specify an alternative stopping value, provide a second argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterUnitspace( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns &#x3C;Object></span>
 
 <span class="hljs-keyword">var</span> v = it.next().value;
@@ -47,23 +26,7 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The returned iterator is guaranteed to return the <code>start</code> value and stops upon exceeding the <code>stop</code> value.</li>
-<li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterUnitspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/unitspace'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The returned iterator is guaranteed to return the <code>start</code> value and stops upon exceeding the <code>stop</code> value.</li><li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterUnitspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/unitspace'</span> );
 
 <span class="hljs-comment">// Create an iterator:</span>
 <span class="hljs-keyword">var</span> it = iterUnitspace( -<span class="hljs-number">50</span>, <span class="hljs-number">50</span> );
@@ -77,28 +40,4 @@ v = it.next().value;
     }
     <span class="hljs-built_in">console</span>.log( v.value );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/from-iterator"><code>@stdlib/array/from-iterator</code></a></span><span class="delimiter">: </span><span class="description">create (or fill) an array from an iterator.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/incrspace"><code>@stdlib/iter/incrspace</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns evenly spaced numbers according to a specified increment.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/linspace"><code>@stdlib/iter/linspace</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns evenly spaced numbers over a specified interval.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/step"><code>@stdlib/iter/step</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns a sequence of numbers according to a specified increment.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/from-iterator"><code>@stdlib/array/from-iterator</code></a></span><span class="delimiter">: </span><span class="description">create (or fill) an array from an iterator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/incrspace"><code>@stdlib/iter/incrspace</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns evenly spaced numbers according to a specified increment.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/linspace"><code>@stdlib/iter/linspace</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns evenly spaced numbers over a specified interval.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/step"><code>@stdlib/iter/step</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns a sequence of numbers according to a specified increment.</span></li></ul></section><section class="links"></section>

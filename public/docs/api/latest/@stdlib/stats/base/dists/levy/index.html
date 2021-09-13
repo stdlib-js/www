@@ -1,76 +1,14 @@
-<h1 id="lévy">Lévy</h1>
-<blockquote>
-<p>Lévy distribution.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> levy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/levy'</span> );
-</code></pre>
-<h4 id="levy">levy</h4>
-<p>Lévy distribution.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = levy;
+<h1 id="lévy">Lévy</h1><blockquote><p>Lévy distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> levy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/levy'</span> );
+</code></pre><h4 id="levy">levy</h4><p>Lévy distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = levy;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre>
-<p>The namespace contains the following distribution functions:</p>
-<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/cdf"><code>cdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution cumulative distribution function.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/logcdf"><code>logcdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution logarithm of cumulative distribution function.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/logpdf"><code>logpdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution logarithm of probability density function (PDF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/pdf"><code>pdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution probability density function (PDF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/quantile"><code>quantile( p, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution quantile function.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains the following functions for calculating distribution properties:</p>
-<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/entropy"><code>entropy( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution differential entropy.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/mean"><code>mean( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution expected value.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/median"><code>median( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution median.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/mode"><code>mode( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution mode.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/stdev"><code>stdev( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution standard deviation.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/variance"><code>variance( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution variance.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/L%C3%A9vy_distribution">Lévy</a> distribution object.</p>
-<!-- <toc pattern="*ctor*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/ctor"><code>Levy( [mu, c] )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution constructor.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Levy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/levy'</span> ).Levy;
+</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/cdf"><code>cdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/logcdf"><code>logcdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution logarithm of cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/logpdf"><code>logpdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution logarithm of probability density function (PDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/pdf"><code>pdf( x, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution probability density function (PDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/quantile"><code>quantile( p, mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution quantile function.</span></li></ul></div><p>The namespace contains the following functions for calculating distribution properties:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/entropy"><code>entropy( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution differential entropy.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/mean"><code>mean( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution expected value.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/median"><code>median( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution median.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/mode"><code>mode( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution mode.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/stdev"><code>stdev( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution standard deviation.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/variance"><code>variance( mu, c )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution variance.</span></li></ul></div><p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/L%C3%A9vy_distribution">Lévy</a> distribution object.</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/levy/ctor"><code>Levy( [mu, c] )</code></a></span><span class="delimiter">: </span><span class="description">Lévy distribution constructor.</span></li></ul></div><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Levy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/levy'</span> ).Levy;
 
 <span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Levy( <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span> );
 
 <span class="hljs-keyword">var</span> y = dist.pdf( <span class="hljs-number">2.5</span> );
 <span class="hljs-comment">// returns ~0.041</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- TODO: better examples -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> levy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/levy'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( levy ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <toc-links> -->
-<!-- </toc-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

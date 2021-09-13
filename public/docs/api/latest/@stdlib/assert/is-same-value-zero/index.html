@@ -1,14 +1,5 @@
-<h1 id="issamevaluezero">isSameValueZero</h1>
-<blockquote>
-<p>Test if two arguments are the same value.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameValueZero = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-value-zero'</span> );
-</code></pre>
-<h4 id="issamevaluezero-a-b-">isSameValueZero( a, b )</h4>
-<p>Tests if two arguments <code>a</code> and <code>b</code> are the same value.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isSameValueZero( <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
+<h1 id="issamevaluezero">isSameValueZero</h1><blockquote><p>Test if two arguments are the same value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameValueZero = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-value-zero'</span> );
+</code></pre><h4 id="issamevaluezero-a-b-">isSameValueZero( a, b )</h4><p>Tests if two arguments <code>a</code> and <code>b</code> are the same value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isSameValueZero( <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isSameValueZero( <span class="hljs-string">''</span>, <span class="hljs-string">''</span> );
@@ -16,18 +7,12 @@ bool = isSameValueZero( <span class="hljs-string">''</span>, <span class="hljs-s
 
 bool = isSameValueZero( {}, {} );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<p>In contrast to the strict equality operator <code>===</code>, the function treats <code>NaNs</code> as the same value.</p>
-<!-- eslint-disable use-isnan -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-literal">NaN</span> === <span class="hljs-literal">NaN</span> );
+</code></pre><p>In contrast to the strict equality operator <code>===</code>, the function treats <code>NaNs</code> as the same value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-literal">NaN</span> === <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns false</span>
 
 bool = isSameValueZero( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>In contrast to the <a href="/docs/api/latest/@stdlib/assert/is-same-value">SameValue Algorithm</a>, the function does <strong>not</strong> distinguish between <code>+0</code> and <code>-0</code>.</p>
-<!-- eslint-disable no-compare-neg-zero -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-number">0.0</span> === -<span class="hljs-number">0.0</span> );
+</code></pre><p>In contrast to the <a href="/docs/api/latest/@stdlib/assert/is-same-value">SameValue Algorithm</a>, the function does <strong>not</strong> distinguish between <code>+0</code> and <code>-0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( <span class="hljs-number">0.0</span> === -<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isSameValueZero( <span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
@@ -35,16 +20,7 @@ bool = isSameValueZero( <span class="hljs-number">0.0</span>, -<span class="hljs
 
 bool = isSameValueZero( -<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameValueZero = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-value-zero'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSameValueZero = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-same-value-zero'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSameValueZero( <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span> );
 <span class="hljs-comment">// returns true</span>
@@ -78,22 +54,4 @@ bool = isSameValueZero( [], [] );
 
 bool = isSameValueZero( isSameValueZero, isSameValueZero );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-value"><code>@stdlib/assert/is-same-value</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are the same value.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-strict-equal"><code>@stdlib/assert/is-strict-equal</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are strictly equal.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-same-value"><code>@stdlib/assert/is-same-value</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are the same value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-strict-equal"><code>@stdlib/assert/is-strict-equal</code></a></span><span class="delimiter">: </span><span class="description">test if two arguments are strictly equal.</span></li></ul></section><section class="links"></section>

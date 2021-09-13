@@ -1,14 +1,5 @@
-<h1 id="minstd">MINSTD</h1>
-<blockquote>
-<p>Create an iterator for a linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>) based on Park and Miller.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/minstd'</span> );
-</code></pre>
-<h4 id="iterator-options-">iterator( [options] )</h4>
-<p>Returns an iterator for generating pseudorandom numbers via a linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>) based on Park and Miller.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator();
+<h1 id="minstd">MINSTD</h1><blockquote><p>Create an iterator for a linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>) based on Park and Miller.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/minstd'</span> );
+</code></pre><h4 id="iterator-options-">iterator( [options] )</h4><p>Returns an iterator for generating pseudorandom numbers via a linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>) based on Park and Miller.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator();
 <span class="hljs-comment">// returns &#x3C;Object></span>
 
 <span class="hljs-keyword">var</span> r = it.next().value;
@@ -21,25 +12,13 @@ r = it.next().value;
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>normalized</strong>: <code>boolean</code> indicating whether to return pseudorandom numbers on the interval <code>[0,1)</code>.</li>
-<li><strong>seed</strong>: pseudorandom number generator seed.</li>
-<li><strong>state</strong>: an <a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
-<li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned iterator has exclusive control over its internal pseudorandom number generator state. Default: <code>true</code>.</li>
-<li><strong>iter</strong>: number of iterations.</li>
-</ul>
-<p>To return pseudorandom numbers on the interval <code>[0,1)</code>, set the <code>normalized</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator({
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>normalized</strong>: <code>boolean</code> indicating whether to return pseudorandom numbers on the interval <code>[0,1)</code>.</li><li><strong>seed</strong>: pseudorandom number generator seed.</li><li><strong>state</strong>: an <a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned iterator has exclusive control over its internal pseudorandom number generator state. Default: <code>true</code>.</li><li><strong>iter</strong>: number of iterations.</li></ul><p>To return pseudorandom numbers on the interval <code>[0,1)</code>, set the <code>normalized</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator({
     <span class="hljs-string">'normalized'</span>: <span class="hljs-literal">true</span>
 });
 
 <span class="hljs-keyword">var</span> r = it.next().value;
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<p>To return an iterator having a specific initial state, set the iterator <code>state</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool;
+</code></pre><p>To return an iterator having a specific initial state, set the iterator <code>state</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool;
 <span class="hljs-keyword">var</span> it1;
 <span class="hljs-keyword">var</span> it2;
 <span class="hljs-keyword">var</span> r;
@@ -60,9 +39,7 @@ it2 = iterator({
 <span class="hljs-comment">// Test that the generated pseudorandom numbers are the same:</span>
 bool = ( it1.next().value === it2.next().value );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>To seed the iterator, set the <code>seed</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator({
+</code></pre><p>To seed the iterator, set the <code>seed</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator({
     <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
 });
 
@@ -75,9 +52,7 @@ it = iterator({
 
 r = it.next().value;
 <span class="hljs-comment">// returns 207482415</span>
-</code></pre>
-<p>To limit the number of iterations, set the <code>iter</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator({
+</code></pre><p>To limit the number of iterations, set the <code>iter</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> it = iterator({
     <span class="hljs-string">'iter'</span>: <span class="hljs-number">2</span>
 });
 
@@ -89,34 +64,7 @@ r = it.next().value;
 
 r = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>The returned iterator protocol-compliant object has the following properties:</p>
-<ul>
-<li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li>
-<li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li>
-<li><strong>seed</strong>: pseudorandom number generator seed.</li>
-<li><strong>seedLength</strong>: length of generator seed.</li>
-<li><strong>state</strong>: writable property for getting and setting the generator state.</li>
-<li><strong>stateLength</strong>: length of generator state.</li>
-<li><strong>byteLength</strong>: size (in bytes) of generator state.</li>
-</ul>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li>
-<li>The generator has a period of approximately <code>2.1e9</code> (see <a href="#references">Numerical Recipes in C, 2nd Edition</a>, p. 279).</li>
-<li>An <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a> is fast and uses little memory. On the other hand, because the generator is a simple <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">linear congruential generator</a>, the generator has recognized shortcomings. By today's PRNG standards, the generator's period is relatively short. More importantly, the "randomness quality" of the generator's output is lacking. These defects make the generator unsuitable, for example, in Monte Carlo simulations and in cryptographic applications.</li>
-<li>If PRNG state is "shared" (meaning a state array was provided during iterator creation and <strong>not</strong> copied) and one sets the underlying generator state to a state array having a different length, the iterator does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize the output of the underlying generator according to the new shared state array, the state array for <strong>each</strong> relevant iterator and/or PRNG must be <strong>explicitly</strong> set.</li>
-<li>If PRNG state is "shared" and one sets the underlying generator state to a state array of the same length, the PRNG state is updated (along with the state of all other iterator and/or PRNGs sharing the PRNG's state array).</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/minstd'</span> );
+</code></pre><p>The returned iterator protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an iterator protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the iterator is finished.</li><li><strong>return</strong>: function which closes an iterator and returns a single (optional) argument in an iterator protocol-compliant object.</li><li><strong>seed</strong>: pseudorandom number generator seed.</li><li><strong>seedLength</strong>: length of generator seed.</li><li><strong>state</strong>: writable property for getting and setting the generator state.</li><li><strong>stateLength</strong>: length of generator state.</li><li><strong>byteLength</strong>: size (in bytes) of generator state.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</li><li>The generator has a period of approximately <code>2.1e9</code> (see <a href="#references">Numerical Recipes in C, 2nd Edition</a>, p. 279).</li><li>An <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a> is fast and uses little memory. On the other hand, because the generator is a simple <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">linear congruential generator</a>, the generator has recognized shortcomings. By today's PRNG standards, the generator's period is relatively short. More importantly, the "randomness quality" of the generator's output is lacking. These defects make the generator unsuitable, for example, in Monte Carlo simulations and in cryptographic applications.</li><li>If PRNG state is "shared" (meaning a state array was provided during iterator creation and <strong>not</strong> copied) and one sets the underlying generator state to a state array having a different length, the iterator does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize the output of the underlying generator according to the new shared state array, the state array for <strong>each</strong> relevant iterator and/or PRNG must be <strong>explicitly</strong> set.</li><li>If PRNG state is "shared" and one sets the underlying generator state to a state array of the same length, the PRNG state is updated (along with the state of all other iterator and/or PRNGs sharing the PRNG's state array).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/minstd'</span> );
 
 <span class="hljs-keyword">var</span> it;
 <span class="hljs-keyword">var</span> r;
@@ -135,34 +83,4 @@ it = iterator({
     }
     <span class="hljs-built_in">console</span>.log( r.value );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Park, S. K., and K. W. Miller. 1988. "Random Number Generators: Good Ones Are Hard to Find." <em>Communications of the ACM</em> 31 (10). New York, NY, USA: ACM: 1192–1201. doi:<a href="http://dx.doi.org/10.1145/63039.63042">10.1145/63039.63042</a>.</li>
-<li>Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. <em>Numerical Recipes in C: The Art of Scientific Computing, Second Edition</em>. Cambridge University Press.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/minstd"><code>@stdlib/random/base/minstd</code></a></span><span class="delimiter">: </span><span class="description">A linear congruential pseudorandom number generator (LCG) based on Park and Miller.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/minstd-shuffle"><code>@stdlib/random/iter/minstd-shuffle</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for a linear congruential pseudorandom number generator (LCG) whose output is shuffled.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/mt19937"><code>@stdlib/random/iter/mt19937</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for a 32-bit Mersenne Twister pseudorandom number generator.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/randi"><code>@stdlib/random/iter/randi</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for generating pseudorandom numbers having integer values.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/randu"><code>@stdlib/random/iter/randu</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for generating uniformly distributed pseudorandom numbers between 0 and 1.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Park, S. K., and K. W. Miller. 1988. "Random Number Generators: Good Ones Are Hard to Find." <em>Communications of the ACM</em> 31 (10). New York, NY, USA: ACM: 1192–1201. doi:<a href="http://dx.doi.org/10.1145/63039.63042">10.1145/63039.63042</a>.</li><li>Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. <em>Numerical Recipes in C: The Art of Scientific Computing, Second Edition</em>. Cambridge University Press.</li></ul></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/minstd"><code>@stdlib/random/base/minstd</code></a></span><span class="delimiter">: </span><span class="description">A linear congruential pseudorandom number generator (LCG) based on Park and Miller.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/minstd-shuffle"><code>@stdlib/random/iter/minstd-shuffle</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for a linear congruential pseudorandom number generator (LCG) whose output is shuffled.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/mt19937"><code>@stdlib/random/iter/mt19937</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for a 32-bit Mersenne Twister pseudorandom number generator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/randi"><code>@stdlib/random/iter/randi</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for generating pseudorandom numbers having integer values.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/iter/randu"><code>@stdlib/random/iter/randu</code></a></span><span class="delimiter">: </span><span class="description">create an iterator for generating uniformly distributed pseudorandom numbers between 0 and 1.</span></li></ul></section><section class="links"></section>

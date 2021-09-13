@@ -1,45 +1,23 @@
-<h1 id="endswith">endsWith</h1>
-<blockquote>
-<p>Test if a string ends with the characters of another string.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
-</code></pre>
-<h4 id="endswith-str-search-len-">endsWith( str, search[, len] )</h4>
-<p>Tests if a <code>string</code> ends with the characters of another <code>string</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
+<h1 id="endswith">endsWith</h1><blockquote><p>Test if a string ends with the characters of another string.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
+</code></pre><h4 id="endswith-str-search-len-">endsWith( str, search[, len] )</h4><p>Tests if a <code>string</code> ends with the characters of another <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Remember the story I used to tell you when you were a boy?'</span>;
 
 <span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'boy?'</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = endsWith( str, <span class="hljs-string">'Boy?'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<p>To search for a match at the end of a substring, provide a <code>len</code> argument. If <code>len</code> is positive, the function restricts the search to a substring with length <code>len</code>, beginning with the leftmost character. If <code>len</code> is negative, <code>len</code> indicates to ignore the last <code>len</code> characters (equivalent of <code>str.length + len</code>).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
+</code></pre><p>To search for a match at the end of a substring, provide a <code>len</code> argument. If <code>len</code> is positive, the function restricts the search to a substring with length <code>len</code>, beginning with the leftmost character. If <code>len</code> is negative, <code>len</code> indicates to ignore the last <code>len</code> characters (equivalent of <code>str.length + len</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'To be, or not to be, that is the question.'</span>;
 
 <span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">'to be'</span>, <span class="hljs-number">19</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = endsWith( str, <span class="hljs-string">'to be'</span>, -<span class="hljs-number">23</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>If provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>true</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
+</code></pre><p>If provided an empty <code>search</code> string, the function <strong>always</strong> returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'beep boop'</span>;
 
 <span class="hljs-keyword">var</span> bool = endsWith( str, <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> endsWith = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/ends-with'</span> );
 
 <span class="hljs-keyword">var</span> bool;
 <span class="hljs-keyword">var</span> str;
@@ -57,15 +35,7 @@ bool = endsWith( str, <span class="hljs-string">'fair'</span>, <span class="hljs
 
 bool = endsWith( str, <span class="hljs-string">'fair'</span>, -<span class="hljs-number">34</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: ends-with [options] --search=&#x3C;string> [&#x3C;string>]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: ends-with [options] --search=&#x3C;string> [&#x3C;string>]
 
 Options:
 
@@ -73,34 +43,8 @@ Options:
   -V,    --version             Print the package version.
          --search string       Search string.
          --len int             Substring length.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ ends-with --search=ep beep
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ ends-with --search=ep beep
 <span class="hljs-literal">true</span>
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop'</span> | ends-with --search=ep
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop'</span> | ends-with --search=ep
 <span class="hljs-literal">false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/starts-with"><code>@stdlib/string/starts-with</code></a></span><span class="delimiter">: </span><span class="description">test if a string starts with the characters of another string.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/starts-with"><code>@stdlib/string/starts-with</code></a></span><span class="delimiter">: </span><span class="description">test if a string starts with the characters of another string.</span></li></ul></section><section class="links"></section>

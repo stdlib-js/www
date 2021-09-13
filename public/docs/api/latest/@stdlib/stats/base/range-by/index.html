@@ -1,18 +1,5 @@
-<h1 id="rangeby">rangeBy</h1>
-<blockquote>
-<p>Calculate the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> of a strided array via a callback function.</p>
-</blockquote>
-<section class="intro">
-<p>The <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29"><strong>range</strong></a> is defined as the difference between the maximum and minimum values.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rangeBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/range-by'</span> );
-</code></pre>
-<h4 id="rangeby-n-x-stride-clbk-thisarg-">rangeBy( N, x, stride, clbk[, thisArg] )</h4>
-<p>Calculates the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> of strided array <code>x</code> via a callback function.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+<h1 id="rangeby">rangeBy</h1><blockquote><p>Calculate the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> of a strided array via a callback function.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29"><strong>range</strong></a> is defined as the difference between the maximum and minimum values.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rangeBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/range-by'</span> );
+</code></pre><h4 id="rangeby-n-x-stride-clbk-thisarg-">rangeBy( N, x, stride, clbk[, thisArg] )</h4><p>Calculates the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> of strided array <code>x</code> via a callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
 
@@ -20,24 +7,7 @@
 
 <span class="hljs-keyword">var</span> v = rangeBy( x.length, x, <span class="hljs-number">1</span>, accessor );
 <span class="hljs-comment">// returns 18.0</span>
-</code></pre>
-<p>The function has the following parameters:</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions). </li>
-<li><strong>stride</strong>: index increment.</li>
-<li><strong>clbk</strong>: callback function.</li>
-<li><strong>thisArg</strong>: execution context (<em>optional</em>).</li>
-</ul>
-<p>The invoked callback is provided four arguments:</p>
-<ul>
-<li><strong>value</strong>: array element.</li>
-<li><strong>aidx</strong>: array index.</li>
-<li><strong>sidx</strong>: strided index (<code>offset + aidx*stride</code>).</li>
-<li><strong>array</strong>: input array/collection.</li>
-</ul>
-<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>stride</strong>: index increment.</li><li><strong>clbk</strong>: callback function.</li><li><strong>thisArg</strong>: execution context (<em>optional</em>).</li></ul><p>The invoked callback is provided four arguments:</p><ul><li><strong>value</strong>: array element.</li><li><strong>aidx</strong>: array index.</li><li><strong>sidx</strong>: strided index (<code>offset + aidx*stride</code>).</li><li><strong>array</strong>: input array/collection.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
@@ -53,9 +23,7 @@
 
 <span class="hljs-keyword">var</span> cnt = context.count;
 <span class="hljs-comment">// returns 8</span>
-</code></pre>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to access every other element</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to access every other element</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
@@ -66,9 +34,7 @@
 
 <span class="hljs-keyword">var</span> v = rangeBy( N, x, <span class="hljs-number">2</span>, accessor );
 <span class="hljs-comment">// returns 12.0</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
@@ -85,10 +51,7 @@
 <span class="hljs-comment">// Access every other element...</span>
 <span class="hljs-keyword">var</span> v = rangeBy( N, x1, <span class="hljs-number">2</span>, accessor );
 <span class="hljs-comment">// returns 8.0</span>
-</code></pre>
-<h4 id="rangebyndarray-n-x-stride-offset-clbk-thisarg-">rangeBy.ndarray( N, x, stride, offset, clbk[, thisArg] )</h4>
-<p>Calculates the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> of strided array <code>x</code> via a callback function and using alternative indexing semantics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><h4 id="rangebyndarray-n-x-stride-offset-clbk-thisarg-">rangeBy.ndarray( N, x, stride, offset, clbk[, thisArg] )</h4><p>Calculates the <a href="https://en.wikipedia.org/wiki/Range_%28statistics%29">range</a> of strided array <code>x</code> via a callback function and using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
 
@@ -96,13 +59,7 @@
 
 <span class="hljs-keyword">var</span> v = rangeBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, accessor );
 <span class="hljs-comment">// returns 18.0</span>
-</code></pre>
-<p>The function has the following additional parameters:</p>
-<ul>
-<li><strong>offset</strong>: starting index.</li>
-</ul>
-<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access only the last three elements of <code>x</code></p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offset</strong>: starting index.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access only the last three elements of <code>x</code></p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
 
@@ -110,23 +67,7 @@
 
 <span class="hljs-keyword">var</span> v = rangeBy.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">1</span>, x.length-<span class="hljs-number">3</span>, accessor );
 <span class="hljs-comment">// returns 22.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If <code>N &#x3C;= 0</code>, both functions return <code>NaN</code>.</li>
-<li>A provided callback function should return a numeric value.</li>
-<li>If a provided callback function does not return any value (or equivalently, explicitly returns <code>undefined</code>), the value is <strong>ignored</strong>.</li>
-<li>When possible, prefer using <a href="/docs/api/latest/@stdlib/stats/base/drange"><code>drange</code></a>, <a href="/docs/api/latest/@stdlib/stats/base/srange"><code>srange</code></a>, and/or <a href="/docs/api/latest/@stdlib/stats/base/range"><code>range</code></a>, as, depending on the environment, these interfaces are likely to be significantly more performant.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>NaN</code>.</li><li>A provided callback function should return a numeric value.</li><li>If a provided callback function does not return any value (or equivalently, explicitly returns <code>undefined</code>), the value is <strong>ignored</strong>.</li><li>When possible, prefer using <a href="/docs/api/latest/@stdlib/stats/base/drange"><code>drange</code></a>, <a href="/docs/api/latest/@stdlib/stats/base/srange"><code>srange</code></a>, and/or <a href="/docs/api/latest/@stdlib/stats/base/range"><code>range</code></a>, as, depending on the environment, these interfaces are likely to be significantly more performant.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> gfillBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gfill-by'</span> );
@@ -147,26 +88,4 @@ gfillBy( x.length, x, <span class="hljs-number">1</span>, fill );
 
 <span class="hljs-keyword">var</span> v = rangeBy( x.length, x, <span class="hljs-number">1</span>, accessor );
 <span class="hljs-built_in">console</span>.log( v );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/drange"><code>@stdlib/stats/base/drange</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a double-precision floating-point strided array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/max-by"><code>@stdlib/stats/base/max-by</code></a></span><span class="delimiter">: </span><span class="description">calculate the maximum value of a strided array via a callback function.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/min-by"><code>@stdlib/stats/base/min-by</code></a></span><span class="delimiter">: </span><span class="description">calculate the minimum value of a strided array via a callback function.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/nanrange-by"><code>@stdlib/stats/base/nanrange-by</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a strided array via a callback function, ignoring NaN values.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/range"><code>@stdlib/stats/base/range</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a strided array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/srange"><code>@stdlib/stats/base/srange</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a single-precision floating-point strided array.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/drange"><code>@stdlib/stats/base/drange</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a double-precision floating-point strided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/max-by"><code>@stdlib/stats/base/max-by</code></a></span><span class="delimiter">: </span><span class="description">calculate the maximum value of a strided array via a callback function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/min-by"><code>@stdlib/stats/base/min-by</code></a></span><span class="delimiter">: </span><span class="description">calculate the minimum value of a strided array via a callback function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/nanrange-by"><code>@stdlib/stats/base/nanrange-by</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a strided array via a callback function, ignoring NaN values.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/range"><code>@stdlib/stats/base/range</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a strided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/srange"><code>@stdlib/stats/base/srange</code></a></span><span class="delimiter">: </span><span class="description">calculate the range of a single-precision floating-point strided array.</span></li></ul></section><section class="links"></section>

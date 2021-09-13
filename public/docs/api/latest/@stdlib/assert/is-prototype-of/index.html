@@ -1,19 +1,5 @@
-<h1 id="isprototypeof">isPrototypeOf</h1>
-<blockquote>
-<p>Test if an object's prototype chain contains a provided prototype.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPrototypeOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-prototype-of'</span> );
-</code></pre>
-<h4 id="isprototypeof-obj-prototype-">isPrototypeOf( obj, prototype )</h4>
-<p>Tests if an <code>object</code>'s prototype chain contains a provided <code>prototype</code>.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
+<h1 id="isprototypeof">isPrototypeOf</h1><blockquote><p>Test if an object's prototype chain contains a provided prototype.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPrototypeOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-prototype-of'</span> );
+</code></pre><h4 id="isprototypeof-obj-prototype-">isPrototypeOf( obj, prototype )</h4><p>Tests if an <code>object</code>'s prototype chain contains a provided <code>prototype</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
@@ -28,16 +14,7 @@ inherit( Bar, Foo );
 
 <span class="hljs-keyword">var</span> bool = isPrototypeOf( bar, Foo.prototype );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>The function returns <code>false</code> if provided a primitive value.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function returns <code>false</code> if provided a primitive value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isPrototypeOf( <span class="hljs-number">5</span>, <span class="hljs-built_in">Number</span>.prototype );
 <span class="hljs-comment">// returns false</span>
@@ -47,19 +24,9 @@ bool = isPrototypeOf( <span class="hljs-string">'beep'</span>, <span class="hljs
 
 bool = isPrototypeOf( <span class="hljs-literal">true</span>, <span class="hljs-built_in">Boolean</span>.prototype );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</li>
-<li>
-<p>The function throws a <code>TypeError</code> if provided a <code>prototype</code> value which is neither an <code>object</code> (except <code>null</code>) or a <code>function</code>.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isPrototypeOf( <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> ), <span class="hljs-literal">null</span> );
+</code></pre></li><li><p>The function throws a <code>TypeError</code> if provided a <code>prototype</code> value which is neither an <code>object</code> (except <code>null</code>) or a <code>function</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isPrototypeOf( <span class="hljs-built_in">Object</span>.create( <span class="hljs-literal">null</span> ), <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// throws &#x3C;TypeError></span>
-</code></pre>
-</li>
-<li>
-<p><code>isPrototypeOf()</code> is generally more robust than the <code>instanceof</code> operator. Consider the following example which does not use constructors:</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Functionally similar to `Object.create()`...</span>
+</code></pre></li><li><p><code>isPrototypeOf()</code> is generally more robust than the <code>instanceof</code> operator. Consider the following example which does not use constructors:</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Functionally similar to `Object.create()`...</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createObject</span>(<span class="hljs-params"> proto </span>) </span>{
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Ctor</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-comment">// Empty constructor...</span>
@@ -86,16 +53,7 @@ subProto.boop = <span class="hljs-string">'boop'</span>;
 
 bool = isPrototypeOf( v, superProto );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable stdlib/no-redeclare -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inherit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherit'</span> );
 <span class="hljs-keyword">var</span> isPrototypeOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-prototype-of'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">A</span>(<span class="hljs-params"></span>) </span>{
@@ -157,21 +115,4 @@ bool = isPrototypeOf( a, C.prototype );
 
 bool = isPrototypeOf( a, D.prototype );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/get-prototype-of"><code>@stdlib/utils/get-prototype-of</code></a></span><span class="delimiter">: </span><span class="description">return the prototype of a provided object.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/get-prototype-of"><code>@stdlib/utils/get-prototype-of</code></a></span><span class="delimiter">: </span><span class="description">return the prototype of a provided object.</span></li></ul></section><section class="links"></section>

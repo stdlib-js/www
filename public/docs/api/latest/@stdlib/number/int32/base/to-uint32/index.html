@@ -1,27 +1,12 @@
-<h1 id="touint32">toUint32</h1>
-<blockquote>
-<p>Convert a signed 32-bit integer to an unsigned 32-bit integer.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> int32ToUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/int32/base/to-uint32'</span> );
-</code></pre>
-<h4 id="int32touint32-x-">int32ToUint32( x )</h4>
-<p>Converts a signed 32-bit integer to an unsigned 32-bit integer.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToInt32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int32'</span> );
+<h1 id="touint32">toUint32</h1><blockquote><p>Convert a signed 32-bit integer to an unsigned 32-bit integer.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> int32ToUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/int32/base/to-uint32'</span> );
+</code></pre><h4 id="int32touint32-x-">int32ToUint32( x )</h4><p>Converts a signed 32-bit integer to an unsigned 32-bit integer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToInt32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int32'</span> );
 
 <span class="hljs-keyword">var</span> y = int32ToUint32( float64ToInt32( -<span class="hljs-number">1</span> ) );
 <span class="hljs-comment">// returns 4294967295</span>
 
 y = int32ToUint32( float64ToInt32( <span class="hljs-number">3</span> ) );
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> MAX_INT32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/int32/max'</span> );
 <span class="hljs-keyword">var</span> float64ToInt32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int32'</span> );
 <span class="hljs-keyword">var</span> int32ToUint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/int32/base/to-uint32'</span> );
@@ -45,14 +30,4 @@ y = int32ToUint32( float64ToInt32( <span class="hljs-number">3</span> ) );
 
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'int32: %d => uint32: %d'</span>, int32, uint32 );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

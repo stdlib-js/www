@@ -1,14 +1,5 @@
-<h1 id="from-binary-string">From Binary String</h1>
-<blockquote>
-<p>Create an unsigned 8-bit integer from a <a href="/docs/api/latest/@stdlib/number/uint8/base/to-binary-string">literal bit representation</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromBinaryStringUint8 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/from-binary-string'</span> );
-</code></pre>
-<h4 id="frombinarystringuint8-bstr-">fromBinaryStringUint8( bstr )</h4>
-<p>Creates an unsigned 8-bit integer from a <a href="/docs/api/latest/@stdlib/number/uint8/base/to-binary-string">literal bit representation</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'01010101'</span>;
+<h1 id="from-binary-string">From Binary String</h1><blockquote><p>Create an unsigned 8-bit integer from a <a href="/docs/api/latest/@stdlib/number/uint8/base/to-binary-string">literal bit representation</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromBinaryStringUint8 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/from-binary-string'</span> );
+</code></pre><h4 id="frombinarystringuint8-bstr-">fromBinaryStringUint8( bstr )</h4><p>Creates an unsigned 8-bit integer from a <a href="/docs/api/latest/@stdlib/number/uint8/base/to-binary-string">literal bit representation</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'01010101'</span>;
 <span class="hljs-keyword">var</span> val = fromBinaryStringUint8( bstr );
 <span class="hljs-comment">// returns 85</span>
 
@@ -23,13 +14,7 @@ val = fromBinaryStringUint8( bstr );
 bstr = <span class="hljs-string">'11111111'</span>;
 val = fromBinaryStringUint8( bstr );
 <span class="hljs-comment">// returns 255</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryStringUint8 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryStringUint8 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
 <span class="hljs-keyword">var</span> fromBinaryStringUint8 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/from-binary-string'</span> );
 
 <span class="hljs-keyword">var</span> b;
@@ -42,14 +27,4 @@ val = fromBinaryStringUint8( bstr );
     y = fromBinaryStringUint8( b );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => %s => %d'</span>, i, b, y );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

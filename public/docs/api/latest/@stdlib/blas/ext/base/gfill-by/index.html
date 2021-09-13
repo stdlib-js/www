@@ -1,14 +1,5 @@
-<h1 id="gfillby">gfillBy</h1>
-<blockquote>
-<p>Fill a strided array according to a provided callback function.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gfillBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gfill-by'</span> );
-</code></pre>
-<h4 id="gfillby-n-x-stride-clbk-thisarg-">gfillBy( N, x, stride, clbk[, thisArg] )</h4>
-<p>Fills a strided array <code>x</code> according to a provided callback function.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
+<h1 id="gfillby">gfillBy</h1><blockquote><p>Fill a strided array according to a provided callback function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gfillBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gfill-by'</span> );
+</code></pre><h4 id="gfillby-n-x-stride-clbk-thisarg-">gfillBy( N, x, stride, clbk[, thisArg] )</h4><p>Fills a strided array <code>x</code> according to a provided callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
     <span class="hljs-keyword">return</span> v * i;
 }
 
@@ -16,24 +7,7 @@
 
 gfillBy( x.length, x, <span class="hljs-number">1</span>, fill );
 <span class="hljs-comment">// x => [ 0.0, 1.0, 6.0, -15.0, 16.0, 0.0, -6.0, -21.0 ]</span>
-</code></pre>
-<p>The function has the following parameters:</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions). </li>
-<li><strong>stride</strong>: index increment.</li>
-<li><strong>clbk</strong>: callback function.</li>
-<li><strong>thisArg</strong>: execution context (<em>optional</em>).</li>
-</ul>
-<p>The invoked callback is provided four arguments:</p>
-<ul>
-<li><strong>value</strong>: array element.</li>
-<li><strong>aidx</strong>: array index.</li>
-<li><strong>sidx</strong>: strided index (<code>offset + aidx*stride</code>).</li>
-<li><strong>array</strong>: input array/collection.</li>
-</ul>
-<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>stride</strong>: index increment.</li><li><strong>clbk</strong>: callback function.</li><li><strong>thisArg</strong>: execution context (<em>optional</em>).</li></ul><p>The invoked callback is provided four arguments:</p><ul><li><strong>value</strong>: array element.</li><li><strong>aidx</strong>: array index.</li><li><strong>sidx</strong>: strided index (<code>offset + aidx*stride</code>).</li><li><strong>array</strong>: input array/collection.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * i;
 }
@@ -49,9 +23,7 @@ gfillBy( x.length, x, <span class="hljs-number">1</span>, fill, context );
 
 <span class="hljs-keyword">var</span> cnt = context.count;
 <span class="hljs-comment">// returns 8</span>
-</code></pre>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to fill every other element</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to fill every other element</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
     <span class="hljs-keyword">return</span> v * i;
@@ -62,9 +34,7 @@ gfillBy( x.length, x, <span class="hljs-number">1</span>, fill, context );
 
 gfillBy( N, x, <span class="hljs-number">2</span>, fill );
 <span class="hljs-comment">// x => [ 0.0, 1.0, 3.0, -5.0, 8.0, 0.0, -3.0, -3.0 ]</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
@@ -81,10 +51,7 @@ gfillBy( N, x, <span class="hljs-number">2</span>, fill );
 <span class="hljs-comment">// Fill every other element...</span>
 gfillBy( N, x1, <span class="hljs-number">2</span>, fill );
 <span class="hljs-comment">// x0 => &#x3C;Float64Array>[ 1.0, 0.0, 3.0, -4.0, 5.0, -12.0 ]</span>
-</code></pre>
-<h4 id="gfillbyndarray-n-x-stride-offset-clbk-thisarg-">gfillBy.ndarray( N, x, stride, offset, clbk[, thisArg] )</h4>
-<p>Fills a strided array <code>x</code> according to a provided callback function and using alternative indexing semantics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
+</code></pre><h4 id="gfillbyndarray-n-x-stride-offset-clbk-thisarg-">gfillBy.ndarray( N, x, stride, offset, clbk[, thisArg] )</h4><p>Fills a strided array <code>x</code> according to a provided callback function and using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
     <span class="hljs-keyword">return</span> v * i;
 }
 
@@ -92,13 +59,7 @@ gfillBy( N, x1, <span class="hljs-number">2</span>, fill );
 
 gfillBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, fill );
 <span class="hljs-comment">// x => [ 0.0, 1.0, 6.0, -15.0, 16.0, 0.0, -6.0, -21.0 ]</span>
-</code></pre>
-<p>The function has the following additional parameters:</p>
-<ul>
-<li><strong>offset</strong>: starting index.</li>
-</ul>
-<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access only the last three elements of <code>x</code></p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offset</strong>: starting index.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access only the last three elements of <code>x</code></p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fill</span>(<span class="hljs-params"> v, i </span>) </span>{
     <span class="hljs-keyword">return</span> v * i;
 }
 
@@ -106,21 +67,7 @@ gfillBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="h
 
 gfillBy.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">1</span>, x.length-<span class="hljs-number">3</span>, fill );
 <span class="hljs-comment">// x => [ 1.0, -2.0, 3.0, 0.0, 5.0, -12.0 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If <code>N &#x3C;= 0</code>, both functions return <code>x</code> unchanged.</li>
-<li>When filling a strided array with a scalar constant, prefer using <a href="/docs/api/latest/@stdlib/blas/ext/base/dfill"><code>dfill</code></a>, <a href="/docs/api/latest/@stdlib/blas/ext/base/sfill"><code>sfill</code></a>, and/or <a href="/docs/api/latest/@stdlib/blas/ext/base/gfill"><code>gfill</code></a>, as, depending on the environment, these interfaces are likely to be significantly more performant.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>x</code> unchanged.</li><li>When filling a strided array with a scalar constant, prefer using <a href="/docs/api/latest/@stdlib/blas/ext/base/dfill"><code>dfill</code></a>, <a href="/docs/api/latest/@stdlib/blas/ext/base/sfill"><code>sfill</code></a>, and/or <a href="/docs/api/latest/@stdlib/blas/ext/base/gfill"><code>gfill</code></a>, as, depending on the environment, these interfaces are likely to be significantly more performant.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> gfillBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gfill-by'</span> );
@@ -141,21 +88,4 @@ gfillBy.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number
 
 gfillBy( x.length, x, <span class="hljs-number">1</span>, fill );
 <span class="hljs-built_in">console</span>.log( x );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/gfill"><code>@stdlib/blas/ext/base/gfill</code></a></span><span class="delimiter">: </span><span class="description">fill a strided array with a specified scalar constant.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/gfill"><code>@stdlib/blas/ext/base/gfill</code></a></span><span class="delimiter">: </span><span class="description">fill a strided array with a specified scalar constant.</span></li></ul></section><section class="links"></section>

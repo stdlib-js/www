@@ -1,25 +1,9 @@
-<h1 id="flatten-array">Flatten Array</h1>
-<blockquote>
-<p>Flatten an array.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flattenArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/flatten-array'</span> );
-</code></pre>
-<h4 id="flattenarray-arr-options-">flattenArray( arr[, options] )</h4>
-<p>Flattens an <code>array</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
+<h1 id="flatten-array">Flatten Array</h1><blockquote><p>Flatten an array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flattenArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/flatten-array'</span> );
+</code></pre><h4 id="flattenarray-arr-options-">flattenArray( arr[, options] )</h4><p>Flattens an <code>array</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
 
 <span class="hljs-keyword">var</span> out = flattenArray( arr );
 <span class="hljs-comment">// returns [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>depth</strong>: maximum depth to flatten.</li>
-<li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li>
-</ul>
-<p>To flatten to a specified depth, set the <code>depth</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>depth</strong>: maximum depth to flatten.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li></ul><p>To flatten to a specified depth, set the <code>depth</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
 
 <span class="hljs-keyword">var</span> out = flattenArray( arr, {
     <span class="hljs-string">'depth'</span>: <span class="hljs-number">2</span>
@@ -28,9 +12,7 @@
 
 <span class="hljs-keyword">var</span> bool = ( arr[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] === out[<span class="hljs-number">3</span>] );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>To deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
+</code></pre><p>To deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, [<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>, [ <span class="hljs-number">5</span> ], <span class="hljs-number">6</span>], <span class="hljs-number">7</span>], <span class="hljs-number">8</span>], <span class="hljs-number">9</span> ];
 
 <span class="hljs-keyword">var</span> out = flattenArray( arr, {
     <span class="hljs-string">'depth'</span>: <span class="hljs-number">2</span>,
@@ -40,10 +22,7 @@
 
 <span class="hljs-keyword">var</span> bool = ( arr[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] === out[<span class="hljs-number">3</span>] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="flattenarrayfactory-dims-options-">flattenArray.factory( dims[, options] )</h4>
-<p>Returns a <code>function</code> optimized for flattening <code>arrays</code> having specified dimensions.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flatten = flattenArray.factory( [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ] );
+</code></pre><h4 id="flattenarrayfactory-dims-options-">flattenArray.factory( dims[, options] )</h4><p>Returns a <code>function</code> optimized for flattening <code>arrays</code> having specified dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flatten = flattenArray.factory( [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr = [
     [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
@@ -62,14 +41,7 @@ arr = [
 
 out = flatten( arr );
 <span class="hljs-comment">// returns [ 11, 12, 13, 14, 15, 16, 17, 18, 19 ]</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li>
-</ul>
-<p>To deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p>
-<!-- eslint-disable object-curly-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flatten = flattenArray.factory( [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ], {
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements. Default: <code>false</code>.</li></ul><p>To deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> <code>array</code> elements, set the <code>copy</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flatten = flattenArray.factory( [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ], {
     <span class="hljs-string">'copy'</span>: <span class="hljs-literal">true</span>
 });
 
@@ -84,21 +56,7 @@ out = flatten( arr );
 
 <span class="hljs-keyword">var</span> bool = ( arr[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] === out[<span class="hljs-number">4</span>] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>A flatten <code>function</code> returned by the factory method does <strong>not</strong> validate that input <code>arrays</code> actually have the specified dimensions.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable array-bracket-spacing -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flattenArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/flatten-array'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A flatten <code>function</code> returned by the factory method does <strong>not</strong> validate that input <code>arrays</code> actually have the specified dimensions.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flattenArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/flatten-array'</span> );
 
 <span class="hljs-keyword">var</span> xStride;
 <span class="hljs-keyword">var</span> yStride;
@@ -145,21 +103,4 @@ val = out[ (<span class="hljs-number">4</span>*xStride) + (<span class="hljs-num
 
 bool = ( arr[<span class="hljs-number">4</span>][<span class="hljs-number">20</span>][<span class="hljs-number">2</span>] === val );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/flatten-object"><code>@stdlib/utils/flatten-object</code></a></span><span class="delimiter">: </span><span class="description">flatten an object.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/flatten-object"><code>@stdlib/utils/flatten-object</code></a></span><span class="delimiter">: </span><span class="description">flatten an object.</span></li></ul></section><section class="links"></section>

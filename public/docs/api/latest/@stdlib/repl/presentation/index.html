@@ -1,41 +1,11 @@
-<h1 id="repl-presentation">REPL Presentation</h1>
-<blockquote>
-<p>Run a <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-<p>This package allows building presentations using only a <a href="/docs/api/latest/@stdlib/repl">REPL</a> environment.</p>
-<!-- TODO: display animated presentation GIF and/or link to an ASCI cast -->
-<h3 id="features">Features</h3>
-<ul>
-<li>Easy to write and minimal slide markup.</li>
-<li>Built-in navigation commands to move and jump between slides.</li>
-<li>Slide fragments (i.e., incremental slides).</li>
-<li>Progress display.</li>
-<li>Text alignment (left, right, centered, flush) and horizontal rules.</li>
-<li>ANSI colors and styling.</li>
-<li>Emoji support.</li>
-<li>Executable slide code.</li>
-<li>Programmatic interface.</li>
-<li>Command-line interface (CLI).</li>
-<li>Watch mode with automatic reload (aka, "hot reloading").</li>
-</ul>
-<h3 id="authoring">Authoring</h3>
-<p>A <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation source file is a text file which includes minimal markup for delineating slides, slide fragments, speaker notes, code, text alignment, and styling. </p>
-<h4 id="slides">Slides</h4>
-<p>To delineate a new slide, use three dashes <code>---</code>.</p>
-<pre><code class="no-highlight language-text">
+<h1 id="repl-presentation">REPL Presentation</h1><blockquote><p>Run a <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation.</p></blockquote><section class="intro"><p>This package allows building presentations using only a <a href="/docs/api/latest/@stdlib/repl">REPL</a> environment.</p><h3 id="features">Features</h3><ul><li>Easy to write and minimal slide markup.</li><li>Built-in navigation commands to move and jump between slides.</li><li>Slide fragments (i.e., incremental slides).</li><li>Progress display.</li><li>Text alignment (left, right, centered, flush) and horizontal rules.</li><li>ANSI colors and styling.</li><li>Emoji support.</li><li>Executable slide code.</li><li>Programmatic interface.</li><li>Command-line interface (CLI).</li><li>Watch mode with automatic reload (aka, "hot reloading").</li></ul><h3 id="authoring">Authoring</h3><p>A <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation source file is a text file which includes minimal markup for delineating slides, slide fragments, speaker notes, code, text alignment, and styling.</p><h4 id="slides">Slides</h4><p>To delineate a new slide, use three dashes <code>---</code>.</p><pre><code class="no-highlight language-text">
 This is the first slide.
 
 ---
 
 This is the second slide.
 
-</code></pre>
-<p>Leading and trailing whitespace between slides is <strong>removed</strong>.</p>
-<h4 id="slide-fragments">Slide Fragments</h4>
-<p>To delineate a slide fragment (i.e., incremental slide), use two dashes <code>--</code>.</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>Leading and trailing whitespace between slides is <strong>removed</strong>.</p><h4 id="slide-fragments">Slide Fragments</h4><p>To delineate a slide fragment (i.e., incremental slide), use two dashes <code>--</code>.</p><pre><code class="no-highlight language-text">
 This is an incremental slide.
 
 --
@@ -50,9 +20,7 @@ This is an incremental slide.
 
 ...and even more text
 
-</code></pre>
-<p>Leading and trailing whitespace between slide fragments is <strong>removed</strong>. To manually space slide fragments, use the ANSI escape cope <code>\s</code>.</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>Leading and trailing whitespace between slide fragments is <strong>removed</strong>. To manually space slide fragments, use the ANSI escape cope <code>\s</code>.</p><pre><code class="no-highlight language-text">
 List items are separated by blank lines...
 \s
 
@@ -75,71 +43,28 @@ List items are separated by blank lines...
 \s
 ...by using the ANSI escape code to reset styling.
 
-</code></pre>
-<h4 id="code-blocks">Code Blocks</h4>
-<p>To delineate slide code, use three backticks.</p>
-<pre><code class="no-highlight language-text">
+</code></pre><h4 id="code-blocks">Code Blocks</h4><p>To delineate slide code, use three backticks.</p><pre><code class="no-highlight language-text">
 This is a slide with code.
 
 ```
 var x = 3.14;
 ```
 
-</code></pre>
-<p>By default, code blocks are assumed to be JavaScript. To explicitly specify the code block language, include the language identifier after the first set of backticks.</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>By default, code blocks are assumed to be JavaScript. To explicitly specify the code block language, include the language identifier after the first set of backticks.</p><pre><code class="no-highlight language-text">
 This is a slide with code.
 
 ```javascript
 var x = 3.14;
 ```
 
-</code></pre>
-<p>Only JavaScript code blocks are runnable. To run JavaScript code on the current slide, invoke the presentation command <code>runSlide()</code> at the <a href="/docs/api/latest/@stdlib/repl">REPL</a> prompt.</p>
-<h4 id="speaker-notes">Speaker Notes</h4>
-<p>To delineate speaker notes, use three tildes <code>~~~</code> <strong>after</strong> a slide's content and <strong>before</strong> delineating the next slide.</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>Only JavaScript code blocks are runnable. To run JavaScript code on the current slide, invoke the presentation command <code>runSlide()</code> at the <a href="/docs/api/latest/@stdlib/repl">REPL</a> prompt.</p><h4 id="speaker-notes">Speaker Notes</h4><p>To delineate speaker notes, use three tildes <code>~~~</code> <strong>after</strong> a slide's content and <strong>before</strong> delineating the next slide.</p><pre><code class="no-highlight language-text">
 This is a slide
 
 ~~~
 
 ...with speaker notes.
 
-</code></pre>
-<h4 id="text-alignment">Text Alignment</h4>
-<p>To align text, use the following markup at the <strong>start</strong> of a content line to align</p>
-<table>
-<thead>
-<tr>
-<th>Character Sequence</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\|</code></td>
-<td>Centered</td>
-</tr>
-<tr>
-<td><code>&#x3C;</code></td>
-<td>Left-aligned</td>
-</tr>
-<tr>
-<td><code>&#x3C;&#x3C;</code></td>
-<td>Left-flushed</td>
-</tr>
-<tr>
-<td><code>></code></td>
-<td>Right-aligned</td>
-</tr>
-<tr>
-<td><code>>></code></td>
-<td>Right-flushed</td>
-</tr>
-</tbody>
-</table>
-<p>For example,</p>
-<pre><code class="no-highlight language-text">
+</code></pre><h4 id="text-alignment">Text Alignment</h4><p>To align text, use the following markup at the <strong>start</strong> of a content line to align</p><table><thead><tr><th>Character Sequence</th><th>Description</th></tr></thead><tbody><tr><td><code>\|</code></td><td>Centered</td></tr><tr><td><code>&#x3C;</code></td><td>Left-aligned</td></tr><tr><td><code>&#x3C;&#x3C;</code></td><td>Left-flushed</td></tr><tr><td><code>></code></td><td>Right-aligned</td></tr><tr><td><code>>></code></td><td>Right-flushed</td></tr></tbody></table><p>For example,</p><pre><code class="no-highlight language-text">
 | This text is center-aligned.
 
 ---
@@ -158,46 +83,7 @@ This is a slide
 
 >> This text is right-flushed.
 
-</code></pre>
-<p>The space separating the alignment character sequence from the text is <strong>required</strong>.</p>
-<h4 id="ansi-colors-and-styling">ANSI Colors and Styling</h4>
-<p>To apply ANSI colors and styling, use the following markup</p>
-<table>
-<thead>
-<tr>
-<th>Escape Code</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\x</code></td>
-<td>Foreground color</td>
-</tr>
-<tr>
-<td><code>\X</code></td>
-<td>Background color</td>
-</tr>
-<tr>
-<td><code>\*</code></td>
-<td>Bold</td>
-</tr>
-<tr>
-<td><code>\_</code></td>
-<td>Underlined</td>
-</tr>
-<tr>
-<td><code>\!</code></td>
-<td>Reverse colors</td>
-</tr>
-<tr>
-<td><code>\s</code></td>
-<td>Reset to normal</td>
-</tr>
-</tbody>
-</table>
-<p>For example,</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>The space separating the alignment character sequence from the text is <strong>required</strong>.</p><h4 id="ansi-colors-and-styling">ANSI Colors and Styling</h4><p>To apply ANSI colors and styling, use the following markup</p><table><thead><tr><th>Escape Code</th><th>Description</th></tr></thead><tbody><tr><td><code>\x</code></td><td>Foreground color</td></tr><tr><td><code>\X</code></td><td>Background color</td></tr><tr><td><code>\*</code></td><td>Bold</td></tr><tr><td><code>\_</code></td><td>Underlined</td></tr><tr><td><code>\!</code></td><td>Reverse colors</td></tr><tr><td><code>\s</code></td><td>Reset to normal</td></tr></tbody></table><p>For example,</p><pre><code class="no-highlight language-text">
 \rThis text is colored red.\s
 
 ---
@@ -224,86 +110,40 @@ This is a slide
 
 \_\*This text is both underlined and bold.\s\s
 
-</code></pre>
-<h4 id="emoji">Emoji</h4>
-<p>To include an <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a>, insert the relevant <a href="/docs/api/latest/@stdlib/datasets/emoji-code-picto">emoji code</a>. For example,</p>
-<pre><code class="no-highlight language-text">
+</code></pre><h4 id="emoji">Emoji</h4><p>To include an <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a>, insert the relevant <a href="/docs/api/latest/@stdlib/datasets/emoji-code-picto">emoji code</a>. For example,</p><pre><code class="no-highlight language-text">
 :books: :grinning: :+1: :man: :woman:
 
-</code></pre>
-<p>Note, however, that <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a> support is <strong>limited</strong> to <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a> which are <strong>two</strong> columns wide. Accordingly, not all <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a> are supported.</p>
-<h4 id="horizontal-rules">Horizontal Rules</h4>
-<p>To insert horizontal rules, use the following markup at the <strong>start</strong> of a line</p>
-<table>
-<thead>
-<tr>
-<th>Character Sequence</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/</code></td>
-<td>Content width</td>
-</tr>
-<tr>
-<td><code>//</code></td>
-<td>Full screen</td>
-</tr>
-</tbody>
-</table>
-<p>For example, to insert a horizontal rule spanning the content width</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>Note, however, that <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a> support is <strong>limited</strong> to <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a> which are <strong>two</strong> columns wide. Accordingly, not all <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a> are supported.</p><h4 id="horizontal-rules">Horizontal Rules</h4><p>To insert horizontal rules, use the following markup at the <strong>start</strong> of a line</p><table><thead><tr><th>Character Sequence</th><th>Description</th></tr></thead><tbody><tr><td><code>/</code></td><td>Content width</td></tr><tr><td><code>//</code></td><td>Full screen</td></tr></tbody></table><p>For example, to insert a horizontal rule spanning the content width</p><pre><code class="no-highlight language-text">
 Rule length matches the length of this sentence.
 
 /
 
 More content below.
 
-</code></pre>
-<p>To insert a horizontal rule spanning the slide width</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>To insert a horizontal rule spanning the slide width</p><pre><code class="no-highlight language-text">
 Rule spans the slide width.
 
 //
 
 More content below.
 
-</code></pre>
-<p>The default rule character is <code>-</code>. To specify an alternative rule character sequence, provide a pattern. For example,</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>The default rule character is <code>-</code>. To specify an alternative rule character sequence, provide a pattern. For example,</p><pre><code class="no-highlight language-text">
 /=+
 
 //=+
 
-</code></pre>
-<p>Custom patterns can include Unicode and ANSI colors. For example,</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>Custom patterns can include Unicode and ANSI colors. For example,</p><pre><code class="no-highlight language-text">
 /\r=\s\**\s\r=\b=\s\**\s\b=
 
 //\r=\s\**\s\r=\b=\s\**\s\b=
 
-</code></pre>
-<p>And lastly, custom patterns can include <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a>. For example,</p>
-<pre><code class="no-highlight language-text">
+</code></pre><p>And lastly, custom patterns can include <a href="/docs/api/latest/@stdlib/datasets/emoji">emoji</a>. For example,</p><pre><code class="no-highlight language-text">
 / :grinning: :+1:
 
 // :grinning: :+1:
 
-</code></pre>
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<hr>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Presentation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl/presentation'</span> );
-</code></pre>
-<h4 id="presentation-text-repl-options-">Presentation( [text,] repl[, options] )</h4>
-<p>Returns a <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation instance for running a presentation in a provided <a href="/docs/api/latest/@stdlib/repl"><code>repl</code></a>.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre></section><hr><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Presentation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl/presentation'</span> );
+</code></pre><h4 id="presentation-text-repl-options-">Presentation( [text,] repl[, options] )</h4><p>Returns a <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation instance for running a presentation in a provided <a href="/docs/api/latest/@stdlib/repl"><code>repl</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -318,26 +158,7 @@ More content below.
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>borderTop</strong>: top border character sequence. Default: <code>'*'</code>.</li>
-<li><strong>borderBottom</strong>: bottom border character sequence. Default: <code>'*'</code>.</li>
-<li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li>
-<li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li>
-<li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>false</code>.</li>
-<li><strong>width</strong>: presentation width. If <code>null</code>, the presentation width is either computed based on the screen size (if a <a href="/docs/api/latest/@stdlib/repl">REPL</a> output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li>
-<li><strong>height</strong>: presentation height. If <code>null</code>, the presentation height is either computed based on the screen size (if a <a href="/docs/api/latest/@stdlib/repl">REPL</a> output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li>
-<li><strong>workspace</strong>: <a href="/docs/api/latest/@stdlib/repl">REPL</a> workspace name. A presentation instance adds presentation commands to the specified workspace, thus allowing presentation navigation and interaction. Default: <code>'presentation'</code>.</li>
-<li><strong>load</strong>: file path specifying a presentation file to load. If a presentation <code>text</code> is provided, this option is <strong>ignored</strong>.</li>
-<li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered slide to the <a href="/docs/api/latest/@stdlib/repl">REPL</a>. Default: <code>true</code>.</li>
-<li><strong>loop</strong>: <code>boolean</code> indicating whether to "loop" a presentation (i.e., proceed to the first slide after the last slide and have the last slide precede the first slide). Default: <code>false</code>.</li>
-</ul>
-<p>To initialize a presentation upon instantiating a <code>Presentation</code> instance, <strong>either</strong> provide a <code>string</code> as the first argument containing the presentation text to render <strong>or</strong> set the <code>load</code> option to specify a presentation file to load.</p>
-<h4 id="presentationprototypecurrentslide">Presentation.prototype.currentSlide</h4>
-<p>Returns the current presentation slide index.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>borderTop</strong>: top border character sequence. Default: <code>'*'</code>.</li><li><strong>borderBottom</strong>: bottom border character sequence. Default: <code>'*'</code>.</li><li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li><li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li><li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>false</code>.</li><li><strong>width</strong>: presentation width. If <code>null</code>, the presentation width is either computed based on the screen size (if a <a href="/docs/api/latest/@stdlib/repl">REPL</a> output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li><li><strong>height</strong>: presentation height. If <code>null</code>, the presentation height is either computed based on the screen size (if a <a href="/docs/api/latest/@stdlib/repl">REPL</a> output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li><li><strong>workspace</strong>: <a href="/docs/api/latest/@stdlib/repl">REPL</a> workspace name. A presentation instance adds presentation commands to the specified workspace, thus allowing presentation navigation and interaction. Default: <code>'presentation'</code>.</li><li><strong>load</strong>: file path specifying a presentation file to load. If a presentation <code>text</code> is provided, this option is <strong>ignored</strong>.</li><li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered slide to the <a href="/docs/api/latest/@stdlib/repl">REPL</a>. Default: <code>true</code>.</li><li><strong>loop</strong>: <code>boolean</code> indicating whether to "loop" a presentation (i.e., proceed to the first slide after the last slide and have the last slide precede the first slide). Default: <code>false</code>.</li></ul><p>To initialize a presentation upon instantiating a <code>Presentation</code> instance, <strong>either</strong> provide a <code>string</code> as the first argument containing the presentation text to render <strong>or</strong> set the <code>load</code> option to specify a presentation file to load.</p><h4 id="presentationprototypecurrentslide">Presentation.prototype.currentSlide</h4><p>Returns the current presentation slide index.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -357,12 +178,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<p><strong>Note</strong>: the returned index is the <strong>nominal</strong> (i.e., one-based) slide index.</p>
-<h4 id="presentationprototypeend">Presentation.prototype.end()</h4>
-<p>Jumps to the last fragment of the last slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p><strong>Note</strong>: the returned index is the <strong>nominal</strong> (i.e., one-based) slide index.</p><h4 id="presentationprototypeend">Presentation.prototype.end()</h4><p>Jumps to the last fragment of the last slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -382,11 +198,7 @@ pres.end();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypefirst">Presentation.prototype.first()</h4>
-<p>Jumps to the first slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypefirst">Presentation.prototype.first()</h4><p>Jumps to the first slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -406,11 +218,7 @@ pres.first();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypefirstfragment">Presentation.prototype.firstFragment()</h4>
-<p>Jumps to the first fragment of the current slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypefirstfragment">Presentation.prototype.firstFragment()</h4><p>Jumps to the first fragment of the current slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -430,11 +238,7 @@ pres.firstFragment();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypeheight">Presentation.prototype.height</h4>
-<p>Returns the presentation height.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeheight">Presentation.prototype.height</h4><p>Returns the presentation height.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -450,11 +254,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypejump-n-">Presentation.prototype.jump( n )</h4>
-<p>Jumps a specified number of slides.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypejump-n-">Presentation.prototype.jump( n )</h4><p>Jumps a specified number of slides.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -479,11 +279,7 @@ pres.jump( <span class="hljs-number">2</span> );
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypejumpto-n-">Presentation.prototype.jumpTo( n )</h4>
-<p>Jumps to a specified slide, where <code>n</code> is the nominal (i.e., one-based) slide number.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypejumpto-n-">Presentation.prototype.jumpTo( n )</h4><p>Jumps to a specified slide, where <code>n</code> is the nominal (i.e., one-based) slide number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -503,11 +299,7 @@ pres.jumpTo( <span class="hljs-number">4</span> );
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypelast">Presentation.prototype.last()</h4>
-<p>Jumps to the last slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypelast">Presentation.prototype.last()</h4><p>Jumps to the last slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -527,11 +319,7 @@ pres.last();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypelastfragment">Presentation.prototype.lastFragment()</h4>
-<p>Jumps to the last fragment of the current slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypelastfragment">Presentation.prototype.lastFragment()</h4><p>Jumps to the last fragment of the current slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -551,11 +339,7 @@ pres.lastFragment();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypelength">Presentation.prototype.length</h4>
-<p>Returns the presentation length (i.e., number of slides).</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypelength">Presentation.prototype.length</h4><p>Returns the presentation length (i.e., number of slides).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -575,11 +359,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypeload-file-">Presentation.prototype.load( file )</h4>
-<p>Loads a presentation from a <code>file</code>.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeload-file-">Presentation.prototype.load( file )</h4><p>Loads a presentation from a <code>file</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -603,12 +383,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<p><strong>Note</strong>: relative file paths are resolved relative to the current working directory.</p>
-<h4 id="presentationprototypenext">Presentation.prototype.next()</h4>
-<p>Moves the presentation to the next slide or slide fragment.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p><strong>Note</strong>: relative file paths are resolved relative to the current working directory.</p><h4 id="presentationprototypenext">Presentation.prototype.next()</h4><p>Moves the presentation to the next slide or slide fragment.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -628,11 +403,7 @@ pres.next();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypenextslide">Presentation.prototype.nextSlide()</h4>
-<p>Moves the presentation to the next slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypenextslide">Presentation.prototype.nextSlide()</h4><p>Moves the presentation to the next slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -652,11 +423,7 @@ pres.nextSlide();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypeprev">Presentation.prototype.prev()</h4>
-<p>Moves the presentation to the previous slide or slide fragment.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeprev">Presentation.prototype.prev()</h4><p>Moves the presentation to the previous slide or slide fragment.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -676,11 +443,7 @@ pres.prev();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypeprevslide">Presentation.prototype.prevSlide()</h4>
-<p>Moves the presentation to the previous slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeprevslide">Presentation.prototype.prevSlide()</h4><p>Moves the presentation to the previous slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -700,11 +463,7 @@ pres.prevSlide();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypereload">Presentation.prototype.reload()</h4>
-<p>Reloads a presentation.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypereload">Presentation.prototype.reload()</h4><p>Reloads a presentation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -728,11 +487,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototyperender">Presentation.prototype.render()</h4>
-<p>Renders the current presentation slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototyperender">Presentation.prototype.render()</h4><p>Renders the current presentation slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -755,11 +510,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototyperun-done-">Presentation.prototype.run( done )</h4>
-<p>Runs any code on the current presentation slide.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototyperun-done-">Presentation.prototype.run( done )</h4><p>Runs any code on the current presentation slide.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -779,11 +530,7 @@ pres.run( done );
     <span class="hljs-comment">// Close the REPL:</span>
     repl.close();
 }
-</code></pre>
-<h4 id="presentationprototypeshow">Presentation.prototype.show()</h4>
-<p>Shows a presentation slide (i.e., writes a rendered slide to the presentation <a href="/docs/api/latest/@stdlib/repl">REPL</a>)</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeshow">Presentation.prototype.show()</h4><p>Shows a presentation slide (i.e., writes a rendered slide to the presentation <a href="/docs/api/latest/@stdlib/repl">REPL</a>)</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -803,11 +550,7 @@ pres.show();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypeslideheight">Presentation.prototype.slideHeight</h4>
-<p>Returns the presentation content height.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeslideheight">Presentation.prototype.slideHeight</h4><p>Returns the presentation content height.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -823,11 +566,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypeslidewidth">Presentation.prototype.slideWidth</h4>
-<p>Returns the presentation content width.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeslidewidth">Presentation.prototype.slideWidth</h4><p>Returns the presentation content width.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -843,11 +582,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypeunwatch-error-">Presentation.prototype.unwatch( [error] )</h4>
-<p>Stops watching a presentation file for changes.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypeunwatch-error-">Presentation.prototype.unwatch( [error] )</h4><p>Stops watching a presentation file for changes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -876,11 +611,7 @@ pres.unwatch();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="presentationprototypewatch">Presentation.prototype.watch()</h4>
-<p>Watches a presentation source file for changes.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="presentationprototypewatch">Presentation.prototype.watch()</h4><p>Watches a presentation source file for changes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -904,12 +635,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<p><strong>Note</strong>: the method does <strong>not</strong> track source file "renames". If the source presentation file is renamed, watching stops.</p>
-<h4 id="presentationprototypewidth">Presentation.prototype.width</h4>
-<p>Returns the presentation width.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p><strong>Note</strong>: the method does <strong>not</strong> track source file "renames". If the source presentation file is renamed, watching stops.</p><h4 id="presentationprototypewidth">Presentation.prototype.width</h4><p>Returns the presentation width.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
@@ -925,217 +651,31 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<hr>
-<h3 id="commands">Commands</h3>
-<p><a href="/docs/api/latest/@stdlib/repl">REPL</a> instances running a <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation support the following commands within the presentation workspace...</p>
-<h4 id="blank">blank()</h4>
-<p>Renders a blank screen.</p>
-<pre><code class="no-highlight language-text">In [1]: blank();
-</code></pre>
-<h4 id="currentslide">currentSlide</h4>
-<p>Returns the nominal current presentation slide index (one-based).</p>
-<pre><code class="no-highlight language-text">In [1]: var idx = currentSlide;
-</code></pre>
-<h4 id="end">end()</h4>
-<p>Jumps to the last fragment of the last presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: end();
-</code></pre>
-<h4 id="first">first()</h4>
-<p>Jumps to the first presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: first();
-</code></pre>
-<h4 id="firstfragment">firstFragment()</h4>
-<p>Jumps to the first fragment of the current presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: firstFragment();
-</code></pre>
-<h4 id="jump-n-">jump( n )</h4>
-<p>Jumps a specified number of slides.</p>
-<pre><code class="no-highlight language-text">In [1]: jump( 2 ); // jump two slides forward
+</code></pre><hr><h3 id="commands">Commands</h3><p><a href="/docs/api/latest/@stdlib/repl">REPL</a> instances running a <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation support the following commands within the presentation workspace...</p><h4 id="blank">blank()</h4><p>Renders a blank screen.</p><pre><code class="no-highlight language-text">In [1]: blank();
+</code></pre><h4 id="currentslide">currentSlide</h4><p>Returns the nominal current presentation slide index (one-based).</p><pre><code class="no-highlight language-text">In [1]: var idx = currentSlide;
+</code></pre><h4 id="end">end()</h4><p>Jumps to the last fragment of the last presentation slide.</p><pre><code class="no-highlight language-text">In [1]: end();
+</code></pre><h4 id="first">first()</h4><p>Jumps to the first presentation slide.</p><pre><code class="no-highlight language-text">In [1]: first();
+</code></pre><h4 id="firstfragment">firstFragment()</h4><p>Jumps to the first fragment of the current presentation slide.</p><pre><code class="no-highlight language-text">In [1]: firstFragment();
+</code></pre><h4 id="jump-n-">jump( n )</h4><p>Jumps a specified number of slides.</p><pre><code class="no-highlight language-text">In [1]: jump( 2 ); // jump two slides forward
 
 In [2]: jump( -2 ); // jump two slide backward
-</code></pre>
-<h4 id="jumpto-n-">jumpTo( n )</h4>
-<p>Jumps to a specified presentation slide, where <code>n</code> is the nominal presentation slide index (one-based).</p>
-<pre><code class="no-highlight language-text">In [1]: jumpTo( 2 ); // jump to the second slide
-</code></pre>
-<h4 id="last">last()</h4>
-<p>Jumps to the first fragment of the last presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: last();
-</code></pre>
-<h4 id="lastfragment">lastFragment()</h4>
-<p>Jumps to the last fragment of the current presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: lastFragment();
-</code></pre>
-<h4 id="loadpresentation-file-">loadPresentation( file )</h4>
-<p>Loads a presentation from a file.</p>
-<pre><code class="no-highlight language-text">In [1]: loadPresentation( './path/to/presentation.txt' );
-</code></pre>
-<p><strong>Note</strong>: relative file paths are resolved relative to the current working directory.</p>
-<h4 id="next">next()</h4>
-<p>Moves to the next presentation slide or slide fragment.</p>
-<pre><code class="no-highlight language-text">In [1]: next();
-</code></pre>
-<h4 id="nextslide">nextSlide()</h4>
-<p>Moves to the next presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: nextSlide();
-</code></pre>
-<h4 id="numslides">numSlides</h4>
-<p>Returns the number of presentation slides.</p>
-<pre><code class="no-highlight language-text">In [1]: var len = numSlides;
-</code></pre>
-<h4 id="pres">pres()</h4>
-<p>Prints presentation help text and shortcuts.</p>
-<pre><code class="no-highlight language-text">In [1]: pres();
-</code></pre>
-<h4 id="prev">prev()</h4>
-<p>Moves to the previous presentation slide or slide fragment.</p>
-<pre><code class="no-highlight language-text">In [1]: prev();
-</code></pre>
-<h4 id="prevslide">prevSlide()</h4>
-<p>Moves to the previous presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: prevSlide();
-</code></pre>
-<h4 id="redraw">redraw()</h4>
-<p>Redraws the current presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: redraw();
-</code></pre>
-<h4 id="reloadpresentation">reloadPresentation()</h4>
-<p>Reloads a presentation.</p>
-<pre><code class="no-highlight language-text">In [1]: reloadPresentation();
-</code></pre>
-<h4 id="renderslide">renderSlide()</h4>
-<p>Renders the current presentation slide.</p>
-<pre><code class="no-highlight language-text">In [1]: var str = renderSlide();
-</code></pre>
-<h4 id="runslide">runSlide()</h4>
-<p>Runs slide code.</p>
-<pre><code class="no-highlight language-text">In [1]: runSlide();
-</code></pre>
-<h4 id="unwatch-error-">unwatch( [error] )</h4>
-<p>Stops watching a source presentation file for changes.</p>
-<pre><code class="no-highlight language-text">In [1]: unwatch();
-</code></pre>
-<h4 id="watch">watch()</h4>
-<p>Watches a source presentation file for changes.</p>
-<pre><code class="no-highlight language-text">In [1]: watch();
-</code></pre>
-<p><strong>Note</strong>: "Renaming" a source file is <strong>not</strong> tracked. If a source presentation file is renamed, watching stops.</p>
-<hr>
-<h3 id="shortcuts">Shortcuts</h3>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Shortcut</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>blank</td>
-<td>b</td>
-<td>Render a blank screen.</td>
-</tr>
-<tr>
-<td>end</td>
-<td>L</td>
-<td>Jump to the last fragment of the last slide.</td>
-</tr>
-<tr>
-<td>first</td>
-<td>f</td>
-<td>Jump to the first slide.</td>
-</tr>
-<tr>
-<td>firstFragment</td>
-<td>ff</td>
-<td>Jump to the first slide fragment.</td>
-</tr>
-<tr>
-<td>jump</td>
-<td>g</td>
-<td>Jump a specified number of slides.</td>
-</tr>
-<tr>
-<td>jumpTo</td>
-<td>j</td>
-<td>Jump to a specified slide.</td>
-</tr>
-<tr>
-<td>last</td>
-<td>l</td>
-<td>Jump to the first fragment of the last slide.</td>
-</tr>
-<tr>
-<td>lastFragment</td>
-<td>lf</td>
-<td>Jump to the last slide fragment.</td>
-</tr>
-<tr>
-<td>loadPresentation</td>
-<td>lp</td>
-<td>Load a presentation.</td>
-</tr>
-<tr>
-<td>next</td>
-<td>n</td>
-<td>Move to the next slide or slide fragment.</td>
-</tr>
-<tr>
-<td>nextSlide</td>
-<td>N</td>
-<td>Move to the next slide.</td>
-</tr>
-<tr>
-<td>pres</td>
-<td>h</td>
-<td>Print presentation help text.</td>
-</tr>
-<tr>
-<td>prev</td>
-<td>p</td>
-<td>Move to the previous slide or slide fragment.</td>
-</tr>
-<tr>
-<td>prevSlide</td>
-<td>P</td>
-<td>Move to the previous slide.</td>
-</tr>
-<tr>
-<td>redraw</td>
-<td>rd</td>
-<td>Redraw the current slide.</td>
-</tr>
-<tr>
-<td>reloadPresentation</td>
-<td>rlp</td>
-<td>Reload the current presentation.</td>
-</tr>
-<tr>
-<td>runSlide</td>
-<td>r</td>
-<td>Run slide code.</td>
-</tr>
-<tr>
-<td>unwatch</td>
-<td>uw</td>
-<td>Stop watching a source file for changes.</td>
-</tr>
-<tr>
-<td>watch</td>
-<td>w</td>
-<td>Watch a source file for changes.</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="events">Events</h3>
-<p>A <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation emits the following events...</p>
-<h4 id="watch-1">'watch'</h4>
-<p>This event is emitted upon watching a source presentation file.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="jumpto-n-">jumpTo( n )</h4><p>Jumps to a specified presentation slide, where <code>n</code> is the nominal presentation slide index (one-based).</p><pre><code class="no-highlight language-text">In [1]: jumpTo( 2 ); // jump to the second slide
+</code></pre><h4 id="last">last()</h4><p>Jumps to the first fragment of the last presentation slide.</p><pre><code class="no-highlight language-text">In [1]: last();
+</code></pre><h4 id="lastfragment">lastFragment()</h4><p>Jumps to the last fragment of the current presentation slide.</p><pre><code class="no-highlight language-text">In [1]: lastFragment();
+</code></pre><h4 id="loadpresentation-file-">loadPresentation( file )</h4><p>Loads a presentation from a file.</p><pre><code class="no-highlight language-text">In [1]: loadPresentation( './path/to/presentation.txt' );
+</code></pre><p><strong>Note</strong>: relative file paths are resolved relative to the current working directory.</p><h4 id="next">next()</h4><p>Moves to the next presentation slide or slide fragment.</p><pre><code class="no-highlight language-text">In [1]: next();
+</code></pre><h4 id="nextslide">nextSlide()</h4><p>Moves to the next presentation slide.</p><pre><code class="no-highlight language-text">In [1]: nextSlide();
+</code></pre><h4 id="numslides">numSlides</h4><p>Returns the number of presentation slides.</p><pre><code class="no-highlight language-text">In [1]: var len = numSlides;
+</code></pre><h4 id="pres">pres()</h4><p>Prints presentation help text and shortcuts.</p><pre><code class="no-highlight language-text">In [1]: pres();
+</code></pre><h4 id="prev">prev()</h4><p>Moves to the previous presentation slide or slide fragment.</p><pre><code class="no-highlight language-text">In [1]: prev();
+</code></pre><h4 id="prevslide">prevSlide()</h4><p>Moves to the previous presentation slide.</p><pre><code class="no-highlight language-text">In [1]: prevSlide();
+</code></pre><h4 id="redraw">redraw()</h4><p>Redraws the current presentation slide.</p><pre><code class="no-highlight language-text">In [1]: redraw();
+</code></pre><h4 id="reloadpresentation">reloadPresentation()</h4><p>Reloads a presentation.</p><pre><code class="no-highlight language-text">In [1]: reloadPresentation();
+</code></pre><h4 id="renderslide">renderSlide()</h4><p>Renders the current presentation slide.</p><pre><code class="no-highlight language-text">In [1]: var str = renderSlide();
+</code></pre><h4 id="runslide">runSlide()</h4><p>Runs slide code.</p><pre><code class="no-highlight language-text">In [1]: runSlide();
+</code></pre><h4 id="unwatch-error-">unwatch( [error] )</h4><p>Stops watching a source presentation file for changes.</p><pre><code class="no-highlight language-text">In [1]: unwatch();
+</code></pre><h4 id="watch">watch()</h4><p>Watches a source presentation file for changes.</p><pre><code class="no-highlight language-text">In [1]: watch();
+</code></pre><p><strong>Note</strong>: "Renaming" a source file is <strong>not</strong> tracked. If a source presentation file is renamed, watching stops.</p><hr><h3 id="shortcuts">Shortcuts</h3><table><thead><tr><th>Command</th><th>Shortcut</th><th>Description</th></tr></thead><tbody><tr><td>blank</td><td>b</td><td>Render a blank screen.</td></tr><tr><td>end</td><td>L</td><td>Jump to the last fragment of the last slide.</td></tr><tr><td>first</td><td>f</td><td>Jump to the first slide.</td></tr><tr><td>firstFragment</td><td>ff</td><td>Jump to the first slide fragment.</td></tr><tr><td>jump</td><td>g</td><td>Jump a specified number of slides.</td></tr><tr><td>jumpTo</td><td>j</td><td>Jump to a specified slide.</td></tr><tr><td>last</td><td>l</td><td>Jump to the first fragment of the last slide.</td></tr><tr><td>lastFragment</td><td>lf</td><td>Jump to the last slide fragment.</td></tr><tr><td>loadPresentation</td><td>lp</td><td>Load a presentation.</td></tr><tr><td>next</td><td>n</td><td>Move to the next slide or slide fragment.</td></tr><tr><td>nextSlide</td><td>N</td><td>Move to the next slide.</td></tr><tr><td>pres</td><td>h</td><td>Print presentation help text.</td></tr><tr><td>prev</td><td>p</td><td>Move to the previous slide or slide fragment.</td></tr><tr><td>prevSlide</td><td>P</td><td>Move to the previous slide.</td></tr><tr><td>redraw</td><td>rd</td><td>Redraw the current slide.</td></tr><tr><td>reloadPresentation</td><td>rlp</td><td>Reload the current presentation.</td></tr><tr><td>runSlide</td><td>r</td><td>Run slide code.</td></tr><tr><td>unwatch</td><td>uw</td><td>Stop watching a source file for changes.</td></tr><tr><td>watch</td><td>w</td><td>Watch a source file for changes.</td></tr></tbody></table><hr><h3 id="events">Events</h3><p>A <a href="/docs/api/latest/@stdlib/repl">REPL</a> presentation emits the following events...</p><h4 id="watch-1">'watch'</h4><p>This event is emitted upon watching a source presentation file.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onWatch</span>(<span class="hljs-params"></span>) </span>{
@@ -1155,11 +695,7 @@ pres.on( <span class="hljs-string">'watch'</span>, onWatch );
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="change">'change'</h4>
-<p>When watching a source presentation file, this event is emitted whenever a source presentation file changes.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="change">'change'</h4><p>When watching a source presentation file, this event is emitted whenever a source presentation file changes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onChange</span>(<span class="hljs-params"></span>) </span>{
@@ -1179,11 +715,7 @@ pres.on( <span class="hljs-string">'change'</span>, onChange );
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="unwatch">'unwatch'</h4>
-<p>This event is emitted upon no longer watching a source presentation file.</p>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="unwatch">'unwatch'</h4><p>This event is emitted upon no longer watching a source presentation file.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onUnwatch</span>(<span class="hljs-params"> error </span>) </span>{
@@ -1207,25 +739,7 @@ pres.on( <span class="hljs-string">'unwatch'</span>, onUnwatch );
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<hr>
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Multiple presentations can be run simultaneously within the same <a href="/docs/api/latest/@stdlib/repl">REPL</a> environment. To do so, assign each presentation instance to a unique workspace.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<hr>
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable stdlib/no-redeclare -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre></section><hr><section class="notes"><h2 id="notes">Notes</h2><ul><li>Multiple presentations can be run simultaneously within the same <a href="/docs/api/latest/@stdlib/repl">REPL</a> environment. To do so, assign each presentation instance to a unique workspace.</li></ul></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 <span class="hljs-keyword">var</span> Presentation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl/presentation'</span> );
@@ -1266,17 +780,7 @@ pres.show();
     pres.next().show();
     <span class="hljs-built_in">setTimeout</span>( next, <span class="hljs-number">100</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for describing a command-line interface. -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<!-- CLI usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: stdlib-repl-presentation [options] [&#x3C;filepath>]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: stdlib-repl-presentation [options] [&#x3C;filepath>]
 
 Options:
 
@@ -1300,39 +804,6 @@ Options:
       --no-autoclear            Disable automatic clearing when rendering.
       --loop                    Loop a presentation.
       --watch                   Watch the source presentation file for changes.
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h3 id="notes-1">Notes</h3>
-<ul>
-<li>Use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a> is <strong>not</strong> currently supported on Windows.</li>
-<li>If provided presentation text over <code>stdin</code>, the <code>filepath</code> argument and the <code>watch</code> option are <strong>ignored</strong>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- CLI usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ stdlib-repl-presentation ./path/to/presentation.txt
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">cat ./path/to/presentation.txt | stdlib-repl-presentation
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a> is <strong>not</strong> currently supported on Windows.</li><li>If provided presentation text over <code>stdin</code>, the <code>filepath</code> argument and the <code>watch</code> option are <strong>ignored</strong>.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stdlib-repl-presentation ./path/to/presentation.txt
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">cat ./path/to/presentation.txt | stdlib-repl-presentation
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,44 +1,9 @@
-<h1 id="symbol">Symbol</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a> factory.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
-</code></pre>
-<h4 id="symbol-description-">Symbol( [description] )</h4>
-<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> primitive.</p>
-<!-- run-disable -->
-<!-- eslint-disable symbol-description -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = <span class="hljs-built_in">Symbol</span>();
+<h1 id="symbol">Symbol</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a> factory.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+</code></pre><h4 id="symbol-description-">Symbol( [description] )</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> primitive.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = <span class="hljs-built_in">Symbol</span>();
 <span class="hljs-comment">// returns &#x3C;symbol></span>
-</code></pre>
-<p>To aid debugging, provide a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a> <code>description</code>.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> );
+</code></pre><p>To aid debugging, provide a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a> <code>description</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// returns &#x3C;symbol></span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Unlike conventional constructors, the function does <strong>not</strong> support the <code>new</code> keyword.</li>
-<li>The function is only supported in environments which support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbols</a>. In non-supporting environments, the value is <code>undefined</code>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Unlike conventional constructors, the function does <strong>not</strong> support the <code>new</code> keyword.</li><li>The function is only supported in environments which support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbols</a>. In non-supporting environments, the value is <code>undefined</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 
 <span class="hljs-keyword">var</span> s;
@@ -60,18 +25,4 @@
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment does not support symbols.'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,15 +1,5 @@
-<h1 id="isfinitearray">isFiniteArray</h1>
-<blockquote>
-<p>Test if a value is an array-like object containing only finite numbers.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isFiniteArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-finite-array'</span> );
-</code></pre>
-<h4 id="isfinitearray-value-">isFiniteArray( value )</h4>
-<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> finite <code>numbers</code>.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<h1 id="isfinitearray">isFiniteArray</h1><blockquote><p>Test if a value is an array-like object containing only finite numbers.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isFiniteArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-finite-array'</span> );
+</code></pre><h4 id="isfinitearray-value-">isFiniteArray( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> finite <code>numbers</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isFiniteArray( [ -<span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3.0</span>) ] );
 <span class="hljs-comment">// returns true</span>
@@ -19,11 +9,7 @@ bool = isFiniteArray( [ -<span class="hljs-number">3.0</span>, <span class="hljs
 
 bool = isFiniteArray( [ -<span class="hljs-number">3.0</span>, <span class="hljs-number">1.0</span>/<span class="hljs-number">0.0</span> ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="isfinitearrayprimitives-value-">isFiniteArray.primitives( value )</h4>
-<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> primitive finite <code>numbers</code>.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="isfinitearrayprimitives-value-">isFiniteArray.primitives( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> primitive finite <code>numbers</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isFiniteArray.primitives( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">4.5</span> ] );
 <span class="hljs-comment">// returns true</span>
@@ -33,11 +19,7 @@ bool = isFiniteArray.primitives( [ -<span class="hljs-number">1.0</span>, <span 
 
 bool = isFiniteArray.primitives( [ -<span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">2.0</span>) ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="isfinitearrayobjects-value-">isFiniteArray.objects( value )</h4>
-<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> <code>Number</code> objects having finite values.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="isfinitearrayobjects-value-">isFiniteArray.objects( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> <code>Number</code> objects having finite values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isFiniteArray.objects( [ <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(-<span class="hljs-number">1.0</span>), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">2.0</span>) ] );
 <span class="hljs-comment">// returns true</span>
@@ -47,14 +29,7 @@ bool = isFiniteArray.objects( [ -<span class="hljs-number">1.0</span>, <span cla
 
 bool = isFiniteArray.objects( [ -<span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable no-new-wrappers -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 <span class="hljs-keyword">var</span> isFiniteArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-finite-array'</span> );
 
 <span class="hljs-keyword">var</span> bool = isFiniteArray( [ -<span class="hljs-number">5.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">5.0</span> ] );
@@ -74,22 +49,4 @@ bool = isFiniteArray( [ -<span class="hljs-number">2.3</span>, <span class="hljs
 
 bool = isFiniteArray( [] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-finite"><code>@stdlib/assert/is-finite</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a finite number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-infinite"><code>@stdlib/assert/is-infinite</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an infinite number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-finite"><code>@stdlib/assert/is-finite</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a finite number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-infinite"><code>@stdlib/assert/is-infinite</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an infinite number.</span></li></ul></section><section class="links"></section>

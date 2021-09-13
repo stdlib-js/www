@@ -1,53 +1,17 @@
-<h1 id="max">max</h1>
-<blockquote>
-<p>Return the maximum value.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> max = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/max'</span> );
-</code></pre>
-<h4 id="max-x-y-">max( x, y )</h4>
-<p>Returns the maximum value.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = max( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
+<h1 id="max">max</h1><blockquote><p>Return the maximum value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> max = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/max'</span> );
+</code></pre><h4 id="max-x-y-">max( x, y )</h4><p>Returns the maximum value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = max( <span class="hljs-number">4.2</span>, <span class="hljs-number">3.14</span> );
 <span class="hljs-comment">// returns 4.2</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>The implementation <strong>ignores</strong> the sign of <code>0</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = max( +<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The implementation <strong>ignores</strong> the sign of <code>0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = max( +<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns -0.0</span>
 
 v = max( -<span class="hljs-number">0.0</span>, +<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns +0.0</span>
-</code></pre>
-</li>
-<li>
-<p>The implementation does <strong>not</strong> check for <code>NaN</code> arguments.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = max( <span class="hljs-number">3.14</span>, <span class="hljs-literal">NaN</span> );
+</code></pre></li><li><p>The implementation does <strong>not</strong> check for <code>NaN</code> arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = max( <span class="hljs-number">3.14</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 v = max( <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.14</span> );
 <span class="hljs-comment">// returns 3.14</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd-shuffle'</span> );
 <span class="hljs-keyword">var</span> max = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/max'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -61,25 +25,4 @@ v = max( <span class="hljs-literal">NaN</span>, <span class="hljs-number">3.14</
     v = max( x, y );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'max(%d,%d) = %d'</span>, x, y, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/max"><code>@stdlib/math/base/special/max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum value.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/max"><code>@stdlib/math/base/special/max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum value.</span></li></ul></section><section class="links"></section>

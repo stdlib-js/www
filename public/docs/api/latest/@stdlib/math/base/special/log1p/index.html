@@ -1,14 +1,5 @@
-<h1 id="log1p">log1p</h1>
-<blockquote>
-<p>Evaluate the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1+x</code>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1p = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1p'</span> );
-</code></pre>
-<h4 id="log1p-x-">log1p( x )</h4>
-<p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1+x</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log1p( <span class="hljs-number">4.0</span> );
+<h1 id="log1p">log1p</h1><blockquote><p>Evaluate the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1+x</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1p = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1p'</span> );
+</code></pre><h4 id="log1p-x-">log1p( x )</h4><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1+x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log1p( <span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns ~1.609</span>
 
 v = log1p( -<span class="hljs-number">1.0</span> );
@@ -25,17 +16,9 @@ v = log1p( -<span class="hljs-number">0.0</span> );
 
 v = log1p( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-<p>For <code>x &#x3C; -1</code>, the function returns <code>NaN</code>, as the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> is <strong>not</strong> defined for negative numbers.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log1p( -<span class="hljs-number">2.0</span> );
+</code></pre><p>For <code>x &#x3C; -1</code>, the function returns <code>NaN</code>, as the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> is <strong>not</strong> defined for negative numbers.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log1p( -<span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> log1p = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1p'</span> );
 
@@ -46,22 +29,4 @@ v = log1p( <span class="hljs-literal">NaN</span> );
     x = round( randu() * <span class="hljs-number">100.0</span> );
     <span class="hljs-built_in">console</span>.log( log1p( x ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log"><code>@stdlib/math/base/special/log</code></a></span><span class="delimiter">: </span><span class="description">base <code>b</code> logarithm.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log"><code>@stdlib/math/base/special/log</code></a></span><span class="delimiter">: </span><span class="description">base <code>b</code> logarithm.</span></li></ul></section><section class="links"></section>

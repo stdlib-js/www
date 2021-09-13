@@ -1,14 +1,5 @@
-<h1 id="gamma-delta-ratio">Gamma Delta Ratio</h1>
-<blockquote>
-<p>Compute the ratio of two <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma</a> functions.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gammaDeltaRatio = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gamma-delta-ratio'</span> );
-</code></pre>
-<h4 id="gammadeltaratio-z-delta-">gammaDeltaRatio( z, delta )</h4>
-<p>Computes the ratio of two <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma functions</a>. Specifically, the function evaluates <code>Γ( z ) / Γ( z + delta )</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = gammaDeltaRatio( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> );
+<h1 id="gamma-delta-ratio">Gamma Delta Ratio</h1><blockquote><p>Compute the ratio of two <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma</a> functions.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gammaDeltaRatio = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gamma-delta-ratio'</span> );
+</code></pre><h4 id="gammadeltaratio-z-delta-">gammaDeltaRatio( z, delta )</h4><p>Computes the ratio of two <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma functions</a>. Specifically, the function evaluates <code>Γ( z ) / Γ( z + delta )</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = gammaDeltaRatio( <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> );
 <span class="hljs-comment">// returns ~0.042</span>
 
 y = gammaDeltaRatio( <span class="hljs-number">4.0</span>, <span class="hljs-number">0.5</span> );
@@ -16,13 +7,7 @@ y = gammaDeltaRatio( <span class="hljs-number">4.0</span>, <span class="hljs-num
 
 y = gammaDeltaRatio( <span class="hljs-number">100.0</span>, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 1.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> gammaDeltaRatio = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gamma-delta-ratio'</span> );
 
 <span class="hljs-keyword">var</span> delta;
@@ -34,21 +19,4 @@ y = gammaDeltaRatio( <span class="hljs-number">100.0</span>, <span class="hljs-n
     delta = randu()*<span class="hljs-number">10.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'gamma( %d ) / gamma( %d + %d ) = %d'</span>, z, z, delta, gammaDeltaRatio( z, delta ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gamma"><code>@stdlib/math/base/special/gamma</code></a></span><span class="delimiter">: </span><span class="description">gamma function.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gamma"><code>@stdlib/math/base/special/gamma</code></a></span><span class="delimiter">: </span><span class="description">gamma function.</span></li></ul></section><section class="links"></section>

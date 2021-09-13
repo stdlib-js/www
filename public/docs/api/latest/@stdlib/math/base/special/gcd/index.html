@@ -1,28 +1,9 @@
-<h1 id="gcd">gcd</h1>
-<blockquote>
-<p>Compute the <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd).</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-<p>The <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd) of two non-zero integers <code>a</code> and <code>b</code> is the largest positive integer which divides both <code>a</code> and <code>b</code> without a remainder. The gcd is also known as the <strong>greatest common factor</strong> (gcf), <strong>highest common factor</strong> (hcf), <strong>highest common divisor</strong>, and <strong>greatest common measure</strong> (gcm).</p>
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gcd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gcd'</span> );
-</code></pre>
-<h4 id="gcd-a-b-">gcd( a, b )</h4>
-<p>Computes the <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcd( <span class="hljs-number">48</span>, <span class="hljs-number">18</span> );
+<h1 id="gcd">gcd</h1><blockquote><p>Compute the <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd).</p></blockquote><section class="intro"><p>The <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd) of two non-zero integers <code>a</code> and <code>b</code> is the largest positive integer which divides both <code>a</code> and <code>b</code> without a remainder. The gcd is also known as the <strong>greatest common factor</strong> (gcf), <strong>highest common factor</strong> (hcf), <strong>highest common divisor</strong>, and <strong>greatest common measure</strong> (gcm).</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gcd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gcd'</span> );
+</code></pre><h4 id="gcd-a-b-">gcd( a, b )</h4><p>Computes the <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">greatest common divisor</a> (gcd).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcd( <span class="hljs-number">48</span>, <span class="hljs-number">18</span> );
 <span class="hljs-comment">// returns 6</span>
-</code></pre>
-<p>If both <code>a</code> and <code>b</code> are <code>0</code>, the function returns <code>0</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcd( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
+</code></pre><p>If both <code>a</code> and <code>b</code> are <code>0</code>, the function returns <code>0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcd( <span class="hljs-number">0</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 0</span>
-</code></pre>
-<p>Both <code>a</code> and <code>b</code> must have integer values; otherwise, the function returns <code>NaN</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcd( <span class="hljs-number">3.14</span>, <span class="hljs-number">18</span> );
+</code></pre><p>Both <code>a</code> and <code>b</code> must have integer values; otherwise, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = gcd( <span class="hljs-number">3.14</span>, <span class="hljs-number">18</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 v = gcd( <span class="hljs-number">48</span>, <span class="hljs-number">3.14</span> );
@@ -33,18 +14,7 @@ v = gcd( <span class="hljs-literal">NaN</span>, <span class="hljs-number">18</sp
 
 v = gcd( <span class="hljs-number">48</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> gcd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/gcd'</span> );
 
@@ -59,29 +29,4 @@ v = gcd( <span class="hljs-number">48</span>, <span class="hljs-literal">NaN</sp
     v = gcd( a, b );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'gcd(%d,%d) = %d'</span>, a, b, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Stein, Josef. 1967. "Computational problems associated with Racah algebra." <em>Journal of Computational Physics</em> 1 (3): 397–405. doi:<a href="https://doi.org/10.1016/0021-9991(67)90047-2">10.1016/0021-9991(67)90047-2</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/lcm"><code>@stdlib/math/base/special/lcm</code></a></span><span class="delimiter">: </span><span class="description">compute the least common multiple (lcm).</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"><h2 id="references">References</h2><ul><li>Stein, Josef. 1967. "Computational problems associated with Racah algebra." <em>Journal of Computational Physics</em> 1 (3): 397–405. doi:<a href="https://doi.org/10.1016/0021-9991(67)90047-2">10.1016/0021-9991(67)90047-2</a>.</li></ul></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/lcm"><code>@stdlib/math/base/special/lcm</code></a></span><span class="delimiter">: </span><span class="description">compute the least common multiple (lcm).</span></li></ul></section><section class="links"></section>

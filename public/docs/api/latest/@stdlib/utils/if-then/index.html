@@ -1,19 +1,5 @@
-<h1 id="ifthen">ifthen</h1>
-<blockquote>
-<p>If a condition is truthy, invoke <code>x</code>; otherwise, invoke <code>y</code>.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ifthen = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/if-then'</span> );
-</code></pre>
-<h4 id="ifthen-bool-x-y-">ifthen( bool, x, y )</h4>
-<p>If a condition is truthy, invokes <code>x</code>; otherwise, invokes <code>y</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">x</span>(<span class="hljs-params"></span>) </span>{
+<h1 id="ifthen">ifthen</h1><blockquote><p>If a condition is truthy, invoke <code>x</code>; otherwise, invoke <code>y</code>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ifthen = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/if-then'</span> );
+</code></pre><h4 id="ifthen-bool-x-y-">ifthen( bool, x, y )</h4><p>If a condition is truthy, invokes <code>x</code>; otherwise, invokes <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">x</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;
 }
 
@@ -26,22 +12,7 @@
 
 z = ifthen( <span class="hljs-literal">false</span>, x, y );
 <span class="hljs-comment">// returns -1.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The function is similar to <a href="/docs/api/latest/@stdlib/utils/if-else"><code>ifelse()</code></a>, but allows deferred argument evaluation.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function is similar to <a href="/docs/api/latest/@stdlib/utils/if-else"><code>ifelse()</code></a>, but allows deferred argument evaluation.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> ceil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceil'</span> );
 <span class="hljs-keyword">var</span> repeatString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/repeat'</span> );
 <span class="hljs-keyword">var</span> ifthen = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/if-then'</span> );
@@ -61,26 +32,4 @@ z = ifthen( <span class="hljs-literal">false</span>, x, y );
     z = ifthen( randu() > <span class="hljs-number">0.9</span>, x, y );
     <span class="hljs-built_in">console</span>.log( z );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/if-then"><code>@stdlib/utils/async/if-then</code></a></span><span class="delimiter">: </span><span class="description">if a predicate function returns a truthy value, invoke <code>x</code>; otherwise, invoke <code>y</code>.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/if-else"><code>@stdlib/utils/if-else</code></a></span><span class="delimiter">: </span><span class="description">if a condition is truthy, return <code>x</code>; otherwise, return <code>y</code>.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/if-then"><code>@stdlib/utils/async/if-then</code></a></span><span class="delimiter">: </span><span class="description">if a predicate function returns a truthy value, invoke <code>x</code>; otherwise, invoke <code>y</code>.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/if-else"><code>@stdlib/utils/if-else</code></a></span><span class="delimiter">: </span><span class="description">if a condition is truthy, return <code>x</code>; otherwise, return <code>y</code>.</span></li></ul></section><section class="links"></section>

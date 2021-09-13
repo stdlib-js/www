@@ -1,22 +1,7 @@
-<h1 id="square-root-of-epsilon">Square Root of Epsilon</h1>
-<blockquote>
-<p><a href="/docs/api/latest/@stdlib/math/base/special/sqrt">Square root</a> of <a href="/docs/api/latest/@stdlib/constants/float32/eps">single-precision floating-point epsilon</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT32_SQRT_EPSILON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/sqrt-eps'</span> );
-</code></pre>
-<h4 id="float32_sqrt_epsilon">FLOAT32_SQRT_EPSILON</h4>
-<p><a href="/docs/api/latest/@stdlib/math/base/special/sqrt">Square root</a> of <a href="/docs/api/latest/@stdlib/constants/float32/eps">single-precision floating-point epsilon</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT32_SQRT_EPSILON === <span class="hljs-number">0.0003452669770922512</span> );
+<h1 id="square-root-of-epsilon">Square Root of Epsilon</h1><blockquote><p><a href="/docs/api/latest/@stdlib/math/base/special/sqrt">Square root</a> of <a href="/docs/api/latest/@stdlib/constants/float32/eps">single-precision floating-point epsilon</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT32_SQRT_EPSILON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float32/sqrt-eps'</span> );
+</code></pre><h4 id="float32_sqrt_epsilon">FLOAT32_SQRT_EPSILON</h4><p><a href="/docs/api/latest/@stdlib/math/base/special/sqrt">Square root</a> of <a href="/docs/api/latest/@stdlib/constants/float32/eps">single-precision floating-point epsilon</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT32_SQRT_EPSILON === <span class="hljs-number">0.0003452669770922512</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 <span class="hljs-keyword">var</span> max = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/max'</span> );
 <span class="hljs-keyword">var</span> float64ToFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
@@ -43,22 +28,4 @@
     bool = isApprox( a, b );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d %s approximately equal to %d'</span>, a, ( bool ) ? <span class="hljs-string">'is'</span> : <span class="hljs-string">'is not'</span>, b );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/eps"><code>@stdlib/constants/float32/eps</code></a></span><span class="delimiter">: </span><span class="description">difference between one and the smallest value greater than one that can be represented as a single-precision floating-point number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/sqrt-eps"><code>@stdlib/constants/float64/sqrt-eps</code></a></span><span class="delimiter">: </span><span class="description">square root of double-precision floating-point epsilon.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/eps"><code>@stdlib/constants/float32/eps</code></a></span><span class="delimiter">: </span><span class="description">difference between one and the smallest value greater than one that can be represented as a single-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/sqrt-eps"><code>@stdlib/constants/float64/sqrt-eps</code></a></span><span class="delimiter">: </span><span class="description">square root of double-precision floating-point epsilon.</span></li></ul></section><section class="links"></section>

@@ -1,14 +1,5 @@
-<h1 id="exponent">Exponent</h1>
-<blockquote>
-<p>Return an integer corresponding to the unbiased exponent of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> exponentf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/exponent'</span> );
-</code></pre>
-<h4 id="exponentf-x-">exponentf( x )</h4>
-<p>Returns an <code>integer</code> corresponding to the unbiased exponent of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+<h1 id="exponent">Exponent</h1><blockquote><p>Return an integer corresponding to the unbiased exponent of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> exponentf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/exponent'</span> );
+</code></pre><h4 id="exponentf-x-">exponentf( x )</h4><p>Returns an <code>integer</code> corresponding to the unbiased exponent of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
 
 <span class="hljs-keyword">var</span> exp = exponentf( toFloat32( <span class="hljs-number">3.14e34</span> ) ); <span class="hljs-comment">// => 2^114 ~ 2.08e34</span>
 <span class="hljs-comment">// returns 114</span>
@@ -24,13 +15,7 @@ exp = exponentf( <span class="hljs-number">0.0</span> );
 
 exp = exponentf( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns 128</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
@@ -51,14 +36,4 @@ exp = exponentf( <span class="hljs-literal">NaN</span> );
     e = exponentf( x );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. unbiased exponent: %d.'</span>, x, e );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,18 +1,7 @@
-<h1 id="hoursinyear">hoursInYear</h1>
-<blockquote>
-<p>Determine the number of hours in a year according to the <a href="https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hoursInYear = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/hours-in-year'</span> );
-</code></pre>
-<h4 id="hoursinyear-value-">hoursInYear( [value] )</h4>
-<p>Returns the number of hours in a year according to the <a href="https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = hoursInYear();
+<h1 id="hoursinyear">hoursInYear</h1><blockquote><p>Determine the number of hours in a year according to the <a href="https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hoursInYear = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/hours-in-year'</span> );
+</code></pre><h4 id="hoursinyear-value-">hoursInYear( [value] )</h4><p>Returns the number of hours in a year according to the <a href="https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = hoursInYear();
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<p>By default, the function returns the number of hours in the current year (according to local time). To determine the number of hours for a particular year, provide either a year or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> object.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = hoursInYear( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() );
+</code></pre><p>By default, the function returns the number of hours in the current year (according to local time). To determine the number of hours for a particular year, provide either a year or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = hoursInYear( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() );
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 num = hoursInYear( <span class="hljs-number">2000</span> );
@@ -20,20 +9,7 @@ num = hoursInYear( <span class="hljs-number">2000</span> );
 
 num = hoursInYear( <span class="hljs-number">2017</span> );
 <span class="hljs-comment">// returns 8760</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The function's return value is a generalization and does <strong>not</strong> take into account inaccuracies due to daylight savings conventions, crossing timezones, or other complications with time and dates. </li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hoursInYear = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/hours-in-year'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function's return value is a generalization and does <strong>not</strong> take into account inaccuracies due to daylight savings conventions, crossing timezones, or other complications with time and dates.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hoursInYear = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/hours-in-year'</span> );
 
 <span class="hljs-keyword">var</span> v;
 <span class="hljs-keyword">var</span> i;
@@ -42,48 +18,14 @@ num = hoursInYear( <span class="hljs-number">2017</span> );
     v = hoursInYear( i );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'The year %d has %d hours.'</span>, i, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: hours-in-year [options] [year]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: hours-in-year [options] [year]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ hours-in-year
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ hours-in-year
 &#x3C;number>
-</code></pre>
-<p>For a specific year,</p>
-<pre><code class="hljs language-bash">$ hours-in-year 2016
+</code></pre><p>For a specific year,</p><pre><code class="hljs language-bash">$ hours-in-year 2016
 8784
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/time/hours-in-month"><code>@stdlib/time/hours-in-month</code></a></span><span class="delimiter">: </span><span class="description">determine the number of hours in a month.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/time/hours-in-month"><code>@stdlib/time/hours-in-month</code></a></span><span class="delimiter">: </span><span class="description">determine the number of hours in a month.</span></li></ul></section><section class="links"></section>

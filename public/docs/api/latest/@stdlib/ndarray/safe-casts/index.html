@@ -1,23 +1,7 @@
-<h1 id="safe-casts">Safe Casts</h1>
-<blockquote>
-<p>Return a list of ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a> to which a provided ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> can be safely cast.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> safeCasts = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/safe-casts'</span> );
-</code></pre>
-<h4 id="safecasts-dtype-">safeCasts( [dtype] )</h4>
-<p>If provided a <code>dtype</code> argument, returns a list of ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a> to which a provided ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> can be safely cast.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = safeCasts( <span class="hljs-string">'float32'</span> );
+<h1 id="safe-casts">Safe Casts</h1><blockquote><p>Return a list of ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a> to which a provided ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> can be safely cast.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> safeCasts = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/safe-casts'</span> );
+</code></pre><h4 id="safecasts-dtype-">safeCasts( [dtype] )</h4><p>If provided a <code>dtype</code> argument, returns a list of ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a> to which a provided ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> can be safely cast.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = safeCasts( <span class="hljs-string">'float32'</span> );
 <span class="hljs-comment">// e.g., returns [ 'float32', 'float64', ... ]</span>
-</code></pre>
-<p>If not provided a <code>dtype</code> argument, the function returns a casting table.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = safeCasts();
+</code></pre><p>If not provided a <code>dtype</code> argument, the function returns a casting table.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = safeCasts();
 <span class="hljs-comment">// returns {...}</span>
 
 <span class="hljs-keyword">var</span> f32 = out[ <span class="hljs-string">'float32'</span> ];
@@ -25,22 +9,9 @@
 
 <span class="hljs-keyword">var</span> v = f32[ <span class="hljs-string">'float64'</span> ];
 <span class="hljs-comment">// returns 1</span>
-</code></pre>
-<p>If provided an unrecognized or unsupported <code>dtype</code>, the function returns <code>null</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = safeCasts( <span class="hljs-string">'foo'</span> );
+</code></pre><p>If provided an unrecognized or unsupported <code>dtype</code>, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = safeCasts( <span class="hljs-string">'foo'</span> );
 <span class="hljs-comment">// returns null</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
 <span class="hljs-keyword">var</span> safeCasts = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/safe-casts'</span> );
 
 <span class="hljs-keyword">var</span> DTYPES;
@@ -55,27 +26,4 @@ DTYPES = dtypes();
     list = safeCasts( DTYPES[ i ] );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, DTYPES[ i ], list.join( <span class="hljs-string">', '</span> ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/casting-modes"><code>@stdlib/ndarray/casting-modes</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray casting modes.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/dtypes"><code>@stdlib/ndarray/dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray data types.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/same-kind-casts"><code>@stdlib/ndarray/same-kind-casts</code></a></span><span class="delimiter">: </span><span class="description">return a list of ndarray data types to which a provided ndarray data type can be safely cast or cast within the same kind.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/casting-modes"><code>@stdlib/ndarray/casting-modes</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray casting modes.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/dtypes"><code>@stdlib/ndarray/dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray data types.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/same-kind-casts"><code>@stdlib/ndarray/same-kind-casts</code></a></span><span class="delimiter">: </span><span class="description">return a list of ndarray data types to which a provided ndarray data type can be safely cast or cast within the same kind.</span></li></ul></section><section class="links"></section>

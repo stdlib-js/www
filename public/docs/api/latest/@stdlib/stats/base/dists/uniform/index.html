@@ -1,78 +1,14 @@
-<h1 id="continuous-uniform">Continuous Uniform</h1>
-<blockquote>
-<p>Continuous uniform distribution.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/uniform'</span> );
-</code></pre>
-<h4 id="uniform">uniform</h4>
-<p>Continuous uniform distribution.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = uniform;
+<h1 id="continuous-uniform">Continuous Uniform</h1><blockquote><p>Continuous uniform distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/uniform'</span> );
+</code></pre><h4 id="uniform">uniform</h4><p>Continuous uniform distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = uniform;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre>
-<p>The namespace contains the following distribution functions:</p>
-<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/cdf"><code>cdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution cumulative distribution function.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/logcdf"><code>logcdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution logarithm of cumulative distribution function.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/logpdf"><code>logpdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution logarithm of probability density function (PDF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/mgf"><code>mgf( t, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution moment-generating function (MGF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/pdf"><code>pdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution probability density function (PDF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/quantile"><code>quantile( p, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution quantile function.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains the following functions for calculating distribution properties:</p>
-<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/entropy"><code>entropy( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution differential entropy.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/kurtosis"><code>kurtosis( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution excess kurtosis.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/mean"><code>mean( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution expected value.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/median"><code>median( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution median.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/skewness"><code>skewness( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution skewness.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/stdev"><code>stdev( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution standard deviation.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/variance"><code>variance( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution variance.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29">continuous uniform</a> distribution object.</p>
-<!-- <toc pattern="*ctor*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/ctor"><code>Uniform( [a, b] )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution constructor.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/uniform'</span> ).Uniform;
+</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/cdf"><code>cdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/logcdf"><code>logcdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution logarithm of cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/logpdf"><code>logpdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution logarithm of probability density function (PDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/mgf"><code>mgf( t, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution moment-generating function (MGF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/pdf"><code>pdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution probability density function (PDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/quantile"><code>quantile( p, a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution quantile function.</span></li></ul></div><p>The namespace contains the following functions for calculating distribution properties:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/entropy"><code>entropy( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution differential entropy.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/kurtosis"><code>kurtosis( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution excess kurtosis.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/mean"><code>mean( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution expected value.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/median"><code>median( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution median.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/skewness"><code>skewness( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution skewness.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/stdev"><code>stdev( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution standard deviation.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/variance"><code>variance( a, b )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution variance.</span></li></ul></div><p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29">continuous uniform</a> distribution object.</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/uniform/ctor"><code>Uniform( [a, b] )</code></a></span><span class="delimiter">: </span><span class="description">uniform distribution constructor.</span></li></ul></div><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/uniform'</span> ).Uniform;
 
 <span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Uniform( <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span> );
 
 <span class="hljs-keyword">var</span> y = dist.cdf( <span class="hljs-number">2.5</span> );
 <span class="hljs-comment">// returns 0.25</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- TODO: better examples -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/uniform'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( uniform ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <toc-links> -->
-<!-- </toc-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

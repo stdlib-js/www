@@ -1,14 +1,5 @@
-<h1 id="basename">Basename</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a path.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename'</span> );
-</code></pre>
-<h4 id="rebasename-platform-">reBasename( [platform] )</h4>
-<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture the last part of a path.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE = reBasename();
+<h1 id="basename">Basename</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a path.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename'</span> );
+</code></pre><h4 id="rebasename-platform-">reBasename( [platform] )</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture the last part of a path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE = reBasename();
 <span class="hljs-comment">// returns &#x3C;RegExp></span>
 
 RE = reBasename( <span class="hljs-string">'posix'</span> );
@@ -22,35 +13,13 @@ RE = reBasename( <span class="hljs-string">'win32'</span> );
 
 base = RE.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'index.js'</span>
-</code></pre>
-<h4 id="rebasenameregexp">reBasename.REGEXP</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a path.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( reBasename.REGEXP.toString() === reBasename().toString() );
+</code></pre><h4 id="rebasenameregexp">reBasename.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( reBasename.REGEXP.toString() === reBasename().toString() );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<h4 id="rebasenameregexp_posix">reBasename.REGEXP_POSIX</h4>
-<p><a href="/docs/api/latest/@stdlib/regexp/basename-posix">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasename.REGEXP_POSIX.exec( <span class="hljs-string">'/foo/bar/index.js'</span> )[ <span class="hljs-number">1</span> ];
+</code></pre><h4 id="rebasenameregexp_posix">reBasename.REGEXP_POSIX</h4><p><a href="/docs/api/latest/@stdlib/regexp/basename-posix">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasename.REGEXP_POSIX.exec( <span class="hljs-string">'/foo/bar/index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'index.js'</span>
-</code></pre>
-<h4 id="rebasenameregexp_win32">reBasename.REGEXP_WIN32</h4>
-<p><a href="/docs/api/latest/@stdlib/regexp/basename-windows">Regular expression</a> to capture the last part of a Windows path. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasename.REGEXP_WIN32.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
+</code></pre><h4 id="rebasenameregexp_win32">reBasename.REGEXP_WIN32</h4><p><a href="/docs/api/latest/@stdlib/regexp/basename-windows">Regular expression</a> to capture the last part of a Windows path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasename.REGEXP_WIN32.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'index.js'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The as <code>REGEXP</code> exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="/docs/api/latest/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>REGEXP === REGEXP_WIN32</code>; otherwise, <code>REGEXP === REGEXP_POSIX</code>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The as <code>REGEXP</code> exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="/docs/api/latest/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>REGEXP === REGEXP_WIN32</code>; otherwise, <code>REGEXP === REGEXP_POSIX</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename'</span> );
 <span class="hljs-keyword">var</span> RE_BASENAME = reBasename();
 
 <span class="hljs-comment">// Assuming a POSIX platform...</span>
@@ -62,22 +31,4 @@ base = reBasename.REGEXP_POSIX.exec( <span class="hljs-string">'/foo/bar/home.ht
 
 base = reBasename.REGEXP_WIN32.exec( <span class="hljs-string">'C:\\foo\\bar\\home.html'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'home.html'</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename-posix"><code>@stdlib/regexp/basename-posix</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a POSIX path.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename-windows"><code>@stdlib/regexp/basename-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a Windows path.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename-posix"><code>@stdlib/regexp/basename-posix</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a POSIX path.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename-windows"><code>@stdlib/regexp/basename-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a Windows path.</span></li></ul></section><section class="links"></section>

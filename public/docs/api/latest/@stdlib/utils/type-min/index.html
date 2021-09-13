@@ -1,45 +1,7 @@
-<h1 id="typemin">typemin</h1>
-<blockquote>
-<p>Return the minimum value of a specified numeric type.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typemin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/type-min'</span> );
-</code></pre>
-<h4 id="typemin-dtype-">typemin( dtype )</h4>
-<p>Returns the minimum value of a specified numeric type.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = typemin( <span class="hljs-string">'int8'</span> );
+<h1 id="typemin">typemin</h1><blockquote><p>Return the minimum value of a specified numeric type.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typemin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/type-min'</span> );
+</code></pre><h4 id="typemin-dtype-">typemin( dtype )</h4><p>Returns the minimum value of a specified numeric type.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = typemin( <span class="hljs-string">'int8'</span> );
 <span class="hljs-comment">// returns -128</span>
-</code></pre>
-<p>The following numeric types are supported:</p>
-<ul>
-<li><code>float64</code>: double-precision floating-point numbers</li>
-<li><code>float32</code>: single-precision floating-point numbers</li>
-<li><code>float16</code>: half-precision floating-point numbers</li>
-<li><code>int32</code>: 32-bit two's complement signed integers</li>
-<li><code>uint32</code>: 32-bit unsigned integers</li>
-<li><code>int16</code>: 16-bit two's complement signed integers</li>
-<li><code>uint16</code>: 16-bit unsigned integers</li>
-<li><code>int8</code>: 8-bit two's complement signed integers</li>
-<li><code>uint8</code>: 8-bit unsigned integers</li>
-<li><code>uint8c</code>: 8-bit unsigned integers clamped to <code>0-255</code></li>
-</ul>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typemin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/type-min'</span> );
+</code></pre><p>The following numeric types are supported:</p><ul><li><code>float64</code>: double-precision floating-point numbers</li><li><code>float32</code>: single-precision floating-point numbers</li><li><code>float16</code>: half-precision floating-point numbers</li><li><code>int32</code>: 32-bit two's complement signed integers</li><li><code>uint32</code>: 32-bit unsigned integers</li><li><code>int16</code>: 16-bit two's complement signed integers</li><li><code>uint16</code>: 16-bit unsigned integers</li><li><code>int8</code>: 8-bit two's complement signed integers</li><li><code>uint8</code>: 8-bit unsigned integers</li><li><code>uint8c</code>: 8-bit unsigned integers clamped to <code>0-255</code></li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typemin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/type-min'</span> );
 
 <span class="hljs-keyword">var</span> m = typemin( <span class="hljs-string">'float64'</span> );
 <span class="hljs-comment">// returns -Infinity</span>
@@ -70,56 +32,12 @@ m = typemin( <span class="hljs-string">'uint8'</span> );
 
 m = typemin( <span class="hljs-string">'uint8c'</span> );
 <span class="hljs-comment">// returns 0</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for describing a command-line interface. -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<!-- CLI usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: typemin [options] &#x3C;dtype>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: typemin [options] &#x3C;dtype>
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- CLI usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ typemin int16
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ typemin int16
 -32768
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/real-min"><code>@stdlib/utils/real-min</code></a></span><span class="delimiter">: </span><span class="description">return the smallest positive normal value capable of being represented by a numeric real type.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/type-max"><code>@stdlib/utils/type-max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum value of a specified numeric type.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/real-min"><code>@stdlib/utils/real-min</code></a></span><span class="delimiter">: </span><span class="description">return the smallest positive normal value capable of being represented by a numeric real type.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/type-max"><code>@stdlib/utils/type-max</code></a></span><span class="delimiter">: </span><span class="description">return the maximum value of a specified numeric type.</span></li></ul></section><section class="links"></section>

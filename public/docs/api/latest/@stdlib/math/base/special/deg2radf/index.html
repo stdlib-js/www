@@ -1,14 +1,5 @@
-<h1 id="deg2radf">deg2radf</h1>
-<blockquote>
-<p>Convert an angle from degrees to radians (single-precision).</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> deg2radf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/deg2radf'</span> );
-</code></pre>
-<h4 id="deg2radf-x-">deg2radf( x )</h4>
-<p>Converts an angle from degrees to radians (single-precision).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = deg2radf( <span class="hljs-number">90.0</span> );
+<h1 id="deg2radf">deg2radf</h1><blockquote><p>Convert an angle from degrees to radians (single-precision).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> deg2radf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/deg2radf'</span> );
+</code></pre><h4 id="deg2radf-x-">deg2radf( x )</h4><p>Converts an angle from degrees to radians (single-precision).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = deg2radf( <span class="hljs-number">90.0</span> );
 <span class="hljs-comment">// returns ~1.571</span>
 
 r = deg2radf( -<span class="hljs-number">45.0</span> );
@@ -16,13 +7,7 @@ r = deg2radf( -<span class="hljs-number">45.0</span> );
 
 r = deg2radf( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> deg2radf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/deg2radf'</span> );
 
 <span class="hljs-keyword">var</span> d;
@@ -34,43 +19,11 @@ r = deg2radf( <span class="hljs-literal">NaN</span> );
     r = deg2radf( d );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'degrees: %d => radians: %d'</span>, d, r );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/deg2radf.h"</span></span>
-</code></pre>
-<h4 id="stdlib_base_deg2radf-x-">stdlib_base_deg2radf( x )</h4>
-<p>Converts an angle from degrees to radians (single-precision).</p>
-<pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_deg2radf( <span class="hljs-number">90.0f</span> );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/deg2radf.h"</span></span>
+</code></pre><h4 id="stdlib_base_deg2radf-x-">stdlib_base_deg2radf( x )</h4><p>Converts an angle from degrees to radians (single-precision).</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_deg2radf( <span class="hljs-number">90.0f</span> );
 <span class="hljs-comment">// returns ~1.571f</span>
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>x</strong>: <code>[in] float</code> input value.</li>
-</ul>
-<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_deg2radf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/deg2radf.h"</span></span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_deg2radf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/deg2radf.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
@@ -83,23 +36,4 @@ r = deg2radf( <span class="hljs-literal">NaN</span> );
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"deg2radf(%f) = %f\n"</span>, x[ i ], y );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/deg2rad"><code>@stdlib/math/base/special/deg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert an angle from degrees to radians.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/deg2rad"><code>@stdlib/math/base/special/deg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert an angle from degrees to radians.</span></li></ul></section><section class="links"></section>

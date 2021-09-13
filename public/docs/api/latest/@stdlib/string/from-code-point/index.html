@@ -1,58 +1,14 @@
-<h1 id="fromcodepoint">fromCodePoint</h1>
-<blockquote>
-<p>Create a string from a sequence of Unicode <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/from-code-point'</span> );
-</code></pre>
-<h4 id="fromcodepoint-pt1-pt2-pt3--">fromCodePoint( pt1[, pt2[, pt3[, ...]]] )</h4>
-<p>Creates a <code>string</code> from a sequence of Unicode <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = fromCodePoint( <span class="hljs-number">9731</span> );
+<h1 id="fromcodepoint">fromCodePoint</h1><blockquote><p>Create a string from a sequence of Unicode <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/from-code-point'</span> );
+</code></pre><h4 id="fromcodepoint-pt1-pt2-pt3--">fromCodePoint( pt1[, pt2[, pt3[, ...]]] )</h4><p>Creates a <code>string</code> from a sequence of Unicode <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = fromCodePoint( <span class="hljs-number">9731</span> );
 <span class="hljs-comment">// returns '☃'</span>
-</code></pre>
-<p>In addition to providing <a href="https://en.wikipedia.org/wiki/Code_point">code points</a> as separate arguments, the function supports providing an array-like <code>object</code> as a single argument containing a sequence of <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
+</code></pre><p>In addition to providing <a href="https://en.wikipedia.org/wiki/Code_point">code points</a> as separate arguments, the function supports providing an array-like <code>object</code> as a single argument containing a sequence of <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint16'</span> );
 
 <span class="hljs-keyword">var</span> out = fromCodePoint( <span class="hljs-number">97</span>, <span class="hljs-number">98</span>, <span class="hljs-number">99</span> );
 <span class="hljs-comment">// returns 'abc'</span>
 
 out = fromCodePoint( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint16Array</span>( [ <span class="hljs-number">97</span>, <span class="hljs-number">98</span>, <span class="hljs-number">99</span> ] ) );
 <span class="hljs-comment">// returns 'abc'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode"><code>String.fromCharCode</code></a> in the following ways:</p>
-<ul>
-<li>The function provides support for all valid Unicode values (up to <code>21</code> bits). While most common Unicode values can be represented using one 16-bit unit, higher code point characters require two 16-bit units (a surrogate pair consisting of a high and a low surrogate) to form a single character. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode"><code>String.fromCharCode</code></a> does <strong>not</strong> support surrogate pairs, supporting only UCS-2, a subset of <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a>.</li>
-</ul>
-</li>
-<li>
-<p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint"><code>String.fromCodePoint</code></a> in the following ways:</p>
-<ul>
-<li>The function supports explicitly providing an array-like <code>object</code> containing a sequence of <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</li>
-<li>The function requires <strong>at least</strong> one <a href="https://en.wikipedia.org/wiki/Code_point">code point</a>.</li>
-<li>The function requires that all <a href="https://en.wikipedia.org/wiki/Code_point">code points</a> be nonnegative integers. The function does <strong>not</strong> support values, such as <code>null</code>, <code>undefined</code>, <code>true</code>, <code>false</code>, <code>'0'</code>, <code>'1'</code>, etc., which can be cast to integer values.</li>
-</ul>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode"><code>String.fromCharCode</code></a> in the following ways:</p><ul><li>The function provides support for all valid Unicode values (up to <code>21</code> bits). While most common Unicode values can be represented using one 16-bit unit, higher code point characters require two 16-bit units (a surrogate pair consisting of a high and a low surrogate) to form a single character. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode"><code>String.fromCharCode</code></a> does <strong>not</strong> support surrogate pairs, supporting only UCS-2, a subset of <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a>.</li></ul></li><li><p>This function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint"><code>String.fromCodePoint</code></a> in the following ways:</p><ul><li>The function supports explicitly providing an array-like <code>object</code> containing a sequence of <a href="https://en.wikipedia.org/wiki/Code_point">code points</a>.</li><li>The function requires <strong>at least</strong> one <a href="https://en.wikipedia.org/wiki/Code_point">code point</a>.</li><li>The function requires that all <a href="https://en.wikipedia.org/wiki/Code_point">code points</a> be nonnegative integers. The function does <strong>not</strong> support values, such as <code>null</code>, <code>undefined</code>, <code>true</code>, <code>false</code>, <code>'0'</code>, <code>'1'</code>, etc., which can be cast to integer values.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> UNICODE_MAX_BMP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/unicode/max-bmp'</span> );
 <span class="hljs-keyword">var</span> fromCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/from-code-point'</span> );
@@ -64,79 +20,22 @@ out = fromCodePoint( <span class="hljs-keyword">new</span> <span class="hljs-bui
     x = floor( randu()*UNICODE_MAX_BMP );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => %s'</span>, x, fromCodePoint( x ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for describing a command-line interface. -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<!-- CLI usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: from-code-point [options] [&#x3C;code_point> &#x3C;code_point> ...]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: from-code-point [options] [&#x3C;code_point> &#x3C;code_point> ...]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --split sep           Delimiter for stdin data. Default: '/\\r?\\n/'.
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h3 id="notes-1">Notes</h3>
-<ul>
-<li>
-<p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is either properly escaped or enclosed in quotes.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'97\n98\n99'</span> | from-code-point --split /\r?\n/
 
 <span class="hljs-comment"># Escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'97\n98\n99'</span> | from-code-point --split /\\r?\\n/
-</code></pre>
-</li>
-<li>
-<p>The implementation ignores trailing delimiters.</p>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- CLI usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ from-code-point 9731
+</code></pre></li><li><p>The implementation ignores trailing delimiters.</p></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ from-code-point 9731
 ☃
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'9731'</span> | from-code-point
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'9731'</span> | from-code-point
 ☃
-</code></pre>
-<p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'97\t98\t99\t'</span> | from-code-point --split <span class="hljs-string">'\t'</span>
+</code></pre><p>By default, when used as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>, the implementation assumes newline-delimited data. To specify an alternative delimiter, set the <code>split</code> option.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'97\t98\t99\t'</span> | from-code-point --split <span class="hljs-string">'\t'</span>
 abc
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/code-point-at"><code>@stdlib/string/code-point-at</code></a></span><span class="delimiter">: </span><span class="description">return a Unicode code point from a string at a specified position.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/code-point-at"><code>@stdlib/string/code-point-at</code></a></span><span class="delimiter">: </span><span class="description">return a Unicode code point from a string at a specified position.</span></li></ul></section><section class="links"></section>

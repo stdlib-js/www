@@ -1,14 +1,5 @@
-<h1 id="atan2">atan2</h1>
-<blockquote>
-<p>Compute the angle in the plane (in radians) between the positive x-axis and the ray from <code>(0,0)</code> to the point <code>(x,y)</code>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atan2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atan2'</span> );
-</code></pre>
-<h4 id="atan2-y-x-">atan2( y, x )</h4>
-<p>Computes the angle in the plane (in radians) between the positive x-axis and the ray from <code>(0,0)</code> to the point <code>(x,y)</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = atan2( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ); <span class="hljs-comment">// => atan(1.0)</span>
+<h1 id="atan2">atan2</h1><blockquote><p>Compute the angle in the plane (in radians) between the positive x-axis and the ray from <code>(0,0)</code> to the point <code>(x,y)</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atan2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atan2'</span> );
+</code></pre><h4 id="atan2-y-x-">atan2( y, x )</h4><p>Computes the angle in the plane (in radians) between the positive x-axis and the ray from <code>(0,0)</code> to the point <code>(x,y)</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = atan2( <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ); <span class="hljs-comment">// => atan(1.0)</span>
 <span class="hljs-comment">// returns ~0.785</span>
 
 v = atan2( <span class="hljs-number">6.0</span>, <span class="hljs-number">2.0</span> ); <span class="hljs-comment">// => atan(3.0)</span>
@@ -28,13 +19,7 @@ v = atan2( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</
 
 v = atan2( <span class="hljs-number">3.0</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> atan2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atan2'</span> );
 
 <span class="hljs-keyword">var</span> y;
@@ -46,21 +31,4 @@ v = atan2( <span class="hljs-number">3.0</span>, <span class="hljs-literal">NaN<
     x = randu() * <span class="hljs-number">100.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'y: %d, \t x: %d, \t atan2(y,x): %d'</span>, y.toFixed( <span class="hljs-number">4</span> ), x.toFixed( <span class="hljs-number">4</span> ), atan2( y, x ).toFixed( <span class="hljs-number">4</span> ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atan"><code>@stdlib/math/base/special/atan</code></a></span><span class="delimiter">: </span><span class="description">compute the arctangent of a number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atan"><code>@stdlib/math/base/special/atan</code></a></span><span class="delimiter">: </span><span class="description">compute the arctangent of a number.</span></li></ul></section><section class="links"></section>

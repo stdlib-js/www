@@ -1,14 +1,5 @@
-<h1 id="write-file">Write File</h1>
-<blockquote>
-<p>Write data to a file.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> writeFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/write-file'</span> );
-</code></pre>
-<h4 id="writefile-file-data-options-clbk-">writeFile( file, data[, options], clbk )</h4>
-<p>Asynchronously write <code>data</code> to a <code>file</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<h1 id="write-file">Write File</h1><blockquote><p>Write data to a file.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> writeFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/write-file'</span> );
+</code></pre><h4 id="writefile-file-data-options-clbk-">writeFile( file, data[, options], clbk )</h4><p>Asynchronously write <code>data</code> to a <code>file</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 
 <span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
 
@@ -19,9 +10,7 @@ writeFile( fpath, <span class="hljs-string">'beep boop\n'</span>, onWrite );
         <span class="hljs-keyword">throw</span> error;
     }
 }
-</code></pre>
-<p>The <code>data</code> argument may be either a <code>string</code> or a <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre><p>The <code>data</code> argument may be either a <code>string</code> or a <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
 
 <span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
@@ -33,11 +22,7 @@ writeFile( fpath, string2buffer( <span class="hljs-string">'beep boop\n'</span> 
         <span class="hljs-keyword">throw</span> error;
     }
 }
-</code></pre>
-<p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.writeFile()</code></a>.</p>
-<h4 id="writefilesync-file-data-options-">writeFile.sync( file, data[, options] )</h4>
-<p>Synchronously writes <code>data</code> to a <code>file</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre><p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.writeFile()</code></a>.</p><h4 id="writefilesync-file-data-options-">writeFile.sync( file, data[, options] )</h4><p>Synchronously writes <code>data</code> to a <code>file</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 
 <span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
 
@@ -45,26 +30,13 @@ writeFile( fpath, string2buffer( <span class="hljs-string">'beep boop\n'</span> 
 <span class="hljs-keyword">if</span> ( err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ) {
     <span class="hljs-keyword">throw</span> err;
 }
-</code></pre>
-<p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.writeFileSync()</code></a>.</p>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>The difference between this <code>writeFile.sync</code> and <a href="https://nodejs.org/api/fs.html"><code>fs.writeFileSync()</code></a> is that <a href="https://nodejs.org/api/fs.html"><code>fs.writeFileSync()</code></a> will throw if an <code>error</code> is encountered (e.g., if given a non-existent directory path) and this API will return an <code>error</code>. Hence, the following anti-pattern</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> );
+</code></pre><p>The function accepts the same <code>options</code> and has the same defaults as <a href="https://nodejs.org/api/fs.html"><code>fs.writeFileSync()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The difference between this <code>writeFile.sync</code> and <a href="https://nodejs.org/api/fs.html"><code>fs.writeFileSync()</code></a> is that <a href="https://nodejs.org/api/fs.html"><code>fs.writeFileSync()</code></a> will throw if an <code>error</code> is encountered (e.g., if given a non-existent directory path) and this API will return an <code>error</code>. Hence, the following anti-pattern</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> );
 
 <span class="hljs-comment">// Check for directory path existence to prevent an error being thrown...</span>
 <span class="hljs-keyword">if</span> ( fs.existsSync( <span class="hljs-string">'/path/to'</span> ) ) {
     fs.writeFileSync( <span class="hljs-string">'/path/to/file.txt'</span>, <span class="hljs-string">'beep boop\n'</span> );
 }
-</code></pre>
-<p>can be replaced by an approach which addresses existence via <code>error</code> handling.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> writeFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/write-file'</span> );
+</code></pre><p>can be replaced by an approach which addresses existence via <code>error</code> handling.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> writeFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/write-file'</span> );
 
 <span class="hljs-comment">// Explicitly handle the error...</span>
 <span class="hljs-keyword">var</span> err = writeFile.sync( <span class="hljs-string">'/path/to/file.txt'</span>, <span class="hljs-string">'beep boop\n'</span> );
@@ -72,15 +44,7 @@ writeFile( fpath, string2buffer( <span class="hljs-string">'beep boop\n'</span> 
     <span class="hljs-comment">// You choose what to do...</span>
     <span class="hljs-keyword">throw</span> err;
 }
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> writeFile = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/write-file'</span> );
 
 <span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.txt'</span> );
@@ -101,15 +65,7 @@ writeFile( fpath, <span class="hljs-string">'beep boop\n'</span>, onWrite );
     }
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Success!'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: write-file [options] &#x3C;filepath>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: write-file [options] &#x3C;filepath>
 
 Options:
 
@@ -118,39 +74,5 @@ Options:
   --enc, --encoding encoding   Encoding. Default: 'utf8'.
          --flag flag           Flag. Default: 'r'.
          --mode mode           Mode. Default: 0o666.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes-1">Notes</h3>
-<ul>
-<li>Relative output file paths are resolved relative to the current working directory.</li>
-<li>Errors are written to <code>stderr</code>.</li>
-<li>File contents should be provided over <code>stdin</code> as part of a <a href="http://en.wikipedia.org/wiki/Pipeline_%28Unix%29">standard stream</a> pipeline.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">printf</span> <span class="hljs-string">'beep boop\n'</span> | write-file ./examples/fixtures/file.txt
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/exists"><code>@stdlib/fs/exists</code></a></span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/read-file"><code>@stdlib/fs/read-file</code></a></span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Relative output file paths are resolved relative to the current working directory.</li><li>Errors are written to <code>stderr</code>.</li><li>File contents should be provided over <code>stdin</code> as part of a <a href="http://en.wikipedia.org/wiki/Pipeline_%28Unix%29">standard stream</a> pipeline.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ <span class="hljs-built_in">printf</span> <span class="hljs-string">'beep boop\n'</span> | write-file ./examples/fixtures/file.txt
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/exists"><code>@stdlib/fs/exists</code></a></span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/read-file"><code>@stdlib/fs/read-file</code></a></span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span></li></ul></section><section class="links"></section>

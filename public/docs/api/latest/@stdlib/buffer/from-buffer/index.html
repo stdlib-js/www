@@ -1,37 +1,12 @@
-<h1 id="copybuffer">copyBuffer</h1>
-<blockquote>
-<p>Copy <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> data to a new <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a> instance.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copyBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-buffer'</span> );
-</code></pre>
-<h4 id="copybuffer-buffer-">copyBuffer( buffer )</h4>
-<p>Copies <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> data to a new <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a> instance.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+<h1 id="copybuffer">copyBuffer</h1><blockquote><p>Copy <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> data to a new <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a> instance.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copyBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-buffer'</span> );
+</code></pre><h4 id="copybuffer-buffer-">copyBuffer( buffer )</h4><p>Copies <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> data to a new <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
 
 <span class="hljs-keyword">var</span> b1 = array2buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
 <span class="hljs-comment">// returns &#x3C;Buffer>[ 1, 2, 3, 4 ]</span>
 
 <span class="hljs-keyword">var</span> b2 = copyBuffer( b1 );
 <span class="hljs-comment">// returns &#x3C;Buffer>[ 1, 2, 3, 4 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
 <span class="hljs-keyword">var</span> copyBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-buffer'</span> );
 
 <span class="hljs-keyword">var</span> bool;
@@ -55,26 +30,4 @@ bool = ( b2.length === b1.length );
     <span class="hljs-built_in">console</span>.log( b2[ i ] === b1[ i ] );
     <span class="hljs-comment">// => true</span>
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/alloc-unsafe"><code>@stdlib/buffer/alloc-unsafe</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer having a specified number of bytes.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/ctor"><code>@stdlib/buffer/ctor</code></a></span><span class="delimiter">: </span><span class="description">Buffer.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/alloc-unsafe"><code>@stdlib/buffer/alloc-unsafe</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer having a specified number of bytes.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/ctor"><code>@stdlib/buffer/ctor</code></a></span><span class="delimiter">: </span><span class="description">Buffer.</span></li></ul></section><section class="links"></section>

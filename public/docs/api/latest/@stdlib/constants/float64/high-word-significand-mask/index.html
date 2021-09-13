@@ -1,33 +1,8 @@
-<h1 id="significand-mask">Significand Mask</h1>
-<blockquote>
-<p>High word mask for the significand of a <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<!-- eslint-disable id-length -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/high-word-significand-mask'</span> );
-</code></pre>
-<h4 id="float64_high_word_significand_mask">FLOAT64_HIGH_WORD_SIGNIFICAND_MASK</h4>
-<p>High word mask for the significand of a <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>. </p>
-<!-- eslint-disable id-length -->
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// 0x000fffff = 1048575 => 0 00000000000 11111111111111111111</span>
+<h1 id="significand-mask">Significand Mask</h1><blockquote><p>High word mask for the significand of a <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/high-word-significand-mask'</span> );
+</code></pre><h4 id="float64_high_word_significand_mask">FLOAT64_HIGH_WORD_SIGNIFICAND_MASK</h4><p>High word mask for the significand of a <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// 0x000fffff = 1048575 => 0 00000000000 11111111111111111111</span>
 <span class="hljs-keyword">var</span> bool = ( FLOAT64_HIGH_WORD_SIGNIFICAND_MASK === <span class="hljs-number">0x000fffff</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The higher order word of a <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> is a 32-bit integer containing the more significant bits which include the exponent and sign.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable id-length -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getHighWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/get-high-word'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The higher order word of a <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> is a 32-bit integer containing the more significant bits which include the exponent and sign.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getHighWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/get-high-word'</span> );
 <span class="hljs-keyword">var</span> FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/high-word-significand-mask'</span> );
 
 <span class="hljs-keyword">var</span> out;
@@ -45,21 +20,4 @@ out = hi &#x26; FLOAT64_HIGH_WORD_SIGNIFICAND_MASK; <span class="hljs-comment">/
 <span class="hljs-comment">// Mask on the significand bits and leave other bits unchanged:</span>
 out = hi | FLOAT64_HIGH_WORD_SIGNIFICAND_MASK; <span class="hljs-comment">// => 0 10000000010 11111111111111111111</span>
 <span class="hljs-comment">// returns 1076887551</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/high-word-exponent-mask"><code>@stdlib/constants/float64/high-word-exponent-mask</code></a></span><span class="delimiter">: </span><span class="description">high word mask for the exponent of a double-precision floating-point number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/high-word-exponent-mask"><code>@stdlib/constants/float64/high-word-exponent-mask</code></a></span><span class="delimiter">: </span><span class="description">high word mask for the exponent of a double-precision floating-point number.</span></li></ul></section><section class="links"></section>

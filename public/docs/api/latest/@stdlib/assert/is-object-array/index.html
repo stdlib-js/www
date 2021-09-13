@@ -1,15 +1,5 @@
-<h1 id="isobjectarray">isObjectArray</h1>
-<blockquote>
-<p>Test if a value is an array-like object containing only objects.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isObjectArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-object-array'</span> );
-</code></pre>
-<h4 id="isobjectarray-value-">isObjectArray( value )</h4>
-<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> <code>objects</code>.</p>
-<!-- eslint-disable no-new-wrappers, object-curly-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<h1 id="isobjectarray">isObjectArray</h1><blockquote><p>Test if a value is an array-like object containing only objects.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isObjectArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-object-array'</span> );
+</code></pre><h4 id="isobjectarray-value-">isObjectArray( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> <code>objects</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isObjectArray( [ {}, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3.0</span>) ] );
 <span class="hljs-comment">// returns true</span>
@@ -25,14 +15,7 @@ bool = isObjectArray( [] );
 
 bool = isObjectArray( [ <span class="hljs-literal">null</span>, {} ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable no-new-wrappers, object-curly-newline -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 <span class="hljs-keyword">var</span> isObjectArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-object-array'</span> );
 
 <span class="hljs-keyword">var</span> bool = isObjectArray( [ { <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span> }, {}, {} ] );
@@ -52,22 +35,4 @@ bool = isObjectArray( [ <span class="hljs-string">'a'</span>, <span class="hljs-
 
 bool = isObjectArray( [] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-array"><code>@stdlib/assert/is-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-object"><code>@stdlib/assert/is-object</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an object.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-array"><code>@stdlib/assert/is-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-object"><code>@stdlib/assert/is-object</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an object.</span></li></ul></section><section class="links"></section>

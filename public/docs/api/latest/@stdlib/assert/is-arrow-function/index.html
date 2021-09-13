@@ -1,15 +1,5 @@
-<h1 id="isarrowfunction">isArrowFunction</h1>
-<blockquote>
-<p>Test if a value is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"><code>arrow function</code></a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isArrowFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-arrow-function'</span> );
-</code></pre>
-<h4 id="isarrowfunction-value-">isArrowFunction( value )</h4>
-<p>Tests if a <code>value</code> is a an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"><code>arrow function</code></a> such as <code>( a, b ) => a + b</code>, <code>x => x</code>, or <code>( x ) => { return x*x; }</code>.</p>
-<!-- eslint-disable func-style, no-restricted-syntax -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> beep = <span class="hljs-function">() =></span> {
+<h1 id="isarrowfunction">isArrowFunction</h1><blockquote><p>Test if a value is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"><code>arrow function</code></a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isArrowFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-arrow-function'</span> );
+</code></pre><h4 id="isarrowfunction-value-">isArrowFunction( value )</h4><p>Tests if a <code>value</code> is a an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"><code>arrow function</code></a> such as <code>( a, b ) => a + b</code>, <code>x => x</code>, or <code>( x ) => { return x*x; }</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> beep = <span class="hljs-function">() =></span> {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'beep'</span> );
 };
 
@@ -22,14 +12,7 @@
 
 bool = isArrowFunction( boop );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable func-style, no-restricted-syntax, no-empty-function -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isArrowFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-arrow-function'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isArrowFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-arrow-function'</span> );
 
 <span class="hljs-keyword">var</span> bool = isArrowFunction( <span class="hljs-function">() =></span> {} );
 <span class="hljs-comment">// returns true</span>
@@ -54,14 +37,4 @@ bool = isArrowFunction( [] );
 
 bool = isArrowFunction( {} );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -1,31 +1,12 @@
-<h1 id="scopy">scopy</h1>
-<blockquote>
-<p>Copy values from <code>x</code> into <code>y</code>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> scopy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/scopy'</span> );
-</code></pre>
-<h4 id="scopy-n-x-stridex-y-stridey-">scopy( N, x, strideX, y, strideY )</h4>
-<p>Copies values from <code>x</code> into <code>y</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<h1 id="scopy">scopy</h1><blockquote><p>Copy values from <code>x</code> into <code>y</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> scopy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/scopy'</span> );
+</code></pre><h4 id="scopy-n-x-stridex-y-stridey-">scopy( N, x, strideX, y, strideY )</h4><p>Copies values from <code>x</code> into <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span> ] );
 
 scopy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 1.0, 2.0, 3.0, 4.0, 5.0 ]</span>
-</code></pre>
-<p>The function has the following parameters:</p>
-<ul>
-<li><strong>N</strong>: number of values to copy.</li>
-<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li>
-<li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>y</strong>: destination <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li>
-<li><strong>strideY</strong>: index increment for <code>y</code>.</li>
-</ul>
-<p>The <code>N</code> and <code>stride</code> parameters determine how values from <code>x</code> are copied into <code>y</code>. For example, to copy in reverse order every other value in <code>x</code> into the first <code>N</code> elements of <code>y</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of values to copy.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: destination <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine how values from <code>x</code> are copied into <code>y</code>. For example, to copy in reverse order every other value in <code>x</code> into the first <code>N</code> elements of <code>y</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
@@ -35,10 +16,7 @@ scopy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 
 scopy( N, x, -<span class="hljs-number">2</span>, y, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 5.0, 3.0, 1.0, 10.0, 11.0, 12.0 ]</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
-<!-- eslint-disable stdlib/capitalized-comments -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-comment">// Initial arrays...</span>
@@ -54,24 +32,14 @@ scopy( N, x, -<span class="hljs-number">2</span>, y, <span class="hljs-number">1
 <span class="hljs-comment">// Copy in reverse order every other value from `x1` into `y1`...</span>
 scopy( N, x1, -<span class="hljs-number">2</span>, y1, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// y0 => &#x3C;Float32Array>[ 7.0, 8.0, 9.0, 6.0, 4.0, 2.0 ]</span>
-</code></pre>
-<h4 id="scopyndarray-n-x-stridex-offsetx-y-stridey-offsety-">scopy.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4>
-<p>Copies values from <code>x</code> into <code>y</code> using alternative indexing semantics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><h4 id="scopyndarray-n-x-stridex-offsetx-y-stridey-offsety-">scopy.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4><p>Copies values from <code>x</code> into <code>y</code> using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span> ] );
 
 scopy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 1.0, 2.0, 3.0, 4.0, 5.0 ]</span>
-</code></pre>
-<p>The function has the following additional parameters:</p>
-<ul>
-<li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
-<li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
-</ul>
-<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to copy every other value in <code>x</code> starting from the second value into the last <code>N</code> elements in <code>y</code> where <code>x[i] = y[n]</code>, <code>x[i+2] = y[n-1]</code>,...,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to copy every other value in <code>x</code> starting from the second value into the last <code>N</code> elements in <code>y</code> where <code>x[i] = y[n]</code>, <code>x[i+2] = y[n-1]</code>,...,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span> ] );
@@ -81,21 +49,7 @@ scopy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hlj
 
 scopy.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 7.0, 8.0, 9.0, 6.0, 4.0, 2.0 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If <code>N &#x3C;= 0</code>, both functions return <code>y</code> unchanged.</li>
-<li><code>scopy()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="http://www.netlib.org/lapack/explore-html/df/d28/group__single__blas__level1.html"><code>scopy</code></a>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>y</code> unchanged.</li><li><code>scopy()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="http://www.netlib.org/lapack/explore-html/df/d28/group__single__blas__level1.html"><code>scopy</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> scopy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/scopy'</span> );
@@ -116,23 +70,4 @@ y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Arr
 <span class="hljs-comment">// Copy elements from `x` into `y` starting from the end of `y`:</span>
 scopy( x.length, x, <span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( y );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/dcopy"><code>@stdlib/blas/base/dcopy</code></a></span><span class="delimiter">: </span><span class="description">copy values from x into y.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/gcopy"><code>@stdlib/blas/base/gcopy</code></a></span><span class="delimiter">: </span><span class="description">copy values from x into y.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/sswap"><code>@stdlib/blas/base/sswap</code></a></span><span class="delimiter">: </span><span class="description">interchange two single-precision floating-point vectors.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/dcopy"><code>@stdlib/blas/base/dcopy</code></a></span><span class="delimiter">: </span><span class="description">copy values from x into y.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/gcopy"><code>@stdlib/blas/base/gcopy</code></a></span><span class="delimiter">: </span><span class="description">copy values from x into y.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/sswap"><code>@stdlib/blas/base/sswap</code></a></span><span class="delimiter">: </span><span class="description">interchange two single-precision floating-point vectors.</span></li></ul></section><section class="links"></section>

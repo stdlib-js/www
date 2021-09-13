@@ -1,79 +1,14 @@
-<h1 id="logistic">Logistic</h1>
-<blockquote>
-<p>Logistic distribution.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logistic = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/logistic'</span> );
-</code></pre>
-<h4 id="logistic-1">logistic</h4>
-<p>Logistic distribution.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = logistic;
+<h1 id="logistic">Logistic</h1><blockquote><p>Logistic distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logistic = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/logistic'</span> );
+</code></pre><h4 id="logistic-1">logistic</h4><p>Logistic distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = logistic;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre>
-<p>The namespace contains the following distribution functions:</p>
-<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/cdf"><code>cdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution cumulative distribution function.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/logcdf"><code>logcdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution logarithm of cumulative distribution function.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/logpdf"><code>logpdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution logarithm of probability density function (PDF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/mgf"><code>mgf( t, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution moment-generating function (MGF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/pdf"><code>pdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution probability density function (PDF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/quantile"><code>quantile( p, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution quantile function.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains the following functions for calculating distribution properties:</p>
-<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/entropy"><code>entropy( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution differential entropy.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/kurtosis"><code>kurtosis( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution excess kurtosis.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/mean"><code>mean( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution expected value.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/median"><code>median( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution median.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/mode"><code>mode( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution mode.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/skewness"><code>skewness( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution skewness.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/stdev"><code>stdev( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution standard deviation.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/variance"><code>variance( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution variance.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Logistic_distribution">logistic</a> distribution object.</p>
-<!-- <toc pattern="*ctor*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/ctor"><code>Logistic( [mu, s] )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution constructor.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Logistic = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/logistic'</span> ).Logistic;
+</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/cdf"><code>cdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/logcdf"><code>logcdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution logarithm of cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/logpdf"><code>logpdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution logarithm of probability density function (PDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/mgf"><code>mgf( t, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution moment-generating function (MGF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/pdf"><code>pdf( x, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution probability density function (PDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/quantile"><code>quantile( p, mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution quantile function.</span></li></ul></div><p>The namespace contains the following functions for calculating distribution properties:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/entropy"><code>entropy( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution differential entropy.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/kurtosis"><code>kurtosis( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution excess kurtosis.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/mean"><code>mean( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution expected value.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/median"><code>median( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution median.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/mode"><code>mode( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution mode.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/skewness"><code>skewness( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution skewness.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/stdev"><code>stdev( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution standard deviation.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/variance"><code>variance( mu, s )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution variance.</span></li></ul></div><p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Logistic_distribution">logistic</a> distribution object.</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/logistic/ctor"><code>Logistic( [mu, s] )</code></a></span><span class="delimiter">: </span><span class="description">logistic distribution constructor.</span></li></ul></div><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Logistic = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/logistic'</span> ).Logistic;
 
 <span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> Logistic( <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span> );
 
 <span class="hljs-keyword">var</span> y = dist.pdf( <span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns 0.0625</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- TODO: better examples -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> logistic = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/logistic'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( logistic ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <toc-links> -->
-<!-- </toc-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

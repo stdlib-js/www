@@ -1,14 +1,5 @@
-<h1 id="ceil10">ceil10</h1>
-<blockquote>
-<p>Round a numeric value to the nearest power of 10 toward positive infinity.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ceil10 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceil10'</span> );
-</code></pre>
-<h4 id="ceil10-x-">ceil10( x )</h4>
-<p>Rounds a <code>numeric</code> value to the nearest power of <code>10</code> toward positive infinity.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ceil10( -<span class="hljs-number">4.2</span> );
+<h1 id="ceil10">ceil10</h1><blockquote><p>Round a numeric value to the nearest power of 10 toward positive infinity.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ceil10 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceil10'</span> );
+</code></pre><h4 id="ceil10-x-">ceil10( x )</h4><p>Rounds a <code>numeric</code> value to the nearest power of <code>10</code> toward positive infinity.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ceil10( -<span class="hljs-number">4.2</span> );
 <span class="hljs-comment">// returns -1.0</span>
 
 v = ceil10( -<span class="hljs-number">4.5</span> );
@@ -43,25 +34,9 @@ v = ceil10( -<span class="hljs-literal">Infinity</span> );
 
 v = ceil10( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>The function may not return accurate results for subnormals due to a general loss in precision.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ceil10( -<span class="hljs-number">1.0e-323</span> ); <span class="hljs-comment">// should return -1.0e-323</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function may not return accurate results for subnormals due to a general loss in precision.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = ceil10( -<span class="hljs-number">1.0e-323</span> ); <span class="hljs-comment">// should return -1.0e-323</span>
 <span class="hljs-comment">// returns -0.0</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> ceil10 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceil10'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -73,24 +48,4 @@ v = ceil10( <span class="hljs-literal">NaN</span> );
     v = ceil10( x );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Value: %d. Rounded: %d.'</span>, x, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceil"><code>@stdlib/math/base/special/ceil</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward positive infinity.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceil2"><code>@stdlib/math/base/special/ceil2</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of two toward positive infinity.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floor10"><code>@stdlib/math/base/special/floor10</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of 10 toward negative infinity.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/round10"><code>@stdlib/math/base/special/round10</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of 10 on a linear scale.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceil"><code>@stdlib/math/base/special/ceil</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceil2"><code>@stdlib/math/base/special/ceil2</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of two toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floor10"><code>@stdlib/math/base/special/floor10</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of 10 toward negative infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/round10"><code>@stdlib/math/base/special/round10</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of 10 on a linear scale.</span></li></ul></section><section class="links"></section>

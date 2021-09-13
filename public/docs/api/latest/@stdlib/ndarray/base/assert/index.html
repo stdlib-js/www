@@ -1,57 +1,8 @@
-<h1 id="assert">Assert</h1>
-<blockquote>
-<p>Base ndarray assertion utilities.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert'</span> );
-</code></pre>
-<h4 id="ns">ns</h4>
-<p>Base ndarray assertion utilities.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
+<h1 id="assert">Assert</h1><blockquote><p>Base ndarray assertion utilities.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert'</span> );
+</code></pre><h4 id="ns">ns</h4><p>Base ndarray assertion utilities.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = ns;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre>
-<!-- <toc pattern="*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-allowed-data-type-cast"><code>isAllowedDataTypeCast( from, to, casting )</code></a></span><span class="delimiter">: </span><span class="description">determine whether an ndarray data type can be cast to another ndarray data type according to a specified casting mode.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape"><code>isBufferLengthCompatibleShape( len, shape )</code></a></span><span class="delimiter">: </span><span class="description">determine if a buffer length is compatible with an array shape.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-buffer-length-compatible"><code>isBufferLengthCompatible( len, shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if a buffer length is compatible with ndarray meta data.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-casting-mode"><code>isCastingMode( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is a supported ndarray casting mode.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-column-major-contiguous"><code>isColumnMajorContiguous( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is column-major contiguous.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-column-major"><code>isColumnMajor( strides )</code></a></span><span class="delimiter">: </span><span class="description">given a stride array, determine whether an array is column-major.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-contiguous"><code>isContiguous( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is contiguous.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-data-type"><code>isDataType( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is a supported ndarray data type.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-index-mode"><code>isIndexMode( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is a supported ndarray index mode.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-order"><code>isOrder( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is an ndarray order.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-row-major-contiguous"><code>isRowMajorContiguous( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is row-major contiguous.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-row-major"><code>isRowMajor( strides )</code></a></span><span class="delimiter">: </span><span class="description">given a stride array, determine whether an array is row-major.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-safe-data-type-cast"><code>isSafeDataTypeCast( from, to )</code></a></span><span class="delimiter">: </span><span class="description">determine whether an ndarray data type can be safely cast to another ndarray data type.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-same-kind-data-type-cast"><code>isSameKindDataTypeCast( from, to )</code></a></span><span class="delimiter">: </span><span class="description">determine whether an ndarray data type can be safely cast to, or is of the same "kind" as, another ndarray data type.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-single-segment-compatible"><code>isSingleSegmentCompatible( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is compatible with a single memory segment.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- TODO: better examples -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-allowed-data-type-cast"><code>isAllowedDataTypeCast( from, to, casting )</code></a></span><span class="delimiter">: </span><span class="description">determine whether an ndarray data type can be cast to another ndarray data type according to a specified casting mode.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape"><code>isBufferLengthCompatibleShape( len, shape )</code></a></span><span class="delimiter">: </span><span class="description">determine if a buffer length is compatible with an array shape.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-buffer-length-compatible"><code>isBufferLengthCompatible( len, shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if a buffer length is compatible with ndarray meta data.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-casting-mode"><code>isCastingMode( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is a supported ndarray casting mode.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-column-major-contiguous"><code>isColumnMajorContiguous( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is column-major contiguous.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-column-major"><code>isColumnMajor( strides )</code></a></span><span class="delimiter">: </span><span class="description">given a stride array, determine whether an array is column-major.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-contiguous"><code>isContiguous( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is contiguous.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-data-type"><code>isDataType( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is a supported ndarray data type.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-index-mode"><code>isIndexMode( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is a supported ndarray index mode.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-order"><code>isOrder( value )</code></a></span><span class="delimiter">: </span><span class="description">test if an input value is an ndarray order.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-row-major-contiguous"><code>isRowMajorContiguous( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is row-major contiguous.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-row-major"><code>isRowMajor( strides )</code></a></span><span class="delimiter">: </span><span class="description">given a stride array, determine whether an array is row-major.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-safe-data-type-cast"><code>isSafeDataTypeCast( from, to )</code></a></span><span class="delimiter">: </span><span class="description">determine whether an ndarray data type can be safely cast to another ndarray data type.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-same-kind-data-type-cast"><code>isSameKindDataTypeCast( from, to )</code></a></span><span class="delimiter">: </span><span class="description">determine whether an ndarray data type can be safely cast to, or is of the same "kind" as, another ndarray data type.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/ndarray/base/assert/is-single-segment-compatible"><code>isSingleSegmentCompatible( shape, strides, offset )</code></a></span><span class="delimiter">: </span><span class="description">determine if an array is compatible with a single memory segment.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> ns = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( ns ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <toc-links> -->
-<!-- </toc-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"></section><section class="links"></section>

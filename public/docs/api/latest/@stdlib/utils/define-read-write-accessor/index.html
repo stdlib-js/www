@@ -1,14 +1,5 @@
-<h1 id="read-write-accessor">Read-Write Accessor</h1>
-<blockquote>
-<p><a href="/docs/api/latest/@stdlib/utils/define-property">Define</a> a <strong>read-write</strong> accessor.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setReadWriteAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-read-write-accessor'</span> );
-</code></pre>
-<h4 id="setreadwriteaccessor-obj-prop-getter-setter-">setReadWriteAccessor( obj, prop, getter, setter )</h4>
-<p><a href="/docs/api/latest/@stdlib/utils/define-property">Defines</a> a <strong>read-write</strong> accessor.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> word = <span class="hljs-string">'bar'</span>;
+<h1 id="read-write-accessor">Read-Write Accessor</h1><blockquote><p><a href="/docs/api/latest/@stdlib/utils/define-property">Define</a> a <strong>read-write</strong> accessor.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setReadWriteAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-read-write-accessor'</span> );
+</code></pre><h4 id="setreadwriteaccessor-obj-prop-getter-setter-">setReadWriteAccessor( obj, prop, getter, setter )</h4><p><a href="/docs/api/latest/@stdlib/utils/define-property">Defines</a> a <strong>read-write</strong> accessor.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> word = <span class="hljs-string">'bar'</span>;
 <span class="hljs-keyword">var</span> obj = {};
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getter</span>(<span class="hljs-params"></span>) </span>{
@@ -28,21 +19,7 @@ obj.foo = <span class="hljs-string">'beep'</span>;
 
 v = obj.foo;
 <span class="hljs-comment">// returns 'beep foo'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-    
-## Notes
-<ul>
-<li>Read-write accessors are <strong>enumerable</strong> and <strong>non-configurable</strong>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setReadWriteAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-read-write-accessor'</span> );
+</code></pre></section><section class="notes">## Notes<ul><li>Read-write accessors are <strong>enumerable</strong> and <strong>non-configurable</strong>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setReadWriteAccessor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-read-write-accessor'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"> name </span>) </span>{
     <span class="hljs-keyword">if</span> ( !(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Foo) ) {
@@ -65,23 +42,4 @@ v = obj.foo;
 
 foo.name = <span class="hljs-string">'Ada'</span>;
 <span class="hljs-built_in">console</span>.log( foo.name );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-accessor"><code>@stdlib/utils/define-read-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a read-only accessor.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-write-only-accessor"><code>@stdlib/utils/define-write-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a write-only accessor.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-accessor"><code>@stdlib/utils/define-read-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a read-only accessor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-write-only-accessor"><code>@stdlib/utils/define-write-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a write-only accessor.</span></li></ul></section><section class="links"></section>

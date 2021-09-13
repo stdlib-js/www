@@ -1,19 +1,5 @@
-<h1 id="reduce">reduce</h1>
-<blockquote>
-<p>Apply a function against an accumulator and each element in a collection and return the accumulated result.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reduce = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce'</span> );
-</code></pre>
-<h4 id="reduce-collection-initial-reducer-thisarg--">reduce( collection, initial, reducer[, thisArg ] )</h4>
-<p>Applies a <code>function</code> against an accumulator and each element in a <code>collection</code> and returns the accumulated result.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
+<h1 id="reduce">reduce</h1><blockquote><p>Apply a function against an accumulator and each element in a collection and return the accumulated result.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reduce = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce'</span> );
+</code></pre><h4 id="reduce-collection-initial-reducer-thisarg--">reduce( collection, initial, reducer[, thisArg ] )</h4><p>Applies a <code>function</code> against an accumulator and each element in a <code>collection</code> and returns the accumulated result.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
     <span class="hljs-keyword">return</span> accumulator + value;
 }
 
@@ -21,16 +7,7 @@
 
 <span class="hljs-keyword">var</span> out = reduce( arr, <span class="hljs-number">0</span>, sum );
 <span class="hljs-comment">// returns 10</span>
-</code></pre>
-<p>The <code>reducer</code> function is provided four arguments:</p>
-<ul>
-<li><code>accumulator</code>: accumulated value</li>
-<li><code>value</code>: collection element</li>
-<li><code>index</code>: collection index</li>
-<li><code>collection</code>: input collection</li>
-</ul>
-<p>Basic support for dynamic collections is provided. Note, however, that index incrementation is monotonically increasing.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum1</span>(<span class="hljs-params"> accumulator, value, index, collection </span>) </span>{
+</code></pre><p>The <code>reducer</code> function is provided four arguments:</p><ul><li><code>accumulator</code>: accumulated value</li><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li><li><code>collection</code>: input collection</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is monotonically increasing.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum1</span>(<span class="hljs-params"> accumulator, value, index, collection </span>) </span>{
     <span class="hljs-keyword">if</span> ( index === collection.length-<span class="hljs-number">1</span> &#x26;&#x26; collection.length &#x3C; <span class="hljs-number">10</span> ) {
         collection.push( index+<span class="hljs-number">2</span> );
     }
@@ -51,9 +28,7 @@ arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, 
 
 out = reduce( arr, <span class="hljs-number">0</span>, sum2 );
 <span class="hljs-comment">// returns 4</span>
-</code></pre>
-<p>To set the function execution context, provide a <code>thisArg</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
+</code></pre><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"> accumulator, value </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> accumulator + value;
 }
@@ -69,29 +44,7 @@ out = reduce( arr, <span class="hljs-number">0</span>, sum2 );
 
 <span class="hljs-keyword">var</span> mean = out / context.count;
 <span class="hljs-comment">// returns 2.5</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</p>
-</li>
-<li>
-<p>The function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"><code>Array.prototype.reduce</code></a> in the following ways:</p>
-<ul>
-<li>
-<p>The function <strong>requires</strong> an <code>initial</code> value for the <code>accumulator</code>. The <code>initial</code> value is used during the first invocation of the <code>reducer</code> function.</p>
-</li>
-<li>
-<p>The function does <strong>not</strong> skip the first element in the <code>collection</code>.</p>
-</li>
-<li>
-<p>The function does <strong>not</strong> skip <code>undefined</code> elements.</p>
-<!-- eslint-disable no-sparse-arrays, stdlib/doctest-marker -->
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> accumulator, value, index </span>) </span>{
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</p></li><li><p>The function differs from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"><code>Array.prototype.reduce</code></a> in the following ways:</p><ul><li><p>The function <strong>requires</strong> an <code>initial</code> value for the <code>accumulator</code>. The <code>initial</code> value is used during the first invocation of the <code>reducer</code> function.</p></li><li><p>The function does <strong>not</strong> skip the first element in the <code>collection</code>.</p></li><li><p>The function does <strong>not</strong> skip <code>undefined</code> elements.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"> accumulator, value, index </span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, index, value );
     <span class="hljs-keyword">return</span> accumulator;
 }
@@ -105,21 +58,7 @@ out = reduce( arr, <span class="hljs-number">0</span>, sum2 );
     2: undefined
     3: 4
 */</span>
-</code></pre>
-</li>
-<li>
-<p>The function provides limited support for dynamic collections (i.e., collections whose <code>length</code> changes during execution).</p>
-</li>
-</ul>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reduce = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce'</span> );
+</code></pre></li><li><p>The function provides limited support for dynamic collections (i.e., collections whose <code>length</code> changes during execution).</p></li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reduce = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reduce'</span> );
 
 <span class="hljs-keyword">var</span> arr;
 <span class="hljs-keyword">var</span> s;
@@ -136,27 +75,4 @@ arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</s
 
 s = reduce( arr, <span class="hljs-number">0</span>, sum );
 <span class="hljs-built_in">console</span>.log( s );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each"><code>@stdlib/utils/for-each</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/reduce"><code>@stdlib/utils/async/reduce</code></a></span><span class="delimiter">: </span><span class="description">apply a function against an accumulator and each element in a collection and return the accumulated result.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/reduce-right"><code>@stdlib/utils/reduce-right</code></a></span><span class="delimiter">: </span><span class="description">apply a function against an accumulator and each element in a collection and return the accumulated result, iterating from right to left.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each"><code>@stdlib/utils/for-each</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/reduce"><code>@stdlib/utils/async/reduce</code></a></span><span class="delimiter">: </span><span class="description">apply a function against an accumulator and each element in a collection and return the accumulated result.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/reduce-right"><code>@stdlib/utils/reduce-right</code></a></span><span class="delimiter">: </span><span class="description">apply a function against an accumulator and each element in a collection and return the accumulated result, iterating from right to left.</span></li></ul></section><section class="links"></section>

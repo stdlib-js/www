@@ -1,48 +1,12 @@
-<h1 id="repl">REPL</h1>
-<blockquote>
-<p>Read-Eval-Print Loop (REPL) environment.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-<p>A Read-Eval-Print Loop (REPL) environment is an interactive programming environment which takes individual user inputs (e.g., single expressions), evaluates those inputs, and returns the result. Accordingly, a program written in a REPL environment is executed piecewise and sequentially.</p>
-<p>REPL environments find common use in exploratory programming, prototyping, and debugging.</p>
-<p>The REPL environment exposed here is available both as a standalone application and as a library which is embeddable in other libraries and applications.</p>
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
-</code></pre>
-<h4 id="repl-options-">REPL( [options] )</h4>
-<p>Returns a <code>REPL</code> instance.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a new REPL:</span>
+<h1 id="repl">REPL</h1><blockquote><p>Read-Eval-Print Loop (REPL) environment.</p></blockquote><section class="intro"><p>A Read-Eval-Print Loop (REPL) environment is an interactive programming environment which takes individual user inputs (e.g., single expressions), evaluates those inputs, and returns the result. Accordingly, a program written in a REPL environment is executed piecewise and sequentially.</p><p>REPL environments find common use in exploratory programming, prototyping, and debugging.</p><p>The REPL environment exposed here is available both as a standalone application and as a library which is embeddable in other libraries and applications.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
+</code></pre><h4 id="repl-options-">REPL( [options] )</h4><p>Returns a <code>REPL</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL();
 
 <span class="hljs-comment">// ...</span>
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>input</strong>: input (readable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</li>
-<li><strong>output</strong>: output (writable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdout"><code>stdout</code></a>.</li>
-<li><strong>sandbox</strong>: <code>boolean</code> indicating whether to run a REPL in a sandboxed context. Default: <code>false</code>.</li>
-<li><strong>timeout</strong>: number of milliseconds to execute a command before terminating execution. Default: <code>4294967295</code>.</li>
-<li><strong>isTTY</strong>: <code>boolean</code> indicating whether the input and output streams should be treated like a TTY (terminal) and whether the REPL should use ANSI/VT100 escape codes when writing to the output stream.</li>
-<li><strong>inputPrompt</strong>: input prompt. If the input prompt includes the character sequence <code>%d</code>, the input prompt includes line numbers. Default: <code>'In [%d]: '</code>.</li>
-<li><strong>outputPrompt</strong>: output prompt. If the output prompt includes the character sequence <code>%d</code>, the output prompt includes line numbers. Default: <code>'Out[%d]: '</code>.</li>
-<li><strong>welcome</strong>: welcome message.</li>
-<li><strong>padding</strong>: number of empty lines between consecutive commands. Default: <code>1</code>.</li>
-<li><strong>load</strong>: file path specifying a JavaScript file to load and evaluate line-by-line (e.g., a previous REPL history file).</li>
-<li><strong>save</strong>: file path specifying where to save REPL command history.</li>
-<li><strong>log</strong>: file path specifying where to save REPL commands and printed output.</li>
-<li><strong>quiet</strong>: <code>boolean</code> indicating whether log information, confirmation messages, and other possible REPL diagnostics should be silenced. Default: <code>false</code>.</li>
-</ul>
-<h4 id="replprototypecreatecontext">REPL.prototype.createContext()</h4>
-<p>Returns a REPL context.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>input</strong>: input (readable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</li><li><strong>output</strong>: output (writable) stream. Default: <a href="/docs/api/latest/@stdlib/streams/node/stdout"><code>stdout</code></a>.</li><li><strong>sandbox</strong>: <code>boolean</code> indicating whether to run a REPL in a sandboxed context. Default: <code>false</code>.</li><li><strong>timeout</strong>: number of milliseconds to execute a command before terminating execution. Default: <code>4294967295</code>.</li><li><strong>isTTY</strong>: <code>boolean</code> indicating whether the input and output streams should be treated like a TTY (terminal) and whether the REPL should use ANSI/VT100 escape codes when writing to the output stream.</li><li><strong>inputPrompt</strong>: input prompt. If the input prompt includes the character sequence <code>%d</code>, the input prompt includes line numbers. Default: <code>'In [%d]: '</code>.</li><li><strong>outputPrompt</strong>: output prompt. If the output prompt includes the character sequence <code>%d</code>, the output prompt includes line numbers. Default: <code>'Out[%d]: '</code>.</li><li><strong>welcome</strong>: welcome message.</li><li><strong>padding</strong>: number of empty lines between consecutive commands. Default: <code>1</code>.</li><li><strong>load</strong>: file path specifying a JavaScript file to load and evaluate line-by-line (e.g., a previous REPL history file).</li><li><strong>save</strong>: file path specifying where to save REPL command history.</li><li><strong>log</strong>: file path specifying where to save REPL commands and printed output.</li><li><strong>quiet</strong>: <code>boolean</code> indicating whether log information, confirmation messages, and other possible REPL diagnostics should be silenced. Default: <code>false</code>.</li></ul><h4 id="replprototypecreatecontext">REPL.prototype.createContext()</h4><p>Returns a REPL context.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -58,10 +22,7 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="replprototyperesetcontext">REPL.prototype.resetContext()</h4>
-<p>Resets a REPL's execution context.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototyperesetcontext">REPL.prototype.resetContext()</h4><p>Resets a REPL's execution context.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -77,10 +38,7 @@ repl.resetContext();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="replprototypeclearhistory">REPL.prototype.clearHistory()</h4>
-<p>Clears a REPL's history.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototypeclearhistory">REPL.prototype.clearHistory()</h4><p>Clears a REPL's history.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -96,10 +54,7 @@ repl.clearHistory();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="replprototypeclearuserdocs">Repl.prototype.clearUserDocs()</h4>
-<p>Clears user-defined documentation.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototypeclearuserdocs">Repl.prototype.clearUserDocs()</h4><p>Clears user-defined documentation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -115,11 +70,7 @@ repl.clearUserDocs();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="replprototypeload-fpath-clbk-">REPL.prototype.load( fpath, clbk )</h4>
-<p>Loads and evaluates a JavaScript file line-by-line.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototypeload-fpath-clbk-">REPL.prototype.load( fpath, clbk )</h4><p>Loads and evaluates a JavaScript file line-by-line.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -135,10 +86,7 @@ repl.load( <span class="hljs-string">'./path/to/file.js'</span>, done );
     <span class="hljs-comment">// Close the REPL:</span>
     repl.close();
 }
-</code></pre>
-<h4 id="replprototypereset">REPL.prototype.reset()</h4>
-<p>Resets a REPL.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototypereset">REPL.prototype.reset()</h4><p>Resets a REPL.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -154,10 +102,7 @@ repl.reset();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="replprototypeclear">REPL.prototype.clear()</h4>
-<p>Clears the entire REPL screen and scrollback history.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototypeclear">REPL.prototype.clear()</h4><p>Clears the entire REPL screen and scrollback history.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -173,11 +118,7 @@ repl.clear();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<p>This method is <strong>only</strong> applicable for TTY REPLs. In non-TTY REPLs, this method is a non-operation.</p>
-<h4 id="replprototypeclearline">REPL.prototype.clearLine()</h4>
-<p>Clears the current line.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p>This method is <strong>only</strong> applicable for TTY REPLs. In non-TTY REPLs, this method is a non-operation.</p><h4 id="replprototypeclearline">REPL.prototype.clearLine()</h4><p>Clears the current line.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -193,11 +134,7 @@ repl.clearLine();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<p>This method is <strong>only</strong> applicable for TTY REPLs. In non-TTY REPLs, this method is a non-operation.</p>
-<h4 id="replprototypeclearcommand">REPL.prototype.clearCommand()</h4>
-<p>Clears the current REPL command buffer (i.e., clear any command which has been buffered but not yet executed).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><p>This method is <strong>only</strong> applicable for TTY REPLs. In non-TTY REPLs, this method is a non-operation.</p><h4 id="replprototypeclearcommand">REPL.prototype.clearCommand()</h4><p>Clears the current REPL command buffer (i.e., clear any command which has been buffered but not yet executed).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -213,10 +150,7 @@ repl.clearCommand();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<h4 id="replprototypeclose">REPL.prototype.close()</h4>
-<p>Closes a REPL.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
+</code></pre><h4 id="replprototypeclose">REPL.prototype.close()</h4><p>Closes a REPL.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug-sink'</span> );
 
 <span class="hljs-comment">// Create a new REPL:</span>
 <span class="hljs-keyword">var</span> repl = <span class="hljs-keyword">new</span> REPL({
@@ -227,33 +161,16 @@ repl.close();
 
 <span class="hljs-comment">// Close the REPL:</span>
 repl.close();
-</code></pre>
-<hr>
-<h3 id="commands">Commands</h3>
-<p>REPL instances support the following commands...</p>
-<h4 id="alias2pkg-arg-">alias2pkg( arg )</h4>
-<p>Returns the package name associated with a provided alias or class instance.</p>
-<pre><code class="no-highlight language-text">In [1]: var v = alias2pkg( 'base.sin' )
+</code></pre><hr><h3 id="commands">Commands</h3><p>REPL instances support the following commands...</p><h4 id="alias2pkg-arg-">alias2pkg( arg )</h4><p>Returns the package name associated with a provided alias or class instance.</p><pre><code class="no-highlight language-text">In [1]: var v = alias2pkg( 'base.sin' )
 Out[1]: '@stdlib/math/base/special/sin'
-</code></pre>
-<p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p>
-<h4 id="alias2related-arg-">alias2related( arg )</h4>
-<p>Returns aliases related to a specified alias or class instance.</p>
-<pre><code class="no-highlight language-text">In [1]: var v = alias2related( 'base.sin' )
+</code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="alias2related-arg-">alias2related( arg )</h4><p>Returns aliases related to a specified alias or class instance.</p><pre><code class="no-highlight language-text">In [1]: var v = alias2related( 'base.sin' )
 Out[1]: [...]
-</code></pre>
-<p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p>
-<h4 id="ans">ans</h4>
-<p>Result of the last successfully executed command.</p>
-<pre><code class="no-highlight language-text">In [1]: identity( 3.14 )
+</code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="ans">ans</h4><p>Result of the last successfully executed command.</p><pre><code class="no-highlight language-text">In [1]: identity( 3.14 )
 Out[1]: 3.14
 
 In [2]: ans
 Out[2]: 3.14
-</code></pre>
-<h4 id="assignfrom-workspace-variable-">assignfrom( workspace, variable )</h4>
-<p>Reads a value from a specified <code>workspace</code>.</p>
-<pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
+</code></pre><h4 id="assignfrom-workspace-variable-">assignfrom( workspace, variable )</h4><p>Reads a value from a specified <code>workspace</code>.</p><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14;
 
@@ -261,68 +178,19 @@ In [3]: workspace( 'barfoo' );
 
 In [4]: var y = assignfrom( 'foobar', 'x' )
 Out[4]: 3.14
-</code></pre>
-<h4 id="assignin-workspace-variable-value-">assignin( workspace, variable, value )</h4>
-<p>Assigns a <code>value</code> to a <code>variable</code> in a specified <code>workspace</code>.</p>
-<pre><code class="no-highlight language-text">In [1]: assignin( 'base', 'x', 3.14 );
+</code></pre><h4 id="assignin-workspace-variable-value-">assignin( workspace, variable, value )</h4><p>Assigns a <code>value</code> to a <code>variable</code> in a specified <code>workspace</code>.</p><pre><code class="no-highlight language-text">In [1]: assignin( 'base', 'x', 3.14 );
 
 In [2]: x
 Out[2]: 3.14
-</code></pre>
-<h4 id="citation">citation()</h4>
-<p>Prints how to cite stdlib in publications.</p>
-<pre><code class="no-highlight language-text">In [1]: citation()
-</code></pre>
-<h4 id="clear">clear()</h4>
-<p>Clears the entire REPL screen and scrollback history.</p>
-<pre><code class="no-highlight language-text">In [1]: clear()
-</code></pre>
-<p><strong>Note</strong>: this function is only applicable for TTY REPLs. In non-TTY REPLs, this function is a non-operation.</p>
-<h4 id="clearhistory">clearHistory()</h4>
-<p>Clears the REPL history.</p>
-<pre><code class="no-highlight language-text">In [1]: clearHistory()
-</code></pre>
-<h4 id="clearuserdocs-options-">clearUserDocs( [options] )</h4>
-<p>Deletes user-defined documentation.</p>
-<pre><code class="no-highlight language-text">In [1]: clearUserDocs()
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li>
-<p><strong>include</strong>: inclusion filter. May be either an array-like <code>object</code> or a regular expression.</p>
-</li>
-<li>
-<p><strong>exclude</strong>: exclusion filter. May be either an array-like <code>object</code> or a regular expression.</p>
-</li>
-<li>
-<p><strong>filter</strong>: filter type. This option is only applicable for array-like <code>object</code> filters. Must be one of the following values:</p>
-<ul>
-<li><code>'alias'</code>: filter based on documentation alias. If a filter matches a documentation alias, the user-defined documentation is removed.</li>
-<li><code>'value'</code>: filter based on object reference. If a filter matches an associated object reference, the user-defined documentation is removed.</li>
-<li><code>'*'</code>: filter based on both documentation alias and object reference. If a filter matches either a documentation alias or an associated object reference, the user-defined documentation is removed.</li>
-</ul>
-<p>Default: <code>'*'</code>.</p>
-</li>
-</ul>
-<pre><code class="no-highlight language-text">In [1]: clearUserDocs( { 'include': /^foo/ } )
-</code></pre>
-<h4 id="clearvars-options-">clearvars( [options] )</h4>
-<p>Deletes user-defined variables in the current workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: clearvars()
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li><strong>include</strong>: variable name inclusion filter. May be either an array-like <code>object</code> or a regular expression.</li>
-<li><strong>exclude</strong>: variable name exclusion filter. May be either an array-like <code>object</code> or a regular expression.</li>
-</ul>
-<pre><code class="no-highlight language-text">In [1]: clearvars( { 'include': /^foo/ } )
-</code></pre>
-<h4 id="clearworkspace-name-options-">clearWorkspace( [name, ][options] )</h4>
-<p>Deletes user-defined variables in a specified workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: clearWorkspace()
-</code></pre>
-<p>By default, the function clears user-defined variables in the current workspace. To clear user-defined variables in a different workspace, provide a workspace <code>name</code>.</p>
-<pre><code class="no-highlight language-text">// Create a new workspace:
+</code></pre><h4 id="citation">citation()</h4><p>Prints how to cite stdlib in publications.</p><pre><code class="no-highlight language-text">In [1]: citation()
+</code></pre><h4 id="clear">clear()</h4><p>Clears the entire REPL screen and scrollback history.</p><pre><code class="no-highlight language-text">In [1]: clear()
+</code></pre><p><strong>Note</strong>: this function is only applicable for TTY REPLs. In non-TTY REPLs, this function is a non-operation.</p><h4 id="clearhistory">clearHistory()</h4><p>Clears the REPL history.</p><pre><code class="no-highlight language-text">In [1]: clearHistory()
+</code></pre><h4 id="clearuserdocs-options-">clearUserDocs( [options] )</h4><p>Deletes user-defined documentation.</p><pre><code class="no-highlight language-text">In [1]: clearUserDocs()
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><p><strong>include</strong>: inclusion filter. May be either an array-like <code>object</code> or a regular expression.</p></li><li><p><strong>exclude</strong>: exclusion filter. May be either an array-like <code>object</code> or a regular expression.</p></li><li><p><strong>filter</strong>: filter type. This option is only applicable for array-like <code>object</code> filters. Must be one of the following values:</p><ul><li><code>'alias'</code>: filter based on documentation alias. If a filter matches a documentation alias, the user-defined documentation is removed.</li><li><code>'value'</code>: filter based on object reference. If a filter matches an associated object reference, the user-defined documentation is removed.</li><li><code>'*'</code>: filter based on both documentation alias and object reference. If a filter matches either a documentation alias or an associated object reference, the user-defined documentation is removed.</li></ul><p>Default: <code>'*'</code>.</p></li></ul><pre><code class="no-highlight language-text">In [1]: clearUserDocs( { 'include': /^foo/ } )
+</code></pre><h4 id="clearvars-options-">clearvars( [options] )</h4><p>Deletes user-defined variables in the current workspace.</p><pre><code class="no-highlight language-text">In [1]: clearvars()
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>include</strong>: variable name inclusion filter. May be either an array-like <code>object</code> or a regular expression.</li><li><strong>exclude</strong>: variable name exclusion filter. May be either an array-like <code>object</code> or a regular expression.</li></ul><pre><code class="no-highlight language-text">In [1]: clearvars( { 'include': /^foo/ } )
+</code></pre><h4 id="clearworkspace-name-options-">clearWorkspace( [name, ][options] )</h4><p>Deletes user-defined variables in a specified workspace.</p><pre><code class="no-highlight language-text">In [1]: clearWorkspace()
+</code></pre><p>By default, the function clears user-defined variables in the current workspace. To clear user-defined variables in a different workspace, provide a workspace <code>name</code>.</p><pre><code class="no-highlight language-text">// Create a new workspace:
 In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14;
@@ -349,44 +217,19 @@ In [8]: workspace( 'foobar' );
 // Confirm that the variables were deleted:
 In [9]: x
 Error: x is not defined
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li><strong>include</strong>: variable name inclusion filter. May be either an array-like <code>object</code> or a regular expression.</li>
-<li><strong>exclude</strong>: variable name exclusion filter. May be either an array-like <code>object</code> or a regular expression.</li>
-</ul>
-<pre><code class="no-highlight language-text">In [1]: clearWorkspace( 'foobar', { 'include': /^x/ } );
-</code></pre>
-<h4 id="contributors">contributors()</h4>
-<p>Prints a list of stdlib contributors.</p>
-<pre><code class="no-highlight language-text">In [1]: contributors()
-</code></pre>
-<h4 id="copyright">copyright()</h4>
-<p>Prints copyright information.</p>
-<pre><code class="no-highlight language-text">In [1]: copyright()
-</code></pre>
-<h4 id="credits">credits()</h4>
-<p>Prints credits.</p>
-<pre><code class="no-highlight language-text">In [1]: credits()
-</code></pre>
-<h4 id="currentworkspace">currentWorkspace</h4>
-<p>Returns the name of the current workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: currentWorkspace
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>include</strong>: variable name inclusion filter. May be either an array-like <code>object</code> or a regular expression.</li><li><strong>exclude</strong>: variable name exclusion filter. May be either an array-like <code>object</code> or a regular expression.</li></ul><pre><code class="no-highlight language-text">In [1]: clearWorkspace( 'foobar', { 'include': /^x/ } );
+</code></pre><h4 id="contributors">contributors()</h4><p>Prints a list of stdlib contributors.</p><pre><code class="no-highlight language-text">In [1]: contributors()
+</code></pre><h4 id="copyright">copyright()</h4><p>Prints copyright information.</p><pre><code class="no-highlight language-text">In [1]: copyright()
+</code></pre><h4 id="credits">credits()</h4><p>Prints credits.</p><pre><code class="no-highlight language-text">In [1]: credits()
+</code></pre><h4 id="currentworkspace">currentWorkspace</h4><p>Returns the name of the current workspace.</p><pre><code class="no-highlight language-text">In [1]: currentWorkspace
 Out[1]: 'base'
-</code></pre>
-<h4 id="deeprerequire-id-">deeprerequire( id )</h4>
-<p>Re-imports a module, JSON, or local file and all of its associated module dependencies.</p>
-<pre><code class="no-highlight language-text">In [1]: var foo = require( './foo.js' );
+</code></pre><h4 id="deeprerequire-id-">deeprerequire( id )</h4><p>Re-imports a module, JSON, or local file and all of its associated module dependencies.</p><pre><code class="no-highlight language-text">In [1]: var foo = require( './foo.js' );
 
 // Modify `./foo.js` and/or its module dependencies...
 
 // Re-import the module:
 In [2]: foo = deeprerequire( './foo.js' );
-</code></pre>
-<p>Modules can be imported from <code>node_modules</code>. Local modules and JSON files can be imported using a relative path (e.g., <code>'./foo.js'</code>, <code>'./../bar.json'</code>, etc) that will be resolved against the current working directory.</p>
-<h4 id="deleteworkspace-name-">deleteWorkspace( [name] )</h4>
-<p>Deletes a workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
+</code></pre><p>Modules can be imported from <code>node_modules</code>. Local modules and JSON files can be imported using a relative path (e.g., <code>'./foo.js'</code>, <code>'./../bar.json'</code>, etc) that will be resolved against the current working directory.</p><h4 id="deleteworkspace-name-">deleteWorkspace( [name] )</h4><p>Deletes a workspace.</p><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14;
 
@@ -399,9 +242,7 @@ In [5]: deleteWorkspace( 'foobar' );
 
 In [6]: workspaces()
 Out[6]: [ 'base', 'barfoo' ]
-</code></pre>
-<p>If not provided an argument, the REPL deletes the current workspace and switches to the <code>'base'</code> workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
+</code></pre><p>If not provided an argument, the REPL deletes the current workspace and switches to the <code>'base'</code> workspace.</p><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
 
 In [2]: currentWorkspace
 Out[2]: 'foobar'
@@ -413,15 +254,8 @@ Out[4]: [ 'base' ]
 
 In [5]: currentWorkspace
 Out[5]: 'base'
-</code></pre>
-<p><strong>Note</strong>: the <code>'base'</code> workspace <strong>cannot</strong> be deleted.</p>
-<h4 id="donate">donate()</h4>
-<p>Prints donation information.</p>
-<pre><code class="no-highlight language-text">In [1]: donate()
-</code></pre>
-<h4 id="evalin-workspace-expression-">evalin( workspace, expression )</h4>
-<p>Evaluates an <code>expression</code> in a specified <code>workspace</code>.</p>
-<pre><code class="no-highlight language-text">// Create a workspace:
+</code></pre><p><strong>Note</strong>: the <code>'base'</code> workspace <strong>cannot</strong> be deleted.</p><h4 id="donate">donate()</h4><p>Prints donation information.</p><pre><code class="no-highlight language-text">In [1]: donate()
+</code></pre><h4 id="evalin-workspace-expression-">evalin( workspace, expression )</h4><p>Evaluates an <code>expression</code> in a specified <code>workspace</code>.</p><pre><code class="no-highlight language-text">// Create a workspace:
 In [1]: workspace( 'foobar' );
 
 // Create and switch to another workspace:
@@ -440,53 +274,23 @@ In [5]: workspace( 'foobar' );
 // Check that the expression was successfully evaluated:
 In [6]: x
 Out[6]: 3.14
-</code></pre>
-<h4 id="example-arg-">example( arg )</h4>
-<p>Runs examples for a specified alias, property, or class instance.</p>
-<pre><code class="no-highlight language-text">In [1]: example( base.sin )
-</code></pre>
-<p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p>
-<h4 id="help-arg-">help( [arg] )</h4>
-<p>Prints help text.</p>
-<pre><code class="no-highlight language-text">In [1]: help()
-</code></pre>
-<p>To print help text for an alias,</p>
-<pre><code class="no-highlight language-text">In [1]: help( 'base.sin' )
+</code></pre><h4 id="example-arg-">example( arg )</h4><p>Runs examples for a specified alias, property, or class instance.</p><pre><code class="no-highlight language-text">In [1]: example( base.sin )
+</code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="help-arg-">help( [arg] )</h4><p>Prints help text.</p><pre><code class="no-highlight language-text">In [1]: help()
+</code></pre><p>To print help text for an alias,</p><pre><code class="no-highlight language-text">In [1]: help( 'base.sin' )
 
 In [2]: help( base.sin )
-</code></pre>
-<p>To print help text for a property,</p>
-<pre><code class="no-highlight language-text">In [1]: help( random.streams.randu.factory )
-</code></pre>
-<p>To print help text for a class instance,</p>
-<pre><code class="no-highlight language-text">In [1]: var x = new Float64Array( 10 );
+</code></pre><p>To print help text for a property,</p><pre><code class="no-highlight language-text">In [1]: help( random.streams.randu.factory )
+</code></pre><p>To print help text for a class instance,</p><pre><code class="no-highlight language-text">In [1]: var x = new Float64Array( 10 );
 
 In [2]: help( x )
-</code></pre>
-<p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p>
-<h4 id="info-arg-">info( arg )</h4>
-<p>Prints abbreviated help text for a provided alias, property, or class instance.</p>
-<pre><code class="no-highlight language-text">In [1]: info( base.sin )
+</code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="info-arg-">info( arg )</h4><p>Prints abbreviated help text for a provided alias, property, or class instance.</p><pre><code class="no-highlight language-text">In [1]: info( base.sin )
 
 In [2]: info( 'base.sin' )
-</code></pre>
-<p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p>
-<h4 id="iskeyword-keyword-">isKeyword( keyword )</h4>
-<p>Returns a <code>boolean</code> indicating whether a string is a reserved keyword in the REPL environment.</p>
-<pre><code class="no-highlight language-text">In [1]: isKeyword( 'base.sin' )
+</code></pre><p><strong>Note</strong>: only direct instances of documented built-in constructors are supported.</p><h4 id="iskeyword-keyword-">isKeyword( keyword )</h4><p>Returns a <code>boolean</code> indicating whether a string is a reserved keyword in the REPL environment.</p><pre><code class="no-highlight language-text">In [1]: isKeyword( 'base.sin' )
 Out[1]: true
-</code></pre>
-<h4 id="license">license()</h4>
-<p>Prints license information.</p>
-<pre><code class="no-highlight language-text">In [1]: license()
-</code></pre>
-<h4 id="load-fpath-">load( fpath )</h4>
-<p>Loads and evaluates a JavaScript file, such as a REPL history file, line-by-line.</p>
-<pre><code class="no-highlight language-text">In [1]: load( './path/to/file.js' )
-</code></pre>
-<h4 id="loadworkspace-name-options-">loadWorkspace( name[, options] )</h4>
-<p>Loads variables from a specified workspace into the current workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
+</code></pre><h4 id="license">license()</h4><p>Prints license information.</p><pre><code class="no-highlight language-text">In [1]: license()
+</code></pre><h4 id="load-fpath-">load( fpath )</h4><p>Loads and evaluates a JavaScript file, such as a REPL history file, line-by-line.</p><pre><code class="no-highlight language-text">In [1]: load( './path/to/file.js' )
+</code></pre><h4 id="loadworkspace-name-options-">loadWorkspace( name[, options] )</h4><p>Loads variables from a specified workspace into the current workspace.</p><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14;
 
@@ -499,14 +303,7 @@ In [5]: loadWorkspace( 'foobar' );
 
 In [6]: x
 Out[6]: 3.14
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li><strong>include</strong>: variable name inclusion filter. May be either an array-like <code>object</code> or a regular expression.</li>
-<li><strong>exclude</strong>: variable name exclusion filter. May be either an array-like <code>object</code> or a regular expression.</li>
-<li><strong>override</strong>: <code>boolean</code> indicating whether to override existing workspace variables. Default: <code>true</code>.</li>
-</ul>
-<pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>include</strong>: variable name inclusion filter. May be either an array-like <code>object</code> or a regular expression.</li><li><strong>exclude</strong>: variable name exclusion filter. May be either an array-like <code>object</code> or a regular expression.</li><li><strong>override</strong>: <code>boolean</code> indicating whether to override existing workspace variables. Default: <code>true</code>.</li></ul><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14, y = 6.28;
 
@@ -522,57 +319,14 @@ Out[6]: 3.14
 
 In [7]: typeof y
 Out[7]: 'undefined'
-</code></pre>
-<h4 id="logstart-fpath-">logStart( fpath )</h4>
-<p>Starts logging commands and printed output to a specified file path.</p>
-<pre><code class="no-highlight language-text">// TODO
-</code></pre>
-<h4 id="logstop-id-">logStop( id )</h4>
-<p>Stops logging commands and printed output to a file path associated with a specified record identifier.</p>
-<pre><code class="no-highlight language-text">// TODO
-</code></pre>
-<h4 id="presentationstart-text-options-">presentationStart( [text, ][options] )</h4>
-<p>Starts a REPL <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a>.</p>
-<pre><code class="no-highlight language-text">In [1]: var id = presentationStart( 'beep\n---\nboop\n' );
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>borderTop</strong>: top border character sequence. Default: <code>'*'</code>.</li>
-<li><strong>borderBottom</strong>: bottom border character sequence. Default: <code>'*'</code>.</li>
-<li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li>
-<li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li>
-<li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>false</code>.</li>
-<li><strong>width</strong>: <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> width. If <code>null</code>, the <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> width is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li>
-<li><strong>height</strong>: <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> height. If <code>null</code>, the <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> height is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li>
-<li><strong>workspace</strong>: REPL workspace name. A <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> navigation and interaction. Default: <code>'presentation-&#x3C;n>'</code>, where <code>n</code> is an assigned <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> identifier.</li>
-<li><strong>load</strong>: file path specifying a <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> file to load. If presentation <code>text</code> is provided, this option is <strong>ignored</strong>. Otherwise, this option is <strong>required</strong>.</li>
-<li><strong>watch</strong>: <code>boolean</code> indicating whether to watch a <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> source file for changes. This option is only applicable if not provided presentation <code>text</code> and the <code>options</code> object specifies a presentation file to load. Default: <code>false</code>.</li>
-<li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered slide to the REPL. Default: <code>true</code>.</li>
-<li><strong>loop</strong>: <code>boolean</code> indicating whether to "loop" a presentation. Default: <code>false</code>.</li>
-</ul>
-<p>A few notes:</p>
-<ul>
-<li>When not provided presentation <code>text</code>, an options argument <strong>must</strong> specify a presentation file to load.</li>
-<li>If a specified workspace already exists, the workspace is silently cleared and a new <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative presentation workspace name.</li>
-</ul>
-<h4 id="presentationstop-id-">presentationStop( [id] )</h4>
-<p>Stops a REPL <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a>.</p>
-<pre><code class="no-highlight language-text">In [1]: var id = presentationStart( 'beep\n---\nboop\n' );
+</code></pre><h4 id="logstart-fpath-">logStart( fpath )</h4><p>Starts logging commands and printed output to a specified file path.</p><pre><code class="no-highlight language-text">// TODO
+</code></pre><h4 id="logstop-id-">logStop( id )</h4><p>Stops logging commands and printed output to a file path associated with a specified record identifier.</p><pre><code class="no-highlight language-text">// TODO
+</code></pre><h4 id="presentationstart-text-options-">presentationStart( [text, ][options] )</h4><p>Starts a REPL <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a>.</p><pre><code class="no-highlight language-text">In [1]: var id = presentationStart( 'beep\n---\nboop\n' );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>borderTop</strong>: top border character sequence. Default: <code>'*'</code>.</li><li><strong>borderBottom</strong>: bottom border character sequence. Default: <code>'*'</code>.</li><li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li><li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li><li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>false</code>.</li><li><strong>width</strong>: <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> width. If <code>null</code>, the <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> width is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>80</code> characters. Default: <code>null</code>.</li><li><strong>height</strong>: <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> height. If <code>null</code>, the <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> height is either computed based on the screen size (if a REPL output stream is TTY) or set to <code>25</code> rows. Default: <code>null</code>.</li><li><strong>workspace</strong>: REPL workspace name. A <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> navigation and interaction. Default: <code>'presentation-&#x3C;n>'</code>, where <code>n</code> is an assigned <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> identifier.</li><li><strong>load</strong>: file path specifying a <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> file to load. If presentation <code>text</code> is provided, this option is <strong>ignored</strong>. Otherwise, this option is <strong>required</strong>.</li><li><strong>watch</strong>: <code>boolean</code> indicating whether to watch a <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> source file for changes. This option is only applicable if not provided presentation <code>text</code> and the <code>options</code> object specifies a presentation file to load. Default: <code>false</code>.</li><li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered slide to the REPL. Default: <code>true</code>.</li><li><strong>loop</strong>: <code>boolean</code> indicating whether to "loop" a presentation. Default: <code>false</code>.</li></ul><p>A few notes:</p><ul><li>When not provided presentation <code>text</code>, an options argument <strong>must</strong> specify a presentation file to load.</li><li>If a specified workspace already exists, the workspace is silently cleared and a new <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative presentation workspace name.</li></ul><h4 id="presentationstop-id-">presentationStop( [id] )</h4><p>Stops a REPL <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a>.</p><pre><code class="no-highlight language-text">In [1]: var id = presentationStart( 'beep\n---\nboop\n' );
 
 In [2]: presentationStop();
-</code></pre>
-<p>A few notes:</p>
-<ul>
-<li>If provided a presentation identifier, the corresponding <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> is stopped. Otherwise, assuming the function is invoked in a presentation workspace, the current <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> is stopped.</li>
-<li>When stopping a REPL <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a>, the presentation's REPL workspace is both <strong>cleared</strong> and <strong>deleted</strong>.</li>
-</ul>
-<h4 id="quit">quit()</h4>
-<p>Exits the REPL.</p>
-<pre><code class="no-highlight language-text">In [1]: quit()
-</code></pre>
-<h4 id="renameworkspace-oldname-newname-">renameWorkspace( oldName, newName )</h4>
-<p>Renames a workspace.</p>
-<pre><code class="no-highlight language-text">// Create a new workspace:
+</code></pre><p>A few notes:</p><ul><li>If provided a presentation identifier, the corresponding <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> is stopped. Otherwise, assuming the function is invoked in a presentation workspace, the current <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> is stopped.</li><li>When stopping a REPL <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a>, the presentation's REPL workspace is both <strong>cleared</strong> and <strong>deleted</strong>.</li></ul><h4 id="quit">quit()</h4><p>Exits the REPL.</p><pre><code class="no-highlight language-text">In [1]: quit()
+</code></pre><h4 id="renameworkspace-oldname-newname-">renameWorkspace( oldName, newName )</h4><p>Renames a workspace.</p><pre><code class="no-highlight language-text">// Create a new workspace:
 In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14;
@@ -601,50 +355,31 @@ In [8]: workspace( 'beepboop' );
 // Confirm that workspace contains previously defined variables:
 In [9]: x
 Out[9]: 3.14
-</code></pre>
-<p><strong>Note</strong>: the new workspace name must <strong>not</strong> already exist. The only exception is when the old name and the new name are the same; in which case, invoking this command is a non-operation.</p>
-<p><strong>Note</strong>: as a <code>'base'</code> workspace must <strong>always</strong> exist, when renaming the <code>'base'</code> workspace, variables from the <code>'base'</code> workspace are simply copied to a new workspace and the <code>'base'</code> workspace cleared of user-defined variables.</p>
-<h4 id="require-id-">require( id )</h4>
-<p>Imports a module, JSON, or local file.</p>
-<pre><code class="no-highlight language-text">In [1]: var crypto = require( 'crypto' );
-</code></pre>
-<p>Modules can be imported from <code>node_modules</code>. Local modules and JSON files can be imported using a relative path (e.g., <code>'./foo.js'</code>, <code>'./../bar.json'</code>, etc) that will be resolved against the current working directory.</p>
-<h4 id="rerequire-id-">rerequire( id )</h4>
-<p>Re-imports a module, JSON, or local file.</p>
-<pre><code class="no-highlight language-text">In [1]: var foo = require( './foo.js' );
+</code></pre><p><strong>Note</strong>: the new workspace name must <strong>not</strong> already exist. The only exception is when the old name and the new name are the same; in which case, invoking this command is a non-operation.</p><p><strong>Note</strong>: as a <code>'base'</code> workspace must <strong>always</strong> exist, when renaming the <code>'base'</code> workspace, variables from the <code>'base'</code> workspace are simply copied to a new workspace and the <code>'base'</code> workspace cleared of user-defined variables.</p><h4 id="require-id-">require( id )</h4><p>Imports a module, JSON, or local file.</p><pre><code class="no-highlight language-text">In [1]: var crypto = require( 'crypto' );
+</code></pre><p>Modules can be imported from <code>node_modules</code>. Local modules and JSON files can be imported using a relative path (e.g., <code>'./foo.js'</code>, <code>'./../bar.json'</code>, etc) that will be resolved against the current working directory.</p><h4 id="rerequire-id-">rerequire( id )</h4><p>Re-imports a module, JSON, or local file.</p><pre><code class="no-highlight language-text">In [1]: var foo = require( './foo.js' );
 
 // Modify `./foo.js`...
 
 // Re-import the module:
 In [2]: foo = rerequire( './foo.js' );
-</code></pre>
-<p>Modules can be imported from <code>node_modules</code>. Local modules and JSON files can be imported using a relative path (e.g., <code>'./foo.js'</code>, <code>'./../bar.json'</code>, etc) that will be resolved against the current working directory.</p>
-<h4 id="rerun-arg-">rerun( [arg] )</h4>
-<p>Reruns previous commands.</p>
-<pre><code class="no-highlight language-text">In [1]: 1+1
+</code></pre><p>Modules can be imported from <code>node_modules</code>. Local modules and JSON files can be imported using a relative path (e.g., <code>'./foo.js'</code>, <code>'./../bar.json'</code>, etc) that will be resolved against the current working directory.</p><h4 id="rerun-arg-">rerun( [arg] )</h4><p>Reruns previous commands.</p><pre><code class="no-highlight language-text">In [1]: 1+1
 Out[1]: 2
 
 In [2]: rerun()
-</code></pre>
-<p>By default, the command re-executes the previous command. If provided an <code>integer</code>, the previous <code>n</code> commands are re-executed.</p>
-<pre><code class="no-highlight language-text">In [1]: 1+1
+</code></pre><p>By default, the command re-executes the previous command. If provided an <code>integer</code>, the previous <code>n</code> commands are re-executed.</p><pre><code class="no-highlight language-text">In [1]: 1+1
 Out[1]: 2
 
 In [2]: 2+2
 Out[2]: 4
 
 In [3]: rerun( 2 )
-</code></pre>
-<p>If provided a regular expression, the most recent command matching the regular expression is rerun.</p>
-<pre><code class="no-highlight language-text">In [1]: var x = base.sin( 3.14 );
+</code></pre><p>If provided a regular expression, the most recent command matching the regular expression is rerun.</p><pre><code class="no-highlight language-text">In [1]: var x = base.sin( 3.14 );
 
 In [2]: 1+1
 Out[2]: 2
 
 In [3]: rerun( /base\.sin/ )
-</code></pre>
-<p>If provided an <code>array</code> of command identifiers, the command corresponding to each identifier is rerun.</p>
-<pre><code class="no-highlight language-text">In [1]: 1+1
+</code></pre><p>If provided an <code>array</code> of command identifiers, the command corresponding to each identifier is rerun.</p><pre><code class="no-highlight language-text">In [1]: 1+1
 Out[1]: 2
 
 In [2]: 2+2
@@ -654,9 +389,7 @@ In [3]: 3+3
 Out[3]: 6
 
 In [4]: rerun( [ 1, 3 ] )
-</code></pre>
-<p>If provided a subsequence <code>string</code>, the command corresponding to each resolved command identifier is rerun.</p>
-<pre><code class="no-highlight language-text">In [1]: 1+1
+</code></pre><p>If provided a subsequence <code>string</code>, the command corresponding to each resolved command identifier is rerun.</p><pre><code class="no-highlight language-text">In [1]: 1+1
 Out[1]: 2
 
 In [2]: 2+2
@@ -666,53 +399,17 @@ In [3]: 3+3
 Out[3]: 6
 
 In [4]: rerun( '1:3:2' )
-</code></pre>
-<p><strong>WARNING</strong>: be careful when re-evaluating previously executed <code>rerun</code> commands, as this can lead to infinite execution loops.</p>
-<h4 id="reset">reset()</h4>
-<p>Resets the REPL.</p>
-<pre><code class="no-highlight language-text">In [1]: reset()
-</code></pre>
-<h4 id="save-fpath-">save( fpath )</h4>
-<p>Saves previous commands to a specified file path.</p>
-<pre><code class="no-highlight language-text">// TODO
-</code></pre>
-<h4 id="savestart-fpath-">saveStart( fpath )</h4>
-<p>Starts saving commands to a specified file path.</p>
-<pre><code class="no-highlight language-text">// TODO
-</code></pre>
-<h4 id="savestop-id-">saveStop( id )</h4>
-<p>Stops saving commands to a file path associated with a specified record identifier.</p>
-<pre><code class="no-highlight language-text">// TODO
-</code></pre>
-<h4 id="tutorial-name-options-">tutorial( [name, [options]] )</h4>
-<p>Starts a tutorial.</p>
-<pre><code class="no-highlight language-text">In [1]: var id = tutorial( 'repl' );
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>borderTop</strong>: top border character sequence. Default: <code>'*'</code>.</li>
-<li><strong>borderBottom</strong>: bottom border character sequence. Default: <code>'*'</code>.</li>
-<li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li>
-<li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li>
-<li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>progress</code>.</li>
-<li><strong>workspace</strong>: REPL workspace name. A tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing tutorial navigation and interaction. Default: <code>'tutorial-&#x3C;name>-&#x3C;n>'</code>, where <code>name</code> is the tutorial <code>name</code> and <code>n</code> is an assigned tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> identifier.</li>
-<li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered tutorial slide to the REPL. Default: <code>true</code>.</li>
-</ul>
-<p>A few notes:</p>
-<ul>
-<li>When not provided a tutorial <code>name</code>, the function prints a list of available tutorials.</li>
-<li>If a specified workspace already exists, the workspace is silently cleared and a new tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative tutorial workspace name.</li>
-</ul>
-<h4 id="userdoc-alias-ref-doc-">userDoc( alias, [ref,] doc )</h4>
-<p>Adds user-defined documentation.</p>
-<pre><code class="no-highlight language-text">In [1]: function foo() {};
+</code></pre><p><strong>WARNING</strong>: be careful when re-evaluating previously executed <code>rerun</code> commands, as this can lead to infinite execution loops.</p><h4 id="reset">reset()</h4><p>Resets the REPL.</p><pre><code class="no-highlight language-text">In [1]: reset()
+</code></pre><h4 id="save-fpath-">save( fpath )</h4><p>Saves previous commands to a specified file path.</p><pre><code class="no-highlight language-text">// TODO
+</code></pre><h4 id="savestart-fpath-">saveStart( fpath )</h4><p>Starts saving commands to a specified file path.</p><pre><code class="no-highlight language-text">// TODO
+</code></pre><h4 id="savestop-id-">saveStop( id )</h4><p>Stops saving commands to a file path associated with a specified record identifier.</p><pre><code class="no-highlight language-text">// TODO
+</code></pre><h4 id="tutorial-name-options-">tutorial( [name, [options]] )</h4><p>Starts a tutorial.</p><pre><code class="no-highlight language-text">In [1]: var id = tutorial( 'repl' );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>borderTop</strong>: top border character sequence. Default: <code>'*'</code>.</li><li><strong>borderBottom</strong>: bottom border character sequence. Default: <code>'*'</code>.</li><li><strong>borderLeft</strong>: left border character sequence. Default: <code>'* '</code>.</li><li><strong>borderRight</strong>: right border character sequence. Default: <code>' *'</code>.</li><li><strong>counter</strong>: slide counter. Can either be <code>true</code>, <code>false</code>, or <code>'progress'</code>. Default: <code>progress</code>.</li><li><strong>workspace</strong>: REPL workspace name. A tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> adds commands to the specified workspace, thus allowing tutorial navigation and interaction. Default: <code>'tutorial-&#x3C;name>-&#x3C;n>'</code>, where <code>name</code> is the tutorial <code>name</code> and <code>n</code> is an assigned tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> identifier.</li><li><strong>autoClear</strong>: <code>boolean</code> indicating whether to automatically clear the screen before writing a rendered tutorial slide to the REPL. Default: <code>true</code>.</li></ul><p>A few notes:</p><ul><li>When not provided a tutorial <code>name</code>, the function prints a list of available tutorials.</li><li>If a specified workspace already exists, the workspace is silently cleared and a new tutorial <a href="/docs/api/latest/@stdlib/repl/presentation">presentation</a> bound. In order to preserve an existing workspace, specify an alternative tutorial workspace name.</li></ul><h4 id="userdoc-alias-ref-doc-">userDoc( alias, [ref,] doc )</h4><p>Adds user-defined documentation.</p><pre><code class="no-highlight language-text">In [1]: function foo() {};
 
 In [2]: userDoc( 'foo', foo, '\nfoo()\n    Foo bar.\n' );
 
 In [3]: help( foo )
-</code></pre>
-<p>If user-defined documentation already exists for the provided alias, the current documentation is overwritten.</p>
-<pre><code class="no-highlight language-text">In [1]: function foo() {};
+</code></pre><p>If user-defined documentation already exists for the provided alias, the current documentation is overwritten.</p><pre><code class="no-highlight language-text">In [1]: function foo() {};
 
 In [2]: userDoc( 'foo', foo, '\nfoo()\n    Foo bar.\n' );
 
@@ -730,28 +427,14 @@ foo()
     Beep boop.
 
 
-</code></pre>
-<h4 id="vars-options-">vars( [options] )</h4>
-<p>Returns a list of variable names in the current workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: var x = 3.14;
+</code></pre><h4 id="vars-options-">vars( [options] )</h4><p>Returns a list of variable names in the current workspace.</p><pre><code class="no-highlight language-text">In [1]: var x = 3.14;
 
 In [2]: vars()
 Out[2]: [ 'x' ]
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li><strong>include</strong>: regular expression variable name inclusion filter.</li>
-<li><strong>exclude</strong>: regular expression variable name exclusion filter.</li>
-<li><strong>types</strong>: array-like <code>object</code> containing variable type inclusion filter(s).</li>
-<li><strong>details</strong>: <code>boolean</code> indicating whether to include additional variable details, such as variable type, contents, etc. Default: <code>false</code>.</li>
-</ul>
-<pre><code class="no-highlight language-text">In [1]: var x = 3.14;
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>include</strong>: regular expression variable name inclusion filter.</li><li><strong>exclude</strong>: regular expression variable name exclusion filter.</li><li><strong>types</strong>: array-like <code>object</code> containing variable type inclusion filter(s).</li><li><strong>details</strong>: <code>boolean</code> indicating whether to include additional variable details, such as variable type, contents, etc. Default: <code>false</code>.</li></ul><pre><code class="no-highlight language-text">In [1]: var x = 3.14;
 
 In [2]: vars( { 'details': true } )
-</code></pre>
-<h4 id="varsworkspace-name-options-">varsWorkspace( [name, ][options] )</h4>
-<p>Returns a list of variable names in a specified workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: var x = 3.14;
+</code></pre><h4 id="varsworkspace-name-options-">varsWorkspace( [name, ][options] )</h4><p>Returns a list of variable names in a specified workspace.</p><pre><code class="no-highlight language-text">In [1]: var x = 3.14;
 
 // List variable names in the current workspace:
 In [2]: varsWorkspace()
@@ -761,23 +444,12 @@ In [3]: workspace( 'foo' );
 
 In [4]: varsWorkspace( 'base' )
 Out[4]: [ 'x' ]
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li><strong>include</strong>: regular expression variable name inclusion filter.</li>
-<li><strong>exclude</strong>: regular expression variable name exclusion filter.</li>
-<li><strong>types</strong>: array-like <code>object</code> containing variable type inclusion filter(s).</li>
-<li><strong>details</strong>: <code>boolean</code> indicating whether to include additional variable details, such as variable type, contents, etc. Default: <code>false</code>.</li>
-</ul>
-<pre><code class="no-highlight language-text">In [1]: var x = 3.14;
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>include</strong>: regular expression variable name inclusion filter.</li><li><strong>exclude</strong>: regular expression variable name exclusion filter.</li><li><strong>types</strong>: array-like <code>object</code> containing variable type inclusion filter(s).</li><li><strong>details</strong>: <code>boolean</code> indicating whether to include additional variable details, such as variable type, contents, etc. Default: <code>false</code>.</li></ul><pre><code class="no-highlight language-text">In [1]: var x = 3.14;
 
 In [2]: workspace( 'foo' );
 
 In [3]: varsWorkspace( 'base', { 'details': true } )
-</code></pre>
-<h4 id="workspace-name-">workspace( name )</h4>
-<p>Switch to a specified workspace.</p>
-<pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
+</code></pre><h4 id="workspace-name-">workspace( name )</h4><p>Switch to a specified workspace.</p><pre><code class="no-highlight language-text">In [1]: workspace( 'foobar' );
 
 In [2]: var x = 3.14;
 
@@ -790,33 +462,10 @@ In [5]: workspace( 'foobar' );
 
 In [6]: x
 Out[6]: 3.14
-</code></pre>
-<p>If a workspace with the specified <code>name</code> does not exist, the workspace is created.</p>
-<h4 id="workspaces-options-">workspaces( [options] )</h4>
-<p>Returns a list of workspace names.</p>
-<pre><code class="no-highlight language-text">In [1]: workspaces()
+</code></pre><p>If a workspace with the specified <code>name</code> does not exist, the workspace is created.</p><h4 id="workspaces-options-">workspaces( [options] )</h4><p>Returns a list of workspace names.</p><pre><code class="no-highlight language-text">In [1]: workspaces()
 Out[1]: [ 'base' ]
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li><strong>include</strong>: regular expression workspace name inclusion filter.</li>
-<li><strong>exclude</strong>: regular expression workspace name exclusion filter.</li>
-<li><strong>details</strong>: <code>boolean</code> indicating whether to include additional workspace details, such as variable names, types, contents, etc. Default: <code>false</code>.</li>
-</ul>
-<pre><code class="no-highlight language-text">In [1]: workspaces( { 'details': true  } )
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<hr>
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><strong>include</strong>: regular expression workspace name inclusion filter.</li><li><strong>exclude</strong>: regular expression workspace name exclusion filter.</li><li><strong>details</strong>: <code>boolean</code> indicating whether to include additional workspace details, such as variable names, types, contents, etc. Default: <code>false</code>.</li></ul><pre><code class="no-highlight language-text">In [1]: workspaces( { 'details': true  } )
+</code></pre></section><section class="notes"></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> REPL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onExit</span>(<span class="hljs-params"></span>) </span>{
@@ -835,17 +484,7 @@ repl.load( join( __dirname, <span class="hljs-string">'examples'</span>, <span c
     <span class="hljs-comment">// Close the REPL:</span>
     repl.close();
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for describing a command-line interface. -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<!-- CLI usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: stdlib-repl [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: stdlib-repl [options]
 
 Options:
 
@@ -860,31 +499,5 @@ Options:
       --logfile &#x3C;filepath>      File to log REPL commands and printed output.
       --timeout &#x3C;timeout>       Milliseconds before terminating a command.
       --quiet                   Disable printing of REPL logs and diagnostics.
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- CLI usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ stdlib-repl
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stdlib-repl
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

@@ -1,19 +1,5 @@
-<h1 id="tojson">toJSON</h1>
-<blockquote>
-<p>Return a <a href="http://www.json.org/">JSON</a> representation of a <a href="/docs/api/latest/@stdlib/buffer/ctor">Buffer</a>.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/to-json'</span> );
-</code></pre>
-<h4 id="tojson-buffer-">toJSON( buffer )</h4>
-<p>Returns a <a href="http://www.json.org/">JSON</a> representation of a <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
+<h1 id="tojson">toJSON</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of a <a href="/docs/api/latest/@stdlib/buffer/ctor">Buffer</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/to-json'</span> );
+</code></pre><h4 id="tojson-buffer-">toJSON( buffer )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of a <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-array'</span> );
 
 <span class="hljs-keyword">var</span> buf = array2buffer( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
 
@@ -24,19 +10,7 @@
         'data': [ 1, 2 ]
     }
 */</span>
-</code></pre>
-<p>For guidance on reviving a JSON-serialized <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>, see <a href="/docs/api/latest/@stdlib/buffer/reviver"><code>reviver()</code></a>.</p>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
+</code></pre><p>For guidance on reviving a JSON-serialized <a href="/docs/api/latest/@stdlib/buffer/ctor"><code>Buffer</code></a>, see <a href="/docs/api/latest/@stdlib/buffer/reviver"><code>reviver()</code></a>.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> allocUnsafe = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/alloc-unsafe'</span> );
 <span class="hljs-keyword">var</span> randint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/to-json'</span> );
 
@@ -49,26 +23,4 @@ buf = allocUnsafe( <span class="hljs-number">100</span> );
 }
 
 <span class="hljs-built_in">console</span>.log( toJSON( buf ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-json"><code>@stdlib/array/to-json</code></a></span><span class="delimiter">: </span><span class="description">return a JSON representation of a typed array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/reviver"><code>@stdlib/buffer/reviver</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized Buffer.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-json"><code>@stdlib/array/to-json</code></a></span><span class="delimiter">: </span><span class="description">return a JSON representation of a typed array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/reviver"><code>@stdlib/buffer/reviver</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized Buffer.</span></li></ul></section><section class="links"></section>

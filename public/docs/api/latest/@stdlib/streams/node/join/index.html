@@ -1,15 +1,5 @@
-<h1 id="join-stream">Join Stream</h1>
-<blockquote>
-<p><a href="https://nodejs.org/api/stream.html">Transform stream</a> which joins streamed data.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> joinStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/join'</span> );
-</code></pre>
-<p><a name="join-stream"></a></p>
-<h4 id="joinstream-options-">joinStream( [options] )</h4>
-<p>Creates a <a href="https://nodejs.org/api/stream.html">transform stream</a> which joins streamed data.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
+<h1 id="join-stream">Join Stream</h1><blockquote><p><a href="https://nodejs.org/api/stream.html">Transform stream</a> which joins streamed data.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> joinStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/join'</span> );
+</code></pre><p><a name="join-stream"></a></p><h4 id="joinstream-options-">joinStream( [options] )</h4><p>Creates a <a href="https://nodejs.org/api/stream.html">transform stream</a> which joins streamed data.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
 
 <span class="hljs-keyword">var</span> stream = joinStream();
 
@@ -22,18 +12,7 @@ stream.write( <span class="hljs-string">'3'</span> );
 stream.end();
 
 <span class="hljs-comment">// prints: 1\n2\n3</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>sep</strong>: separator used to join streamed data. Default: <code>'\n'</code>.</li>
-<li><strong>objectMode</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should operate in object mode. Default: <code>false</code>.</li>
-<li><strong>encoding</strong>: specifies how <code>Buffer</code> objects should be decoded to <code>strings</code>. Default: <code>null</code>.</li>
-<li><strong>highWaterMark</strong>: specifies the <code>Buffer</code> level at which <code>write()</code> calls start returning <code>false</code>.</li>
-<li><strong>allowHalfOpen</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should remain open even if one side ends. Default: <code>false</code>.</li>
-<li><strong>readableObjectMode</strong>: specifies whether the readable side should be in object mode. Default: <code>false</code>.</li>
-</ul>
-<p>To set <a href="https://nodejs.org/api/stream.html">stream</a> <code>options</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>sep</strong>: separator used to join streamed data. Default: <code>'\n'</code>.</li><li><strong>objectMode</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should operate in object mode. Default: <code>false</code>.</li><li><strong>encoding</strong>: specifies how <code>Buffer</code> objects should be decoded to <code>strings</code>. Default: <code>null</code>.</li><li><strong>highWaterMark</strong>: specifies the <code>Buffer</code> level at which <code>write()</code> calls start returning <code>false</code>.</li><li><strong>allowHalfOpen</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should remain open even if one side ends. Default: <code>false</code>.</li><li><strong>readableObjectMode</strong>: specifies whether the readable side should be in object mode. Default: <code>false</code>.</li></ul><p>To set <a href="https://nodejs.org/api/stream.html">stream</a> <code>options</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'sep'</span>: <span class="hljs-string">','</span>,
     <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>,
@@ -43,10 +22,7 @@ stream.end();
 };
 
 <span class="hljs-keyword">var</span> stream = joinStream( opts );
-</code></pre>
-<h4 id="joinstreamfactory-options-">joinStream.factory( [options] )</h4>
-<p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">streams</a> which are identically configured according to provided <code>options</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><h4 id="joinstreamfactory-options-">joinStream.factory( [options] )</h4><p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">streams</a> which are identically configured according to provided <code>options</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'sep'</span>: <span class="hljs-string">'\t'</span>,
     <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-string">'encoding'</span>: <span class="hljs-string">'utf8'</span>,
@@ -61,11 +37,7 @@ stream.end();
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
     streams.push( factory() );
 }
-</code></pre>
-<p>This method accepts the same <code>options</code> as <a href="#join-stream"><code>joinStream()</code></a>.</p>
-<h4 id="joinstreamobjectmode-options-">joinStream.objectMode( [options] )</h4>
-<p>This method is a convenience function to create <a href="https://nodejs.org/api/stream.html">streams</a> which <strong>always</strong> operate in <code>objectMode</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
+</code></pre><p>This method accepts the same <code>options</code> as <a href="#join-stream"><code>joinStream()</code></a>.</p><h4 id="joinstreamobjectmode-options-">joinStream.objectMode( [options] )</h4><p>This method is a convenience function to create <a href="https://nodejs.org/api/stream.html">streams</a> which <strong>always</strong> operate in <code>objectMode</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
 
 <span class="hljs-keyword">var</span> stream = joinStream.objectMode({
     <span class="hljs-string">'sep'</span>: <span class="hljs-string">','</span>
@@ -80,14 +52,7 @@ stream.write( <span class="hljs-string">'c'</span> );
 stream.end();
 
 <span class="hljs-comment">// prints: a,b,c</span>
-</code></pre>
-<p>This method accepts the same <code>options</code> as <a href="#join-stream"><code>joinStream()</code></a>; however, the method will <strong>always</strong> override the <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a> option in <code>options</code>.</p>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> splitStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/split'</span> );
+</code></pre><p>This method accepts the same <code>options</code> as <a href="#join-stream"><code>joinStream()</code></a>; however, the method will <strong>always</strong> override the <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a> option in <code>options</code>.</p></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> splitStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/split'</span> );
 <span class="hljs-keyword">var</span> inspectStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/inspect-sink'</span> );
 <span class="hljs-keyword">var</span> joinStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/join'</span> );
 
@@ -123,21 +88,4 @@ split
     split.write( i+<span class="hljs-string">'\t'</span>, <span class="hljs-string">'utf8'</span> );
 }
 split.end();
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/streams/node/split"><code>@stdlib/streams/node/split</code></a></span><span class="delimiter">: </span><span class="description">transform stream which splits streamed data.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/streams/node/split"><code>@stdlib/streams/node/split</code></a></span><span class="delimiter">: </span><span class="description">transform stream which splits streamed data.</span></li></ul></section><section class="links"></section>

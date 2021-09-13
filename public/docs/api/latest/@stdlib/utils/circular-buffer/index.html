@@ -1,31 +1,12 @@
-<h1 id="circular-buffer">Circular Buffer</h1>
-<blockquote>
-<p>Circular buffer constructor.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> circularBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/circular-buffer'</span> );
-</code></pre>
-<h4 id="circularbuffer-buffer-">circularBuffer( buffer )</h4>
-<p>Returns a new circular buffer instance.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
+<h1 id="circular-buffer">Circular Buffer</h1><blockquote><p>Circular buffer constructor.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> circularBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/circular-buffer'</span> );
+</code></pre><h4 id="circularbuffer-buffer-">circularBuffer( buffer )</h4><p>Returns a new circular buffer instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns &#x3C;CircularBuffer></span>
-</code></pre>
-<p>The <code>buffer</code> argument may either be a integer which specifies the buffer size or an array-like object to use as the underlying buffer.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>The <code>buffer</code> argument may either be a integer which specifies the buffer size or an array-like object to use as the underlying buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-comment">// Use a typed array as the underlying buffer:</span>
 <span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">3</span> ) );
 <span class="hljs-comment">// returns &#x3C;CircularBuffer></span>
-</code></pre>
-<h5 id="bufclear">buf.clear()</h5>
-<p>Clears a buffer.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
+</code></pre><h5 id="bufclear">buf.clear()</h5><p>Clears a buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns &#x3C;CircularBuffer></span>
 
 <span class="hljs-comment">// Add values to the buffer:</span>
@@ -43,10 +24,7 @@ buf.clear();
 <span class="hljs-comment">// Get the number of elements in the buffer:</span>
 n = buf.count;
 <span class="hljs-comment">// returns 0</span>
-</code></pre>
-<h5 id="bufcount">buf.count</h5>
-<p>Returns the number of elements currently in the buffer.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
+</code></pre><h5 id="bufcount">buf.count</h5><p>Returns the number of elements currently in the buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns &#x3C;CircularBuffer></span>
 
 <span class="hljs-comment">// Add values to the buffer:</span>
@@ -56,10 +34,7 @@ buf.push( <span class="hljs-string">'bar'</span> );
 <span class="hljs-comment">// Determine how many elements are in the buffer:</span>
 <span class="hljs-keyword">var</span> n = buf.count;
 <span class="hljs-comment">// returns 2</span>
-</code></pre>
-<h5 id="buffull">buf.full</h5>
-<p>Returns a <code>boolean</code> indicating if a buffer is full.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
+</code></pre><h5 id="buffull">buf.full</h5><p>Returns a <code>boolean</code> indicating if a buffer is full.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns &#x3C;CircularBuffer></span>
 
 <span class="hljs-comment">// Add values to the buffer:</span>
@@ -76,10 +51,7 @@ buf.push( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Determine if the buffer is full:</span>
 bool = buf.full;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<h5 id="bufiterator-niters-">buf.iterator( [niters] )</h5>
-<p>Returns an iterator for iterating over a buffer. If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">2</span> );
+</code></pre><h5 id="bufiterator-niters-">buf.iterator( [niters] )</h5><p>Returns an iterator for iterating over a buffer. If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">2</span> );
 
 <span class="hljs-comment">// Add values to the buffer:</span>
 buf.push( <span class="hljs-string">'foo'</span> );
@@ -105,9 +77,7 @@ v = it.next().value;
 
 v = it.next().value;
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre>
-<p>By default, provided a buffer is <strong>full</strong>, the method returns an infinite iterator. To limit the number of iterations, provide an <code>niters</code> argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">2</span> );
+</code></pre><p>By default, provided a buffer is <strong>full</strong>, the method returns an infinite iterator. To limit the number of iterations, provide an <code>niters</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">2</span> );
 
 <span class="hljs-comment">// Add values to the buffer:</span>
 buf.push( <span class="hljs-string">'foo'</span> );
@@ -127,9 +97,7 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>A returned iterator does <strong>not</strong> iterate over partially full circular buffers.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">5</span> );
+</code></pre><p>A returned iterator does <strong>not</strong> iterate over partially full circular buffers.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">5</span> );
 
 <span class="hljs-comment">// Add values to the buffer:</span>
 buf.push( <span class="hljs-string">'foo'</span> );
@@ -145,19 +113,12 @@ buf.push( <span class="hljs-string">'bar'</span> );
 <span class="hljs-comment">// Iterate over the buffer...</span>
 bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>If iterating over a partially full circular buffer is necessary, use <code>buf.toArray()</code> and iterate over the returned array.</p>
-<h5 id="buflength">buf.length</h5>
-<p>Buffer length (capacity).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">3</span> ) );
+</code></pre><p>If iterating over a partially full circular buffer is necessary, use <code>buf.toArray()</code> and iterate over the returned array.</p><h5 id="buflength">buf.length</h5><p>Buffer length (capacity).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-number">3</span> ) );
 
 <span class="hljs-comment">// Get the buffer length:</span>
 <span class="hljs-keyword">var</span> len = buf.length;
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-<h5 id="bufpush-value-">buf.push( value )</h5>
-<p>Adds a value to the buffer.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
+</code></pre><h5 id="bufpush-value-">buf.push( value )</h5><p>Adds a value to the buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
 
 <span class="hljs-comment">// Fill the buffer...</span>
 <span class="hljs-keyword">var</span> v = buf.push( <span class="hljs-string">'foo'</span> );
@@ -172,11 +133,7 @@ v = buf.push( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Now that the buffer is full, each push will cause a value to be removed:</span>
 v = buf.push( <span class="hljs-string">'boop'</span> );
 <span class="hljs-comment">// returns 'foo'</span>
-</code></pre>
-<p>When a circular buffer is empty or partially full, this method returns <code>undefined</code>. Once a circular buffer is <strong>full</strong>, the method returns removed values.</p>
-<h5 id="buftoarray">buf.toArray()</h5>
-<p>Returns an array of buffer values.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
+</code></pre><p>When a circular buffer is empty or partially full, this method returns <code>undefined</code>. Once a circular buffer is <strong>full</strong>, the method returns removed values.</p><h5 id="buftoarray">buf.toArray()</h5><p>Returns an array of buffer values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
 
 <span class="hljs-comment">// Add values to the buffer:</span>
 buf.push( <span class="hljs-string">'foo'</span> );
@@ -187,10 +144,7 @@ buf.push( <span class="hljs-string">'boop'</span> );
 <span class="hljs-comment">// Get an array of buffer values:</span>
 <span class="hljs-keyword">var</span> vals = buf.toArray();
 <span class="hljs-comment">// returns [ 'bar', 'beep', 'boop' ]</span>
-</code></pre>
-<h5 id="buftojson">buf.toJSON()</h5>
-<p>Serializes a circular buffer as JSON.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
+</code></pre><h5 id="buftojson">buf.toJSON()</h5><p>Serializes a circular buffer as JSON.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = circularBuffer( <span class="hljs-number">3</span> );
 
 <span class="hljs-comment">// Add values to the buffer:</span>
 buf.push( <span class="hljs-string">'foo'</span> );
@@ -201,19 +155,7 @@ buf.push( <span class="hljs-string">'boop'</span> );
 <span class="hljs-comment">// Serialize to JSON:</span>
 <span class="hljs-keyword">var</span> o = buf.toJSON();
 <span class="hljs-comment">// returns { 'type': 'circular-buffer', 'length': 3, 'data': [ 'bar', 'beep', 'boop' ] }</span>
-</code></pre>
-<p><strong>Note</strong>: <code>JSON.stringify()</code> implicitly calls this method when stringifying a circular buffer instance.</p>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> circularBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/circular-buffer'</span> );
+</code></pre><p><strong>Note</strong>: <code>JSON.stringify()</code> implicitly calls this method when stringifying a circular buffer instance.</p></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> circularBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/circular-buffer'</span> );
 
 <span class="hljs-keyword">var</span> buf;
 <span class="hljs-keyword">var</span> v;
@@ -228,26 +170,4 @@ buf = circularBuffer( <span class="hljs-number">5</span> );
     v = buf.push( i );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Count: %d. Added value: %s. Removed value: %s.'</span>, buf.count, i, ( v === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> ) ? <span class="hljs-string">'(none)'</span> : v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/fifo"><code>@stdlib/utils/fifo</code></a></span><span class="delimiter">: </span><span class="description">first-in-first-out (FIFO) queue.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/stack"><code>@stdlib/utils/stack</code></a></span><span class="delimiter">: </span><span class="description">stack.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/fifo"><code>@stdlib/utils/fifo</code></a></span><span class="delimiter">: </span><span class="description">first-in-first-out (FIFO) queue.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/stack"><code>@stdlib/utils/stack</code></a></span><span class="delimiter">: </span><span class="description">stack.</span></li></ul></section><section class="links"></section>

@@ -1,19 +1,5 @@
-<h1 id="iterslice">iterSlice</h1>
-<blockquote>
-<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which returns a subsequence of iterated values from a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/slice'</span> );
-</code></pre>
-<h4 id="iterslice-iterator-begin-end-">iterSlice( iterator[, begin[, end]] )</h4>
-<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which returns a subsequence of iterated values from a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+<h1 id="iterslice">iterSlice</h1><blockquote><p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which returns a subsequence of iterated values from a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/slice'</span> );
+</code></pre><h4 id="iterslice-iterator-begin-end-">iterSlice( iterator[, begin[, end]] )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> which returns a subsequence of iterated values from a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> it = iterSlice( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
 <span class="hljs-comment">// returns &#x3C;Object></span>
@@ -28,14 +14,7 @@ v = it.next().value;
 <span class="hljs-comment">// returns 3</span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p>
-<ul>
-<li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li>
-<li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li>
-</ul>
-<p>By default, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> returns a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator's</a> first iterated value through an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator's</a> last iterated value. To specify an alternative start iteration index (zero-based and <strong>inclusive</strong>), provide a <code>begin</code> argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+</code></pre><p>The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object has the following properties:</p><ul><li><strong>next</strong>: function which returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object containing the next iterated value (if one exists) assigned to a <code>value</code> property and a <code>done</code> property having a <code>boolean</code> value indicating whether the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is finished.</li><li><strong>return</strong>: function which closes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and returns a single (optional) argument in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> protocol-compliant object.</li></ul><p>By default, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> returns a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator's</a> first iterated value through an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator's</a> last iterated value. To specify an alternative start iteration index (zero-based and <strong>inclusive</strong>), provide a <code>begin</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> it = iterSlice( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns &#x3C;Object></span>
@@ -48,9 +27,7 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>By default, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> continues iterating until it consumes all of a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator's</a> iterated values. To specify an end iteration index (zero-based and <strong>non-inclusive</strong>), provide an <code>end</code> argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+</code></pre><p>By default, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> continues iterating until it consumes all of a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator's</a> iterated values. To specify an end iteration index (zero-based and <strong>non-inclusive</strong>), provide an <code>end</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> it = iterSlice( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), <span class="hljs-number">1</span>, <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns &#x3C;Object></span>
@@ -63,31 +40,14 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>If <code>begin</code> is greater than or equal to <code>end</code>, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> does not return any iterated values.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+</code></pre><p>If <code>begin</code> is greater than or equal to <code>end</code>, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> does not return any iterated values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> it = iterSlice( array2iterator( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), <span class="hljs-number">3</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns &#x3C;Object></span>
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If an environment supports <code>Symbol.iterator</code> <strong>and</strong> a provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable, the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> is iterable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
 <span class="hljs-keyword">var</span> iterSlice = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/slice'</span> );
 
 <span class="hljs-keyword">var</span> rand;
@@ -110,26 +70,4 @@ it = iterSlice( rand, <span class="hljs-number">10</span>, <span class="hljs-num
     }
     <span class="hljs-built_in">console</span>.log( r.value );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/first"><code>@stdlib/iter/first</code></a></span><span class="delimiter">: </span><span class="description">return the first iterated value.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/head"><code>@stdlib/iter/head</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns the first <code>n</code> values of a provided iterator.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/first"><code>@stdlib/iter/first</code></a></span><span class="delimiter">: </span><span class="description">return the first iterated value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/head"><code>@stdlib/iter/head</code></a></span><span class="delimiter">: </span><span class="description">create an iterator which returns the first <code>n</code> values of a provided iterator.</span></li></ul></section><section class="links"></section>

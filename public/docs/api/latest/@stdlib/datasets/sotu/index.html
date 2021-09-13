@@ -1,36 +1,7 @@
-<h1 id="state-of-the-union-addresses">State of the Union Addresses</h1>
-<blockquote>
-<p><a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> addresses given by U.S. Presidents.</p>
-</blockquote>
-<section class="intro">
-<p>The <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> address is an annual speech given by the President of the United States of America to a joint session of the United States Congress.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sotu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/sotu'</span> );
-</code></pre>
-<h4 id="sotu-options-">sotu( [options] )</h4>
-<p>Returns <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> addresses.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu();
+<h1 id="state-of-the-union-addresses">State of the Union Addresses</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> addresses given by U.S. Presidents.</p></blockquote><section class="intro"><p>The <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> address is an annual speech given by the President of the United States of America to a joint session of the United States Congress.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sotu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/sotu'</span> );
+</code></pre><h4 id="sotu-options-">sotu( [options] )</h4><p>Returns <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> addresses.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu();
 <span class="hljs-comment">// returns [{...},{...},...]</span>
-</code></pre>
-<p>Each <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> address is represented by an <code>object</code> with the following fields:</p>
-<ul>
-<li><strong>year</strong>: speech year.</li>
-<li><strong>name</strong>: President name.</li>
-<li><strong>party</strong>: the President's political party.</li>
-<li><strong>text</strong>: speech text.</li>
-</ul>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>name</strong>: a President's name or an <code>array</code> of names.</li>
-<li><strong>party</strong>: a political party or an <code>array</code> of political parties.</li>
-<li><strong>year</strong>: a year or an <code>array</code> of years.</li>
-<li><strong>range</strong>: two-element <code>array</code> specifying a year range.</li>
-</ul>
-<p>To retrieve speeches by one or more Presidents, set the <code>name</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
+</code></pre><p>Each <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> address is represented by an <code>object</code> with the following fields:</p><ul><li><strong>year</strong>: speech year.</li><li><strong>name</strong>: President name.</li><li><strong>party</strong>: the President's political party.</li><li><strong>text</strong>: speech text.</li></ul><p>The function accepts the following <code>options</code>:</p><ul><li><strong>name</strong>: a President's name or an <code>array</code> of names.</li><li><strong>party</strong>: a political party or an <code>array</code> of political parties.</li><li><strong>year</strong>: a year or an <code>array</code> of years.</li><li><strong>range</strong>: two-element <code>array</code> specifying a year range.</li></ul><p>To retrieve speeches by one or more Presidents, set the <code>name</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'Barack Obama'</span>
 });
 <span class="hljs-comment">// returns [{...},{...},...]</span>
@@ -42,9 +13,7 @@ speeches = sotu({
     ]
 });
 <span class="hljs-comment">// returns [{...},{...},...]</span>
-</code></pre>
-<p>To retrieve speeches from Presidents belonging to a particular political party, set the <code>party</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
+</code></pre><p>To retrieve speeches from Presidents belonging to a particular political party, set the <code>party</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
     <span class="hljs-string">'party'</span>: <span class="hljs-string">'Democratic'</span>
 });
 <span class="hljs-comment">// returns [{...},{...},...]</span>
@@ -56,20 +25,7 @@ speeches = sotu({
     ]
 });
 <span class="hljs-comment">// returns [{...},{...},...]</span>
-</code></pre>
-<p>The following parties are recognized:</p>
-<ul>
-<li><strong>Democratic</strong></li>
-<li><strong>Republican</strong></li>
-<li><strong>Democratic-Republican</strong></li>
-<li><strong>Federalist</strong></li>
-<li><strong>National Union</strong></li>
-<li><strong>Whig</strong></li>
-<li><strong>Whig &#x26; Democratic</strong></li>
-<li><strong>none</strong></li>
-</ul>
-<p>To retrieve speeches from one or more years, set the <code>year</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
+</code></pre><p>The following parties are recognized:</p><ul><li><strong>Democratic</strong></li><li><strong>Republican</strong></li><li><strong>Democratic-Republican</strong></li><li><strong>Federalist</strong></li><li><strong>National Union</strong></li><li><strong>Whig</strong></li><li><strong>Whig &#x26; Democratic</strong></li><li><strong>none</strong></li></ul><p>To retrieve speeches from one or more years, set the <code>year</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
     <span class="hljs-string">'year'</span>: <span class="hljs-number">2009</span>
 });
 <span class="hljs-comment">// returns [{...}]</span>
@@ -81,28 +37,11 @@ speeches = sotu({
     ]
 });
 <span class="hljs-comment">// returns [{...},{...}]</span>
-</code></pre>
-<p>To specify a range of consecutive years, set the <code>range</code> option, where the first element corresponds to the starting year and the second element corresponds to the final year.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
+</code></pre><p>To specify a range of consecutive years, set the <code>range</code> option, where the first element corresponds to the starting year and the second element corresponds to the final year.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> speeches = sotu({
     <span class="hljs-string">'range'</span>: [ <span class="hljs-number">2009</span>, <span class="hljs-number">2016</span> ]
 });
 <span class="hljs-comment">// returns [{...},{...},...]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<hr>
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The dataset includes the addresses given by newly inaugurated presidents to a joint session of Congress in Washington during their first year in office, even though these are technically not State of the Union addresses. </li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sotu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/sotu'</span> );
+</code></pre></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li>The dataset includes the addresses given by newly inaugurated presidents to a joint session of Congress in Washington during their first year in office, even though these are technically not State of the Union addresses.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sotu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/sotu'</span> );
 
 <span class="hljs-keyword">var</span> speeches;
 
@@ -126,15 +65,7 @@ speeches = sotu({
     <span class="hljs-string">'party'</span>: <span class="hljs-string">'Democratic'</span>
 });
 <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Number of addresses by Democrats: %d'</span>, speeches.length );
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: sotu [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: sotu [options]
 
 Options:
 
@@ -144,35 +75,6 @@ Options:
          --party p1,p2,...     Political parties.
          --year y1,y2,...      Years.
          --range r1,r2         Year range.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes-1">Notes</h3>
-<ul>
-<li>Data is written to <code>stdout</code> as newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>).</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ sotu --name <span class="hljs-string">'Barack Obama'</span> --year 2009
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Data is written to <code>stdout</code> as newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>).</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ sotu --name <span class="hljs-string">'Barack Obama'</span> --year 2009
 {<span class="hljs-string">"name"</span>:<span class="hljs-string">"Barack Obama"</span>,<span class="hljs-string">"year"</span>:2009,<span class="hljs-string">"party"</span>:<span class="hljs-string">"Democratic"</span>,<span class="hljs-string">"text"</span>:<span class="hljs-string">"..."</span>}
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- <license> -->
-<hr>
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> addresses are works of the United States Government and thus have no copyright protection under <a href="https://en.wikisource.org/wiki/United_States_Code/Title_17/Chapter_1/Sections_105_and_106">United States copyright law</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section><hr><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. <a href="https://en.wikipedia.org/wiki/State_of_the_Union">State of the Union</a> addresses are works of the United States Government and thus have no copyright protection under <a href="https://en.wikisource.org/wiki/United_States_Code/Title_17/Chapter_1/Sections_105_and_106">United States copyright law</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"></section><section class="links"></section>

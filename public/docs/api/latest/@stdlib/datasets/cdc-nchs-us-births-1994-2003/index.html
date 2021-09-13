@@ -1,30 +1,7 @@
-<h1 id="us-birth-data-1994-2003">US Birth Data (1994-2003)</h1>
-<blockquote>
-<p>US birth data from 1994 to 2003, as provided by the Center for Disease Control and Prevention's National Center for Health Statistics.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dataset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/cdc-nchs-us-births-1994-2003'</span> );
-</code></pre>
-<h4 id="dataset">dataset()</h4>
-<p>Returns US birth data from 1994 to 2003, as provided by the Center for Disease Control and Prevention's National Center for Health Statistics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = dataset();
+<h1 id="us-birth-data-1994-2003">US Birth Data (1994-2003)</h1><blockquote><p>US birth data from 1994 to 2003, as provided by the Center for Disease Control and Prevention's National Center for Health Statistics.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dataset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/cdc-nchs-us-births-1994-2003'</span> );
+</code></pre><h4 id="dataset">dataset()</h4><p>Returns US birth data from 1994 to 2003, as provided by the Center for Disease Control and Prevention's National Center for Health Statistics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = dataset();
 <span class="hljs-comment">// returns [ {...}, ... ]</span>
-</code></pre>
-<p>Each element in the returned database has the following fields:</p>
-<ul>
-<li><strong>year</strong>: year.</li>
-<li><strong>month</strong>: month, where January is denoted by <code>1</code>.</li>
-<li><strong>date_of_month</strong>: day number of the month.</li>
-<li><strong>day_of_week</strong>: day of week, where Monday is <code>1</code> and Sunday is <code>7</code>.</li>
-<li><strong>births</strong>: number of births.</li>
-</ul>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrmean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/mean'</span> );
+</code></pre><p>Each element in the returned database has the following fields:</p><ul><li><strong>year</strong>: year.</li><li><strong>month</strong>: month, where January is denoted by <code>1</code>.</li><li><strong>date_of_month</strong>: day number of the month.</li><li><strong>day_of_week</strong>: day of week, where Monday is <code>1</code> and Sunday is <code>7</code>.</li><li><strong>births</strong>: number of births.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrmean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/mean'</span> );
 <span class="hljs-keyword">var</span> dataset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/cdc-nchs-us-births-1994-2003'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mean</span>(<span class="hljs-params"> a, b </span>) </span>{
@@ -87,62 +64,11 @@
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">7</span>; i++ ) {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d: %d%'</span>, i+<span class="hljs-number">1</span>, means[ i ]().toFixed( <span class="hljs-number">3</span> ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: cdc-nchs-us-births-1994-2003 [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: cdc-nchs-us-births-1994-2003 [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes">Notes</h3>
-<ul>
-<li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li>
-</ul>
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ cdc-nchs-us-births-1994-2003
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Bialik, Carl. 2016. "Some People Are Too Superstitious To Have A Baby On Friday The 13th." <a href="https://fivethirtyeight.com/features/some-people-are-too-superstitious-to-have-a-baby-on-friday-the-13th/">https://fivethirtyeight.com/features/some-people-are-too-superstitious-to-have-a-baby-on-friday-the-13th/</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/cdc-nchs-us-births-1969-1988"><code>@stdlib/datasets/cdc-nchs-us-births-1969-1988</code></a></span><span class="delimiter">: </span><span class="description">US birth data from 1969 to 1988, as provided by the Center for Disease Control and Prevention's National Center for Health Statistics.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/ssa-us-births-2000-2014"><code>@stdlib/datasets/ssa-us-births-2000-2014</code></a></span><span class="delimiter">: </span><span class="description">US birth data from 2000 to 2014, as provided by the Social Security Administration.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
-</section>
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li></ul><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ cdc-nchs-us-births-1994-2003
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Bialik, Carl. 2016. "Some People Are Too Superstitious To Have A Baby On Friday The 13th." <a href="https://fivethirtyeight.com/features/some-people-are-too-superstitious-to-have-a-baby-on-friday-the-13th/">https://fivethirtyeight.com/features/some-people-are-too-superstitious-to-have-a-baby-on-friday-the-13th/</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/cdc-nchs-us-births-1969-1988"><code>@stdlib/datasets/cdc-nchs-us-births-1969-1988</code></a></span><span class="delimiter">: </span><span class="description">US birth data from 1969 to 1988, as provided by the Center for Disease Control and Prevention's National Center for Health Statistics.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/ssa-us-births-2000-2014"><code>@stdlib/datasets/ssa-us-births-2000-2014</code></a></span><span class="delimiter">: </span><span class="description">US birth data from 2000 to 2014, as provided by the Social Security Administration.</span></li></ul></section><section class="links"></section></section>

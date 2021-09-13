@@ -1,18 +1,5 @@
-<h1 id="anscombes-quartet">Anscombe's Quartet</h1>
-<blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's quartet</a>.</p>
-</blockquote>
-<section class="intro">
-<p><a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's quartet</a> is a set of <code>4</code> datasets which all have nearly identical simple statistical properties but vary considerably when graphed. <a href="https://en.wikipedia.org/wiki/Francis_Anscombe">Anscombe</a> created the datasets to demonstrate why graphical data exploration should <strong>precede</strong> statistical data analysis and to show the effect of outliers on statistical properties.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/anscombes-quartet'</span> );
-</code></pre>
-<h4 id="data">data()</h4>
-<p>Returns <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's quartet</a>, which is comprised of <code>4</code> individual datasets, where each individual dataset is an <code>array</code> of <code>[x,y]</code> tuples.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = data();
+<h1 id="anscombes-quartet">Anscombe's Quartet</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's quartet</a>.</p></blockquote><section class="intro"><p><a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's quartet</a> is a set of <code>4</code> datasets which all have nearly identical simple statistical properties but vary considerably when graphed. <a href="https://en.wikipedia.org/wiki/Francis_Anscombe">Anscombe</a> created the datasets to demonstrate why graphical data exploration should <strong>precede</strong> statistical data analysis and to show the effect of outliers on statistical properties.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/anscombes-quartet'</span> );
+</code></pre><h4 id="data">data()</h4><p>Returns <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet">Anscombe's quartet</a>, which is comprised of <code>4</code> individual datasets, where each individual dataset is an <code>array</code> of <code>[x,y]</code> tuples.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = data();
 <span class="hljs-comment">/* returns
     [
         [
@@ -69,43 +56,16 @@
         ]
     ]
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- TODO: more interesting example involving stats and plotting once ndarray -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/anscombes-quartet'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/anscombes-quartet'</span> );
 
 <span class="hljs-built_in">console</span>.log( data() );
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: anscombes-quartet [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: anscombes-quartet [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes">Notes</h3>
-<ul>
-<li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ anscombes-quartet
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ anscombes-quartet
 x1,y1,x2,y2,x3,y3,x4,y4
 10,8.04,10,9.14,10,7.46,8,6.58
 8,6.95,8,8.14,8,6.77,8,5.76
@@ -118,28 +78,4 @@ x1,y1,x2,y2,x3,y3,x4,y4
 12,10.84,12,9.13,12,8.15,8,5.56
 7,4.82,7,7.26,7,6.42,8,7.91
 5,5.68,5,4.74,5,5.73,8,6.89
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Anscombe, Francis J. 1973. "Graphs in Statistical Analysis." <em>The American Statistician</em> 27 (1). [American Statistical Association, Taylor &#x26; Francis, Ltd.]: 17–21. <a href="http://www.jstor.org/stable/2682899">http://www.jstor.org/stable/2682899</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Anscombe, Francis J. 1973. "Graphs in Statistical Analysis." <em>The American Statistician</em> 27 (1). [American Statistical Association, Taylor &#x26; Francis, Ltd.]: 17–21. <a href="http://www.jstor.org/stable/2682899">http://www.jstor.org/stable/2682899</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"></section><section class="links"></section>

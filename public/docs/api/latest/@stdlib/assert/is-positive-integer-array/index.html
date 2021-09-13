@@ -1,51 +1,26 @@
-<h1 id="ispositiveintegerarray">isPositiveIntegerArray</h1>
-<blockquote>
-<p>Test if a value is an array-like object containing only positive integers.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPositiveIntegerArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-integer-array'</span> );
-</code></pre>
-<h4 id="ispositiveintegerarray-value-">isPositiveIntegerArray( value )</h4>
-<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> positive <code>integer</code> values.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<h1 id="ispositiveintegerarray">isPositiveIntegerArray</h1><blockquote><p>Test if a value is an array-like object containing only positive integers.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPositiveIntegerArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-integer-array'</span> );
+</code></pre><h4 id="ispositiveintegerarray-value-">isPositiveIntegerArray( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> positive <code>integer</code> values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isPositiveIntegerArray( [ <span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3.0</span>) ] );
 <span class="hljs-comment">// returns true</span>
 
 bool = isPositiveIntegerArray( [ <span class="hljs-number">3.0</span>, <span class="hljs-string">'3.0'</span> ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="ispositiveintegerarrayprimitives-value-">isPositiveIntegerArray.primitives( value )</h4>
-<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> positive primitive <code>integer</code> values.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="ispositiveintegerarrayprimitives-value-">isPositiveIntegerArray.primitives( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> positive primitive <code>integer</code> values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isPositiveIntegerArray.primitives( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">10.0</span> ] );
 <span class="hljs-comment">// returns true</span>
 
 bool = isPositiveIntegerArray.primitives( [ <span class="hljs-number">3.0</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="ispositiveintegerarrayobjects-value-">isPositiveIntegerArray.objects( value )</h4>
-<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> positive object <code>integer</code> values.</p>
-<!-- eslint-disable no-new-wrappers, max-len -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="ispositiveintegerarrayobjects-value-">isPositiveIntegerArray.objects( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> positive object <code>integer</code> values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isPositiveIntegerArray.objects( [ <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">3.0</span>), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
 <span class="hljs-comment">// returns true</span>
 
 bool = isPositiveIntegerArray.objects( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">10.0</span> ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable no-new-wrappers -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 <span class="hljs-keyword">var</span> isPositiveIntegerArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-positive-integer-array'</span> );
 
 <span class="hljs-keyword">var</span> bool = isPositiveIntegerArray( [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
@@ -65,23 +40,4 @@ bool = isPositiveIntegerArray( [ <span class="hljs-number">2.3</span>, <span cla
 
 bool = isPositiveIntegerArray( [] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-array"><code>@stdlib/assert/is-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-integer"><code>@stdlib/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having an integer value.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-positive-integer"><code>@stdlib/assert/is-positive-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having a positive integer value.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-array"><code>@stdlib/assert/is-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-integer"><code>@stdlib/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having an integer value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-positive-integer"><code>@stdlib/assert/is-positive-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having a positive integer value.</span></li></ul></section><section class="links"></section>

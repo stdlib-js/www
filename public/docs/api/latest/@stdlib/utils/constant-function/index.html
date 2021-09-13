@@ -1,18 +1,5 @@
-<h1 id="constant-function">Constant Function</h1>
-<blockquote>
-<p>Constant function.</p>
-</blockquote>
-<section class="intro">
-<p>A <a href="https://en.wikipedia.org/wiki/Constant_function">constant function</a> is a <code>function</code> whose output value is the same for every input value.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/constant-function'</span> );
-</code></pre>
-<h4 id="constantfunction-x-">constantFunction( x )</h4>
-<p>Returns a <a href="https://en.wikipedia.org/wiki/Constant_function">constant function</a> which always returns <code>x</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = constantFunction( <span class="hljs-string">'beep'</span> );
+<h1 id="constant-function">Constant Function</h1><blockquote><p>Constant function.</p></blockquote><section class="intro"><p>A <a href="https://en.wikipedia.org/wiki/Constant_function">constant function</a> is a <code>function</code> whose output value is the same for every input value.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/constant-function'</span> );
+</code></pre><h4 id="constantfunction-x-">constantFunction( x )</h4><p>Returns a <a href="https://en.wikipedia.org/wiki/Constant_function">constant function</a> which always returns <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = constantFunction( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// returns &#x3C;Function></span>
 
 <span class="hljs-keyword">var</span> v = fcn();
@@ -20,28 +7,12 @@
 
 v = fcn();
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>When provided an object reference, the returned <code>function</code> always returns the same reference.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>When provided an object reference, the returned <code>function</code> always returns the same reference.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
 <span class="hljs-keyword">var</span> fcn = constantFunction( obj );
 
 <span class="hljs-keyword">var</span> bool = ( fcn() === obj );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/constant-function'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/constant-function'</span> );
 
 <span class="hljs-keyword">var</span> bool;
 <span class="hljs-keyword">var</span> fcn;
@@ -62,22 +33,4 @@ fcn = constantFunction( arr );
     bool = ( v === arr );
     <span class="hljs-comment">// returns true</span>
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/argument-function"><code>@stdlib/utils/argument-function</code></a></span><span class="delimiter">: </span><span class="description">argument function.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/identity-function"><code>@stdlib/utils/identity-function</code></a></span><span class="delimiter">: </span><span class="description">identity function.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/argument-function"><code>@stdlib/utils/argument-function</code></a></span><span class="delimiter">: </span><span class="description">argument function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/identity-function"><code>@stdlib/utils/identity-function</code></a></span><span class="delimiter">: </span><span class="description">identity function.</span></li></ul></section><section class="links"></section>

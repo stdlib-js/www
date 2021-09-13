@@ -1,22 +1,7 @@
-<h1 id="max-safe-integer">Max Safe Integer</h1>
-<blockquote>
-<p>Maximum safe <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> integer.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_MAX_SAFE_INTEGER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/max-safe-integer'</span> );
-</code></pre>
-<h4 id="float64_max_safe_integer">FLOAT64_MAX_SAFE_INTEGER</h4>
-<p>The maximum <a href="http://www.2ality.com/2013/10/safe-integers.html">safe</a> <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> integer.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT64_MAX_SAFE_INTEGER === <span class="hljs-number">9007199254740991</span> );
+<h1 id="max-safe-integer">Max Safe Integer</h1><blockquote><p>Maximum safe <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> integer.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> FLOAT64_MAX_SAFE_INTEGER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/max-safe-integer'</span> );
+</code></pre><h4 id="float64_max_safe_integer">FLOAT64_MAX_SAFE_INTEGER</h4><p>The maximum <a href="http://www.2ality.com/2013/10/safe-integers.html">safe</a> <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> integer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( FLOAT64_MAX_SAFE_INTEGER === <span class="hljs-number">9007199254740991</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> FLOAT64_MAX_SAFE_INTEGER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/max-safe-integer'</span> );
@@ -34,23 +19,4 @@ max = pow( <span class="hljs-number">2.0</span>, <span class="hljs-number">55</s
         <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Safe: %d'</span>, x );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float16/max-safe-integer"><code>@stdlib/constants/float16/max-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">maximum safe half-precision floating-point integer.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/max-safe-integer"><code>@stdlib/constants/float32/max-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">maximum safe single-precision floating-point integer.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/min-safe-integer"><code>@stdlib/constants/float64/min-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">minimum safe double-precision floating-point integer.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float16/max-safe-integer"><code>@stdlib/constants/float16/max-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">maximum safe half-precision floating-point integer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float32/max-safe-integer"><code>@stdlib/constants/float32/max-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">maximum safe single-precision floating-point integer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/float64/min-safe-integer"><code>@stdlib/constants/float64/min-safe-integer</code></a></span><span class="delimiter">: </span><span class="description">minimum safe double-precision floating-point integer.</span></li></ul></section><section class="links"></section>

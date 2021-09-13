@@ -1,14 +1,5 @@
-<h1 id="isodd">isOdd</h1>
-<blockquote>
-<p>Test if a 32-bit integer is odd.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isOdd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/int32-is-odd'</span> );
-</code></pre>
-<h4 id="isodd-x-">isOdd( x )</h4>
-<p>Tests if 32-bit integer is odd.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isOdd( <span class="hljs-number">5</span> );
+<h1 id="isodd">isOdd</h1><blockquote><p>Test if a 32-bit integer is odd.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isOdd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/int32-is-odd'</span> );
+</code></pre><h4 id="isodd-x-">isOdd( x )</h4><p>Tests if 32-bit integer is odd.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isOdd( <span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isOdd( -<span class="hljs-number">2</span> );
@@ -16,16 +7,7 @@ bool = isOdd( -<span class="hljs-number">2</span> );
 
 bool = isOdd( <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> isOdd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/int32-is-odd'</span> );
 
@@ -38,22 +20,4 @@ bool = isOdd( <span class="hljs-number">0</span> );
     bool = isOdd( x );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d is %s'</span>, x, ( bool ) ? <span class="hljs-string">'odd'</span> : <span class="hljs-string">'not odd'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/int32-is-even"><code>@stdlib/math/base/assert/int32-is-even</code></a></span><span class="delimiter">: </span><span class="description">test if a 32-bit integer is even.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-odd"><code>@stdlib/math/base/assert/is-odd</code></a></span><span class="delimiter">: </span><span class="description">test if a finite numeric value is an odd number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/int32-is-even"><code>@stdlib/math/base/assert/int32-is-even</code></a></span><span class="delimiter">: </span><span class="description">test if a 32-bit integer is even.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-odd"><code>@stdlib/math/base/assert/is-odd</code></a></span><span class="delimiter">: </span><span class="description">test if a finite numeric value is an odd number.</span></li></ul></section><section class="links"></section>

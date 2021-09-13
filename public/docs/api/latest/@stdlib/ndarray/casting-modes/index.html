@@ -1,40 +1,7 @@
-<h1 id="casting-modes">Casting Modes</h1>
-<blockquote>
-<p>List of ndarray casting modes.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> modes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/casting-modes'</span> );
-</code></pre>
-<h4 id="modes">modes()</h4>
-<p>Returns a list of ndarray casting modes.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = modes();
+<h1 id="casting-modes">Casting Modes</h1><blockquote><p>List of ndarray casting modes.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> modes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/casting-modes'</span> );
+</code></pre><h4 id="modes">modes()</h4><p>Returns a list of ndarray casting modes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = modes();
 <span class="hljs-comment">// returns [ 'none', 'equiv', 'safe', 'same-kind', 'unsafe' ]</span>
-</code></pre>
-<p>The output <code>array</code> contains the following modes:</p>
-<ul>
-<li><code>none</code>: only allow casting between identical types.</li>
-<li><code>equiv</code>: allow casting between identical and byte swapped types.</li>
-<li><code>safe</code>: only allow "safe" casts.</li>
-<li><code>same-kind</code>: allow "safe" casts and casts within the same kind (e.g., between signed integers or between floats).</li>
-<li><code>unsafe</code>: allow casting between all types (including between integers and floats).</li>
-</ul>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
+</code></pre><p>The output <code>array</code> contains the following modes:</p><ul><li><code>none</code>: only allow casting between identical types.</li><li><code>equiv</code>: allow casting between identical and byte swapped types.</li><li><code>safe</code>: only allow "safe" casts.</li><li><code>same-kind</code>: allow "safe" casts and casts within the same kind (e.g., between signed integers or between floats).</li><li><code>unsafe</code>: allow casting between all types (including between integers and floats).</li></ul></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
 <span class="hljs-keyword">var</span> modes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/casting-modes'</span> );
 
 <span class="hljs-keyword">var</span> MODES = modes();
@@ -64,26 +31,4 @@ bool = isMode( <span class="hljs-string">'unsafe'</span> );
 
 bool = isMode( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li></ul></section><section class="links"></section>

@@ -1,32 +1,12 @@
-<h1 id="dssumors">dssumors</h1>
-<blockquote>
-<p>Calculate the sum of single-precision floating-point strided array elements using ordinary recursive summation with extended accumulation and returning an extended precision result.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dssumors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/dssumors'</span> );
-</code></pre>
-<h4 id="dssumors-n-x-stride-">dssumors( N, x, stride )</h4>
-<p>Computes the sum of single-precision floating-point strided array elements using ordinary recursive summation with extended accumulation and returning an extended precision result.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<h1 id="dssumors">dssumors</h1><blockquote><p>Calculate the sum of single-precision floating-point strided array elements using ordinary recursive summation with extended accumulation and returning an extended precision result.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dssumors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/dssumors'</span> );
+</code></pre><h4 id="dssumors-n-x-stride-">dssumors( N, x, stride )</h4><p>Computes the sum of single-precision floating-point strided array elements using ordinary recursive summation with extended accumulation and returning an extended precision result.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ] );
 <span class="hljs-keyword">var</span> N = x.length;
 
 <span class="hljs-keyword">var</span> v = dssumors( N, x, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 1.0</span>
-</code></pre>
-<p>The function has the following parameters:</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
-<li><strong>stride</strong>: index increment for <code>x</code>.</li>
-</ul>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to compute the sum of every other element in <code>x</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>stride</strong>: index increment for <code>x</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to compute the sum of every other element in <code>x</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">7.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span> ] );
@@ -34,10 +14,7 @@
 
 <span class="hljs-keyword">var</span> v = dssumors( N, x, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 5.0</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
-<!-- eslint-disable stdlib/capitalized-comments -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
@@ -47,23 +24,14 @@
 
 <span class="hljs-keyword">var</span> v = dssumors( N, x1, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 5.0</span>
-</code></pre>
-<h4 id="dssumorsndarray-n-x-stride-offset-">dssumors.ndarray( N, x, stride, offset )</h4>
-<p>Computes the sum of single-precision floating-point strided array elements using ordinary recursive summation with extended accumulation and alternative indexing semantics and returning an extended precision result.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><h4 id="dssumorsndarray-n-x-stride-offset-">dssumors.ndarray( N, x, stride, offset )</h4><p>Computes the sum of single-precision floating-point strided array elements using ordinary recursive summation with extended accumulation and alternative indexing semantics and returning an extended precision result.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ] );
 <span class="hljs-keyword">var</span> N = x.length;
 
 <span class="hljs-keyword">var</span> v = dssumors.ndarray( N, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 1.0</span>
-</code></pre>
-<p>The function has the following additional parameters:</p>
-<ul>
-<li><strong>offset</strong>: starting index for <code>x</code>.</li>
-</ul>
-<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to calculate the sum of every other value in <code>x</code> starting from the second value</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offset</strong>: starting index for <code>x</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to calculate the sum of every other value in <code>x</code> starting from the second value</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
@@ -71,21 +39,7 @@
 
 <span class="hljs-keyword">var</span> v = dssumors.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 5.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If <code>N &#x3C;= 0</code>, both functions return <code>0.0</code>.</li>
-<li>Accumulated intermediate values are stored as double-precision floating-point numbers.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>0.0</code>.</li><li>Accumulated intermediate values are stored as double-precision floating-point numbers.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> dssumors = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/dssumors'</span> );
@@ -101,27 +55,4 @@ x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Arr
 
 <span class="hljs-keyword">var</span> v = dssumors( x.length, x, <span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( v );
-</code></pre>
-</section>
-<!-- /.examples -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dsnansumors"><code>@stdlib/blas/ext/base/dsnansumors</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of single-precision floating-point strided array elements, ignoring NaN values, using ordinary recursive summation with extended accumulation, and returning an extended precision result.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dssum"><code>@stdlib/blas/ext/base/dssum</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of single-precision floating-point strided array elements using extended accumulation and returning an extended precision result.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dsumors"><code>@stdlib/blas/ext/base/dsumors</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of double-precision floating-point strided array elements using ordinary recursive summation.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/ssumors"><code>@stdlib/blas/ext/base/ssumors</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of single-precision floating-point strided array elements using ordinary recursive summation.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dsnansumors"><code>@stdlib/blas/ext/base/dsnansumors</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of single-precision floating-point strided array elements, ignoring NaN values, using ordinary recursive summation with extended accumulation, and returning an extended precision result.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dssum"><code>@stdlib/blas/ext/base/dssum</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of single-precision floating-point strided array elements using extended accumulation and returning an extended precision result.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/dsumors"><code>@stdlib/blas/ext/base/dsumors</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of double-precision floating-point strided array elements using ordinary recursive summation.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/ext/base/ssumors"><code>@stdlib/blas/ext/base/ssumors</code></a></span><span class="delimiter">: </span><span class="description">calculate the sum of single-precision floating-point strided array elements using ordinary recursive summation.</span></li></ul></section><section class="links"></section>

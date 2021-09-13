@@ -1,14 +1,5 @@
-<h1 id="define-property">Define Property</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Define</a> (or modify) an object property.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
-</code></pre>
-<h4 id="defineproperty-obj-prop-descriptor-">defineProperty( obj, prop, descriptor )</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Defines</a> (or modifies) an object property.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
+<h1 id="define-property">Define Property</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Define</a> (or modify) an object property.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+</code></pre><h4 id="defineproperty-obj-prop-descriptor-">defineProperty( obj, prop, descriptor )</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Defines</a> (or modifies) an object property.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
 
 defineProperty( obj, <span class="hljs-string">'foo'</span>, {
     <span class="hljs-string">'value'</span>: <span class="hljs-string">'bar'</span>,
@@ -17,29 +8,7 @@ defineProperty( obj, <span class="hljs-string">'foo'</span>, {
 
 obj.foo = <span class="hljs-string">'boop'</span>;
 <span class="hljs-comment">// throws &#x3C;Error></span>
-</code></pre>
-<p>A property <code>descriptor</code> has the following optional properties:</p>
-<ul>
-<li><strong>configurable</strong>: <code>boolean</code> indicating if property descriptor can be changed and if the property can be deleted from the provided object. Default: <code>false</code>.</li>
-<li><strong>enumerable</strong>: <code>boolean</code> indicating if the property shows up when enumerating object properties. Default: <code>false</code>.</li>
-<li><strong>writable</strong>: <code>boolean</code> indicating if the value associated with the property can be changed with an assignment operator. Default: <code>false</code>.</li>
-<li><strong>value</strong>: property value.</li>
-<li><strong>get</strong>: <code>function</code> which serves as a getter for the property, or, if no getter, <code>undefined</code>. When the property is accessed, a getter function is called without arguments and with the <code>this</code> context set to the object through which the property is accessed (which may not be the object on which the property is defined due to inheritance). The return value will be used as the property value. Default: <code>undefined</code>.</li>
-<li><strong>set</strong>: <code>function</code> which serves as a setter for the property, or, if no setter, <code>undefined</code>. When assigning a property value, a setter function is called with one argument (the value being assigned to the property) and with the <code>this</code> context set to the object through which the property is assigned. Default: <code>undefined</code>.</li>
-</ul>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Property descriptors come in two flavors: <strong>data descriptors</strong> and <strong>accessor descriptors</strong>. A data descriptor is a property that has a value, which may or may not be writable. An accessor descriptor is a property described by a getter-setter function pair. A descriptor must be <strong>one</strong> of these two flavors and <strong>cannot</strong> be both.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+</code></pre><p>A property <code>descriptor</code> has the following optional properties:</p><ul><li><strong>configurable</strong>: <code>boolean</code> indicating if property descriptor can be changed and if the property can be deleted from the provided object. Default: <code>false</code>.</li><li><strong>enumerable</strong>: <code>boolean</code> indicating if the property shows up when enumerating object properties. Default: <code>false</code>.</li><li><strong>writable</strong>: <code>boolean</code> indicating if the value associated with the property can be changed with an assignment operator. Default: <code>false</code>.</li><li><strong>value</strong>: property value.</li><li><strong>get</strong>: <code>function</code> which serves as a getter for the property, or, if no getter, <code>undefined</code>. When the property is accessed, a getter function is called without arguments and with the <code>this</code> context set to the object through which the property is accessed (which may not be the object on which the property is defined due to inheritance). The return value will be used as the property value. Default: <code>undefined</code>.</li><li><strong>set</strong>: <code>function</code> which serves as a setter for the property, or, if no setter, <code>undefined</code>. When assigning a property value, a setter function is called with one argument (the value being assigned to the property) and with the <code>this</code> context set to the object through which the property is assigned. Default: <code>undefined</code>.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Property descriptors come in two flavors: <strong>data descriptors</strong> and <strong>accessor descriptors</strong>. A data descriptor is a property that has a value, which may or may not be writable. An accessor descriptor is a property described by a getter-setter function pair. A descriptor must be <strong>one</strong> of these two flavors and <strong>cannot</strong> be both.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"> name </span>) </span>{
     <span class="hljs-keyword">if</span> ( !(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Foo) ) {
@@ -60,22 +29,4 @@ obj.foo = <span class="hljs-string">'boop'</span>;
 } <span class="hljs-keyword">catch</span> ( err ) {
     <span class="hljs-built_in">console</span>.error( err.message );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-properties"><code>@stdlib/utils/define-properties</code></a></span><span class="delimiter">: </span><span class="description">define (and/or modify) object properties.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-properties"><code>@stdlib/utils/define-properties</code></a></span><span class="delimiter">: </span><span class="description">define (and/or modify) object properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li></ul></section><section class="links"></section>

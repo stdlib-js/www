@@ -1,17 +1,5 @@
-<h1 id="rising-factorial">Rising Factorial</h1>
-<blockquote>
-<p>Compute the <a href="https://en.wikipedia.org/wiki/Falling_and_rising_factorials">rising factorial</a>.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> risingFactorial = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rising-factorial'</span> );
-</code></pre>
-<h4 id="risingfactorial-x-n-">risingFactorial( x, n )</h4>
-<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Falling_and_rising_factorials">rising factorial</a> of <code>x</code> and <code>n</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = risingFactorial( <span class="hljs-number">0.9</span>, <span class="hljs-number">5</span> );
+<h1 id="rising-factorial">Rising Factorial</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Falling_and_rising_factorials">rising factorial</a>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> risingFactorial = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rising-factorial'</span> );
+</code></pre><h4 id="risingfactorial-x-n-">risingFactorial( x, n )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Falling_and_rising_factorials">rising factorial</a> of <code>x</code> and <code>n</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = risingFactorial( <span class="hljs-number">0.9</span>, <span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns ~94.766</span>
 
 v = risingFactorial( -<span class="hljs-number">9.0</span>, <span class="hljs-number">3</span> );
@@ -31,17 +19,9 @@ v = risingFactorial( <span class="hljs-number">5.0</span>, <span class="hljs-lit
 
 v = risingFactorial( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-<p>The function returns <code>NaN</code> for non-integer <code>n</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = risingFactorial( <span class="hljs-number">2.0</span>, <span class="hljs-number">1.5</span> );
+</code></pre><p>The function returns <code>NaN</code> for non-integer <code>n</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = risingFactorial( <span class="hljs-number">2.0</span>, <span class="hljs-number">1.5</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> ceil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ceil'</span> );
 <span class="hljs-keyword">var</span> risingFactorial = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rising-factorial'</span> );
 
@@ -54,21 +34,4 @@ v = risingFactorial( <span class="hljs-literal">NaN</span>, <span class="hljs-li
     n = ceil( ( randu()*<span class="hljs-number">40.0</span> ) - <span class="hljs-number">20.0</span> );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'risingFactorial(%d,%d) = %d'</span>, x, n, risingFactorial( x, n ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/falling-factorial"><code>@stdlib/math/base/special/falling-factorial</code></a></span><span class="delimiter">: </span><span class="description">compute the falling factorial.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/falling-factorial"><code>@stdlib/math/base/special/falling-factorial</code></a></span><span class="delimiter">: </span><span class="description">compute the falling factorial.</span></li></ul></section><section class="links"></section>

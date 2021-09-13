@@ -1,19 +1,5 @@
-<h1 id="memoize">memoize</h1>
-<blockquote>
-<p>Memoize a function.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> memoize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/memoize'</span> );
-</code></pre>
-<h4 id="memoize-fcn-hashfunction-">memoize( fcn[, hashFunction] )</h4>
-<p>Memoizes a function.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<h1 id="memoize">memoize</h1><blockquote><p>Memoize a function.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> memoize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/memoize'</span> );
+</code></pre><h4 id="memoize-fcn-hashfunction-">memoize( fcn[, hashFunction] )</h4><p>Memoizes a function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rand</span>(<span class="hljs-params"> n </span>) </span>{
     <span class="hljs-keyword">return</span> n * randu();
@@ -26,9 +12,7 @@
 
 <span class="hljs-keyword">var</span> bool = ( v1 === v2 );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>By default, the implementation serializes provided arguments as a <code>string</code> and stores results using the <code>string</code> as an identifier. To use a custom hash function, provide a hash function argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> obj </span>) </span>{
+</code></pre><p>By default, the implementation serializes provided arguments as a <code>string</code> and stores results using the <code>string</code> as an identifier. To use a custom hash function, provide a hash function argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> obj </span>) </span>{
     <span class="hljs-keyword">return</span> obj.x + obj.y + obj.z;
 }
 
@@ -77,10 +61,7 @@ obj.x = <span class="hljs-number">6</span>;
 
 v3 = memoized( obj );
 <span class="hljs-comment">// returns 15</span>
-</code></pre>
-<h4 id="memoizedcache">memoized.cache</h4>
-<p>Results cache. Note that, while the property is <strong>read-only</strong>, cache contents may be modified independently of the memoized function.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"> x </span>) </span>{
+</code></pre><h4 id="memoizedcache">memoized.cache</h4><p>Results cache. Note that, while the property is <strong>read-only</strong>, cache contents may be modified independently of the memoized function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"> x </span>) </span>{
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>( <span class="hljs-string">'boop'</span> );
 }
 
@@ -94,23 +75,7 @@ cache[ <span class="hljs-string">'bop'</span> ] = <span class="hljs-string">'bip
 
 <span class="hljs-keyword">var</span> str = memoized( <span class="hljs-string">'bop'</span> );
 <span class="hljs-comment">// returns 'bip'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The implementation does <strong>not</strong> set the <code>length</code> of the returned function. Accordingly, the returned function <code>length</code> is <strong>always</strong> <code>0</code>.</li>
-<li>The evaluation context is <strong>always</strong> <code>null</code>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The implementation does <strong>not</strong> set the <code>length</code> of the returned function. Accordingly, the returned function <code>length</code> is <strong>always</strong> <code>0</code>.</li><li>The evaluation context is <strong>always</strong> <code>null</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> memoize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/memoize'</span> );
 
@@ -130,18 +95,4 @@ fcn = memoize( rand );
     v = fcn( n );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'rand(%d) = %d'</span>, n, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

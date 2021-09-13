@@ -1,34 +1,14 @@
-<h1 id="shuffle">Shuffle</h1>
-<blockquote>
-<p>Shuffle elements of an array-like object.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shuffle = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/shuffle'</span> );
-</code></pre>
-<h4 id="shuffle-arr-options-">shuffle( arr[, options] )</h4>
-<p>Shuffles elements of an array-like object.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<h1 id="shuffle">Shuffle</h1><blockquote><p>Shuffle elements of an array-like object.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shuffle = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/shuffle'</span> );
+</code></pre><h4 id="shuffle-arr-options-">shuffle( arr[, options] )</h4><p>Shuffles elements of an array-like object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
 <span class="hljs-keyword">var</span> out = shuffle( arr );
 <span class="hljs-comment">// e.g., returns [ 3, 1, 2 ]</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>copy</strong>: <code>string</code> indicating whether to return a copy (<code>deep</code>,<code>shallow</code> or <code>none</code>). Default: <code>shallow</code>.</li>
-</ul>
-<p>By default, the function returns a shallow copy. To mutate the input <code>array</code> (e.g., when input values can be discarded or when optimizing memory usage), set <code>copy</code> to <code>none</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>copy</strong>: <code>string</code> indicating whether to return a copy (<code>deep</code>,<code>shallow</code> or <code>none</code>). Default: <code>shallow</code>.</li></ul><p>By default, the function returns a shallow copy. To mutate the input <code>array</code> (e.g., when input values can be discarded or when optimizing memory usage), set <code>copy</code> to <code>none</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
 <span class="hljs-keyword">var</span> out = shuffle( arr, {
     <span class="hljs-string">'copy'</span>: <span class="hljs-string">'none'</span>
 });
 <span class="hljs-keyword">var</span> bool = ( arr === out );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>To return a deep copy, set the <code>copy</code> option to <code>deep</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+</code></pre><p>To return a deep copy, set the <code>copy</code> option to <code>deep</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span>
 };
 <span class="hljs-keyword">var</span> arr = [ [ obj ], [ obj ], [ obj ] ];
@@ -52,26 +32,14 @@ bool = ( arr === out );
 
 bool = ( arr[<span class="hljs-number">2</span>] === out[<span class="hljs-number">2</span>] );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<h4 id="shufflefactory-options-">shuffle.factory( [options] )</h4>
-<p>Returns a <code>function</code> to shuffle elements of <code>array</code>-like objects.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myshuffle = shuffle.factory();
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>copy</strong>: <code>string</code> specifying the default copy option (<code>deep</code>,<code>shallow</code> or <code>none</code>). Default: <code>shallow</code>.</li>
-<li><strong>seed</strong>: pseudorandom number generator seed.</li>
-</ul>
-<p>To seed the underlying pseudorandom number generator, set the <code>seed</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myshuffle = shuffle.factory({
+</code></pre><h4 id="shufflefactory-options-">shuffle.factory( [options] )</h4><p>Returns a <code>function</code> to shuffle elements of <code>array</code>-like objects.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myshuffle = shuffle.factory();
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>copy</strong>: <code>string</code> specifying the default copy option (<code>deep</code>,<code>shallow</code> or <code>none</code>). Default: <code>shallow</code>.</li><li><strong>seed</strong>: pseudorandom number generator seed.</li></ul><p>To seed the underlying pseudorandom number generator, set the <code>seed</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myshuffle = shuffle.factory({
     <span class="hljs-string">'seed'</span>: <span class="hljs-number">239</span>
 });
 
 <span class="hljs-keyword">var</span> out = myshuffle( [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
 <span class="hljs-comment">// e.g., returns [ 3, 4, 1, 0, 2 ]</span>
-</code></pre>
-<p>By default, the returned functions create shallow copies when shuffling. To override the default <code>copy</code> strategy, set the <code>copy</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myshuffle = shuffle.factory({
+</code></pre><p>By default, the returned functions create shallow copies when shuffling. To override the default <code>copy</code> strategy, set the <code>copy</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> myshuffle = shuffle.factory({
     <span class="hljs-string">'copy'</span>: <span class="hljs-string">'none'</span>,
     <span class="hljs-string">'seed'</span>: <span class="hljs-number">867</span>
 });
@@ -89,13 +57,7 @@ out = myshuffle( arr, {
 });
 bool = ( arr === out );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shuffle = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/shuffle'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shuffle = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/shuffle'</span> );
 
 <span class="hljs-keyword">var</span> result;
 <span class="hljs-keyword">var</span> data;
@@ -110,21 +72,4 @@ data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</
     result = shuffle( data );
     <span class="hljs-built_in">console</span>.log( result );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/sample"><code>@stdlib/random/sample</code></a></span><span class="delimiter">: </span><span class="description">sample elements from an array-like object.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/sample"><code>@stdlib/random/sample</code></a></span><span class="delimiter">: </span><span class="description">sample elements from an array-like object.</span></li></ul></section><section class="links"></section>

@@ -1,19 +1,5 @@
-<h1 id="pickby">pickBy</h1>
-<blockquote>
-<p>Return a partial object copy containing properties for which a predicate (function) returns a truthy value.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pickBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pick-by'</span> );
-</code></pre>
-<h4 id="pickby-obj-predicate-">pickBy( obj, predicate )</h4>
-<p>Returns a partial object copy containing properties for which a <code>predicate</code> returns a truthy value.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> key, value </span>) </span>{
+<h1 id="pickby">pickBy</h1><blockquote><p>Return a partial object copy containing properties for which a predicate (function) returns a truthy value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pickBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pick-by'</span> );
+</code></pre><h4 id="pickby-obj-predicate-">pickBy( obj, predicate )</h4><p>Returns a partial object copy containing properties for which a <code>predicate</code> returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> key, value </span>) </span>{
     <span class="hljs-keyword">return</span> ( value > <span class="hljs-number">1</span> );
 }
 
@@ -25,23 +11,7 @@
 
 <span class="hljs-keyword">var</span> obj2 = pickBy( obj1, predicate );
 <span class="hljs-comment">// returns { 'b': 2, 'c': 3 }</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The function returns a <strong>shallow</strong> copy.</li>
-<li>The function <strong>only</strong> copies <strong>own</strong> properties. Hence, the function never copies inherited properties.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pickBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pick-by'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function returns a <strong>shallow</strong> copy.</li><li>The function <strong>only</strong> copies <strong>own</strong> properties. Hence, the function never copies inherited properties.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pickBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pick-by'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> key, value </span>) </span>{
     <span class="hljs-keyword">return</span> ( <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">'number'</span> );
@@ -56,25 +26,4 @@
 
 <span class="hljs-keyword">var</span> obj2 = pickBy( obj1, predicate );
 <span class="hljs-comment">// returns { 'b': 2, 'c': NaN }</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/pick"><code>@stdlib/utils/pick</code></a></span><span class="delimiter">: </span><span class="description">return a partial object copy containing only specified keys.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/pick"><code>@stdlib/utils/pick</code></a></span><span class="delimiter">: </span><span class="description">return a partial object copy containing only specified keys.</span></li></ul></section><section class="links"></section>

@@ -1,14 +1,5 @@
-<h1 id="tanh">tanh</h1>
-<blockquote>
-<p>Compute the <a href="http://mathworld.wolfram.com/HyperbolicTangent.html">hyperbolic tangent</a> of a number.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tanh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/tanh'</span> );
-</code></pre>
-<h4 id="tanh-x-">tanh( x )</h4>
-<p>Computes the <a href="http://mathworld.wolfram.com/HyperbolicTangent.html">hyperbolic tangent</a> of a <code>number</code> (in radians).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = tanh( <span class="hljs-number">0.0</span> );
+<h1 id="tanh">tanh</h1><blockquote><p>Compute the <a href="http://mathworld.wolfram.com/HyperbolicTangent.html">hyperbolic tangent</a> of a number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tanh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/tanh'</span> );
+</code></pre><h4 id="tanh-x-">tanh( x )</h4><p>Computes the <a href="http://mathworld.wolfram.com/HyperbolicTangent.html">hyperbolic tangent</a> of a <code>number</code> (in radians).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = tanh( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
 
 v = tanh( -<span class="hljs-number">0.0</span> );
@@ -22,13 +13,7 @@ v = tanh( -<span class="hljs-number">2.0</span> );
 
 v = tanh( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
 <span class="hljs-keyword">var</span> tanh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/tanh'</span> );
 
 <span class="hljs-keyword">var</span> x = linspace( -<span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">100</span> );
@@ -37,23 +22,4 @@ v = tanh( <span class="hljs-literal">NaN</span> );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( tanh( x[ i ] ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cosh"><code>@stdlib/math/base/special/cosh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic cosine of a number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sinh"><code>@stdlib/math/base/special/sinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic sine of a number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/tan"><code>@stdlib/math/base/special/tan</code></a></span><span class="delimiter">: </span><span class="description">evaluate the tangent of a number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cosh"><code>@stdlib/math/base/special/cosh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic cosine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sinh"><code>@stdlib/math/base/special/sinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic sine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/tan"><code>@stdlib/math/base/special/tan</code></a></span><span class="delimiter">: </span><span class="description">evaluate the tangent of a number.</span></li></ul></section><section class="links"></section>

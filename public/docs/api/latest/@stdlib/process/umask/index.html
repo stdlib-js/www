@@ -1,90 +1,10 @@
-<h1 id="umask">umask</h1>
-<blockquote>
-<p>Get/set the process mask.</p>
-</blockquote>
-<section class="intro">
-<p>A <strong>mask</strong> is a set of bits, each of which restricts how its corresponding permission is set for newly created files. On POSIX platforms, each file has a set of attributes that control who can read, write, or execute that file. Upon creating a file, file permissions must be set to an initial setting. The process mask restricts those permission settings.</p>
-<p>If the mask contains a bit set to <code>1</code>, the corresponding initial file permission is disabled. If the mask contains a bit set to <code>0</code>, the corresponding permission is left to be determined by the requesting process and the system. The process mask is thus a filter that <strong>removes</strong> permissions as a file is created; i.e., each bit set to a <code>1</code> removes its corresponding permission.</p>
-<p>In octal representation, a mask is a four digit number comprised as follows (using <code>0077</code> as an example):</p>
-<ul>
-<li><code>0</code>: special permissions (setuid, setgid, sticky bit)</li>
-<li><code>0</code>: (u)ser/owner permissions</li>
-<li><code>7</code>: (g)roup permissions</li>
-<li><code>7</code>: (o)thers/non-group permissions</li>
-</ul>
-<p>Octal codes correspond to the following permissions:</p>
-<ul>
-<li><code>0</code>: read, write, execute</li>
-<li><code>1</code>: read, write</li>
-<li><code>2</code>: read, execute</li>
-<li><code>3</code>: read</li>
-<li><code>4</code>: write, execute</li>
-<li><code>5</code>: write</li>
-<li><code>6</code>: execute</li>
-<li><code>7</code>: no permissions</li>
-</ul>
-<p>If provided fewer than four digits, the mask is left-padded with zeros. Note, however, that <strong>only</strong> the last three digits (i.e., the file permissions digits) of the mask are actually used when the mask is applied (i.e., <code>mask &#x26; 0777</code>).</p>
-<p>Permissions can be represented using the following symbolic form:</p>
-<pre><code class="no-highlight language-text">u=rwx,g=rwx,o=rwx
-</code></pre>
-<p>where</p>
-<ul>
-<li><strong>u</strong>: user permissions</li>
-<li><strong>g</strong>: group permissions</li>
-<li><strong>o</strong>: other/non-group permissions</li>
-<li><strong>r</strong>: read</li>
-<li><strong>w</strong>: write</li>
-<li><strong>x</strong>: execute</li>
-</ul>
-<p>When setting permissions using symbolic notation, one may use a <em>mask expression</em> of the form:</p>
-<pre><code class="no-highlight language-text">[&#x3C;classes>]&#x3C;operator>&#x3C;symbols>
-</code></pre>
-<p>where <code>&#x3C;classes></code> may be a combination of</p>
-<ul>
-<li><strong>u</strong>: user</li>
-<li><strong>g</strong>: group</li>
-<li><strong>o</strong>: other/non-group</li>
-<li><strong>a</strong>: all</li>
-</ul>
-<p><code>&#x3C;symbols></code> may be a combination of</p>
-<ul>
-<li><strong>r</strong>: read</li>
-<li><strong>w</strong>: write</li>
-<li><strong>x</strong>: execute</li>
-<li><strong>X</strong>: special execute</li>
-<li><strong>s</strong>: setuid/gid on execution</li>
-<li><strong>t</strong>: sticky</li>
-</ul>
-<p>and <code>&#x3C;operator></code> may be one of</p>
-<ul>
-<li><strong>+</strong>: enable</li>
-<li><strong>-</strong>: disable</li>
-<li><strong>=</strong>: enable specified and disable unspecified permissions</li>
-</ul>
-<p>For example,</p>
-<ul>
-<li><code>u-w</code>: disable user write permissions</li>
-<li><code>u+w</code>: enable user write permissions</li>
-<li><code>u=w</code>: enable user write permissions and disable user read and execute</li>
-</ul>
-<p>To specify multiple changes, one can specify a comma-separated list of mask expressions. For example,</p>
-<pre><code class="no-highlight language-text">u+rwx,g-x,o=r
-</code></pre>
-<p>would enable user read, write, and execute permissions, disable group execute permissions, enable other read permissions, and disable other write and execute permissions.</p>
-<p>The <code>a</code> class indicates "all", which is the same as specifying <code>ugo</code>. This is the default class if a class is omitted when specifying permissions. For example, <code>+x</code> is equivalent to <code>a+x</code> which is equivalent to <code>ugo+x</code> which is equivalent to <code>u+x,g+x,o+x</code> and enables execution for all classes.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> umask = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/umask'</span> );
-</code></pre>
-<h4 id="umask-mask-options-">umask( [mask,] [options] )</h4>
-<p>Returns the process mask.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mask = umask();
+<h1 id="umask">umask</h1><blockquote><p>Get/set the process mask.</p></blockquote><section class="intro"><p>A <strong>mask</strong> is a set of bits, each of which restricts how its corresponding permission is set for newly created files. On POSIX platforms, each file has a set of attributes that control who can read, write, or execute that file. Upon creating a file, file permissions must be set to an initial setting. The process mask restricts those permission settings.</p><p>If the mask contains a bit set to <code>1</code>, the corresponding initial file permission is disabled. If the mask contains a bit set to <code>0</code>, the corresponding permission is left to be determined by the requesting process and the system. The process mask is thus a filter that <strong>removes</strong> permissions as a file is created; i.e., each bit set to a <code>1</code> removes its corresponding permission.</p><p>In octal representation, a mask is a four digit number comprised as follows (using <code>0077</code> as an example):</p><ul><li><code>0</code>: special permissions (setuid, setgid, sticky bit)</li><li><code>0</code>: (u)ser/owner permissions</li><li><code>7</code>: (g)roup permissions</li><li><code>7</code>: (o)thers/non-group permissions</li></ul><p>Octal codes correspond to the following permissions:</p><ul><li><code>0</code>: read, write, execute</li><li><code>1</code>: read, write</li><li><code>2</code>: read, execute</li><li><code>3</code>: read</li><li><code>4</code>: write, execute</li><li><code>5</code>: write</li><li><code>6</code>: execute</li><li><code>7</code>: no permissions</li></ul><p>If provided fewer than four digits, the mask is left-padded with zeros. Note, however, that <strong>only</strong> the last three digits (i.e., the file permissions digits) of the mask are actually used when the mask is applied (i.e., <code>mask &#x26; 0777</code>).</p><p>Permissions can be represented using the following symbolic form:</p><pre><code class="no-highlight language-text">u=rwx,g=rwx,o=rwx
+</code></pre><p>where</p><ul><li><strong>u</strong>: user permissions</li><li><strong>g</strong>: group permissions</li><li><strong>o</strong>: other/non-group permissions</li><li><strong>r</strong>: read</li><li><strong>w</strong>: write</li><li><strong>x</strong>: execute</li></ul><p>When setting permissions using symbolic notation, one may use a <em>mask expression</em> of the form:</p><pre><code class="no-highlight language-text">[&#x3C;classes>]&#x3C;operator>&#x3C;symbols>
+</code></pre><p>where <code>&#x3C;classes></code> may be a combination of</p><ul><li><strong>u</strong>: user</li><li><strong>g</strong>: group</li><li><strong>o</strong>: other/non-group</li><li><strong>a</strong>: all</li></ul><p><code>&#x3C;symbols></code> may be a combination of</p><ul><li><strong>r</strong>: read</li><li><strong>w</strong>: write</li><li><strong>x</strong>: execute</li><li><strong>X</strong>: special execute</li><li><strong>s</strong>: setuid/gid on execution</li><li><strong>t</strong>: sticky</li></ul><p>and <code>&#x3C;operator></code> may be one of</p><ul><li><strong>+</strong>: enable</li><li><strong>-</strong>: disable</li><li><strong>=</strong>: enable specified and disable unspecified permissions</li></ul><p>For example,</p><ul><li><code>u-w</code>: disable user write permissions</li><li><code>u+w</code>: enable user write permissions</li><li><code>u=w</code>: enable user write permissions and disable user read and execute</li></ul><p>To specify multiple changes, one can specify a comma-separated list of mask expressions. For example,</p><pre><code class="no-highlight language-text">u+rwx,g-x,o=r
+</code></pre><p>would enable user read, write, and execute permissions, disable group execute permissions, enable other read permissions, and disable other write and execute permissions.</p><p>The <code>a</code> class indicates "all", which is the same as specifying <code>ugo</code>. This is the default class if a class is omitted when specifying permissions. For example, <code>+x</code> is equivalent to <code>a+x</code> which is equivalent to <code>ugo+x</code> which is equivalent to <code>u+x,g+x,o+x</code> and enables execution for all classes.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> umask = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/umask'</span> );
+</code></pre><h4 id="umask-mask-options-">umask( [mask,] [options] )</h4><p>Returns the process mask.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mask = umask();
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<p>To set the process mask, provide a <code>mask</code> argument. When provided a <code>mask</code>, the function returns the previous mask value.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mask = umask();
+</code></pre><p>To set the process mask, provide a <code>mask</code> argument. When provided a <code>mask</code>, the function returns the previous mask value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mask = umask();
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 <span class="hljs-keyword">var</span> prev = umask( <span class="hljs-number">0</span> );
@@ -92,16 +12,8 @@
 
 <span class="hljs-keyword">var</span> bool = ( prev === mask );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>The <code>mask</code> argument may be either an integer value or a <code>string</code> representing the mask using symbolic notation.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mask = umask( <span class="hljs-string">'u=rwx,g=rw,o=rw'</span> );
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>symbolic</strong>: <code>boolean</code> indicating whether to return the mask in symbolic notation. Default: <code>false</code>.</li>
-</ul>
-<p>To return the process mask in symbolic notation, set the <code>symbolic</code> option to <code>true</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>The <code>mask</code> argument may be either an integer value or a <code>string</code> representing the mask using symbolic notation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mask = umask( <span class="hljs-string">'u=rwx,g=rw,o=rw'</span> );
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>symbolic</strong>: <code>boolean</code> indicating whether to return the mask in symbolic notation. Default: <code>false</code>.</li></ul><p>To return the process mask in symbolic notation, set the <code>symbolic</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'symbolic'</span>: <span class="hljs-literal">true</span>
 };
 
@@ -112,27 +24,8 @@
 <span class="hljs-comment">// Set the mask:</span>
 mask = umask( <span class="hljs-number">0</span>, opts );
 <span class="hljs-comment">// e.g., returns 'u=rwx,g=rw,o=rw'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>To set the process mask using an octal <code>string</code> (e.g., <code>0777</code>), use <code>parseInt</code> to convert the <code>string</code> to an integer value.</p>
-<pre><code class="hljs language-javascript">umask( <span class="hljs-built_in">parseInt</span>( <span class="hljs-string">'0777'</span>, <span class="hljs-number">8</span> ) );
-</code></pre>
-</li>
-<li>
-<p>See <a href="http://man7.org/linux/man-pages/man2/umask.2.html">umask(2)</a>.</p>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>To set the process mask using an octal <code>string</code> (e.g., <code>0777</code>), use <code>parseInt</code> to convert the <code>string</code> to an integer value.</p><pre><code class="hljs language-javascript">umask( <span class="hljs-built_in">parseInt</span>( <span class="hljs-string">'0777'</span>, <span class="hljs-number">8</span> ) );
+</code></pre></li><li><p>See <a href="http://man7.org/linux/man-pages/man2/umask.2.html">umask(2)</a>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lpad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/left-pad'</span> );
 <span class="hljs-keyword">var</span> umask = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/umask'</span> );
 
 <span class="hljs-keyword">var</span> mask;
@@ -150,15 +43,7 @@ opts = {
     <span class="hljs-string">'symbolic'</span>: <span class="hljs-literal">true</span>
 };
 <span class="hljs-built_in">console</span>.log( umask( opts ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: umask [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: umask [options]
 
 Options:
 
@@ -166,25 +51,6 @@ Options:
   -V,    --version             Print the package version.
   -p,    --print               Print the mask command.
   -S,    --symbolic            Print the mask using symbolic notation.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">umask</span>
-</code></pre>
-<p>To print the mask in command format, set the <code>-p</code> flag.</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">umask</span> -p
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ <span class="hljs-built_in">umask</span>
+</code></pre><p>To print the mask in command format, set the <code>-p</code> flag.</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">umask</span> -p
+</code></pre></section></section><section class="related"></section><section class="links"></section>

@@ -1,14 +1,5 @@
-<h1 id="two-sample-f-test">Two-sample F-test</h1>
-<blockquote>
-<p>Two-sample F-test for equal variances.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> vartest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/vartest'</span> );
-</code></pre>
-<h4 id="vartest-x-y-opts-">vartest( x, y[, opts] )</h4>
-<p>By default, the function performs a two-sample F-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> <code>x</code> and <code>y</code> is  independently drawn from normal distributions with <em>equal</em> variances.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span> ];
+<h1 id="two-sample-f-test">Two-sample F-test</h1><blockquote><p>Two-sample F-test for equal variances.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> vartest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/vartest'</span> );
+</code></pre><h4 id="vartest-x-y-opts-">vartest( x, y[, opts] )</h4><p>By default, the function performs a two-sample F-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> <code>x</code> and <code>y</code> is independently drawn from normal distributions with <em>equal</em> variances.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">560</span>, <span class="hljs-number">550</span>, <span class="hljs-number">580</span>, <span class="hljs-number">550</span>, <span class="hljs-number">560</span>, <span class="hljs-number">590</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span> ];
 
 <span class="hljs-keyword">var</span> out = vartest( x, y );
@@ -21,10 +12,7 @@
         // ...
     }
 */</span>
-</code></pre>
-<p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
+</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
 <span class="hljs-comment">/* e.g., =>
     F test for comparing two variances
 
@@ -38,15 +26,7 @@
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li>
-<li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the true ratio of variances is greater than one (<code>greater</code>), smaller than one (<code>less</code>), or that the variances are the same (<code>two-sided</code>). Default: <code>two-sided</code>.</li>
-<li><strong>ratio</strong>: positive <code>number</code> denoting the ratio of the two population variances under the null hypothesis. Default: <code>1</code>.</li>
-</ul>
-<p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span> ];
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the true ratio of variances is greater than one (<code>greater</code>), smaller than one (<code>less</code>), or that the variances are the same (<code>two-sided</code>). Default: <code>two-sided</code>.</li><li><strong>ratio</strong>: positive <code>number</code> denoting the ratio of the two population variances under the null hypothesis. Default: <code>1</code>.</li></ul><p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">560</span>, <span class="hljs-number">550</span>, <span class="hljs-number">580</span>, <span class="hljs-number">550</span>, <span class="hljs-number">560</span>, <span class="hljs-number">590</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span> ];
 
 <span class="hljs-keyword">var</span> out = vartest( x, y, {
@@ -68,9 +48,7 @@
 
     Exited with status 0
 */</span>
-</code></pre>
-<p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span> ];
+</code></pre><p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">560</span>, <span class="hljs-number">550</span>, <span class="hljs-number">580</span>, <span class="hljs-number">550</span>, <span class="hljs-number">560</span>, <span class="hljs-number">590</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span> ];
 
 <span class="hljs-keyword">var</span> out = vartest( x, y, {
@@ -108,9 +86,7 @@ table = out.print();
 
     Exited with status 0
 */</span>
-</code></pre>
-<p>To test whether the ratio in the population variances is equal to some other value than <code>1</code>, set the <code>ratio</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span> ];
+</code></pre><p>To test whether the ratio in the population variances is equal to some other value than <code>1</code>, set the <code>ratio</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">610</span>, <span class="hljs-number">610</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span>, <span class="hljs-number">565</span>, <span class="hljs-number">570</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span>, <span class="hljs-number">500</span>, <span class="hljs-number">650</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">560</span>, <span class="hljs-number">550</span>, <span class="hljs-number">580</span>, <span class="hljs-number">550</span>, <span class="hljs-number">560</span>, <span class="hljs-number">590</span>, <span class="hljs-number">550</span>, <span class="hljs-number">590</span> ];
 
 <span class="hljs-keyword">var</span> out = vartest( x, y, {
@@ -140,13 +116,7 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rnorm = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rnorm = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
 <span class="hljs-keyword">var</span> vartest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/vartest'</span> );
 
 <span class="hljs-keyword">var</span> table;
@@ -199,21 +169,4 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/bartlett-test"><code>@stdlib/stats/bartlett-test</code></a></span><span class="delimiter">: </span><span class="description">Bartlett’s test for equal variances.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/bartlett-test"><code>@stdlib/stats/bartlett-test</code></a></span><span class="delimiter">: </span><span class="description">Bartlett’s test for equal variances.</span></li></ul></section><section class="links"></section>

@@ -1,15 +1,5 @@
-<h1 id="constantcase">constantcase</h1>
-<blockquote>
-<p>Returns a string converted to a constant case.</p>
-</blockquote>
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/constantcase'</span> );
-</code></pre>
-<h4 id="constantcase-str-">constantcase( str )</h4>
-<p>Converts a string to constant case.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = constantcase( <span class="hljs-string">'foo bar'</span> );
+<h1 id="constantcase">constantcase</h1><blockquote><p>Returns a string converted to a constant case.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/constantcase'</span> );
+</code></pre><h4 id="constantcase-str-">constantcase( str )</h4><p>Converts a string to constant case.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = constantcase( <span class="hljs-string">'foo bar'</span> );
 <span class="hljs-comment">// returns 'FOO_BAR'</span>
 
 str = constantcase( <span class="hljs-string">'foo bar baz'</span> );
@@ -17,13 +7,7 @@ str = constantcase( <span class="hljs-string">'foo bar baz'</span> );
 
 str = constantcase( <span class="hljs-string">'foo_bar'</span> );
 <span class="hljs-comment">// returns 'FOO_BAR'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/constantcase'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constantcase = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/constantcase'</span> );
 
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!'</span>;
 <span class="hljs-keyword">var</span> out = constantcase( str );
@@ -44,50 +28,14 @@ out = constantcase( str );
 str = <span class="hljs-string">'isMobile'</span>;
 out = constantcase( str );
 <span class="hljs-comment">// returns 'IS_MOBILE'</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: constantcase [options] [&#x3C;string>]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: constantcase [options] [&#x3C;string>]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ constantcase <span class="hljs-string">'hello world'</span>
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ constantcase <span class="hljs-string">'hello world'</span>
 HELLO_WORLD
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beEp booP'</span> | constantcase
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beEp booP'</span> | constantcase
 BEEP_BOOP
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/camelcase"><code>@stdlib/string/camelcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to camel case.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/kebabcase"><code>@stdlib/string/kebabcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to kebab case.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/snakecase"><code>@stdlib/string/snakecase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to snake case.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/camelcase"><code>@stdlib/string/camelcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to camel case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/kebabcase"><code>@stdlib/string/kebabcase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to kebab case.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/snakecase"><code>@stdlib/string/snakecase</code></a></span><span class="delimiter">: </span><span class="description">convert a string to snake case.</span></li></ul></section><section class="links"></section>

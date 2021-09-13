@@ -1,48 +1,15 @@
-<h1 id="sub2ind">sub2ind</h1>
-<blockquote>
-<p>Convert subscripts to a linear index.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sub2ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/sub2ind'</span> );
-</code></pre>
-<h4 id="sub2ind-shape-subscripts-options-">sub2ind( shape, ...subscripts[, options] )</h4>
-<p>Converts subscripts to a linear index.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<h1 id="sub2ind">sub2ind</h1><blockquote><p>Convert subscripts to a linear index.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sub2ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/sub2ind'</span> );
+</code></pre><h4 id="sub2ind-shape-subscripts-options-">sub2ind( shape, ...subscripts[, options] )</h4><p>Converts subscripts to a linear index.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 
 <span class="hljs-keyword">var</span> idx = sub2ind( shape, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 2</span>
-</code></pre>
-<p>The function supports the following <code>options</code>:</p>
-<ul>
-<li>
-<p><code>mode</code>: specifies how to handle subscripts which exceed array dimensions. The following modes are supported:</p>
-<ul>
-<li><code>throw</code>: specifies that the function should throw an error when a subscript exceeds array dimensions.</li>
-<li><code>wrap</code>: specifies that the function should wrap around subscripts exceeding array dimensions using modulo arithmetic.</li>
-<li><code>clamp</code>: specifies that the function should set subscripts exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index along a particular dimension.</li>
-</ul>
-<p>If provided a <code>mode</code> array, each array element corresponds to a dimension. If provided fewer modes than dimensions, the function reuses modes using modulo arithmetic. Default: <code>[ 'throw' ]</code>.</p>
-</li>
-<li>
-<p><code>order</code>: specifies whether an array is <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style). Default: <code>'row-major'</code>.</p>
-</li>
-</ul>
-<p>By default, the function assumes a row-major array. To return a linear index for a column-major array, set the <code>order</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+</code></pre><p>The function supports the following <code>options</code>:</p><ul><li><p><code>mode</code>: specifies how to handle subscripts which exceed array dimensions. The following modes are supported:</p><ul><li><code>throw</code>: specifies that the function should throw an error when a subscript exceeds array dimensions.</li><li><code>wrap</code>: specifies that the function should wrap around subscripts exceeding array dimensions using modulo arithmetic.</li><li><code>clamp</code>: specifies that the function should set subscripts exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index along a particular dimension.</li></ul><p>If provided a <code>mode</code> array, each array element corresponds to a dimension. If provided fewer modes than dimensions, the function reuses modes using modulo arithmetic. Default: <code>[ 'throw' ]</code>.</p></li><li><p><code>order</code>: specifies whether an array is <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style). Default: <code>'row-major'</code>.</p></li></ul><p>By default, the function assumes a row-major array. To return a linear index for a column-major array, set the <code>order</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> opts = {};
 
 opts.order = <span class="hljs-string">'column-major'</span>;
 <span class="hljs-keyword">var</span> idx = sub2ind( shape, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, opts );
 <span class="hljs-comment">// returns 1</span>
-</code></pre>
-<p>By default, the function throws an <code>error</code> if provided subscripts which exceed array dimensions. To specify alternative behavior, set the <code>mode</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+</code></pre><p>By default, the function throws an <code>error</code> if provided subscripts which exceed array dimensions. To specify alternative behavior, set the <code>mode</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> opts = {};
 
 opts.mode = <span class="hljs-string">'wrap'</span>;
@@ -52,9 +19,7 @@ opts.mode = <span class="hljs-string">'wrap'</span>;
 opts.mode = <span class="hljs-string">'clamp'</span>;
 idx = sub2ind( shape, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, opts );
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-<p>To specify separate modes for each dimension, provide a <code>mode</code> array.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+</code></pre><p>To specify separate modes for each dimension, provide a <code>mode</code> array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'mode'</span>: [
         <span class="hljs-string">'wrap'</span>,
@@ -64,18 +29,7 @@ idx = sub2ind( shape, <span class="hljs-number">10</span>, <span class="hljs-num
 
 <span class="hljs-keyword">var</span> idx = sub2ind( shape, -<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, -<span class="hljs-number">1</span>, opts );
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
 <span class="hljs-keyword">var</span> sub2ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/sub2ind'</span> );
 
 <span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
@@ -117,27 +71,4 @@ idx = sub2ind( shape, <span class="hljs-number">10</span>, <span class="hljs-num
     }
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ind2sub"><code>@stdlib/ndarray/ind2sub</code></a></span><span class="delimiter">: </span><span class="description">convert a linear index to an array of subscripts.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ind2sub"><code>@stdlib/ndarray/ind2sub</code></a></span><span class="delimiter">: </span><span class="description">convert a linear index to an array of subscripts.</span></li></ul></section><section class="links"></section>
