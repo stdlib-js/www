@@ -33,8 +33,7 @@
     "clean": "npm run clean:api_docs:app",
     "clean:api_docs:app": "rm -rf ./public/docs/api/static && rm -f ./public/docs/api/service-worker.js ./public/docs/api/precache-manifest.*.js ./public/docs/api/index.html ./public/docs/api/asset-manifest.json",
     "install:development": "npm run install:production",
-    "install:production": "npm install && npm run install:stdlib",
-    "install:stdlib": "git clone https://github.com/stdlib-js/stdlib.git --depth=1 --branch=develop ./node_modules/@stdlib/stdlib && cd ./node_modules/@stdlib/stdlib && make install-node-modules",
+    "install:production": "make install",
     "start": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=production node ./server/index.js"
   },
   "main": "",
