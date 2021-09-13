@@ -16,6 +16,11 @@
 # limitations under the License.
 #/
 
+# DEPENDENCIES #
+
+include $(TOOLS_MAKE_LIB_DIR)/install/node.mk
+
+
 # RULES #
 
 #/
