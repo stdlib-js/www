@@ -1,33 +1,12 @@
-<h1 id="sub2ind">sub2ind</h1>
-<blockquote>
-<p>Convert subscripts to a linear index.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sub2ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/sub2ind'</span> );
-</code></pre>
-<h4 id="sub2ind-shape-strides-offset-subscripts-mode-">sub2ind( shape, strides, offset, ...subscripts, mode )</h4>
-<p>Converts subscripts to a linear index.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<h1 id="sub2ind">sub2ind</h1><blockquote><p>Convert subscripts to a linear index.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sub2ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/sub2ind'</span> );
+</code></pre><h4 id="sub2ind-shape-strides-offset-subscripts-mode-">sub2ind( shape, strides, offset, ...subscripts, mode )</h4><p>Converts subscripts to a linear index.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
 <span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">var</span> mode = [ <span class="hljs-string">'throw'</span> ];
 
 <span class="hljs-keyword">var</span> idx = sub2ind( shape, strides, offset, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, mode );
 <span class="hljs-comment">// returns 2</span>
-</code></pre>
-<p>The function supports the following <code>modes</code>:</p>
-<ul>
-<li><code>throw</code>: specifies that the function should throw an error when a subscript exceeds array dimensions.</li>
-<li><code>wrap</code>: specifies that the function should wrap around subscripts exceeding array dimensions using modulo arithmetic.</li>
-<li><code>clamp</code>: specifies that the function should set subscripts exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index along a particular dimension.</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+</code></pre><p>The function supports the following <code>modes</code>:</p><ul><li><code>throw</code>: specifies that the function should throw an error when a subscript exceeds array dimensions.</li><li><code>wrap</code>: specifies that the function should wrap around subscripts exceeding array dimensions using modulo arithmetic.</li><li><code>clamp</code>: specifies that the function should set subscripts exceeding array dimensions to either <code>0</code> (minimum index) or the maximum index along a particular dimension.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
 <span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
 
@@ -38,27 +17,14 @@
 mode = [ <span class="hljs-string">'clamp'</span> ];
 idx = sub2ind( shape, strides, offset, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, mode );
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>When provided fewer <code>modes</code> than dimensions, the function recycles <code>modes</code> using modulo arithmetic.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>When provided fewer <code>modes</code> than dimensions, the function recycles <code>modes</code> using modulo arithmetic.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
 <span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">var</span> mode = [ <span class="hljs-string">'wrap'</span>, <span class="hljs-string">'clamp'</span> ];
 
 <span class="hljs-keyword">var</span> idx = sub2ind( shape, strides, offset, -<span class="hljs-number">2</span>, <span class="hljs-number">10</span>, -<span class="hljs-number">1</span>, mode );
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-</li>
-<li>
-<p>When provided a stride array containing negative strides, if an <code>offset</code> is greater than <code>0</code>, the function treats subscripts as mapping to a linear index in an underlying data buffer for the array, thus returning a linear index from the perspective of that buffer. If an <code>offset</code> is equal to <code>0</code>, the function treats subscripts as mapping to a linear index in an array view, thus returning a linear index from the perspective of that view.</p>
-<pre><code class="no-highlight language-text">Dims: 2x2
+</code></pre></li><li><p>When provided a stride array containing negative strides, if an <code>offset</code> is greater than <code>0</code>, the function treats subscripts as mapping to a linear index in an underlying data buffer for the array, thus returning a linear index from the perspective of that buffer. If an <code>offset</code> is equal to <code>0</code>, the function treats subscripts as mapping to a linear index in an array view, thus returning a linear index from the perspective of that view.</p><pre><code class="no-highlight language-text">Dims: 2x2
 Buffer: [ 1, 2, 3, 4 ]
 
 View = [ a00, a01,
@@ -87,8 +53,7 @@ Offset: 3
 
 View = [ 4, 3,
          2, 1 ]
-</code></pre>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+</code></pre><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
 <span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
 <span class="hljs-keyword">var</span> mode = [ <span class="hljs-string">'throw'</span> ];
@@ -118,17 +83,7 @@ idx = sub2ind( shape, strides, offset, <span class="hljs-number">1</span>, <span
 
 idx = sub2ind( shape, strides, offset, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, mode );
 <span class="hljs-comment">// returns 1</span>
-</code></pre>
-<p>In short, from the perspective of a view, view data is always ordered.</p>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre><p>In short, from the perspective of a view, view data is always ordered.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
 <span class="hljs-keyword">var</span> strides2offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/strides2offset'</span> );
 <span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
@@ -173,18 +128,4 @@ idx = sub2ind( shape, strides, offset, <span class="hljs-number">1</span>, <span
         <span class="hljs-built_in">console</span>.log( row );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

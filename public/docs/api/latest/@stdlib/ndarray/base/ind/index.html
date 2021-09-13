@@ -1,20 +1,5 @@
-<h1 id="ind">ind</h1>
-<blockquote>
-<p>Return an index given an index mode.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ind'</span> );
-</code></pre>
-<h4 id="ind-idx-max-mode-">ind( idx, max, mode )</h4>
-<p>Returns an index given an index <code>mode</code>.</p>
-<!-- run throws: true -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'throw'</span> );
+<h1 id="ind">ind</h1><blockquote><p>Return an index given an index mode.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ind'</span> );
+</code></pre><h4 id="ind-idx-max-mode-">ind( idx, max, mode )</h4><p>Returns an index given an index <code>mode</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'throw'</span> );
 <span class="hljs-comment">// returns 2</span>
 
 idx = ind( -<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'throw'</span> );
@@ -22,14 +7,7 @@ idx = ind( -<span class="hljs-number">1</span>, <span class="hljs-number">9</spa
 
 idx = ind( <span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'throw'</span> );
 <span class="hljs-comment">// throws &#x3C;RangeError></span>
-</code></pre>
-<p>The function supports the following <code>modes</code>:</p>
-<ul>
-<li><code>throw</code>: specifies that the function should throw an error when an index is outside the interval <code>[0,max]</code>.</li>
-<li><code>wrap</code>: specifies that the function should wrap around an index using modulo arithmetic.</li>
-<li><code>clamp</code>: specifies that the function should set an index less than <code>0</code> to <code>0</code> (minimum index) and set an index greater than <code>max</code> to <code>max</code>.</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'wrap'</span> );
+</code></pre><p>The function supports the following <code>modes</code>:</p><ul><li><code>throw</code>: specifies that the function should throw an error when an index is outside the interval <code>[0,max]</code>.</li><li><code>wrap</code>: specifies that the function should wrap around an index using modulo arithmetic.</li><li><code>clamp</code>: specifies that the function should set an index less than <code>0</code> to <code>0</code> (minimum index) and set an index greater than <code>max</code> to <code>max</code>.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = ind( <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'wrap'</span> );
 <span class="hljs-comment">// returns 2</span>
 
 idx = ind( <span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'wrap'</span> );
@@ -46,18 +24,7 @@ idx = ind( <span class="hljs-number">10</span>, <span class="hljs-number">9</spa
 
 idx = ind( -<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-string">'clamp'</span> );
 <span class="hljs-comment">// returns 0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> ind = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/ind'</span> );
 
 <span class="hljs-keyword">var</span> modes;
@@ -74,18 +41,4 @@ modes = [ <span class="hljs-string">'clamp'</span>, <span class="hljs-string">'w
     out = ind( idx, <span class="hljs-number">9</span>, mode );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => %s(%d,%d) => %d'</span>, idx, mode, <span class="hljs-number">0</span>, <span class="hljs-number">9</span>, out );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

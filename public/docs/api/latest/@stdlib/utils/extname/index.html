@@ -1,22 +1,7 @@
-<h1 id="filename-extension">Filename Extension</h1>
-<blockquote>
-<p>Return a filename extension.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> extname = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/extname'</span> );
-</code></pre>
-<h4 id="extname-filename-">extname( filename )</h4>
-<p>Returns a filename extension.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = extname( <span class="hljs-string">'index.js'</span> );
+<h1 id="filename-extension">Filename Extension</h1><blockquote><p>Return a filename extension.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> extname = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/extname'</span> );
+</code></pre><h4 id="extname-filename-">extname( filename )</h4><p>Returns a filename extension.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = extname( <span class="hljs-string">'index.js'</span> );
 <span class="hljs-comment">// returns '.js'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> statSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> ).statSync;
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> statSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> ).statSync;
 <span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> );
 <span class="hljs-keyword">var</span> readDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-dir'</span> ).sync;
 <span class="hljs-keyword">var</span> extname = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/extname'</span> );
@@ -39,21 +24,4 @@ files = readDir( base );
         <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s --> %s'</span>, fpath, ext || <span class="hljs-string">'(no ext)'</span> );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/dirname"><code>@stdlib/utils/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a directory name.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/dirname"><code>@stdlib/utils/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a directory name.</span></li></ul></section>

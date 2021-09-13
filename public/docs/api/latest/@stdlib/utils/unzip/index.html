@@ -1,33 +1,13 @@
-<h1 id="unzip">Unzip</h1>
-<blockquote>
-<p>Unzip a <a href="/docs/api/latest/@stdlib/utils/zip">zipped array</a> (i.e., a nested array of tuples).</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unzip = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/unzip'</span> );
-</code></pre>
-<h4 id="unzip-arr-idx-">unzip( arr[, idx] )</h4>
-<p>Unzips a <a href="/docs/api/latest/@stdlib/utils/zip">zipped array</a> (i.e., a nested <code>array</code> of tuples).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ [ <span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">4</span> ] ];
+<h1 id="unzip">Unzip</h1><blockquote><p>Unzip a <a href="/docs/api/latest/@stdlib/utils/zip">zipped array</a> (i.e., a nested array of tuples).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unzip = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/unzip'</span> );
+</code></pre><h4 id="unzip-arr-idx-">unzip( arr[, idx] )</h4><p>Unzips a <a href="/docs/api/latest/@stdlib/utils/zip">zipped array</a> (i.e., a nested <code>array</code> of tuples).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ [ <span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">4</span> ] ];
 
 <span class="hljs-keyword">var</span> out = unzip( arr );
 <span class="hljs-comment">// returns [ [ 1, 2 ], [ 'a', 'b' ], [ 3, 4 ] ];</span>
-</code></pre>
-<p>To unzip specific tuple elements, you can provide an <code>array</code> of indices as an optional second argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ [ <span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">4</span> ] ];
+</code></pre><p>To unzip specific tuple elements, you can provide an <code>array</code> of indices as an optional second argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ [ <span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-string">'b'</span>, <span class="hljs-number">4</span> ] ];
 
 <span class="hljs-keyword">var</span> out = unzip( arr, [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ] );
 <span class="hljs-comment">// returns [ [ 1, 2 ], [ 3, 4 ] ];</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unzip = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/unzip'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unzip = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/unzip'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
@@ -50,21 +30,4 @@ len = <span class="hljs-number">5</span>;
 out = unzip( arr );
 
 <span class="hljs-built_in">console</span>.dir( out );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/zip"><code>@stdlib/utils/zip</code></a></span><span class="delimiter">: </span><span class="description">generate array tuples from input arrays.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/zip"><code>@stdlib/utils/zip</code></a></span><span class="delimiter">: </span><span class="description">generate array tuples from input arrays.</span></li></ul></section>

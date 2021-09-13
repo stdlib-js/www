@@ -1,18 +1,5 @@
-<!-- lint disable maximum-heading-length -->
-<h1 id="absby">absBy</h1>
-<blockquote>
-<p>Compute the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of each element retrieved from a strided input array via a callback function and assign each result to an element in a strided output array.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> absBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs-by'</span> );
-</code></pre>
-<h4 id="absby-n-x-stridex-y-stridey-clbk-thisarg-">absBy( N, x, strideX, y, strideY, clbk[, thisArg] )</h4>
-<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of each element retrieved from a strided input array <code>x</code> via a callback function and assigns each result to an element in a strided output array <code>y</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+<h1 id="absby">absBy</h1><blockquote><p>Compute the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of each element retrieved from a strided input array via a callback function and assign each result to an element in a strided output array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> absBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs-by'</span> );
+</code></pre><h4 id="absby-n-x-stridex-y-stridey-clbk-thisarg-">absBy( N, x, strideX, y, strideY, clbk[, thisArg] )</h4><p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of each element retrieved from a strided input array <code>x</code> via a callback function and assigns each result to an element in a strided output array <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
 
@@ -21,28 +8,7 @@
 
 absBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, accessor );
 <span class="hljs-comment">// y => [ 4.0, 2.0, 6.0, 10.0, 8.0, 0.0, 2.0, 6.0 ]</span>
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li>
-<li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>y</strong>: output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li>
-<li><strong>strideY</strong>: index increment for <code>y</code>.</li>
-<li><strong>clbk</strong>: callback function.</li>
-<li><strong>thisArg</strong>: execution context (<em>optional</em>).</li>
-</ul>
-<p>The invoked callback function is provided six arguments:</p>
-<ul>
-<li><strong>value</strong>: input array element.</li>
-<li><strong>idx</strong>: iteration index (zero-based).</li>
-<li><strong>xi</strong>: input array strided index (<code>offsetX + idx*strideX</code>).</li>
-<li><strong>yi</strong>: output array strided index (<code>offsetY + idx*strideY</code>).</li>
-<li><strong>x</strong>: input array/collection.</li>
-<li><strong>y</strong>: output array/collection.</li>
-</ul>
-<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: output <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>, or an array-like object (excluding strings and functions).</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>clbk</strong>: callback function.</li><li><strong>thisArg</strong>: execution context (<em>optional</em>).</li></ul><p>The invoked callback function is provided six arguments:</p><ul><li><strong>value</strong>: input array element.</li><li><strong>idx</strong>: iteration index (zero-based).</li><li><strong>xi</strong>: input array strided index (<code>offsetX + idx*strideX</code>).</li><li><strong>yi</strong>: output array strided index (<code>offsetY + idx*strideY</code>).</li><li><strong>x</strong>: input array/collection.</li><li><strong>y</strong>: output array/collection.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
@@ -59,9 +25,7 @@ absBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 
 <span class="hljs-keyword">var</span> cnt = context.count;
 <span class="hljs-comment">// returns 8</span>
-</code></pre>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
 
@@ -70,9 +34,7 @@ absBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 
 absBy( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span>, accessor );
 <span class="hljs-comment">// y => [ 10.0, 6.0, 2.0, 0.0, 0.0, 0.0 ]</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
@@ -88,10 +50,7 @@ absBy( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>
 
 absBy( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</span>, y1, <span class="hljs-number">1</span>, accessor );
 <span class="hljs-comment">// y0 => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 12.0, 8.0, 4.0 ]</span>
-</code></pre>
-<h4 id="absbyndarray-n-x-stridex-offsetx-y-stridey-offsety-clbk-thisarg-">absBy.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, clbk[, thisArg] )</h4>
-<p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of each element retrieved from a strided input array <code>x</code> via a callback function and assigns each result to an element in a strided output array <code>y</code> using alternative indexing semantics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><h4 id="absbyndarray-n-x-stridex-offsetx-y-stridey-offsety-clbk-thisarg-">absBy.ndarray( N, x, strideX, offsetX, y, strideY, offsetY, clbk[, thisArg] )</h4><p>Computes the <a href="/docs/api/latest/@stdlib/math/base/special/abs">absolute value</a> of each element retrieved from a strided input array <code>x</code> via a callback function and assigns each result to an element in a strided output array <code>y</code> using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
 
@@ -100,14 +59,7 @@ absBy( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</spa
 
 absBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, accessor );
 <span class="hljs-comment">// y => [ 2.0, 4.0, 6.0, 8.0, 10.0 ]</span>
-</code></pre>
-<p>The function accepts the following additional arguments:</p>
-<ul>
-<li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
-<li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
-</ul>
-<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
 
@@ -116,15 +68,7 @@ absBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hlj
 
 absBy.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, accessor );
 <span class="hljs-comment">// y => [ 0.0, 0.0, 0.0, 12.0, 8.0, 4.0 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>If a provided callback function does not return any value (or equivalently, explicitly returns <code>undefined</code>), the value is <strong>ignored</strong>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"></span>) </span>{
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If a provided callback function does not return any value (or equivalently, explicitly returns <code>undefined</code>), the value is <strong>ignored</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>() </span>{
     <span class="hljs-comment">// No-op...</span>
 }
 
@@ -133,15 +77,7 @@ absBy.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">
 
 absBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span>, accessor );
 <span class="hljs-comment">// y => [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> filledarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled'</span> );
 <span class="hljs-keyword">var</span> absBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs-by'</span> );
 
@@ -165,22 +101,4 @@ absBy( x.length, x, <span class="hljs-number">1</span>, y, <span class="hljs-num
 
 absBy.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, accessor );
 <span class="hljs-built_in">console</span>.log( y );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/abs"><code>@stdlib/math/strided/special/abs</code></a></span><span class="delimiter">: </span><span class="description">compute the absolute value for each element in a strided array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/abs2-by"><code>@stdlib/math/strided/special/abs2-by</code></a></span><span class="delimiter">: </span><span class="description">compute the squared absolute value of each element retrieved from an input strided array via a callback function.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/abs"><code>@stdlib/math/strided/special/abs</code></a></span><span class="delimiter">: </span><span class="description">compute the absolute value for each element in a strided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/abs2-by"><code>@stdlib/math/strided/special/abs2-by</code></a></span><span class="delimiter">: </span><span class="description">compute the squared absolute value of each element retrieved from an input strided array via a callback function.</span></li></ul></section>

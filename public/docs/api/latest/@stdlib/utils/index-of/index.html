@@ -1,80 +1,47 @@
-<h1 id="indexof">indexOf</h1>
-<blockquote>
-<p>Return the first index at which a given element can be found.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
-</code></pre>
-<h4 id="indexof-arr-searchelement-fromindex-">indexOf( arr, searchElement[, fromIndex] )</h4>
-<p>Returns the first index at which a given element can be found.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<h1 id="indexof">indexOf</h1><blockquote><p>Return the first index at which a given element can be found.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
+</code></pre><h4 id="indexof-arr-searchelement-fromindex-">indexOf( arr, searchElement[, fromIndex] )</h4><p>Returns the first index at which a given element can be found.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 1</span>
-</code></pre>
-<p>If a <code>searchElement</code> is <strong>not</strong> present in an input <code>array</code>, the function returns <code>-1</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+</code></pre><p>If a <code>searchElement</code> is <strong>not</strong> present in an input <code>array</code>, the function returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, <span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns -1</span>
-</code></pre>
-<p>By default, the implementation searches an input <code>array</code> starting from the first element. To start searching from a different element, specify a <code>fromIndex</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span> ];
+</code></pre><p>By default, the implementation searches an input <code>array</code> starting from the first element. To start searching from a different element, specify a <code>fromIndex</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 5</span>
-</code></pre>
-<p>If a <code>fromIndex</code> exceeds the input <code>array</code> length, the function returns <code>-1</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span> ];
+</code></pre><p>If a <code>fromIndex</code> exceeds the input <code>array</code> length, the function returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, <span class="hljs-number">2</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns -1</span>
-</code></pre>
-<p>If a <code>fromIndex</code> is less than <code>0</code>, the starting index is determined relative to the last index (with the last index being equivalent to <code>fromIndex = -1</code>).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span> ];
+</code></pre><p>If a <code>fromIndex</code> is less than <code>0</code>, the starting index is determined relative to the last index (with the last index being equivalent to <code>fromIndex = -1</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, <span class="hljs-number">2</span>, -<span class="hljs-number">4</span> );
 <span class="hljs-comment">// returns 5</span>
 
 idx = indexOf( arr, <span class="hljs-number">2</span>, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 7</span>
-</code></pre>
-<p>If <code>fromIndex</code> is less than <code>0</code> <strong>and</strong> its absolute value exceeds the input <code>array</code> length, the function searches the entire input <code>array</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span> ];
+</code></pre><p>If <code>fromIndex</code> is less than <code>0</code> <strong>and</strong> its absolute value exceeds the input <code>array</code> length, the function searches the entire input <code>array</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, <span class="hljs-number">2</span>, -<span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns 1</span>
-</code></pre>
-<p>The first argument is not limited to <code>arrays</code>, but may be any <a href="/docs/api/latest/@stdlib/assert/is-array-like">array-like</a> <code>object</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'bebop'</span>;
+</code></pre><p>The first argument is not limited to <code>arrays</code>, but may be any <a href="/docs/api/latest/@stdlib/assert/is-array-like">array-like</a> <code>object</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'bebop'</span>;
 
 <span class="hljs-keyword">var</span> idx = indexOf( str, <span class="hljs-string">'o'</span> );
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>Search is performed using <strong>strict equality</strong> comparison. Thus,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">3</span> ];
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Search is performed using <strong>strict equality</strong> comparison. Thus,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">3</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 <span class="hljs-comment">// returns -1</span>
-</code></pre>
-</li>
-<li>
-<p>This implementation is <strong>not</strong> <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.indexof">ECMAScript Standard</a> compliant. Notably, the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.indexof">standard</a> specifies that an <code>array</code> be searched by calling <code>hasOwnProperty</code> (thus, for most cases, incurring a performance penalty), and the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.indexof">standard</a> does <strong>not</strong> accommodate a <code>searchElement</code> equal to <code>NaN</code>. In this implementation, the following is possible:</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Locate the first element which is NaN...</span>
+</code></pre></li><li><p>This implementation is <strong>not</strong> <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.indexof">ECMAScript Standard</a> compliant. Notably, the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.indexof">standard</a> specifies that an <code>array</code> be searched by calling <code>hasOwnProperty</code> (thus, for most cases, incurring a performance penalty), and the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.indexof">standard</a> does <strong>not</strong> accommodate a <code>searchElement</code> equal to <code>NaN</code>. In this implementation, the following is possible:</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Locate the first element which is NaN...</span>
 <span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">NaN</span> ];
 
 <span class="hljs-keyword">var</span> idx = indexOf( arr, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns 1</span>
 
 <span class="hljs-comment">// Prototype properties may be searched as well...</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Obj</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Obj</span>() </span>{
     <span class="hljs-built_in">this</span>[ <span class="hljs-number">0</span> ] = <span class="hljs-string">'beep'</span>;
     <span class="hljs-built_in">this</span>[ <span class="hljs-number">1</span> ] = <span class="hljs-string">'boop'</span>;
     <span class="hljs-built_in">this</span>[ <span class="hljs-number">2</span> ] = <span class="hljs-string">'woot'</span>;
@@ -93,15 +60,7 @@ idx = indexOf( obj, <span class="hljs-string">'bop'</span> );
 
 idx = indexOf( obj, <span class="hljs-string">'bop'</span> );
 <span class="hljs-comment">// returns 2</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
 
 <span class="hljs-keyword">var</span> arr;
 <span class="hljs-keyword">var</span> obj;
@@ -140,14 +99,4 @@ idx = indexOf( str, <span class="hljs-string">'o'</span> );
 
 <span class="hljs-built_in">console</span>.log( idx );
 <span class="hljs-comment">// => 5</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

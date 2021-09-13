@@ -1,14 +1,5 @@
-<h1 id="unc-path">UNC Path</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to parse a <a href="https://msdn.microsoft.com/en-us/library/gg465305.aspx">UNC</a> path.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUncPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/unc-path'</span> );
-</code></pre>
-<h4 id="reuncpath">reUncPath()</h4>
-<p>Return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to parse a <a href="https://msdn.microsoft.com/en-us/library/gg465305.aspx">UNC</a> path. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_UNC_PATH = reUncPath();
+<h1 id="unc-path">UNC Path</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to parse a <a href="https://msdn.microsoft.com/en-us/library/gg465305.aspx">UNC</a> path.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUncPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/unc-path'</span> );
+</code></pre><h4 id="reuncpath">reUncPath()</h4><p>Return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to parse a <a href="https://msdn.microsoft.com/en-us/library/gg465305.aspx">UNC</a> path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_UNC_PATH = reUncPath();
 <span class="hljs-keyword">var</span> parts = RE_UNC_PATH.exec( <span class="hljs-string">'\\\\server\\share\\foo\\bar\\baz:a:b'</span> );
 <span class="hljs-comment">/* returns
     [
@@ -40,18 +31,9 @@ parts = RE_UNC_PATH.exec( <span class="hljs-string">'\\\\server\\share'</span> )
         'input': '\\\\server\\share'
     ]
 */</span>
-</code></pre>
-<h4 id="reuncpathregexp">reUncPath.REGEXP</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to parse a <a href="https://msdn.microsoft.com/en-us/library/gg465305.aspx">UNC</a> path. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reUncPath.REGEXP.exec( <span class="hljs-string">'\\\\server\\share\\foo\\bar\\baz'</span> )[ <span class="hljs-number">1</span> ];
+</code></pre><h4 id="reuncpathregexp">reUncPath.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to parse a <a href="https://msdn.microsoft.com/en-us/library/gg465305.aspx">UNC</a> path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reUncPath.REGEXP.exec( <span class="hljs-string">'\\\\server\\share\\foo\\bar\\baz'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'server'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUncPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/unc-path'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUncPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/unc-path'</span> );
 
 <span class="hljs-keyword">var</span> RE_UNC_PATH = reUncPath();
 <span class="hljs-keyword">var</span> bool;
@@ -152,21 +134,4 @@ bool = RE_UNC_PATH.test( path );
 path = <span class="hljs-string">'/foo/../bar'</span>;
 bool = RE_UNC_PATH.test( path );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-unc-path"><code>@stdlib/assert/is-unc-path</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a UNC path.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-unc-path"><code>@stdlib/assert/is-unc-path</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a UNC path.</span></li></ul></section>

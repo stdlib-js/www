@@ -1,32 +1,10 @@
-<h1 id="iscoprime">isCoprime</h1>
-<blockquote>
-<p>Test if two numbers are <a href="https://en.wikipedia.org/wiki/Coprime_integers">coprime</a>.</p>
-</blockquote>
-<section class="intro">
-<p>Two integers <code>a</code> and <code>b</code> are said to be <strong>coprime</strong> (or <strong>relatively prime</strong> or <strong>mutually prime</strong>) if the only positive integer that divides both of them is <code>1</code>.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCoprime = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-coprime'</span> );
-</code></pre>
-<h4 id="iscoprime-a-b-">isCoprime( a, b )</h4>
-<p>Tests if two numbers are <a href="https://en.wikipedia.org/wiki/Coprime_integers">coprime</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isCoprime( <span class="hljs-number">14.0</span>, <span class="hljs-number">15.0</span> );
+<h1 id="iscoprime">isCoprime</h1><blockquote><p>Test if two numbers are <a href="https://en.wikipedia.org/wiki/Coprime_integers">coprime</a>.</p></blockquote><section class="intro"><p>Two integers <code>a</code> and <code>b</code> are said to be <strong>coprime</strong> (or <strong>relatively prime</strong> or <strong>mutually prime</strong>) if the only positive integer that divides both of them is <code>1</code>.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCoprime = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-coprime'</span> );
+</code></pre><h4 id="iscoprime-a-b-">isCoprime( a, b )</h4><p>Tests if two numbers are <a href="https://en.wikipedia.org/wiki/Coprime_integers">coprime</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isCoprime( <span class="hljs-number">14.0</span>, <span class="hljs-number">15.0</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isCoprime( <span class="hljs-number">14.0</span>, <span class="hljs-number">21.0</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCoprime = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-coprime'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCoprime = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-coprime'</span> );
 
 <span class="hljs-keyword">var</span> bool = isCoprime( <span class="hljs-number">5.0</span>, <span class="hljs-number">7.0</span> );
 <span class="hljs-comment">// returns true</span>
@@ -36,23 +14,4 @@ bool = isCoprime( <span class="hljs-number">5.0</span>, <span class="hljs-number
 
 bool = isCoprime( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-composite"><code>@stdlib/math/base/assert/is-composite</code></a></span><span class="delimiter">: </span><span class="description">test if a number is composite.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-prime"><code>@stdlib/math/base/assert/is-prime</code></a></span><span class="delimiter">: </span><span class="description">test if a number is prime.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gcd"><code>@stdlib/math/base/special/gcd</code></a></span><span class="delimiter">: </span><span class="description">compute the greatest common divisor (gcd).</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-composite"><code>@stdlib/math/base/assert/is-composite</code></a></span><span class="delimiter">: </span><span class="description">test if a number is composite.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/assert/is-prime"><code>@stdlib/math/base/assert/is-prime</code></a></span><span class="delimiter">: </span><span class="description">test if a number is prime.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gcd"><code>@stdlib/math/base/special/gcd</code></a></span><span class="delimiter">: </span><span class="description">compute the greatest common divisor (gcd).</span></li></ul></section>

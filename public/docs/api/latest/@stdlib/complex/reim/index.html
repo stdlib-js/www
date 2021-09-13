@@ -1,19 +1,5 @@
-<h1 id="reim">reim</h1>
-<blockquote>
-<p>Return the real and imaginary components of a complex number.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reim = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/reim'</span> );
-</code></pre>
-<h4 id="reim-z-">reim( z )</h4>
-<p>Returns the <strong>real</strong> and <strong>imaginary</strong> components of a <code>complex</code> number.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<h1 id="reim">reim</h1><blockquote><p>Return the real and imaginary components of a complex number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reim = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/reim'</span> );
+</code></pre><h4 id="reim-z-">reim( z )</h4><p>Returns the <strong>real</strong> and <strong>imaginary</strong> components of a <code>complex</code> number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
 <span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
 
 <span class="hljs-keyword">var</span> z = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
@@ -23,18 +9,7 @@
 z = <span class="hljs-keyword">new</span> Complex64( <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> );
 out = reim( z );
 <span class="hljs-comment">// returns &#x3C;Float32Array>[ 5.0, 3.0 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> reim = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/reim'</span> );
@@ -52,26 +27,4 @@ out = reim( z );
     out = reim( z );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s => %d, %d'</span>, z.toString(), out[ <span class="hljs-number">0</span> ], out[ <span class="hljs-number">1</span> ] );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/imag"><code>@stdlib/complex/imag</code></a></span><span class="delimiter">: </span><span class="description">return the imaginary component of a complex number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/real"><code>@stdlib/complex/real</code></a></span><span class="delimiter">: </span><span class="description">return the real component of a complex number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/imag"><code>@stdlib/complex/imag</code></a></span><span class="delimiter">: </span><span class="description">return the imaginary component of a complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/complex/real"><code>@stdlib/complex/real</code></a></span><span class="delimiter">: </span><span class="description">return the real component of a complex number.</span></li></ul></section>

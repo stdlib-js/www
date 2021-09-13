@@ -1,44 +1,7 @@
-<h1 id="convert-path">Convert Path</h1>
-<blockquote>
-<p>Convert between POSIX and Windows paths.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> convertPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/convert-path'</span> );
-</code></pre>
-<h4 id="convertpath-from-to-">convertPath( from, to )</h4>
-<p>Converts between POSIX and Windows paths.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> p = convertPath( <span class="hljs-string">'C:\\foo\\bar'</span>, <span class="hljs-string">'posix'</span> );
+<h1 id="convert-path">Convert Path</h1><blockquote><p>Convert between POSIX and Windows paths.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> convertPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/convert-path'</span> );
+</code></pre><h4 id="convertpath-from-to-">convertPath( from, to )</h4><p>Converts between POSIX and Windows paths.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> p = convertPath( <span class="hljs-string">'C:\\foo\\bar'</span>, <span class="hljs-string">'posix'</span> );
 <span class="hljs-comment">// returns '/c/foo/bar'</span>
-</code></pre>
-<p>The following output path conventions are supported:</p>
-<ul>
-<li><strong>win32</strong>: Windows path convention; e.g., <code>C:\\foo\\bar</code>.</li>
-<li><strong>mixed</strong>: mixed path convention (Windows volume convention and POSIX path separator); e.g., <code>C:/foo/bar</code>.</li>
-<li><strong>posix</strong>: POSIX path convention; e.g., <code>/c/foo/bar</code>.</li>
-</ul>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>A Windows <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx">extended-length path</a> <strong>cannot</strong> be converted to either a <code>mixed</code> or <code>posix</code> path convention, as forward slashes cannot be used as path separators.</li>
-<li>If a POSIX path begins with <code>/[A-Za-z]/</code> (e.g., <code>/c/</code>), the path is assumed to begin with a volume name.</li>
-<li>The function makes no attempt to verify that a provided path is valid. </li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> convertPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/convert-path'</span> );
+</code></pre><p>The following output path conventions are supported:</p><ul><li><strong>win32</strong>: Windows path convention; e.g., <code>C:\\foo\\bar</code>.</li><li><strong>mixed</strong>: mixed path convention (Windows volume convention and POSIX path separator); e.g., <code>C:/foo/bar</code>.</li><li><strong>posix</strong>: POSIX path convention; e.g., <code>/c/foo/bar</code>.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A Windows <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx">extended-length path</a> <strong>cannot</strong> be converted to either a <code>mixed</code> or <code>posix</code> path convention, as forward slashes cannot be used as path separators.</li><li>If a POSIX path begins with <code>/[A-Za-z]/</code> (e.g., <code>/c/</code>), the path is assumed to begin with a volume name.</li><li>The function makes no attempt to verify that a provided path is valid.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> convertPath = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/convert-path'</span> );
 
 <span class="hljs-keyword">var</span> p1;
 <span class="hljs-keyword">var</span> p2;
@@ -66,53 +29,15 @@ p2 = convertPath( p1, <span class="hljs-string">'mixed'</span> );
 p1 = <span class="hljs-string">'C:\\\\foo\\bar\\beep.c'</span>;
 p2 = convertPath( p1, <span class="hljs-string">'posix'</span> );
 <span class="hljs-comment">// returns '/c/foo/bar/beep.c'</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for describing a command-line interface. -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<!-- CLI usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: convert-path [options] [&#x3C;path>] --out=&#x3C;output>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: convert-path [options] [&#x3C;path>] --out=&#x3C;output>
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
   -o,    --out output          Output path convention.
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- CLI usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ convert-path /c/foo/bar --out=mixed
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ convert-path /c/foo/bar --out=mixed
 c:/foo/bar
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'/c/foo/bar'</span> | convert-path --out=win32
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'/c/foo/bar'</span> | convert-path --out=win32
 c:\foo\bar
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section>

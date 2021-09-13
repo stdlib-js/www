@@ -1,42 +1,15 @@
-<h1 id="replace">Replace</h1>
-<blockquote>
-<p>Replace search occurrences with a replacement string.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
-</code></pre>
-<h4 id="replace-str-search-newval-">replace( str, search, newval )</h4>
-<p>Replaces search occurrences with a replacement <code>string</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'o'</span> );
+<h1 id="replace">Replace</h1><blockquote><p>Replace search occurrences with a replacement string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
+</code></pre><h4 id="replace-str-search-newval-">replace( str, search, newval )</h4><p>Replaces search occurrences with a replacement <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-string">'o'</span> );
 <span class="hljs-comment">// returns 'boop'</span>
-</code></pre>
-<p>If provided a <code>function</code> as the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter">third argument</a>, the function is invoked for each match, and the function's return value is used as the replacement <code>string</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
+</code></pre><p>If provided a <code>function</code> as the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter">third argument</a>, the function is invoked for each match, and the function's return value is used as the replacement <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">'/'</span> + p1 + <span class="hljs-string">'/'</span>;
 }
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">'Oranges and lemons'</span>;
 <span class="hljs-keyword">var</span> out = replace( str, <span class="hljs-regexp">/([^\s]+)/gi</span>, replacer );
 <span class="hljs-comment">// returns '/Oranges/ /and/ /lemons/'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>The function has one notable difference from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.prototype.replace</code></a>. When provided a <code>string</code> as the <code>search</code> value, the function replaces <strong>all</strong> occurrences. To remove only the first match, use a regular expression.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-regexp">/e/</span>, <span class="hljs-string">'o'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function has one notable difference from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.prototype.replace</code></a>. When provided a <code>string</code> as the <code>search</code> value, the function replaces <strong>all</strong> occurrences. To remove only the first match, use a regular expression.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = replace( <span class="hljs-string">'beep'</span>, <span class="hljs-regexp">/e/</span>, <span class="hljs-string">'o'</span> );
 <span class="hljs-comment">// returns 'boep'</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/capitalize'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/capitalize'</span> );
 <span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/replace'</span> );
 
 <span class="hljs-keyword">var</span> out;
@@ -55,15 +28,7 @@ out = replace( str, <span class="hljs-regexp">/([^\s]*)/gi</span>, replacer );
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params"> match, p1 </span>) </span>{
     <span class="hljs-keyword">return</span> capitalize( p1 );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: replace [options] [&#x3C;string>] --search=&#x3C;string> --newval=&#x3C;string>
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: replace [options] [&#x3C;string>] --search=&#x3C;string> --newval=&#x3C;string>
 
 Options:
 
@@ -71,27 +36,8 @@ Options:
   -V,    --version             Print the package version.
          --search string       Search string.
          --newval string       Replacement string.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ replace --search=<span class="hljs-string">'/[eo]/'</span> --newval=a beep
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ replace --search=<span class="hljs-string">'/[eo]/'</span> --newval=a beep
 baap
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop'</span> | replace --search=<span class="hljs-string">'o'</span> newval=<span class="hljs-string">'e'</span>
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'boop'</span> | replace --search=<span class="hljs-string">'o'</span> newval=<span class="hljs-string">'e'</span>
 beep
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section>

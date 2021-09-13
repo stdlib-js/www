@@ -1,112 +1,7 @@
-<h1 id="remove-punctuation">Remove Punctuation</h1>
-<blockquote>
-<p>Remove punctuation characters from a string.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removePunctuation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-punctuation'</span> );
-</code></pre>
-<h4 id="removepunctuation-str-">removePunctuation( str )</h4>
-<p>Removes punctuation characters from a <code>string</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = removePunctuation( <span class="hljs-string">'Sun Tzu said: "A leader leads by example not by force."'</span> );
+<h1 id="remove-punctuation">Remove Punctuation</h1><blockquote><p>Remove punctuation characters from a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removePunctuation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-punctuation'</span> );
+</code></pre><h4 id="removepunctuation-str-">removePunctuation( str )</h4><p>Removes punctuation characters from a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = removePunctuation( <span class="hljs-string">'Sun Tzu said: "A leader leads by example not by force."'</span> );
 <span class="hljs-comment">// returns 'Sun Tzu said A leader leads by example not by force'</span>
-</code></pre>
-<p>The function removes the following characters:</p>
-<table>
-<thead>
-<tr>
-<th align="center">description</th>
-<th align="center">value</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">Apostrophe</td>
-<td align="center"><code>`</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Braces</td>
-<td align="center"><code>{ }</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Brackets</td>
-<td align="center"><code>[ ]</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Colon</td>
-<td align="center"><code>:</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Comma</td>
-<td align="center"><code>,</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Exclamation Mark</td>
-<td align="center"><code>!</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Fraction Slash</td>
-<td align="center"><code>/</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Guillemets</td>
-<td align="center"><code>&#x3C; ></code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Parentheses</td>
-<td align="center"><code>( )</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Period</td>
-<td align="center"><code>.</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Semicolon</td>
-<td align="center"><code>;</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Tilde</td>
-<td align="center"><code>~</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Vertical Bar</td>
-<td align="center">`</td>
-<td>`</td>
-</tr>
-<tr>
-<td align="center">Question Mark</td>
-<td align="center"><code>?</code></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">Quotation Marks</td>
-<td align="center"><code>' "</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removePunctuation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-punctuation'</span> );
+</code></pre><p>The function removes the following characters:</p><table><thead><tr><th align="center">description</th><th align="center">value</th></tr></thead><tbody><tr><td align="center">Apostrophe</td><td align="center"><code>`</code></td></tr><tr><td align="center">Braces</td><td align="center"><code>{ }</code></td></tr><tr><td align="center">Brackets</td><td align="center"><code>[ ]</code></td></tr><tr><td align="center">Colon</td><td align="center"><code>:</code></td></tr><tr><td align="center">Comma</td><td align="center"><code>,</code></td></tr><tr><td align="center">Exclamation Mark</td><td align="center"><code>!</code></td></tr><tr><td align="center">Fraction Slash</td><td align="center"><code>/</code></td></tr><tr><td align="center">Guillemets</td><td align="center"><code>&#x3C; ></code></td></tr><tr><td align="center">Parentheses</td><td align="center"><code>( )</code></td></tr><tr><td align="center">Period</td><td align="center"><code>.</code></td></tr><tr><td align="center">Semicolon</td><td align="center"><code>;</code></td></tr><tr><td align="center">Tilde</td><td align="center"><code>~</code></td></tr><tr><td align="center">Vertical Bar</td><td align="center">`</td><td>`</td></tr><tr><td align="center">Question Mark</td><td align="center"><code>?</code></td></tr><tr><td align="center">Quotation Marks</td><td align="center"><code>' "</code></td></tr></tbody></table></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removePunctuation = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-punctuation'</span> );
 
 <span class="hljs-keyword">var</span> str;
 <span class="hljs-keyword">var</span> out;
@@ -126,41 +21,14 @@ out = removePunctuation( str );
 str = <span class="hljs-string">'This a sentence without punctuation'</span>;
 out = removePunctuation( str );
 <span class="hljs-comment">// returns 'This a sentence without punctuation'</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: remove-punctuation [options] [&#x3C;string>]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: remove-punctuation [options] [&#x3C;string>]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ remove-punctuation <span class="hljs-string">'beep! beep!!!'</span>
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ remove-punctuation <span class="hljs-string">'beep! beep!!!'</span>
 beep beep
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep! beep!!!'</span> | remove-punctuation
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep! beep!!!'</span> | remove-punctuation
 beep beep
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section>

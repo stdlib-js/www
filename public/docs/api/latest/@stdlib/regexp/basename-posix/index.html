@@ -1,28 +1,10 @@
-<h1 id="basename">Basename</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasenamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename-posix'</span> );
-</code></pre>
-<h4 id="rebasenameposix">reBasenamePosix()</h4>
-<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_BASENAME_POSIX = reBasenamePosix();
+<h1 id="basename">Basename</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasenamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename-posix'</span> );
+</code></pre><h4 id="rebasenameposix">reBasenamePosix()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_BASENAME_POSIX = reBasenamePosix();
 <span class="hljs-keyword">var</span> base = RE_BASENAME_POSIX.exec( <span class="hljs-string">'foo/bar/index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'index.js'</span>
-</code></pre>
-<h4 id="rebasenameposixregexp">reBasenamePosix.REGEXP</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasenamePosix.REGEXP.exec( <span class="hljs-string">'foo/bar/index.js'</span> )[ <span class="hljs-number">1</span> ];
+</code></pre><h4 id="rebasenameposixregexp">reBasenamePosix.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture the last part of a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> path.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> base = reBasenamePosix.REGEXP.exec( <span class="hljs-string">'foo/bar/index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'index.js'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasenamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename-posix'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reBasenamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/basename-posix'</span> );
 
 <span class="hljs-keyword">var</span> RE_BASENAME_POSIX = reBasenamePosix();
 <span class="hljs-keyword">var</span> base = RE_BASENAME_POSIX.exec( <span class="hljs-string">'index.js'</span> )[ <span class="hljs-number">1</span> ];
@@ -45,22 +27,4 @@ base = RE_BASENAME_POSIX.exec( <span class="hljs-string">'/foo/bar/file'</span> 
 
 base = RE_BASENAME_POSIX.exec( <span class="hljs-string">'/foo/bar/.gitignore'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns '.gitignore'</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename"><code>@stdlib/regexp/basename</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a path.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename-windows"><code>@stdlib/regexp/basename-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a Windows path.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename"><code>@stdlib/regexp/basename</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a path.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/basename-windows"><code>@stdlib/regexp/basename-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture the last part of a Windows path.</span></li></ul></section>

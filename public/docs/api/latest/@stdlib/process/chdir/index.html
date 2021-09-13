@@ -1,30 +1,6 @@
-<h1 id="chdir">chdir</h1>
-<blockquote>
-<p>Change the current working directory.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chdir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/chdir'</span> );
-</code></pre>
-<h4 id="chdir-path-">chdir( path )</h4>
-<p>Changes the current working directory to the specified <code>path</code>.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> err = chdir( <span class="hljs-string">'/foo/bar'</span> );
-</code></pre>
-<p>If the function encounters an error when attempting to change the working directory, the function returns an <code>error</code>; otherwise, the function returns <code>null</code>.</p>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>See <a href="http://man7.org/linux/man-pages/man2/chdir.2.html">chdir(2)</a>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cwd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/cwd'</span> );
+<h1 id="chdir">chdir</h1><blockquote><p>Change the current working directory.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chdir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/chdir'</span> );
+</code></pre><h4 id="chdir-path-">chdir( path )</h4><p>Changes the current working directory to the specified <code>path</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> err = chdir( <span class="hljs-string">'/foo/bar'</span> );
+</code></pre><p>If the function encounters an error when attempting to change the working directory, the function returns an <code>error</code>; otherwise, the function returns <code>null</code>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>See <a href="http://man7.org/linux/man-pages/man2/chdir.2.html">chdir(2)</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cwd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/cwd'</span> );
 <span class="hljs-keyword">var</span> chdir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/chdir'</span> );
 
 <span class="hljs-comment">// Print the current working directory:</span>
@@ -48,21 +24,4 @@ err = chdir( dir );
 
 <span class="hljs-comment">// Print the current working directory:</span>
 <span class="hljs-built_in">console</span>.log( cwd() );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/process/cwd"><code>@stdlib/process/cwd</code></a></span><span class="delimiter">: </span><span class="description">return the current working directory.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/process/cwd"><code>@stdlib/process/cwd</code></a></span><span class="delimiter">: </span><span class="description">return the current working directory.</span></li></ul></section>

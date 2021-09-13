@@ -1,16 +1,5 @@
-<h1 id="isfinite">isFinite</h1>
-<blockquote>
-<p>Test if a value is a finite number.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<!-- eslint-disable stdlib/no-redeclare -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">isFinite</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-finite'</span> );
-</code></pre>
-<h4 id="isfinite-value-">isFinite( value )</h4>
-<p>Tests if a value is a finite <code>number</code>.</p>
-<!-- eslint-disable stdlib/no-redeclare, no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<h1 id="isfinite">isFinite</h1><blockquote><p>Test if a value is a finite number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">isFinite</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-finite'</span> );
+</code></pre><h4 id="isfinite-value-">isFinite( value )</h4><p>Tests if a value is a finite <code>number</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = <span class="hljs-built_in">isFinite</span>( <span class="hljs-number">5.0</span> );
 <span class="hljs-comment">// returns true</span>
@@ -23,43 +12,21 @@ bool = <span class="hljs-built_in">isFinite</span>( <span class="hljs-number">1.
 
 bool = <span class="hljs-built_in">isFinite</span>( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="isfiniteisprimitive-value-">isFinite.isPrimitive( value )</h4>
-<p>Tests if a <code>value</code> is a primitive <code>number</code> having a finite value.</p>
-<!-- eslint-disable stdlib/no-redeclare, no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="isfiniteisprimitive-value-">isFinite.isPrimitive( value )</h4><p>Tests if a <code>value</code> is a primitive <code>number</code> having a finite value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = <span class="hljs-built_in">isFinite</span>.isPrimitive( -<span class="hljs-number">3.0</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = <span class="hljs-built_in">isFinite</span>.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">3.0</span> ) );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="isfiniteisobject-value-">isFinite.isObject( value )</h4>
-<p>Tests if a <code>value</code> is a <code>Number</code> object having a finite value.</p>
-<!-- eslint-disable stdlib/no-redeclare, no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="isfiniteisobject-value-">isFinite.isObject( value )</h4><p>Tests if a <code>value</code> is a <code>Number</code> object having a finite value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = <span class="hljs-built_in">isFinite</span>.isObject( <span class="hljs-number">3.0</span> );
 <span class="hljs-comment">// returns false</span>
 
 bool = <span class="hljs-built_in">isFinite</span>.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">3.0</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>In contrast to the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite"><code>isFinite</code></a>, input values are <strong>not</strong> coerced to numbers.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable stdlib/no-redeclare, no-new-wrappers -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite"><code>isFinite</code></a>, input values are <strong>not</strong> coerced to numbers.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">isFinite</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-finite'</span> );
 
 <span class="hljs-keyword">var</span> bool = <span class="hljs-built_in">isFinite</span>( -<span class="hljs-number">5.0</span> );
@@ -85,22 +52,4 @@ bool = <span class="hljs-built_in">isFinite</span>( <span class="hljs-string">'5
 
 bool = <span class="hljs-built_in">isFinite</span>( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-finite-array"><code>@stdlib/assert/is-finite-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array-like object containing only finite numbers.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-infinite"><code>@stdlib/assert/is-infinite</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an infinite number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-finite-array"><code>@stdlib/assert/is-finite-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array-like object containing only finite numbers.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-infinite"><code>@stdlib/assert/is-infinite</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an infinite number.</span></li></ul></section>

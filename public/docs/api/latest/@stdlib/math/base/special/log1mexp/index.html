@@ -1,14 +1,5 @@
-<h1 id="log1mexp">log1mexp</h1>
-<blockquote>
-<p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1-exp(-|x|)</code>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1mexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1mexp'</span> );
-</code></pre>
-<h4 id="log1mexp-x-">log1mexp( x )</h4>
-<p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1-exp(-|x|)</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = log1mexp( <span class="hljs-number">0.0</span> );
+<h1 id="log1mexp">log1mexp</h1><blockquote><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1-exp(-|x|)</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1mexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1mexp'</span> );
+</code></pre><h4 id="log1mexp-x-">log1mexp( x )</h4><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>1-exp(-|x|)</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = log1mexp( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns -Infinity</span>
 
 y = log1mexp( <span class="hljs-number">5.0</span> );
@@ -22,13 +13,7 @@ y = log1mexp( -<span class="hljs-number">10.0</span> );
 
 y = log1mexp( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
 <span class="hljs-keyword">var</span> log1mexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1mexp'</span> );
 
 <span class="hljs-keyword">var</span> x = incrspace( -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">0.01</span> );
@@ -39,24 +24,4 @@ y = log1mexp( <span class="hljs-literal">NaN</span> );
     v = log1mexp( x[ i ] );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, f(x): %d'</span>, x[ i ], v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1pexp"><code>@stdlib/math/base/special/log1pexp</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+exp(x).</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1pexp"><code>@stdlib/math/base/special/log1pexp</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+exp(x).</span></li></ul></section>

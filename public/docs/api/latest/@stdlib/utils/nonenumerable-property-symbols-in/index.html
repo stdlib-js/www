@@ -1,15 +1,5 @@
-<h1 id="nonenumerablepropertysymbolsin">nonEnumerablePropertySymbolsIn</h1>
-<blockquote>
-<p>Return an array of an object's own and inherited non-enumerable symbol properties.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<!-- eslint-disable id-length -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nonEnumerablePropertySymbolsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nonenumerable-property-symbols-in'</span> );
-</code></pre>
-<h4 id="nonenumerablepropertysymbolsin-obj-">nonEnumerablePropertySymbolsIn( obj )</h4>
-<p>Returns an <code>array</code> of an object's own and inherited non-enumerable symbol properties.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+<h1 id="nonenumerablepropertysymbolsin">nonEnumerablePropertySymbolsIn</h1><blockquote><p>Return an array of an object's own and inherited non-enumerable symbol properties.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nonEnumerablePropertySymbolsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nonenumerable-property-symbols-in'</span> );
+</code></pre><h4 id="nonenumerablepropertysymbolsin-obj-">nonEnumerablePropertySymbolsIn( obj )</h4><p>Returns an <code>array</code> of an object's own and inherited non-enumerable symbol properties.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 <span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
 
@@ -25,21 +15,7 @@
 }
 
 <span class="hljs-keyword">var</span> symbols = nonEnumerablePropertySymbolsIn( obj );
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Property order is not guaranteed, as <code>object</code> property enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s properties, thus allowing for deterministic extraction.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable id-length -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Property order is not guaranteed, as <code>object</code> property enumeration is not specified according to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4">ECMAScript specification</a>. In practice, however, most engines use insertion order to sort an <code>object</code>'s properties, thus allowing for deterministic extraction.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
 <span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 <span class="hljs-keyword">var</span> nonEnumerablePropertySymbolsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nonenumerable-property-symbols-in'</span> );
@@ -48,7 +24,7 @@
 <span class="hljs-keyword">var</span> symbols;
 <span class="hljs-keyword">var</span> obj;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>() </span>{
     <span class="hljs-keyword">if</span> ( hasSymbols ) {
         defineProperty( <span class="hljs-built_in">this</span>, <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'baz'</span> ), {
             <span class="hljs-string">'configurable'</span>: <span class="hljs-literal">false</span>,
@@ -73,25 +49,4 @@ obj = <span class="hljs-keyword">new</span> Foo();
 symbols = nonEnumerablePropertySymbolsIn( obj );
 
 <span class="hljs-built_in">console</span>.log( symbols );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/enumerable-property-symbols-in"><code>@stdlib/utils/enumerable-property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable symbol properties.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-nonenumerable-property-symbols"><code>@stdlib/utils/inherited-nonenumerable-property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited non-enumerable symbol properties.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/nonenumerable-property-names-in"><code>@stdlib/utils/nonenumerable-property-names-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited non-enumerable property names.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/nonenumerable-property-symbols"><code>@stdlib/utils/nonenumerable-property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own non-enumerable symbol properties.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols-in"><code>@stdlib/utils/property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited symbol properties.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/enumerable-property-symbols-in"><code>@stdlib/utils/enumerable-property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable symbol properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-nonenumerable-property-symbols"><code>@stdlib/utils/inherited-nonenumerable-property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited non-enumerable symbol properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/nonenumerable-property-names-in"><code>@stdlib/utils/nonenumerable-property-names-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited non-enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/nonenumerable-property-symbols"><code>@stdlib/utils/nonenumerable-property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own non-enumerable symbol properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols-in"><code>@stdlib/utils/property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited symbol properties.</span></li></ul></section>

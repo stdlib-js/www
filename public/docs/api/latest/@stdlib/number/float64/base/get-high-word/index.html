@@ -1,22 +1,7 @@
-<h1 id="high-word">High Word</h1>
-<blockquote>
-<p>Return an unsigned 32-bit integer corresponding to the more significant 32 bits of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getHighWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/get-high-word'</span> );
-</code></pre>
-<h4 id="gethighword-x-">getHighWord( x )</h4>
-<p>Returns an unsigned 32-bit <code>integer</code> corresponding to the more significant 32 bits of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> w = getHighWord( <span class="hljs-number">3.14e201</span> ); <span class="hljs-comment">// => 01101001110001001000001011000011</span>
+<h1 id="high-word">High Word</h1><blockquote><p>Return an unsigned 32-bit integer corresponding to the more significant 32 bits of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getHighWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/get-high-word'</span> );
+</code></pre><h4 id="gethighword-x-">getHighWord( x )</h4><p>Returns an unsigned 32-bit <code>integer</code> corresponding to the more significant 32 bits of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> w = getHighWord( <span class="hljs-number">3.14e201</span> ); <span class="hljs-comment">// => 01101001110001001000001011000011</span>
 <span class="hljs-comment">// returns 1774486211</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> getHighWord = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/get-high-word'</span> );
@@ -34,46 +19,13 @@
     w = getHighWord( x );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. high word: %d.'</span>, x, w );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float64/base/get_high_word.h"</span></span>
-</code></pre>
-<h4 id="stdlib_base_float64_get_high_word-x-high-">stdlib_base_float64_get_high_word( x, *high )</h4>
-<p>Extracts the unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float64/base/get_high_word.h"</span></span>
+</code></pre><h4 id="stdlib_base_float64_get_high_word-x-high-">stdlib_base_float64_get_high_word( x, *high )</h4><p>Extracts the unsigned 32-bit integer corresponding to the more significant 32 bits of a double-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 
 <span class="hljs-keyword">uint32_t</span> high;
 stdlib_base_float64_get_high_word( <span class="hljs-number">3.14</span>, &#x26;high );
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>x</strong>: <code>[in] double</code> input value.</li>
-<li><strong>high</strong>: <code>[out] uint32_t*</code> destination for higher order word.</li>
-</ul>
-<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_float64_get_high_word</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">uint32_t</span> *high )</span></span>;
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float64/base/get_high_word.h"</span></span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li><li><strong>high</strong>: <code>[out] uint32_t*</code> destination for higher order word.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_float64_get_high_word</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">uint32_t</span> *high )</span></span>;
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float64/base/get_high_word.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
@@ -87,16 +39,4 @@ stdlib_base_float64_get_high_word( <span class="hljs-number">3.14</span>, &#x26;
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%lf => high: %u\n"</span>, x[ i ], high );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section>

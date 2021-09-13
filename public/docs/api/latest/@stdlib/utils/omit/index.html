@@ -1,19 +1,5 @@
-<h1 id="omit">omit</h1>
-<blockquote>
-<p>Return a partial object copy excluding specified keys.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> omit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/omit'</span> );
-</code></pre>
-<h4 id="omit-obj-keys-">omit( obj, keys )</h4>
-<p>Returns a partial copy of an <code>object</code>, which excludes specified <code>keys</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj1 = {
+<h1 id="omit">omit</h1><blockquote><p>Return a partial object copy excluding specified keys.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> omit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/omit'</span> );
+</code></pre><h4 id="omit-obj-keys-">omit( obj, keys )</h4><p>Returns a partial copy of an <code>object</code>, which excludes specified <code>keys</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj1 = {
     <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
     <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
     <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
@@ -24,9 +10,7 @@
 
 <span class="hljs-keyword">var</span> obj3 = omit( obj1, [ <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span> ] );
 <span class="hljs-comment">// returns { 'a': 1 }</span>
-</code></pre>
-<p>The function <strong>ignores</strong> non-existent and inherited keys.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj1 = {
+</code></pre><p>The function <strong>ignores</strong> non-existent and inherited keys.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj1 = {
     <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
     <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>,
     <span class="hljs-string">'c'</span>: <span class="hljs-number">3</span>
@@ -34,23 +18,7 @@
 
 <span class="hljs-keyword">var</span> obj2 = omit( obj1, <span class="hljs-string">'d'</span> );
 <span class="hljs-comment">// returns { 'a': 1, 'b': 2, 'c': 3 }</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The function returns a <strong>shallow</strong> copy.</li>
-<li>The function <strong>only</strong> copies <strong>own</strong> properties. Hence, the function never copies inherited properties.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> omit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/omit'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function returns a <strong>shallow</strong> copy.</li><li>The function <strong>only</strong> copies <strong>own</strong> properties. Hence, the function never copies inherited properties.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> omit = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/omit'</span> );
 
 <span class="hljs-keyword">var</span> obj1 = {
     <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
@@ -62,25 +30,4 @@
 
 <span class="hljs-keyword">var</span> obj2 = omit( obj1, [ <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'e'</span> ] );
 <span class="hljs-comment">// returns { 'a': 1, 'd': 4 }</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/omit-by"><code>@stdlib/utils/omit-by</code></a></span><span class="delimiter">: </span><span class="description">return a partial object copy excluding properties for which a predicate (function) returns a truthy value.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/omit-by"><code>@stdlib/utils/omit-by</code></a></span><span class="delimiter">: </span><span class="description">return a partial object copy excluding properties for which a predicate (function) returns a truthy value.</span></li></ul></section>

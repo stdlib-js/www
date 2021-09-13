@@ -1,14 +1,5 @@
-<h1 id="path-separator">Path Separator</h1>
-<blockquote>
-<p>Platform-specific path segment separator.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep'</span> );
-</code></pre>
-<h4 id="path_sep">PATH_SEP</h4>
-<p>Platform-specific path segment separator.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_WINDOWS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-windows'</span> );
+<h1 id="path-separator">Path Separator</h1><blockquote><p>Platform-specific path segment separator.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep'</span> );
+</code></pre><h4 id="path_sep">PATH_SEP</h4><p>Platform-specific path segment separator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_WINDOWS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-windows'</span> );
 
 <span class="hljs-keyword">var</span> bool;
 <span class="hljs-keyword">if</span> ( IS_WINDOWS ) {
@@ -18,13 +9,7 @@
     bool = ( PATH_SEP === <span class="hljs-string">'/'</span> );
     <span class="hljs-comment">// returns true</span>
 }
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_WINDOWS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-windows'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_WINDOWS = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-windows'</span> );
 <span class="hljs-keyword">var</span> PATH_SEP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep'</span> );
 
 <span class="hljs-keyword">var</span> parts;
@@ -38,22 +23,4 @@
 parts = path.split( PATH_SEP );
 <span class="hljs-built_in">console</span>.log( parts );
 <span class="hljs-comment">// => ['foo','bar','baz']</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-posix"><code>@stdlib/constants/path/sep-posix</code></a></span><span class="delimiter">: </span><span class="description">POSIX path segment separator.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-win32"><code>@stdlib/constants/path/sep-win32</code></a></span><span class="delimiter">: </span><span class="description">Windows path segment separator.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-posix"><code>@stdlib/constants/path/sep-posix</code></a></span><span class="delimiter">: </span><span class="description">POSIX path segment separator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-win32"><code>@stdlib/constants/path/sep-win32</code></a></span><span class="delimiter">: </span><span class="description">Windows path segment separator.</span></li></ul></section>

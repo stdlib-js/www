@@ -1,29 +1,11 @@
-<h1 id="utf-16-surrogate-pair">UTF-16 Surrogate Pair</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUtf16SurrogatePair = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/utf16-surrogate-pair'</span> );
-</code></pre>
-<h4 id="reutf16surrogatepair">reUtf16SurrogatePair()</h4>
-<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_UTF16_SURROGATE_PAIR = reUtf16SurrogatePair();
+<h1 id="utf-16-surrogate-pair">UTF-16 Surrogate Pair</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUtf16SurrogatePair = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/utf16-surrogate-pair'</span> );
+</code></pre><h4 id="reutf16surrogatepair">reUtf16SurrogatePair()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_UTF16_SURROGATE_PAIR = reUtf16SurrogatePair();
 
 <span class="hljs-keyword">var</span> bool = RE_UTF16_SURROGATE_PAIR.test( <span class="hljs-string">'abc\uD800\uDC00def'</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<h4 id="reutf16surrogatepairregexp">reUtf16SurrogatePair.REGEXP</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reUtf16SurrogatePair.REGEXP.test( <span class="hljs-string">'abc\uD800\uDC00def'</span> );
+</code></pre><h4 id="reutf16surrogatepairregexp">reUtf16SurrogatePair.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reUtf16SurrogatePair.REGEXP.test( <span class="hljs-string">'abc\uD800\uDC00def'</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUtf16SurrogatePair = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/utf16-surrogate-pair'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reUtf16SurrogatePair = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/utf16-surrogate-pair'</span> );
 
 <span class="hljs-keyword">var</span> RE_UTF16_SURROGATE_PAIR = reUtf16SurrogatePair();
 
@@ -35,21 +17,4 @@ bool = RE_UTF16_SURROGATE_PAIR.test( <span class="hljs-string">'abc\uD800\uDC00d
 
 bool = RE_UTF16_SURROGATE_PAIR.test( <span class="hljs-string">'abc'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/utf16-unpaired-surrogate"><code>@stdlib/regexp/utf16-unpaired-surrogate</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to match an unpaired UTF-16 surrogate.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/utf16-unpaired-surrogate"><code>@stdlib/regexp/utf16-unpaired-surrogate</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to match an unpaired UTF-16 surrogate.</span></li></ul></section>

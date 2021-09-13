@@ -1,15 +1,5 @@
-<h1 id="kolmogorov-smirnov-goodness-of-fit-test">Kolmogorov-Smirnov Goodness-of-Fit Test</h1>
-<blockquote>
-<p>One-sample Kolmogorov-Smirnov goodness-of-fit test.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kstest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/kstest'</span> );
-</code></pre>
-<h4 id="kstest-x-y-params-opts-">kstest( x, y[, ...params][, opts] )</h4>
-<p>For a numeric <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a>
-<code>x</code>, a Kolmogorov-Smirnov goodness-of-fit is computed for the null hypothesis that the values of <code>x</code> come from the distribution specified by <code>y</code>. <code>y</code> can be either a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> with the name of the distribution to test against, or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a>. In the latter case, <code>y</code> is expected to be the cumulative distribution function (CDF) of the distribution to test against, with its first parameter being the value at which to evaluate the CDF and the remaining parameters constituting the parameters of the distribution. The parameters of the distribution are passed as additional arguments after <code>y</code> from <code>kstest</code> to the chosen CDF. The function returns an object holding the calculated test statistic <code>statistic</code> and the <code>pValue</code> of the test.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
+<h1 id="kolmogorov-smirnov-goodness-of-fit-test">Kolmogorov-Smirnov Goodness-of-Fit Test</h1><blockquote><p>One-sample Kolmogorov-Smirnov goodness-of-fit test.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kstest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/kstest'</span> );
+</code></pre><h4 id="kstest-x-y-params-opts-">kstest( x, y[, ...params][, opts] )</h4><p>For a numeric <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>x</code>, a Kolmogorov-Smirnov goodness-of-fit is computed for the null hypothesis that the values of <code>x</code> come from the distribution specified by <code>y</code>. <code>y</code> can be either a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> with the name of the distribution to test against, or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a>. In the latter case, <code>y</code> is expected to be the cumulative distribution function (CDF) of the distribution to test against, with its first parameter being the value at which to evaluate the CDF and the remaining parameters constituting the parameters of the distribution. The parameters of the distribution are passed as additional arguments after <code>y</code> from <code>kstest</code> to the chosen CDF. The function returns an object holding the calculated test statistic <code>statistic</code> and the <code>pValue</code> of the test.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
 <span class="hljs-keyword">var</span> runif;
 <span class="hljs-keyword">var</span> out;
 <span class="hljs-keyword">var</span> x;
@@ -25,10 +15,7 @@ x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</spa
 }
 out = kstest( x, <span class="hljs-string">'uniform'</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns { 'pValue': ~0.703, 'statistic': ~0.069, ... }</span>
-</code></pre>
-<p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the hypothesis test results. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
+</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the hypothesis test results. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
 <span class="hljs-comment">/* e.g., =>
     Kolmogorov-Smirnov goodness-of-fit test.
 
@@ -39,16 +26,7 @@ out = kstest( x, <span class="hljs-string">'uniform'</span>, <span class="hljs-n
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li>
-<li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the true distribution of <code>x</code> is not equal to the reference distribution specified by <code>y</code> (<code>two-sided</code>), whether it is <code>less</code> than the reference distribution or <code>greater</code> than the reference distribution. Default: <code>two-sided</code>.</li>
-<li><strong>sorted</strong>: <code>boolean</code> indicating if the <code>x</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> is in sorted order (ascending). Default: <code>false</code>.</li>
-</ul>
-<p>By default, the test is carried out at a significance level of <code>0.05</code>. To choose a custom significance level, set the <code>alpha</code> option.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript">out = kstest( x, <span class="hljs-string">'uniform'</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, {
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the true distribution of <code>x</code> is not equal to the reference distribution specified by <code>y</code> (<code>two-sided</code>), whether it is <code>less</code> than the reference distribution or <code>greater</code> than the reference distribution. Default: <code>two-sided</code>.</li><li><strong>sorted</strong>: <code>boolean</code> indicating if the <code>x</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> is in sorted order (ascending). Default: <code>false</code>.</li></ul><p>By default, the test is carried out at a significance level of <code>0.05</code>. To choose a custom significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript">out = kstest( x, <span class="hljs-string">'uniform'</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, {
     <span class="hljs-string">'alpha'</span>: <span class="hljs-number">0.1</span>
 });
 <span class="hljs-built_in">console</span>.log( out.print() );
@@ -62,9 +40,7 @@ out = kstest( x, <span class="hljs-string">'uniform'</span>, <span class="hljs-n
 
     Test Decision: Fail to reject null in favor of alternative at 10% significance level
 */</span>
-</code></pre>
-<p>By default, the function tests the null hypothesis that the true distribution of <code>x</code> and the reference distribution <code>y</code> are equal to each other against the alternative that they are not equal. To carry out a one-sided hypothesis test, set the <code>alternative</code> option to either <code>less</code> or <code>greater</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
+</code></pre><p>By default, the function tests the null hypothesis that the true distribution of <code>x</code> and the reference distribution <code>y</code> are equal to each other against the alternative that they are not equal. To carry out a one-sided hypothesis test, set the <code>alternative</code> option to either <code>less</code> or <code>greater</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
 <span class="hljs-keyword">var</span> runif;
 <span class="hljs-keyword">var</span> out;
 <span class="hljs-keyword">var</span> x;
@@ -88,21 +64,13 @@ out = kstest( x, <span class="hljs-string">'uniform'</span>, <span class="hljs-n
     <span class="hljs-string">'alternative'</span>: <span class="hljs-string">'greater'</span>
 });
 <span class="hljs-comment">// returns { 'pValue': ~0.907, 'statistic': ~0.02, ... }</span>
-</code></pre>
-<p>To perform the Kolmogorov-Smirnov test, the data has to be sorted in ascending order. If the data in <code>x</code> are already sorted, set the <code>sorted</code> option to <code>true</code> to speed up computation.</p>
-<pre><code class="hljs language-javascript">x = [ <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span> ];
+</code></pre><p>To perform the Kolmogorov-Smirnov test, the data has to be sorted in ascending order. If the data in <code>x</code> are already sorted, set the <code>sorted</code> option to <code>true</code> to speed up computation.</p><pre><code class="hljs language-javascript">x = [ <span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span> ];
 
 out = kstest( x, <span class="hljs-string">'uniform'</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, {
     <span class="hljs-string">'sorted'</span>: <span class="hljs-literal">true</span>
 });
 <span class="hljs-comment">// returns { 'pValue': ~1, 'statistic': 0.1, ... }</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kstest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/kstest'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kstest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/kstest'</span> );
 <span class="hljs-keyword">var</span> factory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
 
 <span class="hljs-keyword">var</span> rnorm;
@@ -148,14 +116,4 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

@@ -1,14 +1,5 @@
-<h1 id="female-first-names">Female First Names</h1>
-<blockquote>
-<p>A <a href="http://www.gutenberg.org/files/3201/3201.txt">list</a> of common female first names in English speaking countries.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> names = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/female-first-names-en'</span> );
-</code></pre>
-<h4 id="names">names()</h4>
-<p>Returns a <a href="http://www.gutenberg.org/files/3201/3201.txt">list</a> of common female first names (also known as <a href="https://en.wikipedia.org/wiki/Given_name">given</a> or personal names) in English speaking countries.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = names();
+<h1 id="female-first-names">Female First Names</h1><blockquote><p>A <a href="http://www.gutenberg.org/files/3201/3201.txt">list</a> of common female first names in English speaking countries.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> names = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/female-first-names-en'</span> );
+</code></pre><h4 id="names">names()</h4><p>Returns a <a href="http://www.gutenberg.org/files/3201/3201.txt">list</a> of common female first names (also known as <a href="https://en.wikipedia.org/wiki/Given_name">given</a> or personal names) in English speaking countries.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = names();
 <span class="hljs-comment">/* returns
     [
         'Aaren',
@@ -23,14 +14,7 @@
         ...
     ]
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<!-- TODO: more creative example. -->
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> names = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/female-first-names-en'</span> );
 
@@ -44,60 +28,16 @@
     idx = floor( randu()*len );
     <span class="hljs-built_in">console</span>.log( data[ idx ] );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: female-first-names-en [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: female-first-names-en [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ female-first-names-en
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ female-first-names-en
 Aaren
 Aarika
 Abagael
 Abagail
 ...
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Ward, Grady. 2002. "Moby Word II." <a href="http://www.gutenberg.org/files/3201/3201.txt">http://www.gutenberg.org/files/3201/3201.txt</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/male-first-names-en"><code>@stdlib/datasets/male-first-names-en</code></a></span><span class="delimiter">: </span><span class="description">A list of common male first names in English speaking countries.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Ward, Grady. 2002. "Moby Word II." <a href="http://www.gutenberg.org/files/3201/3201.txt">http://www.gutenberg.org/files/3201/3201.txt</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/male-first-names-en"><code>@stdlib/datasets/male-first-names-en</code></a></span><span class="delimiter">: </span><span class="description">A list of common male first names in English speaking countries.</span></li></ul></section>

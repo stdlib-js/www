@@ -1,19 +1,5 @@
-<h1 id="while">while</h1>
-<blockquote>
-<p>Invoke a function while a test condition is true.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> whilst = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/while'</span> );
-</code></pre>
-<h4 id="whilst-predicate-fcn-thisarg--">whilst( predicate, fcn[, thisArg ] )</h4>
-<p>Invokes a <code>function</code> until a <code>predicate</code> function returns <code>false</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> i </span>) </span>{
+<h1 id="while">while</h1><blockquote><p>Invoke a function while a test condition is true.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> whilst = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/while'</span> );
+</code></pre><h4 id="whilst-predicate-fcn-thisarg--">whilst( predicate, fcn[, thisArg ] )</h4><p>Invokes a <code>function</code> until a <code>predicate</code> function returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> i </span>) </span>{
     <span class="hljs-keyword">return</span> ( i &#x3C; <span class="hljs-number">5</span> );
 }
 
@@ -29,17 +15,11 @@ whilst( predicate, beep );
     boop: 3
     boop: 4
 */</span>
-</code></pre>
-<p>Both the <code>predicate</code> function and the <code>function</code> to invoke are provided a single argument:</p>
-<ul>
-<li><code>i</code>: iteration number (starting from zero)</li>
-</ul>
-<p>To set the function execution context for the invoked function, provide a <code>thisArg</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> i </span>) </span>{
+</code></pre><p>Both the <code>predicate</code> function and the <code>function</code> to invoke are provided a single argument:</p><ul><li><code>i</code>: iteration number (starting from zero)</li></ul><p>To set the function execution context for the invoked function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> i </span>) </span>{
     <span class="hljs-keyword">return</span> ( i &#x3C; <span class="hljs-number">5</span> );
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">count</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">count</span>() </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
 }
 
@@ -51,21 +31,10 @@ whilst( predicate, count, context );
 
 <span class="hljs-built_in">console</span>.log( context.count );
 <span class="hljs-comment">// => 5</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> whilst = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/while'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>() </span>{
     <span class="hljs-keyword">return</span> ( randu() > <span class="hljs-number">0.05</span> );
 }
 
@@ -74,29 +43,4 @@ whilst( predicate, count, context );
 }
 
 whilst( predicate, log );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/do-until"><code>@stdlib/utils/do-until</code></a></span><span class="delimiter">: </span><span class="description">invoke a function until a test condition is true.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/do-while"><code>@stdlib/utils/do-while</code></a></span><span class="delimiter">: </span><span class="description">invoke a function while a test condition is true.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/until"><code>@stdlib/utils/until</code></a></span><span class="delimiter">: </span><span class="description">invoke a function until a test condition is true.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/while"><code>@stdlib/utils/async/while</code></a></span><span class="delimiter">: </span><span class="description">invoke a function while a test condition is true.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/while-each"><code>@stdlib/utils/while-each</code></a></span><span class="delimiter">: </span><span class="description">while a test condition is true, invoke a function for each element in a collection.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/do-until"><code>@stdlib/utils/do-until</code></a></span><span class="delimiter">: </span><span class="description">invoke a function until a test condition is true.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/do-while"><code>@stdlib/utils/do-while</code></a></span><span class="delimiter">: </span><span class="description">invoke a function while a test condition is true.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/until"><code>@stdlib/utils/until</code></a></span><span class="delimiter">: </span><span class="description">invoke a function until a test condition is true.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/while"><code>@stdlib/utils/async/while</code></a></span><span class="delimiter">: </span><span class="description">invoke a function while a test condition is true.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/while-each"><code>@stdlib/utils/while-each</code></a></span><span class="delimiter">: </span><span class="description">while a test condition is true, invoke a function for each element in a collection.</span></li></ul></section>

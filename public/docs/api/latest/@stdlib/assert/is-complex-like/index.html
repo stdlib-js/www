@@ -1,14 +1,5 @@
-<h1 id="iscomplexlike">isComplexLike</h1>
-<blockquote>
-<p>Test if a value is a complex number-like object.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isComplexLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-complex-like'</span> );
-</code></pre>
-<h4 id="iscomplexlike-value-">isComplexLike( value )</h4>
-<p>Tests if a value is a complex number-like <code>object</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
+<h1 id="iscomplexlike">isComplexLike</h1><blockquote><p>Test if a value is a complex number-like object.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isComplexLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-complex-like'</span> );
+</code></pre><h4 id="iscomplexlike-value-">isComplexLike( value )</h4><p>Tests if a value is a complex number-like <code>object</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
 <span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> Complex128( <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span> );
@@ -25,28 +16,7 @@ x = {
 };
 bool = isComplexLike( x );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-    
-## Notes
-<ul>
-<li>
-<p>A complex number-like <code>object</code> is defined as an <code>object</code> having the following properties assigned to numeric values:</p>
-<ul>
-<li><strong>re</strong>: real component.</li>
-<li><strong>im</strong>: imaginary component.</li>
-</ul>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<!-- eslint-disable object-curly-newline, object-property-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
+</code></pre></section><section class="notes">## Notes<ul><li><p>A complex number-like <code>object</code> is defined as an <code>object</code> having the following properties assigned to numeric values:</p><ul><li><strong>re</strong>: real component.</li><li><strong>im</strong>: imaginary component.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Complex64 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float32'</span> );
 <span class="hljs-keyword">var</span> Complex128 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/complex/float64'</span> );
 <span class="hljs-keyword">var</span> isComplexLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-complex-like'</span> );
 
@@ -64,23 +34,4 @@ out = isComplexLike( {} );
 
 out = isComplexLike( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex"><code>@stdlib/assert/is-complex</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 64-bit or 128-bit complex number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex64"><code>@stdlib/assert/is-complex64</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 64-bit complex number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex128"><code>@stdlib/assert/is-complex128</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 128-bit complex number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex"><code>@stdlib/assert/is-complex</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 64-bit or 128-bit complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex64"><code>@stdlib/assert/is-complex64</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 64-bit complex number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-complex128"><code>@stdlib/assert/is-complex128</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 128-bit complex number.</span></li></ul></section>

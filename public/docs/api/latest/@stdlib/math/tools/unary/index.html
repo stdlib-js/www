@@ -1,20 +1,5 @@
-<h1 id="unary">Unary</h1>
-<blockquote>
-<p>Multiple dispatch for unary mathematical functions.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dispatch = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/tools/unary'</span> );
-</code></pre>
-<h4 id="dispatch-table-">dispatch( table )</h4>
-<p>Returns a function which dispatches to specified functions based on input argument types.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<h1 id="unary">Unary</h1><blockquote><p>Multiple dispatch for unary mathematical functions.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dispatch = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/tools/unary'</span> );
+</code></pre><h4 id="dispatch-table-">dispatch( table )</h4><p>Returns a function which dispatches to specified functions based on input argument types.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 <span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
 <span class="hljs-keyword">var</span> sabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/sabs'</span> );
 <span class="hljs-keyword">var</span> gabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs'</span> );
@@ -36,57 +21,10 @@
 };
 
 <span class="hljs-keyword">var</span> abs = dispatch( table );
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>table</strong>: resolution table object which maps input argument types to corresponding implementations.</li>
-</ul>
-<p>A <code>table</code> resolution object may contain one or more of the following fields:</p>
-<ul>
-<li>
-<p><strong>scalar</strong>: strided look-up table for scalar arguments. Implementation functions must accept a single input argument: a scalar value. Supported data types: <code>'number'</code> and <code>'complex'</code>.</p>
-</li>
-<li>
-<p><strong>array</strong>: strided look-up table for array-like object arguments. Implementation functions must follow strided array interface argument conventions:</p>
-<pre><code class="no-highlight language-text">fcn( N, x, strideX, y, strideY )
-</code></pre>
-<p>where</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input strided array.</li>
-<li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>y</strong>: destination strided array.</li>
-<li><strong>strideY</strong>: index increment for <code>y</code>.</li>
-</ul>
-<p>Supported array data types consist of all supported <a href="/docs/api/latest/@stdlib/ndarray/dtypes">ndarray</a> data types.</p>
-</li>
-<li>
-<p><strong>ndarray</strong>: strided look-up table for <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> arguments. Implementation functions must follow strided array ndarray interface argument conventions:</p>
-<pre><code class="no-highlight language-text">fcn( N, x, strideX, offsetX, y, strideY, offsetY )
-</code></pre>
-<p>where</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input strided array (i.e., underlying input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li>
-<li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
-<li><strong>y</strong>: destination strided array (i.e., underlying output <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li>
-<li><strong>strideY</strong>: index increment for <code>y</code>.</li>
-<li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
-</ul>
-<p>Supported data types consist of all supported <a href="/docs/api/latest/@stdlib/ndarray/dtypes">ndarray</a> data types.</p>
-</li>
-</ul>
-<p>Each strided look-up table should be comprised as follows:</p>
-<pre><code class="no-highlight language-text">[ &#x3C;dtype>, &#x3C;fcn>, &#x3C;dtype>, &#x3C;fcn>, ... ]
-</code></pre>
-<p>If an argument's data type is <strong>not</strong> found in the argument's corresponding look-up table and if a <code>'generic'</code> data type is present in that same table, the returned dispatch function will resolve the "generic" implementation. In other words, an implementation associated with a <code>'generic'</code> data type will be treated as the default implementation.</p>
-<p>If unable to resolve an implementation for a provided argument data type, the returned function throws an error.</p>
-<hr>
-<h4 id="dispatcher-x-">dispatcher( x )</h4>
-<p>Dispatches to an underlying implementation based the data type of <code>x</code>.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>table</strong>: resolution table object which maps input argument types to corresponding implementations.</li></ul><p>A <code>table</code> resolution object may contain one or more of the following fields:</p><ul><li><p><strong>scalar</strong>: strided look-up table for scalar arguments. Implementation functions must accept a single input argument: a scalar value. Supported data types: <code>'number'</code> and <code>'complex'</code>.</p></li><li><p><strong>array</strong>: strided look-up table for array-like object arguments. Implementation functions must follow strided array interface argument conventions:</p><pre><code class="no-highlight language-text">fcn( N, x, strideX, y, strideY )
+</code></pre><p>where</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input strided array.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: destination strided array.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li></ul><p>Supported array data types consist of all supported <a href="/docs/api/latest/@stdlib/ndarray/dtypes">ndarray</a> data types.</p></li><li><p><strong>ndarray</strong>: strided look-up table for <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> arguments. Implementation functions must follow strided array ndarray interface argument conventions:</p><pre><code class="no-highlight language-text">fcn( N, x, strideX, offsetX, y, strideY, offsetY )
+</code></pre><p>where</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input strided array (i.e., underlying input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>y</strong>: destination strided array (i.e., underlying output <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> buffer).</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>Supported data types consist of all supported <a href="/docs/api/latest/@stdlib/ndarray/dtypes">ndarray</a> data types.</p></li></ul><p>Each strided look-up table should be comprised as follows:</p><pre><code class="no-highlight language-text">[ &#x3C;dtype>, &#x3C;fcn>, &#x3C;dtype>, &#x3C;fcn>, ... ]
+</code></pre><p>If an argument's data type is <strong>not</strong> found in the argument's corresponding look-up table and if a <code>'generic'</code> data type is present in that same table, the returned dispatch function will resolve the "generic" implementation. In other words, an implementation associated with a <code>'generic'</code> data type will be treated as the default implementation.</p><p>If unable to resolve an implementation for a provided argument data type, the returned function throws an error.</p><hr><h4 id="dispatcher-x-">dispatcher( x )</h4><p>Dispatches to an underlying implementation based the data type of <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 <span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
 <span class="hljs-keyword">var</span> sabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/sabs'</span> );
 <span class="hljs-keyword">var</span> gabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs'</span> );
@@ -111,14 +49,7 @@
 
 <span class="hljs-keyword">var</span> y = abs( -<span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns 1.0</span>
-</code></pre>
-<p>The returned dispatch function accepts the following arguments:</p>
-<ul>
-<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, array-like object, or number. If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, the function performs element-wise computation.</li>
-</ul>
-<p>If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, the function returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> having the same shape and data type as <code>x</code>.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
+</code></pre><p>The returned dispatch function accepts the following arguments:</p><ul><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, array-like object, or number. If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> or array-like object, the function performs element-wise computation.</li></ul><p>If provided an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a>, the function returns an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> having the same shape and data type as <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
 <span class="hljs-keyword">var</span> sabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/sabs'</span> );
 <span class="hljs-keyword">var</span> gabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs'</span> );
 <span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
@@ -139,10 +70,7 @@
 
 <span class="hljs-keyword">var</span> v = y.get( <span class="hljs-number">0</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns 2.0</span>
-</code></pre>
-<p>If provided an array-like object, the function returns an array-like object having the same length and data type as <code>x</code>.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
+</code></pre><p>If provided an array-like object, the function returns an array-like object having the same length and data type as <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
 <span class="hljs-keyword">var</span> sabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/sabs'</span> );
 <span class="hljs-keyword">var</span> gabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
@@ -160,20 +88,7 @@
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ] );
 <span class="hljs-keyword">var</span> y = abs( x );
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 1.0, 2.0 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<hr>
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable array-element-newline -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+</code></pre></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
 <span class="hljs-keyword">var</span> dabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dabs'</span> );
 <span class="hljs-keyword">var</span> sabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/sabs'</span> );
 <span class="hljs-keyword">var</span> gabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/abs'</span> );
@@ -230,18 +145,4 @@ y = abs( x );
     sub = ind2sub( sh, i );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x_%d%d = %d => abs(x_%d%d) = %d'</span>, sub[ <span class="hljs-number">0</span> ], sub[ <span class="hljs-number">1</span> ], x.iget( i ), sub[ <span class="hljs-number">0</span> ], sub[ <span class="hljs-number">1</span> ], y.iget( i ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

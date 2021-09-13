@@ -1,27 +1,9 @@
-<h1 id="objectfromentries">objectFromEntries</h1>
-<blockquote>
-<p>Create an object from key-value pairs.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectFromEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/from-entries'</span> );
-</code></pre>
-<h4 id="objectfromentries-entries-">objectFromEntries( entries )</h4>
-<p>Returns an <code>object</code> created from <code>[key, value]</code> pairs.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> entries = [ [<span class="hljs-string">'a'</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">'b'</span>, <span class="hljs-number">2</span>] ];
+<h1 id="objectfromentries">objectFromEntries</h1><blockquote><p>Create an object from key-value pairs.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectFromEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/from-entries'</span> );
+</code></pre><h4 id="objectfromentries-entries-">objectFromEntries( entries )</h4><p>Returns an <code>object</code> created from <code>[key, value]</code> pairs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> entries = [ [<span class="hljs-string">'a'</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">'b'</span>, <span class="hljs-number">2</span>] ];
 
 <span class="hljs-keyword">var</span> obj = objectFromEntries( entries );
 <span class="hljs-comment">// returns { 'a': 1, 'b': 2 }</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/entries'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/entries'</span> );
 <span class="hljs-keyword">var</span> objectFromEntries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/from-entries'</span> );
 
 <span class="hljs-keyword">var</span> obj1 = {
@@ -45,21 +27,4 @@
         'foo': [ 'bar' ]
     }
 */</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/entries"><code>@stdlib/utils/entries</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own enumerable property key-value pairs.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/entries"><code>@stdlib/utils/entries</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own enumerable property key-value pairs.</span></li></ul></section>

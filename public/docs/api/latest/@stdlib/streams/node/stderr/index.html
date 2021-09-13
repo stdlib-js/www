@@ -1,32 +1,8 @@
-<h1 id="standard-error">Standard Error</h1>
-<blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard error</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stderr = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stderr'</span> );
-</code></pre>
-<h4 id="stderr">stderr</h4>
-<p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard error</a> as a <a href="https://nodejs.org/api/stream.html#stream_class_stream_writable">Writable stream</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Write to the terminal...</span>
+<h1 id="standard-error">Standard Error</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard error</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stderr = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stderr'</span> );
+</code></pre><h4 id="stderr">stderr</h4><p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard error</a> as a <a href="https://nodejs.org/api/stream.html#stream_class_stream_writable">Writable stream</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Write to the terminal...</span>
 stderr.write( <span class="hljs-string">'Oh no!'</span>, <span class="hljs-string">'utf8'</span> );
 <span class="hljs-comment">// e.g., => 'Oh no!'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Unlike other streams, <code>stderr</code> can <strong>never</strong> be closed and, thus, never emits a <code>'finish'</code> event.</li>
-<li>Although rare, writes can block when output is redirected to a file. </li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- run-disable -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'process'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Unlike other streams, <code>stderr</code> can <strong>never</strong> be closed and, thus, never emits a <code>'finish'</code> event.</li><li>Although rare, writes can block when output is redirected to a file.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'process'</span> );
 <span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
 <span class="hljs-keyword">var</span> stderr = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stderr'</span> );
 
@@ -47,14 +23,4 @@ stdin.push( <span class="hljs-literal">null</span> );
 
 <span class="hljs-comment">// Ensure the process closes:</span>
 <span class="hljs-built_in">setTimeout</span>( proc.exit, <span class="hljs-number">1000</span> );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

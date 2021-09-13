@@ -1,19 +1,5 @@
-<h1 id="iteration-order">Iteration Order</h1>
-<blockquote>
-<p>Given a stride array, determine array iteration order.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterationOrder = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/iteration-order'</span> );
-</code></pre>
-<h4 id="iterationorder-strides-">iterationOrder( strides )</h4>
-<p>Returns the array iteration order.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = iterationOrder( [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ] );
+<h1 id="iteration-order">Iteration Order</h1><blockquote><p>Given a stride array, determine array iteration order.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterationOrder = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/iteration-order'</span> );
+</code></pre><h4 id="iterationorder-strides-">iterationOrder( strides )</h4><p>Returns the array iteration order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = iterationOrder( [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ] );
 <span class="hljs-comment">// returns 1</span>
 
 o = iterationOrder( [ -<span class="hljs-number">2</span>, <span class="hljs-number">1</span> ] );
@@ -21,24 +7,7 @@ o = iterationOrder( [ -<span class="hljs-number">2</span>, <span class="hljs-num
 
 o = iterationOrder( [ -<span class="hljs-number">2</span>, -<span class="hljs-number">1</span> ] );
 <span class="hljs-comment">// returns -1</span>
-</code></pre>
-<p>The function returns one of the following values:</p>
-<ul>
-<li><code>0</code>: unordered (strides are of mixed sign).</li>
-<li><code>1</code>: left-to-right iteration order (strides are all nonnegative).</li>
-<li><code>-1</code>: right-to-left iteration order (strides are all negative).</li>
-</ul>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre><p>The function returns one of the following values:</p><ul><li><code>0</code>: unordered (strides are of mixed sign).</li><li><code>1</code>: left-to-right iteration order (strides are all nonnegative).</li><li><code>-1</code>: right-to-left iteration order (strides are all negative).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> iterationOrder = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/iteration-order'</span> );
@@ -62,18 +31,4 @@ strides = shape2strides( shape, <span class="hljs-string">'row-major'</span> );
     out = iterationOrder( strides );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'strides: %s => %d'</span>, strides.join( <span class="hljs-string">','</span> ), out );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

@@ -1,14 +1,5 @@
-<h1 id="from-binary-string">From Binary String</h1>
-<blockquote>
-<p>Create a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> from an <a href="/docs/api/latest/@stdlib/number/float32/base/to-binary-string">IEEE 754 literal bit representation</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromBinaryStringf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/from-binary-string'</span> );
-</code></pre>
-<h4 id="frombinarystringf-bstr-">fromBinaryStringf( bstr )</h4>
-<p>Creates a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> from an <a href="/docs/api/latest/@stdlib/number/float32/base/to-binary-string">IEEE 754 literal bit representation</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'01000000100000000000000000000000'</span>;
+<h1 id="from-binary-string">From Binary String</h1><blockquote><p>Create a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> from an <a href="/docs/api/latest/@stdlib/number/float32/base/to-binary-string">IEEE 754 literal bit representation</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fromBinaryStringf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/from-binary-string'</span> );
+</code></pre><h4 id="frombinarystringf-bstr-">fromBinaryStringf( bstr )</h4><p>Creates a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> from an <a href="/docs/api/latest/@stdlib/number/float32/base/to-binary-string">IEEE 754 literal bit representation</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'01000000100000000000000000000000'</span>;
 <span class="hljs-keyword">var</span> v = fromBinaryStringf( bstr );
 <span class="hljs-comment">// returns 4.0</span>
 
@@ -19,18 +10,14 @@ v = fromBinaryStringf( bstr );
 bstr = <span class="hljs-string">'11111111011011000011101000110011'</span>;
 v = fromBinaryStringf( bstr );
 <span class="hljs-comment">// returns ~-3.14e+38</span>
-</code></pre>
-<p>The function handles <a href="https://en.wikipedia.org/wiki/Denormal_number">subnormals</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'10000000000000000000000000010110'</span>;
+</code></pre><p>The function handles <a href="https://en.wikipedia.org/wiki/Denormal_number">subnormals</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'10000000000000000000000000010110'</span>;
 <span class="hljs-keyword">var</span> val = fromBinaryStringf( bstr );
 <span class="hljs-comment">// returns ~-3.08e-44</span>
 
 bstr = <span class="hljs-string">'00000000000000000000000000000001'</span>;
 val = fromBinaryStringf( bstr );
 <span class="hljs-comment">// returns ~1.40e-45</span>
-</code></pre>
-<p>The function handles special values.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'00000000000000000000000000000000'</span>;
+</code></pre><p>The function handles special values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bstr = <span class="hljs-string">'00000000000000000000000000000000'</span>;
 <span class="hljs-keyword">var</span> val = fromBinaryStringf( bstr );
 <span class="hljs-comment">// returns 0.0</span>
 
@@ -49,13 +36,7 @@ val = fromBinaryStringf( bstr );
 bstr = <span class="hljs-string">'11111111100000000000000000000000'</span>;
 val = fromBinaryStringf( bstr );
 <span class="hljs-comment">// returns -Infinity</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
@@ -91,14 +72,4 @@ val = fromBinaryStringf( bstr );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => %s => %d'</span>, x, b, y );
     <span class="hljs-built_in">console</span>.log( x === y );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

@@ -1,14 +1,5 @@
-<h1 id="reversestring">reverseString</h1>
-<blockquote>
-<p>Reverse a string.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/reverse'</span> );
-</code></pre>
-<h4 id="reversestring-str-">reverseString( str )</h4>
-<p>Reverses a <code>string</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'last man standing'</span> );
+<h1 id="reversestring">reverseString</h1><blockquote><p>Reverse a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/reverse'</span> );
+</code></pre><h4 id="reversestring-str-">reverseString( str )</h4><p>Reverses a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = reverseString( <span class="hljs-string">'last man standing'</span> );
 <span class="hljs-comment">// returns 'gnidnats nam tsal'</span>
 
 out = reverseString( <span class="hljs-string">'Hidden Treasures'</span> );
@@ -16,20 +7,7 @@ out = reverseString( <span class="hljs-string">'Hidden Treasures'</span> );
 
 out = reverseString( <span class="hljs-string">'Lorem ipsum 𝌆 dolor sit ameͨ͆t.'</span> );
 <span class="hljs-comment">// returns '.teͨ͆ma tis rolod 𝌆 muspi meroL'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>While Unicode aware, the function does not currently support extended grapheme clusters.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/reverse'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>While Unicode aware, the function does not currently support extended grapheme clusters.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/reverse'</span> );
 
 <span class="hljs-keyword">var</span> str = reverseString( <span class="hljs-string">'last man standing'</span> );
 <span class="hljs-comment">// returns 'gnidnats nam tsal'</span>
@@ -42,41 +20,14 @@ str = reverseString( <span class="hljs-string">'javaScript'</span> );
 
 str = reverseString( <span class="hljs-string">'Hidden Treasures'</span> );
 <span class="hljs-comment">// returns 'serusaerT neddiH'</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: reverse [options] [&#x3C;string>]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: reverse [options] [&#x3C;string>]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ reverse foobar
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ reverse foobar
 raboof
-</code></pre>
-<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'foobar'</span> | reverse
+</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'foobar'</span> | reverse
 raboof
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section>

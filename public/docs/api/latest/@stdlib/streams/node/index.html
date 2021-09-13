@@ -1,59 +1,8 @@
-<h1 id="node-streams">Node Streams</h1>
-<blockquote>
-<p>Standard library Node.js streams.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> streams = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node'</span> );
-</code></pre>
-<h4 id="streams">streams</h4>
-<p>Standard library Node.js streams.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = streams;
+<h1 id="node-streams">Node Streams</h1><blockquote><p>Standard library Node.js streams.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> streams = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node'</span> );
+</code></pre><h4 id="streams">streams</h4><p>Standard library Node.js streams.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = streams;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre>
-<p>The package contains the following streams:</p>
-<!-- <toc pattern="*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/debug-sink"><code>debugSinkStream( [options,] [clbk] )</code></a></span><span class="delimiter">: </span><span class="description">writable stream for debugging stream pipelines.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/debug"><code>debugStream( [options,] [clbk] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream for debugging stream pipelines.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/empty"><code>emptyStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">create an "empty" readable stream.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-array"><code>arrayStream( src[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from an array-like object.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-circular-array"><code>circularArrayStream( src[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from a circular array-like object.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-constant"><code>constantStream( value[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream which always streams the same value.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-iterator"><code>iteratorStream( iterator[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from an iterator.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-strided-array"><code>stridedArrayStream( N, buffer, stride, offset[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from a strided array-like object.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/inspect-sink"><code>inspectSinkStream( [options,] clbk )</code></a></span><span class="delimiter">: </span><span class="description">writable stream for inspecting streamed data.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/inspect"><code>inspectStream( [options,] clbk )</code></a></span><span class="delimiter">: </span><span class="description">transform stream for inspecting streamed data.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/join"><code>joinStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream which joins streamed data.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/split"><code>splitStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream which splits streamed data.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/stderr"><code>stderr</code></a></span><span class="delimiter">: </span><span class="description">standard error.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a></span><span class="delimiter">: </span><span class="description">standard input.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/stdout"><code>stdout</code></a></span><span class="delimiter">: </span><span class="description">standard output.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/transform"><code>transformStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- TODO: better examples -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre><p>The package contains the following streams:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/debug-sink"><code>debugSinkStream( [options,] [clbk] )</code></a></span><span class="delimiter">: </span><span class="description">writable stream for debugging stream pipelines.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/debug"><code>debugStream( [options,] [clbk] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream for debugging stream pipelines.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/empty"><code>emptyStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">create an "empty" readable stream.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-array"><code>arrayStream( src[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from an array-like object.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-circular-array"><code>circularArrayStream( src[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from a circular array-like object.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-constant"><code>constantStream( value[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream which always streams the same value.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-iterator"><code>iteratorStream( iterator[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from an iterator.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/from-strided-array"><code>stridedArrayStream( N, buffer, stride, offset[, options] )</code></a></span><span class="delimiter">: </span><span class="description">create a readable stream from a strided array-like object.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/inspect-sink"><code>inspectSinkStream( [options,] clbk )</code></a></span><span class="delimiter">: </span><span class="description">writable stream for inspecting streamed data.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/inspect"><code>inspectStream( [options,] clbk )</code></a></span><span class="delimiter">: </span><span class="description">transform stream for inspecting streamed data.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/join"><code>joinStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream which joins streamed data.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/split"><code>splitStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream which splits streamed data.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/stderr"><code>stderr</code></a></span><span class="delimiter">: </span><span class="description">standard error.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a></span><span class="delimiter">: </span><span class="description">standard input.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/stdout"><code>stdout</code></a></span><span class="delimiter">: </span><span class="description">standard output.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/streams/node/transform"><code>transformStream( [options] )</code></a></span><span class="delimiter">: </span><span class="description">transform stream.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> getKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> streams = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node'</span> );
 
 <span class="hljs-built_in">console</span>.log( getKeys( streams ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <toc-links> -->
-<!-- </toc-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section>

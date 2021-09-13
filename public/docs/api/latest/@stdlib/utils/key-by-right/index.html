@@ -1,20 +1,5 @@
-<h1 id="keybyright">keyByRight</h1>
-<blockquote>
-<p>Convert a collection to an object whose keys are determined by a provided function and whose values are the collection values, iterating from right to left.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keyByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/key-by-right'</span> );
-</code></pre>
-<h4 id="keybyright-collection-fcn-thisarg--">keyByRight( collection, fcn[, thisArg ] )</h4>
-<p>Converts a <code>collection</code> to an object whose keys are determined by a provided <code>function</code> and whose values are the <code>collection</code> values, iterating from right to left.</p>
-<!-- eslint-disable object-curly-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toKey</span>(<span class="hljs-params"> value </span>) </span>{
+<h1 id="keybyright">keyByRight</h1><blockquote><p>Convert a collection to an object whose keys are determined by a provided function and whose values are the collection values, iterating from right to left.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keyByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/key-by-right'</span> );
+</code></pre><h4 id="keybyright-collection-fcn-thisarg--">keyByRight( collection, fcn[, thisArg ] )</h4><p>Converts a <code>collection</code> to an object whose keys are determined by a provided <code>function</code> and whose values are the <code>collection</code> values, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toKey</span>(<span class="hljs-params"> value </span>) </span>{
     <span class="hljs-keyword">return</span> value.a;
 }
 
@@ -25,14 +10,7 @@
 
 <span class="hljs-keyword">var</span> out = keyByRight( arr, toKey );
 <span class="hljs-comment">// returns { '2': { 'a': 2 }, '1': { 'a': 1 } }</span>
-</code></pre>
-<p>The invoked <code>function</code> is provided two arguments:</p>
-<ul>
-<li><code>value</code>: collection element</li>
-<li><code>index</code>: collection index</li>
-</ul>
-<p>To set the function execution context, provide a <code>thisArg</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toKey</span>(<span class="hljs-params"> value, index </span>) </span>{
+</code></pre><p>The invoked <code>function</code> is provided two arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li></ul><p>To set the function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toKey</span>(<span class="hljs-params"> value, index </span>) </span>{
     <span class="hljs-built_in">this</span>.sum += value;
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> index;
@@ -50,24 +28,7 @@
 
 <span class="hljs-keyword">var</span> mean = context.sum / context.count;
 <span class="hljs-comment">// returns 2.5</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li>
-<li>If more than one element in a <code>collection</code> resolves to the same key, the key value is the <code>collection</code> element which last resolved to the key.</li>
-<li>Object values are shallow copies.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keyByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/key-by-right'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li><li>If more than one element in a <code>collection</code> resolves to the same key, the key value is the <code>collection</code> element which last resolved to the key.</li><li>Object values are shallow copies.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> keyByRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/key-by-right'</span> );
 
 <span class="hljs-keyword">var</span> arr;
 <span class="hljs-keyword">var</span> obj;
@@ -87,26 +48,4 @@ arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</s
 
 obj = keyByRight( arr, toKey );
 <span class="hljs-built_in">console</span>.log( obj );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each-right"><code>@stdlib/utils/for-each-right</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection, iterating from right to left.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/key-by"><code>@stdlib/utils/key-by</code></a></span><span class="delimiter">: </span><span class="description">convert a collection to an object whose keys are determined by a provided function and whose values are the collection values.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each-right"><code>@stdlib/utils/for-each-right</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection, iterating from right to left.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/key-by"><code>@stdlib/utils/key-by</code></a></span><span class="delimiter">: </span><span class="description">convert a collection to an object whose keys are determined by a provided function and whose values are the collection values.</span></li></ul></section>

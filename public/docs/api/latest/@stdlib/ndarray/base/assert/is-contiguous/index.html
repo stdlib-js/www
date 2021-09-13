@@ -1,20 +1,5 @@
-<h1 id="iscontiguous">isContiguous</h1>
-<blockquote>
-<p>Determine if an array is contiguous.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-<p>An array is <strong>contiguous</strong> if the memory address of each array element is adjacent to the memory address of the next array element.</p>
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isContiguous = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-contiguous'</span> );
-</code></pre>
-<h4 id="iscontiguous-shape-strides-offset-">isContiguous( shape, strides, offset )</h4>
-<p>Returns a <code>boolean</code> indicating if an array is contiguous.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<h1 id="iscontiguous">isContiguous</h1><blockquote><p>Determine if an array is contiguous.</p></blockquote><section class="intro"><p>An array is <strong>contiguous</strong> if the memory address of each array element is adjacent to the memory address of the next array element.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isContiguous = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-contiguous'</span> );
+</code></pre><h4 id="iscontiguous-shape-strides-offset-">isContiguous( shape, strides, offset )</h4><p>Returns a <code>boolean</code> indicating if an array is contiguous.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
 <span class="hljs-keyword">var</span> offset = <span class="hljs-number">25</span>;
 
@@ -27,18 +12,7 @@ offset = <span class="hljs-number">0</span>;
 
 bool = isContiguous( shape, strides, offset );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
 <span class="hljs-keyword">var</span> strides2offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/strides2offset'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
@@ -77,18 +51,4 @@ shape = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
     bool = isContiguous( shape, strides, offset );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Shape: %s. Strides: %s. Offset: %d. Contiguous: %s.'</span>, shape.join( <span class="hljs-string">'x'</span> ), strides.join( <span class="hljs-string">','</span> ), offset, bool );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

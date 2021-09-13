@@ -1,22 +1,7 @@
-<h1 id="symbol-support">Symbol Support</h1>
-<blockquote>
-<p>Detect native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> support.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
-</code></pre>
-<h4 id="hassymbolsupport">hasSymbolSupport()</h4>
-<p>Detects if a runtime environment supports ES2015 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasSymbolSupport();
+<h1 id="symbol-support">Symbol Support</h1><blockquote><p>Detect native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> support.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+</code></pre><h4 id="hassymbolsupport">hasSymbolSupport()</h4><p>Detects if a runtime environment supports ES2015 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasSymbolSupport();
 <span class="hljs-comment">// returns &#x3C;boolean></span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
 
 <span class="hljs-keyword">var</span> bool = hasSymbolSupport();
 <span class="hljs-keyword">if</span> ( bool ) {
@@ -24,44 +9,12 @@
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment lacks Symbol support.'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: has-symbol-support [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: has-symbol-support [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ has-symbol-support
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ has-symbol-support
 &#x3C;boolean>
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-iterator-symbol-support"><code>@stdlib/assert/has-iterator-symbol-support</code></a></span><span class="delimiter">: </span><span class="description">detect native Symbol.iterator support.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-iterator-symbol-support"><code>@stdlib/assert/has-iterator-symbol-support</code></a></span><span class="delimiter">: </span><span class="description">detect native Symbol.iterator support.</span></li></ul></section>

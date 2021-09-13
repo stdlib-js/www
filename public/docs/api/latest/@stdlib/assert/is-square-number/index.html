@@ -1,19 +1,5 @@
-<h1 id="issquarenumber">isSquareNumber</h1>
-<blockquote>
-<p>Test if a value is a square number.</p>
-</blockquote>
-<section class="intro">
-<p>A <strong>square number</strong> is defined as an integer value which is the square of an integer.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSquareNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-square-number'</span> );
-</code></pre>
-<h4 id="issquarenumber-value-">isSquareNumber( value )</h4>
-<p>Tests if a <code>value</code> is a square number.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<h1 id="issquarenumber">isSquareNumber</h1><blockquote><p>Test if a value is a square number.</p></blockquote><section class="intro"><p>A <strong>square number</strong> is defined as an integer value which is the square of an integer.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSquareNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-square-number'</span> );
+</code></pre><h4 id="issquarenumber-value-">isSquareNumber( value )</h4><p>Tests if a <code>value</code> is a square number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSquareNumber( <span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns true</span>
@@ -32,36 +18,21 @@ bool = isSquareNumber( <span class="hljs-literal">NaN</span> );
 
 bool = isSquareNumber( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="issquarenumberisprimitive-value-">isSquareNumber.isPrimitive( value )</h4>
-<p>Tests if a <code>value</code> is a primitive square number.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="issquarenumberisprimitive-value-">isSquareNumber.isPrimitive( value )</h4><p>Tests if a <code>value</code> is a primitive square number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSquareNumber.isPrimitive( <span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isSquareNumber.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">4.0</span> ) );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="issquarenumberisobject-value-">isSquareNumber.isObject( value )</h4>
-<p>Tests if a <code>value</code> is a <code>Number</code> object having a value which is a square number.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="issquarenumberisobject-value-">isSquareNumber.isObject( value )</h4><p>Tests if a <code>value</code> is a <code>Number</code> object having a value which is a square number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSquareNumber.isObject( <span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns false</span>
 
 bool = isSquareNumber.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( <span class="hljs-number">4.0</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable no-new-wrappers -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 <span class="hljs-keyword">var</span> isSquareNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-square-number'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSquareNumber( <span class="hljs-number">4.0</span> );
@@ -90,24 +61,4 @@ bool = isSquareNumber( <span class="hljs-string">'0.5'</span> );
 
 bool = isSquareNumber( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-cube-number"><code>@stdlib/assert/is-cube-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a cube number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-integer"><code>@stdlib/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having an integer value.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-number"><code>@stdlib/assert/is-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-triangular-number"><code>@stdlib/assert/is-triangular-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a triangular number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-cube-number"><code>@stdlib/assert/is-cube-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a cube number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-integer"><code>@stdlib/assert/is-integer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number having an integer value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-number"><code>@stdlib/assert/is-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-triangular-number"><code>@stdlib/assert/is-triangular-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a triangular number.</span></li></ul></section>

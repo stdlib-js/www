@@ -1,21 +1,7 @@
-<h1 id="contains">Contains</h1>
-<blockquote>
-<p>Test if an array-like value contains a search value.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> contains = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/contains'</span> );
-</code></pre>
-<h4 id="contains-val-searchvalue-position-">contains( val, searchValue[, position] )</h4>
-<p>Tests if <code>val</code> contains a search value. When <code>val</code> is a <code>string</code>, the function checks whether the characters of a search string are found in the input string.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'Hello World'</span>, <span class="hljs-string">'World'</span> );
+<h1 id="contains">Contains</h1><blockquote><p>Test if an array-like value contains a search value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> contains = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/contains'</span> );
+</code></pre><h4 id="contains-val-searchvalue-position-">contains( val, searchValue[, position] )</h4><p>Tests if <code>val</code> contains a search value. When <code>val</code> is a <code>string</code>, the function checks whether the characters of a search string are found in the input string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'Hello World'</span>, <span class="hljs-string">'World'</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<p>When <code>val</code> is an <code>array-like</code> object, but not a <code>string</code>, the function checks whether the input value contains an element strictly equal to the specified search value.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-literal">null</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'abc'</span>, {} ];
+</code></pre><p>When <code>val</code> is an <code>array-like</code> object, but not a <code>string</code>, the function checks whether the input value contains an element strictly equal to the specified search value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-literal">null</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'abc'</span>, {} ];
 
 <span class="hljs-keyword">var</span> v = contains( arr, <span class="hljs-literal">NaN</span> ); <span class="hljs-comment">// NaNs are considered equal</span>
 <span class="hljs-comment">// returns true</span>
@@ -25,44 +11,18 @@ v = contains( arr, {} );
 
 v = contains( arr, <span class="hljs-string">'ab'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<p>Search is case-sensitive.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'Hello World'</span>, <span class="hljs-string">'world'</span> );
+</code></pre><p>Search is case-sensitive.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'Hello World'</span>, <span class="hljs-string">'world'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<p>To start searching at a specified index, provide a <code>position</code> argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'Hello World'</span>, <span class="hljs-string">'Hello'</span>, <span class="hljs-number">6</span> );
+</code></pre><p>To start searching at a specified index, provide a <code>position</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'Hello World'</span>, <span class="hljs-string">'Hello'</span>, <span class="hljs-number">6</span> );
 <span class="hljs-comment">// returns false</span>
 
 v = contains( [ <span class="hljs-literal">true</span>, <span class="hljs-literal">NaN</span>, <span class="hljs-literal">false</span> ], <span class="hljs-literal">true</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<p>If not provided an <code>array-like</code> object, the function throws an error.</p>
-<!-- run throws: true -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-literal">false</span>, <span class="hljs-string">'abc'</span> );
+</code></pre><p>If not provided an <code>array-like</code> object, the function throws an error.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-literal">false</span>, <span class="hljs-string">'abc'</span> );
 <span class="hljs-comment">// throws &#x3C;TypeError></span>
-</code></pre>
-<p>If not provided an integer-valued <code>position</code> argument, the function throws an error.</p>
-<!-- run throws: true -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'hello'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-number">2.5</span> );
+</code></pre><p>If not provided an integer-valued <code>position</code> argument, the function throws an error.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = contains( <span class="hljs-string">'hello'</span>, <span class="hljs-string">'e'</span>, <span class="hljs-number">2.5</span> );
 <span class="hljs-comment">// throws &#x3C;TypeError></span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<hr>
-<h2 id="notes">Notes</h2>
-<ul>
-<li>For <code>strings</code>, the function is modeled after <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes">String.prototype.includes</a>, part of the ECMAScript 6 specification. This function is different from a call to <code>String.prototype.includes.call</code> insofar as type-checking is performed for all arguments.</li>
-<li>The function does <strong>not</strong> distinguish between positive and negative zero.</li>
-<li>If <code>position &#x3C; 0</code>, the search is performed for the entire input array or string.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> contains = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/contains'</span> );
+</code></pre></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li>For <code>strings</code>, the function is modeled after <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes">String.prototype.includes</a>, part of the ECMAScript 6 specification. This function is different from a call to <code>String.prototype.includes.call</code> insofar as type-checking is performed for all arguments.</li><li>The function does <strong>not</strong> distinguish between positive and negative zero.</li><li>If <code>position &#x3C; 0</code>, the search is performed for the entire input array or string.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> contains = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/contains'</span> );
 
 <span class="hljs-keyword">var</span> bool = contains( <span class="hljs-string">'last man standing'</span>, <span class="hljs-string">'stand'</span> );
 <span class="hljs-comment">// returns true</span>
@@ -81,14 +41,4 @@ bool = contains( <span class="hljs-string">'javaScript'</span>, <span class="hlj
 
 bool = contains( <span class="hljs-string">'Hidden Treasures'</span>, <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

@@ -1,14 +1,5 @@
-<h1 id="binary-string">Binary String</h1>
-<blockquote>
-<p>Return a string giving the literal bit representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-binary-string'</span> );
-</code></pre>
-<h4 id="tobinarystring-x-">toBinaryString( x )</h4>
-<p>Returns a <code>string</code> giving the literal bit representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = toBinaryString( <span class="hljs-number">4.0</span> );
+<h1 id="binary-string">Binary String</h1><blockquote><p>Return a string giving the literal bit representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-binary-string'</span> );
+</code></pre><h4 id="tobinarystring-x-">toBinaryString( x )</h4><p>Returns a <code>string</code> giving the literal bit representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = toBinaryString( <span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns '0100000000010000000000000000000000000000000000000000000000000000'</span>
 
 str = toBinaryString( <span class="hljs-number">3.141592653589793</span> );
@@ -16,16 +7,12 @@ str = toBinaryString( <span class="hljs-number">3.141592653589793</span> );
 
 str = toBinaryString( -<span class="hljs-number">1.0e308</span> );
 <span class="hljs-comment">// returns '1111111111100001110011001111001110000101111010111100100010100000'</span>
-</code></pre>
-<p>The function handles <a href="https://en.wikipedia.org/wiki/Denormal_number">subnormals</a>.</p>
-<pre><code class="hljs language-javascript">str = toBinaryString( -<span class="hljs-number">3.14e-320</span> );
+</code></pre><p>The function handles <a href="https://en.wikipedia.org/wiki/Denormal_number">subnormals</a>.</p><pre><code class="hljs language-javascript">str = toBinaryString( -<span class="hljs-number">3.14e-320</span> );
 <span class="hljs-comment">// returns '1000000000000000000000000000000000000000000000000001100011010011'</span>
 
 str = toBinaryString( <span class="hljs-number">5.0e-324</span> );
 <span class="hljs-comment">// returns '0000000000000000000000000000000000000000000000000000000000000001'</span>
-</code></pre>
-<p>The function handles special values.</p>
-<pre><code class="hljs language-javascript">str = toBinaryString( <span class="hljs-number">0.0</span> );
+</code></pre><p>The function handles special values.</p><pre><code class="hljs language-javascript">str = toBinaryString( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns '0000000000000000000000000000000000000000000000000000000000000000'</span>
 
 str = toBinaryString( -<span class="hljs-number">0.0</span> );
@@ -39,13 +26,7 @@ str = toBinaryString( <span class="hljs-literal">Infinity</span> );
 
 str = toBinaryString( -<span class="hljs-literal">Infinity</span> );
 <span class="hljs-comment">// returns '1111111111110000000000000000000000000000000000000000000000000000'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-binary-string'</span> );
@@ -73,14 +54,4 @@ str = toBinaryString( -<span class="hljs-literal">Infinity</span> );
     b = toBinaryString( x );
     <span class="hljs-built_in">console</span>.log( b );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

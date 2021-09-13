@@ -1,17 +1,5 @@
-<h1 id="binary-logarithm">Binary Logarithm</h1>
-<blockquote>
-<p>Compute an integer <a href="https://en.wikipedia.org/wiki/Binary_logarithm">binary logarithm</a>.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log2Uint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/uint32-log2'</span> );
-</code></pre>
-<h4 id="log2uint32-x-">log2Uint32( x )</h4>
-<p>Returns an <strong>approximate</strong> <a href="https://en.wikipedia.org/wiki/Binary_logarithm">binary logarithm</a> of an unsigned 32-bit integer <code>x</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log2Uint32( <span class="hljs-number">4</span> >>> <span class="hljs-number">0</span> );
+<h1 id="binary-logarithm">Binary Logarithm</h1><blockquote><p>Compute an integer <a href="https://en.wikipedia.org/wiki/Binary_logarithm">binary logarithm</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log2Uint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/uint32-log2'</span> );
+</code></pre><h4 id="log2uint32-x-">log2Uint32( x )</h4><p>Returns an <strong>approximate</strong> <a href="https://en.wikipedia.org/wiki/Binary_logarithm">binary logarithm</a> of an unsigned 32-bit integer <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log2Uint32( <span class="hljs-number">4</span> >>> <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 2</span>
 
 v = log2Uint32( <span class="hljs-number">8</span> >>> <span class="hljs-number">0</span> );
@@ -19,21 +7,7 @@ v = log2Uint32( <span class="hljs-number">8</span> >>> <span class="hljs-number"
 
 v = log2Uint32( <span class="hljs-number">9</span> >>> <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 3</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>This implementation provides a performance boost when an application requires only <strong>approximate</strong> computations for integer arguments.</li>
-<li>For applications requiring high-precision, this implementation is <strong>never</strong> suitable.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log2Uint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/uint32-log2'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This implementation provides a performance boost when an application requires only <strong>approximate</strong> computations for integer arguments.</li><li>For applications requiring high-precision, this implementation is <strong>never</strong> suitable.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log2Uint32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fast/uint32-log2'</span> );
 
 <span class="hljs-keyword">var</span> v;
 <span class="hljs-keyword">var</span> i;
@@ -42,21 +16,4 @@ v = log2Uint32( <span class="hljs-number">9</span> >>> <span class="hljs-number"
     v = log2Uint32( i >>> <span class="hljs-number">0</span> );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'log2(%d) ≈ %d'</span>, i, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li></ul></section>

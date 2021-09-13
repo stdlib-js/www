@@ -1,15 +1,5 @@
-<h1 id="debug-stream">Debug Stream</h1>
-<blockquote>
-<p><a href="https://nodejs.org/api/stream.html">Transform stream</a> for <a href="https://www.npmjs.com/package/debug">debugging</a> stream pipelines.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debugStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug'</span> );
-</code></pre>
-<p><a name="debug-stream"></a></p>
-<h4 id="debugstream-options-clbk-">debugStream( [options,] [clbk] )</h4>
-<p>Creates a <a href="https://nodejs.org/api/stream.html">transform stream</a> for <a href="https://www.npmjs.com/package/debug">debugging</a> stream pipelines.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ENV = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/env'</span> );
+<h1 id="debug-stream">Debug Stream</h1><blockquote><p><a href="https://nodejs.org/api/stream.html">Transform stream</a> for <a href="https://www.npmjs.com/package/debug">debugging</a> stream pipelines.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> debugStream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug'</span> );
+</code></pre><p></p><h4 id="debugstream-options-clbk-">debugStream( [options,] [clbk] )</h4><p>Creates a <a href="https://nodejs.org/api/stream.html">transform stream</a> for <a href="https://www.npmjs.com/package/debug">debugging</a> stream pipelines.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ENV = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/env'</span> );
 
 <span class="hljs-comment">// Set the `DEBUG` environment variable...</span>
 ENV.DEBUG = <span class="hljs-string">'*'</span>;
@@ -22,17 +12,7 @@ stream.write( <span class="hljs-string">'a'</span> );
 stream.write( <span class="hljs-string">'b'</span> );
 stream.write( <span class="hljs-string">'c'</span> );
 stream.end();
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>name</strong>: <a href="https://www.npmjs.com/package/debug">debug</a> namespace.</li>
-<li><strong>objectMode</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>false</code>.</li>
-<li><strong>highWaterMark</strong>: specifies the <code>Buffer</code> level at which <code>write()</code> calls start returning <code>false</code>.</li>
-<li><strong>allowHalfOpen</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should remain open even if one side ends. Default: <code>false</code>.</li>
-<li><strong>readableObjectMode</strong>: specifies whether the readable side should be in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>false</code>.</li>
-</ul>
-<p>To set <a href="https://nodejs.org/api/stream.html">stream</a> <code>options</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>name</strong>: <a href="https://www.npmjs.com/package/debug">debug</a> namespace.</li><li><strong>objectMode</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>false</code>.</li><li><strong>highWaterMark</strong>: specifies the <code>Buffer</code> level at which <code>write()</code> calls start returning <code>false</code>.</li><li><strong>allowHalfOpen</strong>: specifies whether a <a href="https://nodejs.org/api/stream.html">stream</a> should remain open even if one side ends. Default: <code>false</code>.</li><li><strong>readableObjectMode</strong>: specifies whether the readable side should be in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>. Default: <code>false</code>.</li></ul><p>To set <a href="https://nodejs.org/api/stream.html">stream</a> <code>options</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'my-app'</span>,
     <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>,
@@ -41,9 +21,7 @@ stream.end();
 };
 
 <span class="hljs-keyword">var</span> stream = debugStream( opts );
-</code></pre>
-<p>By default, each <code>chunk</code> is logged as a JSON stringified <code>string</code>, along with the <code>chunk</code> index. For more control over logging behavior, provide a <code>callback</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logger</span>(<span class="hljs-params"> debug, chunk, idx </span>) </span>{
+</code></pre><p>By default, each <code>chunk</code> is logged as a JSON stringified <code>string</code>, along with the <code>chunk</code> index. For more control over logging behavior, provide a <code>callback</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logger</span>(<span class="hljs-params"> debug, chunk, idx </span>) </span>{
     debug( <span class="hljs-string">'Received a new chunk...'</span> );
     debug( <span class="hljs-string">'Beep: %s'</span>, chunk.beep );
     debug( <span class="hljs-string">'Boop: %s'</span>, chunk.boop );
@@ -54,20 +32,13 @@ stream.end();
 };
 
 <span class="hljs-keyword">var</span> stream = debugStream( opts, logger );
-</code></pre>
-<h4 id="debugstreamfactory-options-">debugStream.factory( [options] )</h4>
-<p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">streams</a> which are identically configured according to provided <code>options</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><h4 id="debugstreamfactory-options-">debugStream.factory( [options] )</h4><p>Returns a <code>function</code> for creating <a href="https://nodejs.org/api/stream.html">streams</a> which are identically configured according to provided <code>options</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'objectMode'</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-string">'highWaterMark'</span>: <span class="hljs-number">64</span>
 };
 
 <span class="hljs-keyword">var</span> factory = debugStream.factory( opts );
-</code></pre>
-<p>This method accepts the same <code>options</code> as <a href="#debug-stream"><code>debugStream()</code></a>, <strong>except</strong> for <code>name</code>, which must be provided <strong>explicitly</strong>.</p>
-<h5 id="factory-name-clbk-">factory( name[, clbk] )</h5>
-<p>Creates a <a href="https://www.npmjs.com/package/debug">debug</a> stream.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = debugStream.factory();
+</code></pre><p>This method accepts the same <code>options</code> as <a href="#debug-stream"><code>debugStream()</code></a>, <strong>except</strong> for <code>name</code>, which must be provided <strong>explicitly</strong>.</p><h5 id="factory-name-clbk-">factory( name[, clbk] )</h5><p>Creates a <a href="https://www.npmjs.com/package/debug">debug</a> stream.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = debugStream.factory();
 
 <span class="hljs-keyword">var</span> streams = [];
 <span class="hljs-keyword">var</span> i;
@@ -76,10 +47,7 @@ stream.end();
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
     streams.push( factory( <span class="hljs-string">'stream '</span>+i ) );
 }
-</code></pre>
-<h4 id="debugstreamobjectmode-options-clbk-">debugStream.objectMode( [options,] [clbk] )</h4>
-<p>This method is a convenience function to create <a href="https://nodejs.org/api/stream.html">streams</a> which <strong>always</strong> operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = debugStream.objectMode({
+</code></pre><h4 id="debugstreamobjectmode-options-clbk-">debugStream.objectMode( [options,] [clbk] )</h4><p>This method is a convenience function to create <a href="https://nodejs.org/api/stream.html">streams</a> which <strong>always</strong> operate in <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = debugStream.objectMode({
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'beep-boop'</span>
 });
 
@@ -93,22 +61,7 @@ stream.write({
     <span class="hljs-string">'value'</span>: <span class="hljs-string">'c'</span>
 });
 stream.end();
-</code></pre>
-<p>This method accepts the same <code>options</code> as <a href="#debug-stream"><code>debugStream()</code></a>; however, the method will <strong>always</strong> override the <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a> option in <code>options</code>.</p>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>If the <a href="https://www.npmjs.com/package/debug"><code>DEBUG</code></a> environment variable is <strong>not</strong> set, no data is logged.</li>
-<li>Providing a <code>name</code> option is <strong>strongly</strong> encouraged, as the <a href="https://www.npmjs.com/package/debug"><code>DEBUG</code></a> environment variable can be used to filter debuggers.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+</code></pre><p>This method accepts the same <code>options</code> as <a href="#debug-stream"><code>debugStream()</code></a>; however, the method will <strong>always</strong> override the <a href="https://nodejs.org/api/stream.html#stream_object_mode">objectMode</a> option in <code>options</code>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If the <a href="https://www.npmjs.com/package/debug"><code>DEBUG</code></a> environment variable is <strong>not</strong> set, no data is logged.</li><li>Providing a <code>name</code> option is <strong>strongly</strong> encouraged, as the <a href="https://www.npmjs.com/package/debug"><code>DEBUG</code></a> environment variable can be used to filter debuggers.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
 <span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
 <span class="hljs-keyword">var</span> transformFactory = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/transform'</span> ).factory;
 <span class="hljs-keyword">var</span> debug = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/debug'</span> ).objectMode;
@@ -181,22 +134,4 @@ s1.pipe( d1 )
     s1.write( v, <span class="hljs-string">'utf8'</span> );
 }
 s1.end();
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/streams/node/debug-sink"><code>@stdlib/streams/node/debug-sink</code></a></span><span class="delimiter">: </span><span class="description">writable stream for debugging stream pipelines.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/streams/node/inspect"><code>@stdlib/streams/node/inspect</code></a></span><span class="delimiter">: </span><span class="description">transform stream for inspecting streamed data.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/streams/node/debug-sink"><code>@stdlib/streams/node/debug-sink</code></a></span><span class="delimiter">: </span><span class="description">writable stream for debugging stream pipelines.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/streams/node/inspect"><code>@stdlib/streams/node/inspect</code></a></span><span class="delimiter">: </span><span class="description">transform stream for inspecting streamed data.</span></li></ul></section>

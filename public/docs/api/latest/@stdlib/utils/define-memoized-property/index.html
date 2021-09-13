@@ -1,16 +1,7 @@
-<h1 id="define-memoized-property">Define Memoized Property</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Define</a> a memoized object property.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineMemoizedProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-memoized-property'</span> );
-</code></pre>
-<h4 id="definememoizedproperty-obj-prop-descriptor-">defineMemoizedProperty( obj, prop, descriptor )</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Defines</a> a memoized object property.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
+<h1 id="define-memoized-property">Define Memoized Property</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Define</a> a memoized object property.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineMemoizedProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-memoized-property'</span> );
+</code></pre><h4 id="definememoizedproperty-obj-prop-descriptor-">defineMemoizedProperty( obj, prop, descriptor )</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Defines</a> a memoized object property.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>() </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span>;
 }
 
@@ -23,33 +14,10 @@ defineMemoizedProperty( obj, <span class="hljs-string">'foo'</span>, {
 
 <span class="hljs-keyword">var</span> v = obj.foo;
 <span class="hljs-comment">// returns 'bar'</span>
-</code></pre>
-<p>A property <code>descriptor</code> has the following required properties:</p>
-<ul>
-<li><strong>value</strong>: synchronous function whose return value will be memoized and set as the property value.</li>
-</ul>
-<p>A property <code>descriptor</code> has the following optional properties:</p>
-<ul>
-<li><strong>configurable</strong>: <code>boolean</code> indicating if property descriptor can be changed and if the property can be deleted from the provided object. Default: <code>false</code>.</li>
-<li><strong>enumerable</strong>: <code>boolean</code> indicating if the property shows up when enumerating object properties. Default: <code>false</code>.</li>
-<li><strong>writable</strong>: <code>boolean</code> indicating if the value associated with the property can be changed with an assignment operator. Default: <code>false</code>.</li>
-</ul>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Until deferred evaluation, an object property is <strong>configurable</strong>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fibonacci = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fibonacci'</span> );
+</code></pre><p>A property <code>descriptor</code> has the following required properties:</p><ul><li><strong>value</strong>: synchronous function whose return value will be memoized and set as the property value.</li></ul><p>A property <code>descriptor</code> has the following optional properties:</p><ul><li><strong>configurable</strong>: <code>boolean</code> indicating if property descriptor can be changed and if the property can be deleted from the provided object. Default: <code>false</code>.</li><li><strong>enumerable</strong>: <code>boolean</code> indicating if the property shows up when enumerating object properties. Default: <code>false</code>.</li><li><strong>writable</strong>: <code>boolean</code> indicating if the value associated with the property can be changed with an assignment operator. Default: <code>false</code>.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Until deferred evaluation, an object property is <strong>configurable</strong>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fibonacci = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fibonacci'</span> );
 <span class="hljs-keyword">var</span> defineMemoizedProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-memoized-property'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>() </span>{
     <span class="hljs-keyword">var</span> self;
     <span class="hljs-keyword">if</span> ( !(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Foo) ) {
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Foo();
@@ -61,7 +29,7 @@ defineMemoizedProperty( obj, <span class="hljs-string">'foo'</span>, {
     });
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibo</span>() </span>{
         self.count += <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> fibonacci( <span class="hljs-number">73</span> );
     }
@@ -73,22 +41,4 @@ defineMemoizedProperty( obj, <span class="hljs-string">'foo'</span>, {
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'F: %d. Count: %d.'</span>, foo.fibo, foo.count );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-memoized-read-only-property"><code>@stdlib/utils/define-memoized-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a memoized read-only object property.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-property"><code>@stdlib/utils/define-property</code></a></span><span class="delimiter">: </span><span class="description">define (or modify) an object property.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-memoized-read-only-property"><code>@stdlib/utils/define-memoized-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a memoized read-only object property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-property"><code>@stdlib/utils/define-property</code></a></span><span class="delimiter">: </span><span class="description">define (or modify) an object property.</span></li></ul></section>

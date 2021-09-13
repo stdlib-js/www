@@ -1,14 +1,5 @@
-<h1 id="cosm1">cosm1</h1>
-<blockquote>
-<p>Compute <code>cos(x) - 1</code>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cosm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cosm1'</span> );
-</code></pre>
-<h4 id="cosm1-x-">cosm1( x )</h4>
-<p>Computes <code>cos(x) - 1</code>, where <code>cos</code> is the <a href="/docs/api/latest/@stdlib/math/base/special/cos">cosine</a> of a <code>number</code> (in radians). This function should be used instead of manually calculating <code>cos(x) - 1</code> when the argument is near unity.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/pi'</span> );
+<h1 id="cosm1">cosm1</h1><blockquote><p>Compute <code>cos(x) - 1</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cosm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cosm1'</span> );
+</code></pre><h4 id="cosm1-x-">cosm1( x )</h4><p>Computes <code>cos(x) - 1</code>, where <code>cos</code> is the <a href="/docs/api/latest/@stdlib/math/base/special/cos">cosine</a> of a <code>number</code> (in radians). This function should be used instead of manually calculating <code>cos(x) - 1</code> when the argument is near unity.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/pi'</span> );
 
 <span class="hljs-keyword">var</span> v = cosm1( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
@@ -21,13 +12,7 @@ v = cosm1( -PI/<span class="hljs-number">6.0</span> );
 
 v = cosm1( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
 <span class="hljs-keyword">var</span> PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/pi'</span> );
 <span class="hljs-keyword">var</span> cosm1 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cosm1'</span> );
 
@@ -37,21 +22,4 @@ v = cosm1( <span class="hljs-literal">NaN</span> );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( cosm1( x[ i ] ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cos"><code>@stdlib/math/base/special/cos</code></a></span><span class="delimiter">: </span><span class="description">compute the cosine of a number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cos"><code>@stdlib/math/base/special/cos</code></a></span><span class="delimiter">: </span><span class="description">compute the cosine of a number.</span></li></ul></section>

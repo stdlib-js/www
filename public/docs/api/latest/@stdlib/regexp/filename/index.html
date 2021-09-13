@@ -1,14 +1,5 @@
-<h1 id="filename">Filename</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to split a filename.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reFilename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/filename'</span> );
-</code></pre>
-<h4 id="refilename-platform-">reFilename( [platform] )</h4>
-<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to split a filename.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE = reFilename();
+<h1 id="filename">Filename</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to split a filename.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reFilename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/filename'</span> );
+</code></pre><h4 id="refilename-platform-">reFilename( [platform] )</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to split a filename.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE = reFilename();
 <span class="hljs-comment">// returns &#x3C;RegExp></span>
 
 RE = reFilename( <span class="hljs-string">'posix'</span> );
@@ -39,15 +30,9 @@ parts = RE.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> ).sli
         '.js'                       // extname
     ]
 */</span>
-</code></pre>
-<h4 id="refilenameregexp">reFilename.REGEXP</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to split a filename.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( reFilename.REGEXP.toString() === reFilename().toString() );
+</code></pre><h4 id="refilenameregexp">reFilename.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to split a filename.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( reFilename.REGEXP.toString() === reFilename().toString() );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<h4 id="refilenameregexp_posix">reFilename.REGEXP_POSIX</h4>
-<p><a href="/docs/api/latest/@stdlib/regexp/filename-posix">Regular expression</a> to split a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reFilename.REGEXP_POSIX.exec( <span class="hljs-string">'/foo/bar/index.js'</span> ).slice();
+</code></pre><h4 id="refilenameregexp_posix">reFilename.REGEXP_POSIX</h4><p><a href="/docs/api/latest/@stdlib/regexp/filename-posix">Regular expression</a> to split a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reFilename.REGEXP_POSIX.exec( <span class="hljs-string">'/foo/bar/index.js'</span> ).slice();
 <span class="hljs-comment">/* returns
     [
         '/foo/bar/index.js',  // input value
@@ -57,10 +42,7 @@ parts = RE.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> ).sli
         '.js'                 // extname
     ]
 */</span>
-</code></pre>
-<h4 id="refilenameregexp_win32">reFilename.REGEXP_WIN32</h4>
-<p><a href="/docs/api/latest/@stdlib/regexp/filename-windows">Regular expression</a> to split a Windows filename.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reFilename.REGEXP_WIN32.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> ).slice();
+</code></pre><h4 id="refilenameregexp_win32">reFilename.REGEXP_WIN32</h4><p><a href="/docs/api/latest/@stdlib/regexp/filename-windows">Regular expression</a> to split a Windows filename.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parts = reFilename.REGEXP_WIN32.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> ).slice();
 <span class="hljs-comment">/* returns
     [
         'C:\\foo\\bar\\index.js',   // input value
@@ -71,20 +53,7 @@ parts = RE.exec( <span class="hljs-string">'C:\\foo\\bar\\index.js'</span> ).sli
         '.js'                       // extname
     ]
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The as <code>REGEXP</code> exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="/docs/api/latest/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>REGEXP === REGEXP_WIN32</code>; otherwise, <code>REGEXP === REGEXP_POSIX</code>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reFilename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/filename'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The as <code>REGEXP</code> exported <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> is <a href="/docs/api/latest/@stdlib/assert/is-windows">platform</a>-dependent. If the current process is running on Windows, <code>REGEXP === REGEXP_WIN32</code>; otherwise, <code>REGEXP === REGEXP_POSIX</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reFilename = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/filename'</span> );
 <span class="hljs-keyword">var</span> RE_FILENAME = reFilename();
 
 <span class="hljs-comment">// Assuming a POSIX platform...</span>
@@ -121,22 +90,4 @@ parts = reFilename.REGEXP_WIN32.exec( <span class="hljs-string">'C:\\foo\\bar\\h
         '.html'
     ]
 */</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/filename-posix"><code>@stdlib/regexp/filename-posix</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to split a POSIX filename.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/filename-windows"><code>@stdlib/regexp/filename-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to split a Windows filename.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/filename-posix"><code>@stdlib/regexp/filename-posix</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to split a POSIX filename.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/filename-windows"><code>@stdlib/regexp/filename-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to split a Windows filename.</span></li></ul></section>

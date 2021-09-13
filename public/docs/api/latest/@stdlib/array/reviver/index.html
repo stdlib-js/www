@@ -1,37 +1,11 @@
-<h1 id="reviver">Reviver</h1>
-<blockquote>
-<p>Revive a JSON-serialized typed array.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/reviver'</span> );
-</code></pre>
-<h4 id="reviver-key-value-">reviver( key, value )</h4>
-<p>Revives a JSON-serialized typed array.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+<h1 id="reviver">Reviver</h1><blockquote><p>Revive a JSON-serialized typed array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/reviver'</span> );
+</code></pre><h4 id="reviver-key-value-">reviver( key, value )</h4><p>Revives a JSON-serialized typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
 
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">'{"type":"Float64Array","data":[5,3]}'</span>;
 
 <span class="hljs-keyword">var</span> arr = parseJSON( str, reviver );
 <span class="hljs-comment">// returns &#x3C;Float64Array>[ 5.0, 3.0 ]</span>
-</code></pre>
-<p>For details on the JSON serialization format, see <a href="/docs/api/latest/@stdlib/array/to-json"><code>toJSON()</code></a>.</p>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>For details on the JSON serialization format, see <a href="/docs/api/latest/@stdlib/array/to-json"><code>toJSON()</code></a>.</p></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
 <span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-json'</span> );
 <span class="hljs-keyword">var</span> reviver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/reviver'</span> );
@@ -47,25 +21,4 @@
 }
 <span class="hljs-built_in">console</span>.log( out );
 <span class="hljs-comment">// => &#x3C;Float64Array>[ 5.0, 3.0 ]</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-json"><code>@stdlib/array/to-json</code></a></span><span class="delimiter">: </span><span class="description">return a JSON representation of a typed array.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-json"><code>@stdlib/array/to-json</code></a></span><span class="delimiter">: </span><span class="description">return a JSON representation of a typed array.</span></li></ul></section>

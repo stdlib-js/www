@@ -1,36 +1,10 @@
-<h1 id="porterstemmer">porterStemmer</h1>
-<blockquote>
-<p>Extract the stem of a given word.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> porterStemmer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/porter-stemmer'</span> );
-</code></pre>
-<h4 id="porterstemmer-word-">porterStemmer( word )</h4>
-<p>Extracts the stem of a given word using the Porter stemming algorithm.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = porterStemmer( <span class="hljs-string">'worldwide'</span> );
+<h1 id="porterstemmer">porterStemmer</h1><blockquote><p>Extract the stem of a given word.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> porterStemmer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/porter-stemmer'</span> );
+</code></pre><h4 id="porterstemmer-word-">porterStemmer( word )</h4><p>Extracts the stem of a given word using the Porter stemming algorithm.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = porterStemmer( <span class="hljs-string">'worldwide'</span> );
 <span class="hljs-comment">// returns 'worldwid'</span>
 
 out = porterStemmer( <span class="hljs-string">'fighting'</span> );
 <span class="hljs-comment">// returns 'fight'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Porter, Michael F. 1980. "An algorithm for suffix stripping." <em>Program</em> 13 (3): 130–37. doi:<a href="https://doi.org/10.1108/eb046814">10.1108/eb046814</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> porterStemmer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/porter-stemmer'</span> );
+</code></pre></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Porter, Michael F. 1980. "An algorithm for suffix stripping." <em>Program</em> 13 (3): 130–37. doi:<a href="https://doi.org/10.1108/eb046814">10.1108/eb046814</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> porterStemmer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/porter-stemmer'</span> );
 
 <span class="hljs-keyword">var</span> out = porterStemmer( <span class="hljs-string">'walking'</span> );
 <span class="hljs-comment">// returns 'walk'</span>
@@ -43,14 +17,4 @@ out = porterStemmer( <span class="hljs-string">'walks'</span> );
 
 out = porterStemmer( <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns ''</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

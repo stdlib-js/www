@@ -1,17 +1,5 @@
-<h1 id="flignertest">flignerTest</h1>
-<blockquote>
-<p>Compute the Fligner-Killeen test for equal variances.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flignerTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/fligner-test'</span> );
-</code></pre>
-<h4 id="flignertest-abk-opts-">flignerTest( a[,b,...,k][, opts] )</h4>
-<p>For input arrays <code>a</code>, <code>b</code>, ... holding numeric observations, this function calculates the Fligner-Killeen test, which tests the null hypothesis that the variances in all <code>k</code> groups are the same. </p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Data from Hollander &#x26; Wolfe (1973), p. 116:</span>
+<h1 id="flignertest">flignerTest</h1><blockquote><p>Compute the Fligner-Killeen test for equal variances.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flignerTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/fligner-test'</span> );
+</code></pre><h4 id="flignertest-abk-opts-">flignerTest( a[,b,...,k][, opts] )</h4><p>For input arrays <code>a</code>, <code>b</code>, ... holding numeric observations, this function calculates the Fligner-Killeen test, which tests the null hypothesis that the variances in all <code>k</code> groups are the same.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Data from Hollander &#x26; Wolfe (1973), p. 116:</span>
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
 <span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
@@ -27,14 +15,7 @@
         ...
     }
 */</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li>
-<li><strong>groups</strong>: an <code>array</code> of group indicators. If set, the function assumes that only a single numeric array is provided holding all observations.</li>
-</ul>
-<p>By default, the test is carried out at a significance level of <code>0.05</code>. To choose a custom significance level, set the <code>alpha</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>groups</strong>: an <code>array</code> of group indicators. If set, the function assumes that only a single numeric array is provided holding all observations.</li></ul><p>By default, the test is carried out at a significance level of <code>0.05</code>. To choose a custom significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
 <span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
 
@@ -51,10 +32,7 @@
         ...
     }
 */</span>
-</code></pre>
-<p>The function provides an alternate interface by supplying an array of group indicators to the <code>groups</code> option. In this case, it is assumed that only a single numeric array holding all observations is provided to the function.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+</code></pre><p>The function provides an alternate interface by supplying an array of group indicators to the <code>groups</code> option. In this case, it is assumed that only a single numeric array holding all observations is provided to the function.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
     <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span>,
     <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span>,
     <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span>
@@ -67,9 +45,7 @@
 out = flignerTest( arr, {
     <span class="hljs-string">'groups'</span>: groups
 });
-</code></pre>
-<p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
+</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">3.8</span>, <span class="hljs-number">2.7</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.4</span> ];
 <span class="hljs-keyword">var</span> z = [ <span class="hljs-number">2.8</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.0</span> ];
 
@@ -86,13 +62,7 @@ out = flignerTest( arr, {
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flignerTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/fligner-test'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flignerTest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/fligner-test'</span> );
 
 <span class="hljs-comment">// Data from Hollander &#x26; Wolfe (1973), p. 116:</span>
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2.9</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.2</span> ];
@@ -123,24 +93,4 @@ out = flignerTest( arr, {
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/bartlett-test"><code>@stdlib/stats/bartlett-test</code></a></span><span class="delimiter">: </span><span class="description">bartlett’s test for equal variances.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/bartlett-test"><code>@stdlib/stats/bartlett-test</code></a></span><span class="delimiter">: </span><span class="description">bartlett’s test for equal variances.</span></li></ul></section>

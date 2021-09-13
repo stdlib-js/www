@@ -1,18 +1,5 @@
-<!-- lint disable maximum-heading-length -->
-<h1 id="smskmap">smskmap</h1>
-<blockquote>
-<p>Apply a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assign each result to an element in a single-precision floating-point strided output array.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> smskmap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/smskmap'</span> );
-</code></pre>
-<h4 id="smskmap-n-x-stridex-mask-stridemask-y-stridey-fcn-">smskmap( N, x, strideX, mask, strideMask, y, strideY, fcn )</h4>
-<p>Applies a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assigns each result to an element in a single-precision floating-point strided output array.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+<h1 id="smskmap">smskmap</h1><blockquote><p>Apply a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assign each result to an element in a single-precision floating-point strided output array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> smskmap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/strided/base/smskmap'</span> );
+</code></pre><h4 id="smskmap-n-x-stridex-mask-stridemask-y-stridey-fcn-">smskmap( N, x, strideX, mask, strideMask, y, strideY, fcn )</h4><p>Applies a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assigns each result to an element in a single-precision floating-point strided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> absf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/absf'</span> );
 
@@ -22,20 +9,7 @@
 <span class="hljs-comment">// Compute the absolute values in-place:</span>
 smskmap( x.length, x, <span class="hljs-number">1</span>, m, <span class="hljs-number">1</span>, x, <span class="hljs-number">1</span>, absf );
 <span class="hljs-comment">// x => &#x3C;Float32Array>[ 2.0, 1.0, -3.0, 5.0, 4.0, 0.0, -1.0, 3.0 ]</span>
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
-<li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>mask</strong>: mask <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
-<li><strong>strideMask</strong>: index increment for <code>mask</code>.</li>
-<li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li>
-<li><strong>strideY</strong>: index increment for <code>y</code>.</li>
-<li><strong>fcn</strong>: function to apply.</li>
-</ul>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in the strided arrays are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>mask</strong>: mask <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li><li><strong>strideMask</strong>: index increment for <code>mask</code>.</li><li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li><li><strong>fcn</strong>: function to apply.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in the strided arrays are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> absf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/absf'</span> );
@@ -48,9 +22,7 @@ smskmap( x.length, x, <span class="hljs-number">1</span>, m, <span class="hljs-n
 
 smskmap( N, x, <span class="hljs-number">2</span>, m, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span>, absf );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 5.0, 0.0, 1.0, 0.0, 0.0, 0.0 ]</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> absf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/absf'</span> );
@@ -69,10 +41,7 @@ smskmap( N, x, <span class="hljs-number">2</span>, m, <span class="hljs-number">
 
 smskmap( N, x1, -<span class="hljs-number">2</span>, m1, <span class="hljs-number">1</span>, y1, <span class="hljs-number">1</span>, absf );
 <span class="hljs-comment">// y0 => &#x3C;Float32Array>[ 0.0, 0.0, 0.0, 6.0, 4.0, 0.0 ]</span>
-</code></pre>
-<h4 id="smskmapndarray-n-x-stridex-offsetx-mask-stridemask-offsetmask-y-stridey-offsety-fcn-">smskmap.ndarray( N, x, strideX, offsetX, mask, strideMask, offsetMask, y, strideY, offsetY, fcn )</h4>
-<p>Applies a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assigns each result to an element in a single-precision floating-point strided output array using alternative indexing semantics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><h4 id="smskmapndarray-n-x-stridex-offsetx-mask-stridemask-offsetmask-y-stridey-offsety-fcn-">smskmap.ndarray( N, x, strideX, offsetX, mask, strideMask, offsetMask, y, strideY, offsetY, fcn )</h4><p>Applies a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assigns each result to an element in a single-precision floating-point strided output array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> absf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/absf'</span> );
 
@@ -82,15 +51,7 @@ smskmap( N, x1, -<span class="hljs-number">2</span>, m1, <span class="hljs-numbe
 
 smskmap.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, m, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, absf );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 1.0, 2.0, 0.0, 4.0, 5.0 ]</span>
-</code></pre>
-<p>The function accepts the following additional arguments:</p>
-<ul>
-<li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
-<li><strong>offsetMask</strong>: starting index for <code>mask</code>.</li>
-<li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
-</ul>
-<p>While <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetMask</strong>: starting index for <code>mask</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="/docs/api/latest/@stdlib/array/float32"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> absf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/absf'</span> );
@@ -103,16 +64,7 @@ smskmap.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="h
 
 smskmap.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, m, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, absf );
 <span class="hljs-comment">// y => &#x3C;Float32Array>[ 0.0, 0.0, 0.0, 0.0, 4.0, 2.0 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/bernoulli'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
@@ -138,25 +90,8 @@ smskmap.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-num
 
 smskmap.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, m, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span>, scale );
 <span class="hljs-built_in">console</span>.log( y );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/smskmap.h"</span></span>
-</code></pre>
-<h4 id="stdlib_strided_smskmap-n-x-stridex-mask-stridemask-y-stridey-fcn-">stdlib_strided_smskmap( N, *X, strideX, *Mask, strideMask, *Y, strideY, fcn )</h4>
-<p>Applies a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assigns each result to an element in a single-precision floating-point strided output array.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/smskmap.h"</span></span>
+</code></pre><h4 id="stdlib_strided_smskmap-n-x-stridex-mask-stridemask-y-stridey-fcn-">stdlib_strided_smskmap( N, *X, strideX, *Mask, strideMask, *Y, strideY, fcn )</h4><p>Applies a unary function accepting and returning single-precision floating-point numbers to each element in a single-precision floating-point strided input array according to a corresponding element in a strided mask array and assigns each result to an element in a single-precision floating-point strided output array.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">scale</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span> </span>{
     <span class="hljs-keyword">return</span> x * <span class="hljs-number">10.0f</span>;
@@ -169,30 +104,8 @@ smskmap.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="h
 <span class="hljs-keyword">int64_t</span> N = <span class="hljs-number">6</span>;
 
 stdlib_strided_smskmap( N, X, <span class="hljs-number">1</span>, M, <span class="hljs-number">1</span>, Y, <span class="hljs-number">1</span>, scale );
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>N</strong>: <code>[in] int64_t</code> number of indexed elements.</li>
-<li><strong>X</strong>: <code>[in] float*</code> input array.</li>
-<li><strong>strideX</strong> <code>[in] int64_t</code> index increment for <code>X</code>.</li>
-<li><strong>Mask</strong>: <code>[in] uint8_t*</code> mask array.</li>
-<li><strong>strideMask</strong>: <code>[in] int64_t</code> index increment for <code>Mask</code>.</li>
-<li><strong>Y</strong>: <code>[out] float*</code> output array.</li>
-<li><strong>strideY</strong>: <code>[in] int64_t</code> index increment for <code>Y</code>.</li>
-<li><strong>fcn</strong>: <code>[in] float (*fcn)( float )</code> unary function to apply.</li>
-</ul>
-<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_smskmap</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> *X, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideX, <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint8_t</span> *Mask, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideMask, <span class="hljs-keyword">float</span> *Y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideY, <span class="hljs-keyword">float</span> (*fcn)( <span class="hljs-keyword">float</span> ) )</span></span>;
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/smskmap.h"</span></span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] int64_t</code> number of indexed elements.</li><li><strong>X</strong>: <code>[in] float*</code> input array.</li><li><strong>strideX</strong> <code>[in] int64_t</code> index increment for <code>X</code>.</li><li><strong>Mask</strong>: <code>[in] uint8_t*</code> mask array.</li><li><strong>strideMask</strong>: <code>[in] int64_t</code> index increment for <code>Mask</code>.</li><li><strong>Y</strong>: <code>[out] float*</code> output array.</li><li><strong>strideY</strong>: <code>[in] int64_t</code> index increment for <code>Y</code>.</li><li><strong>fcn</strong>: <code>[in] float (*fcn)( float )</code> unary function to apply.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_smskmap</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> *X, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideX, <span class="hljs-keyword">const</span> <span class="hljs-keyword">uint8_t</span> *Mask, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideMask, <span class="hljs-keyword">float</span> *Y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideY, <span class="hljs-keyword">float</span> (*fcn)( <span class="hljs-keyword">float</span> ) )</span></span>;
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/strided/base/smskmap.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
@@ -228,16 +141,4 @@ stdlib_strided_smskmap( N, X, <span class="hljs-number">1</span>, M, <span class
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Y[ %"</span>PRId64<span class="hljs-string">" ] = %f\n"</span>, i, Y[ i ] );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section>

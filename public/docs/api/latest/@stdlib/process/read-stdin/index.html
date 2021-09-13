@@ -1,15 +1,5 @@
-<h1 id="stdin">stdin</h1>
-<blockquote>
-<p>Read data from <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/read-stdin'</span> );
-</code></pre>
-<h4 id="stdin-encoding-clbk-">stdin( [encoding,] clbk )</h4>
-<p>Reads data from <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
+<h1 id="stdin">stdin</h1><blockquote><p>Read data from <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/read-stdin'</span> );
+</code></pre><h4 id="stdin-encoding-clbk-">stdin( [encoding,] clbk )</h4><p>Reads data from <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
     <span class="hljs-keyword">if</span> ( error ) {
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Error: %s'</span>, error.message );
     }
@@ -18,10 +8,7 @@
 }
 
 stdin( onRead );
-</code></pre>
-<p>By default, returned <code>data</code> is a <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a>. To return a <code>string</code> of a specified encoding, provide an <code>encoding</code> parameter.</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
+</code></pre><p>By default, returned <code>data</code> is a <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a>. To return a <code>string</code> of a specified encoding, provide an <code>encoding</code> parameter.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
     <span class="hljs-keyword">if</span> ( error ) {
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error( <span class="hljs-string">'Error: %s'</span>, error.message );
     }
@@ -30,10 +17,7 @@ stdin( onRead );
 }
 
 stdin( <span class="hljs-string">'utf8'</span>, onRead );
-</code></pre>
-<p>When a file's calling Node.js process is running in a <a href="https://nodejs.org/api/tty.html#tty_tty">TTY</a> context (i.e., no <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>), <code>data</code> will either be an empty <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a> (no encoding provided) or an empty <code>string</code> (encoding provided).</p>
-<!-- run-disable -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
+</code></pre><p>When a file's calling Node.js process is running in a <a href="https://nodejs.org/api/tty.html#tty_tty">TTY</a> context (i.e., no <a href="/docs/api/latest/@stdlib/streams/node/stdin"><code>stdin</code></a>), <code>data</code> will either be an empty <a href="https://nodejs.org/api/buffer.html"><code>Buffer</code></a> (no encoding provided) or an empty <code>string</code> (encoding provided).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRead</span>(<span class="hljs-params"> error, data </span>) </span>{
     <span class="hljs-keyword">if</span> ( error ) {
@@ -46,14 +30,7 @@ stdin( <span class="hljs-string">'utf8'</span>, onRead );
 stream.isTTY = <span class="hljs-literal">true</span>;
 
 stdin( <span class="hljs-string">'utf8'</span>, onRead );
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- run-disable -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
 <span class="hljs-keyword">var</span> stream = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
 <span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/read-stdin'</span> );
 
@@ -79,14 +56,4 @@ stream.push( string2buffer( <span class="hljs-string">'boop'</span> ) );
 
 <span class="hljs-comment">// End the stream:</span>
 stream.push( <span class="hljs-literal">null</span> );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

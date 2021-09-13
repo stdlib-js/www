@@ -1,43 +1,19 @@
-<h1 id="dramp">dramp</h1>
-<blockquote>
-<p>Evaluate the <a href="/docs/api/latest/@stdlib/math/base/special/ramp">ramp function</a> for each element in a double-precision floating-point strided array.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dramp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dramp'</span> );
-</code></pre>
-<h4 id="dramp-n-x-stridex-y-stridey-">dramp( N, x, strideX, y, strideY )</h4>
-<p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ramp">ramp function</a> for each element in a double-precision floating-point strided array <code>x</code> and assigns the results to elements in a double-precision floating-point strided array <code>y</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<h1 id="dramp">dramp</h1><blockquote><p>Evaluate the <a href="/docs/api/latest/@stdlib/math/base/special/ramp">ramp function</a> for each element in a double-precision floating-point strided array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dramp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dramp'</span> );
+</code></pre><h4 id="dramp-n-x-stridex-y-stridey-">dramp( N, x, strideX, y, strideY )</h4><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ramp">ramp function</a> for each element in a double-precision floating-point strided array <code>x</code> and assigns the results to elements in a double-precision floating-point strided array <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.1</span>, <span class="hljs-number">2.5</span>, -<span class="hljs-number">3.5</span>, <span class="hljs-number">4.0</span>, -<span class="hljs-number">5.9</span> ] );
 
 <span class="hljs-comment">// Perform operation in-place:</span>
 dramp( x.length, x, <span class="hljs-number">1</span>, x, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// x => &#x3C;Float64Array>[ 1.1, 2.5, 0.0, 4.0, 0.0 ]</span>
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>N</strong>: number of indexed elements.</li>
-<li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
-<li><strong>strideX</strong>: index increment for <code>x</code>.</li>
-<li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li>
-<li><strong>strideY</strong>: index increment for <code>y</code>.</li>
-</ul>
-<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: output <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and to index the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.1</span>, <span class="hljs-number">2.5</span>, -<span class="hljs-number">3.5</span>, <span class="hljs-number">4.0</span>, -<span class="hljs-number">5.9</span>, <span class="hljs-number">6.4</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
 
 dramp( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 0.0, 0.0, 1.1, 0.0, 0.0, 0.0 ]</span>
-</code></pre>
-<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-comment">// Initial arrays...</span>
 <span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.1</span>, <span class="hljs-number">2.5</span>, -<span class="hljs-number">3.5</span>, <span class="hljs-number">4.0</span>, -<span class="hljs-number">5.9</span>, <span class="hljs-number">6.4</span> ] );
@@ -49,40 +25,21 @@ dramp( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>
 
 dramp( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</span>, y1, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// y0 => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 6.4, 4.0, 2.5 ]</span>
-</code></pre>
-<h4 id="drampndarray-n-x-stridex-offsetx-y-stridey-offsety-">dramp.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4>
-<p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ramp">ramp function</a> for each element in a double-precision floating-point strided array <code>x</code> and assigns the results to elements in a double-precision floating-point strided array <code>y</code> using alternative indexing semantics.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><h4 id="drampndarray-n-x-stridex-offsetx-y-stridey-offsety-">dramp.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ramp">ramp function</a> for each element in a double-precision floating-point strided array <code>x</code> and assigns the results to elements in a double-precision floating-point strided array <code>y</code> using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.1</span>, <span class="hljs-number">2.5</span>, -<span class="hljs-number">3.5</span>, <span class="hljs-number">4.0</span>, -<span class="hljs-number">5.9</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
 
 dramp.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 1.1, 2.5, 0.0, 4.0, 0.0 ]</span>
-</code></pre>
-<p>The function accepts the following additional arguments:</p>
-<ul>
-<li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
-<li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
-</ul>
-<p>While <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="/docs/api/latest/@stdlib/array/float64"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.1</span>, <span class="hljs-number">2.5</span>, -<span class="hljs-number">3.5</span>, <span class="hljs-number">4.0</span>, -<span class="hljs-number">5.9</span>, <span class="hljs-number">6.4</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
 
 dramp.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, 6.4, 4.0, 2.5 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> dramp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/dramp'</span> );
 
@@ -98,25 +55,8 @@ dramp.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">
 
 dramp.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( y );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/strided/special/dramp.h"</span></span>
-</code></pre>
-<h4 id="stdlib_strided_dramp-n-x-stridex-y-stridey-">stdlib_strided_dramp( N, *X, strideX, *Y, strideY )</h4>
-<p>Evaluates the ramp function for each element in a double-precision floating-point strided array <code>X</code> and assigns the results to elements in a single-precision floating-point strided array <code>Y</code>.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/strided/special/dramp.h"</span></span>
+</code></pre><h4 id="stdlib_strided_dramp-n-x-stridex-y-stridey-">stdlib_strided_dramp( N, *X, strideX, *Y, strideY )</h4><p>Evaluates the ramp function for each element in a double-precision floating-point strided array <code>X</code> and assigns the results to elements in a single-precision floating-point strided array <code>Y</code>.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 
 <span class="hljs-keyword">double</span> X[] = { <span class="hljs-number">1.1</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">-3.5</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">-5.9</span>, <span class="hljs-number">6.4</span>, <span class="hljs-number">-7.0</span>, <span class="hljs-number">8.2</span> };
 <span class="hljs-keyword">double</span> Y[] = { <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> };
@@ -124,27 +64,8 @@ dramp.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hlj
 <span class="hljs-keyword">int64_t</span> N = <span class="hljs-number">4</span>;
 
 stdlib_strided_dramp( N, X, <span class="hljs-number">2</span>, Y, <span class="hljs-number">2</span> );
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>N</strong>: <code>[in] int64_t</code> number of indexed elements.</li>
-<li><strong>X</strong>: <code>[in] double*</code> input array.</li>
-<li><strong>strideX</strong>: <code>[in] int64_t</code> index increment for <code>X</code>.</li>
-<li><strong>Y</strong>: <code>[out] double*</code> output array.</li>
-<li><strong>strideY</strong>: <code>[in] int64_t</code> index increment for <code>Y</code>.</li>
-</ul>
-<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_dramp</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideX, <span class="hljs-keyword">double</span> *Y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideY )</span></span>;
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/strided/special/dramp.h"</span></span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] int64_t</code> number of indexed elements.</li><li><strong>X</strong>: <code>[in] double*</code> input array.</li><li><strong>strideX</strong>: <code>[in] int64_t</code> index increment for <code>X</code>.</li><li><strong>Y</strong>: <code>[out] double*</code> output array.</li><li><strong>strideY</strong>: <code>[in] int64_t</code> index increment for <code>Y</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_strided_dramp</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideX, <span class="hljs-keyword">double</span> *Y, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int64_t</span> strideY )</span></span>;
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/strided/special/dramp.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
@@ -170,24 +91,4 @@ stdlib_strided_dramp( N, X, <span class="hljs-number">2</span>, Y, <span class="
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Y[ %i ] = %lf\n"</span>, i, Y[ i ] );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/ramp"><code>@stdlib/math/strided/special/ramp</code></a></span><span class="delimiter">: </span><span class="description">evaluate the ramp function for each element in a strided array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/sramp"><code>@stdlib/math/strided/special/sramp</code></a></span><span class="delimiter">: </span><span class="description">evaluate the ramp function for each element in a single-precision floating-point strided array.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/ramp"><code>@stdlib/math/strided/special/ramp</code></a></span><span class="delimiter">: </span><span class="description">evaluate the ramp function for each element in a strided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/sramp"><code>@stdlib/math/strided/special/sramp</code></a></span><span class="delimiter">: </span><span class="description">evaluate the ramp function for each element in a single-precision floating-point strided array.</span></li></ul></section>

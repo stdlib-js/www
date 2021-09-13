@@ -1,38 +1,12 @@
-<h1 id="revivebaseprng">reviveBasePRNG</h1>
-<blockquote>
-<p>Revive a JSON-serialized pseudorandom number generator (PRNG).</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviveBasePRNG = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/reviver'</span> );
-</code></pre>
-<h4 id="revivebaseprng-key-value-">reviveBasePRNG( key, value )</h4>
-<p>Revives a JSON-serialized pseudorandom number generator (PRNG).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
+<h1 id="revivebaseprng">reviveBasePRNG</h1><blockquote><p>Revive a JSON-serialized pseudorandom number generator (PRNG).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reviveBasePRNG = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/reviver'</span> );
+</code></pre><h4 id="revivebaseprng-key-value-">reviveBasePRNG( key, value )</h4><p>Revives a JSON-serialized pseudorandom number generator (PRNG).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-keyword">var</span> str = <span class="hljs-built_in">JSON</span>.stringify( randu );
 
 <span class="hljs-keyword">var</span> rand = parseJSON( str, reviveBasePRNG );
 <span class="hljs-comment">// returns &#x3C;Function></span>
-</code></pre>
-<p>For details on the JSON serialization format, see the <code>.toJSON()</code> method for, e.g., <a href="/docs/api/latest/@stdlib/random/base/randu"><code>randu()</code></a>.</p>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre><p>For details on the JSON serialization format, see the <code>.toJSON()</code> method for, e.g., <a href="/docs/api/latest/@stdlib/random/base/randu"><code>randu()</code></a>.</p></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> parseJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parse-json'</span> );
 <span class="hljs-keyword">var</span> reviveBasePRNG = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/reviver'</span> );
 
@@ -62,18 +36,4 @@ rand = parseJSON( str, reviveBasePRNG );
     r2 = rand();
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d == %d ? %s'</span>, r1, r2, ( r1 === r2 ).toString() );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

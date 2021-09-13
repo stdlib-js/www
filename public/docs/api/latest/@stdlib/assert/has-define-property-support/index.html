@@ -1,22 +1,7 @@
-<h1 id="objectdefineproperty-support">Object.defineProperty Support</h1>
-<blockquote>
-<p>Detect <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty</code></a> support.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasDefinePropertySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-define-property-support'</span> );
-</code></pre>
-<h4 id="hasdefinepropertysupport">hasDefinePropertySupport()</h4>
-<p>Detects if a runtime environment supports <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty</code></a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasDefinePropertySupport();
+<h1 id="objectdefineproperty-support">Object.defineProperty Support</h1><blockquote><p>Detect <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty</code></a> support.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasDefinePropertySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-define-property-support'</span> );
+</code></pre><h4 id="hasdefinepropertysupport">hasDefinePropertySupport()</h4><p>Detects if a runtime environment supports <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasDefinePropertySupport();
 <span class="hljs-comment">// returns &#x3C;boolean></span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasDefinePropertySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-define-property-support'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasDefinePropertySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-define-property-support'</span> );
 
 <span class="hljs-keyword">var</span> bool = hasDefinePropertySupport();
 <span class="hljs-keyword">if</span> ( bool ) {
@@ -24,44 +9,12 @@
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Environment lacks `Object.defineProperty` support.'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: has-define-property-support [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: has-define-property-support [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ has-define-property-support
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ has-define-property-support
 &#x3C;boolean>
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-define-properties-support"><code>@stdlib/assert/has-define-properties-support</code></a></span><span class="delimiter">: </span><span class="description">detect <code>Object.defineProperties</code> support.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-define-properties-support"><code>@stdlib/assert/has-define-properties-support</code></a></span><span class="delimiter">: </span><span class="description">detect <code>Object.defineProperties</code> support.</span></li></ul></section>

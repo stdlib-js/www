@@ -1,25 +1,10 @@
-<h1 id="probability-mass-function">Probability Mass Function</h1>
-<blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Degenerate_distribution">Degenerate distribution</a> <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a> (PMF).</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pmf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/degenerate/pmf'</span> );
-</code></pre>
-<h4 id="pmf-x-mu-">pmf( x, mu )</h4>
-<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> of a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = pmf( <span class="hljs-number">2.0</span>, <span class="hljs-number">8.0</span> );
+<h1 id="probability-mass-function">Probability Mass Function</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Degenerate_distribution">Degenerate distribution</a> <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a> (PMF).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pmf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/degenerate/pmf'</span> );
+</code></pre><h4 id="pmf-x-mu-">pmf( x, mu )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> of a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = pmf( <span class="hljs-number">2.0</span>, <span class="hljs-number">8.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
 
 y = pmf( <span class="hljs-number">8.0</span>, <span class="hljs-number">8.0</span> );
 <span class="hljs-comment">// returns 1.0</span>
-</code></pre>
-<h4 id="pmffactory-mu-">pmf.factory( mu )</h4>
-<p>Returns a function for evaluating the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> of a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mypmf = pmf.factory( <span class="hljs-number">10.0</span> );
+</code></pre><h4 id="pmffactory-mu-">pmf.factory( mu )</h4><p>Returns a function for evaluating the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> of a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mypmf = pmf.factory( <span class="hljs-number">10.0</span> );
 
 <span class="hljs-keyword">var</span> y = mypmf( <span class="hljs-number">10.0</span> );
 <span class="hljs-comment">// returns 1.0</span>
@@ -29,13 +14,7 @@ y = mypmf( <span class="hljs-number">5.0</span> );
 
 y = mypmf( <span class="hljs-number">12.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pmf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/degenerate/pmf'</span> );
 
@@ -50,14 +29,4 @@ y = mypmf( <span class="hljs-number">12.0</span> );
     y = pmf( x, mu );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, µ: %d, P(X=x;µ): %d'</span>, x, mu, y );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

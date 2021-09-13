@@ -1,29 +1,10 @@
-<h1 id="native-function">Native Function</h1>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a native function.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reNativeFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/native-function'</span> );
-</code></pre>
-<h4 id="renativefunction">reNativeFunction()</h4>
-<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to match a native <code>function</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_NATIVE_FUNCTION = reNativeFunction();
+<h1 id="native-function">Native Function</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a native function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reNativeFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/native-function'</span> );
+</code></pre><h4 id="renativefunction">reNativeFunction()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to match a native <code>function</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_NATIVE_FUNCTION = reNativeFunction();
 <span class="hljs-keyword">var</span> bool = RE_NATIVE_FUNCTION.test( <span class="hljs-built_in">Date</span>.toString() );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<h4 id="renativefunctionregexp">reNativeFunction.REGEXP</h4>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a native <code>function</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reNativeFunction.REGEXP.test( <span class="hljs-built_in">Date</span>.toString() );
+</code></pre><h4 id="renativefunctionregexp">reNativeFunction.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to match a native <code>function</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = reNativeFunction.REGEXP.test( <span class="hljs-built_in">Date</span>.toString() );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable no-restricted-syntax, no-empty-function, stdlib/no-builtin-math -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
 <span class="hljs-keyword">var</span> reNativeFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/native-function'</span> );
 
 <span class="hljs-keyword">var</span> RE_NATIVE_FUNCTION = reNativeFunction();
@@ -43,24 +24,6 @@ bool = isNativeFunction( <span class="hljs-built_in">Int8Array</span> );
 bool = isNativeFunction( <span class="hljs-built_in">Date</span> );
 <span class="hljs-comment">// returns true</span>
 
-bool = isNativeFunction( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{} );
+bool = isNativeFunction( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>() </span>{} );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/function-name"><code>@stdlib/regexp/function-name</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a function name.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/function-name"><code>@stdlib/utils/function-name</code></a></span><span class="delimiter">: </span><span class="description">determine a function's name.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/function-name"><code>@stdlib/regexp/function-name</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a function name.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/function-name"><code>@stdlib/utils/function-name</code></a></span><span class="delimiter">: </span><span class="description">determine a function's name.</span></li></ul></section>

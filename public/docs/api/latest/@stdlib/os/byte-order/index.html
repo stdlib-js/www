@@ -1,37 +1,7 @@
-<h1 id="byte-order">Byte Order</h1>
-<blockquote>
-<p>Platform <a href="https://en.wikipedia.org/wiki/Endianness">byte order</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> BYTE_ORDER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/os/byte-order'</span> );
-</code></pre>
-<h4 id="byte_order">BYTE_ORDER</h4>
-<p>Platform byte order.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( BYTE_ORDER );
+<h1 id="byte-order">Byte Order</h1><blockquote><p>Platform <a href="https://en.wikipedia.org/wiki/Endianness">byte order</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> BYTE_ORDER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/os/byte-order'</span> );
+</code></pre><h4 id="byte_order">BYTE_ORDER</h4><p>Platform byte order.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( BYTE_ORDER );
 <span class="hljs-comment">// => &#x3C;string></span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>The following values are possible:</p>
-<ul>
-<li><code>'little-endian'</code></li>
-<li><code>'big-endian'</code></li>
-<li><code>'mixed-endian'</code> (also known as "middle-endian")</li>
-<li><code>'unknown'</code></li>
-</ul>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> BYTE_ORDER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/os/byte-order'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The following values are possible:</p><ul><li><code>'little-endian'</code></li><li><code>'big-endian'</code></li><li><code>'mixed-endian'</code> (also known as "middle-endian")</li><li><code>'unknown'</code></li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> BYTE_ORDER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/os/byte-order'</span> );
 
 <span class="hljs-keyword">if</span> ( BYTE_ORDER === <span class="hljs-string">'little-endian'</span> ) {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Least significant byte comes first...'</span> );
@@ -40,43 +10,18 @@
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'This is uncommon...'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/os/byte_order.h"</span></span>
-</code></pre>
-<h4 id="stdlib_os_order_little_endian">STDLIB_OS_ORDER_LITTLE_ENDIAN</h4>
-<p>Macro for an arbitrary constant indicating little-endian order.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_BYTE_ORDER) &#x26;&#x26; STDLIB_OS_BYTE_ORDER == STDLIB_OS_ORDER_LITTLE_ENDIAN</span>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/os/byte_order.h"</span></span>
+</code></pre><h4 id="stdlib_os_order_little_endian">STDLIB_OS_ORDER_LITTLE_ENDIAN</h4><p>Macro for an arbitrary constant indicating little-endian order.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_BYTE_ORDER) &#x26;&#x26; STDLIB_OS_BYTE_ORDER == STDLIB_OS_ORDER_LITTLE_ENDIAN</span>
 
 <span class="hljs-comment">// Do something for little-endian...</span>
 
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
-</code></pre>
-<p>If compiled on an unrecognized/unsupported platform, the macro is <strong>not</strong> defined.</p>
-<h4 id="stdlib_os_order_big_endian">STDLIB_OS_ORDER_BIG_ENDIAN</h4>
-<p>Macro for an arbitrary constant indicating big-endian order.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_BYTE_ORDER) &#x26;&#x26; STDLIB_OS_BYTE_ORDER == STDLIB_OS_ORDER_BIG_ENDIAN</span>
+</code></pre><p>If compiled on an unrecognized/unsupported platform, the macro is <strong>not</strong> defined.</p><h4 id="stdlib_os_order_big_endian">STDLIB_OS_ORDER_BIG_ENDIAN</h4><p>Macro for an arbitrary constant indicating big-endian order.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_BYTE_ORDER) &#x26;&#x26; STDLIB_OS_BYTE_ORDER == STDLIB_OS_ORDER_BIG_ENDIAN</span>
 
 <span class="hljs-comment">// Do something for big-endian...</span>
 
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
-</code></pre>
-<p>If compiled on an unrecognized/unsupported platform, the macro is <strong>not</strong> defined.</p>
-<h4 id="stdlib_os_byte_order">STDLIB_OS_BYTE_ORDER</h4>
-<p>Macro which equals either <code>STDLIB_OS_ORDER_LITTLE_ENDIAN</code> or <code>STDLIB_OS_ORDER_BIG_ENDIAN</code> (or host defined) depending on the resolved platform byte order.</p>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_BYTE_ORDER)</span>
+</code></pre><p>If compiled on an unrecognized/unsupported platform, the macro is <strong>not</strong> defined.</p><h4 id="stdlib_os_byte_order">STDLIB_OS_BYTE_ORDER</h4><p>Macro which equals either <code>STDLIB_OS_ORDER_LITTLE_ENDIAN</code> or <code>STDLIB_OS_ORDER_BIG_ENDIAN</code> (or host defined) depending on the resolved platform byte order.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(STDLIB_OS_BYTE_ORDER)</span>
 
 <span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> STDLIB_OS_BYTE_ORDER == STDLIB_OS_ORDER_LITTLE_ENDIAN</span>
 
@@ -89,18 +34,7 @@
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
 
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
-</code></pre>
-<p>If compiled on an unrecognized/unsupported platform, the macro is <strong>not</strong> defined.</p>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/os/byte_order.h"</span></span>
+</code></pre><p>If compiled on an unrecognized/unsupported platform, the macro is <strong>not</strong> defined.</p></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/os/byte_order.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
@@ -114,46 +48,11 @@
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-2">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: byte-order [options]
+</code></pre></section></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-2">Usage</h3><pre><code class="no-highlight language-text">Usage: byte-order [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h3 id="examples-2">Examples</h3>
-<pre><code class="hljs language-bash">$ byte-order
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-big-endian"><code>@stdlib/assert/is-big-endian</code></a></span><span class="delimiter">: </span><span class="description">check if an environment is big endian.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-little-endian"><code>@stdlib/assert/is-little-endian</code></a></span><span class="delimiter">: </span><span class="description">check if an environment is little endian.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="examples"><h3 id="examples-2">Examples</h3><pre><code class="hljs language-bash">$ byte-order
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-big-endian"><code>@stdlib/assert/is-big-endian</code></a></span><span class="delimiter">: </span><span class="description">check if an environment is big endian.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-little-endian"><code>@stdlib/assert/is-little-endian</code></a></span><span class="delimiter">: </span><span class="description">check if an environment is little endian.</span></li></ul></section>

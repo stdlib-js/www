@@ -1,23 +1,9 @@
-<h1 id="ifelseasync">ifelseAsync</h1>
-<blockquote>
-<p>If a predicate function returns a truthy value, return <code>x</code>; otherwise, return <code>y</code>.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ifelseAsync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/if-else'</span> );
-</code></pre>
-<h4 id="ifelseasync-predicate-x-y-done-">ifelseAsync( predicate, x, y, done )</h4>
-<p>If a <code>predicate</code> function returns a truthy value, returns <code>x</code>; otherwise, returns <code>y</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<h1 id="ifelseasync">ifelseAsync</h1><blockquote><p>If a predicate function returns a truthy value, return <code>x</code>; otherwise, return <code>y</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ifelseAsync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/if-else'</span> );
+</code></pre><h4 id="ifelseasync-predicate-x-y-done-">ifelseAsync( predicate, x, y, done )</h4><p>If a <code>predicate</code> function returns a truthy value, returns <code>x</code>; otherwise, returns <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> clbk </span>) </span>{
     <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>() </span>{
         clbk( <span class="hljs-literal">null</span>, randu() > <span class="hljs-number">0.5</span> );
     }
 }
@@ -30,48 +16,18 @@
 }
 
 ifelseAsync( predicate, <span class="hljs-number">1.0</span>, -<span class="hljs-number">1.0</span>, done );
-</code></pre>
-<p>The <code>predicate</code> function is provided a single argument:</p>
-<ul>
-<li><code>clbk</code>: callback to invoke upon <code>predicate</code> function completion</li>
-</ul>
-<p>The callback accepts two arguments:</p>
-<ul>
-<li><code>error</code>: error object</li>
-<li><code>bool</code>: condition used to determine whether to return <code>x</code> or <code>y</code></li>
-</ul>
-<p>The <code>done</code> callback is invoked upon function completion and is provided at most two arguments:</p>
-<ul>
-<li><code>error</code>: error object</li>
-<li><code>result</code>: either <code>x</code> or <code>y</code></li>
-</ul>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Execution is <strong>not</strong> guaranteed to be asynchronous. To guarantee asynchrony, wrap the <code>done</code> callback in a function which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable callback-return -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre><p>The <code>predicate</code> function is provided a single argument:</p><ul><li><code>clbk</code>: callback to invoke upon <code>predicate</code> function completion</li></ul><p>The callback accepts two arguments:</p><ul><li><code>error</code>: error object</li><li><code>bool</code>: condition used to determine whether to return <code>x</code> or <code>y</code></li></ul><p>The <code>done</code> callback is invoked upon function completion and is provided at most two arguments:</p><ul><li><code>error</code>: error object</li><li><code>result</code>: either <code>x</code> or <code>y</code></li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Execution is <strong>not</strong> guaranteed to be asynchronous. To guarantee asynchrony, wrap the <code>done</code> callback in a function which either executes at the end of the current stack (e.g., <code>nextTick</code>) or during a subsequent turn of the event loop (e.g., <code>setImmediate</code>, <code>setTimeout</code>).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> ifelseAsync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/async/if-else'</span> );
 
 <span class="hljs-keyword">var</span> i;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">next</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">next</span>() </span>{
     ifelseAsync( predicate, <span class="hljs-string">'BOOP'</span>, <span class="hljs-string">'beep'</span>, done );
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> clbk </span>) </span>{
     <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">0</span> );
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>() </span>{
         clbk( <span class="hljs-literal">null</span>, randu() > <span class="hljs-number">0.9</span> );
     }
 }
@@ -89,26 +45,4 @@ ifelseAsync( predicate, <span class="hljs-number">1.0</span>, -<span class="hljs
 
 i = <span class="hljs-number">0</span>;
 next();
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/if-then"><code>@stdlib/utils/async/if-then</code></a></span><span class="delimiter">: </span><span class="description">if a predicate function returns a truthy value, invoke <code>x</code>; otherwise, invoke <code>y</code>.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/if-else"><code>@stdlib/utils/if-else</code></a></span><span class="delimiter">: </span><span class="description">if a condition is truthy, return <code>x</code>; otherwise, return <code>y</code>.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/async/if-then"><code>@stdlib/utils/async/if-then</code></a></span><span class="delimiter">: </span><span class="description">if a predicate function returns a truthy value, invoke <code>x</code>; otherwise, invoke <code>y</code>.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/if-else"><code>@stdlib/utils/if-else</code></a></span><span class="delimiter">: </span><span class="description">if a condition is truthy, return <code>x</code>; otherwise, return <code>y</code>.</span></li></ul></section>

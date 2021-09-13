@@ -1,14 +1,5 @@
-<h1 id="hasownproperty">hasOwnProperty</h1>
-<blockquote>
-<p>Test if an object has a specified property.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasOwnProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-own-property'</span> );
-</code></pre>
-<h4 id="hasownprop-value-property-">hasOwnProp( value, property )</h4>
-<p>Returns a <code>boolean</code> indicating if a <code>value</code> has a specified <code>property</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = {
+<h1 id="hasownproperty">hasOwnProperty</h1><blockquote><p>Test if an object has a specified property.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasOwnProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-own-property'</span> );
+</code></pre><h4 id="hasownprop-value-property-">hasOwnProp( value, property )</h4><p>Returns a <code>boolean</code> indicating if a <code>value</code> has a specified <code>property</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = {
     <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span>
 };
 
@@ -17,30 +8,14 @@
 
 bool = hasOwnProp( value, <span class="hljs-string">'bap'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>In contrast to the native <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">Object.prototype.hasOwnProperty</a>, this function does <strong>not</strong> throw when provided <code>null</code> or <code>undefined</code>. Instead, the function returns <code>false</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasOwnProp( <span class="hljs-literal">null</span>, <span class="hljs-string">'a'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>In contrast to the native <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">Object.prototype.hasOwnProperty</a>, this function does <strong>not</strong> throw when provided <code>null</code> or <code>undefined</code>. Instead, the function returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasOwnProp( <span class="hljs-literal">null</span>, <span class="hljs-string">'a'</span> );
 <span class="hljs-comment">// returns false</span>
 
 bool = hasOwnProp( <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>, <span class="hljs-string">'a'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</li>
-<li>
-<p>Value arguments other than <code>null</code> or <code>undefined</code> are coerced to <code>objects</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasOwnProp( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'length'</span> );
+</code></pre></li><li><p>Value arguments other than <code>null</code> or <code>undefined</code> are coerced to <code>objects</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasOwnProp( <span class="hljs-string">'beep'</span>, <span class="hljs-string">'length'</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</li>
-<li>
-<p>Property arguments are coerced to <code>strings</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = {
+</code></pre></li><li><p>Property arguments are coerced to <code>strings</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> value = {
     <span class="hljs-string">'null'</span>: <span class="hljs-literal">false</span>
 };
 <span class="hljs-keyword">var</span> bool = hasOwnProp( value, <span class="hljs-literal">null</span> );
@@ -51,16 +26,7 @@ value = {
 };
 bool = hasOwnProp( value, {} );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable object-curly-newline -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasOwnProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-own-property'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasOwnProp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-own-property'</span> );
 
 <span class="hljs-keyword">var</span> bool = hasOwnProp( { <span class="hljs-string">'a'</span>: <span class="hljs-string">'b'</span> }, <span class="hljs-string">'a'</span> );
 <span class="hljs-comment">// returns true</span>
@@ -85,21 +51,4 @@ bool = hasOwnProp( { <span class="hljs-string">'null'</span>: <span class="hljs-
 
 bool = hasOwnProp( { <span class="hljs-string">'[object Object]'</span>: <span class="hljs-literal">false</span> }, {} );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-property"><code>@stdlib/assert/has-property</code></a></span><span class="delimiter">: </span><span class="description">test if an object has a specified property, either own or inherited.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-property"><code>@stdlib/assert/has-property</code></a></span><span class="delimiter">: </span><span class="description">test if an object has a specified property, either own or inherited.</span></li></ul></section>

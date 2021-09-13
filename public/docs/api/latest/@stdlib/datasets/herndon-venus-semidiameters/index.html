@@ -1,26 +1,7 @@
-<h1 id="venus-semidiameters">Venus Semidiameters</h1>
-<blockquote>
-<p>Fifteen observations of the vertical semidiameter of Venus, made by Lieutenant Herndon, with the meridian circle at Washington, in the year 1846.</p>
-</blockquote>
-<section class="intro">
-<p>Herndon's observations are a classic dataset commonly used in examples demonstrating outlier detection.</p>
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/herndon-venus-semidiameters'</span> );
-</code></pre>
-<h4 id="data">data()</h4>
-<p>Returns fifteen observations of the vertical semidiameter of Venus, made by Lieutenant Herndon, with the meridian circle at Washington, in the year 1846.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = data();
+<h1 id="venus-semidiameters">Venus Semidiameters</h1><blockquote><p>Fifteen observations of the vertical semidiameter of Venus, made by Lieutenant Herndon, with the meridian circle at Washington, in the year 1846.</p></blockquote><section class="intro"><p>Herndon's observations are a classic dataset commonly used in examples demonstrating outlier detection.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/herndon-venus-semidiameters'</span> );
+</code></pre><h4 id="data">data()</h4><p>Returns fifteen observations of the vertical semidiameter of Venus, made by Lieutenant Herndon, with the meridian circle at Washington, in the year 1846.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = data();
 <span class="hljs-comment">// returns [ -0.30, -0.44, ..., 0.39, 0.10 ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrgrubbs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/grubbs'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrgrubbs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/grubbs'</span> );
 <span class="hljs-keyword">var</span> data = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/herndon-venus-semidiameters'</span> );
 
 <span class="hljs-keyword">var</span> opts;
@@ -44,33 +25,13 @@ acc = incrgrubbs( opts );
 
 <span class="hljs-comment">// Print the test results:</span>
 <span class="hljs-built_in">console</span>.log( acc().print() );
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: herndon-venus-semidiameters [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: herndon-venus-semidiameters [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes">Notes</h3>
-<ul>
-<li>Data is written to <code>stdout</code> as newline-delimited data.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ herndon-venus-semidiameters
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li>Data is written to <code>stdout</code> as newline-delimited data.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ herndon-venus-semidiameters
 -0.30
 -0.44
 1.01
@@ -86,31 +47,4 @@ Options:
 0.18
 0.39
 0.10
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Chauvenet, William. 1868. <em>A Manual of Spherical and Practical Astronomy</em>. 5th ed. Vol. 5. London, England: Trübner &#x26; Co.</li>
-<li>Grubbs, Frank E. 1950. "Sample Criteria for Testing Outlying Observations." <em>The Annals of Mathematical Statistics</em> 21 (1). The Institute of Mathematical Statistics: 27–58. doi:<a href="https://doi.org/10.1214/aoms/1177729885">10.1214/aoms/1177729885</a>.</li>
-<li>Grubbs, Frank E. 1969. "Procedures for Detecting Outlying Observations in Samples." <em>Technometrics</em> 11 (1). Taylor &#x26; Francis: 1–21. doi:<a href="https://doi.org/10.1080/00401706.1969.10490657">10.1080/00401706.1969.10490657</a>.</li>
-<li>Tietjen, Gary L., and Roger H. Moore. 1972. "Some Grubbs-Type Statistics for the Detection of Several Outliers." <em>Technometrics</em> 14 (3). Taylor &#x26; Francis: 583–97. doi:<a href="https://doi.org/10.1080/00401706.1972.10488948">10.1080/00401706.1972.10488948</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Chauvenet, William. 1868. <em>A Manual of Spherical and Practical Astronomy</em>. 5th ed. Vol. 5. London, England: Trübner &#x26; Co.</li><li>Grubbs, Frank E. 1950. "Sample Criteria for Testing Outlying Observations." <em>The Annals of Mathematical Statistics</em> 21 (1). The Institute of Mathematical Statistics: 27–58. doi:<a href="https://doi.org/10.1214/aoms/1177729885">10.1214/aoms/1177729885</a>.</li><li>Grubbs, Frank E. 1969. "Procedures for Detecting Outlying Observations in Samples." <em>Technometrics</em> 11 (1). Taylor &#x26; Francis: 1–21. doi:<a href="https://doi.org/10.1080/00401706.1969.10490657">10.1080/00401706.1969.10490657</a>.</li><li>Tietjen, Gary L., and Roger H. Moore. 1972. "Some Grubbs-Type Statistics for the Detection of Several Outliers." <em>Technometrics</em> 14 (3). Taylor &#x26; Francis: 583–97. doi:<a href="https://doi.org/10.1080/00401706.1972.10488948">10.1080/00401706.1972.10488948</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>

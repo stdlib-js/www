@@ -1,23 +1,5 @@
-<h1 id="napoleons-march">Napoleon's March</h1>
-<blockquote>
-<p>Data for <a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard">Charles Joseph Minard</a>'s famous cartographic depiction of Napoleon's Russian <a href="https://en.wikipedia.org/wiki/French_invasion_of_Russia_%281812%29">campaign of 1812</a>.</p>
-</blockquote>
-<section class="intro">
-<!-- <image class="image" align="center" alt="Napoleon's March"> -->
-<div class="image" align="center">
-    <img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@aff3d7765cbe11f4df0c8fef93c02bc4d3ba8874/lib/node_modules/@stdlib/datasets/minard-napoleons-march/docs/img/minard.png" alt="Napoleon&#x27;s March">
-    <br>
-</div>
-<!-- </image> -->
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minard = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/minard-napoleons-march'</span> );
-</code></pre>
-<h4 id="minard-options-">minard( [options] )</h4>
-<p>Data for <a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard">Charles Joseph Minard</a>'s famous cartographic depiction of Napoleon's Russian <a href="https://en.wikipedia.org/wiki/French_invasion_of_Russia_%281812%29">campaign of 1812</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = minard();
+<h1 id="napoleons-march">Napoleon's March</h1><blockquote><p>Data for <a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard">Charles Joseph Minard</a>'s famous cartographic depiction of Napoleon's Russian <a href="https://en.wikipedia.org/wiki/French_invasion_of_Russia_%281812%29">campaign of 1812</a>.</p></blockquote><section class="intro"><div class="image" align="center"><img src="https://cdn.jsdelivr.net/gh/stdlib-js/stdlib@aff3d7765cbe11f4df0c8fef93c02bc4d3ba8874/lib/node_modules/@stdlib/datasets/minard-napoleons-march/docs/img/minard.png" alt="Napoleon&#x27;s March"><br></div></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minard = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/minard-napoleons-march'</span> );
+</code></pre><h4 id="minard-options-">minard( [options] )</h4><p>Data for <a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard">Charles Joseph Minard</a>'s famous cartographic depiction of Napoleon's Russian <a href="https://en.wikipedia.org/wiki/French_invasion_of_Russia_%281812%29">campaign of 1812</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = minard();
 <span class="hljs-comment">/* returns
     {
       'army': [
@@ -244,22 +226,7 @@
       ]
     }
 */</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li>
-<p><strong>data</strong>: dataset name. The following names are recognized:</p>
-<ul>
-<li><strong>army</strong>: army size.</li>
-<li><strong>cities</strong>: cities.</li>
-<li><strong>labels</strong>: map labels.</li>
-<li><strong>temperature</strong>: temperature during the army's return from Russia.</li>
-<li><strong>rivers</strong>: river data.</li>
-</ul>
-</li>
-</ul>
-<p>To return only army size data, set the <code>data</code> option to <code>army</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><p><strong>data</strong>: dataset name. The following names are recognized:</p><ul><li><strong>army</strong>: army size.</li><li><strong>cities</strong>: cities.</li><li><strong>labels</strong>: map labels.</li><li><strong>temperature</strong>: temperature during the army's return from Russia.</li><li><strong>rivers</strong>: river data.</li></ul></li></ul><p>To return only army size data, set the <code>data</code> option to <code>army</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'data'</span>: <span class="hljs-string">'army'</span>
 };
 
@@ -316,9 +283,7 @@
         {'lon': 24.1,'lat': 54.3,'size': 6000,'direction': 'R','division': 3}
     ]
 */</span>
-</code></pre>
-<p>To return only city locations, set the <code>data</code> option to <code>cities</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>To return only city locations, set the <code>data</code> option to <code>cities</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'data'</span>: <span class="hljs-string">'cities'</span>
 };
 
@@ -347,9 +312,7 @@
         {'lon': 36.5,'lat': 55,'city': 'Malo-Jarosewli'
     ]
 */</span>
-</code></pre>
-<p>To return only temperature data, set the <code>data</code> option to <code>temperature</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>To return only temperature data, set the <code>data</code> option to <code>temperature</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'data'</span>: <span class="hljs-string">'temperature'</span>
 };
 
@@ -367,9 +330,7 @@
         {'lon': 25.3,'temp': -26,'date': '07 Dec 1812'}
     ]
 */</span>
-</code></pre>
-<p>To return only the army size label locations, set the <code>data</code> option to <code>labels</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>To return only the army size label locations, set the <code>data</code> option to <code>labels</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'data'</span>: <span class="hljs-string">'labels'</span>
 };
 
@@ -400,9 +361,7 @@
         {'lon': 24.6,'lat': 55.8,'size': 6000,'division': 3}
     ]
 */</span>
-</code></pre>
-<p>To return only the river data, set the <code>data</code> option to <code>rivers</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre><p>To return only the river data, set the <code>data</code> option to <code>rivers</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'data'</span>: <span class="hljs-string">'rivers'</span>
 };
 
@@ -524,22 +483,7 @@
         ]
     }
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Temperatures are on the <a href="https://en.wikipedia.org/wiki/R%C3%A9aumur_scale">Réaumur scale</a>. Multiply each temperature by <code>1.25</code> to convert to Celsius.</li>
-<li>River data is formatted as <a href="http://geojson.org/">GeoJSON</a>.</li>
-<li>River data is incomplete, with portions of rivers missing.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minard = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/minard-napoleons-march'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Temperatures are on the <a href="https://en.wikipedia.org/wiki/R%C3%A9aumur_scale">Réaumur scale</a>. Multiply each temperature by <code>1.25</code> to convert to Celsius.</li><li>River data is formatted as <a href="http://geojson.org/">GeoJSON</a>.</li><li>River data is incomplete, with portions of rivers missing.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minard = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/minard-napoleons-march'</span> );
 
 <span class="hljs-keyword">var</span> opts = {};
 
@@ -557,62 +501,17 @@ opts.data = <span class="hljs-string">'rivers'</span>;
 
 opts.data = <span class="hljs-string">'temperature'</span>;
 <span class="hljs-built_in">console</span>.dir( minard( opts ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: minard-napoleons-march [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: minard-napoleons-march [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --data name           Dataset name: army, cities, temperature.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes-1">Notes</h3>
-<ul>
-<li>If the <code>--data</code> option is set to a supported dataset name, the output format is comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>). Otherwise, the output format is newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>).</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ minard-napoleons-march --data army
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>If the <code>--data</code> option is set to a supported dataset name, the output format is comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>). Otherwise, the output format is newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>).</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ minard-napoleons-march --data army
 lon,lat,size,direction,division
 24.0,54.9,340000,A,1
 24.5,55.0,340000,A,1
 25.5,54.5,340000,A,1
 ...
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Minard, Charles Joseph. 1869. <a href="http://patrimoine.enpc.fr/document/ENPC01_Fol_10975?image=54#bibnum"><em>Tableaux graphiques et cartes figuratives</em></a>. Ecole nationale des ponts et chaussées.</li>
-<li>Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. Springer-Verlag New York. doi:<a href="https://doi.org/10.1007/0-387-28695-0">10.1007/0-387-28695-0</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Minard, Charles Joseph. 1869. <a href="http://patrimoine.enpc.fr/document/ENPC01_Fol_10975?image=54#bibnum"><em>Tableaux graphiques et cartes figuratives</em></a>. Ecole nationale des ponts et chaussées.</li><li>Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. Springer-Verlag New York. doi:<a href="https://doi.org/10.1007/0-387-28695-0">10.1007/0-387-28695-0</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>

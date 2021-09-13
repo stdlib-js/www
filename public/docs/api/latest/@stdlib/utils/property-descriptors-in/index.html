@@ -1,37 +1,15 @@
-<h1 id="propertydescriptorsin">propertyDescriptorsIn</h1>
-<blockquote>
-<p>Return an object's own and inherited <a href="/docs/api/latest/@stdlib/utils/property-descriptors">property descriptors</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> propertyDescriptorsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-descriptors-in'</span> );
-</code></pre>
-<h4 id="propertydescriptorsin-obj-">propertyDescriptorsIn( obj )</h4>
-<p>Returns an object's own and inherited <a href="/docs/api/latest/@stdlib/utils/property-descriptors">property descriptors</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+<h1 id="propertydescriptorsin">propertyDescriptorsIn</h1><blockquote><p>Return an object's own and inherited <a href="/docs/api/latest/@stdlib/utils/property-descriptors">property descriptors</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> propertyDescriptorsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-descriptors-in'</span> );
+</code></pre><h4 id="propertydescriptorsin-obj-">propertyDescriptorsIn( obj )</h4><p>Returns an object's own and inherited <a href="/docs/api/latest/@stdlib/utils/property-descriptors">property descriptors</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
     <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
 };
 
 <span class="hljs-keyword">var</span> desc = propertyDescriptorsIn( obj );
 <span class="hljs-comment">// returns { 'a': {...}, 'b': {...}, ... }</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>In contrast to the built-in <code>Object.getOwnPropertyDescriptors()</code>, if provided <code>null</code> or <code>undefined</code>, the function returns an empty <code>object</code>, rather than throwing an error.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to the built-in <code>Object.getOwnPropertyDescriptors()</code>, if provided <code>null</code> or <code>undefined</code>, the function returns an empty <code>object</code>, rather than throwing an error.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
 <span class="hljs-keyword">var</span> propertyDescriptorsIn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-descriptors-in'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>() </span>{
     <span class="hljs-built_in">this</span>.beep = <span class="hljs-string">'boop'</span>;
     <span class="hljs-built_in">this</span>.a = {
         <span class="hljs-string">'b'</span>: <span class="hljs-string">'c'</span>
@@ -52,25 +30,4 @@ Foo.prototype.foo = [ <span class="hljs-string">'bar'</span> ];
 
 <span class="hljs-built_in">console</span>.log( desc );
 <span class="hljs-comment">// => { 'beep': {...}, 'a': {...}, 'baz': {...}, 'foo': {...}, ... }</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-properties"><code>@stdlib/utils/define-properties</code></a></span><span class="delimiter">: </span><span class="description">define (and/or modify) object properties.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptor-in"><code>@stdlib/utils/property-descriptor-in</code></a></span><span class="delimiter">: </span><span class="description">return a property descriptor for an object's own or inherited property.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptors"><code>@stdlib/utils/property-descriptors</code></a></span><span class="delimiter">: </span><span class="description">return an object's own property descriptors.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-names-in"><code>@stdlib/utils/property-names-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable and non-enumerable property names.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols-in"><code>@stdlib/utils/property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited symbol properties.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-properties"><code>@stdlib/utils/define-properties</code></a></span><span class="delimiter">: </span><span class="description">define (and/or modify) object properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptor-in"><code>@stdlib/utils/property-descriptor-in</code></a></span><span class="delimiter">: </span><span class="description">return a property descriptor for an object's own or inherited property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptors"><code>@stdlib/utils/property-descriptors</code></a></span><span class="delimiter">: </span><span class="description">return an object's own property descriptors.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-names-in"><code>@stdlib/utils/property-names-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited enumerable and non-enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols-in"><code>@stdlib/utils/property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited symbol properties.</span></li></ul></section>

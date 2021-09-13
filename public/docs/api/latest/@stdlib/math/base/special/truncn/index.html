@@ -1,14 +1,5 @@
-<h1 id="truncn">truncn</h1>
-<blockquote>
-<p>Round a numeric value to the nearest multiple of 10^n toward zero.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/truncn'</span> );
-</code></pre>
-<h4 id="truncn-x-n-">truncn( x, n )</h4>
-<p>Rounds a <code>numeric</code> value to the nearest multiple of <code>10^n</code> toward zero.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Round a value to 4 decimal places:</span>
+<h1 id="truncn">truncn</h1><blockquote><p>Round a numeric value to the nearest multiple of 10^n toward zero.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> truncn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/truncn'</span> );
+</code></pre><h4 id="truncn-x-n-">truncn( x, n )</h4><p>Rounds a <code>numeric</code> value to the nearest multiple of <code>10^n</code> toward zero.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Round a value to 4 decimal places:</span>
 <span class="hljs-keyword">var</span> v = truncn( <span class="hljs-number">3.141592653589793</span>, -<span class="hljs-number">4</span> );
 <span class="hljs-comment">// returns 3.1415</span>
 
@@ -19,20 +10,7 @@ v = truncn( <span class="hljs-number">3.141592653589793</span>, <span class="hlj
 <span class="hljs-comment">// Round a value to the nearest thousand:</span>
 v = truncn( <span class="hljs-number">12368.0</span>, <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 12000.0</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>When operating on <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point numbers</a> in bases other than <code>2</code>, rounding to specified digits can be <strong>inexact</strong>.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>When operating on <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point numbers</a> in bases other than <code>2</code>, rounding to specified digits can be <strong>inexact</strong>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> truncn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/truncn'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -46,25 +24,4 @@ v = truncn( <span class="hljs-number">12368.0</span>, <span class="hljs-number">
     v = truncn( x, -n );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. Number of decimals: %d. Rounded: %d.'</span>, x, n, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceiln"><code>@stdlib/math/base/special/ceiln</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n toward positive infinity.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floorn"><code>@stdlib/math/base/special/floorn</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n toward negative infinity.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/roundn"><code>@stdlib/math/base/special/roundn</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/trunc"><code>@stdlib/math/base/special/trunc</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward zero.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/truncb"><code>@stdlib/math/base/special/truncb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n toward zero.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceiln"><code>@stdlib/math/base/special/ceiln</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floorn"><code>@stdlib/math/base/special/floorn</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n toward negative infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/roundn"><code>@stdlib/math/base/special/roundn</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of 10^n.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/trunc"><code>@stdlib/math/base/special/trunc</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward zero.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/truncb"><code>@stdlib/math/base/special/truncb</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest multiple of b^n toward zero.</span></li></ul></section>

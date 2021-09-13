@@ -1,33 +1,6 @@
-<h1 id="column-chart">Column Chart</h1>
-<blockquote>
-<p>Create a Unicode sparkline column chart.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ColumnChart = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/sparklines/unicode/column'</span> );
-</code></pre>
-<h4 id="columnchart-data-options-">ColumnChart( [data,] [options] )</h4>
-<p>Returns a chart instance.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
-</code></pre>
-<p>The constructor accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>autoRender</strong>: <code>boolean</code> indicating whether to re-render on a <code>change</code> event.</li>
-<li><strong>bufferSize</strong>: data buffer size. If provided, data is kept in a first-in first-out (FIFO) buffer which cannot exceed the buffer size. Default: <code>+infinity</code>.</li>
-<li><strong>data</strong>: chart data.</li>
-<li><strong>description</strong>: chart description.</li>
-<li><strong>infinities</strong>: <code>boolean</code> flag indicating whether to encode infinite values. Default: <code>false</code>.</li>
-<li><strong>isDefined</strong>: accessor <code>function</code> indicating whether a datum is defined.</li>
-<li><strong>label</strong>: data label.</li>
-<li><strong>yMax</strong>: maximum value of the y-axis domain. If set to <code>null</code>, the maximum value is computed from the data.</li>
-<li><strong>yMin</strong>: minimum value of the y-axis domain. If set to <code>null</code>, the minimum value is computed from the data.</li>
-</ul>
-<hr>
-<h3 id="writable-properties">Writable Properties</h3>
-<p><a name="prop-auto-render"></a></p>
-<h4 id="columnchartprototypeautorender">ColumnChart.prototype.autoRender</h4>
-<p>Rendering mode. If <code>true</code>, an instance renders on each <code>'change'</code> event; otherwise, rendering must be triggered manually.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+<h1 id="column-chart">Column Chart</h1><blockquote><p>Create a Unicode sparkline column chart.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ColumnChart = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/sparklines/unicode/column'</span> );
+</code></pre><h4 id="columnchart-data-options-">ColumnChart( [data,] [options] )</h4><p>Returns a chart instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+</code></pre><p>The constructor accepts the following <code>options</code>:</p><ul><li><strong>autoRender</strong>: <code>boolean</code> indicating whether to re-render on a <code>change</code> event.</li><li><strong>bufferSize</strong>: data buffer size. If provided, data is kept in a first-in first-out (FIFO) buffer which cannot exceed the buffer size. Default: <code>+infinity</code>.</li><li><strong>data</strong>: chart data.</li><li><strong>description</strong>: chart description.</li><li><strong>infinities</strong>: <code>boolean</code> flag indicating whether to encode infinite values. Default: <code>false</code>.</li><li><strong>isDefined</strong>: accessor <code>function</code> indicating whether a datum is defined.</li><li><strong>label</strong>: data label.</li><li><strong>yMax</strong>: maximum value of the y-axis domain. If set to <code>null</code>, the maximum value is computed from the data.</li><li><strong>yMin</strong>: minimum value of the y-axis domain. If set to <code>null</code>, the minimum value is computed from the data.</li></ul><hr><h3 id="writable-properties">Writable Properties</h3><p></p><h4 id="columnchartprototypeautorender">ColumnChart.prototype.autoRender</h4><p>Rendering mode. If <code>true</code>, an instance renders on each <code>'change'</code> event; otherwise, rendering must be triggered manually.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.autoRender = <span class="hljs-literal">false</span>;
@@ -35,11 +8,7 @@ chart.autoRender = <span class="hljs-literal">false</span>;
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> mode = chart.autoRender;
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<p><a name="prop-buffer-size"></a></p>
-<h4 id="columnchartprototypebuffersize">ColumnChart.prototype.bufferSize</h4>
-<p>Data buffer size. If set, this specifies the maximum number of data elements which can be rendered. Once the data buffer is full, each new datum results in the oldest datum being removed.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+</code></pre><p></p><h4 id="columnchartprototypebuffersize">ColumnChart.prototype.bufferSize</h4><p>Data buffer size. If set, this specifies the maximum number of data elements which can be rendered. Once the data buffer is full, each new datum results in the oldest datum being removed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.bufferSize = <span class="hljs-number">3</span>;
@@ -57,12 +26,7 @@ chart.push( <span class="hljs-number">4</span> );
 
 data = chart.data;
 <span class="hljs-comment">// returns [ 2, 3, 4 ]</span>
-</code></pre>
-<p>Setting a data buffer size is useful when rendering data streams.</p>
-<p><a name="prop-data"></a></p>
-<h4 id="columnchartprototypedata">ColumnChart.prototype.data</h4>
-<p>Chart data. When set, the value must be either <code>array</code>-like or an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> and cannot exceed the <code>bufferSize</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><p>Setting a data buffer size is useful when rendering data streams.</p><p></p><h4 id="columnchartprototypedata">ColumnChart.prototype.data</h4><p>Chart data. When set, the value must be either <code>array</code>-like or an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> and cannot exceed the <code>bufferSize</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
@@ -72,12 +36,7 @@ chart.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">F
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> data = chart.data;
 <span class="hljs-comment">// returns [ 3.14, 5.0, -3.14, -1.0 ]</span>
-</code></pre>
-<p>Note that data is <strong>copied</strong> to an internal data buffer.</p>
-<p><a name="prop-description"></a></p>
-<h4 id="columnchartprototypedescription">ColumnChart.prototype.description</h4>
-<p>Chart description.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+</code></pre><p>Note that data is <strong>copied</strong> to an internal data buffer.</p><p></p><h4 id="columnchartprototypedescription">ColumnChart.prototype.description</h4><p>Chart description.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.description = <span class="hljs-string">'Daily stock prices for the past 30 days.'</span>;
@@ -85,11 +44,7 @@ chart.description = <span class="hljs-string">'Daily stock prices for the past 3
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> desc = chart.description;
 <span class="hljs-comment">// returns 'Daily stock prices for the past 30 days.'</span>
-</code></pre>
-<p><a name="prop-infinities"></a></p>
-<h4 id="columnchartprototypeinfinities">ColumnChart.prototype.infinities</h4>
-<p><code>Boolean</code> flag indicating whether to render infinite values. When set to <code>false</code>, infinite values are considered missing values. When set to <code>true</code>, both positive and negative infinity are encoded as <code>∞</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+</code></pre><p></p><h4 id="columnchartprototypeinfinities">ColumnChart.prototype.infinities</h4><p><code>Boolean</code> flag indicating whether to render infinite values. When set to <code>false</code>, infinite values are considered missing values. When set to <code>true</code>, both positive and negative infinity are encoded as <code>∞</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
 chart.infinities = <span class="hljs-literal">true</span>;
 
@@ -105,15 +60,7 @@ chart.data = [
 
 <span class="hljs-keyword">var</span> str = chart.render();
 <span class="hljs-comment">// returns '▁█ ∞▆∞▅'</span>
-</code></pre>
-<p><a name="prop-is-defined"></a></p>
-<h4 id="columnchartprototypeisdefined-d-i-">ColumnChart.prototype.isDefined( d, i )</h4>
-<p>An accessor <code>function</code> which defines whether a datum is defined. This accessor is used to define how missing values are encoded. When invoked, the function is provided two arguments:</p>
-<ul>
-<li><strong>d</strong>: datum</li>
-<li><strong>i</strong>: datum index</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span>(<span class="hljs-params"> d </span>) </span>{
+</code></pre><p></p><h4 id="columnchartprototypeisdefined-d-i-">ColumnChart.prototype.isDefined( d, i )</h4><p>An accessor <code>function</code> which defines whether a datum is defined. This accessor is used to define how missing values are encoded. When invoked, the function is provided two arguments:</p><ul><li><strong>d</strong>: datum</li><li><strong>i</strong>: datum index</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span>(<span class="hljs-params"> d </span>) </span>{
     <span class="hljs-keyword">return</span> ( d !== <span class="hljs-literal">null</span> );
 }
 
@@ -125,12 +72,7 @@ chart.isDefined = isDefined;
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> fcn = chart.isDefined;
 <span class="hljs-comment">// returns &#x3C;Function></span>
-</code></pre>
-<p>The default behavior is to ignore values which are <code>NaN</code>.</p>
-<p><a name="prop-label"></a></p>
-<h4 id="columnchartprototypelabel">ColumnChart.prototype.label</h4>
-<p>Data label.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+</code></pre><p>The default behavior is to ignore values which are <code>NaN</code>.</p><p></p><h4 id="columnchartprototypelabel">ColumnChart.prototype.label</h4><p>Data label.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.label = <span class="hljs-string">'beep'</span>;
@@ -138,33 +80,19 @@ chart.label = <span class="hljs-string">'beep'</span>;
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> label = chart.label;
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre>
-<p><a name="prop-y-min"></a></p>
-<h4 id="columnchartprototypeymin">ColumnChart.prototype.yMin</h4>
-<p>Minimum value of the y-axis domain. If this value is set to a value other than <code>null</code>, the y-axis lower bound is fixed; otherwise, the minimum value is computed from the chart data.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
+</code></pre><p></p><h4 id="columnchartprototypeymin">ColumnChart.prototype.yMin</h4><p>Minimum value of the y-axis domain. If this value is set to a value other than <code>null</code>, the y-axis lower bound is fixed; otherwise, the minimum value is computed from the chart data.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
 
 chart.yMin = <span class="hljs-number">0.0</span>;
 
 <span class="hljs-keyword">var</span> str = chart.render();
 <span class="hljs-comment">// returns '▁█▁▄▁▇▅'</span>
-</code></pre>
-<p><a name="prop-y-max"></a></p>
-<h4 id="columnchartprototypeymax">ColumnChart.prototype.yMax</h4>
-<p>Maximum value of the y-axis domain. If this value is set to a value other than <code>null</code>, the y-axis upper bound is fixed; otherwise, the maximum value is computed based on the chart data.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
+</code></pre><p></p><h4 id="columnchartprototypeymax">ColumnChart.prototype.yMax</h4><p>Maximum value of the y-axis domain. If this value is set to a value other than <code>null</code>, the y-axis upper bound is fixed; otherwise, the maximum value is computed based on the chart data.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ -<span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
 
 chart.yMax = <span class="hljs-number">10.0</span>;
 
 <span class="hljs-keyword">var</span> str = chart.render();
 <span class="hljs-comment">// returns '▃▆▂▄▁▅▅'</span>
-</code></pre>
-<hr>
-<h3 id="methods">Methods</h3>
-<p><a name="method-push"></a></p>
-<h4 id="columnchartprototypepush-datum-">ColumnChart.prototype.push( datum )</h4>
-<p>Appends data to a chart.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre><hr><h3 id="methods">Methods</h3><p></p><h4 id="columnchartprototypepush-datum-">ColumnChart.prototype.push( datum )</h4><p>Appends data to a chart.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> data = chart.data;
 <span class="hljs-comment">// returns [ 1, 2, 3 ]</span>
@@ -173,56 +101,29 @@ chart.push( <span class="hljs-number">4</span> );
 
 data = chart.data;
 <span class="hljs-comment">// returns [ 1, 2, 3, 4 ]</span>
-</code></pre>
-<p><a name="method-render"></a></p>
-<h4 id="columnchartprototyperender">ColumnChart.prototype.render()</h4>
-<p>Renders a column chart sparkline.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
+</code></pre><p></p><h4 id="columnchartprototyperender">ColumnChart.prototype.render()</h4><p>Renders a column chart sparkline.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
 
 <span class="hljs-keyword">var</span> str = chart.render();
 <span class="hljs-comment">// returns '▁█▅▃▆▆▅'</span>
-</code></pre>
-<p><a name="method-tostring"></a></p>
-<h4 id="columnchartprototypetostring">ColumnChart.prototype.toString()</h4>
-<p>Serializes a column chart sparkline as a <code>string</code> by calling the <code>render()</code> method.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
+</code></pre><p></p><h4 id="columnchartprototypetostring">ColumnChart.prototype.toString()</h4><p>Serializes a column chart sparkline as a <code>string</code> by calling the <code>render()</code> method.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">3.0</span> ] );
 
 <span class="hljs-keyword">var</span> str = chart.toString();
 <span class="hljs-comment">// returns '▁█▅▃▆▆▅'</span>
-</code></pre>
-<hr>
-<h3 id="events">Events</h3>
-<h4 id="change">'change'</h4>
-<p>Emitted whenever a property value changes.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+</code></pre><hr><h3 id="events">Events</h3><h4 id="change">'change'</h4><p>Emitted whenever a property value changes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
 chart.on( <span class="hljs-string">'change'</span>, onChange );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onChange</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onChange</span>() </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'A property was updated.'</span> );
 }
-</code></pre>
-<h4 id="render">'render'</h4>
-<p>Emitted whenever a sparkline is rendered.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
+</code></pre><h4 id="render">'render'</h4><p>Emitted whenever a sparkline is rendered.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> ColumnChart();
 
 chart.on( <span class="hljs-string">'render'</span>, onRender );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRender</span>(<span class="hljs-params"> str </span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Rendered sparkline: %s'</span>, str );
 }
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<hr>
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable stdlib/no-redeclare -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
+</code></pre></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> columnChart = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/sparklines/unicode/column'</span> );
@@ -258,7 +159,7 @@ id = <span class="hljs-built_in">setInterval</span>( update, <span class="hljs-n
 <span class="hljs-comment">// After some time, stop updating and close:</span>
 <span class="hljs-built_in">setTimeout</span>( stop, <span class="hljs-number">20000</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>() </span>{
     <span class="hljs-comment">// Update the chart with new data:</span>
     chart.push( randu()*<span class="hljs-number">100.0</span> );
 
@@ -266,7 +167,7 @@ id = <span class="hljs-built_in">setInterval</span>( update, <span class="hljs-n
     stdout.write( <span class="hljs-string">'\r\u001b[2K'</span> + chart.render() );
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stop</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stop</span>() </span>{
     <span class="hljs-built_in">clearInterval</span>( id );
 
     <span class="hljs-comment">// Restore the terminal cursor:</span>
@@ -274,15 +175,7 @@ id = <span class="hljs-built_in">setInterval</span>( update, <span class="hljs-n
 
     stdout.write( <span class="hljs-string">'\n'</span> );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: sparkline-column [options] &#x3C;number> &#x3C;number> ...
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: sparkline-column [options] &#x3C;number> &#x3C;number> ...
 
 Options:
 
@@ -292,54 +185,13 @@ Options:
       --ymin min         Minimum value of y-axis domain.
       --ymax max         Maximum value of y-axis domain.
       --infinities       Encode infinite values.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes">Notes</h3>
-<ul>
-<li>
-<p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is properly <strong>escaped</strong>.</p>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is properly <strong>escaped</strong>.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'1\n2\n3\n'</span> | sparkline-column --split /\r?\n/
 
 <span class="hljs-comment"># Escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'1\n2\n3\n'</span> | sparkline-column --split /\\r?\\n/
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ sparkline-column 1 2 3 4 5 6
+</code></pre></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ sparkline-column 1 2 3 4 5 6
 ▁▂▄▅▇█
-</code></pre>
-<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'1\n2\n3\n4\n5\n6\n'</span> | sparkline-column --ymax 3
+</code></pre><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'1\n2\n3\n4\n5\n6\n'</span> | sparkline-column --ymax 3
 ▁▅████
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot"><code>@stdlib/plot</code></a></span><span class="delimiter">: </span><span class="description">standard library plotting.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/ctor"><code>@stdlib/plot/ctor</code></a></span><span class="delimiter">: </span><span class="description">2-dimensional plot constructor.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode"><code>@stdlib/plot/sparklines/unicode</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/line"><code>@stdlib/plot/sparklines/unicode/line</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline line chart.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/tristate"><code>@stdlib/plot/sparklines/unicode/tristate</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline tristate chart.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/up-down"><code>@stdlib/plot/sparklines/unicode/up-down</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline up/down chart.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/win-loss"><code>@stdlib/plot/sparklines/unicode/win-loss</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline win/loss chart.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot"><code>@stdlib/plot</code></a></span><span class="delimiter">: </span><span class="description">standard library plotting.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/ctor"><code>@stdlib/plot/ctor</code></a></span><span class="delimiter">: </span><span class="description">2-dimensional plot constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode"><code>@stdlib/plot/sparklines/unicode</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/line"><code>@stdlib/plot/sparklines/unicode/line</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline line chart.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/tristate"><code>@stdlib/plot/sparklines/unicode/tristate</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline tristate chart.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/up-down"><code>@stdlib/plot/sparklines/unicode/up-down</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline up/down chart.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/win-loss"><code>@stdlib/plot/sparklines/unicode/win-loss</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline win/loss chart.</span></li></ul></section>

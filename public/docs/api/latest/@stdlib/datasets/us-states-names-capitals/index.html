@@ -1,14 +1,5 @@
-<h1 id="us-state-names-and-capitals">US State Names and Capitals</h1>
-<blockquote>
-<p>US state names and capitals.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/us-states-names-capitals'</span> );
-</code></pre>
-<h4 id="table">table()</h4>
-<p>Returns an object mapping US state names to state capitals.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> t = table();
+<h1 id="us-state-names-and-capitals">US State Names and Capitals</h1><blockquote><p>US state names and capitals.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/us-states-names-capitals'</span> );
+</code></pre><h4 id="table">table()</h4><p>Returns an object mapping US state names to state capitals.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> t = table();
 <span class="hljs-comment">/* returns
     {
         'Alabama': 'Montgomery',
@@ -63,13 +54,7 @@
         'Wyoming': 'Cheyenne'
     }
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/capitalize'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/capitalize'</span> );
 <span class="hljs-keyword">var</span> table = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/us-states-names-capitals'</span> );
 
 <span class="hljs-keyword">var</span> tbl = table();
@@ -102,61 +87,16 @@
 
 <span class="hljs-built_in">console</span>.log( getCapital( <span class="hljs-string">'California'</span> ) );
 <span class="hljs-comment">// => 'Sacramento'</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: us-states-names-capitals [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: us-states-names-capitals [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes">Notes</h3>
-<ul>
-<li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ us-states-names-capitals
+</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ us-states-names-capitals
 state,capital
 Alabama,Montgomery
 Alaska,Juneau
 Arizona,Phoenix
 ...
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/us-states-capitals"><code>@stdlib/datasets/us-states-capitals</code></a></span><span class="delimiter">: </span><span class="description">A list of US state capitals in alphabetical order according to state name.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/us-states-names"><code>@stdlib/datasets/us-states-names</code></a></span><span class="delimiter">: </span><span class="description">A list of US state names in alphabetical order.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/us-states-names-capitals"><code>@stdlib/datasets/us-states-names-capitals</code></a></span><span class="delimiter">: </span><span class="description">US state names and capitals.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/us-states-capitals"><code>@stdlib/datasets/us-states-capitals</code></a></span><span class="delimiter">: </span><span class="description">A list of US state capitals in alphabetical order according to state name.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/us-states-names"><code>@stdlib/datasets/us-states-names</code></a></span><span class="delimiter">: </span><span class="description">A list of US state names in alphabetical order.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/us-states-names-capitals"><code>@stdlib/datasets/us-states-names-capitals</code></a></span><span class="delimiter">: </span><span class="description">US state names and capitals.</span></li></ul></section>

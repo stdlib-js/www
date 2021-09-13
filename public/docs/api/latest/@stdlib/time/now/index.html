@@ -1,72 +1,22 @@
-<h1 id="now">now</h1>
-<blockquote>
-<p>Time in seconds since the epoch.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> now = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/now'</span> );
-</code></pre>
-<h4 id="now-1">now()</h4>
-<p>Returns the time in <strong>seconds</strong> since the epoch.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ts = now();
+<h1 id="now">now</h1><blockquote><p>Time in seconds since the epoch.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> now = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/now'</span> );
+</code></pre><h4 id="now-1">now()</h4><p>Returns the time in <strong>seconds</strong> since the epoch.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ts = now();
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The <a href="https://en.wikipedia.org/wiki/Unix_time">Unix epoch</a> is 00:00:00 UTC on 1 January 1970.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> now = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/now'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The <a href="https://en.wikipedia.org/wiki/Unix_time">Unix epoch</a> is 00:00:00 UTC on 1 January 1970.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> now = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/now'</span> );
 
 <span class="hljs-keyword">var</span> t0 = now();
 
 <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">2000</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>() </span>{
     <span class="hljs-keyword">var</span> t1 = now();
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Seconds elapsed: %d'</span>, t1-t0 );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: now [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: now [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ now
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ now
 &#x3C;number>
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section></section>

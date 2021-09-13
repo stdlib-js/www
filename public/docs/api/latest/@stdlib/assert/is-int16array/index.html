@@ -1,27 +1,12 @@
-<h1 id="isint16array">isInt16Array</h1>
-<blockquote>
-<p>Test if a value is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array">Int16Array</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isInt16Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-int16array'</span> );
-</code></pre>
-<h4 id="isint16array-value-">isInt16Array( value )</h4>
-<p>Tests if a value is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array"><code>Int16Array</code></a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
+<h1 id="isint16array">isInt16Array</h1><blockquote><p>Test if a value is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array">Int16Array</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isInt16Array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-int16array'</span> );
+</code></pre><h4 id="isint16array-value-">isInt16Array( value )</h4><p>Tests if a value is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array"><code>Int16Array</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
 
 <span class="hljs-keyword">var</span> bool = isInt16Array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int16Array</span>( <span class="hljs-number">10</span> ) );
 <span class="hljs-comment">// returns true</span>
 
 bool = isInt16Array( [] );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8ClampedArray</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8c'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
@@ -67,22 +52,4 @@ bool = isInt16Array( {} );
 
 bool = isInt16Array( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-int32array"><code>@stdlib/assert/is-int32array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an Int32Array.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-int8array"><code>@stdlib/assert/is-int8array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an Int8Array.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-int32array"><code>@stdlib/assert/is-int32array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an Int32Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-int8array"><code>@stdlib/assert/is-int8array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an Int8Array.</span></li></ul></section>

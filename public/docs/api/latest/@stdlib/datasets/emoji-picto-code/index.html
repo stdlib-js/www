@@ -1,14 +1,5 @@
-<h1 id="emoji-pictographs-and-codes">Emoji Pictographs and Codes</h1>
-<blockquote>
-<p>Map emoji pictographs to codes.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/emoji-picto-code'</span> );
-</code></pre>
-<h4 id="table">table()</h4>
-<p>Returns an object mapping emoji pictographs to codes.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> t = table();
+<h1 id="emoji-pictographs-and-codes">Emoji Pictographs and Codes</h1><blockquote><p>Map emoji pictographs to codes.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/emoji-picto-code'</span> );
+</code></pre><h4 id="table">table()</h4><p>Returns an object mapping emoji pictographs to codes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> t = table();
 <span class="hljs-comment">// returns {...}</span>
 
 <span class="hljs-keyword">var</span> p = t[ <span class="hljs-string">'😄'</span> ];
@@ -16,20 +7,7 @@
 
 p = t[ <span class="hljs-string">'🦄'</span> ];
 <span class="hljs-comment">// returns [ ':unicorn:' ]</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>Some emoji pictographs may have <strong>multiple</strong> applicable codes.</li>
-</ul>
-</section>
-<!-- ./notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Some emoji pictographs may have <strong>multiple</strong> applicable codes.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> table = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/emoji-picto-code'</span> );
 
 <span class="hljs-keyword">var</span> picto;
@@ -46,57 +24,13 @@ picto = objectKeys( tbl );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; picto.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( picto[ i ] + <span class="hljs-string">' => '</span> + tbl[ picto[ i ] ] );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="cli">
-<h2 id="cli">CLI</h2>
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="no-highlight language-text">Usage: emoji-picto-code [options]
+</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: emoji-picto-code [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h3 id="notes-1">Notes</h3>
-<ul>
-<li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-bash">$ emoji-picto-code
+</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Data is written to <code>stdout</code> as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), where the first line is a header line.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ emoji-picto-code
 emoji,code
 ...
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.cli -->
-<!-- <license> -->
-<h2 id="license">License</h2>
-<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
-<!-- </license> -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/emoji"><code>@stdlib/datasets/emoji</code></a></span><span class="delimiter">: </span><span class="description">emoji.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/emoji-code-picto"><code>@stdlib/datasets/emoji-code-picto</code></a></span><span class="delimiter">: </span><span class="description">emoji codes and pictographs.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/emoji"><code>@stdlib/datasets/emoji</code></a></span><span class="delimiter">: </span><span class="description">emoji.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/emoji-code-picto"><code>@stdlib/datasets/emoji-code-picto</code></a></span><span class="delimiter">: </span><span class="description">emoji codes and pictographs.</span></li></ul></section>

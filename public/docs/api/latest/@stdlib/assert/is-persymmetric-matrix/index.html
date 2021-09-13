@@ -1,25 +1,10 @@
-<h1 id="ispersymmetricmatrix">isPersymmetricMatrix</h1>
-<blockquote>
-<p>Test if a value is a <a href="https://en.wikipedia.org/wiki/Persymmetric_matrix">persymmetric matrix</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPersymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-persymmetric-matrix'</span> );
-</code></pre>
-<h4 id="ispersymmetricmatrix-value-">isPersymmetricMatrix( value )</h4>
-<p>Tests if a value is a <a href="https://en.wikipedia.org/wiki/Persymmetric_matrix">persymmetric matrix</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<h1 id="ispersymmetricmatrix">isPersymmetricMatrix</h1><blockquote><p>Test if a value is a <a href="https://en.wikipedia.org/wiki/Persymmetric_matrix">persymmetric matrix</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPersymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-persymmetric-matrix'</span> );
+</code></pre><h4 id="ispersymmetricmatrix-value-">isPersymmetricMatrix( value )</h4><p>Tests if a value is a <a href="https://en.wikipedia.org/wiki/Persymmetric_matrix">persymmetric matrix</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
 
 <span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'generic'</span>, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
 <span class="hljs-keyword">var</span> bool = isPersymmetricMatrix( arr );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
 <span class="hljs-keyword">var</span> isPersymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-persymmetric-matrix'</span> );
 
 <span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'generic'</span>, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
@@ -34,23 +19,4 @@ out = isPersymmetricMatrix( {} );
 
 out = isPersymmetricMatrix( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-matrix-like"><code>@stdlib/assert/is-matrix-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-square-matrix"><code>@stdlib/assert/is-square-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object having equal dimensions.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-symmetric-matrix"><code>@stdlib/assert/is-symmetric-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a symmetric matrix.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-matrix-like"><code>@stdlib/assert/is-matrix-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-square-matrix"><code>@stdlib/assert/is-square-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object having equal dimensions.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-symmetric-matrix"><code>@stdlib/assert/is-symmetric-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a symmetric matrix.</span></li></ul></section>

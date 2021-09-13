@@ -1,15 +1,5 @@
-<h1 id="isnegativenumber">isNegativeNumber</h1>
-<blockquote>
-<p>Test if a value is a number having a negative value.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isNegativeNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-negative-number'</span> );
-</code></pre>
-<h4 id="isnegativenumber-value-">isNegativeNumber( value )</h4>
-<p>Tests if a <code>value</code> is a <code>number</code> having a negative value.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<h1 id="isnegativenumber">isNegativeNumber</h1><blockquote><p>Test if a value is a number having a negative value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isNegativeNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-negative-number'</span> );
+</code></pre><h4 id="isnegativenumber-value-">isNegativeNumber( value )</h4><p>Tests if a <code>value</code> is a <code>number</code> having a negative value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isNegativeNumber( -<span class="hljs-number">5.0</span> );
 <span class="hljs-comment">// returns true</span>
@@ -25,36 +15,21 @@ bool = isNegativeNumber( <span class="hljs-number">5.0</span> );
 
 bool = isNegativeNumber( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="isnegativenumberisprimitive-value-">isNegativeNumber.isPrimitive( value )</h4>
-<p>Tests if a <code>value</code> is a primitive <code>number</code> having a negative value.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="isnegativenumberisprimitive-value-">isNegativeNumber.isPrimitive( value )</h4><p>Tests if a <code>value</code> is a primitive <code>number</code> having a negative value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isNegativeNumber.isPrimitive( -<span class="hljs-number">3.0</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isNegativeNumber.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">3.0</span> ) );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-<h4 id="isnegativenumberisobject-value-">isNegativeNumber.isObject( value )</h4>
-<p>Tests if a <code>value</code> is a <code>Number</code> object having a negative value.</p>
-<!-- eslint-disable no-new-wrappers -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre><h4 id="isnegativenumberisobject-value-">isNegativeNumber.isObject( value )</h4><p>Tests if a <code>value</code> is a <code>Number</code> object having a negative value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isNegativeNumber.isObject( -<span class="hljs-number">3.0</span> );
 <span class="hljs-comment">// returns false</span>
 
 bool = isNegativeNumber.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>( -<span class="hljs-number">3.0</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint-disable no-new-wrappers -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> isNegativeNumber = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-negative-number'</span> );
 
@@ -78,21 +53,4 @@ bool = isNegativeNumber( <span class="hljs-string">'-5'</span> );
 
 bool = isNegativeNumber( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-number"><code>@stdlib/assert/is-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-number"><code>@stdlib/assert/is-number</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a number.</span></li></ul></section>

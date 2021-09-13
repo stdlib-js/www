@@ -1,15 +1,5 @@
-<h1 id="lowess">LOWESS</h1>
-<blockquote>
-<p>Locally-weighted polynomial regression via the LOWESS algorithm.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lowess = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/lowess'</span> );
-</code></pre>
-<h4 id="lowess-x-y-opts-">lowess( x, y[, opts] )</h4>
-<p>For <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">input arrays</a> and/or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> <code>x</code> and <code>y</code>, the function returns an object holding the ordered input values <code>x</code> and smoothed values for <code>y</code>.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+<h1 id="lowess">LOWESS</h1><blockquote><p>Locally-weighted polynomial regression via the LOWESS algorithm.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> lowess = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/lowess'</span> );
+</code></pre><h4 id="lowess-x-y-opts-">lowess( x, y[, opts] )</h4><p>For <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">input arrays</a> and/or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> <code>x</code> and <code>y</code>, the function returns an object holding the ordered input values <code>x</code> and smoothed values for <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>,
     <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>, <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">20</span>,
     <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>
@@ -47,17 +37,7 @@
         ]
     }
 */</span>
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>f</strong>: positive <code>number</code> specifying the smoothing span, i.e., the proportion of points which influence smoothing at each value. Larger values correspond to more smoothing. Default: <code>2/3</code>.</li>
-<li><strong>nsteps</strong>: <code>number</code> of iterations in the robust fit (fewer iterations translates to faster function execution). If set to zero, the nonrobust fit is returned. Default: <code>3</code>.</li>
-<li><strong>delta</strong>: nonnegative <code>number</code> which may be used to reduce the number of computations. Default: 1/100th of the range of <code>x</code>.</li>
-<li><strong>sorted</strong>: <code>boolean</code> indicating if the input array <code>x</code> is sorted. Default: <code>false</code>.</li>
-</ul>
-<p>By default, smoothing at each value is determined by <code>2/3</code> of all other points. To choose a different smoothing span, set the <code>f</code> option.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>f</strong>: positive <code>number</code> specifying the smoothing span, i.e., the proportion of points which influence smoothing at each value. Larger values correspond to more smoothing. Default: <code>2/3</code>.</li><li><strong>nsteps</strong>: <code>number</code> of iterations in the robust fit (fewer iterations translates to faster function execution). If set to zero, the nonrobust fit is returned. Default: <code>3</code>.</li><li><strong>delta</strong>: nonnegative <code>number</code> which may be used to reduce the number of computations. Default: 1/100th of the range of <code>x</code>.</li><li><strong>sorted</strong>: <code>boolean</code> indicating if the input array <code>x</code> is sorted. Default: <code>false</code>.</li></ul><p>By default, smoothing at each value is determined by <code>2/3</code> of all other points. To choose a different smoothing span, set the <code>f</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>,
     <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>, <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">20</span>,
     <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>
@@ -93,10 +73,7 @@
         ]
     }
 */</span>
-</code></pre>
-<p>By default, three iterations of locally weighted regression fits are calculated after the initial fit. To set a different number of iterations for the robust fit, set the <code>nsteps</code> option.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+</code></pre><p>By default, three iterations of locally weighted regression fits are calculated after the initial fit. To set a different number of iterations for the robust fit, set the <code>nsteps</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>,
     <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>, <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">20</span>,
     <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>
@@ -124,10 +101,7 @@
         ]
     }
 */</span>
-</code></pre>
-<p>To save computations, set the <code>delta</code> option. For cases where one has a large number of (x,y)-pairs, carrying out regression calculations for all points is not likely to be necessary. By default, <code>delta</code> is set to 1/100th of the range of the values in <code>x</code>. In this case, if the values in <code>x</code> were uniformly scattered over the entire range, the locally weighted regression would be calculated at approximately 100 points. On the other hand, for small data sets with less than 100 observations, one can safely set the option to zero so calculations are made for each data point.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+</code></pre><p>To save computations, set the <code>delta</code> option. For cases where one has a large number of (x,y)-pairs, carrying out regression calculations for all points is not likely to be necessary. By default, <code>delta</code> is set to 1/100th of the range of the values in <code>x</code>. In this case, if the values in <code>x</code> were uniformly scattered over the entire range, the locally weighted regression would be calculated at approximately 100 points. On the other hand, for small data sets with less than 100 observations, one can safely set the option to zero so calculations are made for each data point.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>,
     <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>, <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">20</span>,
     <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>
@@ -155,10 +129,7 @@
         ]
     }
 */</span>
-</code></pre>
-<p>If the elements of <code>x</code> are sorted in ascending order, set the <code>sorted</code> option to <code>true</code>.</p>
-<!-- eslint-disable array-element-newline -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+</code></pre><p>If the elements of <code>x</code> are sorted in ascending order, set the <code>sorted</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>,
     <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>, <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">19</span>, <span class="hljs-number">20</span>,
     <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>
@@ -186,13 +157,7 @@
         ]
     }
 */</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randn'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randn = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randn'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> plot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/ctor'</span> );
 <span class="hljs-keyword">var</span> lowess = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/lowess'</span> );
@@ -220,22 +185,4 @@ h.lineStyle = [ <span class="hljs-string">'none'</span>, <span class="hljs-strin
 h.symbols = [ <span class="hljs-string">'closed-circle'</span>, <span class="hljs-string">'none'</span> ];
 
 h.view( <span class="hljs-string">'stdout'</span> );
-</code></pre>
-</section>
-<!-- /.examples -->
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Cleveland, William S. 1979. "Robust Locally and Smoothing Weighted Regression Scatterplots." <em>Journal of the American Statistical Association</em> 74 (368): 829–36. doi:<a href="https://doi.org/10.1080/01621459.1979.10481038">10.1080/01621459.1979.10481038</a>.</li>
-<li>Cleveland, William S. 1981. "Lowess: A program for smoothing scatterplots by robust locally weighted regression." <em>American Statistician</em> 35 (1): 54–55. doi:<a href="https://doi.org/10.2307/2683591">10.2307/2683591</a>.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section><section class="references"><h2 id="references">References</h2><ul><li>Cleveland, William S. 1979. "Robust Locally and Smoothing Weighted Regression Scatterplots." <em>Journal of the American Statistical Association</em> 74 (368): 829–36. doi:<a href="https://doi.org/10.1080/01621459.1979.10481038">10.1080/01621459.1979.10481038</a>.</li><li>Cleveland, William S. 1981. "Lowess: A program for smoothing scatterplots by robust locally weighted regression." <em>American Statistician</em> 35 (1): 54–55. doi:<a href="https://doi.org/10.2307/2683591">10.2307/2683591</a>.</li></ul></section>

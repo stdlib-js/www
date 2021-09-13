@@ -1,41 +1,16 @@
-<h1 id="minstd">MINSTD</h1>
-<blockquote>
-<p>A linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>) based on Park and Miller.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
-</code></pre>
-<h4 id="minstd-1">minstd()</h4>
-<p>Returns a pseudorandom integer on the interval <code>[1, 2147483646]</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = minstd();
+<h1 id="minstd">MINSTD</h1><blockquote><p>A linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>) based on Park and Miller.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre><h4 id="minstd-1">minstd()</h4><p>Returns a pseudorandom integer on the interval <code>[1, 2147483646]</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = minstd();
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<h4 id="minstdnormalized">minstd.normalized()</h4>
-<p>Returns a pseudorandom number on the interval <code>[0,1)</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = minstd.normalized();
+</code></pre><h4 id="minstdnormalized">minstd.normalized()</h4><p>Returns a pseudorandom number on the interval <code>[0,1)</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = minstd.normalized();
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<h4 id="minstdfactory-options-">minstd.factory( [options] )</h4>
-<p>Returns a linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = minstd.factory();
-</code></pre>
-<p>The function accepts the following <code>options</code>:</p>
-<ul>
-<li><strong>seed</strong>: pseudorandom number generator seed.</li>
-<li><strong>state</strong>: an <a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
-<li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</li>
-</ul>
-<p>By default, a random integer is used to seed the returned generator. To seed the generator, provide either an <code>integer</code> on the interval <code>[1, 2147483646]</code></p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = minstd.factory({
+</code></pre><h4 id="minstdfactory-options-">minstd.factory( [options] )</h4><p>Returns a linear congruential pseudorandom number generator (<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = minstd.factory();
+</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>seed</strong>: pseudorandom number generator seed.</li><li><strong>state</strong>: an <a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</li></ul><p>By default, a random integer is used to seed the returned generator. To seed the generator, provide either an <code>integer</code> on the interval <code>[1, 2147483646]</code></p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = minstd.factory({
     <span class="hljs-string">'seed'</span>: <span class="hljs-number">1234</span>
 });
 
 <span class="hljs-keyword">var</span> r = rand();
 <span class="hljs-comment">// returns 20739838</span>
-</code></pre>
-<p>or, for arbitrary length seeds, an array-like <code>object</code> containing signed 32-bit integers</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+</code></pre><p>or, for arbitrary length seeds, an array-like <code>object</code> containing signed 32-bit integers</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
 
 <span class="hljs-keyword">var</span> rand = minstd.factory({
     <span class="hljs-string">'seed'</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1234</span> ] )
@@ -43,9 +18,7 @@
 
 <span class="hljs-keyword">var</span> r = rand();
 <span class="hljs-comment">// returns 20739838</span>
-</code></pre>
-<p>To return a generator having a specific initial state, set the generator <code>state</code> option.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
+</code></pre><p>To return a generator having a specific initial state, set the generator <code>state</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
 <span class="hljs-keyword">var</span> bool;
 <span class="hljs-keyword">var</span> r;
 <span class="hljs-keyword">var</span> i;
@@ -63,25 +36,13 @@ rand = minstd.factory({
 <span class="hljs-comment">// Test that the generated pseudorandom numbers are the same:</span>
 bool = ( rand() === minstd() );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-<h4 id="minstdname">minstd.NAME</h4>
-<p>The generator name.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = minstd.NAME;
+</code></pre><h4 id="minstdname">minstd.NAME</h4><p>The generator name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = minstd.NAME;
 <span class="hljs-comment">// returns 'minstd'</span>
-</code></pre>
-<h4 id="minstdmin">minstd.MIN</h4>
-<p>Minimum possible value.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> min = minstd.MIN;
+</code></pre><h4 id="minstdmin">minstd.MIN</h4><p>Minimum possible value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> min = minstd.MIN;
 <span class="hljs-comment">// returns 1</span>
-</code></pre>
-<h4 id="minstdmax">minstd.MAX</h4>
-<p>Maximum possible value.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> max = minstd.MAX;
+</code></pre><h4 id="minstdmax">minstd.MAX</h4><p>Maximum possible value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> max = minstd.MAX;
 <span class="hljs-comment">// returns 2147483646</span>
-</code></pre>
-<h4 id="minstdseed">minstd.seed</h4>
-<p>The value used to seed <code>minstd()</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
+</code></pre><h4 id="minstdseed">minstd.seed</h4><p>The value used to seed <code>minstd()</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
 <span class="hljs-keyword">var</span> r;
 <span class="hljs-keyword">var</span> i;
 
@@ -97,15 +58,9 @@ rand = minstd.factory({
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
     r = rand();
 }
-</code></pre>
-<h4 id="minstdseedlength">minstd.seedLength</h4>
-<p>Length of generator seed.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = minstd.seedLength;
+</code></pre><h4 id="minstdseedlength">minstd.seedLength</h4><p>Length of generator seed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = minstd.seedLength;
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<h4 id="minstdstate">minstd.state</h4>
-<p>Writable property for getting and setting the generator state.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = minstd();
+</code></pre><h4 id="minstdstate">minstd.state</h4><p>Writable property for getting and setting the generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = minstd();
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 r = minstd();
@@ -134,38 +89,13 @@ r = minstd();
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre>
-<h4 id="minstdstatelength">minstd.stateLength</h4>
-<p>Length of generator state.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = minstd.stateLength;
+</code></pre><h4 id="minstdstatelength">minstd.stateLength</h4><p>Length of generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = minstd.stateLength;
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<h4 id="minstdbytelength">minstd.byteLength</h4>
-<p>Size (in bytes) of generator state.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sz = minstd.byteLength;
+</code></pre><h4 id="minstdbytelength">minstd.byteLength</h4><p>Size (in bytes) of generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sz = minstd.byteLength;
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre>
-<h4 id="minstdtojson">minstd.toJSON()</h4>
-<p>Serializes the pseudorandom number generator as a JSON object.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = minstd.toJSON();
+</code></pre><h4 id="minstdtojson">minstd.toJSON()</h4><p>Serializes the pseudorandom number generator as a JSON object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = minstd.toJSON();
 <span class="hljs-comment">// returns { 'type': 'PRNG', 'name': '...', 'state': {...}, 'params': [] }</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The generator has a period of approximately <code>2.1e9</code> (see <a href="#references">Numerical Recipes in C, 2nd Edition</a>, p. 279).</li>
-<li>An <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a> is fast and uses little memory. On the other hand, because the generator is a simple <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">linear congruential generator</a>, the generator has recognized shortcomings. By today's PRNG standards, the generator's period is relatively short. More importantly, the "randomness quality" of the generator's output is lacking. These defects make the generator unsuitable, for example, in Monte Carlo simulations and in cryptographic applications. For more on the advantages and disadvantages of <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCGs</a>, see <a href="http://en.wikipedia.org/wiki/Linear_congruential_generator#Advantages_and_disadvantages_of_LCGs">Wikipedia</a>.</li>
-<li>If PRNG state is "shared" (meaning a state array was provided during PRNG creation and <strong>not</strong> copied) and one sets the generator state to a state array having a different length, the PRNG does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for <strong>each</strong> relevant PRNG must be <strong>explicitly</strong> set.</li>
-<li>If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The generator has a period of approximately <code>2.1e9</code> (see <a href="#references">Numerical Recipes in C, 2nd Edition</a>, p. 279).</li><li>An <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCG</a> is fast and uses little memory. On the other hand, because the generator is a simple <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">linear congruential generator</a>, the generator has recognized shortcomings. By today's PRNG standards, the generator's period is relatively short. More importantly, the "randomness quality" of the generator's output is lacking. These defects make the generator unsuitable, for example, in Monte Carlo simulations and in cryptographic applications. For more on the advantages and disadvantages of <a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">LCGs</a>, see <a href="http://en.wikipedia.org/wiki/Linear_congruential_generator#Advantages_and_disadvantages_of_LCGs">Wikipedia</a>.</li><li>If PRNG state is "shared" (meaning a state array was provided during PRNG creation and <strong>not</strong> copied) and one sets the generator state to a state array having a different length, the PRNG does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for <strong>each</strong> relevant PRNG must be <strong>explicitly</strong> set.</li><li>If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> seed;
 <span class="hljs-keyword">var</span> rand;
@@ -192,32 +122,4 @@ rand = minstd.factory({
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
     <span class="hljs-built_in">console</span>.log( rand() );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<hr>
-<section class="references">
-<h2 id="references">References</h2>
-<ul>
-<li>Park, S. K., and K. W. Miller. 1988. "Random Number Generators: Good Ones Are Hard to Find." <em>Communications of the ACM</em> 31 (10). New York, NY, USA: ACM: 1192–1201. doi:<a href="http://dx.doi.org/10.1145/63039.63042">10.1145/63039.63042</a>.</li>
-<li>Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. <em>Numerical Recipes in C: The Art of Scientific Computing, Second Edition</em>. Cambridge University Press.</li>
-</ul>
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/minstd-shuffle"><code>@stdlib/random/base/minstd-shuffle</code></a></span><span class="delimiter">: </span><span class="description">A linear congruential pseudorandom number generator (LCG) whose output is shuffled.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>@stdlib/random/base/mt19937</code></a></span><span class="delimiter">: </span><span class="description">A 32-bit Mersenne Twister pseudorandom number generator.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/randi"><code>@stdlib/random/base/randi</code></a></span><span class="delimiter">: </span><span class="description">pseudorandom numbers having integer values.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Park, S. K., and K. W. Miller. 1988. "Random Number Generators: Good Ones Are Hard to Find." <em>Communications of the ACM</em> 31 (10). New York, NY, USA: ACM: 1192–1201. doi:<a href="http://dx.doi.org/10.1145/63039.63042">10.1145/63039.63042</a>.</li><li>Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. <em>Numerical Recipes in C: The Art of Scientific Computing, Second Edition</em>. Cambridge University Press.</li></ul></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/minstd-shuffle"><code>@stdlib/random/base/minstd-shuffle</code></a></span><span class="delimiter">: </span><span class="description">A linear congruential pseudorandom number generator (LCG) whose output is shuffled.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/mt19937"><code>@stdlib/random/base/mt19937</code></a></span><span class="delimiter">: </span><span class="description">A 32-bit Mersenne Twister pseudorandom number generator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/random/base/randi"><code>@stdlib/random/base/randi</code></a></span><span class="delimiter">: </span><span class="description">pseudorandom numbers having integer values.</span></li></ul></section>

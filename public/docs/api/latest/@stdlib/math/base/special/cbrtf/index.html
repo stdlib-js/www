@@ -1,14 +1,5 @@
-<h1 id="cube-root">Cube Root</h1>
-<blockquote>
-<p>Compute the <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a single-precision floating-point number.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cbrtf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cbrtf'</span> );
-</code></pre>
-<h4 id="cbrtf-x-">cbrtf( x )</h4>
-<p>Computes the <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a single-precision floating-point number.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = cbrtf( <span class="hljs-number">64.0</span> );
+<h1 id="cube-root">Cube Root</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a single-precision floating-point number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cbrtf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cbrtf'</span> );
+</code></pre><h4 id="cbrtf-x-">cbrtf( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Cube_root">cube root</a> of a single-precision floating-point number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = cbrtf( <span class="hljs-number">64.0</span> );
 <span class="hljs-comment">// returns 4.0</span>
 
 v = cbrtf( <span class="hljs-number">27.0</span> );
@@ -25,13 +16,7 @@ v = cbrtf( -<span class="hljs-number">9.0</span> );
 
 v = cbrtf( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> cbrtf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/cbrtf'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -41,43 +26,11 @@ v = cbrtf( <span class="hljs-literal">NaN</span> );
     x = (randu()*<span class="hljs-number">200.0</span>) - <span class="hljs-number">100.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'cbrt(%d) = %d'</span>, x, cbrtf( x ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- C interface documentation. -->
-<hr>
-<section class="c">
-<h2 id="c-apis">C APIs</h2>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- C usage documentation. -->
-<section class="usage">
-<h3 id="usage-1">Usage</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cbrtf.h"</span></span>
-</code></pre>
-<h4 id="stdlib_base_cbrtf-x-">stdlib_base_cbrtf( x )</h4>
-<p>Computes the cube root of a single-precision floating-point number.</p>
-<pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_cbrtf( <span class="hljs-number">27.0f</span> );
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cbrtf.h"</span></span>
+</code></pre><h4 id="stdlib_base_cbrtf-x-">stdlib_base_cbrtf( x )</h4><p>Computes the cube root of a single-precision floating-point number.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_cbrtf( <span class="hljs-number">27.0f</span> );
 <span class="hljs-comment">// returns 3.0f</span>
-</code></pre>
-<p>The function accepts the following arguments:</p>
-<ul>
-<li><strong>x</strong>: <code>[in] float</code> input value.</li>
-</ul>
-<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_cbrtf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
-</code></pre>
-</section>
-<!-- /.usage -->
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<!-- C API usage examples. -->
-<section class="examples">
-<h3 id="examples-1">Examples</h3>
-<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cbrtf.h"</span></span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_cbrtf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
+</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/cbrtf.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
@@ -90,24 +43,4 @@ v = cbrtf( <span class="hljs-literal">NaN</span> );
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"cbrt(%f) = %f\n"</span>, x[ i ], y );
     }
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-</section>
-<!-- /.c -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cbrt"><code>@stdlib/math/base/special/cbrt</code></a></span><span class="delimiter">: </span><span class="description">compute the cube root of a double-precision floating-point number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sqrtf"><code>@stdlib/math/base/special/sqrtf</code></a></span><span class="delimiter">: </span><span class="description">compute the principal square root of a single-precision floating-point number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cbrt"><code>@stdlib/math/base/special/cbrt</code></a></span><span class="delimiter">: </span><span class="description">compute the cube root of a double-precision floating-point number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/sqrtf"><code>@stdlib/math/base/special/sqrtf</code></a></span><span class="delimiter">: </span><span class="description">compute the principal square root of a single-precision floating-point number.</span></li></ul></section>

@@ -1,14 +1,5 @@
-<h1 id="acosh">acosh</h1>
-<blockquote>
-<p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arccosine</a> of a number.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> acosh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/acosh'</span> );
-</code></pre>
-<h4 id="acosh-x-">acosh( x )</h4>
-<p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arccosine</a> of a <code>number</code> (in radians).</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = acosh( <span class="hljs-number">1.0</span> );
+<h1 id="acosh">acosh</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arccosine</a> of a number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> acosh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/acosh'</span> );
+</code></pre><h4 id="acosh-x-">acosh( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_hyperbolic_function">hyperbolic arccosine</a> of a <code>number</code> (in radians).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = acosh( <span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
 
 v = acosh( <span class="hljs-number">2.0</span> );
@@ -16,17 +7,9 @@ v = acosh( <span class="hljs-number">2.0</span> );
 
 v = acosh( <span class="hljs-number">0.5</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-<p>The domain of <code>x</code> is restricted to <code>[1,+infinity)</code>. If <code>x &#x3C; 1</code>, the function will return <code>NaN</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = acosh( <span class="hljs-number">0.0</span> );
+</code></pre><p>The domain of <code>x</code> is restricted to <code>[1,+infinity)</code>. If <code>x &#x3C; 1</code>, the function will return <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = acosh( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
 <span class="hljs-keyword">var</span> acosh = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/acosh'</span> );
 
 <span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">1.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">100</span> );
@@ -35,23 +18,4 @@ v = acosh( <span class="hljs-number">0.5</span> );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( acosh( x[ i ] ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/acos"><code>@stdlib/math/base/special/acos</code></a></span><span class="delimiter">: </span><span class="description">compute the arccosine of a number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asinh"><code>@stdlib/math/base/special/asinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arcsine of a number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atanh"><code>@stdlib/math/base/special/atanh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arctangent of a number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/acos"><code>@stdlib/math/base/special/acos</code></a></span><span class="delimiter">: </span><span class="description">compute the arccosine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asinh"><code>@stdlib/math/base/special/asinh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arcsine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atanh"><code>@stdlib/math/base/special/atanh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arctangent of a number.</span></li></ul></section>

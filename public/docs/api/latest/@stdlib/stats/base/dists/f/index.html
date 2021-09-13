@@ -1,75 +1,14 @@
-<h1 id="fishers-f">Fisher's F</h1>
-<blockquote>
-<p>Fisher's F distribution.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> f = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/f'</span> );
-</code></pre>
-<h4 id="f">f</h4>
-<p>Fisher's F distribution.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = f;
+<h1 id="fishers-f">Fisher's F</h1><blockquote><p>Fisher's F distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> f = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/f'</span> );
+</code></pre><h4 id="f">f</h4><p>Fisher's F distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = f;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre>
-<p>The namespace contains the following distribution functions:</p>
-<!-- <toc pattern="*+(cdf|pdf|mgf|quantile)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/cdf"><code>cdf( x, d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution cumulative distribution function.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/pdf"><code>pdf( x, d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution probability density function (PDF).</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/quantile"><code>quantile( p, d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution quantile function.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains the following functions for calculating distribution properties:</p>
-<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/entropy"><code>entropy( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution differential entropy.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/kurtosis"><code>kurtosis( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution excess kurtosis.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/mean"><code>mean( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution expected value.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/mode"><code>mode( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution mode.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/skewness"><code>skewness( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution skewness.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/stdev"><code>stdev( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution standard deviation.</span></li>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/variance"><code>variance( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution variance.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/F_distribution">Fisher's F</a> distribution object.</p>
-<!-- <toc pattern="*ctor*"> -->
-<div class="namespace-toc">
-<ul>
-<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/ctor"><code>F( [d1, d2] )</code></a></span><span class="delimiter">: </span><span class="description">F distribution constructor.</span></li>
-</ul>
-</div>
-<!-- </toc> -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> F = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/f'</span> ).F;
+</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/cdf"><code>cdf( x, d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/pdf"><code>pdf( x, d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution probability density function (PDF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/quantile"><code>quantile( p, d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution quantile function.</span></li></ul></div><p>The namespace contains the following functions for calculating distribution properties:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/entropy"><code>entropy( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution differential entropy.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/kurtosis"><code>kurtosis( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution excess kurtosis.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/mean"><code>mean( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution expected value.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/mode"><code>mode( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution mode.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/skewness"><code>skewness( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution skewness.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/stdev"><code>stdev( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution standard deviation.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/variance"><code>variance( d1, d2 )</code></a></span><span class="delimiter">: </span><span class="description">F distribution variance.</span></li></ul></div><p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/F_distribution">Fisher's F</a> distribution object.</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/f/ctor"><code>F( [d1, d2] )</code></a></span><span class="delimiter">: </span><span class="description">F distribution constructor.</span></li></ul></div><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> F = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/f'</span> ).F;
 
 <span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> F( <span class="hljs-number">2.0</span>, <span class="hljs-number">4.0</span> );
 
 <span class="hljs-keyword">var</span> y = dist.cdf( <span class="hljs-number">0.5</span> );
 <span class="hljs-comment">// returns ~0.36</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- TODO: better examples -->
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> f = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/f'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( f ) );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <toc-links> -->
-<!-- </toc-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section>

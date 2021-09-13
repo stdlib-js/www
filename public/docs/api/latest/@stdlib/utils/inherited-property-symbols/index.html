@@ -1,27 +1,7 @@
-<h1 id="inheritedpropertysymbols">inheritedPropertySymbols</h1>
-<blockquote>
-<p>Return an array of an object's inherited <a href="/docs/api/latest/@stdlib/symbol/ctor">symbol</a> properties.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inheritedPropertySymbols = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherited-property-symbols'</span> );
-</code></pre>
-<h4 id="inheritedpropertysymbols-obj-level-">inheritedPropertySymbols( obj[, level] )</h4>
-<p>Returns an <code>array</code> of an object's inherited <a href="/docs/api/latest/@stdlib/symbol/ctor">symbol</a> properties.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> symbols = inheritedPropertySymbols( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
-</code></pre>
-<p>By default, the function walks an object's entire prototype chain. To limit the inheritance level, provide a <code>level</code> argument.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> symbols = inheritedPropertySymbols( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">1</span> );
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+<h1 id="inheritedpropertysymbols">inheritedPropertySymbols</h1><blockquote><p>Return an array of an object's inherited <a href="/docs/api/latest/@stdlib/symbol/ctor">symbol</a> properties.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> inheritedPropertySymbols = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherited-property-symbols'</span> );
+</code></pre><h4 id="inheritedpropertysymbols-obj-level-">inheritedPropertySymbols( obj[, level] )</h4><p>Returns an <code>array</code> of an object's inherited <a href="/docs/api/latest/@stdlib/symbol/ctor">symbol</a> properties.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> symbols = inheritedPropertySymbols( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre><p>By default, the function walks an object's entire prototype chain. To limit the inheritance level, provide a <code>level</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> symbols = inheritedPropertySymbols( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">1</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 <span class="hljs-keyword">var</span> inheritedPropertySymbols = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/inherited-property-symbols'</span> );
 
@@ -31,7 +11,7 @@
 
 hasSymbols = hasSymbolSupport();
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>() </span>{
     <span class="hljs-keyword">if</span> ( hasSymbols ) {
         <span class="hljs-built_in">this</span>[ <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'a'</span> ) ] = <span class="hljs-string">'b'</span>;
     }
@@ -46,25 +26,4 @@ obj = <span class="hljs-keyword">new</span> Foo();
 symbols = inheritedPropertySymbols( obj );
 
 <span class="hljs-built_in">console</span>.log( symbols );
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-keys"><code>@stdlib/utils/inherited-keys</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited enumerable property names.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-property-descriptors"><code>@stdlib/utils/inherited-property-descriptors</code></a></span><span class="delimiter">: </span><span class="description">return an object's inherited property descriptors.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-property-names"><code>@stdlib/utils/inherited-property-names</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited enumerable and non-enumerable property names.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols"><code>@stdlib/utils/property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own symbol properties.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols-in"><code>@stdlib/utils/property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited symbol properties.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-keys"><code>@stdlib/utils/inherited-keys</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-property-descriptors"><code>@stdlib/utils/inherited-property-descriptors</code></a></span><span class="delimiter">: </span><span class="description">return an object's inherited property descriptors.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/inherited-property-names"><code>@stdlib/utils/inherited-property-names</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's inherited enumerable and non-enumerable property names.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols"><code>@stdlib/utils/property-symbols</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own symbol properties.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-symbols-in"><code>@stdlib/utils/property-symbols-in</code></a></span><span class="delimiter">: </span><span class="description">return an array of an object's own and inherited symbol properties.</span></li></ul></section>

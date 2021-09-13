@@ -1,31 +1,9 @@
-<h1 id="isprnglike">isPRNGLike</h1>
-<blockquote>
-<p>Test if a value is PRNG-like.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPRNGLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-prng-like'</span> );
-</code></pre>
-<h4 id="isprnglike-value-">isPRNGLike( value )</h4>
-<p>Tests if a value is PRNG-like.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+<h1 id="isprnglike">isPRNGLike</h1><blockquote><p>Test if a value is PRNG-like.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isPRNGLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-prng-like'</span> );
+</code></pre><h4 id="isprnglike-value-">isPRNGLike( value )</h4><p>Tests if a value is PRNG-like.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 
 <span class="hljs-keyword">var</span> bool = isPRNGLike( randu );
 <span class="hljs-comment">// returns true</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>The function is <strong>not</strong> rigorous and only checks for the existence of particular properties which <strong>should</strong> be bound to a seedable pseudorandom number generator (PRNG) function. The function's main use case is for testing that a provided <code>value</code> (loosely) conforms to a particular interface.</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function is <strong>not</strong> rigorous and only checks for the existence of particular properties which <strong>should</strong> be bound to a seedable pseudorandom number generator (PRNG) function. The function's main use case is for testing that a provided <code>value</code> (loosely) conforms to a particular interface.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> isPRNGLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-prng-like'</span> );
 
 <span class="hljs-keyword">var</span> bool = isPRNGLike( randu );
@@ -39,14 +17,4 @@ bool = isPRNGLike( {} );
 
 bool = isPRNGLike( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

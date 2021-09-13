@@ -1,14 +1,5 @@
-<h1 id="binary-string">Binary String</h1>
-<blockquote>
-<p>Return a string giving the literal bit representation of an <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integer</a>.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/to-binary-string'</span> );
-</code></pre>
-<h4 id="tobinarystring-x-">toBinaryString( x )</h4>
-<p>Returns a <code>string</code> giving the literal bit representation of an <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integer</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
+<h1 id="binary-string">Binary String</h1><blockquote><p>Return a string giving the literal bit representation of an <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integer</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/to-binary-string'</span> );
+</code></pre><h4 id="tobinarystring-x-">toBinaryString( x )</h4><p>Returns a <code>string</code> giving the literal bit representation of an <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integer</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
 
 <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span> ] );
 
@@ -20,15 +11,7 @@ str = toBinaryString( a[<span class="hljs-number">1</span>] );
 
 str = toBinaryString( a[<span class="hljs-number">2</span>] );
 <span class="hljs-comment">// returns '00000000000000000000000000001001'</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>Except for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>, JavaScript does <strong>not</strong> provide native user support for <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integers</a>. According to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.19">ECMAScript standard</a>, <code>number</code> values correspond to <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point numbers</a>. While this function is intended for <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integers</a>, the function will accept <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point</a> values and represent the values <strong>as if</strong> they are <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integers</a>. Accordingly, care <strong>should</strong> be taken to ensure that <strong>only</strong> nonnegative integer values less than <code>4,294,967,296</code> (<code>2^32</code>) are provided.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = toBinaryString( <span class="hljs-number">1</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Except for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a>, JavaScript does <strong>not</strong> provide native user support for <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integers</a>. According to the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.19">ECMAScript standard</a>, <code>number</code> values correspond to <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point numbers</a>. While this function is intended for <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integers</a>, the function will accept <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">floating-point</a> values and represent the values <strong>as if</strong> they are <a href="https://en.wikipedia.org/wiki/Integer_%28computer_science%29">unsigned 32-bit integers</a>. Accordingly, care <strong>should</strong> be taken to ensure that <strong>only</strong> nonnegative integer values less than <code>4,294,967,296</code> (<code>2^32</code>) are provided.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = toBinaryString( <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns '00000000000000000000000000000001'</span>
 
 str = toBinaryString( <span class="hljs-number">4</span> );
@@ -39,15 +22,7 @@ str = toBinaryString( <span class="hljs-number">9</span> );
 
 str = toBinaryString( <span class="hljs-number">4294967295</span> );
 <span class="hljs-comment">// returns '11111111111111111111111111111111'</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
 <span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint32/base/to-binary-string'</span> );
@@ -69,14 +44,4 @@ x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint32Arra
     y = <span class="hljs-built_in">parseInt</span>( b, <span class="hljs-number">2</span> );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, b: %s, y: %d'</span>, x[i], b, y );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

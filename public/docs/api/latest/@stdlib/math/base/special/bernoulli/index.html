@@ -1,16 +1,5 @@
-<h1 id="bernoulli">Bernoulli</h1>
-<blockquote>
-<p>Compute the nth <a href="https://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli number</a>.</p>
-</blockquote>
-<section class="intro">
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/bernoulli'</span> );
-</code></pre>
-<h4 id="bernoulli-n-">bernoulli( n )</h4>
-<p>Computes the nth <a href="https://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli number</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-number">0</span> );
+<h1 id="bernoulli">Bernoulli</h1><blockquote><p>Compute the nth <a href="https://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli number</a>.</p></blockquote><section class="intro"><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/bernoulli'</span> );
+</code></pre><h4 id="bernoulli-n-">bernoulli( n )</h4><p>Computes the nth <a href="https://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 1.0</span>
 
 v = bernoulli( <span class="hljs-number">1</span> );
@@ -30,9 +19,7 @@ v = bernoulli( <span class="hljs-number">5</span> );
 
 v = bernoulli( <span class="hljs-number">20</span> );
 <span class="hljs-comment">// returns ~-529.124</span>
-</code></pre>
-<p>For even integers <code>n >= 260</code>, the function alternates between returning positive and negative infinity, as larger <a href="https://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli numbers</a> cannot be safely represented in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point format</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-number">260</span> );
+</code></pre><p>For even integers <code>n >= 260</code>, the function alternates between returning positive and negative infinity, as larger <a href="https://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli numbers</a> cannot be safely represented in <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point format</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-number">260</span> );
 <span class="hljs-comment">// returns -Infinity</span>
 
 v = bernoulli( <span class="hljs-number">262</span> );
@@ -40,27 +27,14 @@ v = bernoulli( <span class="hljs-number">262</span> );
 
 v = bernoulli( <span class="hljs-number">264</span> );
 <span class="hljs-comment">// returns -Infinity</span>
-</code></pre>
-<p>If not provided a nonnegative integer value, the function returns <code>NaN</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-number">3.14</span> );
+</code></pre><p>If not provided a nonnegative integer value, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-number">3.14</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 v = bernoulli( -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-<p>If provided <code>NaN</code>, the function returns <code>NaN</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-literal">NaN</span> );
+</code></pre><p>If provided <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = bernoulli( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="notes">
-</section>
-<!-- /.notes -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/bernoulli'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/bernoulli'</span> );
 
 <span class="hljs-keyword">var</span> v;
 <span class="hljs-keyword">var</span> i;
@@ -69,15 +43,4 @@ v = bernoulli( -<span class="hljs-number">1</span> );
     v = bernoulli( i );
     <span class="hljs-built_in">console</span>.log( v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
-</section>
+</code></pre></section></section>

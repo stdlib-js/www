@@ -1,14 +1,5 @@
-<h1 id="compactadjacencymatrix">CompactAdjacencyMatrix</h1>
-<blockquote>
-<p>Compact adjacency matrix constructor.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CompactAdjacencyMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/compact-adjacency-matrix'</span> );
-</code></pre>
-<h4 id="compactadjacencymatrix-n-">CompactAdjacencyMatrix( N )</h4>
-<p>Returns a compact adjacency matrix instance.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> adj = <span class="hljs-keyword">new</span> CompactAdjacencyMatrix( <span class="hljs-number">4</span> );
+<h1 id="compactadjacencymatrix">CompactAdjacencyMatrix</h1><blockquote><p>Compact adjacency matrix constructor.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CompactAdjacencyMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/compact-adjacency-matrix'</span> );
+</code></pre><h4 id="compactadjacencymatrix-n-">CompactAdjacencyMatrix( N )</h4><p>Returns a compact adjacency matrix instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> adj = <span class="hljs-keyword">new</span> CompactAdjacencyMatrix( <span class="hljs-number">4</span> );
 <span class="hljs-comment">// returns &#x3C;CompactAdjacencyMatrix></span>
 
 <span class="hljs-comment">// ...</span>
@@ -17,13 +8,7 @@ adj.addEdge( <span class="hljs-number">0</span>, <span class="hljs-number">1</sp
 adj.addEdge( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
 adj.addEdge( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
 adj.addEdge( <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CompactAdjacencyMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/compact-adjacency-matrix'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CompactAdjacencyMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/compact-adjacency-matrix'</span> );
 
 <span class="hljs-comment">// Create a new adjacency matrix:</span>
 <span class="hljs-keyword">var</span> adj = <span class="hljs-keyword">new</span> CompactAdjacencyMatrix( <span class="hljs-number">4</span> );
@@ -55,14 +40,4 @@ adj.addEdge( <span class="hljs-number">2</span>, <span class="hljs-number">3</sp
 <span class="hljs-comment">// Compute a topological ordering:</span>
 <span class="hljs-built_in">console</span>.log( adj.toposort() );
 <span class="hljs-comment">// => [ [ 1, 0, 2, 3 ], null ]</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-</section>
-<!-- /.links -->
+</code></pre></section>

@@ -1,17 +1,5 @@
-<h1 id="polygamma">Polygamma</h1>
-<blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Polygamma_function">Polygamma</a> function.</p>
-</blockquote>
-<section class="intro">
-</section>
-<!-- /.intro -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> polygamma = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/polygamma'</span> );
-</code></pre>
-<h4 id="polygamma-n-x-">polygamma( n, x )</h4>
-<p>Evaluates the <a href="https://en.wikipedia.org/wiki/Polygamma_function">polygamma function</a> of order <code>n</code>; i.e., the <code>(n+1)</code>th derivative of the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of the <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma function</a>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-number">3</span>, <span class="hljs-number">1.2</span> );
+<h1 id="polygamma">Polygamma</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Polygamma_function">Polygamma</a> function.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> polygamma = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/polygamma'</span> );
+</code></pre><h4 id="polygamma-n-x-">polygamma( n, x )</h4><p>Evaluates the <a href="https://en.wikipedia.org/wiki/Polygamma_function">polygamma function</a> of order <code>n</code>; i.e., the <code>(n+1)</code>th derivative of the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of the <a href="/docs/api/latest/@stdlib/math/base/special/gamma">gamma function</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-number">3</span>, <span class="hljs-number">1.2</span> );
 <span class="hljs-comment">// returns ~3.245</span>
 
 v = polygamma( <span class="hljs-number">5</span>, <span class="hljs-number">1.2</span> );
@@ -19,30 +7,22 @@ v = polygamma( <span class="hljs-number">5</span>, <span class="hljs-number">1.2
 
 v = polygamma( <span class="hljs-number">3</span>, -<span class="hljs-number">4.9</span> );
 <span class="hljs-comment">// returns ~60014.239</span>
-</code></pre>
-<p>If <code>n</code> is not a nonnegative <code>integer</code>, the function returns <code>NaN</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-number">2.5</span>, -<span class="hljs-number">1.2</span> );
+</code></pre><p>If <code>n</code> is not a nonnegative <code>integer</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-number">2.5</span>, -<span class="hljs-number">1.2</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 v = polygamma( -<span class="hljs-number">1</span>, <span class="hljs-number">5.3</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-<p>If <code>x</code> is <code>0</code> or a negative odd <code>integer</code>, the function returns <code>+Infinity</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-number">2</span>, <span class="hljs-number">0.0</span> );
+</code></pre><p>If <code>x</code> is <code>0</code> or a negative odd <code>integer</code>, the function returns <code>+Infinity</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-number">2</span>, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns +Infinity</span>
 
 v = polygamma( <span class="hljs-number">2</span>, -<span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns +Infinity</span>
-</code></pre>
-<p>If <code>x</code> on the other hand is a negative even <code>integer</code>, the function returns <code>NaN</code>.</p>
-<pre><code class="hljs language-javascript">v = polygamma( <span class="hljs-number">2</span>, -<span class="hljs-number">4.0</span> );
+</code></pre><p>If <code>x</code> on the other hand is a negative even <code>integer</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript">v = polygamma( <span class="hljs-number">2</span>, -<span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 v = polygamma( <span class="hljs-number">2</span>, -<span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-<p>If provided <code>NaN</code> as either parameter, the function returns <code>NaN</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.1</span> );
+</code></pre><p>If provided <code>NaN</code> as either parameter, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = polygamma( <span class="hljs-literal">NaN</span>, <span class="hljs-number">2.1</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 v = polygamma( <span class="hljs-number">1</span>, <span class="hljs-literal">NaN</span> );
@@ -50,13 +30,7 @@ v = polygamma( <span class="hljs-number">1</span>, <span class="hljs-literal">Na
 
 v = polygamma( <span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> polygamma = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/polygamma'</span> );
 
@@ -71,23 +45,4 @@ v = polygamma( <span class="hljs-literal">NaN</span>, <span class="hljs-literal"
     v = polygamma( x, n );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, ψ^(%d)(x): %d'</span>, x, n, v );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/trigamma"><code>@stdlib/math/base/special/trigamma</code></a></span><span class="delimiter">: </span><span class="description">trigamma function.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/digamma"><code>@stdlib/math/base/special/digamma</code></a></span><span class="delimiter">: </span><span class="description">digamma function.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gamma"><code>@stdlib/math/base/special/gamma</code></a></span><span class="delimiter">: </span><span class="description">gamma function.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/trigamma"><code>@stdlib/math/base/special/trigamma</code></a></span><span class="delimiter">: </span><span class="description">trigamma function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/digamma"><code>@stdlib/math/base/special/digamma</code></a></span><span class="delimiter">: </span><span class="description">digamma function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/gamma"><code>@stdlib/math/base/special/gamma</code></a></span><span class="delimiter">: </span><span class="description">gamma function.</span></li></ul></section>

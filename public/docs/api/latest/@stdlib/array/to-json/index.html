@@ -1,19 +1,5 @@
-<h1 id="tojson">toJSON</h1>
-<blockquote>
-<p>Return a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p>
-</blockquote>
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-<section class="intro">
-</section>
-<!-- /.intro -->
-<!-- Package usage documentation. -->
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-json'</span> );
-</code></pre>
-<h4 id="tojson-typedarray-">toJSON( typedarray )</h4>
-<p>Returns a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<h1 id="tojson">toJSON</h1><blockquote><p>Return a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toJSON = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-json'</span> );
+</code></pre><h4 id="tojson-typedarray-">toJSON( typedarray )</h4><p>Returns a <a href="http://www.json.org/">JSON</a> representation of a typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">3.0</span> ] );
 
@@ -24,32 +10,7 @@
         'data': [ 5.0, 3.0 ]
     }
 */</span>
-</code></pre>
-<p>For guidance on reviving a JSON-serialized typed array, see <a href="/docs/api/latest/@stdlib/array/reviver"><code>reviver()</code></a>.</p>
-</section>
-<!-- /.usage -->
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="notes">
-<h2 id="notes">Notes</h2>
-<ul>
-<li>
-<p>Supported typed array types:</p>
-<ul>
-<li><a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/uint32"><code>Uint32Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/int16"><code>Int16Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/uint16"><code>Uint16Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/int8"><code>Int8Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a></li>
-<li><a href="/docs/api/latest/@stdlib/array/uint8c"><code>Uint8ClampedArray</code></a></li>
-</ul>
-</li>
-<li>
-<p>The implementation provides basic support for custom typed arrays and sets the <code>type</code> field to the closest known typed array type.</p>
-<!-- eslint-disable no-restricted-syntax, no-useless-constructor, new-cap, stdlib/require-globals -->
-<pre><code class="hljs language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomArray</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Float64Array</span>() </span>{
+</code></pre><p>For guidance on reviving a JSON-serialized typed array, see <a href="/docs/api/latest/@stdlib/array/reviver"><code>reviver()</code></a>.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Supported typed array types:</p><ul><li><a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/float32"><code>Float32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int32"><code>Int32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint32"><code>Uint32Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int16"><code>Int16Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint16"><code>Uint16Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/int8"><code>Int8Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a></li><li><a href="/docs/api/latest/@stdlib/array/uint8c"><code>Uint8ClampedArray</code></a></li></ul></li><li><p>The implementation provides basic support for custom typed arrays and sets the <code>type</code> field to the closest known typed array type.</p><pre><code class="hljs language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomArray</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Float64Array</span>() </span>{
     <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"> data </span>)</span> {
         <span class="hljs-built_in">super</span>( data );
     }
@@ -64,16 +25,7 @@
         'data': [ 5.0, 3.0 ]
     }
 */</span>
-</code></pre>
-</li>
-</ul>
-</section>
-<!-- /.notes -->
-<!-- Package usage examples. -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint32'</span> );
@@ -164,25 +116,4 @@ json = toJSON( arr );
         'data': [ 5, 3 ]
     }
 */</span>
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="references">
-</section>
-<!-- /.references -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/reviver"><code>@stdlib/array/reviver</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized typed array.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/reviver"><code>@stdlib/array/reviver</code></a></span><span class="delimiter">: </span><span class="description">revive a JSON-serialized typed array.</span></li></ul></section>

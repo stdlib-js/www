@@ -1,14 +1,5 @@
-<h1 id="atan">atan</h1>
-<blockquote>
-<p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">arctangent</a> of a number.</p>
-</blockquote>
-<section class="usage">
-<h2 id="usage">Usage</h2>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atan = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atan'</span> );
-</code></pre>
-<h4 id="atan-x-">atan( x )</h4>
-<p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">arctangent</a> of a <code>number</code>.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = atan( <span class="hljs-number">0.0</span> );
+<h1 id="atan">atan</h1><blockquote><p>Compute the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">arctangent</a> of a number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> atan = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atan'</span> );
+</code></pre><h4 id="atan-x-">atan( x )</h4><p>Computes the <a href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">arctangent</a> of a <code>number</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = atan( <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns ~0.0</span>
 
 v = atan( -<span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">2.0</span> );
@@ -19,13 +10,7 @@ v = atan( <span class="hljs-number">3.141592653589793</span>/<span class="hljs-n
 
 v = atan( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre>
-</section>
-<!-- /.usage -->
-<section class="examples">
-<h2 id="examples">Examples</h2>
-<!-- eslint no-undef: "error" -->
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/linspace'</span> );
 <span class="hljs-keyword">var</span> atan = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/atan'</span> );
 
 <span class="hljs-keyword">var</span> x = linspace( -<span class="hljs-number">1000.0</span>, <span class="hljs-number">1000.0</span>, <span class="hljs-number">100</span> );
@@ -34,23 +19,4 @@ v = atan( <span class="hljs-literal">NaN</span> );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( atan( x[ i ] ) );
 }
-</code></pre>
-</section>
-<!-- /.examples -->
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
-<section class="related">
-<hr>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/acos"><code>@stdlib/math/base/special/acos</code></a></span><span class="delimiter">: </span><span class="description">compute the arccosine of a number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asin"><code>@stdlib/math/base/special/asin</code></a></span><span class="delimiter">: </span><span class="description">compute the arcsine of a number.</span></li>
-<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atanh"><code>@stdlib/math/base/special/atanh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arctangent of a number.</span></li>
-</ul>
-</section>
-<!-- /.related -->
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-<section class="links">
-<!-- <related-links> -->
-<!-- </related-links> -->
-</section>
-<!-- /.links -->
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/acos"><code>@stdlib/math/base/special/acos</code></a></span><span class="delimiter">: </span><span class="description">compute the arccosine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/asin"><code>@stdlib/math/base/special/asin</code></a></span><span class="delimiter">: </span><span class="description">compute the arcsine of a number.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/atanh"><code>@stdlib/math/base/special/atanh</code></a></span><span class="delimiter">: </span><span class="description">compute the hyperbolic arctangent of a number.</span></li></ul></section>
