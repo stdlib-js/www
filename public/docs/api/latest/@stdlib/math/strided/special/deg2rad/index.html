@@ -1,19 +1,43 @@
-<h1 id="deg2rad">deg2rad</h1><blockquote><p>Convert each element in a strided array from degrees to radians.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> deg2rad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/deg2rad'</span> );
-</code></pre><h4 id="deg2rad-n-x-stridex-y-stridey-">deg2rad( N, x, strideX, y, strideY )</h4><p>Converts each element in a strided array <code>x</code> from degrees to radians and assigns the results to elements in a strided array <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<h1 id="deg2rad">deg2rad</h1>
+<blockquote>
+<p>Convert each element in a strided array from degrees to radians.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> deg2rad = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/strided/special/deg2rad'</span> );
+</code></pre>
+<h4 id="deg2rad-n-x-stridex-y-stridey-">deg2rad( N, x, strideX, y, strideY )</h4>
+<p>Converts each element in a strided array <code>x</code> from degrees to radians and assigns the results to elements in a strided array <code>y</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">30.0</span>, <span class="hljs-number">45.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">90.0</span> ] );
 
 <span class="hljs-comment">// Perform operation in-place:</span>
 deg2rad( x.length, x, <span class="hljs-number">1</span>, x, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// x => &#x3C;Float64Array>[ 0.0, ~0.524, ~0.785, ~1.047, ~1.571 ]</span>
-</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input array-like object.</li><li><strong>strideX</strong>: index increment for <code>x</code>.</li><li><strong>y</strong>: output array-like object.</li><li><strong>strideY</strong>: index increment for <code>y</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and the first <code>N</code> elements of <code>y</code> in reverse order,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>N</strong>: number of indexed elements.</li>
+<li><strong>x</strong>: input array-like object.</li>
+<li><strong>strideX</strong>: index increment for <code>x</code>.</li>
+<li><strong>y</strong>: output array-like object.</li>
+<li><strong>strideY</strong>: index increment for <code>y</code>.</li>
+</ul>
+<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to index every other value in <code>x</code> and the first <code>N</code> elements of <code>y</code> in reverse order,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">30.0</span>, <span class="hljs-number">45.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">90.0</span>, <span class="hljs-number">120.0</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
 
 deg2rad( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, y, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ ~1.571, ~0.785, 0.0, 0.0, 0.0, 0.0 ]</span>
-</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-comment">// Initial arrays...</span>
 <span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">30.0</span>, <span class="hljs-number">45.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">90.0</span>, <span class="hljs-number">120.0</span> ] );
@@ -25,21 +49,40 @@ deg2rad( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</spa
 
 deg2rad( <span class="hljs-number">3</span>, x1, -<span class="hljs-number">2</span>, y1, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// y0 => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, ~2.094, ~1.047, ~0.524 ]</span>
-</code></pre><h4 id="deg2radndarray-n-x-stridex-offsetx-y-stridey-offsety-">deg2rad.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4><p>Converts each element in a strided array <code>x</code> from degrees to radians and assigns the results to elements in a strided array <code>y</code> using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<h4 id="deg2radndarray-n-x-stridex-offsetx-y-stridey-offsety-">deg2rad.ndarray( N, x, strideX, offsetX, y, strideY, offsetY )</h4>
+<p>Converts each element in a strided array <code>x</code> from degrees to radians and assigns the results to elements in a strided array <code>y</code> using alternative indexing semantics.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">30.0</span>, <span class="hljs-number">45.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">90.0</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
 
 deg2rad.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 0.0, ~0.524, ~0.785, ~1.047, ~1.571 ]</span>
-</code></pre><p>The function accepts the following additional arguments:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li><li><strong>offsetY</strong>: starting index for <code>y</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<p>The function accepts the following additional arguments:</p>
+<ul>
+<li><strong>offsetX</strong>: starting index for <code>x</code>.</li>
+<li><strong>offsetY</strong>: starting index for <code>y</code>.</li>
+</ul>
+<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offsetX</code> and <code>offsetY</code> parameters support indexing semantics based on starting indices. For example, to index every other value in <code>x</code> starting from the second value and to index the last <code>N</code> elements in <code>y</code>,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">30.0</span>, <span class="hljs-number">45.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">90.0</span>, <span class="hljs-number">120.0</span> ] );
 <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] );
 
 deg2rad.ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span>, y.length-<span class="hljs-number">1</span> );
 <span class="hljs-comment">// y => &#x3C;Float64Array>[ 0.0, 0.0, 0.0, ~2.094, ~1.047, ~0.524 ]</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/uniform'</span> ).factory;
 <span class="hljs-keyword">var</span> filledarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/filled'</span> );
 <span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dtypes'</span> );
 <span class="hljs-keyword">var</span> gfillBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gfill-by'</span> );
@@ -63,4 +106,22 @@ dt = dtypes();
     <span class="hljs-built_in">console</span>.log( y );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">''</span> );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/ddeg2rad"><code>@stdlib/math/strided/special/ddeg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert each element in a double-precision floating-point strided array from degrees to radians.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/sdeg2rad"><code>@stdlib/math/strided/special/sdeg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert each element in a single-precision floating-point strided array from degrees to radians.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/ddeg2rad"><code>@stdlib/math/strided/special/ddeg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert each element in a double-precision floating-point strided array from degrees to radians.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/strided/special/sdeg2rad"><code>@stdlib/math/strided/special/sdeg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert each element in a single-precision floating-point strided array from degrees to radians.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

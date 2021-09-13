@@ -1,5 +1,17 @@
-<h1 id="kernel-betaincinv">Kernel Betaincinv</h1><blockquote><p>Inverse of the lower <a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">incomplete beta function</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kernelBetaincinv = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/kernel-betaincinv'</span> );
-</code></pre><h4 id="kernelbetaincinv-a-b-p-q-">kernelBetaincinv( a, b, p, q )</h4><p>Inverts the lower regularized <a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">incomplete beta function</a> at <code>a > 0</code> and <code>b > 0</code>. Input probabilities <code>p</code> and <code>q</code> must satisfy <code>p = 1 - q</code>. The function returns a two-element array holding the function value <code>y</code> and <code>1-y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = kernelBetaincinv( <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.8</span> );
+<h1 id="kernel-betaincinv">Kernel Betaincinv</h1>
+<blockquote>
+<p>Inverse of the lower <a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">incomplete beta function</a>.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kernelBetaincinv = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/kernel-betaincinv'</span> );
+</code></pre>
+<h4 id="kernelbetaincinv-a-b-p-q-">kernelBetaincinv( a, b, p, q )</h4>
+<p>Inverts the lower regularized <a href="https://en.wikipedia.org/wiki/Incomplete_beta_function">incomplete beta function</a> at <code>a > 0</code> and <code>b > 0</code>. Input probabilities <code>p</code> and <code>q</code> must satisfy <code>p = 1 - q</code>. The function returns a two-element array holding the function value <code>y</code> and <code>1-y</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = kernelBetaincinv( <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.8</span> );
 <span class="hljs-comment">// returns [ ~0.327, ~0.673 ]</span>
 
 y = kernelBetaincinv( <span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.6</span> );
@@ -10,7 +22,13 @@ y = kernelBetaincinv( <span class="hljs-number">1.0</span>, <span class="hljs-nu
 
 y = kernelBetaincinv( <span class="hljs-number">1.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.2</span> );
 <span class="hljs-comment">// returns [ ~0.235, ~0.765 ]</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> kernelBetaincinv = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/kernel-betaincinv'</span> );
 
 <span class="hljs-keyword">var</span> i;
@@ -24,4 +42,21 @@ y = kernelBetaincinv( <span class="hljs-number">1.0</span>, <span class="hljs-nu
     b = randu() * <span class="hljs-number">10.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'p: %d, \t a: %d, \t b: %d, \t f(p,a,b): %d'</span>, p.toFixed( <span class="hljs-number">4</span> ), a.toFixed( <span class="hljs-number">4</span> ), b.toFixed( <span class="hljs-number">4</span> ), kernelBetaincinv( a, b, p, <span class="hljs-number">1.0</span>-p )[ <span class="hljs-number">0</span> ] );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/betaincinv"><code>@stdlib/math/base/special/betaincinv</code></a></span><span class="delimiter">: </span><span class="description">inverse incomplete beta function.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/betaincinv"><code>@stdlib/math/base/special/betaincinv</code></a></span><span class="delimiter">: </span><span class="description">inverse incomplete beta function.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

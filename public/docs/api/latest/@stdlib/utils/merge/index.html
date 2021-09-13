@@ -1,5 +1,14 @@
-<h1 id="merge">Merge</h1><blockquote><p>Merge and extend objects.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> merge = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/merge'</span> );
-</code></pre><h4 id="merge-target-source1-source2sourcen-">merge( target, source1[, source2[,...,sourceN]] )</h4><p>Merges and extends a target <code>object</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
+<h1 id="merge">Merge</h1>
+<blockquote>
+<p>Merge and extend objects.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> merge = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/merge'</span> );
+</code></pre>
+<h4 id="merge-target-source1-source2sourcen-">merge( target, source1[, source2[,...,sourceN]] )</h4>
+<p>Merges and extends a target <code>object</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
     <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>
 };
 <span class="hljs-keyword">var</span> source = {
@@ -14,7 +23,9 @@
         'b': 'bap'
     }
 */</span>
-</code></pre><p>The function supports merging multiple source <code>objects</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
+</code></pre>
+<p>The function supports merging multiple source <code>objects</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
     <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>
 };
 <span class="hljs-keyword">var</span> source1 = {
@@ -32,7 +43,10 @@
         'c': 'cat'
     }
 */</span>
-</code></pre><h4 id="mergefactory-options-">merge.factory( options )</h4><p>Returns a custom merge <code>function</code> for merging and extending <code>objects</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<h4 id="mergefactory-options-">merge.factory( options )</h4>
+<p>Returns a custom merge <code>function</code> for merging and extending <code>objects</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'level'</span>: <span class="hljs-number">100</span>,
     <span class="hljs-string">'copy'</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-string">'override'</span>: <span class="hljs-literal">true</span>,
@@ -40,7 +54,16 @@
 };
 
 <span class="hljs-keyword">var</span> m = merge.factory( opts );
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>level</strong>: limits the merge depth. The default merge strategy is a deep (recursive) merge. Default: <code>+infinity</code>.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to <a href="/docs/api/latest/@stdlib/utils/copy">deep copy</a> merged values. Deep copying prevents shared references and source <code>object</code> mutation. Default: <code>true</code>.</li><li><strong>override</strong>: defines the merge strategy. If <code>true</code>, source <code>object</code> values will <strong>always</strong> override target <code>object</code> values. If <code>false</code>, source values <strong>never</strong> override target values (useful for adding, but not overwriting, properties). To define a custom merge strategy, provide a <code>function</code>. Default: <code>true</code>.</li><li><strong>extend</strong>: <code>boolean</code> indicating whether new properties can be added to the target <code>object</code>. If <code>false</code>, only <strong>shared</strong> properties are merged. Default: <code>true</code>.</li></ul><p>The default merge is a deep (recursive) merge.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory( {} );
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>level</strong>: limits the merge depth. The default merge strategy is a deep (recursive) merge. Default: <code>+infinity</code>.</li>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to <a href="/docs/api/latest/@stdlib/utils/copy">deep copy</a> merged values. Deep copying prevents shared references and source <code>object</code> mutation. Default: <code>true</code>.</li>
+<li><strong>override</strong>: defines the merge strategy. If <code>true</code>, source <code>object</code> values will <strong>always</strong> override target <code>object</code> values. If <code>false</code>, source values <strong>never</strong> override target values (useful for adding, but not overwriting, properties). To define a custom merge strategy, provide a <code>function</code>. Default: <code>true</code>.</li>
+<li><strong>extend</strong>: <code>boolean</code> indicating whether new properties can be added to the target <code>object</code>. If <code>false</code>, only <strong>shared</strong> properties are merged. Default: <code>true</code>.</li>
+</ul>
+<p>The default merge is a deep (recursive) merge.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory( {} );
 
 <span class="hljs-keyword">var</span> target = {
     <span class="hljs-string">'a'</span>: {
@@ -69,7 +92,9 @@
         }
     }
 */</span>
-</code></pre><p>To limit the merge depth, set the <code>level</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
+</code></pre>
+<p>To limit the merge depth, set the <code>level</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
     <span class="hljs-string">'level'</span>: <span class="hljs-number">2</span>
 });
 
@@ -104,7 +129,9 @@
         }
     }
 */</span>
-</code></pre><p>By default, merged values are <a href="/docs/api/latest/@stdlib/utils/copy">deep copied</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory( {} );
+</code></pre>
+<p>By default, merged values are <a href="/docs/api/latest/@stdlib/utils/copy">deep copied</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory( {} );
 
 <span class="hljs-keyword">var</span> target = {
     <span class="hljs-string">'a'</span>: <span class="hljs-literal">null</span>
@@ -119,7 +146,9 @@
 
 <span class="hljs-built_in">console</span>.log( out.a.b === source.a.b );
 <span class="hljs-comment">// => false</span>
-</code></pre><p>To allow shared references, set the <code>copy</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
+</code></pre>
+<p>To allow shared references, set the <code>copy</code> option to <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
     <span class="hljs-string">'copy'</span>: <span class="hljs-literal">false</span>
 });
 
@@ -133,7 +162,9 @@
 
 <span class="hljs-keyword">var</span> bool = ( out.a === source.a );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>To prevent existing properties from being overridden, set the <code>override</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
+</code></pre>
+<p>To prevent existing properties from being overridden, set the <code>override</code> option to <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
     <span class="hljs-string">'override'</span>: <span class="hljs-literal">false</span>
 });
 
@@ -155,7 +186,9 @@
         'c': 'bop'
     }
 */</span>
-</code></pre><p>Alternatively, to define a custom merge strategy, set the <code>override</code> option to a <code>function</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">strategy</span>(<span class="hljs-params"> a, b, key </span>) </span>{
+</code></pre>
+<p>Alternatively, to define a custom merge strategy, set the <code>override</code> option to a <code>function</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">strategy</span>(<span class="hljs-params"> a, b, key </span>) </span>{
     <span class="hljs-comment">/* Parameters:
         a => target value
         b => source value
@@ -194,7 +227,9 @@
         'c': 'bebop'
     }
 */</span>
-</code></pre><p>To prevent non-existent properties from being added to the target <code>object</code>, set the <code>extend</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
+</code></pre>
+<p>To prevent non-existent properties from being added to the target <code>object</code>, set the <code>extend</code> option to <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> m = merge.factory({
     <span class="hljs-string">'extend'</span>: <span class="hljs-literal">false</span>
 });
 
@@ -215,7 +250,16 @@
         'b': 'hello'
     }
 */</span>
-</code></pre></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li><p>The target <code>object</code> is <strong>mutated</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<hr>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The target <code>object</code> is <strong>mutated</strong>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
     <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>
 };
 <span class="hljs-keyword">var</span> source = {
@@ -229,7 +273,9 @@
 
 <span class="hljs-built_in">console</span>.log( target.b );
 <span class="hljs-comment">// => 'boop'</span>
-</code></pre><p>To return a new <code>object</code>, provide an empty <code>object</code> as the first argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
+</code></pre>
+<p>To return a new <code>object</code>, provide an empty <code>object</code> as the first argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> target = {
     <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>
 };
 <span class="hljs-keyword">var</span> source = {
@@ -240,7 +286,53 @@
 
 <span class="hljs-built_in">console</span>.log( out === target );
 <span class="hljs-comment">// => false</span>
-</code></pre></li><li><p><strong>Only</strong> plain JavaScript <code>objects</code> are merged and extended. The following values/types are either <a href="/docs/api/latest/@stdlib/utils/copy">deep copied</a> or assigned:</p><ul><li><code>Boolean</code></li><li><code>String</code></li><li><code>Number</code></li><li><code>Date</code></li><li><code>RegExp</code></li><li><code>Array</code></li><li><code>Int8Array</code></li><li><code>Uint8Array</code></li><li><code>Uint8ClampedArray</code></li><li><code>Init16Array</code></li><li><code>Uint16Array</code></li><li><code>Int32Array</code></li><li><code>Uint32Array</code></li><li><code>Float32Array</code></li><li><code>Float64Array</code></li><li><code>Buffer</code> (<a href="http://nodejs.org/api/buffer.html">Node.js</a>)</li><li><code>Set</code></li><li><code>Map</code></li><li><code>Error</code></li><li><code>URIError</code></li><li><code>ReferenceError</code></li><li><code>SyntaxError</code></li><li><code>RangeError</code></li></ul></li><li><p>Support for deep merging class instances is inherently <a href="/docs/api/latest/@stdlib/utils/copy"><strong>fragile</strong></a>.</p></li><li><p><code>Number</code>, <code>String</code>, or <code>Boolean</code> objects are merged as <a href="/docs/api/latest/@stdlib/utils/copy">primitives</a>.</p></li><li><p>Functions are <strong>not</strong> <a href="/docs/api/latest/@stdlib/utils/copy">deep copied</a>.</p></li></ul></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> merge = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/merge'</span> );
+</code></pre>
+</li>
+<li>
+<p><strong>Only</strong> plain JavaScript <code>objects</code> are merged and extended. The following values/types are either <a href="/docs/api/latest/@stdlib/utils/copy">deep copied</a> or assigned:</p>
+<ul>
+<li><code>Boolean</code></li>
+<li><code>String</code></li>
+<li><code>Number</code></li>
+<li><code>Date</code></li>
+<li><code>RegExp</code></li>
+<li><code>Array</code></li>
+<li><code>Int8Array</code></li>
+<li><code>Uint8Array</code></li>
+<li><code>Uint8ClampedArray</code></li>
+<li><code>Init16Array</code></li>
+<li><code>Uint16Array</code></li>
+<li><code>Int32Array</code></li>
+<li><code>Uint32Array</code></li>
+<li><code>Float32Array</code></li>
+<li><code>Float64Array</code></li>
+<li><code>Buffer</code> (<a href="http://nodejs.org/api/buffer.html">Node.js</a>)</li>
+<li><code>Set</code></li>
+<li><code>Map</code></li>
+<li><code>Error</code></li>
+<li><code>URIError</code></li>
+<li><code>ReferenceError</code></li>
+<li><code>SyntaxError</code></li>
+<li><code>RangeError</code></li>
+</ul>
+</li>
+<li>
+<p>Support for deep merging class instances is inherently <a href="/docs/api/latest/@stdlib/utils/copy"><strong>fragile</strong></a>.</p>
+</li>
+<li>
+<p><code>Number</code>, <code>String</code>, or <code>Boolean</code> objects are merged as <a href="/docs/api/latest/@stdlib/utils/copy">primitives</a>.</p>
+</li>
+<li>
+<p>Functions are <strong>not</strong> <a href="/docs/api/latest/@stdlib/utils/copy">deep copied</a>.</p>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<hr>
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> merge = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/merge'</span> );
 
 <span class="hljs-keyword">var</span> target;
 <span class="hljs-keyword">var</span> source;
@@ -295,4 +387,21 @@ out = merge( {}, target, source );
         'e': true
     }
 */</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/copy"><code>@stdlib/utils/copy</code></a></span><span class="delimiter">: </span><span class="description">copy or deep clone a value to an arbitrary depth.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/copy"><code>@stdlib/utils/copy</code></a></span><span class="delimiter">: </span><span class="description">copy or deep clone a value to an arbitrary depth.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

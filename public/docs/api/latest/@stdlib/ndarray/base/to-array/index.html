@@ -1,5 +1,19 @@
-<h1 id="ndarray2array">ndarray2array</h1><blockquote><p>Convert an ndarray buffer to a generic array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-array'</span> );
-</code></pre><h4 id="ndarray2array-buffer-shape-strides-offset-order-">ndarray2array( buffer, shape, strides, offset, order )</h4><p>Converts an ndarray buffer to a generic array (which may include nested arrays).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<h1 id="ndarray2array">ndarray2array</h1>
+<blockquote>
+<p>Convert an ndarray buffer to a generic array.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-array'</span> );
+</code></pre>
+<h4 id="ndarray2array-buffer-shape-strides-offset-order-">ndarray2array( buffer, shape, strides, offset, order )</h4>
+<p>Converts an ndarray buffer to a generic array (which may include nested arrays).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
 <span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
 <span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
@@ -7,7 +21,9 @@
 
 <span class="hljs-keyword">var</span> arr = ndarray2array( buffer, shape, strides, offset, order );
 <span class="hljs-comment">// returns [ [ 1, 2 ], [ 3, 4 ] ]</span>
-</code></pre><p>The <code>order</code> parameter specifies whether an array is <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+</code></pre>
+<p>The <code>order</code> parameter specifies whether an array is <code>row-major</code> (C-style) or <code>column-major</code> (Fortran-style).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
 <span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> order = <span class="hljs-string">'column-major'</span>;
 <span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ];
@@ -15,7 +31,9 @@
 
 <span class="hljs-keyword">var</span> arr = ndarray2array( buffer, shape, strides, offset, order );
 <span class="hljs-comment">// returns [ [ 1, 3 ], [ 2, 4 ] ]</span>
-</code></pre><p>The <code>offset</code> parameter specifies the location of the first indexed element based on the <code>strides</code> array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+</code></pre>
+<p>The <code>offset</code> parameter specifies the location of the first indexed element based on the <code>strides</code> array.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
 <span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 <span class="hljs-keyword">var</span> order = <span class="hljs-string">'row-major'</span>;
 <span class="hljs-keyword">var</span> strides = [ -<span class="hljs-number">2</span>, -<span class="hljs-number">1</span> ];
@@ -23,7 +41,18 @@
 
 <span class="hljs-keyword">var</span> arr = ndarray2array( buffer, shape, strides, offset, order );
 <span class="hljs-comment">// returns [ [ 4, 3 ], [ 2, 1 ] ]</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape2strides = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/shape2strides'</span> );
 <span class="hljs-keyword">var</span> strides2offset = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/strides2offset'</span> );
 <span class="hljs-keyword">var</span> dicreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-array'</span> );
@@ -63,4 +92,18 @@
     arr = ndarray2array( buffer, shape, strides, offset, order );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">JSON</span>.stringify( arr ) );
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,17 +1,44 @@
-<h1 id="iternth">iterNth</h1><blockquote><p>Return the nth <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterNth = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/nth'</span> );
-</code></pre><h4 id="iternth-iterator-n-">iterNth( iterator, n )</h4><p>Returns the nth <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+<h1 id="iternth">iterNth</h1>
+<blockquote>
+<p>Return the nth <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterNth = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/nth'</span> );
+</code></pre>
+<h4 id="iternth-iterator-n-">iterNth( iterator, n )</h4>
+<p>Returns the nth <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> value.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] );
 
 <span class="hljs-keyword">var</span> v = iterNth( arr, <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 1</span>
-</code></pre><p>If <code>n</code> exceeds the total number of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> values, the function returns <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+</code></pre>
+<p>If <code>n</code> exceeds the total number of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterated</a> values, the function returns <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-keyword">var</span> arr = array2iterator( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] );
 
 <span class="hljs-keyword">var</span> v = iterNth( arr, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns undefined</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
 <span class="hljs-keyword">var</span> iterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/map'</span> );
 <span class="hljs-keyword">var</span> iterNth = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/nth'</span> );
 
@@ -33,4 +60,26 @@
 <span class="hljs-comment">// returns &#x3C;boolean></span>
 
 <span class="hljs-built_in">console</span>.log( bool );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/first"><code>@stdlib/iter/first</code></a></span><span class="delimiter">: </span><span class="description">return the first iterated value.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/last"><code>@stdlib/iter/last</code></a></span><span class="delimiter">: </span><span class="description">consume an entire iterator and return the last iterated value.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/first"><code>@stdlib/iter/first</code></a></span><span class="delimiter">: </span><span class="description">return the first iterated value.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/last"><code>@stdlib/iter/last</code></a></span><span class="delimiter">: </span><span class="description">consume an entire iterator and return the last iterated value.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

@@ -1,5 +1,17 @@
-<h1 id="english-stop-words">English Stop Words</h1><blockquote><p>A list of English <a href="https://en.wikipedia.org/wiki/Stop_words">stop words</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stopwords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/stopwords-en'</span> );
-</code></pre><h4 id="stopwords">stopwords()</h4><p>Returns a list of 301 english <a href="https://en.wikipedia.org/wiki/Stop_words">stop words</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = stopwords();
+<h1 id="english-stop-words">English Stop Words</h1>
+<blockquote>
+<p>A list of English <a href="https://en.wikipedia.org/wiki/Stop_words">stop words</a>.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stopwords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/stopwords-en'</span> );
+</code></pre>
+<h4 id="stopwords">stopwords()</h4>
+<p>Returns a list of 301 english <a href="https://en.wikipedia.org/wiki/Stop_words">stop words</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = stopwords();
 <span class="hljs-comment">/* returns
     [
         'a',
@@ -10,7 +22,13 @@
         ...
     ]
 */</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> stopwords = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/stopwords-en'</span> );
 
@@ -24,17 +42,46 @@
     idx = floor( randu()*len );
     <span class="hljs-built_in">console</span>.log( list[ idx ] );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: stopwords-en [options]
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: stopwords-en [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stopwords-en
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ stopwords-en
 a
 about
 above
 across
 actually
 ...
-</code></pre></section></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- <license> -->
+<h2 id="license">License</h2>
+<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+<!-- </license> -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,5 +1,14 @@
-<h1 id="chi-square-independence-test">Chi-square independence test</h1><blockquote><p>Perform a chi-square independence test.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chi2test = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/chi2test'</span> );
-</code></pre><h4 id="chi2test-x-opts-">chi2test( x[, opts] )</h4><p>Computes a chi-square independence test for the <strong>null hypothesis</strong> that the joint distribution of the cell counts in two-dimensional <code>ndarray</code> or <code>array</code> of <code>arrays</code> <code>x</code> is the product of the row and column marginals, i.e. that the row and column variables are independent.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// 2x2 table</span>
+<h1 id="chi-square-independence-test">Chi-square independence test</h1>
+<blockquote>
+<p>Perform a chi-square independence test.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chi2test = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/chi2test'</span> );
+</code></pre>
+<h4 id="chi2test-x-opts-">chi2test( x[, opts] )</h4>
+<p>Computes a chi-square independence test for the <strong>null hypothesis</strong> that the joint distribution of the cell counts in two-dimensional <code>ndarray</code> or <code>array</code> of <code>arrays</code> <code>x</code> is the product of the row and column marginals, i.e. that the row and column variables are independent.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// 2x2 table</span>
 <span class="hljs-keyword">var</span> x = [
     [ <span class="hljs-number">20</span>, <span class="hljs-number">30</span> ],
     [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span> ]
@@ -16,7 +25,14 @@
         ...
     }
 */</span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: significance level of the hypothesis test. Must be on the interval <code>[0,1]</code>. Default: <code>0.05</code>.</li><li><strong>correct</strong>: <code>boolean</code> indicating whether to use Yates' continuity correction when provided a 2x2 contingency table. Default: <code>true</code>.</li></ul><p>By default, the test is performed at a significance level of <code>0.05</code>. To adjust the significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>alpha</strong>: significance level of the hypothesis test. Must be on the interval <code>[0,1]</code>. Default: <code>0.05</code>.</li>
+<li><strong>correct</strong>: <code>boolean</code> indicating whether to use Yates' continuity correction when provided a 2x2 contingency table. Default: <code>true</code>.</li>
+</ul>
+<p>By default, the test is performed at a significance level of <code>0.05</code>. To adjust the significance level, set the <code>alpha</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     [ <span class="hljs-number">20</span>, <span class="hljs-number">30</span> ],
     [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span> ]
 ];
@@ -34,7 +50,9 @@
         ...
     }
 */</span>
-</code></pre><p>For 2x2 contingency tables, the function by default applies Yates' continuity correction. To disable the continuity correction, set <code>correct</code> to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+</code></pre>
+<p>For 2x2 contingency tables, the function by default applies Yates' continuity correction. To disable the continuity correction, set <code>correct</code> to <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     [ <span class="hljs-number">20</span>, <span class="hljs-number">30</span> ],
     [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span> ]
 ];
@@ -52,7 +70,21 @@
         ...
     }
 */</span>
-</code></pre><p>The function returns an <code>object</code> having the following properties:</p><ul><li><strong>alpha</strong>: significance level.</li><li><strong>rejected</strong>: <code>boolean</code> indicating the test decision.</li><li><strong>pValue</strong>: test p-value.</li><li><strong>statistic</strong>: test statistic.</li><li><strong>df</strong>: degrees of freedom.</li><li><strong>expected</strong>: expected cell counts.</li><li><strong>method</strong>: test name.</li><li><strong>print</strong>: method for printing formatted test output.</li></ul><p>To print formatted test output, invoke the <code>print</code> method. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
+</code></pre>
+<p>The function returns an <code>object</code> having the following properties:</p>
+<ul>
+<li><strong>alpha</strong>: significance level.</li>
+<li><strong>rejected</strong>: <code>boolean</code> indicating the test decision.</li>
+<li><strong>pValue</strong>: test p-value.</li>
+<li><strong>statistic</strong>: test statistic.</li>
+<li><strong>df</strong>: degrees of freedom.</li>
+<li><strong>expected</strong>: expected cell counts.</li>
+<li><strong>method</strong>: test name.</li>
+<li><strong>print</strong>: method for printing formatted test output.</li>
+</ul>
+<p>To print formatted test output, invoke the <code>print</code> method. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [
     [ <span class="hljs-number">20</span>, <span class="hljs-number">30</span> ],
     [ <span class="hljs-number">30</span>, <span class="hljs-number">20</span> ]
 ];
@@ -84,7 +116,20 @@
 *
 * Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The chi-square approximation may be incorrect if the observed or expected frequencies in each category are too small. Common practice is to require frequencies greater than five. The Yates' continuity correction is enabled by default for 2x2 tables to account for this, although it tends to over-correct.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The chi-square approximation may be incorrect if the observed or expected frequencies in each category are too small. Common practice is to require frequencies greater than five. The Yates' continuity correction is enabled by default for 2x2 tables to account for this, although it tends to over-correct.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 <span class="hljs-keyword">var</span> chi2test = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/chi2test'</span> );
 
 <span class="hljs-keyword">var</span> table;
@@ -107,4 +152,14 @@ out = chi2test( table );
 <span class="hljs-comment">// returns {...}</span>
 
 <span class="hljs-built_in">console</span>.log( out.print() );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,5 +1,19 @@
-<h1 id="curryright">curryRight</h1><blockquote><p>Transform a function into a sequence of functions each accepting a single argument.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> curryRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/curry-right'</span> );
-</code></pre><h4 id="curryright-fcn-arity-thisarg-">curryRight( fcn[, arity][, thisArg] )</h4><p>Transforms a function into a sequence of functions each accepting a single argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+<h1 id="curryright">curryRight</h1>
+<blockquote>
+<p>Transform a function into a sequence of functions each accepting a single argument.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> curryRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/curry-right'</span> );
+</code></pre>
+<h4 id="curryright-fcn-arity-thisarg-">curryRight( fcn[, arity][, thisArg] )</h4>
+<p>Transforms a function into a sequence of functions each accepting a single argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
     <span class="hljs-keyword">return</span> x + y;
 }
 
@@ -7,7 +21,9 @@
 
 <span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">2</span> )( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 5</span>
-</code></pre><p>By default, <code>arity</code> is equal to <code>fcn.length</code>. For functions without explicit parameters, provide an <code>arity</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>() </span>{
+</code></pre>
+<p>By default, <code>arity</code> is equal to <code>fcn.length</code>. For functions without explicit parameters, provide an <code>arity</code> argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">0</span> ] + <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">1</span> ];
 }
 
@@ -15,7 +31,10 @@
 
 <span class="hljs-keyword">var</span> sum = fcn( <span class="hljs-number">2</span> )( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 5</span>
-</code></pre><p>To specify the curried function execution context, provide a <code>thisArg</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+</code></pre>
+<p>To specify the curried function execution context, provide a <code>thisArg</code> argument.</p>
+<!-- eslint-disable no-restricted-syntax -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'Ada'</span>,
     <span class="hljs-string">'greet'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"> word1, word2 </span>) </span>{
         <span class="hljs-keyword">return</span> word1 + <span class="hljs-string">' '</span> + word2 + <span class="hljs-string">', '</span> + <span class="hljs-built_in">this</span>.name + <span class="hljs-string">'!'</span>;
@@ -26,9 +45,12 @@
 
 <span class="hljs-keyword">var</span> str = fcn( <span class="hljs-string">'there'</span> )( <span class="hljs-string">'Hello'</span> );
 <span class="hljs-comment">// returns 'Hello there, Ada!'</span>
-</code></pre><p>The function supports providing both an <code>arity</code> and execution context.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+</code></pre>
+<p>The function supports providing both an <code>arity</code> and execution context.</p>
+<!-- eslint-disable no-restricted-syntax -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'name'</span>: <span class="hljs-string">'Ada'</span>,
-    <span class="hljs-string">'greet'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>() </span>{
+    <span class="hljs-string">'greet'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">0</span> ] + <span class="hljs-string">' '</span> + <span class="hljs-built_in">arguments</span>[ <span class="hljs-number">1</span> ] + <span class="hljs-string">', '</span> + <span class="hljs-built_in">this</span>.name + <span class="hljs-string">'!'</span>;
     }
 };
@@ -37,7 +59,16 @@
 
 <span class="hljs-keyword">var</span> str = fcn( <span class="hljs-string">'there'</span> )( <span class="hljs-string">'Hello'</span> );
 <span class="hljs-comment">// returns 'Hello there, Ada!'</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Until return value resolution, each invocation returns a new partially applied curry function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y, z </span>) </span>{
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Until return value resolution, each invocation returns a new partially applied curry function.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y, z </span>) </span>{
     <span class="hljs-keyword">return</span> x + y + z;
 }
 
@@ -75,7 +106,19 @@ s2 = f2( <span class="hljs-number">70</span> );
 
 s2 = f2( <span class="hljs-number">700</span> );
 <span class="hljs-comment">// returns 709</span>
-</code></pre></li><li><p>The difference between this function and <a href="/docs/api/latest/@stdlib/utils/curry"><code>curry</code></a> is the order in which arguments are applied. This function applies arguments starting from the right.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> curryRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/curry-right'</span> );
+</code></pre>
+</li>
+<li>
+<p>The difference between this function and <a href="/docs/api/latest/@stdlib/utils/curry"><code>curry</code></a> is the order in which arguments are applied. This function applies arguments starting from the right.</p>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> curryRight = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/curry-right'</span> );
 
 <span class="hljs-keyword">var</span> fcn;
 <span class="hljs-keyword">var</span> out;
@@ -91,4 +134,27 @@ out = fcn;
     out = out( i*<span class="hljs-number">10</span> );
 }
 <span class="hljs-built_in">console</span>.log( out );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/curry"><code>@stdlib/utils/curry</code></a></span><span class="delimiter">: </span><span class="description">transform a function into a sequence of functions each accepting a single argument.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncurry"><code>@stdlib/utils/uncurry</code></a></span><span class="delimiter">: </span><span class="description">transform a curried function into a function invoked with multiple arguments.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncurry-right"><code>@stdlib/utils/uncurry-right</code></a></span><span class="delimiter">: </span><span class="description">transform a curried function into a function invoked with multiple arguments.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/curry"><code>@stdlib/utils/curry</code></a></span><span class="delimiter">: </span><span class="description">transform a function into a sequence of functions each accepting a single argument.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncurry"><code>@stdlib/utils/uncurry</code></a></span><span class="delimiter">: </span><span class="description">transform a curried function into a function invoked with multiple arguments.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncurry-right"><code>@stdlib/utils/uncurry-right</code></a></span><span class="delimiter">: </span><span class="description">transform a curried function into a function invoked with multiple arguments.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

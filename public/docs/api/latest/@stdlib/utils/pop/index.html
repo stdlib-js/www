@@ -1,5 +1,19 @@
-<h1 id="pop">pop</h1><blockquote><p>Remove and return the last element of a collection.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pop'</span> );
-</code></pre><h4 id="pop-collection-">pop( collection )</h4><p>Removes and returns the last element of a <code>collection</code>. A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (i.e., an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> having a valid writable <code>length</code> property).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ];
+<h1 id="pop">pop</h1>
+<blockquote>
+<p>Remove and return the last element of a collection.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pop'</span> );
+</code></pre>
+<h4 id="pop-collection-">pop( collection )</h4>
+<p>Removes and returns the last element of a <code>collection</code>. A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (i.e., an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> having a valid writable <code>length</code> property). </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ];
 
 <span class="hljs-keyword">var</span> out = pop( arr );
 <span class="hljs-comment">// returns [ [ 1.0, 2.0, 3.0, 4.0 ], 5.0 ]</span>
@@ -9,7 +23,9 @@
 
 <span class="hljs-keyword">var</span> lastValue = out[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 5.0</span>
-</code></pre><p>In contrast to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop"><code>Array.prototype.pop</code></a> which returns only the removed element, the function also returns the shortened collection. For <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> having a length greater than <code>0</code>, the returned collection is a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> view.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span>= <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<p>In contrast to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop"><code>Array.prototype.pop</code></a> which returns only the removed element, the function also returns the shortened collection. For <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> having a length greater than <code>0</code>, the returned collection is a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> view.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span>= <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">2</span> );
 arr[ <span class="hljs-number">0</span> ] = <span class="hljs-number">1.0</span>;
@@ -26,7 +42,22 @@ bool = ( out[ <span class="hljs-number">0</span> ].buffer === arr.buffer );
 
 <span class="hljs-keyword">var</span> lastValue = out[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 2.0</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>When provided a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a>, the function does <strong>not</strong> change the underlying <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. The function returns a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> view whose length is one less than the input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> length. Accordingly, the function does <strong>not</strong> reduce the memory footprint of an input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span>= <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>When provided a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a>, the function does <strong>not</strong> change the underlying <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. The function returns a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> view whose length is one less than the input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> length. Accordingly, the function does <strong>not</strong> reduce the memory footprint of an input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span>= <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> pop = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pop'</span> );
 
 <span class="hljs-keyword">var</span> arr;
@@ -40,4 +71,27 @@ arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64A
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Length: %d'</span>, arr.length );
 }
 <span class="hljs-built_in">console</span>.log( arr );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/push"><code>@stdlib/utils/push</code></a></span><span class="delimiter">: </span><span class="description">add one or more elements to the end of a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/shift"><code>@stdlib/utils/shift</code></a></span><span class="delimiter">: </span><span class="description">remove and return the first element of a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/unshift"><code>@stdlib/utils/unshift</code></a></span><span class="delimiter">: </span><span class="description">add one or more elements to the beginning of a collection.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/push"><code>@stdlib/utils/push</code></a></span><span class="delimiter">: </span><span class="description">add one or more elements to the end of a collection.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/shift"><code>@stdlib/utils/shift</code></a></span><span class="delimiter">: </span><span class="description">remove and return the first element of a collection.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/unshift"><code>@stdlib/utils/unshift</code></a></span><span class="delimiter">: </span><span class="description">add one or more elements to the beginning of a collection.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

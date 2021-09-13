@@ -1,5 +1,14 @@
-<h1 id="copysign">Copysign</h1><blockquote><p>Return a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> with the magnitude of <code>x</code> and the sign of <code>y</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copysign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/copysign'</span> );
-</code></pre><h4 id="copysign-x-y-">copysign( x, y )</h4><p>Returns a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> with the magnitude of <code>x</code> and the sign of <code>y</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = copysign( -<span class="hljs-number">3.14</span>, <span class="hljs-number">10.0</span> );
+<h1 id="copysign">Copysign</h1>
+<blockquote>
+<p>Return a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> with the magnitude of <code>x</code> and the sign of <code>y</code>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copysign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/copysign'</span> );
+</code></pre>
+<h4 id="copysign-x-y-">copysign( x, y )</h4>
+<p>Returns a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> with the magnitude of <code>x</code> and the sign of <code>y</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> z = copysign( -<span class="hljs-number">3.14</span>, <span class="hljs-number">10.0</span> );
 <span class="hljs-comment">// returns 3.14</span>
 
 z = copysign( <span class="hljs-number">3.14</span>, -<span class="hljs-number">1.0</span> );
@@ -13,7 +22,20 @@ z = copysign( -<span class="hljs-number">3.14</span>, -<span class="hljs-number"
 
 z = copysign( -<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>According to the <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE754</a> standard, a <code>NaN</code> has a biased exponent equal to <code>2047</code>, a significand greater than <code>0</code>, and a sign bit equal to <strong>either</strong> <code>1</code> <strong>or</strong> <code>0</code>. In which case, <code>NaN</code> may not correspond to just one but many binary representations. Accordingly, care should be taken to ensure that <code>y</code> is <strong>not</strong> <code>NaN</code>, else behavior may be indeterminate.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>According to the <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE754</a> standard, a <code>NaN</code> has a biased exponent equal to <code>2047</code>, a significand greater than <code>0</code>, and a sign bit equal to <strong>either</strong> <code>1</code> <strong>or</strong> <code>0</code>. In which case, <code>NaN</code> may not correspond to just one but many binary representations. Accordingly, care should be taken to ensure that <code>y</code> is <strong>not</strong> <code>NaN</code>, else behavior may be indeterminate.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> copysign = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/copysign'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -28,4 +50,21 @@ z = copysign( -<span class="hljs-number">0.0</span>, <span class="hljs-number">1
     z = copysign( x, y );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, y: %d => %d'</span>, x, y, z );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/flipsign"><code>@stdlib/math/base/special/flipsign</code></a></span><span class="delimiter">: </span><span class="description">return a double-precision floating-point number with the magnitude of x and the sign of x*y.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/flipsign"><code>@stdlib/math/base/special/flipsign</code></a></span><span class="delimiter">: </span><span class="description">return a double-precision floating-point number with the magnitude of x and the sign of x*y.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

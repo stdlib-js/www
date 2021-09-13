@@ -1,7 +1,24 @@
-<h1 id="doubly-linked-list">Doubly Linked List</h1><blockquote><p>Doubly linked list constructor.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> doublyLinkedList = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/doubly-linked-list'</span> );
-</code></pre><h4 id="doublylinkedlist">doublyLinkedList()</h4><p>Returns a new doubly linked list instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+<h1 id="doubly-linked-list">Doubly Linked List</h1>
+<blockquote>
+<p>Doubly linked list constructor.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> doublyLinkedList = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/doubly-linked-list'</span> );
+</code></pre>
+<h4 id="doublylinkedlist">doublyLinkedList()</h4>
+<p>Returns a new doubly linked list instance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 <span class="hljs-comment">// returns &#x3C;DoublyLinkedList></span>
-</code></pre><h5 id="listclear">list.clear()</h5><p>Clears a list.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listclear">list.clear()</h5>
+<p>Clears a list.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 <span class="hljs-comment">// returns &#x3C;DoublyLinkedList></span>
 
 <span class="hljs-comment">// Add values to the list:</span>
@@ -25,7 +42,10 @@ v = list.first();
 <span class="hljs-comment">// Examine the list length:</span>
 len = list.length;
 <span class="hljs-comment">// returns 0</span>
-</code></pre><h5 id="listfirst">list.first()</h5><p>Returns the first <code>node</code>. If the list is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listfirst">list.first()</h5>
+<p>Returns the first <code>node</code>. If the list is currently empty, the returned value is <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 <span class="hljs-comment">// returns &#x3C;DoublyLinkedList></span>
 
 <span class="hljs-comment">// Add values to the list:</span>
@@ -34,7 +54,10 @@ list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-stri
 <span class="hljs-comment">// Peek at the first value:</span>
 <span class="hljs-keyword">var</span> v = list.first().value;
 <span class="hljs-comment">// returns 'foo'</span>
-</code></pre><h5 id="listinsert-node-value-location-">list.insert( node, value[, location] )</h5><p>Inserts a <code>value</code> into the list either before or after a provided list <code>node</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listinsert-node-value-location-">list.insert( node, value[, location] )</h5>
+<p>Inserts a <code>value</code> into the list either before or after a provided list <code>node</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 <span class="hljs-comment">// returns &#x3C;DoublyLinkedList></span>
 
 <span class="hljs-comment">// Add values to the list:</span>
@@ -57,7 +80,14 @@ len = list.length;
 <span class="hljs-comment">// Return a list of values:</span>
 <span class="hljs-keyword">var</span> values = list.toArray();
 <span class="hljs-comment">// returns [ 'foo', 'bar', 'boop', 'beep' ]</span>
-</code></pre><p>The method supports the following insertion locations:</p><ul><li><code>'before'</code>: insert a <code>value</code> into the list <strong>before</strong> a provided list <code>node</code>.</li><li><code>'after'</code>: insert a <code>value</code> into the list <strong>after</strong> a provided list <code>node</code>.</li></ul><p>By default, the method inserts a <code>value</code> into the list <strong>after</strong> a provided list <code>node</code>. To insert a value <strong>before</strong> a provided list <code>node</code>, invoke the method with the <code>location</code> argument equal to <code>'before'</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<p>The method supports the following insertion locations:</p>
+<ul>
+<li><code>'before'</code>: insert a <code>value</code> into the list <strong>before</strong> a provided list <code>node</code>.</li>
+<li><code>'after'</code>: insert a <code>value</code> into the list <strong>after</strong> a provided list <code>node</code>.</li>
+</ul>
+<p>By default, the method inserts a <code>value</code> into the list <strong>after</strong> a provided list <code>node</code>. To insert a value <strong>before</strong> a provided list <code>node</code>, invoke the method with the <code>location</code> argument equal to <code>'before'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 <span class="hljs-comment">// returns &#x3C;DoublyLinkedList></span>
 
 <span class="hljs-comment">// Add values to the list:</span>
@@ -80,7 +110,10 @@ len = list.length;
 <span class="hljs-comment">// Return a list of values:</span>
 <span class="hljs-keyword">var</span> values = list.toArray();
 <span class="hljs-comment">// returns [ 'foo', 'boop', 'bar', 'beep' ]</span>
-</code></pre><h5 id="listiterator-direction-">list.iterator( [direction] )</h5><p>Returns an iterator for iterating over a list. If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listiterator-direction-">list.iterator( [direction] )</h5>
+<p>Returns an iterator for iterating over a list. If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -97,7 +130,14 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>The method supports the following iteration directions:</p><ul><li><code>'forward'</code>: iterate over a list from the first value until the last value.</li><li><code>'reverse'</code>: iterate over a list from the last value until the first value.</li></ul><p>By default, the method returns an iterator which iterates over a list from the first value until the last value. To return an iterator which iterates in reverse order, invoke the method with the <code>direction</code> argument equal to <code>'reverse'</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<p>The method supports the following iteration directions:</p>
+<ul>
+<li><code>'forward'</code>: iterate over a list from the first value until the last value.</li>
+<li><code>'reverse'</code>: iterate over a list from the last value until the first value.</li>
+</ul>
+<p>By default, the method returns an iterator which iterates over a list from the first value until the last value. To return an iterator which iterates in reverse order, invoke the method with the <code>direction</code> argument equal to <code>'reverse'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -114,7 +154,11 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre><p><strong>Note</strong>: in order to prevent confusion arising from list mutation during iteration, a returned iterator <strong>always</strong> iterates over a list "snapshot", which is defined as the list of list elements at the time of <code>list.iterator()</code> invocation.</p><h5 id="listlast">list.last()</h5><p>Returns the last <code>node</code>. If the list is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<p><strong>Note</strong>: in order to prevent confusion arising from list mutation during iteration, a returned iterator <strong>always</strong> iterates over a list "snapshot", which is defined as the list of list elements at the time of <code>list.iterator()</code> invocation.</p>
+<h5 id="listlast">list.last()</h5>
+<p>Returns the last <code>node</code>. If the list is currently empty, the returned value is <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 <span class="hljs-comment">// returns &#x3C;DoublyLinkedList></span>
 
 <span class="hljs-comment">// Add values to the list:</span>
@@ -123,7 +167,10 @@ list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-stri
 <span class="hljs-comment">// Peek at the last value:</span>
 <span class="hljs-keyword">var</span> v = list.last().value;
 <span class="hljs-comment">// returns 'bar'</span>
-</code></pre><h5 id="listlength">list.length</h5><p>List length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listlength">list.length</h5>
+<p>List length.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Examine the initial list length:</span>
 <span class="hljs-keyword">var</span> len = list.length;
@@ -135,7 +182,10 @@ list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-stri
 <span class="hljs-comment">// Retrieve the current list length:</span>
 len = list.length;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><h5 id="listpop">list.pop()</h5><p>Removes a value from the end of the list. If the list is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listpop">list.pop()</h5>
+<p>Removes a value from the end of the list. If the list is currently empty, the returned value is <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -150,7 +200,10 @@ list.push( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Remove the last value:</span>
 v = list.pop();
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre><h5 id="listpush-value-">list.push( value )</h5><p>Adds a value to the end of the list.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listpush-value-">list.push( value )</h5>
+<p>Adds a value to the end of the list.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -165,7 +218,10 @@ list.push( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Remove the last value:</span>
 v = list.pop();
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre><h5 id="listremove-node-">list.remove( node )</h5><p>Removes a <code>node</code> from the list.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listremove-node-">list.remove( node )</h5>
+<p>Removes a <code>node</code> from the list.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> ).push( <span class="hljs-string">'beep'</span> );
@@ -184,7 +240,10 @@ list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-stri
 <span class="hljs-comment">// Determine the list length:</span>
 len = list.length;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><h5 id="listshift">list.shift()</h5><p>Removes a value from the beginning of the list. If the list is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listshift">list.shift()</h5>
+<p>Removes a value from the beginning of the list. If the list is currently empty, the returned value is <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -199,7 +258,10 @@ list.push( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Remove the first value:</span>
 v = list.shift();
 <span class="hljs-comment">// returns 'bar'</span>
-</code></pre><h5 id="listtoarray">list.toArray()</h5><p>Returns an array of list values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listtoarray">list.toArray()</h5>
+<p>Returns an array of list values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -207,7 +269,10 @@ list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-stri
 <span class="hljs-comment">// Get an array of list values:</span>
 <span class="hljs-keyword">var</span> vals = list.toArray();
 <span class="hljs-comment">// returns [ 'foo', 'bar' ]</span>
-</code></pre><h5 id="listtojson">list.toJSON()</h5><p>Serializes a list as JSON.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<h5 id="listtojson">list.toJSON()</h5>
+<p>Serializes a list as JSON.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -215,7 +280,11 @@ list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-stri
 <span class="hljs-comment">// Serialize to JSON:</span>
 <span class="hljs-keyword">var</span> o = list.toJSON();
 <span class="hljs-comment">// returns { 'type': 'doubly-linked-list', 'data': [ 'foo', 'bar' ] }</span>
-</code></pre><p><strong>Note</strong>: <code>JSON.stringify()</code> implicitly calls this method when stringifying a list instance.</p><h5 id="listunshift-value-">list.unshift( value )</h5><p>Adds a value to the beginning of the list.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+<p><strong>Note</strong>: <code>JSON.stringify()</code> implicitly calls this method when stringifying a list instance.</p>
+<h5 id="listunshift-value-">list.unshift( value )</h5>
+<p>Adds a value to the beginning of the list.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.unshift( <span class="hljs-string">'foo'</span> ).unshift( <span class="hljs-string">'bar'</span> );
@@ -230,7 +299,16 @@ list.unshift( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Remove the last value:</span>
 v = list.pop();
 <span class="hljs-comment">// returns 'bar'</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>To manually traverse a list, use list node <code>next</code> and <code>prev</code> properties.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>To manually traverse a list, use list node <code>next</code> and <code>prev</code> properties.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> list = doublyLinkedList();
 
 <span class="hljs-comment">// Add values to the list:</span>
 list.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> ).push( <span class="hljs-string">'beep'</span> ).push( <span class="hljs-string">'boop'</span> );
@@ -252,7 +330,16 @@ n = list.last();
     <span class="hljs-built_in">console</span>.log( n.value );
     n = n.prev;
 }
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> doublyLinkedList = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/doubly-linked-list'</span> );
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> doublyLinkedList = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/doubly-linked-list'</span> );
 
 <span class="hljs-keyword">var</span> list;
 <span class="hljs-keyword">var</span> iter;
@@ -300,4 +387,26 @@ list.clear();
 <span class="hljs-comment">// Inspect the list length:</span>
 len = list.length;
 <span class="hljs-comment">// returns 0</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/linked-list"><code>@stdlib/utils/linked-list</code></a></span><span class="delimiter">: </span><span class="description">linked list.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/stack"><code>@stdlib/utils/stack</code></a></span><span class="delimiter">: </span><span class="description">stack.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/linked-list"><code>@stdlib/utils/linked-list</code></a></span><span class="delimiter">: </span><span class="description">linked list.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/stack"><code>@stdlib/utils/stack</code></a></span><span class="delimiter">: </span><span class="description">stack.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

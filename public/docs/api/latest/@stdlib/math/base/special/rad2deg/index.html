@@ -1,5 +1,14 @@
-<h1 id="rad2deg">rad2deg</h1><blockquote><p>Convert an angle from radians to degrees.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rad2deg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rad2deg'</span> );
-</code></pre><h4 id="rad2deg-x-">rad2deg( x )</h4><p>Converts an angle from radians to degrees.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = rad2deg( <span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">2.0</span> );
+<h1 id="rad2deg">rad2deg</h1>
+<blockquote>
+<p>Convert an angle from radians to degrees.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rad2deg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rad2deg'</span> );
+</code></pre>
+<h4 id="rad2deg-x-">rad2deg( x )</h4>
+<p>Converts an angle from radians to degrees.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = rad2deg( <span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns 90.0</span>
 
 d = rad2deg( -<span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">4.0</span> );
@@ -7,9 +16,25 @@ d = rad2deg( -<span class="hljs-number">3.141592653589793</span>/<span class="hl
 
 d = rad2deg( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Due to finite precision, canonical values may not be returned. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = rad2deg( <span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">6.0</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Due to finite precision, canonical values may not be returned. For example,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> d = rad2deg( <span class="hljs-number">3.141592653589793</span>/<span class="hljs-number">6.0</span> );
 <span class="hljs-comment">// returns 29.999999999999996</span>
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> TWO_PI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/float64/two-pi'</span> );
 <span class="hljs-keyword">var</span> rad2deg = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/rad2deg'</span> );
 
@@ -22,4 +47,21 @@ d = rad2deg( <span class="hljs-literal">NaN</span> );
     d = rad2deg( r );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'radians: %d => degrees: %d'</span>, r, d );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/deg2rad"><code>@stdlib/math/base/special/deg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert an angle from degrees to radians.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/deg2rad"><code>@stdlib/math/base/special/deg2rad</code></a></span><span class="delimiter">: </span><span class="description">convert an angle from degrees to radians.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

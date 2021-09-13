@@ -1,48 +1,131 @@
-<h1 id="uint8array">Uint8Array</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">Typed array</a> constructor which returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> representing an array of 8-bit unsigned integers in the platform byte order.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
-</code></pre><h4 id="uint8array-1">Uint8Array()</h4><p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> constructor which returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> representing an array of 8-bit unsigned integers in the platform byte order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>();
+<h1 id="uint8array">Uint8Array</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">Typed array</a> constructor which returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> representing an array of 8-bit unsigned integers in the platform byte order.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+</code></pre>
+<h4 id="uint8array-1">Uint8Array()</h4>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> constructor which returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> representing an array of 8-bit unsigned integers in the platform byte order.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>();
 <span class="hljs-comment">// returns &#x3C;Uint8Array></span>
-</code></pre><h4 id="uint8array-length-">Uint8Array( length )</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
+</code></pre>
+<h4 id="uint8array-length-">Uint8Array( length )</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> having a specified length.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 0, 0, 0, 0, 0 ]</span>
-</code></pre><h4 id="uint8array-typedarray-">Uint8Array( typedarray )</h4><p>Creates a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> from another <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre>
+<h4 id="uint8array-typedarray-">Uint8Array( typedarray )</h4>
+<p>Creates a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> from another <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
 <span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span> ] );
 <span class="hljs-keyword">var</span> arr2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( arr1 );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 5, 5, 5 ]</span>
-</code></pre><h4 id="uint8array-obj-">Uint8Array( obj )</h4><p>Creates a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> from an array-like <code>object</code> or iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span> ] );
+</code></pre>
+<h4 id="uint8array-obj-">Uint8Array( obj )</h4>
+<p>Creates a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> from an array-like <code>object</code> or iterable.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span> ] );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 5, 5, 5 ]</span>
-</code></pre><h4 id="uint8array-buffer-byteoffset-length-">Uint8Array( buffer[, byteOffset[, length]] )</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> view of an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+</code></pre>
+<h4 id="uint8array-buffer-byteoffset-length-">Uint8Array( buffer[, byteOffset[, length]] )</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> view of an <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 
 <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">4</span> );
 <span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( buf, <span class="hljs-number">0</span>, <span class="hljs-number">4</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 0, 0, 0, 0 ]</span>
-</code></pre><hr><h3 id="properties">Properties</h3><p></p><h4 id="uint8arraybytes_per_element">Uint8Array.BYTES_PER_ELEMENT</h4><p>Number of bytes per view element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nbytes = <span class="hljs-built_in">Uint8Array</span>.BYTES_PER_ELEMENT;
+</code></pre>
+<hr>
+<h3 id="properties">Properties</h3>
+<p><a name="static-prop-bytes-per-element"></a></p>
+<h4 id="uint8arraybytes_per_element">Uint8Array.BYTES_PER_ELEMENT</h4>
+<p>Number of bytes per view element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nbytes = <span class="hljs-built_in">Uint8Array</span>.BYTES_PER_ELEMENT;
 <span class="hljs-comment">// returns 1</span>
-</code></pre><p></p><h4 id="uint8arrayname">Uint8Array.name</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">Typed array</a> constructor name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-built_in">Uint8Array</span>.name;
+</code></pre>
+<p><a name="static-prop-name"></a></p>
+<h4 id="uint8arrayname">Uint8Array.name</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">Typed array</a> constructor name.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-built_in">Uint8Array</span>.name;
 <span class="hljs-comment">// returns 'Uint8Array'</span>
-</code></pre><p></p><h4 id="uint8arrayprototypebuffer">Uint8Array.prototype.buffer</h4><p><strong>Read-only</strong> property which returns the <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> referenced by the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
+</code></pre>
+<p><a name="prop-buffer"></a></p>
+<h4 id="uint8arrayprototypebuffer">Uint8Array.prototype.buffer</h4>
+<p><strong>Read-only</strong> property which returns the <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> referenced by the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> buf = arr.buffer;
 <span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
-</code></pre><p></p><h4 id="uint8arrayprototypebytelength">Uint8Array.prototype.byteLength</h4><p><strong>Read-only</strong> property which returns the length (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
+</code></pre>
+<p><a name="prop-byte-length"></a></p>
+<h4 id="uint8arrayprototypebytelength">Uint8Array.prototype.byteLength</h4>
+<p><strong>Read-only</strong> property which returns the length (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> byteLength = arr.byteLength;
 <span class="hljs-comment">// returns 5</span>
-</code></pre><p></p><h4 id="uint8arrayprototypebyteoffset">Uint8Array.prototype.byteOffset</h4><p><strong>Read-only</strong> property which returns the offset (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> from the start of its <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
+</code></pre>
+<p><a name="prop-byte-offset"></a></p>
+<h4 id="uint8arrayprototypebyteoffset">Uint8Array.prototype.byteOffset</h4>
+<p><strong>Read-only</strong> property which returns the offset (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">typed array</a> from the start of its <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> byteOffset = arr.byteOffset;
 <span class="hljs-comment">// returns 0</span>
-</code></pre><p></p><h4 id="uint8arrayprototypebytes_per_element">Uint8Array.prototype.BYTES_PER_ELEMENT</h4><p>Number of bytes per view element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
+</code></pre>
+<p><a name="prop-bytes-per-element"></a></p>
+<h4 id="uint8arrayprototypebytes_per_element">Uint8Array.prototype.BYTES_PER_ELEMENT</h4>
+<p>Number of bytes per view element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> nbytes = arr.BYTES_PER_ELEMENT;
 <span class="hljs-comment">// returns 1</span>
-</code></pre><p></p><h4 id="uint8arrayprototypelength">Uint8Array.prototype.length</h4><p><strong>Read-only</strong> property which returns the number of view elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
+</code></pre>
+<p><a name="prop-length"></a></p>
+<h4 id="uint8arrayprototypelength">Uint8Array.prototype.length</h4>
+<p><strong>Read-only</strong> property which returns the number of view elements.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> len = arr.length;
 <span class="hljs-comment">// returns 5</span>
-</code></pre><hr><h3 id="methods">Methods</h3><p></p><h4 id="uint8arrayfrom-src-map-thisarg-">Uint8Array.from( src[, map[, thisArg]] )</h4><p>Creates a new typed array from an array-like <code>object</code> or an iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Uint8Array</span>.from( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+</code></pre>
+<hr>
+<h3 id="methods">Methods</h3>
+<p><a name="static-method-from"></a></p>
+<h4 id="uint8arrayfrom-src-map-thisarg-">Uint8Array.from( src[, map[, thisArg]] )</h4>
+<p>Creates a new typed array from an array-like <code>object</code> or an iterable.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Uint8Array</span>.from( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 2 ]</span>
-</code></pre><p>To invoke a function for each <code>src</code> value, provide a callback function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>To invoke a function for each <code>src</code> value, provide a callback function.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2</span>;
 }
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Uint8Array</span>.from( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], mapFcn );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 2, 4 ]</span>
-</code></pre><p>A callback function is provided two arguments:</p><ul><li><code>value</code>: source value</li><li><code>index</code>: source index</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>A callback function is provided two arguments:</p>
+<ul>
+<li><code>value</code>: source value</li>
+<li><code>index</code>: source index</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2</span>;
 }
@@ -56,9 +139,18 @@
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p></p><h4 id="uint8arrayof-element0-element1-elementn-">Uint8Array.of( element0[, element1[, ...elementN]] )</h4><p>Creates a new typed array from a variable number of arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Uint8Array</span>.of( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
+</code></pre>
+<p><a name="static-method-of"></a></p>
+<h4 id="uint8arrayof-element0-element1-elementn-">Uint8Array.of( element0[, element1[, ...elementN]] )</h4>
+<p>Creates a new typed array from a variable number of arguments.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Uint8Array</span>.of( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 2 ]</span>
-</code></pre><p></p><h4 id="uint8arrayprototypecopywithin-target-start-end-">Uint8Array.prototype.copyWithin( target, start[, end] )</h4><p>Copies a sequence of elements within an array starting at <code>start</code> and ending at <code>end</code> (non-inclusive) to the position starting at <code>target</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ] );
+</code></pre>
+<p><a name="method-copy-within"></a></p>
+<h4 id="uint8arrayprototypecopywithin-target-start-end-">Uint8Array.prototype.copyWithin( target, start[, end] )</h4>
+<p>Copies a sequence of elements within an array starting at <code>start</code> and ending at <code>end</code> (non-inclusive) to the position starting at <code>target</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ] );
 
 <span class="hljs-comment">// Copy the last two elements to the first two elements:</span>
 arr.copyWithin( <span class="hljs-number">0</span>, <span class="hljs-number">3</span> );
@@ -68,7 +160,10 @@ arr.copyWithin( <span class="hljs-number">0</span>, <span class="hljs-number">3<
 
 v = arr[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 5</span>
-</code></pre><p>By default, <code>end</code> equals the number of array elements (i.e., one more than the last array index). To limit the sequence length, provide an <code>end</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ] );
+</code></pre>
+<p>By default, <code>end</code> equals the number of array elements (i.e., one more than the last array index). To limit the sequence length, provide an <code>end</code> argument.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ] );
 
 <span class="hljs-comment">// Copy the first two elements to the last two elements:</span>
 arr.copyWithin( <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
@@ -78,7 +173,10 @@ arr.copyWithin( <span class="hljs-number">3</span>, <span class="hljs-number">0<
 
 v = arr[ <span class="hljs-number">4</span> ];
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p>When a <code>target</code>, <code>start</code>, and/or <code>end</code> index is negative, the respective index is determined relative to the last array element. The following example achieves the same behavior as the previous example:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ] );
+</code></pre>
+<p>When a <code>target</code>, <code>start</code>, and/or <code>end</code> index is negative, the respective index is determined relative to the last array element. The following example achieves the same behavior as the previous example:</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ] );
 
 <span class="hljs-comment">// Copy the first two elements to the last two elements:</span>
 arr.copyWithin( -<span class="hljs-number">2</span>, -<span class="hljs-number">5</span>, -<span class="hljs-number">3</span> );
@@ -88,7 +186,12 @@ arr.copyWithin( -<span class="hljs-number">2</span>, -<span class="hljs-number">
 
 v = arr[ <span class="hljs-number">4</span> ];
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p></p><h4 id="uint8arrayprototypeentries">Uint8Array.prototype.entries()</h4><p>Returns an iterator for iterating over array key-value pairs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+</code></pre>
+<p><a name="method-entries"></a></p>
+<h4 id="uint8arrayprototypeentries">Uint8Array.prototype.entries()</h4>
+<p>Returns an iterator for iterating over array key-value pairs.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
 
 <span class="hljs-comment">// Create an iterator:</span>
 <span class="hljs-keyword">var</span> it = arr.entries();
@@ -102,7 +205,12 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre><p></p><h4 id="uint8arrayprototypeevery-predicate-thisarg-">Uint8Array.prototype.every( predicate[, thisArg] )</h4><p>Tests whether all array elements pass a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p><a name="method-every"></a></p>
+<h4 id="uint8arrayprototypeevery-predicate-thisarg-">Uint8Array.prototype.every( predicate[, thisArg] )</h4>
+<p>Tests whether all array elements pass a test implemented by a <code>predicate</code> function.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v &#x3C;= <span class="hljs-number">1</span> );
 }
 
@@ -110,7 +218,16 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = arr.every( predicate );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>A <code>predicate</code> function is provided three arguments:</p>
+<ul>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">1</span> );
 }
@@ -126,7 +243,12 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p></p><h4 id="uint8arrayprototypefill-value-start-end-">Uint8Array.prototype.fill( value[, start[, end]] )</h4><p>Fills an array from a <code>start</code> index to an <code>end</code> index (non-inclusive) with a provided <code>value</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">2</span> );
+</code></pre>
+<p><a name="method-fill"></a></p>
+<h4 id="uint8arrayprototypefill-value-start-end-">Uint8Array.prototype.fill( value[, start[, end]] )</h4>
+<p>Fills an array from a <code>start</code> index to an <code>end</code> index (non-inclusive) with a provided <code>value</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">2</span> );
 
 <span class="hljs-comment">// Set all array elements to the same value:</span>
 arr.fill( <span class="hljs-number">2</span> );
@@ -154,7 +276,10 @@ v = arr[ <span class="hljs-number">0</span> ];
 
 v = arr[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p>When a <code>start</code> and/or <code>end</code> index is negative, the respective index is determined relative to the last array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">2</span> );
+</code></pre>
+<p>When a <code>start</code> and/or <code>end</code> index is negative, the respective index is determined relative to the last array element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">2</span> );
 
 <span class="hljs-comment">// Set all array elements, except the last element, to the same value:</span>
 arr.fill( <span class="hljs-number">2</span>, -arr.length, -<span class="hljs-number">1</span> );
@@ -164,7 +289,12 @@ arr.fill( <span class="hljs-number">2</span>, -arr.length, -<span class="hljs-nu
 
 v = arr[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 0</span>
-</code></pre><p></p><h4 id="uint8arrayprototypefilter-predicate-thisarg-">Uint8Array.prototype.filter( predicate[, thisArg] )</h4><p>Creates a new array (of the same data type as the host array) which includes those elements for which a <code>predicate</code> function returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p><a name="method-filter"></a></p>
+<h4 id="uint8arrayprototypefilter-predicate-thisarg-">Uint8Array.prototype.filter( predicate[, thisArg] )</h4>
+<p>Creates a new array (of the same data type as the host array) which includes those elements for which a <code>predicate</code> function returns a truthy value.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">2</span> );
 }
 
@@ -172,7 +302,10 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> arr2 = arr1.filter( predicate );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 2, 3 ]</span>
-</code></pre><p>If a <code>predicate</code> function does not return a truthy value for any array element, the method returns an empty array.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>If a <code>predicate</code> function does not return a truthy value for any array element, the method returns an empty array.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">10</span> );
 }
 
@@ -180,7 +313,16 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> arr2 = arr1.filter( predicate );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[]</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>A <code>predicate</code> function is provided three arguments:</p>
+<ul>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">2</span> );
 }
@@ -195,7 +337,12 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p></p><h4 id="uint8arrayprototypefind-predicate-thisarg-">Uint8Array.prototype.find( predicate[, thisArg] )</h4><p>Returns the first array element for which a provided <code>predicate</code> function returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p><a name="method-find"></a></p>
+<h4 id="uint8arrayprototypefind-predicate-thisarg-">Uint8Array.prototype.find( predicate[, thisArg] )</h4>
+<p>Returns the first array element for which a provided <code>predicate</code> function returns a truthy value.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">2</span> );
 }
 
@@ -203,7 +350,10 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> v = arr.find( predicate );
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p>If a <code>predicate</code> function does not return a truthy value for any array element, the method returns <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>If a <code>predicate</code> function does not return a truthy value for any array element, the method returns <code>undefined</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v &#x3C; <span class="hljs-number">1</span> );
 }
 
@@ -211,7 +361,16 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> v = arr.find( predicate );
 <span class="hljs-comment">// returns undefined</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>A <code>predicate</code> function is provided three arguments:</p>
+<ul>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">2</span> );
 }
@@ -227,7 +386,12 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p></p><h4 id="uint8arrayprototypefindindex-predicate-thisarg-">Uint8Array.prototype.findIndex( predicate[, thisArg] )</h4><p>Returns the index of the first array element for which a provided <code>predicate</code> function returns a truthy value.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p><a name="method-find-index"></a></p>
+<h4 id="uint8arrayprototypefindindex-predicate-thisarg-">Uint8Array.prototype.findIndex( predicate[, thisArg] )</h4>
+<p>Returns the index of the first array element for which a provided <code>predicate</code> function returns a truthy value.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">3</span> );
 }
 
@@ -235,7 +399,10 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> idx = arr.findIndex( predicate );
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p>If a <code>predicate</code> function does not return a truthy value for any array element, the method returns <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>If a <code>predicate</code> function does not return a truthy value for any array element, the method returns <code>-1</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v &#x3C; <span class="hljs-number">1</span> );
 }
 
@@ -243,7 +410,16 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> idx = arr.findIndex( predicate );
 <span class="hljs-comment">// returns -1</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>A <code>predicate</code> function is provided three arguments:</p>
+<ul>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">3</span> );
 }
@@ -259,7 +435,12 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p></p><h4 id="uint8arrayprototypeforeach-fcn-thisarg-">Uint8Array.prototype.forEach( fcn[, thisArg] )</h4><p>Invokes a callback for each array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-for-each"></a></p>
+<h4 id="uint8arrayprototypeforeach-fcn-thisarg-">Uint8Array.prototype.forEach( fcn[, thisArg] )</h4>
+<p>Invokes a callback for each array element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> str = <span class="hljs-string">''</span>;
 
@@ -274,7 +455,16 @@ arr.forEach( fcn );
 
 <span class="hljs-built_in">console</span>.log( str );
 <span class="hljs-comment">// => '0:1 1:2 2:3'</span>
-</code></pre><p>The callback is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>() </span>{
+</code></pre>
+<p>The callback is provided three arguments:</p>
+<ul>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
 }
 
@@ -288,45 +478,80 @@ arr.forEach( fcn, ctx );
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p></p><h4 id="uint8arrayprototypeincludes-searchelement-fromindex-">Uint8Array.prototype.includes( searchElement[, fromIndex] )</h4><p>Returns a <code>boolean</code> indicating whether an array includes a search element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-includes"></a></p>
+<h4 id="uint8arrayprototypeincludes-searchelement-fromindex-">Uint8Array.prototype.includes( searchElement[, fromIndex] )</h4>
+<p>Returns a <code>boolean</code> indicating whether an array includes a search element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> bool = arr.includes( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = arr.includes( <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>By default, the method searches the entire array (<code>fromIndex = 0</code>). To begin searching from a specific array index, provide a <code>fromIndex</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method searches the entire array (<code>fromIndex = 0</code>). To begin searching from a specific array index, provide a <code>fromIndex</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> bool = arr.includes( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>When a <code>fromIndex</code> is negative, the starting index is resolved relative to the last array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>When a <code>fromIndex</code> is negative, the starting index is resolved relative to the last array element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 bool = arr.includes( <span class="hljs-number">1</span>, -<span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p></p><h4 id="uint8arrayprototypeindexof-searchelement-fromindex-">Uint8Array.prototype.indexOf( searchElement[, fromIndex] )</h4><p>Returns the index of the first array element strictly equal to a search element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-index-of"></a></p>
+<h4 id="uint8arrayprototypeindexof-searchelement-fromindex-">Uint8Array.prototype.indexOf( searchElement[, fromIndex] )</h4>
+<p>Returns the index of the first array element strictly equal to a search element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> idx = arr.indexOf( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 2</span>
 
 idx = arr.indexOf( <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns -1</span>
-</code></pre><p>By default, the method searches the entire array (<code>fromIndex = 0</code>). To begin searching from a specific array index, provide a <code>fromIndex</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method searches the entire array (<code>fromIndex = 0</code>). To begin searching from a specific array index, provide a <code>fromIndex</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> idx = arr.indexOf( <span class="hljs-number">1</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns -1</span>
-</code></pre><p>When a <code>fromIndex</code> is negative, the starting index is resolved relative to the last array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>When a <code>fromIndex</code> is negative, the starting index is resolved relative to the last array element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> idx = arr.indexOf( <span class="hljs-number">1</span>, -<span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns -1</span>
-</code></pre><p></p><h4 id="uint8arrayprototypejoin-separator-">Uint8Array.prototype.join( [separator] )</h4><p>Serializes an array by joining all array elements as a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-join"></a></p>
+<h4 id="uint8arrayprototypejoin-separator-">Uint8Array.prototype.join( [separator] )</h4>
+<p>Serializes an array by joining all array elements as a string.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> str = arr.join();
 <span class="hljs-comment">// returns '1,2,3'</span>
-</code></pre><p>By default, the method delineates array elements using a comma <code>,</code>. To specify a custom separator, provide a <code>separator</code> string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method delineates array elements using a comma <code>,</code>. To specify a custom separator, provide a <code>separator</code> string.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> str = arr.join( <span class="hljs-string">'|'</span> );
 <span class="hljs-comment">// returns '1|2|3'</span>
-</code></pre><p></p><h4 id="uint8arrayprototypekeys">Uint8Array.prototype.keys()</h4><p>Returns an iterator for iterating over array keys.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+</code></pre>
+<p><a name="method-keys"></a></p>
+<h4 id="uint8arrayprototypekeys">Uint8Array.prototype.keys()</h4>
+<p>Returns an iterator for iterating over array keys.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
 
 <span class="hljs-comment">// Create an iterator:</span>
 <span class="hljs-keyword">var</span> it = arr.keys();
@@ -340,22 +565,38 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre><p></p><h4 id="uint8arrayprototypelastindexof-searchelement-fromindex-">Uint8Array.prototype.lastIndexOf( searchElement[, fromIndex] )</h4><p>Returns the index of the last array element strictly equal to a search element, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+</code></pre>
+<p><a name="method-last-index-of"></a></p>
+<h4 id="uint8arrayprototypelastindexof-searchelement-fromindex-">Uint8Array.prototype.lastIndexOf( searchElement[, fromIndex] )</h4>
+<p>Returns the index of the last array element strictly equal to a search element, iterating from right to left.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
 
 <span class="hljs-keyword">var</span> idx = arr.lastIndexOf( <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 3</span>
 
 idx = arr.lastIndexOf( <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns -1</span>
-</code></pre><p>By default, the method searches the entire array (<code>fromIndex = -1</code>). To begin searching from a specific array index, provide a <code>fromIndex</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+</code></pre>
+<p>By default, the method searches the entire array (<code>fromIndex = -1</code>). To begin searching from a specific array index, provide a <code>fromIndex</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
 
 <span class="hljs-keyword">var</span> idx = arr.lastIndexOf( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns 1</span>
-</code></pre><p>When a <code>fromIndex</code> is negative, the starting index is resolved relative to the last array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+</code></pre>
+<p>When a <code>fromIndex</code> is negative, the starting index is resolved relative to the last array element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
 
 <span class="hljs-keyword">var</span> idx = arr.lastIndexOf( <span class="hljs-number">0</span>, -<span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns 1</span>
-</code></pre><p></p><h4 id="uint8arrayprototypemap-fcn-thisarg-">Uint8Array.prototype.map( fcn[, thisArg] )</h4><p>Maps each array element to an element in a new array having the same data type as the host array.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p><a name="method-map"></a></p>
+<h4 id="uint8arrayprototypemap-fcn-thisarg-">Uint8Array.prototype.map( fcn[, thisArg] )</h4>
+<p>Maps each array element to an element in a new array having the same data type as the host array.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2</span>;
 }
 
@@ -363,7 +604,16 @@ idx = arr.lastIndexOf( <span class="hljs-number">3</span> );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.map( fcn );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 2, 4, 6 ]</span>
-</code></pre><p>A callback is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>A callback is provided three arguments:</p>
+<ul>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2</span>;
 }
@@ -378,7 +628,12 @@ idx = arr.lastIndexOf( <span class="hljs-number">3</span> );
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p></p><h4 id="uint8arrayprototypereduce-fcn-initialvalue-">Uint8Array.prototype.reduce( fcn[, initialValue] )</h4><p>Applies a function against an accumulator and each element in an array and returns the accumulated result.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
+</code></pre>
+<p><a name="method-reduce"></a></p>
+<h4 id="uint8arrayprototypereduce-fcn-initialvalue-">Uint8Array.prototype.reduce( fcn[, initialValue] )</h4>
+<p>Applies a function against an accumulator and each element in an array and returns the accumulated result.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
     <span class="hljs-keyword">return</span> acc + ( v*v );
 }
 
@@ -386,7 +641,11 @@ idx = arr.lastIndexOf( <span class="hljs-number">3</span> );
 
 <span class="hljs-keyword">var</span> v = arr.reduce( fcn );
 <span class="hljs-comment">// returns 12</span>
-</code></pre><p>If not provided an initial value, the method invokes a provided function with the first array element as the first argument and the second array element as the second argument.</p><p>If provided an initial value, the method invokes a provided function with the initial value as the first argument and the first array element as the second argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
+</code></pre>
+<p>If not provided an initial value, the method invokes a provided function with the first array element as the first argument and the second array element as the second argument.</p>
+<p>If provided an initial value, the method invokes a provided function with the initial value as the first argument and the first array element as the second argument.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
     <span class="hljs-keyword">return</span> acc + ( v*v );
 }
 
@@ -394,7 +653,19 @@ idx = arr.lastIndexOf( <span class="hljs-number">3</span> );
 
 <span class="hljs-keyword">var</span> v = arr.reduce( fcn, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 14</span>
-</code></pre><p>A callback is provided four arguments:</p><ul><li><code>acc</code>: accumulated result</li><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p></p><h4 id="uint8arrayprototypereduceright-fcn-initialvalue-">Uint8Array.prototype.reduceRight( fcn[, initialValue] )</h4><p>Applies a function against an accumulator and each element in an array and returns the accumulated result, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
+</code></pre>
+<p>A callback is provided four arguments:</p>
+<ul>
+<li><code>acc</code>: accumulated result</li>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p><a name="method-reduce-right"></a></p>
+<h4 id="uint8arrayprototypereduceright-fcn-initialvalue-">Uint8Array.prototype.reduceRight( fcn[, initialValue] )</h4>
+<p>Applies a function against an accumulator and each element in an array and returns the accumulated result, iterating from right to left.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
     <span class="hljs-keyword">return</span> acc + ( v*v );
 }
 
@@ -402,7 +673,11 @@ idx = arr.lastIndexOf( <span class="hljs-number">3</span> );
 
 <span class="hljs-keyword">var</span> v = arr.reduceRight( fcn );
 <span class="hljs-comment">// returns 8</span>
-</code></pre><p>If not provided an initial value, the method invokes a provided function with the last array element as the first argument and the second-to-last array element as the second argument.</p><p>If provided an initial value, the method invokes a provided function with the initial value as the first argument and the last array element as the second argument.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
+</code></pre>
+<p>If not provided an initial value, the method invokes a provided function with the last array element as the first argument and the second-to-last array element as the second argument.</p>
+<p>If provided an initial value, the method invokes a provided function with the initial value as the first argument and the last array element as the second argument.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
     <span class="hljs-keyword">return</span> acc + ( v*v );
 }
 
@@ -410,7 +685,19 @@ idx = arr.lastIndexOf( <span class="hljs-number">3</span> );
 
 <span class="hljs-keyword">var</span> v = arr.reduce( fcn, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns 14</span>
-</code></pre><p>A callback is provided four arguments:</p><ul><li><code>acc</code>: accumulated result</li><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p></p><h4 id="uint8arrayprototypereverse">Uint8Array.prototype.reverse()</h4><p>Reverses an array <strong>in-place</strong> (thus mutating the array on which the method is invoked).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>A callback is provided four arguments:</p>
+<ul>
+<li><code>acc</code>: accumulated result</li>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p><a name="method-reverse"></a></p>
+<h4 id="uint8arrayprototypereverse">Uint8Array.prototype.reverse()</h4>
+<p>Reverses an array <strong>in-place</strong> (thus mutating the array on which the method is invoked).</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-comment">// Reverse the array:</span>
 arr.reverse();
@@ -423,7 +710,12 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 v = arr[ <span class="hljs-number">2</span> ];
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p></p><h4 id="uint8arrayprototypeset-arr-offset-">Uint8Array.prototype.set( arr[, offset] )</h4><p>Sets array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-set"></a></p>
+<h4 id="uint8arrayprototypeset-arr-offset-">Uint8Array.prototype.set( arr[, offset] )</h4>
+<p>Sets array elements.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 2, 3 ]</span>
 
 <span class="hljs-comment">// Set the first two array elements:</span>
@@ -434,7 +726,10 @@ arr.set( [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span
 
 v = arr[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 5</span>
-</code></pre><p>By default, the method starts writing values at the first array index. To specify an alternative index, provide an index <code>offset</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method starts writing values at the first array index. To specify an alternative index, provide an index <code>offset</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 2, 3 ]</span>
 
 <span class="hljs-comment">// Set the last two array elements:</span>
@@ -445,7 +740,12 @@ arr.set( [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span
 
 v = arr[ <span class="hljs-number">2</span> ];
 <span class="hljs-comment">// returns 5</span>
-</code></pre><p></p><h4 id="uint8arrayprototypeslice-begin-end-">Uint8Array.prototype.slice( [begin[, end]] )</h4><p>Copies array elements to a new array with the same underlying data type as the host array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-slice"></a></p>
+<h4 id="uint8arrayprototypeslice-begin-end-">Uint8Array.prototype.slice( [begin[, end]] )</h4>
+<p>Copies array elements to a new array with the same underlying data type as the host array.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.slice();
 
@@ -463,7 +763,10 @@ v = arr2[ <span class="hljs-number">1</span> ];
 
 v = arr2[ <span class="hljs-number">2</span> ];
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p>By default, the method copies elements beginning with the first array element. To specify an alternative array index at which to begin copying, provide a <code>begin</code> index (inclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method copies elements beginning with the first array element. To specify an alternative array index at which to begin copying, provide a <code>begin</code> index (inclusive).</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.slice( <span class="hljs-number">1</span> );
 
@@ -475,7 +778,10 @@ v = arr2[ <span class="hljs-number">2</span> ];
 
 v = arr2[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p>By default, the method copies all array elements after <code>begin</code>. To specify an alternative array index at which to end copying, provide an <code>end</code> index (exclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method copies all array elements after <code>begin</code>. To specify an alternative array index at which to end copying, provide an <code>end</code> index (exclusive).</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.slice( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
 
@@ -487,7 +793,10 @@ v = arr2[ <span class="hljs-number">1</span> ];
 
 v = arr2[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p>When a <code>begin</code> and/or <code>end</code> index is negative, the respective index is determined relative to the last array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>When a <code>begin</code> and/or <code>end</code> index is negative, the respective index is determined relative to the last array element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.slice( -arr1.length, -<span class="hljs-number">1</span> );
 
@@ -499,7 +808,12 @@ v = arr2[ <span class="hljs-number">1</span> ];
 
 v = arr2[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p></p><h4 id="uint8arrayprototypesome-predicate-thisarg-">Uint8Array.prototype.some( predicate[, thisArg] )</h4><p>Tests whether at least one array element passes a test implemented by a <code>predicate</code> function.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p><a name="method-some"></a></p>
+<h4 id="uint8arrayprototypesome-predicate-thisarg-">Uint8Array.prototype.some( predicate[, thisArg] )</h4>
+<p>Tests whether at least one array element passes a test implemented by a <code>predicate</code> function.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">2</span> );
 }
 
@@ -507,7 +821,16 @@ v = arr2[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> bool = arr.some( predicate );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre>
+<p>A <code>predicate</code> function is provided three arguments:</p>
+<ul>
+<li><code>value</code>: array element</li>
+<li><code>index</code>: array index</li>
+<li><code>arr</code>: array on which the method is invoked</li>
+</ul>
+<p>To set the callback execution context, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">2</span> );
 }
@@ -523,7 +846,12 @@ v = arr2[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> n = ctx.count;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><p></p><h4 id="uint8arrayprototypesort-comparefunction-">Uint8Array.prototype.sort( [compareFunction] )</h4><p>Sorts an array <strong>in-place</strong> (thus mutating the array on which the method is invoked).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span> ] );
+</code></pre>
+<p><a name="method-sort"></a></p>
+<h4 id="uint8arrayprototypesort-comparefunction-">Uint8Array.prototype.sort( [compareFunction] )</h4>
+<p>Sorts an array <strong>in-place</strong> (thus mutating the array on which the method is invoked).</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span> ] );
 
 <span class="hljs-comment">// Sort the array (in ascending order):</span>
 arr.sort();
@@ -536,7 +864,10 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 v = arr[ <span class="hljs-number">2</span> ];
 <span class="hljs-comment">// returns 3</span>
-</code></pre><p>By default, the method sorts array elements in ascending order. To impose a custom order, provide a <code>compareFunction</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">descending</span>(<span class="hljs-params"> a, b </span>) </span>{
+</code></pre>
+<p>By default, the method sorts array elements in ascending order. To impose a custom order, provide a <code>compareFunction</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">descending</span>(<span class="hljs-params"> a, b </span>) </span>{
     <span class="hljs-keyword">return</span> b - a;
 }
 
@@ -553,47 +884,85 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 v = arr[ <span class="hljs-number">2</span> ];
 <span class="hljs-comment">// returns 0</span>
-</code></pre><p>The comparison function is provided two array elements, <code>a</code> and <code>b</code>, per invocation, and its return value determines the sort order as follows:</p><ul><li>If the comparison function returns a value <strong>less</strong> than zero, then the method sorts <code>a</code> to an index lower than <code>b</code> (i.e., <code>a</code> should come <strong>before</strong> <code>b</code>).</li><li>If the comparison function returns a value <strong>greater</strong> than zero, then the method sorts <code>a</code> to an index higher than <code>b</code> (i.e., <code>b</code> should come <strong>before</strong> <code>a</code>).</li><li>If the comparison function returns <strong>zero</strong>, then the relative order of <code>a</code> and <code>b</code> <em>should</em> remain unchanged.</li></ul><p></p><h4 id="uint8arrayprototypesubarray-begin-end-">Uint8Array.prototype.subarray( [begin[, end]] )</h4><p>Creates a new typed array view over the same underlying <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> and with the same underlying data type as the host array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>The comparison function is provided two array elements, <code>a</code> and <code>b</code>, per invocation, and its return value determines the sort order as follows:</p>
+<ul>
+<li>If the comparison function returns a value <strong>less</strong> than zero, then the method sorts <code>a</code> to an index lower than <code>b</code> (i.e., <code>a</code> should come <strong>before</strong> <code>b</code>).</li>
+<li>If the comparison function returns a value <strong>greater</strong> than zero, then the method sorts <code>a</code> to an index higher than <code>b</code> (i.e., <code>b</code> should come <strong>before</strong> <code>a</code>).</li>
+<li>If the comparison function returns <strong>zero</strong>, then the relative order of <code>a</code> and <code>b</code> <em>should</em> remain unchanged.</li>
+</ul>
+<p><a name="method-subarray"></a></p>
+<h4 id="uint8arrayprototypesubarray-begin-end-">Uint8Array.prototype.subarray( [begin[, end]] )</h4>
+<p>Creates a new typed array view over the same underlying <a href="/docs/api/latest/@stdlib/array/buffer"><code>ArrayBuffer</code></a> and with the same underlying data type as the host array.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.subarray();
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 2, 3 ]</span>
 
 <span class="hljs-keyword">var</span> bool = ( arr1.buffer === arr2.buffer );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>By default, the method creates a typed array view beginning with the first array element. To specify an alternative array index at which to begin, provide a <code>begin</code> index (inclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method creates a typed array view beginning with the first array element. To specify an alternative array index at which to begin, provide a <code>begin</code> index (inclusive).</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.subarray( <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 2, 3 ]</span>
 
 <span class="hljs-keyword">var</span> bool = ( arr1.buffer === arr2.buffer );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>By default, the method creates a typed array view which includes all array elements after <code>begin</code>. To limit the number of array elements after <code>begin</code>, provide an <code>end</code> index (exclusive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>By default, the method creates a typed array view which includes all array elements after <code>begin</code>. To limit the number of array elements after <code>begin</code>, provide an <code>end</code> index (exclusive).</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.subarray( <span class="hljs-number">0</span>, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 2 ]</span>
 
 <span class="hljs-keyword">var</span> bool = ( arr1.buffer === arr2.buffer );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>When a <code>begin</code> and/or <code>end</code> index is negative, the respective index is determined relative to the last array element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>When a <code>begin</code> and/or <code>end</code> index is negative, the respective index is determined relative to the last array element.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.subarray( -arr1.length, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[ 1, 2 ]</span>
 
 <span class="hljs-keyword">var</span> bool = ( arr1.buffer === arr2.buffer );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>If the method is unable to resolve indices to a non-empty array subsequence, the method returns an empty typed array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p>If the method is unable to resolve indices to a non-empty array subsequence, the method returns an empty typed array.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.subarray( <span class="hljs-number">10</span>, -<span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array>[]</span>
-</code></pre><p></p><h4 id="uint8arrayprototypetolocalestring-locales-options-">Uint8Array.prototype.toLocaleString( [locales[, options]] )</h4><p>Serializes an array as a locale-specific <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-to-locale-string"></a></p>
+<h4 id="uint8arrayprototypetolocalestring-locales-options-">Uint8Array.prototype.toLocaleString( [locales[, options]] )</h4>
+<p>Serializes an array as a locale-specific <code>string</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> str = arr.toLocaleString();
 <span class="hljs-comment">// returns '1,2,3'</span>
-</code></pre><p></p><h4 id="uint8arrayprototypetostring">Uint8Array.prototype.toString()</h4><p>Serializes an array as a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<p><a name="method-to-string"></a></p>
+<h4 id="uint8arrayprototypetostring">Uint8Array.prototype.toString()</h4>
+<p>Serializes an array as a <code>string</code>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> str = arr.toString();
 <span class="hljs-comment">// returns '1,2,3'</span>
-</code></pre><p></p><h4 id="uint8arrayprototypevalues">Uint8Array.prototype.values()</h4><p>Returns an iterator for iterating over array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+</code></pre>
+<p><a name="method-values"></a></p>
+<h4 id="uint8arrayprototypevalues">Uint8Array.prototype.values()</h4>
+<p>Returns an iterator for iterating over array elements.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
 
 <span class="hljs-comment">// Create an iterator:</span>
 <span class="hljs-keyword">var</span> it = arr.values();
@@ -607,7 +976,19 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<hr>
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> ctor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
@@ -619,4 +1000,33 @@ arr = <span class="hljs-keyword">new</span> ctor( <span class="hljs-number">10</
     arr[ i ] = round( randu()*<span class="hljs-number">100.0</span> );
 }
 <span class="hljs-built_in">console</span>.log( arr );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/buffer"><code>@stdlib/array/buffer</code></a></span><span class="delimiter">: </span><span class="description">ArrayBuffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/float32"><code>@stdlib/array/float32</code></a></span><span class="delimiter">: </span><span class="description">Float32Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/float64"><code>@stdlib/array/float64</code></a></span><span class="delimiter">: </span><span class="description">Float64Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int16"><code>@stdlib/array/int16</code></a></span><span class="delimiter">: </span><span class="description">Int16Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int32"><code>@stdlib/array/int32</code></a></span><span class="delimiter">: </span><span class="description">Int32Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int8"><code>@stdlib/array/int8</code></a></span><span class="delimiter">: </span><span class="description">Int8Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint16"><code>@stdlib/array/uint16</code></a></span><span class="delimiter">: </span><span class="description">Uint16Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint32"><code>@stdlib/array/uint32</code></a></span><span class="delimiter">: </span><span class="description">Uint32Array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint8c"><code>@stdlib/array/uint8c</code></a></span><span class="delimiter">: </span><span class="description">Uint8ClampedArray.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/buffer"><code>@stdlib/array/buffer</code></a></span><span class="delimiter">: </span><span class="description">ArrayBuffer.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/float32"><code>@stdlib/array/float32</code></a></span><span class="delimiter">: </span><span class="description">Float32Array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/float64"><code>@stdlib/array/float64</code></a></span><span class="delimiter">: </span><span class="description">Float64Array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int16"><code>@stdlib/array/int16</code></a></span><span class="delimiter">: </span><span class="description">Int16Array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int32"><code>@stdlib/array/int32</code></a></span><span class="delimiter">: </span><span class="description">Int32Array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/int8"><code>@stdlib/array/int8</code></a></span><span class="delimiter">: </span><span class="description">Int8Array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint16"><code>@stdlib/array/uint16</code></a></span><span class="delimiter">: </span><span class="description">Uint16Array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint32"><code>@stdlib/array/uint32</code></a></span><span class="delimiter">: </span><span class="description">Uint32Array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/uint8c"><code>@stdlib/array/uint8c</code></a></span><span class="delimiter">: </span><span class="description">Uint8ClampedArray.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

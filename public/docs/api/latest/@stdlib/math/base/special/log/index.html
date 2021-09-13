@@ -1,5 +1,14 @@
-<h1 id="logarithm">Logarithm</h1><blockquote><p>Compute the base <code>b</code> <a href="https://en.wikipedia.org/wiki/Logarithm">logarithm</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log'</span> );
-</code></pre><h4 id="log-x-b-">log( x, b )</h4><p>Computes the base <code>b</code> logarithm of <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log( <span class="hljs-number">100.0</span>, <span class="hljs-number">10.0</span> );
+<h1 id="logarithm">Logarithm</h1>
+<blockquote>
+<p>Compute the base <code>b</code> <a href="https://en.wikipedia.org/wiki/Logarithm">logarithm</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log'</span> );
+</code></pre>
+<h4 id="log-x-b-">log( x, b )</h4>
+<p>Computes the base <code>b</code> logarithm of <code>x</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log( <span class="hljs-number">100.0</span>, <span class="hljs-number">10.0</span> );
 <span class="hljs-comment">// returns 2.0</span>
 
 v = log( <span class="hljs-number">16.0</span>, <span class="hljs-number">2.0</span> );
@@ -7,12 +16,20 @@ v = log( <span class="hljs-number">16.0</span>, <span class="hljs-number">2.0</s
 
 v = log( <span class="hljs-number">5.0</span>, <span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns Infinity</span>
-</code></pre><p>For negative <code>x</code> or <code>b</code>, the <a href="https://en.wikipedia.org/wiki/Logarithm">logarithm</a> is <strong>not</strong> defined.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log( -<span class="hljs-number">4.0</span>, <span class="hljs-number">1.0</span> );
+</code></pre>
+<p>For negative <code>x</code> or <code>b</code>, the <a href="https://en.wikipedia.org/wiki/Logarithm">logarithm</a> is <strong>not</strong> defined.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = log( -<span class="hljs-number">4.0</span>, <span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 v = log( <span class="hljs-number">2.0</span>, -<span class="hljs-number">4.0</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log'</span> );
 
@@ -25,4 +42,25 @@ v = log( <span class="hljs-number">2.0</span>, -<span class="hljs-number">4.0</s
     b = round( randu() * <span class="hljs-number">5.0</span> );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'log( %d, %d ) = %d'</span>, x, b, log( x, b ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log10"><code>@stdlib/math/base/special/log10</code></a></span><span class="delimiter">: </span><span class="description">common logarithm (base ten).</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log10"><code>@stdlib/math/base/special/log10</code></a></span><span class="delimiter">: </span><span class="description">common logarithm (base ten).</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log1p"><code>@stdlib/math/base/special/log1p</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of 1+x.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/log2"><code>@stdlib/math/base/special/log2</code></a></span><span class="delimiter">: </span><span class="description">binary logarithm (base 2).</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

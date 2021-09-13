@@ -1,9 +1,22 @@
-<h1 id="dayofquarter">dayOfQuarter</h1><blockquote><p>Determine the day of the quarter.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dayOfQuarter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/day-of-quarter'</span> );
-</code></pre><h4 id="dayofquarter-month-day-year-">dayOfQuarter( [month[, day, year]] )</h4><p>Returns the day of the quarter.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter();
+<h1 id="dayofquarter">dayOfQuarter</h1>
+<blockquote>
+<p>Determine the day of the quarter.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dayOfQuarter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/day-of-quarter'</span> );
+</code></pre>
+<h4 id="dayofquarter-month-day-year-">dayOfQuarter( [month[, day, year]] )</h4>
+<p>Returns the day of the quarter.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter();
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>By default, the function returns the day of the quarter for the current date (according to local time). To determine the day of the quarter for a particular day, provide <code>month</code>, <code>day</code>, and <code>year</code> arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter( <span class="hljs-number">12</span>, <span class="hljs-number">31</span>, <span class="hljs-number">2016</span> );
+</code></pre>
+<p>By default, the function returns the day of the quarter for the current date (according to local time). To determine the day of the quarter for a particular day, provide <code>month</code>, <code>day</code>, and <code>year</code> arguments.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter( <span class="hljs-number">12</span>, <span class="hljs-number">31</span>, <span class="hljs-number">2016</span> );
 <span class="hljs-comment">// returns 92</span>
-</code></pre><p>A <code>month</code> may be either a month's integer value, three letter abbreviation, or full name (case insensitive).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter( <span class="hljs-number">12</span>, <span class="hljs-number">31</span>, <span class="hljs-number">2016</span> );
+</code></pre>
+<p>A <code>month</code> may be either a month's integer value, three letter abbreviation, or full name (case insensitive).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter( <span class="hljs-number">12</span>, <span class="hljs-number">31</span>, <span class="hljs-number">2016</span> );
 <span class="hljs-comment">// returns 92</span>
 
 num = dayOfQuarter( <span class="hljs-string">'dec'</span>, <span class="hljs-number">31</span>, <span class="hljs-number">2016</span> );
@@ -11,9 +24,17 @@ num = dayOfQuarter( <span class="hljs-string">'dec'</span>, <span class="hljs-nu
 
 num = dayOfQuarter( <span class="hljs-string">'december'</span>, <span class="hljs-number">31</span>, <span class="hljs-number">2016</span> );
 <span class="hljs-comment">// returns 92</span>
-</code></pre><p>The function also supports providing a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() );
+</code></pre>
+<p>The function also supports providing a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> num = dayOfQuarter( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() );
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> quarterOfYear = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/quarter-of-year'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> quarterOfYear = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/quarter-of-year'</span> );
 <span class="hljs-keyword">var</span> dayOfQuarter = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/time/day-of-quarter'</span> );
 
 <span class="hljs-keyword">var</span> months;
@@ -46,14 +67,48 @@ day = <span class="hljs-number">9</span>;
     v = dayOfQuarter( months[ i ], day, yr );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'In the year %d, %s %d is day number %d of Q%d.'</span>, yr, months[ i ], day, v, q );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: day-of-quarter [options] [&#x3C;month> &#x3C;day> &#x3C;year>]
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: day-of-quarter [options] [&#x3C;month> &#x3C;day> &#x3C;year>]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ day-of-quarter
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ day-of-quarter
 &#x3C;number>
-</code></pre><p>For a specific date,</p><pre><code class="hljs language-bash">$ day-of-quarter 12 31 2016
+</code></pre>
+<p>For a specific date,</p>
+<pre><code class="hljs language-bash">$ day-of-quarter 12 31 2016
 92
-</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/time/day-of-year"><code>@stdlib/time/day-of-year</code></a></span><span class="delimiter">: </span><span class="description">determine the day of the year.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/time/day-of-year"><code>@stdlib/time/day-of-year</code></a></span><span class="delimiter">: </span><span class="description">determine the day of the year.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

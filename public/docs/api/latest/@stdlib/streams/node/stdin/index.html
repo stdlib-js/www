@@ -1,5 +1,15 @@
-<h1 id="standard-input">Standard Input</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard input</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
-</code></pre><h4 id="stdin">stdin</h4><p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard input</a> as a <a href="https://nodejs.org/api/stream.html#stream_class_stream_readable">Readable stream</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+<h1 id="standard-input">Standard Input</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard input</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
+</code></pre>
+<h4 id="stdin">stdin</h4>
+<p><a href="https://en.wikipedia.org/wiki/Standard_streams">Standard input</a> as a <a href="https://nodejs.org/api/stream.html#stream_class_stream_readable">Readable stream</a>.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
 <span class="hljs-keyword">var</span> Buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/ctor'</span> );
 
 <span class="hljs-keyword">var</span> data = [];
@@ -9,7 +19,7 @@ stdin.on( <span class="hljs-string">'readable'</span>, onReadable );
 stdin.on( <span class="hljs-string">'error'</span>, onError );
 stdin.on( <span class="hljs-string">'end'</span>, onEnd );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onReadable</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onReadable</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> chunk;
     <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ) {
         chunk = stdin.read();
@@ -30,12 +40,19 @@ stdin.on( <span class="hljs-string">'end'</span>, onEnd );
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onEnd</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onEnd</span>(<span class="hljs-params"></span>) </span>{
     data = Buffer.concat( data, len );
     <span class="hljs-built_in">console</span>.log( data.toString() );
     <span class="hljs-comment">// => '...'</span>
 }
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'process'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- run-disable -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'process'</span> );
 <span class="hljs-keyword">var</span> stdin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdin'</span> );
 <span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
 
@@ -56,4 +73,14 @@ stdin.push( <span class="hljs-literal">null</span> );
 
 <span class="hljs-comment">// Ensure the process closes:</span>
 <span class="hljs-built_in">setTimeout</span>( proc.exit, <span class="hljs-number">1000</span> );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

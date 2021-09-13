@@ -1,5 +1,14 @@
-<h1 id="revised-spache">Revised Spache</h1><blockquote><p>A <a href="http://www.jstor.org/stable/747086">list</a> of simple American-English words (revised Spache).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/spache-revised'</span> );
-</code></pre><h4 id="words">words()</h4><p>Returns a <a href="http://www.jstor.org/stable/747086">list</a> of simple American-English words (revised Spache).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = words();
+<h1 id="revised-spache">Revised Spache</h1>
+<blockquote>
+<p>A <a href="http://www.jstor.org/stable/747086">list</a> of simple American-English words (revised Spache).</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/spache-revised'</span> );
+</code></pre>
+<h4 id="words">words()</h4>
+<p>Returns a <a href="http://www.jstor.org/stable/747086">list</a> of simple American-English words (revised Spache).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> data = words();
 <span class="hljs-comment">/* returns
     [
         'a',
@@ -9,7 +18,14 @@
         ...
     ]
 */</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<!-- TODO: more creative example. -->
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> words = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/spache-revised'</span> );
 
@@ -23,16 +39,56 @@
     idx = floor( randu()*len );
     <span class="hljs-built_in">console</span>.log( data[ idx ] );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: spache-revised [options]
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: spache-revised [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ spache-revised
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ spache-revised
 a
 able
 about
 above
 ...
-</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Spache, George. 1953. "A New Readability Formula for Primary-Grade Reading Materials." <em>The Elementary School Journal</em> 53 (7): 410–13. doi:<a href="https://doi.org/10.1086/458513">10.1086/458513</a>.</li><li>Klare, George R. 1974. "Assessing Readability." <em>Reading Research Quarterly</em> 10 (1). Wiley, International Reading Association: 62–102. <a href="http://www.jstor.org/stable/747086">http://www.jstor.org/stable/747086</a>.</li><li>Stone, Clarence R. 1956. "Measuring Difficulty of Primary Reading Material: A Constructive Criticism of Spache's Measure." <em>The Elementary School Journal</em> 57 (1). University of Chicago Press: 36–41. <a href="http://www.jstor.org/stable/999700">http://www.jstor.org/stable/999700</a>.</li><li>Perera, Katherine. 2012. "The assessment of linguistic difficulty in reading material." In <em>Linguistics and the Teacher</em>, edited by Ronald Carter, 101–13. Routledge Library Editions: Education. Taylor &#x26; Francis. <a href="https://books.google.com/books?id=oNXFQ9Gn6XIC">https://books.google.com/books?id=oNXFQ9Gn6XIC</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<hr>
+<section class="references">
+<h2 id="references">References</h2>
+<ul>
+<li>Spache, George. 1953. "A New Readability Formula for Primary-Grade Reading Materials." <em>The Elementary School Journal</em> 53 (7): 410–13. doi:<a href="https://doi.org/10.1086/458513">10.1086/458513</a>.</li>
+<li>Klare, George R. 1974. "Assessing Readability." <em>Reading Research Quarterly</em> 10 (1). Wiley, International Reading Association: 62–102. <a href="http://www.jstor.org/stable/747086">http://www.jstor.org/stable/747086</a>.</li>
+<li>Stone, Clarence R. 1956. "Measuring Difficulty of Primary Reading Material: A Constructive Criticism of Spache's Measure." <em>The Elementary School Journal</em> 57 (1). University of Chicago Press: 36–41. <a href="http://www.jstor.org/stable/999700">http://www.jstor.org/stable/999700</a>.</li>
+<li>Perera, Katherine. 2012. "The assessment of linguistic difficulty in reading material." In <em>Linguistics and the Teacher</em>, edited by Ronald Carter, 101–13. Routledge Library Editions: Education. Taylor &#x26; Francis. <a href="https://books.google.com/books?id=oNXFQ9Gn6XIC">https://books.google.com/books?id=oNXFQ9Gn6XIC</a>.</li>
+</ul>
+</section>
+<!-- /.references -->
+<!-- <license> -->
+<h2 id="license">License</h2>
+<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+<!-- </license> -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

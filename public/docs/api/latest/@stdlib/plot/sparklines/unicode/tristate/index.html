@@ -1,6 +1,30 @@
-<h1 id="tristate-chart">Tristate Chart</h1><blockquote><p>Create a Unicode sparkline tristate chart.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> TristateChart = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/sparklines/unicode/tristate'</span> );
-</code></pre><h4 id="tristatechart-data-options-">TristateChart( [data,] [options] )</h4><p>Returns a chart instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
-</code></pre><p>The constructor accepts the following <code>options</code>:</p><ul><li><strong>autoRender</strong>: <code>boolean</code> indicating whether to re-render on a <code>change</code> event.</li><li><strong>bufferSize</strong>: data buffer size. If provided, data is kept in a first-in first-out (FIFO) buffer which cannot exceed the buffer size. Default: <code>+infinity</code>.</li><li><strong>data</strong>: chart data.</li><li><strong>description</strong>: chart description.</li><li><strong>isDefined</strong>: accessor <code>function</code> indicating whether a datum is defined.</li><li><strong>label</strong>: data label.</li></ul><hr><h3 id="writable-properties">Writable Properties</h3><p></p><h4 id="tristatechartprototypeautorender">TristateChart.prototype.autoRender</h4><p>Rendering mode. If <code>true</code>, an instance renders on each <code>'change'</code> event; otherwise, rendering must be triggered manually.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
+<h1 id="tristate-chart">Tristate Chart</h1>
+<blockquote>
+<p>Create a Unicode sparkline tristate chart.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> TristateChart = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/sparklines/unicode/tristate'</span> );
+</code></pre>
+<h4 id="tristatechart-data-options-">TristateChart( [data,] [options] )</h4>
+<p>Returns a chart instance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
+</code></pre>
+<p>The constructor accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>autoRender</strong>: <code>boolean</code> indicating whether to re-render on a <code>change</code> event.</li>
+<li><strong>bufferSize</strong>: data buffer size. If provided, data is kept in a first-in first-out (FIFO) buffer which cannot exceed the buffer size. Default: <code>+infinity</code>.</li>
+<li><strong>data</strong>: chart data.</li>
+<li><strong>description</strong>: chart description.</li>
+<li><strong>isDefined</strong>: accessor <code>function</code> indicating whether a datum is defined.</li>
+<li><strong>label</strong>: data label.</li>
+</ul>
+<hr>
+<h3 id="writable-properties">Writable Properties</h3>
+<p><a name="prop-auto-render"></a></p>
+<h4 id="tristatechartprototypeautorender">TristateChart.prototype.autoRender</h4>
+<p>Rendering mode. If <code>true</code>, an instance renders on each <code>'change'</code> event; otherwise, rendering must be triggered manually.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.autoRender = <span class="hljs-literal">false</span>;
@@ -8,7 +32,11 @@ chart.autoRender = <span class="hljs-literal">false</span>;
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> mode = chart.autoRender;
 <span class="hljs-comment">// returns false</span>
-</code></pre><p></p><h4 id="tristatechartprototypebuffersize">TristateChart.prototype.bufferSize</h4><p>Data buffer size. If set, this specifies the maximum number of data elements which can be rendered. Once the data buffer is full, each new datum results in the oldest datum being removed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
+</code></pre>
+<p><a name="prop-buffer-size"></a></p>
+<h4 id="tristatechartprototypebuffersize">TristateChart.prototype.bufferSize</h4>
+<p>Data buffer size. If set, this specifies the maximum number of data elements which can be rendered. Once the data buffer is full, each new datum results in the oldest datum being removed.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.bufferSize = <span class="hljs-number">3</span>;
@@ -26,7 +54,12 @@ chart.push( <span class="hljs-number">4</span> );
 
 data = chart.data;
 <span class="hljs-comment">// returns [ 2, 3, 4 ]</span>
-</code></pre><p>Setting a data buffer size is useful when rendering data streams.</p><p></p><h4 id="tristatechartprototypedata">TristateChart.prototype.data</h4><p>Chart data. When set, the value must be either <code>array</code>-like or an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> and cannot exceed the <code>bufferSize</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
+</code></pre>
+<p>Setting a data buffer size is useful when rendering data streams.</p>
+<p><a name="prop-data"></a></p>
+<h4 id="tristatechartprototypedata">TristateChart.prototype.data</h4>
+<p>Chart data. When set, the value must be either <code>array</code>-like or an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> and cannot exceed the <code>bufferSize</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
 
 <span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
 
@@ -36,7 +69,12 @@ chart.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">I
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> data = chart.data;
 <span class="hljs-comment">// returns [ 1, 0, -1, 1, 1, 0 ]</span>
-</code></pre><p>Note that data is <strong>copied</strong> to an internal data buffer.</p><p></p><h4 id="tristatechartprototypedescription">TristateChart.prototype.description</h4><p>Chart description.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
+</code></pre>
+<p>Note that data is <strong>copied</strong> to an internal data buffer.</p>
+<p><a name="prop-description"></a></p>
+<h4 id="tristatechartprototypedescription">TristateChart.prototype.description</h4>
+<p>Chart description.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.description = <span class="hljs-string">'Gains and losses for the past 30 days.'</span>;
@@ -44,7 +82,15 @@ chart.description = <span class="hljs-string">'Gains and losses for the past 30 
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> desc = chart.description;
 <span class="hljs-comment">// returns 'Gains and losses for the past 30 days.'</span>
-</code></pre><p></p><h4 id="tristatechartprototypeisdefined-d-i-">TristateChart.prototype.isDefined( d, i )</h4><p>An accessor <code>function</code> which defines whether a datum is defined. This accessor is used to define how missing values are encoded. When invoked, the function is provided two arguments:</p><ul><li><strong>d</strong>: datum</li><li><strong>i</strong>: datum index</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span>(<span class="hljs-params"> d </span>) </span>{
+</code></pre>
+<p><a name="prop-is-defined"></a></p>
+<h4 id="tristatechartprototypeisdefined-d-i-">TristateChart.prototype.isDefined( d, i )</h4>
+<p>An accessor <code>function</code> which defines whether a datum is defined. This accessor is used to define how missing values are encoded. When invoked, the function is provided two arguments:</p>
+<ul>
+<li><strong>d</strong>: datum</li>
+<li><strong>i</strong>: datum index</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span>(<span class="hljs-params"> d </span>) </span>{
     <span class="hljs-keyword">return</span> ( d !== <span class="hljs-literal">null</span> );
 }
 
@@ -56,7 +102,12 @@ chart.isDefined = isDefined;
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> fcn = chart.isDefined;
 <span class="hljs-comment">// returns &#x3C;Function></span>
-</code></pre><p>The default behavior is to ignore values which are <code>NaN</code>.</p><p></p><h4 id="tristatechartprototypelabel">TristateChart.prototype.label</h4><p>Data label.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
+</code></pre>
+<p>The default behavior is to ignore values which are <code>NaN</code>.</p>
+<p><a name="prop-label"></a></p>
+<h4 id="tristatechartprototypelabel">TristateChart.prototype.label</h4>
+<p>Data label.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
 
 <span class="hljs-comment">// Set:</span>
 chart.label = <span class="hljs-string">'beep'</span>;
@@ -64,7 +115,13 @@ chart.label = <span class="hljs-string">'beep'</span>;
 <span class="hljs-comment">// Get:</span>
 <span class="hljs-keyword">var</span> label = chart.label;
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre><hr><h3 id="methods">Methods</h3><p></p><h4 id="tristatechartprototypepush-datum-">TristateChart.prototype.push( datum )</h4><p>Appends data to a chart.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+</code></pre>
+<hr>
+<h3 id="methods">Methods</h3>
+<p><a name="method-push"></a></p>
+<h4 id="tristatechartprototypepush-datum-">TristateChart.prototype.push( datum )</h4>
+<p>Appends data to a chart.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
 
 <span class="hljs-keyword">var</span> data = chart.data;
 <span class="hljs-comment">// returns [ 1, 2, 3 ]</span>
@@ -73,29 +130,57 @@ chart.push( <span class="hljs-number">4</span> );
 
 data = chart.data;
 <span class="hljs-comment">// returns [ 1, 2, 3, 4 ]</span>
-</code></pre><p></p><h4 id="tristatechartprototyperender">TristateChart.prototype.render()</h4><p>Renders a tristate chart sparkline.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart( [ -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
+</code></pre>
+<p><a name="method-render"></a></p>
+<h4 id="tristatechartprototyperender">TristateChart.prototype.render()</h4>
+<p>Renders a tristate chart sparkline.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart( [ -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
 
 <span class="hljs-keyword">var</span> str = chart.render();
 <span class="hljs-comment">// returns '▄▀──▀▄▄▀'</span>
-</code></pre><p>In a tristate chart, negative values are encoded as lower blocks, positive values are encoded as upper blocks, and values equal to zero are encoded as middle lines.</p><p></p><h4 id="tristatechartprototypetostring">TristateChart.prototype.toString()</h4><p>Serializes a tristate chart sparkline as a <code>string</code> by calling the <code>render()</code> method.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart( [ -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
+</code></pre>
+<p>In a tristate chart, negative values are encoded as lower blocks, positive values are encoded as upper blocks, and values equal to zero are encoded as middle lines.</p>
+<p><a name="method-tostring"></a></p>
+<h4 id="tristatechartprototypetostring">TristateChart.prototype.toString()</h4>
+<p>Serializes a tristate chart sparkline as a <code>string</code> by calling the <code>render()</code> method.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart( [ -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
 
 <span class="hljs-keyword">var</span> str = chart.toString();
 <span class="hljs-comment">// returns '▄▀──▀▄▄▀'</span>
-</code></pre><hr><h3 id="events">Events</h3><h4 id="change">'change'</h4><p>Emitted whenever a property value changes.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
+</code></pre>
+<hr>
+<h3 id="events">Events</h3>
+<h4 id="change">'change'</h4>
+<p>Emitted whenever a property value changes.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
 
 chart.on( <span class="hljs-string">'change'</span>, onChange );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onChange</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onChange</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'A property was updated.'</span> );
 }
-</code></pre><h4 id="render">'render'</h4><p>Emitted whenever a sparkline is rendered.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
+</code></pre>
+<h4 id="render">'render'</h4>
+<p>Emitted whenever a sparkline is rendered.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> chart = <span class="hljs-keyword">new</span> TristateChart();
 
 chart.on( <span class="hljs-string">'render'</span>, onRender );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRender</span>(<span class="hljs-params"> str </span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Rendered sparkline: %s'</span>, str );
 }
-</code></pre></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<section class="examples">
+<hr>
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable stdlib/no-redeclare -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
 <span class="hljs-keyword">var</span> stdout = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/streams/node/stdout'</span> );
 <span class="hljs-keyword">var</span> tristateChart = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/plot/sparklines/unicode/tristate'</span> );
@@ -105,7 +190,7 @@ chart.on( <span class="hljs-string">'render'</span>, onRender );
 <span class="hljs-keyword">var</span> id;
 <span class="hljs-keyword">var</span> i;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">datum</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">datum</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> d = randu();
     <span class="hljs-keyword">if</span> ( d > <span class="hljs-number">0.67</span> ) {
         <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
@@ -140,7 +225,7 @@ id = <span class="hljs-built_in">setInterval</span>( update, <span class="hljs-n
 <span class="hljs-comment">// After some time, stop updating and close:</span>
 <span class="hljs-built_in">setTimeout</span>( stop, <span class="hljs-number">20000</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-comment">// Update the chart with new data:</span>
     chart.push( datum() );
 
@@ -148,7 +233,7 @@ id = <span class="hljs-built_in">setInterval</span>( update, <span class="hljs-n
     stdout.write( <span class="hljs-string">'\r\u001b[2K'</span> + chart.render() );
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stop</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stop</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">clearInterval</span>( id );
 
     <span class="hljs-comment">// Restore the terminal cursor:</span>
@@ -156,20 +241,69 @@ id = <span class="hljs-built_in">setInterval</span>( update, <span class="hljs-n
 
     stdout.write( <span class="hljs-string">'\n'</span> );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: sparkline-tristate [options] &#x3C;number> &#x3C;number> ...
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: sparkline-tristate [options] &#x3C;number> &#x3C;number> ...
 
 Options:
 
   -h, --help             Print this message.
   -V, --version          Print the package version.
       --split sep        Separator used to split stdin data. Default: /\\r?\\n/.
-</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li><p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is properly <strong>escaped</strong>.</p><pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h3 id="notes">Notes</h3>
+<ul>
+<li>
+<p>If the split separator is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>, ensure that the <code>split</code> option is properly <strong>escaped</strong>.</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Not escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'1\n2\n3\n'</span> | sparkline-tristate --split /\r?\n/
 
 <span class="hljs-comment"># Escaped...</span>
 $ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'1\n2\n3\n'</span> | sparkline-tristate --split /\\r?\\n/
-</code></pre></li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ sparkline-tristate -- -1 1 0 0 1 -1 -1 1
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ sparkline-tristate -- -1 1 0 0 1 -1 -1 1
 ▄▀──▀▄▄▀
-</code></pre><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'-1\n1\n0\n0\n1\n-1\n-1\n1\n'</span> | sparkline-tristate
+</code></pre>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n $<span class="hljs-string">'-1\n1\n0\n0\n1\n-1\n-1\n1\n'</span> | sparkline-tristate
 ▄▀──▀▄▄▀
-</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot"><code>@stdlib/plot</code></a></span><span class="delimiter">: </span><span class="description">standard library plotting.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/ctor"><code>@stdlib/plot/ctor</code></a></span><span class="delimiter">: </span><span class="description">2-dimensional plot constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode"><code>@stdlib/plot/sparklines/unicode</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/column"><code>@stdlib/plot/sparklines/unicode/column</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline column chart.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/line"><code>@stdlib/plot/sparklines/unicode/line</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline line chart.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/up-down"><code>@stdlib/plot/sparklines/unicode/up-down</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline up/down chart.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/win-loss"><code>@stdlib/plot/sparklines/unicode/win-loss</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline win/loss chart.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot"><code>@stdlib/plot</code></a></span><span class="delimiter">: </span><span class="description">standard library plotting.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/ctor"><code>@stdlib/plot/ctor</code></a></span><span class="delimiter">: </span><span class="description">2-dimensional plot constructor.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode"><code>@stdlib/plot/sparklines/unicode</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/column"><code>@stdlib/plot/sparklines/unicode/column</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline column chart.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/line"><code>@stdlib/plot/sparklines/unicode/line</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline line chart.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/up-down"><code>@stdlib/plot/sparklines/unicode/up-down</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline up/down chart.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/plot/sparklines/unicode/win-loss"><code>@stdlib/plot/sparklines/unicode/win-loss</code></a></span><span class="delimiter">: </span><span class="description">create a Unicode sparkline win/loss chart.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

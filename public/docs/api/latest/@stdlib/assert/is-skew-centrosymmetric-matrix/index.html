@@ -1,5 +1,17 @@
-<h1 id="isskewcentrosymmetricmatrix">isSkewCentrosymmetricMatrix</h1><blockquote><p>Test if a value is a <a href="https://en.wikipedia.org/wiki/Centrosymmetric_matrix">skew-centrosymmetric matrix</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSkewCentrosymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-skew-centrosymmetric-matrix'</span> );
-</code></pre><h4 id="isskewcentrosymmetricmatrix-value-">isSkewCentrosymmetricMatrix( value )</h4><p>Tests if a value is a <a href="https://en.wikipedia.org/wiki/Centrosymmetric_matrix">skew-centrosymmetric matrix</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<h1 id="isskewcentrosymmetricmatrix">isSkewCentrosymmetricMatrix</h1>
+<blockquote>
+<p>Test if a value is a <a href="https://en.wikipedia.org/wiki/Centrosymmetric_matrix">skew-centrosymmetric matrix</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<!-- eslint-disable id-length -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSkewCentrosymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-skew-centrosymmetric-matrix'</span> );
+</code></pre>
+<h4 id="isskewcentrosymmetricmatrix-value-">isSkewCentrosymmetricMatrix( value )</h4>
+<p>Tests if a value is a <a href="https://en.wikipedia.org/wiki/Centrosymmetric_matrix">skew-centrosymmetric matrix</a>.</p>
+<!-- eslint-disable id-length -->
+<!-- eslint-disable array-element-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
 
 <span class="hljs-keyword">var</span> buffer = [
     <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>,
@@ -10,7 +22,14 @@
 
 <span class="hljs-keyword">var</span> bool = isSkewCentrosymmetricMatrix( arr );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<!-- eslint-disable id-length -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
 <span class="hljs-keyword">var</span> isSkewCentrosymmetricMatrix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-skew-centrosymmetric-matrix'</span> );
 
 <span class="hljs-keyword">var</span> arr = ndarray( <span class="hljs-string">'generic'</span>, [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
@@ -25,4 +44,23 @@ out = isSkewCentrosymmetricMatrix( {} );
 
 out = isSkewCentrosymmetricMatrix( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-centrosymmetric-matrix"><code>@stdlib/assert/is-centrosymmetric-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a centrosymmetric matrix.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-matrix-like"><code>@stdlib/assert/is-matrix-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-skew-symmetric-matrix"><code>@stdlib/assert/is-skew-symmetric-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a skew-symmetric matrix.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-centrosymmetric-matrix"><code>@stdlib/assert/is-centrosymmetric-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a centrosymmetric matrix.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-matrix-like"><code>@stdlib/assert/is-matrix-like</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a 2-dimensional ndarray-like object.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-skew-symmetric-matrix"><code>@stdlib/assert/is-skew-symmetric-matrix</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a skew-symmetric matrix.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

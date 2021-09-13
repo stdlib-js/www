@@ -1,12 +1,32 @@
-<h1 id="pluck">Pluck</h1><blockquote><p>Extract a property value from each element of an object array.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pluck = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pluck'</span> );
-</code></pre><h4 id="pluck-arr-prop-options-">pluck( arr, prop[, options] )</h4><p>Extracts a property value from each element of an object <code>array</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+<h1 id="pluck">Pluck</h1>
+<blockquote>
+<p>Extract a property value from each element of an object array.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pluck = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pluck'</span> );
+</code></pre>
+<h4 id="pluck-arr-prop-options-">pluck( arr, prop[, options] )</h4>
+<p>Extracts a property value from each element of an object <code>array</code>.</p>
+<!-- eslint-disable object-curly-newline, object-property-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
     { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> },
     { <span class="hljs-string">'a'</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">3</span> }
 ];
 
 <span class="hljs-keyword">var</span> out = pluck( arr, <span class="hljs-string">'a'</span> );
 <span class="hljs-comment">// returns [ 1, 0.5 ]</span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>copy</strong>: <code>boolean</code> indicating whether to return a new data structure. Default: <code>true</code>.</li></ul><p>By default, the function returns a new data structure. To mutate the input data structure (e.g., when input values can be discarded or when optimizing memory usage), set the <code>copy</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to return a new data structure. Default: <code>true</code>.</li>
+</ul>
+<p>By default, the function returns a new data structure. To mutate the input data structure (e.g., when input values can be discarded or when optimizing memory usage), set the <code>copy</code> option to <code>false</code>.</p>
+<!-- eslint-disable object-curly-newline, object-property-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
     { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> },
     { <span class="hljs-string">'a'</span>: <span class="hljs-number">0.5</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">3</span> }
 ];
@@ -16,7 +36,16 @@
 
 <span class="hljs-keyword">var</span> bool = ( arr[ <span class="hljs-number">0</span> ] === out[ <span class="hljs-number">0</span> ] );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function skips <code>null</code> and <code>undefined</code> array elements.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The function skips <code>null</code> and <code>undefined</code> array elements.</p>
+<!-- eslint-disable object-curly-newline, object-property-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
     { <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> },
     <span class="hljs-literal">null</span>,
     <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>,
@@ -25,7 +54,12 @@
 
 <span class="hljs-keyword">var</span> out = pluck( arr, <span class="hljs-string">'a'</span> );
 <span class="hljs-comment">// returns [ 1, , , 0.5 ]</span>
-</code></pre></li><li><p>Extracted values are <strong>not</strong> cloned.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+</code></pre>
+</li>
+<li>
+<p>Extracted values are <strong>not</strong> cloned.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
     { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> } },
     { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: <span class="hljs-number">3</span> } }
 ];
@@ -35,7 +69,10 @@
 
 <span class="hljs-keyword">var</span> bool = ( arr[ <span class="hljs-number">0</span> ].a === out[ <span class="hljs-number">0</span> ] );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>To prevent unintended mutation, use <a href="/docs/api/latest/@stdlib/utils/copy">copy</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/copy'</span> );
+</code></pre>
+<p>To prevent unintended mutation, use <a href="/docs/api/latest/@stdlib/utils/copy">copy</a>.</p>
+<!-- eslint-disable object-curly-newline, object-curly-spacing -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> copy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/copy'</span> );
 
 <span class="hljs-keyword">var</span> arr = [
     { <span class="hljs-string">'a'</span>: { <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span> } },
@@ -50,7 +87,15 @@ out = copy( out );
 
 <span class="hljs-keyword">var</span> bool = ( arr[ <span class="hljs-number">0</span> ].a === out[ <span class="hljs-number">0</span> ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pluck = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/pluck'</span> );
 
@@ -72,4 +117,22 @@ arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</s
 <span class="hljs-comment">// Pluck the 3rd column:</span>
 out = pluck( arr, <span class="hljs-number">2</span> );
 <span class="hljs-built_in">console</span>.log( out );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/deep-pluck"><code>@stdlib/utils/deep-pluck</code></a></span><span class="delimiter">: </span><span class="description">extract a nested property value from each element of an object array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/pick"><code>@stdlib/utils/pick</code></a></span><span class="delimiter">: </span><span class="description">return a partial object copy containing only specified keys.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/deep-pluck"><code>@stdlib/utils/deep-pluck</code></a></span><span class="delimiter">: </span><span class="description">extract a nested property value from each element of an object array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/pick"><code>@stdlib/utils/pick</code></a></span><span class="delimiter">: </span><span class="description">return a partial object copy containing only specified keys.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

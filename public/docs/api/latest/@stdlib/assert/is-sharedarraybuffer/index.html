@@ -1,5 +1,15 @@
-<h1 id="issharedarraybuffer">isSharedArrayBuffer</h1><blockquote><p>Test if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer">SharedArrayBuffer</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSharedArrayBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-sharedarraybuffer'</span> );
-</code></pre><h4 id="issharedarraybuffer-value-">isSharedArrayBuffer( value )</h4><p>Tests if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> SharedArrayBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shared-buffer'</span> );
+<h1 id="issharedarraybuffer">isSharedArrayBuffer</h1>
+<blockquote>
+<p>Test if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer">SharedArrayBuffer</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSharedArrayBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-sharedarraybuffer'</span> );
+</code></pre>
+<h4 id="issharedarraybuffer-value-">isSharedArrayBuffer( value )</h4>
+<p>Tests if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a>.</p>
+<!-- eslint-disable no-unused-vars -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> SharedArrayBuffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shared-buffer'</span> );
 
 <span class="hljs-keyword">var</span> bool;
 <span class="hljs-keyword">try</span> {
@@ -11,7 +21,14 @@
 
 bool = isSharedArrayBuffer( [] );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-unused-vars -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Int8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int8'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Int16Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int16'</span> );
@@ -69,4 +86,22 @@ bool = isSharedArrayBuffer( {} );
 
 bool = isSharedArrayBuffer( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-arraybuffer"><code>@stdlib/assert/is-arraybuffer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an ArrayBuffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-typed-array"><code>@stdlib/assert/is-typed-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a typed array.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-arraybuffer"><code>@stdlib/assert/is-arraybuffer</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an ArrayBuffer.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-typed-array"><code>@stdlib/assert/is-typed-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a typed array.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

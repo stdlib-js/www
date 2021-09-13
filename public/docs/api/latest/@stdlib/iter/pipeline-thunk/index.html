@@ -1,5 +1,19 @@
-<h1 id="iterthunk">iterThunk</h1><blockquote><p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> "thunk".</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterThunk = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/pipeline-thunk'</span> );
-</code></pre><h4 id="iterthunk-iterfcn-args-">iterThunk( iterFcn[, ...args] )</h4><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> "thunk".</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+<h1 id="iterthunk">iterThunk</h1>
+<blockquote>
+<p>Create an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> "thunk".</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> iterThunk = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/pipeline-thunk'</span> );
+</code></pre>
+<h4 id="iterthunk-iterfcn-args-">iterThunk( iterFcn[, ...args] )</h4>
+<p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> "thunk".</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 <span class="hljs-keyword">var</span> iterSome = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/some'</span> );
 
 <span class="hljs-keyword">var</span> thunk = iterThunk( iterSome, <span class="hljs-number">3</span> );
@@ -11,8 +25,38 @@
 arr = array2iterator( [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
 bool = thunk( arr );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>A provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> function should have the following function signature:</p><pre><code class="no-highlight language-text">function iterFcn( iterator[, ...args] ) {...}
-</code></pre><p>where</p><ul><li><strong>iterator</strong>: an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a></li><li><strong>...args</strong>: additional <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> function arguments</li></ul><p>The returned function expects a single argument</p><ul><li><strong>iterator</strong>: an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a></li></ul><p>and invokes <code>iterFcn</code> with the provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and any previously provided <code>args</code>.</p><p>Accordingly, this function implements left-to-right <a href="/docs/api/latest/@stdlib/utils/papply">partial application</a> with special consideration for functions which act upon <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> sequences.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>This function is useful within the context of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> pipelines as a means to defer execution until a pipeline is ready for data flow.</li><li>The function evaluation context is <strong>always</strong> <code>null</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
+</code></pre>
+<p>A provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> function should have the following function signature:</p>
+<pre><code class="no-highlight language-text">function iterFcn( iterator[, ...args] ) {...}
+</code></pre>
+<p>where</p>
+<ul>
+<li><strong>iterator</strong>: an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a></li>
+<li><strong>...args</strong>: additional <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> function arguments</li>
+</ul>
+<p>The returned function expects a single argument</p>
+<ul>
+<li><strong>iterator</strong>: an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a></li>
+</ul>
+<p>and invokes <code>iterFcn</code> with the provided <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> and any previously provided <code>args</code>.</p>
+<p>Accordingly, this function implements left-to-right <a href="/docs/api/latest/@stdlib/utils/papply">partial application</a> with special consideration for functions which act upon <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> sequences.</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>This function is useful within the context of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol">iterator</a> pipelines as a means to defer execution until a pipeline is ready for data flow.</li>
+<li>The function evaluation context is <strong>always</strong> <code>null</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable function-paren-newline -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/iter/randu'</span> );
 <span class="hljs-keyword">var</span> iterHead = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/head'</span> );
 <span class="hljs-keyword">var</span> iterMap = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/map'</span> );
 <span class="hljs-keyword">var</span> iterSome = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/iter/some'</span> );
@@ -52,4 +96,25 @@ bool = thunk( arr );
     <span class="hljs-built_in">console</span>.log( bool );
 }
 <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d of %d'</span>, count, N );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/pipeline"><code>@stdlib/iter/pipeline</code></a></span><span class="delimiter">: </span><span class="description">create an iterator pipeline.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/iter/pipeline"><code>@stdlib/iter/pipeline</code></a></span><span class="delimiter">: </span><span class="description">create an iterator pipeline.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

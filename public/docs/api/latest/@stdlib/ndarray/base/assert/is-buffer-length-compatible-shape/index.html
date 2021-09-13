@@ -1,12 +1,40 @@
-<h1 id="isbufferlengthcompatibleshape">isBufferLengthCompatibleShape</h1><blockquote><p>Determine if a buffer length is compatible with an array shape.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBufferLengthCompatibleShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape'</span> );
-</code></pre><h4 id="isbufferlengthcompatibleshape-len-shape-">isBufferLengthCompatibleShape( len, shape )</h4><p>Returns a <code>boolean</code> indicating if a buffer <code>length</code> is compatible with a provided <code>shape</code> array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+<h1 id="isbufferlengthcompatibleshape">isBufferLengthCompatibleShape</h1>
+<blockquote>
+<p>Determine if a buffer length is compatible with an array shape.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<!-- eslint-disable id-length -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBufferLengthCompatibleShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape'</span> );
+</code></pre>
+<h4 id="isbufferlengthcompatibleshape-len-shape-">isBufferLengthCompatibleShape( len, shape )</h4>
+<p>Returns a <code>boolean</code> indicating if a buffer <code>length</code> is compatible with a provided <code>shape</code> array.</p>
+<!-- eslint-disable id-length -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
 
 <span class="hljs-keyword">var</span> bool = isBufferLengthCompatibleShape( <span class="hljs-number">10</span>, shape );
 <span class="hljs-comment">// returns true</span>
 
 bool = isBufferLengthCompatibleShape( <span class="hljs-number">3</span>, shape );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable id-length -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> isBufferLengthCompatibleShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape'</span> );
 
 <span class="hljs-keyword">var</span> shape;
@@ -27,4 +55,18 @@ shape = [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
     bool = isBufferLengthCompatibleShape( len, shape );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Buffer length: %d. Shape: %s. Compatible: %s.'</span>, len, shape.join( <span class="hljs-string">'x'</span> ), bool );
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

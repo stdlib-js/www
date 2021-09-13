@@ -1,11 +1,34 @@
-<h1 id="non-enumerable-property">Non-Enumerable Property</h1><blockquote><p><a href="/docs/api/latest/@stdlib/utils/define-property">Define</a> a <strong>non-enumerable</strong> property.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setNonEnumerableProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-nonenumerable-property'</span> );
-</code></pre><h4 id="setnonenumerableproperty-obj-prop-value-">setNonEnumerableProperty( obj, prop, value )</h4><p><a href="/docs/api/latest/@stdlib/utils/define-property">Defines</a> a <strong>non-enumerable</strong> property.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
+<h1 id="non-enumerable-property">Non-Enumerable Property</h1>
+<blockquote>
+<p><a href="/docs/api/latest/@stdlib/utils/define-property">Define</a> a <strong>non-enumerable</strong> property.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setNonEnumerableProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-nonenumerable-property'</span> );
+</code></pre>
+<h4 id="setnonenumerableproperty-obj-prop-value-">setNonEnumerableProperty( obj, prop, value )</h4>
+<p><a href="/docs/api/latest/@stdlib/utils/define-property">Defines</a> a <strong>non-enumerable</strong> property.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
 
 setNonEnumerableProperty( obj, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> );
 
 <span class="hljs-keyword">var</span> v = obj.foo;
 <span class="hljs-comment">// returns 'bar'</span>
-</code></pre></section><section class="notes">## Notes<ul><li>Non-enumerable properties are <strong>writable</strong> and <strong>configurable</strong>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+    
+## Notes
+<ul>
+<li>Non-enumerable properties are <strong>writable</strong> and <strong>configurable</strong>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> setNonEnumerableProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-nonenumerable-property'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"> name </span>) </span>{
@@ -23,4 +46,25 @@ setNonEnumerableProperty( obj, <span class="hljs-string">'foo'</span>, <span cla
 
 <span class="hljs-keyword">var</span> keys = objectKeys( foo );
 <span class="hljs-comment">// returns []</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-read-only-accessor"><code>@stdlib/utils/define-nonenumerable-read-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable read-only accessor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-read-only-property"><code>@stdlib/utils/define-nonenumerable-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable read-only property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-read-write-accessor"><code>@stdlib/utils/define-nonenumerable-read-write-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable read-write accessor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-write-only-accessor"><code>@stdlib/utils/define-nonenumerable-write-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable write-only accessor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-read-only-accessor"><code>@stdlib/utils/define-nonenumerable-read-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable read-only accessor.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-read-only-property"><code>@stdlib/utils/define-nonenumerable-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable read-only property.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-read-write-accessor"><code>@stdlib/utils/define-nonenumerable-read-write-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable read-write accessor.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-nonenumerable-write-only-accessor"><code>@stdlib/utils/define-nonenumerable-write-only-accessor</code></a></span><span class="delimiter">: </span><span class="description">define a non-enumerable write-only accessor.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

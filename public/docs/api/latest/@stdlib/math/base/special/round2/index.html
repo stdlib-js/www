@@ -1,5 +1,14 @@
-<h1 id="round2">round2</h1><blockquote><p>Round a numeric value to the nearest power of two on a linear scale.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round2'</span> );
-</code></pre><h4 id="round2-x-">round2( x )</h4><p>Rounds a <code>numeric</code> value to the nearest power of two on a linear scale.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = round2( -<span class="hljs-number">4.2</span> );
+<h1 id="round2">round2</h1>
+<blockquote>
+<p>Round a numeric value to the nearest power of two on a linear scale.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round2'</span> );
+</code></pre>
+<h4 id="round2-x-">round2( x )</h4>
+<p>Rounds a <code>numeric</code> value to the nearest power of two on a linear scale.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = round2( -<span class="hljs-number">4.2</span> );
 <span class="hljs-comment">// returns -4.0</span>
 
 v = round2( -<span class="hljs-number">4.5</span> );
@@ -34,7 +43,13 @@ v = round2( -<span class="hljs-literal">Infinity</span> );
 
 v = round2( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round2'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -46,4 +61,24 @@ v = round2( <span class="hljs-literal">NaN</span> );
     v = round2( x );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Value: %d. Rounded: %d.'</span>, x, v );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceil2"><code>@stdlib/math/base/special/ceil2</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of two toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floor2"><code>@stdlib/math/base/special/floor2</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of two toward negative infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/round"><code>@stdlib/math/base/special/round</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest integer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/round10"><code>@stdlib/math/base/special/round10</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of 10 on a linear scale.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceil2"><code>@stdlib/math/base/special/ceil2</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of two toward positive infinity.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floor2"><code>@stdlib/math/base/special/floor2</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of two toward negative infinity.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/round"><code>@stdlib/math/base/special/round</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest integer.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/round10"><code>@stdlib/math/base/special/round10</code></a></span><span class="delimiter">: </span><span class="description">round a numeric value to the nearest power of 10 on a linear scale.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

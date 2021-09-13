@@ -1,7 +1,29 @@
-<h1 id="eval">eval</h1><blockquote><p>Alias for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> global.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> evil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/eval'</span> );
-</code></pre><h4 id="evil-str-">evil( str )</h4><p>Alias for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> global.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = evil( <span class="hljs-string">'5*4*3*2*1'</span> );
+<h1 id="eval">eval</h1>
+<blockquote>
+<p>Alias for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> global.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> evil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/eval'</span> );
+</code></pre>
+<h4 id="evil-str-">evil( str )</h4>
+<p>Alias for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> global.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = evil( <span class="hljs-string">'5*4*3*2*1'</span> );
 <span class="hljs-comment">// returns 120</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A reference to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> <strong>is</strong> treated differently by the compiler. For example, when evaluating code containing block-scoped declarations (e.g., <code>let</code>, <code>const</code>, <code>function</code>, <code>class</code>), the compiler may throw an <code>error</code> complaining that block-scoped declarations are <strong>not</strong> yet supported outside of <code>strict mode</code>. One possible workaround is to include <code>"use strict";</code> in the evaluated code, as done in the example below.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> evil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/eval'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>A reference to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval"><code>eval</code></a> <strong>is</strong> treated differently by the compiler. For example, when evaluating code containing block-scoped declarations (e.g., <code>let</code>, <code>const</code>, <code>function</code>, <code>class</code>), the compiler may throw an <code>error</code> complaining that block-scoped declarations are <strong>not</strong> yet supported outside of <code>strict mode</code>. One possible workaround is to include <code>"use strict";</code> in the evaluated code, as done in the example below.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> evil = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/eval'</span> );
 
 <span class="hljs-keyword">var</span> ctors;
 <span class="hljs-keyword">var</span> fcn;
@@ -44,12 +66,37 @@ ctors = [
     fcn = evil( compile( ctors[i] ) );
     <span class="hljs-built_in">console</span>.log( fcn.toString() );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: js-eval [options] &#x3C;code>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: js-eval [options] &#x3C;code>
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ js-eval <span class="hljs-string">'5*4*3*2*1'</span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ js-eval <span class="hljs-string">'5*4*3*2*1'</span>
 120
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

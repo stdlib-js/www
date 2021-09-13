@@ -1,10 +1,28 @@
-<h1 id="dirname">Dirname</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDirnameWindows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
-</code></pre><h4 id="redirnamewindows">reDirnameWindows()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = reDirnameWindows();
+<h1 id="dirname">Dirname</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDirnameWindows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
+</code></pre>
+<h4 id="redirnamewindows">reDirnameWindows()</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = reDirnameWindows();
 <span class="hljs-keyword">var</span> dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'foo\\bar'</span>
-</code></pre><h4 id="redirnamewindowsregexp">reDirnameWindows.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = reDirnameWindows.REGEXP.exec( <span class="hljs-string">'foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
+</code></pre>
+<h4 id="redirnamewindowsregexp">reDirnameWindows.REGEXP</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a Windows path <a href="https://en.wikipedia.org/wiki/Dirname">dirname</a>. </p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = reDirnameWindows.REGEXP.exec( <span class="hljs-string">'foo\\bar\\index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'foo\\bar'</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDirnameWindows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reDirnameWindows = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/dirname-windows'</span> );
 
 <span class="hljs-keyword">var</span> RE_DIRNAME_WINDOWS = reDirnameWindows();
 <span class="hljs-keyword">var</span> dir;
@@ -29,4 +47,23 @@ dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'\\foo\\bar\\file'</spa
 
 dir = RE_DIRNAME_WINDOWS.exec( <span class="hljs-string">'C:\\foo\\bar\\.gitignore'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns 'C:\\foo\\bar'</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/dirname"><code>@stdlib/regexp/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a path dirname.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/dirname-posix"><code>@stdlib/regexp/dirname-posix</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a POSIX path dirname.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/dirname"><code>@stdlib/utils/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a directory name.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/dirname"><code>@stdlib/regexp/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a path dirname.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/dirname-posix"><code>@stdlib/regexp/dirname-posix</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a POSIX path dirname.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/dirname"><code>@stdlib/utils/dirname</code></a></span><span class="delimiter">: </span><span class="description">return a directory name.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

@@ -1,12 +1,33 @@
-<h1 id="dataview">DataView</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">Constructor</a> which returns a data view representing a provided array buffer.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
-</code></pre><h4 id="dataview-buffer-byteoffset-bytelength-">DataView( buffer[, byteOffset[, byteLength]] )</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a> representing a provided array buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+<h1 id="dataview">DataView</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">Constructor</a> which returns a data view representing a provided array buffer.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">DataView</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/dataview'</span> );
+</code></pre>
+<h4 id="dataview-buffer-byteoffset-bytelength-">DataView( buffer[, byteOffset[, byteLength]] )</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a> representing a provided array buffer.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 
 <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns &#x3C;ArrayBuffer></span>
 
 <span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf );
 <span class="hljs-comment">// returns &#x3C;DataView></span>
-</code></pre><hr><h3 id="properties">Properties</h3><h4 id="dataviewprototypebuffer">DataView.prototype.buffer</h4><p><strong>Read-only</strong> property which returns the underlying array buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+</code></pre>
+<hr>
+<h3 id="properties">Properties</h3>
+<h4 id="dataviewprototypebuffer">DataView.prototype.buffer</h4>
+<p><strong>Read-only</strong> property which returns the underlying array buffer.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 
 <span class="hljs-keyword">var</span> buf1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf1 );
@@ -16,21 +37,44 @@
 
 <span class="hljs-keyword">var</span> bool = ( buf1 === buf2 );
 <span class="hljs-comment">// returns true</span>
-</code></pre><h4 id="dataviewprototypebytelength">DataView.prototype.byteLength</h4><p><strong>Read-only</strong> property which returns the length (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+</code></pre>
+<h4 id="dataviewprototypebytelength">DataView.prototype.byteLength</h4>
+<p><strong>Read-only</strong> property which returns the length (in bytes) of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a>.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 
 <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf );
 
 <span class="hljs-keyword">var</span> byteLength = dv.byteLength;
 <span class="hljs-comment">// returns 5</span>
-</code></pre><h4 id="dataviewprototypebyteoffset">DataView.prototype.byteOffset</h4><p><strong>Read-only</strong> property which returns the number of bytes from the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a> to the start of the underlying array buffer.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
+</code></pre>
+<h4 id="dataviewprototypebyteoffset">DataView.prototype.byteOffset</h4>
+<p><strong>Read-only</strong> property which returns the number of bytes from the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView"><code>DataView</code></a> to the start of the underlying array buffer.</p>
+<!-- eslint-disable stdlib/require-globals -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">ArrayBuffer</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/buffer'</span> );
 
 <span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>( <span class="hljs-number">5</span> );
 <span class="hljs-keyword">var</span> dv = <span class="hljs-keyword">new</span> <span class="hljs-built_in">DataView</span>( buf, <span class="hljs-number">3</span> );
 
 <span class="hljs-keyword">var</span> byteOffset = dv.byteOffset;
 <span class="hljs-comment">// returns 3</span>
-</code></pre><hr><h3 id="methods">Methods</h3><p>TODO: document methods</p></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
+</code></pre>
+<hr>
+<h3 id="methods">Methods</h3>
+<p>TODO: document methods</p>
+</section>
+<!-- /.usage -->
+<hr>
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
 <span class="hljs-keyword">var</span> toBinaryString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
@@ -56,4 +100,26 @@
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; bytes.length; i++ ) {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'byte %d: %s'</span>, i, toBinaryString( bytes[ i ] ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/buffer"><code>@stdlib/array/buffer</code></a></span><span class="delimiter">: </span><span class="description">ArrayBuffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/typed"><code>@stdlib/array/typed</code></a></span><span class="delimiter">: </span><span class="description">create a typed array.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/buffer"><code>@stdlib/array/buffer</code></a></span><span class="delimiter">: </span><span class="description">ArrayBuffer.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/typed"><code>@stdlib/array/typed</code></a></span><span class="delimiter">: </span><span class="description">create a typed array.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

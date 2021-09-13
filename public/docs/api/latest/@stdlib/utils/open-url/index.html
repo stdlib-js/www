@@ -1,30 +1,83 @@
-<h1 id="open-url">Open URL</h1><blockquote><p>Open a URL.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> openURL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/open-url'</span> );
-</code></pre><h4 id="openurl-url-">openURL( url )</h4><p>Opens a URL in a user's default browser.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = openURL( <span class="hljs-string">'https://google.com'</span> );
-</code></pre><p>The returned child process is unreferenced, and, thus, the calling process will not wait for the child process to end before exiting. To try and end the child process, send an appropriate <code>kill</code> signal.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = openURL( <span class="hljs-string">'https://google.com'</span> );
+<h1 id="open-url">Open URL</h1>
+<blockquote>
+<p>Open a URL.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> openURL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/open-url'</span> );
+</code></pre>
+<h4 id="openurl-url-">openURL( url )</h4>
+<p>Opens a URL in a user's default browser.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = openURL( <span class="hljs-string">'https://google.com'</span> );
+</code></pre>
+<p>The returned child process is unreferenced, and, thus, the calling process will not wait for the child process to end before exiting. To try and end the child process, send an appropriate <code>kill</code> signal.</p>
+<!-- run-disable -->
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = openURL( <span class="hljs-string">'https://google.com'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>(<span class="hljs-params"></span>) </span>{
     proc.kill( <span class="hljs-string">'SIGINT'</span> );
 }
 
 <span class="hljs-built_in">setTimeout</span>( close, <span class="hljs-number">1000</span> );
-</code></pre><h3 id="web-browser">Web Browser</h3><p>In a web browser, <code>openURL</code> defers to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/open"><code>window.open()</code></a> method.</p><h4 id="openurl-url--1">openURL( url )</h4><p>Opens a URL either in a new tab or window (based on the web browser and/or user preferences), returning a reference to a <code>window</code> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> win = openURL( <span class="hljs-string">'https://google.com'</span> );
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> openURL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/open-url'</span> );
+</code></pre>
+<h3 id="web-browser">Web Browser</h3>
+<p>In a web browser, <code>openURL</code> defers to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/open"><code>window.open()</code></a> method.</p>
+<h4 id="openurl-url--1">openURL( url )</h4>
+<p>Opens a URL either in a new tab or window (based on the web browser and/or user preferences), returning a reference to a <code>window</code> object.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> win = openURL( <span class="hljs-string">'https://google.com'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- run-disable -->
+<!-- eslint-disable stdlib/no-redeclare -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> openURL = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/open-url'</span> );
 
 <span class="hljs-comment">// Open a URL:</span>
 <span class="hljs-keyword">var</span> proc = openURL( <span class="hljs-string">'https://github.com'</span> );
 
 <span class="hljs-comment">// After some time, kill the spawned process...</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>(<span class="hljs-params"></span>) </span>{
     proc.kill( <span class="hljs-string">'SIGINT'</span> );
 }
 
 <span class="hljs-built_in">setTimeout</span>( close, <span class="hljs-number">5000</span> );
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: open-url [options] &#x3C;url>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: open-url [options] &#x3C;url>
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ open-url https://github.com
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ open-url https://github.com
 &#x3C;pid>
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

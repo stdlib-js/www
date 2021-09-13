@@ -1,14 +1,46 @@
-<h1 id="nexttick">nextTick</h1><blockquote><p>Add a callback to the "next tick queue".</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextTick = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/next-tick'</span> );
-</code></pre><h4 id="nexttick-clbk-args-">nextTick( clbk[, ...args] )</h4><p>Adds a callback to the "next tick queue".</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>() </span>{
+<h1 id="nexttick">nextTick</h1>
+<blockquote>
+<p>Add a callback to the "next tick queue".</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextTick = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/next-tick'</span> );
+</code></pre>
+<h4 id="nexttick-clbk-args-">nextTick( clbk[, ...args] )</h4>
+<p>Adds a callback to the "next tick queue".</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'boop'</span> );
 }
 
 nextTick( beep );
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The queue is fully drained after the current operation on the JavaScript stack runs to completion and before the event loop is allowed to continue.</li><li>Creating an infinite loop is possible if <code>nextTick</code> is called recursively.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextTick = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/next-tick'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The queue is fully drained after the current operation on the JavaScript stack runs to completion and before the event loop is allowed to continue.</li>
+<li>Creating an infinite loop is possible if <code>nextTick</code> is called recursively.</li>
+</ul>
+</section>
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextTick = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/next-tick'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beep</span>(<span class="hljs-params"> x, y, z </span>) </span>{
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'boop: %d %d %d'</span>, x, y, z );
 }
 
 nextTick( beep, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

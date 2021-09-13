@@ -1,9 +1,45 @@
-<h1 id="string2buffer">string2buffer</h1><blockquote><p>Allocate a <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> containing a provided string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
-</code></pre><h4 id="string2buffer-str-encoding-">string2buffer( str[, encoding] )</h4><p>Allocates a <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> containing a provided <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = string2buffer( <span class="hljs-string">'beep boop'</span> );
+<h1 id="string2buffer">string2buffer</h1>
+<blockquote>
+<p>Allocate a <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> containing a provided string.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
+</code></pre>
+<h4 id="string2buffer-str-encoding-">string2buffer( str[, encoding] )</h4>
+<p>Allocates a <a href="/docs/api/latest/@stdlib/buffer/ctor">buffer</a> containing a provided <code>string</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = string2buffer( <span class="hljs-string">'beep boop'</span> );
 <span class="hljs-comment">// returns &#x3C;Buffer></span>
-</code></pre><p>The default character encoding is <code>utf8</code>. To specify an alternative encoding, provide an <code>encoding</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = string2buffer( <span class="hljs-string">'7468697320697320612074c3a97374'</span>, <span class="hljs-string">'hex'</span> );
+</code></pre>
+<p>The default character encoding is <code>utf8</code>. To specify an alternative encoding, provide an <code>encoding</code> argument.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> buf = string2buffer( <span class="hljs-string">'7468697320697320612074c3a97374'</span>, <span class="hljs-string">'hex'</span> );
 <span class="hljs-comment">// returns &#x3C;Buffer></span>
-</code></pre><p>The following <code>encodings</code> are supported:</p><ul><li><code>utf8</code> (<code>utf-8</code>)</li><li><code>hex</code></li><li><code>binary</code></li><li><code>ascii</code></li><li><code>ucs2</code></li><li><code>base64</code></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+<p>The following <code>encodings</code> are supported:</p>
+<ul>
+<li><code>utf8</code> (<code>utf-8</code>)</li>
+<li><code>hex</code></li>
+<li><code>binary</code></li>
+<li><code>ascii</code></li>
+<li><code>ucs2</code></li>
+<li><code>base64</code></li>
+</ul>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> randint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
 
@@ -23,4 +59,28 @@
     }
     <span class="hljs-built_in">console</span>.log( buf.toString() );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/ctor"><code>@stdlib/buffer/ctor</code></a></span><span class="delimiter">: </span><span class="description">Buffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-array"><code>@stdlib/buffer/from-array</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer using an octet array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-arraybuffer"><code>@stdlib/buffer/from-arraybuffer</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer from an ArrayBuffer.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-buffer"><code>@stdlib/buffer/from-buffer</code></a></span><span class="delimiter">: </span><span class="description">copy buffer data to a new Buffer instance.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/ctor"><code>@stdlib/buffer/ctor</code></a></span><span class="delimiter">: </span><span class="description">Buffer.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-array"><code>@stdlib/buffer/from-array</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer using an octet array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-arraybuffer"><code>@stdlib/buffer/from-arraybuffer</code></a></span><span class="delimiter">: </span><span class="description">allocate a buffer from an ArrayBuffer.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/buffer/from-buffer"><code>@stdlib/buffer/from-buffer</code></a></span><span class="delimiter">: </span><span class="description">copy buffer data to a new Buffer instance.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

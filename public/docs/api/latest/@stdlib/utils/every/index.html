@@ -1,11 +1,43 @@
-<h1 id="every">every</h1><blockquote><p>Test whether all elements in a collection are truthy.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> every = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/every'</span> );
-</code></pre><h4 id="every-collection-">every( collection )</h4><p>Tests whether all elements in a <code>collection</code> are truthy.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+<h1 id="every">every</h1>
+<blockquote>
+<p>Test whether all elements in a collection are truthy.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> every = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/every'</span> );
+</code></pre>
+<h4 id="every-collection-">every( collection )</h4>
+<p>Tests whether all elements in a <code>collection</code> are truthy.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> bool = every( arr );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>If provided an empty <code>collection</code>, the function returns <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = every( [] );
+</code></pre>
+<p>If provided an empty <code>collection</code>, the function returns <code>true</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = every( [] );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li><li>The function does <strong>not</strong> skip <code>undefined</code> elements and is thus not optimized for sparse collections.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>A <code>collection</code> may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</li>
+<li>The function does <strong>not</strong> skip <code>undefined</code> elements and is thus not optimized for sparse collections.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> every = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/every'</span> );
 
 <span class="hljs-keyword">var</span> bool;
@@ -19,4 +51,29 @@ arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</s
 
 bool = every( arr );
 <span class="hljs-comment">// returns &#x3C;boolean></span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/any"><code>@stdlib/utils/any</code></a></span><span class="delimiter">: </span><span class="description">test whether at least one element in a collection is truthy.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/every-by"><code>@stdlib/utils/every-by</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection pass a test implemented by a predicate function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each"><code>@stdlib/utils/for-each</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/none"><code>@stdlib/utils/none</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection are falsy.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/some"><code>@stdlib/utils/some</code></a></span><span class="delimiter">: </span><span class="description">test whether a collection contains at least <code>n</code> elements which are truthy.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/any"><code>@stdlib/utils/any</code></a></span><span class="delimiter">: </span><span class="description">test whether at least one element in a collection is truthy.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/every-by"><code>@stdlib/utils/every-by</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection pass a test implemented by a predicate function.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/for-each"><code>@stdlib/utils/for-each</code></a></span><span class="delimiter">: </span><span class="description">invoke a function for each element in a collection.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/none"><code>@stdlib/utils/none</code></a></span><span class="delimiter">: </span><span class="description">test whether all elements in a collection are falsy.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/some"><code>@stdlib/utils/some</code></a></span><span class="delimiter">: </span><span class="description">test whether a collection contains at least <code>n</code> elements which are truthy.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

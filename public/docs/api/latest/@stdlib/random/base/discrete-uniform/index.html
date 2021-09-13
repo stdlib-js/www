@@ -1,7 +1,18 @@
-<h1 id="discrete-uniform-random-numbers">Discrete Uniform Random Numbers</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">Discrete uniform</a> distributed pseudorandom numbers.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
-</code></pre><h4 id="discreteuniform-a-b-">discreteUniform( a, b )</h4><p>Returns a pseudorandom number drawn from a <a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">discrete uniform</a> distribution with parameters <code>a</code> (minimum support) and <code>b</code> (maximum support).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = discreteUniform( <span class="hljs-number">2</span>, <span class="hljs-number">50</span> );
+<h1 id="discrete-uniform-random-numbers">Discrete Uniform Random Numbers</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">Discrete uniform</a> distributed pseudorandom numbers.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre>
+<h4 id="discreteuniform-a-b-">discreteUniform( a, b )</h4>
+<p>Returns a pseudorandom number drawn from a <a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">discrete uniform</a> distribution with parameters <code>a</code> (minimum support) and <code>b</code> (maximum support).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = discreteUniform( <span class="hljs-number">2</span>, <span class="hljs-number">50</span> );
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>If either <code>a</code> or <code>b</code> is not an integer value or <code>a > b</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = discreteUniform( <span class="hljs-number">20</span>, <span class="hljs-number">10</span> );
+</code></pre>
+<p>If either <code>a</code> or <code>b</code> is not an integer value or <code>a > b</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = discreteUniform( <span class="hljs-number">20</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 r = discreteUniform( <span class="hljs-literal">NaN</span>, <span class="hljs-number">10</span> );
@@ -9,11 +20,16 @@ r = discreteUniform( <span class="hljs-literal">NaN</span>, <span class="hljs-nu
 
 r = discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre><h4 id="discreteuniformfactory-a-b-options-">discreteUniform.factory( [a, b, ][options] )</h4><p>Returns a pseudorandom number generator (PRNG) for generating pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">discrete uniform</a> distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = discreteUniform.factory();
+</code></pre>
+<h4 id="discreteuniformfactory-a-b-options-">discreteUniform.factory( [a, b, ][options] )</h4>
+<p>Returns a pseudorandom number generator (PRNG) for generating pseudorandom numbers drawn from a <a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">discrete uniform</a> distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = discreteUniform.factory();
 
 <span class="hljs-keyword">var</span> r = rand( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>If provided <code>a</code> and <code>b</code>, the returned generator returns random variates from the specified distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Draw from discreteUniform( -20, 20 ) distribution:</span>
+</code></pre>
+<p>If provided <code>a</code> and <code>b</code>, the returned generator returns random variates from the specified distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Draw from discreteUniform( -20, 20 ) distribution:</span>
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory( -<span class="hljs-number">20</span>, <span class="hljs-number">20</span> );
 
 <span class="hljs-keyword">var</span> r = rand();
@@ -21,14 +37,25 @@ r = discreteUniform( <span class="hljs-number">10</span>, <span class="hljs-lite
 
 r = rand();
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>If not provided <code>a</code> and <code>b</code>, the returned generator requires that both parameters be provided at each invocation.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = discreteUniform.factory();
+</code></pre>
+<p>If not provided <code>a</code> and <code>b</code>, the returned generator requires that both parameters be provided at each invocation.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand = discreteUniform.factory();
 
 <span class="hljs-keyword">var</span> r = rand( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 r = rand( -<span class="hljs-number">20</span>, <span class="hljs-number">20</span> );
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom integers. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned pseudorandom number generator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable). The provided PRNG <strong>must</strong> have <code>MIN</code> and <code>MAX</code> properties specifying the minimum and maximum possible pseudorandom integers.</li><li><strong>seed</strong>: pseudorandom number generator seed.</li><li><strong>state</strong>: a <a href="/docs/api/latest/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</li></ul><p>To use a custom PRNG as the underlying source of uniformly distributed pseudorandom integers, set the <code>prng</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>prng</strong>: pseudorandom number generator for generating uniformly distributed pseudorandom integers. If provided, the function <strong>ignores</strong> both the <code>state</code> and <code>seed</code> options. In order to seed the returned pseudorandom number generator, one must seed the provided <code>prng</code> (assuming the provided <code>prng</code> is seedable). The provided PRNG <strong>must</strong> have <code>MIN</code> and <code>MAX</code> properties specifying the minimum and maximum possible pseudorandom integers.</li>
+<li><strong>seed</strong>: pseudorandom number generator seed.</li>
+<li><strong>state</strong>: a <a href="/docs/api/latest/@stdlib/array/uint32"><code>Uint32Array</code></a> containing pseudorandom number generator state. If provided, the function ignores the <code>seed</code> option.</li>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to copy a provided pseudorandom number generator state. Setting this option to <code>false</code> allows sharing state between two or more pseudorandom number generators. Setting this option to <code>true</code> ensures that a returned generator has exclusive control over its internal state. Default: <code>true</code>.</li>
+</ul>
+<p>To use a custom PRNG as the underlying source of uniformly distributed pseudorandom integers, set the <code>prng</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory({
     <span class="hljs-string">'prng'</span>: minstd
@@ -36,7 +63,9 @@ r = rand( -<span class="hljs-number">20</span>, <span class="hljs-number">20</sp
 
 <span class="hljs-keyword">var</span> r = rand( <span class="hljs-number">20</span>, <span class="hljs-number">40</span> );
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>To seed a pseudorandom number generator, set the <code>seed</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand1 = discreteUniform.factory({
+</code></pre>
+<p>To seed a pseudorandom number generator, set the <code>seed</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand1 = discreteUniform.factory({
     <span class="hljs-string">'seed'</span>: <span class="hljs-number">12345</span>
 });
 
@@ -52,7 +81,9 @@ r = rand( -<span class="hljs-number">20</span>, <span class="hljs-number">20</sp
 
 <span class="hljs-keyword">var</span> bool = ( r1 === r2 );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>To return a generator having a specific initial state, set the generator <code>state</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
+</code></pre>
+<p>To return a generator having a specific initial state, set the generator <code>state</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
 <span class="hljs-keyword">var</span> bool;
 <span class="hljs-keyword">var</span> r;
 <span class="hljs-keyword">var</span> i;
@@ -70,11 +101,20 @@ rand = discreteUniform.factory({
 <span class="hljs-comment">// Test that the generated pseudorandom numbers are the same:</span>
 bool = ( rand( <span class="hljs-number">20</span>, <span class="hljs-number">40</span> ) === discreteUniform( <span class="hljs-number">20</span>, <span class="hljs-number">40</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre><h4 id="discreteuniformname">discreteUniform.NAME</h4><p>The generator name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = discreteUniform.NAME;
+</code></pre>
+<h4 id="discreteuniformname">discreteUniform.NAME</h4>
+<p>The generator name.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = discreteUniform.NAME;
 <span class="hljs-comment">// returns 'discrete-uniform'</span>
-</code></pre><h4 id="discreteuniformprng">discreteUniform.PRNG</h4><p>The underlying pseudorandom number generator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> prng = discreteUniform.PRNG;
+</code></pre>
+<h4 id="discreteuniformprng">discreteUniform.PRNG</h4>
+<p>The underlying pseudorandom number generator.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> prng = discreteUniform.PRNG;
 <span class="hljs-comment">// returns &#x3C;Function></span>
-</code></pre><h4 id="discreteuniformseed">discreteUniform.seed</h4><p>The value used to seed <code>discreteUniform()</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
+</code></pre>
+<h4 id="discreteuniformseed">discreteUniform.seed</h4>
+<p>The value used to seed <code>discreteUniform()</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> rand;
 <span class="hljs-keyword">var</span> r;
 <span class="hljs-keyword">var</span> i;
 
@@ -90,7 +130,9 @@ rand = discreteUniform.factory( <span class="hljs-number">0</span>, <span class=
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
     r = rand();
 }
-</code></pre><p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre>
+<p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory({
     <span class="hljs-string">'prng'</span>: minstd
@@ -98,9 +140,14 @@ rand = discreteUniform.factory( <span class="hljs-number">0</span>, <span class=
 
 <span class="hljs-keyword">var</span> seed = rand.seed;
 <span class="hljs-comment">// returns null</span>
-</code></pre><h4 id="discreteuniformseedlength">discreteUniform.seedLength</h4><p>Length of generator seed.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = discreteUniform.seedLength;
+</code></pre>
+<h4 id="discreteuniformseedlength">discreteUniform.seedLength</h4>
+<p>Length of generator seed.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = discreteUniform.seedLength;
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre>
+<p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory({
     <span class="hljs-string">'prng'</span>: minstd
@@ -108,7 +155,10 @@ rand = discreteUniform.factory( <span class="hljs-number">0</span>, <span class=
 
 <span class="hljs-keyword">var</span> len = rand.seedLength;
 <span class="hljs-comment">// returns null</span>
-</code></pre><h4 id="discreteuniformstate">discreteUniform.state</h4><p>Writable property for getting and setting the generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-number">10</span> );
+</code></pre>
+<h4 id="discreteuniformstate">discreteUniform.state</h4>
+<p>Writable property for getting and setting the generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-number">10</span> );
@@ -137,7 +187,9 @@ r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-num
 <span class="hljs-comment">// returns &#x3C;number></span>
 
 <span class="hljs-comment">// ...</span>
-</code></pre><p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre>
+<p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory({
     <span class="hljs-string">'prng'</span>: minstd
@@ -145,9 +197,14 @@ r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-num
 
 <span class="hljs-keyword">var</span> state = rand.state;
 <span class="hljs-comment">// returns null</span>
-</code></pre><h4 id="discreteuniformstatelength">discreteUniform.stateLength</h4><p>Length of generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = discreteUniform.stateLength;
+</code></pre>
+<h4 id="discreteuniformstatelength">discreteUniform.stateLength</h4>
+<p>Length of generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> len = discreteUniform.stateLength;
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre>
+<p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory({
     <span class="hljs-string">'prng'</span>: minstd
@@ -155,9 +212,14 @@ r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-num
 
 <span class="hljs-keyword">var</span> len = rand.stateLength;
 <span class="hljs-comment">// returns null</span>
-</code></pre><h4 id="discreteuniformbytelength">discreteUniform.byteLength</h4><p>Size (in bytes) of generator state.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sz = discreteUniform.byteLength;
+</code></pre>
+<h4 id="discreteuniformbytelength">discreteUniform.byteLength</h4>
+<p>Size (in bytes) of generator state.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sz = discreteUniform.byteLength;
 <span class="hljs-comment">// returns &#x3C;number></span>
-</code></pre><p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre>
+<p>If provided a PRNG for uniformly distributed integers, this value is <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory({
     <span class="hljs-string">'prng'</span>: minstd
@@ -165,9 +227,14 @@ r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-num
 
 <span class="hljs-keyword">var</span> sz = rand.byteLength;
 <span class="hljs-comment">// returns null</span>
-</code></pre><h4 id="discreteuniformtojson">discreteUniform.toJSON()</h4><p>Serializes the pseudorandom number generator as a JSON object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = discreteUniform.toJSON();
+</code></pre>
+<h4 id="discreteuniformtojson">discreteUniform.toJSON()</h4>
+<p>Serializes the pseudorandom number generator as a JSON object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = discreteUniform.toJSON();
 <span class="hljs-comment">// returns { 'type': 'PRNG', 'name': '...', 'state': {...}, 'params': [] }</span>
-</code></pre><p>If provided a PRNG for uniformly distributed numbers, this method returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
+</code></pre>
+<p>If provided a PRNG for uniformly distributed numbers, this method returns <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minstd = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/minstd'</span> );
 
 <span class="hljs-keyword">var</span> rand = discreteUniform.factory({
     <span class="hljs-string">'prng'</span>: minstd
@@ -175,7 +242,21 @@ r = discreteUniform( -<span class="hljs-number">10</span>, <span class="hljs-num
 
 <span class="hljs-keyword">var</span> o = rand.toJSON();
 <span class="hljs-comment">// returns null</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If PRNG state is "shared" (meaning a state array was provided during PRNG creation and <strong>not</strong> copied) and one sets the generator state to a state array having a different length, the PRNG does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for <strong>each</strong> relevant PRNG must be <strong>explicitly</strong> set.</li><li>If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If PRNG state is "shared" (meaning a state array was provided during PRNG creation and <strong>not</strong> copied) and one sets the generator state to a state array having a different length, the PRNG does <strong>not</strong> update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for <strong>each</strong> relevant PRNG must be <strong>explicitly</strong> set.</li>
+<li>If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 
 <span class="hljs-keyword">var</span> seed;
 <span class="hljs-keyword">var</span> rand;
@@ -202,4 +283,14 @@ rand = discreteUniform.factory( -<span class="hljs-number">20</span>, <span clas
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
     <span class="hljs-built_in">console</span>.log( rand() );
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

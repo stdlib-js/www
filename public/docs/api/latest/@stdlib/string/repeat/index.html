@@ -1,5 +1,14 @@
-<h1 id="repeat">Repeat</h1><blockquote><p>Repeat a string a specified number of times and return the concatenated result.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> repeat = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/repeat'</span> );
-</code></pre><h4 id="repeat-str-n-">repeat( str, n )</h4><p>Repeats a string <code>n</code> times and returns the concatenated result.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = repeat( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span> );
+<h1 id="repeat">Repeat</h1>
+<blockquote>
+<p>Repeat a string a specified number of times and return the concatenated result.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> repeat = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/repeat'</span> );
+</code></pre>
+<h4 id="repeat-str-n-">repeat( str, n )</h4>
+<p>Repeats a string <code>n</code> times and returns the concatenated result.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = repeat( <span class="hljs-string">'a'</span>, <span class="hljs-number">5</span> );
 <span class="hljs-comment">// returns 'aaaaa'</span>
 
 str = repeat( <span class="hljs-string">''</span>, <span class="hljs-number">100</span> );
@@ -7,7 +16,13 @@ str = repeat( <span class="hljs-string">''</span>, <span class="hljs-number">100
 
 str = repeat( <span class="hljs-string">'beep'</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns ''</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> repeat = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/repeat'</span> );
 
@@ -19,15 +34,49 @@ str = repeat( <span class="hljs-string">'beep'</span>, <span class="hljs-number"
     n = round( randu()*<span class="hljs-number">3.0</span> );
     <span class="hljs-built_in">console</span>.log( repeat( str, n ) );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: repstr [options] [&#x3C;string>] --n &#x3C;repeats>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: repstr [options] [&#x3C;string>] --n &#x3C;repeats>
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --n repeats           Number of repetitions.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ repstr beep -n 5
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ repstr beep -n 5
 beepbeepbeepbeepbeep
-</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'ab'</span> | repstr -n 3
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'ab'</span> | repstr -n 3
 ababab
-</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/pad"><code>@stdlib/string/pad</code></a></span><span class="delimiter">: </span><span class="description">pad a string.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/pad"><code>@stdlib/string/pad</code></a></span><span class="delimiter">: </span><span class="description">pad a string.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

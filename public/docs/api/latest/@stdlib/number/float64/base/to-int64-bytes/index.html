@@ -1,7 +1,19 @@
-<h1 id="toint64bytes">toInt64Bytes</h1><blockquote><p>Convert an integer-valued <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> to a signed 64-bit integer byte array according to host byte order (endianness).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToInt64Bytes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int64-bytes'</span> );
-</code></pre><h4 id="float64toint64bytes-x-">float64ToInt64Bytes( x )</h4><p>Converts an integer-valued <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> to a signed 64-bit integer byte array according to host byte order (endianness).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = float64ToInt64Bytes( <span class="hljs-number">4294967297.0</span> );
+<h1 id="toint64bytes">toInt64Bytes</h1>
+<blockquote>
+<p>Convert an integer-valued <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> to a signed 64-bit integer byte array according to host byte order (endianness).</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToInt64Bytes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int64-bytes'</span> );
+</code></pre>
+<h4 id="float64toint64bytes-x-">float64ToInt64Bytes( x )</h4>
+<p>Converts an integer-valued <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> to a signed 64-bit integer byte array according to host byte order (endianness).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = float64ToInt64Bytes( <span class="hljs-number">4294967297.0</span> );
 <span class="hljs-comment">// returns &#x3C;Uint8Array></span>
-</code></pre><h4 id="float64toint64bytesassign-x-out-stride-offset-">float64ToInt64Bytes.assign( x, out, stride, offset )</h4><p>Converts an integer-valued <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> to a signed 64-bit integer byte array according to host byte order (endianness) and assigns results to a provided output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+</code></pre>
+<h4 id="float64toint64bytesassign-x-out-stride-offset-">float64ToInt64Bytes.assign( x, out, stride, offset )</h4>
+<p>Converts an integer-valued <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> to a signed 64-bit integer byte array according to host byte order (endianness) and assigns results to a provided output array.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
 <span class="hljs-keyword">var</span> out = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>( <span class="hljs-number">16</span> );
 <span class="hljs-keyword">var</span> y = float64ToInt64Bytes.assign( <span class="hljs-number">4294967297.0</span>, out, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
@@ -9,7 +21,20 @@
 
 <span class="hljs-keyword">var</span> bool = ( y === out );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The functions assume that the input value is less than the maximum safe <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> integer plus one (i.e., <code>2**53</code>).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryStringUint8 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The functions assume that the input value is less than the maximum safe <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point</a> integer plus one (i.e., <code>2**53</code>).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toBinaryStringUint8 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/uint8/base/to-binary-string'</span> );
 <span class="hljs-keyword">var</span> float64ToInt64Bytes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-int64-bytes'</span> );
 
 <span class="hljs-keyword">var</span> bytes;
@@ -31,4 +56,14 @@ x = <span class="hljs-number">1</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s2**%d => %s'</span>, ( sgn &#x3C; <span class="hljs-number">0</span> ) ? <span class="hljs-string">'-'</span> : <span class="hljs-string">'+'</span>, i, str.join( <span class="hljs-string">' '</span> ) );
     x *= <span class="hljs-number">2</span>;
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

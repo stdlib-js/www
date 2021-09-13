@@ -1,5 +1,19 @@
-<h1 id="broadcastarray">broadcastArray</h1><blockquote><p>Broadcast an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> to a specified shape.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> broadcastArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/broadcast-array'</span> );
-</code></pre><h4 id="broadcastarray-arr-shape-">broadcastArray( arr, shape )</h4><p>Broadcasts an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> to a specified <code>shape</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<h1 id="broadcastarray">broadcastArray</h1>
+<blockquote>
+<p>Broadcast an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> to a specified shape.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> broadcastArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/broadcast-array'</span> );
+</code></pre>
+<h4 id="broadcastarray-arr-shape-">broadcastArray( arr, shape )</h4>
+<p>Broadcasts an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> to a specified <code>shape</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 
 <span class="hljs-comment">// Create a 2x2 ndarray:</span>
 <span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
@@ -8,7 +22,25 @@
 <span class="hljs-comment">// Broadcast to a 2x2x2 ndarray:</span>
 <span class="hljs-keyword">var</span> y = broadcastArray( x, [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
 <span class="hljs-comment">// returns &#x3C;ndarray></span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function throws an error if a provided <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">incompatible</a> with a provided shape.</li><li>The returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is a view on the input <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> data buffer. The view is typically <strong>not</strong> contiguous. As more than one element of a returned view may refer to the same memory location, writing to the view may affect multiple elements. If you need to write to the returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, copy the <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> <strong>before</strong> performing operations which may mutate elements.</li><li>The returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is a "base" <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, and, thus, the returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> does not perform bounds checking or afford any of the guarantees of the non-base <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> constructor. The primary intent of this function is to broadcast an ndarray-like object within internal implementations and to do so with minimal overhead.</li><li>The function always returns a new <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> instance even if the input <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> shape and the desired shape are the same.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The function throws an error if a provided <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">incompatible</a> with a provided shape.</li>
+<li>The returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is a view on the input <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> data buffer. The view is typically <strong>not</strong> contiguous. As more than one element of a returned view may refer to the same memory location, writing to the view may affect multiple elements. If you need to write to the returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, copy the <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> <strong>before</strong> performing operations which may mutate elements.</li>
+<li>The returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> is a "base" <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, and, thus, the returned <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> does not perform bounds checking or afford any of the guarantees of the non-base <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> constructor. The primary intent of this function is to broadcast an ndarray-like object within internal implementations and to do so with minimal overhead.</li>
+<li>The function always returns a new <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> instance even if the input <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> shape and the desired shape are the same.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 <span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
 <span class="hljs-keyword">var</span> ind2sub = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ind2sub'</span> );
 <span class="hljs-keyword">var</span> broadcastArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/broadcast-array'</span> );
@@ -37,4 +69,18 @@
     sub = ind2sub( sh, i );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Y[%s] = %d'</span>, sub.join( <span class="hljs-string">', '</span> ), v );
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

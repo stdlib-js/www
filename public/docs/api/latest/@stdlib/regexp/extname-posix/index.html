@@ -1,15 +1,43 @@
-<h1 id="filename-extension">Filename Extension</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reExtnamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/extname-posix'</span> );
-</code></pre><h4 id="reextnameposix">reExtnamePosix()</h4><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_EXTNAME_POSIX = reExtnamePosix();
+<h1 id="filename-extension">Filename Extension</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reExtnamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/extname-posix'</span> );
+</code></pre>
+<h4 id="reextnameposix">reExtnamePosix()</h4>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> RE_EXTNAME_POSIX = reExtnamePosix();
 <span class="hljs-keyword">var</span> ext = RE_EXTNAME_POSIX.exec( <span class="hljs-string">'index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns '.js'</span>
-</code></pre><h4 id="reextnameposixregexp">reExtnamePosix.REGEXP</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = reExtnamePosix.REGEXP.exec( <span class="hljs-string">'index.js'</span> )[ <span class="hljs-number">1</span> ];
+</code></pre>
+<h4 id="reextnameposixregexp">reExtnamePosix.REGEXP</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular expression</a> to capture a <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a> filename extension.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = reExtnamePosix.REGEXP.exec( <span class="hljs-string">'index.js'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns '.js'</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>When executed against dotfile filenames (e.g., <code>.gitignore</code>), the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> does <strong>not</strong> capture the basename as a filename extension.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = reExtnamePosix.REGEXP.exec( <span class="hljs-string">'.bash_profile'</span> )[ <span class="hljs-number">1</span> ];
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>When executed against dotfile filenames (e.g., <code>.gitignore</code>), the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> does <strong>not</strong> capture the basename as a filename extension.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ext = reExtnamePosix.REGEXP.exec( <span class="hljs-string">'.bash_profile'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns ''</span>
 
 ext = reExtnamePosix.REGEXP.exec( <span class="hljs-string">'.travis.yml'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns '.yml'</span>
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reExtnamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/extname-posix'</span> );
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reExtnamePosix = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/regexp/extname-posix'</span> );
 
 <span class="hljs-keyword">var</span> RE_EXTNAME_POSIX = reExtnamePosix();
 <span class="hljs-keyword">var</span> ext;
@@ -34,4 +62,23 @@ ext = RE_EXTNAME_POSIX.exec( <span class="hljs-string">'/foo/bar/file'</span> )[
 
 ext = RE_EXTNAME_POSIX.exec( <span class="hljs-string">'/foo/bar/.gitignore'</span> )[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns ''</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/extname"><code>@stdlib/regexp/extname</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a filename extension.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/extname-windows"><code>@stdlib/regexp/extname-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a Windows filename extension.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/extname"><code>@stdlib/utils/extname</code></a></span><span class="delimiter">: </span><span class="description">return a filename extension.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/extname"><code>@stdlib/regexp/extname</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a filename extension.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/regexp/extname-windows"><code>@stdlib/regexp/extname-windows</code></a></span><span class="delimiter">: </span><span class="description">return a regular expression to capture a Windows filename extension.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/extname"><code>@stdlib/utils/extname</code></a></span><span class="delimiter">: </span><span class="description">return a filename extension.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

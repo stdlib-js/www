@@ -1,7 +1,29 @@
-<h1 id="node-version">Node Version</h1><blockquote><p>Node version.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> NODE_VERSION = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/node-version'</span> );
-</code></pre><h4 id="node_version">NODE_VERSION</h4><p>Node version.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( NODE_VERSION );
+<h1 id="node-version">Node Version</h1>
+<blockquote>
+<p>Node version.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> NODE_VERSION = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/node-version'</span> );
+</code></pre>
+<h4 id="node_version">NODE_VERSION</h4>
+<p>Node version.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( NODE_VERSION );
 <span class="hljs-comment">// => &#x3C;string></span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In browser environments and environments other than Node.js the Node version is equal to <code>null</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> semver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'semver'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>In browser environments and environments other than Node.js the Node version is equal to <code>null</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> semver = <span class="hljs-built_in">require</span>( <span class="hljs-string">'semver'</span> );
 <span class="hljs-keyword">var</span> NODE_VERSION = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/process/node-version'</span> );
 
 <span class="hljs-keyword">if</span> ( semver.lt( NODE_VERSION, <span class="hljs-string">'1.0.0'</span> ) ) {
@@ -13,12 +35,37 @@
 <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Running on a post-io.js version...'</span> );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: node-version [options]
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: node-version [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ node-version
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ node-version
 &#x3C;node_version>
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

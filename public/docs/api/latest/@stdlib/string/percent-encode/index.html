@@ -1,9 +1,42 @@
-<h1 id="percent-encoding">Percent-encoding</h1><blockquote><p><a href="https://en.wikipedia.org/wiki/Percent-encoding">Percent-encode</a> a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoded string according to <a href="https://tools.ietf.org/html/rfc3986#section-2.1">RFC 3986</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> percentEncode = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/percent-encode'</span> );
-</code></pre><h4 id="percentencode-str-">percentEncode( str )</h4><p><a href="https://en.wikipedia.org/wiki/Percent-encoding">Percent-encodes</a> a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoded string according to <a href="https://tools.ietf.org/html/rfc3986#section-2.1">RFC 3986</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = percentEncode( <span class="hljs-string">'☃'</span> );
+<h1 id="percent-encoding">Percent-encoding</h1>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Percent-encoding">Percent-encode</a> a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoded string according to <a href="https://tools.ietf.org/html/rfc3986#section-2.1">RFC 3986</a>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> percentEncode = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/percent-encode'</span> );
+</code></pre>
+<h4 id="percentencode-str-">percentEncode( str )</h4>
+<p><a href="https://en.wikipedia.org/wiki/Percent-encoding">Percent-encodes</a> a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoded string according to <a href="https://tools.ietf.org/html/rfc3986#section-2.1">RFC 3986</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = percentEncode( <span class="hljs-string">'☃'</span> );
 <span class="hljs-comment">// returns '%E2%98%83'</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encodes</a> an <strong>entire</strong> <code>string</code>. Hence, if provided a URI, the function <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encodes</a> the entire URI.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = percentEncode( <span class="hljs-string">'https://en.wikipedia.org/wiki/Mode_(statistics)'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The function <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encodes</a> an <strong>entire</strong> <code>string</code>. Hence, if provided a URI, the function <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encodes</a> the entire URI.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = percentEncode( <span class="hljs-string">'https://en.wikipedia.org/wiki/Mode_(statistics)'</span> );
 <span class="hljs-comment">// returns 'https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FMode_%28statistics%29'</span>
-</code></pre><p>To <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encode</a> a URI, split the URI into separate components, <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encode</a> relevant components, and then reassemble.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> percentEncode = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/percent-encode'</span> );
+</code></pre>
+<p>To <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encode</a> a URI, split the URI into separate components, <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent-encode</a> relevant components, and then reassemble. </p>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> percentEncode = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/percent-encode'</span> );
 
 <span class="hljs-keyword">var</span> values;
 <span class="hljs-keyword">var</span> out;
@@ -21,14 +54,52 @@ values = [
     out = percentEncode( values[ i ] );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%s: %s'</span>, values[ i ], out );
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: percent-encode [options] [&#x3C;string>]
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for describing a command-line interface. -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<!-- CLI usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: percent-encode [options] [&#x3C;string>]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ percent-encode ☃
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- CLI usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ percent-encode ☃
 %E2%98%83
-</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'☃'</span> | percent-encode
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'☃'</span> | percent-encode
 %E2%98%83
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

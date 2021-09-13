@@ -1,14 +1,78 @@
-<h1 id="discrete-uniform">Discrete Uniform</h1><blockquote><p>Discrete uniform distribution.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/discrete-uniform'</span> );
-</code></pre><h4 id="discreteuniform">discreteUniform</h4><p>Discrete uniform distribution.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = discreteUniform;
+<h1 id="discrete-uniform">Discrete Uniform</h1>
+<blockquote>
+<p>Discrete uniform distribution.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/discrete-uniform'</span> );
+</code></pre>
+<h4 id="discreteuniform">discreteUniform</h4>
+<p>Discrete uniform distribution.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dist = discreteUniform;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre><p>The namespace contains the following distribution functions:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/cdf"><code>cdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution cumulative distribution function.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/logcdf"><code>logcdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of the cumulative distribution function for a discrete uniform distribution.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/logpmf"><code>logpmf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of the probability mass function (PMF) for a discrete uniform distribution.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/mgf"><code>mgf( t, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution moment-generating function (MGF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/pmf"><code>pmf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution probability mass function (PMF).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/quantile"><code>quantile( p, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution quantile function.</span></li></ul></div><p>The namespace contains the following functions for calculating distribution properties:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/entropy"><code>entropy( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution entropy.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/kurtosis"><code>kurtosis( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution excess kurtosis.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/mean"><code>mean( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution expected value.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/median"><code>median( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution median.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/skewness"><code>skewness( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution skewness.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/stdev"><code>stdev( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution standard deviation.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/variance"><code>variance( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution variance.</span></li></ul></div><p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">discrete uniform</a> distribution object.</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/ctor"><code>DiscreteUniform( [a, b] )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution constructor.</span></li></ul></div><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> DiscreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/discrete-uniform'</span> ).DiscreteUniform;
+</code></pre>
+<p>The namespace contains the following distribution functions:</p>
+<!-- <toc pattern="*+(cdf|pmf|mgf|quantile)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/cdf"><code>cdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution cumulative distribution function.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/logcdf"><code>logcdf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of the cumulative distribution function for a discrete uniform distribution.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/logpmf"><code>logpmf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">evaluate the natural logarithm of the probability mass function (PMF) for a discrete uniform distribution.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/mgf"><code>mgf( t, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution moment-generating function (MGF).</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/pmf"><code>pmf( x, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution probability mass function (PMF).</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/quantile"><code>quantile( p, a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution quantile function.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains the following functions for calculating distribution properties:</p>
+<!-- <toc pattern="*+(entropy|kurtosis|mean|median|mode|skewness|stdev|variance)*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/entropy"><code>entropy( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution entropy.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/kurtosis"><code>kurtosis( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution excess kurtosis.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/mean"><code>mean( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution expected value.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/median"><code>median( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution median.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/skewness"><code>skewness( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution skewness.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/stdev"><code>stdev( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution standard deviation.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/variance"><code>variance( a, b )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution variance.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<p>The namespace contains a constructor function for creating a <a href="https://en.wikipedia.org/wiki/Discrete_uniform_distribution">discrete uniform</a> distribution object.</p>
+<!-- <toc pattern="*ctor*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/stats/base/dists/discrete-uniform/ctor"><code>DiscreteUniform( [a, b] )</code></a></span><span class="delimiter">: </span><span class="description">discrete uniform distribution constructor.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> DiscreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/discrete-uniform'</span> ).DiscreteUniform;
 
 <span class="hljs-keyword">var</span> dist = <span class="hljs-keyword">new</span> DiscreteUniform( <span class="hljs-number">2</span>, <span class="hljs-number">4</span> );
 
 <span class="hljs-keyword">var</span> y = dist.pmf( <span class="hljs-number">3</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns ~0.333</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/discrete-uniform'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( discreteUniform ) );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

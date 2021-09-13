@@ -1,26 +1,48 @@
-<h1 id="issymbol">isSymbol</h1><blockquote><p>Test if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSymbol = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-symbol'</span> );
-</code></pre><h4 id="issymbol-value-">isSymbol( value )</h4><p>Tests if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+<h1 id="issymbol">isSymbol</h1>
+<blockquote>
+<p>Test if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSymbol = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-symbol'</span> );
+</code></pre>
+<h4 id="issymbol-value-">isSymbol( value )</h4>
+<p>Tests if a value is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSymbol( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) );
 <span class="hljs-comment">// returns true</span>
 
 bool = isSymbol( <span class="hljs-built_in">Object</span>( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre><h4 id="issymbolisprimitive-value-">isSymbol.isPrimitive( value )</h4><p>Tests if a <code>value</code> is a primitive <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+</code></pre>
+<h4 id="issymbolisprimitive-value-">isSymbol.isPrimitive( value )</h4>
+<p>Tests if a <code>value</code> is a primitive <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">symbol</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSymbol.isPrimitive( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) );
 <span class="hljs-comment">// returns true</span>
 
 bool = isSymbol.isPrimitive( <span class="hljs-built_in">Object</span>( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'boop'</span> ) ) );
 <span class="hljs-comment">// returns false</span>
-</code></pre><h4 id="issymbolisobject-value-">isSymbol.isObject( value )</h4><p>Tests if a <code>value</code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
+</code></pre>
+<h4 id="issymbolisobject-value-">isSymbol.isObject( value )</h4>
+<p>Tests if a <code>value</code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> object.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isSymbol.isObject( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'beep'</span> ) );
 <span class="hljs-comment">// returns false</span>
 
 bool = isSymbol.isObject( <span class="hljs-built_in">Object</span>( <span class="hljs-built_in">Symbol</span>( <span class="hljs-string">'boop'</span> ) ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-restricted-syntax, no-empty-function -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasSymbolSupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-symbol-support'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Symbol</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/symbol/ctor'</span> );
 <span class="hljs-keyword">var</span> isSymbol = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-symbol'</span> );
 
@@ -49,6 +71,16 @@ bool = isSymbol( <span class="hljs-keyword">void</span> <span class="hljs-number
 bool = isSymbol( <span class="hljs-literal">true</span> );
 <span class="hljs-comment">// returns false</span>
 
-bool = isSymbol( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>() </span>{} );
+bool = isSymbol( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{} );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

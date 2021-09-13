@@ -1,10 +1,32 @@
-<h1 id="hasutf16surrogatepairat">hasUTF16SurrogatePairAt</h1><blockquote><p>Test if a position in a string marks the start of a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasUTF16SurrogatePairAt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-utf16-surrogate-pair-at'</span> );
-</code></pre><h4 id="hasutf16surrogatepairat-string-position-">hasUTF16SurrogatePairAt( string, position )</h4><p>Tests if a <code>position</code> (in <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> code units) in a <code>string</code> marks the start of a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasUTF16SurrogatePairAt( <span class="hljs-string">'🌷'</span>, <span class="hljs-number">0</span> );
+<h1 id="hasutf16surrogatepairat">hasUTF16SurrogatePairAt</h1>
+<blockquote>
+<p>Test if a position in a string marks the start of a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasUTF16SurrogatePairAt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-utf16-surrogate-pair-at'</span> );
+</code></pre>
+<h4 id="hasutf16surrogatepairat-string-position-">hasUTF16SurrogatePairAt( string, position )</h4>
+<p>Tests if a <code>position</code> (in <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> code units) in a <code>string</code> marks the start of a <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> surrogate pair.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = hasUTF16SurrogatePairAt( <span class="hljs-string">'🌷'</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = hasUTF16SurrogatePairAt( <span class="hljs-string">'🌷'</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Note that <code>position</code> does <strong>not</strong> refer to a visual character position, but to an index in the ordered sequence of <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> code units.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasUTF16SurrogatePairAt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-utf16-surrogate-pair-at'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Note that <code>position</code> does <strong>not</strong> refer to a visual character position, but to an index in the ordered sequence of <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> code units.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hasUTF16SurrogatePairAt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-utf16-surrogate-pair-at'</span> );
 
 <span class="hljs-keyword">var</span> bool = hasUTF16SurrogatePairAt( <span class="hljs-string">'🌷'</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns true</span>
@@ -12,15 +34,42 @@ bool = hasUTF16SurrogatePairAt( <span class="hljs-string">'🌷'</span>, <span c
 bool = hasUTF16SurrogatePairAt( <span class="hljs-string">'🌷'</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns false</span>
 
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: has-utf16-surrogate-pair-at [options] [&#x3C;string>] --pos=&#x3C;index>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: has-utf16-surrogate-pair-at [options] [&#x3C;string>] --pos=&#x3C;index>
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --pos index           Position in string.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ has-utf16-surrogate-pair-at --pos=0 🌷
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ has-utf16-surrogate-pair-at --pos=0 🌷
 <span class="hljs-literal">true</span>
-</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'🌷'</span> | has-utf16-surrogate-pair-at --pos=1
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'🌷'</span> | has-utf16-surrogate-pair-at --pos=1
 <span class="hljs-literal">false</span>
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

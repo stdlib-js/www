@@ -1,12 +1,85 @@
-<h1 id="ndarray-native-add-ons">ndarray Native Add-ons</h1><blockquote><p>C APIs for creating Node-API ndarray native add-ons.</p></blockquote><section class="intro"><p>This package exposes an absolute file path for the directory containing header files for various C APIs. The various C APIs facilitate the creation of Node-API ndarray native add-ons.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/napi'</span> );
-</code></pre><h4 id="headerdir">headerDir</h4><p>Absolute file path for the directory containing header files for C APIs.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
+<h1 id="ndarray-native-add-ons">ndarray Native Add-ons</h1>
+<blockquote>
+<p>C APIs for creating Node-API ndarray native add-ons.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+<p>This package exposes an absolute file path for the directory containing header files for various C APIs. The various C APIs facilitate the creation of Node-API ndarray native add-ons.</p>
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/napi'</span> );
+</code></pre>
+<h4 id="headerdir">headerDir</h4>
+<p>Absolute file path for the directory containing header files for C APIs.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dir = headerDir;
 <span class="hljs-comment">// returns &#x3C;string></span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/napi'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> headerDir = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/napi'</span> );
 
 <span class="hljs-built_in">console</span>.log( headerDir );
 <span class="hljs-comment">// => &#x3C;string></span>
-</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"><p>This package exposes various C APIs to facilitate the creation of Node-API ndarray native add-ons. The included C APIs are the APIs implemented in the following packages:</p><ul><li><a href="/docs/api/latest/@stdlib/ndarray/base/napi/unary"><code>@stdlib/ndarray/base/napi/unary</code></a>: Node-API interfaces and macros for registering one or more <a href="/docs/api/latest/@stdlib/ndarray/base/unary"><code>@stdlib/ndarray/base/unary</code></a> interfaces with support for multiple dispatch.</li><li><a href="/docs/api/latest/@stdlib/ndarray/base/unary"><code>@stdlib/ndarray/base/unary</code></a>: ndarray loops for operating on a single input ndarray and one or more output ndarrays.</li><li><a href="/docs/api/latest/@stdlib/ndarray/dtypes"><code>@stdlib/ndarray/dtypes</code></a>: supported ndarray data types.</li></ul><p>For API documentation, consult the individual packages.</p></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/napi.h"</span></span>
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/napi.h"</span></span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+<p>This package exposes various C APIs to facilitate the creation of Node-API ndarray native add-ons. The included C APIs are the APIs implemented in the following packages:</p>
+<!-- NOTE: please keep in alphabetical order -->
+<ul>
+<li><a href="/docs/api/latest/@stdlib/ndarray/base/napi/unary"><code>@stdlib/ndarray/base/napi/unary</code></a>: Node-API interfaces and macros for registering one or more <a href="/docs/api/latest/@stdlib/ndarray/base/unary"><code>@stdlib/ndarray/base/unary</code></a> interfaces with support for multiple dispatch.</li>
+<li><a href="/docs/api/latest/@stdlib/ndarray/base/unary"><code>@stdlib/ndarray/base/unary</code></a>: ndarray loops for operating on a single input ndarray and one or more output ndarrays.</li>
+<li><a href="/docs/api/latest/@stdlib/ndarray/dtypes"><code>@stdlib/ndarray/dtypes</code></a>: supported ndarray data types.</li>
+</ul>
+<p>For API documentation, consult the individual packages.</p>
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/napi.h"</span></span>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/ndarray/base/napi.h"</span></span>
 
 <span class="hljs-comment">// TODO</span>
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

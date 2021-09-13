@@ -1,5 +1,14 @@
-<h1 id="afinn-96">AFINN-96</h1><blockquote><p>A <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">list</a> of English words rated for <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> afinn96 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/afinn-96'</span> );
-</code></pre><h4 id="afinn96">afinn96()</h4><p>Returns a <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">list</a> of <code>1468</code> unique English words (and phrases) rated for <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a>. Negative words have a negative <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a> (<code>[-5,0)</code>). Positive words have a positive <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a> (<code>(0,5]</code>). Neutral words have a <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a> of <code>0</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> words = afinn96();
+<h1 id="afinn-96">AFINN-96</h1>
+<blockquote>
+<p>A <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">list</a> of English words rated for <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> afinn96 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/afinn-96'</span> );
+</code></pre>
+<h4 id="afinn96">afinn96()</h4>
+<p>Returns a <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">list</a> of <code>1468</code> unique English words (and phrases) rated for <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a>. Negative words have a negative <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a> (<code>[-5,0)</code>). Positive words have a positive <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a> (<code>(0,5]</code>). Neutral words have a <a href="https://en.wikipedia.org/wiki/Valence_%28psychology%29">valence</a> of <code>0</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> words = afinn96();
 <span class="hljs-comment">/* returns
     [
         ['abandon',-2],
@@ -16,7 +25,27 @@
         ...
     ]
 */</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The list is an earlier version of <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-111</a>.</li><li>The list contains duplicated words.</li><li>The list includes misspelled words. Their presence is intentional, as such misspellings frequently occur in social media content.</li><li>All words are lowercase.</li><li>Some "words" are phrases; e.g., <code>cashing in</code>, <code>cool stuff</code>.</li><li>Words may contain apostrophes; e.g., <code>can't stand</code>.</li><li>Words may contain dashes; e.g., <code>cover-up</code>, <code>made-up</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> afinn96 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/afinn-96'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The list is an earlier version of <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN-111</a>.</li>
+<li>The list contains duplicated words.</li>
+<li>The list includes misspelled words. Their presence is intentional, as such misspellings frequently occur in social media content.</li>
+<li>All words are lowercase.</li>
+<li>Some "words" are phrases; e.g., <code>cashing in</code>, <code>cool stuff</code>.</li>
+<li>Words may contain apostrophes; e.g., <code>can't stand</code>.</li>
+<li>Words may contain dashes; e.g., <code>cover-up</code>, <code>made-up</code>. </li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<!-- TODO: more creative example; possibly counting the number of negative words per sentence in two pieces of text. -->
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> afinn96 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/datasets/afinn-96'</span> );
 
 <span class="hljs-keyword">var</span> words;
 <span class="hljs-keyword">var</span> dict;
@@ -32,17 +61,69 @@ dict = {};
     dict[ words[i][<span class="hljs-number">0</span>] ] = words[i][<span class="hljs-number">1</span>];
 }
 <span class="hljs-built_in">console</span>.dir( dict );
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: afinn-96 [options]
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: afinn-96 [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --format fmt          Output format: 'csv' or 'ndjson'.
-</code></pre></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>The CLI supports two output formats: comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>) and newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>). The default output format is <a href="https://tools.ietf.org/html/rfc4180">CSV</a>.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ afinn-96
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h3 id="notes-1">Notes</h3>
+<ul>
+<li>The CLI supports two output formats: comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>) and newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>). The default output format is <a href="https://tools.ietf.org/html/rfc4180">CSV</a>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ afinn-96
 word,valence
 abandon,-2
 abandons,-2
 abandoned,-2
 ...
-</code></pre></section></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Nielsen, Finn Årup. 2011. "A new ANEW: Evaluation of a word list for sentiment analysis in microblogs." In <em>Proceedings of the ESWC2011 Workshop on 'Making Sense of Microposts': Big things come in small packages.</em>, 718:93–98. CEUR Workshop Proceedings. <a href="http://ceur-ws.org/Vol-718/paper_16.pdf">http://ceur-ws.org/Vol-718/paper_16.pdf</a>.</li><li>Hansen, Lars Kai, Adam Arvidsson, Finn Årup Nielsen, Elanor Colleoni, and Michael Etter. 2011. "Good Friends, Bad News - Affect and Virality in Twitter." In <em>Future Information Technology: 6th International Conference, FutureTech 2011, Loutraki, Greece, June 28-30, 2011, Proceedings, Part II</em>, edited by James J. Park, Laurence T. Yang, and Changhoon Lee, 34–43. Berlin, Heidelberg: Springer Berlin Heidelberg. doi:<a href="https://doi.org/10.1007/978-3-642-22309-9_5">10.1007/978-3-642-22309-9_5</a>.</li></ul></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons Attribution 1.0 License</a> and their contents are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Public License</a>. The original dataset is attributed to Finn Årup Nielsen and can be found <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">here</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/afinn-111"><code>@stdlib/datasets/afinn-111</code></a></span><span class="delimiter">: </span><span class="description">A list of English words rated for valence.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<hr>
+<section class="references">
+<h2 id="references">References</h2>
+<ul>
+<li>Nielsen, Finn Årup. 2011. "A new ANEW: Evaluation of a word list for sentiment analysis in microblogs." In <em>Proceedings of the ESWC2011 Workshop on 'Making Sense of Microposts': Big things come in small packages.</em>, 718:93–98. CEUR Workshop Proceedings. <a href="http://ceur-ws.org/Vol-718/paper_16.pdf">http://ceur-ws.org/Vol-718/paper_16.pdf</a>.</li>
+<li>Hansen, Lars Kai, Adam Arvidsson, Finn Årup Nielsen, Elanor Colleoni, and Michael Etter. 2011. "Good Friends, Bad News - Affect and Virality in Twitter." In <em>Future Information Technology: 6th International Conference, FutureTech 2011, Loutraki, Greece, June 28-30, 2011, Proceedings, Part II</em>, edited by James J. Park, Laurence T. Yang, and Changhoon Lee, 34–43. Berlin, Heidelberg: Springer Berlin Heidelberg. doi:<a href="https://doi.org/10.1007/978-3-642-22309-9_5">10.1007/978-3-642-22309-9_5</a>.</li>
+</ul>
+</section>
+<!-- /.references -->
+<!-- <license> -->
+<h2 id="license">License</h2>
+<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/by/1.0/">Open Data Commons Attribution 1.0 License</a> and their contents are licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International Public License</a>. The original dataset is attributed to Finn Årup Nielsen and can be found <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">here</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+<!-- </license> -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/datasets/afinn-111"><code>@stdlib/datasets/afinn-111</code></a></span><span class="delimiter">: </span><span class="description">A list of English words rated for valence.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

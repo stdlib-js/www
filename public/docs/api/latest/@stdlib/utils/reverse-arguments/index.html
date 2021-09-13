@@ -1,5 +1,19 @@
-<h1 id="reversearguments">reverseArguments</h1><blockquote><p>Create a function that invokes a provided function with arguments in reverse order.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseArguments = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reverse-arguments'</span> );
-</code></pre><h4 id="reversearguments-fcn-thisarg-">reverseArguments( fcn[, thisArg] )</h4><p>Returns a <code>function</code> that invokes a provided function with <code>arguments</code> in reverse order.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> a, b </span>) </span>{
+<h1 id="reversearguments">reverseArguments</h1>
+<blockquote>
+<p>Create a function that invokes a provided function with arguments in reverse order.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseArguments = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reverse-arguments'</span> );
+</code></pre>
+<h4 id="reversearguments-fcn-thisarg-">reverseArguments( fcn[, thisArg] )</h4>
+<p>Returns a <code>function</code> that invokes a provided function with <code>arguments</code> in reverse order.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> a, b </span>) </span>{
     <span class="hljs-keyword">return</span> [ a, b ];
 }
 
@@ -7,7 +21,10 @@
 
 <span class="hljs-keyword">var</span> out = bar( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns [ 2, 1 ]</span>
-</code></pre><p>To set the <code>this</code> context when invoking the provided function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>() </span>{
+</code></pre>
+<p>To set the <code>this</code> context when invoking the provided function, provide a <code>thisArg</code>.</p>
+<!-- eslint-disable no-restricted-syntax -->
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.x = <span class="hljs-number">1</span>;
     <span class="hljs-built_in">this</span>.y = <span class="hljs-number">2</span>;
 }
@@ -27,7 +44,18 @@ Foo.prototype.scale = <span class="hljs-function"><span class="hljs-keyword">fun
 
 <span class="hljs-keyword">var</span> out = bar( <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns [ 20, 20 ]</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseArguments = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reverse-arguments'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> reverseArguments = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/reverse-arguments'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"> a, b, c </span>) </span>{
     <span class="hljs-keyword">return</span> [ a, b, c ];
@@ -40,4 +68,25 @@ Foo.prototype.scale = <span class="hljs-function"><span class="hljs-keyword">fun
 
 out = bar( <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> );
 <span class="hljs-comment">// returns [ 3, 2, 1 ]</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/reorder-arguments"><code>@stdlib/utils/reorder-arguments</code></a></span><span class="delimiter">: </span><span class="description">create a function that invokes a provided function with reordered arguments.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/reorder-arguments"><code>@stdlib/utils/reorder-arguments</code></a></span><span class="delimiter">: </span><span class="description">create a function that invokes a provided function with reordered arguments.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

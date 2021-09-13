@@ -1,5 +1,14 @@
-<h1 id="gsort2hp">gsort2hp</h1><blockquote><p>Simultaneously sort two strided arrays based on the sort order of the first array using heapsort.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gsort2hp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gsort2hp'</span> );
-</code></pre><h4 id="gsort2hp-n-order-x-stridex-y-stridey-">gsort2hp( N, order, x, strideX, y, strideY )</h4><p>Simultaneously sorts two strided arrays based on the sort order of the first array <code>x</code> using heapsort.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ];
+<h1 id="gsort2hp">gsort2hp</h1>
+<blockquote>
+<p>Simultaneously sort two strided arrays based on the sort order of the first array using heapsort.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gsort2hp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gsort2hp'</span> );
+</code></pre>
+<h4 id="gsort2hp-n-order-x-stridex-y-stridey-">gsort2hp( N, order, x, strideX, y, strideY )</h4>
+<p>Simultaneously sorts two strided arrays based on the sort order of the first array <code>x</code> using heapsort.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ];
 
 gsort2hp( x.length, <span class="hljs-number">1.0</span>, x, <span class="hljs-number">1</span>, y, <span class="hljs-number">1</span> );
@@ -9,7 +18,18 @@ gsort2hp( x.length, <span class="hljs-number">1.0</span>, x, <span class="hljs-n
 
 <span class="hljs-built_in">console</span>.log( y );
 <span class="hljs-comment">// => [ 3.0, 1.0, 0.0, 2.0 ]</span>
-</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>order</strong>: sort order. If <code>order &#x3C; 0.0</code>, the input strided array <code>x</code> is sorted in <strong>decreasing</strong> order. If <code>order > 0.0</code>, the input strided array <code>x</code> is sorted in <strong>increasing</strong> order. If <code>order == 0.0</code>, the input strided arrays are left unchanged.</li><li><strong>x</strong>: first input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li><li><strong>strideX</strong>: <code>x</code> index increment.</li><li><strong>y</strong>: second input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li><li><strong>strideY</strong>: <code>y</code> index increment.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to sort every other element</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre>
+<p>The function has the following parameters:</p>
+<ul>
+<li><strong>N</strong>: number of indexed elements.</li>
+<li><strong>order</strong>: sort order. If <code>order &#x3C; 0.0</code>, the input strided array <code>x</code> is sorted in <strong>decreasing</strong> order. If <code>order > 0.0</code>, the input strided array <code>x</code> is sorted in <strong>increasing</strong> order. If <code>order == 0.0</code>, the input strided arrays are left unchanged.</li>
+<li><strong>x</strong>: first input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
+<li><strong>strideX</strong>: <code>x</code> index increment.</li>
+<li><strong>y</strong>: second input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
+<li><strong>strideY</strong>: <code>y</code> index increment.</li>
+</ul>
+<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> and <code>y</code> are accessed at runtime. For example, to sort every other element</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ];
@@ -22,7 +42,9 @@ gsort2hp( N, -<span class="hljs-number">1.0</span>, x, <span class="hljs-number"
 
 <span class="hljs-built_in">console</span>.log( y );
 <span class="hljs-comment">// => [ 2.0, 1.0, 0.0, 3.0 ]</span>
-</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-comment">// Initial arrays...</span>
@@ -42,7 +64,10 @@ gsort2hp( N, -<span class="hljs-number">1.0</span>, x1, <span class="hljs-number
 
 <span class="hljs-built_in">console</span>.log( y0 );
 <span class="hljs-comment">// => &#x3C;Float64Array>[ 0.0, 3.0, 2.0, 1.0 ]</span>
-</code></pre><h4 id="gsort2hpndarray-n-order-x-stridex-offsetx-y-stridey-offsety-">gsort2hp.ndarray( N, order, x, strideX, offsetX, y, strideY, offsetY )</h4><p>Simultaneously sorts two strided arrays based on the sort order of the first array <code>x</code> using heapsort and alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ];
+</code></pre>
+<h4 id="gsort2hpndarray-n-order-x-stridex-offsetx-y-stridey-offsety-">gsort2hp.ndarray( N, order, x, strideX, offsetX, y, strideY, offsetY )</h4>
+<p>Simultaneously sorts two strided arrays based on the sort order of the first array <code>x</code> using heapsort and alternative indexing semantics.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span> ];
 
 gsort2hp.ndarray( x.length, <span class="hljs-number">1.0</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, y, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
@@ -52,7 +77,14 @@ gsort2hp.ndarray( x.length, <span class="hljs-number">1.0</span>, x, <span class
 
 <span class="hljs-built_in">console</span>.log( y );
 <span class="hljs-comment">// => [ 3.0, 1.0, 0.0, 2.0 ]</span>
-</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offsetX</strong>: <code>x</code> starting index.</li><li><strong>offsetY</strong>: <code>y</code> starting index.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access only the last three elements of <code>x</code></p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ];
+</code></pre>
+<p>The function has the following additional parameters:</p>
+<ul>
+<li><strong>offsetX</strong>: <code>x</code> starting index.</li>
+<li><strong>offsetY</strong>: <code>y</code> starting index.</li>
+</ul>
+<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to access only the last three elements of <code>x</code></p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ];
 
 gsort2hp.ndarray( <span class="hljs-number">3</span>, <span class="hljs-number">1.0</span>, x, <span class="hljs-number">1</span>, x.length-<span class="hljs-number">3</span>, y, <span class="hljs-number">1</span>, y.length-<span class="hljs-number">3</span> );
@@ -62,7 +94,27 @@ gsort2hp.ndarray( <span class="hljs-number">3</span>, <span class="hljs-number">
 
 <span class="hljs-built_in">console</span>.log( y );
 <span class="hljs-comment">// => [ 0.0, 1.0, 2.0, 5.0, 3.0, 4.0 ]</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code> or <code>order == 0.0</code>, both functions leave <code>x</code> and <code>y</code> unchanged.</li><li>The algorithm distinguishes between <code>-0</code> and <code>+0</code>. When sorted in increasing order, <code>-0</code> is sorted before <code>+0</code>. When sorted in decreasing order, <code>-0</code> is sorted after <code>+0</code>.</li><li>The algorithm sorts <code>NaN</code> values to the end. When sorted in increasing order, <code>NaN</code> values are sorted last. When sorted in decreasing order, <code>NaN</code> values are sorted first.</li><li>The algorithm has space complexity <code>O(1)</code> and worst case time complexity <code>O(N^2)</code>.</li><li>The algorithm is efficient for <strong>small</strong> strided arrays (typically <code>N &#x3C;= 20</code>) and is particularly efficient for sorting strided arrays which are already substantially sorted.</li><li>The algorithm has space complexity <code>O(1)</code> and time complexity <code>O(N log2 N)</code>.</li><li>The algorithm is <strong>unstable</strong>, meaning that the algorithm may change the order of strided array elements which are equal or equivalent (e.g., <code>NaN</code> values).</li><li>Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/blas/ext/base/dsort2hp"><code>dsort2hp</code></a>, <a href="/docs/api/latest/@stdlib/blas/ext/base/ssort2hp"><code>ssort2hp</code></a>, etc.) are likely to be significantly more performant.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If <code>N &#x3C;= 0</code> or <code>order == 0.0</code>, both functions leave <code>x</code> and <code>y</code> unchanged.</li>
+<li>The algorithm distinguishes between <code>-0</code> and <code>+0</code>. When sorted in increasing order, <code>-0</code> is sorted before <code>+0</code>. When sorted in decreasing order, <code>-0</code> is sorted after <code>+0</code>.</li>
+<li>The algorithm sorts <code>NaN</code> values to the end. When sorted in increasing order, <code>NaN</code> values are sorted last. When sorted in decreasing order, <code>NaN</code> values are sorted first.</li>
+<li>The algorithm has space complexity <code>O(1)</code> and worst case time complexity <code>O(N^2)</code>.</li>
+<li>The algorithm is efficient for <strong>small</strong> strided arrays (typically <code>N &#x3C;= 20</code>) and is particularly efficient for sorting strided arrays which are already substantially sorted.</li>
+<li>The algorithm has space complexity <code>O(1)</code> and time complexity <code>O(N log2 N)</code>.</li>
+<li>The algorithm is <strong>unstable</strong>, meaning that the algorithm may change the order of strided array elements which are equal or equivalent (e.g., <code>NaN</code> values).</li>
+<li>Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/blas/ext/base/dsort2hp"><code>dsort2hp</code></a>, <a href="/docs/api/latest/@stdlib/blas/ext/base/ssort2hp"><code>ssort2hp</code></a>, etc.) are likely to be significantly more performant.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> gsort2hp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/gsort2hp'</span> );
@@ -92,4 +144,17 @@ y = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Arr
 gsort2hp( x.length, -<span class="hljs-number">1.0</span>, x, -<span class="hljs-number">1</span>, y, -<span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( x );
 <span class="hljs-built_in">console</span>.log( y );
-</code></pre></section><hr><section class="references"><h2 id="references">References</h2><ul><li>Williams, John William Joseph. 1964. "Algorithm 232: Heapsort." <em>Communications of the ACM</em> 7 (6). New York, NY, USA: Association for Computing Machinery: 347–49. doi:<a href="https://doi.org/10.1145/512274.512284">10.1145/512274.512284</a>.</li><li>Floyd, Robert W. 1964. "Algorithm 245: Treesort." <em>Communications of the ACM</em> 7 (12). New York, NY, USA: Association for Computing Machinery: 701. doi:<a href="https://doi.org/10.1145/355588.365103">10.1145/355588.365103</a>.</li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="references">
+<h2 id="references">References</h2>
+<ul>
+<li>Williams, John William Joseph. 1964. "Algorithm 232: Heapsort." <em>Communications of the ACM</em> 7 (6). New York, NY, USA: Association for Computing Machinery: 347–49. doi:<a href="https://doi.org/10.1145/512274.512284">10.1145/512274.512284</a>.</li>
+<li>Floyd, Robert W. 1964. "Algorithm 245: Treesort." <em>Communications of the ACM</em> 7 (12). New York, NY, USA: Association for Computing Machinery: 701. doi:<a href="https://doi.org/10.1145/355588.365103">10.1145/355588.365103</a>.</li>
+</ul>
+</section>
+<section class="links">
+</section>
+<!-- /.links -->

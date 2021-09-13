@@ -1,11 +1,31 @@
-<h1 id="tokenize">tokenize</h1><blockquote><p>Tokenize a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tokenize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/tokenize'</span> );
-</code></pre><h4 id="tokenize-str-keepwhitespace-">tokenize( str[, keepWhitespace] )</h4><p>Tokenizes a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello Mrs. Maple, could you call me back?'</span>;
+<h1 id="tokenize">tokenize</h1>
+<blockquote>
+<p>Tokenize a string.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tokenize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/tokenize'</span> );
+</code></pre>
+<h4 id="tokenize-str-keepwhitespace-">tokenize( str[, keepWhitespace] )</h4>
+<p>Tokenizes a string.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello Mrs. Maple, could you call me back?'</span>;
 <span class="hljs-keyword">var</span> out = tokenize( str );
 <span class="hljs-comment">// returns  [ 'Hello', 'Mrs.', 'Maple', ',', 'could', 'you', 'call', 'me', 'back', '?' ]</span>
-</code></pre><p>To include whitespace characters (spaces, tabs, line breaks) in the output array, set <code>keepWhitespace</code> to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!\n'</span>;
+</code></pre>
+<p>To include whitespace characters (spaces, tabs, line breaks) in the output array, set <code>keepWhitespace</code> to <code>true</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = <span class="hljs-string">'Hello World!\n'</span>;
 <span class="hljs-keyword">var</span> out = tokenize( str, <span class="hljs-literal">true</span> );
 <span class="hljs-comment">// returns  [ 'Hello', ' ', 'World', '!', '\n' ]</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tokenize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/tokenize'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> tokenize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/nlp/tokenize'</span> );
 
 <span class="hljs-built_in">console</span>.log( tokenize( <span class="hljs-string">'Hello World!'</span> ) );
 <span class="hljs-comment">// => [ 'Hello', 'World', '!' ]</span>
@@ -34,4 +54,14 @@
         '.'
     ]
 */</span>
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

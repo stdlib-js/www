@@ -1,34 +1,67 @@
-<h1 id="disposable-http-server">Disposable HTTP Server</h1><blockquote><p>Create a disposable HTTP server.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> httpServer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/net/disposable-http-server'</span> );
-</code></pre><h4 id="httpserver-options-clbk-">httpServer( options[, clbk] )</h4><p>Creates a disposable HTTP server; i.e., the server closes immediately after serving provided content.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+<h1 id="disposable-http-server">Disposable HTTP Server</h1>
+<blockquote>
+<p>Create a disposable HTTP server.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> httpServer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/net/disposable-http-server'</span> );
+</code></pre>
+<h4 id="httpserver-options-clbk-">httpServer( options[, clbk] )</h4>
+<p>Creates a disposable HTTP server; i.e., the server closes immediately after serving provided content.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'html'</span>: <span class="hljs-string">'&#x3C;script src="/bundle.js">&#x3C;/script>'</span>,
     <span class="hljs-string">'javascript'</span>: <span class="hljs-string">'console.log( "Boop" );'</span>
 };
 
 httpServer( opts );
-</code></pre><p>The function accepts the following options:</p><ul><li><strong>html</strong>: <code>buffer</code> or <code>string</code> to serve as HTML content.</li><li><strong>javascript</strong>: <code>buffer</code> or <code>string</code> to serve as JavaScript.</li><li><strong>port</strong>: server port. Default: <code>0</code> (i.e., randomly assigned).</li><li><strong>maxport</strong>: max server port (used when port hunting). Default: <code>=port</code>.</li><li><strong>hostname</strong>: server hostname.</li><li><strong>address</strong>: server address. Default: <code>"0.0.0.0"</code>.</li><li><strong>open</strong>: <code>boolean</code> indicating whether to launch a web browser. Default: <code>false</code>.</li></ul><p>To serve HTML content, set the <code>html</code> option. Once the content is requested, the server will close.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>The function accepts the following options:</p>
+<ul>
+<li><strong>html</strong>: <code>buffer</code> or <code>string</code> to serve as HTML content.</li>
+<li><strong>javascript</strong>: <code>buffer</code> or <code>string</code> to serve as JavaScript.</li>
+<li><strong>port</strong>: server port. Default: <code>0</code> (i.e., randomly assigned).</li>
+<li><strong>maxport</strong>: max server port (used when port hunting). Default: <code>=port</code>.</li>
+<li><strong>hostname</strong>: server hostname.</li>
+<li><strong>address</strong>: server address. Default: <code>"0.0.0.0"</code>.</li>
+<li><strong>open</strong>: <code>boolean</code> indicating whether to launch a web browser. Default: <code>false</code>.</li>
+</ul>
+<p>To serve HTML content, set the <code>html</code> option. Once the content is requested, the server will close.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'html'</span>: <span class="hljs-string">'&#x3C;h1>Beep&#x3C;/h1>'</span>
 };
 
 httpServer( opts );
-</code></pre><p>To serve JavaScript, set the <code>javascript</code> option. If no HTML is provided, an HTML boilerplate is served and the JavaScript is served as <code>/bundle.js</code>. Once the content is requested, the server will close.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>To serve JavaScript, set the <code>javascript</code> option. If no HTML is provided, an HTML boilerplate is served and the JavaScript is served as <code>/bundle.js</code>. Once the content is requested, the server will close.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'javascript'</span>: <span class="hljs-string">'console.log( "Boop" );'</span>
 };
 
 httpServer( opts );
-</code></pre><p>If HTML and JavaScript are provided, in order for the JavaScript to be served, the HTML content should request the file <code>/bundle.js</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>If HTML and JavaScript are provided, in order for the JavaScript to be served, the HTML content should request the file <code>/bundle.js</code>.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'html'</span>: <span class="hljs-string">'&#x3C;script src="/bundle.js">&#x3C;/script>'</span>,
     <span class="hljs-string">'javascript'</span>: <span class="hljs-string">'console.log( "Boop" );'</span>
 };
 
 httpServer( opts );
-</code></pre><p>To obtain the <code>server</code> handle, provide a callback.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextTick = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/next-tick'</span> );
+</code></pre>
+<p>To obtain the <code>server</code> handle, provide a callback.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> nextTick = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/next-tick'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onReady</span>(<span class="hljs-params"> error, server </span>) </span>{
     <span class="hljs-keyword">if</span> ( error ) {
         <span class="hljs-keyword">throw</span> error;
     }
     nextTick( close );
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>() </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">close</span>(<span class="hljs-params"></span>) </span>{
         server.close();
     }
 }
@@ -39,7 +72,21 @@ httpServer( opts );
 };
 
 httpServer( opts, onReady );
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If neither the <code>html</code> or <code>javascript</code> option is set, the server serves an HTML boilerplate and then closes.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If neither the <code>html</code> or <code>javascript</code> option is set, the server serves an HTML boilerplate and then closes.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- run-disable -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> readFileSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-file'</span> ).sync;
 <span class="hljs-keyword">var</span> httpServer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/net/disposable-http-server'</span> );
 
@@ -63,11 +110,19 @@ httpServer( opts, clbk );
     <span class="hljs-comment">// Give the user a few seconds to open her web browser before closing the server...</span>
     <span class="hljs-built_in">setTimeout</span>( onTimeout, <span class="hljs-number">5000</span> );
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>() </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onTimeout</span>(<span class="hljs-params"></span>) </span>{
         server.close();
     }
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: temp-http-server [options] (--html path | --js path | --stdin type)
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: temp-http-server [options] (--html path | --js path | --stdin type)
 
 Options:
 
@@ -81,16 +136,60 @@ Options:
          --hostname hostname   Server hostname.
          --address address     Server address. Default: 0.0.0.0.
          --open                Launch a browser once server is ready.
-</code></pre><p>The application recognizes the following <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a>:</p><ul><li><code>DEBUG</code>: enable verbose logging.</li><li><code>PORT</code>: server port.</li><li><code>MAXPORT</code>: max server port.</li><li><code>HOSTNAME</code>: server hostname.</li><li><code>ADDRESS</code>: server address.</li></ul></section><section class="notes"><h3 id="notes-1">Notes</h3><ul><li>Command-line arguments <strong>always</strong> take precedence over <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a>.</li><li>If either the <code>--html</code> or <code>--javascript</code> command-line flag is set, <code>stdin</code> is assumed to be of the other type. Accordingly, the <code>--stdin</code> flag may be omitted.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><p>To serve an HTML file,</p><pre><code class="hljs language-bash">$ DEBUG=* temp-http-server --html ./examples/fixtures/index.html
+</code></pre>
+<p>The application recognizes the following <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a>:</p>
+<ul>
+<li><code>DEBUG</code>: enable verbose logging.</li>
+<li><code>PORT</code>: server port.</li>
+<li><code>MAXPORT</code>: max server port.</li>
+<li><code>HOSTNAME</code>: server hostname.</li>
+<li><code>ADDRESS</code>: server address.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h3 id="notes-1">Notes</h3>
+<ul>
+<li>Command-line arguments <strong>always</strong> take precedence over <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variables</a>.</li>
+<li>If either the <code>--html</code> or <code>--javascript</code> command-line flag is set, <code>stdin</code> is assumed to be of the other type. Accordingly, the <code>--stdin</code> flag may be omitted.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<p>To serve an HTML file,</p>
+<pre><code class="hljs language-bash">$ DEBUG=* temp-http-server --html ./examples/fixtures/index.html
 ...
-</code></pre><p>To serve a JavaScript file (and a default HTML boilerplate),</p><pre><code class="hljs language-bash">$ DEBUG=* temp-http-server --javascript ./examples/fixtures/script.js
+</code></pre>
+<p>To serve a JavaScript file (and a default HTML boilerplate),</p>
+<pre><code class="hljs language-bash">$ DEBUG=* temp-http-server --javascript ./examples/fixtures/script.js
 ...
-</code></pre><p>In addition to file input, the application accepts <a href="https://en.wikipedia.org/wiki/Standard_streams">standard input</a>. To pipe HTML,</p><pre><code class="hljs language-bash">$ cat ./examples/fixtures/index.html | DEBUG=* temp-http-server --port 7331 --stdin html
+</code></pre>
+<p>In addition to file input, the application accepts <a href="https://en.wikipedia.org/wiki/Standard_streams">standard input</a>. To pipe HTML,</p>
+<pre><code class="hljs language-bash">$ cat ./examples/fixtures/index.html | DEBUG=* temp-http-server --port 7331 --stdin html
 ...
-</code></pre><p>To pipe HTML and load a JavaScript file,</p><pre><code class="hljs language-bash">$ cat ./examples/fixtures/index.html | DEBUG=* temp-http-server --port 7331 --javascript ./examples/fixtures/script.js
+</code></pre>
+<p>To pipe HTML and load a JavaScript file,</p>
+<pre><code class="hljs language-bash">$ cat ./examples/fixtures/index.html | DEBUG=* temp-http-server --port 7331 --javascript ./examples/fixtures/script.js
 ...
-</code></pre><p>To pipe JavaScript (and serve a default HTML boilerplate),</p><pre><code class="hljs language-bash">$ cat ./examples/fixtures/script.js | DEBUG=* temp-http-server --address <span class="hljs-string">'127.0.0.1'</span> --stdin javascript
+</code></pre>
+<p>To pipe JavaScript (and serve a default HTML boilerplate),</p>
+<pre><code class="hljs language-bash">$ cat ./examples/fixtures/script.js | DEBUG=* temp-http-server --address <span class="hljs-string">'127.0.0.1'</span> --stdin javascript
 ...
-</code></pre><p>To pipe JavaScript and serve custom HTML content which requests a <code>/bundle.js</code> file,</p><pre><code class="hljs language-bash">$ cat ./examples/fixtures/script.js | DEBUG=* temp-http-server --html ./examples/fixtures/index.html
+</code></pre>
+<p>To pipe JavaScript and serve custom HTML content which requests a <code>/bundle.js</code> file,</p>
+<pre><code class="hljs language-bash">$ cat ./examples/fixtures/script.js | DEBUG=* temp-http-server --html ./examples/fixtures/index.html
 ...
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

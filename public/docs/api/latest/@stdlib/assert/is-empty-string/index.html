@@ -1,20 +1,45 @@
-<h1 id="isemptystring">isEmptyString</h1><blockquote><p>Test if a value is an empty string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isEmptyString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-empty-string'</span> );
-</code></pre><h4 id="isemptystring-value-">isEmptyString( value )</h4><p>Tests if a value is an empty <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isEmptyString( <span class="hljs-string">''</span> );
+<h1 id="isemptystring">isEmptyString</h1>
+<blockquote>
+<p>Test if a value is an empty string.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isEmptyString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-empty-string'</span> );
+</code></pre>
+<h4 id="isemptystring-value-">isEmptyString( value )</h4>
+<p>Tests if a value is an empty <code>string</code>.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isEmptyString( <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isEmptyString( <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>( <span class="hljs-string">''</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre><h4 id="isemptystringisprimitive-value-">isEmptyString.isPrimitive( value )</h4><p>Tests if a <code>value</code> is an empty primitive <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isEmptyString.isPrimitive( <span class="hljs-string">''</span> );
+</code></pre>
+<h4 id="isemptystringisprimitive-value-">isEmptyString.isPrimitive( value )</h4>
+<p>Tests if a <code>value</code> is an empty primitive <code>string</code>.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isEmptyString.isPrimitive( <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isEmptyString.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>( <span class="hljs-string">''</span> ) );
 <span class="hljs-comment">// returns false</span>
-</code></pre><h4 id="isemptystringisobject-value-">isEmptyString.isObject( value )</h4><p>Tests if a <code>value</code> is an empty <code>String</code> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isEmptyString.isObject( <span class="hljs-string">''</span> );
+</code></pre>
+<h4 id="isemptystringisobject-value-">isEmptyString.isObject( value )</h4>
+<p>Tests if a <code>value</code> is an empty <code>String</code> object.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isEmptyString.isObject( <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns false</span>
 
 bool = isEmptyString.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>( <span class="hljs-string">''</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isEmptyString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-empty-string'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-new-wrappers, no-restricted-syntax, no-empty-function -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isEmptyString = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-empty-string'</span> );
 
 <span class="hljs-keyword">var</span> bool = isEmptyString( <span class="hljs-string">''</span> );
 <span class="hljs-comment">// returns true</span>
@@ -40,6 +65,23 @@ bool = isEmptyString( {} );
 bool = isEmptyString( [] );
 <span class="hljs-comment">// returns false</span>
 
-bool = isEmptyString( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">empty</span>() </span>{} );
+bool = isEmptyString( <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">empty</span>(<span class="hljs-params"></span>) </span>{} );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-string"><code>@stdlib/assert/is-string</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a string.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-string"><code>@stdlib/assert/is-string</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a string.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

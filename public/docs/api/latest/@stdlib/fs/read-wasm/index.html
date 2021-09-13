@@ -1,5 +1,15 @@
-<h1 id="read-webassembly">Read WebAssembly</h1><blockquote><p>Read a file as <a href="https://webassembly.org/">WebAssembly</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> readWASM = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-wasm'</span> );
-</code></pre><p></p><h4 id="readwasm-file-options-clbk-">readWASM( file[, options], clbk )</h4><p>Asynchronously reads a file as <a href="https://webassembly.org/">WebAssembly</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+<h1 id="read-webassembly">Read WebAssembly</h1>
+<blockquote>
+<p>Read a file as <a href="https://webassembly.org/">WebAssembly</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> readWASM = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-wasm'</span> );
+</code></pre>
+<p><a name="read-wasm"></a></p>
+<h4 id="readwasm-file-options-clbk-">readWASM( file[, options], clbk )</h4>
+<p>Asynchronously reads a file as <a href="https://webassembly.org/">WebAssembly</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 
 <span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.wasm'</span> );
 readWASM( fpath, onRead );
@@ -10,7 +20,14 @@ readWASM( fpath, onRead );
     }
     <span class="hljs-built_in">console</span>.log( buf );
 }
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>flag</strong>: file status flag.</li></ul><h4 id="readwasmsync-file-options-">readWASM.sync( file[, options] )</h4><p>Synchronously reads a file as <a href="https://webassembly.org/">WebAssembly</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>flag</strong>: file status flag.</li>
+</ul>
+<h4 id="readwasmsync-file-options-">readWASM.sync( file[, options] )</h4>
+<p>Synchronously reads a file as <a href="https://webassembly.org/">WebAssembly</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> instanceOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/instance-of'</span> );
 
 <span class="hljs-keyword">var</span> fpath = join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'fixtures'</span>, <span class="hljs-string">'file.wasm'</span> );
@@ -19,7 +36,23 @@ readWASM( fpath, onRead );
     <span class="hljs-keyword">throw</span> out;
 }
 <span class="hljs-built_in">console</span>.log( out );
-</code></pre><p>The function accepts the same <code>options</code> as <a href="#read-wasm"><code>readWASM()</code></a> above.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In contrast to <a href="/docs/api/latest/@stdlib/fs/read-file"><code>readFile()</code></a>, neither function accepts an <code>encoding</code> option. As <a href="https://webassembly.org/">WebAssembly</a> is a binary file format, if provided an <code>encoding</code> option, the function <strong>overrides</strong> the option, setting the option value to <code>null</code>.</li><li>Both functions return <a href="https://webassembly.org/">WebAssembly</a> file content as a <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre>
+<p>The function accepts the same <code>options</code> as <a href="#read-wasm"><code>readWASM()</code></a> above.</p>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>In contrast to <a href="/docs/api/latest/@stdlib/fs/read-file"><code>readFile()</code></a>, neither function accepts an <code>encoding</code> option. As <a href="https://webassembly.org/">WebAssembly</a> is a binary file format, if provided an <code>encoding</code> option, the function <strong>overrides</strong> the option, setting the option value to <code>null</code>.</li>
+<li>Both functions return <a href="https://webassembly.org/">WebAssembly</a> file content as a <a href="/docs/api/latest/@stdlib/array/uint8"><code>Uint8Array</code></a>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-undef -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> hasWebAssemblySupport = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/has-wasm-support'</span> );
 <span class="hljs-keyword">var</span> readWASM = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-wasm'</span> );
 
@@ -42,4 +75,21 @@ readWASM( fpath, onRead );
         <span class="hljs-built_in">console</span>.log( wasm );
     }
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/read-file"><code>@stdlib/fs/read-file</code></a></span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/fs/read-file"><code>@stdlib/fs/read-file</code></a></span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

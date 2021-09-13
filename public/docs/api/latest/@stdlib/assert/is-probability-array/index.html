@@ -1,5 +1,19 @@
-<h1 id="isprobabilityarray">isProbabilityArray</h1><blockquote><p>Test if a value is an array-like object containing only probabilities.</p></blockquote><section class="intro"><p>A <strong>probability</strong> is defined as a numeric value on the interval <code>[0,1]</code>.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isProbabilityArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-probability-array'</span> );
-</code></pre><h4 id="isprobabilityarray-value-">isProbabilityArray( value )</h4><p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> probabilities.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+<h1 id="isprobabilityarray">isProbabilityArray</h1>
+<blockquote>
+<p>Test if a value is an array-like object containing only probabilities.</p>
+</blockquote>
+<section class="intro">
+<p>A <strong>probability</strong> is defined as a numeric value on the interval <code>[0,1]</code>.</p>
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isProbabilityArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-probability-array'</span> );
+</code></pre>
+<h4 id="isprobabilityarray-value-">isProbabilityArray( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object containing <strong>only</strong> probabilities.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 
 <span class="hljs-keyword">var</span> bool = isProbabilityArray( [ <span class="hljs-number">0.6</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.25</span> ] );
@@ -13,21 +27,35 @@ bool = isProbabilityArray( <span class="hljs-keyword">new</span> <span class="hl
 
 bool = isProbabilityArray( [ <span class="hljs-number">3.14</span>, <span class="hljs-number">0.0</span> ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre><h4 id="isprobabilityarrayprimitives-value-">isProbabilityArray.primitives( value )</h4><p>Tests if a <code>value</code> is an array-like object <code>array</code> containing <strong>only</strong> primitive probabilities.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre>
+<h4 id="isprobabilityarrayprimitives-value-">isProbabilityArray.primitives( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object <code>array</code> containing <strong>only</strong> primitive probabilities.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isProbabilityArray.primitives( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.8</span> ] );
 <span class="hljs-comment">// returns true</span>
 
 bool = isProbabilityArray.primitives( [ <span class="hljs-number">0.9</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre><h4 id="isprobabilityarrayobjects-value-">isProbabilityArray.objects( value )</h4><p>Tests if a <code>value</code> is an array-like object <code>array</code> containing <strong>only</strong> <code>Number</code> objects whose values are probabilities.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
+</code></pre>
+<h4 id="isprobabilityarrayobjects-value-">isProbabilityArray.objects( value )</h4>
+<p>Tests if a <code>value</code> is an array-like object <code>array</code> containing <strong>only</strong> <code>Number</code> objects whose values are probabilities.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Number</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/ctor'</span> );
 
 <span class="hljs-keyword">var</span> bool = isProbabilityArray.objects( [ <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>), <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">1.0</span>) ] );
 <span class="hljs-comment">// returns true</span>
 
 bool = isProbabilityArray.objects( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.6</span> ] );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> isProbabilityArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-probability-array'</span> );
 
 <span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.5</span> ];
@@ -51,4 +79,22 @@ bool = isProbabilityArray( [] );
 
 bool = isProbabilityArray( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-array"><code>@stdlib/assert/is-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-probability"><code>@stdlib/assert/is-probability</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a probability.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-array"><code>@stdlib/assert/is-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-probability"><code>@stdlib/assert/is-probability</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a probability.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

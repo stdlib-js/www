@@ -1,11 +1,39 @@
-<h1 id="serialize-meta-data">Serialize Meta Data</h1><blockquote><p>Serialize <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> meta data.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> serialize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/serialize-meta-data'</span> );
-</code></pre><h4 id="serialize-x-">serialize( x )</h4><p>Serializes <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> meta data.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<h1 id="serialize-meta-data">Serialize Meta Data</h1>
+<blockquote>
+<p>Serialize <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> meta data.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> serialize = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/serialize-meta-data'</span> );
+</code></pre>
+<h4 id="serialize-x-">serialize( x )</h4>
+<p>Serializes <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> meta data.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 
 <span class="hljs-keyword">var</span> arr = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
 <span class="hljs-keyword">var</span> dv = serialize( arr );
 <span class="hljs-comment">// returns &#x3C;DataView></span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Serialization is performed according to host byte order (endianness).</p></li><li><p>Meta data format:</p><pre><code class="no-highlight language-text">| endianness (1 byte) | &#x3C;dtype> (2 bytes) | &#x3C;ndims> (8 bytes) | &#x3C;shape> (ndims*8 bytes) | &#x3C;strides> (ndims*8 bytes) | &#x3C;offset> (8 bytes) | &#x3C;order> (1 byte) | &#x3C;mode> (1 byte) | &#x3C;nsubmodes> (8 bytes) | &#x3C;submodes> (nsubmodes*1 bytes) |
-</code></pre><p>which translates to the following <code>ArrayBuffer</code> layout:</p><pre><code class="no-highlight language-text">ArrayBuffer[
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Serialization is performed according to host byte order (endianness).</p>
+</li>
+<li>
+<p>Meta data format:</p>
+<pre><code class="no-highlight language-text">| endianness (1 byte) | &#x3C;dtype> (2 bytes) | &#x3C;ndims> (8 bytes) | &#x3C;shape> (ndims*8 bytes) | &#x3C;strides> (ndims*8 bytes) | &#x3C;offset> (8 bytes) | &#x3C;order> (1 byte) | &#x3C;mode> (1 byte) | &#x3C;nsubmodes> (8 bytes) | &#x3C;submodes> (nsubmodes*1 bytes) |
+</code></pre>
+<p>which translates to the following <code>ArrayBuffer</code> layout:</p>
+<pre><code class="no-highlight language-text">ArrayBuffer[
     &#x3C;endianness>[int8],
     &#x3C;dtype>[int16],
     &#x3C;ndims>[int64],
@@ -17,9 +45,28 @@
     &#x3C;nsubmodes>[int64],
     &#x3C;submodes>[nsubmodes*int8]
 ]
-</code></pre><p>where <code>strides</code> and <code>offset</code> are in units of bytes.</p></li><li><p>If the endianness is <code>1</code>, the byte order is little endian. If the endianness is <code>0</code>, the byte order is big endian.</p></li><li><p>Buffer length:</p><pre><code class="no-highlight language-text">1 + 2 + 8 + (ndims*8) + (ndims*8) + 8 + 1 + 1 + 8 + (nsubmodes*1) = 29 + (ndims*16) + nsubmodes
-</code></pre><p>For example, consider a three-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> with one subscript index mode (submode):</p><pre><code class="no-highlight language-text">29 + (3*16) + 1 = 78 bytes
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
+</code></pre>
+<p>where <code>strides</code> and <code>offset</code> are in units of bytes.</p>
+</li>
+<li>
+<p>If the endianness is <code>1</code>, the byte order is little endian. If the endianness is <code>0</code>, the byte order is big endian.</p>
+</li>
+<li>
+<p>Buffer length:</p>
+<pre><code class="no-highlight language-text">1 + 2 + 8 + (ndims*8) + (ndims*8) + 8 + 1 + 1 + 8 + (nsubmodes*1) = 29 + (ndims*16) + nsubmodes
+</code></pre>
+<p>For example, consider a three-dimensional <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> with one subscript index mode (submode):</p>
+<pre><code class="no-highlight language-text">29 + (3*16) + 1 = 78 bytes
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_LITTLE_ENDIAN = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-little-endian'</span> );
 <span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Uint8Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/uint8'</span> );
 <span class="hljs-keyword">var</span> fromInt64Bytes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/from-int64-bytes'</span> );
@@ -73,4 +120,18 @@
 <span class="hljs-comment">// Extract the order (enum):</span>
 <span class="hljs-keyword">var</span> order = dv.getInt8( <span class="hljs-number">19</span>+(ndims*<span class="hljs-number">16</span>) );
 <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'order (enum): %d'</span>, order );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

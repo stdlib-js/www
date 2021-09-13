@@ -1,6 +1,18 @@
-<h1 id="incrmaxabs">incrmaxabs</h1><blockquote><p>Compute a maximum absolute value incrementally.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrmaxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/maxabs'</span> );
-</code></pre><h4 id="incrmaxabs-1">incrmaxabs()</h4><p>Returns an accumulator <code>function</code> which incrementally computes a maximum absolute value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmaxabs();
-</code></pre><h4 id="accumulator-x-">accumulator( [x] )</h4><p>If provided an input value <code>x</code>, the accumulator function returns an updated maximum absolute value. If not provided an input value <code>x</code>, the accumulator function returns the current maximum absolute value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmaxabs();
+<h1 id="incrmaxabs">incrmaxabs</h1>
+<blockquote>
+<p>Compute a maximum absolute value incrementally.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrmaxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/maxabs'</span> );
+</code></pre>
+<h4 id="incrmaxabs-1">incrmaxabs()</h4>
+<p>Returns an accumulator <code>function</code> which incrementally computes a maximum absolute value.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmaxabs();
+</code></pre>
+<h4 id="accumulator-x-">accumulator( [x] )</h4>
+<p>If provided an input value <code>x</code>, the accumulator function returns an updated maximum absolute value. If not provided an input value <code>x</code>, the accumulator function returns the current maximum absolute value.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> accumulator = incrmaxabs();
 
 <span class="hljs-keyword">var</span> max = accumulator( <span class="hljs-number">2.0</span> );
 <span class="hljs-comment">// returns 2.0</span>
@@ -13,7 +25,20 @@ max = accumulator( -<span class="hljs-number">3.0</span> );
 
 max = accumulator();
 <span class="hljs-comment">// returns 3.0</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Input values are <strong>not</strong> type checked. If provided <code>NaN</code>, the accumulated value is <code>NaN</code> for <strong>all</strong> future invocations. If non-numeric inputs are possible, you are advised to type check and handle accordingly <strong>before</strong> passing the value to the accumulator function.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Input values are <strong>not</strong> type checked. If provided <code>NaN</code>, the accumulated value is <code>NaN</code> for <strong>all</strong> future invocations. If non-numeric inputs are possible, you are advised to type check and handle accordingly <strong>before</strong> passing the value to the accumulator function.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> incrmaxabs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/incr/maxabs'</span> );
 
 <span class="hljs-keyword">var</span> accumulator;
@@ -29,4 +54,23 @@ accumulator = incrmaxabs();
     accumulator( v );
 }
 <span class="hljs-built_in">console</span>.log( accumulator() );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/max"><code>@stdlib/stats/incr/max</code></a></span><span class="delimiter">: </span><span class="description">compute a maximum value incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/minabs"><code>@stdlib/stats/incr/minabs</code></a></span><span class="delimiter">: </span><span class="description">compute a minimum absolute value incrementally.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/mmaxabs"><code>@stdlib/stats/incr/mmaxabs</code></a></span><span class="delimiter">: </span><span class="description">compute a moving maximum absolute value incrementally.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/max"><code>@stdlib/stats/incr/max</code></a></span><span class="delimiter">: </span><span class="description">compute a maximum value incrementally.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/minabs"><code>@stdlib/stats/incr/minabs</code></a></span><span class="delimiter">: </span><span class="description">compute a minimum absolute value incrementally.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/incr/mmaxabs"><code>@stdlib/stats/incr/mmaxabs</code></a></span><span class="delimiter">: </span><span class="description">compute a moving maximum absolute value incrementally.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

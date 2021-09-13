@@ -1,10 +1,21 @@
-<h1 id="ldexp">ldexp</h1><blockquote><p>Multiply a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> by an integer power of two.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ldexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ldexp'</span> );
-</code></pre><h4 id="ldexp-frac-exp-">ldexp( frac, exp )</h4><p>Multiplies a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> by an <code>integer</code> power of two; i.e., <code>x = frac * 2^exp</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = ldexp( <span class="hljs-number">0.5</span>, <span class="hljs-number">3</span> ); <span class="hljs-comment">// => 0.5 * 2^3 = 0.5 * 8</span>
+<h1 id="ldexp">ldexp</h1>
+<blockquote>
+<p>Multiply a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> by an integer power of two.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ldexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/ldexp'</span> );
+</code></pre>
+<h4 id="ldexp-frac-exp-">ldexp( frac, exp )</h4>
+<p>Multiplies a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">double-precision floating-point number</a> by an <code>integer</code> power of two; i.e., <code>x = frac * 2^exp</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = ldexp( <span class="hljs-number">0.5</span>, <span class="hljs-number">3</span> ); <span class="hljs-comment">// => 0.5 * 2^3 = 0.5 * 8</span>
 <span class="hljs-comment">// returns 4.0</span>
 
 x = ldexp( <span class="hljs-number">4.0</span>, -<span class="hljs-number">2</span> ); <span class="hljs-comment">// => 4 * 2^(-2) = 4 * (1/4)</span>
 <span class="hljs-comment">// returns 1.0</span>
-</code></pre><p>If <code>frac</code> equals positive or negative <code>zero</code>, <code>NaN</code>, or positive or negative <code>infinity</code>, the function returns a value equal to <code>frac</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = ldexp( <span class="hljs-number">0.0</span>, <span class="hljs-number">20</span> );
+</code></pre>
+<p>If <code>frac</code> equals positive or negative <code>zero</code>, <code>NaN</code>, or positive or negative <code>infinity</code>, the function returns a value equal to <code>frac</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = ldexp( <span class="hljs-number">0.0</span>, <span class="hljs-number">20</span> );
 <span class="hljs-comment">// returns 0.0</span>
 
 x = ldexp( -<span class="hljs-number">0.0</span>, <span class="hljs-number">39</span> );
@@ -18,7 +29,19 @@ x = ldexp( <span class="hljs-literal">Infinity</span>, <span class="hljs-number"
 
 x = ldexp( -<span class="hljs-literal">Infinity</span>, -<span class="hljs-number">118</span> );
 <span class="hljs-comment">// returns -Infinity</span>
-</code></pre><section class="usage"><section class="notes"><h2 id="notes">Notes</h2><ul><li>This function is the inverse of <a href="/docs/api/latest/@stdlib/math/base/special/frexp"><code>frexp</code></a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+<section class="usage">
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>This function is the inverse of <a href="/docs/api/latest/@stdlib/math/base/special/frexp"><code>frexp</code></a>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> frexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/frexp'</span> );
@@ -50,4 +73,22 @@ x = ldexp( -<span class="hljs-literal">Infinity</span>, -<span class="hljs-numbe
     v = ldexp( f[ <span class="hljs-number">0</span> ], f[ <span class="hljs-number">1</span> ] );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d = %d * 2^%d = %d'</span>, x, f[ <span class="hljs-number">0</span> ], f[ <span class="hljs-number">1</span> ], v );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/frexp"><code>@stdlib/math/base/special/frexp</code></a></span><span class="delimiter">: </span><span class="description">split a double-precision floating-point number into a normalized fraction and an integer power of two.</span></li></ul></section></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/frexp"><code>@stdlib/math/base/special/frexp</code></a></span><span class="delimiter">: </span><span class="description">split a double-precision floating-point number into a normalized fraction and an integer power of two.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->
+</section></section>

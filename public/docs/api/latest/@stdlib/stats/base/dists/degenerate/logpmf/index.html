@@ -1,10 +1,25 @@
-<h1 id="logarithm-of-probability-mass-function">Logarithm of Probability Mass Function</h1><blockquote><p>Evaluate the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a> (PMF) for a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logpmf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/degenerate/logpmf'</span> );
-</code></pre><h4 id="logpmf-x-mu-">logpmf( x, mu )</h4><p>Evaluates the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> for a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = logpmf( <span class="hljs-number">2.0</span>, <span class="hljs-number">8.0</span> );
+<h1 id="logarithm-of-probability-mass-function">Logarithm of Probability Mass Function</h1>
+<blockquote>
+<p>Evaluate the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a> (PMF) for a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a>.</p>
+</blockquote>
+<section class="intro">
+</section>
+<!-- /.intro -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logpmf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/degenerate/logpmf'</span> );
+</code></pre>
+<h4 id="logpmf-x-mu-">logpmf( x, mu )</h4>
+<p>Evaluates the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> for a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> y = logpmf( <span class="hljs-number">2.0</span>, <span class="hljs-number">8.0</span> );
 <span class="hljs-comment">// returns -Infinity</span>
 
 y = logpmf( <span class="hljs-number">8.0</span>, <span class="hljs-number">8.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
-</code></pre><h4 id="logpmffactory-mu-">logpmf.factory( mu )</h4><p>Returns a function for evaluating the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> of a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mylogpmf = logpmf.factory( <span class="hljs-number">10.0</span> );
+</code></pre>
+<h4 id="logpmffactory-mu-">logpmf.factory( mu )</h4>
+<p>Returns a function for evaluating the natural logarithm of the <a href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a> of a <a href="https://en.wikipedia.org/wiki/Degenerate_distribution">degenerate distribution</a> centered at <code>mu</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mylogpmf = logpmf.factory( <span class="hljs-number">10.0</span> );
 
 <span class="hljs-keyword">var</span> y = mylogpmf( <span class="hljs-number">10.0</span> );
 <span class="hljs-comment">// returns 0.0</span>
@@ -14,7 +29,13 @@ y = mylogpmf( <span class="hljs-number">5.0</span> );
 
 y = mylogpmf( <span class="hljs-number">12.0</span> );
 <span class="hljs-comment">// returns -Infinity</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> logpmf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dists/degenerate/logpmf'</span> );
 
@@ -29,4 +50,14 @@ y = mylogpmf( <span class="hljs-number">12.0</span> );
     y = logpmf( x, mu );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, µ: %d, ln(P(X=x;µ)): %d'</span>, x, mu, y );
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

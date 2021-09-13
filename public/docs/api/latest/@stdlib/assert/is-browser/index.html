@@ -1,8 +1,40 @@
-<h1 id="is_browser">IS_BROWSER</h1><blockquote><p>Check if the runtime is a web browser.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_BROWSER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-browser'</span> );
-</code></pre><h4 id="is_browser-1">IS_BROWSER</h4><p><code>Boolean</code> indicating if the runtime is a web browser.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = IS_BROWSER;
+<h1 id="is_browser">IS_BROWSER</h1>
+<blockquote>
+<p>Check if the runtime is a web browser.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_BROWSER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-browser'</span> );
+</code></pre>
+<h4 id="is_browser-1">IS_BROWSER</h4>
+<p><code>Boolean</code> indicating if the runtime is a web browser.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = IS_BROWSER;
 <span class="hljs-comment">// returns &#x3C;boolean></span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>In order to determine whether the runtime is a web browser, the implementation must resolve the global scope, thus requiring function generation. The use of function generation may be problematic in browser contexts enforcing a strict <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">content security policy</a> (CSP).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_BROWSER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-browser'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>In order to determine whether the runtime is a web browser, the implementation must resolve the global scope, thus requiring function generation. The use of function generation may be problematic in browser contexts enforcing a strict <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">content security policy</a> (CSP).</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> IS_BROWSER = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-browser'</span> );
 
 <span class="hljs-built_in">console</span>.log( IS_BROWSER );
 <span class="hljs-comment">// => &#x3C;boolean></span>
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

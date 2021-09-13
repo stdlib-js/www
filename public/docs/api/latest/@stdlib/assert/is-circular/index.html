@@ -1,5 +1,14 @@
-<h1 id="iscircular">isCircular</h1><blockquote><p>Test if an object-like value contains a circular reference.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCircular = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-circular'</span> );
-</code></pre><h4 id="iscircular-value-">isCircular( value )</h4><p>Test if an object-like <code>value</code> contains a circular reference.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+<h1 id="iscircular">isCircular</h1>
+<blockquote>
+<p>Test if an object-like value contains a circular reference.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCircular = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-circular'</span> );
+</code></pre>
+<h4 id="iscircular-value-">isCircular( value )</h4>
+<p>Test if an object-like <code>value</code> contains a circular reference.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'beep'</span>: <span class="hljs-string">'boop'</span>
 };
 <span class="hljs-keyword">var</span> bool = isCircular( obj );
@@ -8,7 +17,22 @@
 obj.self = obj;
 bool = isCircular( obj );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Object-like values include <code>objects</code> (except for <code>null</code>), <code>arrays</code>, <code>functions</code>, regular expressions, <code>Date</code> objects, and any other JavaScript object to which properties may be bound.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCircular = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-circular'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Object-like values include <code>objects</code> (except for <code>null</code>), <code>arrays</code>, <code>functions</code>, regular expressions, <code>Date</code> objects, and any other JavaScript object to which properties may be bound.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-empty-function -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isCircular = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-circular'</span> );
 
 <span class="hljs-keyword">var</span> obj1 = {
     <span class="hljs-string">'a'</span>: <span class="hljs-string">'beep'</span>,
@@ -32,7 +56,7 @@ arr.push( arr );
 bool = isCircular( arr );
 <span class="hljs-comment">// returns true</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">circ</span>() </span>{}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">circ</span>(<span class="hljs-params"></span>) </span>{}
 circ.self = circ;
 bool = isCircular( circ );
 <span class="hljs-comment">// returns true</span>
@@ -51,4 +75,22 @@ bool = isCircular( {} );
 
 bool = isCircular( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-circular-array"><code>@stdlib/assert/is-circular-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array containing a circular reference.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-circular-plain-object"><code>@stdlib/assert/is-circular-plain-object</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a plain object containing a circular reference.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-circular-array"><code>@stdlib/assert/is-circular-array</code></a></span><span class="delimiter">: </span><span class="description">test if a value is an array containing a circular reference.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/is-circular-plain-object"><code>@stdlib/assert/is-circular-plain-object</code></a></span><span class="delimiter">: </span><span class="description">test if a value is a plain object containing a circular reference.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

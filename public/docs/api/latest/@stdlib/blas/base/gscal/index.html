@@ -1,9 +1,27 @@
-<h1 id="gscal">gscal</h1><blockquote><p>Multiply a vector <code>x</code> by a constant <code>alpha</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gscal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/gscal'</span> );
-</code></pre><h4 id="gscal-n-alpha-x-stride-">gscal( N, alpha, x, stride )</h4><p>Multiplies a vector <code>x</code> by a constant <code>alpha</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ];
+<h1 id="gscal">gscal</h1>
+<blockquote>
+<p>Multiply a vector <code>x</code> by a constant <code>alpha</code>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> gscal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/gscal'</span> );
+</code></pre>
+<h4 id="gscal-n-alpha-x-stride-">gscal( N, alpha, x, stride )</h4>
+<p>Multiplies a vector <code>x</code> by a constant <code>alpha</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ];
 
 gscal( x.length, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// x => [ -10.0, 5.0, 15.0, -25.0, 20.0, 0.0, -5.0, -15.0 ]</span>
-</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>alpha</strong>: scalar constant.</li><li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li><li><strong>stride</strong>: index increment.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to multiply every other value by a constant</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre>
+<p>The function has the following parameters:</p>
+<ul>
+<li><strong>N</strong>: number of indexed elements.</li>
+<li><strong>alpha</strong>: scalar constant.</li>
+<li><strong>x</strong>: input <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a>.</li>
+<li><strong>stride</strong>: index increment.</li>
+</ul>
+<p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to multiply every other value by a constant</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ];
 
@@ -13,7 +31,9 @@ gscal( x.length, <span class="hljs-number">5.0</span>, x, <span class="hljs-numb
 
 gscal( N, alpha, x, stride );
 <span class="hljs-comment">// x => [ -10.0, 1.0, 15.0, -5.0, 20.0, 0.0, -5.0, -3.0 ]</span>
-</code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-comment">// Initial array...</span>
@@ -29,16 +49,40 @@ gscal( N, alpha, x, stride );
 <span class="hljs-comment">// Scale every other value...</span>
 gscal( N, alpha, x1, stride );
 <span class="hljs-comment">// x0 => &#x3C;Float64Array>[ 1.0, -10.0, 3.0, -20.0, 5.0, -30.0 ]</span>
-</code></pre><p>If either <code>N</code> or <code>stride</code> is less than or equal to <code>0</code>, the function returns <code>x</code> unchanged.</p><h4 id="gscalndarray-n-alpha-x-stride-offset-">gscal.ndarray( N, alpha, x, stride, offset )</h4><p>Multiplies a vector <code>x</code> by a constant <code>alpha</code> using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ];
+</code></pre>
+<p>If either <code>N</code> or <code>stride</code> is less than or equal to <code>0</code>, the function returns <code>x</code> unchanged.</p>
+<h4 id="gscalndarray-n-alpha-x-stride-offset-">gscal.ndarray( N, alpha, x, stride, offset )</h4>
+<p>Multiplies a vector <code>x</code> by a constant <code>alpha</code> using alternative indexing semantics.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ -<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">5.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span>, -<span class="hljs-number">3.0</span> ];
 
 gscal.ndarray( x.length, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// x => [ -10.0, 5.0, 15.0, -25.0, 20.0, 0.0, -5.0, -15.0 ]</span>
-</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offset</strong>: starting index.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to multiply the last three elements of <code>x</code> by a constant</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ];
+</code></pre>
+<p>The function has the following additional parameters:</p>
+<ul>
+<li><strong>offset</strong>: starting index.</li>
+</ul>
+<p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to multiply the last three elements of <code>x</code> by a constant</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, -<span class="hljs-number">6.0</span> ];
 <span class="hljs-keyword">var</span> alpha = <span class="hljs-number">5.0</span>;
 
 gscal.ndarray( <span class="hljs-number">3</span>, alpha, x, <span class="hljs-number">1</span>, x.length-<span class="hljs-number">3</span> );
 <span class="hljs-comment">// x => [ 1.0, -2.0, 3.0, -20.0, 25.0, -30.0 ]</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>x</code> unchanged.</li><li><code>gscal()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="http://www.netlib.org/lapack/explore-html/de/da4/group__double__blas__level1.html"><code>dscal</code></a> with the exception that this implementation works with any array type, not just Float64Arrays. Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/blas/base/dscal"><code>dscal</code></a>, <a href="/docs/api/latest/@stdlib/blas/base/sscal"><code>sscal</code></a>, etc.) are likely to be significantly more performant.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>If <code>N &#x3C;= 0</code>, both functions return <code>x</code> unchanged.</li>
+<li><code>gscal()</code> corresponds to the <a href="http://www.netlib.org/blas">BLAS</a> level 1 function <a href="http://www.netlib.org/lapack/explore-html/de/da4/group__double__blas__level1.html"><code>dscal</code></a> with the exception that this implementation works with any array type, not just Float64Arrays. Depending on the environment, the typed versions (<a href="/docs/api/latest/@stdlib/blas/base/dscal"><code>dscal</code></a>, <a href="/docs/api/latest/@stdlib/blas/base/sscal"><code>sscal</code></a>, etc.) are likely to be significantly more performant.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> gscal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/base/gscal'</span> );
@@ -63,4 +107,23 @@ x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Arr
 
 gscal( x.length, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( x );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/dscal"><code>@stdlib/blas/base/dscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a double-precision floating-point vector by a constant.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/gaxpy"><code>@stdlib/blas/base/gaxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply x by a constant and add the result to y.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/sscal"><code>@stdlib/blas/base/sscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a single-precision floating-point vector by a constant.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/dscal"><code>@stdlib/blas/base/dscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a double-precision floating-point vector by a constant.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/gaxpy"><code>@stdlib/blas/base/gaxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply x by a constant and add the result to y.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/sscal"><code>@stdlib/blas/base/sscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a single-precision floating-point vector by a constant.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

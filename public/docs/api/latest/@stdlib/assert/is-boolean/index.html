@@ -1,5 +1,15 @@
-<h1 id="isboolean">isBoolean</h1><blockquote><p>Test if a value is a boolean.</p></blockquote><section class="usage"><h3 id="usage">Usage</h3><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBoolean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-boolean'</span> );
-</code></pre><h4 id="isboolean-value-">isBoolean( value )</h4><p>Tests if a <code>value</code> is a <code>boolean</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBoolean( <span class="hljs-literal">false</span> );
+<h1 id="isboolean">isBoolean</h1>
+<blockquote>
+<p>Test if a value is a boolean.</p>
+</blockquote>
+<section class="usage">
+<h3 id="usage">Usage</h3>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBoolean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-boolean'</span> );
+</code></pre>
+<h4 id="isboolean-value-">isBoolean( value )</h4>
+<p>Tests if a <code>value</code> is a <code>boolean</code>.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBoolean( <span class="hljs-literal">false</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isBoolean( <span class="hljs-literal">true</span> );
@@ -10,7 +20,11 @@ bool = isBoolean( <span class="hljs-keyword">new</span> <span class="hljs-built_
 
 bool = isBoolean( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>( <span class="hljs-literal">true</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre><h4 id="isbooleanisprimitive-value-">isBoolean.isPrimitive( value )</h4><p>Tests if a <code>value</code> is a primitive <code>boolean</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBoolean.isPrimitive( <span class="hljs-literal">true</span> );
+</code></pre>
+<h4 id="isbooleanisprimitive-value-">isBoolean.isPrimitive( value )</h4>
+<p>Tests if a <code>value</code> is a primitive <code>boolean</code>.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBoolean.isPrimitive( <span class="hljs-literal">true</span> );
 <span class="hljs-comment">// returns true</span>
 
 bool = isBoolean.isPrimitive( <span class="hljs-literal">false</span> );
@@ -18,12 +32,23 @@ bool = isBoolean.isPrimitive( <span class="hljs-literal">false</span> );
 
 bool = isBoolean.isPrimitive( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>( <span class="hljs-literal">true</span> ) );
 <span class="hljs-comment">// returns false</span>
-</code></pre><h4 id="isbooleanisobject-value-">isBoolean.isObject( value )</h4><p>Tests if a <code>value</code> is a <code>Boolean</code> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBoolean.isObject( <span class="hljs-literal">true</span> );
+</code></pre>
+<h4 id="isbooleanisobject-value-">isBoolean.isObject( value )</h4>
+<p>Tests if a <code>value</code> is a <code>Boolean</code> object.</p>
+<!-- eslint-disable no-new-wrappers -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isBoolean.isObject( <span class="hljs-literal">true</span> );
 <span class="hljs-comment">// returns false</span>
 
 bool = isBoolean.isObject( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>( <span class="hljs-literal">false</span> ) );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h3 id="examples">Examples</h3><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBoolean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-boolean'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples">Examples</h3>
+<!-- eslint-disable no-new-wrappers -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isBoolean = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/assert/is-boolean'</span> );
 
 <span class="hljs-keyword">var</span> bool = isBoolean( <span class="hljs-literal">false</span> );
 <span class="hljs-comment">// returns true</span>
@@ -36,4 +61,14 @@ bool = isBoolean( <span class="hljs-string">'true'</span> );
 
 bool = isBoolean( <span class="hljs-literal">null</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

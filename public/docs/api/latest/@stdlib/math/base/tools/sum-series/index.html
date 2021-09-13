@@ -1,5 +1,16 @@
-<h1 id="sum-series">sum-series</h1><blockquote><p>Compute the sum of an <a href="https://en.wikipedia.org/wiki/Series_%28mathematics%29">infinite series</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sumSeries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/tools/sum-series'</span> );
-</code></pre><h4 id="sumseries-generator-options--">sumSeries( generator[, options ] )</h4><p>Computes the sum of the series given by the supplied <code>generator</code> argument. <code>generator</code> can be either an ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">Generator object</a> or a function which returns successive elements of the series at each invocation.</p><p>Using an ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">Generator object</a>:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+<h1 id="sum-series">sum-series</h1>
+<blockquote>
+<p>Compute the sum of an <a href="https://en.wikipedia.org/wiki/Series_%28mathematics%29">infinite series</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sumSeries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/tools/sum-series'</span> );
+</code></pre>
+<h4 id="sumseries-generator-options--">sumSeries( generator[, options ] )</h4>
+<p>Computes the sum of the series given by the supplied <code>generator</code> argument. <code>generator</code> can be either an ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">Generator object</a> or a function which returns successive elements of the series at each invocation.</p>
+<p>Using an ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">Generator object</a>:</p>
+<!-- eslint-disable no-restricted-syntax -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> gen = geometricSeriesGenerator( <span class="hljs-number">0.9</span> );
 <span class="hljs-keyword">var</span> out = sumSeries( gen );
 <span class="hljs-comment">// returns 10</span>
@@ -11,7 +22,9 @@
         exponent += <span class="hljs-number">1</span>;
     }
 }
-</code></pre><p>Alternatively, one can use a closure to achieve the same goal:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+</code></pre>
+<p>Alternatively, one can use a closure to achieve the same goal:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 <span class="hljs-keyword">var</span> gen = geometricSeriesClosure( <span class="hljs-number">0.9</span> );
 <span class="hljs-keyword">var</span> out = sumSeries( gen );
 <span class="hljs-comment">// returns 10</span>
@@ -20,12 +33,20 @@
     <span class="hljs-keyword">var</span> exponent = -<span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> gen;
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>() </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
         exponent += <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> pow( x, exponent );
     }
 }
-</code></pre><p>The <code>function</code> accepts the following <code>options</code>:</p><ul><li><strong>maxTerms</strong>: integer denoting the maximum number of terms to be summed. Default: <code>1000000</code>.</li><li><strong>tolerance</strong>: number primitive specifying the tolerance used to assess convergence. Default: <code>2.22e-16</code>.</li><li><strong>initialValue</strong>: number primitive specifying the initial value of the returned sum. Default: <code>0</code>.</li></ul><p>By default, the initial value of the sum is <code>0</code>. To choose a different one, use the <code>initialValue</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+</code></pre>
+<p>The <code>function</code> accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>maxTerms</strong>: integer denoting the maximum number of terms to be summed. Default: <code>1000000</code>.</li>
+<li><strong>tolerance</strong>: number primitive specifying the tolerance used to assess convergence. Default: <code>2.22e-16</code>.</li>
+<li><strong>initialValue</strong>: number primitive specifying the initial value of the returned sum. Default: <code>0</code>.</li>
+</ul>
+<p>By default, the initial value of the sum is <code>0</code>. To choose a different one, use the <code>initialValue</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 
 <span class="hljs-keyword">var</span> out = sumSeries( geometricSeriesClosure( <span class="hljs-number">0.5</span> ), {
     <span class="hljs-string">'initialValue'</span>: <span class="hljs-number">1</span>
@@ -36,12 +57,14 @@
     <span class="hljs-keyword">var</span> exponent = -<span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> gen;
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>() </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
         exponent += <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> pow( x, exponent );
     }
 }
-</code></pre><p>To change the maximum number of terms to be summed, set the <code>maxTerms</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+</code></pre>
+<p>To change the maximum number of terms to be summed, set the <code>maxTerms</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 
 <span class="hljs-keyword">var</span> out = sumSeries( geometricSeriesClosure( <span class="hljs-number">0.5</span> ), {
     <span class="hljs-string">'maxTerms'</span>: <span class="hljs-number">10</span>
@@ -52,12 +75,14 @@
     <span class="hljs-keyword">var</span> exponent = -<span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> gen;
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>() </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
         exponent += <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> pow( x, exponent );
     }
 }
-</code></pre><p>The default tolerance of <code>2.22e-16</code> used to assess convergence can be changed via the <code>tolerance</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
+</code></pre>
+<p>The default tolerance of <code>2.22e-16</code> used to assess convergence can be changed via the <code>tolerance</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> pow = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/pow'</span> );
 
 <span class="hljs-keyword">var</span> out = sumSeries( geometricSeriesClosure( <span class="hljs-number">0.5</span> ), {
     <span class="hljs-string">'tolerance'</span>: <span class="hljs-number">1e-3</span>
@@ -68,12 +93,19 @@
     <span class="hljs-keyword">var</span> exponent = -<span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> gen;
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>() </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>) </span>{
         exponent += <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> pow( x, exponent );
     }
 }
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1p = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1p'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint-disable no-restricted-syntax -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> log1p = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/log1p'</span> );
 <span class="hljs-keyword">var</span> sumSeries = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/tools/sum-series'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">log1pSeries</span>(<span class="hljs-params"> x </span>) </span>{
@@ -89,4 +121,14 @@
 
 <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'log1p(0.5) evaluated via math-log1p module: %d'</span>, log1p( <span class="hljs-number">0.5</span> ) );
 <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'log1p(0.5) evaluated via infinite series expansion: %d'</span>, sumSeries( log1pSeries( <span class="hljs-number">0.5</span> ) ) );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

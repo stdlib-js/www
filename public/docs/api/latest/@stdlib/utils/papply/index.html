@@ -1,5 +1,19 @@
-<h1 id="papply">papply</h1><blockquote><p>Partially apply function arguments.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> papply = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply'</span> );
-</code></pre><h4 id="papply-fcn-args-">papply( fcn[, ...args] )</h4><p>Partially applies function arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
+<h1 id="papply">papply</h1>
+<blockquote>
+<p>Partially apply function arguments.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> papply = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply'</span> );
+</code></pre>
+<h4 id="papply-fcn-args-">papply( fcn[, ...args] )</h4>
+<p>Partially applies function arguments.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"> x, y </span>) </span>{
     <span class="hljs-keyword">return</span> x + y;
 }
 
@@ -10,7 +24,23 @@
 
 sum = add2( <span class="hljs-number">7</span> );
 <span class="hljs-comment">// returns 9</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The implementation does <strong>not</strong> set the <code>length</code> of the returned function. Accordingly, the returned function <code>length</code> is <strong>always</strong> <code>0</code>.</li><li>The evaluation context is <strong>always</strong> <code>null</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The implementation does <strong>not</strong> set the <code>length</code> of the returned function. Accordingly, the returned function <code>length</code> is <strong>always</strong> <code>0</code>.</li>
+<li>The evaluation context is <strong>always</strong> <code>null</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> papply = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/papply'</span> );
 
@@ -34,4 +64,25 @@ fcn = papply( add, <span class="hljs-number">5</span>, <span class="hljs-number"
     v = fcn( w, t, s );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'5+4+3+%d+%d+%d = %d'</span>, w, t, s, v );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/papply-right"><code>@stdlib/utils/papply-right</code></a></span><span class="delimiter">: </span><span class="description">partially apply function arguments from the right.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/papply-right"><code>@stdlib/utils/papply-right</code></a></span><span class="delimiter">: </span><span class="description">partially apply function arguments from the right.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

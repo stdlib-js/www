@@ -1,13 +1,41 @@
-<h1 id="cli">CLI</h1><blockquote><p>Command-line interface.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CLI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/cli/ctor'</span> );
-</code></pre><h4 id="cli-options-">CLI( [options] )</h4><p>Command-line interface (CLI) constructor.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
+<h1 id="cli">CLI</h1>
+<blockquote>
+<p>Command-line interface.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> CLI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/cli/ctor'</span> );
+</code></pre>
+<h4 id="cli-options-">CLI( [options] )</h4>
+<p>Command-line interface (CLI) constructor.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
 <span class="hljs-comment">// returns &#x3C;CLI></span>
-</code></pre><p>The constructor accepts the following <code>options</code>:</p><ul><li><strong>pkg</strong>: package meta data, such as a <code>package.json</code> object.</li><li><strong>version</strong>: command-line interface version. Default: <code>pkg.version</code>.</li><li><strong>title</strong>: process title. If set to <code>true</code>, the default title is either <code>pkg.bin.&#x3C;field></code> or <code>pkg.name</code>. If set to a <code>string</code>, the function sets the process title to the specified string. If set to <code>false</code>, the function does not set the process title.</li><li><strong>help</strong>: help text. Default: <code>''</code>.</li><li><strong>updates</strong>: <code>boolean</code> indicating whether to check if a more recent version of a command-line interface exists in the package registry. In order to check for updates, the function requires both <code>pkg.name</code> and <code>pkg.version</code> meta data. Default: <code>true</code>.</li><li><strong>argv</strong>: an <code>array</code> of command-line arguments. Default: <code>process.argv</code>.</li><li><strong>options</strong>: command-line argument parser options.</li></ul><p>To provide package meta data, such as the package <code>name</code> and <code>version</code>, set the <code>pkg</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>The constructor accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>pkg</strong>: package meta data, such as a <code>package.json</code> object.</li>
+<li><strong>version</strong>: command-line interface version. Default: <code>pkg.version</code>.</li>
+<li><strong>title</strong>: process title. If set to <code>true</code>, the default title is either <code>pkg.bin.&#x3C;field></code> or <code>pkg.name</code>. If set to a <code>string</code>, the function sets the process title to the specified string. If set to <code>false</code>, the function does not set the process title.</li>
+<li><strong>help</strong>: help text. Default: <code>''</code>.</li>
+<li><strong>updates</strong>: <code>boolean</code> indicating whether to check if a more recent version of a command-line interface exists in the package registry. In order to check for updates, the function requires both <code>pkg.name</code> and <code>pkg.version</code> meta data. Default: <code>true</code>.</li>
+<li><strong>argv</strong>: an <code>array</code> of command-line arguments. Default: <code>process.argv</code>.</li>
+<li><strong>options</strong>: command-line argument parser options.</li>
+</ul>
+<p>To provide package meta data, such as the package <code>name</code> and <code>version</code>, set the <code>pkg</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'pkg'</span>: <span class="hljs-built_in">require</span>( <span class="hljs-string">'./package.json'</span> )
 };
 
 <span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI( opts );
 <span class="hljs-comment">// returns &#x3C;CLI></span>
-</code></pre><p>To specify a particular command-line interface version (overriding package meta data), set the <code>version</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>To specify a particular command-line interface version (overriding package meta data), set the <code>version</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'pkg'</span>: {
         <span class="hljs-string">'name'</span>: <span class="hljs-string">'beep'</span>,
         <span class="hljs-string">'version'</span>: <span class="hljs-string">'1.1.1'</span>
@@ -20,7 +48,9 @@
 
 cli.version();
 <span class="hljs-comment">// => 1.1.1-beta</span>
-</code></pre><p>By default, an instance sets the process title to either the first key in <code>pkg.bin</code> or to <code>pkg.name</code>. To explicitly set the process title, set the <code>title</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'process'</span> );
+</code></pre>
+<p>By default, an instance sets the process title to either the first key in <code>pkg.bin</code> or to <code>pkg.name</code>. To explicitly set the process title, set the <code>title</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> proc = <span class="hljs-built_in">require</span>( <span class="hljs-string">'process'</span> );
 
 <span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'title'</span>: <span class="hljs-string">'beep-boop'</span>
@@ -31,13 +61,18 @@ cli.version();
 
 <span class="hljs-built_in">console</span>.log( proc.title );
 <span class="hljs-comment">// => 'beep-boop'</span>
-</code></pre><p>To disable setting the process title, set the <code>title</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>To disable setting the process title, set the <code>title</code> option to <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'title'</span>: <span class="hljs-literal">false</span>
 };
 
 <span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI( opts );
 <span class="hljs-comment">// returns &#x3C;CLI></span>
-</code></pre><p>When the command-line flag <code>--help</code> is set, a command-line interface instance prints help text and exits the calling process. To specify the printed text, set the <code>help</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>When the command-line flag <code>--help</code> is set, a command-line interface instance prints help text and exits the calling process. To specify the printed text, set the <code>help</code> option.</p>
+<!-- eslint-disable stdlib/doctest-marker -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'help'</span>: <span class="hljs-string">'Usage: boop [options] &#x3C;beep>'</span>,
     <span class="hljs-string">'argv'</span>: [
         <span class="hljs-string">'/usr/local/bin/node'</span>,
@@ -48,7 +83,9 @@ cli.version();
 
 <span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI( opts );
 <span class="hljs-comment">// => Usage: boop [options] &#x3C;beep></span>
-</code></pre><p>By default, an instance resolves command-line arguments and flags via <code>process.argv</code>. To specify a custom set of command-line arguments, set the <code>argv</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>By default, an instance resolves command-line arguments and flags via <code>process.argv</code>. To specify a custom set of command-line arguments, set the <code>argv</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'argv'</span>: [
         <span class="hljs-string">'/usr/local/bin/node'</span>,
         <span class="hljs-string">'foo.js'</span>,
@@ -62,7 +99,9 @@ cli.version();
 
 <span class="hljs-keyword">var</span> args = cli.args();
 <span class="hljs-comment">// returns [ 'a', 'b', 'c' ]</span>
-</code></pre><p>To specify command-line argument parser options, such as command-line flag types and aliases, set the <code>options</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>To specify command-line argument parser options, such as command-line flag types and aliases, set the <code>options</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'options'</span>: {
         <span class="hljs-string">'boolean'</span>: [
             <span class="hljs-string">'help'</span>,
@@ -103,21 +142,35 @@ cli.version();
         'output': 'bar.js'
     }
 */</span>
-</code></pre><p>By default, if provided sufficient package meta data (package <code>name</code> and <code>version</code>), an instance checks whether a newer version of a command-line interface exists in the package registry. If a newer version exists, an instance writes a message to <code>stdout</code> indicating that a newer version exists. To disable this check, set the <code>updates</code> option to <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
+</code></pre>
+<p>By default, if provided sufficient package meta data (package <code>name</code> and <code>version</code>), an instance checks whether a newer version of a command-line interface exists in the package registry. If a newer version exists, an instance writes a message to <code>stdout</code> indicating that a newer version exists. To disable this check, set the <code>updates</code> option to <code>false</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> opts = {
     <span class="hljs-string">'updates'</span>: <span class="hljs-literal">false</span>
 };
 
 <span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI( opts );
 <span class="hljs-comment">// returns &#x3C;CLI></span>
-</code></pre><hr><h3 id="prototype-methods">Prototype Methods</h3><h4 id="cliprototypeclose-code-">CLI.prototype.close( [code] )</h4><p>Gracefully exits a command-line interface and the calling process.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
+</code></pre>
+<hr>
+<h3 id="prototype-methods">Prototype Methods</h3>
+<h4 id="cliprototypeclose-code-">CLI.prototype.close( [code] )</h4>
+<p>Gracefully exits a command-line interface and the calling process.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
 
 <span class="hljs-comment">// Gracefully exit:</span>
 cli.close();
-</code></pre><p>To specify an exit code, provide a <code>code</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
+</code></pre>
+<p>To specify an exit code, provide a <code>code</code> argument.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
 
 <span class="hljs-comment">// Set the exit code to `1`:</span>
 cli.close( <span class="hljs-number">1</span> );
-</code></pre><h4 id="cliprototypeerror-error-code-">CLI.prototype.error( error[, code] )</h4><p>Prints an error message to <code>stderr</code> and exits a command-line interface and the calling process.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
+</code></pre>
+<h4 id="cliprototypeerror-error-code-">CLI.prototype.error( error[, code] )</h4>
+<p>Prints an error message to <code>stderr</code> and exits a command-line interface and the calling process.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
 
 <span class="hljs-comment">// ...</span>
 
@@ -126,7 +179,10 @@ cli.close( <span class="hljs-number">1</span> );
 
 <span class="hljs-comment">// Exit due to the error:</span>
 cli.error( err );
-</code></pre><p>When exiting due to an error, the default exit code is <code>1</code>. To specify an alternative exit code, provide a <code>code</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
+</code></pre>
+<p>When exiting due to an error, the default exit code is <code>1</code>. To specify an alternative exit code, provide a <code>code</code> argument.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
 
 <span class="hljs-comment">// ...</span>
 
@@ -135,15 +191,26 @@ cli.error( err );
 
 <span class="hljs-comment">// Exit due to the error:</span>
 cli.error( err, <span class="hljs-number">2</span> );
-</code></pre><h4 id="cliprototypeexit-code-">CLI.prototype.exit( [code] )</h4><p>Forcefully exits a command-line interface and the calling process.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
+</code></pre>
+<h4 id="cliprototypeexit-code-">CLI.prototype.exit( [code] )</h4>
+<p>Forcefully exits a command-line interface and the calling process.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
 
 <span class="hljs-comment">// Forcefully exit:</span>
 cli.exit();
-</code></pre><p>To specify an exit code, provide a <code>code</code> argument.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
+</code></pre>
+<p>To specify an exit code, provide a <code>code</code> argument.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI();
 
 <span class="hljs-comment">// Set the exit code to `1`:</span>
 cli.exit( <span class="hljs-number">1</span> );
-</code></pre><hr><h3 id="instance-methods">Instance Methods</h3><h4 id="cliargs">cli.args()</h4><p>Returns a list of command-line arguments.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
+</code></pre>
+<hr>
+<h3 id="instance-methods">Instance Methods</h3>
+<h4 id="cliargs">cli.args()</h4>
+<p>Returns a list of command-line arguments.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
     <span class="hljs-string">'argv'</span>: [
         <span class="hljs-string">'/usr/local/bin/node'</span>,
         <span class="hljs-string">'foo.js'</span>,
@@ -156,7 +223,10 @@ cli.exit( <span class="hljs-number">1</span> );
 
 <span class="hljs-keyword">var</span> args = cli.args();
 <span class="hljs-comment">// returns [ 'a', 'd' ]</span>
-</code></pre><h4 id="cliflags">cli.flags()</h4><p>Returns command-line flags.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
+</code></pre>
+<h4 id="cliflags">cli.flags()</h4>
+<p>Returns command-line flags.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
     <span class="hljs-string">'argv'</span>: [
         <span class="hljs-string">'/usr/local/bin/node'</span>,
         <span class="hljs-string">'foo.js'</span>,
@@ -171,19 +241,44 @@ cli.exit( <span class="hljs-number">1</span> );
 
 <span class="hljs-keyword">var</span> flags = cli.flags();
 <span class="hljs-comment">// returns { 'b': 'c', 'd': true, 'e': true, 'f': true, 'g': 'h' }</span>
-</code></pre><h4 id="clihelp-code-">cli.help( [code] )</h4><p>Prints help text to <code>stderr</code> and then exits the calling process.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
+</code></pre>
+<h4 id="clihelp-code-">cli.help( [code] )</h4>
+<p>Prints help text to <code>stderr</code> and then exits the calling process.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
     <span class="hljs-string">'help'</span>: <span class="hljs-string">'Usage: beep [options] &#x3C;boop>'</span>
 });
 
 cli.help();
 <span class="hljs-comment">// => Usage: beep [options] &#x3C;boop></span>
-</code></pre><p>By default, the process exits with an exit code equal to <code>0</code>. To exit with a different exit code, provide a <code>code</code> argument.</p><h4 id="cliversion">cli.version()</h4><p>Prints the command-line interface version to <code>stderr</code> and then exits the calling process.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
+</code></pre>
+<p>By default, the process exits with an exit code equal to <code>0</code>. To exit with a different exit code, provide a <code>code</code> argument.</p>
+<h4 id="cliversion">cli.version()</h4>
+<p>Prints the command-line interface version to <code>stderr</code> and then exits the calling process.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> cli = <span class="hljs-keyword">new</span> CLI({
     <span class="hljs-string">'version'</span>: <span class="hljs-string">'1.1.1'</span>
 });
 
 cli.version();
 <span class="hljs-comment">// => 1.1.1</span>
-</code></pre></section><hr><section class="notes"><h2 id="notes">Notes</h2><ul><li>When either <code>--help</code> or <code>--version</code> command-line flag is set, a command-line interface instance prints the respective value and then exits the calling process.</li><li>When explicitly setting <code>options.argv</code>, the first element is reserved for the absolute pathname of the executable which launched the calling process and the second element is reserved for the file path of the executed JavaScript file.</li></ul></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<hr>
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>When either <code>--help</code> or <code>--version</code> command-line flag is set, a command-line interface instance prints the respective value and then exits the calling process.</li>
+<li>When explicitly setting <code>options.argv</code>, the first element is reserved for the absolute pathname of the executable which launched the calling process and the second element is reserved for the file path of the executed JavaScript file.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<hr>
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> join = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> ).join;
 <span class="hljs-keyword">var</span> readFileSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/read-file'</span> ).sync;
 <span class="hljs-keyword">var</span> CLI = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/cli/ctor'</span> );
 <span class="hljs-keyword">var</span> main = <span class="hljs-built_in">require</span>( <span class="hljs-string">'./examples/fixtures/main.js'</span> );
@@ -211,4 +306,18 @@ main( <span class="hljs-string">'beep'</span> );
 
 <span class="hljs-comment">// Close:</span>
 cli.close( <span class="hljs-number">0</span> );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

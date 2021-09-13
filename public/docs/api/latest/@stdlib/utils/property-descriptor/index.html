@@ -1,15 +1,43 @@
-<h1 id="propertydescriptor">propertyDescriptor</h1><blockquote><p>Return a property descriptor for an object's own property.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> propertyDescriptor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-descriptor'</span> );
-</code></pre><h4 id="propertydescriptor-obj-property-">propertyDescriptor( obj, property )</h4><p>Returns a property descriptor for an object's own property.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+<h1 id="propertydescriptor">propertyDescriptor</h1>
+<blockquote>
+<p>Return a property descriptor for an object's own property.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> propertyDescriptor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-descriptor'</span> );
+</code></pre>
+<h4 id="propertydescriptor-obj-property-">propertyDescriptor( obj, property )</h4>
+<p>Returns a property descriptor for an object's own property.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'a'</span>: <span class="hljs-number">1</span>,
     <span class="hljs-string">'b'</span>: <span class="hljs-number">2</span>
 };
 
 <span class="hljs-keyword">var</span> desc = propertyDescriptor( obj, <span class="hljs-string">'a'</span> );
 <span class="hljs-comment">// returns {'configurable':true,'enumerable':true,'writable':true,'value':1}</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>This function differs from the built-in <code>Object.getOwnPropertyDescriptor()</code> as follows:</p><ul><li>If provided <code>null</code> or <code>undefined</code>, the function returns <code>null</code>, rather than throwing an error.</li><li>If an object does not have a provided property, the function returns <code>null</code>, rather than <code>undefined</code>.</li></ul></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>This function differs from the built-in <code>Object.getOwnPropertyDescriptor()</code> as follows:</p>
+<ul>
+<li>If provided <code>null</code> or <code>undefined</code>, the function returns <code>null</code>, rather than throwing an error.</li>
+<li>If an object does not have a provided property, the function returns <code>null</code>, rather than <code>undefined</code>.</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> defineProperty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-property'</span> );
 <span class="hljs-keyword">var</span> propertyDescriptor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/property-descriptor'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.beep = <span class="hljs-string">'boop'</span>;
     <span class="hljs-built_in">this</span>.a = {
         <span class="hljs-string">'b'</span>: <span class="hljs-string">'c'</span>
@@ -30,4 +58,24 @@ Foo.prototype.foo = [ <span class="hljs-string">'bar'</span> ];
 
 <span class="hljs-built_in">console</span>.log( desc );
 <span class="hljs-comment">// => {'configurable':true,'enumerable':false,'writable':true,'value':'qux'}</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-own-property"><code>@stdlib/assert/has-own-property</code></a></span><span class="delimiter">: </span><span class="description">test if an object has a specified property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-property"><code>@stdlib/utils/define-property</code></a></span><span class="delimiter">: </span><span class="description">define (or modify) an object property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptor-in"><code>@stdlib/utils/property-descriptor-in</code></a></span><span class="delimiter">: </span><span class="description">return a property descriptor for an object's own or inherited property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptors"><code>@stdlib/utils/property-descriptors</code></a></span><span class="delimiter">: </span><span class="description">return an object's own property descriptors.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/assert/has-own-property"><code>@stdlib/assert/has-own-property</code></a></span><span class="delimiter">: </span><span class="description">test if an object has a specified property.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-property"><code>@stdlib/utils/define-property</code></a></span><span class="delimiter">: </span><span class="description">define (or modify) an object property.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptor-in"><code>@stdlib/utils/property-descriptor-in</code></a></span><span class="delimiter">: </span><span class="description">return a property descriptor for an object's own or inherited property.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/property-descriptors"><code>@stdlib/utils/property-descriptors</code></a></span><span class="delimiter">: </span><span class="description">return an object's own property descriptors.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

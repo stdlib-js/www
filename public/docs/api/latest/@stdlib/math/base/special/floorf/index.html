@@ -1,5 +1,14 @@
-<h1 id="floorf">floorf</h1><blockquote><p>Round a single-precision floating-point numeric value toward negative infinity.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floorf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floorf'</span> );
-</code></pre><h4 id="floorf-x-">floorf( x )</h4><p>Rounds a single-precision floating-point <code>numeric</code> value toward negative infinity.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = floorf( -<span class="hljs-number">4.2</span> );
+<h1 id="floorf">floorf</h1>
+<blockquote>
+<p>Round a single-precision floating-point numeric value toward negative infinity.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> floorf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floorf'</span> );
+</code></pre>
+<h4 id="floorf-x-">floorf( x )</h4>
+<p>Rounds a single-precision floating-point <code>numeric</code> value toward negative infinity.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = floorf( -<span class="hljs-number">4.2</span> );
 <span class="hljs-comment">// returns -5.0</span>
 
 v = floorf( <span class="hljs-number">9.99999</span> );
@@ -10,7 +19,13 @@ v = floorf( <span class="hljs-number">0.0</span> );
 
 v = floorf( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> floorf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floorf'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -20,11 +35,43 @@ v = floorf( <span class="hljs-literal">NaN</span> );
     x = (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'floorf(%d) = %d'</span>, x, floorf( x ) );
 }
-</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/floorf.h"</span></span>
-</code></pre><h4 id="stdlib_base_floorf-x-">stdlib_base_floorf( x )</h4><p>Rounds a single-precision floating-point number toward negative infinity.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_floorf( <span class="hljs-number">3.14f</span> );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/floorf.h"</span></span>
+</code></pre>
+<h4 id="stdlib_base_floorf-x-">stdlib_base_floorf( x )</h4>
+<p>Rounds a single-precision floating-point number toward negative infinity.</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">float</span> y = stdlib_base_floorf( <span class="hljs-number">3.14f</span> );
 <span class="hljs-comment">// returns 3.0</span>
-</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_floor</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/floorf.h"</span></span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>x</strong>: <code>[in] float</code> input value.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">stdlib_base_floor</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/floorf.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
@@ -37,4 +84,24 @@ v = floorf( <span class="hljs-literal">NaN</span> );
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"floorf(%f) = %f\n"</span>, x[ i ], y );
     }
 }
-</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceilf"><code>@stdlib/math/base/special/ceilf</code></a></span><span class="delimiter">: </span><span class="description">round a single-precision floating-point number toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floor"><code>@stdlib/math/base/special/floor</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward negative infinity.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ceilf"><code>@stdlib/math/base/special/ceilf</code></a></span><span class="delimiter">: </span><span class="description">round a single-precision floating-point number toward positive infinity.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/floor"><code>@stdlib/math/base/special/floor</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision floating-point number toward negative infinity.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

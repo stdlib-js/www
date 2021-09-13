@@ -1,10 +1,25 @@
-<h1 id="removelast">removeLast</h1><blockquote><p>Remove the last character of a string.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-last'</span> );
-</code></pre><h4 id="removelast-str-">removeLast( str )</h4><p>Removes the last character of a <code>string</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeLast( <span class="hljs-string">'last man standing'</span> );
+<h1 id="removelast">removeLast</h1>
+<blockquote>
+<p>Remove the last character of a string.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-last'</span> );
+</code></pre>
+<h4 id="removelast-str-">removeLast( str )</h4>
+<p>Removes the last character of a <code>string</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = removeLast( <span class="hljs-string">'last man standing'</span> );
 <span class="hljs-comment">// returns 'last man standin'</span>
 
 out = removeLast( <span class="hljs-string">'Hidden Treasures'</span> );
 <span class="hljs-comment">// returns 'Hidden Treasure'</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-last'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> removeLast = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/remove-last'</span> );
 
 <span class="hljs-keyword">var</span> str = removeLast( <span class="hljs-string">'last man standing'</span> );
 <span class="hljs-comment">// returns 'last man standin'</span>
@@ -17,14 +32,48 @@ str = removeLast( <span class="hljs-string">'javaScript'</span> );
 
 str = removeLast( <span class="hljs-string">'Hidden Treasures'</span> );
 <span class="hljs-comment">// returns 'Hidden Treasure'</span>
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: remove-last [options] [&#x3C;string>]
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: remove-last [options] [&#x3C;string>]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ remove-last beep
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ remove-last beep
 bee
-</code></pre><p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p><pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep'</span> | remove-last
+</code></pre>
+<p>To use as a <a href="https://en.wikipedia.org/wiki/Standard_streams">standard stream</a>,</p>
+<pre><code class="hljs language-bash">$ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">'beep'</span> | remove-last
 bee
-</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/remove-first"><code>@stdlib/string/remove-first</code></a></span><span class="delimiter">: </span><span class="description">remove the first character of a string.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/string/remove-first"><code>@stdlib/string/remove-first</code></a></span><span class="delimiter">: </span><span class="description">remove the first character of a string.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

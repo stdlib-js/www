@@ -1,27 +1,82 @@
-<h1 id="namespace">Namespace</h1><blockquote><p>Standard library namespace.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> namespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace'</span> );
-</code></pre><h4 id="namespace-1">namespace()</h4><p>Returns the standard library namespace.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = namespace();
+<h1 id="namespace">Namespace</h1>
+<blockquote>
+<p>Standard library namespace.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> namespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace'</span> );
+</code></pre>
+<h4 id="namespace-1">namespace()</h4>
+<p>Returns the standard library namespace.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ns = namespace();
 <span class="hljs-comment">// returns [ {...}, {...}, ... ]</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> namespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better example. Possibly adding to global namespace as was done in previous example. Can see REPL context generation for inspiration. -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> namespace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace'</span> );
 
 <span class="hljs-keyword">var</span> ns = namespace();
 <span class="hljs-comment">// returns [ {...}, {...}, ... ]</span>
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: stdlib-namespace [options]
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for describing a command-line interface. -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<!-- CLI usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: stdlib-namespace [options]
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
          --fields f1,f2,...    Print fields as CSV.
-</code></pre></section><section class="notes"><h3 id="notes">Notes</h3><ul><li>The default output format is newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>). Each printed <code>object</code> will contain the following fields: <code>alias</code>, <code>path</code>, <code>type</code>, and <code>related</code>. If a namespace element's value can be serialized as <a href="http://www.json.org/">JSON</a>, the <code>object</code> will contain the element <code>value</code>. Otherwise, the <code>value</code> field will be missing.</li><li>To output data as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), specify the desired fields. Supported fields include: <code>alias</code>, <code>path</code>, <code>type</code>, and <code>related</code>. The first line is a header line, and all values are enclosed in double quotes <code>"..."</code>.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stdlib-namespace
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h3 id="notes">Notes</h3>
+<ul>
+<li>The default output format is newline-delimited JSON (<a href="http://specs.frictionlessdata.io/ndjson/">NDJSON</a>). Each printed <code>object</code> will contain the following fields: <code>alias</code>, <code>path</code>, <code>type</code>, and <code>related</code>. If a namespace element's value can be serialized as <a href="http://www.json.org/">JSON</a>, the <code>object</code> will contain the element <code>value</code>. Otherwise, the <code>value</code> field will be missing.</li>
+<li>To output data as comma-separated values (<a href="https://tools.ietf.org/html/rfc4180">CSV</a>), specify the desired fields. Supported fields include: <code>alias</code>, <code>path</code>, <code>type</code>, and <code>related</code>. The first line is a header line, and all values are enclosed in double quotes <code>"..."</code>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- CLI usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ stdlib-namespace
 {...}
 {...}
 {...}
 ...
-</code></pre><p>To output data as <a href="https://tools.ietf.org/html/rfc4180">CSV</a>,</p><pre><code class="hljs language-bash">$ stdlib-namespace --fields <span class="hljs-built_in">alias</span>,<span class="hljs-built_in">type</span>
+</code></pre>
+<p>To output data as <a href="https://tools.ietf.org/html/rfc4180">CSV</a>,</p>
+<pre><code class="hljs language-bash">$ stdlib-namespace --fields <span class="hljs-built_in">alias</span>,<span class="hljs-built_in">type</span>
 <span class="hljs-string">"alias"</span>,<span class="hljs-string">"type"</span>
 <span class="hljs-string">"AFINN_111"</span>,<span class="hljs-string">"Function"</span>
 <span class="hljs-string">"AFINN_96"</span>,<span class="hljs-string">"Function"</span>
 <span class="hljs-string">"any"</span>,<span class="hljs-string">"Function"</span>
 <span class="hljs-string">"anyBy"</span>,<span class="hljs-string">"Function"</span>
 ...
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,5 +1,19 @@
-<h1 id="array-shape">Array Shape</h1><blockquote><p>Determine (nested) array dimensions.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shape'</span> );
-</code></pre><h4 id="arrayshape-arr-">arrayShape( arr )</h4><p>Returns array dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+<h1 id="array-shape">Array Shape</h1>
+<blockquote>
+<p>Determine (nested) array dimensions.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shape'</span> );
+</code></pre>
+<h4 id="arrayshape-arr-">arrayShape( arr )</h4>
+<p>Returns array dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
     [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
     [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
     [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ]
@@ -7,7 +21,9 @@
 
 <span class="hljs-keyword">var</span> shape = arrayShape( arr );
 <span class="hljs-comment">// returns [ 3, 3 ]</span>
-</code></pre><p>The function <strong>ignores</strong> inconsistent dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
+</code></pre>
+<p>The function <strong>ignores</strong> inconsistent dimensions.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [
     [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
     [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
     [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ]
@@ -15,7 +31,18 @@
 
 <span class="hljs-keyword">var</span> shape = arrayShape( arr );
 <span class="hljs-comment">// returns [ 3 ]</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shape'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arrayShape = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/shape'</span> );
 
 <span class="hljs-keyword">var</span> shape;
 <span class="hljs-keyword">var</span> arr;
@@ -112,4 +139,25 @@ arr = [
 ];
 shape = arrayShape( arr );
 <span class="hljs-comment">// returns [ 3, 1 ]</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

@@ -1,5 +1,15 @@
-<h1 id="flatten-object">Flatten Object</h1><blockquote><p>Flatten an object.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flattenObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/flatten-object'</span> );
-</code></pre><p></p><h4 id="flattenobject-obj-options-">flattenObject( obj[, options] )</h4><p>Flattens an <code>object</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+<h1 id="flatten-object">Flatten Object</h1>
+<blockquote>
+<p>Flatten an object.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flattenObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/flatten-object'</span> );
+</code></pre>
+<p><a name="flatten-object"></a></p>
+<h4 id="flattenobject-obj-options-">flattenObject( obj[, options] )</h4>
+<p>Flattens an <code>object</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'a'</span>: {
         <span class="hljs-string">'b'</span>: {
             <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span>
@@ -9,7 +19,16 @@
 
 <span class="hljs-keyword">var</span> out = flattenObject( obj );
 <span class="hljs-comment">// returns { 'a.b.c': 'd' }</span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>depth</strong>: maximum depth to flatten.</li><li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> property values. Default: <code>false</code>.</li><li><strong>delimiter</strong>: key path delimiter. Default: <code>'.'</code>.</li><li><strong>flattenArrays</strong>: <code>boolean</code> indicating whether to flatten <code>arrays</code>. Default: <code>false</code>.</li></ul><p>To flatten to a specified depth, set the <code>depth</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>depth</strong>: maximum depth to flatten.</li>
+<li><strong>copy</strong>: <code>boolean</code> indicating whether to deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> property values. Default: <code>false</code>.</li>
+<li><strong>delimiter</strong>: key path delimiter. Default: <code>'.'</code>.</li>
+<li><strong>flattenArrays</strong>: <code>boolean</code> indicating whether to flatten <code>arrays</code>. Default: <code>false</code>.</li>
+</ul>
+<p>To flatten to a specified depth, set the <code>depth</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'a'</span>: {
         <span class="hljs-string">'b'</span>: {
             <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span>
@@ -24,7 +43,9 @@
 
 <span class="hljs-keyword">var</span> bool = ( obj.a.b === out[<span class="hljs-string">'a.b'</span>] );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>To deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> property values, set the <code>copy</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+</code></pre>
+<p>To deep <a href="/docs/api/latest/@stdlib/utils/copy">copy</a> property values, set the <code>copy</code> option to <code>true</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'a'</span>: {
         <span class="hljs-string">'b'</span>: {
             <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span>
@@ -40,7 +61,9 @@
 
 <span class="hljs-keyword">var</span> bool = ( obj.a.b === out[<span class="hljs-string">'a.b'</span>] );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>To specify a custom key path delimiter, set the <code>delimiter</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+</code></pre>
+<p>To specify a custom key path delimiter, set the <code>delimiter</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'a'</span>: {
         <span class="hljs-string">'b'</span>: {
             <span class="hljs-string">'c'</span>: <span class="hljs-string">'d'</span>
@@ -52,7 +75,9 @@
     <span class="hljs-string">'delimiter'</span>: <span class="hljs-string">'-|-'</span>
 });
 <span class="hljs-comment">// returns { 'a-|-b-|-c': 'd' }</span>
-</code></pre><p>By default, the function does <strong>not</strong> flatten <code>arrays</code>. To flatten <code>arrays</code>, set the <code>flattenArrays</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
+</code></pre>
+<p>By default, the function does <strong>not</strong> flatten <code>arrays</code>. To flatten <code>arrays</code>, set the <code>flattenArrays</code> option to <code>true</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {
     <span class="hljs-string">'a'</span>: {
         <span class="hljs-string">'b'</span>: [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]
     }
@@ -62,7 +87,10 @@
     <span class="hljs-string">'flattenArrays'</span>: <span class="hljs-literal">true</span>
 });
 <span class="hljs-comment">// returns { 'a.b.0': 1, 'a.b.1': 2, 'a.b.2': 3 }</span>
-</code></pre><h4 id="flattenobjectfactory-options-">flattenObject.factory( options )</h4><p>Returns a <code>function</code> to flatten an <code>object</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flatten = flattenObject.factory({
+</code></pre>
+<h4 id="flattenobjectfactory-options-">flattenObject.factory( options )</h4>
+<p>Returns a <code>function</code> to flatten an <code>object</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> flatten = flattenObject.factory({
     <span class="hljs-string">'delimiter'</span>: <span class="hljs-string">'|'</span>,
     <span class="hljs-string">'flattenArrays'</span>: <span class="hljs-literal">true</span>
 });
@@ -85,11 +113,20 @@ obj = {
 };
 out = flatten( obj );
 <span class="hljs-comment">// returns { 'a|b|0': 1, 'a|b|1': 2, 'a|b|2': 3 }</span>
-</code></pre><p>The function accepts the same <code>options</code> as <a href="#flatten-object"><code>flattenObject()</code></a>.</p></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre>
+<p>The function accepts the same <code>options</code> as <a href="#flatten-object"><code>flattenObject()</code></a>.</p>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: update once Buffer wrapper -->
+<!-- eslint no-undef: "error" -->
+<!-- eslint-disable no-buffer-constructor -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 <span class="hljs-keyword">var</span> string2buffer = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/buffer/from-string'</span> );
 <span class="hljs-keyword">var</span> flattenObject = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/flatten-object'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-comment">// Do nothing...</span>
 }
 
@@ -154,4 +191,21 @@ out = flatten( obj );
         'a-|-p-|-1-|-2-|-3': {}
     }
 */</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/flatten-array"><code>@stdlib/utils/flatten-array</code></a></span><span class="delimiter">: </span><span class="description">flatten an array.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/flatten-array"><code>@stdlib/utils/flatten-array</code></a></span><span class="delimiter">: </span><span class="description">flatten an array.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

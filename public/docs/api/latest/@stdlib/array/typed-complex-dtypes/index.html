@@ -1,7 +1,37 @@
-<h1 id="data-types">Data Types</h1><blockquote><p>List of complex typed array data types.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-complex-dtypes'</span> );
-</code></pre><h4 id="dtypes">dtypes()</h4><p>Returns a list of complex typed array data types.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = dtypes();
+<h1 id="data-types">Data Types</h1>
+<blockquote>
+<p>List of complex typed array data types.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-complex-dtypes'</span> );
+</code></pre>
+<h4 id="dtypes">dtypes()</h4>
+<p>Returns a list of complex typed array data types.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = dtypes();
 <span class="hljs-comment">// returns [ 'complex64', 'complex128' ]</span>
-</code></pre><p>The output <code>array</code> contains the following data types:</p><ul><li><code>complex64</code>: single-precision floating-point complex numbers.</li><li><code>complex128</code>: double-precision floating-point complex numbers.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
+</code></pre>
+<p>The output <code>array</code> contains the following data types:</p>
+<ul>
+<li><code>complex64</code>: single-precision floating-point complex numbers.</li>
+<li><code>complex128</code>: double-precision floating-point complex numbers.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indexOf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/index-of'</span> );
 <span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/typed-complex-dtypes'</span> );
 
 <span class="hljs-keyword">var</span> DTYPES = dtypes();
@@ -25,4 +55,27 @@ bool = isdtype( <span class="hljs-string">'uint8'</span> );
 
 bool = isdtype( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/dtypes"><code>@stdlib/array/dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of array data types.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/typed-dtypes"><code>@stdlib/array/typed-dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of typed array data types.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/dtypes"><code>@stdlib/ndarray/dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray data types.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/dtypes"><code>@stdlib/array/dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of array data types.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/typed-dtypes"><code>@stdlib/array/typed-dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of typed array data types.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/dtypes"><code>@stdlib/ndarray/dtypes</code></a></span><span class="delimiter">: </span><span class="description">list of ndarray data types.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

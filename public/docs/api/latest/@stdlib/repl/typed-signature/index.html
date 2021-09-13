@@ -1,9 +1,37 @@
-<h1 id="typed-signature">Typed Signature</h1><blockquote><p>Return the typed signature(s) associated with a provided alias.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typedSignature = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl/typed-signature'</span> );
-</code></pre><h4 id="typedsignature-alias-">typedSignature( alias )</h4><p>Returns the typed signature(s) for a provided alias.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = typedSignature( <span class="hljs-string">'base.sin'</span> );
+<h1 id="typed-signature">Typed Signature</h1>
+<blockquote>
+<p>Return the typed signature(s) associated with a provided alias.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> typedSignature = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl/typed-signature'</span> );
+</code></pre>
+<h4 id="typedsignature-alias-">typedSignature( alias )</h4>
+<p>Returns the typed signature(s) for a provided alias.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = typedSignature( <span class="hljs-string">'base.sin'</span> );
 <span class="hljs-comment">// returns [ '...' ]</span>
-</code></pre><p>If provided an unrecognized <code>alias</code>, the function returns <code>null</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> txt = typedSignature( <span class="hljs-string">'unrecognized_alias_beep_boop_bop_bip'</span> );
+</code></pre>
+<p>If provided an unrecognized <code>alias</code>, the function returns <code>null</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> txt = typedSignature( <span class="hljs-string">'unrecognized_alias_beep_boop_bop_bip'</span> );
 <span class="hljs-comment">// returns null</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better example -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> aliases = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/namespace/aliases'</span> );
 <span class="hljs-keyword">var</span> typedSignature = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/repl/typed-signature'</span> );
 
@@ -23,11 +51,51 @@ len = list.length;
         <span class="hljs-built_in">console</span>.log( sig.join( <span class="hljs-string">'\n'</span> ) );
     }
 }
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: stdlib-alias-typed-signature [options] &#x3C;alias>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for describing a command-line interface. -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<!-- CLI usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: stdlib-alias-typed-signature [options] &#x3C;alias>
 
 Options:
 
   -h,    --help                Print this message.
   -V,    --version             Print the package version.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ stdlib-alias-typed-signature <span class="hljs-string">'base.sin'</span>
-</code></pre></section></section><h2 id="license">License</h2><p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- CLI usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- CLI usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ stdlib-alias-typed-signature <span class="hljs-string">'base.sin'</span>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- <license> -->
+<h2 id="license">License</h2>
+<p>The data files (databases) are licensed under an <a href="http://opendatacommons.org/licenses/pddl/1.0/">Open Data Commons Public Domain Dedication &#x26; License 1.0</a> and their contents are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0">Creative Commons Zero v1.0 Universal</a>. The software is licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</p>
+<!-- </license> -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

@@ -1,7 +1,22 @@
-<h1 id="path-separator">Path Separator</h1><blockquote><p>Windows path segment separator.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP_WIN32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep-win32'</span> );
-</code></pre><h4 id="path_sep_win32">PATH_SEP_WIN32</h4><p>Windows path segment separator.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sep = PATH_SEP_WIN32;
+<h1 id="path-separator">Path Separator</h1>
+<blockquote>
+<p>Windows path segment separator.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP_WIN32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep-win32'</span> );
+</code></pre>
+<h4 id="path_sep_win32">PATH_SEP_WIN32</h4>
+<p>Windows path segment separator.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sep = PATH_SEP_WIN32;
 <span class="hljs-comment">// returns '\\'</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP_WIN32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep-win32'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> PATH_SEP_WIN32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/path/sep-win32'</span> );
 
 <span class="hljs-keyword">var</span> parts;
 <span class="hljs-keyword">var</span> path;
@@ -13,4 +28,22 @@ parts = path.split( PATH_SEP_WIN32 );
 path = <span class="hljs-string">'foo/bar/baz'</span>;
 parts = path.split( PATH_SEP_WIN32 );
 <span class="hljs-comment">// returns ['foo/bar/baz' ]</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep"><code>@stdlib/constants/path/sep</code></a></span><span class="delimiter">: </span><span class="description">platform-specific path segment separator.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-posix"><code>@stdlib/constants/path/sep-posix</code></a></span><span class="delimiter">: </span><span class="description">POSIX path segment separator.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep"><code>@stdlib/constants/path/sep</code></a></span><span class="delimiter">: </span><span class="description">platform-specific path segment separator.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/path/sep-posix"><code>@stdlib/constants/path/sep-posix</code></a></span><span class="delimiter">: </span><span class="description">POSIX path segment separator.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

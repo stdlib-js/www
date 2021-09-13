@@ -1,34 +1,72 @@
-<h1 id="hypot">hypot</h1><blockquote><p>Compute the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/hypot'</span> );
-</code></pre><h4 id="hypot-x-y-">hypot( x, y )</h4><p>Computes the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( -<span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
+<h1 id="hypot">hypot</h1>
+<blockquote>
+<p>Compute the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/hypot'</span> );
+</code></pre>
+<h4 id="hypot-x-y-">hypot( x, y )</h4>
+<p>Computes the <a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">hypotenuse</a> avoiding overflow and underflow.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( -<span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
 <span class="hljs-comment">// returns 13.0</span>
 
 h = hypot( -<span class="hljs-number">0.0</span>, -<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns +0.0</span>
-</code></pre><p>If either argument is <code>NaN</code>, the function returns <code>NaN</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-literal">NaN</span>, <span class="hljs-number">12.0</span> );
+</code></pre>
+<p>If either argument is <code>NaN</code>, the function returns <code>NaN</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-literal">NaN</span>, <span class="hljs-number">12.0</span> );
 <span class="hljs-comment">// returns NaN</span>
 
 h = hypot( <span class="hljs-number">5.0</span>, <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The textbook approach to calculating the hypotenuse is subject to overflow and underflow. For example, for a sufficiently large <code>x</code> and/or <code>y</code>, computing the hypotenuse will overflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sqrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The textbook approach to calculating the hypotenuse is subject to overflow and underflow. For example, for a sufficiently large <code>x</code> and/or <code>y</code>, computing the hypotenuse will overflow.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sqrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt'</span> );
 
 <span class="hljs-keyword">var</span> x2 = <span class="hljs-number">1.0e154</span> * <span class="hljs-number">1.0e154</span>;
 <span class="hljs-comment">// returns 1.0e308</span>
 
 <span class="hljs-keyword">var</span> h = sqrt( x2 + x2 );
 <span class="hljs-comment">// returns Infinity</span>
-</code></pre><p>Similarly, for sufficiently small <code>x</code> and/or <code>y</code>, computing the hypotenuse will underflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sqrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt'</span> );
+</code></pre>
+<p>Similarly, for sufficiently small <code>x</code> and/or <code>y</code>, computing the hypotenuse will underflow.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> sqrt = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/sqrt'</span> );
 
 <span class="hljs-keyword">var</span> x2 = <span class="hljs-number">1.0e-200</span> * <span class="hljs-number">1.0e-200</span>;
 <span class="hljs-comment">// returns 0.0</span>
 
 <span class="hljs-keyword">var</span> h = sqrt( x2 + x2 );
 <span class="hljs-comment">// returns 0.0</span>
-</code></pre><p>This implementation uses a numerically stable algorithm which avoids overflow and underflow.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-number">1.0e154</span>, <span class="hljs-number">1.0e154</span> );
+</code></pre>
+<p>This implementation uses a numerically stable algorithm which avoids overflow and underflow.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> h = hypot( <span class="hljs-number">1.0e154</span>, <span class="hljs-number">1.0e154</span> );
 <span class="hljs-comment">// returns ~1.4142e+154</span>
 
 h = hypot( <span class="hljs-number">1.0e-200</span>, <span class="hljs-number">1.0e-200</span> );
 <span class="hljs-comment">// returns ~1.4142e-200</span>
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
 <span class="hljs-keyword">var</span> hypot = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/hypot'</span> );
 
@@ -43,11 +81,44 @@ h = hypot( <span class="hljs-number">1.0e-200</span>, <span class="hljs-number">
     h = hypot( x, y );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'h(%d,%d) = %d'</span>, x, y, h );
 }
-</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/hypot.h
-</span></span></code></pre><h4 id="stdlib_base_hypot-x-y-">stdlib_base_hypot( x, y )</h4><p>Computes the hypotenuse avoiding overflow and underflow.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> h = stdlib_base_hypot( <span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/hypot.h
+</span></span></code></pre>
+<h4 id="stdlib_base_hypot-x-y-">stdlib_base_hypot( x, y )</h4>
+<p>Computes the hypotenuse avoiding overflow and underflow.</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">double</span> h = stdlib_base_hypot( <span class="hljs-number">5.0</span>, <span class="hljs-number">12.0</span> );
 <span class="hljs-comment">// returns 13.0</span>
-</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] double</code> input value.</li><li><strong>y</strong>: <code>[in] double</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_hypot</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span></span>;
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/hypot.h"</span></span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>x</strong>: <code>[in] double</code> input value.</li>
+<li><strong>y</strong>: <code>[in] double</code> input value.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_hypot</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> y )</span></span>;
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/hypot.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
@@ -60,4 +131,20 @@ h = hypot( <span class="hljs-number">1.0e-200</span>, <span class="hljs-number">
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"hypot(%lf, %lf) = %lf\n"</span>, x[ i ], x[ i+<span class="hljs-number">1</span> ], y );
     }
 }
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

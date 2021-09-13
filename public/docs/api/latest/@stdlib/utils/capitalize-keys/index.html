@@ -1,12 +1,42 @@
-<h1 id="capitalizekeys">capitalizeKeys</h1><blockquote><p>Convert the first letter of each object key to uppercase.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalizeKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/capitalize-keys'</span> );
-</code></pre><h4 id="capitalizekeys-obj-">capitalizeKeys( obj )</h4><p>Converts the first letter of each <code>object</code> key to uppercase, mapping the transformed keys to a new <code>object</code> having the same values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj1 = {
+<h1 id="capitalizekeys">capitalizeKeys</h1>
+<blockquote>
+<p>Convert the first letter of each object key to uppercase.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalizeKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/capitalize-keys'</span> );
+</code></pre>
+<h4 id="capitalizekeys-obj-">capitalizeKeys( obj )</h4>
+<p>Converts the first letter of each <code>object</code> key to uppercase, mapping the transformed keys to a new <code>object</code> having the same values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj1 = {
     <span class="hljs-string">'beepBoop'</span>: <span class="hljs-number">1</span>,
     <span class="hljs-string">'fooBar'</span>: <span class="hljs-number">2</span>
 };
 
 <span class="hljs-keyword">var</span> obj2 = capitalizeKeys( obj1 );
 <span class="hljs-comment">// returns { 'BeepBoop': 1, 'FooBar': 2 }</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function only transforms <strong>own</strong> properties. Hence, the function does <strong>not</strong> transform inherited properties.</li><li>The function <strong>shallow</strong> copies key values.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalizeKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/capitalize-keys'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>The function only transforms <strong>own</strong> properties. Hence, the function does <strong>not</strong> transform inherited properties.</li>
+<li>The function <strong>shallow</strong> copies key values.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> capitalizeKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/capitalize-keys'</span> );
 
 <span class="hljs-keyword">var</span> obj1 = {
     <span class="hljs-string">'aa'</span>: <span class="hljs-string">'beep'</span>,
@@ -19,4 +49,26 @@
 
 <span class="hljs-built_in">console</span>.dir( obj2 );
 <span class="hljs-comment">// => { 'Aa': 'beep', 'Bb': 'boop', 'Cc': 'foo', 'Dd': 'bar' }</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncapitalize-keys"><code>@stdlib/utils/uncapitalize-keys</code></a></span><span class="delimiter">: </span><span class="description">convert the first letter of each object key to lowercase.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uppercase-keys"><code>@stdlib/utils/uppercase-keys</code></a></span><span class="delimiter">: </span><span class="description">convert each object key to uppercase.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uncapitalize-keys"><code>@stdlib/utils/uncapitalize-keys</code></a></span><span class="delimiter">: </span><span class="description">convert the first letter of each object key to lowercase.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/uppercase-keys"><code>@stdlib/utils/uppercase-keys</code></a></span><span class="delimiter">: </span><span class="description">convert each object key to uppercase.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

@@ -1,5 +1,19 @@
-<h1 id="clamp-index">Clamp Index</h1><blockquote><p>Restrict an index to the interval <code>[0,max]</code>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> clampIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/clamp-index'</span> );
-</code></pre><h4 id="clampindex-idx-max-">clampIndex( idx, max )</h4><p>Restricts an index to the interval <code>[0,max]</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = clampIndex( <span class="hljs-number">2</span>, <span class="hljs-number">10</span> );
+<h1 id="clamp-index">Clamp Index</h1>
+<blockquote>
+<p>Restrict an index to the interval <code>[0,max]</code>.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> clampIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/clamp-index'</span> );
+</code></pre>
+<h4 id="clampindex-idx-max-">clampIndex( idx, max )</h4>
+<p>Restricts an index to the interval <code>[0,max]</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = clampIndex( <span class="hljs-number">2</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns 2</span>
 
 idx = clampIndex( -<span class="hljs-number">5</span>, <span class="hljs-number">10</span> );
@@ -7,7 +21,18 @@ idx = clampIndex( -<span class="hljs-number">5</span>, <span class="hljs-number"
 
 idx = clampIndex( <span class="hljs-number">15</span>, <span class="hljs-number">10</span> );
 <span class="hljs-comment">// returns 10</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> clampIndex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/clamp-index'</span> );
 
 <span class="hljs-keyword">var</span> idx;
@@ -19,4 +44,18 @@ idx = clampIndex( <span class="hljs-number">15</span>, <span class="hljs-number"
     out = clampIndex( idx, <span class="hljs-number">10</span> );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => [%d,%d] => %d'</span>, idx, <span class="hljs-number">0</span>, <span class="hljs-number">10</span>, out );
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

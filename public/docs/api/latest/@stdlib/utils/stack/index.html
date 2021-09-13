@@ -1,7 +1,24 @@
-<h1 id="stack">Stack</h1><blockquote><p>Stack data structure.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stack = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/stack'</span> );
-</code></pre><h4 id="stack-1">stack()</h4><p>Returns a <code>Stack</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+<h1 id="stack">Stack</h1>
+<blockquote>
+<p>Stack data structure.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> stack = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/stack'</span> );
+</code></pre>
+<h4 id="stack-1">stack()</h4>
+<p>Returns a <code>Stack</code> instance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 <span class="hljs-comment">// returns &#x3C;Stack></span>
-</code></pre><h5 id="sclear">s.clear()</h5><p>Clears a stack.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<h5 id="sclear">s.clear()</h5>
+<p>Clears a stack.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 <span class="hljs-comment">// returns &#x3C;Stack></span>
 
 <span class="hljs-comment">// Add values to the stack:</span>
@@ -25,7 +42,10 @@ v = s.first();
 <span class="hljs-comment">// Examine the stack length:</span>
 len = s.length;
 <span class="hljs-comment">// returns 0</span>
-</code></pre><h5 id="sfirst">s.first()</h5><p>Returns the top stack value (i.e., the value which is "first-out"). If the stack is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<h5 id="sfirst">s.first()</h5>
+<p>Returns the top stack value (i.e., the value which is "first-out"). If the stack is currently empty, the returned value is <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 <span class="hljs-comment">// returns &#x3C;Stack></span>
 
 <span class="hljs-comment">// Add values to the stack:</span>
@@ -34,7 +54,10 @@ s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string"
 <span class="hljs-comment">// Peek at the top value:</span>
 <span class="hljs-keyword">var</span> v = s.first();
 <span class="hljs-comment">// returns 'bar'</span>
-</code></pre><h5 id="siterator">s.iterator()</h5><p>Returns an iterator for iterating over a stack. If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<h5 id="siterator">s.iterator()</h5>
+<p>Returns an iterator for iterating over a stack. If an environment supports <code>Symbol.iterator</code>, the returned iterator is iterable.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 
 <span class="hljs-comment">// Add values to the stack:</span>
 s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -51,7 +74,11 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = it.next().done;
 <span class="hljs-comment">// returns true</span>
-</code></pre><p><strong>Note</strong>: in order to prevent confusion arising from stack mutation during iteration, a returned iterator <strong>always</strong> iterates over a stack "snapshot", which is defined as the list of stack elements at the time of <code>s.iterator()</code> invocation.</p><h5 id="slast">s.last()</h5><p>Returns the bottom stack value (i.e., the value which is "last-out"). If the stack is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<p><strong>Note</strong>: in order to prevent confusion arising from stack mutation during iteration, a returned iterator <strong>always</strong> iterates over a stack "snapshot", which is defined as the list of stack elements at the time of <code>s.iterator()</code> invocation.</p>
+<h5 id="slast">s.last()</h5>
+<p>Returns the bottom stack value (i.e., the value which is "last-out"). If the stack is currently empty, the returned value is <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 <span class="hljs-comment">// returns &#x3C;Stack></span>
 
 <span class="hljs-comment">// Add values to the stack:</span>
@@ -60,7 +87,10 @@ s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string"
 <span class="hljs-comment">// Peek at the bottom value:</span>
 <span class="hljs-keyword">var</span> v = s.last();
 <span class="hljs-comment">// returns 'foo'</span>
-</code></pre><h5 id="slength">s.length</h5><p>Stack length.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<h5 id="slength">s.length</h5>
+<p>Stack length.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 
 <span class="hljs-comment">// Examine the initial stack length:</span>
 <span class="hljs-keyword">var</span> len = s.length;
@@ -72,7 +102,10 @@ s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string"
 <span class="hljs-comment">// Retrieve the current stack length:</span>
 len = s.length;
 <span class="hljs-comment">// returns 2</span>
-</code></pre><h5 id="spop">s.pop()</h5><p>Removes a value from the stack. If the stack is currently empty, the returned value is <code>undefined</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<h5 id="spop">s.pop()</h5>
+<p>Removes a value from the stack. If the stack is currently empty, the returned value is <code>undefined</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 
 <span class="hljs-comment">// Add values to the stack:</span>
 s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -87,7 +120,10 @@ s.push( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Remove the top value:</span>
 v = s.pop();
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre><h5 id="spush-value-">s.push( value )</h5><p>Adds a value to the stack.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<h5 id="spush-value-">s.push( value )</h5>
+<p>Adds a value to the stack.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 
 <span class="hljs-comment">// Add values to the stack:</span>
 s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -102,7 +138,10 @@ s.push( <span class="hljs-string">'beep'</span> );
 <span class="hljs-comment">// Remove the top value:</span>
 v = s.pop();
 <span class="hljs-comment">// returns 'beep'</span>
-</code></pre><h5 id="stoarray">s.toArray()</h5><p>Returns an array of stack values.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<h5 id="stoarray">s.toArray()</h5>
+<p>Returns an array of stack values.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 
 <span class="hljs-comment">// Add values to the stack:</span>
 s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -110,7 +149,11 @@ s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string"
 <span class="hljs-comment">// Get an array of stack values:</span>
 <span class="hljs-keyword">var</span> vals = s.toArray();
 <span class="hljs-comment">// returns [ 'bar', 'foo' ]</span>
-</code></pre><p><strong>Note</strong>: the order of the returned array is reverse stack insertion order (i.e., the "newest" stack elements come before the "oldest" stack elements).</p><h5 id="stojson">s.toJSON()</h5><p>Serializes a stack as JSON.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
+</code></pre>
+<p><strong>Note</strong>: the order of the returned array is reverse stack insertion order (i.e., the "newest" stack elements come before the "oldest" stack elements).</p>
+<h5 id="stojson">s.toJSON()</h5>
+<p>Serializes a stack as JSON.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> s = stack();
 
 <span class="hljs-comment">// Add values to the stack:</span>
 s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string">'bar'</span> );
@@ -118,7 +161,24 @@ s.push( <span class="hljs-string">'foo'</span> ).push( <span class="hljs-string"
 <span class="hljs-comment">// Serialize to JSON:</span>
 <span class="hljs-keyword">var</span> o = s.toJSON();
 <span class="hljs-comment">// returns { 'type': 'stack', 'data': [ 'bar', 'foo' ] }</span>
-</code></pre><p><strong>Note</strong>: <code>JSON.stringify()</code> implicitly calls this method when stringifying a stack instance.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A stack is also known as a Last-In-First-Out (LIFO) queue.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Stack = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/stack'</span> );
+</code></pre>
+<p><strong>Note</strong>: <code>JSON.stringify()</code> implicitly calls this method when stringifying a stack instance.</p>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>A stack is also known as a Last-In-First-Out (LIFO) queue.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<!-- eslint-disable stdlib/no-redeclare -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> Stack = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/stack'</span> );
 
 <span class="hljs-keyword">var</span> stack;
 <span class="hljs-keyword">var</span> iter;
@@ -166,4 +226,25 @@ stack.clear();
 <span class="hljs-comment">// Inspect the stack length:</span>
 len = stack.length;
 <span class="hljs-comment">// returns 0</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/fifo"><code>@stdlib/utils/fifo</code></a></span><span class="delimiter">: </span><span class="description">first-in-first-out (FIFO) queue.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/fifo"><code>@stdlib/utils/fifo</code></a></span><span class="delimiter">: </span><span class="description">first-in-first-out (FIFO) queue.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

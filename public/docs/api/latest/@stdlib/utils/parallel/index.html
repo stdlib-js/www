@@ -1,5 +1,15 @@
-<h1 id="parallel">Parallel</h1><blockquote><p>Execute scripts in parallel.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parallel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parallel'</span> );
-</code></pre><h4 id="parallel-files-options-clbk-">parallel( files, [options,] clbk )</h4><p>Executes scripts in parallel.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
+<h1 id="parallel">Parallel</h1>
+<blockquote>
+<p>Execute scripts in parallel.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> parallel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/parallel'</span> );
+</code></pre>
+<h4 id="parallel-files-options-clbk-">parallel( files, [options,] clbk )</h4>
+<p>Executes scripts in parallel.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
     <span class="hljs-string">'./a.js'</span>,
     <span class="hljs-string">'./b.js'</span>
 ];
@@ -14,7 +24,20 @@
 }
 
 parallel( files, done );
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>cmd</strong>: executable file/command. Default: <code>'node'</code>.</li><li><strong>workers</strong>: number of workers. Default: number of CPUs minus <code>1</code>.</li><li><strong>concurrency</strong>: number of scripts to execute concurrently. Default: <code>options.workers</code>.</li><li><strong>ordered</strong>: <code>boolean</code> indicating whether to preserve the order of script output. Default: <code>false</code>.</li><li><strong>maxBuffer</strong>: maximum child process <code>stdio</code> buffer size. This option is <strong>only</strong> applied when <code>options.ordered = true</code>. Default: <code>200*1024*1024</code> bytes.</li><li><strong>uid</strong>: child process user identity.</li><li><strong>gid</strong>: child process group identity.</li></ul><p>By default, the number of workers running scripts is equal to the number of CPUs minus <code>1</code> (master process). To adjust the number of workers, set the <code>workers</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>cmd</strong>: executable file/command. Default: <code>'node'</code>.</li>
+<li><strong>workers</strong>: number of workers. Default: number of CPUs minus <code>1</code>.</li>
+<li><strong>concurrency</strong>: number of scripts to execute concurrently. Default: <code>options.workers</code>.</li>
+<li><strong>ordered</strong>: <code>boolean</code> indicating whether to preserve the order of script output. Default: <code>false</code>.</li>
+<li><strong>maxBuffer</strong>: maximum child process <code>stdio</code> buffer size. This option is <strong>only</strong> applied when <code>options.ordered = true</code>. Default: <code>200*1024*1024</code> bytes.</li>
+<li><strong>uid</strong>: child process user identity.</li>
+<li><strong>gid</strong>: child process group identity.</li>
+</ul>
+<p>By default, the number of workers running scripts is equal to the number of CPUs minus <code>1</code> (master process). To adjust the number of workers, set the <code>workers</code> option.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
     <span class="hljs-string">'./a.js'</span>,
     <span class="hljs-string">'./b.js'</span>
 ];
@@ -33,7 +56,10 @@ parallel( files, done );
 };
 
 parallel( files, opts, done );
-</code></pre><p>By default, the number of scripts running concurrently is equal to the number of workers. To adjust the concurrency, set the <code>concurrency</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
+</code></pre>
+<p>By default, the number of scripts running concurrently is equal to the number of workers. To adjust the concurrency, set the <code>concurrency</code> option.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
     <span class="hljs-string">'./a.js'</span>,
     <span class="hljs-string">'./b.js'</span>
 ];
@@ -52,8 +78,14 @@ parallel( files, opts, done );
 };
 
 parallel( files, opts, done );
-</code></pre><p>By specifying a concurrency greater than the number of workers, a worker may be executing more than <code>1</code> script at any one time. While not likely to be advantageous for synchronous scripts, setting a higher concurrency may be advantageous for scripts performing asynchronous tasks.</p><p>By default, each script is executed as a <a href="http://nodejs.org/">Node.js</a> script.</p><pre><code class="no-highlight language-text">$ node &#x3C;script_path>
-</code></pre><p>To run scripts via an alternative executable or none at all, set the <code>cmd</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
+</code></pre>
+<p>By specifying a concurrency greater than the number of workers, a worker may be executing more than <code>1</code> script at any one time. While not likely to be advantageous for synchronous scripts, setting a higher concurrency may be advantageous for scripts performing asynchronous tasks.</p>
+<p>By default, each script is executed as a <a href="http://nodejs.org/">Node.js</a> script.</p>
+<pre><code class="no-highlight language-text">$ node &#x3C;script_path>
+</code></pre>
+<p>To run scripts via an alternative executable or none at all, set the <code>cmd</code> option.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
     <span class="hljs-string">'./a.js'</span>,
     <span class="hljs-string">'./b.js'</span>
 ];
@@ -72,7 +104,10 @@ parallel( files, opts, done );
 };
 
 parallel( files, opts, done );
-</code></pre><p>By default, the <code>stdio</code> output for each script is interleaved; i.e., the <code>stdio</code> output from one script <strong>may</strong> be interleaved with the <code>stdio</code> output from one or more other scripts. To preserve the <code>stdio</code> output order for each script, set the <code>ordered</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
+</code></pre>
+<p>By default, the <code>stdio</code> output for each script is interleaved; i.e., the <code>stdio</code> output from one script <strong>may</strong> be interleaved with the <code>stdio</code> output from one or more other scripts. To preserve the <code>stdio</code> output order for each script, set the <code>ordered</code> option to <code>true</code>.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> files = [
     <span class="hljs-string">'./a.js'</span>,
     <span class="hljs-string">'./b.js'</span>
 ];
@@ -91,7 +126,25 @@ parallel( files, opts, done );
 };
 
 parallel( files, opts, done );
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Relative file paths are resolved relative to the current working directory.</li><li>Ordered script output does <strong>not</strong> imply that scripts are executed in order. To preserve script order, execute the scripts sequentially via some other means.</li><li>Script concurrency cannot exceed the number of scripts.</li><li>If the script concurrency is less than the number of workers, the number of workers is reduced to match the specified concurrency.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Relative file paths are resolved relative to the current working directory.</li>
+<li>Ordered script output does <strong>not</strong> imply that scripts are executed in order. To preserve script order, execute the scripts sequentially via some other means.</li>
+<li>Script concurrency cannot exceed the number of scripts.</li>
+<li>If the script concurrency is less than the number of workers, the number of workers is reduced to match the specified concurrency.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- run-disable -->
+<!-- FIXME: re-enable running of code block once able to set `maxBuffer` configuration -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'fs'</span> );
 <span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>( <span class="hljs-string">'path'</span> );
 <span class="hljs-keyword">var</span> writeFileSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/write-file'</span> ).sync;
 <span class="hljs-keyword">var</span> unlinkSync = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/fs/unlink'</span> ).sync;
@@ -122,7 +175,7 @@ parallel( files, opts, done );
     <span class="hljs-keyword">return</span> file;
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createDir</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createDir</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> dir = path.join( __dirname, <span class="hljs-string">'examples'</span>, <span class="hljs-string">'tmp'</span> );
     fs.mkdirSync( dir );
     <span class="hljs-keyword">return</span> dir;
@@ -146,7 +199,7 @@ parallel( files, opts, done );
     <span class="hljs-keyword">return</span> files;
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cleanup</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cleanup</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> i;
 
     <span class="hljs-comment">// Delete the temporary files...</span>
@@ -180,7 +233,15 @@ opts = {
 
 <span class="hljs-comment">// Run all temporary scripts:</span>
 parallel( files, opts, done );
-</code></pre></section><hr><section class="cli"><h2 id="cli">CLI</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="no-highlight language-text">Usage: parallel [options] &#x3C;script1> &#x3C;script2> ...
+</code></pre>
+</section>
+<!-- /.examples -->
+<hr>
+<section class="cli">
+<h2 id="cli">CLI</h2>
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="no-highlight language-text">Usage: parallel [options] &#x3C;script1> &#x3C;script2> ...
 
 Options:
 
@@ -193,5 +254,22 @@ Options:
          --uid uid             Process user identity.
          --gid gid             Process group identity.
          --maxbuffer size      Max buffer size for stdout and stderr.
-</code></pre></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-bash">$ parallel --cmd <span class="hljs-string">'node'</span> --workers 4 --concurrency 8 ./1.js ./2.js ./3.js ./4.js ./5.js ./6.js ./7.js ./8.js ./9.js ./10.js
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-bash">$ parallel --cmd <span class="hljs-string">'node'</span> --workers 4 --concurrency 8 ./1.js ./2.js ./3.js ./4.js ./5.js ./6.js ./7.js ./8.js ./9.js ./10.js
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.cli -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

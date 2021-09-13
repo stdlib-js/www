@@ -1,8 +1,51 @@
-<h1 id="blas">BLAS</h1><blockquote><p>Standard library basic linear algebra subprograms (BLAS).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> blas = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas'</span> );
-</code></pre><h4 id="blas-1">blas</h4><p>Standard library basic linear algebra subprograms (BLAS).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = blas;
+<h1 id="blas">BLAS</h1>
+<blockquote>
+<p>Standard library basic linear algebra subprograms (BLAS).</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> blas = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas'</span> );
+</code></pre>
+<h4 id="blas-1">blas</h4>
+<p>Standard library basic linear algebra subprograms (BLAS).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> o = blas;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre><p>The namespace contains the following:</p><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/base"><code>base</code></a></span><span class="delimiter">: </span><span class="description">standard library base reference basic linear algebra subprograms (BLAS).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/ddot"><code>ddot( x, y )</code></a></span><span class="delimiter">: </span><span class="description">calculate the dot product of two double-precision floating-point vectors.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/dswap"><code>dswap( x, y )</code></a></span><span class="delimiter">: </span><span class="description">interchange two double-precision floating-point vectors.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/ext"><code>ext</code></a></span><span class="delimiter">: </span><span class="description">standard library extended basic linear algebra subprograms (BLAS).</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/gdot"><code>gdot( x, y )</code></a></span><span class="delimiter">: </span><span class="description">calculate the dot product of two vectors.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/gswap"><code>gswap( x, y )</code></a></span><span class="delimiter">: </span><span class="description">interchange two vectors.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/sdot"><code>sdot( x, y )</code></a></span><span class="delimiter">: </span><span class="description">calculate the dot product of two single-precision floating-point vectors.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/sswap"><code>sswap( x, y )</code></a></span><span class="delimiter">: </span><span class="description">interchange two single-precision floating-point vectors.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre>
+<p>The namespace contains the following:</p>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/base"><code>base</code></a></span><span class="delimiter">: </span><span class="description">standard library base reference basic linear algebra subprograms (BLAS).</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/ddot"><code>ddot( x, y )</code></a></span><span class="delimiter">: </span><span class="description">calculate the dot product of two double-precision floating-point vectors.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/dswap"><code>dswap( x, y )</code></a></span><span class="delimiter">: </span><span class="description">interchange two double-precision floating-point vectors.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/ext"><code>ext</code></a></span><span class="delimiter">: </span><span class="description">standard library extended basic linear algebra subprograms (BLAS).</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/gdot"><code>gdot( x, y )</code></a></span><span class="delimiter">: </span><span class="description">calculate the dot product of two vectors.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/gswap"><code>gswap( x, y )</code></a></span><span class="delimiter">: </span><span class="description">interchange two vectors.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/sdot"><code>sdot( x, y )</code></a></span><span class="delimiter">: </span><span class="description">calculate the dot product of two single-precision floating-point vectors.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/blas/sswap"><code>sswap( x, y )</code></a></span><span class="delimiter">: </span><span class="description">interchange two single-precision floating-point vectors.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> blas = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( blas ) );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->

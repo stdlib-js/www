@@ -1,5 +1,17 @@
-<h1 id="logaddexp">logaddexp</h1><blockquote><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>exp(x) + exp(y)</code>.</p></blockquote><section class="intro"><p>Log-domain computations are commonly used to increase accuracy and avoid underflow and overflow when very small or very large numbers are represented directly as limited-precision, floating-point numbers. For example, in statistics, evaluating <code>logaddexp()</code> is useful when probabilities are so small as to exceed the normal range of floating-point numbers.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logaddexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/logaddexp'</span> );
-</code></pre><h4 id="logaddexp-x-y-">logaddexp( x, y )</h4><p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>exp(x) + exp(y)</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = logaddexp( <span class="hljs-number">90.0</span>, <span class="hljs-number">90.0</span> );
+<h1 id="logaddexp">logaddexp</h1>
+<blockquote>
+<p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>exp(x) + exp(y)</code>.</p>
+</blockquote>
+<section class="intro">
+<p>Log-domain computations are commonly used to increase accuracy and avoid underflow and overflow when very small or very large numbers are represented directly as limited-precision, floating-point numbers. For example, in statistics, evaluating <code>logaddexp()</code> is useful when probabilities are so small as to exceed the normal range of floating-point numbers.</p>
+</section>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> logaddexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/logaddexp'</span> );
+</code></pre>
+<h4 id="logaddexp-x-y-">logaddexp( x, y )</h4>
+<p>Evaluates the <a href="/docs/api/latest/@stdlib/math/base/special/ln">natural logarithm</a> of <code>exp(x) + exp(y)</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> v = logaddexp( <span class="hljs-number">90.0</span>, <span class="hljs-number">90.0</span> );
 <span class="hljs-comment">// returns ~90.6931</span>
 
 v = logaddexp( -<span class="hljs-number">20.0</span>, <span class="hljs-number">90.0</span> );
@@ -10,7 +22,13 @@ v = logaddexp( <span class="hljs-number">0.0</span>, -<span class="hljs-number">
 
 v = logaddexp( <span class="hljs-literal">NaN</span>, <span class="hljs-number">1.0</span> );
 <span class="hljs-comment">// returns NaN</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
 <span class="hljs-keyword">var</span> logaddexp = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/logaddexp'</span> );
 
 <span class="hljs-keyword">var</span> x;
@@ -25,4 +43,22 @@ x = incrspace( -<span class="hljs-number">100.0</span>, <span class="hljs-number
         <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d, y: %d, f(x, y): %d'</span>, x[ i ], x[ j ], v );
     }
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/exp"><code>@stdlib/math/base/special/exp</code></a></span><span class="delimiter">: </span><span class="description">natural exponential function.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/ln"><code>@stdlib/math/base/special/ln</code></a></span><span class="delimiter">: </span><span class="description">natural logarithm.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

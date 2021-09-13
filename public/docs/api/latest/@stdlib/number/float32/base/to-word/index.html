@@ -1,15 +1,40 @@
-<h1 id="toword">toWord</h1><blockquote><p>Return an unsigned 32-bit integer corresponding to the <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toWordf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/to-word'</span> );
-</code></pre><h4 id="towordf-x-">toWordf( x )</h4><p>Returns an unsigned 32-bit <code>integer</code> corresponding to the <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+<h1 id="toword">toWord</h1>
+<blockquote>
+<p>Return an unsigned 32-bit integer corresponding to the <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toWordf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/to-word'</span> );
+</code></pre>
+<h4 id="towordf-x-">toWordf( x )</h4>
+<p>Returns an unsigned 32-bit <code>integer</code> corresponding to the <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation of a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
 
 <span class="hljs-keyword">var</span> f32 = float64ToFloat32( <span class="hljs-number">1.337</span> );
 <span class="hljs-comment">// returns 1.3370000123977661</span>
 
 <span class="hljs-keyword">var</span> w = toWordf( f32 ); <span class="hljs-comment">// => 0 01111111 01010110010001011010001</span>
 <span class="hljs-comment">// returns 1068180177</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The equivalent of this function in C/C++,</p><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> <span class="hljs-title">toWordf</span><span class="hljs-params">(<span class="hljs-keyword">float</span> x)</span> </span>{
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>The equivalent of this function in C/C++,</p>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> <span class="hljs-title">toWordf</span><span class="hljs-params">(<span class="hljs-keyword">float</span> x)</span> </span>{
     <span class="hljs-keyword">return</span> *(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>*)&#x26;x;
 }
-</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+</code></pre>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> float64ToFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> toWordf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/to-word'</span> );
 
@@ -25,13 +50,39 @@
     word = toWordf( f32 );
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'float64: %d => float32: %d => word: %d'</span>, f64, f32, word );
 }
-</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/to_word.h"</span></span>
-</code></pre><h4 id="stdlib_base_float32_to_word-x-word-">stdlib_base_float32_to_word( x, *word )</h4><p>Converts a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> to an unsigned 32-bit integer corresponding to the number's <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- C interface documentation. -->
+<hr>
+<section class="c">
+<h2 id="c-apis">C APIs</h2>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- C usage documentation. -->
+<section class="usage">
+<h3 id="usage-1">Usage</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/to_word.h"</span></span>
+</code></pre>
+<h4 id="stdlib_base_float32_to_word-x-word-">stdlib_base_float32_to_word( x, *word )</h4>
+<p>Converts a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> to an unsigned 32-bit integer corresponding to the number's <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a> binary representation.</p>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 
 <span class="hljs-keyword">uint32_t</span> word;
 stdlib_base_float32_to_word( <span class="hljs-number">3.14f</span>, &#x26;word );
-</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li><li><strong>word</strong>: <code>[out] uint32_t*</code> destination.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_float32_to_word</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">uint32_t</span> *word )</span></span>;
-</code></pre><h4 id="stdlib_base_float32_word_t">stdlib_base_float32_word_t</h4><p>An opaque type definition for a union for converting between a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> and an unsigned 32-bit integer.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
+</code></pre>
+<p>The function accepts the following arguments:</p>
+<ul>
+<li><strong>x</strong>: <code>[in] float</code> input value.</li>
+<li><strong>word</strong>: <code>[out] uint32_t*</code> destination.</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stdlib_base_float32_to_word</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">uint32_t</span> *word )</span></span>;
+</code></pre>
+<h4 id="stdlib_base_float32_word_t">stdlib_base_float32_word_t</h4>
+<p>An opaque type definition for a union for converting between a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> and an unsigned 32-bit integer.</p>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 
 <span class="hljs-keyword">stdlib_base_float32_word_t</span> w;
 
@@ -40,7 +91,22 @@ w.value = <span class="hljs-number">3.14f</span>;
 
 <span class="hljs-comment">// Retrieve the word:</span>
 <span class="hljs-keyword">uint32_t</span> word = w.word;
-</code></pre><p>The union has the following members:</p><ul><li><strong>value</strong>: <code>float</code> <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</li><li><strong>word</strong>: <code>uint32_t</code> word.</li></ul></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/to_word.h"</span></span>
+</code></pre>
+<p>The union has the following members:</p>
+<ul>
+<li><strong>value</strong>: <code>float</code> <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a>.</li>
+<li><strong>word</strong>: <code>uint32_t</code> word.</li>
+</ul>
+</section>
+<!-- /.usage -->
+<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+</section>
+<!-- /.notes -->
+<!-- C API usage examples. -->
+<section class="examples">
+<h3 id="examples-1">Examples</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/number/float32/base/to_word.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
 
@@ -54,4 +120,16 @@ w.value = <span class="hljs-number">3.14f</span>;
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%f => word: %u\n"</span>, x[ i ], word );
     }
 }
-</code></pre></section></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+</section>
+<!-- /.c -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

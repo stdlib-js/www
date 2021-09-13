@@ -1,7 +1,16 @@
-<h1 id="memoized-read-only">Memoized Read-Only</h1><blockquote><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Define</a> a memoized <strong>read-only</strong> object property.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setMemoizedReadOnly = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-memoized-read-only-property'</span> );
-</code></pre><h4 id="setmemoizedreadonly-obj-prop-fcn-">setMemoizedReadOnly( obj, prop, fcn )</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Defines</a> a memoized <strong>read-only</strong> object property.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
+<h1 id="memoized-read-only">Memoized Read-Only</h1>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Define</a> a memoized <strong>read-only</strong> object property.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> setMemoizedReadOnly = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-memoized-read-only-property'</span> );
+</code></pre>
+<h4 id="setmemoizedreadonly-obj-prop-fcn-">setMemoizedReadOnly( obj, prop, fcn )</h4>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Defines</a> a memoized <strong>read-only</strong> object property.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> obj = {};
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">'bar'</span>;
 }
 
@@ -9,10 +18,24 @@ setMemoizedReadOnly( obj, <span class="hljs-string">'foo'</span>, foo );
 
 <span class="hljs-keyword">var</span> v = obj.foo;
 <span class="hljs-comment">// returns 'bar'</span>
-</code></pre><p>The last argument should be a synchronous function whose return value will be memoized and set as the property value.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>A <strong>read-only</strong> property is <strong>enumerable</strong> and <strong>non-configurable</strong>; however, until deferred evaluation, an object property is <strong>configurable</strong>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fibonacci = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fibonacci'</span> );
+</code></pre>
+<p>The last argument should be a synchronous function whose return value will be memoized and set as the property value.</p>
+</section>
+<!-- /.usage -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>A <strong>read-only</strong> property is <strong>enumerable</strong> and <strong>non-configurable</strong>; however, until deferred evaluation, an object property is <strong>configurable</strong>.</li>
+</ul>
+</section>
+<!-- /.notes -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fibonacci = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/fibonacci'</span> );
 <span class="hljs-keyword">var</span> setMemoizedReadOnly = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/define-memoized-read-only-property'</span> );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>() </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> self;
     <span class="hljs-keyword">if</span> ( !(<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> Foo) ) {
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Foo();
@@ -22,7 +45,7 @@ setMemoizedReadOnly( obj, <span class="hljs-string">'foo'</span>, foo );
     setMemoizedReadOnly( <span class="hljs-built_in">this</span>, <span class="hljs-string">'fibo'</span>, fibo );
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibo</span>() </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibo</span>(<span class="hljs-params"></span>) </span>{
         self.count += <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> fibonacci( <span class="hljs-number">73</span> );
     }
@@ -34,4 +57,22 @@ setMemoizedReadOnly( obj, <span class="hljs-string">'foo'</span>, foo );
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'F: %d. Count: %d.'</span>, foo.fibo, foo.count );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-memoized-property"><code>@stdlib/utils/define-memoized-property</code></a></span><span class="delimiter">: </span><span class="description">define a memoized object property.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-memoized-property"><code>@stdlib/utils/define-memoized-property</code></a></span><span class="delimiter">: </span><span class="description">define a memoized object property.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/define-read-only-property"><code>@stdlib/utils/define-read-only-property</code></a></span><span class="delimiter">: </span><span class="description">define a read-only property.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

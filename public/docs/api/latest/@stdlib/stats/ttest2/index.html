@@ -1,5 +1,14 @@
-<h1 id="students-t-test">Student's t-Test</h1><blockquote><p>Two-sample Student's t-Test.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ttest2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ttest2'</span> );
-</code></pre><h4 id="ttest2-x-y-opts-">ttest2( x, y[, opts] )</h4><p>By default, the function performs a two-sample t-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> <code>x</code> and <code>y</code> is independently drawn from normal distributions with <em>equal</em> means.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Student's sleep data:</span>
+<h1 id="students-t-test">Student's t-Test</h1>
+<blockquote>
+<p>Two-sample Student's t-Test.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ttest2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ttest2'</span> );
+</code></pre>
+<h4 id="ttest2-x-y-opts-">ttest2( x, y[, opts] )</h4>
+<p>By default, the function performs a two-sample t-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed arrays</a> <code>x</code> and <code>y</code> is  independently drawn from normal distributions with <em>equal</em> means.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Student's sleep data:</span>
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">3.4</span> ];
 
@@ -13,7 +22,10 @@
         // ...
     }
 */</span>
-</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
+</code></pre>
+<p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the results of the hypothesis test. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
 <span class="hljs-comment">/* e.g., =>
     Welch two-sample t-test
 
@@ -25,7 +37,16 @@
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that <code>x</code> has a larger mean than <code>y</code> (<code>greater</code>), <code>x</code> has a smaller mean than <code>y</code> (<code>less</code>) or the means are the same (<code>two-sided</code>). Default: <code>two-sided</code>.</li><li><strong>difference</strong>: <code>number</code> denoting the difference in means under the null hypothesis. Default: <code>0</code>.</li><li><strong>variance</strong>: <code>string</code> indicating if the test should be conducted under the assumption that the unknown variances of the normal distributions are <code>equal</code> or <code>unequal</code>. Default: <code>unequal</code>.</li></ul><p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li>
+<li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that <code>x</code> has a larger mean than <code>y</code> (<code>greater</code>), <code>x</code> has a smaller mean than <code>y</code> (<code>less</code>) or the means are the same (<code>two-sided</code>). Default: <code>two-sided</code>.</li>
+<li><strong>difference</strong>: <code>number</code> denoting the difference in means under the null hypothesis. Default: <code>0</code>.</li>
+<li><strong>variance</strong>: <code>string</code> indicating if the test should be conducted under the assumption that the unknown variances of the normal distributions are <code>equal</code> or <code>unequal</code>. Default: <code>unequal</code>.</li>
+</ul>
+<p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">3.4</span> ];
 
 <span class="hljs-keyword">var</span> out = ttest2( x, y, {
@@ -43,7 +64,9 @@
 
     Test Decision: Reject null in favor of alternative at 10% significance level
 */</span>
-</code></pre><p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-comment">// Student's sleep data:</span>
+</code></pre>
+<p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Student's sleep data:</span>
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.7</span>, -<span class="hljs-number">1.6</span>, -<span class="hljs-number">0.2</span>, -<span class="hljs-number">1.2</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">3.4</span>, <span class="hljs-number">3.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">2.0</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>, -<span class="hljs-number">0.1</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">5.5</span>, <span class="hljs-number">1.6</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">3.4</span> ];
 
@@ -80,7 +103,9 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre><p>As a default choice, the <code>ttest2</code> function carries out the Welch test (using the Satterthwaite approximation for the degrees of freedom), which does not have the requirement that the variances of the underlying distributions are equal. If the equal variances assumption seems warranted, set the <code>variance</code> option to <code>equal</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span> ];
+</code></pre>
+<p>As a default choice, the <code>ttest2</code> function carries out the Welch test (using the Satterthwaite approximation for the degrees of freedom), which does not have the requirement that the variances of the underlying distributions are equal. If the equal variances assumption seems warranted, set the <code>variance</code> option to <code>equal</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span> ];
 <span class="hljs-keyword">var</span> y = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
 
 <span class="hljs-keyword">var</span> out = ttest2( x, y, {
@@ -99,7 +124,9 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre><p>To test whether the difference in the population means is equal to some other value than <code>0</code>, set the <code>difference</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+</code></pre>
+<p>To test whether the difference in the population means is equal to some other value than <code>0</code>, set the <code>difference</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
 
 <span class="hljs-keyword">var</span> table;
 <span class="hljs-keyword">var</span> rnorm;
@@ -148,7 +175,13 @@ table = out.print();
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> incrspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/incrspace'</span> );
 <span class="hljs-keyword">var</span> ttest2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ttest2'</span> );
 
 <span class="hljs-keyword">var</span> table;
@@ -172,4 +205,21 @@ table = out.print();
 
     Test Decision: Reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ttest"><code>@stdlib/stats/ttest</code></a></span><span class="delimiter">: </span><span class="description">one-sample and paired Student's t-Test.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ttest"><code>@stdlib/stats/ttest</code></a></span><span class="delimiter">: </span><span class="description">one-sample and paired Student's t-Test.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

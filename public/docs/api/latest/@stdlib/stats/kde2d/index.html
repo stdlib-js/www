@@ -1,5 +1,15 @@
-<h1 id="kde2d">kde2d</h1><blockquote><p>Two-dimensional kernel density estimation.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kde2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/kde2d'</span> );
-</code></pre><h4 id="kde2d-x-y-opts-">kde2d( x, y[, opts] )</h4><p>By default, the function computes two-dimensional normal kernel density estimation for data provided in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed-arrays</a> <code>x</code> and <code>y</code>. When these arguments are supplied, the arrays are coerced into a Matrix-like object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
+<h1 id="kde2d">kde2d</h1>
+<blockquote>
+<p>Two-dimensional kernel density estimation.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> kde2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/kde2d'</span> );
+</code></pre>
+<h4 id="kde2d-x-y-opts-">kde2d( x, y[, opts] )</h4>
+<p>By default, the function computes two-dimensional normal kernel density estimation for data provided in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed-arrays</a> <code>x</code> and <code>y</code>. When these arguments are supplied, the arrays are coerced into a Matrix-like object.</p>
+<!-- eslint-disable array-element-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
     <span class="hljs-number">1.7881</span>, <span class="hljs-number">2.019</span>, <span class="hljs-number">2.25</span>, <span class="hljs-number">2.481</span>, <span class="hljs-number">2.7119</span> ];
 <span class="hljs-keyword">var</span> y = [ -<span class="hljs-number">0.0468</span>, <span class="hljs-number">0.8012</span>, <span class="hljs-number">1.6492</span>, <span class="hljs-number">2.4973</span>, <span class="hljs-number">3.3454</span>,
     <span class="hljs-number">4.1934</span>, <span class="hljs-number">5.0415</span>, <span class="hljs-number">5.8896</span>, <span class="hljs-number">6.7376</span>, <span class="hljs-number">7.5857</span> ];
@@ -12,7 +22,12 @@
         'z': ndarray{ &#x3C;Float64Array>[ ~0.0455, ... ]}
     }
 */</span>
-</code></pre><h4 id="kde2d-arr-opts-">kde2d( arr[, opts] )</h4><p>The function has the ability to handle <a href="https://github.com/stdlib-js/stdlib/blob/develop/lib/node_modules/@stdlib/ndarray/ctor/README.md">ndarrays</a>. Specifically the <code>ndarray</code> must be constructed so that there are two columns present, the first column containing the <code>x</code> values and the second column containing the <code>y</code> values.</p><p>Note that for the output the <code>x</code> and <code>y</code> properties refer to the equally spaced gridpoints of <code>X</code> and <code>Y</code> used to calculate <code>z</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+</code></pre>
+<h4 id="kde2d-arr-opts-">kde2d( arr[, opts] )</h4>
+<p>The function has the ability to handle <a href="https://github.com/stdlib-js/stdlib/blob/develop/lib/node_modules/@stdlib/ndarray/ctor/README.md">ndarrays</a>. Specifically the <code>ndarray</code> must be constructed so that there are two columns present, the first column containing the <code>x</code> values and the second column containing the <code>y</code> values.</p>
+<p>Note that for the output the <code>x</code> and <code>y</code> properties refer to the equally spaced gridpoints of <code>X</code> and <code>Y</code> used to calculate <code>z</code>. </p>
+<!-- eslint-disable array-element-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
 
 <span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
     <span class="hljs-number">1.7881</span>, <span class="hljs-number">2.019</span>, <span class="hljs-number">2.25</span>, <span class="hljs-number">2.481</span>, <span class="hljs-number">2.7119</span> ];
@@ -36,7 +51,20 @@
         'z': ndarray{ &#x3C;Float64Array>[0.04547178438418015, ... ]}
     }
 */</span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><strong>h</strong>: <code>NumberArray</code> of length 2 indicating the X and Y bandwidth values, respectively.</li><li><strong>n</strong>: A positive <code>integer</code> indicating the number of partitions to create in the grid. Default: <code>25</code>.</li><li><strong>xMin</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly less than <code>xMax</code>. Will default to the minimum value of <code>X</code>.</li><li><strong>xMax</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly greater than <code>xMin</code>. Will default to the maximum value of <code>X</code>.</li><li><strong>yMin</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly less than <code>yMax</code>. Will default to the minimum value of <code>Y</code>.</li><li><strong>yMax</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly greater than <code>yMin</code>. Will default to the maximum value of <code>Y</code>.</li><li><strong>kernel</strong>: A <code>string</code> or <code>function</code> indicating the kernel to be used when calculating the estimation. If a <code>string</code> is supplied then it will be matched to a pre-defined kernel function. Otherwise you may supply a function to support custom kernels. Will default to the <code>gaussian</code> kernel.</li></ul><p>By default, the bandwidth argument is set by a builtin function. To choose different bandwidth values, set the <code>h</code> option. Note that if you use a custom bandwidth for one axis, you must also use a custom bandwidth for the other axis.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>h</strong>: <code>NumberArray</code> of length 2 indicating the X and Y bandwidth values, respectively.</li>
+<li><strong>n</strong>: A positive <code>integer</code> indicating the number of partitions to create in the grid. Default: <code>25</code>.</li>
+<li><strong>xMin</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly less than <code>xMax</code>. Will default to the minimum value of <code>X</code>.</li>
+<li><strong>xMax</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly greater than <code>xMin</code>. Will default to the maximum value of <code>X</code>.</li>
+<li><strong>yMin</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly less than <code>yMax</code>. Will default to the minimum value of <code>Y</code>.</li>
+<li><strong>yMax</strong>: A <code>number</code> indicating the lower bound of X. Must be strictly greater than <code>yMin</code>. Will default to the maximum value of <code>Y</code>.</li>
+<li><strong>kernel</strong>: A <code>string</code> or <code>function</code> indicating the kernel to be used when calculating the estimation. If a <code>string</code> is supplied then it will be matched to a pre-defined kernel function. Otherwise you may supply a function to support custom kernels. Will default to the <code>gaussian</code> kernel. </li>
+</ul>
+<p>By default, the bandwidth argument is set by a builtin function. To choose different bandwidth values, set the <code>h</code> option. Note that if you use a custom bandwidth for one axis, you must also use a custom bandwidth for the other axis.</p>
+<!-- eslint-disable array-element-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
     <span class="hljs-number">1.7881</span>, <span class="hljs-number">2.019</span>, <span class="hljs-number">2.25</span>, <span class="hljs-number">2.481</span>, <span class="hljs-number">2.7119</span> ];
 <span class="hljs-keyword">var</span> y = [ -<span class="hljs-number">0.0468</span>, <span class="hljs-number">0.8012</span>, <span class="hljs-number">1.6492</span>, <span class="hljs-number">2.4973</span>, <span class="hljs-number">3.3454</span>,
     <span class="hljs-number">4.1934</span>, <span class="hljs-number">5.0415</span>, <span class="hljs-number">5.8896</span>, <span class="hljs-number">6.7376</span>, <span class="hljs-number">7.5857</span> ];
@@ -51,7 +79,10 @@
         'z': ndarray{ &#x3C;Float64Array>[ 6.344e-154, 1.93e-171, ... ]}
     }
 */</span>
-</code></pre><p>By default, we use <code>25</code> partitions. To change the number of partitions, set the <code>n</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
+</code></pre>
+<p>By default, we use <code>25</code> partitions. To change the number of partitions, set the <code>n</code> option.</p>
+<!-- eslint-disable array-element-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
     <span class="hljs-number">1.7881</span>, <span class="hljs-number">2.019</span>, <span class="hljs-number">2.25</span>, <span class="hljs-number">2.481</span>, <span class="hljs-number">2.7119</span> ];
 <span class="hljs-keyword">var</span> y = [ -<span class="hljs-number">0.0468</span>, <span class="hljs-number">0.8012</span>, <span class="hljs-number">1.6492</span>, <span class="hljs-number">2.4973</span>, <span class="hljs-number">3.3454</span>,
     <span class="hljs-number">4.1934</span>, <span class="hljs-number">5.0415</span>, <span class="hljs-number">5.8896</span>, <span class="hljs-number">6.7376</span>, <span class="hljs-number">7.5857</span> ];
@@ -66,7 +97,10 @@
         'z': ndarray{ &#x3C;Float64Array>[1.211e-7, 5.76e-7, ... ]}
     }
 */</span>
-</code></pre><p>As a default choice, the <code>kde2d</code> function sets the <code>xMin</code>, <code>xMax</code>, <code>yMin</code> and <code>yMax</code> values to be the minimum and maximum of the <code>X</code> and <code>Y</code> arrays or columns of the supplied arguments. We may change the options as follows:</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
+</code></pre>
+<p>As a default choice, the <code>kde2d</code> function sets the <code>xMin</code>, <code>xMax</code>, <code>yMin</code> and <code>yMax</code> values to be the minimum and maximum of the <code>X</code> and <code>Y</code> arrays or columns of the supplied arguments. We may change the options as follows:</p>
+<!-- eslint-disable array-element-newline -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">0.6333</span>, <span class="hljs-number">0.8643</span>, <span class="hljs-number">1.0952</span>, <span class="hljs-number">1.3262</span>, <span class="hljs-number">1.5571</span>,
     <span class="hljs-number">1.7881</span>, <span class="hljs-number">2.019</span>, <span class="hljs-number">2.25</span>, <span class="hljs-number">2.481</span>, <span class="hljs-number">2.7119</span> ];
 <span class="hljs-keyword">var</span> y = [ -<span class="hljs-number">0.0468</span>, <span class="hljs-number">0.8012</span>, <span class="hljs-number">1.6492</span>, <span class="hljs-number">2.4973</span>, <span class="hljs-number">3.3454</span>,
     <span class="hljs-number">4.1934</span>, <span class="hljs-number">5.0415</span>, <span class="hljs-number">5.8896</span>, <span class="hljs-number">6.7376</span>, <span class="hljs-number">7.5857</span> ];
@@ -84,7 +118,13 @@
         'z': ndarray{ &#x3C;Float64Array>[ 1.762e-8, 2.94e-8, ... ]}
     }
 */</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> );
 <span class="hljs-keyword">var</span> kde2d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/kde2d'</span> );
 
 <span class="hljs-keyword">var</span> randX;
@@ -116,4 +156,14 @@ out = kde2d( x, y );
         'z': ndarray { Float64Array [9.8266e-11, 6.45e-9, ...]}
 }
 */</span>
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

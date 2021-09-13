@@ -1,5 +1,14 @@
-<h1 id="signbit">signbit</h1><blockquote><p>Return a boolean indicating if the sign bit for a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> is on (true) or off (false).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> signbitf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/signbit'</span> );
-</code></pre><h4 id="signbitf-x-">signbitf( x )</h4><p>Returns a <code>boolean</code> indicating if the sign bit for a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> is on (<code>true</code>) or off (<code>false</code>).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+<h1 id="signbit">signbit</h1>
+<blockquote>
+<p>Return a boolean indicating if the sign bit for a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> is on (true) or off (false).</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> signbitf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/signbit'</span> );
+</code></pre>
+<h4 id="signbitf-x-">signbitf( x )</h4>
+<p>Returns a <code>boolean</code> indicating if the sign bit for a <a href="https://en.wikipedia.org/wiki/IEEE_754-1985">single-precision floating-point number</a> is on (<code>true</code>) or off (<code>false</code>).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
 
 <span class="hljs-keyword">var</span> bool = signbitf( toFloat32( <span class="hljs-number">4.0</span> ) );
 <span class="hljs-comment">// returns false</span>
@@ -12,7 +21,13 @@ bool = signbitf( <span class="hljs-number">0.0</span> );
 
 bool = signbitf( -<span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toFloat32 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float64/base/to-float32'</span> );
 <span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> signbitf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/number/float32/base/signbit'</span> );
 
@@ -27,4 +42,14 @@ bool = signbitf( -<span class="hljs-number">0.0</span> );
     sign = ( sign ) ? <span class="hljs-string">'true'</span> : <span class="hljs-string">'false'</span>;
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'x: %d. signbit: %s.'</span>, x, sign );
 }
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+</section>
+<!-- /.links -->

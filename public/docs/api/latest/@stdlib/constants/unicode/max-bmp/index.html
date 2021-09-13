@@ -1,7 +1,22 @@
-<h1 id="max-code-point">Max Code Point</h1><blockquote><p>Maximum <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> code point in the Basic Multilingual Plane (BMP).</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> UNICODE_MAX_BMP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/unicode/max-bmp'</span> );
-</code></pre><h4 id="unicode_max_bmp">UNICODE_MAX_BMP</h4><p>Maximum <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> code point in the Basic Multilingual Plane (BMP).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( UNICODE_MAX_BMP === <span class="hljs-number">65535</span> );
+<h1 id="max-code-point">Max Code Point</h1>
+<blockquote>
+<p>Maximum <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> code point in the Basic Multilingual Plane (BMP).</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> UNICODE_MAX_BMP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/unicode/max-bmp'</span> );
+</code></pre>
+<h4 id="unicode_max_bmp">UNICODE_MAX_BMP</h4>
+<p>Maximum <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> code point in the Basic Multilingual Plane (BMP).</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = ( UNICODE_MAX_BMP === <span class="hljs-number">65535</span> );
 <span class="hljs-comment">// returns true</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> fromCodePoint = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/string/from-code-point'</span> );
 <span class="hljs-keyword">var</span> UNICODE_MAX_BMP = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/unicode/max-bmp'</span> );
@@ -13,4 +28,21 @@
     x = floor( randu() * UNICODE_MAX_BMP );
     <span class="hljs-built_in">console</span>.log( fromCodePoint( x ) );
 }
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/unicode/max"><code>@stdlib/constants/unicode/max</code></a></span><span class="delimiter">: </span><span class="description">maximum Unicode code point.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/constants/unicode/max"><code>@stdlib/constants/unicode/max</code></a></span><span class="delimiter">: </span><span class="description">maximum Unicode code point.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

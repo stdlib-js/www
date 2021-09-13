@@ -1,5 +1,14 @@
-<h1 id="students-t-test">Student's t-Test</h1><blockquote><p>One-sample and paired Student's t-Test.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ttest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ttest'</span> );
-</code></pre><h4 id="ttest-x-y-opts-">ttest( x[, y][, opts] )</h4><p>The function performs a one-sample t-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>x</code> is drawn from a normal distribution with mean zero and unknown variance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+<h1 id="students-t-test">Student's t-Test</h1>
+<blockquote>
+<p>One-sample and paired Student's t-Test.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ttest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ttest'</span> );
+</code></pre>
+<h4 id="ttest-x-y-opts-">ttest( x[, y][, opts] )</h4>
+<p>The function performs a one-sample t-test for the null hypothesis that the data in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>x</code> is drawn from a normal distribution with mean zero and unknown variance.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
 
 <span class="hljs-keyword">var</span> rnorm;
 <span class="hljs-keyword">var</span> arr;
@@ -23,7 +32,9 @@ out = ttest( arr );
         // ...
     }
 */</span>
-</code></pre><p>When <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>y</code> is supplied, the function tests whether the differences <code>x - y</code> come from a normal distribution with mean zero and unknown variance via the paired t-test.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+</code></pre>
+<p>When <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> <code>y</code> is supplied, the function tests whether the differences <code>x - y</code> come from a normal distribution with mean zero and unknown variance via the paired t-test.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
 
 <span class="hljs-keyword">var</span> rnorm;
 <span class="hljs-keyword">var</span> out;
@@ -50,7 +61,10 @@ out = ttest( x, y );
         // ...
     }
 */</span>
-</code></pre><p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the hypothesis test results. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
+</code></pre>
+<p>The returned object comes with a <code>.print()</code> method which when invoked will print a formatted output of the hypothesis test results. <code>print</code> accepts a <code>digits</code> option that controls the number of decimal digits displayed for the outputs and a <code>decision</code> option, which when set to <code>false</code> will hide the test decision.</p>
+<!-- run-disable -->
+<pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( out.print() );
 <span class="hljs-comment">/* e.g., =>
     Paired t-test
 
@@ -63,7 +77,15 @@ out = ttest( x, y );
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre><p>The <code>ttest</code> function accepts the following <code>options</code>:</p><ul><li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li><li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the mean of <code>x</code> is larger than <code>mu</code> (<code>greater</code>), smaller than <code>mu</code> (<code>less</code>) or equal to <code>mu</code> (<code>two-sided</code>). Default: <code>two-sided</code>.</li><li><strong>mu</strong>: <code>number</code> denoting the hypothesized true mean under the null hypothesis. Default: <code>0</code>.</li></ul><p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
+</code></pre>
+<p>The <code>ttest</code> function accepts the following <code>options</code>:</p>
+<ul>
+<li><strong>alpha</strong>: <code>number</code> in the interval <code>[0,1]</code> giving the significance level of the hypothesis test. Default: <code>0.05</code>.</li>
+<li><strong>alternative</strong>: Either <code>two-sided</code>, <code>less</code> or <code>greater</code>. Indicates whether the alternative hypothesis is that the mean of <code>x</code> is larger than <code>mu</code> (<code>greater</code>), smaller than <code>mu</code> (<code>less</code>) or equal to <code>mu</code> (<code>two-sided</code>). Default: <code>two-sided</code>.</li>
+<li><strong>mu</strong>: <code>number</code> denoting the hypothesized true mean under the null hypothesis. Default: <code>0</code>.</li>
+</ul>
+<p>By default, the hypothesis test is carried out at a significance level of <code>0.05</code>. To choose a different significance level, set the <code>alpha</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
 <span class="hljs-keyword">var</span> out;
 <span class="hljs-keyword">var</span> arr;
 
@@ -102,7 +124,9 @@ table = out.print();
 
     Test Decision: Reject null in favor of alternative at 10% significance level
 */</span>
-</code></pre><p>To test whether the data comes from a distribution with a mean different than zero, set the <code>mu</code> option.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out;
+</code></pre>
+<p>To test whether the data comes from a distribution with a mean different than zero, set the <code>mu</code> option.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out;
 <span class="hljs-keyword">var</span> arr;
 
 arr = [ <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span> ];
@@ -119,7 +143,9 @@ out = ttest( arr, {
     // ...
 }
 */</span>
-</code></pre><p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
+</code></pre>
+<p>By default, a two-sided test is performed. To perform either of the one-sided tests, set the <code>alternative</code> option to <code>less</code> or <code>greater</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> table;
 <span class="hljs-keyword">var</span> out;
 <span class="hljs-keyword">var</span> arr;
 
@@ -158,7 +184,13 @@ table = out.print();
 
     Test Decision: Reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
+</code></pre>
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> normal = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/normal'</span> ).factory;
 <span class="hljs-keyword">var</span> ttest = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/ttest'</span> );
 
 <span class="hljs-keyword">var</span> rnorm;
@@ -207,4 +239,21 @@ out = ttest( arr, {
 
     Test Decision: Fail to reject null in favor of alternative at 5% significance level
 */</span>
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ttest2"><code>@stdlib/stats/ttest2</code></a></span><span class="delimiter">: </span><span class="description">two-sample Student's t-Test.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/ttest2"><code>@stdlib/stats/ttest2</code></a></span><span class="delimiter">: </span><span class="description">two-sample Student's t-Test.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

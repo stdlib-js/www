@@ -1,10 +1,30 @@
-<h1 id="group">group</h1><blockquote><p>Group values as arrays associated with distinct keys.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> group = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/group'</span> );
-</code></pre><h4 id="group-collection-options-groups-">group( collection, [options,] groups )</h4><p>Groups values as arrays associated with distinct keys.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+<h1 id="group">group</h1>
+<blockquote>
+<p>Group values as arrays associated with distinct keys.</p>
+</blockquote>
+<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
+<section class="intro">
+</section>
+<!-- /.intro -->
+<!-- Package usage documentation. -->
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> group = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/group'</span> );
+</code></pre>
+<h4 id="group-collection-options-groups-">group( collection, [options,] groups )</h4>
+<p>Groups values as arrays associated with distinct keys.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
 <span class="hljs-keyword">var</span> groups = [ <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'b'</span> ];
 
 <span class="hljs-keyword">var</span> out = group( arr, groups );
 <span class="hljs-comment">// returns { 'b': [ 'beep', 'boop', 'bar' ], 'f': [ 'foo' ] }</span>
-</code></pre><p>The function accepts the following <code>options</code>:</p><ul><li><code>returns</code>: specifies the output format. If the option equals <code>'values'</code>, the function outputs element values. If the option equals <code>'indices'</code>, the function outputs element indices. If the option equals <code>'*'</code>, the function outputs both element indices and values. Default: <code>'values'</code>.</li></ul><p>By default, the function returns element values. To return element indices, set the <code>returns</code> option to <code>'indices'</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+</code></pre>
+<p>The function accepts the following <code>options</code>:</p>
+<ul>
+<li><code>returns</code>: specifies the output format. If the option equals <code>'values'</code>, the function outputs element values. If the option equals <code>'indices'</code>, the function outputs element indices. If the option equals <code>'*'</code>, the function outputs both element indices and values. Default: <code>'values'</code>.</li>
+</ul>
+<p>By default, the function returns element values. To return element indices, set the <code>returns</code> option to <code>'indices'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
 <span class="hljs-keyword">var</span> groups = [ <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'b'</span> ];
 
 <span class="hljs-keyword">var</span> opts = {
@@ -12,7 +32,9 @@
 };
 <span class="hljs-keyword">var</span> out = group( arr, opts, groups );
 <span class="hljs-comment">// returns { 'b': [ 0, 1, 3 ], 'f': [ 2 ] }</span>
-</code></pre><p>To return index-element pairs, set the <code>returns</code> option to <code>'*'</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+</code></pre>
+<p>To return index-element pairs, set the <code>returns</code> option to <code>'*'</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
 <span class="hljs-keyword">var</span> groups = [ <span class="hljs-string">'b'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'f'</span>, <span class="hljs-string">'b'</span> ];
 
 <span class="hljs-keyword">var</span> opts = {
@@ -20,12 +42,34 @@
 };
 <span class="hljs-keyword">var</span> out = group( arr, opts, groups );
 <span class="hljs-comment">// returns { 'b': [ [ 0, 'beep' ], [ 1, 'boop' ], [ 3, 'bar' ] ], 'f': [ [ 2, 'foo' ] ] }</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>Both <code>collection</code> and <code>groups</code> <strong>must</strong> be collections. A collection may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</p></li><li><p>Each value in <code>groups</code> should resolve to a value which can be serialized as an <code>object</code> key. As a counterexample,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
+</code></pre>
+</section>
+<!-- /.usage -->
+<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="notes">
+<h2 id="notes">Notes</h2>
+<ul>
+<li>
+<p>Both <code>collection</code> and <code>groups</code> <strong>must</strong> be collections. A collection may be either an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>Typed Array</code></a>, or an array-like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> (excluding <code>strings</code> and <code>functions</code>).</p>
+</li>
+<li>
+<p>Each value in <code>groups</code> should resolve to a value which can be serialized as an <code>object</code> key. As a counterexample,</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-string">'beep'</span>, <span class="hljs-string">'boop'</span>, <span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span> ];
 <span class="hljs-keyword">var</span> groups = [ {}, {}, {}, {} ];
 
 <span class="hljs-keyword">var</span> out = group( arr, groups );
 <span class="hljs-comment">// returns { '[object Object]': [ 'beep', 'boop', 'foo', 'bar' ] }</span>
-</code></pre><p>while each "group" is unique, all collection elements resolve to the same group because each group identifier serializes to the same <code>string</code>.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre>
+<p>while each "group" is unique, all collection elements resolve to the same group because each group identifier serializes to the same <code>string</code>. </p>
+</li>
+</ul>
+</section>
+<!-- /.notes -->
+<!-- Package usage examples. -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
 <span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 <span class="hljs-keyword">var</span> group = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/group'</span> );
 
@@ -54,4 +98,27 @@ g = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</spa
 <span class="hljs-comment">// Compute the groups:</span>
 out = group( arr, g );
 <span class="hljs-built_in">console</span>.log( out );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/bifurcate"><code>@stdlib/utils/bifurcate</code></a></span><span class="delimiter">: </span><span class="description">split values into two groups.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/count-by"><code>@stdlib/utils/count-by</code></a></span><span class="delimiter">: </span><span class="description">group values according to an indicator function and return group counts.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/group-by"><code>@stdlib/utils/group-by</code></a></span><span class="delimiter">: </span><span class="description">group values according to an indicator function.</span></li></ul></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="references">
+</section>
+<!-- /.references -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+<hr>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/bifurcate"><code>@stdlib/utils/bifurcate</code></a></span><span class="delimiter">: </span><span class="description">split values into two groups.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/count-by"><code>@stdlib/utils/count-by</code></a></span><span class="delimiter">: </span><span class="description">group values according to an indicator function and return group counts.</span></li>
+<li><span class="package-name"><a href="/docs/api/latest/@stdlib/utils/group-by"><code>@stdlib/utils/group-by</code></a></span><span class="delimiter">: </span><span class="description">group values according to an indicator function.</span></li>
+</ul>
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <related-links> -->
+<!-- </related-links> -->
+</section>
+<!-- /.links -->

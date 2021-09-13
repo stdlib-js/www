@@ -1,8 +1,57 @@
-<h1 id="constants">Constants</h1><blockquote><p>Time constants.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constants = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time'</span> );
-</code></pre><h4 id="constants-1">constants</h4><p>Time constants.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> c = constants;
+<h1 id="constants">Constants</h1>
+<blockquote>
+<p>Time constants.</p>
+</blockquote>
+<section class="usage">
+<h2 id="usage">Usage</h2>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> constants = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time'</span> );
+</code></pre>
+<h4 id="constants-1">constants</h4>
+<p>Time constants.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> c = constants;
 <span class="hljs-comment">// returns {...}</span>
-</code></pre><div class="namespace-toc"><ul><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/hours-in-day"><code>HOURS_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of hours in a day.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/hours-in-week"><code>HOURS_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of hours in a week.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-day"><code>MILLISECONDS_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a day.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-hour"><code>MILLISECONDS_IN_HOUR</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in an hour.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-minute"><code>MILLISECONDS_IN_MINUTE</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a minute.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-second"><code>MILLISECONDS_IN_SECOND</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a second.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-week"><code>MILLISECONDS_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a week.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/minutes-in-day"><code>MINUTES_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of minutes in a day.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/minutes-in-hour"><code>MINUTES_IN_HOUR</code></a></span><span class="delimiter">: </span><span class="description">number of minutes in an hour.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/minutes-in-week"><code>MINUTES_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of minutes in a week.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/months-in-year"><code>MONTHS_IN_YEAR</code></a></span><span class="delimiter">: </span><span class="description">number of months in a year.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-day"><code>SECONDS_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in a day.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-hour"><code>SECONDS_IN_HOUR</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in an hour.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-minute"><code>SECONDS_IN_MINUTE</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in a minute.</span></li><li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-week"><code>SECONDS_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in a week.</span></li></ul></div></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
+</code></pre>
+<!-- <toc pattern="*"> -->
+<div class="namespace-toc">
+<ul>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/hours-in-day"><code>HOURS_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of hours in a day.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/hours-in-week"><code>HOURS_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of hours in a week.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-day"><code>MILLISECONDS_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a day.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-hour"><code>MILLISECONDS_IN_HOUR</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in an hour.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-minute"><code>MILLISECONDS_IN_MINUTE</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a minute.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-second"><code>MILLISECONDS_IN_SECOND</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a second.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/milliseconds-in-week"><code>MILLISECONDS_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of milliseconds in a week.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/minutes-in-day"><code>MINUTES_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of minutes in a day.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/minutes-in-hour"><code>MINUTES_IN_HOUR</code></a></span><span class="delimiter">: </span><span class="description">number of minutes in an hour.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/minutes-in-week"><code>MINUTES_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of minutes in a week.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/months-in-year"><code>MONTHS_IN_YEAR</code></a></span><span class="delimiter">: </span><span class="description">number of months in a year.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-day"><code>SECONDS_IN_DAY</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in a day.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-hour"><code>SECONDS_IN_HOUR</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in an hour.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-minute"><code>SECONDS_IN_MINUTE</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in a minute.</span></li>
+<li><span class="signature"><a href="/docs/api/latest/@stdlib/constants/time/seconds-in-week"><code>SECONDS_IN_WEEK</code></a></span><span class="delimiter">: </span><span class="description">number of seconds in a week.</span></li>
+</ul>
+</div>
+<!-- </toc> -->
+</section>
+<!-- /.usage -->
+<section class="examples">
+<h2 id="examples">Examples</h2>
+<!-- TODO: better examples -->
+<!-- eslint no-undef: "error" -->
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> objectKeys = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/keys'</span> );
 <span class="hljs-keyword">var</span> constants = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/constants/time'</span> );
 
 <span class="hljs-built_in">console</span>.log( objectKeys( constants ) );
-</code></pre></section>
+</code></pre>
+</section>
+<!-- /.examples -->
+<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+<section class="related">
+</section>
+<!-- /.related -->
+<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+<section class="links">
+<!-- <toc-links> -->
+<!-- </toc-links> -->
+</section>
+<!-- /.links -->
