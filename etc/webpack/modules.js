@@ -47,7 +47,6 @@ function getAdditionalModulePaths(options = {}) {
 		const nodePath = process.env.NODE_PATH || '';
 		return nodePath.split(path.delimiter).filter(Boolean);
 	}
-
 	const baseUrlResolved = path.resolve(paths.appPath, baseUrl);
 
 	// We don't need to do anything if `baseUrl` is set to `node_modules`. This is

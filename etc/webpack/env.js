@@ -37,7 +37,6 @@ if (!NODE_ENV) {
 		'The NODE_ENV environment variable is required but was not specified.'
 	);
 }
-
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 const dotenvFiles = [
 	`${paths.dotenv}.${NODE_ENV}.local`,
@@ -76,8 +75,12 @@ dotenvFiles.forEach(dotenvFile => {
 const appDirectory = fs.realpathSync(process.cwd());
 process.env.NODE_PATH = (process.env.NODE_PATH || '')
 	.split(path.delimiter)
-	.filter(folder => folder && !path.isAbsolute(folder))
-	.map(folder => path.resolve(appDirectory, folder))
+	.filter(function filter(folder) {
+		return folder && !path.isAbsolute(folder);
+	})
+	.map(function map(folder) {
+		return path.resolve(appDirectory, folder);
+	})
 	.join(path.delimiter);
 
 // Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
