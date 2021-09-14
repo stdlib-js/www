@@ -16,21 +16,21 @@
 # limitations under the License.
 #/
 
-# DEPENDENCIES #
+# VARIABLES #
 
-include $(TOOLS_MAKE_LIB_DIR)/html/fragments.mk
-include $(TOOLS_MAKE_LIB_DIR)/html/minify.mk
+# Define the path to a script for building package benchmarks:
+pkg_benchmarks ?= $(TOOLS_DIR)/scripts/api-docs/benchmarks.js
 
 
 # RULES #
 
 #/
-# Builds package HTML files.
+# Builds package benchmarks.
 #
 # @example
-# make pkg-html
+# make pkg-benchmarks
 #/
-pkg-html: pkg-html-fragments
-	$(QUIET) NODE_PATH="$(NODE_PATH)" HTML_FILTER='.*/docs/api/latest/\@stdlib/.*' $(MAKE) -f $(this_file) minify-html
+pkg-benchmarks: $(NODE_MODULES) $(pkg_benchmarks)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(pkg_benchmarks)"
 
-.PHONY: pkg-html
+.PHONY: pkg-benchmarks

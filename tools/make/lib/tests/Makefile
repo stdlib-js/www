@@ -16,21 +16,21 @@
 # limitations under the License.
 #/
 
-# DEPENDENCIES #
+# VARIABLES #
 
-include $(TOOLS_MAKE_LIB_DIR)/html/fragments.mk
-include $(TOOLS_MAKE_LIB_DIR)/html/minify.mk
+# Define the path to a script for building package tests:
+api_docs_pkg_tests ?= $(TOOLS_DIR)/scripts/api-docs/tests.js
 
 
 # RULES #
 
 #/
-# Builds package HTML files.
+# Builds package tests.
 #
 # @example
-# make pkg-html
+# make api-docs-pkg-tests
 #/
-pkg-html: pkg-html-fragments
-	$(QUIET) NODE_PATH="$(NODE_PATH)" HTML_FILTER='.*/docs/api/latest/\@stdlib/.*' $(MAKE) -f $(this_file) minify-html
+api-docs-pkg-tests: $(NODE_MODULES) $(api_docs_pkg_tests)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_tests)"
 
-.PHONY: pkg-html
+.PHONY: api-docs-pkg-tests

@@ -19,7 +19,7 @@
 # VARIABLES #
 
 # Define the path to the script for generating minified CSS bundles:
-CSS_MINIFIER ?= $(TOOLS_DIR)/scripts/minify_css.js
+css_minifier ?= $(TOOLS_DIR)/scripts/minify_css.js
 
 
 # RULES #
@@ -30,7 +30,7 @@ CSS_MINIFIER ?= $(TOOLS_DIR)/scripts/minify_css.js
 # @example
 # make css-minify
 #/
-css-minify: $(NODE_MODULES) $(CSS_MINIFIER)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(CSS_MINIFIER)"
+css-minify: $(NODE_MODULES) $(css_minifier)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(css_minifier)"
 
 .PHONY: css-minify

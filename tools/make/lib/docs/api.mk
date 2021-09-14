@@ -16,21 +16,24 @@
 # limitations under the License.
 #/
 
-# DEPENDENCIES #
-
-include $(TOOLS_MAKE_LIB_DIR)/html/fragments.mk
-include $(TOOLS_MAKE_LIB_DIR)/html/minify.mk
-
-
 # RULES #
 
 #/
-# Builds package HTML files.
+# Builds the API documentation.
 #
 # @example
-# make pkg-html
+# make api-docs
 #/
-pkg-html: pkg-html-fragments
-	$(QUIET) NODE_PATH="$(NODE_PATH)" HTML_FILTER='.*/docs/api/latest/\@stdlib/.*' $(MAKE) -f $(this_file) minify-html
+api-docs: api-docs-app api-docs-resources
 
-.PHONY: pkg-html
+.PHONY: api-docs
+
+#/
+# Deletes API documentation artifacts.
+#
+# @example
+# make clean-api-docs
+#/
+clean-api-docs: clean-api-docs-app
+
+.PHONY: clean-api-docs

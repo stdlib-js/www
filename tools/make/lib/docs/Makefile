@@ -16,4 +16,31 @@
 # limitations under the License.
 #/
 
-# TODO: update with documentation recipes
+# DEPENDENCIES #
+
+include $(TOOLS_MAKE_LIB_DIR)/docs/api.mk
+include $(TOOLS_MAKE_LIB_DIR)/docs/app.mk
+include $(TOOLS_MAKE_LIB_DIR)/docs/app_resources.mk
+
+
+# RULES #
+
+#/
+# Builds documentation.
+#
+# @example
+# make docs
+#/
+docs: api-docs
+
+.PHONY: docs
+
+#/
+# Removes documentation artifacts.
+#
+# @example
+# make clean-docs
+#/
+clean-docs: clean-api-docs
+
+.PHONY: clean-docs

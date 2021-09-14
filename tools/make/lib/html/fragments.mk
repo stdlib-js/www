@@ -16,21 +16,21 @@
 # limitations under the License.
 #/
 
-# DEPENDENCIES #
+# VARIABLES #
 
-include $(TOOLS_MAKE_LIB_DIR)/html/fragments.mk
-include $(TOOLS_MAKE_LIB_DIR)/html/minify.mk
+# Define the path to a script for building package HTML fragments:
+pkg_html_fragments ?= $(TOOLS_DIR)/scripts/api-docs/html_fragments.js
 
 
 # RULES #
 
 #/
-# Builds package HTML files.
+# Builds package HTML fragments.
 #
 # @example
-# make pkg-html
+# make pkg-html-fragments
 #/
-pkg-html: pkg-html-fragments
-	$(QUIET) NODE_PATH="$(NODE_PATH)" HTML_FILTER='.*/docs/api/latest/\@stdlib/.*' $(MAKE) -f $(this_file) minify-html
+pkg-html-fragments: $(NODE_MODULES) $(pkg_html_fragments)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(pkg_html_fragments)"
 
-.PHONY: pkg-html
+.PHONY: pkg-html-fragments

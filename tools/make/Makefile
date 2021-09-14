@@ -24,6 +24,7 @@ include $(TOOLS_MAKE_LIB_DIR)/help/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/init/Makefile
 
 # Please keep sorted in alphabetical order:
+include $(TOOLS_MAKE_LIB_DIR)/benchmarks/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/css/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/debug/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/docs/Makefile
@@ -31,6 +32,7 @@ include $(TOOLS_MAKE_LIB_DIR)/html/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/install/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/ls/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/notes/Makefile
+include $(TOOLS_MAKE_LIB_DIR)/tests/Makefile
 
 
 # RULES #
@@ -54,7 +56,17 @@ all: help
 # @example
 # make clean
 #/
-clean: clean-node
+clean: clean-node clean-docs
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(BUILD_DIR)
 
 .PHONY: clean
+
+#/
+# Runs the project's build sequence.
+#
+# @example
+# make build
+#/
+build: $(NODE_MODULES) pkg-benchmarks pkg-tests pkg-html docs css-minify
+
+.PHONY: build
