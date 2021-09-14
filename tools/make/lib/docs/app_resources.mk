@@ -27,6 +27,9 @@ api_docs_pkg_tree_array ?= $(TOOLS_DIR)/scripts/api-docs/pkg_tree_array.js
 # Define the path to a script for generating a package list:
 api_docs_pkg_list ?= $(TOOLS_DIR)/scripts/api-docs/pkg_list.js
 
+# Define the path to a script for generating a package order hash:
+api_docs_pkg_order ?= $(TOOLS_DIR)/scripts/api-docs/pkg_order.js
+
 # Define the path to a script for generating a hash of package descriptions:
 api_docs_pkg_desc ?= $(TOOLS_DIR)/scripts/api-docs/pkg_desc.js
 
@@ -38,6 +41,9 @@ api_docs_pkg_search_index ?= $(TOOLS_DIR)/scripts/api-docs/pkg_search_index.js
 
 # Define the path to a script for generating a package resources database:
 api_docs_pkg_resources ?= $(TOOLS_DIR)/scripts/api-docs/pkg_resources.js
+
+# Define the path to a script for generating a list of documentation versions:
+api_docs_version_list ?= $(TOOLS_DIR)/scripts/api-docs/version_list.js
 
 
 # RULES #
@@ -52,7 +58,7 @@ api_docs_pkg_resources ?= $(TOOLS_DIR)/scripts/api-docs/pkg_resources.js
 # @example
 # make api-docs-resources
 #/
-api-docs-resources: api-docs-pkg-tree api-docs-pkg-resources api-docs-pkg-list api-docs-namespace-list api-docs-pkg-tree-array api-docs-pkg-desc api-docs-pkg-search-index
+api-docs-resources: api-docs-pkg-tree api-docs-pkg-resources api-docs-pkg-list api-docs-pkg-order api-docs-namespace-list api-docs-pkg-tree-array api-docs-pkg-desc api-docs-pkg-search-index api-docs-version-list
 
 #/
 # Generates a package tree.
@@ -86,6 +92,17 @@ api-docs-pkg-list: $(NODE_MODULES) $(api_docs_pkg_list)
 	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_list)"
 
 .PHONY: api-docs-pkg-list
+
+#/
+# Generates a package order hash.
+#
+# @example
+# make api-docs-pkg-order
+#/
+api-docs-pkg-order: $(NODE_MODULES) $(api_docs_pkg_order)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_order)"
+
+.PHONY: api-docs-pkg-order
 
 #/
 # Generates a hash containing package descriptions.
@@ -130,3 +147,14 @@ api-docs-pkg-resources: $(NODE_MODULES) $(api_docs_pkg_resources)
 	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_resources)"
 
 .PHONY: api-docs-pkg-resources
+
+#/
+# Generates a list of documentation versions.
+#
+# @example
+# make api-docs-version-list
+#/
+api-docs-version-list: $(NODE_MODULES) $(api_docs_version_list)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_version_list)"
+
+.PHONY: api-docs-version-list

@@ -28,7 +28,13 @@
    -   <https://github.com/linode/docs/blob/master/docs/websites/static-sites/install-gatsbyjs/index.md>
    -   consider netlify, although it now has build limits
 
-6.
+6. (docs) user settings
+
+    -   theme (light/dark)
+    -   docs mode (REPL, standalone, nested)
+    -   left/right package navigation (random, alphabetical, something else?)
+    -   code examples (ES5, ES6+)
+    -   ...
 
 7. (tools) use URL shortening for click tracking (e.g., Bit.ly)
 
