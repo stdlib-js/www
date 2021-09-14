@@ -85,8 +85,8 @@ TMP_FOLDER ?= tmp
 CSS_FILENAME_EXT ?= css
 HTML_FILENAME_EXT ?= html
 
-# Define Node paths:
-NODE_PATH ?= $(NODE_MODULES)/@stdlib/stdlib/lib/node_modules
+# Define Node paths: (WARNING: we cannot use an absolute path here because of Webpack which only allows relative paths)
+NODE_PATH ?= ./node_modules/@stdlib/stdlib/lib/node_modules
 
 
 # DEPENDENCIES #
