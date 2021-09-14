@@ -40,7 +40,7 @@ Building the website **requires** the following prerequisites:
 To install dependencies,
 
 ```bash
-$ npm run install:production
+$ make install
 ```
 
 * * *
@@ -52,7 +52,7 @@ $ npm run install:production
 To run the entire build sequence sequentially,
 
 ```bash
-$ npm run build
+$ make build
 ```
 
 However, you may want to run the following steps in parallel (e.g., in separate terminal windows) in order to expedite the build process. Every step **except** the generation of documentation resources can be executed in parallel.
@@ -62,7 +62,7 @@ However, you may want to run the following steps in parallel (e.g., in separate 
 To build the API documentation application,
 
 ```bash
-$ npm run build:api_docs:app
+$ make api-docs-app
 ```
 
 #### HTML Fragments
@@ -70,7 +70,7 @@ $ npm run build:api_docs:app
 To build HTML fragments (i.e., convert package READMEs to HTML),
 
 ```bash
-$ npm run build:api_docs:html_fragments
+$ make pkg-html
 ```
 
 #### Test Bundles
@@ -78,7 +78,7 @@ $ npm run build:api_docs:html_fragments
 To build package test bundles,
 
 ```bash
-$ npm run build:api_docs:tests
+$ make pkg-tests
 ```
 
 #### Benchmark Bundles
@@ -86,7 +86,7 @@ $ npm run build:api_docs:tests
 To build package benchmark bundles,
 
 ```bash
-$ npm run build:api_docs:benchmarks
+$ make pkg-benchmarks
 ```
 
 #### Resources
@@ -94,7 +94,7 @@ $ npm run build:api_docs:benchmarks
 Assuming the above build steps have completed, to generate documentation resources,
 
 ```bash
-$ npm run build:api_docs:app_resources
+$ make api-docs-resources
 ```
 
 ### CSS
@@ -102,17 +102,17 @@ $ npm run build:api_docs:app_resources
 To compile stylesheet bundles,
 
 ```bash
-$ npm run build:css
+$ make css-minify
 ```
 
 * * *
 
 ## Clean
 
-To remove **all** build artifacts,
+To run the project's cleanup sequence,
 
 ```bash
-$ npm run clean
+$ make clean
 ```
 
 ### API Documentation
@@ -120,7 +120,7 @@ $ npm run clean
 To remove API documentation build artifacts,
 
 ```bash
-$ npm run clean:api_docs:app
+$ make clean-docs
 ```
 
 * * *
