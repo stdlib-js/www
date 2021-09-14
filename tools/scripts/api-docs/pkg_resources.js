@@ -30,8 +30,8 @@ var exists = require( '@stdlib/fs/exists' ).sync;
 var replace = require( '@stdlib/string/replace' );
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
-var documentationPath = require( './docs_path.js' );
-var tsPath = require( './ts_docs_path.js' );
+var documentationPath = require( './../utils/api_docs_path.js' );
+var tsPath = require( './../utils/ts_docs_path.js' );
 
 
 // VARIABLES //

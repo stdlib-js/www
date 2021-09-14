@@ -29,7 +29,7 @@ var cwd = require( '@stdlib/process/cwd' );
 var build = require( '@stdlib/_tools/docs/www/benchmark-bundles' );
 var stdlibPath = require( './../utils/stdlib_path.js' );
 var stdlibVersion = require( './../utils/stdlib_version.js' );
-var documentationPath = require( './docs_path.js' );
+var documentationPath = require( './../utils/api_docs_path.js' );
 
 
 // MAIN //

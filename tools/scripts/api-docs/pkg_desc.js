@@ -27,7 +27,7 @@ var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var replace = require( '@stdlib/string/replace' );
 var stdlibPath = require( './../utils/stdlib_path.js' );
-var documentationPath = require( './docs_path.js' );
+var documentationPath = require( './../utils/api_docs_path.js' );
 
 
 // VARIABLES //

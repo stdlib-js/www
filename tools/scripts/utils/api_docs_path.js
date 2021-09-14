@@ -21,20 +21,20 @@
 // MODULES //
 
 var join = require( 'path' ).join;
-var root = require( './../utils/root.js' );
-var version = require( './../utils/stdlib_version.js' );
+var root = require( './root.js' );
+var version = require( './stdlib_version.js' );
 
 
 // MAIN //
 
 /**
-* Returns the TypeScript documentation path.
+* Returns the API documentation path.
 *
 * @private
-* @returns {string} TypeScript documentation path
+* @returns {string} API documentation path
 */
 function path() {
-	return join( root(), 'public', 'docs', 'ts', version(), 'modules' );
+	return join( root(), 'public', 'docs', 'api', version() );
 }
 
 

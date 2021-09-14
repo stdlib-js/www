@@ -28,7 +28,7 @@ var exists = require( '@stdlib/fs/exists' ).sync;
 var build = require( '@stdlib/_tools/docs/www/readme-fragment-file-tree' );
 var stdlibPath = require( './../utils/stdlib_path.js' );
 var stdlibVersion = require( './../utils/stdlib_version.js' );
-var documentationPath = require( './docs_path.js' );
+var documentationPath = require( './../utils/api_docs_path.js' );
 
 
 // MAIN //

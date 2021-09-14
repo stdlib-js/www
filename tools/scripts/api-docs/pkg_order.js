@@ -26,7 +26,7 @@ var join = require( 'path' ).join;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var objectInverse = require( '@stdlib/utils/object-inverse' );
-var documentationPath = require( './docs_path.js' );
+var documentationPath = require( './../utils/api_docs_path.js' );
 
 
 // VARIABLES //
