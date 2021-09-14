@@ -26,7 +26,7 @@ var join = require( 'path' ).join;
 var objectKeys = require( '@stdlib/utils/keys' );
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
-var documentationPath = require( './path.js' );
+var documentationPath = require( './docs_path.js' );
 
 
 // VARIABLES //
@@ -71,6 +71,9 @@ function main() {
 			pkgs.push( tmp[ i ] );
 		}
 	}
+	// Sort the list alphabetically:
+	pkgs.sort();
+
 	// Write the database to file:
 	writeFile( join( dpath, OUTPUT ), JSON.stringify( pkgs ) );
 }

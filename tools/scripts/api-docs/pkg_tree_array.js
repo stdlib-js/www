@@ -28,7 +28,7 @@ var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var name2standalone = require( '@stdlib/_tools/pkgs/name2standalone' );
 var pkg2alias = require( '@stdlib/namespace/pkg2alias' );
-var documentationPath = require( './path.js' );
+var documentationPath = require( './docs_path.js' );
 
 
 // VARIABLES //

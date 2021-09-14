@@ -26,9 +26,9 @@ var join = require( 'path' ).join;
 var mkdir = require( 'fs' ).mkdirSync;
 var exists = require( '@stdlib/fs/exists' ).sync;
 var build = require( '@stdlib/_tools/docs/www/readme-fragment-file-tree' );
-var stdlibPath = require( './stdlib_path.js' );
-var stdlibVersion = require( './stdlib_version.js' );
-var documentationPath = require( './path.js' );
+var stdlibPath = require( './../utils/stdlib_path.js' );
+var stdlibVersion = require( './../utils/stdlib_version.js' );
+var documentationPath = require( './docs_path.js' );
 
 
 // MAIN //

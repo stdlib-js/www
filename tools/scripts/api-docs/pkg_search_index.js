@@ -25,8 +25,8 @@
 var join = require( 'path' ).join;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var pkgIndex = require( '@stdlib/_tools/search/pkg-index' );
-var documentationPath = require( './path.js' );
-var stdlibPath = require( './stdlib_path.js' );
+var stdlibPath = require( './../utils/stdlib_path.js' );
+var documentationPath = require( './docs_path.js' );
 
 
 // VARIABLES //

@@ -27,7 +27,7 @@ var mkdir = require( 'fs' ).mkdirSync;
 var exists = require( '@stdlib/fs/exists' ).sync;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var namespaces = require( '@stdlib/_tools/pkgs/namespaces' ).sync;
-var documentationPath = require( './path.js' );
+var documentationPath = require( './docs_path.js' );
 
 
 // VARIABLES //

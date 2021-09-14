@@ -22,7 +22,7 @@
 
 var join = require( 'path' ).join;
 var root = require( './../utils/root.js' );
-var version = require( './stdlib_version.js' );
+var version = require( './../utils/stdlib_version.js' );
 
 
 // MAIN //
