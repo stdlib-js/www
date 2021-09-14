@@ -65,6 +65,9 @@ FIND_FILES_EXCLUDE_FLAGS ?= $(FIND_COMMON_EXCLUDE_FLAGS)
 # HTML exclude flags:
 FIND_HTML_EXCLUDE_FLAGS ?= $(FIND_EXCLUDE_FLAGS)
 
+# CSS exclude flags:
+FIND_CSS_EXCLUDE_FLAGS ?= $(FIND_EXCLUDE_FLAGS)
+
 # On Mac OSX, in order to use `|` and other regular expression operators, we need to use enhanced regular expression syntax (-E); see https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man7/re_format.7.html#//apple_ref/doc/man/7/re_format.
 ifeq ($(OS), Darwin)
 	find_kernel_prefix := -E
@@ -78,5 +81,6 @@ find_print_list := -exec printf '%s\n' {} \;
 
 # DEPENDENCIES #
 
+include $(TOOLS_MAKE_LIB_DIR)/ls/css/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/ls/html/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/ls/files.mk
