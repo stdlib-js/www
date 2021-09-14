@@ -25,46 +25,58 @@
 var join = require( 'path' ).join;
 var mkdir = require( 'fs' ).mkdirSync;
 var exists = require( '@stdlib/fs/exists' ).sync;
-var writeFile = require( '@stdlib/fs/write-file' ).sync;
-var pkgTree = require( '@stdlib/_tools/pkgs/tree' ).sync;
-var documentationPath = require( './api_docs_path.js' );
-
-
-// VARIABLES //
-
-var OUTPUT = 'package_tree.json';
+var build = require( '@stdlib/_tools/docs/www/readme-fragment-file-tree' );
+var stdlibPath = require( './stdlib_path.js' );
+var stdlibVersion = require( './stdlib_version.js' );
+var documentationPath = require( './path.js' );
 
 
 // MAIN //
 
 /**
-* Generates a package tree of `@stdlib/stdlib` packages.
+* Main execution sequence.
 *
 * @private
 */
 function main() {
 	var opts;
-	var tree;
 	var dir;
 
 	dir = documentationPath();
 	if ( !exists( dir ) ) {
 		mkdir( dir );
 	}
-	// Resolve a package tree:
 	opts = {
+		'base': '/docs/api/'+stdlibVersion()+'/',
+		'dir': join( stdlibPath(), 'lib', 'node_modules' ),
 		'ignore': [
+			'benchmark/**',
+			'bin/**',
+			'build/**',
+			'docs/**',
+			'etc/**',
+			'examples/**',
+			'reports/**',
+			'scripts/**',
+			'test/**',
 			'**/_tools/**'
 		]
 	};
-	tree = pkgTree( opts );
-	tree = tree[ '@stdlib' ];
+	build( dir, opts, done );
 
-	// Save as JSON file:
-	opts = {
-		'encoding': 'utf8'
-	};
-	writeFile( join( dir, OUTPUT ), JSON.stringify( tree ), opts );
+	/**
+	* Callback invoked upon completion.
+	*
+	* @private
+	* @param {Error} [err] - error object
+	* @throws {Error} unexpected error
+	*/
+	function done( err ) {
+		if ( err ) {
+			throw err;
+		}
+		console.log( 'Finished generating HTML fragments.' );
+	}
 }
 
 main();

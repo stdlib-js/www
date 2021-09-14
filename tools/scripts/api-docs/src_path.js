@@ -21,7 +21,7 @@
 // MODULES //
 
 var join = require( 'path' ).join;
-var root = require( './root.js' );
+var root = require( './../utils/root.js' );
 
 
 // MAIN //

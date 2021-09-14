@@ -25,7 +25,7 @@
 var fs = require( 'fs' );
 var path = require( 'path' );
 var CleanCSS = require( 'clean-css' );
-var root = require( './root.js' );
+var root = require( './utils/root.js' );
 
 
 // VARIABLES //

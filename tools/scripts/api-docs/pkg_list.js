@@ -23,16 +23,15 @@
 // MODULES //
 
 var join = require( 'path' ).join;
+var objectKeys = require( '@stdlib/utils/keys' );
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
-var pkgIndex = require( '@stdlib/_tools/search/pkg-index' );
-var documentationPath = require( './api_docs_path.js' );
-var stdlibPath = require( './stdlib_path.js' );
+var readJSON = require( '@stdlib/fs/read-json' ).sync;
+var documentationPath = require( './path.js' );
 
 
 // VARIABLES //
 
-var STDLIB_PATH = join( stdlibPath(), 'lib', 'node_modules' );
-var OUTPUT = 'package_index.json';
+var OUTPUT = 'package_list.json';
 
 
 // MAIN //
@@ -46,37 +45,34 @@ var OUTPUT = 'package_index.json';
 function main() {
 	var dpath;
 	var opts;
+	var pkgs;
+	var res;
+	var tmp;
+	var i;
 
 	// Resolve the API documentation path:
 	dpath = documentationPath();
 
-	// Generate a package search index:
+	// Load the API documentation package resources database...
 	opts = {
-		'dir': STDLIB_PATH,
-		'ignore': [
-			'**/_tools/**'
-		]
+		'encoding': 'utf8'
 	};
-	pkgIndex( opts, clbk );
-
-	/**
-	* Callback invoked upon generating a package search index.
-	*
-	* @private
-	* @param {(Error|null)} error - error object
-	* @param {Object} idx - search index
-	*/
-	function clbk( error, idx ) {
-		var opts;
-		if ( error ) {
-			throw error;
-		}
-		// Save as JSON file:
-		opts = {
-			'encoding': 'utf8'
-		};
-		writeFile( join( dpath, OUTPUT ), JSON.stringify( idx ), opts );
+	res = readJSON( join( dpath, 'package_resources.json' ), opts );
+	if ( res instanceof Error ) {
+		throw res;
 	}
+	// Get the list of packages:
+	tmp = objectKeys( res );
+
+	// Prune `__namespace__` pseudo-packages...
+	pkgs = [];
+	for ( i = 0; i < tmp.length; i++ ) {
+		if ( !tmp[ i ].includes( '__namespace__' ) ) {
+			pkgs.push( tmp[ i ] );
+		}
+	}
+	// Write the database to file:
+	writeFile( join( dpath, OUTPUT ), JSON.stringify( pkgs ) );
 }
 
 main();

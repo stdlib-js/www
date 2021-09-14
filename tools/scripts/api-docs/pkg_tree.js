@@ -3,7 +3,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2021 The Stdlib Authors.
+* Copyright (c) 2019 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -26,50 +26,45 @@ var join = require( 'path' ).join;
 var mkdir = require( 'fs' ).mkdirSync;
 var exists = require( '@stdlib/fs/exists' ).sync;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
-var namespaces = require( '@stdlib/_tools/pkgs/namespaces' ).sync;
-var documentationPath = require( './api_docs_path.js' );
+var pkgTree = require( '@stdlib/_tools/pkgs/tree' ).sync;
+var documentationPath = require( './path.js' );
 
 
 // VARIABLES //
 
-var OUTPUT = 'namespace_list.json';
+var OUTPUT = 'package_tree.json';
 
 
 // MAIN //
 
 /**
-* Main execution sequence.
+* Generates a package tree of `@stdlib/stdlib` packages.
 *
 * @private
-* @throws {Error} unexpected error
 */
 function main() {
 	var opts;
-	var list;
+	var tree;
 	var dir;
-	var i;
 
 	dir = documentationPath();
 	if ( !exists( dir ) ) {
 		mkdir( dir );
 	}
-	// Resolve the list of namespaces:
+	// Resolve a package tree:
 	opts = {
 		'ignore': [
 			'**/_tools/**'
 		]
 	};
-	list = namespaces( opts );
+	tree = pkgTree( opts );
+	tree = tree[ '@stdlib' ];
 
-	// Remove the `@stdlib/` prefix...
-	for ( i = 0; i < list.length; i++ ) {
-		list[ i ] = list[ i ].substring( 8 ); // '@stdlib/' is 8 characters long
-	}
 	// Save as JSON file:
 	opts = {
 		'encoding': 'utf8'
 	};
-	writeFile( join( dir, OUTPUT ), JSON.stringify( list ), opts );
+	writeFile( join( dir, OUTPUT ), JSON.stringify( tree ), opts );
 }
 
 main();
