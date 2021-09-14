@@ -26,11 +26,13 @@ var join = require( 'path' ).join;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var objectInverse = require( '@stdlib/utils/object-inverse' );
+var replace = require( '@stdlib/string/replace' );
 var documentationPath = require( './../utils/api_docs_path.js' );
 
 
 // VARIABLES //
 
+var RE_INDEX = /"(\d+)"/g;
 var OUTPUT = 'package_order.json';
 
 
@@ -63,7 +65,8 @@ function main() {
 	out = objectInverse( pkgs );
 
 	// Write the database to file:
-	writeFile( join( dpath, OUTPUT ), JSON.stringify( out ) );
+	out = JSON.stringify( out );
+	writeFile( join( dpath, OUTPUT ), replace( out, RE_INDEX, "$1" ) );
 }
 
 main();
