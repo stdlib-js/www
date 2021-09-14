@@ -40,7 +40,6 @@ process.on('unhandledRejection', err => {
 // Ensure environment variables are read.
 require('../../../etc/webpack/env');
 
-
 const path = require('path');
 const chalk = require('react-dev-utils/chalk');
 const webpack = require('webpack');
