@@ -34,7 +34,7 @@ import React from 'react';
 */
 function ReadmeContent( props ) {
 	return (
-		<div
+		<section
 			id="readme-content"
 			className="readme-content"
 			suppressHydrationWarning
