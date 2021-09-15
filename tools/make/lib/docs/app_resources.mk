@@ -42,6 +42,9 @@ api_docs_pkg_search_index ?= $(TOOLS_DIR)/scripts/api-docs/pkg_search_index.js
 # Define the path to a script for generating a package resources database:
 api_docs_pkg_resources ?= $(TOOLS_DIR)/scripts/api-docs/pkg_resources.js
 
+# Define the path to a script for generating package data:
+api_docs_pkg_data ?= $(TOOLS_DIR)/scripts/api-docs/pkg_data.js
+
 # Define the path to a script for generating a list of documentation versions:
 api_docs_version_list ?= $(TOOLS_DIR)/scripts/api-docs/version_list.js
 
@@ -58,7 +61,7 @@ api_docs_version_list ?= $(TOOLS_DIR)/scripts/api-docs/version_list.js
 # @example
 # make api-docs-resources
 #/
-api-docs-resources: api-docs-pkg-tree api-docs-pkg-resources api-docs-pkg-list api-docs-pkg-order api-docs-namespace-list api-docs-pkg-tree-array api-docs-pkg-desc api-docs-pkg-search-index api-docs-version-list
+api-docs-resources: api-docs-pkg-tree api-docs-pkg-resources api-docs-pkg-list api-docs-pkg-order api-docs-namespace-list api-docs-pkg-tree-array api-docs-pkg-desc api-docs-pkg-search-index api-docs-version-list api-docs-pkg-data
 
 #/
 # Generates a package tree.
@@ -147,6 +150,17 @@ api-docs-pkg-resources: $(NODE_MODULES) $(api_docs_pkg_resources)
 	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_resources)"
 
 .PHONY: api-docs-pkg-resources
+
+#/
+# Generates a combined JSON dataset containing package data.
+#
+# @example
+# make api-docs-pkg-data
+#/
+api-docs-pkg-data: $(NODE_MODULES) $(api_docs_pkg_data)
+	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_data)"
+
+.PHONY: api-docs-pkg-data
 
 #/
 # Generates a list of documentation versions.
