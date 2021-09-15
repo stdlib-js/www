@@ -509,6 +509,7 @@ class SideMenuDrawer extends React.Component {
 	*/
 	_renderNamespace( node, hash, level ) {
 		var expanded;
+		var submenu;
 		var name;
 		var pkg;
 
@@ -516,6 +517,8 @@ class SideMenuDrawer extends React.Component {
 		pkg = deprefix( name );
 
 		expanded = hash[ pkg ];
+
+		submenu = name + '-submenu'; // id
 
 		return (
 			<Fragment>
@@ -539,15 +542,18 @@ class SideMenuDrawer extends React.Component {
 						title={ ( expanded ) ? 'Collapse submenu' : 'Expand submenu' }
 						onClick={ this._onNamespaceIconClickFactory( pkg ) }
 						aria-label={ ( expanded ) ? 'collapse submenu' : 'expand submenu' }
+						aria-expanded={ expanded }
+						aria-controls={ submenu }
 					>
 						{ ( expanded )
-							? <span className="side-menu-list-item-collapse-icon" aria-hidden="true">&ndash;</span>
-							: <span className="side-menu-list-item-expand-icon" aria-hidden="true">+</span>
+							? <span className="side-menu-list-item-collapse-icon" role="img" aria-hidden="true">&ndash;</span>
+							: <span className="side-menu-list-item-expand-icon" role="img" aria-hidden="true">+</span>
 						}
 					</IconButton>
 				</ListItem>
 				<Collapse
-					key={ name+'-submenu' }
+					id={ submenu }
+					key={ submenu }
 					in={ expanded }
 					component="li"
 					timeout={ COLLAPSE_TRANSITION_TIMEOUT }
