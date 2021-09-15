@@ -16,10 +16,15 @@
 * limitations under the License.
 */
 
+// MODULES //
+
+import deprefix from './deprefix_package_name.js';
+
+
 // VARIABLES //
 
-// Note: this regular expression is intentionally not exhaustive. Primary intent is to roughly group packages according to what should be relative common/popular top-level namespaces...
-var RE_NAMESPACE = /^(assert|blas|datasets|fs|math|ml|net|random|regexp|simulate|stats|streams|time|utils)\//;
+// Regular expression to capture a top-level namespaces:
+var RE_NAMESPACE = /^([^\/]+)\//; // eslint-disable-line no-useless-escape
 
 // Note: this regular expression is intentionally not exhaustive. Primary intent is to help disambiguate packages whose basenames may be present in multiple sub-namespaces...
 var RE_SUBNAMESPACE = /\/(base|dists|incr|iter|strided)\//;
@@ -35,15 +40,16 @@ var RE_SUBNAMESPACE = /\/(base|dists|incr|iter|strided)\//;
 * -   This is invariably not exhaustive.
 *
 * @private
-* @param {string} str - package name
+* @param {string} str - package name (e.g., `@stdlib/math/base/special/sin` or `math/base/special/sin`)
 * @returns {string} kind
 */
 function packageKind( pkg ) {
 	var match;
 	var kind;
 
-	kind = [];
+	pkg = deprefix( pkg );
 
+	kind = [];
 	match = pkg.match( RE_NAMESPACE );
 	if ( match ) {
 		kind.push( match[ 1 ] );
