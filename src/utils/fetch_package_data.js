@@ -30,58 +30,22 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 * @private
 * @param {string} version - documentation version
 * @param {Callback} clbk - callback invoked upon retrieving package data
+* @returns {void}
 */
 function fetchPackageData( version, clbk ) {
-	var total;
-	var count;
-	var o;
+	var o = PACKAGE_DATA_CACHE[ version ];
 
-	total = 5;
-	count = 0;
-
-	o = PACKAGE_DATA_CACHE[ version ];
+	// Check whether we have already retrieved package data for this version...
+	if ( o ) {
+		return done();
+	}
+	o = {};
 
 	// Fetch data necessary for rendering the application...
-	if ( o && o.tree ) {
-		done();
-	} else {
-		fetch( config.mount+version+'/package_tree_array.json' )
-			.then( toJSON )
-			.then( onTree )
-			.catch( done );
-	}
-	if ( o && o.resources ) {
-		done();
-	} else {
-		fetch( config.mount+version+'/package_resources.json' )
-			.then( toJSON )
-			.then( onResources )
-			.catch( done );
-	}
-	if ( o && o.packages ) {
-		done();
-	} else {
-		fetch( config.mount+version+'/package_list.json' )
-			.then( toJSON )
-			.then( onList )
-			.catch( done );
-	}
-	if ( o && o.order ) {
-		done();
-	} else {
-		fetch( config.mount+version+'/package_order.json' )
-			.then( toJSON )
-			.then( onOrder )
-			.catch( done );
-	}
-	if ( o && o.namespaces ) {
-		done();
-	} else {
-		fetch( config.mount+version+'/namespace_list.json' )
-			.then( toJSON )
-			.then( onNamespaces )
-			.catch( done );
-	}
+	fetch( config.mount+version+'/package_data.json' )
+		.then( toJSON )
+		.then( onData )
+		.catch( done );
 
 	/**
 	* Callback invoked upon receiving a JSON resource.
@@ -95,77 +59,27 @@ function fetchPackageData( version, clbk ) {
 	}
 
 	/**
-	* Callback invoked upon resolving a package tree.
+	* Callback invoked upon resolving package data.
 	*
 	* @private
 	* @param {Object} json - JSON object
+	* @param {Array<Object>} json.tree - package tree array
+	* @param {Object} json.resources - package resources
+	* @param {StringArray} json.packages - list of packages
+	* @param {Object} json.order - package order hash
+	* @param {StringArray} json.namespaces - list of namespace packages
 	*/
-	function onTree( json ) {
-		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-			PACKAGE_DATA_CACHE[ version ] = {};
-		}
-		PACKAGE_DATA_CACHE[ version ].tree = json;
+	function onData( json ) {
+		o.tree = json.tree;
+		o.resources = json.resources;
+		o.packages = json.packages;
+		o.order = json.order;
+		o.namespaces = json.namespaces;
 		done();
 	}
 
 	/**
-	* Callback invoked upon resolving package resources.
-	*
-	* @private
-	* @param {Object} json - JSON object
-	*/
-	function onResources( json ) {
-		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-			PACKAGE_DATA_CACHE[ version ] = {};
-		}
-		PACKAGE_DATA_CACHE[ version ].resources = json;
-		done();
-	}
-
-	/**
-	* Callback invoked upon resolving a package list.
-	*
-	* @private
-	* @param {StringArray} list - list of packages
-	*/
-	function onList( list ) {
-		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-			PACKAGE_DATA_CACHE[ version ] = {};
-		}
-		PACKAGE_DATA_CACHE[ version ].packages = list;
-		done();
-	}
-
-	/**
-	* Callback invoked upon resolving the package order hash.
-	*
-	* @private
-	* @param {Object} json - JSON object
-	*/
-	function onOrder( json ) {
-		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-			PACKAGE_DATA_CACHE[ version ] = {};
-		}
-		PACKAGE_DATA_CACHE[ version ].order = json;
-		done();
-	}
-
-	/**
-	* Callback invoked upon resolving a list of namespace packages.
-	*
-	* @private
-	* @param {StringArray} list - list of namespace packages
-	*/
-	function onNamespaces( list ) {
-		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
-			PACKAGE_DATA_CACHE[ version ] = {};
-		}
-		PACKAGE_DATA_CACHE[ version ].namespaces = list;
-		done();
-	}
-
-	/**
-	* Callback invoked upon resolving a package resource.
+	* Callback invoked upon resolving package data.
 	*
 	* @private
 	* @param {Error} [error] - error object
@@ -175,10 +89,7 @@ function fetchPackageData( version, clbk ) {
 		if ( error ) {
 			return clbk( error );
 		}
-		count += 1;
-		if ( count === total ) {
-			return clbk( null, PACKAGE_DATA_CACHE[ version ] );
-		}
+		clbk( null, o );
 	}
 }
 
