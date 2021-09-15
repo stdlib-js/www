@@ -134,22 +134,22 @@ class DownloadButton extends React.Component {
 			return (
 				<IconButton
 					className="icon-button top-nav-download-button"
-					aria-label="cancel download"
 					title="Cancel download"
 					onClick={ this._onDownloadCancel }
+					aria-label="cancel download"
 				>
-					<CancelIcon />
+					<CancelIcon aria-hidden="true" />
 				</IconButton>
 			);
 		}
 		return (
 			<IconButton
 				className="icon-button top-nav-download-button"
-				aria-label="download documentation for offline access"
 				title="Download documentation for offline access"
 				onClick={ this._onDownloadClick }
+				aria-label="download documentation"
 			>
-				<GetAppIcon />
+				<GetAppIcon aria-hidden="true" />
 			</IconButton>
 		);
 	}
