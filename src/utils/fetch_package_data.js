@@ -75,6 +75,9 @@ function fetchPackageData( version, clbk ) {
 		o.packages = json.packages;
 		o.order = json.order;
 		o.namespaces = json.namespaces;
+
+		PACKAGE_DATA_CACHE[ version ] = o;
+
 		done();
 	}
 
