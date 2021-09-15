@@ -92,13 +92,14 @@ class PackageMenu extends React.Component {
 			<Fragment>
 				<IconButton
 					className="icon-button top-nav-items-menu-button"
-					aria-label="toggle navigation menu"
-					title="Toggle package navigation menu"
+					title="Toggle navigation menu"
 					onClick={ this._onMenuClick }
+					aria-label="toggle menu"
 				>
 					<ExpandMoreIcon />
 				</IconButton>
 				<ul
+					id='top-nav-package-menu'
 					className={ this.props.open ? 'top-nav-items-dropdown' : 'top-nav-items' }
 					onClick={ this._onMenuClose }
 				>

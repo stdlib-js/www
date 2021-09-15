@@ -121,6 +121,7 @@ class SearchInput extends React.Component {
 		return (
 			<Fragment>
 				<InputBase
+					id="top-nav-search"
 					className={ 'top-nav-search ' + ( ( this.state.active || this.props.value ) ? 'top-nav-search-active' : '' ) }
 					placeholder="Search documentation"
 					value={ this.props.value }
