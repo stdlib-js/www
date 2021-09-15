@@ -36,7 +36,7 @@ function fetchPackageData( version, clbk ) {
 	var count;
 	var o;
 
-	total = 4;
+	total = 5;
 	count = 0;
 
 	o = PACKAGE_DATA_CACHE[ version ];
@@ -56,6 +56,14 @@ function fetchPackageData( version, clbk ) {
 		fetch( config.mount+version+'/package_resources.json' )
 			.then( toJSON )
 			.then( onResources )
+			.catch( done );
+	}
+	if ( o && o.packages ) {
+		done();
+	} else {
+		fetch( config.mount+version+'/package_list.json' )
+			.then( toJSON )
+			.then( onList )
 			.catch( done );
 	}
 	if ( o && o.order ) {
@@ -111,6 +119,20 @@ function fetchPackageData( version, clbk ) {
 			PACKAGE_DATA_CACHE[ version ] = {};
 		}
 		PACKAGE_DATA_CACHE[ version ].resources = json;
+		done();
+	}
+
+	/**
+	* Callback invoked upon resolving a package list.
+	*
+	* @private
+	* @param {StringArray} list - list of packages
+	*/
+	function onList( list ) {
+		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+			PACKAGE_DATA_CACHE[ version ] = {};
+		}
+		PACKAGE_DATA_CACHE[ version ].packages = list;
 		done();
 	}
 
