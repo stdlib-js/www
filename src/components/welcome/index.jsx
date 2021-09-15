@@ -46,40 +46,40 @@ function Welcome( props ) {
 	return (
 		<Fragment>
 			<div id="readme" className="readme" >
-				<section className="banner" >
+				<section className="banner" role="banner" >
 					<Banner />
 				</section>
-				<section className="intro">
+				<section className="intro" aria-label="intro">
 					<Intro />
 				</section>
-				<section className="features">
+				<section className="features" aria-label="features">
 					<h2>Features</h2>
 					<Features version={ props.version }/>
 				</section>
-				<section className="help">
+				<section className="help" aria-label="getting help">
 					<h2>Getting Help</h2>
 					<p>
 						Ask questions and get help from the community on the project's <a href={ config.gitter }>Gitter</a> channel.
 					</p>
 				</section>
-				<section className="installation">
+				<section className="installation" aria-label="installation">
 					<h2>Installation</h2>
 					<Installation version={ props.version }/>
 				</section>
 				<hr/>
-				<section className="prerequisites">
+				<section className="prerequisites" aria-label="prerequisites">
 					<h2>Prerequisites</h2>
 					<Prerequisites />
 				</section>
 				<hr/>
-				<section className="license_and_copyright">
+				<section className="license_and_copyright" aria-label="license and copyright">
 					<h2>License</h2>
 					<p>
 						See <a href={ 'https://raw.githubusercontent.com/stdlib-js/stdlib/develop/LICENSE' }>LICENSE</a>.
 					</p>
 					<h2>Copyright</h2>
 					<p>
-						Copyright &copy; 2016-{ CURRENT_YEAR }. The Stdlib <a href={ config.repository+'/graphs/contributors' } >Authors</a>.
+						Copyright <span role="img" aria-hidden="true">&copy;</span> 2016-{ CURRENT_YEAR }. The Stdlib <a href={ config.repository+'/graphs/contributors' } >Authors</a>.
 					</p>
 				</section>
 			</div>
