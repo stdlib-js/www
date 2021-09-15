@@ -1168,3 +1168,16 @@ button.side-menu-list-item-namespace-icon {
 		min-width: 100%;
 	}
 }
+
+/*
+* Banner.
+*/
+
+.banner .image-wrapper {
+	margin-top: 3em;
+	margin-bottom: 4.5em;
+}
+
+.banner .image-wrapper img {
+	display: block;
+}
