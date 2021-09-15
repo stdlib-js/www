@@ -38,7 +38,7 @@ function Footer() {
 			<nav
 				id="bottom-nav"
 				className="bottom-nav center"
-				aria-label="footer"
+				aria-label="secondary"
 			>
 				<a href={ config.funding } title="Help support the project">Donate</a>
 				{ ' / ' }

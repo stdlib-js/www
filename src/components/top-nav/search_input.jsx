@@ -127,7 +127,7 @@ class SearchInput extends React.Component {
 					value={ this.props.value }
 					type="text"
 					inputProps={{
-						'aria-label': 'search documentation'
+						'aria-label': 'search text'
 					}}
 					onChange={ this._onChange }
 					onKeyUp={ this._onKeyUp }
