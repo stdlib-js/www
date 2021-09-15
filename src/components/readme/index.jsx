@@ -170,7 +170,7 @@ class Readme extends React.Component {
 				onClick={ this._onPackageClickFactory( pkg ) }
 			>
 				<div class="pagination-link-type">Previous</div>
-				<div class="pagination-link-label">{ '« '+basename }</div>
+				<div class="pagination-link-label"><span aria-hidden="true">« </span>{ basename }</div>
 				<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
 			</Link>
 		);
@@ -204,7 +204,7 @@ class Readme extends React.Component {
 				onClick={ this._onPackageClickFactory( pkg ) }
 			>
 				<div class="pagination-link-type">Next</div>
-				<div class="pagination-link-label">{ basename+' »' }</div>
+				<div class="pagination-link-label">{ basename }<span aria-hidden="true"> »</span></div>
 				<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
 			</Link>
 		);
