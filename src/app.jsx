@@ -682,13 +682,12 @@ class App extends React.Component {
 		*/
 		function render( props ) {
 			return (
-				<div
+				<main
 					class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
 					id="main"
-					role="main"
 				>
 					{ self[ method ]( props.match ) }
-				</div>
+				</main>
 			);
 		}
 	}
