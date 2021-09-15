@@ -29,68 +29,9 @@ import fetchSearchData from './../../utils/fetch_search_data.js';
 import packageDescription from './../../utils/package_description.js';
 import deprefix from './../../utils/deprefix_package_name.js';
 import pkgPath from './../../utils/pkg_doc_path.js';
+import pkgKind from './../../utils/pkg_kind.js';
+import pkgBasename from './../../utils/pkg_basename.js';
 import log from './../../utils/log.js';
-
-
-// VARIABLES //
-
-// Note: this regular expression is intentionally not exhaustive. Primary intent is to roughly group packages according to what should be relative common/popular top-level namespaces...
-var RE_NAMESPACE = /^(assert|blas|datasets|fs|math|ml|net|random|regexp|simulate|stats|streams|time|utils)\//;
-
-// Note: this regular expression is intentionally not exhaustive. Primary intent is to help disambiguate packages whose basenames may be present in multiple sub-namespaces...
-var RE_SUBNAMESPACE = /\/(base|dists|incr|iter|strided)\//;
-
-
-// FUNCTIONS //
-
-/**
-* Returns the last index of a specified character.
-*
-* @private
-* @param {string} str - string to search
-* @param {string} ch - character to match
-* @returns {integer} index
-*/
-function lastIndexOf( str, ch ) {
-	var len;
-	var i;
-
-	len = str.length;
-	for ( i = len-1; i >= 0; i-- ) {
-		if ( str[ i ] === ch ) {
-			return i;
-		}
-	}
-	return -1;
-}
-
-/**
-* Returns a package "kind" based on the package path.
-*
-* ## Notes
-*
-* -   This is invariably not exhaustive.
-*
-* @private
-* @param {string} str - package name
-* @returns {string} kind
-*/
-function packageKind( pkg ) {
-	var match;
-	var kind;
-
-	kind = [];
-
-	match = pkg.match( RE_NAMESPACE );
-	if ( match ) {
-		kind.push( match[ 1 ] );
-	}
-	match = pkg.match( RE_SUBNAMESPACE );
-	if ( match ) {
-		kind.push( match[ 1 ] );
-	}
-	return kind.join( ', ' );
-}
 
 
 // MAIN //
@@ -242,7 +183,6 @@ class Search extends React.Component {
 		var kind;
 		var pkg;
 		var url;
-		var idx;
 
 		// Get the package name associated with the search result:
 		name = result.ref; // e.g., `@stdlib/math/base/special/sin`
@@ -251,11 +191,10 @@ class Search extends React.Component {
 		pkg = deprefix( name ); // e.g., `math/base/special/sin`
 
 		// Isolate the basename of the package path:
-		idx = lastIndexOf( pkg, '/' );
-		basename = pkg.substring( idx+1 ); // e.g., `sin`
+		basename = pkgBasename( pkg ); // e.g., `sin`
 
 		// Determine if we can resolve a package "kind":
-		kind = packageKind( pkg );
+		kind = pkgKind( pkg );
 
 		// Retrieve the package description:
 		desc = packageDescription( pkg, this.props.version ) || '(no description)';
