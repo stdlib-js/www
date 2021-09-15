@@ -701,13 +701,41 @@ h2 {
 }
 
 /*
-* README addendum.
+* README bottom navigation.
 */
 
-.readme-addendum {
+.readme .readme-bottom-nav {
+	margin-top: 3em;
+}
+
+.readme .readme-bottom-nav .edit-link-wrapper {
 	display: flex;
 	justify-content: flex-end;
-	margin-top: 3em;
+}
+
+.readme .readme-bottom-nav .pagination {
+	display: flex;
+	justify-content: space-between;
+
+	margin-top: 2.5em;
+	padding-top: 3em;
+}
+
+.readme .readme-bottom-nav .pagination-link {
+	width: 50%;
+	padding: 1em;
+}
+
+.readme .readme-bottom-nav .pagination-link-prev {
+	padding-left: 0.5em;
+}
+
+.readme .readme-bottom-nav .pagination-link-next {
+	padding-right: 0.5em;
+}
+
+.readme .readme-bottom-nav .pagination-link-label {
+	margin-top: 0.2em;
 }
 
 /*

@@ -368,6 +368,24 @@ img {
 }
 
 /*
+* README bottom pagination.
+*/
+
+.readme .readme-bottom-nav .pagination {
+	border-top: 1px solid #e7e7e7;
+}
+
+.readme .readme-bottom-nav .pagination-link {
+	border-radius: 4px;
+	border: 1px solid #fff;
+}
+
+.readme .readme-bottom-nav .pagination-link:focus,
+.readme .readme-bottom-nav .pagination-link:hover {
+	border: 1px solid #4078c0;
+}
+
+/*
 * Side menu.
 */
 

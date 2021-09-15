@@ -226,6 +226,38 @@ a:active {
 }
 
 /*
+* README pagination.
+*/
+
+.readme .readme-bottom-nav .pagination-link:active,
+.readme .readme-bottom-nav .pagination-link:hover {
+	text-decoration: none;
+}
+
+.readme .readme-bottom-nav .pagination-link-next {
+	text-align: right;
+}
+
+.readme .readme-bottom-nav .pagination-link-type {
+	font-size: 1em;
+	color: #585858;
+}
+
+.readme .readme-bottom-nav .pagination-link-label {
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+.readme .readme-bottom-nav .pagination-link-label:hover {
+	text-decoration: underline;
+}
+
+.readme .readme-bottom-nav .pagination-link-sublabel {
+	font-size: 0.8em;
+	color: #585858;
+}
+
+/*
 * Navigation.
 */
 
