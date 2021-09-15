@@ -33,6 +33,8 @@ import fetchPackageData from './utils/fetch_package_data.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import packageResources from './utils/package_resources.js';
 import packageResource from './utils/package_resource.js';
+import packageList from './utils/package_list.js';
+import packageOrder from './utils/package_order.js';
 import viewportWidth from './utils/viewport_width.js';
 import resetScroll from './utils/reset_scroll.js';
 import config from './config.js';
@@ -509,15 +511,47 @@ class App extends React.Component {
 	* @private
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
 	* @param {string} match.params.pkg - package name (e.g., `math/base/special/sin`)
+	* @param {string} match.params.version - documentation version
 	* @returns {ReactElement} React element
 	*/
 	_renderReadme( match ) {
+		var version;
+		var next;
+		var prev;
+		var list;
+		var pkg;
+		var ord;
+		var idx;
+
+		version = match.params.version;
+		pkg = match.params.pkg;
+
+		// Resolve the package order for the current documentation version:
+		ord = packageOrder( version );
+		if ( ord ) {
+			// Resolve the list of packages for the current documentation version:
+			list = packageList( version );
+
+			// Resolve the index of the current package:
+			idx = ord[ pkg ];
+
+			// Resolve the previous package:
+			prev = list[ idx-1 ] || null;
+
+			// Resolve the next package:
+			next = list[ idx+1 ] || null;
+		}
 		return (
 			<Readme
-				pkg={ match.params.pkg }
+				pkg={ pkg }
+				version={ version }
+				prev={ prev }
+				next={ next }
 				url={ match.url }
 				onClick={ this._onReadmeClick }
+				onPackageChange={ this._onPackageChange }
 			/>
 		);
 	}
