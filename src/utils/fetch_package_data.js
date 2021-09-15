@@ -36,12 +36,12 @@ function fetchPackageData( version, clbk ) {
 	var count;
 	var o;
 
-	total = 3;
+	total = 4;
 	count = 0;
 
 	o = PACKAGE_DATA_CACHE[ version ];
 
-	// Fetch data necessary for rendering the side menu...
+	// Fetch data necessary for rendering the application...
 	if ( o && o.tree ) {
 		done();
 	} else {
@@ -56,6 +56,14 @@ function fetchPackageData( version, clbk ) {
 		fetch( config.mount+version+'/package_resources.json' )
 			.then( toJSON )
 			.then( onResources )
+			.catch( done );
+	}
+	if ( o && o.order ) {
+		done();
+	} else {
+		fetch( config.mount+version+'/package_order.json' )
+			.then( toJSON )
+			.then( onOrder )
 			.catch( done );
 	}
 	if ( o && o.namespaces ) {
@@ -103,6 +111,20 @@ function fetchPackageData( version, clbk ) {
 			PACKAGE_DATA_CACHE[ version ] = {};
 		}
 		PACKAGE_DATA_CACHE[ version ].resources = json;
+		done();
+	}
+
+	/**
+	* Callback invoked upon resolving the package order hash.
+	*
+	* @private
+	* @param {Object} json - JSON object
+	*/
+	function onOrder( json ) {
+		if ( PACKAGE_DATA_CACHE[ version ] === void 0 ) {
+			PACKAGE_DATA_CACHE[ version ] = {};
+		}
+		PACKAGE_DATA_CACHE[ version ].order = json;
 		done();
 	}
 
