@@ -534,11 +534,11 @@ class SideMenuDrawer extends React.Component {
 						{ node.key }
 					</Link>
 					<IconButton
+						size="small"
 						className="side-menu-list-item-namespace-icon"
 						title={ ( expanded ) ? 'Collapse submenu' : 'Expand submenu' }
 						onClick={ this._onNamespaceIconClickFactory( pkg ) }
 						aria-label={ ( expanded ) ? 'collapse submenu' : 'expand submenu' }
-						size="small"
 					>
 						{ ( expanded )
 							? <span className="side-menu-list-item-collapse-icon">&ndash;</span>
@@ -736,6 +736,7 @@ class SideMenuDrawer extends React.Component {
 				classes={{
 					paper: 'side-menu-drawer'
 				}}
+				aria-label="package menu"
 				aria-hidden={ ( this.props.open ) ? null : "true" }
 			>
 				<Head
@@ -750,11 +751,15 @@ class SideMenuDrawer extends React.Component {
 					onFocus={ this.props.onFilterFocus }
 					onBlur={ this.props.onFilterBlur }
 					onChange={ this._onFilterChange }
+					aria-controls="side-menu-list"
 				/>
 				<div className="side-menu-list-wrapper" >
 					<List
 						disablePadding
+						id="side-menu-list"
 						className="side-menu-list"
+						role="tree"
+						aria-label="package tree"
 					>
 						{ this._renderTree( tree, expanded, 0 ) }
 					</List>

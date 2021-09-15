@@ -38,6 +38,10 @@ function DownloadProgressBar( props ) {
 			className="download-progress"
 			variant="determinate"
 			value={ props.value }
+			role="progressbar"
+			aria-valuenow={ props.value }
+			aria-valuemin={ 0.0 }
+			aria-valuemax={ 100.0 }
 		/>
 	);
 }

@@ -40,9 +40,10 @@ function OpenButton( props ) {
 			id="menu-icon-button"
 			className={ 'icon-button ' + ( ( props.hide ) ? 'invisible' : '' ) }
 			color="inherit"
-			aria-label="open drawer"
 			onClick={ props.onClick }
 			title="Open documentation navigation menu"
+			aria-label="open drawer"
+			aria-pressed={ ( props.hide ) ? 'false' : 'true' }
 		>
 			<MenuIcon id="menu-icon" />
 		</IconButton>

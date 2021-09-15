@@ -136,8 +136,8 @@ class SearchInput extends React.Component {
 				<IconButton
 					type="button"
 					className="icon-button top-nav-search-button"
-					aria-label="search"
 					onClick={ this._onSubmitClick }
+					aria-label="search"
 				>
 					<SearchIcon />
 				</IconButton>

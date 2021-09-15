@@ -268,9 +268,11 @@ class Readme extends React.Component {
 					html={ this.state.content }
 					onClick={ this.props.onClick }
 				/>
-				<section className="readme-bottom-nav" role="navigation" aria-label="Additional package navigation">
-					{ this._renderEditLink() }
-					{ this._renderPagination() }
+				<section className="readme-addendum">
+					<nav className="readme-bottom-nav" aria-label="pagination">
+						{ this._renderEditLink() }
+						{ this._renderPagination() }
+					</nav>
 				</section>
 			</div>
 		);

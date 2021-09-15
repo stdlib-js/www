@@ -296,6 +296,7 @@ class Search extends React.Component {
 				<List
 					disablePadding
 					className="search-results-list"
+					aria-label="search results"
 				>
 					{ this._renderItems( results ) }
 				</List>

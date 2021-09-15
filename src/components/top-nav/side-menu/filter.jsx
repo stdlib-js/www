@@ -91,13 +91,15 @@ class SideMenuFilter extends React.Component {
 					onBlur={ this.props.onBlur }
 					value={ this.state.filter }
 					placeholder="Type here to filter menu..."
-					title="Filter documentation menu"
+					title="Filter package menu"
+					aria-label="filter menu"
 				/>
 				{ this.state.filter
 					? <ClearIcon
 						className="side-menu-filter-clear"
 						title="Clear the current filter"
 						onClick={ this._onResetFilterClick }
+						aria-label="clear"
 					/>
 					: null
 				}

@@ -133,7 +133,8 @@ class TopNav extends React.Component {
 			<Fragment>
 				<nav
 					className={ 'top-nav '+( this.props.sideMenu ? 'side-menu-open' : '' ) }
-					aria-label="Main"
+					aria-label="primary"
+					aria-controls="main"
 				>
 					<SideMenu
 						open={ this.props.sideMenu }

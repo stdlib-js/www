@@ -35,7 +35,7 @@ import config from './../../config.js';
 function Footer() {
 	return (
 		<footer>
-			<nav className="bottom-nav center" aria-label="Footer">
+			<nav className="bottom-nav center" aria-label="footer">
 				<a href={ config.funding } title="Help support the project">Donate</a>
 				{ ' / ' }
 				<Link to={ config.mount } title="Documentation">Docs</Link>

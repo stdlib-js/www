@@ -43,14 +43,15 @@ function SideMenuHead( props ) {
 			<Link
 				to={ pkgPath( '', props.version ) }
 				title="Navigate to documentation home"
+				aria-label="home"
 			>
 				<Logo />
 			</Link>
 			<IconButton
-				aria-label="close drawer"
 				onClick={ props.onClose }
 				edge="start"
 				title="Close documentation navigation menu"
+				aria-label="close drawer"
 			>
 				<ChevronLeftIcon className="MuiSvgIcon-root menu-close-icon" />
 			</IconButton>
