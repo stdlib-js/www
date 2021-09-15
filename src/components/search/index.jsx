@@ -225,7 +225,7 @@ class Search extends React.Component {
 					</span>
 				</h2>
 				<p className="search-results-list-item-url">
-					<span className="logo-icon stdlib-logo-icon"></span>
+					<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
 					<Link
 						className="search-results-list-item-url-link"
 						to={ url }
@@ -285,7 +285,7 @@ class Search extends React.Component {
 					<IconButton aria-label="close">
 						<ClearIcon
 							className="search-results-close"
-							title="Close the search results"
+							title="Close search results"
 							onClick={ this.props.onClose }
 						/>
 					</IconButton>
