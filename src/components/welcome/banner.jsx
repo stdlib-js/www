@@ -32,14 +32,8 @@ import React from 'react';
 */
 function Banner() {
 	return (
-		<div className="image" align="center" >
-			<br />
-			<br />
-			<img src="/img/logo_banner.svg" alt="stdlib logo" />
-			<br />
-			<br />
-			<br />
-			<br />
+		<div className="image-wrapper" >
+			<img class="center" src="/img/logo_banner.svg" alt="stdlib logo" />
 		</div>
 	);
 }
