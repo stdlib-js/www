@@ -541,8 +541,8 @@ class SideMenuDrawer extends React.Component {
 						aria-label={ ( expanded ) ? 'collapse submenu' : 'expand submenu' }
 					>
 						{ ( expanded )
-							? <span className="side-menu-list-item-collapse-icon">&ndash;</span>
-							: <span className="side-menu-list-item-expand-icon">+</span>
+							? <span className="side-menu-list-item-collapse-icon" aria-hidden="true">&ndash;</span>
+							: <span className="side-menu-list-item-expand-icon" aria-hidden="true">+</span>
 						}
 					</IconButton>
 				</ListItem>
