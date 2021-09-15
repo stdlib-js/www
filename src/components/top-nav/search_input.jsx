@@ -140,7 +140,7 @@ class SearchInput extends React.Component {
 					onClick={ this._onSubmitClick }
 					aria-label="search"
 				>
-					<SearchIcon />
+					<SearchIcon aria-hidden="true" />
 				</IconButton>
 			</Fragment>
 		);
