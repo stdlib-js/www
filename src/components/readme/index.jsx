@@ -19,7 +19,11 @@
 // MODULES //
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import fetchFragment from './../../utils/fetch_fragment.js';
+import pkgPath from './../../utils/pkg_doc_path.js';
+import pkgKind from './../../utils/pkg_kind.js';
+import pkgBasename from './../../utils/pkg_basename.js';
 import log from './../../utils/log.js';
 import notFoundHTML from './../not-found/html.js';
 import ReadmeContent from './content.jsx';
@@ -41,7 +45,11 @@ class Readme extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.url - resource URL
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
+	* @param {string} props.version - documentation version
+	* @param {string} [props.prev] - previous package name
+	* @param {string} [props.next] - next package name
 	* @param {Callback} props.onClick - callback to invoke upon clicking on README content
+	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -50,6 +58,29 @@ class Readme extends React.Component {
 			// README content to render:
 			'content': ''
 		};
+	}
+
+	/**
+	* Returns a callback which is invoked upon clicking on a specified package.
+	*
+	* @private
+	* @param {string} pkg - package name
+	* @returns {Callback} event handler
+	*/
+	_onPackageClickFactory( pkg ) {
+		var self = this;
+		return onClick;
+
+		/**
+		* Callback invoked upon clicking on a package.
+		*
+		* @private
+		* @param {Object} event - event object
+		*/
+		function onClick() {
+			// Notify the application that a user has selected a package:
+			self.props.onPackageChange( pkg );
+		}
 	}
 
 	/**
@@ -95,6 +126,111 @@ class Readme extends React.Component {
 	}
 
 	/**
+	* Renders an edit link.
+	*
+	* @private
+	* @returns {(ReactElement|null)} React element
+	*/
+	_renderEditLink() {
+		if ( this.state.content ) {
+			return (
+				<div className="edit-link-wrapper">
+					<EditLink pkg={ this.props.pkg } />
+				</div>
+			);
+		}
+		return null;
+	}
+
+	/**
+	* Renders a pagination link to the previous package.
+	*
+	* @private
+	* @param {string} pkg - package
+	* @returns {ReactElement} React element
+	*/
+	_renderPaginationPrev( pkg ) {
+		var basename;
+		var name;
+		var kind;
+
+		name = '@stdlib/' + pkg;
+
+		// Isolate the basename of the package path:
+		basename = pkgBasename( pkg ); // e.g., `sin`
+
+		// Determine if we can resolve a package "kind":
+		kind = pkgKind( pkg );
+
+		return (
+			<Link
+				className="pagination-link pagination-link-prev"
+				to={ pkgPath( name, this.props.version ) }
+				title="Previous package"
+				onClick={ this._onPackageClickFactory( pkg ) }
+			>
+				<div class="pagination-link-type">Previous</div>
+				<div class="pagination-link-label">{ '« '+basename }</div>
+				<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
+			</Link>
+		);
+	}
+
+	/**
+	* Renders a pagination link to the next package.
+	*
+	* @private
+	* @param {string} pkg - package
+	* @returns {ReactElement} React element
+	*/
+	_renderPaginationNext( pkg ) {
+		var basename;
+		var name;
+		var kind;
+
+		name = '@stdlib/' + pkg;
+
+		// Isolate the basename of the package path:
+		basename = pkgBasename( pkg ); // e.g., `sin`
+
+		// Determine if we can resolve a package "kind":
+		kind = pkgKind( pkg );
+
+		return (
+			<Link
+				className="pagination-link pagination-link-next"
+				to={ pkgPath( name, this.props.version ) }
+				title="Next package"
+				onClick={ this._onPackageClickFactory( pkg ) }
+			>
+				<div class="pagination-link-type">Next</div>
+				<div class="pagination-link-label">{ basename+' »' }</div>
+				<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
+			</Link>
+		);
+	}
+
+	/**
+	* Renders pagination links.
+	*
+	* @private
+	* @returns {(ReactElement|null)} React element
+	*/
+	_renderPagination() {
+		var prev = this.props.prev;
+		var next = this.props.next;
+		if ( !prev && !next ) {
+			return null;
+		}
+		return (
+			<div className="pagination">
+				{ ( prev ) ? this._renderPaginationPrev( prev ) : null }
+				{ ( next ) ? this._renderPaginationNext( next ) : null }
+			</div>
+		);
+	}
+
+	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
 	*
 	* @private
@@ -132,8 +268,9 @@ class Readme extends React.Component {
 					html={ this.state.content }
 					onClick={ this.props.onClick }
 				/>
-				<section className="readme-addendum" role="navigation">
-					{ ( this.state.content ) ? <EditLink pkg={ this.props.pkg } /> : null }
+				<section className="readme-bottom-nav" role="navigation" aria-label="Additional package navigation">
+					{ this._renderEditLink() }
+					{ this._renderPagination() }
 				</section>
 			</div>
 		);
