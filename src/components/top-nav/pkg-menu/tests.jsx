@@ -34,7 +34,7 @@ import { Link } from 'react-router-dom';
 */
 function Tests( props ) {
 	return (
-		<li class="top-nav-item">
+		<li class="top-nav-item" role="menuitem">
 			<Link to={ props.path+'/test.html' } title="Run package tests">tests</Link>
 		</li>
 	);

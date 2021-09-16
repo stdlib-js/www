@@ -525,6 +525,7 @@ class SideMenuDrawer extends React.Component {
 				<ListItem
 					key={ name }
 					className={ 'side-menu-list-item-namespace '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
+					role="menuitem"
 				>
 					<Link
 						to={ pkgPath( name, this.props.version ) }
@@ -559,7 +560,10 @@ class SideMenuDrawer extends React.Component {
 					timeout={ COLLAPSE_TRANSITION_TIMEOUT }
 					unmountOnExit
 				>
-					<List disablePadding >
+					<List
+						disablePadding
+						role="menu"
+					>
 						{ this._renderTree( node.children, hash, level+1 ) }
 					</List>
 				</Collapse>
@@ -588,6 +592,7 @@ class SideMenuDrawer extends React.Component {
 			<ListItem
 				key={ name }
 				className={ 'side-menu-list-item '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
+				role="menuitem"
 			>
 				<Link
 					to={ pkgPath( name, this.props.version ) }
@@ -764,7 +769,7 @@ class SideMenuDrawer extends React.Component {
 						disablePadding
 						id="side-menu-list"
 						className="side-menu-list"
-						role="tree"
+						role="menu"
 						aria-label="package tree"
 					>
 						{ this._renderTree( tree, expanded, 0 ) }

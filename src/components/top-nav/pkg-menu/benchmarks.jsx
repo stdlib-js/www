@@ -34,7 +34,7 @@ import { Link } from 'react-router-dom';
 */
 function Benchmarks( props ) {
 	return (
-		<li class="top-nav-item">
+		<li class="top-nav-item" role="menuitem">
 			<Link to={ props.path+'/benchmark.html' } title="Run package benchmarks">benchmarks</Link>
 		</li>
 	);

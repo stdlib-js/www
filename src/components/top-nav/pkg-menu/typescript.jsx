@@ -54,7 +54,7 @@ function TypeScript( props ) {
 	PATH[ 3 ] = pkg.replace( RE_UNDERSCORE_REPLACE, '_' );
 
 	return (
-		<li class="top-nav-item">
+		<li class="top-nav-item" role="menuitem">
 			<a href={ PATH.join( '' ) } title="View TypeScript type definitions">typescript</a>
 		</li>
 	);

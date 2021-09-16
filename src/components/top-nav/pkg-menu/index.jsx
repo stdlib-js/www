@@ -85,8 +85,14 @@ class PackageMenu extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	render() {
-		var path = pkgPath( this.props.pkg, this.props.version );
-		var version = 'develop'; // FIXME: we are hardcoding `develop`, but the `Source` component link should use `this.props.version`, and, if `latest`, we should map to the first version in `config.versions`
+		var version;
+		var path;
+
+		// FIXME: we are hardcoding `develop`, but the `Source` component link should use `this.props.version`, and, if `latest`, we should map to the first version in `config.versions`...
+		version = 'develop';
+
+		// Generate the URL for the current package:
+		path = pkgPath( this.props.pkg, this.props.version );
 
 		return (
 			<Fragment>
@@ -95,13 +101,17 @@ class PackageMenu extends React.Component {
 					title="Toggle navigation menu"
 					onClick={ this._onMenuClick }
 					aria-label="toggle menu"
+					aria-controls="top-nav-package-menu"
+					aria-expanded={ this.props.open }
+					aria-haspopup="menu"
 				>
-					<ExpandMoreIcon />
+					<ExpandMoreIcon aria-hidden="true" />
 				</IconButton>
 				<ul
 					id='top-nav-package-menu'
-					className={ this.props.open ? 'top-nav-items-dropdown' : 'top-nav-items' }
+					className={ ( this.props.open ) ? 'top-nav-items-dropdown' : 'top-nav-items' }
 					onClick={ this._onMenuClose }
+					role="menubar"
 				>
 					{ this.props.home ? <Home /> : null }
 					{ this.props.docs ? <Docs path={ path } /> : null }
