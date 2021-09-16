@@ -526,6 +526,7 @@ class SideMenuDrawer extends React.Component {
 					key={ name }
 					className={ 'side-menu-list-item-namespace '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
 					role="menuitem"
+					aria-owns={ submenu }
 				>
 					<Link
 						to={ pkgPath( name, this.props.version ) }
