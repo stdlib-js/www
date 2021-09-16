@@ -685,6 +685,7 @@ class App extends React.Component {
 				<main
 					class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
 					id="main"
+					aria-live="polite"
 				>
 					{ self[ method ]( props.match ) }
 				</main>
