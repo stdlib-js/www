@@ -544,6 +544,7 @@ class SideMenuDrawer extends React.Component {
 						title={ ( expanded ) ? 'Collapse submenu' : 'Expand submenu' }
 						onClick={ this._onNamespaceIconClickFactory( pkg ) }
 						aria-label={ ( expanded ) ? 'collapse submenu' : 'expand submenu' }
+						aria-haspopup="menu"
 						aria-expanded={ expanded }
 						aria-controls={ submenu }
 					>
