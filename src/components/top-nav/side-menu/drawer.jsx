@@ -527,7 +527,7 @@ class SideMenuDrawer extends React.Component {
 					key={ name }
 					className={ 'side-menu-list-item-namespace '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
 					role="menuitem"
-					aria-owns={ submenu }
+					aria-owns={ ( expanded ) ? submenu : null }
 				>
 					<Link
 						to={ pkgPath( name, this.props.version ) }
@@ -547,7 +547,7 @@ class SideMenuDrawer extends React.Component {
 						aria-label={ ( expanded ) ? 'collapse submenu' : 'expand submenu' }
 						aria-haspopup="menu"
 						aria-expanded={ expanded }
-						aria-controls={ submenu }
+						aria-controls={ ( expanded ) ? submenu : null }
 					>
 						{ ( expanded )
 							? <span className="side-menu-list-item-collapse-icon" role="img" aria-hidden="true">&ndash;</span>
