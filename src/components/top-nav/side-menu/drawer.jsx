@@ -119,6 +119,7 @@ class SideMenuDrawer extends React.Component {
 	/**
 	* Returns a component for rendering a side menu drawer for navigating project packages.
 	*
+	* @private
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {boolean} props.open - boolean indicating whether the side menu is open
@@ -721,6 +722,7 @@ class SideMenuDrawer extends React.Component {
 	/**
 	* Renders the component.
 	*
+	* @private
 	* @returns {ReactElement} React element
 	*/
 	render() {

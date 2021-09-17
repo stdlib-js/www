@@ -159,6 +159,9 @@ class App extends React.Component {
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
 		this._prevLocation = config.mount; // default is API docs landing page
+
+		// Create a `ref` to point to a DOM element for resetting focus on page change:
+		this._focusRef = React.createRef();
 	}
 
 	/**
@@ -682,13 +685,23 @@ class App extends React.Component {
 		*/
 		function render( props ) {
 			return (
-				<main
-					class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
-					id="main"
-					aria-live="polite"
-				>
-					{ self[ method ]( props.match ) }
-				</main>
+				<Fragment>
+					<div class="skip-links" tabIndex="-1" ref={ self._focusRef } role="navigation" aria-label="Skip links">
+						<a class="skip-link" href="#main">Skip to main content</a>
+						<a class="skip-link" href="#top-nav-search">Skip to search</a>
+						<a class="skip-link" href="#top-nav-package-menu">Skip to top navigation</a>
+						<a class="skip-link" href="#side-menu-list">Skip to package tree</a>
+						<a class="skip-link" href="#bottom-nav">Skip to bottom navigation</a>
+					</div>
+					<main
+						id="main"
+						class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
+						aria-live="polite"
+						aria-atomic="true"
+					>
+						{ self[ method ]( props.match ) }
+					</main>
+				</Fragment>
 			);
 		}
 	}
@@ -746,9 +759,10 @@ class App extends React.Component {
 	* @param {Object} prevState - previous state
 	*/
 	componentDidUpdate( prevProps ) {
-		// Whenever we navigate to a new page, reset the window scroll position...
+		// Whenever we navigate to a new page, reset the window scroll position and focus...
 		if ( this.props.location !== prevProps.location ) {
 			resetScroll();
+			this._focusRef.current.focus();
 		}
 	}
 

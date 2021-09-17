@@ -41,6 +41,7 @@ class PackageMenu extends React.Component {
 	/**
 	* Returns a component for rendering a package navigation menu.
 	*
+	* @private
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
@@ -82,6 +83,7 @@ class PackageMenu extends React.Component {
 	/**
 	* Renders the component.
 	*
+	* @private
 	* @returns {ReactElement} React element
 	*/
 	render() {

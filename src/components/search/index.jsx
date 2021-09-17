@@ -45,6 +45,7 @@ class Search extends React.Component {
 	/**
 	* Returns a component for rendering documentation search.
 	*
+	* @private
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
@@ -244,6 +245,8 @@ class Search extends React.Component {
 
 	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*
+	* @private
 	*/
 	componentDidMount() {
 		this._updateSearchIndex();
@@ -265,6 +268,7 @@ class Search extends React.Component {
 	/**
 	* Renders the component.
 	*
+	* @private
 	* @returns {ReactElement} React element
 	*/
 	render() {

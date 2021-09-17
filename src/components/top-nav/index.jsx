@@ -37,6 +37,7 @@ class TopNav extends React.Component {
 	/**
 	* Returns a component for rendering top navigation.
 	*
+	* @private
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
@@ -125,6 +126,7 @@ class TopNav extends React.Component {
 	/**
 	* Renders the component.
 	*
+	* @private
 	* @returns {ReactElement} React element
 	*/
 	render() {

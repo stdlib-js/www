@@ -33,6 +33,7 @@ class SideMenuFilter extends React.Component {
 	/**
 	* Returns a component for displaying a menu filter.
 	*
+	* @private
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {Callback} props.onFocus - callback to invoke when the menu filter receives focus

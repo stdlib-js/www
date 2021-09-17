@@ -38,6 +38,7 @@ class DownloadButton extends React.Component {
 	/**
 	* Returns a component for displaying a download button and downloading assets.
 	*
+	* @private
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.version - documentation version

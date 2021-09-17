@@ -34,6 +34,7 @@ class IframeResizer extends React.Component {
 	/**
 	* Returns a component which renders an `iframe` which automatically resizes based on its content.
 	*
+	* @private
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.className - class name
@@ -49,6 +50,8 @@ class IframeResizer extends React.Component {
 
 	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*
+	* @private
 	*/
 	componentDidMount() {
 		var opts = {
@@ -59,6 +62,8 @@ class IframeResizer extends React.Component {
 
 	/**
 	* Callback invoked immediately before a component is unmounted and destroyed.
+	*
+	* @private
 	*/
 	componentWillUnmount() {
 		var iframe = this._ref.current;
@@ -70,6 +75,7 @@ class IframeResizer extends React.Component {
 	/**
 	* Renders the component.
 	*
+	* @private
 	* @returns {ReactElement} React element
 	*/
 	render() {

@@ -42,6 +42,7 @@ class Readme extends React.Component {
 	* Returns a component for rendering a README.
 	*
 	* @private
+	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.url - resource URL
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
