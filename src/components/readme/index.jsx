@@ -212,6 +212,18 @@ class Readme extends React.Component {
 	}
 
 	/**
+	* Renders a pagination link placeholder.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderPaginationPlaceholder() {
+		return (
+			<div className="pagination-link-placeholder"/>
+		);
+	}
+
+	/**
 	* Renders pagination links.
 	*
 	* @private
@@ -225,8 +237,8 @@ class Readme extends React.Component {
 		}
 		return (
 			<div className="pagination">
-				{ ( prev ) ? this._renderPaginationPrev( prev ) : null }
-				{ ( next ) ? this._renderPaginationNext( next ) : null }
+				{ ( prev ) ? this._renderPaginationPrev( prev ) : this._renderPaginationPlaceholder() }
+				{ ( next ) ? this._renderPaginationNext( next ) : this._renderPaginationPlaceholder() }
 			</div>
 		);
 	}
