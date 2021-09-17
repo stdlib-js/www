@@ -719,7 +719,8 @@ h2 {
 	padding-top: 3em;
 }
 
-.readme .readme-bottom-nav .pagination-link {
+.readme .readme-bottom-nav .pagination-link,
+.readme .readme-bottom-nav .pagination-link-placeholder {
 	width: 50%;
 	padding: 1em;
 }
