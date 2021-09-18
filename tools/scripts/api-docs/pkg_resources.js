@@ -87,9 +87,9 @@ function main() {
 	for ( i = 0; i < keys.length; i++ ) {
 		k = keys[ i ];
 		db[ k ] = {
-			'benchmark': exists( join( dpath, '@stdlib', k, 'benchmark.html' ) ),
-			'test': exists( join( dpath, '@stdlib', k, 'test.html' ) ),
-			'typescript': exists( join( tspath, '_' + replace( k, RE_UNDERSCORE_REPLACE, '_' ) + TS_SUFFIX ) )
+			'benchmark': exists( join( dpath, '@stdlib', k, 'benchmark.html' ) ) ? 1 : 0,
+			'test': exists( join( dpath, '@stdlib', k, 'test.html' ) ) ? 1 : 0,
+			'typescript': exists( join( tspath, '_' + replace( k, RE_UNDERSCORE_REPLACE, '_' ) + TS_SUFFIX ) ) ? 1 : 0
 		}
 	}
 	// Write the database to file:
