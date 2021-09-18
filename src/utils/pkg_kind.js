@@ -41,12 +41,27 @@ var RE_SUBNAMESPACE = /\/(base|dists|incr|iter|strided)\//;
 *
 * @private
 * @param {string} pkg - package name (e.g., `@stdlib/math/base/special/sin` or `math/base/special/sin`)
+* @param {string} [sep=', '] - separator
 * @returns {string} kind
+*
+* @examples
+* var kind = packageKind( 'math/base/special/sin' );
+* // returns 'math, base'
+*
+* @examples
+* var kind = packageKind( 'math/base/special/sin', '.' );
+* // returns 'math.base'
 */
-function packageKind( pkg ) {
+function packageKind( pkg, sep ) {
 	var match;
 	var kind;
+	var s;
 
+	if ( arguments.length > 1 ) {
+		s = sep;
+	} else {
+		s = ', ';
+	}
 	pkg = deprefix( pkg );
 
 	kind = [];
@@ -58,7 +73,7 @@ function packageKind( pkg ) {
 	if ( match ) {
 		kind.push( match[ 1 ] );
 	}
-	return kind.join( ', ' );
+	return kind.join( s );
 }
 
 
