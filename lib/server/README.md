@@ -296,67 +296,6 @@ createServer( done );
 
 <!-- /.examples -->
 
-* * *
-
-<section class="cli">
-
-## CLI
-
-<section class="usage">
-
-### Usage
-
-```text
-Usage: stdlib-www-doc-server [options]
-
-Options:
-
-  -h,    --help                      Print this message.
-  -V,    --version                   Print the package version.
-         --address address           Server address. Default: 127.0.0.1.
-         --hostname hostname         Server hostname.
-         --latest path               Path to the "latest" documentation.
-         --logger                    Enable logging.
-         --port port                 Server port. Default: 0.
-         --prefix prefix             Virtual mount path for static files.
-         --root dir                  Root documentation directory.
-         --static dir                Static file directory.
-         --template filepath         Path to an application shell template.
-         --trust_proxy               Trust X-forwarded-by headers.
-```
-
-</section>
-
-<!-- /.usage -->
-
-<section class="notes">
-
-### Notes
-
--   File paths may be either absolute paths or paths relative to the current working directory.
-
-</section>
-
-<!-- /.notes -->
-
-<section class="examples">
-
-### Examples
-
-<!-- run-disable -->
-
-```bash
-$ stdlib-www-doc-server --logger
-```
-
-</section>
-
-<!-- /.examples -->
-
-</section>
-
-<!-- /.cli -->
-
 <section class="links">
 
 </section>
