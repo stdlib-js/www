@@ -60,7 +60,7 @@ The function accepts the following `options`:
 
 -   **address**: server address. Default: `'127.0.0.1'`.
 -   **hostname**: server hostname (e.g., `localhost` ).
--   **latest**: path to the "latest" documentation (e.g., this could simply be a `version`, such as `v0.0.90`, or an arbitrary (relative) path, such as `foo/bar/beep/boop`). When set to an empty string (as is the default), the server does **not** virtually map the version `latest` to a particular set of documentation resources. Default: `''`.
+-   **latest**: latest documentation version (e.g., `v0.0.90`). When set to an empty string (as is the default), the server does **not** virtually map the version `latest` to a particular set of documentation resources. Default: `''`.
 -   **logger**: `boolean` indicating whether to enable logging. Default: `false`.
 -   **port**: server port. Default: `0` (i.e., randomly assigned).
 -   **prefix**: URL path prefix used to create a virtual mount path for a static directory (e.g., `/docs/api/` to match the API documentation virtual mount path). If provided a list of prefixes, each prefix is associated with a corresponding `static` directory. Default: `'/'`.
