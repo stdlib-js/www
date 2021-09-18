@@ -34,13 +34,13 @@ var OFFSETS = {
 // MAIN //
 
 /**
-* Returns a package resource for a specified documentation version.
+* Returns a value indicating whether a package has a specified resource for a specified documentation version.
 *
 * @private
 * @param {string} pkg - package name
 * @param {string} resource - resource name
 * @param {string} version - documentation version
-* @returns {(string|null)} package resource
+* @returns {(NonNegativeInteger|null)} value indicating whether a package has a specified resource
 */
 function packageResource( pkg, resource, version ) {
 	var resources;
@@ -64,7 +64,7 @@ function packageResource( pkg, resource, version ) {
 	if ( j === void 0 ) {
 		return null;
 	}
-	return resources[ (i*3) + j ] || null;
+	return resources[ (i*3) + j ];
 }
 
 
