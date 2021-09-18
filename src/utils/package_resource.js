@@ -19,6 +19,16 @@
 // MODULES //
 
 import packageResources from './package_resources.js';
+import packageOrder from './package_order.js';
+
+
+// VARIABLES //
+
+var OFFSETS = {
+	'benchmark': 0,
+	'test': 1,
+	'typescript': 2
+};
 
 
 // MAIN //
@@ -33,15 +43,28 @@ import packageResources from './package_resources.js';
 * @returns {(string|null)} package resource
 */
 function packageResource( pkg, resource, version ) {
-	var resources = packageResources( version );
+	var resources;
+	var order;
+	var i;
+	var j;
+
+	resources = packageResources( version );
 	if ( resources === null ) {
 		return null;
 	}
-	resources = resources[ pkg ];
-	if ( !resources ) {
+	order = packageOrder( version );
+	if ( order === null ) {
 		return null;
 	}
-	return resources[ resource ] || null;
+	i = order[ pkg ];
+	if ( i === void 0 ) {
+		return null;
+	}
+	j = OFFSETS[ resource ];
+	if ( j === void 0 ) {
+		return null;
+	}
+	return resources[ (i*3) + j ] || null;
 }
 
 
