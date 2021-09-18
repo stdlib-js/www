@@ -43,7 +43,7 @@ function OpenButton( props ) {
 			onClick={ props.onClick }
 			title="Open documentation navigation menu"
 			aria-label="open drawer"
-			aria-pressed={ ( props.hide ) ? 'false' : 'true' }
+			aria-pressed={ ( props.hide ) ? 'true' : 'false' }
 		>
 			<MenuIcon id="menu-icon" />
 		</IconButton>
