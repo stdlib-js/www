@@ -20,7 +20,6 @@
 
 // MODULES //
 
-var readFile = require( 'fs' ).readFileSync;
 var path = require( 'path' );
 var httpServer = require( './../lib/server' );
 var config = require( './../src/config.js' ).default;
@@ -77,11 +76,9 @@ function main() {
 			path.join( PUBLIC_DIR, 'css' ),
 			path.join( PUBLIC_DIR, 'js' ),
 			path.join( PUBLIC_DIR, 'img' )
-		],
-		'template': readFile( path.join( BUILD_DIR, 'index.html' ), 'utf8' ),
-		'app': App
+		]
 	};
-	httpServer( opts )( done );
+	httpServer( opts )( App, done );
 }
 
 main();
