@@ -23,9 +23,8 @@
 // MODULES //
 
 var join = require( 'path' ).join;
-var mkdir = require( 'fs' ).mkdirSync;
-var exists = require( '@stdlib/fs/exists' ).sync;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
+var readJSON = require( '@stdlib/fs/read-json' ).sync;
 var namespaces = require( '@stdlib/_tools/pkgs/namespaces' ).sync;
 var documentationPath = require( './../utils/api_docs_path.js' );
 
@@ -44,15 +43,25 @@ var OUTPUT = 'namespace_list.json';
 * @throws {Error} unexpected error
 */
 function main() {
+	var order;
 	var opts;
 	var list;
 	var dir;
 	var i;
+	var j;
 
+	// Resolve the API documentation path:
 	dir = documentationPath();
-	if ( !exists( dir ) ) {
-		mkdir( dir );
+
+	// Load the API documentation package order:
+	opts = {
+		'encoding': 'utf8'
+	};
+	order = readJSON( join( dir, 'package_order.json' ), opts );
+	if ( order instanceof Error ) {
+		throw order;
 	}
+
 	// Resolve the list of namespaces:
 	opts = {
 		'ignore': [
@@ -61,9 +70,13 @@ function main() {
 	};
 	list = namespaces( opts );
 
-	// Remove the `@stdlib/` prefix...
+	// Convert to a look-up table...
 	for ( i = 0; i < list.length; i++ ) {
-		list[ i ] = list[ i ].substring( 8 ); // '@stdlib/' is 8 characters long
+		j = order[ list[ i ].substring( 8 ) ]; // '@stdlib/' prefix is 8 characters long
+		if ( j === void 0 ) {
+			throw new Error( 'unexpected error. Unable to find package `' + list[ i ] + '` in the package order. The data may be out-of-sync.' );
+		}
+		list[ i ] = j;
 	}
 	// Save as JSON file:
 	opts = {
