@@ -6,8 +6,6 @@
 	"prefix": "/",
 	"root": "",
 	"static": "",
-	"template": "",
-  "app": null,
 	"trustProxy": false,
   "ignoreTrailingSlash": true
 }
