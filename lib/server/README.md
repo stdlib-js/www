@@ -57,18 +57,19 @@ createServer( done );
 The function accepts the following `options`:
 
 -   **address**: server address. Default: `'127.0.0.1'`.
+-   **app**: application component. Default: `null`.
 -   **hostname**: server hostname (e.g., `localhost` ).
 -   **latest**: path to the "latest" documentation (e.g., this could simply be a `version`, such as `v0.0.90`, or an arbitrary (relative) path, such as `foo/bar/beep/boop`). When set to an empty string (as is the default), the server does **not** virtually map the version `latest` to a particular set of documentation resources. Default: `''`.
 -   **logger**: `boolean` indicating whether to enable logging. Default: `false`.
 -   **port**: server port. Default: `0` (i.e., randomly assigned).
--   **prefix**: URL path prefix used to create a virtual mount path for a static directory (e.g., `/docs/api/` to match the API documentation virtual mount path). Default: `'/'`.
+-   **prefix**: URL path prefix used to create a virtual mount path for a static directory (e.g., `/docs/api/` to match the API documentation virtual mount path). If provided a list of prefixes, each prefix is associated with a corresponding `static` directory. Default: `'/'`.
 -   **root**: root directory containing API documentation. May be either an absolute path or a path relative to the current working directory. This directory will be mounted onto the virtual path `/docs/api/`. Default: current working directory.
--   **static**: directory from which to serve static documentation assets and files. May be either an absolute path or a path relative to the current working directory. When set to an empty string (as is the default), the server does **not** serve static assets. Default: `''`.
+-   **static**: directory (or directories) from which to serve static documentation assets and files. May be either an absolute path or a path relative to the current working directory. When set to an empty string (the default), the server does **not** serve static assets. Default: `''`.
 -   **template**: application shell template. Default: `''`.
 -   **trustProxy**: `boolean` indicating whether to trust `X-forwarded-by` headers when the server is sitting behind a proxy. Default: `false`.
 -   **ignoreTrailingSlash**: `boolean` indicating whether to ignore trailing slashes in routes (e.g., `/foo/bar` and `/foo/bar/`). Default: `true`.
 
-An application shell template should include a `{{ FRAGMENT }}` parameter into which fragments are injected.
+An application shell template should include a `<div id="root"></div>` element into which fragments are injected.
 
 <!-- run-disable -->
 
@@ -76,7 +77,7 @@ An application shell template should include a `{{ FRAGMENT }}` parameter into w
 var template = [
     '<html>',
     '<body>',
-    '{{ FRAGMENT }}',
+    '<div id="root"></div>',
     '</body>',
     '</html>'
 ];
@@ -133,7 +134,7 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/v0.0.90'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest'
 ```
 
 * * *
@@ -155,7 +156,7 @@ From the command-line, to return a standalone web page,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/v0.0.90/@stdlib/math/base/special/'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/@stdlib/math/base/special/'
 ```
 
 To return an HTML fragment,
@@ -163,7 +164,7 @@ To return an HTML fragment,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/v0.0.90/@stdlib/math/base/special/?fragment=true'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/@stdlib/math/base/special/?fragment=true'
 ```
 
 * * *
@@ -246,7 +247,7 @@ $ curl 'http://127.0.0.1:<port>/status'
 
     where
 
-    -   `<version>` corresponds to a documentation version (e.g., `v0.0.90`)
+    -   `<version>` corresponds to a documentation version (e.g., `latest`, `v0.0.90`, etc)
     -   `<pkg>` corresponds to a package path (e.g., `@stdlib/math/base/special/sin`)
     -   the root `index.html` contains the main application for viewing API documentation
 
@@ -273,7 +274,7 @@ var opts = {
     'address': '127.0.0.1',
     'logger': true,
     'root': join( __dirname, 'examples', 'fixtures' ),
-    'template': '<html><body>Fragment: {{ FRAGMENT }}</body></html>'
+    'template': '<html><body><div id="root"></div></body></html>'
 };
 
 var createServer = httpServer( opts );
@@ -332,7 +333,7 @@ Options:
 
 ### Notes
 
--   A `template` file path may be either an absolute path or a path relative to the current working directory.
+-   File paths may be either absolute paths or paths relative to the current working directory.
 
 </section>
 
