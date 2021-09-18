@@ -28,7 +28,7 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 *
 * @private
 * @param {string} version - version
-* @returns {(Object|null)} package descriptions
+* @returns {(StringArray|null)} package descriptions
 */
 function packageDescriptions( version ) {
 	var o = PACKAGE_DATA_CACHE[ version ];

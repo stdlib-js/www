@@ -19,6 +19,7 @@
 // MODULES //
 
 import packageDescriptions from './package_descriptions.js';
+import packageOrder from './package_order.js';
 
 
 // MAIN //
@@ -32,11 +33,18 @@ import packageDescriptions from './package_descriptions.js';
 * @returns {(string|null)} package description
 */
 function packageDescription( pkg, version ) {
-	var desc = packageDescriptions( version );
+	var order;
+	var desc;
+
+	desc = packageDescriptions( version );
 	if ( desc === null ) {
 		return null;
 	}
-	return desc[ pkg ] || null;
+	order = packageOrder( version );
+	if ( order === null ) {
+		return null;
+	}
+	return desc[ order[ pkg ] ] || null;
 }
 
 
