@@ -37,11 +37,13 @@ Returns a function which creates an HTTP server for serving API documentation.
 <!-- run-disable -->
 
 ```javascript
+var App = require( 'my-app' );
+
 var opts = {
     'port': 7331,
     'address': '127.0.0.1'
 };
-var createServer = httpServer( opts );
+var createServer = httpServer( App, opts );
 
 function done( error, fastify ) {
     if ( error ) {
@@ -51,13 +53,12 @@ function done( error, fastify ) {
     fastify.server.close();
 }
 
-createServer( done );
+createServer( App, done );
 ```
 
 The function accepts the following `options`:
 
 -   **address**: server address. Default: `'127.0.0.1'`.
--   **app**: application component. Default: `null`.
 -   **hostname**: server hostname (e.g., `localhost` ).
 -   **latest**: path to the "latest" documentation (e.g., this could simply be a `version`, such as `v0.0.90`, or an arbitrary (relative) path, such as `foo/bar/beep/boop`). When set to an empty string (as is the default), the server does **not** virtually map the version `latest` to a particular set of documentation resources. Default: `''`.
 -   **logger**: `boolean` indicating whether to enable logging. Default: `false`.
@@ -65,31 +66,8 @@ The function accepts the following `options`:
 -   **prefix**: URL path prefix used to create a virtual mount path for a static directory (e.g., `/docs/api/` to match the API documentation virtual mount path). If provided a list of prefixes, each prefix is associated with a corresponding `static` directory. Default: `'/'`.
 -   **root**: root directory containing API documentation. May be either an absolute path or a path relative to the current working directory. This directory will be mounted onto the virtual path `/docs/api/`. Default: current working directory.
 -   **static**: directory (or directories) from which to serve static documentation assets and files. May be either an absolute path or a path relative to the current working directory. When set to an empty string (the default), the server does **not** serve static assets. Default: `''`.
--   **template**: application shell template. Default: `''`.
 -   **trustProxy**: `boolean` indicating whether to trust `X-forwarded-by` headers when the server is sitting behind a proxy. Default: `false`.
 -   **ignoreTrailingSlash**: `boolean` indicating whether to ignore trailing slashes in routes (e.g., `/foo/bar` and `/foo/bar/`). Default: `true`.
-
-An application shell template should include a `<div id="root"></div>` element into which fragments are injected.
-
-<!-- run-disable -->
-
-```javascript
-var template = [
-    '<html>',
-    '<body>',
-    '<div id="root"></div>',
-    '</body>',
-    '</html>'
-];
-
-var opts = {
-    'port': 7331,
-    'address': '127.0.0.1',
-    'template': template.join( '\n' )
-};
-
-var createServer = httpServer( opts );
-```
 
 * * *
 
@@ -255,8 +233,6 @@ $ curl 'http://127.0.0.1:<port>/status'
 
 <!-- /.notes -->
 
-* * *
-
 <section class="examples">
 
 ## Examples
@@ -266,30 +242,7 @@ $ curl 'http://127.0.0.1:<port>/status'
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var join = require( 'path' ).join;
-var httpServer = require( '@stdlib/_tools/docs/www/server' );
-
-var opts = {
-    'port': 3000,
-    'address': '127.0.0.1',
-    'logger': true,
-    'root': join( __dirname, 'examples', 'fixtures' ),
-    'template': '<html><body><div id="root"></div></body></html>'
-};
-
-var createServer = httpServer( opts );
-
-function done( error, fastify ) {
-    if ( error ) {
-        console.error( error.message );
-        return;
-    }
-    console.log( 'Success!' );
-    console.log( fastify.server.address() );
-    fastify.server.close();
-}
-
-createServer( done );
+// TODO: example
 ```
 
 </section>
