@@ -83,6 +83,13 @@ function main() {
 	}
 	out.order = data;
 
+	// Load package descriptions...
+	data = readJSON( join( dpath, 'package_desc.json' ), FOPTS );
+	if ( data instanceof Error ) {
+		throw data;
+	}
+	out.descriptions = data;
+
 	// Load the list of namespaces...
 	data = readJSON( join( dpath, 'namespace_list.json' ), FOPTS );
 	if ( data instanceof Error ) {
