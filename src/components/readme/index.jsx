@@ -144,6 +144,7 @@ class Readme extends React.Component {
 				className="pagination-link pagination-link-prev"
 				to={ pkgPath( name, this.props.version ) }
 				title="Previous package"
+				rel="prev"
 			>
 				<div class="pagination-link-type">Previous</div>
 				<div class="pagination-link-label"><span aria-hidden="true">« </span>{ basename }</div>
@@ -177,6 +178,7 @@ class Readme extends React.Component {
 				className="pagination-link pagination-link-next"
 				to={ pkgPath( name, this.props.version ) }
 				title="Next package"
+				rel="next"
 			>
 				<div class="pagination-link-type">Next</div>
 				<div class="pagination-link-label">{ basename }<span aria-hidden="true"> »</span></div>
