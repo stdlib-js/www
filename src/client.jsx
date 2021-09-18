@@ -21,6 +21,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import resetScroll from './utils/reset_scroll.js';
+import viewportWidth from './utils/viewport_width.js';
+import config from './config.js';
 import App from './app.jsx';
 
 
@@ -29,13 +31,29 @@ import App from './app.jsx';
 /**
 * Component for rendering a client application.
 *
+* ## Notes
+*
+* -   The client application defaults to the latest documentation version.
+*
 * @private
 * @returns {ReactElement} React element
 */
 function ClientApp() {
+	var bool;
+	var w;
+
+	// Query the current viewport width:
+	w = viewportWidth();
+
+	// Default to showing the side menu, except on smaller devices:
+	bool = Boolean( w && ( w >= 1080 ) );
+
 	return (
 		<BrowserRouter onUpdate={ resetScroll } >
-			<App />
+			<App
+				sideMenu={ bool }
+				version={ config.versions[ 0 ] }
+			/>
 		</BrowserRouter>
 	);
 }
