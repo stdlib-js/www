@@ -32,6 +32,7 @@ import log from './utils/log.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from './utils/reset_scroll.js';
 import viewportWidth from './utils/viewport_width.js';
+import OFFSETS from './utils/package_resource_offsets.js';
 import config from './config.js';
 import routes from './routes.js';
 
@@ -127,10 +128,11 @@ class App extends React.Component {
 	* @param {string} props.version - documentation version
 	* @param {string} props.data - package data
 	* @param {ObjectArray} props.data.tree - package tree array
-	* @param {Object} props.data.resources - package resources
+	* @param {NonNegativeIntegerArray} props.data.resources - package resources
 	* @param {StringArray} props.data.packages - list of packages
 	* @param {Object} props.data.order - package order hash
 	* @param {StringArray} props.data.namespaces - list of namespace packages
+	* @param {StringArray} props.data.descriptions - list of package descriptions
 	* @param {string} props.query - initial search query
 	* @param {Callback} props.onVersionChange - callback to invoke upon changing the documentation version
 	* @param {Callback} props.onPackageChange - callback to invoke upon changing the current package
@@ -347,7 +349,9 @@ class App extends React.Component {
 		var resources;
 		var match;
 		var props;
+		var order;
 		var path;
+		var ptr;
 
 		// Parse the current URL path:
 		match = matchCurrentPath( this.props.history.location.pathname, this.props.version );
@@ -380,22 +384,25 @@ class App extends React.Component {
 			props.src = true;
 
 			// Attempt to resolve package resources for the current package...
-			resources = this.props.data.resources;
-			if ( resources ) {
-				resources = resources[ match.params.pkg ];
+			order = this.props.data.order;
+			if ( order ) {
+				ptr = order[ match.params.pkg ];
 			}
+			resources = this.props.data.resources;
+
 			// If we were able to resolve package resources, determine which links we want to display in the top navigation...
-			if ( resources ) {
-				props.typescript = Boolean( resources.typescript );
+			if ( resources && typeof ptr === 'number' ) {
+				ptr *= 3; // Note: the resources array is a strided array
+				props.typescript = Boolean( resources[ ptr+OFFSETS.typescript ] );
 				if ( path === routes.PACKAGE_DEFAULT ) {
-					props.benchmarks = Boolean( resources.benchmark );
-					props.tests = Boolean( resources.test );
+					props.benchmarks = Boolean( resources[ ptr+OFFSETS.benchmark ] );
+					props.tests = Boolean( resources[ ptr+OFFSETS.test ] );
 				} else if ( path === routes.PACKAGE_BENCHMARKS ) {
 					props.docs = true;
-					props.tests = Boolean( resources.test );
+					props.tests = Boolean( resources[ ptr+OFFSETS.test ] );
 				} else if ( path === routes.PACKAGE_TESTS ) {
 					props.docs = true;
-					props.benchmarks = Boolean( resources.benchmark );
+					props.benchmarks = Boolean( resources[ ptr+OFFSETS.benchmark ] );
 				}
 			}
 		}
@@ -452,6 +459,9 @@ class App extends React.Component {
 
 			// Resolve the next package:
 			next = list[ idx+1 ] || null;
+		} else {
+			prev = null;
+			next = null;
 		}
 		return (
 			<Readme
@@ -477,11 +487,21 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderBenchmark( match ) {
-		var rsrc = this.props.data.resources;
-		if ( rsrc ) {
-			rsrc = rsrc[ match.params.pkg ];
+		var table;
+		var order;
+		var ptr;
+		var flg;
+
+		order = this.props.data.order;
+		if ( order ) {
+			ptr = order[ match.params.pkg ];
 		}
-		if ( rsrc.benchmark ) {
+		table = this.props.data.resources;
+		if ( table && typeof ptr === 'number' ) {
+			ptr *= 3; // Note: resources is a strided array
+			flg = table[ ptr+OFFSETS.benchmark ];
+		}
+		if ( flg ) {
 			return (
 				<IframeResizer
 					className="embedded-iframe"
@@ -508,11 +528,21 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderTest( match ) {
-		var rsrc = this.props.data.resources;
-		if ( rsrc ) {
-			rsrc = rsrc[ match.params.pkg ];
+		var table;
+		var order;
+		var ptr;
+		var flg;
+
+		order = this.props.data.order;
+		if ( order ) {
+			ptr = order[ match.params.pkg ];
 		}
-		if ( rsrc.test ) {
+		table = this.props.data.resources;
+		if ( table && typeof ptr === 'number' ) {
+			ptr *= 3; // Note: resources is a strided array
+			flg = table[ ptr+OFFSETS.test ];
+		}
+		if ( flg ) {
 			return (
 				<IframeResizer
 					className="embedded-iframe"
