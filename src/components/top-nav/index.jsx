@@ -44,7 +44,6 @@ class TopNav extends React.Component {
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.query - search query
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
-	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
 	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
@@ -143,7 +142,6 @@ class TopNav extends React.Component {
 						pkg={ this.props.pkg }
 						version={ this.props.version }
 						onToggle={ this._onSideMenuToggle }
-						onPackageChange={ this.props.onPackageChange }
 						onVersionChange={ this.props.onVersionChange }
 						onFilterFocus={ this.props.onFilterFocus }
 						onFilterBlur={ this.props.onFilterBlur }

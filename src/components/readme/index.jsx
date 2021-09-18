@@ -50,7 +50,6 @@ class Readme extends React.Component {
 	* @param {string} [props.prev] - previous package name
 	* @param {string} [props.next] - next package name
 	* @param {Callback} props.onClick - callback to invoke upon clicking on README content
-	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -59,29 +58,6 @@ class Readme extends React.Component {
 			// README content to render:
 			'content': ''
 		};
-	}
-
-	/**
-	* Returns a callback which is invoked upon clicking on a specified package.
-	*
-	* @private
-	* @param {string} pkg - package name
-	* @returns {Callback} event handler
-	*/
-	_onPackageClickFactory( pkg ) {
-		var self = this;
-		return onClick;
-
-		/**
-		* Callback invoked upon clicking on a package.
-		*
-		* @private
-		* @param {Object} event - event object
-		*/
-		function onClick() {
-			// Notify the application that a user has selected a package:
-			self.props.onPackageChange( pkg );
-		}
 	}
 
 	/**
@@ -168,7 +144,6 @@ class Readme extends React.Component {
 				className="pagination-link pagination-link-prev"
 				to={ pkgPath( name, this.props.version ) }
 				title="Previous package"
-				onClick={ this._onPackageClickFactory( pkg ) }
 			>
 				<div class="pagination-link-type">Previous</div>
 				<div class="pagination-link-label"><span aria-hidden="true">« </span>{ basename }</div>
@@ -202,7 +177,6 @@ class Readme extends React.Component {
 				className="pagination-link pagination-link-next"
 				to={ pkgPath( name, this.props.version ) }
 				title="Next package"
-				onClick={ this._onPackageClickFactory( pkg ) }
 			>
 				<div class="pagination-link-type">Next</div>
 				<div class="pagination-link-label">{ basename }<span aria-hidden="true"> »</span></div>
@@ -272,6 +246,7 @@ class Readme extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	render() {
+		// NOTE: we make rendering the addendum conditional on the content in order to avoid a flash while resolving the README HTML...
 		return (
 			<div
 				id="readme"
@@ -281,12 +256,16 @@ class Readme extends React.Component {
 					html={ this.state.content }
 					onClick={ this.props.onClick }
 				/>
-				<section className="readme-addendum">
-					<nav className="readme-bottom-nav" aria-label="pagination">
-						{ this._renderEditLink() }
-						{ this._renderPagination() }
-					</nav>
-				</section>
+				{ ( this.state.content ) ?
+					<section className="readme-addendum">
+						<nav className="readme-bottom-nav" aria-label="pagination">
+							{ this._renderEditLink() }
+							{ this._renderPagination() }
+						</nav>
+					</section>
+					:
+					null
+				}
 			</div>
 		);
 	}

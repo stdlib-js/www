@@ -126,7 +126,6 @@ class SideMenuDrawer extends React.Component {
 	* @param {string} props.version - documentation version
 	* @param {string} props.pkg - name of the package which is currently selected
 	* @param {Callback} props.onToggle - callback to invoke upon toggling the side menu
-	* @param {Callback} props.onPackageChange - callback to invoke upon a change to the selected package
 	* @param {Callback} props.onVersionChange - callback to invoke upon a change to the selected documentation version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
 	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
@@ -310,9 +309,6 @@ class SideMenuDrawer extends React.Component {
 		* @private
 		*/
 		function onClick() {
-			// Notify the application that a user has selected a new package:
-			self.props.onPackageChange( pkg );
-
 			// Check whether a user is currently applying a menu filter...
 			if ( self.state.filter ) {
 				// If already active and expanded, collapse...
@@ -390,9 +386,6 @@ class SideMenuDrawer extends React.Component {
 		* @param {Object} event - event object
 		*/
 		function onClick() {
-			// Notify the application that a user has selected a package:
-			self.props.onPackageChange( pkg );
-
 			// If a user has selected a package while applying a filter to the side menu, we want to preserve the current component state, so that, when a user clears the filter, the package and its associated namespace path are still displayed in the menu...
 			if ( self.state.filter ) {
 				// Check whether we need to collapse a previously active namespace path during filtering...

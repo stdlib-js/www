@@ -50,7 +50,6 @@ class Search extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.version - version
 	* @param {string} props.query - search query
-	* @param {Callback} props.onPackageChange - callback to invoke upon selecting a package
 	* @param {Callback} props.onClose - callback to invoke upon closing search results
 	* @returns {ReactComponent} React component
 	*/
@@ -70,7 +69,6 @@ class Search extends React.Component {
 	* @returns {Callback} event handler
 	*/
 	_onPackageClickFactory( pkg ) {
-		var self = this;
 		return onClick;
 
 		/**
@@ -82,9 +80,6 @@ class Search extends React.Component {
 		function onClick( event ) {
 			// Prevent the event from bubbling up:
 			event.stopPropagation();
-
-			// Notify the application that a user has selected a package:
-			self.props.onPackageChange( pkg );
 		}
 	}
 
@@ -109,9 +104,6 @@ class Search extends React.Component {
 		function onClick( event ) {
 			// Manually update history in order to navigate to the desired package:
 			self.props.history.push( url );
-
-			// Notify the application that a user has selected a package:
-			self.props.onPackageChange( pkg );
 		}
 	}
 
