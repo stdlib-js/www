@@ -21,7 +21,6 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import App from './app.jsx';
-import config from './config.js';
 
 
 // MAIN //
@@ -30,12 +29,17 @@ import config from './config.js';
 * Component for rendering an application on the server.
 *
 * @private
+* @param {Object} props - component properties
+* @param {string} props.url - request URL
+* @param {Object} props.context - router context
+* @param {string} props.version - documentation version
+* @param {string} props.query - search query
 * @returns {ReactElement} React element
 */
-function ServerApp() {
+function ServerApp( props ) {
 	return (
-		<StaticRouter location={ config.mount } context={ {} } >
-			<App />
+		<StaticRouter location={ props.url } context={ props.context } >
+			<App version={ props.version } />
 		</StaticRouter>
 	);
 }
