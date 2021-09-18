@@ -23,6 +23,8 @@
 // MODULES //
 
 var join = require( 'path' ).join;
+var flattenObject = require( '@stdlib/utils/flatten-object' );
+var merge = require( '@stdlib/utils/merge' );
 var objectKeys = require( '@stdlib/utils/keys' );
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
@@ -44,31 +46,41 @@ var OUTPUT = 'package_list.json';
 */
 function main() {
 	var dpath;
+	var tree;
 	var opts;
 	var pkgs;
-	var res;
-	var tmp;
+	var keys;
+	var db;
 	var i;
 
 	// Resolve the API documentation path:
 	dpath = documentationPath();
 
-	// Load the API documentation package resources database...
+	// Load the API documentation package tree...
 	opts = {
 		'encoding': 'utf8'
 	};
-	res = readJSON( join( dpath, 'package_resources.json' ), opts );
-	if ( res instanceof Error ) {
-		throw res;
+	tree = readJSON( join( dpath, 'package_tree.json' ), opts );
+	if ( tree instanceof Error ) {
+		throw tree;
 	}
-	// Get the list of packages:
-	tmp = objectKeys( res );
+	// Build an API documentation asset database...
+	opts = {
+		'delimiter': '/',
+		'depth': 0
+	};
+	db = flattenObject( tree, opts );
+	while ( opts.depth <= 6 ) {
+		db = merge( db, flattenObject( tree, opts ) );
+		opts.depth += 1;
+	}
+	keys = objectKeys( db );
 
 	// Prune `__namespace__` pseudo-packages...
 	pkgs = [];
-	for ( i = 0; i < tmp.length; i++ ) {
-		if ( !tmp[ i ].includes( '__namespace__' ) ) {
-			pkgs.push( tmp[ i ] );
+	for ( i = 0; i < keys.length; i++ ) {
+		if ( !keys[ i ].includes( '__namespace__' ) ) {
+			pkgs.push( keys[ i ] );
 		}
 	}
 	// Sort the list alphabetically:
