@@ -67,6 +67,7 @@ function fetchPackageData( version, clbk ) {
 	* @param {Object} json.resources - package resources
 	* @param {StringArray} json.packages - list of packages
 	* @param {Object} json.order - package order hash
+	* @param {Object} json.descriptions - package descriptions
 	* @param {StringArray} json.namespaces - list of namespace packages
 	*/
 	function onData( json ) {
@@ -74,6 +75,7 @@ function fetchPackageData( version, clbk ) {
 		o.resources = json.resources;
 		o.packages = json.packages;
 		o.order = json.order;
+		o.descriptions = json.descriptions;
 		o.namespaces = json.namespaces;
 
 		PACKAGE_DATA_CACHE[ version ] = o;
