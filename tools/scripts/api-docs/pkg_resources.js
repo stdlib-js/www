@@ -86,6 +86,7 @@ function main() {
 		if ( j === void 0 ) {
 			throw new Error( 'unexpected error. Unable to find package `' + p + '` in the package order. The data may be out-of-sync.' );
 		}
+		j *= 3; // idx x stride
 		out[ j ] = exists( join( dpath, '@stdlib', p, 'benchmark.html' ) ) ? 1 : 0;
 		out[ j+1 ] = exists( join( dpath, '@stdlib', p, 'test.html' ) ) ? 1 : 0;
 		out[ j+2 ] = exists( join( tspath, '_' + replace( p, RE_UNDERSCORE_REPLACE, '_' ) + TS_SUFFIX ) ) ? 1 : 0;
