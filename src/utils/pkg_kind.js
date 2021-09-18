@@ -40,7 +40,7 @@ var RE_SUBNAMESPACE = /\/(base|dists|incr|iter|strided)\//;
 * -   This is invariably not exhaustive.
 *
 * @private
-* @param {string} str - package name (e.g., `@stdlib/math/base/special/sin` or `math/base/special/sin`)
+* @param {string} pkg - package name (e.g., `@stdlib/math/base/special/sin` or `math/base/special/sin`)
 * @returns {string} kind
 */
 function packageKind( pkg ) {
