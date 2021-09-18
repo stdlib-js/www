@@ -33,13 +33,18 @@ import App from './app.jsx';
 * @param {string} props.url - request URL
 * @param {Object} props.context - router context
 * @param {string} props.version - documentation version
+* @param {Object} props.data - package data
 * @param {string} props.query - search query
 * @returns {ReactElement} React element
 */
 function ServerApp( props ) {
 	return (
 		<StaticRouter location={ props.url } context={ props.context } >
-			<App version={ props.version } />
+			<App
+				version={ props.version }
+				data={ props.data }
+				query={ props.query }
+			/>
 		</StaticRouter>
 	);
 }
