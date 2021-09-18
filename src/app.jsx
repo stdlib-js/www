@@ -29,14 +29,9 @@ import NotFound from './components/not-found/index.jsx';
 import TopNav from './components/top-nav/index.jsx';
 import Search from './components/search/index.jsx';
 import log from './utils/log.js';
-import fetchPackageData from './utils/fetch_package_data.js';
 import fetchSearchData from './utils/fetch_search_data.js';
-import packageResources from './utils/package_resources.js';
-import packageResource from './utils/package_resource.js';
-import packageList from './utils/package_list.js';
-import packageOrder from './utils/package_order.js';
 import resetScroll from './utils/reset_scroll.js';
-import deprefix from './utils/deprefix_package_name.js';
+import viewportWidth from './utils/viewport_width.js';
 import config from './config.js';
 import routes from './routes.js';
 
@@ -52,6 +47,7 @@ var RENDER_METHOD_NAMES = {
 	'benchmark': '_renderBenchmark',
 	'test': '_renderTest'
 };
+var SIDE_MENU_TIMEOUT = 1000; // milliseconds
 
 
 // FUNCTIONS //
@@ -129,9 +125,15 @@ class App extends React.Component {
 	* @param {Object} props - component properties
 	* @param {Object} props.history - history object for navigation
 	* @param {string} props.version - documentation version
-	* @param {boolean} [props.sideMenu] - boolean indicating whether the side menu should be **initially** open
-	* @param {string} [props.pkg] - active package (e.g., `math/base/special/sin` or `@stdlib/math/base/special/sin`)
-	* @param {string} [props.query] - initial search query
+	* @param {string} props.data - package data
+	* @param {ObjectArray} props.data.tree - package tree array
+	* @param {Object} props.data.resources - package resources
+	* @param {StringArray} props.data.packages - list of packages
+	* @param {Object} props.data.order - package order hash
+	* @param {StringArray} props.data.namespaces - list of namespace packages
+	* @param {string} props.query - initial search query
+	* @param {Callback} props.onVersionChange - callback to invoke upon changing the documentation version
+	* @param {Callback} props.onPackageChange - callback to invoke upon changing the current package
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -140,17 +142,11 @@ class App extends React.Component {
 
 		// Set the initial component state:
 		this.state = {
-			// Currently active package:
-			'active': ( props.pkg ) ? deprefix( props.pkg ) : '', // e.g., `math/base/special/sin`
-
 			// Search query:
 			'query': props.query || '',
 
 			// Boolean indicating whether to show the side menu:
-			'sideMenu': Boolean( props.sideMenu ),
-
-			// Current documentation version:
-			'version': props.version,
+			'sideMenu': false,
 
 			// Boolean indicating whether keyboard shortcuts are active:
 			'shortcuts': true
@@ -212,41 +208,6 @@ class App extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon a change to the current package.
-	*
-	* @private
-	* @param {string} pkg - package name (e.g., `math/base/special/sin`)
-	*/
-	_onPackageChange = ( pkg ) => {
-		this.setState({
-			'active': pkg
-		});
-	}
-
-	/**
-	* Callback invoked upon a change to the current documentation version.
-	*
-	* @private
-	* @param {string} version - version
-	*/
-	_onVersionChange = ( version ) => {
-		this._updateVersion( version, done );
-
-		/**
-		* Callback invoked upon updating the version.
-		*
-		* @private
-		* @param {Error} [error] - error object
-		*/
-		function done( error ) {
-			if ( error ) {
-				// TODO: render a modal indicating that we are unable to update the version (e.g., due to network error, etc) (Note: we may need to reset the triggering UI element; e.g., the dropdown menu in the side menu)
-				return log( error );
-			}
-		}
-	}
-
-	/**
 	* Callback invoked upon updating a search input element.
 	*
 	* @private
@@ -264,10 +225,10 @@ class App extends React.Component {
 		});
 
 		// Cache the version in order to avoid race conditions:
-		version = this.state.version;
+		version = this.props.version;
 
 		// If we do not currently have a search index, try to eagerly create one...
-		fetchSearchData( this.state.version, done );
+		fetchSearchData( this.props.version, done );
 
 		/**
 		* Callback invoked upon retrieving search data.
@@ -281,9 +242,9 @@ class App extends React.Component {
 				return log( error );
 			}
 			// Check whether the version has changed...
-			if ( version !== self.state.version ) {
+			if ( version !== self.props.version ) {
 				// Try eagerly creating another search index based on the current version:
-				fetchSearchData( self.state.version, done );
+				fetchSearchData( self.props.version, done );
 			}
 		}
 	}
@@ -307,7 +268,7 @@ class App extends React.Component {
 			this._prevLocation = path;
 		}
 		// Resolve a search URL based on the search query:
-		path = config.mount + this.state.version + '/search?q=' + encodeURIComponent( this.state.query );
+		path = config.mount + this.props.version + '/search?q=' + encodeURIComponent( this.state.query );
 
 		// Manually update the history to trigger navigation to the search page:
 		this.props.history.push( path );
@@ -377,58 +338,6 @@ class App extends React.Component {
 	}
 
 	/**
-	* Updates the documentation version.
-	*
-	* @private
-	* @param {string} version - version
-	* @param {Callback} done - callback to invoke upon completion
-	*/
-	_updateVersion( version, done ) {
-		var self = this;
-
-		// TODO: we should overlay a progress indicator while we load package data (see, e.g., https://material-ui.com/components/backdrop/)...
-		fetchPackageData( version, clbk );
-
-		/**
-		* Callback invoked upon fetching package resources associated with a specified version.
-		*
-		* @private
-		* @param {Error} [error] - error object
-		* @returns {void}
-		*/
-		function clbk( error ) {
-			var pathname;
-			var state;
-			if ( error ) {
-				return done( error );
-			}
-			pathname = self.props.history.location.pathname;
-			if ( pathname === config.mount ) {
-				pathname += version + '/';
-			} else {
-				// FIXME: what happens when we change the version while viewing a package and the package has either moved or does not exist in the new version of the docs?
-				pathname = pathname.replace( self.state.version, version );
-			}
-			if ( pathname !== self.props.history.location.pathname ) {
-				self.props.history.push( pathname );
-			}
-			state = {
-				'version': version
-			};
-			self.setState( state, onState );
-		}
-
-		/**
-		* Callback invoked upon updating the component state.
-		*
-		* @private
-		*/
-		function onState() {
-			done();
-		}
-	}
-
-	/**
 	* Renders top navigation.
 	*
 	* @private
@@ -441,7 +350,7 @@ class App extends React.Component {
 		var path;
 
 		// Parse the current URL path:
-		match = matchCurrentPath( this.props.history.location.pathname, this.state.version );
+		match = matchCurrentPath( this.props.history.location.pathname, this.props.version );
 		path = match.path;
 
 		// Define default property values:
@@ -471,7 +380,7 @@ class App extends React.Component {
 			props.src = true;
 
 			// Attempt to resolve package resources for the current package...
-			resources = packageResources( props.version );
+			resources = this.props.data.resources;
 			if ( resources ) {
 				resources = resources[ match.params.pkg ];
 			}
@@ -493,8 +402,7 @@ class App extends React.Component {
 		return (
 			<TopNav
 				onSideMenuToggle={ this._onSideMenuToggle }
-				onPackageChange={ this._onPackageChange }
-				onVersionChange={ this._onVersionChange }
+				onVersionChange={ this.props.onVersionChange }
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
 				onSearchFocus={ this._onSearchFocus }
@@ -531,10 +439,10 @@ class App extends React.Component {
 		pkg = match.params.pkg;
 
 		// Resolve the package order for the current documentation version:
-		ord = packageOrder( version );
+		ord = this.props.data.order;
 		if ( ord ) {
 			// Resolve the list of packages for the current documentation version:
-			list = packageList( version );
+			list = this.props.data.packages;
 
 			// Resolve the index of the current package:
 			idx = ord[ pkg ];
@@ -553,7 +461,6 @@ class App extends React.Component {
 				next={ next }
 				url={ match.url }
 				onClick={ this._onReadmeClick }
-				onPackageChange={ this._onPackageChange }
 			/>
 		);
 	}
@@ -570,8 +477,11 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderBenchmark( match ) {
-		var rsrc = packageResource( match.params.pkg, 'benchmark', match.params.version );
+		var rsrc = this.props.data.resources;
 		if ( rsrc ) {
+			rsrc = rsrc[ match.params.pkg ];
+		}
+		if ( rsrc.benchmark ) {
 			return (
 				<IframeResizer
 					className="embedded-iframe"
@@ -598,8 +508,11 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderTest( match ) {
-		var rsrc = packageResource( match.params.pkg, 'test', match.params.version );
+		var rsrc = this.props.data.resources;
 		if ( rsrc ) {
+			rsrc = rsrc[ match.params.pkg ];
+		}
+		if ( rsrc.test ) {
 			return (
 				<IframeResizer
 					className="embedded-iframe"
@@ -652,7 +565,6 @@ class App extends React.Component {
 			<Search
 				version={ match.params.version }
 				query={ query }
-				onPackageChange={ this._onPackageChange }
 				onClose={ this._onSearchClose }
 			/>
 		);
@@ -694,7 +606,7 @@ class App extends React.Component {
 					</div>
 					<main
 						id="main"
-						class={ 'main '+( self.state.sideMenu ? 'translate-right' : '' ) }
+						class={ 'main '+( ( self.state.sideMenu ) ? 'translate-right' : '' ) }
 						aria-live="polite"
 						aria-atomic="true"
 					>
@@ -711,42 +623,32 @@ class App extends React.Component {
 	* @private
 	*/
 	componentDidMount() {
-		var pathname;
-		var version;
-		var prefix;
-		var i;
-		var j;
+		var self;
+		var bool;
+		var w;
 
-		prefix = config.mount;
-		pathname = this.props.history.location.pathname;
+		self = this;
 
-		// Extract the version from the current window location...
-		i = pathname.indexOf( prefix ) + prefix.length;
-		j = pathname.substring( i ).indexOf( '/' );
-		if ( j === -1 ) {
-			version = '';
-		} else {
-			version = pathname.substring( i, i+j );
-		}
-		// If the extracted version is not supported, default to the latest supported version...
-		if ( !version || !config.versions.includes( version ) || version === 'latest' ) {
-			// TODO: should we inform the user that a version is not supported? Presumably. We could display a banner at the top, or something.
-			version = config.versions[ 0 ];
-		}
-		this._updateVersion( version, done );
+		// TODO: if the version is not the latest supported version, display a message indicating that this version of the docs is "out-of-date"
+
+		// Query the current viewport width:
+		w = viewportWidth();
+
+		// Default to showing the side menu, except on smaller devices:
+		bool = Boolean( w && ( w >= 1080 ) );
+
+		// Delay showing the side menu in order to avoid a flash:
+		setTimeout( onTimeout, SIDE_MENU_TIMEOUT );
 
 		/**
-		* Callback invoked upon updating the current version.
+		* Callback invoked after a specified duration.
 		*
 		* @private
-		* @param {Error} [error] - error object
 		*/
-		function done( error ) {
-			if ( error ) {
-				// TODO: render a modal indicating that we are unable to set the version (e.g., due to network error, etc)
-				return log( error );
-			}
-			// TODO: if the updated version is not the latest supported version, display a message indicating that this version of the docs is "out-of-date"
+		function onTimeout() {
+			self.setState({
+				'sideMenu': bool
+			});
 		}
 	}
 
@@ -758,6 +660,8 @@ class App extends React.Component {
 	* @param {Object} prevState - previous state
 	*/
 	componentDidUpdate( prevProps ) {
+		// TODO: if the version is not the latest supported version, display a message indicating that this version of the docs is "out-of-date"
+
 		// Whenever we navigate to a new page, reset the window scroll position and focus...
 		if ( this.props.location !== prevProps.location ) {
 			resetScroll();
@@ -811,7 +715,7 @@ class App extends React.Component {
 						path={ routes.VERSION_DEFAULT }
 						render={ this._renderer( 'welcome' ) }
 					/>
-					<Redirect to={ config.mount+this.state.version } />
+					<Redirect to={ config.mount+this.props.version } />
 				</Switch>
 				<Footer />
 			</Fragment>

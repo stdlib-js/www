@@ -20,8 +20,10 @@
 
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import qs from 'qs';
+import fetchPackageData from './utils/fetch_package_data.js';
 import resetScroll from './utils/reset_scroll.js';
-import viewportWidth from './utils/viewport_width.js';
+import log from './utils/log.js';
 import config from './config.js';
 import App from './app.jsx';
 
@@ -31,31 +33,146 @@ import App from './app.jsx';
 /**
 * Component for rendering a client application.
 *
-* ## Notes
-*
-* -   The client application defaults to the latest documentation version.
-*
 * @private
-* @returns {ReactElement} React element
 */
-function ClientApp() {
-	var bool;
-	var w;
+class ClientApp extends React.Component {
+	/**
+	* Returns a component for rendering a client application.
+	*
+	* @private
+	* @constructor
+	* @param {Object} props - component properties
+	* @returns {ReactComponent} React component
+	*/
+	constructor( props ) {
+		var pathname;
+		var version;
+		var query;
+		var loc;
+		var i;
+		var j;
 
-	// Query the current viewport width:
-	w = viewportWidth();
+		super( props );
 
-	// Default to showing the side menu, except on smaller devices:
-	bool = Boolean( w && ( w >= 1080 ) );
+		// Retrieve the current window location:
+		loc = window.location;
+		pathname = loc.pathname;
 
-	return (
-		<BrowserRouter onUpdate={ resetScroll } >
-			<App
-				sideMenu={ bool }
-				version={ config.versions[ 0 ] }
-			/>
-		</BrowserRouter>
-	);
+		// Extract the version from the current window location...
+		i = pathname.indexOf( config.mount ) + config.mount.length;
+		j = pathname.substring( i ).indexOf( '/' );
+		if ( j === -1 ) {
+			version = '';
+		} else {
+			version = pathname.substring( i, i+j );
+		}
+		// If the extracted version is not supported, default to the latest supported version...
+		if ( !version || !config.versions.includes( version ) || version === 'latest' ) {
+			// TODO: should we inform the user that a version is not supported? Presumably. We could display a banner at the top, or something.
+			version = config.versions[ 0 ];
+		}
+		// Resolve an initial search query, if present...
+		query = loc.search || '';
+		if ( query ) {
+			query = qs.parse( query, {
+				'ignoreQueryPrefix': true
+			});
+			query = query.q || '';
+		}
+
+		// Set the initial component state:
+		this.state = {
+			// Documentation version:
+			'version': version,
+
+			// Package data:
+			'data': {},
+
+			// Initial search query:
+			'query': query
+		}
+	}
+
+	/**
+	* Callback invoked upon a change to the current documentation version.
+	*
+	* @private
+	* @param {string} version - version
+	*/
+	_onVersionChange = ( version ) => {
+		var self = this;
+
+		// TODO: we should overlay a progress indicator while we load package data and lock the UI to prevent race conditions (see, e.g., https://material-ui.com/components/backdrop/; e.g., could pass down `loading` property to have the <App /> render the overlay)...
+		fetchPackageData( version, clbk );
+
+		/**
+		* Callback invoked upon fetching package resources associated with a specified version.
+		*
+		* @private
+		* @param {(Error|null)} error - error object
+		* @param {Object} [data] - package data
+		* @returns {void}
+		*/
+		function clbk( error, data ) {
+			if ( error ) {
+				// TODO: render a modal indicating that we are unable to update the version (e.g., due to network error, etc) (Note: we may need to reset the triggering UI element; e.g., the dropdown menu in the side menu)
+				return log( error );
+			}
+			self.setState({
+				'version': version,
+				'data': data
+			});
+		}
+	}
+
+	/**
+	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*
+	* @private
+	*/
+	componentDidMount() {
+		var self = this;
+
+		// TODO: we should overlay a progress indicator while we load package data and lock the UI to prevent race conditions (see, e.g., https://material-ui.com/components/backdrop/)...
+		fetchPackageData( this.state.version, clbk );
+
+		/**
+		* Callback invoked upon fetching package resources associated with a specified version.
+		*
+		* @param {(Error|null)} error - error object
+		* @param {Object} [data] - package data
+		* @returns {void}
+		*/
+		function clbk( error, data ) {
+			if ( error ) {
+				// TODO: render a modal indicating that we are unable to fetch package data (e.g., due to network error, etc)
+				return log( error );
+			}
+			self.setState({
+				'data': data
+			});
+		}
+	}
+
+	/**
+	* Renders the component.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	render() {
+		return (
+			<BrowserRouter onUpdate={ resetScroll } >
+				<App
+					version={ this.state.version }
+					data={ this.state.data }
+					query={ this.state.query }
+					onVersionChange={ this._onVersionChange }
+					onPackageChange={ this._onPackageChange }
+				/>
+			</BrowserRouter>
+		);
+	}
 }
 
 
