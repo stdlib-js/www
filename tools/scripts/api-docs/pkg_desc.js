@@ -46,12 +46,14 @@ var OUTPUT = 'package_desc.json';
 * @throws {Error} unexpected error
 */
 function main() {
+	var order;
 	var dpath;
 	var opts;
 	var pkgs;
 	var out;
 	var pkg;
 	var i;
+	var j;
 
 	// Resolve the API documentation path:
 	dpath = documentationPath();
@@ -64,14 +66,23 @@ function main() {
 	if ( pkgs instanceof Error ) {
 		throw pkgs;
 	}
+	// Load the package order...
+	order = readJSON( join( dpath, 'package_order.json' ), opts );
+	if ( order instanceof Error ) {
+		throw order;
+	}
 	// For each package, resolve the package description...
-	out = {};
+	out = new Array( pkgs.length );
 	for ( i = 0; i < pkgs.length; i++ ) {
 		pkg = readJSON( join( STDLIB_PATH, '@stdlib', pkgs[ i ], 'package.json' ), opts );
 		if ( pkg instanceof Error ) {
 			continue;
 		}
-		out[ pkgs[ i ] ] = replace( pkg.description, RE_BACKTICK, '' );
+		j = order[ pkgs[ i ] ];
+		if ( j === void 0 ) {
+			throw new Error( 'unexpected error. Unable to find package `' + pkgs[ i ] + '` in the package order. The data may be out-of-sync.' );
+		}
+		out[ j ] = replace( pkg.description, RE_BACKTICK, '' );
 	}
 	// Write the database to file:
 	writeFile( join( dpath, OUTPUT ), JSON.stringify( out ) );
