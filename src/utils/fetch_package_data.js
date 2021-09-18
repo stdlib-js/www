@@ -64,20 +64,23 @@ function fetchPackageData( version, clbk ) {
 	* @private
 	* @param {Object} json - JSON object
 	* @param {Array<Object>} json.tree - package tree array
-	* @param {Object} json.resources - package resources
+	* @param {NonNegativeIntegerArray} json.resources - package resources
 	* @param {StringArray} json.packages - list of packages
 	* @param {Object} json.order - package order hash
-	* @param {Object} json.descriptions - package descriptions
-	* @param {StringArray} json.namespaces - list of namespace packages
+	* @param {StringArray} json.descriptions - package descriptions
+	* @param {NonNegativeIntegerArray} json.namespaces - list of namespace packages
 	*/
 	function onData( json ) {
-		o.tree = json.tree;
-		o.resources = json.resources;
-		o.packages = json.packages;
-		o.order = json.order;
-		o.descriptions = json.descriptions;
-		o.namespaces = json.namespaces;
+		var i;
 
+		// Assign resolved data to variable in parent scope:
+		o = json;
+
+		// Reconstitute a list of namespaces...
+		for ( i = 0; i < o.namespaces.length; i++ ) {
+			o.namespaces[ i ] = o.packages[ o.namespaces[ i ] ];
+		}
+		// Cache the resolved data:
 		PACKAGE_DATA_CACHE[ version ] = o;
 
 		done();
