@@ -7,5 +7,9 @@
 	"root": "",
 	"static": "",
 	"trustProxy": false,
-  "ignoreTrailingSlash": true
+  "ignoreTrailingSlash": true,
+  "defaults": {
+    "title": "Documentation | stdlib",
+    "description": "Documentation for stdlib, a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing."
+  }
 }
