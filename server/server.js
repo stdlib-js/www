@@ -16,35 +16,25 @@
 * limitations under the License.
 */
 
+'use strict';
+
 // MODULES //
 
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import fs from 'fs';
-import { resolve, join } from 'path';
-import httpServer from './../lib/server';
-import config from './../src/config.js';
-import App from './../src/server.jsx';
+var readFile = require( 'fs' ).readFileSync;
+var path = require( 'path' );
+var httpServer = require( './../lib/server' );
+var config = require( './../src/config.js' ).default;
+var App = require( './../src/server.jsx' ).default;
 
 
 // VARIABLES //
 
-var BUILD_DIR = resolve( __dirname, '..', 'public', 'docs', 'api' );
+var PUBLIC_DIR = path.resolve( __dirname, '..', 'public' );
+var BUILD_DIR = path.join( PUBLIC_DIR, 'docs', 'api' );
 var PORT = 3000;
 
 
 // FUNCTIONS //
-
-/**
-* Returns an application shell template.
-*
-* @private
-* @returns {string} template
-*/
-function template() {
-	var str = fs.readFileSync( join( BUILD_DIR, 'index.html' ), 'utf8' );
-	return str.replace( '<div id="root"></div>', `<div id="root">${ReactDOMServer.renderToString( <App /> )}</div>` );
-}
 
 /**
 * Callback invoked upon starting a server.
@@ -71,12 +61,25 @@ function done( error ) {
 function main() {
 	var opts = {
 		'latest': config.versions[ 0 ],
-		'logger': true,
+		'logger': 'info',
 		'port': PORT,
-		'prefix': '/docs/api/',
+		'prefix': [
+			// Note: number of prefixes must equal the number of static directories...
+			'/docs/api/static/',
+			'/css/',
+			'/js/',
+			'/img/'
+		],
 		'root': BUILD_DIR,
-		'static': BUILD_DIR,
-		'template': template()
+		'static': [
+			// Note: number of static directories must equal the number of prefixes...
+			path.join( BUILD_DIR, 'static' ),
+			path.join( PUBLIC_DIR, 'css' ),
+			path.join( PUBLIC_DIR, 'js' ),
+			path.join( PUBLIC_DIR, 'img' )
+		],
+		'template': readFile( path.join( BUILD_DIR, 'index.html' ), 'utf8' ),
+		'app': App
 	};
 	httpServer( opts )( done );
 }
