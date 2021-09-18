@@ -61,7 +61,7 @@ api_docs_version_list ?= $(TOOLS_DIR)/scripts/api-docs/version_list.js
 # @example
 # make api-docs-resources
 #/
-api-docs-resources: api-docs-pkg-tree api-docs-pkg-tree-array api-docs-pkg-list api-docs-namespace-list api-docs-pkg-order api-docs-pkg-resources api-docs-pkg-desc api-docs-pkg-search-index api-docs-version-list api-docs-pkg-data
+api-docs-resources: api-docs-pkg-tree api-docs-pkg-tree-array api-docs-pkg-list api-docs-pkg-order api-docs-namespace-list api-docs-pkg-resources api-docs-pkg-desc api-docs-pkg-search-index api-docs-version-list api-docs-pkg-data
 
 #/
 # Generates a package tree.
