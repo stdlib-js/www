@@ -20,15 +20,7 @@
 
 import packageResources from './package_resources.js';
 import packageOrder from './package_order.js';
-
-
-// VARIABLES //
-
-var OFFSETS = {
-	'benchmark': 0,
-	'test': 1,
-	'typescript': 2
-};
+import OFFSETS from './package_resource_offsets.js';
 
 
 // MAIN //
