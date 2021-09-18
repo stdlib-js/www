@@ -23,9 +23,6 @@
 // MODULES //
 
 var join = require( 'path' ).join;
-var flattenObject = require( '@stdlib/utils/flatten-object' );
-var merge = require( '@stdlib/utils/merge' );
-var objectKeys = require( '@stdlib/utils/keys' );
 var exists = require( '@stdlib/fs/exists' ).sync;
 var replace = require( '@stdlib/string/replace' );
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
@@ -51,13 +48,14 @@ var RE_UNDERSCORE_REPLACE = /[\/-]/g; // eslint-disable-line no-useless-escape
 */
 function main() {
 	var tspath;
+	var order;
 	var dpath;
 	var opts;
-	var tree;
-	var keys;
-	var db;
-	var k;
+	var pkgs;
+	var out;
+	var p;
 	var i;
+	var j;
 
 	// Resolve the API documentation path:
 	dpath = documentationPath();
@@ -65,35 +63,35 @@ function main() {
 	// Resolve the TypeScript documentation path:
 	tspath = tsPath();
 
-	// Load the API documentation package tree:
+	// Load the API documentation package list:
 	opts = {
 		'encoding': 'utf8'
 	};
-	tree = readJSON( join( dpath, 'package_tree.json' ), opts );
-	if ( tree instanceof Error ) {
-		throw tree;
+	pkgs = readJSON( join( dpath, 'package_list.json' ), opts );
+	if ( pkgs instanceof Error ) {
+		throw pkgs;
 	}
-	// Build an API documentation asset database...
-	opts = {
-		'delimiter': '/',
-		'depth': 0
-	};
-	db = flattenObject( tree, opts );
-	while ( opts.depth <= 6 ) {
-		db = merge( db, flattenObject( tree, opts ) );
-		opts.depth += 1;
+	// Load the API documentation package order:
+	order = readJSON( join( dpath, 'package_order.json' ), opts );
+	if ( order instanceof Error ) {
+		throw order;
 	}
-	keys = objectKeys( db );
-	for ( i = 0; i < keys.length; i++ ) {
-		k = keys[ i ];
-		db[ k ] = {
-			'benchmark': exists( join( dpath, '@stdlib', k, 'benchmark.html' ) ) ? 1 : 0,
-			'test': exists( join( dpath, '@stdlib', k, 'test.html' ) ) ? 1 : 0,
-			'typescript': exists( join( tspath, '_' + replace( k, RE_UNDERSCORE_REPLACE, '_' ) + TS_SUFFIX ) ) ? 1 : 0
+	// Initialize a strided array having layout: [ <benchmark>, <test>, <typescript>, <benchmark>, <test>, ... ]
+	out = new Array( pkgs.length*3 );
+
+	// Determine whether various package resources exist...
+	for ( i = 0; i < pkgs.length; i++ ) {
+		p = pkgs[ i ];
+		j = order[ p ];
+		if ( j === void 0 ) {
+			throw new Error( 'unexpected error. Unable to find package `' + p + '` in the package order. The data may be out-of-sync.' );
 		}
+		out[ j ] = exists( join( dpath, '@stdlib', p, 'benchmark.html' ) ) ? 1 : 0;
+		out[ j+1 ] = exists( join( dpath, '@stdlib', p, 'test.html' ) ) ? 1 : 0;
+		out[ j+2 ] = exists( join( tspath, '_' + replace( p, RE_UNDERSCORE_REPLACE, '_' ) + TS_SUFFIX ) ) ? 1 : 0;
 	}
 	// Write the database to file:
-	writeFile( join( dpath, OUTPUT ), JSON.stringify( db ) );
+	writeFile( join( dpath, OUTPUT ), JSON.stringify( out ) );
 }
 
 main();
