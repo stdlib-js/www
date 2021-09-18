@@ -24,11 +24,11 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 // MAIN //
 
 /**
-* Retrieves package resources for a specified version.
+* Retrieves a strided array containing values which indicate whether a package has various resources for a specified version.
 *
 * @private
 * @param {string} version - version
-* @returns {(Object|null)} package resources
+* @returns {(NonNegativeIntegerArray|null)} package resource strided array
 */
 function packageResources( version ) {
 	var o = PACKAGE_DATA_CACHE[ version ];
