@@ -35,8 +35,8 @@ import packageResources from './utils/package_resources.js';
 import packageResource from './utils/package_resource.js';
 import packageList from './utils/package_list.js';
 import packageOrder from './utils/package_order.js';
-import viewportWidth from './utils/viewport_width.js';
 import resetScroll from './utils/reset_scroll.js';
+import deprefix from './utils/deprefix_package_name.js';
 import config from './config.js';
 import routes from './routes.js';
 
@@ -128,30 +128,29 @@ class App extends React.Component {
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {Object} props.history - history object for navigation
+	* @param {string} props.version - documentation version
+	* @param {boolean} [props.sideMenu] - boolean indicating whether the side menu should be **initially** open
+	* @param {string} [props.pkg] - active package (e.g., `math/base/special/sin` or `@stdlib/math/base/special/sin`)
+	* @param {string} [props.query] - initial search query
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
-		var w;
-
 		// Register component properties:
 		super( props );
-
-		// Query the current viewport width:
-		w = viewportWidth();
 
 		// Set the initial component state:
 		this.state = {
 			// Currently active package:
-			'active': '',  // e.g., `math/base/special/sin`
+			'active': ( props.pkg ) ? deprefix( props.pkg ) : '', // e.g., `math/base/special/sin`
 
 			// Search query:
-			'query': '',
+			'query': props.query || '',
 
 			// Boolean indicating whether to show the side menu:
-			'sideMenu': ( w ) ? ( w >= 1080 ) : true, // default to showing the side menu, except on smaller devices
+			'sideMenu': Boolean( props.sideMenu ),
 
 			// Current documentation version:
-			'version': config.versions[ 0 ], // default to the latest version
+			'version': props.version,
 
 			// Boolean indicating whether keyboard shortcuts are active:
 			'shortcuts': true
