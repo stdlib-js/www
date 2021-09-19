@@ -446,6 +446,7 @@ class App extends React.Component {
 		var pkg;
 		var ord;
 		var idx;
+		var t;
 
 		version = match.params.version;
 		pkg = match.params.pkg;
@@ -474,10 +475,17 @@ class App extends React.Component {
 			prev = null;
 			next = null;
 		}
+		// Generate a document title:
+		t = pkgKind( pkg, '.' ); // try determining the "kind" first, as top-level namespaces don't have a "kind", and we want to avoid an empty slot (e.g., 'array | | stdlib')
+		if ( t ) {
+			t = pkgBasename( pkg ) + ' | ' + t;
+		} else {
+			t = pkgBasename( pkg );
+		}
 		return (
 			<Fragment>
 				<Head
-					title={ pkgBasename( pkg ) + ' | ' + pkgKind( pkg, '.' ) }
+					title={ t }
 					description={ desc || config.description }
 					url={ match.url }
 				/>
