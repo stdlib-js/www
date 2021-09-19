@@ -901,7 +901,8 @@ h2 {
 	margin-left: auto;
 }
 
-@media only screen and (min-width: 24em) { /* 384px */
+@media only screen and (min-width: 24em)
+    and (-webkit-min-device-pixel-ratio: 2) { /* 384px */
 	/*
 	* Once we have enough real estate, add some padding.
 	*/
