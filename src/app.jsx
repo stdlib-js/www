@@ -28,10 +28,13 @@ import Readme from './components/readme/index.jsx';
 import NotFound from './components/not-found/index.jsx';
 import TopNav from './components/top-nav/index.jsx';
 import Search from './components/search/index.jsx';
+import Head from './components/head/new_page.jsx';
 import log from './utils/log.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from './utils/reset_scroll.js';
 import viewportWidth from './utils/viewport_width.js';
+import pkgBasename from './utils/pkg_basename.js';
+import pkgKind from './utils/pkg_kind.js';
 import OFFSETS from './utils/package_resource_offsets.js';
 import config from './config.js';
 import routes from './routes.js';
@@ -439,6 +442,7 @@ class App extends React.Component {
 		var next;
 		var prev;
 		var list;
+		var desc;
 		var pkg;
 		var ord;
 		var idx;
@@ -464,16 +468,27 @@ class App extends React.Component {
 			prev = null;
 			next = null;
 		}
+		desc = this.props.data.descriptions;
+		if ( desc ) {
+			desc = desc[ pkg ];
+		}
 		return (
-			<Readme
-				pkg={ pkg }
-				version={ version }
-				prev={ prev }
-				next={ next }
-				url={ match.url }
-				content={ this.props.readme }
-				onClick={ this._onReadmeClick }
-			/>
+			<Fragment>
+				<Head
+					title={ pkgBasename( pkg ) + ' | ' + pkgKind( pkg, '.' ) }
+					description={ desc || config.description }
+					url={ match.url }
+				/>
+				<Readme
+					pkg={ pkg }
+					version={ version }
+					prev={ prev }
+					next={ next }
+					url={ match.url }
+					content={ this.props.readme }
+					onClick={ this._onReadmeClick }
+				/>
+			</Fragment>
 		);
 	}
 
@@ -571,7 +586,14 @@ class App extends React.Component {
 	*/
 	_renderWelcome( match ) {
 		return (
-			<Welcome version={ match.params.version } />
+			<Fragment>
+				<Head
+					title={ config.title }
+					description={ config.description }
+					url={ match.url }
+				/>
+				<Welcome version={ match.params.version } />
+			</Fragment>
 		);
 	}
 
@@ -594,11 +616,18 @@ class App extends React.Component {
 			query = query.q || '';
 		}
 		return (
-			<Search
-				version={ match.params.version }
-				query={ query }
-				onClose={ this._onSearchClose }
-			/>
+			<Fragment>
+				<Head
+					title='Search'
+					description={ config.description }
+					url={ match.url }
+				/>
+				<Search
+					version={ match.params.version }
+					query={ query }
+					onClose={ this._onSearchClose }
+				/>
+			</Fragment>
 		);
 	}
 
