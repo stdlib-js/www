@@ -35,20 +35,25 @@ import { Helmet } from 'react-helmet-async';
 * @returns {ReactElement} React element
 */
 function Head( props ) {
-	var t = props.title + ' | stdlib';
+	var url;
+	var t;
+
+	t = props.title + ' | stdlib';
+	url = 'https://stdlib.io' + props.url;
+
 	return (
 		<Helmet>
 			<title>{ t }</title>
 			<meta name="description" content={ props.description } />
 
-			<link rel="canonical" href={ props.url } />
+			<link rel="canonical" href={ url } />
 
-			<meta property="og:url" content={ props.url } />
+			<meta property="og:url" content={ url } />
 			<meta property="og:title" content={ t } />
 			<meta property="og:description" content={ props.description } />
 
 			<meta name="twitter:card" content={ t } />
-			<meta name="twitter:url" content={ props.url } />
+			<meta name="twitter:url" content={ url } />
 			<meta name="twitter:description" content={ props.description } />
 		</Helmet>
 	);
