@@ -22,7 +22,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import IconButton from '@material-ui/core/IconButton';
-import pkgPath from './../../../utils/pkg_doc_path.js';
+import config from './../../../config.js';
 import Logo from './logo.jsx';
 
 
@@ -41,7 +41,7 @@ function SideMenuHead( props ) {
 	return (
 		<div className="side-menu-head" >
 			<Link
-				to={ pkgPath( '', props.version ) }
+				to={ config.mount + props.version }
 				title="Navigate to documentation home"
 				aria-label="home"
 			>
