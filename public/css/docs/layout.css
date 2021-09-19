@@ -904,6 +904,15 @@ h2 {
 @media only screen and (min-width: 24em)
     and (-webkit-min-device-pixel-ratio: 2) { /* 384px */
 	/*
+	* Once we have enough real estate, show the search icon button.
+	*/
+	.top-nav-search-button.icon-button {
+		display: inline-flex;
+	}
+}
+
+@media only screen and (min-width: 24em) { /* 384px */
+	/*
 	* Once we have enough real estate, add some padding.
 	*/
 	.top-nav {
@@ -920,13 +929,6 @@ h2 {
 		margin-right: 4px;
 
 		padding-left: 16px;
-	}
-
-	/*
-	* Once we have enough real estate, show the search icon button.
-	*/
-	.top-nav-search-button.icon-button {
-		display: inline-flex;
 	}
 }
 
