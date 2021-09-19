@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import qs from 'qs';
 import fetchPackageData from './utils/fetch_package_data.js';
 import resetScroll from './utils/reset_scroll.js';
@@ -163,14 +164,16 @@ class ClientApp extends React.Component {
 	render() {
 		return (
 			<BrowserRouter onUpdate={ resetScroll } >
-				<App
-					version={ this.state.version }
-					data={ this.state.data }
-					query={ this.state.query }
-					readme=""
-					onVersionChange={ this._onVersionChange }
-					onPackageChange={ this._onPackageChange }
-				/>
+				<HelmetProvider>
+					<App
+						version={ this.state.version }
+						data={ this.state.data }
+						query={ this.state.query }
+						readme=""
+						onVersionChange={ this._onVersionChange }
+						onPackageChange={ this._onPackageChange }
+					/>
+				</HelmetProvider>
 			</BrowserRouter>
 		);
 	}

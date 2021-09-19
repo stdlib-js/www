@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './app.jsx';
 
 
@@ -41,12 +42,14 @@ import App from './app.jsx';
 function ServerApp( props ) {
 	return (
 		<StaticRouter location={ props.url } context={ props.context } >
-			<App
-				version={ props.version }
-				data={ props.data }
-				query={ props.query }
-				readme={ props.readme }
-			/>
+			<HelmetProvider context={ {} }>
+				<App
+					version={ props.version }
+					data={ props.data }
+					query={ props.query }
+					readme={ props.readme }
+				/>
+			</HelmetProvider>
 		</StaticRouter>
 	);
 }
