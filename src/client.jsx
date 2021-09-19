@@ -132,8 +132,16 @@ class ClientApp extends React.Component {
 	* @private
 	*/
 	componentDidMount() {
-		var self = this;
+		var self;
+		var el;
 
+		self = this;
+
+		// Remove any server-side generated Material-UI styles:
+		el = document.querySelector( '#mui-ssr-styles' );
+		if ( el ) {
+			el.parentElement.removeChild( el );
+		}
 		// TODO: we should overlay a progress indicator while we load package data and lock the UI to prevent race conditions (see, e.g., https://material-ui.com/components/backdrop/)...
 		fetchPackageData( this.state.version, clbk );
 
