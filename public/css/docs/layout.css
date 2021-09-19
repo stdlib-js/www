@@ -817,13 +817,16 @@ h2 {
 	width: 100%;
 	min-height: 4em;
 
-	/* top | right | bottom | left */
-	padding: 0 0.5em 0 0.5em;
+	padding: 0;
 }
 
 .top-nav .icon-button {
 	height: 2em;
-	margin-top: 8px;
+
+	margin-top: 0.5em;
+
+	padding-left: 8px;
+	padding-right: 8px;
 }
 
 .top-nav-divider {
@@ -837,10 +840,15 @@ h2 {
 .top-nav-search {
 	height: 4em;
 
-	margin-left: auto;
-	margin-right: 0.25em;
-	padding-left: 1em;
+	margin-left: 0;
+	margin-right: 0;
+
+	padding-left: 12px;
 	padding-top: 3px;
+}
+
+.top-nav-search-button.icon-button {
+	display: none;
 }
 
 /*
@@ -848,7 +856,7 @@ h2 {
 */
 .top-nav-search.top-nav-search-active {
 	flex: 1;
-	margin-left: 0.5em;
+	margin-left: 8px;
 }
 
 /*
@@ -893,13 +901,34 @@ h2 {
 	margin-left: auto;
 }
 
-@media only screen and (min-width: 76.25em) { /* 1220px */
+@media only screen and (min-width: 22.5em) { /* 360px */
 	/*
-	* For large devices, always display the package navigation items inline.
+	* Once we have enough real estate, show the search icon button.
 	*/
-	.side-menu-open .top-nav-items,
-	.side-menu-open .top-nav-items-dropdown {
-		display: inline-flex !important;
+	.top-nav-search-button.icon-button {
+		display: inline-flex;
+	}
+}
+
+@media only screen and (min-width: 24em) { /* 384px */
+	/*
+	* Once we have enough real estate, add some padding.
+	*/
+	.top-nav {
+		/* top | right | bottom | left */
+		padding: 0 8px 0 8px;
+	}
+
+	.top-nav .icon-button {
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	.top-nav-search {
+		margin-left: auto;
+		margin-right: 4px;
+
+		padding-left: 16px;
 	}
 }
 
@@ -941,6 +970,16 @@ h2 {
 	.side-menu-open .top-nav-items,
 	.side-menu-open .top-nav-items-dropdown {
 		display: none;
+	}
+}
+
+@media only screen and (min-width: 76.25em) { /* 1220px */
+	/*
+	* For large devices, always display the package navigation items inline.
+	*/
+	.side-menu-open .top-nav-items,
+	.side-menu-open .top-nav-items-dropdown {
+		display: inline-flex !important;
 	}
 }
 
