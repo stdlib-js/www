@@ -22,10 +22,13 @@
 
 var React = require( 'react' );
 var render = require( 'react-dom/server' ).renderToString;
+var styles = require( '@material-ui/core/styles' );
 
 
 // VARIABLES //
 
+var ServerStyleSheets = styles.ServerStyleSheets;
+var StylesProvider = styles.StylesProvider;
 var TITLE = 'Search | stdlib';
 var RE_PATHNAME = /(\/docs\/api\/.+\/search)\//;
 
@@ -79,9 +82,11 @@ function route( opts ) {
 	* @returns {void}
 	*/
 	function onRequest( request, reply ) {
+		var sheets;
 		var html;
 		var ctx;
 		var url;
+		var css;
 		var v;
 		var q;
 
@@ -97,20 +102,31 @@ function route( opts ) {
 		request.log.info( 'Returning application.' );
 		reply.type( 'text/html' );
 
+		// Initialize a means for generating Material-UI CSS:
+		sheets = new ServerStyleSheets();
+
 		// Render the application component as parameterized by request data...
 		ctx = {};
-		html = render( <App
-			url={ url }
-			version={ v }
-			data={ {} }
-			query={ q }
-			context={ ctx }
-		/> );
+		html = render(sheets.collect(
+			<StylesProvider>
+				<App
+					url={ url }
+					version={ v }
+					data={ {} }
+					query={ q }
+					context={ ctx }
+				/>
+			</StylesProvider>
+		));
+
+		// Generate Material-UI CSS:
+		css = sheets.toString();
 
 		// Insert the rendered application into the application template...
 		tmpl.title( TITLE )
 			.description( opts.meta.description )
 			.url( '/docs/api/'+v+'/search' )
+			.css( css )
 			.content( html );
 
 		// Send the response data:
