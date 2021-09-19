@@ -48,7 +48,7 @@
 
 9. (docs) build process which selectively updates only modified docs (i.e., avoid full build every time a README is updated; should be able to only rebuild and update that README)
 
-10.
+10. (docs) send pageview when a user navigates to a new page: <https://reactrouter.com/web/api/Hooks/uselocation>
 
 11. diffie-hellman: <https://mozilla.github.io/server-side-tls/ssl-config-generator/>
 
