@@ -464,13 +464,15 @@ class App extends React.Component {
 
 			// Resolve the next package:
 			next = list[ idx+1 ] || null;
+
+			// Resolve the list of package descriptions for the current documentation version:
+			desc = this.props.data.descriptions;
+
+			// Resolve the description of the current package:
+			desc = desc[ idx ];
 		} else {
 			prev = null;
 			next = null;
-		}
-		desc = this.props.data.descriptions;
-		if ( desc ) {
-			desc = desc[ pkg ];
 		}
 		return (
 			<Fragment>
