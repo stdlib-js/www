@@ -932,6 +932,12 @@ h2 {
 	}
 }
 
+@media only screen and (min-width: 26em) { /* 416px */
+	.top-nav-search-button.icon-button {
+		display: inline-flex;
+	}
+}
+
 @media only screen and (min-width: 50em) { /* 800px */
 	/*
 	* For larger devices, we allow search even though the side menu is open.
