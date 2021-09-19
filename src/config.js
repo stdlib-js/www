@@ -48,7 +48,7 @@ const config = {
 	'funding': 'https://www.patreon.com/athan',
 
 	// Document title:
-	'title': 'Documentation | stdlib',
+	'title': 'Documentation',
 
 	'description': 'Documentation for stdlib, a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.'
 };
