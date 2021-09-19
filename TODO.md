@@ -117,7 +117,7 @@
 
     - sudo git pull origin master
     - sudo rm -rf ./node_modules
-    - sudo npm run install:production
+    - sudo npm run install:prod
     - sudo nginx -s stop
     - sudo rm -rf /etc/nginx/sites-enabled/stdlib.io
     - sudo cp ./etc/nginx/sites-available/stdlib.io /etc/nginx/sites-available/stdlib.io
