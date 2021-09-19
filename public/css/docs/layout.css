@@ -840,7 +840,7 @@ h2 {
 .top-nav-search {
 	height: 4em;
 
-	margin-left: 0;
+	margin-left: auto;
 	margin-right: 0;
 
 	padding-left: 12px;
@@ -901,15 +901,6 @@ h2 {
 	margin-left: auto;
 }
 
-@media only screen and (min-width: 22.5em) { /* 360px */
-	/*
-	* Once we have enough real estate, show the search icon button.
-	*/
-	.top-nav-search-button.icon-button {
-		display: inline-flex;
-	}
-}
-
 @media only screen and (min-width: 24em) { /* 384px */
 	/*
 	* Once we have enough real estate, add some padding.
@@ -925,10 +916,16 @@ h2 {
 	}
 
 	.top-nav-search {
-		margin-left: auto;
 		margin-right: 4px;
 
 		padding-left: 16px;
+	}
+
+	/*
+	* Once we have enough real estate, show the search icon button.
+	*/
+	.top-nav-search-button.icon-button {
+		display: inline-flex;
 	}
 }
 
