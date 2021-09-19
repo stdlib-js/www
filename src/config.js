@@ -45,7 +45,12 @@ const config = {
 	'gitter': 'https://gitter.im/stdlib-js/stdlib',
 
 	// Sponsorship/funding URL:
-	'funding': 'https://www.patreon.com/athan'
+	'funding': 'https://www.patreon.com/athan',
+
+	// Document title:
+	'title': 'Documentation | stdlib',
+
+	'description': 'Documentation for stdlib, a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.'
 };
 
 
