@@ -24,6 +24,7 @@ var fs = require( 'fs' );
 var path = require( 'path' );
 var React = require( 'react' );
 var render = require( 'react-dom/server' ).renderToString;
+var styles = require( '@material-ui/core/styles' );
 var readFile = require( '@stdlib/fs/read-file' );
 var extname = require( '@stdlib/utils/extname' );
 var pkg2title = require( './../title.js' );
@@ -32,6 +33,9 @@ var parallel = require( './../parallel.js' );
 
 
 // VARIABLES //
+
+var ServerStyleSheets = styles.ServerStyleSheets;
+var StylesProvider = styles.StylesProvider;
 
 var FOPTS = {
 	'encoding': 'utf8'
@@ -178,12 +182,14 @@ function route( opts ) {
 		* @returns {void}
 		*/
 		function onResults( error, results ) {
+			var sheets;
 			var html;
 			var desc;
 			var data;
 			var file;
 			var ctx;
 			var url;
+			var css;
 			var pkg;
 			var idx;
 
@@ -204,16 +210,26 @@ function route( opts ) {
 			// Get the package name:
 			pkg = request.params[ '*' ];
 
+			// Initialize a means for generating Material-UI CSS:
+			sheets = new ServerStyleSheets();
+
 			// Render the application component as parameterized by request data...
 			ctx = {};
-			html = render( <App
-				url={ url }
-				version={ v }
-				data={ data }
-				query=''
-				readme={ file }
-				context={ ctx }
-			/> );
+			html = render(sheets.collect(
+				<StylesProvider>
+					<App
+						url={ url }
+						version={ v }
+						data={ data }
+						query=''
+						readme={ file }
+						context={ ctx }
+					/>
+				</StylesProvider>
+			));
+
+			// Generate Material-UI CSS:
+			css = sheets.toString();
 
 			// Resolve a page description...
 			idx = data.order[ pkg ];
@@ -230,6 +246,7 @@ function route( opts ) {
 			tmpl.title( pkg2title( pkg ) )
 				.description( desc )
 				.url( url )
+				.css( css )
 				.content( html );
 
 			// Send the response data:
