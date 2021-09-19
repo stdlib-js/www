@@ -47,6 +47,7 @@ class Readme extends React.Component {
 	* @param {string} props.url - resource URL
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.version - documentation version
+	* @param {string} [props.content] - initial content
 	* @param {string} [props.prev] - previous package name
 	* @param {string} [props.next] - next package name
 	* @param {Callback} props.onClick - callback to invoke upon clicking on README content
@@ -56,7 +57,7 @@ class Readme extends React.Component {
 		super( props );
 		this.state = {
 			// README content to render:
-			'content': ''
+			'content': props.content || ''
 		};
 	}
 
