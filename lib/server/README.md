@@ -117,9 +117,53 @@ $ curl 'http://127.0.0.1:<port>/docs/api/latest'
 
 * * *
 
+<a name="docs-api-version-stdlib-get"></a>
+
+#### GET /docs/api/:version/@stdlib
+
+Redirects to the documentation landing page for a specified `version`.
+
+##### Response: 302 (text/html)
+
+The response body will be empty.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/@stdlib'
+```
+
+* * *
+
+<a name="docs-api-version-search-get"></a>
+
+#### GET /docs/api/:version/search?q=<query>
+
+Returns a page for displaying search results according to a specified `query` for a specified `version`.
+
+##### Response: 200 (text/html)
+
+The response body will be an HTML string containing a page for displaying search results.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/search?q=sine'
+```
+
+* * *
+
 <a name="docs-api-version-pkg-get"></a>
 
-#### GET /docs/api/:version/\*?fragment=<true|false>
+#### GET /docs/api/:version/@stdlib/\*?fragment=<true|false>
 
 Returns package documentation for a specified `version`.
 
@@ -143,6 +187,210 @@ To return an HTML fragment,
 
 ```bash
 $ curl 'http://127.0.0.1:<port>/docs/api/latest/@stdlib/math/base/special/?fragment=true'
+```
+
+* * *
+
+<a name="docs-api-version-namespace-list-get"></a>
+
+#### GET /docs/api/:version/namespace_list.json
+
+Returns a list of namespaces for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a list of namespace indices. To resolve the list of corresponding package names, perform a look-up in the `package_list.json` dataset.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/namespace_list.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-data-get"></a>
+
+#### GET /docs/api/:version/package_data.json
+
+Returns application package data for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing application package data (e.g., package list, order, descriptions, tree, resources, etc).
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_data.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-desc-get"></a>
+
+#### GET /docs/api/:version/package_desc.json
+
+Returns a list of package descriptions for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a list of package descriptions. To resolve the corresponding package name, perform a cross-table look-up in the `package_order.json` and `package_list.json` datasets.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_desc.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-index-get"></a>
+
+#### GET /docs/api/:version/package_index.json
+
+Returns a pre-compiled search index for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a pre-compiled search index.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_index.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-list-get"></a>
+
+#### GET /docs/api/:version/package_list.json
+
+Returns a list of packages for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a list of package names.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_list.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-order-get"></a>
+
+#### GET /docs/api/:version/package_order.json
+
+Returns a hash specifying package order for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a hash specifying package order.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_order.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-resources-get"></a>
+
+#### GET /docs/api/:version/package_resources.json
+
+Returns a strided array indicating the presence/absence of package resources for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a strided array structured as follows:
+
+```text
+[ <benchmark>, <test>, <typescript>, <benchmark>, <test>, ...]
+```
+
+For each package in `package_list.json`, the strided array contains three consecutive entries indicating the presence/absence of a package resource. A `1` indicates the presence of a package resource, and a `0` indicates the absence of a package resource.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_resources.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-tree-get"></a>
+
+#### GET /docs/api/:version/package_tree.json
+
+Returns a package tree for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a package tree.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_tree.json'
+```
+
+* * *
+
+<a name="docs-api-version-package-tree-array-get"></a>
+
+#### GET /docs/api/:version/pacakge_tree_array.json
+
+Returns a package tree array for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a package tree array.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_tree_array.json'
 ```
 
 * * *
