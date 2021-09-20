@@ -127,7 +127,9 @@ $ make clean-docs
 
 ## Viewing
 
-To view the website, create a new terminal window and navigate to the `public` folder
+### Main Website
+
+To view the main website, create a new terminal window and navigate to the `public` folder
 
 ```bash
 $ cd /path/to/stdlib/www/public
@@ -146,6 +148,22 @@ $ open http://127.0.0.1:9000
 ```
 
 which will open the website homepage in a local web browser.
+
+### API Documentation
+
+To view the API documentation website, create a new terminal window and start a local web server
+
+```bash
+$ npm run start
+```
+
+Once the local web server is running, run
+
+```bash
+$ open http://127.0.0.1:3000/docs/api
+```
+
+which will open the API documentation landing page in a local web browser.
 
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
