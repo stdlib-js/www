@@ -243,7 +243,7 @@ Returns a list of package descriptions for a specified `version`.
 
 ##### Response: 200 (application/json)
 
-The response body will be a JSON string containing a list of package descriptions. To resolve the corresponding package name, perform a cross-table look-up in the `package_order.json` and `package_list.json` datasets.
+The response body will be a JSON string containing a list of package descriptions. To resolve the corresponding package name, perform a look-up in the `package_list.json` dataset.
 
 ##### Examples
 
