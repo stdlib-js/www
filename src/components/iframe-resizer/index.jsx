@@ -82,7 +82,7 @@ class IframeResizer extends React.Component {
 		return (
 			<iframe
 				className={ this.props.className }
-				srcdoc={ bootstrap( this.props.url+'?=fragment=true' ) }
+				srcdoc={ bootstrap( this.props.url ) }
 				title={ this.props.title }
 				width={ this.props.width }
 				checkOrigin={ false }
