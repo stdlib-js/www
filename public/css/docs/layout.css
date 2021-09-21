@@ -738,6 +738,14 @@ h2 {
 }
 
 /*
+* Runner results.
+*/
+
+.runner-results p {
+	margin-bottom: 0;
+}
+
+/*
 * Search results.
 */
 
