@@ -50,6 +50,7 @@ const config = {
 	// Document title:
 	'title': 'Documentation',
 
+	// Document description:
 	'description': 'Documentation for stdlib, a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.'
 };
 
