@@ -504,6 +504,7 @@ class SideMenuDrawer extends React.Component {
 	_renderNamespace( node, hash, level ) {
 		var expanded;
 		var submenu;
+		var active;
 		var name;
 		var pkg;
 
@@ -512,13 +513,14 @@ class SideMenuDrawer extends React.Component {
 
 		expanded = hash[ pkg ];
 
+		active = ( this.props.pkg === pkg );
 		submenu = name + '-submenu'; // id
 
 		return (
 			<Fragment>
 				<ListItem
 					key={ name }
-					className={ 'side-menu-list-item-namespace '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
+					className={ 'side-menu-list-item-namespace '+( ( active ) ? 'active-package' : '' ) }
 					role="menuitem"
 					aria-owns={ ( expanded ) ? submenu : null }
 				>
@@ -529,6 +531,7 @@ class SideMenuDrawer extends React.Component {
 						style={{
 							paddingLeft: 16 + 10*level
 						}}
+						aria-current={ ( active ) ? 'page': null }
 					>
 						{ node.key }
 					</Link>
@@ -578,16 +581,19 @@ class SideMenuDrawer extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderPackage( node, level ) {
+		var active;
 		var name;
 		var pkg;
 
 		name = node.name;
 		pkg = deprefix( name );
 
+		active = ( this.props.pkg === pkg );
+
 		return (
 			<ListItem
 				key={ name }
-				className={ 'side-menu-list-item '+( ( this.props.pkg === pkg ) ? 'active-package' : '' ) }
+				className={ 'side-menu-list-item '+( ( active ) ? 'active-package' : '' ) }
 				role="menuitem"
 			>
 				<Link
@@ -597,6 +603,7 @@ class SideMenuDrawer extends React.Component {
 					style={{
 						paddingLeft: 16 + 10*level
 					}}
+					aria-current={ ( active ) ? 'page' : null }
 				>
 					{ node.key }
 				</Link>
