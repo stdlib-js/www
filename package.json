@@ -72,7 +72,6 @@
     "fastify": "^3.20.2",
     "fastify-helmet": "^5.3.2",
     "fastify-static": "^4.2.3",
-    "iframe-resizer": "^4.2.8",
     "ignore-styles": "^5.0.1",
     "lunr": "^2.3.9",
     "qs": "^6.10.1",
