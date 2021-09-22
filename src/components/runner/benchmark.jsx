@@ -235,9 +235,9 @@ class BenchmarkRunner extends React.Component {
 					:
 					(
 						<Fragment>
-							<p>result.results.iterations</p>
-							<p>result.results.elapsed</p>
-							<p>result.results.rate</p>
+							<p>{ result.results.iterations }</p>
+							<p>{ result.results.elapsed }</p>
+							<p>{ result.results.rate }</p>
 						</Fragment>
 					)
 				}
