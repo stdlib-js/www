@@ -159,7 +159,7 @@ class BenchmarkRunner extends React.Component {
 				if ( match ) {
 					o.results.elapsed = parseFloat( match[ 1 ] );
 				} else {
-					match = line.match( /rate: ([0-9]+)$/ );
+					match = line.match( /rate: ([0-9.]+)$/ );
 					if ( match ) {
 						o.results.rate = parseFloat( match[ 1 ] );
 					}
@@ -235,9 +235,9 @@ class BenchmarkRunner extends React.Component {
 					:
 					(
 						<Fragment>
-							<p>{ result.results.iterations }</p>
-							<p>{ result.results.elapsed }</p>
-							<p>{ result.results.rate }</p>
+							<p>{ 'Iterations: ' + result.results.iterations }</p>
+							<p>{ 'Elapsed: ' + result.results.elapsed }</p>
+							<p>{ 'Rate: ' + result.results.rate }</p>
 						</Fragment>
 					)
 				}
