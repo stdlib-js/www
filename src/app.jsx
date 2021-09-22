@@ -28,7 +28,8 @@ import NotFound from './components/not-found/index.jsx';
 import TopNav from './components/top-nav/index.jsx';
 import Search from './components/search/index.jsx';
 import Head from './components/head/new_page.jsx';
-import Runner from './components/runner/index.jsx';
+import TestRunner from './components/runner/test.jsx';
+import BenchmarkRunner from './components/runner/benchmark.jsx';
 import log from './utils/log.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from './utils/reset_scroll.js';
@@ -530,7 +531,7 @@ class App extends React.Component {
 		}
 		if ( flg ) {
 			return (
-				<Runner
+				<BenchmarkRunner
 					title="Benchmarks"
 					url={ match.url.replace( /\.html$/, '_bundle.js' ) }
 				/>
@@ -569,7 +570,7 @@ class App extends React.Component {
 		}
 		if ( flg ) {
 			return (
-				<Runner
+				<TestRunner
 					title="Tests"
 					url={ match.url.replace( /\.html$/, '_bundle.js' ) }
 				/>
