@@ -116,7 +116,11 @@ class BenchmarkRunner extends React.Component {
 				'desc': line,
 				'file': '',
 				'pass': 0,
-				'results': {},
+				'results': {
+					'iterations': 0,
+					'elapsed': 0.0,
+					'rate': 0.0
+				},
 				'fail': 0,
 				'failures': [],
 				'flg': false
