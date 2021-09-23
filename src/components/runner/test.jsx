@@ -51,47 +51,84 @@ class TestRunner extends React.Component {
 			'content': [],
 			'update': 0
 		};
+		this._prevLine = '';
+
 		this._worker = null;
 	}
 
 	/**
-	* Callback invoked upon receiving a message from a web worker.
+	* Processes a single TAP line.
 	*
 	* @private
-	* @param {Object} event - event object
+	* @param {string} line - TAP line
 	*/
-	_onMessage = ( event ) => {
+	_processLine( line ) {
 		var content;
 		var match;
-		var line;
 		var o;
+		var r;
 
-		line = event.data;
-		content = this.state.content;
-		if ( content.length ) {
-			o = content[ content.length-1 ];
-		}
 		// Check for an empty line...
 		if ( line === '' ) {
 			// We can ignore this line...
 			return;
 		}
+		content = this.state.content;
+		if ( content.length ) {
+			o = content[ content.length-1 ];
+			if ( o.results.length ) {
+				r = o.results[ o.results.length-1 ];
+			}
+		}
 		// Check for a passing test...
 		if ( /^ok \d+ .+/.test( line ) ) {
-			o.pass += 1;
-			match = line.match( /^ok \d+ (\/lib\/node_modules\/.+)$/ );
+			// Check whether we have begun processing the tests for another file...
+			match = line.match( /^ok \d+ (\/lib\/node_modules\/.+)$/ ); // Note: this is based on the convention that, in a test file, we always print the test filename as an assertion within the first test block
 			if ( match ) {
-				o.file = match[ 1 ];
+				// We need to create a new object for holding all test results belonging to a particular test file...
+				o = {
+					'file': match[ 1 ],
+					'results': [
+						{
+							'desc': this._prevLine,
+							'pass': 0,
+							'fail': 0,
+							'failures': []
+						}
+					]
+				};
+				r = o.results[ 0 ];
+				content.push( o );
 			}
+			// Check if preceded by a test description...
+			else if ( /^#/.test( this._prevLine ) ) {
+				r = {
+					'desc': this._prevLine,
+					'pass': 0,
+					'fail': 0,
+					'failures': []
+				};
+				o.results.push( r );
+			}
+			r.pass += 1;
 		}
 		// Check for a failing test...
 		else if ( /^not ok \d+ .+/.test( line ) ) {
-			o.fail += 1;
-			o.failures.push({
+			// Check if preceded by a test description...
+			if ( /^#/.test( this._prevLine ) ) {
+				r = {
+					'desc': this._prevLine,
+					'pass': 0,
+					'fail': 0,
+					'failures': []
+				};
+				o.results.push( r );
+			}
+			r.fail += 1;
+			r.failures.push({
 				'assertion': line.replace( /^not ok \d+ /, '' ),
 				'diagnostics': []
 			});
-
 		}
 		// Check for a diagnostic line...
 		else if ( /^#/.test( line ) ) {
@@ -111,13 +148,7 @@ class TestRunner extends React.Component {
 				return;
 			}
 			// We found a test description...
-			content.push({
-				'desc': line,
-				'file': '',
-				'pass': 0,
-				'fail': 0,
-				'failures': []
-			});
+			return;
 		}
 		// Check for the version line...
 		else if ( /^TAP .+/.test( line ) ) {
@@ -141,12 +172,23 @@ class TestRunner extends React.Component {
 		}
 		// We can assume that we are within a YAML block...
 		else {
-			o.failures[ o.failures.length-1 ].diagnostics.push( line );
+			r.failures[ r.failures.length-1 ].diagnostics.push( line );
 		}
 		// Update component state:
 		this.setState({
 			'update': this.state.update + 1
 		});
+	}
+
+	/**
+	* Callback invoked upon receiving a message from a web worker.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onMessage = ( event ) => {
+		this._processLine( event.data );
+		this._prevLine = event.data;
 	}
 
 	/**
@@ -286,10 +328,7 @@ class TestRunner extends React.Component {
 		return (
 			<div id="readme" className="readme runner">
 				<h1>{ this.props.title }</h1>
-				<section className="runner-results">
-					<h2>
-						Running...
-					</h2>
+				<section className="runner-results tests">
 					{ this._renderResults( this.state.content ) }
 				</section>
 			</div>
