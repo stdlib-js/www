@@ -18,8 +18,9 @@
 
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import log from './../../utils/log.js';
+import config from './../../config.js';
 
 
 // VARIABLES //
@@ -43,6 +44,7 @@ class TestRunner extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.url - resource URL
 	* @param {string} props.title - page title
+	* @param {string} props.version - documentation version
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -82,28 +84,26 @@ class TestRunner extends React.Component {
 		}
 		// Check for a passing test...
 		if ( /^ok \d+ .+/.test( line ) ) {
-			// Check whether we have begun processing the tests for another file...
+			// Check whether we have begun processing tests for a new file...
 			match = line.match( /^ok \d+ (\/lib\/node_modules\/.+)$/ ); // Note: this is based on the convention that, in a test file, we always print the test filename as an assertion within the first test block
 			if ( match ) {
-				// We need to create a new object for holding all test results belonging to a particular test file...
-				o = {
-					'file': match[ 1 ],
-					'results': [
-						{
-							'desc': this._prevLine,
-							'pass': 0,
-							'fail': 0,
-							'failures': []
-						}
-					]
+				// We need to create a new object for holding all test results belonging to the new test file...
+				r = {
+					'desc': this._prevLine.substring( 2 ),
+					'pass': 0,
+					'fail': 0,
+					'failures': []
 				};
-				r = o.results[ 0 ];
+				o = {
+					'file': config.repository+'/tree/'+this.props.version+match[ 1 ],
+					'results': [ r ]
+				};
 				content.push( o );
 			}
 			// Check if preceded by a test description...
 			else if ( /^#/.test( this._prevLine ) ) {
 				r = {
-					'desc': this._prevLine,
+					'desc': this._prevLine.substring( 2 ),
 					'pass': 0,
 					'fail': 0,
 					'failures': []
@@ -117,7 +117,7 @@ class TestRunner extends React.Component {
 			// Check if preceded by a test description...
 			if ( /^#/.test( this._prevLine ) ) {
 				r = {
-					'desc': this._prevLine,
+					'desc': this._prevLine.substring( 2 ),
 					'pass': 0,
 					'fail': 0,
 					'failures': []
@@ -132,22 +132,7 @@ class TestRunner extends React.Component {
 		}
 		// Check for a diagnostic line...
 		else if ( /^#/.test( line ) ) {
-			// Check whether the description is empty...
-			if ( line === '#' ) {
-				// We can ignore this line...
-				return;
-			}
-			// Check whether this is a summary line...
-			if ( /^# total \d+$|^# tests \d+$|^# (?:pass|fail) {2}\d+$|^# ok/.test( line ) ) {
-				// We can ignore this line...
-				return;
-			}
-			// Check whether this line indicates a skipped test...
-			if ( /^# SKIP.*$/.test( line ) ) {
-				// We can ignore this line...
-				return;
-			}
-			// We found a test description...
+			// We can ignore this line, as we will process a test description upon encountering the next test...
 			return;
 		}
 		// Check for the version line...
@@ -228,31 +213,59 @@ class TestRunner extends React.Component {
 	}
 
 	/**
-	* Renders a result.
+	* Renders a test failure.
 	*
 	* @private
-	* @param {Object} result - result
+	* @param {Object} failure - test failure
+	* @param {string} failure.assertion - test assertion
+	* @param {StringArray} failure.diagnostics - test diagnostics
 	* @returns {ReactElement} React element
 	*/
-	_renderResult( result ) {
-		/*
-		* TODO:
-		*
-		* -  if starts with `TAP version 13`, skip
-		* -  if starts with `#`, treat as comment
-		* -  if starts with `ok`, print a green checkmark and then the result
-		*    -   if the result is `ok \d+` followed by `lib/node_modules/*`, wrap the path in a link and link to the GitHub source
-		* -  if starts with `not ok`, print a red `x` and then the result
-		* -  otherwise, print as paragraph
-		*/
+	_renderFailure( failure ) {
 		return (
-			<div>
-				<p>{ result.file }</p>
-				<p>{ result.desc }</p>
-				<p>{ 'Pass: ' + result.pass }</p>
-				<p>{ 'Fail: ' + result.fail }</p>
+			<Fragment>
+				<p className="test-failure-assertion">{ failure.assertion }</p>
+				<pre className="test-failure-diagnostics">{ failure.diagnostics.join( '\n' ) }</pre>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Renders a list of test failures.
+	*
+	* @private
+	* @param {ObjectArray} list - list of failures
+	* @returns {Array<ReactElement>} list of React elements
+	*/
+	_renderFailures( list ) {
+		var out;
+		var i;
+
+		out = [];
+		for ( i = 0; i < list.length; i++ ) {
+			out.push( this._renderFailure( list[ i ] ) );
+		}
+		return out;
+	}
+
+	/**
+	* Renders a test result.
+	*
+	* @private
+	* @param {Object} result - test result
+	* @param {string} result.desc - test description
+	* @param {NonNegativeInteger} result.pass - number of passing tests
+	* @param {NonNegativeInteger} result.fail - number of failing tests
+	* @param {ObjectArray} result.failures - list of test failures
+	*/
+	_renderResult( result ) {
+		return (
+			<div className="test-block">
+				<p className="test-description">{ result.desc }</p>
+				<p className="test-pass">{ 'Pass: ' + result.pass }</p>
+				<p className="test-fail">{ 'Fail: ' + result.fail }</p>
 				{ ( result.failures.length ) ?
-					<pre>{ result.failures.join( '\n' ) }</pre>
+					<div className="test-failures">{ this._renderFailures( result.failures ) }</div>
 					:
 					null
 				}
@@ -261,7 +274,7 @@ class TestRunner extends React.Component {
 	}
 
 	/**
-	* Renders results.
+	* Renders test results.
 	*
 	* @private
 	* @param {ObjectArray} results - list of results
@@ -274,6 +287,42 @@ class TestRunner extends React.Component {
 		out = [];
 		for ( i = 0; i < results.length; i++ ) {
 			out.push( this._renderResult( results[ i ] ) );
+		}
+		return out;
+	}
+
+	/**
+	* Renders results for a test file.
+	*
+	* @private
+	* @param {Object} result - result
+	* @param {string} result.file - test file name
+	* @param {ObjectArray} result.results - test results
+	* @returns {ReactElement} React element
+	*/
+	_renderFile( result ) {
+		return (
+			<section className="test">
+				<h2 className="test-file"><a href={ result.file } title="View test file">Source</a></h2>
+				{ this._renderResults( result.results ) }
+			</section>
+		);
+	}
+
+	/**
+	* Renders results.
+	*
+	* @private
+	* @param {ObjectArray} results - list of results
+	* @returns {Array<ReactElement>} list of React elements
+	*/
+	_render( results ) {
+		var out;
+		var i;
+
+		out = [];
+		for ( i = 0; i < results.length; i++ ) {
+			out.push( this._renderFile( results[ i ] ) );
 		}
 		return out;
 	}
@@ -329,7 +378,7 @@ class TestRunner extends React.Component {
 			<div id="readme" className="readme runner">
 				<h1>{ this.props.title }</h1>
 				<section className="runner-results tests">
-					{ this._renderResults( this.state.content ) }
+					{ this._render( this.state.content ) }
 				</section>
 			</div>
 		);
