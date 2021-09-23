@@ -43,6 +43,7 @@ class BenchmarkRunner extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.url - resource URL
 	* @param {string} props.title - page title
+	* @param {string} props.version - documentation version
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -79,10 +80,6 @@ class BenchmarkRunner extends React.Component {
 		// Check for a passing test...
 		if ( /^ok \d+ .+/.test( line ) ) {
 			o.pass += 1;
-			match = line.match( /^ok \d+ (\/lib\/node_modules\/.+)$/ );
-			if ( match ) {
-				o.file = match[ 1 ];
-			}
 		}
 		// Check for a failing test...
 		else if ( /^not ok \d+ .+/.test( line ) ) {
