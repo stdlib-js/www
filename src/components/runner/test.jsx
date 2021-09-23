@@ -28,6 +28,21 @@ import config from './../../config.js';
 var WORKER_SCRIPT = '/js/docs/worker.js';
 
 
+// FUNCTIONS //
+
+/**
+* Returns a display file name for a provided test file.
+*
+* @private
+* @param {string} file - file name
+* @returns {string} display file name
+*/
+function filename( file ) {
+	var idx = file.lastIndexOf( '/test/' ); // Note: we are assuming the convention `/foo/bar/test/*.js`, where test files are always located in a `/test/` folder
+	return file.substring( idx+1 );
+}
+
+
 // MAIN //
 
 /**
@@ -95,7 +110,8 @@ class TestRunner extends React.Component {
 					'failures': []
 				};
 				o = {
-					'file': config.repository+'/tree/'+this.props.version+match[ 1 ],
+					'file': filename( match[ 1 ] ),
+					'url': config.repository+'/tree/'+this.props.version+match[ 1 ],
 					'results': [ r ]
 				};
 				content.push( o );
@@ -224,7 +240,7 @@ class TestRunner extends React.Component {
 	_renderFailure( failure ) {
 		return (
 			<Fragment>
-				<p className="test-failure-assertion">{ failure.assertion }</p>
+				<p className="test-failure-assertion"><span className="test-fail-icon" role="img" aria-hidden="true">✖</span>{ failure.assertion }</p>
 				<pre className="test-failure-diagnostics">{ failure.diagnostics.join( '\n' ) }</pre>
 			</Fragment>
 		);
@@ -262,8 +278,8 @@ class TestRunner extends React.Component {
 		return (
 			<div className="test-block">
 				<p className="test-description">{ result.desc }</p>
-				<p className="test-pass">{ 'Pass: ' + result.pass }</p>
-				<p className="test-fail">{ 'Fail: ' + result.fail }</p>
+				<p className="test-pass"><span className="test-pass-icon" role="img" aria-hidden="true">✔</span>{ 'Pass: ' + result.pass }</p>
+				<p className="test-fail"><span className="test-fail-icon" role="img" aria-hidden="true">{ ( result.fail ) ? '✖' : '✔' }</span>{ 'Fail: ' + result.fail }</p>
 				{ ( result.failures.length ) ?
 					<div className="test-failures">{ this._renderFailures( result.failures ) }</div>
 					:
@@ -296,6 +312,7 @@ class TestRunner extends React.Component {
 	*
 	* @private
 	* @param {Object} result - result
+	* @param {string} result.url - test file URL
 	* @param {string} result.file - test file name
 	* @param {ObjectArray} result.results - test results
 	* @returns {ReactElement} React element
@@ -303,7 +320,7 @@ class TestRunner extends React.Component {
 	_renderFile( result ) {
 		return (
 			<section className="test">
-				<h2 className="test-file"><a href={ result.file } title="View test file">Source</a></h2>
+				<h2 className="test-file"><span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span><a href={ result.url } title="View test file">{ result.file }</a></h2>
 				{ this._renderResults( result.results ) }
 			</section>
 		);
