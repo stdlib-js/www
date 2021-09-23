@@ -56,26 +56,24 @@ class BenchmarkRunner extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon receiving a message from a web worker.
+	* Processes a single TAP line.
 	*
 	* @private
-	* @param {Object} event - event object
+	* @param {string} line - TAP line
 	*/
-	_onMessage = ( event ) => {
+	_processLine( line ) {
 		var content;
 		var match;
-		var line;
 		var o;
 
-		line = event.data;
-		content = this.state.content;
-		if ( content.length ) {
-			o = content[ content.length-1 ];
-		}
 		// Check for an empty line...
 		if ( line === '' ) {
 			// We can ignore this line...
 			return;
+		}
+		content = this.state.content;
+		if ( content.length ) {
+			o = content[ content.length-1 ];
 		}
 		// Check for a passing test...
 		if ( /^ok \d+ .+/.test( line ) ) {
@@ -93,24 +91,24 @@ class BenchmarkRunner extends React.Component {
 		}
 		// Check for a diagnostic line...
 		else if ( /^#/.test( line ) ) {
-			// Check whether the description is empty...
+			// Check whether the diagnostic line is empty...
 			if ( line === '#' ) {
 				// We can ignore this line...
 				return;
 			}
 			// Check whether this is a summary line...
-			if ( /^# tests \d+$|^# total \d+$|^# (?:pass|fail) {2}\d+$|^# ok/.test( line ) ) {
+			if ( /^# total \d+$|^# (?:pass|fail) {2}\d+$|^# ok/.test( line ) ) {
 				// We can ignore this line...
 				return;
 			}
-			// Check whether this line indicates a skipped test...
+			// Check whether this line indicates a skipped benchmark...
 			if ( /^# SKIP.*$/.test( line ) ) {
 				// We can ignore this line...
 				return;
 			}
-			// We found a test description...
+			// We found a benchmark description...
 			content.push({
-				'desc': line,
+				'desc': line.substring( 2 ),
 				'file': '',
 				'pass': 0,
 				'results': {
@@ -158,11 +156,11 @@ class BenchmarkRunner extends React.Component {
 			} else {
 				match = line.match( /elapsed: ([0-9.]+)$/ );
 				if ( match ) {
-					o.results.elapsed = parseFloat( match[ 1 ] );
+					o.results.elapsed = parseFloat( match[ 1 ] ).toLocaleString( 'en-US' );
 				} else {
 					match = line.match( /rate: ([0-9.]+)$/ );
 					if ( match ) {
-						o.results.rate = parseFloat( match[ 1 ] );
+						o.results.rate = parseFloat( match[ 1 ] ).toLocaleString( 'en-US' );
 					}
 				}
 			}
@@ -171,6 +169,16 @@ class BenchmarkRunner extends React.Component {
 		this.setState({
 			'update': this.state.update + 1
 		});
+	}
+
+	/**
+	* Callback invoked upon receiving a message from a web worker.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onMessage = ( event ) => {
+		this._processLine( event.data );
 	}
 
 	/**
@@ -210,38 +218,83 @@ class BenchmarkRunner extends React.Component {
 	}
 
 	/**
+	* Renders an assertion failure.
+	*
+	* @private
+	* @param {Object} failure - assertion failure
+	* @param {string} failure.assertion - assertion
+	* @param {StringArray} failure.diagnostics - assertion diagnostics
+	* @returns {ReactElement} React element
+	*/
+	_renderFailure( failure ) {
+		return (
+			<Fragment>
+				<p className="benchmark-failure-assertion">
+					<span className="benchmark-result-icon benchmark-fail-icon" role="img" aria-hidden="true">-</span>
+					<span className="benchmark-assertion-message">{ failure.assertion }</span>
+				</p>
+				<pre className="benchmark-failure-diagnostics">{ failure.diagnostics.join( '\n' ) }</pre>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Renders a list of assertion failures.
+	*
+	* @private
+	* @param {ObjectArray} list - list of failures
+	* @returns {Array<ReactElement>} list of React elements
+	*/
+	_renderFailures( list ) {
+		var out;
+		var i;
+
+		out = [];
+		for ( i = 0; i < list.length; i++ ) {
+			out.push( this._renderFailure( list[ i ] ) );
+		}
+		return out;
+	}
+
+	/**
 	* Renders a result.
 	*
 	* @private
 	* @param {Object} result - result
+	* @param {string} result.desc - benchmark description
+	* @param {Object} result.results - benchmark results
+	* @param {ObjectArray} result.failures - list of assertion failures
 	* @returns {ReactElement} React element
 	*/
 	_renderResult( result ) {
-		/*
-		* TODO:
-		*
-		* -  if starts with `TAP version 13`, skip
-		* -  if starts with `#`, treat as comment
-		* -  if starts with `ok`, print a green checkmark and then the result
-		*    -   if the result is `ok \d+` followed by `lib/node_modules/*`, wrap the path in a link and link to the GitHub source
-		* -  if starts with `not ok`, print a red `x` and then the result
-		* -  otherwise, print as paragraph
-		*/
+		if ( result.failures.length ) {
+			return (
+				<div className="benchmark-block">
+					<p className="benchmark-description">{ result.desc }</p>
+					<div className="benchmark-failures">{ this._renderFailures( result.failures ) }</div>
+				</div>
+			);
+		}
 		return (
-			<div>
-				<p>{ result.file }</p>
-				<p>{ result.desc }</p>
-				{ ( result.failures.length ) ?
-					<pre>{ result.failures.join( '\n' ) }</pre>
-					:
-					(
-						<Fragment>
-							<p>{ 'Iterations: ' + result.results.iterations }</p>
-							<p>{ 'Elapsed: ' + result.results.elapsed }</p>
-							<p>{ 'Rate: ' + result.results.rate }</p>
-						</Fragment>
-					)
-				}
+			<div className="benchmark-block">
+				<p className="benchmark-description">{ result.desc }</p>
+				<p className="benchmark-iterations">
+					<span className="benchmark-result-icon benchmark-iterations-icon" role="img" aria-hidden="true">-</span>
+					<span className="benchmark-result-label">Iterations: </span>
+					<span className="benchmark-result-value">{ result.results.iterations }</span>
+				</p>
+				<p className="benchmark-elapsed">
+					<span className="benchmark-result-icon benchmark-elapsed-icon" role="img" aria-hidden="true">-</span>
+					<span className="benchmark-result-label">Elapsed: </span>
+					<span className="benchmark-result-value">{ result.results.elapsed }</span>
+					<span className="benchmark-result-units"> sec</span>
+				</p>
+				<p className="benchmark-rate">
+					<span className="benchmark-result-icon benchmark-rate-icon" role="img" aria-hidden="true">-</span>
+					<span className="benchmark-result-label">Rate: </span>
+					<span className="benchmark-result-value">{ result.results.rate }</span>
+					<span className="benchmark-result-units"> ops/sec</span>
+				</p>
 			</div>
 		);
 	}
@@ -314,11 +367,8 @@ class BenchmarkRunner extends React.Component {
 		return (
 			<div id="readme" className="readme runner">
 				<h1>{ this.props.title }</h1>
-				<section className="runner-results">
-					<h2>
-						Running...
-					</h2>
-					{ this._renderResults( this.state.content ) }
+				<section className="runner-results benchmarks">
+					{ ( this.state.content.length ) ? this._renderResults( this.state.content ) : '...' }
 				</section>
 			</div>
 		);
