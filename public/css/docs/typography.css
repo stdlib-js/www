@@ -262,16 +262,19 @@ a:active {
 */
 
 
-.runner-results .test-block {
+.runner-results .test-block,
+.runner-results .benchmark-block {
 	color: #585858;
 }
 
-.runner-results .test-block .test-description {
+.runner-results .test-block .test-description,
+.runner-results .benchmark-block .benchmark-description {
 	text-decoration: underline;
 	text-decoration-color: #cacaca;
 }
 
-.runner-results .test-block .test-result-label {
+.runner-results .test-block .test-result-label,
+.runner-results .benchmark-block .benchmark-result-label {
 	font-weight: 600;
 }
 
