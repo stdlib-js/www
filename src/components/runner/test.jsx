@@ -240,7 +240,10 @@ class TestRunner extends React.Component {
 	_renderFailure( failure ) {
 		return (
 			<Fragment>
-				<p className="test-failure-assertion"><span className="test-fail-icon" role="img" aria-hidden="true">✖</span>{ failure.assertion }</p>
+				<p className="test-failure-assertion">
+					<span className="test-result-icon test-fail-icon" role="img" aria-hidden="true">-</span>
+					<span className="test-assertion-message">{ failure.assertion }</span>
+				</p>
 				<pre className="test-failure-diagnostics">{ failure.diagnostics.join( '\n' ) }</pre>
 			</Fragment>
 		);
@@ -278,8 +281,16 @@ class TestRunner extends React.Component {
 		return (
 			<div className="test-block">
 				<p className="test-description">{ result.desc }</p>
-				<p className="test-pass"><span className="test-pass-icon" role="img" aria-hidden="true">✔</span>{ 'Pass: ' + result.pass }</p>
-				<p className="test-fail"><span className="test-fail-icon" role="img" aria-hidden="true">{ ( result.fail ) ? '✖' : '✔' }</span>{ 'Fail: ' + result.fail }</p>
+				<p className="test-pass">
+					<span className="test-result-icon test-pass-icon" role="img" aria-hidden="true">-</span>
+					<span className="test-result-label">Pass: </span>
+					<span className="test-result-value">{ result.pass }</span>
+				</p>
+				<p className="test-fail">
+					<span className="test-result-icon test-fail-icon" role="img" aria-hidden="true">-</span>
+					<span className="test-result-label">Fail: </span>
+					<span className="test-result-value">{ result.fail }</span>
+				</p>
 				{ ( result.failures.length ) ?
 					<div className="test-failures">{ this._renderFailures( result.failures ) }</div>
 					:
