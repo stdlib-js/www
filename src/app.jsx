@@ -519,11 +519,14 @@ class App extends React.Component {
 		var table;
 		var order;
 		var ptr;
+		var pkg;
 		var flg;
+
+		pkg = match.params.pkg;
 
 		order = this.props.data.order;
 		if ( order ) {
-			ptr = order[ match.params.pkg ];
+			ptr = order[ pkg ];
 		}
 		table = this.props.data.resources;
 		if ( table && typeof ptr === 'number' ) {
@@ -537,6 +540,7 @@ class App extends React.Component {
 				<BenchmarkRunner
 					title="Benchmarks"
 					url={ match.url.replace( /\.html$/, '_bundle.js' ) }
+					pkg={ pkg }
 					version={ version }
 				/>
 			);
