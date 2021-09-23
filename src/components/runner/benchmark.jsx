@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import log from './../../utils/log.js';
 
 
@@ -368,7 +369,7 @@ class BenchmarkRunner extends React.Component {
 			<div id="readme" className="readme runner">
 				<h1>{ this.props.title }</h1>
 				<section className="runner-results benchmarks">
-					{ ( this.state.content.length ) ? this._renderResults( this.state.content ) : '...' }
+					{ ( this.state.content.length ) ? this._renderResults( this.state.content ) : <CircularProgress /> }
 				</section>
 			</div>
 		);
