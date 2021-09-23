@@ -515,6 +515,7 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderBenchmark( match ) {
+		var version;
 		var table;
 		var order;
 		var ptr;
@@ -530,10 +531,13 @@ class App extends React.Component {
 			flg = table[ ptr+OFFSETS.benchmark ];
 		}
 		if ( flg ) {
+			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
+			version = 'develop';
 			return (
 				<BenchmarkRunner
 					title="Benchmarks"
 					url={ match.url.replace( /\.html$/, '_bundle.js' ) }
+					version={ version }
 				/>
 			);
 		}
@@ -554,6 +558,7 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderTest( match ) {
+		var version;
 		var table;
 		var order;
 		var ptr;
@@ -569,10 +574,13 @@ class App extends React.Component {
 			flg = table[ ptr+OFFSETS.test ];
 		}
 		if ( flg ) {
+			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
+			version = 'develop';
 			return (
 				<TestRunner
 					title="Tests"
 					url={ match.url.replace( /\.html$/, '_bundle.js' ) }
+					version={ version }
 				/>
 			);
 		}
