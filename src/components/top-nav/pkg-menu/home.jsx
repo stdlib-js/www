@@ -31,7 +31,7 @@ import React from 'react';
 */
 function Home() {
 	return (
-		<li class="top-nav-item" role="menuitem">
+		<li key="home" class="top-nav-item" role="menuitem">
 			<a href="/" title="Go to the main website">home</a>
 		</li>
 	);
