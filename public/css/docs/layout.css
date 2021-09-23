@@ -745,6 +745,35 @@ h2 {
 	margin-bottom: 0;
 }
 
+.runner-results .logo-icon {
+	display: inline-block;
+
+	height: 1em;
+	width: 1em;
+
+	margin-right: 0.5em;
+
+	vertical-align: text-bottom;
+}
+
+.runner-results .test-block {
+	margin-bottom: 1em;
+	padding-left: 1em;
+}
+
+.runner-results .test-block .test-description {
+	margin-bottom: 0.5em;
+}
+
+.runner-results .test-block .test-pass,
+.runner-results .test-block .test-fail {
+	margin-left: 1em;
+}
+
+.runner-results .test-block .test-result-icon {
+	margin-right: 0.5em;
+}
+
 /*
 * Search results.
 */
@@ -773,12 +802,6 @@ h2 {
 	padding-right: 10px;
 }
 
-.search-results .search-results-list .logo-icon {
-	display: inline-block;
-	height: 1em;
-	width: 1em;
-}
-
 .search-results .search-results-list-item-title {
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
@@ -790,6 +813,9 @@ h2 {
 }
 
 .search-results .search-results-list-item-url .logo-icon {
+	display: inline-block;
+	height: 1em;
+	width: 1em;
 	vertical-align: text-bottom;
 }
 

@@ -386,6 +386,14 @@ img {
 }
 
 /*
+* Runner results.
+*/
+
+.runner-results h2.test-file {
+	font-size: 1.1em;
+}
+
+/*
 * Side menu.
 */
 

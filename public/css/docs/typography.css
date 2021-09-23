@@ -258,6 +258,24 @@ a:active {
 }
 
 /*
+* Runner results.
+*/
+
+
+.runner-results .test-block {
+	color: #585858;
+}
+
+.runner-results .test-block .test-description {
+	text-decoration: underline;
+	text-decoration-color: #cacaca;
+}
+
+.runner-results .test-block .test-result-label {
+	font-weight: 600;
+}
+
+/*
 * Navigation.
 */
 
