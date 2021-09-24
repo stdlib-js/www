@@ -231,7 +231,7 @@ class Readme extends React.Component {
 			links.push(
 				<Link
 					key={parts[i]}
-					to={pkgPath( `${base}${parts[ i ]}`, this.props.version )}
+					to={pkgPath( base + parts[ i ], this.props.version )}
 				>
 					{parts[ i ]}
 				</Link>
