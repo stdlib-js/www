@@ -21,10 +21,10 @@
 import React from 'react';
 import lunr from 'lunr';
 import { Link, withRouter } from 'react-router-dom';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import IconButton from '@material-ui/core/IconButton';
-import ClearIcon from '@material-ui/icons/Clear';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import IconButton from '@mui/material/IconButton';
+import ClearIcon from '@mui/icons-material/Clear';
 import fetchSearchData from './../../utils/fetch_search_data.js';
 import packageDescription from './../../utils/package_description.js';
 import deprefix from './../../utils/deprefix_package_name.js';
@@ -278,7 +278,7 @@ class Search extends React.Component {
 			<div id="readme" className="readme search-results">
 				<h1>
 					<span>Search Results</span>
-					<IconButton aria-label="close">
+					<IconButton aria-label="close" size="large">
 						<ClearIcon
 							className="search-results-close"
 							title="Close search results"

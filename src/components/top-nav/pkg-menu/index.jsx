@@ -19,8 +19,8 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import IconButton from '@mui/material/IconButton';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import pkgPath from './../../../utils/pkg_doc_path.js';
 import Benchmarks from './benchmarks.jsx';
 import Docs from './docs.jsx';
@@ -106,6 +106,7 @@ class PackageMenu extends React.Component {
 					aria-controls="top-nav-package-menu"
 					aria-expanded={ this.props.open }
 					aria-haspopup="menu"
+					size="large"
 				>
 					<ExpandMoreIcon aria-hidden="true" />
 				</IconButton>

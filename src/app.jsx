@@ -20,6 +20,8 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
+import { ThemeProvider } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 import qs from 'qs';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -52,6 +54,7 @@ var RENDER_METHOD_NAMES = {
 	'test': '_renderTest'
 };
 var SIDE_MENU_TIMEOUT = 1000; // milliseconds
+var theme = createTheme();
 
 
 // FUNCTIONS //
@@ -753,48 +756,50 @@ class App extends React.Component {
 	*/
 	render() {
 		return (
-			<Fragment>
-				{ this._renderTopNav() }
-				<Switch>
-					<Redirect
-						exact
-						from={ routes.PACKAGE_INDEX }
-						to={ routes.PACKAGE_DEFAULT }
-					/>
-					<Route
-						exact
-						path={ routes.PACKAGE_BENCHMARKS }
-						render={ this._renderer( 'benchmark' ) }
-					/>
-					<Route
-						exact
-						path={ routes.PACKAGE_TESTS }
-						render={ this._renderer( 'test' ) }
-					/>
-					<Route
-						exact
-						path={ routes.PACKAGE_DEFAULT }
-						render={ this._renderer( 'readme' ) }
-					/>
-					<Route
-						exact
-						path={ routes.SEARCH }
-						render={ this._renderer( 'search' ) }
-					/>
-					<Redirect
-						exact
-						from={ routes.NONPACKAGE_DEFAULT }
-						to={ routes.VERSION_DEFAULT }
-					/>
-					<Route
-						exact
-						path={ routes.VERSION_DEFAULT }
-						render={ this._renderer( 'welcome' ) }
-					/>
-					<Redirect to={ config.mount+this.props.version } />
-				</Switch>
-				<Footer />
-			</Fragment>
+			<ThemeProvider theme={theme} >
+				<Fragment>
+					{ this._renderTopNav() }
+					<Switch>
+						<Redirect
+							exact
+							from={ routes.PACKAGE_INDEX }
+							to={ routes.PACKAGE_DEFAULT }
+						/>
+						<Route
+							exact
+							path={ routes.PACKAGE_BENCHMARKS }
+							render={ this._renderer( 'benchmark' ) }
+						/>
+						<Route
+							exact
+							path={ routes.PACKAGE_TESTS }
+							render={ this._renderer( 'test' ) }
+						/>
+						<Route
+							exact
+							path={ routes.PACKAGE_DEFAULT }
+							render={ this._renderer( 'readme' ) }
+						/>
+						<Route
+							exact
+							path={ routes.SEARCH }
+							render={ this._renderer( 'search' ) }
+						/>
+						<Redirect
+							exact
+							from={ routes.NONPACKAGE_DEFAULT }
+							to={ routes.VERSION_DEFAULT }
+						/>
+						<Route
+							exact
+							path={ routes.VERSION_DEFAULT }
+							render={ this._renderer( 'welcome' ) }
+						/>
+						<Redirect to={ config.mount+this.props.version } />
+					</Switch>
+					<Footer />
+				</Fragment>
+			</ThemeProvider>
 		);
 	}
 }
