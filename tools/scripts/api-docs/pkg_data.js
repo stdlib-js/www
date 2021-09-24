@@ -90,13 +90,6 @@ function main() {
 	}
 	out.descriptions = data;
 
-	// Load standalone package names...
-	data = readJSON( join( dpath, 'package_standalone.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
-	}
-	out.standalone = data;
-
 	// Load the list of namespaces...
 	data = readJSON( join( dpath, 'namespace_list.json' ), FOPTS );
 	if ( data instanceof Error ) {

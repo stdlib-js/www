@@ -33,9 +33,6 @@ api_docs_pkg_order ?= $(TOOLS_DIR)/scripts/api-docs/pkg_order.js
 # Define the path to a script for generating a hash of package descriptions:
 api_docs_pkg_desc ?= $(TOOLS_DIR)/scripts/api-docs/pkg_desc.js
 
-# Define the path to a script for generating a hash of standalone packages:
-api_docs_pkg_standalone ?= $(TOOLS_DIR)/scripts/api-docs/pkg_standalone.js
-
 # Define the path to a script for generating a namespace package list:
 api_docs_namespace_list ?= $(TOOLS_DIR)/scripts/api-docs/namespace_list.js
 
@@ -64,7 +61,7 @@ api_docs_version_list ?= $(TOOLS_DIR)/scripts/api-docs/version_list.js
 # @example
 # make api-docs-resources
 #/
-api-docs-resources: api-docs-pkg-tree api-docs-pkg-tree-array api-docs-pkg-list api-docs-pkg-order api-docs-namespace-list api-docs-pkg-resources api-docs-pkg-desc api-docs-pkg-standalone api-docs-pkg-search-index api-docs-version-list api-docs-pkg-data
+api-docs-resources: api-docs-pkg-tree api-docs-pkg-tree-array api-docs-pkg-list api-docs-pkg-order api-docs-namespace-list api-docs-pkg-resources api-docs-pkg-desc api-docs-pkg-search-index api-docs-version-list api-docs-pkg-data
 
 #/
 # Generates a package tree.
@@ -120,17 +117,6 @@ api-docs-pkg-desc: $(NODE_MODULES) $(api_docs_pkg_desc)
 	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_desc)"
 
 .PHONY: api-docs-pkg-desc
-
-#/
-# Generates a hash containing sandalone packages names.
-#
-# @example
-# make api-docs-pkg-standalone
-#/
-api-docs-pkg-standalone: $(NODE_MODULES) $(api_docs_pkg_standalone)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(api_docs_pkg_standalone)"
-
-.PHONY: api-docs-pkg-standalone
 
 #/
 # Generates a list of namespace packages.
