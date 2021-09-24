@@ -87,7 +87,11 @@ function BreadcrumbsNavigation( props ) {
 		links.push( breadcrumb( parts[ i ], p, i === N-1 ) );
 	}
 	return (
-		<Breadcrumbs aria-label="breadcrumb" separator="›" >
+		<Breadcrumbs
+			className="readme-breadcrumbs"
+			separator="›"
+			aria-label="breadcrumb"
+		>
 			<Link
 				key="stdlib"
 				to={ config.mount + props.version }
