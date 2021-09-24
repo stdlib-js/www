@@ -27,6 +27,7 @@ import Docs from './docs.jsx';
 import Home from './home.jsx';
 import Source from './source.jsx';
 import Tests from './tests.jsx';
+import NPM from './npm.jsx';
 import TypeScript from './typescript.jsx';
 
 
@@ -46,6 +47,7 @@ class PackageMenu extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.version - documentation version
+	* @param {(string|null)} props.standalone - full standalone package name (e.g., `@stdlib/math-base-special-sin`)
 	* @param {boolean} props.open - boolean indicating whether to expand the menu
 	* @param {Callback} props.onToggle - callback to invoke upon a change to the package navigation menu
 	* @param {boolean} props.home - boolean indicating whether to link to the main website
@@ -120,6 +122,7 @@ class PackageMenu extends React.Component {
 					{ this.props.benchmarks ? <Benchmarks path={ path } /> : null }
 					{ this.props.tests ? <Tests path={ path } /> : null }
 					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } /> : null }
+					{ this.props.standalone ? <NPM standalone={this.props.standalone} /> : null }
 					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } /> : null }
 				</ul>
 			</Fragment>

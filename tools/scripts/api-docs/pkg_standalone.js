@@ -25,16 +25,13 @@
 var join = require( 'path' ).join;
 var writeFile = require( '@stdlib/fs/write-file' ).sync;
 var readJSON = require( '@stdlib/fs/read-json' ).sync;
+var pkg2standalone = require( '@stdlib/namespace/pkg2standalone' );
 var documentationPath = require( './../utils/api_docs_path.js' );
 
 
 // VARIABLES //
 
-var OUTPUT = 'package_data.json';
-var FOPTS = {
-	'encoding': 'utf8'
-};
-
+var OUTPUT = 'package_standalone.json';
 
 
 // MAIN //
@@ -46,64 +43,41 @@ var FOPTS = {
 * @throws {Error} unexpected error
 */
 function main() {
+	var order;
 	var dpath;
-	var data;
+	var opts;
+	var pkgs;
 	var out;
-
-	out = {};
+	var pkg;
+	var i;
+	var j;
 
 	// Resolve the API documentation path:
 	dpath = documentationPath();
 
 	// Load the list of packages...
-	data = readJSON( join( dpath, 'package_list.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
+	opts = {
+		'encoding': 'utf8'
+	};
+	pkgs = readJSON( join( dpath, 'package_list.json' ), opts );
+	if ( pkgs instanceof Error ) {
+		throw pkgs;
 	}
-	out.packages = data;
-
-	// Load the package tree...
-	data = readJSON( join( dpath, 'package_tree_array.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
-	}
-	out.tree = data;
-
-	// Load package resources...
-	data = readJSON( join( dpath, 'package_resources.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
-	}
-	out.resources = data;
-
 	// Load the package order...
-	data = readJSON( join( dpath, 'package_order.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
+	order = readJSON( join( dpath, 'package_order.json' ), opts );
+	if ( order instanceof Error ) {
+		throw order;
 	}
-	out.order = data;
-
-	// Load package descriptions...
-	data = readJSON( join( dpath, 'package_desc.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
+	// For each package, resolve the standalone package name...
+	out = new Array( pkgs.length );
+	for ( i = 0; i < pkgs.length; i++ ) {
+		pkg = join( '@stdlib', pkgs[ i ] );
+		j = order[ pkgs[ i ] ];
+		if ( j === void 0 ) {
+			throw new Error( 'unexpected error. Unable to find package `' + pkgs[ i ] + '` in the package order. The data may be out-of-sync.' );
+		}
+		out[ j ] = pkg2standalone( pkg );
 	}
-	out.descriptions = data;
-
-	// Load standalone package names...
-	data = readJSON( join( dpath, 'package_standalone.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
-	}
-	out.standalone = data;
-
-	// Load the list of namespaces...
-	data = readJSON( join( dpath, 'namespace_list.json' ), FOPTS );
-	if ( data instanceof Error ) {
-		throw data;
-	}
-	out.namespaces = data;
-
 	// Write the database to file:
 	writeFile( join( dpath, OUTPUT ), JSON.stringify( out ) );
 }

@@ -34,6 +34,7 @@ import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from './utils/reset_scroll.js';
 import viewportWidth from './utils/viewport_width.js';
 import pkgBasename from './utils/pkg_basename.js';
+import pkgStandalone from './utils/package_standalone.js';
 import pkgKind from './utils/pkg_kind.js';
 import OFFSETS from './utils/package_resource_offsets.js';
 import config from './config.js';
@@ -366,6 +367,7 @@ class App extends React.Component {
 		props = {
 			'query': this.state.query,
 			'pkg': '',
+			'standalone': null,
 			'version': '',
 			'benchmarks': false,
 			'docs': false,
@@ -387,6 +389,7 @@ class App extends React.Component {
 			props.version = match.params.version;
 			props.pkg = match.params.pkg; // e.g., `math/base/special/sin`
 			props.src = true;
+			props.standalone = pkgStandalone( props.pkg, props.version );
 
 			// Attempt to resolve package resources for the current package...
 			order = this.props.data.order;

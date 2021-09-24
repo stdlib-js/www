@@ -43,6 +43,7 @@ class TopNav extends React.Component {
 	* @param {string} props.version - version
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.query - search query
+	* @param {(string|null)} props.standalone - full standalone package name (e.g., `@stdlib/math-base-special-sin`)
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
@@ -167,6 +168,7 @@ class TopNav extends React.Component {
 						src={ this.props.src }
 						typescript={ this.props.typescript }
 						onToggle={ this._onPackageMenuToggle }
+						standalone={ this.props.standalone }
 					/>
 
 					<DownloadButton
