@@ -367,7 +367,6 @@ class App extends React.Component {
 		props = {
 			'query': this.state.query,
 			'pkg': '',
-			'standalone': null,
 			'version': '',
 			'benchmarks': false,
 			'docs': false,

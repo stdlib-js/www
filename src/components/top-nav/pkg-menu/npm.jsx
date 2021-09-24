@@ -24,7 +24,7 @@ import replace from '@stdlib/string/replace';
 
 // VARIABLES //
 
-var NPM_URL = 'https://www.npmjs.com/package';
+var NPM_BASE_URL = 'https://www.npmjs.com/package/';
 
 
 // MAIN //
@@ -38,10 +38,9 @@ var NPM_URL = 'https://www.npmjs.com/package';
 * @returns {ReactElement} React element
 */
 function NPM( props ) {
-	var link = NPM_URL + '/@stdlib/' + replace( props.pkg, '/', '-' );
 	return (
 		<li key="npm" class="top-nav-item" role="menuitem">
-			<a href={link} title="View npm package">npm</a>
+			<a href={ NPM_BASE_URL + '@stdlib/' + replace( props.pkg, '/', '-' ) } title="View npm package">npm</a>
 		</li>
 	);
 }
