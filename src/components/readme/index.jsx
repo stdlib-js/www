@@ -19,17 +19,13 @@
 // MODULES //
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import fetchFragment from './../../utils/fetch_fragment.js';
-import pkgPath from './../../utils/pkg_doc_path.js';
-import pkgKind from './../../utils/pkg_kind.js';
-import pkgBasename from './../../utils/pkg_basename.js';
 import log from './../../utils/log.js';
-import config from './../../config.js';
-import notFoundHTML from './../not-found/html.js';
+import NotFound from './../not-found/index.js';
+import Breadcrumbs from './breadcrumbs.jsx';
 import ReadmeContent from './content.jsx';
 import EditLink from './edit_link.jsx';
+import Pagination from './pagination.jsx';
 
 
 // MAIN //
@@ -59,7 +55,10 @@ class Readme extends React.Component {
 		super( props );
 		this.state = {
 			// README content to render:
-			'content': props.content || ''
+			'content': props.content || '',
+
+			// Boolean indicating whether a resource could not be found:
+			'notFound': false
 		};
 	}
 
@@ -91,7 +90,8 @@ class Readme extends React.Component {
 				// Guard against race conditions (e.g., a fragment fails to resolve *after* a user subsequently navigated to a different package whose associated fragment already resolved)...
 				if ( path === self.props.url ) {
 					self.setState({
-						'content': notFoundHTML()
+						'content': '',
+						'notFound': true
 					});
 				}
 				return log( error );
@@ -99,154 +99,11 @@ class Readme extends React.Component {
 			// Guard against race conditions (e.g., a fragment is resolved *after* a user subsequently navigated to a different package whose associated fragment already resolved)...
 			if ( path === self.props.url ) {
 				self.setState({
-					'content': fragment
+					'content': fragment,
+					'notFound': false
 				});
 			}
 		}
-	}
-
-	/**
-	* Renders an edit link.
-	*
-	* @private
-	* @returns {(ReactElement|null)} React element
-	*/
-	_renderEditLink() {
-		if ( this.state.content ) {
-			return (
-				<div className="edit-link-wrapper">
-					<EditLink pkg={ this.props.pkg } />
-				</div>
-			);
-		}
-		return null;
-	}
-
-	/**
-	* Renders a pagination link to the previous package.
-	*
-	* @private
-	* @param {string} pkg - package
-	* @returns {ReactElement} React element
-	*/
-	_renderPaginationPrev( pkg ) {
-		var basename;
-		var name;
-		var kind;
-
-		name = '@stdlib/' + pkg;
-
-		// Isolate the basename of the package path:
-		basename = pkgBasename( pkg ); // e.g., `sin`
-
-		// Determine if we can resolve a package "kind":
-		kind = pkgKind( pkg );
-
-		return (
-			<Link
-				className="pagination-link pagination-link-prev"
-				to={ pkgPath( name, this.props.version ) }
-				title="Previous package"
-				rel="prev"
-			>
-				<div class="pagination-link-type">Previous</div>
-				<div class="pagination-link-label"><span aria-hidden="true">« </span>{ basename }</div>
-				<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
-			</Link>
-		);
-	}
-
-	/**
-	* Renders a pagination link to the next package.
-	*
-	* @private
-	* @param {string} pkg - package
-	* @returns {ReactElement} React element
-	*/
-	_renderPaginationNext( pkg ) {
-		var basename;
-		var name;
-		var kind;
-
-		name = '@stdlib/' + pkg;
-
-		// Isolate the basename of the package path:
-		basename = pkgBasename( pkg ); // e.g., `sin`
-
-		// Determine if we can resolve a package "kind":
-		kind = pkgKind( pkg );
-
-		return (
-			<Link
-				className="pagination-link pagination-link-next"
-				to={ pkgPath( name, this.props.version ) }
-				title="Next package"
-				rel="next"
-			>
-				<div class="pagination-link-type">Next</div>
-				<div class="pagination-link-label">{ basename }<span aria-hidden="true"> »</span></div>
-				<div class="pagination-link-sublabel">{  ( kind ) ? ' ('+kind+')' : null }</div>
-			</Link>
-		);
-	}
-
-	/**
-	* Renders a pagination link placeholder.
-	*
-	* @private
-	* @returns {ReactElement} React element
-	*/
-	_renderPaginationPlaceholder() {
-		return (
-			<div className="pagination-link-placeholder"/>
-		);
-	}
-
-	/**
-	* Renders pagination links.
-	*
-	* @private
-	* @returns {(ReactElement|null)} React element
-	*/
-	_renderPagination() {
-		var prev = this.props.prev;
-		var next = this.props.next;
-		if ( !prev && !next ) {
-			return null;
-		}
-		return (
-			<div className="pagination">
-				{ ( prev ) ? this._renderPaginationPrev( prev ) : this._renderPaginationPlaceholder() }
-				{ ( next ) ? this._renderPaginationNext( next ) : this._renderPaginationPlaceholder() }
-			</div>
-		);
-	}
-
-	_renderBreadcrumbs() {
-		var parts = this.props.pkg.split( '/' );
-		var links = [];
-		var base = '';
-		var i;
-		for ( i = 0; i < parts.length; i++ ) {
-			links.push(
-				<Link
-					key={parts[i]}
-					to={pkgPath( base + parts[ i ], this.props.version )}
-				>
-					{parts[ i ]}
-				</Link>
-			);
-			base += parts[ i ] + '/';
-		}
-		return (
-			<Breadcrumbs aria-label="breadcrumb" separator="›" >
-				<a href={config.mount + this.props.version} >
-					<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
-					stdlib
-				</a>
-				{links}
-			</Breadcrumbs>
-		);
 	}
 
 	/**
@@ -284,16 +141,29 @@ class Readme extends React.Component {
 				id="readme"
 				className="readme"
 			>
-				{ this._renderBreadcrumbs() }
-				<ReadmeContent
-					html={ this.state.content }
-					onClick={ this.props.onClick }
+				<Breadcrumbs
+					pkg={ this.props.pkg }
+					version={ this.props.version }
 				/>
+				{ ( this.state.notFound ) ?
+					<NotFound />
+					:
+					<ReadmeContent
+						html={ this.state.content }
+						onClick={ this.props.onClick }
+					/>
+				}
 				{ ( this.state.content ) ?
 					<section className="readme-addendum">
 						<nav className="readme-bottom-nav" aria-label="pagination">
-							{ this._renderEditLink() }
-							{ this._renderPagination() }
+							<div className="edit-link-wrapper">
+								<EditLink pkg={ this.props.pkg } />
+							</div>
+							<Pagination
+								prev={ this.props.prev }
+								next={ this.props.next }
+								version={ this.props.version }
+							/>
 						</nav>
 					</section>
 					:
