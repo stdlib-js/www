@@ -26,7 +26,6 @@ var React = require( 'react' );
 var render = require( 'react-dom/server' ).renderToString;
 var styles = require( '@material-ui/core/styles' );
 var readFile = require( '@stdlib/fs/read-file' );
-var extname = require( '@stdlib/utils/extname' );
 var pkg2title = require( './../title.js' );
 var packageData = require( './../package_data.js' );
 var parallel = require( './../parallel.js' );
@@ -41,7 +40,31 @@ var FOPTS = {
 	'encoding': 'utf8'
 };
 
-var RE_BASENAME = /^(test|benchmark).*\.(js|html)$/;
+var RE_PATH = /^(.+)\/((index|test|benchmark)[^\/]*)\.(js|html)$/; // eslint-disable-line no-useless-escape
+
+
+// FUNCTIONS //
+
+/**
+* Returns a function which invokes a provided callback with a specified constant value.
+*
+* @private
+* @param {*} value - constant value
+* @returns {Function} function
+*/
+function constantFunction( value ) {
+	return fcn;
+
+	/**
+	* Invokes a provided callback with a specified constant value.
+	*
+	* @private
+	* @param {Callback} clbk - callback function
+	*/
+	function fcn( clbk ) {
+		clbk( null, value );
+	}
+}
 
 
 // MAIN //
@@ -76,7 +99,8 @@ function route( opts ) {
 				}
 			}
 		},
-		'handler': onRequest
+		'handler': onRequest,
+		'errorHandler': onError
 	};
 
 	App = opts.app;
@@ -93,7 +117,11 @@ function route( opts ) {
 	* @returns {void}
 	*/
 	function onRequest( request, reply ) {
+		var match;
+		var fcns;
+		var pkg;
 		var p;
+		var f;
 		var v;
 
 		v = request.params.version;
@@ -102,76 +130,85 @@ function route( opts ) {
 			v = opts.latest;
 			request.log.info( 'Resolved version: %s', v );
 		}
-		p = '@stdlib/' + request.params[ '*' ];
+		p = request.params[ '*' ];
+
+		// Check whether we need to serve a package's benchmark or test bundles...
+		match = p.match( RE_PATH );
+		if ( match && match[ 4 ] === 'js' ) { // if it ends in `js`, assume it's a bundle request
+			// Resolve the bundle path:
+			p = '@stdlib/' + p;
+			request.log.info( 'Path: %s', p );
+
+			p = path.resolve( opts.root, v, p );
+			request.log.info( 'Resolved path: %s', p );
+
+			// Ensure we have not received a request for an asset above the root directory:
+			if ( p.substring( 0, opts.root.length ) !== opts.root ) {
+				reply.callNotFound();
+				return;
+			}
+			request.log.info( 'Requested a %s package asset.', match[ 3 ] );
+			reply.type( 'text/javascript' );
+			return reply.send( fs.createReadStream( p, FOPTS ) );
+		}
+		// Resolve the document path:
+		if ( match === null ) {
+			// If unable to match a path, assume the request is for a directory (i.e., `index.html` file)...
+			request.log.info( 'Failed to match file path. Serving `index.html`...' );
+			if ( p[ p.length-1 ] === '/' ) {
+				pkg = p.substring( 0, p.length-1 );
+			} else {
+				pkg = p;
+				p += '/';
+			}
+			p += 'index.html';
+			f = 'index';
+		} else {
+			pkg = match[ 1 ];
+			f = match[ 2 ];
+
+			// Check for an unsupported file request:
+			if ( f !== match[ 3 ] ) {
+				reply.callNotFound();
+				return;
+			}
+			// At this point, the request is for either a `benchmark.html`, `test.html`, or `index.html` file...
+		}
+		p = '@stdlib/' + p;
 		request.log.info( 'Path: %s', p );
 
 		p = path.resolve( opts.root, v, p );
 		request.log.info( 'Resolved path: %s', p );
 
 		// Ensure we have not received a request for an asset above the root directory:
-		if ( p.length < opts.root.length ) {
+		if ( p.substring( 0, opts.root.length ) !== opts.root ) {
 			reply.callNotFound();
 			return;
 		}
-		// Stat the path:
-		fs.stat( p, onStat );
+		// At this point, we should only be serving HTML files...
+		reply.type( 'text/html' );
 
-		/**
-		* Callback invoked upon receiving path stats.
-		*
-		* @private
-		* @param {(Error|null)} error - error object
-		* @param {Object} stats - stats
-		* @returns {void}
-		*/
-		function onStat( error, stats ) {
-			var match;
-			var fcns;
-			var ext;
-			var f;
-
-			if ( error ) {
-				request.log.error( error.message );
-				return reply.callNotFound();
-			}
-			// Check whether we need to serve a package's README...
-			if ( stats.isDirectory() ) {
-				request.log.info( 'Path is a directory. Serving `index.html`...' );
-				p = path.resolve( p, 'index.html' );
-				return fs.stat( p, onStat );
-			}
-			// Check whether we need to serve a package's benchmark or test assets...
-			f = path.basename( p );
-			match = f.match( RE_BASENAME );
-			if ( match ) {
-				request.log.info( 'Requested a %s package asset.', match[ 1 ] );
-				if ( match[ 2 ] === 'html' ) {
-					reply.type( 'text/html' );
-				} else {
-					reply.type( 'text/javascript' );
-				}
-				return reply.send( fs.createReadStream( p, FOPTS ) );
-			}
-			// At this point, we should only be serving HTML files...
-			ext = extname( p );
-			if ( ext !== '.html' ) {
-				reply.callNotFound();
-				return;
-			}
-			// Check whether we should serve a package's README as a fragment or as part of a rendered application...
-			if ( request.query.fragment ) {
-				request.log.info( 'Requested a fragment.' );
-				reply.type( 'text/html' );
-				return reply.send( fs.createReadStream( p, FOPTS ) );
-			}
-			// We need to serve a package's README as part of a rendered application...
-			request.log.info( 'Requested an application.' );
-			fcns = [
-				[ readFile, p, FOPTS ],
-				[ packageData, opts.root, v ]
-			];
-			parallel( fcns, onResults );
+		// Check whether we should serve a package's README as a fragment or as part of a rendered application...
+		if ( f === 'index' && request.query.fragment ) {
+			request.log.info( 'Requested a fragment.' );
+			return reply.send( fs.createReadStream( p, FOPTS ) );
 		}
+		// We need to serve a rendered application...
+		request.log.info( 'Requested an application.' );
+
+		// If the request is for a benchmark or test asset, we need to return an application shell; otherwise, we need to return the application with a rendered README...
+		fcns = [];
+		if ( f === 'index' ) {
+			request.log.info( 'Returning an application with a rendered README.' );
+			fcns.push( [ readFile, p, FOPTS ] );
+		} else {
+			request.log.info( 'Returning an application shell.' );
+			fcns.push( [ constantFunction( '' ) ] );
+		}
+		fcns.push( [ packageData, opts.root, v ] );
+
+		// Resolve application data:
+		parallel( fcns, onResults );
 
 		/**
 		* Callback invoked upon resolving application data.
@@ -190,32 +227,26 @@ function route( opts ) {
 			var ctx;
 			var url;
 			var css;
-			var pkg;
 			var idx;
 
 			if ( error ) {
-				request.log.error( error.message );
-				return reply.callNotFound();
+				request.log.error( error );
+				return onError( error, request, reply );
 			}
 			file = results[ 0 ];
 			data = results[ 1 ];
-
-			reply.type( 'text/html' );
 
 			// Resolve a normalized URL:
 			url = request.url;
 			if ( url[ url.length-1 ] === '/' ) {
 				url = url.substring( 0, url.length-1 );
 			}
-			// Get the package name:
-			pkg = request.params[ '*' ];
-
 			// Initialize a means for generating Material-UI CSS:
 			sheets = new ServerStyleSheets();
 
 			// Render the application component as parameterized by request data...
 			ctx = {};
-			html = render(sheets.collect(
+			html = render( sheets.collect(
 				<StylesProvider>
 					<App
 						url={ url }
@@ -252,6 +283,30 @@ function route( opts ) {
 			// Send the response data:
 			reply.send( tmpl.toString() );
 		}
+	}
+
+	/**
+	* Callback invoked upon encountering an error.
+	*
+	* @private
+	* @param {Error} error - error object
+	* @param {Object} request - request object
+	* @param {Object} reply - reply object
+	* @returns {void}
+	*/
+	function onError( error, request, reply ) {
+		if ( error.statusCode >= 500 ) {
+			request.log.error( error );
+		} else if ( error.statusCode >= 400 ) {
+			request.log.info( error );
+		} else {
+			request.log.error( error );
+		}
+		return reply.status( 404 ).send( JSON.stringify({
+			'message': 'Route GET ' + request.url + ' not found',
+			'error': 'Not Found',
+			'statusCode': 404
+		}));
 	}
 }
 
