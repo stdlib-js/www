@@ -24,7 +24,6 @@ import qs from 'qs';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
 import Readme from './components/readme/index.jsx';
-import NotFound from './components/not-found/index.jsx';
 import TopNav from './components/top-nav/index.jsx';
 import Search from './components/search/index.jsx';
 import Head from './components/head/new_page.jsx';
@@ -546,9 +545,7 @@ class App extends React.Component {
 				/>
 			);
 		}
-		return (
-			<NotFound />
-		);
+		return null;
 	}
 
 	/**
@@ -589,9 +586,7 @@ class App extends React.Component {
 				/>
 			);
 		}
-		return (
-			<NotFound />
-		);
+		return null;
 	}
 
 	/**
