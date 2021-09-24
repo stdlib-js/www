@@ -737,6 +737,10 @@ h2 {
 	margin-top: 0.2em;
 }
 
+.readme .MuiBreadcrumbs-li:first-child {
+	margin-top: 4px;
+}
+
 /*
 * Runner results.
 */
@@ -745,7 +749,8 @@ h2 {
 	margin-bottom: 0;
 }
 
-.runner-results .logo-icon {
+.runner-results .logo-icon,
+.readme .logo-icon {
 	display: inline-block;
 
 	height: 1em;
