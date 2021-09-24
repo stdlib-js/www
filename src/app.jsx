@@ -539,7 +539,7 @@ class App extends React.Component {
 			return (
 				<BenchmarkRunner
 					title="Benchmarks"
-					url={ match.url.replace( /\.html$/, '_bundle.js' ) }
+					url={ match.url.replace( /benchmarks$/, 'benchmark_bundle.js' ) }
 					pkg={ pkg }
 					version={ version }
 				/>
@@ -581,7 +581,7 @@ class App extends React.Component {
 			return (
 				<TestRunner
 					title="Tests"
-					url={ match.url.replace( /\.html$/, '_bundle.js' ) }
+					url={ match.url.replace( /tests$/, 'test_bundle.js' ) }
 					version={ version }
 				/>
 			);

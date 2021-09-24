@@ -38,8 +38,8 @@ const routes = {
 
 	'PACKAGE_DEFAULT': config.mount+':version/@stdlib/:pkg+',
 	'PACKAGE_INDEX': config.mount+':version/@stdlib/:pkg+/index.html',
-	'PACKAGE_BENCHMARKS': config.mount+':version/@stdlib/:pkg+/benchmark.html',
-	'PACKAGE_TESTS': config.mount+':version/@stdlib/:pkg+/test.html'
+	'PACKAGE_BENCHMARKS': config.mount+':version/@stdlib/:pkg+/benchmarks',
+	'PACKAGE_TESTS': config.mount+':version/@stdlib/:pkg+/tests'
 };
 
 
