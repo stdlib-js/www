@@ -44,6 +44,7 @@ function ServerApp( props ) {
 		<StaticRouter location={ props.url } context={ props.context } >
 			<HelmetProvider context={ {} }>
 				<App
+					isClient={ false }
 					version={ props.version }
 					data={ props.data }
 					query={ props.query }

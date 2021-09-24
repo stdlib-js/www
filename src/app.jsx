@@ -128,6 +128,7 @@ class App extends React.Component {
 	*
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {boolean} props.isClient - boolean indicating whether the application is being rendered on the server or the client
 	* @param {Object} props.history - history object for navigation
 	* @param {string} props.version - documentation version
 	* @param {string} props.data - package data
@@ -396,7 +397,7 @@ class App extends React.Component {
 			resources = this.props.data.resources;
 
 			// If we were able to resolve package resources, determine which links we want to display in the top navigation...
-			if ( resources && typeof ptr === 'number' ) {
+			if ( this.props.isClient && resources && typeof ptr === 'number' ) {
 				ptr *= 3; // Note: the resources array is a strided array
 				props.typescript = Boolean( resources[ ptr+OFFSETS.typescript ] );
 				if ( path === routes.PACKAGE_DEFAULT ) {

@@ -174,6 +174,7 @@ class ClientApp extends React.Component {
 			<BrowserRouter onUpdate={ resetScroll } >
 				<HelmetProvider>
 					<App
+						isClient={ true }
 						version={ this.state.version }
 						data={ this.state.data }
 						query={ this.state.query }
