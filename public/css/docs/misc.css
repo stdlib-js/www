@@ -174,7 +174,7 @@ img {
 /*
 * Top-level ordered list items should be numbered.
 */
-.readme-content ol {
+.readme ol {
 	list-style-type: decimal;
 }
 
@@ -365,6 +365,14 @@ img {
 
 .readme .related .package-name code {
 	background-color:  #ffffff;
+}
+
+/*
+* README breadcrumbs navigation.
+*/
+
+.readme .readme-breadcrumbs ol {
+	list-style-type: none;
 }
 
 /*

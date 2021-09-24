@@ -226,6 +226,14 @@ a:active {
 }
 
 /*
+* README breadcrumbs.
+*/
+
+.readme .readme-breadcrumbs li {
+	line-height: 1.2em;
+}
+
+/*
 * README pagination.
 */
 
@@ -260,7 +268,6 @@ a:active {
 /*
 * Runner results.
 */
-
 
 .runner-results .test-block,
 .runner-results .benchmark-block {
