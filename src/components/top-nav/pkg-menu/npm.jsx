@@ -19,6 +19,7 @@
 // MODULES //
 
 import React from 'react';
+import replace from '@stdlib/string/replace';
 
 
 // VARIABLES //
@@ -33,14 +34,14 @@ var NPM_URL = 'https://www.npmjs.com/package';
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.standalone - full standalone package name (e.g., `@stdlib/math/base/special/sin`)
+* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @returns {ReactElement} React element
 */
 function NPM( props ) {
-	var link = NPM_URL + '/' + props.standalone;
+	var link = NPM_URL + '/@stdlib/' + replace( props.pkg, '/', '-' );
 	return (
 		<li key="npm" class="top-nav-item" role="menuitem">
-			<a href={link} title="Go to npm package">npm</a>
+			<a href={link} title="View npm package">npm</a>
 		</li>
 	);
 }
