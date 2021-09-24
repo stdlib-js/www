@@ -585,6 +585,7 @@ class App extends React.Component {
 				<TestRunner
 					title="Tests"
 					url={ match.url.replace( /tests$/, 'test_bundle.js' ) }
+					pkg={ match.params.pkg }
 					version={ version }
 				/>
 			);

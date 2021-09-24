@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import replace from '@stdlib/string/replace';
 import log from './../../utils/log.js';
 import config from './../../config.js';
 
@@ -26,6 +27,15 @@ import config from './../../config.js';
 // VARIABLES //
 
 var WORKER_SCRIPT = '/js/docs/worker.js';
+var CODECOV_URL_PRE = 'https://codecov.io/github/stdlib-js/';
+var CODECOV_QS = '?branch=main';
+var CODECOV_SVG_PRE = 'https://img.shields.io/codecov/c/github/stdlib-js/';
+var CODECOV_SVG_FILE = '/main.svg';
+var GITHUB_PRE = 'https://github.com/stdlib-js/';
+var GITHUB_WORKFLOW = '/actions/workflows/test.yml';
+var BADGE_FILE = '/badge.svg';
+var SNYK_BADGE_PRE = 'https://snyk-widget.herokuapp.com/badge/npm/';
+var SNYK_PRE = 'https://snyk.io/advisor/npm-package/';
 
 
 // FUNCTIONS //
@@ -60,6 +70,7 @@ class TestRunner extends React.Component {
 	* @param {string} props.url - resource URL
 	* @param {string} props.title - page title
 	* @param {string} props.version - documentation version
+	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -71,6 +82,8 @@ class TestRunner extends React.Component {
 		this._prevLine = '';
 
 		this._worker = null;
+
+		this._standalone = replace( props.pkg, '/', '-' );
 	}
 
 	/**
@@ -405,6 +418,32 @@ class TestRunner extends React.Component {
 		return (
 			<div id="readme" className="readme runner">
 				<h1>{ this.props.title }</h1>
+
+				<section className="runner-results badges" >
+
+					<a href={ GITHUB_PRE + this._standalone + GITHUB_WORKFLOW } >
+						<img
+							src={ GITHUB_PRE + this._standalone + GITHUB_WORKFLOW + BADGE_FILE }
+							alt="Built Status"
+						/>
+					</a>
+
+					<a href={ CODECOV_URL_PRE + this._standalone + CODECOV_QS } >
+						<img
+							src={ CODECOV_SVG_PRE + this._standalone + CODECOV_SVG_FILE }
+							alt="Code Coverage"
+						/>
+					</a>
+
+					<a href={ SNYK_PRE + this._standalone } >
+						<img
+							src={ SNYK_BADGE_PRE + this._standalone + BADGE_FILE }
+							alt="Security Rating"
+						/>
+					</a>
+
+				</section>
+
 				<section className="runner-results tests">
 					{ this._render( this.state.content ) }
 				</section>

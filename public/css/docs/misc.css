@@ -402,6 +402,10 @@ img {
 	font-size: 1.1em;
 }
 
+.runner-results.badges a {
+	padding: 3px;
+}
+
 /*
 * Side menu.
 */
