@@ -89,7 +89,7 @@ function BreadcrumbsNavigation( props ) {
 	return (
 		<Breadcrumbs
 			className="readme-breadcrumbs"
-			separator="›"
+			separator="/"
 			aria-label="breadcrumb"
 		>
 			<Link
