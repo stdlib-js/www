@@ -46,7 +46,7 @@ function breadcrumb( label, url, current ) {
 		<Link
 			key={ label }
 			to={ url }
-			aria-current={ ( current ) ? true : null }
+			aria-current={ ( current ) ? 'page' : null }
 		>
 			{ label }
 		</Link>
