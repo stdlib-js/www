@@ -21,6 +21,7 @@
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
 import qs from 'qs';
+import startsWith from '@stdlib/string/starts-with';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
 import Readme from './components/readme/index.jsx';
@@ -372,6 +373,7 @@ class App extends React.Component {
 			'docs': false,
 			'home': false,
 			'src': false,
+			'npm': false,
 			'tests': false,
 			'typescript': false
 		};
@@ -388,6 +390,7 @@ class App extends React.Component {
 			props.version = match.params.version;
 			props.pkg = match.params.pkg; // e.g., `math/base/special/sin`
 			props.src = true;
+			props.npm = !startsWith( props.pkg, 'plot' );
 
 			// Attempt to resolve package resources for the current package...
 			order = this.props.data.order;

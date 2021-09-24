@@ -52,6 +52,7 @@ class PackageMenu extends React.Component {
 	* @param {boolean} props.home - boolean indicating whether to link to the main website
 	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
 	* @param {boolean} props.src - boolean indicating whether to link to package source
+	* @param {boolean} props.npm - boolean indicating whether to link to standalone NPM package
 	* @param {boolean} props.benchmarks - boolean indicating whether to link to package benchmarks
 	* @param {boolean} props.tests - boolean indicating whether to link to package tests
 	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
@@ -121,7 +122,7 @@ class PackageMenu extends React.Component {
 					{ this.props.benchmarks ? <Benchmarks path={ path } /> : null }
 					{ this.props.tests ? <Tests path={ path } /> : null }
 					{ this.props.src ? <Source pkg={ this.props.pkg } version={ version } /> : null }
-					{ this.props.src ? <NPM pkg={ this.props.pkg } /> : null }
+					{ this.props.npm ? <NPM pkg={ this.props.pkg } /> : null }
 					{ this.props.typescript ? <TypeScript pkg={ this.props.pkg } version={ this.props.version } /> : null }
 				</ul>
 			</Fragment>

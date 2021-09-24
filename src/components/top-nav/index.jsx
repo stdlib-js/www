@@ -54,6 +54,7 @@ class TopNav extends React.Component {
 	* @param {boolean} props.home - boolean indicating whether to link to the main website
 	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
 	* @param {boolean} props.src - boolean indicating whether to link to package source
+	* @param {boolean} props.npm - boolean indicating whether to link to standalone NPM package
 	* @param {boolean} props.benchmarks - boolean indicating whether to link to package benchmarks
 	* @param {boolean} props.tests - boolean indicating whether to link to package tests
 	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
@@ -166,6 +167,7 @@ class TopNav extends React.Component {
 						tests={ this.props.tests }
 						src={ this.props.src }
 						typescript={ this.props.typescript }
+						npm={ this.props.npm }
 						onToggle={ this._onPackageMenuToggle }
 					/>
 
