@@ -20,11 +20,13 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import fetchFragment from './../../utils/fetch_fragment.js';
 import pkgPath from './../../utils/pkg_doc_path.js';
 import pkgKind from './../../utils/pkg_kind.js';
 import pkgBasename from './../../utils/pkg_basename.js';
 import log from './../../utils/log.js';
+import config from './../../config.js';
 import notFoundHTML from './../not-found/html.js';
 import ReadmeContent from './content.jsx';
 import EditLink from './edit_link.jsx';
@@ -220,6 +222,33 @@ class Readme extends React.Component {
 		);
 	}
 
+	_renderBreadcrumbs() {
+		var parts = this.props.pkg.split( '/' );
+		var links = [];
+		var base = '';
+		var i;
+		for ( i = 0; i < parts.length; i++ ) {
+			links.push(
+				<Link
+					key={parts[i]}
+					to={pkgPath( `${base}${parts[ i ]}`, this.props.version )}
+				>
+					{parts[ i ]}
+				</Link>
+			);
+			base += parts[ i ] + '/';
+		}
+		return (
+			<Breadcrumbs aria-label="breadcrumb" separator="›" >
+				<a href={config.mount + this.props.version} >
+					<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
+					stdlib
+				</a>
+				{links}
+			</Breadcrumbs>
+		);
+	}
+
 	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
 	*
@@ -255,6 +284,7 @@ class Readme extends React.Component {
 				id="readme"
 				className="readme"
 			>
+				{ this._renderBreadcrumbs() }
 				<ReadmeContent
 					html={ this.state.content }
 					onClick={ this.props.onClick }
