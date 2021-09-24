@@ -40,7 +40,8 @@ var FOPTS = {
 	'encoding': 'utf8'
 };
 
-var RE_PATH = /^(.+)\/((index|test|benchmark)[^\/]*)\.(js|html)$/; // eslint-disable-line no-useless-escape
+var RE_BUNDLE = /\/(test|benchmark)[^\/]*\.js$/; // eslint-disable-line no-useless-escape
+var RE_ASSET = /^(.+)\/(tests|benchmarks)$/;
 
 
 // FUNCTIONS //
@@ -133,8 +134,8 @@ function route( opts ) {
 		p = request.params[ '*' ];
 
 		// Check whether we need to serve a package's benchmark or test bundles...
-		match = p.match( RE_PATH );
-		if ( match && match[ 4 ] === 'js' ) { // if it ends in `js`, assume it's a bundle request
+		match = p.match( RE_BUNDLE );
+		if ( match ) {
 			// Resolve the bundle path:
 			p = '@stdlib/' + p;
 			request.log.info( 'Path: %s', p );
@@ -147,13 +148,19 @@ function route( opts ) {
 				reply.callNotFound();
 				return;
 			}
-			request.log.info( 'Requested a %s package asset.', match[ 3 ] );
+			request.log.info( 'Requested a %s package asset.', match[ 1 ] );
 			reply.type( 'text/javascript' );
 			return reply.send( fs.createReadStream( p, FOPTS ) );
 		}
-		// Resolve the document path:
-		if ( match === null ) {
-			// If unable to match a path, assume the request is for a directory (i.e., `index.html` file)...
+		// Determine whether we need to serve a package's benchmark or test page...
+		match = p.match( RE_ASSET );
+		if ( match ) {
+			pkg = match[ 1 ];
+			f = match[ 2 ];
+
+			// At this point, the request is for either a `benchmark.html`, `test.html`, or `index.html` file...
+		} else {
+			// If unable to match an asset, assume the request is for a directory (i.e., `index.html` file)...
 			request.log.info( 'Failed to match file path. Serving `index.html`...' );
 			if ( p[ p.length-1 ] === '/' ) {
 				pkg = p.substring( 0, p.length-1 );
@@ -163,16 +170,6 @@ function route( opts ) {
 			}
 			p += 'index.html';
 			f = 'index';
-		} else {
-			pkg = match[ 1 ];
-			f = match[ 2 ];
-
-			// Check for an unsupported file request:
-			if ( f !== match[ 3 ] ) {
-				reply.callNotFound();
-				return;
-			}
-			// At this point, the request is for either a `benchmark.html`, `test.html`, or `index.html` file...
 		}
 		p = '@stdlib/' + p;
 		request.log.info( 'Path: %s', p );

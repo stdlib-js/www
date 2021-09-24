@@ -35,7 +35,7 @@ import { Link } from 'react-router-dom';
 function Tests( props ) {
 	return (
 		<li key="tests" class="top-nav-item" role="menuitem">
-			<Link to={ props.path+'/test.html' } title="Run package tests">tests</Link>
+			<Link to={ props.path+'/tests' } title="Run package tests">tests</Link>
 		</li>
 	);
 }

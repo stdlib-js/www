@@ -130,7 +130,7 @@
     - sudo systemctl enable docs_server@1
     - sudo systemctl start docs_server@1
     - sudo systemctl status docs_server@1
-    - sudo journalctl -u docs_server@1
+    - sudo journalctl -r -u docs_server@1
 
     - <https://blog.codeship.com/running-node-js-linux-systemd/>
     - sudo ln -s $(which npm) /usr/bin/npm
