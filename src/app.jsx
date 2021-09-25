@@ -22,6 +22,7 @@ import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
 import qs from 'qs';
 import startsWith from '@stdlib/string/starts-with';
+import replace from '@stdlib/string/replace';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
 import Readme from './components/readme/index.jsx';
@@ -587,6 +588,7 @@ class App extends React.Component {
 					url={ match.url.replace( /tests$/, 'test_bundle.js' ) }
 					pkg={ match.params.pkg }
 					version={ version }
+					standalone={ replace( match.params.pkg, '/', '-' ) }
 				/>
 			);
 		}

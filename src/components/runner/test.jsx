@@ -19,7 +19,6 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import replace from '@stdlib/string/replace';
 import log from './../../utils/log.js';
 import config from './../../config.js';
 
@@ -82,8 +81,6 @@ class TestRunner extends React.Component {
 		this._prevLine = '';
 
 		this._worker = null;
-
-		this._standalone = replace( props.pkg, '/', '-' );
 	}
 
 	/**
@@ -421,23 +418,23 @@ class TestRunner extends React.Component {
 
 				<section className="runner-results badges" >
 
-					<a href={ GITHUB_PRE + this._standalone + GITHUB_WORKFLOW } >
+					<a href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW } >
 						<img
-							src={ GITHUB_PRE + this._standalone + GITHUB_WORKFLOW + BADGE_FILE }
+							src={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW + BADGE_FILE }
 							alt="Built Status"
 						/>
 					</a>
 
-					<a href={ CODECOV_URL_PRE + this._standalone + CODECOV_QS } >
+					<a href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS } >
 						<img
-							src={ CODECOV_SVG_PRE + this._standalone + CODECOV_SVG_FILE }
+							src={ CODECOV_SVG_PRE + this.props.standalone + CODECOV_SVG_FILE }
 							alt="Code Coverage"
 						/>
 					</a>
 
-					<a href={ SNYK_PRE + this._standalone } >
+					<a href={ SNYK_PRE + this.props.standalone } >
 						<img
-							src={ SNYK_BADGE_PRE + this._standalone + BADGE_FILE }
+							src={ SNYK_BADGE_PRE + this.props.standalone + BADGE_FILE }
 							alt="Security Rating"
 						/>
 					</a>
