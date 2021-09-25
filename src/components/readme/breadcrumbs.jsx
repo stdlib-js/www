@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import pkgPath from './../../utils/pkg_doc_path.js';
 import config from './../../config.js';
 

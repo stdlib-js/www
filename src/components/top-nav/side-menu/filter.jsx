@@ -19,7 +19,7 @@
 // MODULES //
 
 import React from 'react';
-import ClearIcon from '@material-ui/icons/Clear';
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 // MAIN //

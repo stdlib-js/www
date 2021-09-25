@@ -22,7 +22,7 @@
 
 var React = require( 'react' );
 var render = require( 'react-dom/server' ).renderToString;
-var styles = require( '@material-ui/core/styles' );
+var styles = require( '@mui/styles' );
 
 
 // VARIABLES //
