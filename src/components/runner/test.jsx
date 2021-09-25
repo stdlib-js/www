@@ -19,7 +19,8 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 import log from './../../utils/log.js';
 import config from './../../config.js';
 
@@ -29,13 +30,8 @@ import config from './../../config.js';
 var WORKER_SCRIPT = '/js/docs/worker.js';
 var CODECOV_URL_PRE = 'https://codecov.io/github/stdlib-js/';
 var CODECOV_QS = '?branch=main';
-var CODECOV_SVG_PRE = 'https://img.shields.io/codecov/c/github/stdlib-js/';
-var CODECOV_SVG_FILE = '/main.svg';
 var GITHUB_PRE = 'https://github.com/stdlib-js/';
 var GITHUB_WORKFLOW = '/actions/workflows/test.yml';
-var BADGE_FILE = '/badge.svg';
-var SNYK_BADGE_PRE = 'https://snyk-widget.herokuapp.com/badge/npm/';
-var SNYK_PRE = 'https://snyk.io/advisor/npm-package/';
 
 
 // FUNCTIONS //
@@ -417,30 +413,26 @@ class TestRunner extends React.Component {
 			<div id="readme" className="readme runner">
 				<h1>{ this.props.title }</h1>
 
-				<section className="runner-results badges" >
-
-					<Chip
-						label="Build Status"
-						variant="outlined"
-						href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW }
-						clickable
-					/>
-
-					<Chip
-						label="Code Coverage"
-						variant="outlined"
-						href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS }
-						clickable
-					/>
-
-					<a href={ SNYK_PRE + this.props.standalone } >
-						<img
-							src={ SNYK_BADGE_PRE + this.props.standalone + BADGE_FILE }
-							alt="Security Rating"
+				<nav className="runner-results badges" >
+					<Stack direction="row" spacing={1} >
+						<Chip
+							label="Build Status"
+							variant="outlined" color="success"
+							component="a"
+							href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW }
+							clickable
+							size="small"
 						/>
-					</a>
-
-				</section>
+						<Chip
+							label="Code Coverage"
+							variant="outlined" color="success"
+							component="a"
+							href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS }
+							clickable
+							size="small"
+						/>
+					</Stack>
+				</nav>
 
 				<section className="runner-results tests">
 					{ this._render( this.state.content ) }
