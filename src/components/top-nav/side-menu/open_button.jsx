@@ -19,8 +19,8 @@
 // MODULES //
 
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 
 // MAIN //
@@ -44,6 +44,7 @@ function OpenButton( props ) {
 			title="Open documentation navigation menu"
 			aria-label="open drawer"
 			aria-pressed={ ( props.hide ) ? 'true' : 'false' }
+			size="large"
 		>
 			<MenuIcon id="menu-icon" />
 		</IconButton>

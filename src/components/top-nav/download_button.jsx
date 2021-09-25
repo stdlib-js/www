@@ -19,9 +19,9 @@
 // MODULES //
 
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import CancelIcon from '@material-ui/icons/Cancel';
+import IconButton from '@mui/material/IconButton';
+import GetAppIcon from '@mui/icons-material/GetApp';
+import CancelIcon from '@mui/icons-material/Cancel';
 import fetchDownloadData from './../../utils/fetch_download_data.js';
 import download from './../../utils/download_assets.js';
 import log from './../../utils/log.js';
@@ -138,6 +138,7 @@ class DownloadButton extends React.Component {
 					title="Cancel download"
 					onClick={ this._onDownloadCancel }
 					aria-label="cancel download"
+					size="large"
 				>
 					<CancelIcon aria-hidden="true" />
 				</IconButton>
@@ -149,6 +150,7 @@ class DownloadButton extends React.Component {
 				title="Download documentation for offline access"
 				onClick={ this._onDownloadClick }
 				aria-label="download documentation"
+				size="large"
 			>
 				<GetAppIcon aria-hidden="true" />
 			</IconButton>

@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 import log from './../../utils/log.js';
 import config from './../../config.js';
 
