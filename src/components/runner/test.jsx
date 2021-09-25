@@ -19,6 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import Chip from '@material-ui/core/Chip';
 import log from './../../utils/log.js';
 import config from './../../config.js';
 
@@ -418,19 +419,19 @@ class TestRunner extends React.Component {
 
 				<section className="runner-results badges" >
 
-					<a href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW } >
-						<img
-							src={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW + BADGE_FILE }
-							alt="Built Status"
-						/>
-					</a>
+					<Chip
+						label="Build Status"
+						variant="outlined"
+						href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW }
+						clickable
+					/>
 
-					<a href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS } >
-						<img
-							src={ CODECOV_SVG_PRE + this.props.standalone + CODECOV_SVG_FILE }
-							alt="Code Coverage"
-						/>
-					</a>
+					<Chip
+						label="Code Coverage"
+						variant="outlined"
+						href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS }
+						clickable
+					/>
 
 					<a href={ SNYK_PRE + this.props.standalone } >
 						<img
