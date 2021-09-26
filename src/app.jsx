@@ -118,6 +118,23 @@ function matchCurrentPath( pathname, version ) {
 	};
 }
 
+/**
+* Generates a document title for a provided package name.
+*
+* @private
+* @param {string} pkg - package name
+* @returns document title
+*/
+function pkg2title( pkg ) {
+	var t = pkgKind( pkg, '.' ); // try determining the "kind" first, as top-level namespaces don't have a "kind", and we want to avoid an empty slot (e.g., 'array | | stdlib')
+	if ( t ) {
+		t = pkgBasename( pkg ) + ' | ' + t;
+	} else {
+		t = pkgBasename( pkg );
+	}
+	return t;
+}
+
 
 // MAIN //
 
@@ -483,13 +500,7 @@ class App extends React.Component {
 			prev = null;
 			next = null;
 		}
-		// Generate a document title:
-		t = pkgKind( pkg, '.' ); // try determining the "kind" first, as top-level namespaces don't have a "kind", and we want to avoid an empty slot (e.g., 'array | | stdlib')
-		if ( t ) {
-			t = pkgBasename( pkg ) + ' | ' + t;
-		} else {
-			t = pkgBasename( pkg );
-		}
+		t = pkg2title( pkg );
 		return (
 			<Fragment>
 				<Head
@@ -525,29 +536,38 @@ class App extends React.Component {
 		var version;
 		var table;
 		var order;
+		var desc;
 		var ptr;
 		var pkg;
 		var flg;
+		var t;
 
 		pkg = match.params.pkg;
 
 		order = this.props.data.order;
 		if ( order ) {
 			ptr = order[ pkg ];
+
+			// Resolve the list of package descriptions for the current documentation version:
+			desc = this.props.data.descriptions;
+
+			// Resolve the description of the current package:
+			desc = desc[ ptr ];
 		}
 		table = this.props.data.resources;
 		if ( table && typeof ptr === 'number' ) {
 			ptr *= 3; // Note: resources is a strided array
 			flg = table[ ptr+OFFSETS.benchmark ];
 		}
+		t = pkg2title( pkg );
 		if ( flg ) {
 			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
 			version = 'develop';
 			return (
 				<Fragment>
 					<Head
-						title={ config.title }
-						description={ config.description }
+						title={ t }
+						description={ desc || config.description }
 						url={ match.url }
 					/>
 					<BenchmarkRunner
@@ -577,12 +597,20 @@ class App extends React.Component {
 		var version;
 		var table;
 		var order;
+		var desc;
 		var ptr;
 		var flg;
+		var t;
 
 		order = this.props.data.order;
 		if ( order ) {
 			ptr = order[ match.params.pkg ];
+
+			// Resolve the list of package descriptions for the current documentation version:
+			desc = this.props.data.descriptions;
+
+			// Resolve the description of the current package:
+			desc = desc[ ptr ];
 		}
 		table = this.props.data.resources;
 		if ( table && typeof ptr === 'number' ) {
@@ -592,11 +620,12 @@ class App extends React.Component {
 		if ( flg ) {
 			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
 			version = 'develop';
+			t = pkg2title( match.params.pkg );
 			return (
 				<Fragment>
 					<Head
-						title={ config.title }
-						description={ config.description }
+						title={ t }
+						description={ desc || config.description }
 						url={ match.url }
 					/>
 					<TestRunner
