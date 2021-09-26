@@ -544,12 +544,19 @@ class App extends React.Component {
 			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
 			version = 'develop';
 			return (
-				<BenchmarkRunner
-					title="Benchmarks"
-					url={ match.url.replace( /benchmarks$/, 'benchmark_bundle.js' ) }
-					pkg={ pkg }
-					version={ version }
-				/>
+				<Fragment>
+					<Head
+						title={ config.title }
+						description={ config.description }
+						url={ match.url }
+					/>
+					<BenchmarkRunner
+						title="Benchmarks"
+						url={ match.url.replace( /benchmarks$/, 'benchmark_bundle.js' ) }
+						pkg={ pkg }
+						version={ version }
+					/>
+				</Fragment>
 			);
 		}
 		return null;
@@ -586,13 +593,20 @@ class App extends React.Component {
 			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
 			version = 'develop';
 			return (
-				<TestRunner
-					title="Tests"
-					url={ match.url.replace( /tests$/, 'test_bundle.js' ) }
-					pkg={ match.params.pkg }
-					version={ version }
-					standalone={ replace( match.params.pkg, '/', '-' ) }
-				/>
+				<Fragment>
+					<Head
+						title={ config.title }
+						description={ config.description }
+						url={ match.url }
+					/>
+					<TestRunner
+						title="Tests"
+						url={ match.url.replace( /tests$/, 'test_bundle.js' ) }
+						pkg={ match.params.pkg }
+						version={ version }
+						standalone={ replace( match.params.pkg, '/', '-' ) }
+					/>
+				</Fragment>
 			);
 		}
 		return null;
