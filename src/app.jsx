@@ -24,6 +24,7 @@ import { ThemeProvider } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 import qs from 'qs';
 import startsWith from '@stdlib/string/starts-with';
+import substringBeforeLast from '@stdlib/string/substring-before-last';
 import replace from '@stdlib/string/replace';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -540,6 +541,7 @@ class App extends React.Component {
 		var ptr;
 		var pkg;
 		var flg;
+		var url;
 		var t;
 
 		pkg = match.params.pkg;
@@ -559,6 +561,7 @@ class App extends React.Component {
 			ptr *= 3; // Note: resources is a strided array
 			flg = table[ ptr+OFFSETS.benchmark ];
 		}
+		url = substringBeforeLast( match.url, '/' );
 		t = pkg2title( pkg );
 		if ( flg ) {
 			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
@@ -568,11 +571,11 @@ class App extends React.Component {
 					<Head
 						title={ t }
 						description={ desc || config.description }
-						url={ match.url }
+						url={ url }
 					/>
 					<BenchmarkRunner
 						title="Benchmarks"
-						url={ match.url.replace( /benchmarks$/, 'benchmark_bundle.js' ) }
+						url={ url + '/benchmark_bundle.js' }
 						pkg={ pkg }
 						version={ version }
 					/>
@@ -600,6 +603,7 @@ class App extends React.Component {
 		var desc;
 		var ptr;
 		var flg;
+		var url;
 		var t;
 
 		order = this.props.data.order;
@@ -617,6 +621,7 @@ class App extends React.Component {
 			ptr *= 3; // Note: resources is a strided array
 			flg = table[ ptr+OFFSETS.test ];
 		}
+		url = substringBeforeLast( match.url, '/' );
 		if ( flg ) {
 			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
 			version = 'develop';
@@ -626,11 +631,11 @@ class App extends React.Component {
 					<Head
 						title={ t }
 						description={ desc || config.description }
-						url={ match.url }
+						url={ url }
 					/>
 					<TestRunner
 						title="Tests"
-						url={ match.url.replace( /tests$/, 'test_bundle.js' ) }
+						url={ url + '/test_bundle.js' }
 						pkg={ match.params.pkg }
 						version={ version }
 						standalone={ replace( match.params.pkg, '/', '-' ) }
