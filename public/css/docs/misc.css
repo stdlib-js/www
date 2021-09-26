@@ -555,9 +555,8 @@ button.side-menu-list-item-namespace-icon:hover {
 
 .gitter-open-chat-button {
 	background-color: #00aeef;
-	font-family: inherit;
 }
 
-.gitter-open-chat-button:hover{
+.gitter-open-chat-button:hover {
 	background-color: #039fd8;
 }

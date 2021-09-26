@@ -400,3 +400,11 @@ button.side-menu-list-item-namespace-icon:hover {
 
 	color: #00aeef;
 }
+
+/*
+* Gitter chat.
+*/
+
+.gitter-open-chat-button {
+	font-family: inherit;
+}
