@@ -123,7 +123,7 @@ function matchCurrentPath( pathname, version ) {
 *
 * @private
 * @param {string} pkg - package name
-* @returns document title
+* @returns {string} document title
 */
 function pkg2title( pkg ) {
 	var t = pkgKind( pkg, '.' ); // try determining the "kind" first, as top-level namespaces don't have a "kind", and we want to avoid an empty slot (e.g., 'array | | stdlib')
