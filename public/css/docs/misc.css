@@ -548,3 +548,16 @@ button.side-menu-list-item-namespace-icon:hover {
 		opacity: 0;
 	}
 }
+
+/*
+* Gitter chat.
+*/
+
+.gitter-open-chat-button {
+	background-color: #00aeef;
+	font-family: inherit;
+}
+
+.gitter-open-chat-button:hover{
+	background-color: #039fd8;
+}
