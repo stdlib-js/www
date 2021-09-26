@@ -372,7 +372,7 @@ class BenchmarkRunner extends React.Component {
 				<section className="runner-results benchmarks">
 					<h2 className="benchmark-file">
 						<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
-						<a href={ config.repository+'/tree/lib_nodules/@stdlib/'+this.props.pkg+'/benchmark' } title="View benchmark files">benchmark/</a>
+						<a href={ config.repository+'/tree/develop/lib/node_modules/@stdlib/'+this.props.pkg+'/benchmark' } title="View benchmark files">benchmark/</a>
 					</h2>
 					{ ( this.state.content.length ) ? this._renderResults( this.state.content ) : <CircularProgress /> }
 				</section>
