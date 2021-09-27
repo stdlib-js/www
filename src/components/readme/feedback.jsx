@@ -119,10 +119,9 @@ class Feedback extends Component {
 		/* eslint-disable no-restricted-globals */
 		const origin = typeof window !== 'undefined' ? window.location.origin : '';
 		const subject = 'Feedback on documentation for @stdlib/' + this.props.pkg;
-		console.log( this.props );
 		return (
 			<form
-				className="readme-feedback" action="https://formsubmit.co/f4604bd6e6ca4e3ba980a3999bd04566"
+				className="readme-feedback" action="https://formsubmit.co/7a22568a376a058e7a22f1e4d8eead4a"
 				method="post"
 			>
 				<input type="hidden" name="pkg" value={this.props.pkg} />
@@ -195,6 +194,7 @@ class Feedback extends Component {
 				<input type="text" name="_honey" style={{ display: 'none' }} />
 				<input type="hidden" name="_subject" value={subject} />
 				<input type="hidden" name="_replyto" value={this.state.email} />
+				<input type="hidden" name="_cc" value="pburckhardt@outlook.com" />
 			</form>
 		);
 		/* eslint-enable no-restricted-globals */
