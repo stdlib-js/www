@@ -25,6 +25,7 @@ import NotFound from './../not-found/index.jsx';
 import Breadcrumbs from './breadcrumbs.jsx';
 import ReadmeContent from './content.jsx';
 import EditLink from './edit_link.jsx';
+import Feedback from './feedback.jsx';
 import Pagination from './pagination.jsx';
 
 
@@ -162,6 +163,11 @@ class Readme extends React.Component {
 							<Pagination
 								prev={ this.props.prev }
 								next={ this.props.next }
+								version={ this.props.version }
+							/>
+							<Feedback
+								pkg={ this.props.pkg }
+								url={ this.props.url }
 								version={ this.props.version }
 							/>
 						</nav>
