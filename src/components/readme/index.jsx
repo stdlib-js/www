@@ -166,6 +166,7 @@ class Readme extends React.Component {
 								version={ this.props.version }
 							/>
 							<Feedback
+								key={ this.props.pkg }
 								pkg={ this.props.pkg }
 								url={ this.props.url }
 								version={ this.props.version }
