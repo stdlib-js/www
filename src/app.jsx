@@ -185,7 +185,7 @@ class App extends React.Component {
 			'shortcuts': true,
 
 			// Boolean indicating whether a notification is currently displayed:
-			'notification': contains( props.location.search, 'notification' ),
+			'notification': contains( props.location.search, 'notification' )
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
