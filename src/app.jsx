@@ -22,7 +22,10 @@ import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import qs from 'qs';
+import contains from '@stdlib/assert/contains';
 import startsWith from '@stdlib/string/starts-with';
 import substringBeforeLast from '@stdlib/string/substring-before-last';
 import replace from '@stdlib/string/replace';
@@ -179,7 +182,10 @@ class App extends React.Component {
 			'sideMenu': false,
 
 			// Boolean indicating whether keyboard shortcuts are active:
-			'shortcuts': true
+			'shortcuts': true,
+
+			// Boolean indicating whether a notification is currently displayed:
+			'notification': contains( props.location.search, 'notification' ),
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -365,6 +371,45 @@ class App extends React.Component {
 		this.setState({
 			'shortcuts': true
 		});
+	}
+
+	/**
+	* Closes a notification.
+	*
+	* @private
+	*/
+	_closeNotification = () => {
+		this.setState({
+			'notification': false
+		});
+	}
+
+	/**
+	* Renders a notification message if present in query string.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderNotification = () => {
+		var query;
+		var msg;
+		if ( this.state.notification ) {
+			query = qs.parse( this.props.location.search || '', {
+				'ignoreQueryPrefix': true
+			});
+			msg = query.notification;
+		}
+		return (
+			<Snackbar
+				open={this.state.notification} autoHideDuration={6000}
+				onClose={this._closeNotification}
+				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+			>
+				<Alert onClose={this._closeNotification} variant="filled" severity="success" sx={{ width: '100%' }} >
+					{msg}
+				</Alert>
+			</Snackbar>
+		);
 	}
 
 	/**
@@ -792,13 +837,22 @@ class App extends React.Component {
 	* @param {Object} prevProps - previous properties
 	* @param {Object} prevState - previous state
 	*/
-	componentDidUpdate( prevProps ) {
+	componentDidUpdate( prevProps, prevState ) {
 		// TODO: if the version is not the latest supported version, display a message indicating that this version of the docs is "out-of-date"
 
 		// Whenever we navigate to a new page, reset the window scroll position and focus...
 		if ( this.props.location !== prevProps.location ) {
 			resetScroll();
 			this._focusRef.current.focus();
+
+			if (
+				this.props.location.search !== prevProps.location.search &&
+				!prevState.notification
+			) {
+				this.setState({
+					'notification': contains( this.props.location.search, 'notification' )
+				});
+			}
 		}
 	}
 
@@ -813,6 +867,7 @@ class App extends React.Component {
 			<ThemeProvider theme={theme} >
 				<Fragment>
 					{ this._renderTopNav() }
+					{ this._renderNotification() }
 					<Switch>
 						<Redirect
 							exact
