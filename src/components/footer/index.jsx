@@ -55,7 +55,7 @@ function Footer( props ) {
 					</a>
 				</Tooltip>
 				<Tooltip title="How to use this documentation" placement="top" arrow >
-					<Link id="help-page" to={ config.mount + props.version + '/help' } className="bottom-button" >
+					<Link to={ config.mount + props.version + '/help' } className="help-page-button bottom-button" >
 						Help
 					</Link>
 				</Tooltip>

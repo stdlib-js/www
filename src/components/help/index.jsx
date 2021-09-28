@@ -19,6 +19,8 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import IconButton from '@mui/material/IconButton';
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 // MAIN //
@@ -28,14 +30,24 @@ import React, { Fragment } from 'react';
 *
 * @private
 * @param {Object} props - component properties
+* @param {Callback} props.onClose - callback to invoke upon closing help page
 * @returns {ReactElement} React element
 */
-function HelpPage() {
+function HelpPage( props ) {
 	return (
 		<Fragment>
-			<div id="readme" className="readme">
+			<div id="readme" className="readme help-page" >
+				<h1>
+					<span>Documentation Help</span>
+					<IconButton aria-label="close" size="large" >
+						<ClearIcon
+							className="search-results-close"
+							title="Close help page"
+							onClick={ props.onClose }
+						/>
+					</IconButton>
+				</h1>
 				<section>
-
 				</section>
 			</div>
 		</Fragment>

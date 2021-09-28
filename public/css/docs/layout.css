@@ -1293,3 +1293,15 @@ button.side-menu-list-item-namespace-icon {
 .banner .image-wrapper img {
 	display: block;
 }
+
+/*
+* Help page
+*/
+
+.help-page h1 {
+	display: flex;
+}
+
+.help-page h1 span {
+	flex-grow: 1;
+}

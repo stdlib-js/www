@@ -394,6 +394,16 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked upon closing help page.
+	*
+	* @private
+	*/
+	_onHelpClose = () => {
+		// Manually update the history to trigger navigation to a previous page:
+		this.props.history.goBack();
+	}
+
+	/**
 	* Renders a notification message if present in query string.
 	*
 	* @private
@@ -773,7 +783,9 @@ class App extends React.Component {
 					description={ config.description }
 					url={ match.url }
 				/>
-				<Help />
+				<Help
+					onClose={ this._onHelpClose }
+				/>
 			</Fragment>
 		);
 	}
