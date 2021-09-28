@@ -44,8 +44,6 @@ function Footer() {
 				{ ' / ' }
 				<Link to={ config.mount } title="Documentation">Docs</Link>
 				{ ' / ' }
-				<a href={ config.gitter } title="Talk to us on Gitter!">Chat</a>
-				{ ' / ' }
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
 				{ ' / ' }
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
