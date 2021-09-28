@@ -194,7 +194,10 @@ class App extends React.Component {
 			'shortcuts': true,
 
 			// Boolean indicating whether a notification is currently displayed:
-			'notification': contains( props.location.search, 'notification' )
+			'notification': contains( props.location.search, 'notification' ),
+
+			// Boolean indicating whether the dark mode is active:
+			'darkMode': false
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -213,6 +216,18 @@ class App extends React.Component {
 	_onSideMenuToggle = ( bool ) => {
 		this.setState({
 			'sideMenu': bool
+		});
+	}
+
+	/**
+	* Callback invoked upon toggling the dark mode.
+	*
+	* @private
+	*/
+	_onDarkModeToggle = () => {
+		document.documentElement.setAttribute( 'data-theme', this.state.darkMode ? 'light' : 'dark' );
+		this.setState({
+			'darkMode': !this.state.darkMode
 		});
 	}
 
@@ -503,6 +518,7 @@ class App extends React.Component {
 		return (
 			<TopNav
 				onSideMenuToggle={ this._onSideMenuToggle }
+				onDarkModeToggle={ this._onDarkModeToggle }
 				onVersionChange={ this.props.onVersionChange }
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
@@ -511,6 +527,7 @@ class App extends React.Component {
 				onFilterFocus={ this._onFilterFocus }
 				onFilterBlur={ this._onFilterBlur }
 				sideMenu={ this.state.sideMenu }
+				darkMode={ this.state.darkMode }
 				{...props}
 			/>
 		);

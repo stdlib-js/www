@@ -24,6 +24,7 @@ import PackageMenu from './pkg-menu/index.jsx';
 import SearchInput from './search_input.jsx';
 import DownloadButton from './download_button.jsx';
 import DownloadProgressBar from './download_progress_bar.jsx';
+import DarkModeToggleButton from './dark_mode_toggle_button.jsx';
 
 
 // MAIN //
@@ -44,6 +45,7 @@ class TopNav extends React.Component {
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.query - search query
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
+	* @param {Callback} props.onDarkModeToggle - callback to invoke upon a change to the dark mode toggle
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
 	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
@@ -59,6 +61,7 @@ class TopNav extends React.Component {
 	* @param {boolean} props.tests - boolean indicating whether to link to package tests
 	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
 	* @param {boolean} props.sideMenu - boolean indicating whether to expand the side menu
+	* @param {boolean} props.darkMode - boolean indicating whether to display the documentation in dark mode
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -174,6 +177,11 @@ class TopNav extends React.Component {
 					<DownloadButton
 						version={ this.props.version }
 						onProgress={ this._onDownloadProgress }
+					/>
+
+					<DarkModeToggleButton
+						darkMode={ this.props.darkMode }
+						onToggle={ this.props.onDarkModeToggle }
 					/>
 
 					{ progress ? <DownloadProgressBar value={ progress } /> : null }
