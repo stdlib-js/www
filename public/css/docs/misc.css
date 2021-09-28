@@ -20,6 +20,18 @@
 * Stylesheet for miscellaneous rules.
 */
 
+html[data-theme="dark"] {
+	--theme-background-color: #222426;
+}
+
+html[data-theme="light"] {
+	--theme-background-color: #fff;
+}
+
+html {
+	background-color: var(--theme-background-color);
+}
+
 body {
 	overflow-x: hidden;
 }
@@ -33,7 +45,7 @@ img {
 */
 
 .top-nav {
-	background-color: #ffffff;
+	background-color: var(--theme-background-color);
 	/*background-color: #000000;*/
 
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
