@@ -412,5 +412,5 @@ button.side-menu-list-item-namespace-icon:hover {
 	text-transform: uppercase;
 	text-align: center;
 	text-decoration: none;
-	color: #fff;
+	color: #fff !important;
 }

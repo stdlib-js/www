@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
 import config from './../../config.js';
 
 
@@ -30,9 +31,10 @@ import config from './../../config.js';
 *
 * @private
 * @param {Object} props - component properties
+* @param {string} props.version - documentation version
 * @returns {ReactElement} React element
 */
-function Footer() {
+function Footer( props ) {
 	return (
 		<footer>
 			<nav
@@ -47,6 +49,16 @@ function Footer() {
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
 				{ ' / ' }
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
+				<Tooltip title="Talk to us on Gitter!" placement="top" arrow >
+					<a className="js-gitter-toggle-chat-button bottom-button" href={ config.gitter } >
+						Chat
+					</a>
+				</Tooltip>
+				<Tooltip title="How to use this documentation" placement="top" arrow >
+					<Link id="help-page" to={ config.mount + props.version + '/help' } className="bottom-button" >
+						Help
+					</Link>
+				</Tooltip>
 			</nav>
 		</footer>
 	);
