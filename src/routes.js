@@ -34,6 +34,7 @@ const routes = {
 	'VERSION_DEFAULT': config.mount+':version',
 
 	'SEARCH': config.mount+':version/search',
+	'HELP': config.mount+':version/help',
 	'NONPACKAGE_DEFAULT': config.mount+':version/*',
 
 	'PACKAGE_DEFAULT': config.mount+':version/@stdlib/:pkg+',

@@ -35,6 +35,7 @@ import Readme from './components/readme/index.jsx';
 import TopNav from './components/top-nav/index.jsx';
 import Search from './components/search/index.jsx';
 import Head from './components/head/new_page.jsx';
+import Help from './components/help/index.jsx';
 import TestRunner from './components/runner/test.jsx';
 import BenchmarkRunner from './components/runner/benchmark.jsx';
 import log from './utils/log.js';
@@ -57,7 +58,8 @@ var RENDER_METHOD_NAMES = {
 	'search': '_renderSearch',
 	'readme': '_renderReadme',
 	'benchmark': '_renderBenchmark',
-	'test': '_renderTest'
+	'test': '_renderTest',
+	'help': '_renderHelp'
 };
 var SIDE_MENU_TIMEOUT = 1000; // milliseconds
 var theme = createTheme();
@@ -79,6 +81,13 @@ function matchCurrentPath( pathname, version ) {
 	// Try to find the matching route...
 	match = matchPath( pathname, {
 		'path': routes.SEARCH,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
+	match = matchPath( pathname, {
+		'path': routes.HELP,
 		'exact': true
 	});
 	if ( match ) {
@@ -444,7 +453,7 @@ class App extends React.Component {
 			'typescript': false
 		};
 		// Update property values based on the current "view"...
-		if ( path === routes.VERSION_DEFAULT ) {
+		if ( path === routes.VERSION_DEFAULT || path === routes.HELP ) {
 			props.home = true;
 			props.version = match.params.version;
 		} else if ( path === routes.SEARCH ) {
@@ -749,6 +758,27 @@ class App extends React.Component {
 	}
 
 	/**
+	* Renders a help page.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @returns {ReactElement} React element
+	*/
+	_renderHelp( match ) {
+		return (
+			<Fragment>
+				<Head
+					title='Help'
+					description={ config.description }
+					url={ match.url }
+				/>
+				<Help />
+			</Fragment>
+		);
+	}
+
+	/**
 	* Returns a rendering function.
 	*
 	* @private
@@ -894,6 +924,11 @@ class App extends React.Component {
 							path={ routes.SEARCH }
 							render={ this._renderer( 'search' ) }
 						/>
+						<Route
+							exact
+							path={ routes.HELP }
+							render={ this._renderer( 'help' ) }
+						/>
 						<Redirect
 							exact
 							from={ routes.NONPACKAGE_DEFAULT }
@@ -906,7 +941,9 @@ class App extends React.Component {
 						/>
 						<Redirect to={ config.mount+this.props.version } />
 					</Switch>
-					<Footer />
+					<Footer
+						version={ this.props.version }
+					/>
 				</Fragment>
 			</ThemeProvider>
 		);
