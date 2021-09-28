@@ -26,6 +26,7 @@
 		chat: {
 			options: {
 				room: 'stdlib-js/stdlib',
+				activationElement: false
 			}
 		}
 	};
