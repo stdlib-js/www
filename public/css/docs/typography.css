@@ -402,9 +402,15 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
-* Gitter chat.
+* Buttons for bottom-right corner (Gitter and help links).
 */
 
-.gitter-open-chat-button {
+.bottom-button {
+	font-size: 12px;
 	font-family: inherit;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
 }

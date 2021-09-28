@@ -565,13 +565,34 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
-* Gitter chat.
+* Buttons for bottom-right corner (Gitter and help links).
 */
 
-.gitter-open-chat-button {
-	background-color: #00aeef;
+.bottom-button {
+	position: fixed;
+	bottom: 0px;
+	border: 0;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+	background-color: #373a3e;
+	padding: 1em 2em;
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
 
-.gitter-open-chat-button:hover {
+.bottom-button:hover {
 	background-color: #039fd8;
+}
+
+.bottom-button:focus {
+	outline: none;
+	background-color: #007caa;
+}
+
+#help-page {
+	right: 10px;
+}
+
+.js-gitter-toggle-chat-button {
+	right: 100px;
 }
