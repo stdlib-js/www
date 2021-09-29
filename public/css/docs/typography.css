@@ -32,11 +32,28 @@
 * 11. Side menu.
 */
 
+html[data-theme="light"] {
+	--theme-text-color: #000;
+	--top-nav-link-color: #585858;
+	--link-color: #0000ff;
+	--blockquote-color: #696969;
+	--package-kind-color: #606060;
+}
+
+html[data-theme="dark"] {
+	--theme-text-color: #f5f7f7;
+	--top-nav-link-color: #ffffff;
+	--link-color: #ffffff;
+	--blockquote-color: #1a1a1a;
+	--package-kind-color: #f5f7f7;
+}
+
 body {
 	font-size: 16px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	color: var(--theme-text-color);
 }
 
 h1 {
@@ -84,7 +101,7 @@ input {
 }
 
 a {
-	color: #0000ff;
+	color: var(--link-color);
 	text-decoration: none;
 }
 
@@ -182,7 +199,7 @@ a:active {
 
 .readme .search-results-list-item-package-kind {
 	font-weight: 500;
-	color: #606060;
+	color: var(--package-kind-color);
 }
 
 /*
@@ -200,7 +217,7 @@ a:active {
 */
 
 .readme blockquote {
-	color: #696969;
+	color: var(--blockquote-color);
 }
 
 /*
@@ -248,7 +265,7 @@ a:active {
 
 .readme .readme-bottom-nav .pagination-link-type {
 	font-size: 1em;
-	color: #585858;
+	color: var(--top-nav-link-color);
 }
 
 .readme .readme-bottom-nav .pagination-link-label {
@@ -262,7 +279,7 @@ a:active {
 
 .readme .readme-bottom-nav .pagination-link-sublabel {
 	font-size: 0.8em;
-	color: #585858;
+	color: var(--top-nav-link-color);
 }
 
 /*
@@ -271,7 +288,7 @@ a:active {
 
 .runner-results .test-block,
 .runner-results .benchmark-block {
-	color: #585858;
+	color: var(--top-nav-link-color);
 }
 
 .runner-results .test-block .test-description,
@@ -293,6 +310,8 @@ a:active {
 .top-nav-search input,
 .bottom-nav {
 	font-family: "LatoLatinWebLight";
+	color: var(--top-nav-link-color);
+	background-color: var(--top-nav-background-color);
 }
 
 .top-nav {
@@ -305,7 +324,7 @@ a:active {
 
 .top-nav a,
 .bottom-nav a {
-	color: #585858;
+	color: var(--top-nav-link-color);
 }
 
 .top-nav-item a:hover,
