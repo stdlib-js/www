@@ -20,8 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/styles';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import qs from 'qs';
@@ -62,7 +61,6 @@ var RENDER_METHOD_NAMES = {
 	'help': '_renderHelp'
 };
 var SIDE_MENU_TIMEOUT = 1000; // milliseconds
-var theme = createTheme();
 
 
 // FUNCTIONS //
@@ -197,7 +195,14 @@ class App extends React.Component {
 			'notification': contains( props.location.search, 'notification' ),
 
 			// Boolean indicating whether the dark mode is active:
-			'darkMode': false
+			'darkMode': false,
+
+			// MUI theme:
+			'theme': createTheme({
+				'palette': {
+					'mode': 'light'
+				}
+			})
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -225,9 +230,15 @@ class App extends React.Component {
 	* @private
 	*/
 	_onDarkModeToggle = () => {
-		document.documentElement.setAttribute( 'data-theme', this.state.darkMode ? 'light' : 'dark' );
+		var newMode = this.state.darkMode ? 'light' : 'dark';
+		document.documentElement.setAttribute( 'data-theme', newMode );
 		this.setState({
-			'darkMode': !this.state.darkMode
+			'darkMode': !this.state.darkMode,
+			'theme': createTheme({
+				'palette': {
+					'mode': newMode
+				}
+			})
 		});
 	}
 
@@ -923,7 +934,7 @@ class App extends React.Component {
 	*/
 	render() {
 		return (
-			<ThemeProvider theme={theme} >
+			<ThemeProvider theme={this.state.theme} >
 				<Fragment>
 					{ this._renderTopNav() }
 					{ this._renderNotification() }
