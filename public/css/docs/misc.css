@@ -69,6 +69,18 @@ img {
 }
 
 /*
+* Disable all animations when the user is preferring reduced motion.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-play-state: paused !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/*
 * Top-navigation.
 */
 
@@ -162,6 +174,16 @@ img {
 	-ms-transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 	-o-transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 	transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.main {
+		-webkit-transition-duration: 0s;
+		-moz-transition-duration: 0s;
+		-ms-transition-duration: 0s;
+		-o-transition-duration: 0s;
+		transition-duration: 0s;
+	}
 }
 
 /*
@@ -524,6 +546,13 @@ button.side-menu-list-item-namespace-icon:hover {
 	animation: button-press 1s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+	.side-menu-list-item a::after,
+	.side-menu-list-item-namespace a::after {
+		animation: none;
+	}
+}
+
 .side-menu-list-wrapper {
 	overflow-y: hidden;
 }
@@ -613,7 +642,24 @@ button.side-menu-list-item-namespace-icon:hover {
 	background-color: #373a3e;
 	padding: 1em 2em;
 	cursor: pointer;
+	z-index: 101;
+
+	/* name | duration | timing function | delay */
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bottom-button {
+		-webkit-transition-duration: 0s;
+		-moz-transition-duration: 0s;
+		-ms-transition-duration: 0s;
+		-o-transition-duration: 0s;
+		transition-duration: 0s;
+	}
 }
 
 .bottom-button:hover {
