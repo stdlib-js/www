@@ -433,3 +433,15 @@ button.side-menu-list-item-namespace-icon:hover {
 	text-decoration: none;
 	color: #fff !important;
 }
+
+/*
+* Print button.
+*/
+
+.print-button {
+	color: var(--link-color);
+}
+
+.print-button:hover {
+	text-decoration: underline;
+}

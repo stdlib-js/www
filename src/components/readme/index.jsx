@@ -27,6 +27,7 @@ import ReadmeContent from './content.jsx';
 import EditLink from './edit_link.jsx';
 import Feedback from './feedback.jsx';
 import Pagination from './pagination.jsx';
+import PrintButton from './print_button.jsx';
 
 
 // MAIN //
@@ -157,7 +158,8 @@ class Readme extends React.Component {
 				{ ( this.state.content ) ?
 					<section className="readme-addendum">
 						<nav className="readme-bottom-nav" aria-label="pagination">
-							<div className="edit-link-wrapper">
+							<div className="edit-print-wrapper">
+								<PrintButton />
 								<EditLink pkg={ this.props.pkg } />
 							</div>
 							<Pagination
