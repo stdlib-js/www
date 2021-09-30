@@ -95,10 +95,9 @@ function route( opts ) {
 		q = request.query.q;
 		request.log.info( 'Query: %s', q );
 
-		if ( request.url[ request.url.length-1 ] === '/' ) {
-			url = request.url.slice( 0, request.url.length-1 );
-		} else {
-			url = request.url;
+		url = request.url;
+		if ( url[ url.length-1 ] === '/' ) {
+			url = url.substring( 0, url.length-1 );
 		}
 		request.log.info( 'Resolved URL: %s', url );
 
