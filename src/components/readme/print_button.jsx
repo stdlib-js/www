@@ -69,7 +69,7 @@ function PrintButton( props ) {
 		headerNode.className = 'print-addendum';
 		header = 'stdlib-js documentation';
 		header += ' - Version: ' + props.version;
-		header += ' - The Stdlib Authors © 2016-2021.'
+		header += ' - The Stdlib Authors © 2016-'+ ( new Date() ).getFullYear() + '.';
 		headerNode.innerHTML = header;
 
 		referenceNode = document.getElementById( 'readme' );
