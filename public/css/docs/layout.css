@@ -1109,6 +1109,14 @@ h2 {
 	min-height: 5em;
 }
 
+.help-page-button {
+	right: 10px;
+}
+
+.js-gitter-toggle-chat-button {
+	right: 100px;
+}
+
 /*
 * Side menu.
 */

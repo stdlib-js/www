@@ -652,11 +652,3 @@ button.side-menu-list-item-namespace-icon:hover {
 	outline: none;
 	background-color: #007caa;
 }
-
-.help-page-button {
-	right: 10px;
-}
-
-.js-gitter-toggle-chat-button {
-	right: 100px;
-}
