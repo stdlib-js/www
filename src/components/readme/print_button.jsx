@@ -25,16 +25,21 @@ import PrintIcon from '@mui/icons-material/Print';
 // FUNCTIONS //
 
 /**
-* Opens a print dialog.
+* Callback invoked upon clicking a button to print the current page.
 *
 * @private
 * @param {Object} event - event
 */
-function printPage( event ) {
-	var theme = document.documentElement.getAttribute( 'data-theme' );
+function onClick( event ) {
+	var theme;
+
+	// Prevent default button behavior:
 	event.preventDefault();
 
-	 // Ensure the print dialog is displayed for the light theme:
+	// Cache the current theme value:
+	theme = document.documentElement.getAttribute( 'data-theme' );
+
+	 // Switch the theme to "light" for printing:
 	document.documentElement.setAttribute( 'data-theme', 'light' );
 
 	// Open the print dialog:
@@ -55,7 +60,7 @@ function printPage( event ) {
 */
 function PrintButton() {
 	return (
-		<button className="print-button" onClick={printPage} >
+		<button className="print-button" onClick={ onClick } >
 			<PrintIcon fontSize="inherit" aria-hidden="true" /> Print this page
 		</button>
 	);
