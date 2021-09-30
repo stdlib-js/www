@@ -47,18 +47,26 @@ function Footer( props ) {
 				<Link to={ config.mount } title="Documentation">Docs</Link>
 				{ ' / ' }
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
+				<span className="bottom-nav-only-mobile" >
+					{ ' / ' }
+					<a href={ config.gitter } title="Talk to us on Gitter!">Chat</a>
+					{ ' / ' }
+					<a href={ config.mount + props.version + '/help' } title="How to use this documentation">Help</a>
+				</span>
 				{ ' / ' }
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
-				<Tooltip title="Talk to us on Gitter!" placement="top" arrow >
-					<a className="js-gitter-toggle-chat-button bottom-button" href={ config.gitter } >
-						Chat
-					</a>
-				</Tooltip>
-				<Tooltip title="How to use this documentation" placement="top" arrow >
-					<Link to={ config.mount + props.version + '/help' } className="help-page-button bottom-button" >
-						Help
-					</Link>
-				</Tooltip>
+				<span className="bottom-nav-only-desktop" >
+					<Tooltip title="Talk to us on Gitter!" placement="top" arrow >
+						<a className="js-gitter-toggle-chat-button bottom-button" href={ config.gitter } >
+							Chat
+						</a>
+					</Tooltip>
+					<Tooltip title="How to use this documentation" placement="top" arrow >
+						<Link to={ config.mount + props.version + '/help' } className="help-page-button bottom-button" >
+							Help
+						</Link>
+					</Tooltip>
+				</span>
 			</nav>
 		</footer>
 	);

@@ -130,6 +130,14 @@ h2 {
 	visibility: hidden;
 }
 
+.bottom-nav-only-desktop {
+	display: inline;
+}
+
+.bottom-nav-only-mobile {
+	display: none;
+}
+
 /*
 * Root.
 */
@@ -248,6 +256,14 @@ h2 {
 
 		/* top | right | bottom | left */
 		scroll-margin: 100px 0 0 300px;
+	}
+
+	.bottom-nav-only-desktop {
+		display: none;
+	}
+
+	.bottom-nav-only-mobile {
+		display: inline;
 	}
 }
 
