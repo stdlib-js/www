@@ -30,7 +30,6 @@ var styles = require( '@mui/styles' );
 var ServerStyleSheets = styles.ServerStyleSheets;
 var StylesProvider = styles.StylesProvider;
 var TITLE = 'Search | stdlib';
-var RE_PATHNAME = /(\/docs\/api\/.+\/search)\//;
 
 
 // MAIN //
@@ -96,7 +95,11 @@ function route( opts ) {
 		q = request.query.q;
 		request.log.info( 'Query: %s', q );
 
-		url = request.url.replace( RE_PATHNAME, '$1' );
+		if ( request.url[ request.url.length-1 ] === '/' ) {
+			url = request.url.slice( 0, request.url.length-1 );
+		} else {
+			url = request.url;
+		}
 		request.log.info( 'Resolved URL: %s', url );
 
 		request.log.info( 'Returning application.' );
@@ -125,7 +128,7 @@ function route( opts ) {
 		// Insert the rendered application into the application template...
 		tmpl.title( TITLE )
 			.description( opts.meta.description )
-			.url( '/docs/api/'+v+'/search' )
+			.url( url )
 			.css( css )
 			.content( html );
 
