@@ -71,7 +71,6 @@ img {
 /*
 * Disable all animations when the user is preferring reduced motion.
 */
-
 @media (prefers-reduced-motion: reduce) {
 	* {
 		animation-play-state: paused !important;
@@ -449,6 +448,13 @@ img {
 .readme .readme-bottom-nav .pagination-link:focus,
 .readme .readme-bottom-nav .pagination-link:hover {
 	border: 1px solid #4078c0;
+}
+
+.readme .readme-bottom-nav .print-button {
+	background: none;
+	border: 0;
+
+	cursor: pointer;
 }
 
 
