@@ -1376,4 +1376,24 @@ button.side-menu-list-item-namespace-icon {
 	.main.translate-right {
 		transform: translate3d(0, 0, 0);
 	}
+
+	.main {
+		padding-top: 0;
+	}
+
+	.readme {
+		padding-top: 1.5em;
+		margin-left: 0;
+	}
+}
+
+/*
+* Define standard page margins when printing.
+*/
+
+@page {
+	margin-top: 0.5in;
+	margin-left: 0.5in;
+	margin-right: 0.5in;
+	margin-bottom: 0.5in;
 }
