@@ -43,11 +43,11 @@ function Footer( props ) {
 				aria-label="secondary"
 			>
 				<a href={ config.funding } title="Help support the project">Donate</a>
-				{ ' / ' }
+				<span aria-hidden="true"> / </span>
 				<Link to={ config.mount } title="Documentation">Docs</Link>
-				{ ' / ' }
+				<span aria-hidden="true"> / </span>
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
-				{ ' / ' }
+				<span aria-hidden="true"> / </span>
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
 				<Tooltip title="Talk to us on Gitter!" placement="top" arrow >
 					<a className="js-gitter-toggle-chat-button bottom-button" href={ config.gitter } >
