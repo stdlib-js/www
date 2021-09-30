@@ -1305,3 +1305,29 @@ button.side-menu-list-item-namespace-icon {
 .help-page h1 span {
 	flex-grow: 1;
 }
+
+/*
+* Hide elements when printing and ensure main content is not shifted to the right.
+*/
+
+@media print {
+	.top-nav {
+		display: none;
+	}
+
+	.side-menu-wrapper {
+		display: none;
+	}
+
+	.bottom-nav {
+		display: none;
+	}
+
+	.readme-addendum {
+		display: none;
+	}
+
+	.main.translate-right {
+		transform: translate3d(0px,0,0);
+	}
+}
