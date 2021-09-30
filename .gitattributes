@@ -22,12 +22,3 @@
 
 # Automatically normalize the line endings of any committed text files:
 * text=auto
-
-# Override what is considered "vendored" by GitHub's linguist:
-/deps/** linguist-vendored=false
-/lib/node_modules/** linguist-vendored=false linguist-generated=false
-test/fixtures/** linguist-vendored=false
-tools/** linguist-vendored=false
-
-# Override what is considered "documentation" by GitHub's linguist:
-examples/** linguist-documentation=false
