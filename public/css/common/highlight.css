@@ -25,27 +25,27 @@
 */
 
 html[data-theme="light"] {
-	--hljs-background-color: #fff;
-	--hljs-color: #24292f;
-	--hljs-comment-color: #727272; /* grey */
-	--hljs-var-color: #aa5d00; /* orange */
-	--hljs-number-color: #de0801; /* red */
-	--hljs-attribute-color: #aa5d00; /* yellow */
-	--hljs-string-color: #008500; /* green */
-	--hljs-title-color: #2574a9; /* blue */
-	--hljs-keyword-color: #a101f1; /* purple */
+	--hljs-background-color: #ffffff; /* white */
+	--hljs-color: #24292f;            /* charcoal */
+	--hljs-comment-color: #727272;    /* grey */
+	--hljs-var-color: #aa5d00;        /* orange */
+	--hljs-number-color: #de0801;     /* red */
+	--hljs-attribute-color: #aa5d00;  /* yellow */
+	--hljs-string-color: #008500;     /* green */
+	--hljs-title-color: #2574a9;      /* blue */
+	--hljs-keyword-color: #a101f1;    /* purple */
 }
 
 html[data-theme="dark"] {
-	--hljs-background-color: #24292f;
-	--hljs-color: #f8f8f2;
-	--hljs-comment-color: #d4d0ab;
-	--hljs-var-color: #ffa07a;
-	--hljs-number-color: #f5ab35;
-	--hljs-attribute-color: #ffd700;
-	--hljs-string-color: #abe338;
-	--hljs-title-color: #00e0e0; /* cyan */
-	--hljs-keyword-color: #dcc6e0; /* magenta */
+	--hljs-background-color: #24292f; /* charcoal */
+	--hljs-color: #f8f8f2;            /* vanilla */
+	--hljs-comment-color: #d4d0ab;    /* tan */
+	--hljs-var-color: #ffa07a;        /* salmon */
+	--hljs-number-color: #f5ab35;     /* orange */
+	--hljs-attribute-color: #ffd700;  /* yellow */
+	--hljs-string-color: #abe338;     /* green */
+	--hljs-title-color: #00e0e0;      /* cyan */
+	--hljs-keyword-color: #dcc6e0;    /* purple */
 }
 
 .hljs-comment,
