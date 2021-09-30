@@ -779,6 +779,20 @@ h2 {
 }
 
 /*
+* Readme feedback form.
+*/
+
+.readme .readme-feedback {
+	display: block;
+	width: 100%;
+	padding-left: 0.5em;
+}
+
+.readme .readme-feedback .MuiTextField-root {
+	margin: 6px;
+}
+
+/*
 * Runner results.
 */
 

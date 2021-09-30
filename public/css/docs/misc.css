@@ -457,21 +457,6 @@ img {
 	cursor: pointer;
 }
 
-
-/*
-* README feedback form.
-*/
-
-.readme-feedback {
-	padding-left: 0.5em;
-	width: 100%;
-	display: block;
-}
-
-.readme-feedback .MuiTextField-root {
-	margin: 6px;
-}
-
 /*
 * Runner results.
 */
