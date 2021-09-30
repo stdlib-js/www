@@ -159,7 +159,10 @@ class Readme extends React.Component {
 					<section className="readme-addendum">
 						<nav className="readme-bottom-nav" aria-label="pagination">
 							<div className="edit-print-wrapper">
-								<PrintButton />
+								<PrintButton
+									version={ this.props.version }
+									url={ this.props.url }
+								/>
 								<EditLink pkg={ this.props.pkg } />
 							</div>
 							<Pagination

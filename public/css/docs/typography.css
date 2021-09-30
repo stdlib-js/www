@@ -450,3 +450,14 @@ button.side-menu-list-item-namespace-icon:hover {
 
 	color: #fff !important;
 }
+
+/*
+* Printing.
+*/
+
+@media print {
+	.print-addendum {
+		color: rgb(124, 124, 124);
+		background-color: rgba(255, 255, 255, 0.5);
+	}
+}
