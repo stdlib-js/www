@@ -565,53 +565,6 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
-* Define a diffuse shadow. Useful for things like images.
-*/
-.diffuse-shadow {
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 0 50px 0 var(--diffuse-shadow-color);
-	-moz-box-shadow: 0 0 50px 0 var(--diffuse-shadow-color);
-	box-shadow: 0 0 50px 0 var(--diffuse-shadow-color);
-}
-
-.diffuse-shadow-dark {
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 0 50px 0 #636161;
-	-moz-box-shadow: 0 0 50px 0 #636161;
-	box-shadow: 0 0 50px 0 #636161;
-}
-
-/*
-* Logo.
-*/
-
-#stdlib-logo {
-	opacity: 0.9;
-}
-
-#stdlib-logo:hover {
-	opacity: 1;
-}
-
-.stdlib-logo-icon {
-	background-image: url("/img/logo_icon_16x16.svg");
-	background-repeat: no-repeat;
-}
-
-/*
-* Button press animation.
-*/
-
-@keyframes button-press {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-}
-
-/*
 * Buttons for bottom-right corner (Gitter and help links).
 */
 
@@ -649,4 +602,58 @@ button.side-menu-list-item-namespace-icon:hover {
 .bottom-button:focus {
 	outline: none;
 	background-color: #007caa;
+}
+
+/*
+* Logo.
+*/
+
+#stdlib-logo {
+	opacity: 0.9;
+}
+
+#stdlib-logo:hover {
+	opacity: 1;
+}
+
+.stdlib-logo-icon {
+	background-image: url("/img/logo_icon_16x16.svg");
+	background-repeat: no-repeat;
+}
+
+/*
+* Miscellaneous styles.
+*/
+
+/*
+* Define a diffuse shadow. Useful for things like images.
+*/
+.diffuse-shadow {
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	-webkit-box-shadow: 0 0 50px 0 var(--diffuse-shadow-color);
+	-moz-box-shadow: 0 0 50px 0 var(--diffuse-shadow-color);
+	box-shadow: 0 0 50px 0 var(--diffuse-shadow-color);
+}
+
+.diffuse-shadow-dark {
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	-webkit-box-shadow: 0 0 50px 0 #636161;
+	-moz-box-shadow: 0 0 50px 0 #636161;
+	box-shadow: 0 0 50px 0 #636161;
+}
+
+/*
+* Animations.
+*/
+
+/*
+* Button press animation.
+*/
+@keyframes button-press {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }

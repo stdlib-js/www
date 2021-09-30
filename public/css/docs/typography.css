@@ -254,6 +254,14 @@ a:active {
 * README pagination.
 */
 
+.readme .readme-bottom-nav .print-button {
+	color: var(--link-color);
+}
+
+.readme .readme-bottom-nav .print-button:hover {
+	text-decoration: underline;
+}
+
 .readme .readme-bottom-nav .pagination-link:active,
 .readme .readme-bottom-nav .pagination-link:hover {
 	text-decoration: none;
@@ -430,23 +438,15 @@ button.side-menu-list-item-namespace-icon:hover {
 */
 
 .bottom-button {
-	font-size: 12px;
 	font-family: inherit;
+	font-size: 12px;
+
 	letter-spacing: 1px;
 	text-transform: uppercase;
+
 	text-align: center;
+
 	text-decoration: none;
+
 	color: #fff !important;
-}
-
-/*
-* Print button.
-*/
-
-.print-button {
-	color: var(--link-color);
-}
-
-.print-button:hover {
-	text-decoration: underline;
 }
