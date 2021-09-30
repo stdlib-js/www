@@ -40,6 +40,10 @@ indent_style = tab
 [*.{cjs,cjs.txt}]
 indent_style = tab
 
+# Set properties for JSX files:
+[*.{jsx,jsx.txt}]
+indent_style = tab
+
 # Set properties for JSON files:
 [*.{json,json.txt}]
 indent_style = space
