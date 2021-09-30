@@ -741,9 +741,9 @@ h2 {
 	margin-top: 3em;
 }
 
-.readme .readme-bottom-nav .edit-link-wrapper {
+.readme .readme-bottom-nav .edit-print-wrapper {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 
 .readme .readme-bottom-nav .pagination {
@@ -1304,6 +1304,18 @@ button.side-menu-list-item-namespace-icon {
 
 .help-page h1 span {
 	flex-grow: 1;
+}
+
+/*
+* Print button.
+*/
+
+.print-button {
+	border: 0;
+	background: none;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
 }
 
 /*
