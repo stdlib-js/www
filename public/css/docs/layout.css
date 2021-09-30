@@ -1118,6 +1118,18 @@ h2 {
 }
 
 /*
+* Buttons for bottom-right corner (Gitter and help links).
+*/
+.bottom-button {
+	position: fixed;
+	bottom: 0;
+
+	padding: 1em 2em;
+
+	z-index: 101;
+}
+
+/*
 * Side menu.
 */
 
