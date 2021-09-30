@@ -30,7 +30,6 @@ var styles = require( '@mui/styles' );
 var ServerStyleSheets = styles.ServerStyleSheets;
 var StylesProvider = styles.StylesProvider;
 var TITLE = 'Help | stdlib';
-var RE_PATHNAME = /(\/docs\/api\/.+\/help)/;
 
 
 // MAIN //
@@ -54,7 +53,6 @@ function route( opts ) {
 		'method': 'GET',
 		'url': '/docs/api/:version/help',
 		'schema': {
-			'querystring': {},
 			'response': {
 				'200': {
 					'type': 'string'
@@ -84,15 +82,15 @@ function route( opts ) {
 		var url;
 		var css;
 		var v;
-		var q;
 
 		v = request.params.version;
 		request.log.info( 'Version: %s', v );
 
-		q = request.query.q;
-		request.log.info( 'Query: %s', q );
-
-		url = request.url.replace( RE_PATHNAME, '$1' );
+		if ( request.url[ request.url.length-1 ] === '/' ) {
+			url = request.url.slice( 0, request.url.length-1 );
+		} else {
+			url = request.url;
+		}
 		request.log.info( 'Resolved URL: %s', url );
 
 		request.log.info( 'Returning application.' );
@@ -109,7 +107,7 @@ function route( opts ) {
 					url={ url }
 					version={ v }
 					data={ {} }
-					query={ q }
+					query=''
 					context={ ctx }
 				/>
 			</StylesProvider>
@@ -121,7 +119,7 @@ function route( opts ) {
 		// Insert the rendered application into the application template...
 		tmpl.title( TITLE )
 			.description( opts.meta.description )
-			.url( '/docs/api/'+v+'/help' )
+			.url( url )
 			.css( css )
 			.content( html );
 
