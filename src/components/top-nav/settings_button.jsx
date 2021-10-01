@@ -20,10 +20,13 @@
 
 import React, { Fragment } from 'react';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ClearIcon from '@mui/icons-material/Clear';
 import Drawer from '@mui/material/Drawer';
 import DarkModeToggleButton from './dark_mode_toggle_button.jsx';
+import Divider from '@mui/material/Divider';
 
 
 // MAIN //
@@ -88,11 +91,24 @@ class SettingsButton extends React.Component {
 					onClose={ this._toggleDrawer }
 				>
 					<Box
-						sx={{ width: 250, padding: 3 }}
+						sx={{ width: 250, paddingLeft: 3, paddingRight: 3 }}
+						className="settings"
 						role="presentation"
 					>
-						<h2>Settings</h2>
-						<h3>Mode</h3>
+						<Typography variant="h4" component="h1" >
+							Settings
+							<IconButton aria-label="close" size="large" >
+								<ClearIcon
+									className="settings-close"
+									title="Close settings"
+									onClick={ this._toggleDrawer }
+								/>
+							</IconButton>
+						</Typography>
+						<Divider />
+						<Typography variant="h5" component="h2">
+							Mode
+						</Typography>
 						<DarkModeToggleButton
 							mode={ this.props.mode }
 							onToggle={ this.props.onModeToggle }
