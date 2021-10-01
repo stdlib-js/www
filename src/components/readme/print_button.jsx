@@ -78,7 +78,8 @@ function PrintButton( props ) {
 		// Add a bottom margin footer to the last page:
 		footerNode = document.createElement( 'p' );
 		footerNode.className = 'print-addendum';
-		footer = 'Thank you for reading the documentation! If you have any questions, please join the discussion in our ';
+		footer = '<br />';
+		footer += 'Thank you for reading the documentation! If you have any questions, please join the discussion in our ';
 		footer += '<a href="https://gitter.im/stdlib-js/stdlib-js">Gitter chat room</a>.';
 		footer += '<br /><br />';
 		url = window.location.origin + props.url;
