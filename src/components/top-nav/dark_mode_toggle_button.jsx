@@ -19,9 +19,10 @@
 // MODULES //
 
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
 // MAIN //
@@ -30,34 +31,25 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 * Component for displaying a button to toggle between light and dark mode.
 *
 * @param {Object} props - component properties
-* @param {boolean} props.darkMode - boolean indicating whether the documentation is displayed in dark mode
-* @param {Callback} props.onToggle - callback to invoke upon clicking the button to toggle dark mode
+* @param {string} props.mode - current mode (either `'light'` or `'dark'`)
+* @param {Callback} props.onToggle - callback to invoke upon clicking the button to toggle between dark and light mode
 * @returns {ReactComponent} React component
 */
 function DarkModeToggleButton( props ) {
-	if ( props.darkMode ) {
-		return (
-			<IconButton
-				className="icon-button top-nav-download-button"
-				title="Switch to light mode"
-				aria-label="switch to light mode"
-				size="large"
-				onClick={props.onToggle}
-			>
-				<LightModeIcon aria-hidden="true" />
-			</IconButton>
-		);
-	}
 	return (
-		<IconButton
-			className="icon-button top-nav-download-button"
-			title="Switch to dark mode"
-			aria-label="switch to dark mode"
-			size="large"
-			onClick={props.onToggle}
+		<ToggleButtonGroup
+			value={props.mode}
+			exclusive
+			onChange={props.onToggle}
+			aria-label="theme"
 		>
-			<DarkModeIcon aria-hidden="true" />
-		</IconButton>
+			<ToggleButton value="light" aria-label="light theme" >
+				<LightModeIcon aria-hidden="true" /> Light
+			</ToggleButton>
+			<ToggleButton value="dark" aria-label="dark theme" >
+				<DarkModeIcon aria-hidden="true" /> Dark
+			</ToggleButton>
+		</ToggleButtonGroup>
 	);
 }
 
