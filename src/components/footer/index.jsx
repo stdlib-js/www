@@ -20,7 +20,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Tooltip from '@mui/material/Tooltip';
+import Fab from '@mui/material/Fab';
+import ForumIcon from '@mui/icons-material/Forum';
 import config from './../../config.js';
 
 
@@ -47,26 +48,18 @@ function Footer( props ) {
 				<Link to={ config.mount } title="Documentation">Docs</Link>
 				<span aria-hidden="true"> / </span>
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
-				<div className="bottom-nav-only-mobile" >
-					<span aria-hidden="true"> / </span>
-					<a href={ config.gitter } title="Talk to us on Gitter!">Chat</a>
-					<span aria-hidden="true"> / </span>
-					<a href={ config.mount + props.version + '/help' } title="How to use this documentation">Help</a>
-				</div>
 				<span aria-hidden="true"> / </span>
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
-				<div className="bottom-nav-only-desktop" >
-					<Tooltip title="Talk to us on Gitter!" placement="top" arrow >
-						<a className="js-gitter-toggle-chat-button bottom-button" href={ config.gitter } >
-							Chat
-						</a>
-					</Tooltip>
-					<Tooltip title="How to use this documentation" placement="top" arrow >
-						<Link to={ config.mount + props.version + '/help' } className="help-page-button bottom-button" >
-							Help
-						</Link>
-					</Tooltip>
-				</div>
+				<Fab
+					id="bottom-button"
+					component="a"
+					className="js-gitter-toggle-chat-button"
+					href={ config.gitter }
+					title="Talk to us on Gitter!"
+					aria-label="Chat"
+				>
+					<ForumIcon />
+				</Fab>
 			</nav>
 		</footer>
 	);

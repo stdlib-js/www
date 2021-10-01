@@ -194,8 +194,8 @@ class App extends React.Component {
 			// Boolean indicating whether a notification is currently displayed:
 			'notification': contains( props.location.search, 'notification' ),
 
-			// Boolean indicating whether the dark mode is active:
-			'darkMode': false,
+			// Active mode (`'light'` or `'dark'`):
+			'mode': 'light',
 
 			// MUI theme:
 			'theme': createTheme({
@@ -225,15 +225,16 @@ class App extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon toggling the dark mode.
+	* Callback invoked upon toggling between light and dark mode.
 	*
+	* @param {Object} event - event
+	* @param {string} newMode - new mode (either `'light'` or `'dark'`)
 	* @private
 	*/
-	_onDarkModeToggle = () => {
-		var newMode = this.state.darkMode ? 'light' : 'dark';
+	_onModeToggle = ( event, newMode ) => {
 		document.documentElement.setAttribute( 'data-theme', newMode );
 		this.setState({
-			'darkMode': !this.state.darkMode,
+			'mode': newMode,
 			'theme': createTheme({
 				'palette': {
 					'mode': newMode
@@ -529,7 +530,7 @@ class App extends React.Component {
 		return (
 			<TopNav
 				onSideMenuToggle={ this._onSideMenuToggle }
-				onDarkModeToggle={ this._onDarkModeToggle }
+				onModeToggle={ this._onModeToggle }
 				onVersionChange={ this.props.onVersionChange }
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
@@ -538,7 +539,7 @@ class App extends React.Component {
 				onFilterFocus={ this._onFilterFocus }
 				onFilterBlur={ this._onFilterBlur }
 				sideMenu={ this.state.sideMenu }
-				darkMode={ this.state.darkMode }
+				mode={ this.state.mode }
 				{...props}
 			/>
 		);

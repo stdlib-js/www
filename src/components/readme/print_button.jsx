@@ -34,6 +34,18 @@ import PrintIcon from '@mui/icons-material/Print';
 * @returns {ReactElement} React element
 */
 function PrintButton( props ) {
+	var referenceNode;
+	var footerNode;
+	var headerNode;
+	var footer;
+	var header;
+	var theme;
+	var url;
+
+	if ( typeof window !== 'undefined' ) {
+		window.onbeforeprint = beforePrint;
+		window.onafterprint = afterPrint;
+	}
 	return (
 		<button className="print-button" onClick={ onClick } >
 			<PrintIcon fontSize="inherit" aria-hidden="true" /> Print this page
@@ -41,23 +53,11 @@ function PrintButton( props ) {
 	);
 
 	/**
-	* Callback invoked upon clicking a button to print the current page.
+	* Event handler invoked before printing.
 	*
 	* @private
-	* @param {Object} event - event
 	*/
-	function onClick( event ) {
-		var referenceNode;
-		var footerNode;
-		var headerNode;
-		var footer;
-		var header;
-		var theme;
-		var url;
-
-		// Prevent default button behavior:
-		event.preventDefault();
-
+	function beforePrint() {
 		// Cache the current theme value:
 		theme = document.documentElement.getAttribute( 'data-theme' );
 
@@ -69,7 +69,7 @@ function PrintButton( props ) {
 		headerNode.className = 'print-addendum';
 		header = 'stdlib-js documentation';
 		header += ' - Version: ' + props.version;
-		header += ' - The Stdlib Authors © 2016-2021.'
+		header += ' - The Stdlib Authors © 2016-'+ ( new Date() ).getFullYear() + '.';
 		headerNode.innerHTML = header;
 
 		referenceNode = document.getElementById( 'readme' );
@@ -88,10 +88,28 @@ function PrintButton( props ) {
 
 		referenceNode = document.getElementById( 'readme' );
 		referenceNode.parentNode.insertBefore( footerNode, referenceNode.nextSibling );
+	}
+
+	/**
+	* Callback invoked upon clicking a button to print the current page.
+	*
+	* @private
+	* @param {Object} event - event
+	*/
+	function onClick( event ) {
+		// Prevent default button behavior:
+		event.preventDefault();
 
 		// Open the print dialog:
 		window.print();
+	}
 
+	/**
+	* Event handler invoked after printing.
+	*
+	* @private
+	*/
+	function afterPrint() {
 		// Restore the original theme:
 		document.documentElement.setAttribute( 'data-theme', theme );
 
