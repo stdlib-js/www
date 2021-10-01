@@ -27,21 +27,71 @@ import React from 'react';
 * Component for rendering README content.
 *
 * @private
-* @param {Object} props - component properties
-* @param {string} props.html - README HTML
-* @param {Callback} props.onClick - callback to invoke upon clicking on README content
-* @returns {ReactElement} React element
 */
-function ReadmeContent( props ) {
-	return (
-		<section
-			id="readme-content"
-			className="readme-content"
-			suppressHydrationWarning
-			dangerouslySetInnerHTML={ { '__html': props.html } }
-			onClick={ props.onClick }
-		/>
-	);
+class ReadmeContent extends React.Component {
+	/**
+	* Returns a component for rendering README content.
+	*
+	* @private
+	* @constructor
+	* @param {Object} props - component properties
+	* @param {string} props.html - README HTML
+	* @param {Callback} props.onClick - callback to invoke upon clicking on README content
+	* @returns {ReactElement} React element
+	*/
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			html: props.html
+		};
+	}
+
+	/**
+	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*
+	* @private
+	*/
+	componentDidMount() {
+		// Add anchor links to each heading:
+		const headings = this.content.querySelectorAll( 'h1,h2,h3,h4,h5,h6' );
+		for ( let i = 0; i < headings.length; i++ ) {
+			const heading = headings[ i ];
+			const id = heading.id;
+			const link = document.createElement( 'a' );
+			link.className = 'anchor';
+			link[ 'aria-hidden' ] = true;
+			link.href = '#'+id;
+			link.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+			heading.insertBefore( link, heading.firstChild );
+		}
+		this.setState( {
+			html: this.content.innerHTML
+		} );
+	}
+
+	/**
+	* Renders the component.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	render() {
+		return (
+			<section
+				id="readme-content"
+				className="readme-content"
+				suppressHydrationWarning
+				dangerouslySetInnerHTML={ {
+					__html: this.state.html
+				} }
+				onClick={ this.props.onClick }
+				ref={ ( el ) => {
+					this.content = el;
+				} }
+			/>
+		);
+	}
 }
 
 
