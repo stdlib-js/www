@@ -389,6 +389,26 @@ img {
 }
 
 /*
+* Readme heading anchors.
+*/
+
+.readme .anchor {
+	float: right;
+	padding-right: 4px;
+	margin-left: -30px;
+	visibility: hidden;
+}
+
+.readme h1:hover .anchor,
+.readme h2:hover .anchor,
+.readme h3:hover .anchor,
+.readme h4:hover .anchor,
+.readme h5:hover .anchor,
+.readme h6:hover .anchor {
+	visibility: visible;
+}
+
+/*
 * "See Also" section.
 */
 
