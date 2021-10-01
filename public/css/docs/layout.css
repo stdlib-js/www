@@ -130,14 +130,6 @@ h2 {
 	visibility: hidden;
 }
 
-.bottom-nav-only-desktop {
-	display: inline;
-}
-
-.bottom-nav-only-mobile {
-	display: none;
-}
-
 /*
 * Root.
 */
@@ -256,14 +248,6 @@ h2 {
 
 		/* top | right | bottom | left */
 		scroll-margin: 100px 0 0 300px;
-	}
-
-	.bottom-nav-only-desktop {
-		display: none;
-	}
-
-	.bottom-nav-only-mobile {
-		display: inline;
 	}
 }
 
@@ -1125,24 +1109,21 @@ h2 {
 	min-height: 5em;
 }
 
-.help-page-button {
-	right: 10px;
-}
-
-.js-gitter-toggle-chat-button {
-	right: 100px;
-}
-
 /*
-* Buttons for bottom-right corner (Gitter and help links).
+* Gitter button for bottom-right corner.
 */
-.bottom-button {
+#bottom-button {
 	position: fixed;
-	bottom: 0;
+	bottom: 12px;
+	right: 12px;
 
-	padding: 1em 2em;
+	padding: 1em;
+}
 
-	z-index: 101;
+@media only screen and (max-width: 53.75em) { /* 860px */
+	#bottom-button {
+		position: absolute;
+	}
 }
 
 /*
