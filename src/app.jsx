@@ -228,16 +228,19 @@ class App extends React.Component {
 	* Callback invoked upon toggling between light and dark mode.
 	*
 	* @param {Object} event - event
-	* @param {string} newMode - new mode (either `'light'` or `'dark'`)
+	* @param {string} value - toggle button value
 	* @private
 	*/
-	_onModeToggle = ( event, newMode ) => {
-		document.documentElement.setAttribute( 'data-theme', newMode );
+	_onModeToggle = ( event, value ) => {
+		if ( value !== 'light' && value !== 'dark' ) {
+			return;
+		}
+		document.documentElement.setAttribute( 'data-theme', value );
 		this.setState({
-			'mode': newMode,
+			'mode': value,
 			'theme': createTheme({
 				'palette': {
-					'mode': newMode
+					'mode': value
 				}
 			})
 		});
