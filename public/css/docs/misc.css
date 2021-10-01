@@ -393,9 +393,7 @@ img {
 */
 
 .readme .anchor {
-	float: right;
-	padding-right: 4px;
-	margin-left: -30px;
+	padding-left: 0.6rem;
 	visibility: hidden;
 }
 
