@@ -434,21 +434,11 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
-* Buttons for bottom-right corner (Gitter and help links).
+* Gitter button for bottom-right corner .
 */
 
-.bottom-button {
-	font-family: inherit;
-	font-size: 12px;
-
-	letter-spacing: 1px;
-	text-transform: uppercase;
-
-	text-align: center;
-
-	text-decoration: none;
-
-	color: #fff !important;
+#bottom-button {
+	color: var(--theme-text-color);
 }
 
 /*

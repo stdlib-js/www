@@ -565,43 +565,11 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
-* Buttons for bottom-right corner (Gitter and help links).
+* Gitter button for bottom-right corner.
 */
 
-.bottom-button {
-	border: 0;
-	border-top-left-radius: 0.5em;
-	border-top-right-radius: 0.5em;
-
-	background-color: #373a3e;
-
-	cursor: pointer;
-
-	/* name | duration | timing function | delay */
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	transition: all 0.3s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.bottom-button {
-		-webkit-transition-duration: 0s;
-		-moz-transition-duration: 0s;
-		-ms-transition-duration: 0s;
-		-o-transition-duration: 0s;
-		transition-duration: 0s;
-	}
-}
-
-.bottom-button:hover {
-	background-color: #039fd8;
-}
-
-.bottom-button:focus {
-	outline: none;
-	background-color: #007caa;
+#bottom-button {
+	background-color: var(--pre-background-color);
 }
 
 /*
