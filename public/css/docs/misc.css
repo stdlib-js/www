@@ -21,6 +21,11 @@
 */
 
 html[data-theme="dark"] {
+	/*
+	* stdlib colors.
+	*/
+	--stdlib-orange: #f0ad3e;
+	--stdlib-blue: #00aeef;
 	--theme-background-color: #222426;
 	--top-nav-shadow-color: #1a1a1a;
 	--top-nav-link-color: #ffffff;
@@ -102,11 +107,11 @@ img {
 }
 
 .top-nav .download-progress {
-	background-color: #00aeef;
+	background-color: var(--stdlib-blue);
 }
 
 .top-nav .download-progress > * {
-	background-color: #f0ad3e;
+	background-color: var(--stdlib-orange);
 }
 
 /*
@@ -201,11 +206,11 @@ img {
 */
 
 /*
-* To the left of a blockquote, create a vertical gray bar, similar to how GitHub styles blockquotes.
+* To the left of a blockquote, show a vertical gray bar, similar to how GitHub styles blockquotes.
 */
 .readme blockquote {
 	/* width | style | color */
-	border-left: 0.25em solid #ddd;
+	border-left: 0.25em solid #dddddd;
 }
 
 /*
@@ -396,6 +401,20 @@ img {
 	border: 0;
 }
 
+/*
+* For related packages, we want to conceal that these are code blocks, and so set the background color to the theme background color.
+*/
+.readme .related .package-name code {
+	background-color: var(--theme-background-color);
+}
+
+/*
+* Keyboard elements.
+*/
+
+/*
+* Keyboard elements should have a light grey background and slightly rounded corners.
+*/
 .readme kbd {
 	background-color: #fcfcfc;
 
@@ -410,13 +429,6 @@ img {
 	-webkit-box-shadow: inset 0 -1px 0 #bbb;
 	-moz-box-shadow: inset 0 -1px 0 #bbb;
 	box-shadow: inset 0 -1px 0 #bbb;
-}
-
-/*
-* For related packages, we want to conceal that these are code blocks, and so set the background color to the theme background color.
-*/
-.readme .related .package-name code {
-	background-color: var(--theme-background-color);
 }
 
 /*
@@ -446,7 +458,7 @@ img {
 * Add a top border to the pagination element to visually distinguish it from other prior navigation content.
 */
 .readme .readme-bottom-nav .pagination {
-	border-top: 1px solid #e7e7e7;
+	border-top: 1px solid var(--hr-background-color);
 }
 
 /*
@@ -573,9 +585,9 @@ button.side-menu-list-item-namespace-icon:hover {
 	border-radius: 0 0 4px 4px;
 
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 0 3px 0 #000;
-	-moz-box-shadow: 0 0 3px 0 #000;
-	box-shadow: 0 0 3px 0 #000;
+	-webkit-box-shadow: 0 0 3px 0 #000000;
+	-moz-box-shadow: 0 0 3px 0 #000000;
+	box-shadow: 0 0 3px 0 #000000;
 }
 
 .skip-link:focus {
@@ -626,20 +638,4 @@ button.side-menu-list-item-namespace-icon:hover {
 	-webkit-box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
 	-moz-box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
 	box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
-}
-
-/*
-* Animations.
-*/
-
-/*
-* Button press animation.
-*/
-@keyframes button-press {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
 }

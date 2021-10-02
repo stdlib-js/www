@@ -27,6 +27,12 @@ html[data-theme="light"] {
 	--theme-background-color: #ffffff;
 
 	/*
+	* stdlib colors.
+	*/
+	--stdlib-orange: #f0ad3e;
+	--stdlib-blue: #00aeef;
+
+	/*
 	* Links should be blue.
 	*/
 	--link-color: #0000ff;
