@@ -73,9 +73,9 @@ img {
 */
 @media (prefers-reduced-motion: reduce) {
 	* {
-		animation-play-state: paused !important;
-		transition: none !important;
-		scroll-behavior: auto !important;
+		animation-play-state: paused!important;
+		transition: none!important;
+		scroll-behavior: auto!important;
 	}
 }
 
@@ -186,6 +186,10 @@ img {
 }
 
 /*
+* Headings.
+*/
+
+/*
 * Both `h1` and `h2` elements should be underlined.
 */
 .readme h1,
@@ -195,12 +199,35 @@ img {
 }
 
 /*
+* Set a background for the heading marking the section for displaying related packages.
+*/
+.readme .related h2 {
+	background-color: #e4f1ff; /* fallback */
+	background-color: rgba(0, 123, 255, 0.1);
+}
+
+/*
+* Display an icon to the left of the heading.
+*/
+.readme .related h2:before {
+	content: url("/img/info_icon_blue_24x24.svg");
+}
+
+/*
+* Blockquotes.
+*/
+
+/*
 * To the left of a blockquote, create a vertical gray bar, similar to how GitHub styles blockquotes.
 */
 .readme blockquote {
 	/* width | style | color */
 	border-left: 0.25em solid #ddd;
 }
+
+/*
+* Horizontal rules.
+*/
 
 /*
 * Horizontal rule should be gray, similar to how GitHub renders horizontal rules.
@@ -306,6 +333,20 @@ img {
 }
 
 /*
+* Related packages list items should not display a list marker.
+*/
+.readme .related ul {
+	list-style-type: none;
+}
+
+/*
+* Breadcrumbs navigation list items should not display a list marker.
+*/
+.readme .readme-breadcrumbs ol {
+	list-style-type: none;
+}
+
+/*
 * Tables.
 */
 
@@ -347,7 +388,7 @@ img {
 }
 
 /*
-* Code containers should have slightly rounded corners and have a light gray background, similar to GitHub.
+* Code containers should have slightly rounded corners and have a light gray background (when in "light" theme), similar to GitHub.
 */
 .readme code {
 	background-color: var(--theme-background-color); /* fallback */
@@ -389,6 +430,13 @@ img {
 }
 
 /*
+* For related packages, we want to conceal that these are code blocks, and so set the background color to the theme background color.
+*/
+.readme .related .package-name code {
+	background-color: var(--theme-background-color);
+}
+
+/*
 * "See Also" section.
 */
 
@@ -407,49 +455,36 @@ img {
 	box-shadow: 0 4px 20px 0 var(--diffuse-shadow-color);
 }
 
-.readme .related h2 {
-	background-color: #e4f1ff; /* fallback */
-	background-color: rgba(0, 123, 255, 0.1);
-}
-
-.readme .related h2:before {
-	content: url("/img/info_icon_blue_24x24.svg");
-}
-
-.readme .related ul {
-	list-style-type: none;
-}
-
-.readme .related .package-name code {
-	background-color:  var(--theme-background-color);
-}
-
 /*
-* README breadcrumbs navigation.
+* README bottom navigation.
 */
 
-.readme .readme-breadcrumbs ol {
-	list-style-type: none;
-}
-
 /*
-* README bottom pagination.
+* Add a top border to the pagination element to visually distinguish it from other prior navigation content.
 */
-
 .readme .readme-bottom-nav .pagination {
 	border-top: 1px solid #e7e7e7;
 }
 
+/*
+* Pagination links should have slightly rounded corners, and, when not focused/hovered, should not show a border.
+*/
 .readme .readme-bottom-nav .pagination-link {
 	border-radius: 4px;
 	border: 1px solid var(--theme-background-color)
 }
 
+/*
+* When a pagination is focused/hovered, display the border to visually indicate the "hit" area comprising the pagination link.
+*/
 .readme .readme-bottom-nav .pagination-link:focus,
 .readme .readme-bottom-nav .pagination-link:hover {
 	border: 1px solid #4078c0;
 }
 
+/*
+* Remove the border and set the cursor to make the print button look and feel like a link.
+*/
 .readme .readme-bottom-nav .print-button {
 	background: none;
 	border: 0;
