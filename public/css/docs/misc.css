@@ -33,7 +33,7 @@ html[data-theme="light"] {
 	--top-nav-link-hover-color: #f7f7f7;
 	--top-nav-divider-color: #d3d3d3;
 	--hr-background-color: #e7e7e7;
-	--heading-border-bottom: #eee;
+	--heading-border-bottom-color: #eee;
 	--table-cell-border-color: #ddd;
 	--table-row-border-color: #ccc;
 }
@@ -51,7 +51,7 @@ html[data-theme="dark"] {
 	--top-nav-link-hover-color: #ffffff;
 	--top-nav-divider-color: #e9e9e9;
 	--hr-background-color: #cdcdcd;
-	--heading-border-bottom: #b5b5b5;
+	--heading-border-bottom-color: #b5b5b5;
 	--table-cell-border-color: #616161;
 	--table-row-border-color: #b5b5b5;
 }
@@ -195,7 +195,7 @@ img {
 .readme h1,
 .readme h2 {
 	/* width | style | color */
-	border-bottom: 1px solid var(--heading-border-bottom);
+	border-bottom: 1px solid var(--heading-border-bottom-color);
 }
 
 /*
@@ -241,7 +241,7 @@ img {
 	border: 0;
 
 	/* width | style | color */
-	border-bottom: 1px solid var(--heading-border-bottom);
+	border-bottom: 1px solid var(--heading-border-bottom-color);
 }
 
 /*
@@ -583,7 +583,7 @@ button.side-menu-list-item-namespace-icon:hover {
 */
 
 .skip-link {
-	background-color: #1d1f20;
+	background-color: #1d1f20; /* TODO: consider whether this should be themed */
 
 	-webkit-border-radius: 0 0 4px 4px;
 	-moz-border-radius: 0 0 4px 4px;
