@@ -24,16 +24,22 @@ html {
 	background-color: var(--theme-background-color);
 }
 
+/*
+* Prevent horizontal scrolling on the body.
+*/
 body {
 	overflow-x: hidden;
 }
 
+/*
+* Ensure that missing images use the theme background color.
+*/
 img {
 	background-color: var(--theme-background-color);
 }
 
 /*
-* Disable all animations when the user is preferring reduced motion.
+* Disable all animations when the user prefers reduced motion.
 */
 @media (prefers-reduced-motion: reduce) {
 	* {
@@ -49,7 +55,6 @@ img {
 
 .top-nav {
 	background-color: var(--theme-background-color);
-	/*background-color: #000000;*/
 
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
 	-webkit-box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
@@ -76,6 +81,9 @@ img {
 }
 
 @media only screen and (min-width: 50em) { /* 800px */
+	/*
+	* Once we get to a wide enough screen size and top navigation items are displayed inline, remove the background color.
+	*/
 	.top-nav-item a:hover,
 	.top-nav-item a:active {
 		background-color: transparent;
@@ -94,6 +102,9 @@ img {
 * Root.
 */
 
+/*
+* Prevent horizontal scrolling on the root element.
+*/
 #root {
 	overflow-x: hidden;
 }
@@ -140,6 +151,9 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	/*
+	* Make transitions instantaneous when a user prefers reduced motion.
+	*/
 	.main {
 		-webkit-transition-duration: 0s;
 		-moz-transition-duration: 0s;
@@ -182,7 +196,7 @@ img {
 */
 
 /*
-* To the left of a blockquote, show a vertical gray bar, similar to how GitHub styles blockquotes.
+* To the left of a blockquote, show a vertical grey bar, similar to how GitHub styles blockquotes.
 */
 .readme blockquote {
 	/* width | style | color */
@@ -193,9 +207,6 @@ img {
 * Horizontal rules.
 */
 
-/*
-* Horizontal rule should be gray, similar to how GitHub renders horizontal rules.
-*/
 .readme hr {
 	overflow: hidden;
 
@@ -352,10 +363,10 @@ img {
 }
 
 /*
-* Code containers should have slightly rounded corners and have a light gray background (when in "light" theme), similar to GitHub.
+* Code containers should have slightly rounded corners and have a background background to distinguish the container from surrounding elements.
 */
 .readme code {
-	background-color: var(--theme-background-color); /* fallback */
+	background-color: var(--pre-background-color); /* fallback */
 	background-color: var(--code-background-color);
 
 	-webkit-border-radius: 3px;
@@ -370,7 +381,7 @@ img {
 }
 
 /*
-* Style `code` elements which are direct children of `pre` elements.
+* For code elements which are immediate children of pre-formatted text elements, use the background of the parent element.
 */
 .readme pre > code {
 	background: transparent;
@@ -414,7 +425,7 @@ img {
 .readme .related {
 	overflow: auto;
 
-	border-left: 3px solid #007bff;
+	border-left: 3px solid #007bff; /* bluish */
 
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -450,7 +461,7 @@ img {
 */
 .readme .readme-bottom-nav .pagination-link:focus,
 .readme .readme-bottom-nav .pagination-link:hover {
-	border: 1px solid #4078c0;
+	border: 1px solid #4078c0; /* bluish */
 }
 
 /*
@@ -535,6 +546,9 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	/*
+	* Disable animations when a user prefers reduced motion.
+	*/
 	.side-menu-list-item a::after,
 	.side-menu-list-item-namespace a::after {
 		animation: none;
@@ -582,10 +596,16 @@ button.side-menu-list-item-namespace-icon:hover {
 * Logo.
 */
 
+/*
+* Slightly dim the logo when not hovered.
+*/
 #stdlib-logo {
 	opacity: 0.9;
 }
 
+/*
+* When the logo is hovered, brighten the logo.
+*/
 #stdlib-logo:hover {
 	opacity: 1;
 }

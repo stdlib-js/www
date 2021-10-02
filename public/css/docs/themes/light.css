@@ -43,7 +43,7 @@ html[data-theme="light"] {
 	--blockquote-color: #696969;
 
 	/*
-	* Code blocks should have a very light grey background.
+	* Code blocks should have a very light grey background (similar to GitHub).
 	*/
 	--pre-background-color: #f8f8f8;
 	--code-background-color: rgba(0, 0, 0, 0.04);
@@ -70,7 +70,7 @@ html[data-theme="light"] {
 	--top-nav-divider-color: #d3d3d3;
 
 	/*
-	* Horizontal rules should be light grey.
+	* Horizontal rules should be light grey (similar to how GitHub renders horizontal rules).
 	*/
 	--hr-background-color: #e7e7e7;
 
