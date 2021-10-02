@@ -48,12 +48,6 @@ html[data-theme="dark"] {
 	--blockquote-color: #f3f3f3;
 
 	/*
-	* Code blocks should have a medium grey background.
-	*/
-	--pre-background-color: #373a49;
-	--code-background-color: rgba(255, 255, 255, 0.04);
-
-	/*
 	* Top-navigation links should be white.
 	*/
 	--top-nav-link-color: #ffffff;
@@ -104,4 +98,54 @@ html[data-theme="dark"] {
 	* Darker diffuse shadows should be charcoal.
 	*/
 	--diffuse-dark-shadow-color: #2b2d30; /* TODO: update this to distinguish from normal diffuse shadow */
+
+	/*
+	* Syntax highlighting.
+	*/
+
+	/*
+	* Code blocks should have a medium grey background.
+	*/
+	--pre-background-color: #373a49;
+	--code-background-color: rgba(255, 255, 255, 0.04);
+
+	/*
+	* The default text color for code should be vanilla.
+	*/
+	--code-color: #f8f8f2;            /* vanilla */
+
+	/*
+	* Code comments should be tan.
+	*/
+	--code-comment-color: #d4d0ab;    /* tan */
+
+	/*
+	* Variables should be salmon.
+	*/
+	--code-var-color: #ffa07a;        /* salmon */
+
+	/*
+	* Built-ins should be orange.
+	*/
+	--code-builtin-color: #f5ab35;    /* orange */
+
+	/*
+	* Attributes should be yellow.
+	*/
+	--code-attribute-color: #ffd700;  /* yellow */
+
+	/*
+	* Strings should be green.
+	*/
+	--code-string-color: #abe338;     /* green */
+
+	/*
+	* Titles should be cyan.
+	*/
+	--code-title-color: #00e0e0;      /* cyan */
+
+	/*
+	* Keywords should be purple.
+	*/
+	--code-keyword-color: #dcc6e0;    /* purple */
 }

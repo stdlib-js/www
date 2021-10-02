@@ -48,12 +48,6 @@ html[data-theme="light"] {
 	--blockquote-color: #696969;
 
 	/*
-	* Code blocks should have a very light grey background (similar to GitHub).
-	*/
-	--pre-background-color: #f8f8f8;
-	--code-background-color: rgba(0, 0, 0, 0.04);
-
-	/*
 	* Top-navigation links should be grey.
 	*/
 	--top-nav-link-color: #585858;
@@ -104,4 +98,54 @@ html[data-theme="light"] {
 	* Darker diffuse shadows should be medium grey.
 	*/
 	--diffuse-dark-shadow-color: #636161;
+
+	/*
+	* Syntax highlighting.
+	*/
+
+	/*
+	* Code blocks should have a very light grey background (similar to GitHub).
+	*/
+	--pre-background-color: #f8f8f8;
+	--code-background-color: rgba(0, 0, 0, 0.04);
+
+	/*
+	* The default text color for code should be charcoal.
+	*/
+	--code-color: #24292f;            /* charcoal */
+
+	/*
+	* Code comments should be grey.
+	*/
+	--code-comment-color: #727272;    /* grey */
+
+	/*
+	* Variables should be orange.
+	*/
+	--code-var-color: #aa5d00;        /* orange */
+
+	/*
+	* Built-ins should be red.
+	*/
+	--code-builtin-color: #de0801;    /* red */
+
+	/*
+	* Attributes should be yellow.
+	*/
+	--code-attribute-color: #aa5d00;  /* yellow */
+
+	/*
+	* Strings should be green.
+	*/
+	--code-string-color: #008500;     /* green */
+
+	/*
+	* Titles should be blue.
+	*/
+	--code-title-color: #2574a9;      /* blue */
+
+	/*
+	* Keywords should be purple.
+	*/
+	--code-keyword-color: #a101f1;    /* purple */
 }
