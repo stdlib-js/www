@@ -19,6 +19,7 @@
 /*
 * Typography stylesheet.
 *
+* 0. Variables.
 * 1. General rules.
 * 2. Main.
 * 3. Tables.
@@ -32,12 +33,28 @@
 * 11. Side menu.
 */
 
+/*
+* Variables.
+*/
+
+:root {
+	--default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--thin-font-family: "LatoLatinWebLight", "Helvetica Neue";
+	--code-font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+/*
+* General rules.
+*/
+
 body {
 	font-size: 16px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: var(--default-font-family);
+
+	color: var(--theme-text-color);
+
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: var(--theme-text-color);
 }
 
 h1 {
@@ -95,16 +112,16 @@ a:active {
 }
 
 ::-webkit-input-placeholder {
-	font-family: "LatoLatinWebLight";
+	font-family: var(--thin-font-family);
 }
 :-moz-placeholder {
-	font-family: "LatoLatinWebLight";
+	font-family: var(--thin-font-family);
 }
 ::-moz-placeholder {
-	font-family: "LatoLatinWebLight";
+	font-family: var(--thin-font-family);
 }
 :-ms-input-placeholder {
-	font-family: "LatoLatinWebLight";
+	font-family: var(--thin-font-family);
 }
 
 /*
@@ -116,6 +133,9 @@ a:active {
 	word-wrap: break-word;
 }
 
+/*
+* For links without an `href` attribute, do not distinguish them from the surrounding text.
+*/
 .readme a:not([href]) {
 	color: inherit;
 	text-decoration: none;
@@ -134,9 +154,8 @@ a:active {
 */
 
 .readme pre,
-.readme code,
-.readme kbd {
-	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+.readme code {
+	font-family: var(--code-font-family);
 }
 
 .readme pre,
@@ -160,10 +179,18 @@ a:active {
 	word-break: normal;
 }
 
+/*
+* Keyboard elements.
+*/
+
 .readme kbd {
-	color: #555;
-	font-size: 11px;
-	line-height: 10px;
+	font-size: 0.6875em;
+	font-family: var(--code-font-family);
+
+	color: #555555; /* charcoal */
+
+	line-height: 1em;
+
 	vertical-align: middle;
 }
 
@@ -191,7 +218,7 @@ a:active {
 */
 
 .readme dl dt {
-	font-size: 1.0em;
+	font-size: 1em;
 	font-style: italic;
 	font-weight: bold;
 }
@@ -222,7 +249,7 @@ a:active {
 }
 
 .readme .related .package-name code {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: var(--default-font-family);
 	font-size: 1em;
 }
 
@@ -291,7 +318,7 @@ a:active {
 .runner-results .test-block .test-description,
 .runner-results .benchmark-block .benchmark-description {
 	text-decoration: underline;
-	text-decoration-color: #cacaca;
+	text-decoration-color: #cacaca; /* grey */
 }
 
 .runner-results .test-block .test-result-label,
@@ -306,7 +333,7 @@ a:active {
 .top-nav,
 .top-nav-search input,
 .bottom-nav {
-	font-family: "LatoLatinWebLight";
+	font-family: var(--thin-font-family);
 	color: var(--top-nav-link-color);
 	background-color: var(--top-nav-background-color);
 }
@@ -330,9 +357,11 @@ a:active {
 }
 
 @media only screen and (min-width: 50em) { /* 800px */
+	/*
+	* Once we get to a wide enough screen size and top navigation items are displayed inline, underline the links when active.
+	*/
 	.top-nav-item a:hover,
 	.top-nav-item a:active {
-		background-color: transparent;
 		text-decoration: underline;
 	}
 }
@@ -352,7 +381,7 @@ a:active {
 
 .side-menu-list-item,
 .side-menu-list-item-namespace {
-	font-family: "LatoLatinWebLight", "Helvetica Neue";
+	font-family: var(--thin-font-family);
 	font-weight: 200;
 }
 
@@ -367,12 +396,12 @@ a:active {
 }
 
 .side-menu-version-wrapper label {
-	color: #fff;
+	color: #ffffff;
 	line-height: 1.5em;
 }
 
 .side-menu-version-select {
-	color: #fff;
+	color: #ffffff;
 }
 
 .side-menu-filter-input,
@@ -404,7 +433,7 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 .side-menu-drawer .menu-close-icon:hover {
-	color: #fff;
+	color: #ffffff;
 }
 
 /*
@@ -414,7 +443,7 @@ button.side-menu-list-item-namespace-icon:hover {
 .skip-link {
 	text-align: center;
 
-	color: #00aeef;
+	color: #00aeef; /* bluish */
 }
 
 /*
