@@ -20,30 +20,6 @@
 * Stylesheet for miscellaneous rules.
 */
 
-html[data-theme="dark"] {
-	/*
-	* stdlib colors.
-	*/
-	--stdlib-orange: #f0ad3e;
-	--stdlib-blue: #00aeef;
-	--theme-background-color: #222426;
-	--top-nav-shadow-color: #1a1a1a;
-	--top-nav-link-color: #ffffff;
-	--link-color: #00abe7;
-	--blockquote-color: #f3f3f3;
-	--diffuse-shadow-color: #2b2d30;
-	--diffuse-dark-shadow-color: #2b2d30; /* TODO: update this to distinguish from normal diffuse shadow */
-	--pre-background-color: #373a49;
-	--code-background-color: rgba(255,255,255,0.04);
-	--top-nav-search-background-color: #373a49;
-	--top-nav-link-hover-background-color: #ffffff;
-	--top-nav-divider-color: #e9e9e9;
-	--hr-background-color: #cdcdcd;
-	--heading-border-bottom-color: #b5b5b5;
-	--table-cell-border-color: #616161;
-	--table-row-border-color: #b5b5b5;
-}
-
 html {
 	background-color: var(--theme-background-color);
 }

@@ -1,0 +1,97 @@
+/*
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/*
+* Stylesheet defining "dark" theme colors.
+*/
+
+html[data-theme="dark"] {
+	/*
+	* The default theme background should be charcoal.
+	*/
+	--theme-background-color: #222426;
+
+	/*
+	* stdlib colors.
+	*/
+	--stdlib-orange: #f0ad3e;
+	--stdlib-blue: #00aeef;
+
+	/*
+	* Links should be blue.
+	*/
+	--link-color: #00abe7;
+
+	/*
+	* Blockquote text should be light grey.
+	*/
+	--blockquote-color: #f3f3f3;
+
+	/*
+	* Code blocks should have a medium grey background.
+	*/
+	--pre-background-color: #373a49;
+	--code-background-color: rgba(255, 255, 255, 0.04);
+
+	/*
+	* Top-navigation links should be white.
+	*/
+	--top-nav-link-color: #ffffff;
+
+	/*
+	* When hovering over top-navigation links, the links should have a white background color.
+	*/
+	--top-nav-link-hover-background-color: #ffffff;
+
+	/*
+	* To distinguish the search input from the top-navigation, set the background color to a bluish grey.
+	*/
+	--top-nav-search-background-color: #373a49;
+	--top-nav-shadow-color: #1a1a1a;
+
+	/*
+	* The divider dividing search from the package menu should be light grey.
+	*/
+	--top-nav-divider-color: #e9e9e9;
+
+	/*
+	* Horizontal rules should be medium-light grey.
+	*/
+	--hr-background-color: #cdcdcd;
+
+	/*
+	* The bottom borders of headings should be medium-light grey.
+	*/
+	--heading-border-bottom-color: #b5b5b5;
+
+	/*
+	* Table cells and rows should have a darker grey border.
+	*/
+	--table-cell-border-color: #616161;
+	--table-row-border-color: #b5b5b5;
+
+	/*
+	* Diffuse shadows should be charcoal.
+	*/
+	--diffuse-shadow-color: #2b2d30;
+
+	/*
+	* Darker diffuse shadows should be charcoal.
+	*/
+	--diffuse-dark-shadow-color: #2b2d30; /* TODO: update this to distinguish from normal diffuse shadow */
+}
