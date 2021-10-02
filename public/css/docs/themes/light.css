@@ -1,0 +1,91 @@
+/*
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/*
+* Stylesheet defining "light" theme colors.
+*/
+
+html[data-theme="light"] {
+	/*
+	* The default theme background should be white.
+	*/
+	--theme-background-color: #ffffff;
+
+	/*
+	* Links should be blue.
+	*/
+	--link-color: #0000ff;
+
+	/*
+	* Blockquote text should be grey.
+	*/
+	--blockquote-color: #696969;
+
+	/*
+	* Code blocks should have a very light grey background.
+	*/
+	--pre-background-color: #f8f8f8;
+	--code-background-color: rgba(0, 0, 0, 0.04);
+
+	/*
+	* Top-navigation links should be grey.
+	*/
+	--top-nav-link-color: #585858;
+
+	/*
+	* When hovering over top-navigation links, the links should have a light grey background color.
+	*/
+	--top-nav-link-hover-background-color: #f7f7f7;
+
+	/*
+	* To distinguish the search input from the top-navigation, set the background color to a light grey.
+	*/
+	--top-nav-search-background-color: #fafafa;
+	--top-nav-shadow-color: #ced4da;
+
+	/*
+	* The divider dividing search from the package menu should be light grey.
+	*/
+	--top-nav-divider-color: #d3d3d3;
+
+	/*
+	* Horizontal rules should be light grey.
+	*/
+	--hr-background-color: #e7e7e7;
+
+	/*
+	* The bottom borders of headings should be light grey.
+	*/
+	--heading-border-bottom-color: #eeeeee;
+
+	/*
+	* Table cells and rows should have a medium grey border.
+	*/
+	--table-cell-border-color: #dddddd;
+	--table-row-border-color: #cccccc;
+
+	/*
+	* Diffuse shadows should be light grey.
+	*/
+	--diffuse-shadow-color: #e2e2e2;
+
+	/*
+	* Darker diffuse shadows should be medium grey.
+	*/
+	--diffuse-dark-shadow-color: #636161;
+}

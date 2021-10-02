@@ -20,35 +20,18 @@
 * Stylesheet for miscellaneous rules.
 */
 
-html[data-theme="light"] {
-	--theme-background-color: #fff;
-	--top-nav-boxshadow-color: #ced4da;
-	--top-nav-link-color: #585858;
-	--link-color: #0000ff;
-	--blockquote-color: #696969;
-	--diffuse-shadow-color: #e2e2e2;
-	--pre-background-color: #f8f8f8;
-	--code-background-color: rgba(0,0,0,0.04);
-	--top-nav-search-background-color: #fafafa;
-	--top-nav-link-hover-color: #f7f7f7;
-	--top-nav-divider-color: #d3d3d3;
-	--hr-background-color: #e7e7e7;
-	--heading-border-bottom-color: #eee;
-	--table-cell-border-color: #ddd;
-	--table-row-border-color: #ccc;
-}
-
 html[data-theme="dark"] {
 	--theme-background-color: #222426;
-	--top-nav-boxshadow-color: #1a1a1a;
+	--top-nav-shadow-color: #1a1a1a;
 	--top-nav-link-color: #ffffff;
 	--link-color: #00abe7;
 	--blockquote-color: #f3f3f3;
 	--diffuse-shadow-color: #2b2d30;
+	--diffuse-dark-shadow-color: #2b2d30; /* TODO: update this to distinguish from normal diffuse shadow */
 	--pre-background-color: #373a49;
 	--code-background-color: rgba(255,255,255,0.04);
 	--top-nav-search-background-color: #373a49;
-	--top-nav-link-hover-color: #ffffff;
+	--top-nav-link-hover-background-color: #ffffff;
 	--top-nav-divider-color: #e9e9e9;
 	--hr-background-color: #cdcdcd;
 	--heading-border-bottom-color: #b5b5b5;
@@ -88,14 +71,14 @@ img {
 	/*background-color: #000000;*/
 
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 -5px 15px 0 var(--top-nav-boxshadow-color);
-	-moz-box-shadow: 0 -5px 15px 0 var(--top-nav-boxshadow-color);
-	box-shadow: 0 -5px 15px 0 var(--top-nav-boxshadow-color);
+	-webkit-box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
+	-moz-box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
+	box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
 }
 
 .top-nav-item a:hover,
 .top-nav-item a:active {
-	background-color: var(--top-nav-link-hover-color);
+	background-color: var(--top-nav-link-hover-background-color);
 }
 
 .top-nav-search:hover,
@@ -640,9 +623,9 @@ button.side-menu-list-item-namespace-icon:hover {
 
 .diffuse-shadow-dark {
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 0 50px 0 #636161;
-	-moz-box-shadow: 0 0 50px 0 #636161;
-	box-shadow: 0 0 50px 0 #636161;
+	-webkit-box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
+	-moz-box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
+	box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
 }
 
 /*

@@ -3,6 +3,7 @@
 	"./../common/normalize.css",
 	"./../common/highlight.css",
 	"./../common/fonts/lato/latin/lato_light.css",
+  "./themes/light.css",
 	"./layout.css",
 	"./typography.css",
 	"./misc.css"
