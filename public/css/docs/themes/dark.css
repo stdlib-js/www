@@ -27,6 +27,11 @@ html[data-theme="dark"] {
 	--theme-background-color: #222426;
 
 	/*
+	* The default text color should be very light grey.
+	*/
+	--theme-text-color: #f5f7f7;
+
+	/*
 	* stdlib colors.
 	*/
 	--stdlib-orange: #f0ad3e;
@@ -68,6 +73,11 @@ html[data-theme="dark"] {
 	* The divider dividing search from the package menu should be light grey.
 	*/
 	--top-nav-divider-color: #e9e9e9;
+
+	/*
+	* The text describing the package "kind" should be very light grey.
+	*/
+	--package-kind-color: #f5f7f7;
 
 	/*
 	* Horizontal rules should be medium-light grey.

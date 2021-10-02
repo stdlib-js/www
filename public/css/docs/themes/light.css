@@ -22,9 +22,14 @@
 
 html[data-theme="light"] {
 	/*
-	* The default theme background should be white.
+	* The default background color should be white.
 	*/
 	--theme-background-color: #ffffff;
+
+	/*
+	* The default text color should be black.
+	*/
+	--theme-text-color: #000000;
 
 	/*
 	* stdlib colors.
@@ -68,6 +73,11 @@ html[data-theme="light"] {
 	* The divider dividing search from the package menu should be light grey.
 	*/
 	--top-nav-divider-color: #d3d3d3;
+
+	/*
+	* The text describing the package "kind" should be medium-dark grey.
+	*/
+	--package-kind-color: #606060;
 
 	/*
 	* Horizontal rules should be light grey (similar to how GitHub renders horizontal rules).
