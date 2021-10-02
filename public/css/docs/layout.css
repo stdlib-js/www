@@ -38,7 +38,7 @@
 */
 
 /*
-* General top-level rules.
+* General rules.
 */
 
 html {
@@ -147,6 +147,7 @@ h2 {
 	position: relative;
 	width: 100%;
 	min-height: 100vh;
+
 	margin-bottom: 7em;
 	padding-top: 120px;
 
@@ -526,7 +527,7 @@ h2 {
 }
 
 /*
-* Set special rules for lists within a namespace table of contents.
+* Define special rules for lists within a namespace table of contents.
 */
 .readme .namespace-toc ul {
 	padding-left: 0.5em;
@@ -544,6 +545,48 @@ h2 {
 
 .readme .namespace-toc ul li .delimiter {
 	display: none;
+}
+
+/*
+* Define special rules for lists of related packages.
+*/
+
+.readme .related ul {
+	padding-left: 1em;
+	margin-bottom: 1.5em;
+}
+
+.readme .related ul li .delimiter {
+	display: none;
+}
+
+.readme .related ul li .package-name {
+	display: block;
+
+	margin-top: 0.75em;
+	margin-bottom: 0.2em;
+}
+
+.readme .related ul li .description {
+	display: block;
+
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+}
+
+/*
+* Define special rules for breadcrumb navigation.
+*/
+
+.readme .readme-breadcrumbs ol {
+	margin-bottom: 0;
+	padding-left: 0;
+}
+
+.readme .readme-breadcrumbs li {
+	height: 1.2em;
+
+	margin-top: 0;
 }
 
 /*
@@ -603,6 +646,10 @@ h2 {
 	content: "";
 }
 
+.readme .related hr {
+	display: none;
+}
+
 /*
 * Tables.
 */
@@ -654,21 +701,21 @@ h2 {
 	content: normal;
 }
 
+/*
+* Keyboard elements.
+*/
+
 .readme kbd {
 	display: inline-block;
 	padding: 3px 5px;
 }
 
 /*
-* "See Also" section.
+* Related packages section.
 */
 
 .readme .related {
 	margin-top: 3em;
-}
-
-.readme .related hr {
-	display: none;
 }
 
 .readme .related h2 {
@@ -685,31 +732,8 @@ h2 {
 	vertical-align: middle;
 }
 
-.readme .related ul {
-	padding-left: 1em;
-	margin-bottom: 1.5em;
-}
-
-.readme .related .delimiter {
-	display: none;
-}
-
-.readme .related .package-name {
-	display: block;
-
-	margin-top: 0.75em;
-	margin-bottom: 0.2em;
-}
-
-.readme .related .description {
-	display: block;
-
-	margin-bottom: 0.5em;
-	padding-left: 2em;
-}
-
 /*
-* README breadcrumb navigation.
+* Breadcrumb navigation.
 */
 
 .readme .readme-breadcrumbs .logo-icon {
@@ -721,17 +745,6 @@ h2 {
 	margin-right: 0.5em;
 
 	vertical-align: text-top;
-}
-
-.readme .readme-breadcrumbs ol {
-	margin-bottom: 0;
-	padding-left: 0;
-}
-
-.readme .readme-breadcrumbs li {
-	height: 1.2em;
-
-	margin-top: 0;
 }
 
 /*
@@ -779,7 +792,7 @@ h2 {
 }
 
 /*
-* Readme feedback form.
+* Feedback form.
 */
 
 .readme .readme-feedback {
@@ -903,7 +916,7 @@ h2 {
 }
 
 /*
-* Navigation.
+* Main navigation.
 */
 
 /*
@@ -1112,7 +1125,7 @@ h2 {
 /*
 * Gitter button for bottom-right corner.
 */
-#bottom-button {
+#bottom-button { /* FIXME: rename */
 	position: fixed;
 	bottom: 12px;
 	right: 12px;
@@ -1132,15 +1145,17 @@ h2 {
 
 .side-menu-head {
 	display: flex;
+
 	padding-left: 10px;
 	padding-top: 15px;
 	padding-bottom: 10px;
+
 	align-items: center;
 	justify-content: space-between;
 }
 
 .side-menu-wrapper {
-	width: 0px;
+	width: 0;
 }
 
 .side-menu-open .side-menu-wrapper,
