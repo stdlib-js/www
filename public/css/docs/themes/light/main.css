@@ -153,4 +153,62 @@ html[data-theme="light"] {
 	* Keywords should be purple.
 	*/
 	--code-keyword-color: #a101f1;    /* purple */
+
+	/*
+	* Icons.
+	*
+	* ## Notes
+	*
+	* -   Please keep in alphabetical order.
+	*/
+
+	/*
+	* Download icon.
+	*/
+	--icon-download: url("/public/css/docs/themes/light/icons/download.svg");
+
+	/*
+	* Edit icon.
+	*/
+	--icon-edit: url("/public/css/docs/themes/light/icons/edit.svg");
+
+	/*
+	* Forum icon.
+	*/
+	--icon-forum: url("/public/css/docs/themes/light/icons/forum.svg");
+
+	/*
+	* Gear icon.
+	*/
+	--icon-gear: url("/public/css/docs/themes/light/icons/gear.svg");
+
+	/*
+	* Informative (info) content icon.
+	*/
+	--icon-info: url("/public/css/docs/themes/light/icons/info_blue.svg");
+
+	/*
+	* Menu icon.
+	*/
+	--icon-menu: url("/public/css/docs/themes/light/icons/menu.svg");
+
+	/*
+	* Print icon.
+	*/
+	--icon-print: url("/public/css/docs/themes/light/icons/print.svg");
+
+	/*
+	* Search icon.
+	*/
+	--icon-search: url("/public/css/docs/themes/light/icons/search.svg");
+
+	/*
+	* Thumbs down icon.
+	*/
+	--icon-thumbs-down: url("/public/css/docs/themes/light/icons/thumbs_down.svg");
+
+	/*
+	* Thumbs up icon.
+	*/
+	--icon-thumbs-up: url("/public/css/docs/themes/light/icons/thumbs_up.svg");
 }
