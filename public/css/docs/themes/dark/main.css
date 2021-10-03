@@ -165,50 +165,50 @@ html[data-theme="dark"] {
 	/*
 	* Download icon.
 	*/
-	--icon-download: url("/public/css/docs/themes/light/icons/download.svg");
+	--icon-download: url("/css/docs/themes/light/icons/download.svg");
 
 	/*
 	* Edit icon.
 	*/
-	--icon-edit: url("/public/css/docs/themes/light/icons/edit.svg");
+	--icon-edit: url("/css/docs/themes/light/icons/edit.svg");
 
 	/*
 	* Forum icon.
 	*/
-	--icon-forum: url("/public/css/docs/themes/dark/icons/forum.svg");
+	--icon-forum: url("/css/docs/themes/dark/icons/forum.svg");
 
 	/*
 	* Gear icon.
 	*/
-	--icon-gear: url("/public/css/docs/themes/dark/icons/gear.svg");
+	--icon-gear: url("/css/docs/themes/dark/icons/gear.svg");
 
 	/*
 	* Informative (info) content icon.
 	*/
-	--icon-info: url("/public/css/docs/themes/dark/icons/info_blue.svg");
+	--icon-info: url("/css/docs/themes/dark/icons/info_blue.svg");
 
 	/*
 	* Menu icon.
 	*/
-	--icon-menu: url("/public/css/docs/themes/dark/icons/menu.svg");
+	--icon-menu: url("/css/docs/themes/dark/icons/menu.svg");
 
 	/*
 	* Print icon.
 	*/
-	--icon-print: url("/public/css/docs/themes/dark/icons/print.svg");
+	--icon-print: url("/css/docs/themes/dark/icons/print.svg");
 
 	/*
 	* Search icon.
 	*/
-	--icon-search: url("/public/css/docs/themes/dark/icons/search.svg");
+	--icon-search: url("/css/docs/themes/dark/icons/search.svg");
 
 	/*
 	* Thumbs down icon.
 	*/
-	--icon-thumbs-down: url("/public/css/docs/themes/dark/icons/thumbs_down.svg");
+	--icon-thumbs-down: url("/css/docs/themes/dark/icons/thumbs_down.svg");
 
 	/*
 	* Thumbs up icon.
 	*/
-	--icon-thumbs-up: url("/public/css/docs/themes/dark/icons/thumbs_up.svg");
+	--icon-thumbs-up: url("/css/docs/themes/dark/icons/thumbs_up.svg");
 }
