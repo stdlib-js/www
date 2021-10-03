@@ -48,6 +48,11 @@ html[data-theme="dark"] {
 	--blockquote-color: #f3f3f3;
 
 	/*
+	* The top-navigation should have a background which is slightly lighter than the theme background in order to convey depth.
+	*/
+	--top-nav-background-color: #25282a;
+
+	/*
 	* Top-navigation links should be white.
 	*/
 	--top-nav-link-color: #ffffff;

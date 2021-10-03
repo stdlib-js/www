@@ -48,6 +48,11 @@ html[data-theme="light"] {
 	--blockquote-color: #696969;
 
 	/*
+	* The top-navigation should have the same background color as the theme background.
+	*/
+	--top-nav-background-color: #ffffff;
+
+	/*
 	* Top-navigation links should be grey.
 	*/
 	--top-nav-link-color: #585858;

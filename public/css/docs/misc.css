@@ -54,7 +54,7 @@ img {
 */
 
 .top-nav {
-	background-color: var(--theme-background-color);
+	background-color: var(--top-nav-background-color);
 
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
 	-webkit-box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
