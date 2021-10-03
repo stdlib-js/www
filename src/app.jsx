@@ -20,14 +20,10 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import qs from 'qs';
-import contains from '@stdlib/assert/contains';
-import startsWith from '@stdlib/string/starts-with';
 import substringBeforeLast from '@stdlib/string/substring-before-last';
-import replace from '@stdlib/string/replace';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
 import Readme from './components/readme/index.jsx';
@@ -52,6 +48,9 @@ import routes from './routes.js';
 
 var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
 var RE_SEARCH_URL = /\/search\/?/;
+var RE_FORWARD_SLASH = /\//g;
+var RE_PLOT_PKG = /\/plot/;
+
 var RENDER_METHOD_NAMES = {
 	'welcome': '_renderWelcome',
 	'search': '_renderSearch',
@@ -192,17 +191,10 @@ class App extends React.Component {
 			'shortcuts': true,
 
 			// Boolean indicating whether a notification is currently displayed:
-			'notification': contains( props.location.search, 'notification' ),
+			'notification': props.location.search.indexOf( 'notification' ) >= 0,
 
-			// Active mode (`'light'` or `'dark'`):
-			'mode': 'light',
-
-			// MUI theme:
-			'theme': createTheme({
-				'palette': {
-					'mode': 'light'
-				}
-			})
+			// Current theme:
+			'theme': 'light'
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -225,24 +217,19 @@ class App extends React.Component {
 	}
 
 	/**
-	* Callback invoked upon toggling between light and dark mode.
+	* Callback invoked upon changing the theme.
 	*
-	* @param {Object} event - event
-	* @param {string} value - toggle button value
 	* @private
+	* @param {Object} event - event
+	* @param {string} value - theme
 	*/
-	_onModeToggle = ( event, value ) => {
+	_onThemeChange = ( event, value ) => {
 		if ( value !== 'light' && value !== 'dark' ) {
 			return;
 		}
 		document.documentElement.setAttribute( 'data-theme', value );
 		this.setState({
-			'mode': value,
-			'theme': createTheme({
-				'palette': {
-					'mode': value
-				}
-			})
+			'theme': value
 		});
 	}
 
@@ -505,7 +492,7 @@ class App extends React.Component {
 			props.version = match.params.version;
 			props.pkg = match.params.pkg; // e.g., `math/base/special/sin`
 			props.src = true;
-			props.npm = !startsWith( props.pkg, 'plot' );
+			props.npm = ( RE_PLOT_PKG.test( props.pkg ) === false );
 
 			// Attempt to resolve package resources for the current package...
 			order = this.props.data.order;
@@ -533,7 +520,7 @@ class App extends React.Component {
 		return (
 			<TopNav
 				onSideMenuToggle={ this._onSideMenuToggle }
-				onModeToggle={ this._onModeToggle }
+				onModeToggle={ this._onThemeChange }
 				onVersionChange={ this.props.onVersionChange }
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
@@ -542,7 +529,7 @@ class App extends React.Component {
 				onFilterFocus={ this._onFilterFocus }
 				onFilterBlur={ this._onFilterBlur }
 				sideMenu={ this.state.sideMenu }
-				mode={ this.state.mode }
+				mode={ this.state.theme }
 				{...props}
 			/>
 		);
@@ -734,7 +721,7 @@ class App extends React.Component {
 						url={ url + '/test_bundle.js' }
 						pkg={ match.params.pkg }
 						version={ version }
-						standalone={ replace( match.params.pkg, '/', '-' ) }
+						standalone={ match.params.pkg.replace( RE_FORWARD_SLASH, '-' ) }
 					/>
 				</Fragment>
 			);
@@ -924,7 +911,7 @@ class App extends React.Component {
 				!prevState.notification
 			) {
 				this.setState({
-					'notification': contains( this.props.location.search, 'notification' )
+					'notification': this.props.location.search.indexOf( 'notification' ) >= 0
 				});
 			}
 		}
@@ -938,58 +925,56 @@ class App extends React.Component {
 	*/
 	render() {
 		return (
-			<ThemeProvider theme={this.state.theme} >
-				<Fragment>
-					{ this._renderTopNav() }
-					{ this._renderNotification() }
-					<Switch>
-						<Redirect
-							exact
-							from={ routes.PACKAGE_INDEX }
-							to={ routes.PACKAGE_DEFAULT }
-						/>
-						<Route
-							exact
-							path={ routes.PACKAGE_BENCHMARKS }
-							render={ this._renderer( 'benchmark' ) }
-						/>
-						<Route
-							exact
-							path={ routes.PACKAGE_TESTS }
-							render={ this._renderer( 'test' ) }
-						/>
-						<Route
-							exact
-							path={ routes.PACKAGE_DEFAULT }
-							render={ this._renderer( 'readme' ) }
-						/>
-						<Route
-							exact
-							path={ routes.SEARCH }
-							render={ this._renderer( 'search' ) }
-						/>
-						<Route
-							exact
-							path={ routes.HELP }
-							render={ this._renderer( 'help' ) }
-						/>
-						<Redirect
-							exact
-							from={ routes.NONPACKAGE_DEFAULT }
-							to={ routes.VERSION_DEFAULT }
-						/>
-						<Route
-							exact
-							path={ routes.VERSION_DEFAULT }
-							render={ this._renderer( 'welcome' ) }
-						/>
-						<Redirect to={ config.mount+this.props.version } />
-					</Switch>
-					<Footer
-						version={ this.props.version }
+			<Fragment>
+				{ this._renderTopNav() }
+				{ this._renderNotification() }
+				<Switch>
+					<Redirect
+						exact
+						from={ routes.PACKAGE_INDEX }
+						to={ routes.PACKAGE_DEFAULT }
 					/>
-				</Fragment>
-			</ThemeProvider>
+					<Route
+						exact
+						path={ routes.PACKAGE_BENCHMARKS }
+						render={ this._renderer( 'benchmark' ) }
+					/>
+					<Route
+						exact
+						path={ routes.PACKAGE_TESTS }
+						render={ this._renderer( 'test' ) }
+					/>
+					<Route
+						exact
+						path={ routes.PACKAGE_DEFAULT }
+						render={ this._renderer( 'readme' ) }
+					/>
+					<Route
+						exact
+						path={ routes.SEARCH }
+						render={ this._renderer( 'search' ) }
+					/>
+					<Route
+						exact
+						path={ routes.HELP }
+						render={ this._renderer( 'help' ) }
+					/>
+					<Redirect
+						exact
+						from={ routes.NONPACKAGE_DEFAULT }
+						to={ routes.VERSION_DEFAULT }
+					/>
+					<Route
+						exact
+						path={ routes.VERSION_DEFAULT }
+						render={ this._renderer( 'welcome' ) }
+					/>
+					<Redirect to={ config.mount+this.props.version } />
+				</Switch>
+				<Footer
+					version={ this.props.version }
+				/>
+			</Fragment>
 		);
 	}
 }
