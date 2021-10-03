@@ -19,12 +19,12 @@
 // MODULES //
 
 import React from 'react';
-import replace from '@stdlib/string/replace';
 
 
 // VARIABLES //
 
 var NPM_BASE_URL = 'https://www.npmjs.com/package/';
+var RE_FORWARD_SLASH = /\//g;
 
 
 // MAIN //
@@ -40,7 +40,7 @@ var NPM_BASE_URL = 'https://www.npmjs.com/package/';
 function NPM( props ) {
 	return (
 		<li key="npm" class="top-nav-item" role="menuitem">
-			<a href={ NPM_BASE_URL + '@stdlib/' + replace( props.pkg, '/', '-' ) } title="View npm package">npm</a>
+			<a href={ NPM_BASE_URL + '@stdlib/' + props.pkg.replace( RE_FORWARD_SLASH, '-' ) } title="View npm package">npm</a>
 		</li>
 	);
 }
