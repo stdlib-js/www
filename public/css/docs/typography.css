@@ -335,7 +335,6 @@ a:active {
 .bottom-nav {
 	font-family: var(--thin-font-family);
 	color: var(--top-nav-link-color);
-	background-color: var(--top-nav-background-color);
 }
 
 .top-nav {
