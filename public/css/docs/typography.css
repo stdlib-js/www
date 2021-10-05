@@ -341,6 +341,10 @@ a:active {
 	line-height: 4em;
 }
 
+.top-nav .icon-button {
+	text-decoration: none;
+}
+
 .bottom-nav {
 	font-size: 0.85em;
 }

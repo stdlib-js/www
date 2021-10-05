@@ -90,6 +90,45 @@ img {
 	}
 }
 
+.top-nav .icon-button {
+	background-color: var(--top-nav-background-color);
+
+	border: none;
+	outline: none;
+
+	overflow: hidden;
+
+	cursor: pointer;
+}
+
+.top-nav .icon-button:hover {
+	background-color: rgba(0, 0, 0, 0.04);
+}
+
+.top-nav .icon-button::after {
+	content: "";
+
+	border-radius: 50%;
+
+	background-color: rgba(0, 0, 0, 0.3);
+
+	animation: button-press 1s;
+	opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	/*
+	* Disable animations when a user prefers reduced motion.
+	*/
+	.top-nav .icon-button::after {
+		animation: none;
+	}
+}
+
+.top-nav .icon {
+	fill: var(--top-nav-icon-color);
+}
+
 .top-nav .download-progress {
 	background-color: var(--stdlib-blue);
 }

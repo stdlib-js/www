@@ -942,17 +942,41 @@ h2 {
 }
 
 .top-nav .icon-button {
-	height: 1.6em;
+	position: relative;
+	padding: 0;
+}
 
-	margin-top: 0.4em;
+.top-nav .icon-button::after {
+	display: none;
+
+	position: absolute;
+	width: 100px;
+	height: 100px;
+
+	margin-top: -50px;
+	margin-left: -50px;
+
+	top: 50%;
+	left: 50%;
+}
+
+.top-nav .icon-button:focus:not(:active)::after {
+	display: block;
+}
+
+.top-nav .icon {
+	height: 1.5em;
+	width: 1.5em;
+
+	margin: 1.25em;
 }
 
 .top-nav-divider {
 	height: 2em;
 
 	margin-top: 1em;
-	margin-left: 4px;
-	margin-right: 4px;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 .top-nav-search {
@@ -1023,19 +1047,7 @@ h2 {
 	/*
 	* Once we have enough real estate, add some padding.
 	*/
-	.top-nav {
-		/* top | right | bottom | left */
-		padding: 0 8px 0 8px;
-	}
-
-	.top-nav .icon-button {
-		padding-left: 12px;
-		padding-right: 12px;
-	}
-
 	.top-nav-search {
-		margin-right: 4px;
-
 		padding-left: 16px;
 	}
 }
@@ -1050,13 +1062,12 @@ h2 {
 }
 
 @media only screen and (min-width: 50em) { /* 800px */
+	.side-menu-open .top-nav-divider {
+		margin-left: 0;
+	}
 	/*
 	* For larger devices, we allow search even though the side menu is open.
 	*/
-	.side-menu-open .top-nav-divider {
-		margin-left: 4px;
-	}
-
 	.side-menu-open .top-nav-search-button,
 	.side-menu-open .top-nav-search {
 		display: inline-flex !important;
