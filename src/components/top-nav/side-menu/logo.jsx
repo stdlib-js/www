@@ -29,7 +29,7 @@ import React from 'react';
 * @private
 * @returns {ReactElement} React element
 */
-function logo() {
+function Logo() {
 	return (
 		<svg aria-hidden="true" id="stdlib-logo" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="110.25" height="35" viewBox="0, 0, 315, 100">
 			<defs>
@@ -97,4 +97,4 @@ function logo() {
 
 // EXPORTS //
 
-export default logo;
+export default Logo;
