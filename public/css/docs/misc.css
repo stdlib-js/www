@@ -465,6 +465,27 @@ img {
 }
 
 /*
+* Display an edit icon for the "edit this page" link.
+*/
+.readme .readme-bottom-nav .edit-icon {
+	display: inline-block;
+	width: 1.125em;
+	height: 1.125em;
+
+	margin-right: 0.25em;
+
+	vertical-align: text-bottom;
+
+	background-image: var(--icon-edit);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.readme .readme-bottom-nav .edit-icon:focus,
+.readme .readme-bottom-nav .edit-icon:hover {
+	text-decoration: none;
+}
+
+/*
 * Remove the border and set the cursor to make the print button look and feel like a link.
 */
 .readme .readme-bottom-nav .print-button {
