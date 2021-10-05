@@ -279,11 +279,14 @@ class Search extends React.Component {
 			<div id="readme" className="readme search-results">
 				<h1>
 					<span>Search Results</span>
-					<IconButton aria-label="close" size="large">
+					<IconButton
+						title="Close search results"
+						aria-label="close"
+						size="large"
+						onClick={ this.props.onClose }
+					>
 						<ClearIcon
 							className="search-results-close"
-							title="Close search results"
-							onClick={ this.props.onClose }
 						/>
 					</IconButton>
 				</h1>
