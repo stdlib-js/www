@@ -680,11 +680,6 @@ button.side-menu-list-item-namespace-icon:hover {
 	opacity: 1;
 }
 
-.stdlib-logo-icon {
-	background-image: url("/img/logo_icon_16x16.svg");
-	background-repeat: no-repeat;
-}
-
 /*
 * Miscellaneous styles.
 */

@@ -756,7 +756,7 @@ h2 {
 	margin-right: 0.5em;
 }
 
-.readme .readme-breadcrumbs .logo-icon {
+.readme .readme-breadcrumbs .icon {
 	display: inline-block;
 
 	height: 1em;
@@ -833,7 +833,7 @@ h2 {
 	margin-bottom: 0;
 }
 
-.runner-results .logo-icon {
+.runner-results .icon {
 	display: inline-block;
 
 	height: 1em;
@@ -841,7 +841,7 @@ h2 {
 
 	margin-right: 0.5em;
 
-	vertical-align: text-bottom;
+	vertical-align: text-top;
 }
 
 .runner-results .test-block,
@@ -906,7 +906,7 @@ h2 {
 	margin-bottom: 0;
 }
 
-.search-results .search-results-list-item-url .logo-icon {
+.search-results .search-results-list-item-url .icon {
 	display: inline-block;
 	height: 1em;
 	width: 1em;
