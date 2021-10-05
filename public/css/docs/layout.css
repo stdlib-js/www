@@ -30,11 +30,12 @@
 * 9. Horizontal rules.
 * 10. Tables.
 * 11. Code.
-* 12. Navigation.
+* 12. Main navigation.
 * 13. Equations.
 * 14. iframes.
 * 15. Elements.
-* 16. Printing.
+* 16. Icons.
+* 17. Printing.
 */
 
 /*
@@ -1353,6 +1354,24 @@ button.side-menu-list-item-namespace-icon {
 
 .banner .image-wrapper img {
 	display: block;
+}
+
+/*
+* Icons.
+*/
+
+.icon {
+	display: inline-block;
+
+	vertical-align: text-bottom;
+}
+
+.readme .readme-bottom-nav .edit-icon,
+.readme .readme-bottom-nav .print-icon {
+	width: 1.125em;
+	height: 1.125em;
+
+	margin-right: 0.25em;
 }
 
 /*
