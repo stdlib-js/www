@@ -38,7 +38,7 @@ function EditLink( props ) {
 		<a
 			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
 		>
-			<EditIcon fontSize="inherit" aria-hidden="true" /> Edit on GitHub
+			<span className="edit-icon" aria-hidden="true"></span>Edit on GitHub
 		</a>
 	);
 }
