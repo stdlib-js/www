@@ -20,8 +20,7 @@
 
 import React, { Fragment } from 'react';
 import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from './../icons/search.jsx';
 
 
 // MAIN //
@@ -134,15 +133,14 @@ class SearchInput extends React.Component {
 					onFocus={ this._onFocus }
 					onBlur={ this._onBlur }
 				/>
-				<IconButton
+				<button
 					type="button"
 					className="icon-button top-nav-search-button"
 					onClick={ this._onSubmitClick }
 					aria-label="search"
-					size="large"
 				>
-					<SearchIcon aria-hidden="true" />
-				</IconButton>
+					<SearchIcon />
+				</button>
 			</Fragment>
 		);
 	}
