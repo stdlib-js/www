@@ -227,7 +227,7 @@ img {
 * Display an icon to the left of the heading.
 */
 .readme .related h2:before {
-	content: url("/css/docs/icon/info_blue.svg");
+	content: url("/css/docs/icons/info_blue.svg");
 }
 
 /*
