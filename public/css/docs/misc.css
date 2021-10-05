@@ -361,6 +361,16 @@ img {
 }
 
 /*
+* Disable user selection of the breadcrumb list item separators.
+*/
+.readme .readme-breadcrumbs .breadcrumb-separator {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/*
 * Tables.
 */
 

@@ -79,6 +79,11 @@ html[data-theme="light"] {
 	--top-nav-divider-color: #d3d3d3;
 
 	/*
+	* Breadcrumb separators should be grey.
+	*/
+	--breadcrumb-separator-color: #646464;
+
+	/*
 	* The text describing the package "kind" should be medium-dark grey.
 	*/
 	--package-kind-color: #606060;

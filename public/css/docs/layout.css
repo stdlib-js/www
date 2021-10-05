@@ -737,6 +737,25 @@ h2 {
 * Breadcrumb navigation.
 */
 
+.readme .readme-breadcrumbs {
+	margin: 0;
+}
+
+.readme .readme-breadcrumbs ol {
+	display: flex;
+	flex-wrap: wrap;
+
+	align-items: center;
+
+	margin: 0;
+	padding: 0;
+}
+
+.readme .readme-breadcrumbs .breadcrumb-separator {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
 .readme .readme-breadcrumbs .logo-icon {
 	display: inline-block;
 

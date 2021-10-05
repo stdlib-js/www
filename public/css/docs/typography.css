@@ -261,6 +261,10 @@ a:active {
 	line-height: 1.2em;
 }
 
+.readme .readme-breadcrumbs .breadcrumb-separator {
+	color: var(--breadcrumb-separator-color);
+}
+
 /*
 * README pagination.
 */
