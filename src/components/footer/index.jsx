@@ -21,8 +21,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
-import ForumIcon from '@mui/icons-material/Forum';
 import config from './../../config.js';
+import ForumIcon from './../icons/forum.jsx';
 
 
 // MAIN //
