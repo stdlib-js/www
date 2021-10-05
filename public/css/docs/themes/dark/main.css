@@ -63,6 +63,11 @@ html[data-theme="dark"] {
 	--top-nav-link-hover-background-color: #ffffff;
 
 	/*
+	* Top-navigation icons should be white.
+	*/
+	--top-nav-icon-color: #f5f7f7;
+
+	/*
 	* To distinguish the search input from the top-navigation, set the background color to a bluish grey.
 	*/
 	--top-nav-search-background-color: #373a49;
