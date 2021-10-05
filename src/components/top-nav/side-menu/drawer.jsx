@@ -546,8 +546,22 @@ class SideMenuDrawer extends React.Component {
 						aria-controls={ ( expanded ) ? submenu : null }
 					>
 						{ ( expanded )
-							? <span className="side-menu-list-item-collapse-icon" role="img" aria-hidden="true">&ndash;</span>
-							: <span className="side-menu-list-item-expand-icon" role="img" aria-hidden="true">+</span>
+							?
+								<span
+									className="side-menu-list-item-collapse-icon"
+									role="img"
+									aria-hidden="true"
+								>
+									&ndash;
+								</span>
+							:
+								<span
+									className="side-menu-list-item-expand-icon"
+									role="img"
+									aria-hidden="true"
+								>
+									+
+								</span>
 						}
 					</IconButton>
 				</ListItem>
