@@ -27,11 +27,12 @@ import React from 'react';
 * Component for rendering an info icon.
 *
 * @private
+* @param {Object} props - component properties
 * @returns {ReactElement} React element
 */
-function InfoIcon() {
+function InfoIcon( props ) {
 	return (
-		<svg className="icon info-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M11,7 L13,7 L13,9 L11,9 z M11,11 L13,11 L13,17 L11,17 z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 z"/></svg>
+		<svg className="icon info-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M11,7 L13,7 L13,9 L11,9 z M11,11 L13,11 L13,17 L11,17 z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 z"/></svg>
 	);
 }
 

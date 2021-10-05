@@ -27,11 +27,12 @@ import React from 'react';
 * Component for rendering a download icon.
 *
 * @private
+* @param {Object} props - component properties
 * @returns {ReactElement} React element
 */
-function DownloadIcon() {
+function DownloadIcon( props ) {
 	return (
-		<svg className="icon download-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
+		<svg className="icon download-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg>
 	);
 }
 

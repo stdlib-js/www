@@ -27,11 +27,12 @@ import React from 'react';
 * Component for rendering a menu icon.
 *
 * @private
+* @param {Object} props - component properties
 * @returns {ReactElement} React element
 */
-function MenuIcon() {
+function MenuIcon( props ) {
 	return (
-		<svg className="icon menu-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+		<svg className="icon menu-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
 	);
 }
 
