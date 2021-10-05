@@ -24,7 +24,7 @@ import PackageMenu from './pkg-menu/index.jsx';
 import SearchInput from './search_input.jsx';
 import DownloadButton from './download_button.jsx';
 import DownloadProgressBar from './download_progress_bar.jsx';
-import SettingsButton from './settings_button.jsx';
+import Settings from './settings/index.jsx';
 
 
 // MAIN //
@@ -45,7 +45,6 @@ class TopNav extends React.Component {
 	* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 	* @param {string} props.query - search query
 	* @param {Callback} props.onSideMenuToggle - callback to invoke upon a change to the side menu
-	* @param {Callback} props.onModeToggle - callback to invoke upon clicking the button to toggle between dark and light mode
 	* @param {Callback} props.onVersionChange - callback to invoke upon selecting a version
 	* @param {Callback} props.onFilterFocus - callback to invoke when the side menu filter receives focus
 	* @param {Callback} props.onFilterBlur - callback to invoke when the side menu filter loses focus
@@ -53,6 +52,7 @@ class TopNav extends React.Component {
 	* @param {Callback} props.onSearchChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSearchFocus - callback to invoke when search input receives focus
 	* @param {Callback} props.onSearchBlur - callback to invoke when search input loses focus
+	* @param {Callback} props.onThemeChange - callback to invoke when the theme changes
 	* @param {boolean} props.home - boolean indicating whether to link to the main website
 	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
 	* @param {boolean} props.src - boolean indicating whether to link to package source
@@ -61,7 +61,7 @@ class TopNav extends React.Component {
 	* @param {boolean} props.tests - boolean indicating whether to link to package tests
 	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
 	* @param {boolean} props.sideMenu - boolean indicating whether to expand the side menu
-	* @param {string} props.mode - current mode (either `'light'` or `'dark'`)
+	* @param {string} props.theme - current theme
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -179,9 +179,9 @@ class TopNav extends React.Component {
 						onProgress={ this._onDownloadProgress }
 					/>
 
-					<SettingsButton
-						mode={ this.props.mode }
-						onModeToggle={ this.props.onModeToggle }
+					<Settings
+						theme={ this.props.theme }
+						onThemeChange={ this.props.onThemeChange }
 					/>
 
 					{ progress ? <DownloadProgressBar value={ progress } /> : null }

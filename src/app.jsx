@@ -520,16 +520,16 @@ class App extends React.Component {
 		return (
 			<TopNav
 				onSideMenuToggle={ this._onSideMenuToggle }
-				onModeToggle={ this._onThemeChange }
 				onVersionChange={ this.props.onVersionChange }
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
 				onSearchFocus={ this._onSearchFocus }
 				onSearchBlur={ this._onSearchBlur }
+				onThemeChange={ this._onThemeChange }
 				onFilterFocus={ this._onFilterFocus }
 				onFilterBlur={ this._onFilterBlur }
 				sideMenu={ this.state.sideMenu }
-				mode={ this.state.theme }
+				theme={ this.state.theme }
 				{...props}
 			/>
 		);

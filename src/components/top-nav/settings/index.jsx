@@ -19,39 +19,35 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import SettingsIcon from '@mui/icons-material/Settings';
 import ClearIcon from '@mui/icons-material/Clear';
 import Drawer from '@mui/material/Drawer';
+import GearIcon from './../../icons/gear.jsx';
 import DarkModeToggleButton from './dark_mode_toggle_button.jsx';
-import Divider from '@mui/material/Divider';
 
 
 // MAIN //
 
 /**
-* Button for toggling the settings menu for the documentation.
+* Component for rendering a documentation settings menu.
 *
 * @private
 */
-class SettingsButton extends React.Component {
+class Settings extends React.Component {
 	/**
-	* Returns a button for toggling the settings menu for the documentation.
+	* Returns a component for rendering a documentation settings menu.
 	*
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
-	* @param {string} props.mode - current mode (either `'light'` or `'dark'`)
-	* @param {Callback} props.onModeToggle - callback to invoke upon clicking the button to toggle between dark and light mode
+	* @param {string} props.theme - current theme
+	* @param {Callback} props.onThemeChange - callback to invoke when the theme changes
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			open: false
+			'open': false
 		};
 	}
 
@@ -62,7 +58,7 @@ class SettingsButton extends React.Component {
 	*/
 	_toggleDrawer = () => {
 		this.setState({
-			open: !this.state.open
+			'open': !this.state.open
 		});
 	}
 
@@ -75,45 +71,40 @@ class SettingsButton extends React.Component {
 	render() {
 		return (
 			<Fragment>
-				<IconButton
-					className="icon-button"
+				<button
+					className="icon-button top-nav-settings-button"
 					title="Open settings"
 					aria-label="settings"
-					size="large"
 					onClick={ this._toggleDrawer }
 				>
-					<SettingsIcon aria-hidden="true" />
-				</IconButton>
+					<GearIcon />
+				</button>
 				<Drawer
+					className="settings-menu-drawer"
 					anchor="right"
 					variant="temporary"
 					open={ this.state.open }
 					onClose={ this._toggleDrawer }
 				>
-					<Box
-						sx={{ width: 250, paddingLeft: 3, paddingRight: 3 }}
-						className="settings"
-						role="presentation"
-					>
-						<Typography variant="h4" component="h1" >
-							Settings
-							<IconButton aria-label="close" size="large" >
-								<ClearIcon
-									className="settings-close"
-									title="Close settings"
-									onClick={ this._toggleDrawer }
-								/>
-							</IconButton>
-						</Typography>
-						<Divider />
-						<Typography variant="h5" component="h2">
-							Mode
-						</Typography>
+					<div className="settings-menu-wrapper">
+						<div className="head">
+							<h1>Settings</h1>
+							<button
+								className="icon-button"
+								title="Closing settings menu"
+								aria-label="close"
+								onClick={ this._toggleDrawer }
+							>
+								<ClearIcon />
+							</button>
+						</div>
+
+						<h2>Theme</h2>
 						<DarkModeToggleButton
-							mode={ this.props.mode }
-							onToggle={ this.props.onModeToggle }
+							mode={ this.props.theme }
+							onToggle={ this.props.onThemeChange }
 						/>
-					</Box>
+					</div>
 				</Drawer>
 			</Fragment>
 		);
@@ -123,4 +114,4 @@ class SettingsButton extends React.Component {
 
 // EXPORTS //
 
-export default SettingsButton;
+export default Settings;
