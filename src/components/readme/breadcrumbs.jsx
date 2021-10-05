@@ -20,7 +20,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
 import pkgPath from './../../utils/pkg_doc_path.js';
 import config from './../../config.js';
 
@@ -43,13 +42,16 @@ var RE_TRAILING_SLASH = /\/$/;
 */
 function breadcrumb( label, url, current ) {
 	return (
-		<Link
-			key={ label }
-			to={ url }
-			aria-current={ ( current ) ? 'page' : null }
-		>
-			{ label }
-		</Link>
+		<li>
+			<span className="breadcrumb-separator" aria-hidden="true">/</span>
+			<Link
+				key={ label }
+				to={ url }
+				aria-current={ ( current ) ? 'page' : null }
+			>
+				{ label }
+			</Link>
+		</li>
 	);
 }
 
@@ -87,21 +89,24 @@ function BreadcrumbsNavigation( props ) {
 		links.push( breadcrumb( parts[ i ], p, i === N-1 ) );
 	}
 	return (
-		<Breadcrumbs
+		<nav
 			className="readme-breadcrumbs"
-			separator="/"
 			aria-label="breadcrumb"
 		>
-			<Link
-				key="stdlib"
-				to={ config.mount + props.version }
-				title="Return to homepage"
-			>
-				<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
-				stdlib
-			</Link>
-			{ links }
-		</Breadcrumbs>
+			<ol>
+				<li>
+					<Link
+						key="stdlib"
+						to={ config.mount + props.version }
+						title="Return to homepage"
+					>
+						<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
+						stdlib
+					</Link>
+				</li>
+				{ links }
+			</ol>
+		</nav>
 	);
 }
 
