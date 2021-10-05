@@ -23,6 +23,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import log from './../../utils/log.js';
 import config from './../../config.js';
+import LogoIcon from './../icons/logo.jsx';
 
 
 // VARIABLES //
@@ -338,7 +339,10 @@ class TestRunner extends React.Component {
 	_renderFile( result ) {
 		return (
 			<section className="test">
-				<h2 className="test-file"><span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span><a href={ result.url } title="View test file">{ result.file }</a></h2>
+				<h2 className="test-file">
+					<LogoIcon />
+					<a href={ result.url } title="View test file">{ result.file }</a>
+				</h2>
 				{ this._renderResults( result.results ) }
 			</section>
 		);

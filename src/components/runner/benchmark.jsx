@@ -22,6 +22,7 @@ import React, { Fragment } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import log from './../../utils/log.js';
 import config from './../../config.js';
+import LogoIcon from './../icons/logo.jsx';
 
 
 // VARIABLES //
@@ -371,7 +372,7 @@ class BenchmarkRunner extends React.Component {
 				<h1>{ this.props.title }</h1>
 				<section className="runner-results benchmarks">
 					<h2 className="benchmark-file">
-						<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
+						<LogoIcon />
 						<a href={ config.repository+'/tree/'+this.props.version+'/lib/node_modules/@stdlib/'+this.props.pkg+'/benchmark' } title="View benchmark files">benchmark/</a>
 					</h2>
 					{ ( this.state.content.length ) ? this._renderResults( this.state.content ) : <CircularProgress /> }

@@ -22,6 +22,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import pkgPath from './../../utils/pkg_doc_path.js';
 import config from './../../config.js';
+import LogoIcon from './../icons/logo.jsx';
 
 
 // VARIABLES //
@@ -100,7 +101,7 @@ function BreadcrumbsNavigation( props ) {
 						to={ config.mount + props.version }
 						title="Return to homepage"
 					>
-						<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
+						<LogoIcon />
 						stdlib
 					</Link>
 				</li>

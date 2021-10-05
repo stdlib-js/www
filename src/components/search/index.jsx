@@ -32,6 +32,7 @@ import pkgPath from './../../utils/pkg_doc_path.js';
 import pkgKind from './../../utils/pkg_kind.js';
 import pkgBasename from './../../utils/pkg_basename.js';
 import log from './../../utils/log.js';
+import LogoIcon from './../icons/logo.jsx';
 
 
 // MAIN //
@@ -218,7 +219,7 @@ class Search extends React.Component {
 					</span>
 				</h2>
 				<p className="search-results-list-item-url">
-					<span className="logo-icon stdlib-logo-icon" role="img" aria-hidden="true"></span>
+					<LogoIcon />
 					<Link
 						className="search-results-list-item-url-link"
 						to={ url }
