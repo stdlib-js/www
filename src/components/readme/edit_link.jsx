@@ -19,7 +19,7 @@
 // MODULES //
 
 import React from 'react';
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from './../icons/edit.jsx';
 import config from './../../config.js';
 
 
@@ -38,7 +38,7 @@ function EditLink( props ) {
 		<a
 			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
 		>
-			<span className="edit-icon" aria-hidden="true"></span>Edit on GitHub
+			<EditIcon />Edit on GitHub
 		</a>
 	);
 }
