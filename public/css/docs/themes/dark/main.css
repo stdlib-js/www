@@ -58,9 +58,9 @@ html[data-theme="dark"] {
 	--top-nav-link-color: #ffffff;
 
 	/*
-	* When hovering over top-navigation links, the links should have a white background color.
+	* When hovering over top-navigation links, the links should have a grey background color.
 	*/
-	--top-nav-link-hover-background-color: #ffffff;
+	--top-nav-link-hover-background-color: rgba(0, 0, 0, 0.2);
 
 	/*
 	* Top-navigation icons should be white.
