@@ -20,7 +20,7 @@
 
 import React, { Fragment } from 'react';
 import pkgPath from './../../../utils/pkg_doc_path.js';
-import ExpandMoreIcon from './../icons/expand_more.jsx';
+import ExpandMoreIcon from './../../icons/expand_more.jsx';
 import Benchmarks from './benchmarks.jsx';
 import Docs from './docs.jsx';
 import Home from './home.jsx';
