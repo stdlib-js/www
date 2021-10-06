@@ -306,6 +306,17 @@ a:active {
 }
 
 /*
+* Search results.
+*/
+
+.search-results .icon-button {
+	text-align: center;
+	line-height: 1em;
+
+	text-decoration: none;
+}
+
+/*
 * Runner results.
 */
 
