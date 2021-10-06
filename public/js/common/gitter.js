@@ -23,10 +23,11 @@
 */
 (function script() {
 	window.gitter = {
-		chat: {
-			options: {
-				room: 'stdlib-js/stdlib',
-				activationElement: false
+		'chat': {
+			'options': {
+				'room': 'stdlib-js/stdlib',
+				'activationElement': false,
+				'disableDefaultChat': true
 			}
 		}
 	};
