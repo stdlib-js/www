@@ -21,10 +21,6 @@
 import React from 'react';
 import lunr from 'lunr';
 import { Link, withRouter } from 'react-router-dom';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import IconButton from '@mui/material/IconButton';
-import ClearIcon from '@mui/icons-material/Clear';
 import fetchSearchData from './../../utils/fetch_search_data.js';
 import packageDescription from './../../utils/package_description.js';
 import deprefix from './../../utils/deprefix_package_name.js';
@@ -33,6 +29,7 @@ import pkgKind from './../../utils/pkg_kind.js';
 import pkgBasename from './../../utils/pkg_basename.js';
 import log from './../../utils/log.js';
 import LogoIcon from './../icons/logo.jsx';
+import ClearIcon from './../icons/close.jsx';
 
 
 // MAIN //
@@ -200,8 +197,7 @@ class Search extends React.Component {
 		clbk = this._onPackageClickFactory( pkg );
 
 		return (
-			<ListItem
-				disableGutters
+			<li
 				key={ pkg }
 				className="search-results-list-item"
 				onClick={ this._onPackageItemClickFactory( url, pkg ) }
@@ -232,7 +228,7 @@ class Search extends React.Component {
 				<p className="search-results-list-item-description">
 					{ desc }
 				</p>
-			</ListItem>
+			</li>
 		);
 	}
 
@@ -279,27 +275,24 @@ class Search extends React.Component {
 			<div id="readme" className="readme search-results">
 				<h1>
 					<span>Search Results</span>
-					<IconButton
+					<button
+						className="icon-button"
 						title="Close search results"
 						aria-label="close"
-						size="large"
 						onClick={ this.props.onClose }
 					>
-						<ClearIcon
-							className="search-results-close"
-						/>
-					</IconButton>
+						<ClearIcon />
+					</button>
 				</h1>
 				<p>
 					{ results.length } search result(s)...
 				</p>
-				<List
-					disablePadding
+				<ul
 					className="search-results-list"
 					aria-label="search results"
 				>
 					{ this._renderItems( results ) }
-				</List>
+				</ul>
 			</div>
 		);
 	}
