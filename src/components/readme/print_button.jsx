@@ -19,7 +19,8 @@
 // MODULES //
 
 import React from 'react';
-import PrintIcon from '@mui/icons-material/Print';
+import config from './../../config.js';
+import PrintIcon from './../icons/print.jsx';
 
 
 // MAIN //
@@ -28,67 +29,26 @@ import PrintIcon from '@mui/icons-material/Print';
 * Component for rendering a button to print the current page.
 *
 * @private
-* @param {Object} props - component properties
-* @param {string} props.version - documentation version
-* @param {string} props.url - resource URL
-* @returns {ReactElement} React element
 */
-function PrintButton( props ) {
-	var referenceNode;
-	var footerNode;
-	var headerNode;
-	var footer;
-	var header;
-	var theme;
-	var url;
-
-	if ( typeof window !== 'undefined' ) {
-		window.onbeforeprint = beforePrint;
-		window.onafterprint = afterPrint;
-	}
-	return (
-		<button className="print-button" onClick={ onClick } >
-			<PrintIcon fontSize="inherit" aria-hidden="true" /> Print this page
-		</button>
-	);
-
+class PrintButton extends React.Component {
 	/**
-	* Event handler invoked before printing.
+	* Returns a component which renders a button to print the current page.
 	*
 	* @private
+	* @constructor
+	* @param {Object} props - component properties
+	* @param {string} props.url - resource URL
+	* @param {string} props.version - documentation version
+	* @returns {ReactComponent} React component
 	*/
-	function beforePrint() {
-		// Cache the current theme value:
-		theme = document.documentElement.getAttribute( 'data-theme' );
+	constructor( props ) {
+		super( props );
 
-		// Switch the theme to "light" for printing:
-		document.documentElement.setAttribute( 'data-theme', 'light' );
+		// Current theme:
+		this._theme = '';
 
-		// Add a top margin header to the first page:
-		headerNode = document.createElement( 'span' );
-		headerNode.className = 'print-addendum';
-		header = 'stdlib-js documentation';
-		header += ' - Version: ' + props.version;
-		header += ' - The Stdlib Authors © 2016-'+ ( new Date() ).getFullYear() + '.';
-		headerNode.innerHTML = header;
-
-		referenceNode = document.getElementById( 'readme' );
-		referenceNode.parentNode.insertBefore( headerNode, referenceNode );
-
-		// Add a bottom margin footer to the last page:
-		footerNode = document.createElement( 'p' );
-		footerNode.className = 'print-addendum';
-		footer = '<br />';
-		footer += 'Thank you for reading the documentation! If you have any questions, please join the discussion in our ';
-		footer += '<a href="https://gitter.im/stdlib-js/stdlib-js">Gitter chat room</a>.';
-		footer += '<br /><br />';
-		url = window.location.origin + props.url;
-		footer += 'Source: <a href="' + url + '" >' + url + '</a>';
-		footer += ' (printed on: ' + new Date().toLocaleDateString() + ')';
-		footerNode.innerHTML = footer;
-
-		referenceNode = document.getElementById( 'readme' );
-		referenceNode.parentNode.insertBefore( footerNode, referenceNode.nextSibling );
+		// DOM nodes added during printing:
+		this._$footer = null;
 	}
 
 	/**
@@ -97,25 +57,80 @@ function PrintButton( props ) {
 	* @private
 	* @param {Object} event - event
 	*/
-	function onClick( event ) {
+	_onClick = ( event ) => {
 		// Prevent default button behavior:
 		event.preventDefault();
+
+		// Add event listeners:
+		window.onbeforeprint = this._onBeforePrint;
+		window.onafterprint = this._onAfterPrint;
 
 		// Open the print dialog:
 		window.print();
 	}
 
 	/**
-	* Event handler invoked after printing.
+	* Callback invoked before printing.
 	*
 	* @private
 	*/
-	function afterPrint() {
-		// Restore the original theme:
-		document.documentElement.setAttribute( 'data-theme', theme );
+	_onBeforePrint = () => {
+		var $readme;
+		var text;
 
-		headerNode.parentNode.removeChild( headerNode );
-		footerNode.parentNode.removeChild( footerNode );
+		// Cache the current theme:
+		this._theme = document.documentElement.getAttribute( 'data-theme' );
+
+		// Switch the theme to "light" for printing:
+		document.documentElement.setAttribute( 'data-theme', 'light' );
+
+		// Create a footer:
+		this._$footer = document.createElement( 'section' );
+		this._$footer.className = 'print-addendum';
+
+		text = '<p>';
+		text += 'Copyright (c) 2016-'+( new Date() ).getFullYear()+' The Stdlib Authors.';
+		text += '</p>';
+		text += '<p>';
+		text += 'If you have any questions, please join the discussion on <a href="'+config.gitter+'">Gitter</a>.';
+		text += '</p>';
+
+		this._$footer.innerHTML = text;
+
+		// Add the footer after the README content:
+		$readme = document.getElementById( 'readme' );
+		$readme.parentNode.insertBefore( this._$footer, $readme.nextSibling );
+	}
+
+	/**
+	* Callback invoked after printing.
+	*
+	* @private
+	*/
+	_onAfterPrint = () => {
+		// Restore the original theme:
+		document.documentElement.setAttribute( 'data-theme', this._theme );
+
+		// Remove the DOM nodes added during printing:
+		this._$footer.parentNode.removeChild( this._$footer );
+
+		// Remove the event listeners:
+		delete window.onbeforeprint;
+		delete window.onafterprint;
+	}
+
+	/**
+	* Renders the component.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	render() {
+		return (
+			<button className="print-button" onClick={ this._onClick } >
+				<PrintIcon /> Print this page
+			</button>
+		);
 	}
 }
 
