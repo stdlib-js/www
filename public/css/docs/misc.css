@@ -93,7 +93,7 @@ img {
 
 .top-nav .icon-button:hover,
 .top-nav .icon-button:focus {
-	background-color: rgba(0, 0, 0, 0.04);
+	background-color: var(--top-nav-link-hover-background-color);
 }
 
 .top-nav .icon-button::after {
