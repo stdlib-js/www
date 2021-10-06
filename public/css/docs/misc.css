@@ -583,6 +583,26 @@ img {
 	background-image: linear-gradient(145deg, #1D1F20, #404348);
 }
 
+.side-menu-head .icon-button.side-menu-close-button {
+	background-color: transparent;
+
+	border-radius: 50%;
+}
+
+.side-menu-head .icon-button.side-menu-close-button:hover,
+.side-menu-head .icon-button.side-menu-close-button:focus {
+	background-color: #000000;
+}
+
+.side-menu-head .icon-button.side-menu-close-button .icon {
+	fill: #c8c8c8;
+}
+
+.side-menu-head .icon-button.side-menu-close-button:hover .icon,
+.side-menu-head .icon-button.side-menu-close-button:focus .icon {
+	fill: #ffffff;
+}
+
 .side-menu-version-wrapper {
 	background-color: #1f1f1f;
 	border-top: 2px solid #2d2d2d;

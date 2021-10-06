@@ -1220,6 +1220,15 @@ h2 {
 	justify-content: space-between;
 }
 
+.side-menu-head .icon-button.side-menu-close-button {
+	width: 48px;
+	height: 48px;
+}
+
+.side-menu-head .icon-button.side-menu-close-button .icon {
+	margin: 12px;
+}
+
 .side-menu-wrapper {
 	width: 0;
 }
