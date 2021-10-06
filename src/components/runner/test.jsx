@@ -421,7 +421,8 @@ class TestRunner extends React.Component {
 					<Stack direction="row" spacing={1} >
 						<Chip
 							label="Build Status"
-							variant="outlined" color="success"
+							variant="outlined"
+							color="success"
 							component="a"
 							href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW }
 							clickable
@@ -429,7 +430,8 @@ class TestRunner extends React.Component {
 						/>
 						<Chip
 							label="Code Coverage"
-							variant="outlined" color="success"
+							variant="outlined"
+							color="success"
 							component="a"
 							href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS }
 							clickable
