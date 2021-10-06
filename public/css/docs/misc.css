@@ -101,7 +101,8 @@ img {
 	cursor: pointer;
 }
 
-.top-nav .icon-button:hover {
+.top-nav .icon-button:hover,
+.top-nav .icon-button:focus {
 	background-color: rgba(0, 0, 0, 0.04);
 }
 
@@ -366,7 +367,8 @@ img {
 	user-select: none;
 }
 
-.search-results .icon-button:hover {
+.search-results .icon-button:hover,
+.search-results .icon-button:focus {
 	background-color: rgba(0, 0, 0, 0.04);
 }
 
