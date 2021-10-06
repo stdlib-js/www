@@ -99,10 +99,18 @@ SOFTWARE.
 	}
 
 	if ( dnt() === false ) {
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		(function( w, d, t, u, k, $, m ) {
+			w[ 'GoogleAnalyticsObject' ] = k;
+			w[ k ] = w[ k ] || function() {
+		  		( w[ k ].q = w[ k ].q || [] ).push( arguments );
+		  	}
+		  	w[ k ].l = 1 * new Date();
+		  	$ = d.createElement( t );
+		  	m = d.getElementsByTagName( t )[ 0 ];
+		  	$.async = 1;
+		  	$.src = u;
+		  	m.parentNode.insertBefore( $, m );
+		})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
 
 		ga( 'create', 'UA-105890493-1', 'auto' );
 		ga( 'send', 'pageview' );
