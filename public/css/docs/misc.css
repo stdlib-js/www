@@ -746,3 +746,43 @@ button.side-menu-list-item-namespace-icon:hover {
 	-moz-box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
 	box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
 }
+
+
+/*
+* Printing.
+*/
+
+.print-addendum {
+	visibility: hidden;
+}
+
+@media print {
+	/*
+	* Ensure that additional print information is displayed when printing.
+	*/
+	.print-addendum {
+		visibility: visible;
+	}
+
+	/*
+	* Remove the box shadow for the section listing related packages.
+	*/
+	.readme .related {
+		border: 1px solid #d3d3d3;
+
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+
+	/*
+	* Ensure that code does not overflow its container.
+	*/
+	.readme pre code {
+		white-space: pre-wrap;       /* css-3 */
+		white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+		white-space: -pre-wrap;      /* Opera 4-6 */
+		white-space: -o-pre-wrap;    /* Opera 7 */
+		word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	}
+}

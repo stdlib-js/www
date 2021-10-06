@@ -471,19 +471,3 @@ button.side-menu-list-item-namespace-icon:hover {
 #bottom-button {
 	color: var(--theme-text-color);
 }
-
-/*
-* Printing.
-*/
-
-.print-addendum {
-	visibility: hidden;
-}
-
-@media print {
-	.print-addendum {
-		visibility: visible;
-		color: rgb(124, 124, 124);
-		background-color: rgba(255, 255, 255, 0.5);
-	}
-}

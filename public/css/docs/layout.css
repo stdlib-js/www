@@ -1479,6 +1479,17 @@ button.side-menu-list-item-namespace-icon {
 		padding-top: 1.5em;
 		margin-left: 0;
 	}
+
+	/*
+	* Adjust the position of additional print content.
+	*/
+	.print-addendum {
+		margin-top: 2em;
+	}
+
+	.print-addendum p {
+		margin-top: 1em;
+	}
 }
 
 /*
