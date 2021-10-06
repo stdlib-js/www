@@ -75,6 +75,7 @@ class Settings extends React.Component {
 					className="icon-button top-nav-settings-button"
 					title="Open settings"
 					aria-label="settings"
+					aria-pressed={ ( this.state.open ) ? 'true' : 'false' }
 					onClick={ this._toggleDrawer }
 				>
 					<GearIcon />
