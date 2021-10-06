@@ -19,12 +19,11 @@
 // MODULES //
 
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
-import GetAppIcon from '@mui/icons-material/GetApp';
-import CancelIcon from '@mui/icons-material/Cancel';
 import fetchDownloadData from './../../utils/fetch_download_data.js';
 import download from './../../utils/download_assets.js';
 import log from './../../utils/log.js';
+import DownloadIcon from './../icons/download.jsx';
+import CancelIcon from './../icons/close.jsx';
 
 
 // MAIN //
@@ -133,27 +132,25 @@ class DownloadButton extends React.Component {
 	render() {
 		if ( this.state.progress ) {
 			return (
-				<IconButton
+				<button
 					className="icon-button top-nav-download-button"
 					title="Cancel download"
-					onClick={ this._onDownloadCancel }
 					aria-label="cancel download"
-					size="large"
+					onClick={ this._onDownloadCancel }
 				>
-					<CancelIcon aria-hidden="true" />
-				</IconButton>
+					<CancelIcon />
+				</button>
 			);
 		}
 		return (
-			<IconButton
+			<button
 				className="icon-button top-nav-download-button"
 				title="Download documentation for offline access"
-				onClick={ this._onDownloadClick }
 				aria-label="download documentation"
-				size="large"
+				onClick={ this._onDownloadClick }
 			>
-				<GetAppIcon aria-hidden="true" />
-			</IconButton>
+				<DownloadIcon />
+			</button>
 		);
 	}
 }
