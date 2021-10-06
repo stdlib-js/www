@@ -654,6 +654,60 @@ class SideMenuDrawer extends React.Component {
 	}
 
 	/**
+	* Renders side menu drawer content.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderContent() {
+		var expanded;
+		var tree;
+
+		// Ensure that we can resolve a package tree for the current documentation version:
+		tree = packageTree( this.props.version );
+		if ( tree === null ) {
+			return null;
+		}
+		// Check whether a user is currently applying a menu filter...
+		if ( this.state.filteredTree ) {
+			tree = this.state.filteredTree;
+			expanded = this.state.filteredExpanded;
+		} else {
+			expanded = this.state.expanded;
+		}
+		// TODO: re-enable version menu once we actually support multiple documentation versions
+		return (
+			<Fragment>
+				<Head
+					version={ this.props.version }
+					onClose={ this._onMenuClose }
+				/>
+				{ true ? null : <VersionMenu
+					version={ this.props.version }
+					onChange={ this._onVersionChange }
+				/> }
+				<Filter
+					onFocus={ this.props.onFilterFocus }
+					onBlur={ this.props.onFilterBlur }
+					onChange={ this._onFilterChange }
+					aria-controls="side-menu-list"
+				/>
+				<div className="side-menu-list-wrapper" >
+					<List
+						disablePadding
+						id="side-menu-list"
+						className="side-menu-list"
+						role="menu"
+						aria-label="package tree"
+					>
+						{ this._renderTree( tree, expanded, 0 ) }
+					</List>
+				</div>
+			</Fragment>
+		);
+	}
+
+	/**
 	* Callback invoked immediately after mounting a component (i.e., is inserted into the tree).
 	*
 	* @private
@@ -740,22 +794,6 @@ class SideMenuDrawer extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	render() {
-		var expanded;
-		var tree;
-
-		// Ensure that we can resolve a package tree for the current documentation version:
-		tree = packageTree( this.props.version );
-		if ( tree === null ) {
-			return null;
-		}
-		// Check whether a user is currently applying a menu filter...
-		if ( this.state.filteredTree ) {
-			tree = this.state.filteredTree;
-			expanded = this.state.filteredExpanded;
-		} else {
-			expanded = this.state.expanded;
-		}
-		// TODO: re-enable version menu once we actually support multiple documentation versions
 		return (
 			<Drawer
 				className="side-menu-drawer"
@@ -768,31 +806,7 @@ class SideMenuDrawer extends React.Component {
 				aria-label="package menu"
 				aria-hidden={ ( this.props.open ) ? null : "true" }
 			>
-				<Head
-					version={ this.props.version }
-					onClose={ this._onMenuClose }
-				/>
-				{ true ? null : <VersionMenu
-					version={ this.props.version }
-					onChange={ this._onVersionChange }
-				/> }
-				<Filter
-					onFocus={ this.props.onFilterFocus }
-					onBlur={ this.props.onFilterBlur }
-					onChange={ this._onFilterChange }
-					aria-controls="side-menu-list"
-				/>
-				<div className="side-menu-list-wrapper" >
-					<List
-						disablePadding
-						id="side-menu-list"
-						className="side-menu-list"
-						role="menu"
-						aria-label="package tree"
-					>
-						{ this._renderTree( tree, expanded, 0 ) }
-					</List>
-				</div>
+				{ ( this.props.open ) ? this._renderContent() : null }
 			</Drawer>
 		);
 	}
