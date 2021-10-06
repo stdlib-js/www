@@ -80,16 +80,6 @@ img {
 	border-right-width: 1px;
 }
 
-@media only screen and (min-width: 50em) { /* 800px */
-	/*
-	* Once we get to a wide enough screen size and top navigation items are displayed inline, remove the background color.
-	*/
-	.top-nav-item a:hover,
-	.top-nav-item a:active {
-		background-color: transparent;
-	}
-}
-
 .top-nav .icon-button {
 	background-color: var(--top-nav-background-color);
 

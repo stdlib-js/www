@@ -374,7 +374,7 @@ a:active {
 	text-decoration: none;
 }
 
-@media only screen and (min-width: 50em) { /* 800px */
+@media only screen and (min-width: 54em) { /* 864px */
 	/*
 	* Once we get to a wide enough screen size and top navigation items are displayed inline, underline the links when active.
 	*/
