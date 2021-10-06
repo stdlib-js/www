@@ -19,9 +19,8 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import IconButton from '@mui/material/IconButton';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import pkgPath from './../../../utils/pkg_doc_path.js';
+import ExpandMoreIcon from './../icons/expand_more.jsx';
 import Benchmarks from './benchmarks.jsx';
 import Docs from './docs.jsx';
 import Home from './home.jsx';
@@ -100,18 +99,17 @@ class PackageMenu extends React.Component {
 
 		return (
 			<Fragment>
-				<IconButton
+				<button
 					className="icon-button top-nav-items-menu-button"
 					title="Toggle navigation menu"
-					onClick={ this._onMenuClick }
 					aria-label="toggle menu"
 					aria-controls="top-nav-package-menu"
 					aria-expanded={ this.props.open }
 					aria-haspopup="menu"
-					size="large"
+					onClick={ this._onMenuClick }
 				>
-					<ExpandMoreIcon aria-hidden="true" />
-				</IconButton>
+					<ExpandMoreIcon />
+				</button>
 				<ul
 					id='top-nav-package-menu'
 					className={ ( this.props.open ) ? 'top-nav-items-dropdown' : 'top-nav-items' }
