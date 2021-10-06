@@ -20,9 +20,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import IconButton from '@mui/material/IconButton';
 import config from './../../../config.js';
+import ChevronLeftIcon from './../../icons/chevron_left.jsx';
 import Logo from './logo.jsx';
 
 
@@ -47,15 +46,14 @@ function SideMenuHead( props ) {
 			>
 				<Logo />
 			</Link>
-			<IconButton
-				onClick={ props.onClose }
-				edge="start"
+			<button
+				className="icon-button side-menu-close-button"
 				title="Close documentation navigation menu"
 				aria-label="close drawer"
-				size="large"
+				onClick={ props.onClose }
 			>
-				<ChevronLeftIcon className="MuiSvgIcon-root menu-close-icon" />
-			</IconButton>
+				<ChevronLeftIcon />
+			</button>
 		</div>
 	);
 }
