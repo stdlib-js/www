@@ -1120,6 +1120,7 @@ h2 {
 	.side-menu-open .top-nav-divider {
 		margin-left: 0;
 	}
+
 	/*
 	* For larger devices, we allow search even though the side menu is open.
 	*/
@@ -1127,7 +1128,9 @@ h2 {
 	.side-menu-open .top-nav-search {
 		display: inline-flex !important;
 	}
+}
 
+@media only screen and (min-width: 54em) { /* 864px */
 	/*
 	* On larger devices, we display all package navigation items inline and not in a dropdown, so we should hide this button.
 	*/
@@ -1222,7 +1225,6 @@ h2 {
 	width: 0;
 }
 
-.side-menu-open .side-menu-wrapper,
 .side-menu-drawer {
 	width: 350px;
 }
