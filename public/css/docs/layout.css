@@ -149,7 +149,7 @@ h2 {
 	min-height: 100vh;
 
 	margin-bottom: 7em;
-	padding-top: 120px;
+	padding-top: 7.5em; /* 16px*7.5 = 120px */
 
 	/*
 	* Initialize the render layer to allow for hardware acceleration.
@@ -177,7 +177,7 @@ h2 {
 	*/
 
 	/* top | right | bottom | left */
-	scroll-margin: 100px 0 0 0;
+	scroll-margin: 6.25em 0 0 0;
 }
 
 /*
@@ -208,7 +208,7 @@ h2 {
 	*/
 
 	/* top | right | bottom | left */
-	scroll-margin: 100px 0 0 300px;
+	scroll-margin: 6.25em 0 0 300px;
 }
 
 /*
@@ -248,7 +248,7 @@ h2 {
 		*/
 
 		/* top | right | bottom | left */
-		scroll-margin: 100px 0 0 300px;
+		scroll-margin: 6.25em 0 0 300px;
 	}
 }
 
@@ -275,7 +275,7 @@ h2 {
 	*/
 
 	/* top | right | bottom | left */
-	scroll-padding: 200px 0 0 0;
+	scroll-padding: 12.5em 0 0 0;
 }
 
 .readme h1 {
@@ -332,7 +332,7 @@ h2 {
 	*/
 
 	/* top | right | bottom | left */
-	scroll-margin: 100px 0 0 0;
+	scroll-margin: 6.25em 0 0 0;
 }
 
 .readme p,
