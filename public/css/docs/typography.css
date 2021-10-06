@@ -160,7 +160,7 @@ a:active {
 
 .readme pre,
 .readme code {
-	font-size: 14px;
+	font-size: 0.875em; /* 0.875 * 16px = 14px */
 }
 
 .readme pre {
