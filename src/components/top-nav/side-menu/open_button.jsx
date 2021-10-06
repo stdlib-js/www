@@ -38,9 +38,9 @@ function OpenButton( props ) {
 		<button
 			className={ 'icon-button ' + ( ( props.hide ) ? 'invisible' : '' ) }
 			title="Open documentation navigation menu"
-			onClick={ props.onClick }
 			aria-label="open drawer"
 			aria-pressed={ ( props.hide ) ? 'true' : 'false' }
+			onClick={ props.onClick }
 		>
 			<MenuIcon />
 		</button>
