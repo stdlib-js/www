@@ -18,10 +18,9 @@
 
 // MODULES //
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import viewportWidth from './../../utils/viewport_width.js';
 import ForumIcon from './../icons/forum.jsx';
-import CloseIcon from './../icons/close.jsx';
 
 
 // VARIABLES //
@@ -55,26 +54,29 @@ class Chat extends React.Component {
 
 		// Initialize component state:
 		this.state = {
-			// Reference to the chat application constructor:
-			'Chat': null,
-
 			// Reference to the chat application:
-			'chat': null,
-
-			// Boolean indicating whether the chat is currently open:
-			'open': false
+			'chat': null
 		};
 	}
 
 	/**
-	* Callback invoked once a chat application is ready.
+	* Callback invoked once Gitter is ready.
 	*
 	* @private
 	* @param {Object} event - event object
 	*/
-	_onChatReady = ( event ) => {
+	_onGitterReady = ( event ) => {
+		var chat;
+
+		// Create a new chat instance:
+		chat = new event.detail.Chat({
+			'room': ROOM,
+			'activationElement': false
+		});
+
+		// Update component state:
 		this.setState({
-			'Chat': event.detail.Chat
+			'chat': chat
 		});
 	}
 
@@ -85,25 +87,8 @@ class Chat extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onClick = () => {
-		var bool;
-		var chat;
-
-		// Toggle the open state:
-		bool = !this.state.open;
-
-		// Determine whether we need to open the chat...
-		if ( bool ) {
-			chat = new this.state.Chat({
-				'room': ROOM
-			});
-		} else {
-			this.state.chat.destroy();
-			chat = null;
-		}
-		this.setState({
-			'open': bool,
-			'chat': chat
-		});
+		// Toggle chat visibility:
+		this.state.chat.toggleChat( true );
 	}
 
 	/**
@@ -145,8 +130,8 @@ class Chat extends React.Component {
 			// Cache a reference to the created DOM node:
 			self._$script = script;
 
-			// Listen for when the chat application is ready:
-			document.addEventListener( 'gitter-sidecar-ready', self._onChatReady );
+			// Listen for when Gitter is ready:
+			document.addEventListener( 'gitter-sidecar-ready', self._onGitterReady );
 		}
 	}
 
@@ -156,8 +141,16 @@ class Chat extends React.Component {
 	* @private
 	*/
 	componentWillUnmount() {
-		document.body.removeChild( this._$script );
-		document.removeEventListener( 'gitter-sidecar-ready', this._onChatReady );
+		if ( this._$script ) {
+			document.body.removeChild( this._$script );
+			document.removeEventListener( 'gitter-sidecar-ready', this._onGitterReady );
+		}
+		if ( this.state.chat ) {
+			this.state.chat.destroy();
+		}
+		this.setState({
+			'chat': null
+		});
 	}
 
 	/**
@@ -167,19 +160,20 @@ class Chat extends React.Component {
 	* @returns {(ReactElement|null)} React element
 	*/
 	render() {
-		if ( this.state.Chat === null ) {
+		if ( this.state.chat === null ) {
 			return null;
 		}
 		return (
-			<button
-				className="icon-button toggle-chat-button"
-				title="Talk to us on Gitter!"
-				aria-label={ ( this.state.open ) ? 'close chat' : 'open chat' }
-				onClick={ this._onClick }
-			>
-				{ ( this.state.open ) ? <CloseIcon /> : <ForumIcon /> }
-			</button
-			>
+			<Fragment>
+				<button
+					className="icon-button toggle-chat-button"
+					title="Talk to us on Gitter!"
+					aria-label="open chat"
+					onClick={ this._onClick }
+				>
+					<ForumIcon />
+				</button>
+			</Fragment>
 		);
 	}
 }
