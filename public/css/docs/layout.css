@@ -970,6 +970,42 @@ h2 {
 	flex-grow: 1;
 }
 
+.help-page .icon-button {
+	position: relative;
+
+	width: 1.4em;
+	height: 1.4em;
+
+	padding: 0;
+}
+
+.help-page .icon-button::after {
+	display: none;
+
+	position: absolute;
+	width: 100px;
+	height: 100px;
+
+	margin-top: -50px;
+	margin-left: -50px;
+
+	top: 50%;
+	left: 50%;
+}
+
+.help-page .icon-button:focus:not(:active)::after {
+	display: block;
+}
+
+.help-page .icon {
+	height: 0.6em;
+	width: 0.6em;
+
+	margin: 0;
+
+	vertical-align: baseline;
+}
+
 /*
 * Main navigation.
 */

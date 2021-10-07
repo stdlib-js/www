@@ -383,6 +383,51 @@ img {
 }
 
 /*
+* The button to close help documentation should be circular and mimic a mobile button press.
+*/
+.help-page .icon-button {
+	background-color: transparent;
+	border-radius: 50%;
+
+	outline: none;
+	border: none;
+
+	overflow: hidden;
+
+	cursor: pointer;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.help-page .icon-button:hover,
+.help-page .icon-button:focus {
+	background-color: rgba(0, 0, 0, 0.04);
+}
+
+.help-page .icon-button::after {
+	content: "";
+
+	border-radius: 50%;
+
+	background-color: rgba(0, 0, 0, 0.3);
+
+	animation: button-press 1s;
+	opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	/*
+	* Disable animations when a user prefers reduced motion.
+	*/
+	.help-page .icon-button::after {
+		animation: none;
+	}
+}
+
+/*
 * Related packages list items should not display a list marker.
 */
 .readme .related ul {
