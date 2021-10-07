@@ -412,10 +412,10 @@ class TestRunner extends React.Component {
 	*/
 	render() {
 		return (
-			<div id="readme" className="readme runner test-runner">
+			<div id="readme" className="readme runner">
 				<h1>{ this.props.title }</h1>
 
-				<nav className="badges">
+				<nav className="badges" aria-label="badges">
 					<ul className="badge-list">
 						<li className="badge">
 							<a title="View build status" href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW } >Build Status</a>
