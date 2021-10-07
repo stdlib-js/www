@@ -92,7 +92,7 @@ class Settings extends React.Component {
 							<h1>Settings</h1>
 							<button
 								className="icon-button"
-								title="Closing settings menu"
+								title="Close settings menu"
 								aria-label="close"
 								onClick={ this._toggleDrawer }
 							>
