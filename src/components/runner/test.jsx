@@ -19,8 +19,6 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 import log from './../../utils/log.js';
 import config from './../../config.js';
 import LogoIcon from './../icons/logo.jsx';
@@ -414,30 +412,18 @@ class TestRunner extends React.Component {
 	*/
 	render() {
 		return (
-			<div id="readme" className="readme runner">
+			<div id="readme" className="readme runner test-runner">
 				<h1>{ this.props.title }</h1>
 
-				<nav className="runner-results badges" >
-					<Stack direction="row" spacing={1} >
-						<Chip
-							label="Build Status"
-							variant="outlined"
-							color="success"
-							component="a"
-							href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW }
-							clickable
-							size="small"
-						/>
-						<Chip
-							label="Code Coverage"
-							variant="outlined"
-							color="success"
-							component="a"
-							href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS }
-							clickable
-							size="small"
-						/>
-					</Stack>
+				<nav className="badges">
+					<ul className="badge-list">
+						<li className="badge">
+							<a title="View build status" href={ GITHUB_PRE + this.props.standalone + GITHUB_WORKFLOW } >Build Status</a>
+						</li>
+						<li className="badge">
+							<a title="View code coverage" href={ CODECOV_URL_PRE + this.props.standalone + CODECOV_QS } >Code Coverage</a>
+						</li>
+					</ul>
 				</nav>
 
 				<section className="runner-results tests">
