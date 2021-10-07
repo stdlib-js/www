@@ -36,7 +36,7 @@ import Stack from '@mui/material/Stack';
 // MAIN //
 
 /**
-* Component rendering a feedback form to collect user feedback for the respective package.
+* Component rendering a feedback form to collect user feedback for an individual package.
 *
 * @private
 */
@@ -54,19 +54,18 @@ class Feedback extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			email: '',
-			sentiment: null,
-			explanation: ''
+			'sentiment': null,
+			'explanation': ''
 		};
 	}
 
 	/**
-	* Callback invoked upon changing the feedback sentiment (to `positive` or `negative`).
+	* Callback invoked upon changing the feedback sentiment (either `positive` or `negative`).
 	*
 	* @private
 	* @param {Object} event - event object
 	*/
-	_handleSentimentChange = ( event ) => {
+	_onSentimentChange = ( event ) => {
 		this.setState({
 			sentiment: event.target.value
 		});
@@ -78,21 +77,9 @@ class Feedback extends Component {
 	* @private
 	* @param {Object} event - event object
 	*/
-	_handleExplanationChange = ( event ) => {
+	_onExplanationChange = ( event ) => {
 		this.setState({
 			explanation: event.target.value
-		});
-	}
-
-	/**
-	* Callback invoked upon changing the email address.
-	*
-	* @private
-	* @param {Object} event - event object
-	*/
-	_handleEmailChange = ( event ) => {
-		this.setState({
-			email: event.target.value
 		});
 	}
 
@@ -103,9 +90,8 @@ class Feedback extends Component {
 	*/
 	_cancelSubmission = () => {
 		this.setState({
-			sentiment: null,
-			email: '',
-			explanation: ''
+			'sentiment': null,
+			'explanation': ''
 		});
 	}
 
@@ -124,23 +110,35 @@ class Feedback extends Component {
 				className="readme-feedback" action="https://formsubmit.co/7a22568a376a058e7a22f1e4d8eead4a"
 				method="post"
 			>
-				<input type="hidden" name="pkg" value={this.props.pkg} />
-				<input type="hidden" name="version" value={this.props.version} />
+				<input type="hidden" name="pkg" value={ this.props.pkg } />
+				<input type="hidden" name="version" value={ this.props.version } />
 				<FormControl component="fieldset">
 					<FormLabel component="legend">Was this documentation useful for you?</FormLabel>
 					<RadioGroup
 						aria-label="sentiment"
 						name="sentiment"
 						row
-						onChange={this._handleSentimentChange}
+						onChange={ this._onSentimentChange }
 					>
 						<FormControlLabel
 							value="positive"
-							control={<Radio checked={this.state.sentiment === 'positive'} icon={<ThumbUpIcon />} checkedIcon={<ThumbUpIcon color="success" />} />}
+							control={
+								<Radio
+									checked={ this.state.sentiment === 'positive' }
+									icon={ <ThumbUpIcon /> }
+									checkedIcon={ <ThumbUpIcon color="success" /> }
+								/>
+							}
 							label="Yes" />
 						<FormControlLabel
 							value="negative"
-							control={<Radio  checked={this.state.sentiment === 'negative'} icon={<ThumbDownIcon />} checkedIcon={<ThumbDownIcon color="error" />} />}
+							control={
+								<Radio
+									checked={ this.state.sentiment === 'negative' }
+									icon={ <ThumbDownIcon /> }
+									checkedIcon={ <ThumbDownIcon color="error" /> }
+								/>
+							}
 							label="No"
 						/>
 					</RadioGroup>
@@ -150,28 +148,23 @@ class Feedback extends Component {
 						<h3>Thank you for your feedback!</h3>
 						<div>
 							<TextField
-								label="Your Email Address (optional)"
-								name="email"
-								variant="outlined"
-								onChange={this._handleEmailChange}
-								value={this.state.email}
-							/>
-						</div>
-						<div>
-							<TextField
 								name="explanation"
 								label={ this.state.sentiment === 'positive' ? 'What do you like about this documentation?' : 'What could we improve?' }
 								multiline
-								rows={3}
-								maxRows={12}
-								value={this.state.explanation}
-								onChange={this._handleExplanationChange}
+								rows={ 3 }
+								maxRows={ 12 }
+								value={ this.state.explanation }
+								onChange={ this._onExplanationChange }
 								fullWidth
 							/>
-							<Stack direction="row" justify="right" align="right" >
+							<Stack
+								direction="row"
+								justify="right"
+								align="right"
+							>
 								<Button
 									variant="text"
-									onClick={this._cancelSubmission}
+									onClick={ this._cancelSubmission }
 								>
 									Cancel
 								</Button>
@@ -192,8 +185,7 @@ class Feedback extends Component {
 				<input type="hidden" name="_url" value="https://stdlib.io" />
 				<input type="hidden" name="_captcha" value="false" />
 				<input type="text" name="_honey" style={{ display: 'none' }} />
-				<input type="hidden" name="_subject" value={subject} />
-				<input type="hidden" name="_replyto" value={this.state.email} />
+				<input type="hidden" name="_subject" value={ subject } />
 				<input type="hidden" name="_cc" value="pburckhardt@outlook.com" />
 			</form>
 		);
