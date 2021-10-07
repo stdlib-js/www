@@ -33,6 +33,7 @@ import Head from './components/head/new_page.jsx';
 import Help from './components/help/index.jsx';
 import TestRunner from './components/runner/test.jsx';
 import BenchmarkRunner from './components/runner/benchmark.jsx';
+import Chat from './components/chat/index.jsx';
 import log from './utils/log.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from './utils/reset_scroll.js';
@@ -974,6 +975,7 @@ class App extends React.Component {
 				<Footer
 					version={ this.props.version }
 				/>
+				<Chat />
 			</Fragment>
 		);
 	}
