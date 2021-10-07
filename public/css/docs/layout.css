@@ -923,14 +923,14 @@ h2 {
 }
 
 /*
-* Help page.
+* Documentation help.
 */
 
-.help-page h1 {
+.readme.help h1 {
 	display: flex;
 }
 
-.help-page h1 span {
+.readme.help h1 span {
 	flex-grow: 1;
 }
 

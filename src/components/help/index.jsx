@@ -25,22 +25,22 @@ import ClearIcon from './../icons/close.jsx';
 // MAIN //
 
 /**
-* Component for displaying a help page.
+* Component for displaying documentation help.
 *
 * @private
 * @param {Object} props - component properties
-* @param {Callback} props.onClose - callback to invoke upon closing help page
+* @param {Callback} props.onClose - callback to invoke upon closing documentation help
 * @returns {ReactElement} React element
 */
-function HelpPage( props ) {
+function Help( props ) {
 	return (
 		<Fragment>
-			<div id="readme" className="readme help-page" >
+			<div id="readme" className="readme help" >
 				<h1>
 					<span>Documentation Help</span>
 					<button
 						className="icon-button"
-						title="Close help page"
+						title="Close help"
 						aria-label="close"
 						onClick={ props.onClose }
 					>
@@ -58,4 +58,4 @@ function HelpPage( props ) {
 
 // EXPORTS //
 
-export default HelpPage;
+export default Help;
