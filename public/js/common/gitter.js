@@ -25,8 +25,8 @@
 	window.gitter = {
 		'chat': {
 			'options': {
-				'room': 'stdlib-js/stdlib',
-				'activationElement': false,
+				// 'room': 'stdlib-js/stdlib',
+				// 'activationElement': false,
 				'disableDefaultChat': true
 			}
 		}
