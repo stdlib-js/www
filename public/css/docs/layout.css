@@ -1217,7 +1217,10 @@ h2 {
 }
 
 @media only screen and (min-width: 34em) { /* 544px */
-	.side-menu-wrapper {
+	/*
+	* When the side menu is open, set the menu wrapper width in order to push over top-navigation items.
+	*/
+	.side-menu-open .side-menu-wrapper {
 		width: 350px;
 	}
 }
