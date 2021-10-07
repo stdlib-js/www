@@ -306,17 +306,6 @@ a:active {
 }
 
 /*
-* Search results.
-*/
-
-.search-results .icon-button {
-	text-align: center;
-	line-height: 1em;
-
-	text-decoration: none;
-}
-
-/*
 * Runner results.
 */
 
@@ -454,4 +443,15 @@ button.side-menu-list-item-namespace-icon:hover {
 	text-align: center;
 
 	color: #00aeef; /* bluish */
+}
+
+/*
+* Heading icon buttons.
+*/
+
+h1 button.icon-button {
+	text-align: center;
+	line-height: 1em;
+
+	text-decoration: none;
 }
