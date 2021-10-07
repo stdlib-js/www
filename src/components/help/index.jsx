@@ -19,8 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import IconButton from '@mui/material/IconButton';
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from './../icons/close.jsx';
 
 
 // MAIN //
@@ -39,15 +38,17 @@ function HelpPage( props ) {
 			<div id="readme" className="readme help-page" >
 				<h1>
 					<span>Documentation Help</span>
-					<IconButton aria-label="close" size="large" >
-						<ClearIcon
-							className="search-results-close"
-							title="Close help page"
-							onClick={ props.onClose }
-						/>
-					</IconButton>
+					<button
+						className="icon-button"
+						title="Close help page"
+						aria-label="close"
+						onClick={ props.onClose }
+					>
+						<ClearIcon />
+					</button>
 				</h1>
 				<section>
+					<p>TODO</p>
 				</section>
 			</div>
 		</Fragment>
