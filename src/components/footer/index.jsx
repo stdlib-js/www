@@ -20,9 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Fab from '@mui/material/Fab';
 import config from './../../config.js';
-import ForumIcon from './../icons/forum.jsx';
 
 
 // MAIN //
@@ -50,16 +48,6 @@ function Footer( props ) {
 				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
 				<span aria-hidden="true"> / </span>
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
-				<Fab
-					id="bottom-button"
-					component="a"
-					className="js-gitter-toggle-chat-button"
-					href={ config.gitter }
-					title="Talk to us on Gitter!"
-					aria-label="Chat"
-				>
-					<ForumIcon />
-				</Fab>
 			</nav>
 		</footer>
 	);
