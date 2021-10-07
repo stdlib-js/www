@@ -309,6 +309,11 @@ a:active {
 * Runner results.
 */
 
+.runner .badge-list .badge a {
+	font-size: 0.875em;
+	color: #ffffff;
+}
+
 .runner-results .test-file,
 .runner-results .benchmark-file {
 	font-size: 1.1em;

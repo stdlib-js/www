@@ -56,10 +56,10 @@ img {
 .top-nav {
 	background-color: var(--top-nav-background-color);
 
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
-	-moz-box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
-	box-shadow: 0 -5px 15px 0 var(--top-nav-shadow-color);
+	/* offset-x | offset-y | blur-radius | color */
+	-webkit-box-shadow: 0 -5px 15px var(--top-nav-shadow-color);
+	-moz-box-shadow: 0 -5px 15px var(--top-nav-shadow-color);
+	box-shadow: 0 -5px 15px var(--top-nav-shadow-color);
 }
 
 .top-nav-item a:hover,
@@ -99,6 +99,8 @@ img {
 .top-nav .icon-button::after {
 	content: "";
 
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
 	border-radius: 50%;
 
 	background-color: rgba(0, 0, 0, 0.3);
@@ -362,6 +364,13 @@ img {
 }
 
 /*
+* Runner badge list items should not display a list marker.
+*/
+.runner .badges ul {
+	list-style-type: none;
+}
+
+/*
 * Tables.
 */
 
@@ -492,7 +501,10 @@ img {
 * Pagination links should have slightly rounded corners, and, when not focused/hovered, should not show a border.
 */
 .readme .readme-bottom-nav .pagination-link {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 	border-radius: 4px;
+
 	border: 1px solid var(--theme-background-color)
 }
 
@@ -522,6 +534,28 @@ img {
 }
 
 /*
+* Runner badges.
+*/
+
+.runner .badge-list .badge a {
+	background-color: #1976d2;
+
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	border-radius: 2em;
+
+	/* offset-x | offset-y | blur-radius | color */
+	-webkit-box-shadow: 0 2px 10px var(--diffuse-shadow-color);
+	-moz-box-shadow: 0 2px 10px var(--diffuse-shadow-color);
+	box-shadow: 0 2px 10px var(--diffuse-shadow-color);
+}
+
+.runner .badge-list .badge a:hover,
+.runner .badge-list .badge a:focus {
+	background-color: #0080ff;
+}
+
+/*
 * Side menu.
 */
 
@@ -541,6 +575,8 @@ img {
 .side-menu-head .icon-button.side-menu-close-button {
 	background-color: transparent;
 
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
 	border-radius: 50%;
 }
 
@@ -598,6 +634,8 @@ img {
 }
 
 button.side-menu-list-item-namespace-icon {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
 	border-radius: 0;
 }
 
@@ -641,10 +679,10 @@ button.side-menu-list-item-namespace-icon:hover {
 	-moz-border-radius: 0 0 4px 4px;
 	border-radius: 0 0 4px 4px;
 
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	-webkit-box-shadow: 0 0 3px 0 #000000;
-	-moz-box-shadow: 0 0 3px 0 #000000;
-	box-shadow: 0 0 3px 0 #000000;
+	/* offset-x | offset-y | blur-radius | color */
+	-webkit-box-shadow: 0 0 3px #000000;
+	-moz-box-shadow: 0 0 3px #000000;
+	box-shadow: 0 0 3px #000000;
 }
 
 .skip-link:focus {
@@ -661,6 +699,8 @@ button.side-menu-list-item-namespace-icon:hover {
 
     background-color: #1976d2;
 
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
 	border-radius: 50%;
 
     /* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -693,9 +733,10 @@ aside.gitter-chat-embed {
 div.gitter-chat-embed-action-bar {
 	background: #ffffff;
 
-    -webkit-box-shadow: 0 0 5px 0 #ced4da;
-	-moz-box-shadow: 0 0 5px 0 #ced4da;
-	box-shadow: 0 0 5px 0 #ced4da;
+     /* offset-x | offset-y | blur-radius | color */
+	-webkit-box-shadow: 0 0 5px #ced4da;
+	-moz-box-shadow: 0 0 5px #ced4da;
+	box-shadow: 0 0 5px #ced4da;
 
 	justify-content: space-between;
 
@@ -725,6 +766,9 @@ div.gitter-chat-embed-action-bar {
 */
 h1 button.icon-button {
 	background-color: transparent;
+
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
 	border-radius: 50%;
 
 	outline: none;
@@ -748,6 +792,8 @@ h1 button.icon-button:focus {
 h1 button.icon-button::after {
 	content: "";
 
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
 	border-radius: 50%;
 
 	background-color: rgba(0, 0, 0, 0.3);

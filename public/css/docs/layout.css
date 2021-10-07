@@ -828,6 +828,22 @@ h2 {
 * Runner results.
 */
 
+.runner .badge-list {
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+
+.runner .badge-list .badge {
+	margin: 0;
+	margin-right: 16px;
+}
+
+.runner .badge-list .badge a {
+	/* vertical | horizontal */
+	padding: 0.3em 1em;
+}
+
 .runner-results p {
 	margin-bottom: 0;
 }
