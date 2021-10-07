@@ -1189,23 +1189,6 @@ h2 {
 }
 
 /*
-* Gitter button for bottom-right corner.
-*/
-#bottom-button { /* FIXME: rename */
-	position: fixed;
-	bottom: 12px;
-	right: 12px;
-
-	padding: 1em;
-}
-
-@media only screen and (max-width: 53.75em) { /* 860px */
-	#bottom-button {
-		position: absolute;
-	}
-}
-
-/*
 * Side menu.
 */
 
@@ -1339,7 +1322,7 @@ button.side-menu-list-item-namespace-icon {
 }
 
 /*
-* Skip link.
+* Skip links.
 */
 
 .skip-link {
@@ -1365,6 +1348,21 @@ button.side-menu-list-item-namespace-icon {
 
 .skip-link:focus {
 	top: 0;
+}
+
+/*
+* Chat.
+*/
+
+.toggle-chat-button {
+	position: fixed;
+	bottom: 12px;
+	right: 12px;
+
+	height: 48px;
+	width: 48px;
+
+	border-radius: 50%;
 }
 
 /*
@@ -1428,6 +1426,10 @@ button.side-menu-list-item-namespace-icon {
 	}
 
 	.readme-addendum {
+		display: none;
+	}
+
+	.toggle-chat-button {
 		display: none;
 	}
 

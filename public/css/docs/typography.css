@@ -455,11 +455,3 @@ button.side-menu-list-item-namespace-icon:hover {
 
 	color: #00aeef; /* bluish */
 }
-
-/*
-* Gitter button for bottom-right corner .
-*/
-
-#bottom-button {
-	color: var(--theme-text-color);
-}

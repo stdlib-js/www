@@ -697,11 +697,15 @@ button.side-menu-list-item-namespace-icon:hover {
 }
 
 /*
-* Gitter button for bottom-right corner.
+* Chat
 */
 
-#bottom-button {
-	background-color: var(--pre-background-color);
+.toggle-chat-button {
+	background-color: #0000ff;
+}
+
+.toggle-chat-button .icon {
+	fill: #ffffff;
 }
 
 /*
