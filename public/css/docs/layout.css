@@ -1356,13 +1356,16 @@ button.side-menu-list-item-namespace-icon {
 
 .toggle-chat-button {
 	position: fixed;
-	bottom: 12px;
-	right: 12px;
+	bottom: 16px;
+	right: 16px;
 
-	height: 48px;
-	width: 48px;
+	height: 64px;
+	width: 64px;
+}
 
-	border-radius: 50%;
+.toggle-chat-button .icon {
+	height: 36px;
+	width: 36px;
 }
 
 /*

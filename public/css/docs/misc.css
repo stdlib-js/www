@@ -701,7 +701,19 @@ button.side-menu-list-item-namespace-icon:hover {
 */
 
 .toggle-chat-button {
-	background-color: #0000ff;
+	outline: 0;
+    border: 0;
+
+    background-color: #1976d2;
+
+	border-radius: 50%;
+
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+	-webkit-box-shadow: 0 3px 5px -1px rgb(0, 0, 0, 0.2), 0 6px 10px 0 rgb(0, 0, 0, 0.14), 0 1px 18px 0 rgb(0, 0, 0, 0.12);
+	-moz-box-shadow: 0 3px 5px -1px rgb(0, 0, 0, 0.2), 0 6px 10px 0 rgb(0, 0, 0, 0.14), 0 1px 18px 0 rgb(0, 0, 0, 0.12);
+	box-shadow: 0 3px 5px -1px rgb(0, 0, 0, 0.2), 0 6px 10px 0 rgb(0, 0, 0, 0.14), 0 1px 18px 0 rgb(0, 0, 0, 0.12);
+
+	cursor: pointer;
 }
 
 .toggle-chat-button .icon {
