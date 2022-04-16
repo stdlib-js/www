@@ -43,7 +43,7 @@ var opts = {
     'port': 7331,
     'address': '127.0.0.1'
 };
-var createServer = httpServer( App, opts );
+var createServer = httpServer( opts );
 
 function done( error, fastify ) {
     if ( error ) {
@@ -59,9 +59,9 @@ createServer( App, done );
 The function accepts the following `options`:
 
 -   **address**: server address. Default: `'127.0.0.1'`.
--   **hostname**: server hostname (e.g., `localhost` ).
+-   **hostname**: server hostname (e.g., `localhost` ). The `hostname` option takes precedence over the `address` option.
 -   **latest**: latest documentation version (e.g., `v0.0.90`). When set to an empty string (as is the default), the server does **not** virtually map the version `latest` to a particular set of documentation resources. Default: `''`.
--   **logger**: `boolean` indicating whether to enable logging. Default: `false`.
+-   **logger**: `boolean` indicating whether to enable logging or a log level. Default: `false`.
 -   **port**: server port. Default: `0` (i.e., randomly assigned).
 -   **prefix**: URL path prefix used to create a virtual mount path for a static directory (e.g., `/docs/api/` to match the API documentation virtual mount path). If provided a list of prefixes, each prefix is associated with a corresponding `static` directory. Default: `'/'`.
 -   **root**: root directory containing API documentation. May be either an absolute path or a path relative to the current working directory. This directory will be mounted onto the virtual path `/docs/api/`. Default: current working directory.
