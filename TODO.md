@@ -133,6 +133,7 @@
     - sudo systemctl status docs_server@1
     - sudo journalctl -r -u docs_server@1
     
+    - cd /path/to/github-event-server/
     - sudo rm -f etc/systemd/system/events_server@.service
     - sudo cp ./etc/systemd/events_server@.service /etc/systemd/system/events_server@.service
     - sudo systemctl daemon-reload
