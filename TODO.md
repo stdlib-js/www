@@ -115,6 +115,7 @@
 
 30. (tools) General update sequence...
 
+    - cd /path/to/www/
     - sudo git pull origin master
     - sudo rm -rf ./node_modules
     - sudo npm run install:prod
@@ -125,17 +126,19 @@
     - sudo service nginx restart
     - systemctl status nginx.service
     - sudo rm -f etc/systemd/system/docs_server@.service
-    - sudo rm -f etc/systemd/system/events_server@.service
     - sudo cp ./etc/systemd/docs_server@.service /etc/systemd/system/docs_server@.service
-    - sudo cp ./etc/systemd/events_server@.service /etc/systemd/system/events_server@.service
     - sudo systemctl daemon-reload
     - sudo systemctl enable docs_server@1
-    - sudo systemctl enable events_server@1
     - sudo systemctl start docs_server@1
-    - sudo systemctl start events_server@1
     - sudo systemctl status docs_server@1
-    - sudo systemctl status events_server@1
     - sudo journalctl -r -u docs_server@1
+    
+    - sudo rm -f etc/systemd/system/events_server@.service
+    - sudo cp ./etc/systemd/events_server@.service /etc/systemd/system/events_server@.service
+    - sudo systemctl daemon-reload
+    - sudo systemctl start events_server@1
+    - sudo systemctl enable events_server@1
+    - sudo systemctl status events_server@1
     - sudo journalctl -r -u events_server@1
     
     - <https://blog.codeship.com/running-node-js-linux-systemd/>
