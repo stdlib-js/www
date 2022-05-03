@@ -58,7 +58,8 @@ var RENDER_METHOD_NAMES = {
 	'readme': '_renderReadme',
 	'benchmark': '_renderBenchmark',
 	'test': '_renderTest',
-	'help': '_renderHelp'
+	'help': '_renderHelp',
+	'error': '_renderError'
 };
 var SIDE_MENU_TIMEOUT = 1000; // milliseconds
 
@@ -77,6 +78,13 @@ function matchCurrentPath( pathname, version ) {
 	var match;
 
 	// Try to find the matching route...
+	match = matchPath( pathname, {
+		'path': routes.ERROR,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
 	match = matchPath( pathname, {
 		'path': routes.SEARCH,
 		'exact': true
@@ -811,6 +819,27 @@ class App extends React.Component {
 	}
 
 	/**
+	* Renders an error page.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @returns {ReactElement} React element
+	*/
+	_renderError( match ) {
+		return (
+			<Fragment>
+				<Head
+					title='Error'
+					description={ config.description }
+					url={ match.url }
+				/>
+				<p>Hello World!</p>
+			</Fragment>
+		);
+	}
+
+	/**
 	* Returns a rendering function.
 	*
 	* @private
@@ -934,6 +963,11 @@ class App extends React.Component {
 						exact
 						from={ routes.PACKAGE_INDEX }
 						to={ routes.PACKAGE_DEFAULT }
+					/>
+					<Route
+						exact
+						path={ routes.ERROR }
+						render={ this._renderer( 'error' ) }
 					/>
 					<Route
 						exact
