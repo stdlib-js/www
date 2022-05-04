@@ -31,6 +31,7 @@ import TopNav from './components/top-nav/index.jsx';
 import Search from './components/search/index.jsx';
 import Head from './components/head/new_page.jsx';
 import Help from './components/help/index.jsx';
+import ErrorDecoder from './components/error-decoder/index.jsx';
 import TestRunner from './components/runner/test.jsx';
 import BenchmarkRunner from './components/runner/benchmark.jsx';
 import Chat from './components/chat/index.jsx';
@@ -59,7 +60,7 @@ var RENDER_METHOD_NAMES = {
 	'benchmark': '_renderBenchmark',
 	'test': '_renderTest',
 	'help': '_renderHelp',
-	'error': '_renderError'
+	'error': '_renderErrorDecoder'
 };
 var SIDE_MENU_TIMEOUT = 1000; // milliseconds
 
@@ -79,7 +80,7 @@ function matchCurrentPath( pathname, version ) {
 
 	// Try to find the matching route...
 	match = matchPath( pathname, {
-		'path': routes.ERROR,
+		'path': routes.ERROR_DECODER,
 		'exact': true
 	});
 	if ( match ) {
@@ -430,6 +431,16 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked upon closing the error decoder.
+	*
+	* @private
+	*/
+	_onErrorDecoderClose = () => {
+		// TODO: navigate to home
+		console.log( 'CLOSE ERROR DECODER' );
+	}
+
+	/**
 	* Renders a notification message if present in query string.
 	*
 	* @private
@@ -489,7 +500,7 @@ class App extends React.Component {
 			'typescript': false
 		};
 		// Update property values based on the current "view"...
-		if ( path === routes.VERSION_DEFAULT || path === routes.HELP ) {
+		if ( path === routes.VERSION_DEFAULT || path === routes.HELP || path === routes.ERROR_DECODER ) {
 			props.home = true;
 			props.version = match.params.version;
 		} else if ( path === routes.SEARCH ) {
@@ -819,14 +830,17 @@ class App extends React.Component {
 	}
 
 	/**
-	* Renders an error page.
+	* Renders an error decoder.
 	*
 	* @private
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
 	* @returns {ReactElement} React element
 	*/
-	_renderError( match ) {
+	_renderErrorDecoder( match ) {
+		console.log( this.props.location.search );
+
+		// TODO: parse query string and pass to component
 		return (
 			<Fragment>
 				<Head
@@ -834,7 +848,9 @@ class App extends React.Component {
 					description={ config.description }
 					url={ match.url }
 				/>
-				<p>Hello World!</p>
+				<ErrorDecoder
+					onClose={ this._onErrorDecoderClose }
+				/>
 			</Fragment>
 		);
 	}
@@ -966,7 +982,7 @@ class App extends React.Component {
 					/>
 					<Route
 						exact
-						path={ routes.ERROR }
+						path={ routes.ERROR_DECODER }
 						render={ this._renderer( 'error' ) }
 					/>
 					<Route
