@@ -838,8 +838,13 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderErrorDecoder( match ) {
-		console.log( this.props.location.search );
-
+		var query = this.props.location.search || '';
+		if ( query ) {
+			query = qs.parse( query, {
+				'ignoreQueryPrefix': true
+			});
+			console.log( JSON.stringify( query ) );
+		}
 		// TODO: parse query string and pass to component
 		return (
 			<Fragment>
