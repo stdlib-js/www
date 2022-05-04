@@ -30,7 +30,7 @@ var styles = require( '@mui/styles' );
 
 var ServerStyleSheets = styles.ServerStyleSheets;
 var StylesProvider = styles.StylesProvider;
-var TITLE = 'Error | stdlib';
+var TITLE = 'Error Decoder | stdlib';
 
 
 // MAIN //
