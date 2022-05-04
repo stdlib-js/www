@@ -21,10 +21,16 @@
 
 // MODULES //
 
-var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var format = require( '@stdlib/string/format' );
-var id2msg = require( '@stdlib/error/tools/id2msg' );
-var id2pkg = require( '@stdlib/error/tools/id2pkg' );
+var React = require( 'react' );
+var render = require( 'react-dom/server' ).renderToString;
+var styles = require( '@mui/styles' );
+
+
+// VARIABLES //
+
+var ServerStyleSheets = styles.ServerStyleSheets;
+var StylesProvider = styles.StylesProvider;
+var TITLE = 'Error | stdlib';
 
 
 // MAIN //
@@ -33,12 +39,20 @@ var id2pkg = require( '@stdlib/error/tools/id2pkg' );
 * Defines a route handler for parsing an error code.
 *
 * @private
+* @param {Options} opts - options
+* @param {Template} opts.template - application template
+* @param {(ReactComponent|null)} opts.app - application component
+* @param {Object} opts.meta - default meta data
 * @returns {Object} route declaration
 */
-function route() {
-	var schema = {
+function route( opts ) {
+	var schema;
+	var tmpl;
+	var App;
+
+	schema = {
 		'method': 'GET',
-		'url': '/docs/api/error',
+		'url': '/docs/api/:version/error',
 		'schema': {
 			'querystring': {
 				'code': {
@@ -57,6 +71,9 @@ function route() {
 		'handler': onRequest
 	};
 
+	App = opts.app;
+	tmpl = opts.template.clone();
+
 	return schema;
 
 	/**
@@ -68,45 +85,53 @@ function route() {
 	* @returns {void}
 	*/
 	function onRequest( request, reply ) {
-		var query = request.query;
-		var code = query.code;
-		var args = query[ 'arg[]' ];
-		var out;
+		var sheets;
+		var html;
+		var url;
+		var css;
+		var ctx;
+		var v;
 
-		if ( isString( args ) ) {
-			args = [ args ];
-		}
-		// Split code into package prefix identifier (first three characters) and error message identifier (last two characters):
-		var pkg = id2pkg( code.substring( 0, 3 ) );
-		var msg = id2msg( code.substring( 3 ) );
+		v = request.params.version;
+		request.log.info( 'Version: %s', v );
 
-		if ( !pkg || !msg ) {
-			// Display message if neither package nor message can be resolved:
-			out = [
-				'<div class="error-decoder-wrapper" >',
-				'\t<h1>Error Message:</h1>',
-				'',
-				'\t<pre>',
-				'\t\tInvalid error code; unable to resolve package or message.',
-				'\t</pre>',
-				'</div>'
-			].join( '\n' );
-		} else {
-			// Format error message:
-			msg = format.apply( null, [ msg ].concat( args ) );
-			out = [
-				'<div class="error-decoder-wrapper" >',
-				'<h1>Error Message:</h1>',
-				'',
-				'\t<p>The following error occurred in package `'+pkg+'`:</p>',
-				'\t<pre>',
-				'\t\t'+msg,
-				'\t</pre>',
-				'</div>'
-			].join( '\n' );
+		url = request.url;
+		if ( url[ url.length-1 ] === '/' ) {
+			url = url.substring( 0, url.length-1 );
 		}
+		request.log.info( 'Resolved URL: %s', url );
+
+		request.log.info( 'Returning application.' );
 		reply.type( 'text/html' );
-		reply.send( out );
+
+		// Initialize a means for generating Material-UI CSS:
+		sheets = new ServerStyleSheets();
+
+		// Render the application component as parameterized by request data...
+		ctx = {};
+		html = render(sheets.collect(
+			<StylesProvider>
+				<App
+					url={ url }
+					version={ v }
+					data={ {} }
+					context={ ctx }
+				/>
+			</StylesProvider>
+		));
+
+		// Generate Material-UI CSS:
+		css = sheets.toString();
+
+		// Insert the rendered application into the application template...
+		tmpl.title( TITLE )
+			.description( opts.meta.description )
+			.url( url )
+			.css( css )
+			.content( html );
+
+		// Send the response data:
+		reply.send( tmpl.toString() );
 	}
 }
 
