@@ -436,8 +436,8 @@ class App extends React.Component {
 	* @private
 	*/
 	_onErrorDecoderClose = () => {
-		// TODO: navigate to home
-		console.log( 'CLOSE ERROR DECODER' );
+		// Manually update the history to trigger navigation to the home page:
+		this.props.history.push( this._prevLocation );
 	}
 
 	/**
@@ -667,7 +667,7 @@ class App extends React.Component {
 		url = substringBeforeLast( match.url, '/' );
 		t = pkg2title( pkg );
 		if ( flg ) {
-			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
+			// FIXME: we are hardcoding `develop`, but we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
 			version = 'develop';
 			return (
 				<Fragment>
@@ -726,7 +726,7 @@ class App extends React.Component {
 		}
 		url = substringBeforeLast( match.url, '/' );
 		if ( flg ) {
-			// FIXME: we are hardcoding `develop`, but the we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
+			// FIXME: we are hardcoding `develop`, but we should use `match.params.version`, and, if `latest`, we should map to the first version in `config.versions`...
 			version = 'develop';
 			t = pkg2title( match.params.pkg );
 			return (
@@ -838,14 +838,21 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderErrorDecoder( match ) {
-		var query = this.props.location.search || '';
+		var query;
+		var code;
+		var args;
+
+		query = this.props.location.search || '';
 		if ( query ) {
 			query = qs.parse( query, {
 				'ignoreQueryPrefix': true
 			});
-			console.log( JSON.stringify( query ) );
+			code = query.code;
+			args = query.args;
+			if ( typeof args === 'string' ) {
+				args = [ args ];
+			}
 		}
-		// TODO: parse query string and pass to component
 		return (
 			<Fragment>
 				<Head
@@ -854,6 +861,8 @@ class App extends React.Component {
 					url={ match.url }
 				/>
 				<ErrorDecoder
+					code={ code }
+					args={ args }
 					onClose={ this._onErrorDecoderClose }
 				/>
 			</Fragment>
@@ -955,8 +964,9 @@ class App extends React.Component {
 		// Whenever we navigate to a new page, reset the window scroll position and focus...
 		if ( this.props.location !== prevProps.location ) {
 			resetScroll();
-			this._focusRef.current.focus();
-
+			if ( this._focusRef.current ) {
+				this._focusRef.current.focus();
+			}
 			if (
 				this.props.location.search !== prevProps.location.search &&
 				!prevState.notification
