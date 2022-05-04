@@ -849,7 +849,7 @@ class App extends React.Component {
 		return (
 			<Fragment>
 				<Head
-					title='Error'
+					title='Error Decoder'
 					description={ config.description }
 					url={ match.url }
 				/>
