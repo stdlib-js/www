@@ -951,6 +951,18 @@ h2 {
 }
 
 /*
+* Error decoder.
+*/
+
+.readme.error-decoder h1 {
+	display: flex;
+}
+
+.readme.error-decoder h1 span {
+	flex-grow: 1;
+}
+
+/*
 * Main navigation.
 */
 
