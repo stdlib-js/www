@@ -178,7 +178,7 @@ class ClientApp extends React.Component {
 						version={ this.state.version }
 						data={ this.state.data }
 						query={ this.state.query }
-						readme=""
+						content=""
 						onVersionChange={ this._onVersionChange }
 						onPackageChange={ this._onPackageChange }
 					/>

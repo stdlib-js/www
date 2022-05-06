@@ -115,6 +115,7 @@ function route( opts ) {
 					url={ url }
 					version={ v }
 					data={ {} }
+					query=''
 					context={ ctx }
 				/>
 			</StylesProvider>

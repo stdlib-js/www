@@ -36,7 +36,7 @@ import App from './app.jsx';
 * @param {string} props.version - documentation version
 * @param {Object} props.data - package data
 * @param {string} props.query - search query
-* @param {string} props.readme - README content
+* @param {string} props.content - initial content
 * @returns {ReactElement} React element
 */
 function ServerApp( props ) {
@@ -48,7 +48,7 @@ function ServerApp( props ) {
 					version={ props.version }
 					data={ props.data }
 					query={ props.query }
-					readme={ props.readme }
+					content={ props.content }
 				/>
 			</HelmetProvider>
 		</StaticRouter>

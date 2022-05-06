@@ -180,7 +180,7 @@ class App extends React.Component {
 	* @param {StringArray} props.data.namespaces - list of namespace packages
 	* @param {StringArray} props.data.descriptions - list of package descriptions
 	* @param {string} props.query - initial search query
-	* @param {string} props.readme - initial README content
+	* @param {string} props.content - initial content
 	* @param {Callback} props.onVersionChange - callback to invoke upon changing the documentation version
 	* @param {Callback} props.onPackageChange - callback to invoke upon changing the current package
 	* @returns {ReactComponent} React component
@@ -618,7 +618,7 @@ class App extends React.Component {
 					prev={ prev }
 					next={ next }
 					url={ match.url }
-					content={ this.props.readme }
+					content={ this.props.content }
 					onClick={ this._onReadmeClick }
 				/>
 			</Fragment>

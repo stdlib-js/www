@@ -250,7 +250,7 @@ function route( opts ) {
 						version={ v }
 						data={ data }
 						query=''
-						readme={ file }
+						content={ file }
 						context={ ctx }
 					/>
 				</StylesProvider>
