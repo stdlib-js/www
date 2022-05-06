@@ -25,35 +25,95 @@ import ClearIcon from './../icons/close.jsx';
 // MAIN //
 
 /**
-* Component for decoding error messages.
+* Component for displaying decoded error messages.
 *
 * @private
-* @param {Object} props - component properties
-* @param {Callback} props.onClose - callback to invoke upon closing the error decoder
-* @returns {ReactElement} React element
 */
-function ErrorDecoder( props ) {
-	// TODO: handle query string properties
-	return (
-		<Fragment>
-			<div id="readme" className="readme error-decoder" >
-				<h1>
-					<span>Error Decoder</span>
-					<button
-						className="icon-button"
-						title="Close decoder"
-						aria-label="close"
-						onClick={ props.onClose }
-					>
-						<ClearIcon />
-					</button>
-				</h1>
-				<section>
-					<p>Hello World!</p>
-				</section>
+class ErrorDecoder extends React.Component {
+	/**
+	* Returns a component for displaying decoding error messages.
+	*
+	* @private
+	* @constructor
+	* @param {Object} props - component properties
+	* @param {string} props.content - error message content
+	* @param {Callback} props.onClose - callback to invoke upon closing the error decoder
+	* @returns {ReactComponent} React component
+	*/
+	constructor( props ) {
+		super( props );
+	}
+
+	/**
+	* Renders a landing message.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderLanding() {
+		return (
+			<p className="error-decoder-landing">
+				When you encounter an exception, you will receive a link to this page and for that specific error, and this page will display the full error message in the space below.
+			</p>
+		);
+	}
+
+	/**
+	* Renders an error message.
+	*
+	* @private
+	* @param {string} msg - error message
+	* @returns {ReactElement} React element
+	*/
+	_renderError( msg ) {
+		return (
+			<div className="error-decoder-message">
+				<p>
+					The full text of the error you encountered is the following:
+				</p>
+				<code>
+					{ msg }
+				</code>
 			</div>
-		</Fragment>
-	);
+		);
+	}
+
+	/**
+	* Renders the component.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	render() {
+		return (
+			<Fragment>
+				<div id="readme" className="readme error-decoder" >
+					<h1>
+						<span>Error Decoder</span>
+						<button
+							className="icon-button"
+							title="Close decoder"
+							aria-label="close"
+							onClick={ this.props.onClose }
+						>
+							<ClearIcon />
+						</button>
+					</h1>
+					<section className="error-decoder-content">
+						<blockquote>
+							<p>
+								In minified stdlib production builds, we avoid including full error messages in order to reduce bundle sizes and, thus, the number of bytes sent over the wire.
+							</p>
+						</blockquote>
+						<p>
+							If you are directly depending on stdlib packages and wanting to debug locally, one option is to install unminified stdlib packages and bundle from source, thus allowing access to full error messages. Otherwise, if you encounter an exception while using a production build, this page will reassemble the original text of the error.
+						</p>
+						{ this.props.content ? this._renderError( this.props.content ) : this._renderLanding() }
+					</section>
+				</div>
+			</Fragment>
+		);
+	}
 }
 
 

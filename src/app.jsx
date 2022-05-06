@@ -838,21 +838,6 @@ class App extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	_renderErrorDecoder( match ) {
-		var query;
-		var code;
-		var args;
-
-		query = this.props.location.search || '';
-		if ( query ) {
-			query = qs.parse( query, {
-				'ignoreQueryPrefix': true
-			});
-			code = query.code;
-			args = query.args;
-			if ( typeof args === 'string' ) {
-				args = [ args ];
-			}
-		}
 		return (
 			<Fragment>
 				<Head
@@ -861,8 +846,7 @@ class App extends React.Component {
 					url={ match.url }
 				/>
 				<ErrorDecoder
-					code={ code }
-					args={ args }
+					content={ this.props.content }
 					onClose={ this._onErrorDecoderClose }
 				/>
 			</Fragment>
