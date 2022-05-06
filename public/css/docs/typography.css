@@ -336,6 +336,15 @@ a:active {
 }
 
 /*
+* Error decoder.
+*/
+
+.error-decoder-landing {
+	font-size: 1.5em;
+	color: #808080; /* grey */
+}
+
+/*
 * Navigation.
 */
 

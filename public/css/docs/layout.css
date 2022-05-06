@@ -962,6 +962,14 @@ h2 {
 	flex-grow: 1;
 }
 
+.readme.error-decoder .error-decoder-content > p {
+	margin-top: 2em;
+}
+
+.readme.error-decoder .error-decoder-landing {
+	margin-top: 2em;
+}
+
 /*
 * Main navigation.
 */
