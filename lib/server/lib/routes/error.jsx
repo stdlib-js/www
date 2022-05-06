@@ -116,6 +116,7 @@ function route( opts ) {
 					version={ v }
 					data={ {} }
 					query=''
+					content=''
 					context={ ctx }
 				/>
 			</StylesProvider>
