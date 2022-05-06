@@ -24,6 +24,10 @@
 var React = require( 'react' );
 var render = require( 'react-dom/server' ).renderToString;
 var styles = require( '@mui/styles' );
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var id2msg = require( '@stdlib/error/tools/id2msg' );
+var id2pkg = require( '@stdlib/error/tools/id2pkg' );
 
 
 // VARIABLES //
@@ -85,11 +89,16 @@ function route( opts ) {
 	* @returns {void}
 	*/
 	function onRequest( request, reply ) {
+		var content;
 		var sheets;
 		var html;
+		var args;
 		var url;
 		var css;
 		var ctx;
+		var pkg;
+		var msg;
+		var q;
 		var v;
 
 		v = request.params.version;
@@ -100,6 +109,26 @@ function route( opts ) {
 			url = url.substring( 0, url.length-1 );
 		}
 		request.log.info( 'Resolved URL: %s', url );
+
+		q = request.query;
+
+		// Split the error code into a package prefix identifier (first three characters) and an error message identifier (last two characters):
+		pkg = id2pkg( q.code.substring( 0, 3 ) );
+		msg = id2msg( q.code.substring( 3 ) );
+
+		if ( !pkg ) {
+			content = '(invalid error code. Cannot display error message. Unable to resolve the package from which error originated based on the provided error code.)';
+		} else if ( msg ) {
+			args = q[ 'arg[]' ];
+			if ( isString( args ) ) {
+				args = [ msg, args ];
+			} else {
+				args.unshift( msg );
+			}
+			content = format.apply( null, args );
+		} else {
+			content = '(invalid error code. Cannot display error message. Unable to resolve an error message associated with the provided error code.)';
+		}
 
 		request.log.info( 'Returning application.' );
 		reply.type( 'text/html' );
@@ -116,7 +145,7 @@ function route( opts ) {
 					version={ v }
 					data={ {} }
 					query=''
-					content=''
+					content={ content }
 					context={ ctx }
 				/>
 			</StylesProvider>
