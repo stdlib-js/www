@@ -468,7 +468,7 @@ class App extends React.Component {
 					severity="success"
 					sx={ { 'width': '100%' } }
 				>
-					{msg}
+					{ msg }
 				</Alert>
 			</Snackbar>
 		);
