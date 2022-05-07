@@ -25,7 +25,7 @@ var React = require( 'react' );
 var render = require( 'react-dom/server' ).renderToString;
 var styles = require( '@mui/styles' );
 var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
-var errorMessage = require( './../error_message.js' );
+var errorMessage = require( 'error-message' );
 
 
 // VARIABLES //
