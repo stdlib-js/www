@@ -107,7 +107,7 @@ function route( opts ) {
 		request.log.info( 'Resolved URL: %s', url );
 
 		q = request.query;
-		if ( q.code ) {
+		if ( isString( q.code ) ) {
 			args = q[ 'arg[]' ];
 			if ( args === void 0 ) {
 				args = [];
