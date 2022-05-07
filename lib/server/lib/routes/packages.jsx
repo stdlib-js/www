@@ -26,7 +26,7 @@ var React = require( 'react' );
 var render = require( 'react-dom/server' ).renderToString;
 var styles = require( '@mui/styles' );
 var readFile = require( '@stdlib/fs/read-file' );
-var pkg2title = require( './../title.js' );
+var pkg2title = require( 'pkg2title' );
 var packageData = require( 'package-data' );
 var parallel = require( './../parallel.js' );
 
