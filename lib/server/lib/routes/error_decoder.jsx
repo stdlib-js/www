@@ -107,11 +107,15 @@ function route( opts ) {
 		request.log.info( 'Resolved URL: %s', url );
 
 		q = request.query;
-		args = q[ 'arg[]' ];
-		if ( isString( args ) ) {
-			args = [ args ];
+		if ( q.code ) {
+			args = q[ 'arg[]' ];
+			if ( args === void 0 ) {
+				args = [];
+			} else if ( isString( args ) ) {
+				args = [ args ];
+			}
+			content = errorMessage( q.code, args );
 		}
-		content = errorMessage( q.code, args );
 
 		request.log.info( 'Returning application.' );
 		reply.type( 'text/html' );
