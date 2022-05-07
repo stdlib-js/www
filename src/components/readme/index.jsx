@@ -69,7 +69,6 @@ class Readme extends React.Component {
 	*
 	* @private
 	* @param {string} path - fragment path (i.e., URL)
-	* @returns {string} HTML string
 	*/
 	_fetchFragment( path ) {
 		var self;
