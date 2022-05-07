@@ -848,8 +848,10 @@ class App extends React.Component {
 				'ignoreQueryPrefix': true
 			});
 			code = query.code;
-			args = query.args;
-			if ( typeof args === 'string' ) {
+			args = query.arg;
+			if ( args === void 0 ) {
+				args = [];
+			} else if ( typeof args === 'string' ) {
 				args = [ args ];
 			}
 		}
