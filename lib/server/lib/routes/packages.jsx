@@ -28,7 +28,7 @@ var styles = require( '@mui/styles' );
 var readFile = require( '@stdlib/fs/read-file' );
 var pkg2title = require( 'pkg2title' );
 var packageData = require( 'package-data' );
-var parallel = require( './../parallel.js' );
+var parallel = require( 'parallel' );
 
 
 // VARIABLES //
