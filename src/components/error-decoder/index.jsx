@@ -20,6 +20,7 @@
 
 import React, { Fragment } from 'react';
 import fetchMessage from './../../utils/fetch_error_message.js';
+import log from './../../utils/log.js';
 import NotFound from './../not-found/index.jsx';
 import ClearIcon from './../icons/close.jsx';
 
