@@ -341,7 +341,17 @@ a:active {
 
 .error-decoder-landing {
 	font-size: 1.5em;
-	color: #808080; /* grey */
+	color: var(--blockquote-color);
+}
+
+.error-decoder-message {
+	font-weight: 600;
+}
+
+.error-decoder-message pre > code {
+	color: var(--code-decoded-error);
+
+	white-space: pre-wrap;
 }
 
 /*

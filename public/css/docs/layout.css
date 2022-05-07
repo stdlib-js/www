@@ -962,12 +962,20 @@ h2 {
 	flex-grow: 1;
 }
 
-.readme.error-decoder .error-decoder-content > p {
+.readme.error-decoder .error-decoder-content > p,
+.readme.error-decoder .error-decoder-message,
+.readme.error-decoder .error-decoder-message pre {
 	margin-top: 2em;
 }
 
-.readme.error-decoder .error-decoder-landing {
-	margin-top: 2em;
+.readme.error-decoder p.error-decoder-landing {
+	margin-top: 1.5em;
+}
+
+.readme.error-decoder .error-decoder-message pre > code {
+	display: block;
+
+	padding: 1em 1em;
 }
 
 /*

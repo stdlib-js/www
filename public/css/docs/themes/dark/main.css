@@ -163,4 +163,9 @@ html[data-theme="dark"] {
 	* Keywords should be purple.
 	*/
 	--code-keyword-color: #dcc6e0;    /* purple */
+
+	/*
+	* Decoded error messages should be salmon.
+	*/
+	--code-decoded-error: #ffa07a;    /* salmon */
 }

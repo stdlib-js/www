@@ -412,7 +412,7 @@ img {
 }
 
 /*
-* Code containers should have slightly rounded corners and have a background background to distinguish the container from surrounding elements.
+* Code containers should have slightly rounded corners and have a background color to distinguish the container from surrounding elements.
 */
 .readme code {
 	background-color: var(--pre-background-color); /* fallback */
