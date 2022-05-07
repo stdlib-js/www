@@ -19,7 +19,9 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import fetchMessage from './../../utils/fetch_error_message.js';
+import pkgPath from './../../utils/pkg_doc_path.js';
 import log from './../../utils/log.js';
 import NotFound from './../not-found/index.jsx';
 import ClearIcon from './../icons/close.jsx';
@@ -129,11 +131,17 @@ class ErrorDecoder extends React.Component {
 		return (
 			<div className="error-decoder-message">
 				<p>
-					The full text of the error you encountered occurred in the package <a href=""><code>{ this.state.pkg }</code></a> and has the following message:
+					The full text of the error you encountered is the following:
 				</p>
 				<pre><code>
 { msg }
 				</code></pre>
+				<p>
+					<span>Package: </span>
+					<Link to={ pkgPath( this.state.pkg, 'latest' ) } >
+						{ this.state.pkg }
+					</Link>
+				</p>
 			</div>
 		);
 	}
