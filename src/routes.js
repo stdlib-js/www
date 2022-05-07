@@ -42,7 +42,7 @@ const routes = {
 	'PACKAGE_BENCHMARKS': config.mount+':version/@stdlib/:pkg+/benchmarks',
 	'PACKAGE_TESTS': config.mount+':version/@stdlib/:pkg+/tests',
 
-	'ERROR_DECODER': config.mount+':version/error'
+	'ERROR_DECODER': config.mount+':version/error/decoder'
 };
 
 
