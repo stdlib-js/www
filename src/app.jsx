@@ -457,11 +457,17 @@ class App extends React.Component {
 		}
 		return (
 			<Snackbar
-				open={this.state.notification} autoHideDuration={6000}
-				onClose={this._closeNotification}
-				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+				open={ this.state.notification }
+				autoHideDuration={ 6000 }
+				onClose={ this._closeNotification }
+				anchorOrigin={ { 'vertical': 'top', 'horizontal': 'center' } }
 			>
-				<Alert onClose={this._closeNotification} variant="filled" severity="success" sx={{ width: '100%' }} >
+				<Alert
+					onClose={ this._closeNotification }
+					variant="filled"
+					severity="success"
+					sx={ { 'width': '100%' } }
+				>
 					{msg}
 				</Alert>
 			</Snackbar>
