@@ -41,6 +41,7 @@ class ErrorDecoder extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.code - error code
 	* @param {Array} props.args - argument list
+	* @param {string} props.pkg - package name
 	* @param {Callback} props.onClose - callback to invoke upon closing the error decoder
 	* @param {string} [props.content] - initial error message content
 	* @returns {ReactComponent} React component
@@ -48,6 +49,9 @@ class ErrorDecoder extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
+			// Affected package:
+			'pkg': props.pkg || '',
+
 			// Error message to render:
 			'content': props.content || '',
 
@@ -82,6 +86,7 @@ class ErrorDecoder extends React.Component {
 				// Guard against race conditions (e.g., a user subsequently navigated to a different error decoder page whose associated error message already resolved)...
 				if ( code === self.props.code && JSON.stringify( args ) === JSON.stringify( self.props.args ) ) {
 					self.setState({
+						'pkg': '',
 						'content': '',
 						'notFound': true
 					});
@@ -91,7 +96,8 @@ class ErrorDecoder extends React.Component {
 			// Guard against race conditions (e.g.,a user subsequently navigated to a different error decoder page whose associated error message already resolved)...
 			if ( res.code === self.props.code && JSON.stringify( res.args ) === JSON.stringify( self.props.args ) ) {
 				self.setState({
-					'content': res.message,
+					'pkg': res.pkg,
+					'content': res.msg,
 					'notFound': false
 				});
 			}
@@ -123,7 +129,7 @@ class ErrorDecoder extends React.Component {
 		return (
 			<div className="error-decoder-message">
 				<p>
-					The full text of the error you encountered is the following:
+					The full text of the error you encountered occurred in the package { this.state.pkg } and has the following message:
 				</p>
 				<code>
 					{ msg }

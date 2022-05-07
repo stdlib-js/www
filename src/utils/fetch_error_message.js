@@ -65,7 +65,8 @@ function fetchErrorMessage( version, code, args, clbk ) {
 	* @param {Object} json - JSON object
 	* @param {string} json.code - error code
 	* @param {Array} json.args - argument list
-	* @param {string} json.message - formatted error message
+	* @param {string} json.pkg - package name
+	* @param {string} json.msg - formatted error message
 	*/
 	function onResponse( json ) {
 		done( null, json );
