@@ -604,6 +604,8 @@ class SideMenuDrawer extends React.Component {
 
 		active = ( this.props.pkg === pkg );
 
+		// FIXME: apply class for setting padding, rather than manually computing and setting (this is necessary for response design; e.g., when zooming in, etc)
+
 		return (
 			<ListItem
 				key={ name }
