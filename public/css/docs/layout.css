@@ -963,7 +963,7 @@ h2 {
 }
 
 .readme.error-decoder .error-decoder-content > p,
-.readme.error-decoder .error-decoder-message,
+.readme.error-decoder .error-decoder-message > p,
 .readme.error-decoder .error-decoder-message pre {
 	margin-top: 2em;
 }
