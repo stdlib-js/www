@@ -136,12 +136,16 @@ class ErrorDecoder extends React.Component {
 				<pre><code>
 { msg }
 				</code></pre>
-				<p>
-					<span>Package: </span>
-					<Link to={ pkgPath( this.state.pkg, 'latest' ) } >
-						{ this.state.pkg }
-					</Link>
-				</p>
+				{ this.state.pkg ?
+					<p>
+						<span>Package: </span>
+						<Link to={ pkgPath( this.state.pkg, 'latest' ) } >
+							{ this.state.pkg }
+						</Link>
+					</p>
+					:
+					null
+				}
 			</div>
 		);
 	}
