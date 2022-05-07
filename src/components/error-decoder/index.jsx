@@ -19,6 +19,8 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
+import fetchMessage from './../../utils/fetch_error_message.js';
+import NotFound from './../not-found/index.jsx';
 import ClearIcon from './../icons/close.jsx';
 
 
@@ -36,12 +38,63 @@ class ErrorDecoder extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
-	* @param {string} props.content - error message content
+	* @param {string} props.code - error code
+	* @param {Array} props.args - argument list
 	* @param {Callback} props.onClose - callback to invoke upon closing the error decoder
+	* @param {string} [props.content] - initial error message content
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
 		super( props );
+		this.state = {
+			// Error message to render:
+			'content': props.content || '',
+
+			// Boolean indicating whether a resource could not be found:
+			'notFound': false
+		}
+	}
+
+	/**
+	* Fetches a formatted error message.
+	*
+	* @private
+	* @param {string} code - error code
+	* @param {Array} args - argument list
+	*/
+	_fetchMessage( code, args ) {
+		var self = this;
+
+		// WARNING: we hardcode the version to `latest`, as we expect the underlying error database to be append-only (meaning, the error message database will contain the error messages from the current version and all prior versions)...
+		fetchMessage( 'latest', code, args, clbk );
+
+		/**
+		* Callback invoked upon fetching a formatted error message.
+		*
+		* @private
+		* @param {(Error|null)} error - error object
+		* @param {Object} res - formatted error message
+		* @returns {void}
+		*/
+		function clbk( error, res ) {
+			if ( error ) {
+				// Guard against race conditions (e.g., a user subsequently navigated to a different error decoder page whose associated error message already resolved)...
+				if ( code === self.props.code && JSON.stringify( args ) === JSON.stringify( self.props.args ) ) {
+					self.setState({
+						'content': '',
+						'notFound': true
+					});
+				}
+				return log( error );
+			}
+			// Guard against race conditions (e.g.,a user subsequently navigated to a different error decoder page whose associated error message already resolved)...
+			if ( res.code === self.props.code && JSON.stringify( res.args ) === JSON.stringify( self.props.args ) ) {
+				self.setState({
+					'content': res.message,
+					'notFound': false
+				});
+			}
+		}
 	}
 
 	/**
@@ -53,7 +106,7 @@ class ErrorDecoder extends React.Component {
 	_renderLanding() {
 		return (
 			<p className="error-decoder-landing">
-				When you encounter an exception, you will receive a link to this page and for that specific error, and this page will display the full error message in the space below.
+				When you encounter an exception, you will receive a link to this page for that specific error, and, upon opening the provided link, this page will display the full error message in the space below.
 			</p>
 		);
 	}
@@ -79,6 +132,28 @@ class ErrorDecoder extends React.Component {
 	}
 
 	/**
+	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*
+	* @private
+	*/
+	componentDidMount() {
+		this._fetchMessage( this.props.code, this.props.args );
+	}
+
+	/**
+	* Callback invoked immediately after updating a component.
+	*
+	* @private
+	* @param {Object} prevProps - previous properties
+	* @param {Object} prevState - previous state
+	*/
+	componentDidUpdate( prevProps ) {
+		if ( this.props.code !== prevProps.code || JSON.stringify( this.props.args ) !== JSON.stringify( prevProps.args ) ) {
+			this._fetchMessage( this.props.code, this.props.args );
+		}
+	}
+
+	/**
 	* Renders the component.
 	*
 	* @private
@@ -88,28 +163,34 @@ class ErrorDecoder extends React.Component {
 		return (
 			<Fragment>
 				<div id="readme" className="readme error-decoder" >
-					<h1>
-						<span>Error Decoder</span>
-						<button
-							className="icon-button"
-							title="Close decoder"
-							aria-label="close"
-							onClick={ this.props.onClose }
-						>
-							<ClearIcon />
-						</button>
-					</h1>
-					<section className="error-decoder-content">
-						<blockquote>
-							<p>
-								In minified stdlib production builds, we avoid including full error messages in order to reduce bundle sizes and, thus, the number of bytes sent over the wire.
-							</p>
-						</blockquote>
-						<p>
-							If you are directly depending on stdlib packages and wanting to debug locally, one option is to install unminified stdlib packages and bundle from source, thus allowing access to full error messages. Otherwise, if you encounter an exception while using a production build, this page will reassemble the original text of the error.
-						</p>
-						{ this.props.content ? this._renderError( this.props.content ) : this._renderLanding() }
-					</section>
+					{ ( this.state.notFound ) ?
+						<NotFound />
+						:
+						<Fragment>
+							<h1>
+								<span>Error Decoder</span>
+								<button
+									className="icon-button"
+									title="Close decoder"
+									aria-label="close"
+									onClick={ this.props.onClose }
+								>
+									<ClearIcon />
+								</button>
+							</h1>
+							<section className="error-decoder-content">
+								<blockquote>
+									<p>
+										In minified stdlib production builds, we avoid including full error messages in order to reduce bundle sizes and, thus, the number of bytes sent over the wire.
+									</p>
+								</blockquote>
+								<p>
+									If you are directly depending on stdlib packages and wanting to debug locally, one option is to install unminified stdlib packages and bundle from source, thus allowing access to full error messages. Otherwise, if you encounter an exception while using a production build, this page will reassemble the original text of the error.
+								</p>
+								{ this.state.content ? this._renderError( this.state.content ) : this._renderLanding() }
+							</section>
+						</Fragment>
+					}
 				</div>
 			</Fragment>
 		);
