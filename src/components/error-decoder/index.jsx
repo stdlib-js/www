@@ -41,8 +41,8 @@ class ErrorDecoder extends React.Component {
 	* @param {Object} props - component properties
 	* @param {string} props.code - error code
 	* @param {Array} props.args - argument list
-	* @param {string} props.pkg - package name
 	* @param {Callback} props.onClose - callback to invoke upon closing the error decoder
+	* @param {string} [props.pkg] - package name
 	* @param {string} [props.content] - initial error message content
 	* @returns {ReactComponent} React component
 	*/
@@ -129,11 +129,11 @@ class ErrorDecoder extends React.Component {
 		return (
 			<div className="error-decoder-message">
 				<p>
-					The full text of the error you encountered occurred in the package { this.state.pkg } and has the following message:
+					The full text of the error you encountered occurred in the package <a href=""><code>{ this.state.pkg }</code></a> and has the following message:
 				</p>
-				<code>
-					{ msg }
-				</code>
+				<pre><code>
+{ msg }
+				</code></pre>
 			</div>
 		);
 	}

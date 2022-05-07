@@ -841,6 +841,8 @@ class App extends React.Component {
 		var query;
 		var code;
 		var args;
+		var pkg;
+		var msg;
 
 		query = this.props.location.search || '';
 		if ( query ) {
@@ -855,6 +857,10 @@ class App extends React.Component {
 				args = [ args ];
 			}
 		}
+		if ( this.props.content ) {
+			pkg = this.props.content.pkg;
+			msg = this.props.content.msg;
+		}
 		return (
 			<Fragment>
 				<Head
@@ -863,10 +869,10 @@ class App extends React.Component {
 					url={ match.url }
 				/>
 				<ErrorDecoder
-					code={ code }
-					args={ args }
-					pkg={ this.props.content.pkg }
-					content={ this.props.content.msg }
+					code={ code || '' }
+					args={ args || [] }
+					pkg={ pkg || '' }
+					content={ msg || '' }
 					onClose={ this._onErrorDecoderClose }
 				/>
 			</Fragment>
