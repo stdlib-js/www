@@ -35,7 +35,7 @@ var StylesProvider = require( '@mui/styles' ).StylesProvider;
 * @param {ReactElement} App - application element
 * @param {string} url - request URL
 * @param {string} version - documentation version
-* @param {string} content - initial content (for SSR)
+* @param {Object} content - initial content (for SSR)
 * @param {Object} context - server-side router context
 * @returns {ReactElement} React element
 */
