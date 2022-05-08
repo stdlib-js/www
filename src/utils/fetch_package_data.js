@@ -42,7 +42,7 @@ function fetchPackageData( version, clbk ) {
 	o = {};
 
 	// Fetch data necessary for rendering the application...
-	fetch( config.mount+version+'/package/data' )
+	fetch( config.mount+version+'/package/data.json' )
 		.then( toJSON )
 		.then( onData )
 		.catch( done );

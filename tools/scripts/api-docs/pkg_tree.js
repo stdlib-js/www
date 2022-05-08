@@ -32,7 +32,7 @@ var documentationPath = require( './../utils/api_docs_path.js' );
 
 // VARIABLES //
 
-var OUTPUT = 'package_tree.json';
+var OUTPUT = 'package/tree.json';
 
 
 // MAIN //

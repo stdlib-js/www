@@ -193,7 +193,7 @@ $ curl 'http://127.0.0.1:<port>/docs/api/latest/@stdlib/math/base/special/?fragm
 
 <a name="docs-api-version-package-data-get"></a>
 
-#### GET /docs/api/:version/package/data
+#### GET /docs/api/:version/package/data.json
 
 Returns application package data for a specified `version`.
 
@@ -208,14 +208,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/data'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/data.json'
 ```
 
 * * *
 
 <a name="docs-api-version-package-desc-get"></a>
 
-#### GET /docs/api/:version/package/desc
+#### GET /docs/api/:version/package/desc.json
 
 Returns a list of package descriptions for a specified `version`.
 
@@ -230,14 +230,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/desc'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/desc.json'
 ```
 
 * * *
 
 <a name="docs-api-version-package-index-get"></a>
 
-#### GET /docs/api/:version/package/index
+#### GET /docs/api/:version/package/index.json
 
 Returns a pre-compiled search index for a specified `version`.
 
@@ -252,14 +252,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/index'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/index.json'
 ```
 
 * * *
 
 <a name="docs-api-version-package-list-get"></a>
 
-#### GET /docs/api/:version/package/list
+#### GET /docs/api/:version/package/list.json
 
 Returns a list of packages for a specified `version`.
 
@@ -274,14 +274,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/list'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/list.json'
 ```
 
 * * *
 
 <a name="docs-api-version-namespace-list-get"></a>
 
-#### GET /docs/api/:version/package/namespaces
+#### GET /docs/api/:version/package/namespaces.json
 
 Returns a list of namespaces for a specified `version`.
 
@@ -296,14 +296,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/namespaces'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/namespaces.json'
 ```
 
 * * *
 
 <a name="docs-api-version-package-order-get"></a>
 
-#### GET /docs/api/:version/package/order
+#### GET /docs/api/:version/package/order.json
 
 Returns a hash specifying package order for a specified `version`.
 
@@ -318,14 +318,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/order'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/order.json'
 ```
 
 * * *
 
 <a name="docs-api-version-package-resources-get"></a>
 
-#### GET /docs/api/:version/package/resources
+#### GET /docs/api/:version/package/resources.json
 
 Returns a strided array indicating the presence/absence of package resources for a specified `version`.
 
@@ -346,14 +346,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/resources'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/resources.json'
 ```
 
 * * *
 
 <a name="docs-api-version-package-tree-get"></a>
 
-#### GET /docs/api/:version/package/tree
+#### GET /docs/api/:version/package/tree.json
 
 Returns a package tree for a specified `version`.
 
@@ -368,14 +368,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/tree'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/tree.json'
 ```
 
 * * *
 
 <a name="docs-api-version-package-tree-array-get"></a>
 
-#### GET /docs/api/:version/package/tree-array
+#### GET /docs/api/:version/package/tree-array.json
 
 Returns a package tree array for a specified `version`.
 
@@ -390,7 +390,7 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/tree-array'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/tree-array.json'
 ```
 
 * * *

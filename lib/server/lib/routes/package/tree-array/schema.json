@@ -1,6 +1,6 @@
 {
   "method": "GET",
-  "url": "/docs/api/:version/package/tree-array",
+  "url": "/docs/api/:version/package/tree-array.json",
   "schema": {
     "response": {
       "200": {

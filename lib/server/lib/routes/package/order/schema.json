@@ -1,6 +1,6 @@
 {
   "method": "GET",
-  "url": "/docs/api/:version/package/order",
+  "url": "/docs/api/:version/package/order.json",
   "schema": {
     "response": {
       "200": {

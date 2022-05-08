@@ -43,7 +43,7 @@ function fetchSearchData( version, clbk ) {
 	if ( o && o.index ) {
 		done();
 	} else {
-		fetch( config.mount+version+'/package/index' )
+		fetch( config.mount+version+'/package/index.json' )
 			.then( toJSON )
 			.then( onIndex )
 			.catch( done );
@@ -51,7 +51,7 @@ function fetchSearchData( version, clbk ) {
 	if ( o && o.descriptions ) {
 		done();
 	} else {
-		fetch( config.mount+version+'/package/desc' )
+		fetch( config.mount+version+'/package/desc.json' )
 			.then( toJSON )
 			.then( onDesc )
 			.catch( done );

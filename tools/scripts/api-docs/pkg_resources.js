@@ -33,7 +33,7 @@ var tsPath = require( './../utils/ts_docs_path.js' );
 
 // VARIABLES //
 
-var OUTPUT = 'package_resources.json';
+var OUTPUT = 'package/resources.json';
 var TS_SUFFIX = '_docs_types_index_d_.html';
 var RE_UNDERSCORE_REPLACE = /[\/-]/g; // eslint-disable-line no-useless-escape
 
@@ -67,12 +67,12 @@ function main() {
 	opts = {
 		'encoding': 'utf8'
 	};
-	pkgs = readJSON( join( dpath, 'package_list.json' ), opts );
+	pkgs = readJSON( join( dpath, 'package/list.json' ), opts );
 	if ( pkgs instanceof Error ) {
 		throw pkgs;
 	}
 	// Load the API documentation package order:
-	order = readJSON( join( dpath, 'package_order.json' ), opts );
+	order = readJSON( join( dpath, 'package/order.json' ), opts );
 	if ( order instanceof Error ) {
 		throw order;
 	}

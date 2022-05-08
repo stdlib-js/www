@@ -32,7 +32,7 @@ var documentationPath = require( './../utils/api_docs_path.js' );
 // VARIABLES //
 
 var STDLIB_PATH = join( stdlibPath(), 'lib', 'node_modules' );
-var OUTPUT = 'package_index.json';
+var OUTPUT = 'package/index.json';
 
 
 // MAIN //

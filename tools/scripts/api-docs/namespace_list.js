@@ -31,7 +31,7 @@ var documentationPath = require( './../utils/api_docs_path.js' );
 
 // VARIABLES //
 
-var OUTPUT = 'namespace_list.json';
+var OUTPUT = 'package/namespaces.json';
 
 
 // MAIN //
@@ -57,7 +57,7 @@ function main() {
 	opts = {
 		'encoding': 'utf8'
 	};
-	order = readJSON( join( dir, 'package_order.json' ), opts );
+	order = readJSON( join( dir, 'package/order.json' ), opts );
 	if ( order instanceof Error ) {
 		throw order;
 	}

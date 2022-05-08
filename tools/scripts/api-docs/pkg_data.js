@@ -30,7 +30,7 @@ var documentationPath = require( './../utils/api_docs_path.js' );
 
 // VARIABLES //
 
-var OUTPUT = 'package_data.json';
+var OUTPUT = 'package/data.json';
 var FOPTS = {
 	'encoding': 'utf8'
 };
@@ -56,42 +56,42 @@ function main() {
 	dpath = documentationPath();
 
 	// Load the list of packages...
-	data = readJSON( join( dpath, 'package_list.json' ), FOPTS );
+	data = readJSON( join( dpath, 'package/list.json' ), FOPTS );
 	if ( data instanceof Error ) {
 		throw data;
 	}
 	out.packages = data;
 
 	// Load the package tree...
-	data = readJSON( join( dpath, 'package_tree_array.json' ), FOPTS );
+	data = readJSON( join( dpath, 'package/tree-array.json' ), FOPTS );
 	if ( data instanceof Error ) {
 		throw data;
 	}
 	out.tree = data;
 
 	// Load package resources...
-	data = readJSON( join( dpath, 'package_resources.json' ), FOPTS );
+	data = readJSON( join( dpath, 'package/resources.json' ), FOPTS );
 	if ( data instanceof Error ) {
 		throw data;
 	}
 	out.resources = data;
 
 	// Load the package order...
-	data = readJSON( join( dpath, 'package_order.json' ), FOPTS );
+	data = readJSON( join( dpath, 'package/order.json' ), FOPTS );
 	if ( data instanceof Error ) {
 		throw data;
 	}
 	out.order = data;
 
 	// Load package descriptions...
-	data = readJSON( join( dpath, 'package_desc.json' ), FOPTS );
+	data = readJSON( join( dpath, 'package/desc.json' ), FOPTS );
 	if ( data instanceof Error ) {
 		throw data;
 	}
 	out.descriptions = data;
 
 	// Load the list of namespaces...
-	data = readJSON( join( dpath, 'namespace_list.json' ), FOPTS );
+	data = readJSON( join( dpath, 'package/namespaces.json' ), FOPTS );
 	if ( data instanceof Error ) {
 		throw data;
 	}

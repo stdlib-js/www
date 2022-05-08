@@ -1,6 +1,6 @@
 {
   "method": "GET",
-  "url": "/docs/api/:version/package/data",
+  "url": "/docs/api/:version/package/data.json",
   "schema": {
     "response": {
       "200": {

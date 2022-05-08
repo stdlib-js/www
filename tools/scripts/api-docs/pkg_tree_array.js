@@ -33,7 +33,7 @@ var documentationPath = require( './../utils/api_docs_path.js' );
 
 // VARIABLES //
 
-var OUTPUT = 'package_tree_array.json';
+var OUTPUT = 'package/tree-array.json';
 
 
 // FUNCTIONS //
@@ -164,7 +164,7 @@ function main() {
 	opts = {
 		'encoding': 'utf8'
 	};
-	tree = readJSON( join( dpath, 'package_tree.json' ), opts );
+	tree = readJSON( join( dpath, 'package/tree.json' ), opts );
 	if ( tree instanceof Error ) {
 		throw tree;
 	}

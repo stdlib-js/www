@@ -34,7 +34,7 @@ var documentationPath = require( './../utils/api_docs_path.js' );
 
 var RE_BACKTICK = /`/g;
 var STDLIB_PATH = join( stdlibPath(), 'lib', 'node_modules' );
-var OUTPUT = 'package_desc.json';
+var OUTPUT = 'package/desc.json';
 
 
 // MAIN //
@@ -62,12 +62,12 @@ function main() {
 	opts = {
 		'encoding': 'utf8'
 	};
-	pkgs = readJSON( join( dpath, 'package_list.json' ), opts );
+	pkgs = readJSON( join( dpath, 'package/list.json' ), opts );
 	if ( pkgs instanceof Error ) {
 		throw pkgs;
 	}
 	// Load the package order...
-	order = readJSON( join( dpath, 'package_order.json' ), opts );
+	order = readJSON( join( dpath, 'package/order.json' ), opts );
 	if ( order instanceof Error ) {
 		throw order;
 	}

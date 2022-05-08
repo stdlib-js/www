@@ -33,7 +33,7 @@ var documentationPath = require( './../utils/api_docs_path.js' );
 // VARIABLES //
 
 var RE_INDEX = /"(\d+)"/g;
-var OUTPUT = 'package_order.json';
+var OUTPUT = 'package/order.json';
 
 
 // MAIN //
@@ -57,7 +57,7 @@ function main() {
 	opts = {
 		'encoding': 'utf8'
 	};
-	pkgs = readJSON( join( dpath, 'package_list.json' ), opts );
+	pkgs = readJSON( join( dpath, 'package/list.json' ), opts );
 	if ( pkgs instanceof Error ) {
 		throw pkgs;
 	}
