@@ -191,31 +191,9 @@ $ curl 'http://127.0.0.1:<port>/docs/api/latest/@stdlib/math/base/special/?fragm
 
 * * *
 
-<a name="docs-api-version-namespace-list-get"></a>
-
-#### GET /docs/api/:version/namespace_list.json
-
-Returns a list of namespaces for a specified `version`.
-
-##### Response: 200 (application/json)
-
-The response body will be a JSON string containing a list of namespace indices. To resolve the list of corresponding package names, perform a look-up in the `package_list.json` dataset.
-
-##### Examples
-
-From the command-line,
-
-<!-- run-disable -->
-
-```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/namespace_list.json'
-```
-
-* * *
-
 <a name="docs-api-version-package-data-get"></a>
 
-#### GET /docs/api/:version/package_data.json
+#### GET /docs/api/:version/package/data
 
 Returns application package data for a specified `version`.
 
@@ -230,14 +208,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_data.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/data'
 ```
 
 * * *
 
 <a name="docs-api-version-package-desc-get"></a>
 
-#### GET /docs/api/:version/package_desc.json
+#### GET /docs/api/:version/package/desc
 
 Returns a list of package descriptions for a specified `version`.
 
@@ -252,14 +230,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_desc.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/desc'
 ```
 
 * * *
 
 <a name="docs-api-version-package-index-get"></a>
 
-#### GET /docs/api/:version/package_index.json
+#### GET /docs/api/:version/package/index
 
 Returns a pre-compiled search index for a specified `version`.
 
@@ -274,14 +252,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_index.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/index'
 ```
 
 * * *
 
 <a name="docs-api-version-package-list-get"></a>
 
-#### GET /docs/api/:version/package_list.json
+#### GET /docs/api/:version/package/list
 
 Returns a list of packages for a specified `version`.
 
@@ -296,14 +274,36 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_list.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/list'
+```
+
+* * *
+
+<a name="docs-api-version-namespace-list-get"></a>
+
+#### GET /docs/api/:version/package/namespaces
+
+Returns a list of namespaces for a specified `version`.
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing a list of namespace indices. To resolve the list of corresponding package names, perform a look-up in the `package_list.json` dataset.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/namespaces'
 ```
 
 * * *
 
 <a name="docs-api-version-package-order-get"></a>
 
-#### GET /docs/api/:version/package_order.json
+#### GET /docs/api/:version/package/order
 
 Returns a hash specifying package order for a specified `version`.
 
@@ -318,14 +318,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_order.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/order'
 ```
 
 * * *
 
 <a name="docs-api-version-package-resources-get"></a>
 
-#### GET /docs/api/:version/package_resources.json
+#### GET /docs/api/:version/package/resources
 
 Returns a strided array indicating the presence/absence of package resources for a specified `version`.
 
@@ -346,14 +346,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_resources.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/resources'
 ```
 
 * * *
 
 <a name="docs-api-version-package-tree-get"></a>
 
-#### GET /docs/api/:version/package_tree.json
+#### GET /docs/api/:version/package/tree
 
 Returns a package tree for a specified `version`.
 
@@ -368,14 +368,14 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_tree.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/tree'
 ```
 
 * * *
 
 <a name="docs-api-version-package-tree-array-get"></a>
 
-#### GET /docs/api/:version/pacakge_tree_array.json
+#### GET /docs/api/:version/package/tree-array
 
 Returns a package tree array for a specified `version`.
 
@@ -390,7 +390,7 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/package_tree_array.json'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/package/tree-array'
 ```
 
 * * *
