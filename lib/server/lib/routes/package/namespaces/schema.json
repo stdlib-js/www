@@ -1,6 +1,6 @@
 {
   "method": "GET",
-  "url": "/docs/api/:version/namespace_list.json",
+  "url": "/docs/api/:version/package/namespaces",
   "schema": {
     "response": {
       "200": {

@@ -25,7 +25,7 @@ import PACKAGE_DATA_CACHE from './caches/package_data.js';
 // MAIN //
 
 /**
-* Retrieves a package search data for a specified documentation version.
+* Retrieves package search data for a specified documentation version.
 *
 * @private
 * @param {string} version - documentation version
@@ -43,7 +43,7 @@ function fetchSearchData( version, clbk ) {
 	if ( o && o.index ) {
 		done();
 	} else {
-		fetch( config.mount+version+'/package_index.json' )
+		fetch( config.mount+version+'/package/index' )
 			.then( toJSON )
 			.then( onIndex )
 			.catch( done );
@@ -51,7 +51,7 @@ function fetchSearchData( version, clbk ) {
 	if ( o && o.descriptions ) {
 		done();
 	} else {
-		fetch( config.mount+version+'/package_desc.json' )
+		fetch( config.mount+version+'/package/desc' )
 			.then( toJSON )
 			.then( onDesc )
 			.catch( done );

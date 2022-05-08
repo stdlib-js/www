@@ -43,7 +43,7 @@ function fetchDownloadData( version, clbk ) {
 	if ( o && o.packages ) {
 		done();
 	} else {
-		fetch( config.mount+version+'/package_list.json' )
+		fetch( config.mount+version+'/package/list' )
 			.then( toJSON )
 			.then( onPackages )
 			.catch( done );
