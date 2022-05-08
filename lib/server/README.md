@@ -50,7 +50,7 @@ function done( error, fastify ) {
         throw error;
     }
     console.log( 'Success!' );
-    fastify.server.close();
+    fastify.close();
 }
 
 createServer( App, done );
