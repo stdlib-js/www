@@ -1,0 +1,12 @@
+{
+  "method": "GET",
+  "url": "/docs/api/:version/namespace_list.json",
+  "schema": {
+    "response": {
+      "200": {
+        "type": "string"
+      }
+    }
+  },
+  "handler": null
+}
