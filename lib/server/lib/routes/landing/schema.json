@@ -1,0 +1,5 @@
+{
+  "method": "GET",
+  "url": "/docs/api/:version/@stdlib",
+  "handler": null
+}
