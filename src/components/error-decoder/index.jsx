@@ -156,7 +156,9 @@ class ErrorDecoder extends React.Component {
 	* @private
 	*/
 	componentDidMount() {
-		this._fetchMessage( this.props.code, this.props.args );
+		if ( this.props.code ) {
+			this._fetchMessage( this.props.code, this.props.args );
+		}
 	}
 
 	/**
