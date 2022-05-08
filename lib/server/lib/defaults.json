@@ -8,7 +8,7 @@
 	"static": "",
 	"trustProxy": false,
   "ignoreTrailingSlash": true,
-  "meta": {
+  "app": {
     "title": "Documentation | stdlib",
     "description": "Documentation for stdlib, a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing."
   }
