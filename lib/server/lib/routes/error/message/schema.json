@@ -1,0 +1,17 @@
+{
+  "method": "GET",
+  "url": "/docs/api/:version/error/:code",
+  "schema": {
+    "querystring": {
+      "arg": {
+        "type": "array"
+      }
+    },
+    "response": {
+      "200": {
+        "type": "string"
+      }
+    }
+  },
+  "handler": null
+}
