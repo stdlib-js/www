@@ -2,14 +2,6 @@
   "method": "GET",
   "url": "/docs/api/:version/error/decoder",
   "schema": {
-    "querystring": {
-      "code": {
-        "type": "string"
-      },
-      "arg": {
-        "type": "array"
-      }
-    },
     "response": {
       "200": {
         "type": "string"
