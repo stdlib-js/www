@@ -23,7 +23,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import qs from 'qs';
 import fetchPackageData from './utils/fetch_package_data.js';
-import resetScroll from './utils/reset_scroll.js';
+import resetScroll from 'reset-scroll';
 import log from './utils/log.js';
 import config from 'config';
 import App from './app.jsx';
