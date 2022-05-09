@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import config from './../config.js';
+import config from 'config';
 import HTML_FRAGMENT_CACHE from './caches/html_fragments.js';
 import fetchSearchData from './fetch_search_data.js';
 import log from './log.js';

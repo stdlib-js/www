@@ -20,7 +20,7 @@
 
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import fetchMessage from './../../utils/fetch_error_message.js';
+import fetchMessage from 'fetch-error-message';
 import pkgPath from './../../utils/pkg_doc_path.js';
 import log from './../../utils/log.js';
 import NotFound from './../not-found/index.jsx';

@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import config from './../config.js';
+import config from 'config';
 import PACKAGE_DATA_CACHE from './caches/package_data.js';
 
 

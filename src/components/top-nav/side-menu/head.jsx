@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import config from './../../../config.js';
+import config from 'config';
 import ChevronLeftIcon from './../../icons/chevron_left.jsx';
 import Logo from './logo.jsx';
 

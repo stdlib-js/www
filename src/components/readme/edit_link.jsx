@@ -19,8 +19,8 @@
 // MODULES //
 
 import React from 'react';
+import config from 'config';
 import EditIcon from './../icons/edit.jsx';
-import config from './../../config.js';
 
 
 // MAIN //

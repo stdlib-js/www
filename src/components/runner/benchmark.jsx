@@ -21,7 +21,7 @@
 import React, { Fragment } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import log from './../../utils/log.js';
-import config from './../../config.js';
+import config from 'config';
 import LogoIcon from './../icons/logo.jsx';
 
 

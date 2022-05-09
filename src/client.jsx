@@ -25,7 +25,7 @@ import qs from 'qs';
 import fetchPackageData from './utils/fetch_package_data.js';
 import resetScroll from './utils/reset_scroll.js';
 import log from './utils/log.js';
-import config from './config.js';
+import config from 'config';
 import App from './app.jsx';
 
 

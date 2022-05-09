@@ -46,4 +46,4 @@ function createTitle( pkg ) {
 
 // EXPORTS //
 
-module.exports = createTitle;
+export default createTitle;
