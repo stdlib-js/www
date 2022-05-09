@@ -27,7 +27,7 @@ import substringBeforeLast from '@stdlib/string/substring-before-last';
 import log from './utils/log.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from './utils/reset_scroll.js';
-import viewportWidth from './utils/viewport_width.js';
+import viewportWidth from 'viewport-width';
 import pkgBasename from './utils/pkg_basename.js';
 import pkgKind from './utils/pkg_kind.js';
 import OFFSETS from './utils/package_resource_offsets.js';

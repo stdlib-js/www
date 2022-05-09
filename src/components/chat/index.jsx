@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import viewportWidth from './../../utils/viewport_width.js';
+import viewportWidth from 'viewport-width';
 import ForumIcon from './../icons/forum.jsx';
 
 
