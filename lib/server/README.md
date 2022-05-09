@@ -207,7 +207,7 @@ $ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder
 
 <a name="docs-api-version-error-decoder-code-get"></a>
 
-#### GET /docs/api/:version/error/decoder/:code\[?&arg\[]=&lt;value&gt;\[&...]]]
+#### GET /docs/api/:version/error/decoder/:code\[?&arg\[]=&lt;value&gt;\[&...]]
 
 Returns a page for displaying a decoded error message for a specified `version`.
 
