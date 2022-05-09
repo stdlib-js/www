@@ -42,7 +42,7 @@ var OPTS = {
 * @returns {void}
 */
 function fetchErrorMessage( version, code, args, clbk ) {
-	fetch( config.mount+version+'/error/'+code+'?'+qs.stringify( { 'arg': args }, OPTS ) )
+	fetch( config.mount+version+'/error/message/'+code+'?'+qs.stringify( { 'arg': args }, OPTS ) )
 		.then( toJSON )
 		.then( onResponse )
 		.catch( done );
