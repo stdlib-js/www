@@ -185,9 +185,9 @@ $ curl 'http://127.0.0.1:<port>/docs/api/latest/help'
 
 <a name="docs-api-version-error-decoder-get"></a>
 
-#### GET /docs/api/:version/error/decoder\[?code=&lt;value&gt;\[&arg\[]=&lt;value&gt;\[&...]]]
+#### GET /docs/api/:version/error/decoder
 
-Returns a page for decoding an error message for a specified `version`.
+Returns a page for decoding error messages for a specified `version`.
 
 ##### Response: 200 (text/html)
 
@@ -203,19 +203,37 @@ From the command-line,
 $ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder
 ```
 
+* * *
+
+<a name="docs-api-version-error-decoder-code-get"></a>
+
+#### GET /docs/api/:version/error/decoder/:code\[?&arg\[]=&lt;value&gt;\[&...]]]
+
+Returns a page for displaying a decoded error message for a specified `version`.
+
+##### Response: 200 (text/html)
+
+The response body will be an HTML string containing a page for displaying a decoded error message.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder?code=00100
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder/00100
 ```
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder?code=00129&arg[]=foo
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder/00129?arg[]=foo
 ```
 
 * * *
 
-<a name="docs-api-version-error-code-get"></a>
+<a name="docs-api-version-error-message-code-get"></a>
 
-#### GET /docs/api/:version/error/:code\[?arg\[]=&lt;value&gt;&...]
+#### GET /docs/api/:version/error/message/:code\[?arg\[]=&lt;value&gt;&...]
 
 Returns a formatted error message
 
@@ -235,11 +253,11 @@ From the command-line,
 <!-- run-disable -->
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/00100'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/message/00100'
 ```
 
 ```bash
-$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/00129&arg[]=foo'
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/message/00129&arg[]=foo'
 ```
 
 * * *
