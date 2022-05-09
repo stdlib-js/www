@@ -80,13 +80,6 @@ function matchCurrentPath( pathname, version ) {
 
 	// Try to find the matching route...
 	match = matchPath( pathname, {
-		'path': routes.ERROR_DECODER,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
 		'path': routes.SEARCH,
 		'exact': true
 	});
@@ -95,6 +88,20 @@ function matchCurrentPath( pathname, version ) {
 	}
 	match = matchPath( pathname, {
 		'path': routes.HELP,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
+	match = matchPath( pathname, {
+		'path': routes.ERROR_DECODER,
+		'exact': true
+	});
+	if ( match ) {
+		return match;
+	}
+	match = matchPath( pathname, {
+		'path': routes.ERROR_DECODER_DEFAULT,
 		'exact': true
 	});
 	if ( match ) {
@@ -506,7 +513,12 @@ class App extends React.Component {
 			'typescript': false
 		};
 		// Update property values based on the current "view"...
-		if ( path === routes.VERSION_DEFAULT || path === routes.HELP || path === routes.ERROR_DECODER ) {
+		if (
+			path === routes.VERSION_DEFAULT ||
+			path === routes.HELP ||
+			path === routes.ERROR_DECODER ||
+			path === routes.ERROR_DECODER_DEFAULT
+		) {
 			props.home = true;
 			props.version = match.params.version;
 		} else if ( path === routes.SEARCH ) {
@@ -841,11 +853,12 @@ class App extends React.Component {
 	* @private
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
+	* @param {string} [match.params.code] - error code
 	* @returns {ReactElement} React element
 	*/
 	_renderErrorDecoder( match ) {
 		var query;
-		var code;
 		var args;
 		var pkg;
 		var msg;
@@ -855,7 +868,6 @@ class App extends React.Component {
 			query = qs.parse( query, {
 				'ignoreQueryPrefix': true
 			});
-			code = query.code;
 			args = query.arg;
 			if ( args === void 0 ) {
 				args = [];
@@ -875,7 +887,7 @@ class App extends React.Component {
 					url={ match.url }
 				/>
 				<ErrorDecoder
-					code={ code || '' }
+					code={ match.params.code || '' }
 					args={ args || [] }
 					pkg={ pkg || '' }
 					content={ msg || '' }
@@ -1014,6 +1026,11 @@ class App extends React.Component {
 					<Route
 						exact
 						path={ routes.ERROR_DECODER }
+						render={ this._renderer( 'error' ) }
+					/>
+					<Route
+						exact
+						path={ routes.ERROR_DECODER_DEFAULT }
 						render={ this._renderer( 'error' ) }
 					/>
 					<Route
