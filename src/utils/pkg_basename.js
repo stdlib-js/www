@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import lastIndexOf from './last_index_of.js';
+import lastIndexOf from 'last-index-of';
 
 
 // MAIN //
