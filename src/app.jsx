@@ -28,7 +28,7 @@ import log from './utils/log.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
-import pkgBasename from './utils/pkg_basename.js';
+import pkgBasename from 'pkg-basename';
 import pkgKind from './utils/pkg_kind.js';
 import OFFSETS from './utils/package_resource_offsets.js';
 import config from 'config';

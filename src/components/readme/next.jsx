@@ -22,7 +22,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import pkgPath from './../../utils/pkg_doc_path.js';
 import pkgKind from './../../utils/pkg_kind.js';
-import pkgBasename from './../../utils/pkg_basename.js';
+import pkgBasename from 'pkg-basename';
 
 
 // MAIN //
