@@ -1,6 +1,6 @@
 {
   "method": "GET",
-  "url": "/docs/api/:version/error/:code",
+  "url": "/docs/api/:version/error/message/:code",
   "schema": {
     "querystring": {
       "arg": {
