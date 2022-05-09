@@ -161,9 +161,92 @@ $ curl 'http://127.0.0.1:<port>/docs/api/latest/search?q=sine'
 
 * * *
 
+<a name="docs-api-version-help-get"></a>
+
+#### GET /docs/api/:version/help
+
+Returns a help page for a specified `version`.
+
+##### Response: 200 (text/html)
+
+The response body will be an HTML string containing a help page.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/help'
+```
+
+* * *
+
+<a name="docs-api-version-error-decoder-get"></a>
+
+#### GET /docs/api/:version/error/decoder\[?code=&lt;value&gt;\[&arg\[]=&lt;value&gt;\[&...]]]
+
+Returns a page for decoding an error message for a specified `version`.
+
+##### Response: 200 (text/html)
+
+The response body will be an HTML string containing a page for decoding error messages.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder
+```
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder?code=00100
+```
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/decoder?code=00129&arg[]=foo
+```
+
+* * *
+
+<a name="docs-api-version-error-code-get"></a>
+
+#### GET /docs/api/:version/error/:code\[?arg\[]=&lt;value&gt;&...]
+
+Returns a formatted error message
+
+##### Response: 200 (application/json)
+
+The response body will be a JSON string containing the following properties:
+
+-   **code**: error code.
+-   **args**: argument list.
+-   **pkg**: associated package name.
+-   **msg**: formatted error message.
+
+##### Examples
+
+From the command-line,
+
+<!-- run-disable -->
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/00100'
+```
+
+```bash
+$ curl 'http://127.0.0.1:<port>/docs/api/latest/error/00129&arg[]=foo'
+```
+
+* * *
+
 <a name="docs-api-version-pkg-get"></a>
 
-#### GET /docs/api/:version/@stdlib/\*?fragment=<true|false>
+#### GET /docs/api/:version/@stdlib/\*?fragment=&lt;true|false&gt;
 
 Returns package documentation for a specified `version`.
 
