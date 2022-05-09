@@ -1,0 +1,17 @@
+{
+  "method": "GET",
+  "url": "/docs/api/:version/search",
+  "schema": {
+    "querystring": {
+      "q": {
+        "type": "string"
+      }
+    },
+    "response": {
+      "200": {
+        "type": "string"
+      }
+    }
+  },
+  "handler": null
+}
