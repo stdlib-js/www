@@ -1,0 +1,18 @@
+{
+  "method": "GET",
+  "url": "/docs/api/:version/@stdlib/*",
+  "schema": {
+    "querystring": {
+      "fragment": {
+        "type": "boolean"
+      }
+    },
+    "response": {
+      "200": {
+        "type": "string"
+      }
+    }
+  },
+  "handler": null,
+  "errorHandler": null
+}
