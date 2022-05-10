@@ -22,7 +22,7 @@
 
 var path = require( 'path' );
 var httpServer = require( './../lib/server' );
-var config = require( './../src/config.js' ).default;
+var config = require( './../src/node_modules/config' );
 var App = require( './../src/server.jsx' ).default;
 
 
