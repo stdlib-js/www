@@ -19,7 +19,7 @@
 // MODULES //
 
 import React from 'react';
-import fetchFragment from './../../utils/fetch_fragment.js';
+import fetchFragment from 'fetch-fragment';
 import log from 'log';
 import NotFound from './../not-found/index.jsx';
 import Breadcrumbs from './breadcrumbs.jsx';
