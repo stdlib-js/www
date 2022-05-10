@@ -22,7 +22,7 @@ import React from 'react';
 import lunr from 'lunr';
 import { Link, withRouter } from 'react-router-dom';
 import fetchSearchData from 'fetch-search-data';
-import packageDescription from './../../utils/package_description.js';
+import packageDescription from 'pkg-description';
 import deprefix from 'deprefix-pkg-name';
 import pkgPath from 'pkg-doc-path';
 import pkgKind from 'pkg-kind';
