@@ -22,7 +22,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import qs from 'qs';
-import fetchPackageData from 'fetch-package-data';
+import fetchPackageData from 'fetch-pkg-data';
 import resetScroll from 'reset-scroll';
 import log from 'log';
 import config from 'config';
