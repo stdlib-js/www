@@ -22,6 +22,8 @@
 * SOFTWARE.
 */
 
+/* eslint-disable */
+
 'use strict';
 
 const isWsl = require('is-wsl');
@@ -36,6 +38,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
@@ -477,6 +480,9 @@ module.exports = function(webpackEnv) {
 			],
 		},
 		plugins: [
+			// Generates an interactive visualization for Webpack output files:
+			// new BundleAnalyzerPlugin(),
+
 			// Generates an `index.html` file with the <script> injected.
 			new HtmlWebpackPlugin(
 				Object.assign(

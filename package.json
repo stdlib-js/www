@@ -123,6 +123,7 @@
     "terser": "^5.9.0",
     "terser-webpack-plugin": "^1.4.1",
     "webpack": "^4.41.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-manifest-plugin": "^2.1.1",
     "workbox-webpack-plugin": "^4.3.1"
   },
