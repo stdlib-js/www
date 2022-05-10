@@ -28,8 +28,7 @@ import log from './utils/log.js';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
-import pkgBasename from 'pkg-basename';
-import pkgKind from 'pkg-kind';
+import pkg2title from 'pkg2title';
 import OFFSETS from './utils/package_resource_offsets.js';
 import config from 'config';
 import Welcome from './components/welcome/index.jsx';
@@ -143,23 +142,6 @@ function matchCurrentPath( pathname, version ) {
 			'version': version
 		}
 	};
-}
-
-/**
-* Generates a document title for a provided package name.
-*
-* @private
-* @param {string} pkg - package name
-* @returns {string} document title
-*/
-function pkg2title( pkg ) {
-	var t = pkgKind( pkg, '.' ); // try determining the "kind" first, as top-level namespaces don't have a "kind", and we want to avoid an empty slot (e.g., 'array | | stdlib')
-	if ( t ) {
-		t = pkgBasename( pkg ) + ' | ' + t;
-	} else {
-		t = pkgBasename( pkg );
-	}
-	return t;
 }
 
 
