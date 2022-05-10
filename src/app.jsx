@@ -25,7 +25,7 @@ import Alert from '@mui/material/Alert';
 import qs from 'qs';
 import substringBeforeLast from '@stdlib/string/substring-before-last';
 import log from 'log';
-import fetchSearchData from './utils/fetch_search_data.js';
+import fetchSearchData from 'fetch-search-data';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
 import pkg2title from 'pkg2title';

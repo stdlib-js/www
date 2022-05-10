@@ -21,7 +21,7 @@
 import React from 'react';
 import lunr from 'lunr';
 import { Link, withRouter } from 'react-router-dom';
-import fetchSearchData from './../../utils/fetch_search_data.js';
+import fetchSearchData from 'fetch-search-data';
 import packageDescription from './../../utils/package_description.js';
 import deprefix from 'deprefix-package-name';
 import pkgPath from 'pkg-doc-path';

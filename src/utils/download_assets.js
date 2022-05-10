@@ -20,7 +20,7 @@
 
 import config from 'config';
 import HTML_FRAGMENT_CACHE from 'html-fragments-cache';
-import fetchSearchData from './fetch_search_data.js';
+import fetchSearchData from 'fetch-search-data';
 import log from 'log';
 
 
