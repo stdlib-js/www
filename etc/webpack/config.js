@@ -481,7 +481,11 @@ module.exports = function(webpackEnv) {
 		},
 		plugins: [
 			// Generates an interactive visualization for Webpack output files:
-			// new BundleAnalyzerPlugin(),
+			new BundleAnalyzerPlugin({
+				'analyzerMode': 'static',
+				'openAnalyzer': false,
+				'reportFilename': path.resolve( __dirname, '..', '..', 'build', 'bundle_report.html' )
+			}),
 
 			// Generates an `index.html` file with the <script> injected.
 			new HtmlWebpackPlugin(
