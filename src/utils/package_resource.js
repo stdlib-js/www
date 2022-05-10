@@ -20,7 +20,7 @@
 
 import packageResources from 'pkg-resources';
 import packageOrder from 'pkg-order';
-import OFFSETS from './package_resource_offsets.js';
+import OFFSETS from 'pkg-resource-offsets';
 
 
 // MAIN //

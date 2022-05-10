@@ -29,7 +29,7 @@ import fetchSearchData from 'fetch-search-data';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
 import pkg2title from 'pkg2title';
-import OFFSETS from './utils/package_resource_offsets.js';
+import OFFSETS from 'pkg-resource-offsets';
 import config from 'config';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
