@@ -20,8 +20,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as serviceWorker from 'service-worker';
 import App from './client.jsx';
-import * as serviceWorker from './utils/service_worker.js';
 
 
 // MAIN //
