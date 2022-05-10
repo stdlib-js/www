@@ -19,7 +19,7 @@
 // MODULES //
 
 import path from 'path';
-import pkgKind from './pkg_kind.js';
+import pkgKind from 'pkg-kind';
 
 
 // MAIN //
