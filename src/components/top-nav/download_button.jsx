@@ -19,7 +19,7 @@
 // MODULES //
 
 import React from 'react';
-import fetchDownloadData from './../../utils/fetch_download_data.js';
+import fetchDownloadData from 'fetch-download-data';
 import download from './../../utils/download_assets.js';
 import log from 'log';
 import DownloadIcon from './../icons/download.jsx';
