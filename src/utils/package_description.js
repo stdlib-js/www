@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import packageDescriptions from './package_descriptions.js';
+import packageDescriptions from 'pkg-descriptions';
 import packageOrder from 'pkg-order';
 
 
