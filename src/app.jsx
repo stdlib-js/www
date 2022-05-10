@@ -803,6 +803,7 @@ class App extends React.Component {
 	* @param {Object} match - match object
 	* @param {string} match.url - resource URL
 	* @param {Object} match.params - URL parameters
+	* @param {string} match.params.version - documentation version
 	* @param {string} [match.params.code] - error code
 	* @returns {ReactElement} React element
 	*/
