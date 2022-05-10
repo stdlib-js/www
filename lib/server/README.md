@@ -322,7 +322,7 @@ Returns a list of package descriptions for a specified `version`.
 
 ##### Response: 200 (application/json)
 
-The response body will be a JSON string containing a list of package descriptions. To resolve the corresponding package name, perform a look-up in the `package_list.json` dataset.
+The response body will be a JSON string containing a list of package descriptions. To resolve the corresponding package name, perform a look-up in the `package/list.json` dataset.
 
 ##### Examples
 
@@ -388,7 +388,7 @@ Returns a list of namespaces for a specified `version`.
 
 ##### Response: 200 (application/json)
 
-The response body will be a JSON string containing a list of namespace indices. To resolve the list of corresponding package names, perform a look-up in the `package_list.json` dataset.
+The response body will be a JSON string containing a list of namespace indices. To resolve the list of corresponding package names, perform a look-up in the `package/list.json` dataset.
 
 ##### Examples
 
@@ -438,7 +438,7 @@ The response body will be a JSON string containing a strided array structured as
 [ <benchmark>, <test>, <typescript>, <benchmark>, <test>, ...]
 ```
 
-For each package in `package_list.json`, the strided array contains three consecutive entries indicating the presence/absence of a package resource. A `1` indicates the presence of a package resource, and a `0` indicates the absence of a package resource.
+For each package in `package/list.json`, the strided array contains three consecutive entries indicating the presence/absence of a package resource. A `1` indicates the presence of a package resource, and a `0` indicates the absence of a package resource.
 
 ##### Examples
 
