@@ -29,7 +29,7 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import pkgPath from 'pkg-doc-path';
 import packageTree from './../../../utils/package_tree.js';
-import namespaces from './../../../utils/namespace_list.js';
+import namespaces from 'namespace-list';
 import filter from 'filter-package-tree';
 import deprefix from 'deprefix-package-name';
 import log from 'log';
