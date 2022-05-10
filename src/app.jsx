@@ -435,7 +435,7 @@ class App extends React.Component {
 	* @private
 	* @returns {ReactElement} React element
 	*/
-	_renderNotification = () => {
+	_renderNotification() {
 		var query;
 		var msg;
 		if ( this.state.notification ) {
