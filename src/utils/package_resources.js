@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import PACKAGE_DATA_CACHE from './caches/package_data.js';
+import PACKAGE_DATA_CACHE from 'pkg-data-cache';
 
 
 // MAIN //
