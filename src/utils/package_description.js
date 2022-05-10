@@ -19,7 +19,7 @@
 // MODULES //
 
 import packageDescriptions from './package_descriptions.js';
-import packageOrder from './package_order.js';
+import packageOrder from 'pkg-order';
 
 
 // MAIN //

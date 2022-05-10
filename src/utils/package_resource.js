@@ -19,7 +19,7 @@
 // MODULES //
 
 import packageResources from 'pkg-resources';
-import packageOrder from './package_order.js';
+import packageOrder from 'pkg-order';
 import OFFSETS from './package_resource_offsets.js';
 
 
