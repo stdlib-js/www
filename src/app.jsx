@@ -869,6 +869,7 @@ class App extends React.Component {
 					url={ match.url }
 				/>
 				<ErrorDecoder
+					version={ match.params.version }
 					code={ match.params.code || '' }
 					args={ args || [] }
 					pkg={ pkg || '' }

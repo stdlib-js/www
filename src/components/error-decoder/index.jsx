@@ -41,6 +41,7 @@ class ErrorDecoder extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {string} props.version - documentation version
 	* @param {string} props.code - error code
 	* @param {Array} props.args - argument list
 	* @param {Callback} props.onClose - callback to invoke upon closing the error decoder
@@ -72,8 +73,7 @@ class ErrorDecoder extends React.Component {
 	_fetchMessage( code, args ) {
 		var self = this;
 
-		// WARNING: we hardcode the version to `latest`, as we expect the underlying error database to be append-only (meaning, the error message database will contain the error messages from the current version and all prior versions)...
-		fetchMessage( 'latest', code, args, clbk );
+		fetchMessage( this.params.version, code, args, clbk );
 
 		/**
 		* Callback invoked upon fetching a formatted error message.
