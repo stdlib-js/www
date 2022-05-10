@@ -31,7 +31,7 @@ import pkgPath from './../../../utils/pkg_doc_path.js';
 import packageTree from './../../../utils/package_tree.js';
 import namespaces from './../../../utils/namespace_list.js';
 import filter from './../../../utils/filter_package_tree.js';
-import deprefix from './../../../utils/deprefix_package_name.js';
+import deprefix from 'deprefix-package-name';
 import log from './../../../utils/log.js';
 import VersionMenu from './version_menu.jsx';
 import Head from './head.jsx';

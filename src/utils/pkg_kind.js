@@ -18,7 +18,7 @@
 
 // MODULES //
 
-import deprefix from './deprefix_package_name.js';
+import deprefix from 'deprefix-package-name';
 
 
 // VARIABLES //
