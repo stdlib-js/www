@@ -21,7 +21,7 @@
 import React from 'react';
 import fetchDownloadData from './../../utils/fetch_download_data.js';
 import download from './../../utils/download_assets.js';
-import log from './../../utils/log.js';
+import log from 'log';
 import DownloadIcon from './../icons/download.jsx';
 import CancelIcon from './../icons/close.jsx';
 

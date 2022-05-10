@@ -27,7 +27,7 @@ import deprefix from 'deprefix-package-name';
 import pkgPath from 'pkg-doc-path';
 import pkgKind from 'pkg-kind';
 import pkgBasename from 'pkg-basename';
-import log from './../../utils/log.js';
+import log from 'log';
 import LogoIcon from './../icons/logo.jsx';
 import ClearIcon from './../icons/close.jsx';
 

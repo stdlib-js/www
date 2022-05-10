@@ -32,7 +32,7 @@ import packageTree from './../../../utils/package_tree.js';
 import namespaces from './../../../utils/namespace_list.js';
 import filter from './../../../utils/filter_package_tree.js';
 import deprefix from 'deprefix-package-name';
-import log from './../../../utils/log.js';
+import log from 'log';
 import VersionMenu from './version_menu.jsx';
 import Head from './head.jsx';
 import Filter from './filter.jsx';

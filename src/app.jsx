@@ -24,7 +24,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import qs from 'qs';
 import substringBeforeLast from '@stdlib/string/substring-before-last';
-import log from './utils/log.js';
+import log from 'log';
 import fetchSearchData from './utils/fetch_search_data.js';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';

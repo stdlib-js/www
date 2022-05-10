@@ -20,7 +20,7 @@
 
 import React from 'react';
 import fetchFragment from './../../utils/fetch_fragment.js';
-import log from './../../utils/log.js';
+import log from 'log';
 import NotFound from './../not-found/index.jsx';
 import Breadcrumbs from './breadcrumbs.jsx';
 import ReadmeContent from './content.jsx';

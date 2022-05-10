@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import log from './../../utils/log.js';
+import log from 'log';
 import config from 'config';
 import LogoIcon from './../icons/logo.jsx';
 
