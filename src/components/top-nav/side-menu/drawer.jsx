@@ -28,7 +28,7 @@ import Collapse from '@mui/material/Collapse';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import pkgPath from 'pkg-doc-path';
-import packageTree from './../../../utils/package_tree.js';
+import packageTree from 'pkg-tree';
 import namespaces from 'namespace-list';
 import filter from 'filter-pkg-tree';
 import deprefix from 'deprefix-pkg-name';
