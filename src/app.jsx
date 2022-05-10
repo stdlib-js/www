@@ -52,6 +52,20 @@ var RE_SEARCH_URL = /\/search\/?/;
 var RE_FORWARD_SLASH = /\//g;
 var RE_PLOT_PKG = /\/plot/;
 
+var SIDE_MENU_TIMEOUT = 1000; // milliseconds
+
+var ROUTE_LIST = [
+	// Note: order matters...
+	routes.SEARCH,
+	routes.HELP,
+	routes.ERROR_DECODER,
+	routes.ERROR_DECODER_DEFAULT,
+	routes.PACKAGE_BENCHMARKS,
+	routes.PACKAGE_TESTS,
+	routes.PACKAGE_DEFAULT,
+	routes.VERSION_DEFAULT
+];
+
 var RENDER_METHOD_NAMES = {
 	'welcome': '_renderWelcome',
 	'search': '_renderSearch',
@@ -61,7 +75,6 @@ var RENDER_METHOD_NAMES = {
 	'help': '_renderHelp',
 	'error': '_renderErrorDecoder'
 };
-var SIDE_MENU_TIMEOUT = 1000; // milliseconds
 
 
 // FUNCTIONS //
@@ -76,63 +89,17 @@ var SIDE_MENU_TIMEOUT = 1000; // milliseconds
 */
 function matchCurrentPath( pathname, version ) {
 	var match;
+	var i;
 
 	// Try to find the matching route...
-	match = matchPath( pathname, {
-		'path': routes.SEARCH,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
-		'path': routes.HELP,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
-		'path': routes.ERROR_DECODER,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
-		'path': routes.ERROR_DECODER_DEFAULT,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
-		'path': routes.PACKAGE_BENCHMARKS,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
-		'path': routes.PACKAGE_TESTS,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
-		'path': routes.PACKAGE_DEFAULT,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
-	}
-	match = matchPath( pathname, {
-		'path': routes.VERSION_DEFAULT,
-		'exact': true
-	});
-	if ( match ) {
-		return match;
+	for ( i = 0; i < ROUTE_LIST.length; i++ ) {
+		match = matchPath( pathname, {
+			'path': ROUTE_LIST[ i ],
+			'exact': true
+		});
+		if ( match ) {
+			return match;
+		}
 	}
 	// Default to version landing page:
 	return {
