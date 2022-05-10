@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import pkgPath from './../../../utils/pkg_doc_path.js';
+import pkgPath from 'pkg-doc-path';
 import ExpandMoreIcon from './../../icons/expand_more.jsx';
 import Benchmarks from './benchmarks.jsx';
 import Docs from './docs.jsx';

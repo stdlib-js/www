@@ -27,7 +27,7 @@ import ListItem from '@mui/material/ListItem';
 import Collapse from '@mui/material/Collapse';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import pkgPath from './../../../utils/pkg_doc_path.js';
+import pkgPath from 'pkg-doc-path';
 import packageTree from './../../../utils/package_tree.js';
 import namespaces from './../../../utils/namespace_list.js';
 import filter from './../../../utils/filter_package_tree.js';

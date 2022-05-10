@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import pkgPath from './../../utils/pkg_doc_path.js';
+import pkgPath from 'pkg-doc-path';
 import config from 'config';
 import LogoIcon from './../icons/logo.jsx';
 

@@ -21,7 +21,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import fetchMessage from 'fetch-error-message';
-import pkgPath from './../../utils/pkg_doc_path.js';
+import pkgPath from 'pkg-doc-path';
 import log from './../../utils/log.js';
 import NotFound from './../not-found/index.jsx';
 import ClearIcon from './../icons/close.jsx';
