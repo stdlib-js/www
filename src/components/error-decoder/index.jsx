@@ -73,7 +73,7 @@ class ErrorDecoder extends React.Component {
 	_fetchMessage( code, args ) {
 		var self = this;
 
-		fetchMessage( this.params.version, code, args, clbk );
+		fetchMessage( this.props.version, code, args, clbk );
 
 		/**
 		* Callback invoked upon fetching a formatted error message.
