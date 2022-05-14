@@ -19,7 +19,8 @@
     "clean": "make clean",
     "install:dev": "npm run install:prod",
     "install:prod": "make install",
-    "start": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=production node ./server/index.js"
+    "start": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=production node ./server/index.js",
+    "restart": "make api-docs-app && make css-minify && npm run start"
   },
   "main": "",
   "repository": {
