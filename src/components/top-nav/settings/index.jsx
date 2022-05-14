@@ -132,6 +132,7 @@ class Settings extends React.Component {
 								<select className="settings-theme-select">
 									<option value="alphabetical">Alphabetical</option>
 									{/*<option value="random">Random</option>*/}
+									{/*<option value="related">Related</option>*/}
 								</select>
 								<div className="settings-theme-select-custom">
 									<ChevronDownIcon className="settings-theme-select-custom-icon"/>

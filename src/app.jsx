@@ -29,6 +29,7 @@ import fetchSearchData from 'fetch-search-data';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
 import pkg2title from 'pkg2title';
+import randomInt from 'random-integer';
 import OFFSETS from 'pkg-resource-offsets';
 import config from 'config';
 import Welcome from './components/welcome/index.jsx';
@@ -159,8 +160,17 @@ class App extends React.Component {
 			// Boolean indicating whether a notification is currently displayed:
 			'notification': props.location.search.indexOf( 'notification' ) >= 0,
 
-			// Current theme:
-			'theme': 'light'
+			// Documentation theme:
+			'theme': 'light',
+
+			// Documentation "mode":
+			'mode': 'nested',
+
+			// Syntax for code examples:
+			'exampleSyntax': 'es5',
+
+			// Left/right package navigation:
+			'leftRightNavigation': 'alphabetical'
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -189,9 +199,12 @@ class App extends React.Component {
 	* @param {Object} event - event
 	*/
 	_onThemeChange = ( event ) => {
-		console.log( event );
 		var value = event.target.value;
+
+		// Modify the document to reflect the new theme:
 		document.documentElement.setAttribute( 'data-theme', value );
+
+		// Update the application to reflect the theme change:
 		this.setState({
 			'theme': value
 		});
@@ -537,6 +550,7 @@ class App extends React.Component {
 		var prev;
 		var list;
 		var desc;
+		var mode;
 		var pkg;
 		var ord;
 		var idx;
@@ -544,6 +558,8 @@ class App extends React.Component {
 
 		version = match.params.version;
 		pkg = match.params.pkg;
+
+		mode = this.state.leftRightNavigation;
 
 		// Resolve the package order for the current documentation version:
 		ord = this.props.data.order;
@@ -554,12 +570,22 @@ class App extends React.Component {
 			// Resolve the index of the current package:
 			idx = ord[ pkg ];
 
-			// Resolve the previous package:
-			prev = list[ idx-1 ] || null;
-
-			// Resolve the next package:
-			next = list[ idx+1 ] || null;
-
+			// Resolve the "previous" and "next" packages
+			if ( mode === 'alphabetical' ) {
+				prev = list[ idx-1 ] || null;
+				next = list[ idx+1 ] || null;
+			} else if ( mode === 'random' ) {
+				prev = idx;
+				while ( prev === idx ) {
+					prev = randomInt( 0, list.length );
+				}
+				next = idx;
+				while ( next === idx || next === prev ) {
+					next = randomInt( 0, list.length );
+				}
+				prev = list[ prev ];
+				next = list[ next ];
+			}
 			// Resolve the list of package descriptions for the current documentation version:
 			desc = this.props.data.descriptions;
 
