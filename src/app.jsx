@@ -169,8 +169,8 @@ class App extends React.Component {
 			// Syntax for code examples:
 			'exampleSyntax': 'es5',
 
-			// Left/right package navigation:
-			'leftRightNavigation': 'alphabetical'
+			// Previous/next package navigation:
+			'prevNextNavigation': 'alphabetical'
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -559,7 +559,7 @@ class App extends React.Component {
 		version = match.params.version;
 		pkg = match.params.pkg;
 
-		mode = this.state.leftRightNavigation;
+		mode = this.state.prevNextNavigation;
 
 		// Resolve the package order for the current documentation version:
 		ord = this.props.data.order;

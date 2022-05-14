@@ -55,11 +55,39 @@ class Settings extends React.Component {
 	* Toggles the settings menu.
 	*
 	* @private
+	* @param {Object} event - event object
 	*/
 	_toggleMenu = () => {
 		this.setState({
 			'open': !this.state.open
 		});
+	}
+
+	/**
+	* Callback invoked upon explicitly closing the settings menu.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onClose = ( event ) => {
+		// Prevent the event from bubbling up the DOM tree, as we'll explicitly close the menu from within this callback:
+		event.stopPropagation();
+		event.preventDefault();
+
+		// Toggle the menu display state:
+		this._toggleMenu( event );
+	}
+
+	/**
+	* Callback invoked upon clicking on the settings menu.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onWrapperClick = ( event ) => {
+		// Note that the following is intentional in order to avoid closing the menu when clicking within the menu element...
+		event.stopPropagation();
+		event.preventDefault();
 	}
 
 	/**
@@ -83,12 +111,16 @@ class Settings extends React.Component {
 
 				<div
 					className={ 'settings-menu-overlay' + ( ( this.state.open ) ? '' : ' invisible' ) }
+					onClick={ this._toggleMenu }
 					aria-label="settings menu"
 					aria-hidden={ ( this.state.open ) ? null : "true" }
 				>
-					<div className="settings-menu-wrapper">
+					<div
+						className="settings-menu-wrapper"
+						onClick={ this._onWrapperClick }
+					>
 
-						<Head onClose={ this._toggleMenu } />
+						<Head onClose={ this._onClose } />
 
 						<div className="settings-menu-item">
 							<label class="settings-menu-item-label">
@@ -126,7 +158,7 @@ class Settings extends React.Component {
 
 						<div className="settings-menu-item">
 							<label class="settings-menu-item-label">
-								Left/Right Package Navigation
+								Previous/Next Package Navigation
 							</label>
 							<div className="settings-theme-select-wrapper">
 								<select className="settings-theme-select">
