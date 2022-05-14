@@ -1566,6 +1566,18 @@ h1 button.icon-button .icon {
 	background-color: rgba(182,183,213,0.5);
 }
 
+.settings-menu-blocker {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	content:  ' ';
+
+	background-color: transparent;
+}
+
 .settings-menu-wrapper {
 	display: flex;
 
