@@ -187,12 +187,10 @@ class App extends React.Component {
 	*
 	* @private
 	* @param {Object} event - event
-	* @param {string} value - theme
 	*/
-	_onThemeChange = ( event, value ) => {
-		if ( value !== 'light' && value !== 'dark' ) {
-			return;
-		}
+	_onThemeChange = ( event ) => {
+		console.log( event );
+		var value = event.target.value;
 		document.documentElement.setAttribute( 'data-theme', value );
 		this.setState({
 			'theme': value

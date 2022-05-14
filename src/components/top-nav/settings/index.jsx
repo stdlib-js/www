@@ -19,10 +19,9 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
-import Drawer from '@mui/material/Drawer';
 import GearIcon from './../../icons/gear.jsx';
-import DarkModeToggleButton from './dark_mode_toggle_button.jsx';
+import ChevronDownIcon from './../../icons/chevron_down.jsx';
+import Head from './head.jsx';
 
 
 // MAIN //
@@ -47,6 +46,7 @@ class Settings extends React.Component {
 		super( props );
 
 		this.state = {
+			// Boolean indicating whether the settings menu is open or closed:
 			'open': false
 		};
 	}
@@ -56,7 +56,7 @@ class Settings extends React.Component {
 	*
 	* @private
 	*/
-	_toggleDrawer = () => {
+	_toggleMenu = () => {
 		this.setState({
 			'open': !this.state.open
 		});
@@ -76,37 +76,85 @@ class Settings extends React.Component {
 					title="Open settings"
 					aria-label="settings"
 					aria-pressed={ ( this.state.open ) ? 'true' : 'false' }
-					onClick={ this._toggleDrawer }
+					onClick={ this._toggleMenu }
 				>
 					<GearIcon />
 				</button>
-				<Drawer
-					className="settings-menu-drawer"
-					anchor="right"
-					variant="temporary"
-					open={ this.state.open }
-					onClose={ this._toggleDrawer }
+
+				<div
+					className={ 'settings-menu-overlay' + ( ( this.state.open ) ? '' : ' invisible' ) }
+					aria-label="settings menu"
+					aria-hidden={ ( this.state.open ) ? null : "true" }
 				>
 					<div className="settings-menu-wrapper">
-						<div className="head">
-							<h1>Settings</h1>
-							<button
-								className="icon-button"
-								title="Close settings menu"
-								aria-label="close"
-								onClick={ this._toggleDrawer }
-							>
-								<ClearIcon />
-							</button>
+
+						<Head onClose={ this._toggleMenu } />
+
+						<div className="settings-menu-item">
+							<label class="settings-menu-item-label">
+								Theme
+							</label>
+							<div className="settings-theme-select-wrapper">
+								<select
+									className="settings-theme-select"
+									onChange={ this.props.onThemeChange }
+								>
+									<option value="light">Light</option>
+									<option value="dark">Dark</option>
+								</select>
+								<div className="settings-theme-select-custom">
+									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								</div>
+							</div>
 						</div>
 
-						<h2>Theme</h2>
-						<DarkModeToggleButton
-							mode={ this.props.theme }
-							onToggle={ this.props.onThemeChange }
-						/>
+						<div className="settings-menu-item">
+							<label class="settings-menu-item-label">
+								Documentation Mode
+							</label>
+							<div className="settings-theme-select-wrapper">
+								<select className="settings-theme-select">
+									<option value="nested">Nested</option>
+									{/*<option value="standalone">Standalone</option>*/}
+									{/*<option value="repl">REPL</option>*/}
+								</select>
+								<div className="settings-theme-select-custom">
+									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								</div>
+							</div>
+						</div>
+
+						<div className="settings-menu-item">
+							<label class="settings-menu-item-label">
+								Left/Right Package Navigation
+							</label>
+							<div className="settings-theme-select-wrapper">
+								<select className="settings-theme-select">
+									<option value="alphabetical">Alphabetical</option>
+									{/*<option value="random">Random</option>*/}
+								</select>
+								<div className="settings-theme-select-custom">
+									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								</div>
+							</div>
+						</div>
+
+						<div className="settings-menu-item">
+							<label class="settings-menu-item-label">
+								Code Examples
+							</label>
+							<div className="settings-theme-select-wrapper">
+								<select className="settings-theme-select">
+									<option value="es5">ES5</option>
+									{/*<option value="es6">ES6+</option>*/}
+								</select>
+								<div className="settings-theme-select-custom">
+									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								</div>
+							</div>
+						</div>
 					</div>
-				</Drawer>
+				</div>
 			</Fragment>
 		);
 	}
