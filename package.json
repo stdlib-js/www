@@ -70,6 +70,7 @@
     "@babel/register": "^7.7.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
+    "@fastify/cookie": "^6.0.0",
     "@fastify/helmet": "^8.0.0",
     "@fastify/static": "^5.0.2",
     "@mui/icons-material": "^5.0.1",
