@@ -277,7 +277,7 @@ class Settings extends React.Component {
 							></input>
 							<label
 								htmlFor="settings-checkbox-allow-settings-cookies"
-								class="settings-checkbox-label"
+								class="settings-checkbox-label disable-select"
 								onClick={ this._onAllowSettingsCookiesLabelClick }
 							>
 								<p>
