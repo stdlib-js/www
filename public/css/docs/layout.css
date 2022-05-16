@@ -939,6 +939,151 @@ h2 {
 }
 
 /*
+* Settings menu.
+*/
+
+.settings-menu-overlay {
+	display: flex;
+
+	z-index: 1200;
+
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+
+	padding-top: 40px;
+	padding-bottom: 32px;
+	padding-left: 40px;
+	padding-right: 40px;
+
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.settings-menu-blocker {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.settings-menu-wrapper {
+	display: flex;
+
+	flex-direction: column;
+
+	height: 100%;
+	min-height: 320px;
+	max-height: 832px;
+	width: 100%;
+	max-width: 380px; /* 1040px */
+}
+
+.settings-menu-head {
+	display: flex;
+
+	margin-bottom: 1.5em;
+
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+
+	align-items: center;
+	justify-content: space-between;
+}
+
+.settings-menu-head h1 {
+	display: flex;
+	width: 100%;
+
+	margin: 0;
+	margin-left: 48px;
+	padding: 0;
+}
+
+.settings-menu-head h1 span {
+	flex: 1 0 0;
+}
+
+.settings-menu-head .icon-button.settings-menu-close-button {
+	width: 48px;
+	height: 48px;
+}
+
+.settings-menu-head .icon-button.settings-menu-close-button .icon {
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+.settings-menu-item {
+	width: 100%;
+
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+
+	margin-bottom: 1.5rem;
+}
+
+.settings-menu-item-label {
+	display: block;
+
+	margin-bottom: 0.5rem;
+}
+
+.settings-select-wrapper {
+	position: relative;
+}
+
+.settings-select {
+	display: block;
+	appearance: none;
+
+	width: 100%;
+
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 1rem;
+	padding-right: 2rem;
+}
+
+.settings-select-custom {
+	display: flex;
+
+	position: absolute;
+
+	right: 0;
+	top: 0;
+	bottom: 0;
+
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+
+	align-items: center;
+}
+
+.settings-select-custom-icon {
+	height: 1rem;
+	width: 1rem;
+}
+
+.settings-checkbox-wrapper {
+	display: flex;
+}
+
+.settings-checkbox {
+	margin-right: 0.5rem;
+	margin-top: 0.25rem;
+}
+
+.settings-checkbox-label p {
+	margin-bottom: 1em;
+}
+
+/*
 * Documentation help.
 */
 
@@ -1530,226 +1675,4 @@ h1 button.icon-button .icon {
 	margin-left: 0.5in;
 	margin-right: 0.5in;
 	margin-bottom: 0.5in;
-}
-
-
-
-
-
-
-/*
-* Settings menu.
-*/
-
-.settings-menu-overlay {
-	display: flex;
-
-	z-index: 1200;
-
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-
-	padding-top: 40px;
-	padding-bottom: 32px;
-	padding-left: 40px;
-	padding-right: 40px;
-
-	align-items: flex-start;
-	justify-content: center;
-
-	font-size: 1em;
-
-	/* TODO: consider a grey, rather than a blue */
-	background-color: rgba(182,183,213,0.5);
-}
-
-.settings-menu-blocker {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-
-	content:  ' ';
-
-	background-color: transparent;
-}
-
-.settings-menu-wrapper {
-	display: flex;
-
-	flex-direction: column;
-
-	height: 100%;
-	min-height: 320px;
-	max-height: 832px;
-	width: 100%;
-	max-width: 380px; /* 1040px */
-
-	background-color: var(--theme-background-color);
-
-	border-radius: 8px;
-	box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
-}
-
-.settings-menu-head {
-	display: flex;
-
-	margin-bottom: 1.5em;
-
-	padding-right: 10px;
-	padding-left: 10px;
-	padding-top: 15px;
-	padding-bottom: 10px;
-
-	align-items: center;
-	justify-content: space-between;
-
-	border-bottom: 1px solid var(--heading-border-bottom-color);
-}
-
-.settings-menu-head h1 {
-	display: flex;
-	width: 100%;
-
-	margin: 0;
-	margin-left: 48px;
-	padding: 0;
-
-	text-align: center;
-
-	font-family: var(--default-font-family);
-	font-weight: 200;
-	color: var(--theme-text-color);
-}
-
-.settings-menu-head h1 span {
-	flex: 1 0 0;
-}
-
-.settings-menu-head .icon-button.settings-menu-close-button {
-	width: 48px;
-	height: 48px;
-}
-
-.settings-menu-head .icon-button.settings-menu-close-button .icon {
-	margin-left: 12px;
-	margin-right: 12px;
-}
-
-.settings-menu-item {
-	width: 100%;
-
-	padding-left: 0.75rem;
-	padding-right: 0.75rem;
-
-	margin-bottom: 1.5rem;
-}
-
-.settings-menu-item-label {
-	display: block;
-
-	margin-bottom: 0.5rem;
-
-	line-height: 1.5rem;
-
-	font-size: 0.75rem;
-	font-weight: 700;
-
-	text-transform: uppercase;
-	letter-spacing: 0.025em;
-}
-
-.settings-select-wrapper {
-	position: relative;
-}
-
-.settings-select {
-	display: block;
-	appearance: none;
-
-	width: 100%;
-
-	padding-top: 0.75rem;
-	padding-bottom: 0.75rem;
-	padding-left: 1rem;
-	padding-right: 2rem;
-
-	line-height: 1.25em;
-
-	color: #4a5568;
-
-	background-color: #eaeaea;
-
-	border: 1px solid #eaeaea;
-	border-radius: 0.25rem;
-}
-
-.settings-select:focus {
-	outline: none;
-
-	background-color: #ffffff;
-
-	border-color: #cccccc;
-}
-
-.settings-select-custom {
-	display: flex;
-
-	position: absolute;
-
-	right: 0;
-	top: 0;
-	bottom: 0;
-
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-
-	align-items: center;
-
-	color: #4a5568;
-
-	pointer-events: none;
-}
-
-.settings-select-custom-icon {
-	height: 1rem;
-	width: 1rem;
-
-	fill: currentColor;
-}
-
-.settings-checkbox-wrapper {
-	display: flex;
-}
-
-.settings-checkbox {
-	margin-right: 0.5rem;
-	margin-top: 0.25rem;
-
-	line-height: 1.25em;
-
-	cursor: pointer;
-}
-
-.settings-checkbox-label {
-	line-height: 1.2em;
-
-	cursor: pointer;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.settings-checkbox-label p {
-	margin-bottom: 1em;
-}
-
-.settings-checkbox-label .text-bold {
-	font-weight: 700;
 }

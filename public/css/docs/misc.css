@@ -556,6 +556,73 @@ img {
 }
 
 /*
+* Settings menu.
+*/
+
+.settings-menu-overlay {
+	/* TODO: consider a grey, rather than a blue */
+	background-color: rgba(182,183,213,0.5);
+}
+
+.settings-menu-blocker {
+	content: ' ';
+
+	background-color: transparent;
+}
+
+.settings-menu-wrapper {
+	background-color: var(--theme-background-color);
+
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+
+	-webkit-box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
+	-moz-box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
+	box-shadow: 0 8px 22px 0 rgb(37 44 97 / 15%), 0 4px 6px 0 rgb(93 100 148 / 20%);
+}
+
+.settings-menu-head {
+	border-bottom: 1px solid var(--heading-border-bottom-color);
+}
+
+.settings-select {
+	appearance: none;
+
+	background-color: #eaeaea;
+
+	border: 1px solid #eaeaea;
+
+	-webkit-border-radius:0.25rem;
+	-moz-border-radius:0.25rem;
+	border-radius: 0.25rem;
+}
+
+.settings-select:focus {
+	outline: none;
+
+	background-color: #ffffff;
+
+	border-color: #cccccc;
+}
+
+.settings-select-custom {
+	pointer-events: none;
+}
+
+.settings-select-custom-icon {
+	fill: currentColor;
+}
+
+.settings-checkbox {
+	cursor: pointer;
+}
+
+.settings-checkbox-label {
+	cursor: pointer;
+}
+
+/*
 * Side menu.
 */
 
@@ -848,6 +915,16 @@ h1 button.icon-button::after {
 	-webkit-box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
 	-moz-box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
 	box-shadow: 0 0 50px 0 var(--diffuse-dark-shadow-color);
+}
+
+/*
+* Disable selecting text.
+*/
+.disable-select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 

@@ -398,6 +398,54 @@ a:active {
 }
 
 /*
+* Settings menu.
+*/
+
+.settings-menu-overlay {
+	font-size: 1em;
+}
+
+.settings-menu-head h1 {
+	text-align: center;
+
+	font-family: var(--default-font-family);
+	font-weight: 200;
+	color: var(--theme-text-color);
+}
+
+.settings-menu-item-label {
+	line-height: 1.5rem;
+
+	font-size: 0.75rem;
+	font-weight: 700;
+
+	text-transform: uppercase;
+	letter-spacing: 0.025em;
+}
+
+.settings-select {
+	line-height: 1.25em;
+
+	color: #4a5568;
+}
+
+.settings-select-custom {
+	color: #4a5568;
+}
+
+.settings-checkbox {
+	line-height: 1.25em;
+}
+
+.settings-checkbox-label {
+	line-height: 1.2em;
+}
+
+.settings-checkbox-label .text-bold {
+	font-weight: 700;
+}
+
+/*
 * Side menu.
 */
 
