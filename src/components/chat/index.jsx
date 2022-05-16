@@ -20,14 +20,8 @@
 
 import React, { Fragment } from 'react';
 import viewportWidth from 'viewport-width';
+import config from 'config';
 import ForumIcon from './../icons/forum.jsx';
-
-
-// VARIABLES //
-
-var APPEND_SCRIPT_DELAY = 5000; // 5 seconds
-var SCRIPT_URL = '/js/common/gitter_sidecar.min.js';
-var ROOM = 'stdlib-js/stdlib';
 
 
 // MAIN //
@@ -70,7 +64,7 @@ class Chat extends React.Component {
 
 		// Create a new chat instance:
 		chat = new event.detail.Chat({
-			'room': ROOM,
+			'room': config.gitter_room,
 			'activationElement': false
 		});
 
@@ -107,7 +101,7 @@ class Chat extends React.Component {
 
 		// Only initialize chat on larger devices, based on the assumption that small devices are likely to be mobile devices:
 		if ( w && w >= 1080 ) {
-			setTimeout( onTimeout, APPEND_SCRIPT_DELAY );
+			setTimeout( onTimeout, config.gitter_load_delay );
 		}
 
 		/**
@@ -120,7 +114,7 @@ class Chat extends React.Component {
 
 			// Create a script for loading the chat application script:
 			script = document.createElement( 'script' );
-			script.src = SCRIPT_URL;
+			script.src = config.gitter_script;
 			script.async = true;
 			script.defer = true;
 
