@@ -77,7 +77,7 @@ class Settings extends React.Component {
 	* @private
 	* @param {Object} event - event object
 	*/
-	_onAllowSettingsCookiesChange = ( event ) => {
+	_onAllowSettingsCookiesChange = () => {
 		this.props.onAllowSettingsCookiesChange( !this.props.allowSettingsCookies );
 	}
 
