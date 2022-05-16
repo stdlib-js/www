@@ -37,10 +37,15 @@ var StylesProvider = require( '@mui/styles' ).StylesProvider;
 * @param {string} version - documentation version
 * @param {string} content - initial content (for SSR)
 * @param {Object} data - application data
+* @param {Object} settings - user settings
+* @param {string} settings.theme - documentation theme
+* @param {string} settings.mode - documentation "mode"
+* @param {string} settings.exampleSyntax - example code syntax
+* @param {string} settings.prevNextNavigation - previous/next package navigation mode
 * @param {Object} context - server-side router context
 * @returns {ReactElement} React element
 */
-function WrappedApp( App, url, version, content, data, context ) {
+function WrappedApp( App, url, version, content, data, settings, context ) {
 	return (
 		<StylesProvider>
 			<App
@@ -49,6 +54,12 @@ function WrappedApp( App, url, version, content, data, context ) {
 				data={ data }
 				query=''
 				content={ content }
+
+				theme={ settings.theme }
+				mode={ settings.mode }
+				exampleSyntax={ settings.exampleSyntax }
+				prevNextNavigation={ settings.prevNextNavigation }
+
 				context={ context }
 			/>
 		</StylesProvider>
