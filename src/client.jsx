@@ -169,10 +169,25 @@ class ClientApp extends React.Component {
 	* @param {boolean} value - preference
 	*/
 	_onAllowSettingsCookiesChange = ( value ) => {
-		// TODO: when a user disallows cookies, remove all user preference cookies
+		var opts;
 
-		// TODO: when a user allows cookies, save all user preferences as cookies
-
+		// Check whether we should save settings as cookies...
+		if ( value ) {
+			document.cookie = cookieString( 'theme', this.state.theme );
+			document.cookie = cookieString( 'mode', this.state.mode );
+			document.cookie = cookieString( 'examplesyntax', this.state.exampleSyntax );
+			document.cookie = cookieString( 'prevnextnavigation', this.state.prevNextNavigation );
+		}
+		// Otherwise, remove all existing setting cookies...
+		else {
+			opts = {
+				'maxAge': -1
+			};
+			document.cookie = cookieString( 'theme', this.state.theme, opts );
+			document.cookie = cookieString( 'mode', this.state.mode, opts );
+			document.cookie = cookieString( 'examplesyntax', this.state.exampleSyntax, opts );
+			document.cookie = cookieString( 'prevnextnavigation', this.state.prevNextNavigation, opts );
+		}
 		this.setState({
 			'allowSettingsCookies': value
 		});
@@ -182,15 +197,19 @@ class ClientApp extends React.Component {
 	* Callback invoked upon a change to the documentation theme.
 	*
 	* @private
-	* @param {string} theme - documentation theme
+	* @param {string} value - documentation theme
 	*/
-	_onThemeChange = ( theme ) => {
+	_onThemeChange = ( value ) => {
 		// Modify the document to reflect the desired theme:
-		document.documentElement.setAttribute( 'data-theme', theme );
+		document.documentElement.setAttribute( 'data-theme', value );
 
-		// Update the application to reflect the theme change:
+		// If allowed, set the setting cookie...
+		if ( this.state.allowSettingsCookies ) {
+			document.cookie = cookieString( 'theme', value );
+		}
+		// Update the application to reflect the setting change:
 		this.setState({
-			'theme': theme
+			'theme': value
 		});
 	}
 
@@ -198,11 +217,16 @@ class ClientApp extends React.Component {
 	* Callback invoked upon a change to the documentation "mode".
 	*
 	* @private
-	* @param {string} mode - documentation "mode"
+	* @param {string} value - documentation "mode"
 	*/
-	_onModeChange = ( mode ) => {
+	_onModeChange = ( value ) => {
+		// If allowed, set the setting cookie...
+		if ( this.state.allowSettingsCookies ) {
+			document.cookie = cookieString( 'mode', value );
+		}
+		// Update the application to reflect the setting change:
 		this.setState({
-			'mode': mode
+			'mode': value
 		});
 	}
 
@@ -210,11 +234,16 @@ class ClientApp extends React.Component {
 	* Callback invoked upon a change to the example code syntax.
 	*
 	* @private
-	* @param {string} syntax - code syntax
+	* @param {string} value - code syntax
 	*/
-	_onExampleSyntaxChange = ( syntax ) => {
+	_onExampleSyntaxChange = ( value ) => {
+		// If allowed, set the setting cookie...
+		if ( this.state.allowSettingsCookies ) {
+			document.cookie = cookieString( 'examplesyntax', value );
+		}
+		// Update the application to reflect the setting change:
 		this.setState({
-			'exampleSyntax': syntax
+			'exampleSyntax': value
 		});
 	}
 
@@ -222,11 +251,16 @@ class ClientApp extends React.Component {
 	* Callback invoked upon a change to the previous/next package navigation mode.
 	*
 	* @private
-	* @param {string} mode - navigation mode
+	* @param {string} value - navigation mode
 	*/
-	_onPrevNextNavChange = ( mode ) => {
+	_onPrevNextNavChange = ( value ) => {
+		// If allowed, set the setting cookie...
+		if ( this.state.allowSettingsCookies ) {
+			document.cookie = cookieString( 'prevnextnavigation', value );
+		}
+		// Update the application to reflect the setting change:
 		this.setState({
-			'prevNextNavigation': mode
+			'prevNextNavigation': value
 		});
 	}
 
