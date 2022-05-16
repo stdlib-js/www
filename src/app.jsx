@@ -136,10 +136,17 @@ class App extends React.Component {
 	* @param {Object} props.data.order - package order hash
 	* @param {StringArray} props.data.namespaces - list of namespace packages
 	* @param {StringArray} props.data.descriptions - list of package descriptions
+	* @param {string} props.theme - documentation theme
+	* @param {string} props.mode - documentation "mode"
+	* @param {string} props.exampleSyntax - example code syntax
+	* @param {string} props.prevNextNavigation - previous/next package navigation mode
 	* @param {string} props.query - initial search query
 	* @param {(string|Object)} props.content - initial content
 	* @param {Callback} props.onVersionChange - callback to invoke upon changing the documentation version
-	* @param {Callback} props.onPackageChange - callback to invoke upon changing the current package
+	* @param {Callback} props.onThemeChange - callback to invoke upon changing the documentation theme
+	* @param {Callback} props.onModeChange - callback to invoke upon changing the documentation "mode"
+	* @param {Callback} props.onExampleSyntaxChange - callback to invoke upon changing the example code syntax
+	* @param {Callback} props.onPrevNextNavChange - callback to invoke upon changing the previous/next package navigation mode
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -158,19 +165,7 @@ class App extends React.Component {
 			'shortcuts': true,
 
 			// Boolean indicating whether a notification is currently displayed:
-			'notification': props.location.search.indexOf( 'notification' ) >= 0,
-
-			// Documentation theme:
-			'theme': 'light',
-
-			// Documentation "mode":
-			'mode': 'nested',
-
-			// Syntax for code examples:
-			'exampleSyntax': 'es5',
-
-			// Previous/next package navigation:
-			'prevNextNavigation': 'alphabetical'
+			'notification': props.location.search.indexOf( 'notification' ) >= 0
 		};
 
 		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
@@ -189,24 +184,6 @@ class App extends React.Component {
 	_onSideMenuToggle = ( bool ) => {
 		this.setState({
 			'sideMenu': bool
-		});
-	}
-
-	/**
-	* Callback invoked upon changing the theme.
-	*
-	* @private
-	* @param {Object} event - event
-	*/
-	_onThemeChange = ( event ) => {
-		var value = event.target.value;
-
-		// Modify the document to reflect the new theme:
-		document.documentElement.setAttribute( 'data-theme', value );
-
-		// Update the application to reflect the theme change:
-		this.setState({
-			'theme': value
 		});
 	}
 
@@ -518,16 +495,28 @@ class App extends React.Component {
 		return (
 			<TopNav
 				onSideMenuToggle={ this._onSideMenuToggle }
-				onVersionChange={ this.props.onVersionChange }
+
 				onSearchChange={ this._onSearchChange }
 				onSearchSubmit={ this._onSearchSubmit }
 				onSearchFocus={ this._onSearchFocus }
 				onSearchBlur={ this._onSearchBlur }
-				onThemeChange={ this._onThemeChange }
+
 				onFilterFocus={ this._onFilterFocus }
 				onFilterBlur={ this._onFilterBlur }
+
+				onVersionChange={ this.props.onVersionChange }
+				onThemeChange={ this.props.onThemeChange }
+				onModeChange={ this.props.onModeChange }
+				onExampleSyntaxChange={ this.props.onExampleSyntaxChange }
+				onPrevNextNavChange={ this.props.onPrevNextNavChange }
+
 				sideMenu={ this.state.sideMenu }
-				theme={ this.state.theme }
+
+				theme={ this.props.theme }
+				mode={ this.props.mode }
+				exampleSyntax={ this.props.exampleSyntax }
+				prevNextNavigation={ this.props.prevNextNavigation }
+
 				{...props}
 			/>
 		);

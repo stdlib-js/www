@@ -52,7 +52,10 @@ class TopNav extends React.Component {
 	* @param {Callback} props.onSearchChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSearchFocus - callback to invoke when search input receives focus
 	* @param {Callback} props.onSearchBlur - callback to invoke when search input loses focus
-	* @param {Callback} props.onThemeChange - callback to invoke when the theme changes
+	* @param {Callback} props.onThemeChange - callback to invoke upon changing the documentation theme
+	* @param {Callback} props.onModeChange - callback to invoke upon changing the documentation "mode"
+	* @param {Callback} props.onExampleSyntaxChange - callback to invoke upon changing the example code syntax
+	* @param {Callback} props.onPrevNextNavChange - callback to invoke upon changing the previous/next package navigation mode
 	* @param {boolean} props.home - boolean indicating whether to link to the main website
 	* @param {boolean} props.docs - boolean indicating whether to link to package documentation
 	* @param {boolean} props.src - boolean indicating whether to link to package source
@@ -61,7 +64,10 @@ class TopNav extends React.Component {
 	* @param {boolean} props.tests - boolean indicating whether to link to package tests
 	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
 	* @param {boolean} props.sideMenu - boolean indicating whether to expand the side menu
-	* @param {string} props.theme - current theme
+	* @param {string} props.theme - current documentation theme
+	* @param {string} props.mode - current documentation "mode"
+	* @param {string} props.exampleSyntax - current example code syntax
+	* @param {string} props.prevNextNavigation - current previous/next package navigation mode
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -176,7 +182,14 @@ class TopNav extends React.Component {
 
 					<Settings
 						theme={ this.props.theme }
+						mode={ this.props.mode }
+						exampleSyntax={ this.props.exampleSyntax }
+						prevNextNavigation={ this.props.prevNextNavigation }
+
 						onThemeChange={ this.props.onThemeChange }
+						onModeChange={ this.props.onModeChange }
+						onExampleSyntaxChange={ this.props.onExampleSyntaxChange }
+						onPrevNextNavChange={ this.props.onPrevNextNavChange }
 					/>
 
 					<DownloadButton

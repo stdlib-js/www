@@ -23,11 +23,22 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import qs from 'qs';
 import fetchPackageData from 'fetch-pkg-data';
+import getCookies from 'get-cookies';
+import cookieString from 'cookie-string';
 import resetScroll from 'reset-scroll';
 import log from 'log';
 import config from 'config';
 import App from './app.jsx';
 
+
+// VARIABLES //
+
+var COOKIES = [
+	'theme',
+	'mode',
+	'examplesyntax',
+	'prevnextnavigation'
+];
 
 // MAIN //
 
@@ -48,6 +59,7 @@ class ClientApp extends React.Component {
 	constructor( props ) {
 		var pathname;
 		var version;
+		var cookies;
 		var query;
 		var loc;
 		var i;
@@ -80,6 +92,8 @@ class ClientApp extends React.Component {
 			});
 			query = query.q || '';
 		}
+		// Get the current set of applicable cookies:
+		cookies = getCookies( document.cookie, COOKIES );
 
 		// Set the initial component state:
 		this.state = {
@@ -90,8 +104,20 @@ class ClientApp extends React.Component {
 			'data': {},
 
 			// Initial search query:
-			'query': query
-		}
+			'query': query,
+
+			// Documentation theme:
+			'theme': cookies.theme || config.theme,
+
+			// Documentation "mode":
+			'mode': cookies.mode || config.mode,
+
+			// Example code syntax:
+			'exampleSyntax': cookies.examplesyntax || config.exampleSyntax,
+
+			// Previous/next package navigation:
+			'prevNextNavigation': cookies.prevnextnavigation || config.prevNextNavigation
+		};
 	}
 
 	/**
@@ -124,6 +150,58 @@ class ClientApp extends React.Component {
 				'data': data
 			});
 		}
+	}
+
+	/**
+	* Callback invoked upon a change to the documentation theme.
+	*
+	* @private
+	* @param {string} theme - documentation theme
+	*/
+	_onThemeChange = ( theme ) => {
+		// Modify the document to reflect the desired theme:
+		document.documentElement.setAttribute( 'data-theme', theme );
+
+		// Update the application to reflect the theme change:
+		this.setState({
+			'theme': theme
+		});
+	}
+
+	/**
+	* Callback invoked upon a change to the documentation "mode".
+	*
+	* @private
+	* @param {string} mode - documentation "mode"
+	*/
+	_onModeChange = ( mode ) => {
+		this.setState({
+			'mode': mode
+		});
+	}
+
+	/**
+	* Callback invoked upon a change to the example code syntax.
+	*
+	* @private
+	* @param {string} syntax - code syntax
+	*/
+	_onExampleSyntaxChange = ( syntax ) => {
+		this.setState({
+			'exampleSyntax': syntax
+		});
+	}
+
+	/**
+	* Callback invoked upon a change to the previous/next package navigation mode.
+	*
+	* @private
+	* @param {string} mode - navigation mode
+	*/
+	_onPrevNextNavChange = ( mode ) => {
+		this.setState({
+			'prevNextNavigation': mode
+		});
 	}
 
 	/**
@@ -175,12 +253,23 @@ class ClientApp extends React.Component {
 				<HelmetProvider>
 					<App
 						isClient={ true }
+
 						version={ this.state.version }
 						data={ this.state.data }
 						query={ this.state.query }
 						content=""
+
+						theme={ this.state.theme }
+						mode={ this.state.mode }
+						exampleSyntax={ this.state.exampleSyntax }
+						prevNextNavigation={ this.state.prevNextNavigation }
+
 						onVersionChange={ this._onVersionChange }
-						onPackageChange={ this._onPackageChange }
+
+						onThemeChange={ this._onThemeChange }
+						onModeChange={ this._onModeChange }
+						onExampleSyntaxChange={ this._onExampleSyntaxChange }
+						onPrevNextNavChange={ this._onPrevNextNavChange }
 					/>
 				</HelmetProvider>
 			</BrowserRouter>

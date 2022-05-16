@@ -39,7 +39,13 @@ class Settings extends React.Component {
 	* @constructor
 	* @param {Object} props - component properties
 	* @param {string} props.theme - current theme
-	* @param {Callback} props.onThemeChange - callback to invoke when the theme changes
+	* @param {string} props.mode - current documentation "mode"
+	* @param {string} props.exampleSyntax - current example code syntax
+	* @param {string} props.prevNextNavigation - current previous/next package navigation mode
+	* @param {Callback} props.onThemeChange - callback to invoke upon changing the documentation theme
+	* @param {Callback} props.onModeChange - callback to invoke upon changing the documentation "mode"
+	* @param {Callback} props.onExampleSyntaxChange - callback to invoke upon changing the example code syntax
+	* @param {Callback} props.onPrevNextNavChange - callback to invoke upon changing the previous/next package navigation mode
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
@@ -61,6 +67,46 @@ class Settings extends React.Component {
 		this.setState({
 			'open': !this.state.open
 		});
+	}
+
+	/**
+	* Callback invoked upon changing the documentation theme.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onThemeChange = ( event ) => {
+		this.props.onThemeChange( event.target.value );
+	}
+
+	/**
+	* Callback invoked upon changing the documentation "mode".
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onModeChange = ( event ) => {
+		this.props.onModeChange( event.target.value );
+	}
+
+	/**
+	* Callback invoked upon changing the example code syntax.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onExampleSyntaxChange = ( event ) => {
+		this.props.onExampleSyntaxChange( event.target.value );
+	}
+
+	/**
+	* Callback invoked upon changing the previous/next package navigation mode.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onPrevNextNavChange = ( event ) => {
+		this.props.onPrevNextNavChange( event.target.value );
 	}
 
 	/**
@@ -126,16 +172,16 @@ class Settings extends React.Component {
 							<label class="settings-menu-item-label">
 								Theme
 							</label>
-							<div className="settings-theme-select-wrapper">
+							<div className="settings-select-wrapper">
 								<select
-									className="settings-theme-select"
-									onChange={ this.props.onThemeChange }
+									className="settings-select"
+									onChange={ this._onThemeChange }
 								>
 									<option value="light">Light</option>
 									<option value="dark">Dark</option>
 								</select>
-								<div className="settings-theme-select-custom">
-									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								<div className="settings-select-custom">
+									<ChevronDownIcon className="settings-select-custom-icon"/>
 								</div>
 							</div>
 						</div>
@@ -144,14 +190,17 @@ class Settings extends React.Component {
 							<label class="settings-menu-item-label">
 								Documentation Mode
 							</label>
-							<div className="settings-theme-select-wrapper">
-								<select className="settings-theme-select">
+							<div className="settings-select-wrapper">
+								<select
+									className="settings-select"
+									onChange={ this._onModeChange }
+								>
 									<option value="nested">Nested</option>
 									{/*<option value="standalone">Standalone</option>*/}
 									{/*<option value="repl">REPL</option>*/}
 								</select>
-								<div className="settings-theme-select-custom">
-									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								<div className="settings-select-custom">
+									<ChevronDownIcon className="settings-select-custom-icon"/>
 								</div>
 							</div>
 						</div>
@@ -160,14 +209,16 @@ class Settings extends React.Component {
 							<label class="settings-menu-item-label">
 								Previous/Next Package Navigation
 							</label>
-							<div className="settings-theme-select-wrapper">
-								<select className="settings-theme-select">
+							<div className="settings-select-wrapper">
+								<select
+									className="settings-select"
+									onChange={ this._onPrevNextNavChange }
+								>
 									<option value="alphabetical">Alphabetical</option>
 									{/*<option value="random">Random</option>*/}
-									{/*<option value="related">Related</option>*/}
 								</select>
-								<div className="settings-theme-select-custom">
-									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								<div className="settings-select-custom">
+									<ChevronDownIcon className="settings-select-custom-icon"/>
 								</div>
 							</div>
 						</div>
@@ -176,13 +227,16 @@ class Settings extends React.Component {
 							<label class="settings-menu-item-label">
 								Code Examples
 							</label>
-							<div className="settings-theme-select-wrapper">
-								<select className="settings-theme-select">
+							<div className="settings-select-wrapper">
+								<select
+									className="settings-select"
+									onChange={ this._oExampleSyntaxChange }
+								>
 									<option value="es5">ES5</option>
 									{/*<option value="es6">ES6+</option>*/}
 								</select>
-								<div className="settings-theme-select-custom">
-									<ChevronDownIcon className="settings-theme-select-custom-icon"/>
+								<div className="settings-select-custom">
+									<ChevronDownIcon className="settings-select-custom-icon"/>
 								</div>
 							</div>
 						</div>
