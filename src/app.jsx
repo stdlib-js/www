@@ -553,7 +553,7 @@ class App extends React.Component {
 		version = match.params.version;
 		pkg = match.params.pkg;
 
-		mode = this.state.prevNextNavigation;
+		mode = this.props.prevNextNavigation;
 
 		// Resolve the package order for the current documentation version:
 		ord = this.props.data.order;

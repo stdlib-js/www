@@ -237,7 +237,7 @@ class Settings extends React.Component {
 									onChange={ this._onPrevNextNavChange }
 								>
 									<option value="alphabetical">Alphabetical</option>
-									{/*<option value="random">Random</option>*/}
+									<option value="random">Random</option>
 								</select>
 								<div className="settings-select-custom">
 									<ChevronDownIcon className="settings-select-custom-icon"/>
