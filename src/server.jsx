@@ -37,6 +37,10 @@ import App from './app.jsx';
 * @param {Object} props.data - package data
 * @param {string} props.query - search query
 * @param {(string|Object)} props.content - initial content
+* @param {string} props.theme - documentation theme
+* @param {string} props.mode - documentation "mode"
+* @param {string} props.exampleSyntax - example code syntax
+* @param {string} props.prevNextNavigation - previous/next package navigation mode
 * @returns {ReactElement} React element
 */
 function ServerApp( props ) {
@@ -45,10 +49,16 @@ function ServerApp( props ) {
 			<HelmetProvider context={ {} }>
 				<App
 					isClient={ false }
+
 					version={ props.version }
 					data={ props.data }
 					query={ props.query }
 					content={ props.content }
+
+					theme={ props.theme }
+					mode={ props.mode }
+					exampleSyntax={ props.exampleSyntax }
+					prevNextNavigation={ props.prevNextNavigation }
 				/>
 			</HelmetProvider>
 		</StaticRouter>
