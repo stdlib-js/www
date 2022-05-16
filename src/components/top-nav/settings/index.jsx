@@ -78,7 +78,17 @@ class Settings extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onAllowSettingsCookiesChange = ( event ) => {
-		this.props.onAllowSettingsCookiesChange( event.target.value );
+		this.props.onAllowSettingsCookiesChange( !this.props.allowSettingsCookies );
+	}
+
+	/**
+	* Callback invoked upon clicking the label of a checkbox for indicating whether to allow the use of cookies for storing settings.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onAllowSettingsCookiesLabelClick = () => {
+		this.props.onAllowSettingsCookiesChange( !this.props.allowSettingsCookies );
 	}
 
 	/**
@@ -251,6 +261,37 @@ class Settings extends React.Component {
 									<ChevronDownIcon className="settings-select-custom-icon"/>
 								</div>
 							</div>
+						</div>
+
+						<div className="settings-menu-item settings-checkbox-wrapper">
+							<input
+								key={ Math.random() }
+								class="settings-checkbox"
+								type="checkbox"
+								id="settings-checkbox-allow-settings-cookies"
+								name="settings-checkbox-allow-settings-cookies"
+								value="allowSettingsCookies"
+								checked={ this.props.allowSettingsCookies }
+								onChange={ this._onAllowSettingsCookiesChange }
+							></input>
+							<label
+								htmlFor="settings-checkbox-allow-settings-cookies"
+								class="settings-checkbox-label"
+								onClick={ this._onAllowSettingsCookiesLabelClick }
+							>
+								<p>
+									Enable saving your preferences as <span className="text-bold">cookies</span>.
+								</p>
+								<p>
+									If settings cookies are not enabled, your preferences will be lost upon navigating away from this site (including refresh).
+								</p>
+								<p>
+									You can delete settings cookies for this site at any time by unchecking this checkbox.
+								</p>
+								<p>
+									When enabled, settings cookies only store setting values and do <span className="text-bold">not</span> store any personally identifiable information.
+								</p>
+							</label>
 						</div>
 					</div>
 				</div>
