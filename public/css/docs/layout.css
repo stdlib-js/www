@@ -1114,7 +1114,7 @@ h2 {
 	}
 }
 
-@media only screen and (min-width: 31.5em) { /* 504px */
+@media only screen and (min-width: 33em) { /* 528px */
 	/*
 	* Once we have enough real estate, show the search icon button.
 	*/
