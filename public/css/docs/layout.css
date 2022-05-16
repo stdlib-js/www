@@ -1663,11 +1663,11 @@ h1 button.icon-button .icon {
 	letter-spacing: 0.025em;
 }
 
-.settings-theme-select-wrapper {
+.settings-select-wrapper {
 	position: relative;
 }
 
-.settings-theme-select {
+.settings-select {
 	display: block;
 	appearance: none;
 
@@ -1688,7 +1688,7 @@ h1 button.icon-button .icon {
 	border-radius: 0.25rem;
 }
 
-.settings-theme-select:focus {
+.settings-select:focus {
 	outline: none;
 
 	background-color: #ffffff;
@@ -1696,7 +1696,7 @@ h1 button.icon-button .icon {
 	border-color: #cccccc;
 }
 
-.settings-theme-select-custom {
+.settings-select-custom {
 	display: flex;
 
 	position: absolute;
@@ -1715,7 +1715,7 @@ h1 button.icon-button .icon {
 	pointer-events: none;
 }
 
-.settings-theme-select-custom-icon {
+.settings-select-custom-icon {
 	height: 1rem;
 	width: 1rem;
 
