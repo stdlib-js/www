@@ -52,6 +52,7 @@ class TopNav extends React.Component {
 	* @param {Callback} props.onSearchChange - callback to invoke upon updating a search input element
 	* @param {Callback} props.onSearchFocus - callback to invoke when search input receives focus
 	* @param {Callback} props.onSearchBlur - callback to invoke when search input loses focus
+	* @param {Callback} props.onAllowSettingsCookiesChange - callback to invoke upon changing the setting indicating whether to allow cookies for storing settings
 	* @param {Callback} props.onThemeChange - callback to invoke upon changing the documentation theme
 	* @param {Callback} props.onModeChange - callback to invoke upon changing the documentation "mode"
 	* @param {Callback} props.onExampleSyntaxChange - callback to invoke upon changing the example code syntax
@@ -64,6 +65,7 @@ class TopNav extends React.Component {
 	* @param {boolean} props.tests - boolean indicating whether to link to package tests
 	* @param {boolean} props.typescript - boolean indicating whether to link to TypeScript type declarations
 	* @param {boolean} props.sideMenu - boolean indicating whether to expand the side menu
+	* @param {boolean} props.allowSettingsCookies - boolean indicating whether to allow the use of cookies for storing settings
 	* @param {string} props.theme - current documentation theme
 	* @param {string} props.mode - current documentation "mode"
 	* @param {string} props.exampleSyntax - current example code syntax
@@ -181,11 +183,13 @@ class TopNav extends React.Component {
 					/>
 
 					<Settings
+						allowSettingsCookies={ this.props.allowSettingsCookies }
 						theme={ this.props.theme }
 						mode={ this.props.mode }
 						exampleSyntax={ this.props.exampleSyntax }
 						prevNextNavigation={ this.props.prevNextNavigation }
 
+						onAllowSettingsCookiesChange={ this.props.onAllowSettingsCookiesChange }
 						onThemeChange={ this.props.onThemeChange }
 						onModeChange={ this.props.onModeChange }
 						onExampleSyntaxChange={ this.props.onExampleSyntaxChange }

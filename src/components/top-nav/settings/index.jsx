@@ -38,10 +38,12 @@ class Settings extends React.Component {
 	* @private
 	* @constructor
 	* @param {Object} props - component properties
+	* @param {boolean} props.allowSettingsCookies - boolean indicating whether to allow the use of cookies for storing settings
 	* @param {string} props.theme - current theme
 	* @param {string} props.mode - current documentation "mode"
 	* @param {string} props.exampleSyntax - current example code syntax
 	* @param {string} props.prevNextNavigation - current previous/next package navigation mode
+	* @param {Callback} props.onAllowSettingsCookiesChange - callback to invoke upon changing the setting indicating whether to allow cookies for storing settings
 	* @param {Callback} props.onThemeChange - callback to invoke upon changing the documentation theme
 	* @param {Callback} props.onModeChange - callback to invoke upon changing the documentation "mode"
 	* @param {Callback} props.onExampleSyntaxChange - callback to invoke upon changing the example code syntax
@@ -67,6 +69,16 @@ class Settings extends React.Component {
 		this.setState({
 			'open': !this.state.open
 		});
+	}
+
+	/**
+	* Callback invoked upon changing the setting indicating whether to allow the use of cookies for storing settings.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	_onAllowSettingsCookiesChange = ( event ) => {
+		this.props.onAllowSettingsCookiesChange( event.target.value );
 	}
 
 	/**

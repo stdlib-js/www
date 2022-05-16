@@ -136,6 +136,7 @@ class App extends React.Component {
 	* @param {Object} props.data.order - package order hash
 	* @param {StringArray} props.data.namespaces - list of namespace packages
 	* @param {StringArray} props.data.descriptions - list of package descriptions
+	* @param {boolean} props.allowSettingsCookies - boolean indicating whether to allow the use of cookies for storing settings
 	* @param {string} props.theme - documentation theme
 	* @param {string} props.mode - documentation "mode"
 	* @param {string} props.exampleSyntax - example code syntax
@@ -143,6 +144,7 @@ class App extends React.Component {
 	* @param {string} props.query - initial search query
 	* @param {(string|Object)} props.content - initial content
 	* @param {Callback} props.onVersionChange - callback to invoke upon changing the documentation version
+	* @param {Callback} props.onAllowSettingsCookiesChange - callback to invoke upon changing the setting indicating whether to allow cookies for storing settings
 	* @param {Callback} props.onThemeChange - callback to invoke upon changing the documentation theme
 	* @param {Callback} props.onModeChange - callback to invoke upon changing the documentation "mode"
 	* @param {Callback} props.onExampleSyntaxChange - callback to invoke upon changing the example code syntax
@@ -505,6 +507,8 @@ class App extends React.Component {
 				onFilterBlur={ this._onFilterBlur }
 
 				onVersionChange={ this.props.onVersionChange }
+
+				onAllowSettingsCookiesChange={ this.props.onAllowSettingsCookiesChange }
 				onThemeChange={ this.props.onThemeChange }
 				onModeChange={ this.props.onModeChange }
 				onExampleSyntaxChange={ this.props.onExampleSyntaxChange }
@@ -512,6 +516,7 @@ class App extends React.Component {
 
 				sideMenu={ this.state.sideMenu }
 
+				allowSettingsCookies={ this.props.allowSettingsCookies }
 				theme={ this.props.theme }
 				mode={ this.props.mode }
 				exampleSyntax={ this.props.exampleSyntax }

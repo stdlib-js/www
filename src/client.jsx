@@ -57,6 +57,7 @@ class ClientApp extends React.Component {
 	* @returns {ReactComponent} React component
 	*/
 	constructor( props ) {
+		var allowCookies;
 		var pathname;
 		var version;
 		var cookies;
@@ -92,8 +93,14 @@ class ClientApp extends React.Component {
 			});
 			query = query.q || '';
 		}
-		// Get the current set of applicable cookies:
-		cookies = getCookies( document.cookie, COOKIES );
+		// Get the current list of cookies:
+		cookies = document.cookie;
+
+		// If cookies are present, we ASSUME that this means that a user has **opted-in** to allowing us to use cookies to store user preferences:
+		allowCookies = Boolean( cookies );
+
+		// Resolve the current set of applicable cookie values:
+		cookies = getCookies( cookies, COOKIES );
 
 		// Set the initial component state:
 		this.state = {
@@ -105,6 +112,9 @@ class ClientApp extends React.Component {
 
 			// Initial search query:
 			'query': query,
+
+			// Boolean indicating whether to allow use cookies for storing settings:
+			'allowSettingsCookies': allowCookies,
 
 			// Documentation theme:
 			'theme': cookies.theme || config.theme,
@@ -150,6 +160,22 @@ class ClientApp extends React.Component {
 				'data': data
 			});
 		}
+	}
+
+	/**
+	* Callback invoked upon a change to the setting indicating whether to allow cookies for storing settings.
+	*
+	* @private
+	* @param {boolean} value - preference
+	*/
+	_onAllowSettingsCookiesChange = ( value ) => {
+		// TODO: when a user disallows cookies, remove all user preference cookies
+
+		// TODO: when a user allows cookies, save all user preferences as cookies
+
+		this.setState({
+			'allowSettingsCookies': value
+		});
 	}
 
 	/**
@@ -259,6 +285,7 @@ class ClientApp extends React.Component {
 						query={ this.state.query }
 						content=""
 
+						allowSettingsCookies={ this.state.allowSettingsCookies }
 						theme={ this.state.theme }
 						mode={ this.state.mode }
 						exampleSyntax={ this.state.exampleSyntax }
@@ -266,6 +293,7 @@ class ClientApp extends React.Component {
 
 						onVersionChange={ this._onVersionChange }
 
+						onAllowSettingsCookiesChange={ this._onAllowSettingsCookiesChange }
 						onThemeChange={ this._onThemeChange }
 						onModeChange={ this._onModeChange }
 						onExampleSyntaxChange={ this._onExampleSyntaxChange }
