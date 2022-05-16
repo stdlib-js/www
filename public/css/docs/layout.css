@@ -1678,7 +1678,7 @@ h1 button.icon-button .icon {
 	padding-left: 1rem;
 	padding-right: 2rem;
 
-	line-height: 1.25;
+	line-height: 1.25em;
 
 	color: #4a5568;
 
@@ -1720,4 +1720,36 @@ h1 button.icon-button .icon {
 	width: 1rem;
 
 	fill: currentColor;
+}
+
+.settings-checkbox-wrapper {
+	display: flex;
+}
+
+.settings-checkbox {
+	margin-right: 0.5rem;
+	margin-top: 0.25rem;
+
+	line-height: 1.25em;
+
+	cursor: pointer;
+}
+
+.settings-checkbox-label {
+	line-height: 1.2em;
+
+	cursor: pointer;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.settings-checkbox-label p {
+	margin-bottom: 1em;
+}
+
+.settings-checkbox-label .text-bold {
+	font-weight: 700;
 }
