@@ -220,6 +220,7 @@ class Settings extends React.Component {
 									<option value="nested">Nested</option>
 									{/*<option value="standalone">Standalone</option>*/}
 									{/*<option value="repl">REPL</option>*/}
+									{/*<option value="repl">C</option>*/}
 								</select>
 								<div className="settings-select-custom">
 									<ChevronDownIcon className="settings-select-custom-icon"/>
