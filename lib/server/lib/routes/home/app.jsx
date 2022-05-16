@@ -51,10 +51,12 @@ function WrappedApp( App, url, version, settings, context ) {
 				version={ version }
 				data={ {} }
 				query=''
+
 				theme={ settings.theme }
 				mode={ settings.mode }
 				exampleSyntax={ settings.exampleSyntax }
 				prevNextNavigation={ settings.prevNextNavigation }
+
 				context={ context }
 			/>
 		</StylesProvider>
