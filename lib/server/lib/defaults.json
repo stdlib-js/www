@@ -10,6 +10,10 @@
   "ignoreTrailingSlash": true,
   "app": {
     "title": "Documentation | stdlib",
-    "description": "Documentation for stdlib, a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing."
+    "description": "Documentation for stdlib, a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing.",
+    "theme": "light",
+    "mode": "nested",
+    "exampleSyntax": "es5",
+    "prevNextNavigation": "alphabetical"
   }
 }
