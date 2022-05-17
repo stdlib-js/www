@@ -733,6 +733,24 @@ button.side-menu-list-item-namespace-icon:hover {
 
 .side-menu-list {
 	overflow-y: scroll;
+
+	/* Firefox */
+	scrollbar-width: thin;
+	scrollbar-color: #5e5e5e rgba(0, 0, 0, 0.4); /* <scroll_thumb_color> <scroll_track_color> */
+}
+
+/* Chrome, Edge, Safari */
+.side-menu-list::-webkit-scrollbar {
+	width: 4px;
+}
+
+.side-menu-list::-webkit-scrollbar-thumb {
+	background-color: #5e5e5e;
+	border-radius: 2px;
+}
+
+.side-menu-list::-webkit-scrollbar-track {
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 /*
