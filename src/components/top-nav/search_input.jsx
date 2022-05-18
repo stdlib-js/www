@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import InputBase from '@mui/material/InputBase';
+import InputBase from '@mui/material/InputBase'; // FIXME: replace; use native HTML
 import SearchIcon from './../icons/search.jsx';
 
 

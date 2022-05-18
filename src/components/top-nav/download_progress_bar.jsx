@@ -19,7 +19,7 @@
 // MODULES //
 
 import React from 'react';
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress'; // FIXME: replace; use native HTML
 
 
 // MAIN //

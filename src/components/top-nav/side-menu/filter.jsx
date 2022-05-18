@@ -19,7 +19,7 @@
 // MODULES //
 
 import React from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from '@mui/icons-material/Clear'; // FIXME: replace within internal icon
 
 
 // MAIN //

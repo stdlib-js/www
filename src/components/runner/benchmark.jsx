@@ -19,7 +19,7 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress'; // FIXME: replace; use native HTML to create internal progress indicator
 import log from 'log';
 import config from 'config';
 import LogoIcon from './../icons/logo.jsx';
