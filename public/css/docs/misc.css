@@ -228,11 +228,11 @@ img {
 */
 
 /*
-* To the left of a blockquote, show a vertical grey bar, similar to how GitHub styles blockquotes.
+* To the left of a blockquote, show a vertical bar, similar to how GitHub styles blockquotes.
 */
 .readme blockquote {
 	/* width | style | color */
-	border-left: 0.25em solid #dddddd;
+	border-left: 0.25em solid var(--blockquote-border-color);
 }
 
 /*
@@ -336,7 +336,7 @@ img {
 
 .readme .search-results-list-item:focus,
 .readme .search-results-list-item:hover {
-	border: 1px solid #4078c0;
+	border: 1px solid var(--search-result-hover-border-color);
 }
 
 /*
@@ -474,7 +474,7 @@ img {
 .readme .related {
 	overflow: auto;
 
-	border-left: 3px solid #007bff; /* bluish */
+	border-left: 3px solid var(--related-border-color);
 
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -513,7 +513,7 @@ img {
 */
 .readme .readme-bottom-nav .pagination-link:focus,
 .readme .readme-bottom-nav .pagination-link:hover {
-	border: 1px solid #4078c0; /* bluish */
+	border: 1px solid var(--pagination-link-hover-border-color);
 }
 
 /*
@@ -534,11 +534,144 @@ img {
 }
 
 /*
+* Feedback form.
+*/
+
+.readme-feedback > fieldset {
+	border: none;
+	border-top: 1px solid var(--hr-background-color);
+}
+
+.readme-feedback-sentiment-label {
+	border-radius: 50%;
+	border: 1px solid var(--feedback-sentiment-border-color);
+
+	cursor: pointer;
+}
+
+.readme-feedback-sentiment-label:hover {
+	border-color: var(--feedback-sentiment-hover-border-color);
+}
+
+.readme-feedback-sentiment-label .icon {
+	fill: none;
+	stroke-width: 1px;
+}
+
+.readme-feedback-no-sentiment .readme-feedback-positive-sentiment {
+	background-color: var(--feedback-positive-sentiment-background-color);
+}
+
+.readme-feedback-sentiment-radio:checked + .readme-feedback-positive-sentiment {
+	background-color: var(--feedback-positive-sentiment-selected-background-color);
+}
+
+.readme-feedback-has-sentiment .readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-positive-sentiment {
+	background-color: var(--feedback-positive-sentiment-not-selected-background-color);
+}
+
+.readme-feedback-no-sentiment .readme-feedback-negative-sentiment {
+	background-color: var(--feedback-negative-sentiment-background-color);
+}
+
+.readme-feedback-sentiment-radio:checked + .readme-feedback-negative-sentiment {
+	background-color: var(--feedback-negative-sentiment-selected-background-color);
+}
+
+.readme-feedback-has-sentiment .readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-negative-sentiment {
+	background-color: var(--feedback-negative-sentiment-not-selected-background-color);
+}
+
+.readme-feedback-sentiment-radio:checked + .readme-feedback-positive-sentiment:focus-within,
+.readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-positive-sentiment:focus-within,
+.readme-feedback-sentiment-radio:checked + .readme-feedback-positive-sentiment:hover,
+.readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-positive-sentiment:hover {
+	background-color: var(--feedback-positive-sentiment-hover-background-color);
+}
+
+.readme-feedback-sentiment-radio:checked + .readme-feedback-negative-sentiment:focus-within,
+.readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-negative-sentiment:focus-within,
+.readme-feedback-sentiment-radio:checked + .readme-feedback-negative-sentiment:hover,
+.readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-negative-sentiment:hover {
+	background-color: var(--feedback-negative-sentiment-hover-background-color);
+}
+
+.readme-feedback-positive-sentiment .icon {
+	stroke: var(--feedback-positive-sentiment-icon-color);
+}
+
+.readme-feedback-sentiment-radio:checked + .readme-feedback-positive-sentiment .icon {
+	stroke: var(--feedback-positive-sentiment-icon-selected-color);
+}
+
+.readme-feedback-has-sentiment .readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-positive-sentiment .icon {
+	stroke: var(--feedback-positive-sentiment-icon-not-selected-color);
+}
+
+.readme-feedback-negative-sentiment .icon {
+	stroke: var(--feedback-negative-sentiment-icon-color);
+}
+
+.readme-feedback-sentiment-radio:checked + .readme-feedback-negative-sentiment .icon {
+	stroke: var(--feedback-negative-sentiment-icon-selected-color);
+}
+
+.readme-feedback-has-sentiment .readme-feedback-sentiment-radio:not(:checked) + .readme-feedback-negative-sentiment .icon {
+	stroke: var(--feedback-negative-sentiment-icon-not-selected-color);
+}
+
+.readme-feedback-sentiment-radio:focus + .readme-feedback-positive-sentiment .icon,
+.readme-feedback-positive-sentiment:hover .icon {
+	stroke: var(--feedback-positive-sentiment-icon-hover-color);
+}
+
+ .readme-feedback-sentiment-radio:focus + .readme-feedback-negative-sentiment .icon,
+.readme-feedback-negative-sentiment:hover .icon {
+	stroke: var(--feedback-negative-sentiment-icon-hover-color);
+}
+
+.readme-feedback-sentiment-radio {
+	appearance: none;
+}
+
+.readme-feedback-submit-buttons button {
+	border-radius: 4px;
+
+	cursor: pointer;
+}
+
+.readme-feedback-cancel-button {
+	background-color: unset;
+
+	border: 1px solid var(--hr-background-color);
+}
+
+.readme-feedback-submit-button {
+	background-color: var(--default-button-background-color);
+
+	border: none;
+}
+
+.readme-feedback-submit-button:hover,
+.readme-feedback-submit-button:focus {
+	background-color: var(--default-button-hover-background-color);
+}
+
+.readme-feedback-cancel-button:hover,
+.readme-feedback-cancel-button:focus {
+	background-color: var(--top-nav-link-hover-background-color);
+}
+
+.readme-feedback .MuiTextField-root fieldset {
+	border-color: var(--hr-background-color);
+}
+
+/*
 * Runner badges.
 */
 
 .runner .badge-list .badge a {
-	background-color: #1976d2;
+	background-color: var(--default-button-background-color);
 
 	-webkit-border-radius: 2em;
 	-moz-border-radius: 2em;
@@ -552,7 +685,7 @@ img {
 
 .runner .badge-list .badge a:hover,
 .runner .badge-list .badge a:focus {
-	background-color: #0080ff;
+	background-color: var(--default-button-hover-background-color);
 }
 
 /*
@@ -560,8 +693,7 @@ img {
 */
 
 .settings-menu-overlay {
-	/* TODO: consider a grey, rather than a blue */
-	background-color: rgba(182,183,213,0.5);
+	background-color: var(--settings-overlay-background-color);
 }
 
 .settings-menu-blocker {
@@ -589,21 +721,21 @@ img {
 .settings-select {
 	appearance: none;
 
-	background-color: #eaeaea;
+	background-color: var(--settings-input-background-color);
 
-	border: 1px solid #eaeaea;
+	border: 1px solid var(--settings-input-border-color);
 
-	-webkit-border-radius:0.25rem;
-	-moz-border-radius:0.25rem;
+	-webkit-border-radius: 0.25rem;
+	-moz-border-radius: 0.25rem;
 	border-radius: 0.25rem;
 }
 
 .settings-select:focus {
 	outline: none;
 
-	background-color: #ffffff;
+	background-color: var(--settings-input-hover-background-color);
 
-	border-color: #cccccc;
+	border-color: var(--settings-input-hover-border-color);
 }
 
 .settings-select-custom {
@@ -758,7 +890,7 @@ button.side-menu-list-item-namespace-icon:hover {
 */
 
 .skip-link {
-	background-color: #1d1f20; /* TODO: consider whether this should be themed */
+	background-color: var(--skip-link-background-color);
 
 	-webkit-border-radius: 0 0 4px 4px;
 	-moz-border-radius: 0 0 4px 4px;
@@ -782,7 +914,7 @@ button.side-menu-list-item-namespace-icon:hover {
 	outline: 0;
     border: 0;
 
-    background-color: #1976d2;
+    background-color: var(--default-button-background-color);
 
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -798,11 +930,11 @@ button.side-menu-list-item-namespace-icon:hover {
 
 .toggle-chat-button:hover,
 .toggle-chat-button:focus {
-	background-color: #0080ff;
+	background-color: var(--default-button-hover-background-color);
 }
 
 .toggle-chat-button .icon {
-	fill: #ffffff;
+	fill: var(--default-button-text-color);
 }
 
 aside.gitter-chat-embed {
@@ -943,6 +1075,18 @@ h1 button.icon-button::after {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
 }
 
 

@@ -306,12 +306,41 @@ a:active {
 }
 
 /*
+* Feedback form.
+*/
+
+.readme-feedback > fieldset > legend {
+	font-family: var(--thin-font-family);
+	font-size: 1.1em;
+	text-align: center;
+}
+
+.readme-feedback-cancel-button {
+	color: var(--top-nav-link-color);
+}
+
+.readme-feedback-submit-button {
+	color: var(--default-button-text-color);
+}
+
+.readme-feedback .MuiTextField-root,
+.readme-feedback .MuiTextField-root label,
+.readme-feedback .MuiTextField-root textarea,
+.readme-feedback h3,
+.readme-feedback p {
+	font-family: var(--thin-font-family);
+	font-weight: normal;
+
+	color: var(--theme-text-color);
+}
+
+/*
 * Runner results.
 */
 
 .runner .badge-list .badge a {
 	font-size: 0.875em;
-	color: #ffffff;
+	color: var(--default-button-text-color);
 }
 
 .runner-results .test-file,
@@ -327,7 +356,7 @@ a:active {
 .runner-results .test-block .test-description,
 .runner-results .benchmark-block .benchmark-description {
 	text-decoration: underline;
-	text-decoration-color: #cacaca; /* grey */
+	text-decoration-color: var(--hr-background-color);
 }
 
 .runner-results .test-block .test-result-label,
@@ -426,11 +455,11 @@ a:active {
 .settings-select {
 	line-height: 1.25em;
 
-	color: #4a5568;
+	color: var(--settings-input-text-color);
 }
 
 .settings-select-custom {
-	color: #4a5568;
+	color: var(--settings-input-text-color);
 }
 
 .settings-checkbox {
@@ -514,7 +543,7 @@ button.side-menu-list-item-namespace-icon:hover {
 .skip-link {
 	text-align: center;
 
-	color: #00aeef; /* bluish */
+	color: var(--skip-link-color);
 }
 
 /*

@@ -772,6 +772,7 @@ h2 {
 
 .readme .readme-addendum {
 	margin-top: 3em;
+	margin-bottom: 400px;
 }
 
 .readme .readme-bottom-nav .edit-print-wrapper {
@@ -814,14 +815,65 @@ h2 {
 * Feedback form.
 */
 
-.readme .readme-feedback {
+.readme-feedback {
 	display: block;
 	width: 100%;
+
+	margin-top: 2em;
 	padding-left: 0.5em;
 }
 
-.readme .readme-feedback .MuiTextField-root {
-	margin: 6px;
+.readme-feedback > fieldset > legend {
+	padding: 0 2em;
+}
+
+.readme-feedback-sentiment-wrapper {
+	display: flex;
+
+	justify-content: center;
+
+	margin-top: 1em;
+}
+
+.readme-feedback-sentiment-label {
+	display: flex;
+
+	height: 4em;
+	width: 4em;
+
+	margin: 0 0.5em;
+
+	align-items: center;
+	justify-content: center;
+}
+
+.readme-feedback-sentiment-label .icon {
+	height: 1.5em;
+
+	margin: 0;
+}
+
+.readme-feedback-submit-buttons {
+	display: flex;
+
+	margin: 1em 0;
+
+	justify-content: flex-end;
+}
+
+.readme-feedback-submit-buttons button {
+	height: 2.5em;
+	width: 7em;
+
+	margin: 0 0.5em;
+}
+
+.readme-feedback-submit-buttons button:last-child {
+	margin-right: 0;
+}
+
+.readme-feedback p {
+	padding-top: 1em;
 }
 
 /*
