@@ -124,6 +124,16 @@ html[data-theme="dark"] {
 	--feedback-positive-sentiment-icon-hover-color: #f0ad3e;
 
 	/*
+	* Positive sentiment icons which are selected should be orange.
+	*/
+	--feedback-positive-sentiment-icon-selected-color: #ff9514;
+
+	/*
+	* Positive sentiment icons which are not selected should be a very light grey.
+	*/
+	--feedback-positive-sentiment-icon-not-selected-color: #f5f7f7;
+
+	/*
 	* Negative sentiment icons should be light blue (slightly lighter than stdlib blue in order to satisfy WebAIM contrast requirements).
 	*/
 	--feedback-negative-sentiment-icon-color: #00bbff;
@@ -134,9 +144,19 @@ html[data-theme="dark"] {
 	--feedback-negative-sentiment-icon-hover-color: #00aeef;
 
 	/*
-	* Positive sentiment icons should have a charcoal background (matching the default theme background color).
+	* Negative sentiment icons which are selected should be light blue.
 	*/
-	--feedback-positive-sentiment-background-color: #222426;
+	--feedback-negative-sentiment-icon-selected-color: #00bbff;
+
+	/*
+	* Negative sentiment icons which are not selected should be a very light grey.
+	*/
+	--feedback-negative-sentiment-icon-not-selected-color: #f5f7f7;
+
+	/*
+	* Positive sentiment icons should be transparent.
+	*/
+	--feedback-positive-sentiment-background-color: transparent;
 
 	/*
 	* Positive sentiment icons should have a dark charcoal background on hover.
@@ -144,14 +164,34 @@ html[data-theme="dark"] {
 	--feedback-positive-sentiment-hover-background-color: #17191a;
 
 	/*
-	* Negative sentiment icons should have a charcoal background (matching the default theme background color).
+	* Positive sentiment icons which are selected should have a dark charcoal background.
 	*/
-	--feedback-negative-sentiment-background-color: #222426;
+	--feedback-positive-sentiment-selected-background-color: #17191a;
+
+	/*
+	* Positive sentiment icons which are not selected should be transparent.
+	*/
+	--feedback-positive-sentiment-not-selected-background-color: transparent;
+
+	/*
+	* Negative sentiment icons should be transparent.
+	*/
+	--feedback-negative-sentiment-background-color: transparent;
 
 	/*
 	* Negative sentiment icons should have a charcoal background on hover.
 	*/
 	--feedback-negative-sentiment-hover-background-color: #17191a;
+
+	/*
+	* Negative sentiment icons which are selected should have a charcoal background.
+	*/
+	--feedback-negative-sentiment-selected-background-color: #17191a;
+
+	/*
+	* Negative sentiment icons which are not selected should be transparent.
+	*/
+	--feedback-negative-sentiment-not-selected-background-color: transparent;
 
 	/*
 	* The borders of feedback sentiment buttons should be medium-light grey (and should match the color of horizontal rules).
