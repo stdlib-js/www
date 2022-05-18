@@ -43,9 +43,24 @@ html[data-theme="light"] {
 	--link-color: #0000ff;
 
 	/*
+	* Skip links should be blue.
+	*/
+	--skip-link-color: #00aeef;
+
+	/*
+	* Skip links should have a charcoal background color.
+	*/
+	--skip-link-background-color: #1d1f20;
+
+	/*
 	* Blockquote text should be grey.
 	*/
 	--blockquote-color: #696969;
+
+	/*
+	* Blockquote border color should be grey.
+	*/
+	--blockquote-border-color: #dddddd;
 
 	/*
 	* The top-navigation should have the same background color as the theme background.
@@ -97,6 +112,116 @@ html[data-theme="light"] {
 	* The bottom borders of headings should be light grey.
 	*/
 	--heading-border-bottom-color: #eeeeee;
+
+	/*
+	* Positive sentiment icons should be green.
+	*/
+	--feedback-positive-sentiment-icon-color: #00aa00;
+
+	/*
+	* When hovering over a positive sentiment icon, a positive sentiment icons should be (a slightly darker) green.
+	*/
+	--feedback-positive-sentiment-icon-hover-color: #007700;
+
+	/*
+	* Negative sentiment icons should be red.
+	*/
+	--feedback-negative-sentiment-icon-color: #dd0000;
+
+	/*
+	* When hovering over a negative sentiment icon, a negative sentiment icons should be (a slightly darker) red.
+	*/
+	--feedback-negative-sentiment-icon-hover-color: #cc0000;
+
+	/*
+	* Positive sentiment icons should have a light green background.
+	*/
+	--feedback-positive-sentiment-background-color: rgba(201,248,222,0.7);
+
+	/*
+	* Positive sentiment icons should have a darker light green background on hover.
+	*/
+	--feedback-positive-sentiment-hover-background-color: rgba(201, 248, 222, 0.9);
+
+	/*
+	* Negative sentiment icons should have a light red background.
+	*/
+	--feedback-negative-sentiment-background-color: rgba(254,189,197,0.4);
+
+	/*
+	* Negative sentiment icons should have a dark light red background on hover.
+	*/
+	--feedback-negative-sentiment-hover-background-color: rgba(254, 189, 197, 0.6);
+
+	/*
+	* Feedback sentiment buttons should not have visible borders.
+	*/
+	--feedback-sentiment-border-color: unset;
+
+	/*
+	* When hovering over a feedback sentiment button, a feedback sentiment button should not have a visible border.
+	*/
+	--feedback-sentiment-hover-border-color: unset;
+
+	/*
+	* A list of related packages should have a blue border.
+	*/
+	--related-border-color: #007bff;
+
+	/*
+	* When hovering over a pagination link, the link should have a blue border.
+	*/
+	--pagination-link-hover-border-color: #4078c0;
+
+	/*
+	* When hovering over a search result, the search result should have a blue border.
+	*/
+	--search-result-hover-border-color: #4078c0;
+
+	/*
+	* The settings menu overlay should have a light blue background.
+	*/
+	--settings-overlay-background-color: rgba(182,183,213,0.5);
+
+	/*
+	* Settings menu input elements should have a light grey background.
+	*/
+	--settings-input-background-color: #eaeaea;
+
+	/*
+	* When hovering over an input element, a settings menu input element should have a white background.
+	*/
+	--settings-input-hover-background-color: #ffffff;
+
+	/*
+	* Settings menu input elements should have a light grey border.
+	*/
+	--settings-input-border-color: #eaeaea;
+
+	/*
+	* When hovering over an input element, a settings menu input element should have a grey border.
+	*/
+	--settings-input-hover-border-color: #cccccc;
+
+	/*
+	* Settings menu input elements should have grey text.
+	*/
+	--settings-input-text-color: #4a5568;
+
+	/*
+	* The default button background color should be blue.
+	*/
+	--default-button-background-color: #1976d2;
+
+	/*
+	* When hovering over a button, the default button background color should be a slightly lighter (more vibrant) blue.
+	*/
+	--default-button-hover-background-color: #0080ff;
+
+	/*
+	* The default button text color should be white.
+	*/
+	--default-button-text-color: #ffffff;
 
 	/*
 	* Table cells and rows should have a medium grey border.

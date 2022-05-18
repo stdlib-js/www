@@ -43,9 +43,24 @@ html[data-theme="dark"] {
 	--link-color: #00abe7;
 
 	/*
+	* Skip links should be blue.
+	*/
+	--skip-link-color: #00aeef;
+
+	/*
+	* Skip links should have a charcoal background color.
+	*/
+	--skip-link-background-color: #1d1f20;
+
+	/*
 	* Blockquote text should be light grey.
 	*/
 	--blockquote-color: #f3f3f3;
+
+	/*
+	* Blockquote border color should be grey.
+	*/
+	--blockquote-border-color: #dddddd;
 
 	/*
 	* The top-navigation should have a background which is slightly lighter than the theme background in order to convey depth.
@@ -97,6 +112,116 @@ html[data-theme="dark"] {
 	* The bottom borders of headings should be medium-light grey.
 	*/
 	--heading-border-bottom-color: #b5b5b5;
+
+	/*
+	* Positive sentiment icons should be orange (slightly lighter than stdlib orange in order to satisfy WebAIM contrast requirements).
+	*/
+	--feedback-positive-sentiment-icon-color: #ff9514;
+
+	/*
+	* When hovering over a positive sentiment icon, a positive sentiment icons should be (a slightly darker) orange.
+	*/
+	--feedback-positive-sentiment-icon-hover-color: #f0ad3e;
+
+	/*
+	* Negative sentiment icons should be light blue (slightly lighter than stdlib blue in order to satisfy WebAIM contrast requirements).
+	*/
+	--feedback-negative-sentiment-icon-color: #00bbff;
+
+	/*
+	* When hovering over a negative sentiment icon, a negative sentiment icons should be (a slightly darker) blue.
+	*/
+	--feedback-negative-sentiment-icon-hover-color: #00aeef;
+
+	/*
+	* Positive sentiment icons should have a charcoal background (matching the default theme background color).
+	*/
+	--feedback-positive-sentiment-background-color: #222426;
+
+	/*
+	* Positive sentiment icons should have a dark charcoal background on hover.
+	*/
+	--feedback-positive-sentiment-hover-background-color: #17191a;
+
+	/*
+	* Negative sentiment icons should have a charcoal background (matching the default theme background color).
+	*/
+	--feedback-negative-sentiment-background-color: #222426;
+
+	/*
+	* Negative sentiment icons should have a charcoal background on hover.
+	*/
+	--feedback-negative-sentiment-hover-background-color: #17191a;
+
+	/*
+	* The borders of feedback sentiment buttons should be medium-light grey (and should match the color of horizontal rules).
+	*/
+	--feedback-sentiment-border-color: #cdcdcd;
+
+	/*
+	* When hovering over a feedback sentiment button, the border of a feedback sentiment button should be medium grey.
+	*/
+	--feedback-sentiment-hover-border-color: #858585;
+
+	/*
+	* A list of related packages should have a bluish border.
+	*/
+	--related-border-color: #007bff;
+
+	/*
+	* When hovering over a pagination link, the link should have a blue border.
+	*/
+	--pagination-link-hover-border-color: #4078c0;
+
+	/*
+	* When hovering over a search result, the search result should have a bluish border.
+	*/
+	--search-result-hover-border-color: #4078c0;
+
+	/*
+	* The settings menu overlay should have a light blue background.
+	*/
+	--settings-overlay-background-color: rgba(182,183,213,0.5);
+
+	/*
+	* Settings menu input elements should have a light grey background.
+	*/
+	--settings-input-background-color: #eaeaea;
+
+	/*
+	* When hovering over an input element, a settings menu input element should have a white background.
+	*/
+	--settings-input-hover-background-color: #ffffff;
+
+	/*
+	* Settings menu input elements should have a light grey border.
+	*/
+	--settings-input-border-color: #eaeaea;
+
+	/*
+	* When hovering over an input element, a settings menu input element should have a grey border.
+	*/
+	--settings-input-hover-border-color: #cccccc;
+
+	/*
+	* Settings menu input elements should have grey text.
+	*/
+	--settings-input-text-color: #4a5568;
+
+	/*
+	* The default button background color should be blue.
+	*/
+	--default-button-background-color: #1976d2;
+
+	/*
+	* When hovering over a button, the default button background color should be a slightly lighter (more vibrant) blue.
+	*/
+	--default-button-hover-background-color: #0080ff;
+
+	/*
+	* The default button text color should be white.
+	*/
+	--default-button-text-color: #ffffff;
 
 	/*
 	* Table cells and rows should have a darker grey border.
