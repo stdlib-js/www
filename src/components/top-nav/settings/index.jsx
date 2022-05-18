@@ -217,7 +217,7 @@ class Settings extends React.Component {
 									className="settings-select"
 									onChange={ this._onModeChange }
 								>
-									<option value="nested">Nested</option>
+									<option value="default">Default</option>
 									{/*<option value="standalone">Standalone</option>*/}
 									{/*<option value="repl">REPL</option>*/}
 									{/*<option value="repl">C</option>*/}
@@ -284,7 +284,7 @@ class Settings extends React.Component {
 									Enable saving your preferences as <span className="text-bold">cookies</span>.
 								</p>
 								<p>
-									If settings cookies are not enabled, your preferences will be lost upon navigating away from this site (including refresh).
+									If settings cookies are not enabled, your preferences will be lost upon either closing or refreshing this browser tab.
 								</p>
 								<p>
 									You can delete settings cookies for this site at any time by unchecking this checkbox.
