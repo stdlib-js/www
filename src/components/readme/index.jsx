@@ -169,13 +169,13 @@ class Readme extends React.Component {
 								next={ this.props.next }
 								version={ this.props.version }
 							/>
-							<Feedback
-								key={ this.props.pkg }
-								pkg={ this.props.pkg }
-								url={ this.props.url }
-								version={ this.props.version }
-							/>
 						</nav>
+						<Feedback
+							key={ this.props.pkg }
+							pkg={ this.props.pkg }
+							url={ this.props.url }
+							version={ this.props.version }
+						/>
 					</section>
 					:
 					null
