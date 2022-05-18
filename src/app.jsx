@@ -20,8 +20,6 @@
 
 import React, { Fragment } from 'react';
 import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 import qs from 'qs';
 import substringBeforeLast from '@stdlib/string/substring-before-last';
 import log from 'log';
@@ -384,40 +382,6 @@ class App extends React.Component {
 	_onErrorDecoderClose = () => {
 		// Manually update the history to trigger navigation to the home page:
 		this.props.history.push( this._prevLocation );
-	}
-
-	/**
-	* Renders a notification message if present in query string.
-	*
-	* @private
-	* @returns {ReactElement} React element
-	*/
-	_renderNotification() {
-		var query;
-		var msg;
-		if ( this.state.notification ) {
-			query = qs.parse( this.props.location.search || '', {
-				'ignoreQueryPrefix': true
-			});
-			msg = query.notification;
-		}
-		return (
-			<Snackbar
-				open={ this.state.notification }
-				autoHideDuration={ 6000 }
-				onClose={ this._closeNotification }
-				anchorOrigin={ { 'vertical': 'top', 'horizontal': 'center' } }
-			>
-				<Alert
-					onClose={ this._closeNotification }
-					variant="filled"
-					severity="success"
-					sx={ { 'width': '100%' } }
-				>
-					{ msg }
-				</Alert>
-			</Snackbar>
-		);
 	}
 
 	/**
@@ -985,7 +949,6 @@ class App extends React.Component {
 		return (
 			<Fragment>
 				{ this._renderTopNav() }
-				{ this._renderNotification() }
 				<Switch>
 					<Redirect
 						exact
