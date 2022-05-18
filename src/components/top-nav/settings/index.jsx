@@ -284,7 +284,7 @@ class Settings extends React.Component {
 									Enable saving your preferences as <span className="text-bold">cookies</span>.
 								</p>
 								<p>
-									If settings cookies are not enabled, your preferences will be lost upon either closing or refreshing this browser tab.
+									If settings cookies are not enabled, your preferences will be lost upon either refreshing or closing the current browser tab.
 								</p>
 								<p>
 									You can delete settings cookies for this site at any time by unchecking this checkbox.
