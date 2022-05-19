@@ -12,6 +12,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+	<!-- Only send the origin in the Referer header (e.g., https://stdlib.io/docs/api => https://stdlib.io; see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) -->
+	<meta name="referrer" content="origin">
+
 	<!-- Stylesheets -->
 	<link rel="preload" as="font" type="font/woff2" href="/css/common/fonts/lato/latin/LatoLatin-Light.woff2" crossorigin>
 	<link rel="preload" as="font" type="font/woff2" href="/css/common/fonts/lato/latin/LatoLatin-LightItalic.woff2" crossorigin>
